@@ -72,7 +72,7 @@ public interface Expression extends Step {
 	 * @return the value of the '<em>Function</em>' reference.
 	 * @see #setFunction(Function)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Function()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedExpression'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

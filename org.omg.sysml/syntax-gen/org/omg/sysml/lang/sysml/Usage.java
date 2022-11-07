@@ -906,7 +906,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUsage'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

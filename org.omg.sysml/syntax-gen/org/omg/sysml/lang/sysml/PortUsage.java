@@ -71,7 +71,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPort'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

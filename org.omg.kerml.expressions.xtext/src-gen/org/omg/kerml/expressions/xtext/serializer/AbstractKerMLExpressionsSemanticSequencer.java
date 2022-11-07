@@ -155,7 +155,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| rule == grammarAccess.getEqualityExpressionRule()
 						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getRangeExpressionRule()
@@ -270,7 +271,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| rule == grammarAccess.getEqualityExpressionRule()
 						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getRangeExpressionRule()
@@ -320,7 +322,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| rule == grammarAccess.getEqualityExpressionRule()
 						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getRangeExpressionRule()
@@ -374,8 +377,15 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
 				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
-				sequence_SelfReferenceMember(context, (ReturnParameterMembership) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getSelfReferenceMemberRule()) {
+					sequence_SelfReferenceMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeResultMemberRule()) {
+					sequence_TypeResultMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.SELECT_EXPRESSION:
 				sequence_PrimaryExpression(context, (SelectExpression) semanticObject); 
 				return; 
@@ -401,7 +411,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns OperatorExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     ClassificationExpression returns OperatorExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns OperatorExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns OperatorExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns OperatorExpression
 	 *     RelationalExpression returns OperatorExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     RangeExpression returns OperatorExpression
@@ -439,16 +450,19 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *             ((operator=AndOperator operand+=EqualityExpression) | (operator=ConditionalAndOperator operand+=EqualityExpressionReference))
 	 *         ) | 
 	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=ClassificationExpression) | 
-	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=MetadataReference operator=MetaClassificationOperator ownedRelationship+=TypeReferenceMember) | 
+	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0_0 operator=ClassificationTestOperator ownedRelationship+=TypeReferenceMember) | 
+	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_1_0 operator=CastOperator ownedRelationship+=TypeResultMember) | 
+	 *         (operand+=SelfReferenceExpression operator=ClassificationTestOperator ownedRelationship+=TypeReferenceMember) | 
+	 *         (operand+=MetadataReference operator=MetaClassificationTestOperator ownedRelationship+=TypeReferenceMember) | 
+	 *         (operand+=SelfReferenceExpression operator=CastOperator ownedRelationship+=TypeResultMember) | 
+	 *         (operand+=MetadataReference operator=MetaCastOperator ownedRelationship+=TypeResultMember) | 
 	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=RangeExpression) | 
 	 *         (operand+=RangeExpression_OperatorExpression_1_0 operator='..' operand+=AdditiveExpression) | 
 	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
 	 *         (operand+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand+=ExponentiationExpression) | 
 	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=UnaryExpression) | 
 	 *         (operator=UnaryOperator operand+=ExtentExpression) | 
-	 *         (operator='all' ownedRelationship+=TypeReferenceMember) | 
+	 *         (operator='all' ownedRelationship+=TypeResultMember) | 
 	 *         (operand+=PrimaryExpression_OperatorExpression_2_0_0_0 operator='[' operand+=SequenceExpression) | 
 	 *         (
 	 *             operand+=PrimaryExpression_OperatorExpression_2_0_1_0 
@@ -533,7 +547,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns FeatureReferenceExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     ClassificationExpression returns FeatureReferenceExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns FeatureReferenceExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns FeatureReferenceExpression
 	 *     RelationalExpression returns FeatureReferenceExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     RangeExpression returns FeatureReferenceExpression
@@ -803,7 +818,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns InvocationExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     ClassificationExpression returns InvocationExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns InvocationExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns InvocationExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns InvocationExpression
 	 *     RelationalExpression returns InvocationExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     RangeExpression returns InvocationExpression
@@ -858,7 +874,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns LiteralBoolean
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     ClassificationExpression returns LiteralBoolean
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralBoolean
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns LiteralBoolean
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns LiteralBoolean
 	 *     RelationalExpression returns LiteralBoolean
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     RangeExpression returns LiteralBoolean
@@ -914,7 +931,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns LiteralInfinity
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInfinity
 	 *     ClassificationExpression returns LiteralInfinity
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInfinity
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns LiteralInfinity
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns LiteralInfinity
 	 *     RelationalExpression returns LiteralInfinity
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInfinity
 	 *     RangeExpression returns LiteralInfinity
@@ -964,7 +982,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns LiteralInteger
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     ClassificationExpression returns LiteralInteger
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInteger
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns LiteralInteger
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns LiteralInteger
 	 *     RelationalExpression returns LiteralInteger
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     RangeExpression returns LiteralInteger
@@ -1020,7 +1039,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns LiteralRational
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralRational
 	 *     ClassificationExpression returns LiteralRational
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralRational
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns LiteralRational
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns LiteralRational
 	 *     RelationalExpression returns LiteralRational
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralRational
 	 *     RangeExpression returns LiteralRational
@@ -1076,7 +1096,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns LiteralString
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralString
 	 *     ClassificationExpression returns LiteralString
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralString
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns LiteralString
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns LiteralString
 	 *     RelationalExpression returns LiteralString
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralString
 	 *     RangeExpression returns LiteralString
@@ -1132,7 +1153,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns MetadataAccessExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns MetadataAccessExpression
 	 *     ClassificationExpression returns MetadataAccessExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns MetadataAccessExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns MetadataAccessExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns MetadataAccessExpression
 	 *     RelationalExpression returns MetadataAccessExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns MetadataAccessExpression
 	 *     RangeExpression returns MetadataAccessExpression
@@ -1253,7 +1275,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns NullExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns NullExpression
 	 *     ClassificationExpression returns NullExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns NullExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns NullExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns NullExpression
 	 *     RelationalExpression returns NullExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns NullExpression
 	 *     RangeExpression returns NullExpression
@@ -1398,7 +1421,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns CollectExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns CollectExpression
 	 *     ClassificationExpression returns CollectExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns CollectExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns CollectExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns CollectExpression
 	 *     RelationalExpression returns CollectExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns CollectExpression
 	 *     RangeExpression returns CollectExpression
@@ -1447,7 +1471,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns FeatureChainExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureChainExpression
 	 *     ClassificationExpression returns FeatureChainExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureChainExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns FeatureChainExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns FeatureChainExpression
 	 *     RelationalExpression returns FeatureChainExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureChainExpression
 	 *     RangeExpression returns FeatureChainExpression
@@ -1498,7 +1523,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     EqualityExpression returns SelectExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns SelectExpression
 	 *     ClassificationExpression returns SelectExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns SelectExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0_0 returns SelectExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_1_0 returns SelectExpression
 	 *     RelationalExpression returns SelectExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns SelectExpression
 	 *     RangeExpression returns SelectExpression
@@ -1604,6 +1630,18 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     ownedRelationship+=ReferenceTyping
 	 */
 	protected void sequence_TypeReference(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeResultMember returns ReturnParameterMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=TypeReference
+	 */
+	protected void sequence_TypeResultMember(ISerializationContext context, ReturnParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

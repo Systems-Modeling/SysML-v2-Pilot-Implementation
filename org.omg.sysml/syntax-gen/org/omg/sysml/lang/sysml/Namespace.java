@@ -49,8 +49,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -184,6 +184,17 @@ public interface Namespace extends Element {
 	 * @generated
 	 */
 	EList<Membership> importedMemberships(EList<Namespace> excluded);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Resolve the given qualified name to the named Element (if any), starting with this Namespace as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rule every qualified name will resolve to either a single qualified name, or none.</p>
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 * @generated
+	 */
+	Element resolve(String qualifiedName);
 
 	/**
 	 * Returns the value of the '<em><b>Member</b></em>' reference list. The list

@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -316,6 +317,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		return getImportedMembership(new HashSet<>(excluded), new HashSet<Type>(), true);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Element resolve(String qualifiedName) {
+		Collection<Membership> memberships = NamespaceUtil.getNamedMembershipsFor(this, qualifiedName);
+		return memberships.stream().findAny().map(Membership::getMemberElement).orElse(null);
+	}
+
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
 	public EList<Membership> getVisibleMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
 		EList<Membership> visibleMembership;
@@ -477,6 +488,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				return visibleMemberships((EList<Namespace>)arguments.get(0), (Boolean)arguments.get(1), (Boolean)arguments.get(2));
 			case SysMLPackage.NAMESPACE___IMPORTED_MEMBERSHIPS__ELIST:
 				return importedMemberships((EList<Namespace>)arguments.get(0));
+			case SysMLPackage.NAMESPACE___RESOLVE__STRING:
+				return resolve((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

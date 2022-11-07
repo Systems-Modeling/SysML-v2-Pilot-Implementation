@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,18 +21,16 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.TypeUtil;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -58,19 +56,7 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
 		addComputedRedefinitions(null);
 	}
-	
-	// Computed Redefinition
-
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		return type instanceof ItemFlow? new ArrayList<>(((Feature)type).getType()) : super.getGeneralTypes(type, skip);
-	}
-
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return getTarget().getOwnedFeature();
-	}
-	
+		
 	// Transformation
 	
 	public void addItemFlowEndSubsetting() {
@@ -79,19 +65,39 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 			EList<Feature> features = getTarget().getOwnedFeature();
 			if (!features.isEmpty()) {
 				FeatureUtil.getRedefinedFeaturesOf(features.get(0)).stream().findFirst().
-				filter(f->f != null).
-				map(Feature::getOwningType).
-				filter(Feature.class::isInstance).
-				ifPresent(owner->
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner)
-				);
+					filter(f->f != null).
+					map(Feature::getOwningType).
+					filter(Feature.class::isInstance).
+					ifPresent(owner->
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner)
+					);
 			}
 		}
-	}	
+	}
+	
+	public void addItemFlowFeatureRedefinition() {
+		ItemFlowEnd target = getTarget();
+		Element owner = target.getOwner();
+		if (owner instanceof Feature) {
+			EList<Feature> ownedFeatures = target.getOwnedFeature();
+			if (!ownedFeatures.isEmpty()) {
+				Feature itemFlowFeature = ownedFeatures.get(0);
+			int i = ((Feature)owner).getEndFeature().indexOf(target);
+			if (i == 0 || i == 1) {
+					TypeUtil.addImplicitGeneralTypeTo(itemFlowFeature, 
+							SysMLPackage.eINSTANCE.getRedefinition(),
+							getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(
+									target.getClass(), i == 0? "sourceOutput": "targetInput")));
+					TypeUtil.setIsAddImplicitGeneralTypesFor(itemFlowFeature, false);
+				}
+			}
+		}
+	}
 
 	@Override
 	public void doTransform() {
 		addItemFlowEndSubsetting();
+		addItemFlowFeatureRedefinition();
 		super.doTransform();
 	}
 	

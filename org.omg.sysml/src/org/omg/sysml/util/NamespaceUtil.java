@@ -99,6 +99,10 @@ public class NamespaceUtil {
 				import_.getImportedMemberName(), import_.isImportAll());
 	}
 	
+	public static Collection<Membership> getNamedMembershipsFor(Namespace namespace, String name) {
+		return SysMLScopeUtil.getMembershipsFor(namespace, SysMLPackage.eINSTANCE.getNamespace_Membership(), name, false);
+	}
+	
 	// Related Namespaces
 	
 	public static Namespace getParentNamespaceOf(Element element) {

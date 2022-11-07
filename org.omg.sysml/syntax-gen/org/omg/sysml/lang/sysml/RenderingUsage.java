@@ -62,7 +62,7 @@ public interface RenderingUsage extends PartUsage {
 	 * @return the value of the '<em>Rendering Definition</em>' reference.
 	 * @see #setRenderingDefinition(RenderingDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRenderingUsage_RenderingDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedRendering'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -75,7 +75,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @return the value of the '<em>Requirement Definition</em>' reference.
 	 * @see #setRequirementDefinition(RequirementDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedRequirement'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

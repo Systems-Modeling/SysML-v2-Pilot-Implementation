@@ -21,10 +21,13 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Type;
 
 public class ItemFlow_targetInputFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -34,7 +37,11 @@ public class ItemFlow_targetInputFeature_SettingDelegate extends BasicDerivedObj
 
 	@Override
 	protected Feature basicGet(InternalEObject owner) {
-		return ((ItemFlow)owner).getItemFlowFeature().stream().skip(1).findFirst().orElse(null);
+		return ((ItemFlow)owner).getConnectorEnd().stream().
+				skip(1).
+				map(Type::getOwnedFeature).
+				flatMap(List::stream).
+				findFirst().orElse(null);
 	}
 
 }

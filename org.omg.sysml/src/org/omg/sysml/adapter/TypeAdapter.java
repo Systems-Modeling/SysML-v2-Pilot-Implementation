@@ -200,23 +200,18 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void removeUnnecessaryImplicitGeneralTypes() {
 		Type target = getTarget();
-		List<Type> explicitGenerals = target.getOwnedSpecialization().stream().
+		List<Type> generals = target.getOwnedSpecialization().stream().
 				filter(spec->spec.getSpecific() == target).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
+		implicitGeneralTypes.values().forEach(generals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
 				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
-				for (Object general: implicitGenerals.toArray()) {
-					Stream<Type> generals = Stream.concat(
-							implicitGenerals.stream().filter(type->type != general), 
-							explicitGenerals.stream());
-					if (generals.anyMatch(type->TypeUtil.conforms(type, (Type)general))) {
-						implicitGenerals.remove(general);
-						if (implicitGenerals.isEmpty()) {
-							implicitGeneralTypes.remove(eClass);
-						}
-					}
+				implicitGenerals.removeIf(gen->
+					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen)));
+				if (implicitGenerals.isEmpty()) {
+					implicitGeneralTypes.remove(eClass);
 				}
 			}
 		}

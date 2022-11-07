@@ -167,20 +167,36 @@ EqualityOperator :
 // Classification Expressions
 
 ClassificationExpression returns SysML::Expression :
-	  RelationalExpression ( {SysML::OperatorExpression.operand += current}
-	  operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	  RelationalExpression 
+	  ( {SysML::OperatorExpression.operand += current} 
+	  	operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
+	  | {SysML::OperatorExpression.operand += current}
+	    operator = CastOperator ownedRelationship += TypeResultMember
+	  )?
 	| {SysML::OperatorExpression} operand += SelfReferenceExpression 
-	  operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	  operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
 	| {SysML::OperatorExpression} operand += MetadataReference
-	  operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
+	  operator = MetaClassificationTestOperator ownedRelationship += TypeReferenceMember
+	| {SysML::OperatorExpression} operand += SelfReferenceExpression 
+	  operator = CastOperator ownedRelationship += TypeResultMember
+	| {SysML::OperatorExpression} operand += MetadataReference
+	  operator = MetaCastOperator ownedRelationship += TypeResultMember
 ;
 
-ClassificationOperator :
-	'hastype' | 'istype' | '@' | 'as'
+ClassificationTestOperator :
+	'hastype' | 'istype' | '@'
 ;
 
-MetaClassificationOperator :
-	'@@' | 'meta'
+MetaClassificationTestOperator :
+	'@@'
+;
+
+CastOperator :
+    'as'
+;
+
+MetaCastOperator :
+	'meta'
 ;
 
 MetadataReference returns SysML::MetadataAccessExpression :
@@ -188,6 +204,10 @@ MetadataReference returns SysML::MetadataAccessExpression :
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
+	ownedRelatedElement += TypeReference
+;
+
+TypeResultMember returns SysML::ReturnParameterMembership :
 	ownedRelatedElement += TypeReference
 ;
 
@@ -272,7 +292,7 @@ UnaryOperator :
 // Extent Expressions
 
 ExtentExpression returns SysML::Expression :
-	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeReferenceMember
+	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeResultMember
 	| PrimaryExpression
 ;
 

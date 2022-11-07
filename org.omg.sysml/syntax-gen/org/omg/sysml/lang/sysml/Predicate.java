@@ -29,7 +29,6 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A Predicate is a Function whose <code>result</code> Parameter has type <em>Boolean</em> and multiplicity 1..1.</p>
  * 
- * A Predicate is a Function whose result is a Boolean true or false value. These are typically used to test logical statements about modeled objects.
  * <!-- end-model-doc -->
  *
  *

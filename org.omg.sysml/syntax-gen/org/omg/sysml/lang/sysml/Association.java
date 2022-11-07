@@ -33,12 +33,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Association is a Relationship and a Classifier to enable classification of links between things (in the universe). The co-domains (<code>types</code>) of the <code>associationEnd</code> Features are the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
  * 
  * relatedTypes = associationEnd.type
- * let numend : Natural = associationEnd->size() in
- *     allSupertypes()->includes(
- *         if numend = 2 then Kernel Library::BinaryLink
- *         else Kernel Library::Link)
+ * allSupertypes()->includes(resolve("Links::Link"))
  * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
- * allSupertypes()->includes(Kernel Library::Link)
+ * endFeatures()->size() = 2 implies
+ *     allSupertypes()->includes(resolve("Links::Link))
+ * not isAbstract implies relatedType->size() >= 2
  * <!-- end-model-doc -->
  *
  * <p>
@@ -72,12 +71,12 @@ public interface Association extends Classifier, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>types</code> of the <code>endFeatures</code> of the Association, which are the <code>relatedElements</code> of the Association considered as a Relationship.</p>
+	 * <p>The <code>types</code> of the <code>associationEnds</code> of the Association, which are the <code>relatedElements</code> of the Association considered as a Relationship.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='association'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -102,7 +101,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedType</code> for this Association. If this is a binary Association, then the <code>sourceType</code> is the first <code>relatedType</code>, and the first <code>associationEnd</code> of the Association must redefine the <code>source</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library. If this Association is not binary, then it has no <code>sourceType</code>.</p>
+	 * <p>The source <code>relatedType</code> for this Association. It is the first <code>relatedType</code> of the Association.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Type</em>' reference.
@@ -145,12 +144,12 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the <code>associationEnds</code> corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library.</p> 
+	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetType()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetAssociation'"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
@@ -171,14 +170,14 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that identify the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
+	 * <p>The <code>features</code> of the Association that identify the things that can be related by it. A concrete Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
 	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='associationWithEnd'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -31,10 +31,6 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>A SuccessionItemFlow must be typed by the Interaction <em>TransferBefore</em> from the Kernel Library, or a specialization of it.</p>
  * 
- * <p>SuccessionItemFlows are ItemFlows that also provide temporal ordering. They classify Transfers that must complete before the target behavior can start.</p>
- * 
- * <p>Must be typed by M1 TransferBefore or one of its specializations.<br />
- * association-&gt;is=OrSpecializationOf(TransferBefore) }</p>
  * <!-- end-model-doc -->
  *
  *

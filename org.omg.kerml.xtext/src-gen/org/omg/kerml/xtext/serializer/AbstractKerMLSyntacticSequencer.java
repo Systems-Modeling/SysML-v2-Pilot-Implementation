@@ -26,8 +26,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q;
-	protected AbstractElementAlias match_BindingConnectorDeclaration_OfKeyword_0_0_1_q;
-	protected AbstractElementAlias match_BindingConnectorDeclaration_OfKeyword_0_1_1_q;
+	protected AbstractElementAlias match_BindingConnectorDeclaration_OfKeyword_1_1_0_q;
 	protected AbstractElementAlias match_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_Comment_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
@@ -63,8 +62,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1;
 	protected AbstractElementAlias match_Subsetting_ColonGreaterThanSignKeyword_3_0_or_SubsetsKeyword_3_1;
 	protected AbstractElementAlias match_Subsetting_SpecializationKeyword_0_0_q;
-	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_0_1_q;
-	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_1_1_q;
+	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_1_1_0_q;
 	protected AbstractElementAlias match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_q;
 	protected AbstractElementAlias match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -78,8 +76,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 		match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_0_1());
 		match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_1_1());
-		match_BindingConnectorDeclaration_OfKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_0_1());
-		match_BindingConnectorDeclaration_OfKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_1_1());
+		match_BindingConnectorDeclaration_OfKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_1_1_0());
 		match_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassifierConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getClassifierConjugationPartAccess().getTildeKeyword_0_0()));
 		match_Comment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getCommentAccess().getCommentKeyword_0_0());
 		match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getTildeKeyword_0_0()));
@@ -115,8 +112,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getSubsetsKeyword_0_1()));
 		match_Subsetting_ColonGreaterThanSignKeyword_3_0_or_SubsetsKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSubsettingAccess().getColonGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getSubsettingAccess().getSubsetsKeyword_3_1()));
 		match_Subsetting_SpecializationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getSubsettingAccess().getSpecializationKeyword_0_0());
-		match_SuccessionDeclaration_FirstKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_0_1());
-		match_SuccessionDeclaration_FirstKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_1_1());
+		match_SuccessionDeclaration_FirstKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_1_1_0());
 		match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSuperclassingPartAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSuperclassingPartAccess().getSpecializesKeyword_0_1()));
 		match_TextualRepresentation_RepKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0());
 		match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getSemicolonKeyword_0()));
@@ -156,10 +152,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_BinaryConnectorDeclaration_FromKeyword_0_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q.equals(syntax))
 				emit_BinaryConnectorDeclaration_FromKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BindingConnectorDeclaration_OfKeyword_0_0_1_q.equals(syntax))
-				emit_BindingConnectorDeclaration_OfKeyword_0_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BindingConnectorDeclaration_OfKeyword_0_1_1_q.equals(syntax))
-				emit_BindingConnectorDeclaration_OfKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BindingConnectorDeclaration_OfKeyword_1_1_0_q.equals(syntax))
+				emit_BindingConnectorDeclaration_OfKeyword_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0.equals(syntax))
 				emit_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Comment_CommentKeyword_0_0_q.equals(syntax))
@@ -230,10 +224,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_Subsetting_ColonGreaterThanSignKeyword_3_0_or_SubsetsKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Subsetting_SpecializationKeyword_0_0_q.equals(syntax))
 				emit_Subsetting_SpecializationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SuccessionDeclaration_FirstKeyword_0_0_1_q.equals(syntax))
-				emit_SuccessionDeclaration_FirstKeyword_0_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SuccessionDeclaration_FirstKeyword_0_1_1_q.equals(syntax))
-				emit_SuccessionDeclaration_FirstKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SuccessionDeclaration_FirstKeyword_1_1_0_q.equals(syntax))
+				emit_SuccessionDeclaration_FirstKeyword_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1.equals(syntax))
 				emit_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TextualRepresentation_RepKeyword_0_0_q.equals(syntax))
@@ -309,6 +301,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_BinaryConnectorDeclaration_FromKeyword_0_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -338,19 +331,10 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 */
-	protected void emit_BindingConnectorDeclaration_OfKeyword_0_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'of'?
-	 *
-	 * This ambiguous syntax occurs at:
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
-	protected void emit_BindingConnectorDeclaration_OfKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BindingConnectorDeclaration_OfKeyword_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -384,6 +368,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     name=Name (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'behavior' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'class' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'classifier' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'datatype' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'function' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'interaction' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'metaclass' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'predicate' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 */
 	protected void emit_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -413,6 +408,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     ownedRelationship+=OwnedSpecialization (ambiguity) ownedRelationship+=OwnedConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'type' (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=OwnedConjugation
 	 */
 	protected void emit_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -464,6 +460,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'element' (ambiguity) (rule start)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataAnnotation 'element' (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -558,6 +555,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     name=Name (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'feature'? (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=FeatureConjugation
 	 */
 	protected void emit_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -703,6 +710,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' (ambiguity) isSufficient?='all'
 	 *     isReadOnly?='readonly' (ambiguity) name=Name
 	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=OwnedMultiplicity
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '<' shortName=Name
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ('~' | 'conjugates') ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isSufficient?='all'
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) name=Name
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 */
 	protected void emit_Feature_FeatureKeyword_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -873,6 +891,26 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ';' (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '<' shortName=Name
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=Import
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ('~' | 'conjugates') ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) isSufficient?='all'
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) name=Name
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 */
 	protected void emit_Invariant_TrueKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -953,6 +991,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'namespace' (ambiguity) (rule start)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'namespace' (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -980,6 +1019,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'package' (ambiguity) (rule start)
 	 *     isStandard?='standard' 'library' 'package' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'package' (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1001,6 +1041,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1081,6 +1122,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'feature'? (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 */
 	protected void emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1133,6 +1184,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     originalType=[Type|QualifiedName] (ambiguity) (rule end)
 	 *     ownedRelatedElement+=FilterPackage (ambiguity) (rule end)
 	 *     ownedRelatedElement+=OwnedFeatureChain (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataAnnotation 'relationship' (ambiguity) (rule end)
 	 *     redefinedFeature=[Feature|QualifiedName] (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 *     source+=[Element|QualifiedName] (ambiguity) (rule end)
@@ -1174,6 +1226,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=TypeResultMember (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1191,6 +1244,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     ownedRelationship+=OwnedSpecialization (ambiguity) ownedRelationship+=OwnedSpecialization
+	 *     ownedRelationship+=PrefixMetadataMember 'type' (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=OwnedSpecialization
 	 */
 	protected void emit_SpecializationPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1261,6 +1315,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1341,6 +1396,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'feature'? (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 */
 	protected void emit_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1386,19 +1451,10 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 */
-	protected void emit_SuccessionDeclaration_FirstKeyword_0_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'first'?
-	 *
-	 * This ambiguous syntax occurs at:
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
-	protected void emit_SuccessionDeclaration_FirstKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_SuccessionDeclaration_FirstKeyword_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1432,6 +1488,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     name=Name (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'behavior' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'class' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'classifier' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'datatype' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'function' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'interaction' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'metaclass' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'predicate' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     ownedRelationship+=PrefixMetadataMember 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 */
 	protected void emit_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1457,47 +1524,79 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'assoc' 'struct' (ambiguity) (rule start)
 	 *     (rule start) 'assoc' (ambiguity) (rule start)
 	 *     (rule start) 'behavior' (ambiguity) (rule start)
+	 *     (rule start) 'binding' (ambiguity) (rule start)
 	 *     (rule start) 'class' (ambiguity) (rule start)
 	 *     (rule start) 'classifier' (ambiguity) (rule start)
 	 *     (rule start) 'connector' (ambiguity) (rule start)
 	 *     (rule start) 'datatype' (ambiguity) (rule start)
 	 *     (rule start) 'feature' (ambiguity) (rule start)
+	 *     (rule start) 'flow' (ambiguity) (rule start)
 	 *     (rule start) 'interaction' (ambiguity) (rule start)
 	 *     (rule start) 'metaclass' (ambiguity) (rule start)
 	 *     (rule start) 'step' (ambiguity) (rule start)
 	 *     (rule start) 'struct' (ambiguity) (rule start)
+	 *     (rule start) 'succession' 'flow' (ambiguity) (rule start)
+	 *     (rule start) 'succession' (ambiguity) (rule start)
+	 *     direction=FeatureDirection 'binding' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'connector' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'feature' (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'flow' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'step' (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'succession' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'binding' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'class' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'classifier' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'connector' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'datatype' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'feature' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'flow' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'metaclass' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'struct' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'succession' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'binding' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'connector' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'feature' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'flow' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'step' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'succession' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'binding' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'connector' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'feature' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'flow' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'step' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'succession' (ambiguity) (rule end)
+	 *     isEnd?='end' 'binding' (ambiguity) (rule end)
 	 *     isEnd?='end' 'connector' (ambiguity) (rule end)
 	 *     isEnd?='end' 'feature' (ambiguity) (rule end)
+	 *     isEnd?='end' 'flow' (ambiguity) (rule end)
 	 *     isEnd?='end' 'step' (ambiguity) (rule end)
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isEnd?='end' 'succession' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'binding' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'connector' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'feature' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'flow' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'step' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'succession' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'binding' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'connector' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'feature' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'flow' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'step' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'succession' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
@@ -1508,6 +1607,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Intersecting (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=MultiplicityExpressionMember ']' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) (rule end)
@@ -1522,6 +1622,23 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedTypeFeaturing (ambiguity) (rule end)
 	 *     ownedRelationship+=Ownedsubclassification (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' 'struct' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'assoc' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'behavior' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'class' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'classifier' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'datatype' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'interaction' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'metaclass' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'struct' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Unioning (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
@@ -1555,6 +1672,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1635,6 +1753,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'feature'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 */
 	protected void emit_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

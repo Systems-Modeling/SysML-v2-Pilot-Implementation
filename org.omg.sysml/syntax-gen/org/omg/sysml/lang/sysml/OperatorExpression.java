@@ -81,13 +81,9 @@ public interface OperatorExpression extends InvocationExpression {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <strong>Implementation note.</strong> This property is currently just an implementation workaround and is not part of the normative abstract syntax.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
 	 * @model containment="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
 	 * @generated
 	 */
 	EList<Expression> getOperand();

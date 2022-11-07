@@ -163,7 +163,7 @@ public interface CaseUsage extends CalculationUsage {
 	 * @return the value of the '<em>Case Definition</em>' reference.
 	 * @see #setCaseDefinition(CaseDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage_CaseDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedCase'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

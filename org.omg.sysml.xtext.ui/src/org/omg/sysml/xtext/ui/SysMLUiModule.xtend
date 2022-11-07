@@ -8,6 +8,7 @@ import org.eclipse.xtext.ui.shared.Access
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 import org.omg.sysml.xtext.ui.quickfix.SysMLQuickfixProvider
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
+import org.omg.kerml.xtext.ui.KerMLUserKeywordHighlightingCalculator
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -20,7 +21,7 @@ class SysMLUiModule extends AbstractSysMLUiModule {
 	}
 	
 	def Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
-		return SysMLUserKeywordHighlightingCalculator
+		return KerMLUserKeywordHighlightingCalculator
 	}
 	
 	override provideIAllContainersState() {

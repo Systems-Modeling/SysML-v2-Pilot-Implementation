@@ -29,11 +29,11 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Relationship is an Element that relates two or more other Elements. Some of its <code>relatedElements</code> may be owned, in which case those <code>ownedRelatedElements</code> will be deleted from a model if their <code>owningRelationship</code> is. A Relationship may also be owned by another Element, in which case the <code>ownedRelatedElements</code> of the Relationship are also considered to be transitively owned by the <code>owningRelatedElement</code> of the Relationship.</p>
+ * <p>A Relationship is an Element that relates other Elements. Some of its <code>relatedElements</code> may be owned, in which case those <code>ownedRelatedElements</code> will be deleted from a model if their <code>owningRelationship</code> is. A Relationship may also be owned by another Element, in which case the <code>ownedRelatedElements</code> of the Relationship are also considered to be transitively owned by the <code>owningRelatedElement</code> of the Relationship.</p>
  * 
  * <p>The <code>relatedElements</code> of a Relationship are divided into <code>source</code> and <code>target</code> Elements. The Relationship is considered to be directed from the <code>source</code> to the <code>target</code> Elements. An undirected Relationship may have either all <code>source</code> or all <code>target</code> Elements.</p>
  * 
- * <p>A &quot;relationship Element&quot; in the kernel abstract syntax is generically any Element that is an instance of either Relationship or a direct or indirect specialization of Relationship. Any other kind of Element is a &quot;non-relationship Element&quot;. It is a convention of the kernel abstract syntax that non-relationship Elements are <em>only</em> related via reified relationship Elements. Any meta-associations directly between non-relationship Elements must be derived from underlying reified Relationships.</p>
+ * <p>A &quot;relationship Element&quot; in the abstract syntax is generically any Element that is an instance of either Relationship or a direct or indirect specialization of Relationship. Any other kind of Element is a &quot;non-relationship Element&quot;. It is a convention of that non-relationship Elements are <em>only</em> related via reified relationship Elements. Any meta-associations directly between non-relationship Elements must be derived from underlying reified Relationships.</p>
  * 
  * relatedElement = source->union(target)
  * <!-- end-model-doc -->
@@ -42,11 +42,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement <em>Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getSource <em>Source</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#isImplied <em>Is Implied</em>}</li>
  * </ul>
  *
@@ -157,11 +157,11 @@ public interface Relationship extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Elements that are related by this Relationship, derived as the union of the <code>source</code> and <code>target</code> Elements of the Relationship. Every Relationship must have at least two <code>relatedElements</code>.</p>
+	 * <p>The Elements that are related by this Relationship, derived as the union of the <code>source</code> and <code>target</code> Elements of the Relationship.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_RelatedElement()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='relationship'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

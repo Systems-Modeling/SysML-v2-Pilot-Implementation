@@ -40,7 +40,8 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>Classifiers that classify relationships (sequence length &gt; 1) must also classify the things at the end of those&nbsp;sequences (sequence length =1).&nbsp; Because of this, Classifiers specializing Features cannot classify anything (any sequences).</p>
  * 
- * ownedSuperclassing = ownedGeneralization->intersection(superclassing)
+ * ownedSubclassification = 
+ *     ownedSpecialization->selectByKind(Superclassification)
  * multiplicity <> null implies multiplicity.featuringType->isEmpty()
  * <!-- end-model-doc -->
  *

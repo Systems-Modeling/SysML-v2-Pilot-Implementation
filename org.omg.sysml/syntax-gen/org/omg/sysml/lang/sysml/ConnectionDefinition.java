@@ -65,7 +65,7 @@ public interface ConnectionDefinition extends PartDefinition, AssociationStructu
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectionDefinition_ConnectionEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionDefinitionWithEnd'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

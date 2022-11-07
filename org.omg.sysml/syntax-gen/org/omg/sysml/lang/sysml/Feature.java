@@ -46,14 +46,17 @@ import org.eclipse.emf.common.util.EList;
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * allSupertypes()->includes(KernelLibrary::things)
+ * allSupertypes()->includes(resolve("Base::things"))
  * chainingFeatures->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingFeature = ownedFeatureChaining.chainingFeature
- * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
  * chainingFeatures->size() <> 1
  * inverseFeature = invertingFeatureInverting.featureInverse
  * invertedFeature = invertedFeatureInverting.featureInverted
+ * ownedTyping.type->exists(selectByKind(Class)) implies
+ *     allSupertypes()->includes(resolve("Occurrences::occurrences"))
+ * ownedTyping.type->exists(selectByKind(DataType)) implies
+ *     allSupertypes()->includes(resolve("Base::dataValues"))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -351,7 +354,7 @@ public interface Feature extends Type {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -710,7 +713,6 @@ public interface Feature extends Type {
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
 	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isNonunique();

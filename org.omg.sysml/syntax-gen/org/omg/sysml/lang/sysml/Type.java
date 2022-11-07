@@ -39,8 +39,9 @@ import org.eclipse.emf.common.util.EList;
  * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
  * let ownedConjugators: Sequence(Conjugator) = 
  *     ownedRelationship->selectByKind(Conjugation) in
- *     ownedConjugators->size() = 1 and
- *     ownedConjugator = ownedConjugators->at(1)
+ *     ownedConjugator = 
+ *         if ownedConjugators->isEmpty() then null 
+ *         else ownedConjugators->at(1) endif
  * output =
  *     if isConjugated then 
  *         conjugator.originalType.input
@@ -55,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
  * disjointType = disjoiningTypeDisjoining.disjoiningType
- * allSupertypes()->includes(Kernel Library::Anything)
+ * allSupertypes()->includes(resolve("Base::Anything"))
  * directedFeature = feature->select(direction <> null)
  * feature = featureMembership.ownedMemberFeature
  * featureMembership = ownedMembership->union(
@@ -67,13 +68,13 @@ import org.eclipse.emf.common.util.EList;
  * differencingType = ownedDifferencing.differencingType
  * unioningType = ownedUnioning.unioningType
  * intersectingType = ownedIntersecting.intersectingType
+ * ownedRelationship->selectByKind(Conjugator)->size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -97,6 +98,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -165,7 +167,7 @@ public interface Type extends Namespace {
 	 *     closure(general.ownedSpecialization).general->
 	 *     including(self)
 	 * <!-- end-model-doc -->
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Type> allSupertypes();

@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -102,15 +101,6 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetBehavior() {
-		return !getBehavior().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getParameter() {
@@ -126,27 +116,6 @@ public class StepImpl extends FeatureImpl implements Step {
 		return !getParameter().isEmpty();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -228,12 +197,10 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.STEP__TYPE:
-				return isSetType();
 			case SysMLPackage.STEP__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.STEP__BEHAVIOR:
-				return isSetBehavior();
+				return BEHAVIOR__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STEP__PARAMETER:
 				return isSetParameter();
 		}

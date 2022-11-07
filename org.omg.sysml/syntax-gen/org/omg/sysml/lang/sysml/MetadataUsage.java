@@ -44,7 +44,7 @@ public interface MetadataUsage extends ItemUsage, MetadataFeature {
 	 * @return the value of the '<em>Metadata Definition</em>' reference.
 	 * @see #setMetadataDefinition(Metaclass)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataUsage_MetadataDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedMetadata'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

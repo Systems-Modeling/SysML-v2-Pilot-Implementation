@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -175,27 +174,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 */
 	public boolean isSetConstraintDefinition() {
 		return basicGetConstraintDefinition() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 	/**
@@ -501,8 +479,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONSTRAINT_USAGE__TYPE:
-				return isSetType();
 			case SysMLPackage.CONSTRAINT_USAGE__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:

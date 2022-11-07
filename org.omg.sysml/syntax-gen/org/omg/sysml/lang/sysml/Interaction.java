@@ -29,7 +29,6 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An Interaction is a Behavior that is also an Association, providing a context for multiple objects that have behaviors that impact one another.</p>
  * 
- * <p>Interactions are Behaviors that also provide context for multiple objects that have behaviors that impact one another.</p>
  * <!-- end-model-doc -->
  *
  *

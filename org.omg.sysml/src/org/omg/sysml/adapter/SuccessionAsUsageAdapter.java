@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,56 +24,65 @@ package org.omg.sysml.adapter;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
-public class SourceEndAdapter extends FeatureAdapter {
+public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 
-	public SourceEndAdapter(SourceEnd element) {
-		super(element);
+	public SuccessionAsUsageAdapter(SuccessionAsUsage feature) {
+		super(feature);
 	}
 	
 	@Override
-	public SourceEnd getTarget() {
-		return (SourceEnd)super.getTarget();
+	public SuccessionAsUsage getTarget() {
+		return (SuccessionAsUsage)super.getTarget();
 	}
 	
-	@Override
-	public void addDefaultGeneralType() {
-		Type type = getTarget().getOwningType();
-		if (type instanceof Feature) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getReferenceSubsetting(), getSource((Feature)type));
-		} else {
-			super.addDefaultGeneralType();
+	protected void addSourceEnd() {
+		SuccessionAsUsage target = getTarget();
+		EList<Feature> ends = target.getConnectorEnd();
+		if (!ends.isEmpty()) {
+			Feature sourceEnd = ends.get(0);
+			if (sourceEnd.getOwnedReferenceSubsetting() == null) {
+				TypeUtil.addImplicitGeneralTypeTo(sourceEnd,
+						SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
+						getPreviousFeature(target));
+			}
 		}
 	}
 	
-	public static Feature getSource(Feature owningFeature) {
-		Namespace namespace = owningFeature.getOwningNamespace();
-		return owningFeature instanceof BindingConnector && 
-			   namespace instanceof SatisfyRequirementUsage? 
-					((SatisfyRequirementUsage)namespace).getSubjectParameter(): 
-					getPreviousFeature(owningFeature);
+	protected void addTargetEnd() {
+		SuccessionAsUsage target = getTarget();
+		EList<Feature> ends = target.getConnectorEnd();
+		if (ends.size() > 1) {
+			Feature targetEnd = ends.get(1);
+			if (targetEnd.getOwnedReferenceSubsetting() == null) {
+				TypeUtil.addImplicitGeneralTypeTo(targetEnd,
+						SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
+						getTargetFeature(target));
+			}
+		}
 	}
-	
-	private static Feature getPreviousFeature(Feature feature) {
+
+	protected static Feature getPreviousFeature(Feature feature) {
 		Namespace owner = feature.getOwningNamespace();
 		if (!(owner instanceof Type)) {
 			return null;
 		} else {
-			EList<Membership> memberships = ((Type)owner).getOwnedMembership();
+			Type type = (Type)owner;
+			EList<Membership> memberships = type.getOwnedMembership();
 			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
 				Membership membership = memberships.get(i);
 				if (!(membership instanceof TransitionFeatureMembership)) {
@@ -82,14 +91,32 @@ public class SourceEndAdapter extends FeatureAdapter {
 						!FeatureUtil.isParameter((Feature)previousElement) &&
 						!(previousElement instanceof TransitionUsage) &&
 						(!(previousElement instanceof Connector) ||
-						 !(owner instanceof ActionDefinition || owner instanceof ActionUsage) && 
+						 !(type instanceof ActionDefinition || type instanceof ActionUsage) && 
 						 previousElement instanceof ItemFlow)) {
 						return (Feature)previousElement;
 					}
 				}
 			}
-			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
+			return type instanceof Feature? getPreviousFeature((Feature)type): null;
 		}
+	}
+	
+	private static Feature getTargetFeature(Feature feature) {
+		Type type = feature.getOwningType();
+		if (type == null) {
+			return null;
+		} else {
+			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
+			int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
+			return i < memberships.size()? memberships.get(i).getOwnedMemberFeature(): null;
+		}
+	}
+	
+	@Override
+	public void doTransform() {
+		addSourceEnd();
+		addTargetEnd();
+		super.doTransform();
 	}
 
 }

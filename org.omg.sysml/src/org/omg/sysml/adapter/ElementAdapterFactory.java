@@ -272,11 +272,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseItemFlowFeature(ItemFlowFeature element) {
-			return new ItemFlowFeatureAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseItemUsage(ItemUsage element) {
 			return new ItemUsageAdapter(element);
 		}
@@ -392,11 +387,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseSourceEnd(SourceEnd element) {
-			return new SourceEndAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);
 		}
@@ -422,8 +412,8 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseTargetEnd(TargetEnd element) {
-			return new TargetEndAdapter(element);
+		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
+			return new SuccessionAsUsageAdapter(element);
 		}
 		
 		@Override

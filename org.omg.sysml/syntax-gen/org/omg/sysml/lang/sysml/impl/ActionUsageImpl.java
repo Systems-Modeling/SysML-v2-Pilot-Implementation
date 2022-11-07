@@ -33,7 +33,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -128,27 +127,6 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	 */
 	public boolean isSetActionDefinition() {
 		return !getActionDefinition().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 	/**
@@ -301,8 +279,6 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ACTION_USAGE__TYPE:
-				return isSetType();
 			case SysMLPackage.ACTION_USAGE__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:

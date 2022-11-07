@@ -7,6 +7,7 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.ui.shared.Access
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -16,6 +17,10 @@ class KerMLUiModule extends AbstractKerMLUiModule {
 
 	override Class<? extends IssueResolutionProvider> bindIssueResolutionProvider() {
 		return KerMLQuickfixProvider;
+	}
+	
+	def Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return KerMLUserKeywordHighlightingCalculator
 	}
 	
 	override provideIAllContainersState() {

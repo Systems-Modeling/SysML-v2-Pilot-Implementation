@@ -148,6 +148,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=TypeResultMember (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

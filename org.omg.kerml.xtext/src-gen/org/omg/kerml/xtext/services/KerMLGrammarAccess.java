@@ -10219,12 +10219,20 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Classification Expressions
 	//ClassificationExpression returns SysML::Expression :
-	//      RelationalExpression ( {SysML::OperatorExpression.operand += current}
-	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	//      RelationalExpression
+	//      ( {SysML::OperatorExpression.operand += current}
+	//          operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
+	//      | {SysML::OperatorExpression.operand += current}
+	//        operator = CastOperator ownedRelationship += TypeResultMember
+	//      )?
 	//    | {SysML::OperatorExpression} operand += SelfReferenceExpression
-	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	//      operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
 	//    | {SysML::OperatorExpression} operand += MetadataReference
-	//      operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
+	//      operator = MetaClassificationTestOperator ownedRelationship += TypeReferenceMember
+	//    | {SysML::OperatorExpression} operand += SelfReferenceExpression
+	//      operator = CastOperator ownedRelationship += TypeResultMember
+	//    | {SysML::OperatorExpression} operand += MetadataReference
+	//      operator = MetaCastOperator ownedRelationship += TypeResultMember
 	//;
 	public KerMLExpressionsGrammarAccess.ClassificationExpressionElements getClassificationExpressionAccess() {
 		return gaKerMLExpressions.getClassificationExpressionAccess();
@@ -10234,26 +10242,48 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getClassificationExpressionAccess().getRule();
 	}
 	
-	//ClassificationOperator :
-	//    'hastype' | 'istype' | '@' | 'as'
+	//ClassificationTestOperator :
+	//    'hastype' | 'istype' | '@'
 	//;
-	public KerMLExpressionsGrammarAccess.ClassificationOperatorElements getClassificationOperatorAccess() {
-		return gaKerMLExpressions.getClassificationOperatorAccess();
+	public KerMLExpressionsGrammarAccess.ClassificationTestOperatorElements getClassificationTestOperatorAccess() {
+		return gaKerMLExpressions.getClassificationTestOperatorAccess();
 	}
 	
-	public ParserRule getClassificationOperatorRule() {
-		return getClassificationOperatorAccess().getRule();
+	public ParserRule getClassificationTestOperatorRule() {
+		return getClassificationTestOperatorAccess().getRule();
 	}
 	
-	//MetaClassificationOperator :
-	//    '@@' | 'meta'
+	//MetaClassificationTestOperator :
+	//    '@@'
 	//;
-	public KerMLExpressionsGrammarAccess.MetaClassificationOperatorElements getMetaClassificationOperatorAccess() {
-		return gaKerMLExpressions.getMetaClassificationOperatorAccess();
+	public KerMLExpressionsGrammarAccess.MetaClassificationTestOperatorElements getMetaClassificationTestOperatorAccess() {
+		return gaKerMLExpressions.getMetaClassificationTestOperatorAccess();
 	}
 	
-	public ParserRule getMetaClassificationOperatorRule() {
-		return getMetaClassificationOperatorAccess().getRule();
+	public ParserRule getMetaClassificationTestOperatorRule() {
+		return getMetaClassificationTestOperatorAccess().getRule();
+	}
+	
+	//CastOperator :
+	//    'as'
+	//;
+	public KerMLExpressionsGrammarAccess.CastOperatorElements getCastOperatorAccess() {
+		return gaKerMLExpressions.getCastOperatorAccess();
+	}
+	
+	public ParserRule getCastOperatorRule() {
+		return getCastOperatorAccess().getRule();
+	}
+	
+	//MetaCastOperator :
+	//    'meta'
+	//;
+	public KerMLExpressionsGrammarAccess.MetaCastOperatorElements getMetaCastOperatorAccess() {
+		return gaKerMLExpressions.getMetaCastOperatorAccess();
+	}
+	
+	public ParserRule getMetaCastOperatorRule() {
+		return getMetaCastOperatorAccess().getRule();
 	}
 	
 	//MetadataReference returns SysML::MetadataAccessExpression :
@@ -10276,6 +10306,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getTypeReferenceMemberRule() {
 		return getTypeReferenceMemberAccess().getRule();
+	}
+	
+	//TypeResultMember returns SysML::ReturnParameterMembership :
+	//    ownedRelatedElement += TypeReference
+	//;
+	public KerMLExpressionsGrammarAccess.TypeResultMemberElements getTypeResultMemberAccess() {
+		return gaKerMLExpressions.getTypeResultMemberAccess();
+	}
+	
+	public ParserRule getTypeResultMemberRule() {
+		return getTypeResultMemberAccess().getRule();
 	}
 	
 	//TypeReference returns SysML::Feature :
@@ -10466,7 +10507,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Extent Expressions
 	//ExtentExpression returns SysML::Expression :
-	//      {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeReferenceMember
+	//      {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeResultMember
 	//    | PrimaryExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ExtentExpressionElements getExtentExpressionAccess() {

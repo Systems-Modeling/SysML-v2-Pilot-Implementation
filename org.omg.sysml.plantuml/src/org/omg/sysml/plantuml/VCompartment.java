@@ -351,15 +351,12 @@ public class VCompartment extends VStructure {
         String title = ce.getTitle();
         if (title.equals(prev)) return prev;
 
-        /* Still PlantUML fails the indentation and need to be updated.
-         * if (prev != null) {
-         *     append("____\n");
-         * }
-         * append("==== ");
-         */
-        append("--");
+        if (prev != null) {
+            append("--\n");
+        }
+        append("##//");
         append(title);
-        append("--\n");
+        append("//##\n");
         return title;
     }
 
@@ -552,10 +549,7 @@ public class VCompartment extends VStructure {
     	if (documentations == null) return;
 
         boolean flag = false;
-    	/* PlantUML needs to be updated to support centering.
-         * Before that, we do not add a title to documentation compartment.
-         * append("==== //    documentation  //\n");
-         */ 
+        append("##//documentations//##\n");
         for (Documentation doc: documentations) {
             String name = doc.getName();
             if (name != null && !name.isEmpty()) {

@@ -441,12 +441,17 @@ public class SysML2PlantUMLText {
     }
 
     private void addStyleHeader(StringBuilder sb) {
+        int start = sb.length();
+        for (SysML2PlantUMLStyle style: styles) {
+            if (style.isPrimary()) {
+                sb.insert(start, style.commandStr);
+            } else {
+                sb.append(style.commandStr);
+            }
+        }
         SysML2PlantUMLStyle s = getVisitorStyle();
         if (s != null) {
             sb.append(s.commandStr);
-        }
-        for (SysML2PlantUMLStyle style: styles) {
-            sb.append(style.commandStr);
         }
         sb.append('\n');
     }

@@ -10395,11 +10395,38 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 		    |
 		(
 			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPayloadFeatureRule());
+					}
+					newCompositeNode(grammarAccess.getPayloadFeatureAccess().getIdentificationParserRuleCall_1_0());
+				}
+				this_Identification_3=ruleIdentification[$current]
+				{
+					$current = $this_Identification_3.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getPayloadFeatureRule());
+				}
+				newCompositeNode(grammarAccess.getPayloadFeatureAccess().getValuePartParserRuleCall_1_1());
+			}
+			this_ValuePart_4=ruleValuePart[$current]
+			{
+				$current = $this_ValuePart_4.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+		    |
+		(
+			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_2_0_0());
 					}
-					lv_ownedRelationship_3_0=ruleOwnedFeatureTyping
+					lv_ownedRelationship_5_0=ruleOwnedFeatureTyping
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPayloadFeatureRule());
@@ -10407,7 +10434,7 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_3_0,
+							lv_ownedRelationship_5_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
 						afterParserOrEnumRuleCall();
 					}
@@ -10416,9 +10443,9 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_2_1_0());
 					}
-					lv_ownedRelationship_4_0=ruleOwnedMultiplicity
+					lv_ownedRelationship_6_0=ruleOwnedMultiplicity
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPayloadFeatureRule());
@@ -10426,7 +10453,7 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_4_0,
+							lv_ownedRelationship_6_0,
 							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 						afterParserOrEnumRuleCall();
 					}
@@ -10438,9 +10465,9 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_3_0_0());
 					}
-					lv_ownedRelationship_5_0=ruleOwnedMultiplicity
+					lv_ownedRelationship_7_0=ruleOwnedMultiplicity
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPayloadFeatureRule());
@@ -10448,7 +10475,7 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_5_0,
+							lv_ownedRelationship_7_0,
 							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 						afterParserOrEnumRuleCall();
 					}
@@ -10457,9 +10484,9 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getPayloadFeatureAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_3_1_0());
 					}
-					lv_ownedRelationship_6_0=ruleOwnedFeatureTyping
+					lv_ownedRelationship_8_0=ruleOwnedFeatureTyping
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPayloadFeatureRule());
@@ -10467,7 +10494,7 @@ rulePayloadFeature[EObject in_current]  returns [EObject current=in_current]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_6_0,
+							lv_ownedRelationship_8_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
 						afterParserOrEnumRuleCall();
 					}

@@ -2536,14 +2536,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (
 	 *             ownedRelationship+=NonFeatureMember | 
@@ -2575,14 +2575,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (
 	 *             ownedRelationship+=NonFeatureMember | 
@@ -2614,14 +2614,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2643,14 +2643,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2677,14 +2677,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((shortName=Name name=Name?) | name=Name)? 
 	//         ownedRelationship+=OwnedMultiplicity? 
 	//         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	//         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	//         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	//         (
 	//             (
 	//                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	//                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	//             )? 
-	//             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	//             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	//         )* 
 	//         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	//     )
@@ -2706,14 +2706,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2738,14 +2738,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2770,14 +2770,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2802,14 +2802,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2834,14 +2834,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2866,14 +2866,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -2898,14 +2898,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=OwnedMultiplicity? 
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *         (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *         (
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
-	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
-	 *             (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)?
+	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
 	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
@@ -3352,6 +3352,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
+	 *         (
+	 *             ((shortName=Name name=Name?) | name=Name)? 
+	 *             (ownedRelationship+=FeatureValue | (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyFeatureWriteMember))?
+	 *         ) | 
 	 *         (
 	 *             ((shortName=Name name=Name?) | name=Name)? 
 	 *             (

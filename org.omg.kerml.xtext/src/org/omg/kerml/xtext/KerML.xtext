@@ -1027,6 +1027,7 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  Identification? ItemFeatureSpecializationPart ValuePart?
+	| Identification? ValuePart
     | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
     | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;

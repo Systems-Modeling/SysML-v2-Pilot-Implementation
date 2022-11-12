@@ -4790,8 +4790,8 @@ endif</body>
         <ownedComment xmi:id="f594b84b-fb1c-4aae-a9c7-073a0b681bf9" annotatedElement="74340ca0-8044-4c8a-9cfc-fb2a6719b08a">
           <body>&lt;p>The (single) Predicate the is the type of this Constraint Usage. Nominally, this will be ConstraintDefinition, but non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.&lt;/p></body>
         </ownedComment>
-        <lowerValue xmi:type="uml:LiteralString" xmi:id="6741eb87-fa36-43ac-a0ac-d03286a522ae" name="" visibility="public" value="0.1"/>
-        <upperValue xmi:type="uml:LiteralString" xmi:id="7cc0ffe1-daf6-48b5-adcf-b48042f86f6a" name="" visibility="public" value="0.1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7JuBAGI7Ee2X0r1-dj-AQA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9c2hQGI7Ee2X0r1-dj-AQA" value="1"/>
       </ownedAttribute>
       <ownedOperation xmi:id="f0d6b7bb-c38a-4c1f-9ba1-c41f8b066954" name="namingFeature" visibility="public" redefinedOperation="a72f751c-5ed8-482a-8c58-0a536b396eac">
         <ownedComment xmi:id="0d47db5c-9604-4e2d-80cc-8e1edd0352e9" annotatedElement="f0d6b7bb-c38a-4c1f-9ba1-c41f8b066954">

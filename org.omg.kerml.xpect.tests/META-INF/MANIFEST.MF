@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xtext.ui.shared;bundle-version="2.14.0",
  org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.xtext;bundle-version="0.2.0",
- org.omg.kerml.xtext.ui;bundle-version="0.2.0"
+ org.omg.kerml.xtext.ui;bundle-version="0.2.0",
+ org.aopalliance;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.omg.kerml.xpect,
  org.omg.kerml.xpect.tests

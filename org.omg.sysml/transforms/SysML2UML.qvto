@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,10 +29,10 @@ modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 transformation SysML2UML(in sysml: SysML, out uml: UML);
 
 main() {
+	var rootNamespace := sysml.rootObjects()![SysML::Namespace];
 	object Model {
-		name := "Model";
-		packagedElement := sysml.rootObjects()[SysML::Namespace]->
-			map toNamespace()[UML::PackageableElement];
+		name := "Model";		
+		packagedElement := rootNamespace.ownedMembers()->map toPackageableElement();
 	};
 }
 
@@ -47,8 +47,16 @@ query SysML::Element::name(): String {
 		endif endif;
 }
 
+query SysML::Element::ownedElements(): Sequence(Element) {
+	return self.ownedRelationship.ownedRelatedElement;
+}
+
 abstract mapping SysML::Element::toElement(): UML::Element {
 	log('Mapping ' + self.metaClassName() + ' ' + self.name() + ' to ' + result.metaClassName());	
+	ownedComment := self.ownedElements()[SysML::Comment]->map toComment();
+	ownedComment->forEach(comment) {
+		comment.annotatedElement := result
+	}
 }
 
 abstract mapping SysML::Element::toNamedElement(): UML::NamedElement
@@ -64,33 +72,44 @@ abstract mapping SysML::Element::toNamedElement(): UML::NamedElement
 
 mapping SysML::Element::toPackageableElement(): UML::PackageableElement
 	disjuncts 
-		SysML::Feature::toInstanceSpecification,
+		SysML::Feature::toClass,
 		SysML::Association::toAssociationClass,
-		SysML::Class::toClass,
+		SysML::Classifier::toClass,
 		SysML::Package::toPackage;
 
 mapping SysML::Element::toClass(): UML::Class
 	disjuncts
 		SysML::Feature::toClass,
 		SysML::Association::toAssociationClass,
-		SysML::Class::toClass;
+		SysML::Classifier::toClass;
+
+// Comments
+
+mapping SysML::Comment::toComment(): UML::Comment
+	inherits SysML::Element::toElement {
+	body := self.body;
+}
 
 // Namespace
 
 query SysML::Namespace::ownedMemberMemberships(): OrderedSet(SysML::OwningMembership) {
-	return self.ownedMembership[SysML::OwningMembership];
+	return self.ownedRelationship[SysML::OwningMembership][ownedRelatedElement->forAll(not oclIsKindOf(AnnotatingElement))];
 }
 
-query SysML::Namespace::ownedFeatureMemberships(): OrderedSet(SysML::OwningMembership) {
-	return self.ownedMemberMemberships()[ownedMemberElement.oclIsKindOf(SysML::Feature)];
+query SysML::Namespace::ownedFeatureMemberships(): OrderedSet(SysML::FeatureMembership) {
+	return self.ownedRelationship[SysML::FeatureMembership];
 }
 
 query SysML::Namespace::ownedMembers(): Sequence(SysML::Element) {
-	return self.ownedMemberMemberships().ownedMemberElement;
+	return self.ownedMemberMemberships().ownedRelatedElement;
+}
+
+query SysML::Namespace::ownedFeatures(): Sequence(SysML::Feature) {
+	return self.ownedFeatureMemberships().ownedRelatedElement.oclAsType(SysML::Feature);
 }
 
 query SysML::Namespace::members(): Sequence(SysML::Element) {
-	return self.ownedMembership.memberElement;
+	return self.ownedRelationship[SysML::Membership].memberElement[not oclIsKindOf(AnnotatingElement)];
 }
 
 query SysML::Namespace::features(): Sequence(SysML::Feature) {
@@ -104,7 +123,7 @@ query SysML::Namespace::hasFeatures(): Boolean {
 mapping SysML::Namespace::toNamespace(): UML::Namespace
 	disjuncts 
 		SysML::Association::toAssociationClass,
-		SysML::Class::toClass,
+		SysML::Classifier::toClass,
 		SysML::Package::toPackage;
 
 //query SysML::Namespace::namingOf(e: Element): Membership {
@@ -113,8 +132,12 @@ mapping SysML::Namespace::toNamespace(): UML::Namespace
 
 // Membership
 
+query SysML::OwningMembership::ownedMemberElement(): SysML::Element {
+	return self.ownedRelatedElement![true];
+}
+
 helper SysML::OwningMembership::mapToPackageableElement(): UML::PackageableElement {
-	var element := self.ownedMemberElement.map toPackageableElement();
+	var element := self.ownedMemberElement().map toPackageableElement();
 	element.visibility := toVisibilityKind(self.visibility);
 	return element;
 }
@@ -124,15 +147,15 @@ helper SysML::Membership::mapToFeature(): UML::Feature {
 }
 
 helper SysML::FeatureMembership::mapToFeature(): UML::Feature {
-	var feature := self.memberElement.oclAsType(SysML::Feature);
+	var feature := self.ownedRelatedElement![true].oclAsType(SysML::Feature);
 	var umlFeature: UML::Feature;
 	if feature.oclIsKindOf(SysML::Connector) then {
 		umlFeature := feature.oclAsType(SysML::Connector).map toConnector();
 	} else {
 		umlFeature := feature.map toProperty();
-		if feature.isComposite then {
-			umlFeature.oclAsType(UML::Property).aggregation := UML::AggregationKind::composite;
-		} endif;
+	} endif;
+	if feature.isComposite then {
+		umlFeature.oclAsType(UML::Property).aggregation := UML::AggregationKind::composite;
 	} endif;
 	umlFeature.visibility := toVisibilityKind(self.visibility);
 	return umlFeature;
@@ -140,7 +163,7 @@ helper SysML::FeatureMembership::mapToFeature(): UML::Feature {
 
 query toVisibilityKind(visibility : SysML::VisibilityKind): UML::VisibilityKind {
 	return 
-		if visibility = null then null
+		if visibility = null then UML::VisibilityKind::public
 		else if visibility = SysML::VisibilityKind::private then UML::VisibilityKind::private
 		else if visibility = SysML::VisibilityKind::public then UML::VisibilityKind::public
 		else if visibility = SysML::VisibilityKind::protected then UML::VisibilityKind::protected
@@ -162,27 +185,34 @@ mapping SysML::Package::toPackage(): UML::Package
 abstract mapping SysML::Type::toClass(): UML::Class
 	inherits SysML::Element::toNamedElement 
 	when { not self.oclIsKindOf(SysML::Connector) } {
+	
 	var features := self.ownedFeatureMemberships()->mapToFeature();
 	ownedAttribute := features[UML::Property];
 	ownedConnector := features[UML::Connector];
+	ownedRule := features[UML::Constraint];
+	ownedRule->forEach(constraint){
+		constraint.constrainedElement := result;
+	};
+	
 	nestedClassifier := self.members()->map toClass();
-	generalization := self.ownedMembers()[SysML::Specialization]->map toSpecialization();
+	generalization := self.ownedRelationship[SysML::Specialization]->map toGeneralization();	
 }
 
-// Class
+// Classifier
 
-mapping SysML::Class::toClass(): UML::Class
+mapping SysML::Classifier::toClass(): UML::Class
 	inherits SysML::Type::toClass { }
 
 // Association
+
 mapping SysML::Association::toAssociationClass(): UML::AssociationClass
 	inherits SysML::Element::toNamedElement {
 	navigableOwnedEnd := self.ownedMemberMemberships()->mapToFeature()[UML::Property];
 }
 
-// Generalization
+// Specialization
 
-mapping SysML::Specialization::toSpecialization(): UML::Generalization
+mapping SysML::Specialization::toGeneralization(): UML::Generalization
 	when { self.oclIsTypeOf(SysML::Specialization) } {
 	general := self.general.late resolveone(UML::Class);
 }
@@ -190,19 +220,23 @@ mapping SysML::Specialization::toSpecialization(): UML::Generalization
 // Feature
 
 query SysML::Feature::subsettedFeatures(): Sequence(SysML::Feature) {
-	return self.ownedMembers()[SysML::Subsetting].subsettedFeature;
+	return self.ownedRelationship[SysML::Subsetting].subsettedFeature;
 }
 
 query SysML::Feature::redefinedFeatures(): Sequence(SysML::Feature) {
-	return self.ownedMembers()[SysML::Redefinition].redefinedFeature;
+	return self.ownedRelationship[SysML::Redefinition].redefinedFeature;
 }
 
-query SysML::Feature::valuation(): FeatureValue {
-	return self.ownedFeatureMembership![FeatureValue];
+query SysML::Feature::valuation(): SysML::FeatureValue {
+	return self.ownedRelationship![FeatureValue];
+}
+
+query SysML::Feature::types(): Sequence(SysML::Type) {
+	return self.ownedRelationship[SysML::FeatureTyping].type;
 }
 
 helper SysML::Feature::parentTypeElement(): SysML::Element{
-	return if self.type->notEmpty() then self.type![true] 
+	return if self.types()->notEmpty() then self.types()![true] 
 		   else if self.redefinedFeatures()->notEmpty() then self.redefinedFeatures()![true].typeElement()
 		   else if self.subsettedFeatures()->notEmpty() then self.subsettedFeatures()![true].typeElement()
 		   else null 
@@ -249,8 +283,7 @@ mapping SysML::Feature::toInstanceSpecification(): UML::InstanceSpecification
 
 mapping SysML::Feature::toClass(): UML::Class
 	inherits SysML::Type::toClass, SysML::Feature::toNamedElement
-	when { 	not self.oclIsKindOf(SysML::Connector) and
-	        self.typeElement() = self } {
+	when { 	not self.oclIsKindOf(SysML::Connector) } {
 	var typeElement := self.parentTypeElement();
 	if typeElement <> null then {
 		generalization += object UML::Generalization {
@@ -297,16 +330,19 @@ helper SysML::Feature::mapMultiplicity(inout element: UML::MultiplicityElement) 
 	} endif;
 }
 
+// Invariants
+
+mapping SysML::Invariant::toConstraint(): UML::Constraint
+	inherits SysML::Feature::toNamedElement;
+
 // Connectors
 
 mapping SysML::Connector::toConnector(): UML::Connector
 	inherits SysML::Element::toNamedElement {
 	// Note: This presumes that the connector ends are ordered the same as
 	// the association ends.
-	_end += self.relatedFeature->map toConnectorEnd();
-	if self.association <> null then {
-		type := self.association.late resolveone(UML::Association);
-	} endif;
+	_'end' += self.relatedFeature->map toConnectorEnd();
+	type := self.types()[SysML::Association].late resolveone(UML::Association);
 }
 
 mapping SysML::Feature::toConnectorEnd(): UML::ConnectorEnd {

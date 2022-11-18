@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Expression is a Step that is typed by a Function. An Expression that also has a Function as its <code>featuringType</code> is a computational step within that Function. An Expression always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows Expressions to be interconnected in tree structures, in which inputs to each Expression in the tree are determined as the results of other Expressions in the tree.</p>
  * 
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
+ * value.featuringType = featureWithValue.featuringType
  * <!-- end-model-doc -->
  *
  * <p>

@@ -29,13 +29,13 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expose is an Import of a Namespace into a ViewUsage that provides a root for determining what Elements are to be included in a view. Visibility is always ignored for an Expose (i.e., <code>isImportAll = true</code>).</p>
+ * <p>An Expose is an Import of Memberships into a ViewUsage that provide the Elements to be included in a view. Visibility is always ignored for an Expose (i.e., <code>isImportAll = true</code>).</p>
  * isImportAll
  * <!-- end-model-doc -->
  *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpose()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Expose extends Import {

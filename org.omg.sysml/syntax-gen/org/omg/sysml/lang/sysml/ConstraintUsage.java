@@ -65,7 +65,7 @@ public interface ConstraintUsage extends OccurrenceUsage, BooleanExpression {
 	 * @return the value of the '<em>Constraint Definition</em>' reference.
 	 * @see #setConstraintDefinition(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage_ConstraintDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConstraint'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

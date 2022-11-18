@@ -39,7 +39,11 @@ public class ViewUsage_exposedNamespace_SettingDelegate extends BasicDerivedList
 	@Override
 	protected EList<Namespace> basicGet(InternalEObject owner) {
 		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, owner, eStructuralFeature.getFeatureID());
-		UsageUtil.getExposeImportsOf((ViewUsage)owner).map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
+		UsageUtil.getExposeImportsOf((ViewUsage)owner).
+			map(Import::getImportedElement).
+			filter(Namespace.class::isInstance).
+			map(Namespace.class::cast).
+			forEachOrdered(exposedNamespace::add);
 		return exposedNamespace;
 	}
 

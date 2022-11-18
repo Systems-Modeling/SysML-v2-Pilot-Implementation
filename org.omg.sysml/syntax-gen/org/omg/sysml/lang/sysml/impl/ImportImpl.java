@@ -45,8 +45,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NamespaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -56,27 +54,16 @@ import org.omg.sysml.util.NamespaceUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportedMemberName <em>Imported Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#isRecursive <em>Is Recursive</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#isImportAll <em>Is Import All</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportedElement <em>Imported Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportOwningNamespace <em>Import Owning Namespace</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImportImpl extends RelationshipImpl implements Import {
-	/**
-	 * The cached value of the '{@link #getImportedNamespace() <em>Imported Namespace</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImportedNamespace()
-	 * @generated
-	 * @ordered
-	 */
-	protected Namespace importedNamespace;
-
+public abstract class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,26 +81,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @ordered
 	 */
 	protected VisibilityKind visibility = VISIBILITY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getImportedMemberName() <em>Imported Member Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImportedMemberName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IMPORTED_MEMBER_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getImportedMemberName() <em>Imported Member Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImportedMemberName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String importedMemberName = IMPORTED_MEMBER_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isRecursive() <em>Is Recursive</em>}' attribute.
@@ -154,6 +121,16 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @ordered
 	 */
 	protected boolean isImportAll = IS_IMPORT_ALL_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getImportedElement() <em>Imported Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IMPORTED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.IMPORT__IMPORTED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getImportOwningNamespace() <em>Import Owning Namespace</em>}' reference.
@@ -209,33 +186,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	@Override
-	public String getImportedMemberName() {
-		return importedMemberName;
-	}
-	
-	@Override
-	public void setImportedMemberName(String newImportedMemberName) {
-		setImportedMemberNameGen(ElementUtil.unescapeString(newImportedMemberName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImportedMemberNameGen(String newImportedMemberName) {
-		String oldImportedMemberName = importedMemberName;
-		importedMemberName = newImportedMemberName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORTED_MEMBER_NAME, oldImportedMemberName, importedMemberName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isRecursive() {
 		return isRecursive;
 	}
@@ -282,6 +232,35 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	@Override
+	public Element getImportedElement() {
+		return (Element)IMPORTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element basicGetImportedElement() {
+		return (Element)IMPORTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setImportedElement(Element newImportedElement) {
+		IMPORTED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newImportedElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Namespace getImportOwningNamespace() {
 		return (Namespace)IMPORT_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -312,95 +291,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	public boolean isSetImportOwningNamespace() {
 		return basicGetImportOwningNamespace() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Namespace importedNamespace = getImportedNamespace();
-		if (importedNamespace != null) {
-			target.add(importedNamespace);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	@Override
-	public Namespace getImportedNamespace() {
-		return importedNamespace == null? basicGetImportedNamespace(): getImportedNamespaceGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Namespace getImportedNamespaceGen() {
-		if (importedNamespace != null && importedNamespace.eIsProxy()) {
-			InternalEObject oldImportedNamespace = (InternalEObject)importedNamespace;
-			importedNamespace = (Namespace)eResolveProxy(oldImportedNamespace);
-			if (importedNamespace != oldImportedNamespace) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.IMPORT__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
-			}
-		}
-		return importedNamespace;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If importedNamespace is empty, then set it to the first ownedRelatedElement, if this is a namespace
-	 * (filling in the implicit import for a filter package). Otherwise, set it to the importOwningNamspace.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Namespace basicGetImportedNamespace() {
-		if (importedNamespace == null) {
-			EList<Element> ownedRelatedElement = getOwnedRelatedElement();
-			if (!ownedRelatedElement.isEmpty() && ownedRelatedElement.get(0) instanceof Namespace) {
-				// Fill in the implicit import for a filter package.
-				importedNamespace = (Namespace)ownedRelatedElement.get(0);
-			} else {
-				importedNamespace = getImportOwningNamespace();
-			}
-		}
-		return importedNamespace;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setImportedNamespace(Namespace newImportedNamespace) {
-		Namespace oldImportedNamespace = importedNamespace;
-		importedNamespace = newImportedNamespace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetImportedNamespace() {
-		return importedNamespace != null;
 	}
 
 	/**
@@ -473,33 +363,22 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Membership> importedMembership(EList<Namespace> excluded) {
-		return this.importMembership(new BasicInternalEList<>(Membership.class), null,
+	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
+		return this.importMemberships(new BasicInternalEList<>(Membership.class), null,
 				excluded, new HashSet<>());
 	}
 
 	// Note: The excludedType parameter is needed in case the imported Namespace
 	// is a Type that has one or more Generalizations.
-	public EList<Membership> importMembership(EList<Membership> importedMembership,
+	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
-		Namespace importedNamespace = this.getImportedNamespace();
-		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
-			Namespace owningNamespace = this.getImportOwningNamespace();
-			excludedNamespaces.add(owningNamespace);
-			importMembershipFrom(importedNamespace, importedMemberName, importedMembership, nonpublicMembership, 
-					excludedNamespaces, excludedTypes, isRecursive);
-			excludedNamespaces.remove(owningNamespace);
-		}
-		return importedMembership;
-	}
+			Collection<Type> excludedTypes);
 	
-	protected void importMembershipFrom(Namespace importedNamespace, String importedMemberName, EList<Membership> importedMembership,
+	protected void importMembershipsFrom(Namespace importedNamespace, EList<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
 			Collection<Type> excludedTypes, boolean isRecursive) {
-		Collection<Membership> namespaceMembership = importedMemberName == null? 
-				((NamespaceImpl) importedNamespace).getVisibleMembership(excludedNamespaces, excludedTypes, isImportAll):
-				NamespaceUtil.getNamedMembershipsFor(this);
+		Collection<Membership> namespaceMembership = 
+				((NamespaceImpl) importedNamespace).getVisibleMemberships(excludedNamespaces, excludedTypes, isImportAll());
 		importedMembership.addAll(namespaceMembership);
 		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
 			nonpublicMembership.addAll(namespaceMembership);
@@ -507,11 +386,12 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (isRecursive) {
 			excludedNamespaces.add(importedNamespace);
 			for (Membership membership: namespaceMembership) {
-				Element member = importedMemberName != null || membership instanceof OwningMembership? 
-						membership.getMemberElement(): null;
-				if (member instanceof Namespace) {
-					importMembershipFrom((Namespace)member, null, importedMembership, nonpublicMembership, 
-							excludedNamespaces, excludedTypes, true);
+				if (membership instanceof OwningMembership) {
+					Element member = membership.getMemberElement();
+					if (member instanceof Namespace) {
+						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 
+								excludedNamespaces, excludedTypes, true);
+					}
 				}
 			}
 			excludedNamespaces.remove(importedNamespace);
@@ -571,17 +451,15 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
-				if (resolve) return getImportedNamespace();
-				return basicGetImportedNamespace();
 			case SysMLPackage.IMPORT__VISIBILITY:
 				return getVisibility();
-			case SysMLPackage.IMPORT__IMPORTED_MEMBER_NAME:
-				return getImportedMemberName();
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				return isRecursive();
 			case SysMLPackage.IMPORT__IS_IMPORT_ALL:
 				return isImportAll();
+			case SysMLPackage.IMPORT__IMPORTED_ELEMENT:
+				if (resolve) return getImportedElement();
+				return basicGetImportedElement();
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
 				if (resolve) return getImportOwningNamespace();
 				return basicGetImportOwningNamespace();
@@ -596,20 +474,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
-				setImportedNamespace((Namespace)newValue);
-				return;
 			case SysMLPackage.IMPORT__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
-				return;
-			case SysMLPackage.IMPORT__IMPORTED_MEMBER_NAME:
-				setImportedMemberName((String)newValue);
 				return;
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				setIsRecursive((Boolean)newValue);
 				return;
 			case SysMLPackage.IMPORT__IS_IMPORT_ALL:
 				setIsImportAll((Boolean)newValue);
+				return;
+			case SysMLPackage.IMPORT__IMPORTED_ELEMENT:
+				setImportedElement((Element)newValue);
 				return;
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
 				setImportOwningNamespace((Namespace)newValue);
@@ -625,20 +500,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
-				setImportedNamespace((Namespace)null);
-				return;
 			case SysMLPackage.IMPORT__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case SysMLPackage.IMPORT__IMPORTED_MEMBER_NAME:
-				setImportedMemberName(IMPORTED_MEMBER_NAME_EDEFAULT);
 				return;
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				setIsRecursive(IS_RECURSIVE_EDEFAULT);
 				return;
 			case SysMLPackage.IMPORT__IS_IMPORT_ALL:
 				setIsImportAll(IS_IMPORT_ALL_EDEFAULT);
+				return;
+			case SysMLPackage.IMPORT__IMPORTED_ELEMENT:
+				setImportedElement((Element)null);
 				return;
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
 				setImportOwningNamespace((Namespace)null);
@@ -656,20 +528,16 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		switch (featureID) {
 			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
-			case SysMLPackage.IMPORT__TARGET:
-				return isSetTarget();
 			case SysMLPackage.IMPORT__SOURCE:
 				return isSetSource();
-			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
-				return isSetImportedNamespace();
 			case SysMLPackage.IMPORT__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
-			case SysMLPackage.IMPORT__IMPORTED_MEMBER_NAME:
-				return IMPORTED_MEMBER_NAME_EDEFAULT == null ? importedMemberName != null : !IMPORTED_MEMBER_NAME_EDEFAULT.equals(importedMemberName);
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				return isRecursive != IS_RECURSIVE_EDEFAULT;
 			case SysMLPackage.IMPORT__IS_IMPORT_ALL:
 				return isImportAll != IS_IMPORT_ALL_EDEFAULT;
+			case SysMLPackage.IMPORT__IMPORTED_ELEMENT:
+				return IMPORTED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
 				return isSetImportOwningNamespace();
 		}
@@ -684,8 +552,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case SysMLPackage.IMPORT___IMPORTED_MEMBERSHIP__ELIST:
-				return importedMembership((EList<Namespace>)arguments.get(0));
+			case SysMLPackage.IMPORT___IMPORTED_MEMBERSHIPS__ELIST:
+				return importedMemberships((EList<Namespace>)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -701,8 +569,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (visibility: ");
 		result.append(visibility);
-		result.append(", importedMemberName: ");
-		result.append(importedMemberName);
 		result.append(", isRecursive: ");
 		result.append(isRecursive);
 		result.append(", isImportAll: ");

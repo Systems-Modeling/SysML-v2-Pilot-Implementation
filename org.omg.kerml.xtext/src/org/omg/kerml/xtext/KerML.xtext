@@ -202,20 +202,36 @@ AliasMember returns SysML::Membership :
 	RelationshipBody
 ;
 
-Import returns SysML::Import :
+fragment ImportPrefix returns SysML::Import :
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
-	( ImportedNamespace | ImportedFilterPackage )
+;
+
+Import returns SysML::Import :
+	( MembershipImport | NamespaceImport | FilteredImport )
 	RelationshipBody
 ;
 
-fragment ImportedNamespace returns SysML::Import :
-	( importedNamespace = [SysML::Namespace|Qualification] )?
-	( importedMemberName = Name | '*' )
+MembershipImport returns SysML::MembershipImport :
+	ImportPrefix ImportedMembership
+;
+
+fragment ImportedMembership returns SysML::MembershipImport :
+	importedMembership = [SysML::Membership|QualifiedName]
+	( '::' isRecursive ?= '**' )?	
+;
+
+NamespaceImport returns SysML::NamespaceImport :
+	ImportPrefix ImportedNamespace
+;
+
+fragment ImportedNamespace returns SysML::NamespaceImport :
+	importedNamespace = [SysML::Namespace|QualifiedName] '::' '*'
 	( '::' isRecursive ?= '**' )?
 ;
 
-fragment ImportedFilterPackage returns SysML::Import :
+FilteredImport returns SysML::NamespaceImport :
+	ImportPrefix
 	ownedRelatedElement += FilterPackage
 ;
 
@@ -225,11 +241,19 @@ FilterPackage returns SysML::Package :
 ;
 
 FilterPackageImport returns SysML::Import :
+	 FilterPackageMembershipImport | FilterPackageNamespaceImport
+;
+
+FilterPackageMembershipImport returns SysML::MembershipImport :
+	ImportedMembership
+;
+
+FilterPackageNamespaceImport returns SysML::NamespaceImport :
 	ImportedNamespace
 ;
 
 FilterPackageMember returns SysML::ElementFilterMembership :
-	visibility = FilterPackageMemberVisibility ownedRelatedElement += OwnedExpression ']' // condition = OwnedExpression ']'
+	visibility = FilterPackageMemberVisibility ownedRelatedElement += OwnedExpression ']'
 ;
 
 enum FilterPackageMemberVisibility returns SysML::VisibilityKind :

@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ExposeImpl extends ImportImpl implements Expose {
+public abstract class ExposeImpl extends ImportImpl implements Expose {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

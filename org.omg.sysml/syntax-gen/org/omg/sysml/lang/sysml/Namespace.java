@@ -135,7 +135,7 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Returns this visibility of <code>mem</code> relative to this Namespace. If <code>mem</code> is an <code>importedMembership</code>, this is the <code>visibility</code> of its Import. Otherwise it is the <code>visibility</code> of the Membership itself.</p>
 	 * if importedMembership->includes(mem) then
-	 *     ownedImport->any(importedMembership(Set{})->includes(mem)).visibility
+	 *     ownedImport->any(importedMemberships(Set{})->includes(mem)).visibility
 	 * else if memberships->includes(mem) then
 	 *     mem.visibility
 	 * else
@@ -154,16 +154,18 @@ public interface Namespace extends Element {
 	 * <p>If <code>includeAll = true</code>, then return all the Memberships of this Namespace. Otherwise, return
 	 * only the publicly visible Memberships of this Namespace (which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>). If <code>isRecursive = true</code>, also recursively include all visible Memberships of any visible owned Namespaces.</p>
 	 * 
-	 * let publicMemberships : Sequence(Membership) =
-	 *     ownedMembership->
+	 * let visibleMemberships : Sequence(Membership) =
+	 *     if includeAll then memberships
+	 *     else ownedMembership->
 	 *         select(visibility = VisibilityKind::public)->
 	 *         union(ownedImport->
 	 *             select(visibility = VisibilityKind::public).
-	 *             importedMembership(excluded)) in
-	 * if not isRecursive then publicMemberships
-	 * else publicMemberships->union(publicMemberships->
+	 *             importedMemberships(excluded->including(this)))
+	 *     endif in
+	 * if not isRecursive then visibleMemberships
+	 * else visibleMemberships->union(visibleMemberships->
 	 *         selectAsKind(Namespace).
-	 *         publicMembership(excluded->including(this), true))
+	 *         visibleMemberships(excluded->including(self), true, includeAll))
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false" isRecursiveDataType="org.omg.sysml.lang.types.Boolean" isRecursiveRequired="true" isRecursiveOrdered="false" includeAllDataType="org.omg.sysml.lang.types.Boolean" includeAllRequired="true" includeAllOrdered="false"
@@ -176,9 +178,7 @@ public interface Namespace extends Element {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Derive the imported Memberships of this Namespace as the <code>importedMembership</code> of all <code>ownedImports</code>, excluding those Imports whose <code>importOwningNamespace</code> is in the <code>excluded</code> set, and excluding Memberships that have distinguisibility collisions with each other or with any <code>ownedMembership</code>.</p>
-	 * ownedImport->
-	 *     excluding(excluded->contains(importOwningNamespace)).
-	 *     importedMembership(excluded)
+	 * ownedImport.importedMemberships(excluded->including(self))
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
 	 * @generated

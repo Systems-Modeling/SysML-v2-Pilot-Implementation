@@ -50,6 +50,8 @@ import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import java.util.Collections
 import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.MembershipImport
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -418,28 +420,23 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean resolveImport(Import imp, QualifiedName qn, Set<Namespace> visited, boolean includeImplicitGen) {
-		val name = imp.importedMemberName
-		if (name === null) {
+		if (imp instanceof NamespaceImport) {
 			return imp.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, false, imp.isRecursive, includeImplicitGen, imp.isImportAll)
 		} else {
-			// Find the memberships corresponding to the importedMemberName.
-			val importScope = scopeProvider.scope_import(imp)
-			val mems = (importScope as ISysMLScope).getMemberships(name, imp.isImportAll)
+			val mem = (imp as MembershipImport).importedMembership
 			
-			for (mem: mems) {
-				// Check if the targetqn resolves via the imported membership.
-				val elm = mem.memberElement
-				if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
-					return true
-				}
-				if (resolveForName(mem, elm, elm.shortName, qn, visited, includeImplicitGen, imp.isImportAll)) {
-					return true
-				}
-								
-				// If recursive, check recursively.
-				if (elm instanceof Namespace && imp.isRecursive) {
-					return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, false, true, false, imp.isImportAll)
-				}
+			// Check if the targetqn resolves via the imported membership.
+			val elm = mem.memberElement
+			if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				return true
+			}
+			if (resolveForName(mem, elm, elm.shortName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				return true
+			}
+							
+			// If recursive, check recursively.
+			if (elm instanceof Namespace && imp.isRecursive) {
+				return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, false, true, false, imp.isImportAll)
 			}
 				
 			return false

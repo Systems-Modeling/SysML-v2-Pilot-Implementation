@@ -16,8 +16,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Intersecting#getIntersectingType <em>Intersecting Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Intersecting#getTypeIntersected <em>Type Intersected</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Intersecting#getIntersectingType <em>Intersecting Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getIntersecting()

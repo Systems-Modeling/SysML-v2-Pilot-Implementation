@@ -291,7 +291,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	@Override
 	public EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll) {
-		return getVisibleMembership(new HashSet<>(excluded), new HashSet<Type>(), includeAll);
+		return getVisibleMemberships(new HashSet<>(excluded), new HashSet<Type>(), includeAll);
 	}	
 
 	/**
@@ -301,7 +301,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	public VisibilityKind visibilityOf(Membership mem) {
 		Optional<Import> membershipImport = getOwnedImport().stream().
-				filter(imp->imp.importedMembership(new BasicEList<>()).contains(mem)).
+				filter(imp->imp.importedMemberships(new BasicEList<>()).contains(mem)).
 				findAny();
 		return membershipImport.isPresent()? membershipImport.get().getVisibility():
 			   getMembership().contains(mem)? mem.getVisibility():
@@ -328,7 +328,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
-	public EList<Membership> getVisibleMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
 		EList<Membership> visibleMembership;
 		if (includeAll) {
 			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
@@ -350,9 +350,9 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
 		EList<Membership> importedMembership = new NonNotifyingEObjectEList<>(Membership.class, this, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
 		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
-		for (Import _import: this.getOwnedImport()) {
-			if (!excludedNamespaces.contains(_import.getImportOwningNamespace())) {
-				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
+		if (!excludedNamespaces.contains(this)) {
+			for (Import _import: this.getOwnedImport()) {
+				((ImportImpl)_import).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
 			}
 		}
 		if (!includeAll) {

@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -92,11 +91,6 @@ public class NamespaceUtil {
 		NamespaceAdapter adapter = (NamespaceAdapter)ElementUtil.getElementAdapter(namespace);
 		EList<Membership> membership = adapter.getImportedMembership();
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
-	}
-	
-	public static Collection<Membership> getNamedMembershipsFor(Import import_) {
-		return SysMLScopeUtil.getMembershipsFor(import_, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), 
-				import_.getImportedMemberName(), import_.isImportAll());
 	}
 	
 	public static Collection<Membership> getNamedMembershipsFor(Namespace namespace, String name) {

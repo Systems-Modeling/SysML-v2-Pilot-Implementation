@@ -866,7 +866,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}	
 	
 	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMembership(excludedNamespaces, excludedTypes, false);
+		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
@@ -875,8 +875,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	@Override
-	public EList<Membership> getVisibleMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMembership(excludedNamespaces, excludedTypes, includeAll);
+	public EList<Membership> getVisibleMemberships(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
 		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
 		return visibleMembership;
 	}

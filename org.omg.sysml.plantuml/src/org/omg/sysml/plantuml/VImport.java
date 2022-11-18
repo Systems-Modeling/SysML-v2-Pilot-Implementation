@@ -26,12 +26,9 @@
 
 package org.omg.sysml.plantuml;
 
-import java.util.Collection;
-
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.util.NamespaceUtil;
 
 public class VImport extends Visitor {
     public VImport(Visitor v) {
@@ -40,16 +37,11 @@ public class VImport extends Visitor {
 
     public void addImport(Import imp) {
         Namespace nsOwn = imp.getImportOwningNamespace();
-
-        if (imp.getImportedMemberName() == null) {
-        	String description = imp.isRecursive()? "<<import>>*::**": "<<import>>*";
-            addPRelation(null, nsOwn, imp.getImportedNamespace(), imp, description);
-        } else {
-            Collection<Membership> mss = NamespaceUtil.getNamedMembershipsFor(imp);
-            String description = imp.isRecursive()? "<<import>>**": "<<import>>";
-            for (Membership ms: mss) {
-                addPRelation(null, nsOwn, ms.getMemberElement(), imp, description);
-            }
-        }
-    }
+        
+        String description = imp instanceof MembershipImport? 
+        		imp.isRecursive()? "<<import>>**": "<<import>>":
+        		imp.isRecursive()? "<<import>>*::**": "<<import>>*";
+        		
+        addPRelation(null, nsOwn, imp.getImportedElement(), imp, description);
+   }
 }

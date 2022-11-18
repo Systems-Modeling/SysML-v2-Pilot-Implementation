@@ -33,7 +33,6 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>If <code>isDefault = false</code>, then the above semantics of the FeatureValue are realized for the given <code>featureWithValue</code>. Otherwise, the semantics are realized for any individual of the <code>featuringType</code> of the <code>featureWithValue</code>, unless another value is explicitly given for the <code>featureWithValue</code> for that individual.</p>
  * 
- * value.featuringType = featureWithValue.featuringType
  * featureWithValue.ownedMember->
  *     selectByKind(BindingConnector)->
  *     exists(valueConnector |

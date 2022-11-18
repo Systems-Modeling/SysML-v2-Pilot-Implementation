@@ -40,13 +40,13 @@ import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureChaining
-import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.lang.sysml.NamespaceImport
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -91,7 +91,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			context.scope_featureChaining(reference)
 		else if (context instanceof Membership)
 	    	context.scope_relativeNamespace(context.membershipOwningNamespace, context, reference)
-		else if (context instanceof Import)
+		else if (context instanceof NamespaceImport)
 			if (reference === SysMLPackage.eINSTANCE.import_ImportOwningNamespace) scope_import(context)
 			else context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
@@ -102,9 +102,9 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			super.getScope(context, reference)
 	}
 	
-	def scope_import(Import imp) {
+	def scope_import(NamespaceImport imp) {
 		val ns = imp.importedNamespace
-		ns.scopeFor(SysMLPackage.eINSTANCE.import_ImportedNamespace, imp, ns == imp.importOwningNamespace, false, false, null)
+		ns.scopeFor(SysMLPackage.eINSTANCE.namespaceImport_ImportedNamespace, imp, ns == imp.importOwningNamespace, false, false, null)
 	}
 	
 	def scope_featureChaining(FeatureChaining ch, EReference reference) {

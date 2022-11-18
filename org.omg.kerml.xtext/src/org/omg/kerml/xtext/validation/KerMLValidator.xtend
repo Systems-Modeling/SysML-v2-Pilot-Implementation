@@ -49,10 +49,6 @@ import org.omg.sysml.util.ElementUtil
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.sysml.lang.sysml.Import
-import com.google.inject.Inject
-import org.eclipse.xtext.scoping.IScopeProvider
-import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
@@ -123,8 +119,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__DISTINGUISHABILITY = "Invalid Element - Distinguishability"
 	public static val INVALID_ELEMENT__DISTINGUISHABILITY_MSG = "Duplicate of other element name"
-	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
-	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ElementFilterMembership - Condition not Boolean"
@@ -154,9 +148,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
 	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
 	
-	
-	@Inject
-	IScopeProvider scopeProvider
 	
 	@Check
 	def checkElement(Element elm) {
@@ -228,16 +219,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
-			}
-		}
-	}
-	
-	@Check
-	def checkImport(Import imp) {
-		if (imp.importedMemberName !== null && !imp.importedNamespace.eIsProxy) {
-			val scope = scopeProvider.getScope(imp, SysMLPackage.eINSTANCE.import_ImportOwningNamespace) as ISysMLScope
-			if (scope.getMemberships(imp.importedMemberName, imp.importAll).isEmpty) {
-				error(INVALID_IMPORT__NAME_NOT_RESOLVED_MSG.replace("{name}", imp.importedMemberName), imp, SysMLPackage.eINSTANCE.import_ImportedMemberName, INVALID_IMPORT__NAME_NOT_RESOLVED)
 			}
 		}
 	}

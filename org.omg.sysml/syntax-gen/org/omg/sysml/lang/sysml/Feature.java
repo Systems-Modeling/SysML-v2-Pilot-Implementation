@@ -53,10 +53,10 @@ import org.eclipse.emf.common.util.EList;
  * chainingFeatures->size() <> 1
  * inverseFeature = invertingFeatureInverting.featureInverse
  * invertedFeature = invertedFeatureInverting.featureInverted
- * ownedTyping.type->exists(selectByKind(Class)) implies
- *     allSupertypes()->includes(resolve("Occurrences::occurrences"))
  * ownedTyping.type->exists(selectByKind(DataType)) implies
  *     allSupertypes()->includes(resolve("Base::dataValues"))
+ * ownedTyping.type->exists(selectByKind(Class)) implies
+ *     allSupertypes()->includes(resolve("Occurrences::occurrences"))
  * <!-- end-model-doc -->
  *
  * <p>

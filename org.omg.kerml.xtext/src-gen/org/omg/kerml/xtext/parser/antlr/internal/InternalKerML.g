@@ -1701,6 +1701,56 @@ ruleAliasMember returns [EObject current=null]
 	)
 ;
 
+
+// Rule ImportPrefix
+ruleImportPrefix[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getImportPrefixAccess().getVisibilityVisibilityIndicatorEnumRuleCall_0_0());
+				}
+				lv_visibility_0_0=ruleVisibilityIndicator
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getImportPrefixRule());
+					}
+					set(
+						$current,
+						"visibility",
+						lv_visibility_0_0,
+						"org.omg.kerml.xtext.KerML.VisibilityIndicator");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_1='import'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getImportPrefixAccess().getImportKeyword_1());
+		}
+		(
+			(
+				lv_isImportAll_2_0='all'
+				{
+					newLeafNode(lv_isImportAll_2_0, grammarAccess.getImportPrefixAccess().getIsImportAllAllKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getImportPrefixRule());
+					}
+					setWithLastConsumed($current, "isImportAll", lv_isImportAll_2_0 != null, "all");
+				}
+			)
+		)?
+	)
+;
+
 // Entry rule entryRuleImport
 entryRuleImport returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getImportRule()); }
@@ -1718,64 +1768,30 @@ ruleImport returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getImportAccess().getVisibilityVisibilityIndicatorEnumRuleCall_0_0());
-				}
-				lv_visibility_0_0=ruleVisibilityIndicator
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getImportRule());
-					}
-					set(
-						$current,
-						"visibility",
-						lv_visibility_0_0,
-						"org.omg.kerml.xtext.KerML.VisibilityIndicator");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_1='import'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getImportAccess().getImportKeyword_1());
-		}
-		(
-			(
-				lv_isImportAll_2_0='all'
-				{
-					newLeafNode(lv_isImportAll_2_0, grammarAccess.getImportAccess().getIsImportAllAllKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getImportRule());
-					}
-					setWithLastConsumed($current, "isImportAll", lv_isImportAll_2_0 != null, "all");
-				}
-			)
-		)?
-		(
 			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getImportRule());
-				}
-				newCompositeNode(grammarAccess.getImportAccess().getImportedNamespaceParserRuleCall_3_0());
+				newCompositeNode(grammarAccess.getImportAccess().getMembershipImportParserRuleCall_0_0());
 			}
-			this_ImportedNamespace_3=ruleImportedNamespace[$current]
+			this_MembershipImport_0=ruleMembershipImport
 			{
-				$current = $this_ImportedNamespace_3.current;
+				$current = $this_MembershipImport_0.current;
 				afterParserOrEnumRuleCall();
 			}
 			    |
 			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getImportRule());
-				}
-				newCompositeNode(grammarAccess.getImportAccess().getImportedFilterPackageParserRuleCall_3_1());
+				newCompositeNode(grammarAccess.getImportAccess().getNamespaceImportParserRuleCall_0_1());
 			}
-			this_ImportedFilterPackage_4=ruleImportedFilterPackage[$current]
+			this_NamespaceImport_1=ruleNamespaceImport
 			{
-				$current = $this_ImportedFilterPackage_4.current;
+				$current = $this_NamespaceImport_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getImportAccess().getFilteredImportParserRuleCall_0_2());
+			}
+			this_FilteredImport_2=ruleFilteredImport
+			{
+				$current = $this_FilteredImport_2.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -1783,11 +1799,142 @@ ruleImport returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getImportRule());
 			}
-			newCompositeNode(grammarAccess.getImportAccess().getRelationshipBodyParserRuleCall_4());
+			newCompositeNode(grammarAccess.getImportAccess().getRelationshipBodyParserRuleCall_1());
 		}
-		this_RelationshipBody_5=ruleRelationshipBody[$current]
+		this_RelationshipBody_3=ruleRelationshipBody[$current]
 		{
-			$current = $this_RelationshipBody_5.current;
+			$current = $this_RelationshipBody_3.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleMembershipImport
+entryRuleMembershipImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMembershipImportRule()); }
+	iv_ruleMembershipImport=ruleMembershipImport
+	{ $current=$iv_ruleMembershipImport.current; }
+	EOF;
+
+// Rule MembershipImport
+ruleMembershipImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getMembershipImportRule());
+			}
+			newCompositeNode(grammarAccess.getMembershipImportAccess().getImportPrefixParserRuleCall_0());
+		}
+		this_ImportPrefix_0=ruleImportPrefix[$current]
+		{
+			$current = $this_ImportPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getMembershipImportRule());
+			}
+			newCompositeNode(grammarAccess.getMembershipImportAccess().getImportedMembershipParserRuleCall_1());
+		}
+		this_ImportedMembership_1=ruleImportedMembership[$current]
+		{
+			$current = $this_ImportedMembership_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+
+// Rule ImportedMembership
+ruleImportedMembership[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getImportedMembershipRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getImportedMembershipAccess().getImportedMembershipMembershipCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_1='::'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getImportedMembershipAccess().getColonColonKeyword_1_0());
+			}
+			(
+				(
+					lv_isRecursive_2_0='**'
+					{
+						newLeafNode(lv_isRecursive_2_0, grammarAccess.getImportedMembershipAccess().getIsRecursiveAsteriskAsteriskKeyword_1_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getImportedMembershipRule());
+						}
+						setWithLastConsumed($current, "isRecursive", lv_isRecursive_2_0 != null, "**");
+					}
+				)
+			)
+		)?
+	)
+;
+
+// Entry rule entryRuleNamespaceImport
+entryRuleNamespaceImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNamespaceImportRule()); }
+	iv_ruleNamespaceImport=ruleNamespaceImport
+	{ $current=$iv_ruleNamespaceImport.current; }
+	EOF;
+
+// Rule NamespaceImport
+ruleNamespaceImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getNamespaceImportRule());
+			}
+			newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportPrefixParserRuleCall_0());
+		}
+		this_ImportPrefix_0=ruleImportPrefix[$current]
+		{
+			$current = $this_ImportPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getNamespaceImportRule());
+			}
+			newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportedNamespaceParserRuleCall_1());
+		}
+		this_ImportedNamespace_1=ruleImportedNamespace[$current]
+		{
+			$current = $this_ImportedNamespace_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1813,48 +1960,30 @@ ruleImportedNamespace[EObject in_current]  returns [EObject current=in_current]
 				{
 					newCompositeNode(grammarAccess.getImportedNamespaceAccess().getImportedNamespaceNamespaceCrossReference_0_0());
 				}
-				ruleQualification
+				ruleQualifiedName
 				{
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getImportedNamespaceAccess().getImportedMemberNameNameParserRuleCall_1_0_0());
-					}
-					lv_importedMemberName_1_0=ruleName
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getImportedNamespaceRule());
-						}
-						set(
-							$current,
-							"importedMemberName",
-							lv_importedMemberName_1_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			    |
-			otherlv_2='*'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getImportedNamespaceAccess().getAsteriskKeyword_1_1());
-			}
 		)
+		otherlv_1='::'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getImportedNamespaceAccess().getColonColonKeyword_1());
+		}
+		otherlv_2='*'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getImportedNamespaceAccess().getAsteriskKeyword_2());
+		}
 		(
 			otherlv_3='::'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getImportedNamespaceAccess().getColonColonKeyword_2_0());
+				newLeafNode(otherlv_3, grammarAccess.getImportedNamespaceAccess().getColonColonKeyword_3_0());
 			}
 			(
 				(
 					lv_isRecursive_4_0='**'
 					{
-						newLeafNode(lv_isRecursive_4_0, grammarAccess.getImportedNamespaceAccess().getIsRecursiveAsteriskAsteriskKeyword_2_1_0());
+						newLeafNode(lv_isRecursive_4_0, grammarAccess.getImportedNamespaceAccess().getIsRecursiveAsteriskAsteriskKeyword_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1868,9 +1997,15 @@ ruleImportedNamespace[EObject in_current]  returns [EObject current=in_current]
 	)
 ;
 
+// Entry rule entryRuleFilteredImport
+entryRuleFilteredImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFilteredImportRule()); }
+	iv_ruleFilteredImport=ruleFilteredImport
+	{ $current=$iv_ruleFilteredImport.current; }
+	EOF;
 
-// Rule ImportedFilterPackage
-ruleImportedFilterPackage[EObject in_current]  returns [EObject current=in_current]
+// Rule FilteredImport
+ruleFilteredImport returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1878,22 +2013,35 @@ ruleImportedFilterPackage[EObject in_current]  returns [EObject current=in_curre
 	leaveRule();
 }:
 	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getFilteredImportRule());
+			}
+			newCompositeNode(grammarAccess.getFilteredImportAccess().getImportPrefixParserRuleCall_0());
+		}
+		this_ImportPrefix_0=ruleImportPrefix[$current]
+		{
+			$current = $this_ImportPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
 		(
-			{
-				newCompositeNode(grammarAccess.getImportedFilterPackageAccess().getOwnedRelatedElementFilterPackageParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleFilterPackage
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getImportedFilterPackageRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getFilteredImportAccess().getOwnedRelatedElementFilterPackageParserRuleCall_1_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.xtext.KerML.FilterPackage");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelatedElement_1_0=ruleFilterPackage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFilteredImportRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.kerml.xtext.KerML.FilterPackage");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -1970,11 +2118,75 @@ ruleFilterPackageImport returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	(
+		{
+			newCompositeNode(grammarAccess.getFilterPackageImportAccess().getFilterPackageMembershipImportParserRuleCall_0());
+		}
+		this_FilterPackageMembershipImport_0=ruleFilterPackageMembershipImport
+		{
+			$current = $this_FilterPackageMembershipImport_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFilterPackageImportAccess().getFilterPackageNamespaceImportParserRuleCall_1());
+		}
+		this_FilterPackageNamespaceImport_1=ruleFilterPackageNamespaceImport
+		{
+			$current = $this_FilterPackageNamespaceImport_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleFilterPackageMembershipImport
+entryRuleFilterPackageMembershipImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFilterPackageMembershipImportRule()); }
+	iv_ruleFilterPackageMembershipImport=ruleFilterPackageMembershipImport
+	{ $current=$iv_ruleFilterPackageMembershipImport.current; }
+	EOF;
+
+// Rule FilterPackageMembershipImport
+ruleFilterPackageMembershipImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	{
 		if ($current==null) {
-			$current = createModelElement(grammarAccess.getFilterPackageImportRule());
+			$current = createModelElement(grammarAccess.getFilterPackageMembershipImportRule());
 		}
-		newCompositeNode(grammarAccess.getFilterPackageImportAccess().getImportedNamespaceParserRuleCall());
+		newCompositeNode(grammarAccess.getFilterPackageMembershipImportAccess().getImportedMembershipParserRuleCall());
+	}
+	this_ImportedMembership_0=ruleImportedMembership[$current]
+	{
+		$current = $this_ImportedMembership_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+// Entry rule entryRuleFilterPackageNamespaceImport
+entryRuleFilterPackageNamespaceImport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFilterPackageNamespaceImportRule()); }
+	iv_ruleFilterPackageNamespaceImport=ruleFilterPackageNamespaceImport
+	{ $current=$iv_ruleFilterPackageNamespaceImport.current; }
+	EOF;
+
+// Rule FilterPackageNamespaceImport
+ruleFilterPackageNamespaceImport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getFilterPackageNamespaceImportRule());
+		}
+		newCompositeNode(grammarAccess.getFilterPackageNamespaceImportAccess().getImportedNamespaceParserRuleCall());
 	}
 	this_ImportedNamespace_0=ruleImportedNamespace[$current]
 	{

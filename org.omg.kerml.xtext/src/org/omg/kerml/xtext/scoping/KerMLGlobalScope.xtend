@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2021, 2022 Model Driven Solutions, Inc.
  * Copyright (c) 2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -35,20 +35,18 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.util.ISysMLScope
-import java.util.Collections
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Element
 
-class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
+class KerMLGlobalScope extends AbstractScope {
 
-	protected IScope outer;
-	protected Resource resource
-	protected Predicate<IEObjectDescription> filter;
-	protected Predicate<IEObjectDescription> rootFilter;
-	protected EClass referenceType	
-	protected KerMLScopeProvider scopeProvider
-	protected Element element
+	protected val IScope outer;
+	protected val Resource resource
+	protected val Predicate<IEObjectDescription> filter;
+	protected val Predicate<IEObjectDescription> rootFilter;
+	protected val EClass referenceType
+	protected val KerMLScopeProvider scopeProvider
 	
 	static def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
 		return new KerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
@@ -86,7 +84,11 @@ class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 			val root = outer.getSingleElement(rootName)
 			if (root !== null) {
 				if (name.segmentCount == 1) {
-					if (referenceType.isInstance(root.EObjectOrProxy)) {
+					if (referenceType == SysMLPackage.eINSTANCE.membership) {
+						var eObject = EcoreUtil.resolve(root.EObjectOrProxy, resource)
+						result = if (eObject.eIsProxy) null 
+							else EObjectDescription.create(name, (eObject as Element).owningMembership)
+					} else if (referenceType.isInstance(root.EObjectOrProxy)) {
 						result = root;
 					}
 				} else if (root.EObjectOrProxy instanceof Namespace) {
@@ -102,7 +104,9 @@ class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 		// Note: 'outer' is assumed to be a default global scope filtered to only return elements with qualified names
 		// of a single segment. 'rootFilter' can be used to filter out library models.
 		val rootElements = Iterables.filter(outer.allElements, rootFilter)
-		var Iterable<IEObjectDescription> allElements = rootElements.filter[referenceType.isInstance(EObjectOrProxy)]
+		var Iterable<IEObjectDescription> allElements = rootElements.filter[
+			referenceType == SysMLPackage.eINSTANCE.membership || referenceType.isInstance(EObjectOrProxy)
+		]
 		for (root: rootElements) {
 			val element = root.EObjectOrProxy
 			if (element instanceof Namespace) {
@@ -112,17 +116,6 @@ class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 			}
 		}
 		return if (filter === null) allElements else Iterables.filter(allElements, filter)
-	}
-	
-	override getMemberships(String name, boolean includeAll) {
-		val result = outer.getSingleElement(QualifiedName.create(name))
-		if (result === null) {
-			return Collections.emptySet
-		}
-		else {
-			val elm = EcoreUtil.resolve(result.EObjectOrProxy, resource) as Element
-			return Collections.singleton(elm.owningMembership)
-		}
 	}
 	
 }

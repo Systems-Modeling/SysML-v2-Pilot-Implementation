@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
   *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,15 +24,12 @@
 
 package org.omg.sysml.lang.sysml.util
 
-import java.util.Collection
-
-import org.eclipse.xtext.resource.IResourceServiceProvider
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-
-import org.omg.sysml.lang.sysml.Membership
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.resource.IResourceServiceProvider
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.omg.sysml.lang.sysml.Element
 
 class SysMLScopeUtil {
 	
@@ -49,8 +46,8 @@ class SysMLScopeUtil {
 		return getScopeProvider(resource).getScope(context, reference) as ISysMLScope
 	}
 	
-	def static Collection<Membership> getMembershipsFor(EObject context, EReference reference, String name, boolean includeAll) {
-		return getScopeFor(context.eResource(), context, reference).getMemberships(name, includeAll)
+	def static Element getElementFor(EObject context, EReference reference, String name) {
+		return getScopeFor(context.eResource(), context, reference).getElement(name)
 	}
 	
 }

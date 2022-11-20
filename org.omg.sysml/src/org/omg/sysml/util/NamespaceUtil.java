@@ -21,7 +21,6 @@
 
 package org.omg.sysml.util;
 
-import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -93,8 +92,8 @@ public class NamespaceUtil {
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
 	
-	public static Collection<Membership> getNamedMembershipsFor(Namespace namespace, String name) {
-		return SysMLScopeUtil.getMembershipsFor(namespace, SysMLPackage.eINSTANCE.getNamespace_Membership(), name, false);
+	public static Membership getNamedMembershipFor(Namespace namespace, String name) {
+		return (Membership)SysMLScopeUtil.getElementFor(namespace, SysMLPackage.eINSTANCE.getNamespace_Membership(), name);
 	}
 	
 	// Related Namespaces

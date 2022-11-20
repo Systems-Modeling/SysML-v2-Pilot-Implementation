@@ -101,7 +101,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String nameText(Membership membership) {
-		var text = ""
+		var text = ''
 		val shortName = membership.memberShortName
 		if (shortName !== null) {
 			text += ' <' + shortName + '>'
@@ -114,7 +114,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
+		membership.prefixText + membership.nameText
 	}
 	
 	def String _text(FeatureValue featureValue) {
@@ -134,7 +134,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + import_.visibility._text
 		}
 		if (import_.importedMembership?.memberName !== null) {
-			text += "::" + import_.importedMembership.memberName
+			text += ' ' + import_.importedMembership.memberName
 		}
 		if (import_.isRecursive) {
 			text += "::**"

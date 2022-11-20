@@ -323,8 +323,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated NOT
 	 */
 	public Element resolve(String qualifiedName) {
-		Collection<Membership> memberships = NamespaceUtil.getNamedMembershipsFor(this, qualifiedName);
-		return memberships.stream().findAny().map(Membership::getMemberElement).orElse(null);
+		Membership membership = NamespaceUtil.getNamedMembershipFor(this, qualifiedName);
+		return membership == null? null: membership.getMemberElement();
 	}
 
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.

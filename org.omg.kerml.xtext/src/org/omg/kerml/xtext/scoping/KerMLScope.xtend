@@ -160,10 +160,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	override getElement(String name) {
-		var obj = getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy
-		if (obj.eIsProxy) {
-			obj = EcoreUtil.resolve(obj, element)
-		}
+		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
 

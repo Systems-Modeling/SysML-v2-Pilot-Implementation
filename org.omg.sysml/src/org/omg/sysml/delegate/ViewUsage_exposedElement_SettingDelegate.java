@@ -33,22 +33,22 @@ import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
-public class ViewUsage_viewedElement_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class ViewUsage_exposedElement_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public ViewUsage_viewedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ViewUsage_exposedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected EList<Element> basicGet(InternalEObject owner) {
-		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
+		EList<Element> exposedElements = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
+		EList<Expression> viewConditions = UsageUtil.getAllViewConditionsOf((ViewUsage)owner);
 		UsageUtil.getExposeImportsOf((ViewUsage)owner).
 			flatMap(imp->imp.importedMemberships(new BasicEList<>()).stream()).
 			map(Membership::getMemberElement).
-			forEachOrdered(viewedElements::add);
-		EList<Expression> viewConditions = UsageUtil.getAllViewConditionsOf((ViewUsage)owner);
-		viewedElements.removeIf(element->!ExpressionUtil.checkConditionsOn(element, viewConditions));
-		return viewedElements;
+			filter(element->ExpressionUtil.checkConditionsOn(element, viewConditions)).
+			forEachOrdered(exposedElements::add);
+		return exposedElements;
 	}
 
 }

@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -361,6 +362,15 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		return new BasicEList<>();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkCondition(Element target) {
+		return ExpressionUtil.checkConditionOn(target, this);
+	}
+
 	// Additional
 	
 	@Override
@@ -577,6 +587,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 			switch (baseOperationID) {
 				case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST: return SysMLPackage.CONSTRAINT_USAGE___MODEL_LEVEL_EVALUABLE__ELIST;
 				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT;
+				case SysMLPackage.EXPRESSION___CHECK_CONDITION__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___CHECK_CONDITION__ELEMENT;
 				default: return -1;
 			}
 		}
@@ -601,6 +612,8 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
+			case SysMLPackage.CONSTRAINT_USAGE___CHECK_CONDITION__ELEMENT:
+				return checkCondition((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

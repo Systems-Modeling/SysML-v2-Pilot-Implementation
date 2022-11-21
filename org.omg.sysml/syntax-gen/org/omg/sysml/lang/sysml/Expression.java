@@ -187,4 +187,20 @@ public interface Expression extends Step {
 	 * @generated
 	 */
 	EList<Element> evaluate(Element target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Model-level evaluate this Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
+	 * 
+	 * let results: Sequence(Element) = evaluate(target) in
+	 *     result->size() = 1 and
+	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
+	 *     results->at(1).oclAsType(LiteralBoolean).value
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" targetRequired="true" targetOrdered="false"
+	 * @generated
+	 */
+	boolean checkCondition(Element target);
 } // Expression

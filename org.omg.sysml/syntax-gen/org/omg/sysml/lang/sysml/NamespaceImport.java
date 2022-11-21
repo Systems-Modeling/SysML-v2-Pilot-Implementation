@@ -10,6 +10,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A NamespaceImport is an Import that imports Memberships from its <code>importedNamespace</code> into the <code>importOwningNamespace</code>. If <code> isRecursive = false</code>, then only the visible Memberships of the <code>importOwningNamespace</code> are imported. If <code> isRecursive = true</code>, then, in addition, Memberships are recursively imported from any <code>ownedMembers</code> of the <code>importedNamespace</code> that are Namespaces.</p>
+ * importedElement = importedNamespace
  * <!-- end-model-doc -->
  *
  * <p>

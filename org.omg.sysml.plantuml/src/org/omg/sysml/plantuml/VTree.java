@@ -36,9 +36,11 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
@@ -129,6 +131,31 @@ public class VTree extends VStructure {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
         addRel(ru, om, "<<objective>>");
         addReq("comp usage ", ru);
+        return "";
+    }
+
+    protected boolean addSubjectMembership(SubjectMembership sm, boolean force) {
+        Usage u = sm.getOwnedSubjectParameter();
+        Relationship rel = findBindingLikeRel(u);
+        if (force || (u.getName() != null && rel != null)) {
+            addRel(u, sm, null);
+            String name = getNameAnyway(u);
+            int id = addPUMLLine(u, "comp usage ", name, "<<subject>>");
+            process(new VCompartment(this), u);
+            if (rel != null) {
+                for (Element tgt : rel.getTarget()) {
+                    PRelation pr2 = new PRelation(id, tgt, rel, null);
+                    addPRelation(pr2);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String caseSubjectMembership(SubjectMembership sm) {
+        addSubjectMembership(sm, false);
         return "";
     }
 

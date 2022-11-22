@@ -31,6 +31,7 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -39,7 +40,9 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -236,6 +239,31 @@ public class VDefault extends VTraverser {
         return "";
     }
 
+    protected static boolean isEmptyFeature(Feature f) {
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            if (fm.getOwnedMemberFeature() instanceof BindingConnector) continue;
+            return false;
+        }
+        return true;
+    }
+
+    protected Relationship findBindingLikeRel(Feature f) {
+        Relationship ret = null;
+        for (Relationship rel : f.getOwnedRelationship()) {
+            if (rel instanceof FeatureValue) {
+                // first priority
+                return rel;
+            } else if (rel instanceof Subsetting) {
+                // second priority
+                ret = rel;
+            } else if (rel instanceof FeatureTyping) {
+                if (ret != null) continue;
+                ret = rel;
+            }
+        }
+        return ret;
+    }
+
     @Override
     public String caseImport(Import imp) {
         VImport v = new VImport(this);
@@ -252,7 +280,7 @@ public class VDefault extends VTraverser {
     VDefault(Visitor v) {
         super(v);
     }
-    
+
     VDefault() {
     	super();
     }

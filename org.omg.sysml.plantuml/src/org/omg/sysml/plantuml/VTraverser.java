@@ -90,6 +90,7 @@ public abstract class VTraverser extends Visitor {
                 setInherited(false);
                 Element e = ms.getMemberElement();
                 markRedefining(e, covered);
+                this.currentMembership = ms;
                 visit(ms);
                 for (Relationship r2: ms.getOwnedRelationship()) {
                     setInherited(false);

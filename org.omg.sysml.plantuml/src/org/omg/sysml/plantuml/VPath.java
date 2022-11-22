@@ -602,6 +602,7 @@ public class VPath extends VTraverser {
             if (g == null) continue;
             if (checkVisited(g)) continue;
             visit(g);
+            traverse(g);
             // visit(s); // Typically this will cause double traverse but checkVisit() stops it..
         }
         return null;

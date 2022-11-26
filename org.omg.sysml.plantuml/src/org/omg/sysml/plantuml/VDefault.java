@@ -175,6 +175,14 @@ public class VDefault extends VTraverser {
         return null;
     }
 
+    protected Element resolveRelatedElement(Element tgt) {
+        if (tgt instanceof FeatureReferenceExpression) {
+            FeatureReferenceExpression fre = (FeatureReferenceExpression) tgt;
+            return fre.getReferent();
+        }
+        return tgt;
+    }
+
     @Override
     public String caseExpression(Expression e) {
         // Do not show Expression

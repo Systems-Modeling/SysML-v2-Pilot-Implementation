@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -144,6 +145,7 @@ public class VTree extends VStructure {
             process(new VCompartment(this), u);
             if (rel != null) {
                 for (Element tgt : rel.getTarget()) {
+                    tgt = resolveRelatedElement(tgt);
                     PRelation pr2 = new PRelation(id, tgt, rel, null);
                     addPRelation(pr2);
                 }

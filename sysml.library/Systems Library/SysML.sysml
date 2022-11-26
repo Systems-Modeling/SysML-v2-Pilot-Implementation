@@ -180,7 +180,7 @@ standard library package SysML {
 		derived ref item exhibitedState : StateUsage[1..1] redefines performedAction;
 	}		
 			
-	metadata def Expose specializes Import {
+	abstract metadata def Expose specializes Import {
 		attribute isImportAll : Boolean[1..1] redefines isImportAll;
 	}		
 			
@@ -236,6 +236,8 @@ standard library package SysML {
 		derived ref item bodyAction : ActionUsage[1..1];
 	}		
 			
+	metadata def MembershipExpose specializes Expose, MembershipImport;		
+			
 	metadata def MergeNode specializes ControlNode;		
 			
 	metadata def MetadataDefinition specializes ItemDefinition, Metaclass;		
@@ -243,6 +245,8 @@ standard library package SysML {
 	metadata def MetadataUsage specializes ItemUsage, MetadataFeature {
 		derived ref item metadataDefinition : Metaclass[0..1] redefines itemDefinition, metaclass;
 	}		
+			
+	metadata def NamespaceExpose specializes Expose, NamespaceImport;		
 			
 	metadata def ObjectiveMembership specializes FeatureMembership {
 		derived item ownedObjectiveRequirement : RequirementUsage[1..1] redefines ownedMemberFeature;
@@ -512,10 +516,9 @@ standard library package SysML {
 	metadata def ViewUsage specializes PartUsage {
 		derived ref item viewDefinition : ViewDefinition[0..1] redefines partDefinition;
 		derived ref item satisfiedViewpoint : ViewpointUsage[0..*] subsets nestedUsage;
-		derived ref item exposedNamespace : Namespace[0..*];
+		derived ref item exposedElement : Element[0..*] subsets member;
 		derived ref item viewRendering : RenderingUsage[0..1] subsets nestedUsage;
 		derived ref item viewCondition : Expression[0..*] subsets ownedMember;
-		derived ref item viewedElement : Element[0..*];
 	}		
 			
 	metadata def ViewpointDefinition specializes RequirementDefinition {

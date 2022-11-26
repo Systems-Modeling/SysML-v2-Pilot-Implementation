@@ -105,7 +105,7 @@ public class VActionMembers extends VBehavior {
     public String caseActionUsage(ActionUsage au) {
         // Start or done action should be specially visualized
     	// as a black circle or a white and black concentric circles.
-        if (isStartAction(au) || isDoneAction(au)) return "";
+        if (isStartAction(au) || isDoneAction(au) || isEntryAction(au) || isExitAction(au)) return "";
         VAction v = new VAction(this);
         String ret = v.visit(au);
         append(ret);

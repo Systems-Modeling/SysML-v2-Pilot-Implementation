@@ -208,7 +208,7 @@ fragment ImportPrefix returns SysML::Import :
 ;
 
 Import returns SysML::Import :
-	( MembershipImport | NamespaceImport | FilteredImport )
+	( MembershipImport | NamespaceImport )
 	RelationshipBody
 ;
 
@@ -222,17 +222,15 @@ fragment ImportedMembership returns SysML::MembershipImport :
 ;
 
 NamespaceImport returns SysML::NamespaceImport :
-	ImportPrefix ImportedNamespace
+	ImportPrefix 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
 ;
 
 fragment ImportedNamespace returns SysML::NamespaceImport :
 	importedNamespace = [SysML::Namespace|QualifiedName] '::' '*'
 	( '::' isRecursive ?= '**' )?
-;
-
-FilteredImport returns SysML::NamespaceImport :
-	ImportPrefix
-	ownedRelatedElement += FilterPackage
 ;
 
 FilterPackage returns SysML::Package :

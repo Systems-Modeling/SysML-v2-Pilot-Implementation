@@ -1240,20 +1240,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final RuleCall cMembershipImportParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cNamespaceImportParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cFilteredImportParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
 		private final RuleCall cRelationshipBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Import returns SysML::Import :
-		//    ( MembershipImport | NamespaceImport | FilteredImport )
+		//    ( MembershipImport | NamespaceImport )
 		//    RelationshipBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( MembershipImport | NamespaceImport | FilteredImport )
+		//( MembershipImport | NamespaceImport )
 		//RelationshipBody
 		public Group getGroup() { return cGroup; }
 		
-		//( MembershipImport | NamespaceImport | FilteredImport )
+		//( MembershipImport | NamespaceImport )
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//MembershipImport
@@ -1261,9 +1260,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//NamespaceImport
 		public RuleCall getNamespaceImportParserRuleCall_0_1() { return cNamespaceImportParserRuleCall_0_1; }
-		
-		//FilteredImport
-		public RuleCall getFilteredImportParserRuleCall_0_2() { return cFilteredImportParserRuleCall_0_2; }
 		
 		//RelationshipBody
 		public RuleCall getRelationshipBodyParserRuleCall_1() { return cRelationshipBodyParserRuleCall_1; }
@@ -1334,21 +1330,41 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.NamespaceImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cImportPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cImportedNamespaceParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cImportedNamespaceParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementFilterPackageParserRuleCall_1_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1_1.eContents().get(0);
 		
 		//NamespaceImport returns SysML::NamespaceImport :
-		//    ImportPrefix ImportedNamespace
+		//    ImportPrefix
+		//    ( ImportedNamespace
+		//    | ownedRelatedElement += FilterPackage
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ImportPrefix ImportedNamespace
+		//ImportPrefix
+		//( ImportedNamespace
+		//| ownedRelatedElement += FilterPackage
+		//)
 		public Group getGroup() { return cGroup; }
 		
 		//ImportPrefix
 		public RuleCall getImportPrefixParserRuleCall_0() { return cImportPrefixParserRuleCall_0; }
 		
+		//( ImportedNamespace
+		//| ownedRelatedElement += FilterPackage
+		//)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
 		//ImportedNamespace
-		public RuleCall getImportedNamespaceParserRuleCall_1() { return cImportedNamespaceParserRuleCall_1; }
+		public RuleCall getImportedNamespaceParserRuleCall_1_0() { return cImportedNamespaceParserRuleCall_1_0; }
+		
+		//ownedRelatedElement += FilterPackage
+		public Assignment getOwnedRelatedElementAssignment_1_1() { return cOwnedRelatedElementAssignment_1_1; }
+		
+		//FilterPackage
+		public RuleCall getOwnedRelatedElementFilterPackageParserRuleCall_1_1_0() { return cOwnedRelatedElementFilterPackageParserRuleCall_1_1_0; }
 	}
 	public class ImportedNamespaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ImportedNamespace");
@@ -1399,32 +1415,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'**'
 		public Keyword getIsRecursiveAsteriskAsteriskKeyword_3_1_0() { return cIsRecursiveAsteriskAsteriskKeyword_3_1_0; }
-	}
-	public class FilteredImportElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FilteredImport");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cImportPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementFilterPackageParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
-		
-		//FilteredImport returns SysML::NamespaceImport :
-		//    ImportPrefix
-		//    ownedRelatedElement += FilterPackage
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ImportPrefix
-		//ownedRelatedElement += FilterPackage
-		public Group getGroup() { return cGroup; }
-		
-		//ImportPrefix
-		public RuleCall getImportPrefixParserRuleCall_0() { return cImportPrefixParserRuleCall_0; }
-		
-		//ownedRelatedElement += FilterPackage
-		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
-		
-		//FilterPackage
-		public RuleCall getOwnedRelatedElementFilterPackageParserRuleCall_1_0() { return cOwnedRelatedElementFilterPackageParserRuleCall_1_0; }
 	}
 	public class FilterPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FilterPackage");
@@ -13281,20 +13271,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final RuleCall cMembershipExposeParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cNamespaceExposeParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
-		private final RuleCall cFilteredExposeParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
 		private final RuleCall cRelationshipBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Expose returns SysML::Expose :
-		//    ( MembershipExpose | NamespaceExpose | FilteredExpose )
+		//    ( MembershipExpose | NamespaceExpose )
 		//    RelationshipBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( MembershipExpose | NamespaceExpose | FilteredExpose )
+		//( MembershipExpose | NamespaceExpose )
 		//RelationshipBody
 		public Group getGroup() { return cGroup; }
 		
-		//( MembershipExpose | NamespaceExpose | FilteredExpose )
+		//( MembershipExpose | NamespaceExpose )
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//MembershipExpose
@@ -13302,9 +13291,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//NamespaceExpose
 		public RuleCall getNamespaceExposeParserRuleCall_0_1() { return cNamespaceExposeParserRuleCall_0_1; }
-		
-		//FilteredExpose
-		public RuleCall getFilteredExposeParserRuleCall_0_2() { return cFilteredExposeParserRuleCall_0_2; }
 		
 		//RelationshipBody
 		public RuleCall getRelationshipBodyParserRuleCall_1() { return cRelationshipBodyParserRuleCall_1; }
@@ -13345,16 +13331,25 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Keyword cExposeKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cImportedNamespaceParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cImportedNamespaceParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementFilterPackageParserRuleCall_2_1_0 = (RuleCall)cOwnedRelatedElementAssignment_2_1.eContents().get(0);
 		
 		//NamespaceExpose returns SysML::NamespaceExpose :
 		//    ( visibility = VisibilityIndicator )?
-		//    'expose' ImportedNamespace
+		//    'expose'
+		//    ( ImportedNamespace
+		//    | ownedRelatedElement += FilterPackage
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( visibility = VisibilityIndicator )?
-		//'expose' ImportedNamespace
+		//'expose'
+		//( ImportedNamespace
+		//| ownedRelatedElement += FilterPackage
+		//)
 		public Group getGroup() { return cGroup; }
 		
 		//( visibility = VisibilityIndicator )?
@@ -13365,43 +13360,20 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'expose'
 		public Keyword getExposeKeyword_1() { return cExposeKeyword_1; }
+		
+		//( ImportedNamespace
+		//| ownedRelatedElement += FilterPackage
+		//)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//ImportedNamespace
-		public RuleCall getImportedNamespaceParserRuleCall_2() { return cImportedNamespaceParserRuleCall_2; }
-	}
-	public class FilteredExposeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FilteredExpose");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Keyword cExposeKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementFilterPackageParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
-		
-		//FilteredExpose returns SysML::NamespaceExpose :
-		//    ( visibility = VisibilityIndicator )?
-		//    'expose' ownedRelatedElement += FilterPackage
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( visibility = VisibilityIndicator )?
-		//'expose' ownedRelatedElement += FilterPackage
-		public Group getGroup() { return cGroup; }
-		
-		//( visibility = VisibilityIndicator )?
-		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0_0; }
-		
-		//'expose'
-		public Keyword getExposeKeyword_1() { return cExposeKeyword_1; }
+		public RuleCall getImportedNamespaceParserRuleCall_2_0() { return cImportedNamespaceParserRuleCall_2_0; }
 		
 		//ownedRelatedElement += FilterPackage
-		public Assignment getOwnedRelatedElementAssignment_2() { return cOwnedRelatedElementAssignment_2; }
+		public Assignment getOwnedRelatedElementAssignment_2_1() { return cOwnedRelatedElementAssignment_2_1; }
 		
 		//FilterPackage
-		public RuleCall getOwnedRelatedElementFilterPackageParserRuleCall_2_0() { return cOwnedRelatedElementFilterPackageParserRuleCall_2_0; }
+		public RuleCall getOwnedRelatedElementFilterPackageParserRuleCall_2_1_0() { return cOwnedRelatedElementFilterPackageParserRuleCall_2_1_0; }
 	}
 	public class ViewpointKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ViewpointKeyword");
@@ -13879,7 +13851,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ImportedMembershipElements pImportedMembership;
 	private final NamespaceImportElements pNamespaceImport;
 	private final ImportedNamespaceElements pImportedNamespace;
-	private final FilteredImportElements pFilteredImport;
 	private final FilterPackageElements pFilterPackage;
 	private final FilterPackageImportElements pFilterPackageImport;
 	private final FilterPackageMembershipImportElements pFilterPackageMembershipImport;
@@ -14267,7 +14238,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ExposeElements pExpose;
 	private final MembershipExposeElements pMembershipExpose;
 	private final NamespaceExposeElements pNamespaceExpose;
-	private final FilteredExposeElements pFilteredExpose;
 	private final ViewpointKeywordElements pViewpointKeyword;
 	private final ViewpointDefKeywordElements pViewpointDefKeyword;
 	private final ViewpointUsageKeywordElements pViewpointUsageKeyword;
@@ -14327,7 +14297,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pImportedMembership = new ImportedMembershipElements();
 		this.pNamespaceImport = new NamespaceImportElements();
 		this.pImportedNamespace = new ImportedNamespaceElements();
-		this.pFilteredImport = new FilteredImportElements();
 		this.pFilterPackage = new FilterPackageElements();
 		this.pFilterPackageImport = new FilterPackageImportElements();
 		this.pFilterPackageMembershipImport = new FilterPackageMembershipImportElements();
@@ -14715,7 +14684,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pExpose = new ExposeElements();
 		this.pMembershipExpose = new MembershipExposeElements();
 		this.pNamespaceExpose = new NamespaceExposeElements();
-		this.pFilteredExpose = new FilteredExposeElements();
 		this.pViewpointKeyword = new ViewpointKeywordElements();
 		this.pViewpointDefKeyword = new ViewpointDefKeywordElements();
 		this.pViewpointUsageKeyword = new ViewpointUsageKeywordElements();
@@ -15174,7 +15142,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Import returns SysML::Import :
-	//    ( MembershipImport | NamespaceImport | FilteredImport )
+	//    ( MembershipImport | NamespaceImport )
 	//    RelationshipBody
 	//;
 	public ImportElements getImportAccess() {
@@ -15209,7 +15177,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamespaceImport returns SysML::NamespaceImport :
-	//    ImportPrefix ImportedNamespace
+	//    ImportPrefix
+	//    ( ImportedNamespace
+	//    | ownedRelatedElement += FilterPackage
+	//    )
 	//;
 	public NamespaceImportElements getNamespaceImportAccess() {
 		return pNamespaceImport;
@@ -15229,18 +15200,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getImportedNamespaceRule() {
 		return getImportedNamespaceAccess().getRule();
-	}
-	
-	//FilteredImport returns SysML::NamespaceImport :
-	//    ImportPrefix
-	//    ownedRelatedElement += FilterPackage
-	//;
-	public FilteredImportElements getFilteredImportAccess() {
-		return pFilteredImport;
-	}
-	
-	public ParserRule getFilteredImportRule() {
-		return getFilteredImportAccess().getRule();
 	}
 	
 	//FilterPackage returns SysML::Package :
@@ -19923,7 +19882,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Expose returns SysML::Expose :
-	//    ( MembershipExpose | NamespaceExpose | FilteredExpose )
+	//    ( MembershipExpose | NamespaceExpose )
 	//    RelationshipBody
 	//;
 	public ExposeElements getExposeAccess() {
@@ -19948,7 +19907,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//NamespaceExpose returns SysML::NamespaceExpose :
 	//    ( visibility = VisibilityIndicator )?
-	//    'expose' ImportedNamespace
+	//    'expose'
+	//    ( ImportedNamespace
+	//    | ownedRelatedElement += FilterPackage
+	//    )
 	//;
 	public NamespaceExposeElements getNamespaceExposeAccess() {
 		return pNamespaceExpose;
@@ -19956,18 +19918,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getNamespaceExposeRule() {
 		return getNamespaceExposeAccess().getRule();
-	}
-	
-	//FilteredExpose returns SysML::NamespaceExpose :
-	//    ( visibility = VisibilityIndicator )?
-	//    'expose' ownedRelatedElement += FilterPackage
-	//;
-	public FilteredExposeElements getFilteredExposeAccess() {
-		return pFilteredExpose;
-	}
-	
-	public ParserRule getFilteredExposeRule() {
-		return getFilteredExposeAccess().getRule();
 	}
 	
 	///* VIEWPOINTS */

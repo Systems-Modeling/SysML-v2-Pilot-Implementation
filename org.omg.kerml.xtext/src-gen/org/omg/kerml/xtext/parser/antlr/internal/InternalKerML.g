@@ -1785,15 +1785,6 @@ ruleImport returns [EObject current=null]
 				$current = $this_NamespaceImport_1.current;
 				afterParserOrEnumRuleCall();
 			}
-			    |
-			{
-				newCompositeNode(grammarAccess.getImportAccess().getFilteredImportParserRuleCall_0_2());
-			}
-			this_FilteredImport_2=ruleFilteredImport
-			{
-				$current = $this_FilteredImport_2.current;
-				afterParserOrEnumRuleCall();
-			}
 		)
 		{
 			if ($current==null) {
@@ -1801,9 +1792,9 @@ ruleImport returns [EObject current=null]
 			}
 			newCompositeNode(grammarAccess.getImportAccess().getRelationshipBodyParserRuleCall_1());
 		}
-		this_RelationshipBody_3=ruleRelationshipBody[$current]
+		this_RelationshipBody_2=ruleRelationshipBody[$current]
 		{
-			$current = $this_RelationshipBody_3.current;
+			$current = $this_RelationshipBody_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1926,17 +1917,39 @@ ruleNamespaceImport returns [EObject current=null]
 			$current = $this_ImportPrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getNamespaceImportRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getNamespaceImportRule());
+				}
+				newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportedNamespaceParserRuleCall_1_0());
 			}
-			newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportedNamespaceParserRuleCall_1());
-		}
-		this_ImportedNamespace_1=ruleImportedNamespace[$current]
-		{
-			$current = $this_ImportedNamespace_1.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_ImportedNamespace_1=ruleImportedNamespace[$current]
+			{
+				$current = $this_ImportedNamespace_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNamespaceImportAccess().getOwnedRelatedElementFilterPackageParserRuleCall_1_1_0());
+					}
+					lv_ownedRelatedElement_2_0=ruleFilterPackage
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNamespaceImportRule());
+						}
+						add(
+							$current,
+							"ownedRelatedElement",
+							lv_ownedRelatedElement_2_0,
+							"org.omg.kerml.xtext.KerML.FilterPackage");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
 	)
 ;
 
@@ -1994,55 +2007,6 @@ ruleImportedNamespace[EObject in_current]  returns [EObject current=in_current]
 				)
 			)
 		)?
-	)
-;
-
-// Entry rule entryRuleFilteredImport
-entryRuleFilteredImport returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFilteredImportRule()); }
-	iv_ruleFilteredImport=ruleFilteredImport
-	{ $current=$iv_ruleFilteredImport.current; }
-	EOF;
-
-// Rule FilteredImport
-ruleFilteredImport returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getFilteredImportRule());
-			}
-			newCompositeNode(grammarAccess.getFilteredImportAccess().getImportPrefixParserRuleCall_0());
-		}
-		this_ImportPrefix_0=ruleImportPrefix[$current]
-		{
-			$current = $this_ImportPrefix_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFilteredImportAccess().getOwnedRelatedElementFilterPackageParserRuleCall_1_0());
-				}
-				lv_ownedRelatedElement_1_0=ruleFilterPackage
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFilteredImportRule());
-					}
-					add(
-						$current,
-						"ownedRelatedElement",
-						lv_ownedRelatedElement_1_0,
-						"org.omg.kerml.xtext.KerML.FilterPackage");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 

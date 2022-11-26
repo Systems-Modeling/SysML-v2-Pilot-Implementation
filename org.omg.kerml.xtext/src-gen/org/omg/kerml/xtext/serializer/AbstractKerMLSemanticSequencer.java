@@ -691,16 +691,12 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.NAMESPACE_IMPORT:
-				if (rule == grammarAccess.getImportRule()) {
-					sequence_FilteredImport_ImportPrefix_ImportedNamespace_RelationshipOwnedElement(context, (NamespaceImport) semanticObject); 
+				if (rule == grammarAccess.getNamespaceImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport(context, (NamespaceImport) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFilteredImportRule()) {
-					sequence_FilteredImport_ImportPrefix(context, (NamespaceImport) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceImportRule()) {
-					sequence_ImportPrefix_ImportedNamespace(context, (NamespaceImport) semanticObject); 
+				else if (rule == grammarAccess.getImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipOwnedElement(context, (NamespaceImport) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFilterPackageImportRule()
@@ -3413,39 +3409,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Import returns NamespaceImport
-	 *
-	 * Constraint:
-	 *     (
-	 *         visibility=VisibilityIndicator? 
-	 *         isImportAll?='all'? 
-	 *         ((importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?) | ownedRelatedElement+=FilterPackage) 
-	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_FilteredImport_ImportPrefix_ImportedNamespace_RelationshipOwnedElement(ISerializationContext context, NamespaceImport semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     FilteredImport returns NamespaceImport
-	 *
-	 * Constraint:
-	 *     (visibility=VisibilityIndicator? isImportAll?='all'? ownedRelatedElement+=FilterPackage)
-	 * </pre>
-	 */
-	protected void sequence_FilteredImport_ImportPrefix(ISerializationContext context, NamespaceImport semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     ExpressionBody returns Expression
 	 *
 	 * Constraint:
@@ -3859,10 +3822,33 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     NamespaceImport returns NamespaceImport
 	 *
 	 * Constraint:
-	 *     (visibility=VisibilityIndicator? isImportAll?='all'? importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?))
+	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ImportPrefix_ImportedNamespace(ISerializationContext context, NamespaceImport semanticObject) {
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport(ISerializationContext context, NamespaceImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Import returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)) 
+	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipOwnedElement(ISerializationContext context, NamespaceImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

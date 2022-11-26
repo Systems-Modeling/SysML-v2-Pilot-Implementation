@@ -2033,15 +2033,6 @@ ruleImport returns [EObject current=null]
 				$current = $this_NamespaceImport_1.current;
 				afterParserOrEnumRuleCall();
 			}
-			    |
-			{
-				newCompositeNode(grammarAccess.getImportAccess().getFilteredImportParserRuleCall_0_2());
-			}
-			this_FilteredImport_2=ruleFilteredImport
-			{
-				$current = $this_FilteredImport_2.current;
-				afterParserOrEnumRuleCall();
-			}
 		)
 		{
 			if ($current==null) {
@@ -2049,9 +2040,9 @@ ruleImport returns [EObject current=null]
 			}
 			newCompositeNode(grammarAccess.getImportAccess().getRelationshipBodyParserRuleCall_1());
 		}
-		this_RelationshipBody_3=ruleRelationshipBody[$current]
+		this_RelationshipBody_2=ruleRelationshipBody[$current]
 		{
-			$current = $this_RelationshipBody_3.current;
+			$current = $this_RelationshipBody_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -2174,17 +2165,39 @@ ruleNamespaceImport returns [EObject current=null]
 			$current = $this_ImportPrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getNamespaceImportRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getNamespaceImportRule());
+				}
+				newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportedNamespaceParserRuleCall_1_0());
 			}
-			newCompositeNode(grammarAccess.getNamespaceImportAccess().getImportedNamespaceParserRuleCall_1());
-		}
-		this_ImportedNamespace_1=ruleImportedNamespace[$current]
-		{
-			$current = $this_ImportedNamespace_1.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_ImportedNamespace_1=ruleImportedNamespace[$current]
+			{
+				$current = $this_ImportedNamespace_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNamespaceImportAccess().getOwnedRelatedElementFilterPackageParserRuleCall_1_1_0());
+					}
+					lv_ownedRelatedElement_2_0=ruleFilterPackage
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNamespaceImportRule());
+						}
+						add(
+							$current,
+							"ownedRelatedElement",
+							lv_ownedRelatedElement_2_0,
+							"org.omg.sysml.xtext.SysML.FilterPackage");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
 	)
 ;
 
@@ -2242,55 +2255,6 @@ ruleImportedNamespace[EObject in_current]  returns [EObject current=in_current]
 				)
 			)
 		)?
-	)
-;
-
-// Entry rule entryRuleFilteredImport
-entryRuleFilteredImport returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFilteredImportRule()); }
-	iv_ruleFilteredImport=ruleFilteredImport
-	{ $current=$iv_ruleFilteredImport.current; }
-	EOF;
-
-// Rule FilteredImport
-ruleFilteredImport returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getFilteredImportRule());
-			}
-			newCompositeNode(grammarAccess.getFilteredImportAccess().getImportPrefixParserRuleCall_0());
-		}
-		this_ImportPrefix_0=ruleImportPrefix[$current]
-		{
-			$current = $this_ImportPrefix_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFilteredImportAccess().getOwnedRelatedElementFilterPackageParserRuleCall_1_0());
-				}
-				lv_ownedRelatedElement_1_0=ruleFilterPackage
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFilteredImportRule());
-					}
-					add(
-						$current,
-						"ownedRelatedElement",
-						lv_ownedRelatedElement_1_0,
-						"org.omg.sysml.xtext.SysML.FilterPackage");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 
@@ -23191,15 +23155,6 @@ ruleExpose returns [EObject current=null]
 				$current = $this_NamespaceExpose_1.current;
 				afterParserOrEnumRuleCall();
 			}
-			    |
-			{
-				newCompositeNode(grammarAccess.getExposeAccess().getFilteredExposeParserRuleCall_0_2());
-			}
-			this_FilteredExpose_2=ruleFilteredExpose
-			{
-				$current = $this_FilteredExpose_2.current;
-				afterParserOrEnumRuleCall();
-			}
 		)
 		{
 			if ($current==null) {
@@ -23207,9 +23162,9 @@ ruleExpose returns [EObject current=null]
 			}
 			newCompositeNode(grammarAccess.getExposeAccess().getRelationshipBodyParserRuleCall_1());
 		}
-		this_RelationshipBody_3=ruleRelationshipBody[$current]
+		this_RelationshipBody_2=ruleRelationshipBody[$current]
 		{
-			$current = $this_RelationshipBody_3.current;
+			$current = $this_RelationshipBody_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -23307,76 +23262,37 @@ ruleNamespaceExpose returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getNamespaceExposeAccess().getExposeKeyword_1());
 		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getNamespaceExposeRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getNamespaceExposeRule());
+				}
+				newCompositeNode(grammarAccess.getNamespaceExposeAccess().getImportedNamespaceParserRuleCall_2_0());
 			}
-			newCompositeNode(grammarAccess.getNamespaceExposeAccess().getImportedNamespaceParserRuleCall_2());
-		}
-		this_ImportedNamespace_2=ruleImportedNamespace[$current]
-		{
-			$current = $this_ImportedNamespace_2.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRuleFilteredExpose
-entryRuleFilteredExpose returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFilteredExposeRule()); }
-	iv_ruleFilteredExpose=ruleFilteredExpose
-	{ $current=$iv_ruleFilteredExpose.current; }
-	EOF;
-
-// Rule FilteredExpose
-ruleFilteredExpose returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
+			this_ImportedNamespace_2=ruleImportedNamespace[$current]
+			{
+				$current = $this_ImportedNamespace_2.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getFilteredExposeAccess().getVisibilityVisibilityIndicatorEnumRuleCall_0_0());
-				}
-				lv_visibility_0_0=ruleVisibilityIndicator
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFilteredExposeRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getNamespaceExposeAccess().getOwnedRelatedElementFilterPackageParserRuleCall_2_1_0());
 					}
-					set(
-						$current,
-						"visibility",
-						lv_visibility_0_0,
-						"org.omg.sysml.xtext.SysML.VisibilityIndicator");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_1='expose'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getFilteredExposeAccess().getExposeKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFilteredExposeAccess().getOwnedRelatedElementFilterPackageParserRuleCall_2_0());
-				}
-				lv_ownedRelatedElement_2_0=ruleFilterPackage
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFilteredExposeRule());
+					lv_ownedRelatedElement_3_0=ruleFilterPackage
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNamespaceExposeRule());
+						}
+						add(
+							$current,
+							"ownedRelatedElement",
+							lv_ownedRelatedElement_3_0,
+							"org.omg.sysml.xtext.SysML.FilterPackage");
+						afterParserOrEnumRuleCall();
 					}
-					add(
-						$current,
-						"ownedRelatedElement",
-						lv_ownedRelatedElement_2_0,
-						"org.omg.sysml.xtext.SysML.FilterPackage");
-					afterParserOrEnumRuleCall();
-				}
+				)
 			)
 		)
 	)

@@ -229,7 +229,7 @@ fragment ImportPrefix returns SysML::Import :
 ;
 
 Import returns SysML::Import :
-	( MembershipImport | NamespaceImport | FilteredImport )
+	( MembershipImport | NamespaceImport )
 	RelationshipBody
 ;
 
@@ -243,17 +243,15 @@ fragment ImportedMembership returns SysML::MembershipImport :
 ;
 
 NamespaceImport returns SysML::NamespaceImport :
-	ImportPrefix ImportedNamespace
+	ImportPrefix 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
 ;
 
 fragment ImportedNamespace returns SysML::NamespaceImport :
 	importedNamespace = [SysML::Namespace|QualifiedName] '::' '*'
 	( '::' isRecursive ?= '**' )?
-;
-
-FilteredImport returns SysML::NamespaceImport :
-	ImportPrefix
-	ownedRelatedElement += FilterPackage
 ;
 
 FilterPackage returns SysML::Package :
@@ -2324,7 +2322,7 @@ fragment ViewBodyItem returns SysML::ViewUsage :
 ;
 
 Expose returns SysML::Expose :
-	( MembershipExpose | NamespaceExpose | FilteredExpose )
+	( MembershipExpose | NamespaceExpose )
 	RelationshipBody
 ;
 
@@ -2335,12 +2333,10 @@ MembershipExpose returns SysML::MembershipExpose :
 
 NamespaceExpose returns SysML::NamespaceExpose :
 	( visibility = VisibilityIndicator )?
-	'expose' ImportedNamespace
-;
-
-FilteredExpose returns SysML::NamespaceExpose :
-	( visibility = VisibilityIndicator )?
-	'expose' ownedRelatedElement += FilterPackage
+	'expose' 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
 ;
 
 /* VIEWPOINTS */

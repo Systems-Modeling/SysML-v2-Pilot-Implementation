@@ -143,13 +143,8 @@ public class VTree extends VStructure {
             String name = getNameAnyway(u);
             int id = addPUMLLine(u, "comp usage ", name, "<<subject>>");
             process(new VCompartment(this), u);
-            if (rel != null) {
-                for (Element tgt : rel.getTarget()) {
-                    tgt = resolveRelatedElement(tgt);
-                    PRelation pr2 = new PRelation(id, tgt, rel, null);
-                    addPRelation(pr2);
-                }
-            }
+            addSpecializations(id, u);
+            addFeatureValueBindings(u);
             return true;
         }
         return false;

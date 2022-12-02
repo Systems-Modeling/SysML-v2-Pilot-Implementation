@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.lang.sysml.FeatureTyping
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -75,18 +76,17 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	override getScope(EObject context, EReference reference) {
 		if (context instanceof Conjugation)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
-		else if (context instanceof Subsetting) {
-			if (context.eContainer instanceof Membership) {
-				return context.owningMembership.scope_owningNamespace(context, reference)
-			}
-		    var subsettingFeature = context.subsettingFeature
-		    var owningType = subsettingFeature?.owningType
-			if (owningType instanceof Connector && context instanceof ReferenceSubsetting) {
-		    	return owningType.scope_owningNamespace(context, reference)
-		    }
-			subsettingFeature.scope_owningNamespace(context, reference)
-		} else if (context instanceof Specialization)
+		else if (context instanceof ReferenceSubsetting) {
+		    var referencingFeature = context.referencingFeature
+		    var owningType = referencingFeature?.owningType
+			if (referencingFeature.isEnd && owningType instanceof Connector)
+		    	owningType.scope_owningNamespace(context, reference)
+		    else
+				(context.eContainer as Element).scope_owningNamespace(context, reference)
+		} else if (context instanceof FeatureTyping)
 			(context.eContainer as Element).scope_nonExpressionNamespace(context, reference)
+		else if (context instanceof Specialization)
+			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof FeatureChaining)
 			context.scope_featureChaining(reference)
 		else if (context instanceof Membership)

@@ -238,7 +238,7 @@ public class ElementUtil {
 		String metaclassName = element.eClass().getName();
 		return (Metaclass)SysMLLibraryUtil.getLibraryType(context, 
 				"KerML::Root::" + metaclassName,  "KerML::Core::" + metaclassName, "KerML::Kernel::" + metaclassName, 
-				"SysML::" + metaclassName);
+				"SysML::Systems::" + metaclassName);
 	}
 
 	public static MetadataFeature getMetaclassFeatureFor(Element element) {

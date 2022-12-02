@@ -192,8 +192,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		switch (operationID) {
 			case SysMLPackage.PACKAGE___INCLUDE_AS_MEMBER__ELEMENT:
 				return includeAsMember((Element)arguments.get(0));
-			case SysMLPackage.PACKAGE___CHECK_CONDITION__ELEMENT_EXPRESSION:
-				return checkCondition((Element)arguments.get(0), (Expression)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

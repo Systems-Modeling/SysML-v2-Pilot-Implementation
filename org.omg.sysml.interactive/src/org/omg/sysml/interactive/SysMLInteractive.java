@@ -433,7 +433,7 @@ public class SysMLInteractive extends SysMLUtil {
     		}
     	}
     	List<EObject> elements = new ArrayList<>();
-    	elements.addAll(viewSpec.getViewedElement());
+    	elements.addAll(viewSpec.getExposedElement());
     	return viz(elements, renders, styles);
 	}
 	

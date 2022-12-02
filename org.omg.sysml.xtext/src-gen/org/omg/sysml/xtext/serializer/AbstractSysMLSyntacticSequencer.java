@@ -1901,16 +1901,13 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'import' '*' (ambiguity) (rule start)
-	 *     importedMemberName=Name (ambiguity) (rule end)
-	 *     importedNamespace=[Namespace|Qualification] '*' (ambiguity) (rule end)
-	 *     isImportAll?='all' '*' (ambiguity) (rule end)
+	 *     importedMembership=[Membership|QualifiedName] (ambiguity) (rule end)
+	 *     importedNamespace=[Namespace|QualifiedName] '::' '*' (ambiguity) (rule end)
 	 *     isRecursive?='**' (ambiguity) (rule end)
 	 *     memberElement=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     memberElement=[Feature|QualifiedName] (ambiguity) (rule end)
 	 *     ownedRelatedElement+=FilterPackage (ambiguity) (rule end)
 	 *     supplier+=[Element|QualifiedName] (ambiguity) (rule end)
-	 *     visibility=VisibilityIndicator 'import' '*' (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

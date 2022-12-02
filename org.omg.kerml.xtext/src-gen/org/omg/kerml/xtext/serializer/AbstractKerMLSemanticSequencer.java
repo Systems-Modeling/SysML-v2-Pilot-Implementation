@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.Invariant;
@@ -58,12 +57,14 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -512,16 +513,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.FUNCTION:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
 				return; 
-			case SysMLPackage.IMPORT:
-				if (rule == grammarAccess.getImportRule()) {
-					sequence_Import_ImportedFilterPackage_ImportedNamespace_RelationshipOwnedElement(context, (Import) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFilterPackageImportRule()) {
-					sequence_ImportedNamespace(context, (Import) semanticObject); 
-					return; 
-				}
-				else break;
 			case SysMLPackage.INTERACTION:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Interaction) semanticObject); 
 				return; 
@@ -588,6 +579,21 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.MEMBERSHIP_IMPORT:
+				if (rule == grammarAccess.getMembershipImportRule()) {
+					sequence_ImportPrefix_ImportedMembership(context, (MembershipImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImportRule()) {
+					sequence_ImportPrefix_ImportedMembership_RelationshipOwnedElement(context, (MembershipImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFilterPackageImportRule()
+						|| rule == grammarAccess.getFilterPackageMembershipImportRule()) {
+					sequence_ImportedMembership(context, (MembershipImport) semanticObject); 
 					return; 
 				}
 				else break;
@@ -681,6 +687,21 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getRootNamespaceRule()) {
 					sequence_NamespaceBodyElement_RootNamespace(context, (Namespace) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.NAMESPACE_IMPORT:
+				if (rule == grammarAccess.getNamespaceImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport(context, (NamespaceImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipOwnedElement(context, (NamespaceImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFilterPackageImportRule()
+						|| rule == grammarAccess.getFilterPackageNamespaceImportRule()) {
+					sequence_ImportedNamespace(context, (NamespaceImport) semanticObject); 
 					return; 
 				}
 				else break;
@@ -3764,18 +3785,13 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Import returns Import
+	 *     MembershipImport returns MembershipImport
 	 *
 	 * Constraint:
-	 *     (
-	 *         visibility=VisibilityIndicator? 
-	 *         isImportAll?='all'? 
-	 *         ((importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?) | ownedRelatedElement+=FilterPackage)? 
-	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
-	 *     )
+	 *     (visibility=VisibilityIndicator? isImportAll?='all'? importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
 	 * </pre>
 	 */
-	protected void sequence_Import_ImportedFilterPackage_ImportedNamespace_RelationshipOwnedElement(ISerializationContext context, Import semanticObject) {
+	protected void sequence_ImportPrefix_ImportedMembership(ISerializationContext context, MembershipImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3783,13 +3799,86 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     FilterPackageImport returns Import
+	 *     Import returns MembershipImport
 	 *
 	 * Constraint:
-	 *     (importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?)
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         importedMembership=[Membership|QualifiedName] 
+	 *         isRecursive?='**'? 
+	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
+	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ImportedNamespace(ISerializationContext context, Import semanticObject) {
+	protected void sequence_ImportPrefix_ImportedMembership_RelationshipOwnedElement(ISerializationContext context, MembershipImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NamespaceImport returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport(ISerializationContext context, NamespaceImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Import returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)) 
+	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipOwnedElement(ISerializationContext context, NamespaceImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterPackageImport returns MembershipImport
+	 *     FilterPackageMembershipImport returns MembershipImport
+	 *
+	 * Constraint:
+	 *     (importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
+	 * </pre>
+	 */
+	protected void sequence_ImportedMembership(ISerializationContext context, MembershipImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterPackageImport returns NamespaceImport
+	 *     FilterPackageNamespaceImport returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)
+	 * </pre>
+	 */
+	protected void sequence_ImportedNamespace(ISerializationContext context, NamespaceImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

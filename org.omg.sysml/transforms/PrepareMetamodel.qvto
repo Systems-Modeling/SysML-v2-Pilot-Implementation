@@ -24,9 +24,13 @@
 
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation PrepareMetamodel(in export: UML, out prepared: UML);
+transformation PrepareMetamodel(in export: UML, in standard: UML, out prepared: UML);
 
 main() {
+	run()
+}
+
+helper run() {
 	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	
@@ -34,16 +38,34 @@ main() {
 		name := "sysml";
 		URI := "http://www.omg.org/spec/SysML/2.0";
 	};
+	
+	mapModel(syntax, model);
+	fixLiteralRational();	
+}
+
+helper mapModel(syntax : Package, model: Model) {
 	syntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();	
 }
 
-mapping Package::Namespace(inout model: Model) 
+helper fixLiteralRational() {
+	var literalRationalClass = prepared.objects()[Class]![name = 'LiteralRational'];
+	if literalRationalClass <> null then {
+		var realType = standard.objects()[Package].member[PrimitiveType]![name = 'Real'];
+		if realType <> null then {
+			log("Changing LiteralRational::value type to " + nameOf(realType));
+			var valueFeature = literalRationalClass.ownedAttribute![name = 'value'];
+			valueFeature.type := realType;
+		} endif
+	} endif
+}
+
+mapping Package::Namespace(inout package: Package) 
 	when { self.name = null or not self.name.endsWith("TBD") } {
 	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
-	self.ownedMember[Package]->map Namespace(model);
-	if self <> model then {
-		model.packagedElement += self.packagedElement;
+	self.ownedMember[Package]->map Namespace(package);
+	if self <> package then {
+		package.packagedElement += self.packagedElement;
 	} endif;
 }
 

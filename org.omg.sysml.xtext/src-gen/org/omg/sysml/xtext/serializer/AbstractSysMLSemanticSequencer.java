@@ -52,7 +52,6 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
@@ -67,7 +66,6 @@ import org.omg.sysml.lang.sysml.ForLoopActionUsage;
 import org.omg.sysml.lang.sysml.ForkNode;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.IfActionUsage;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
@@ -85,12 +83,16 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MembershipExpose;
+import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataDefinition;
 import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.NamespaceExpose;
+import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
@@ -582,9 +584,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.EXHIBIT_STATE_USAGE:
 				sequence_BasicUsagePrefix_ExhibitStateUsage_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_StateBodyItem_StateUsageBody_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ExhibitStateUsage) semanticObject); 
 				return; 
-			case SysMLPackage.EXPOSE:
-				sequence_Expose_ImportedFilterPackage_ImportedNamespace(context, (Expose) semanticObject); 
-				return; 
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getExpressionBodyRule()) {
 					sequence_ActionBodyItem_CalculationBodyItem_CalculationBodyPart(context, (Expression) semanticObject); 
@@ -979,16 +978,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.IF_ACTION_USAGE:
 				sequence_BasicUsagePrefix_Identification_IfNode_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (IfActionUsage) semanticObject); 
 				return; 
-			case SysMLPackage.IMPORT:
-				if (rule == grammarAccess.getImportRule()) {
-					sequence_Import_ImportedFilterPackage_ImportedNamespace_RelationshipBody(context, (Import) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFilterPackageImportRule()) {
-					sequence_ImportedNamespace(context, (Import) semanticObject); 
-					return; 
-				}
-				else break;
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
@@ -1081,6 +1070,31 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
+			case SysMLPackage.MEMBERSHIP_EXPOSE:
+				if (rule == grammarAccess.getMembershipExposeRule()) {
+					sequence_ImportedMembership_MembershipExpose(context, (MembershipExpose) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getExposeRule()) {
+					sequence_ImportedMembership_MembershipExpose_RelationshipBody(context, (MembershipExpose) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.MEMBERSHIP_IMPORT:
+				if (rule == grammarAccess.getMembershipImportRule()) {
+					sequence_ImportPrefix_ImportedMembership(context, (MembershipImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImportRule()) {
+					sequence_ImportPrefix_ImportedMembership_RelationshipBody(context, (MembershipImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFilterPackageImportRule()
+						|| rule == grammarAccess.getFilterPackageMembershipImportRule()) {
+					sequence_ImportedMembership(context, (MembershipImport) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.MERGE_NODE:
 				sequence_ActionNodeBody_ControlNodePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings(context, (MergeNode) semanticObject); 
 				return; 
@@ -1159,6 +1173,31 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.NAMESPACE:
 				sequence_PackageBodyElement_RootNamespace(context, (Namespace) semanticObject); 
 				return; 
+			case SysMLPackage.NAMESPACE_EXPOSE:
+				if (rule == grammarAccess.getNamespaceExposeRule()) {
+					sequence_ImportedNamespace_NamespaceExpose(context, (NamespaceExpose) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getExposeRule()) {
+					sequence_ImportedNamespace_NamespaceExpose_RelationshipBody(context, (NamespaceExpose) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.NAMESPACE_IMPORT:
+				if (rule == grammarAccess.getNamespaceImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport(context, (NamespaceImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImportRule()) {
+					sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipBody(context, (NamespaceImport) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFilterPackageImportRule()
+						|| rule == grammarAccess.getFilterPackageNamespaceImportRule()) {
+					sequence_ImportedNamespace(context, (NamespaceImport) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.NULL_EXPRESSION:
 				sequence_NullExpression(context, (NullExpression) semanticObject); 
 				return; 
@@ -9139,23 +9178,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Expose returns Expose
-	 *
-	 * Constraint:
-	 *     (
-	 *         visibility=VisibilityIndicator? 
-	 *         ((importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?) | ownedRelatedElement+=FilterPackage)?
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_Expose_ImportedFilterPackage_ImportedNamespace(ISerializationContext context, Expose semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     ExpressionParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
@@ -9743,18 +9765,13 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Import returns Import
+	 *     MembershipImport returns MembershipImport
 	 *
 	 * Constraint:
-	 *     (
-	 *         visibility=VisibilityIndicator? 
-	 *         isImportAll?='all'? 
-	 *         ((importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?) | ownedRelatedElement+=FilterPackage)? 
-	 *         ownedRelationship+=OwnedAnnotation*
-	 *     )
+	 *     (visibility=VisibilityIndicator? isImportAll?='all'? importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
 	 * </pre>
 	 */
-	protected void sequence_Import_ImportedFilterPackage_ImportedNamespace_RelationshipBody(ISerializationContext context, Import semanticObject) {
+	protected void sequence_ImportPrefix_ImportedMembership(ISerializationContext context, MembershipImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9762,13 +9779,146 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     FilterPackageImport returns Import
+	 *     Import returns MembershipImport
 	 *
 	 * Constraint:
-	 *     (importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?)
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         importedMembership=[Membership|QualifiedName] 
+	 *         isRecursive?='**'? 
+	 *         ownedRelationship+=OwnedAnnotation*
+	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ImportedNamespace(ISerializationContext context, Import semanticObject) {
+	protected void sequence_ImportPrefix_ImportedMembership_RelationshipBody(ISerializationContext context, MembershipImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NamespaceImport returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport(ISerializationContext context, NamespaceImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Import returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)) 
+	 *         ownedRelationship+=OwnedAnnotation*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportPrefix_ImportedNamespace_NamespaceImport_RelationshipBody(ISerializationContext context, NamespaceImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     MembershipExpose returns MembershipExpose
+	 *
+	 * Constraint:
+	 *     (visibility=VisibilityIndicator? importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
+	 * </pre>
+	 */
+	protected void sequence_ImportedMembership_MembershipExpose(ISerializationContext context, MembershipExpose semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expose returns MembershipExpose
+	 *
+	 * Constraint:
+	 *     (visibility=VisibilityIndicator? importedMembership=[Membership|QualifiedName] isRecursive?='**'? ownedRelationship+=OwnedAnnotation*)
+	 * </pre>
+	 */
+	protected void sequence_ImportedMembership_MembershipExpose_RelationshipBody(ISerializationContext context, MembershipExpose semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterPackageImport returns MembershipImport
+	 *     FilterPackageMembershipImport returns MembershipImport
+	 *
+	 * Constraint:
+	 *     (importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
+	 * </pre>
+	 */
+	protected void sequence_ImportedMembership(ISerializationContext context, MembershipImport semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NamespaceExpose returns NamespaceExpose
+	 *
+	 * Constraint:
+	 *     (visibility=VisibilityIndicator? ((importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?) | ownedRelatedElement+=FilterPackage))
+	 * </pre>
+	 */
+	protected void sequence_ImportedNamespace_NamespaceExpose(ISerializationContext context, NamespaceExpose semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expose returns NamespaceExpose
+	 *
+	 * Constraint:
+	 *     (
+	 *         visibility=VisibilityIndicator? 
+	 *         ((importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?) | ownedRelatedElement+=FilterPackage) 
+	 *         ownedRelationship+=OwnedAnnotation*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ImportedNamespace_NamespaceExpose_RelationshipBody(ISerializationContext context, NamespaceExpose semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterPackageImport returns NamespaceImport
+	 *     FilterPackageNamespaceImport returns NamespaceImport
+	 *
+	 * Constraint:
+	 *     (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)
+	 * </pre>
+	 */
+	protected void sequence_ImportedNamespace(ISerializationContext context, NamespaceImport semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

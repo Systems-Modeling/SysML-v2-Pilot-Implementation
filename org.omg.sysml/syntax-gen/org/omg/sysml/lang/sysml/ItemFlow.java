@@ -79,7 +79,6 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The Feature that receives the ItemFlow. It must be an owned <code>output</code> of the target participant of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
-	 * <p>The Feature that receives the ItemFlow.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference.
 	 * @see #setTargetInputFeature(Feature)
@@ -112,7 +111,6 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- begin-model-doc -->
 	 * <p>The Feature that originates the ItemFlow. It must be an owned <code>output</code> of the <code>source</code>  of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
 	 * 
-	 * <p>The Feature that originates the ItemFlow.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference.
 	 * @see #setSourceOutputFeature(Feature)
@@ -152,11 +150,10 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>connectorEnds</code> of this ItemFlow that are ItemFlowEnds.</p>
 	 * 
-	 * <p>TBD. Uses a class from the Interactions IMPL package.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
-	 * @model upper="2" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model upper="2" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -181,7 +178,6 @@ public interface ItemFlow extends Connector, Step {
 	 * <p>The Feature of the ItemFlow that is an ItemFeature,
 	 * representing the payload in transit between the <code><em>source</em></code> and the <code><em>target</em><code> during a transfer over the ItemFlow.</p>
 	 * 
-	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Feature</em>' reference.
 	 * @see #setItemFeature(ItemFeature)

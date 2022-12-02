@@ -729,7 +729,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- begin-user-doc -->
 	 * Xtext workaround.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isNonunique() {
@@ -741,7 +741,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * Xtext workaround.
 	 * (Can't set a false value for isUnique in the Xtext grammar.)
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setIsNonunique(boolean newIsNonunique) {

@@ -87,15 +87,6 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
-	 * Returns a new object of class '<em>Expose</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expose</em>'.
-	 * @generated
-	 */
-	Expose createExpose();
-
-	/**
 	 * Returns a new object of class '<em>View Rendering Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,6 +94,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ViewRenderingMembership createViewRenderingMembership();
+
+	/**
+	 * Returns a new object of class '<em>Namespace Expose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace Expose</em>'.
+	 * @generated
+	 */
+	NamespaceExpose createNamespaceExpose();
 
 	/**
 	 * Returns a new object of class '<em>Event Occurrence Usage</em>'.
@@ -121,6 +121,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	RequirementVerificationMembership createRequirementVerificationMembership();
+
+	/**
+	 * Returns a new object of class '<em>Membership Expose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Membership Expose</em>'.
+	 * @generated
+	 */
+	MembershipExpose createMembershipExpose();
 
 	/**
 	 * Returns a new object of class '<em>Subject Membership</em>'.
@@ -346,15 +355,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	LibraryPackage createLibraryPackage();
-
-	/**
-	 * Returns a new object of class '<em>Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import</em>'.
-	 * @generated
-	 */
-	Import createImport();
 
 	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
@@ -1246,6 +1246,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	TextualRepresentation createTextualRepresentation();
+
+	/**
+	 * Returns a new object of class '<em>Membership Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Membership Import</em>'.
+	 * @generated
+	 */
+	MembershipImport createMembershipImport();
+
+	/**
+	 * Returns a new object of class '<em>Namespace Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace Import</em>'.
+	 * @generated
+	 */
+	NamespaceImport createNamespaceImport();
 
 	/**
 	 * Returns a new object of class '<em>Annotation</em>'.

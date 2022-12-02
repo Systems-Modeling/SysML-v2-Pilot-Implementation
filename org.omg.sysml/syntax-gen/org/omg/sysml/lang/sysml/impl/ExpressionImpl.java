@@ -275,6 +275,15 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return new BasicEList<>();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean checkCondition(Element target) {
+		return ExpressionUtil.checkConditionOn(target, this);
+	}
+
 	// Other
 
 	@Override
@@ -397,6 +406,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
+			case SysMLPackage.EXPRESSION___CHECK_CONDITION__ELEMENT:
+				return checkCondition((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

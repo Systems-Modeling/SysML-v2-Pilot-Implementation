@@ -223,21 +223,35 @@ AliasMember returns SysML::Membership :
 	RelationshipBody
 ;
 
-Import returns SysML::Import :
+fragment ImportPrefix returns SysML::Import :
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
-	( ImportedNamespace | ImportedFilterPackage )
+;
+
+Import returns SysML::Import :
+	( MembershipImport | NamespaceImport )
 	RelationshipBody
 ;
 
-fragment ImportedNamespace returns SysML::Import :
-	( importedNamespace = [SysML::Namespace|Qualification] )?
-	( importedMemberName = Name | '*' )
-	( '::' isRecursive ?= '**' )?
+MembershipImport returns SysML::MembershipImport :
+	ImportPrefix ImportedMembership
 ;
 
-fragment ImportedFilterPackage returns SysML::Import :
-	ownedRelatedElement += FilterPackage
+fragment ImportedMembership returns SysML::MembershipImport :
+	importedMembership = [SysML::Membership|QualifiedName]
+	( '::' isRecursive ?= '**' )?	
+;
+
+NamespaceImport returns SysML::NamespaceImport :
+	ImportPrefix 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
+;
+
+fragment ImportedNamespace returns SysML::NamespaceImport :
+	importedNamespace = [SysML::Namespace|QualifiedName] '::' '*'
+	( '::' isRecursive ?= '**' )?
 ;
 
 FilterPackage returns SysML::Package :
@@ -246,6 +260,14 @@ FilterPackage returns SysML::Package :
 ;
 
 FilterPackageImport returns SysML::Import :
+	 FilterPackageMembershipImport | FilterPackageNamespaceImport
+;
+
+FilterPackageMembershipImport returns SysML::MembershipImport :
+	ImportedMembership
+;
+
+FilterPackageNamespaceImport returns SysML::NamespaceImport :
 	ImportedNamespace
 ;
 
@@ -2300,8 +2322,21 @@ fragment ViewBodyItem returns SysML::ViewUsage :
 ;
 
 Expose returns SysML::Expose :
-	( visibility = VisibilityIndicator )?  
-	'expose' ( ImportedNamespace | ImportedFilterPackage ) ';'
+	( MembershipExpose | NamespaceExpose )
+	RelationshipBody
+;
+
+MembershipExpose returns SysML::MembershipExpose :
+	( visibility = VisibilityIndicator )?
+	'expose' ImportedMembership
+;
+
+NamespaceExpose returns SysML::NamespaceExpose :
+	( visibility = VisibilityIndicator )?
+	'expose' 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
 ;
 
 /* VIEWPOINTS */

@@ -1260,15 +1260,13 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'import' '*' (ambiguity) (rule start)
 	 *     (rule start) 'relationship' (ambiguity) (rule start)
 	 *     disjoiningType=[Type|QualifiedName] (ambiguity) (rule end)
 	 *     featuringType=[Feature|QualifiedName] (ambiguity) (rule end)
 	 *     general=[Type|QualifiedName] (ambiguity) (rule end)
-	 *     importedMemberName=Name (ambiguity) (rule end)
-	 *     importedNamespace=[Namespace|Qualification] '*' (ambiguity) (rule end)
+	 *     importedMembership=[Membership|QualifiedName] (ambiguity) (rule end)
+	 *     importedNamespace=[Namespace|QualifiedName] '::' '*' (ambiguity) (rule end)
 	 *     invertingFeature=[Feature|QualifiedName] (ambiguity) (rule end)
-	 *     isImportAll?='all' '*' (ambiguity) (rule end)
 	 *     isRecursive?='**' (ambiguity) (rule end)
 	 *     memberElement=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -1283,7 +1281,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     superclassifier=[Classifier|QualifiedName] (ambiguity) (rule end)
 	 *     target+=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     type=[Type|QualifiedName] (ambiguity) (rule end)
-	 *     visibility=VisibilityIndicator 'import' '*' (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

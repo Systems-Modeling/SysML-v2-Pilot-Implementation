@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ExpressionUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -289,6 +290,15 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 		return new BasicEList<>();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkCondition(Element target) {
+		return ExpressionUtil.checkConditionOn(target, this);
+	}
+
 	//
 
 	/**
@@ -433,6 +443,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			switch (baseOperationID) {
 				case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST: return SysMLPackage.CALCULATION_USAGE___MODEL_LEVEL_EVALUABLE__ELIST;
 				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT;
+				case SysMLPackage.EXPRESSION___CHECK_CONDITION__ELEMENT: return SysMLPackage.CALCULATION_USAGE___CHECK_CONDITION__ELEMENT;
 				default: return -1;
 			}
 		}
@@ -452,6 +463,8 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
+			case SysMLPackage.CALCULATION_USAGE___CHECK_CONDITION__ELEMENT:
+				return checkCondition((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -21,21 +21,19 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
+import PrepareMetamodel;
 
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation PrepareMetamodelPackages(in export: UML, out prepared: UML);
+transformation PrepareMetamodelPackages(in export: UML, in standard: UML, out prepared: UML)
+	extends PrepareMetamodel;
 
 main() {
-	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
-	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
-	
-	var model = object Model { 
-		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/2.0";
-	};
-	syntax.ownedMember[Package].map Package(model);
+	run()
+}
 
+helper mapModel(syntax : Package, model: Model) {
+	syntax.ownedMember[Package].map Package(model);	
 }
 
 mapping Package::Package(inout model: Model) {
@@ -48,21 +46,4 @@ mapping Package::Package(inout model: Model) {
 		self.ownedMember[Package]->map Namespace(package);
 		package.packagedElement[Package]->destroy();
 	} endif;
-}
-
-mapping Package::Namespace(inout package: Package) 
-	when { self.name = null or not self.name.endsWith("TBD") } {
-	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
-	self.ownedMember[Package]->map Namespace(package);
-	if self <> package then {
-		package.packagedElement += self.packagedElement;
-	} endif;
-}
-
-query nameOf(element: NamedElement): String {
-	return 
-		if element = null then "<null>"
-		else if element.name = null or element.name = "" then "<empty>"
-		else element.name
-		endif endif
 }

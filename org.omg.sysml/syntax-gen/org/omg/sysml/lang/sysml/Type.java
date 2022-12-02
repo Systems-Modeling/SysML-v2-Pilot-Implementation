@@ -75,15 +75,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -98,7 +99,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()

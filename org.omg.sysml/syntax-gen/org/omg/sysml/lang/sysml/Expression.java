@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Expression is a Step that is typed by a Function. An Expression that also has a Function as its <code>featuringType</code> is a computational step within that Function. An Expression always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows Expressions to be interconnected in tree structures, in which inputs to each Expression in the tree are determined as the results of other Expressions in the tree.</p>
  * 
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
+ * value.featuringType = featureWithValue.featuringType
  * <!-- end-model-doc -->
  *
  * <p>
@@ -186,4 +187,20 @@ public interface Expression extends Step {
 	 * @generated
 	 */
 	EList<Element> evaluate(Element target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Model-level evaluate this Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
+	 * 
+	 * let results: Sequence(Element) = evaluate(target) in
+	 *     result->size() = 1 and
+	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
+	 *     results->at(1).oclAsType(LiteralBoolean).value
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" targetRequired="true" targetOrdered="false"
+	 * @generated
+	 */
+	boolean checkCondition(Element target);
 } // Expression

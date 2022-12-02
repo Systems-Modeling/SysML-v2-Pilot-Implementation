@@ -9,7 +9,6 @@ import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureMembership
-import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.LiteralString
 import org.omg.sysml.lang.sysml.Membership
@@ -45,6 +44,8 @@ import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
+import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.NamespaceImport
 
 /**
  * Customization of the default outline structure.
@@ -100,7 +101,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String nameText(Membership membership) {
-		var text = ""
+		var text = ''
 		val shortName = membership.memberShortName
 		if (shortName !== null) {
 			text += ' <' + shortName + '>'
@@ -113,7 +114,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
+		membership.prefixText + membership.nameText
 	}
 	
 	def String _text(FeatureValue featureValue) {
@@ -127,7 +128,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}	
 	
-	def String _text(Import import_) {
+	def String _text(MembershipImport import_) {
+		var text = import_.metaclassText
+		if (import_.visibility !== null) {
+			text += ' ' + import_.visibility._text
+		}
+		if (import_.importedMembership?.memberName !== null) {
+			text += ' ' + import_.importedMembership.memberName
+		}
+		if (import_.isRecursive) {
+			text += "::**"
+		}
+		text
+	}
+	
+	def String _text(NamespaceImport import_) {
 		var text = import_.metaclassText
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
@@ -135,18 +150,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var imp = import_
 		if (import_.importedNamespace?.owningRelationship === import_) {
 			if (!import_.importedNamespace.ownedImport.isEmpty) {
-				imp = import_.importedNamespace.ownedImport.get(0)
+				imp = import_.importedNamespace.ownedImport.get(0) as NamespaceImport
 				text = text + ' filter'
 			}
 		}
 		if (imp.importedNamespace?.name !== null) {
 			text += ' ' + imp.importedNamespace.name
 		}
-		if (imp.importedMemberName === null) {
-			text += "::*"
-		} else {
-			text += "::" + imp.importedMemberName
-		}
+		text += "::*"
 		if (imp.isRecursive) {
 			text += "::**"
 		}
@@ -352,11 +363,25 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		_createChildren(parentNode, membership as Membership)
 	}
 	
-	def boolean _isLeaf(Import _import) {
-		_import.importedNamespace === null && _import.ownedElement.isEmpty
+	def boolean _isLeaf(MembershipImport _import) {
+		_import.importedMembership === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Import _import) {
+	def void _createChildren(IOutlineNode parentNode, MembershipImport _import) {
+		super._createChildren(parentNode, _import)
+		var importedMembership = _import.importedMembership;
+		if (importedMembership !== null) {
+			createNode(parentNode, importedMembership, 
+				importedMembership._image, importedMembership._text, true
+			)
+		}
+	}
+	
+	def boolean _isLeaf(NamespaceImport _import) {
+		_import.importedNamespace === null && _import.ownedRelatedElement.isEmpty
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, NamespaceImport _import) {
 		super._createChildren(parentNode, _import)
 		var importedNamespace = _import.importedNamespace;
 		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {

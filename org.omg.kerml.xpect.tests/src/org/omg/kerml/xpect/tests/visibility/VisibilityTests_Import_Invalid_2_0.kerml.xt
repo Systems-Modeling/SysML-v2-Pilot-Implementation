@@ -17,11 +17,11 @@ END_SETUP
 
 
 package Test3{
-	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::'." at "VisibilityPackage::c_Private::"
+	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
 	import VisibilityPackage::c_Private::*;
-	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::c_private::'." at "VisibilityPackage::c_Private::c_private::"
+	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::c_private'." at "VisibilityPackage::c_Private::c_private"
 	import VisibilityPackage::c_Private::c_private::*;
-	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::c_public::'." at "VisibilityPackage::c_Private::c_public::"
+	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::c_public'." at "VisibilityPackage::c_Private::c_public"
 	import VisibilityPackage::c_Private::c_public::*;
 }
 	

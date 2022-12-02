@@ -106,8 +106,8 @@ public class ExpressionUtil {
 				metadataFeatures.add(metaclassFeature);
 			}
 			return conditions.stream().allMatch(cond->
-				metadataFeatures.isEmpty()? checkConditionOn(null, cond):
-				metadataFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
+				metadataFeatures.isEmpty()? cond.checkCondition(null):
+				metadataFeatures.stream().anyMatch(elem->cond.checkCondition(elem)));
 		}
 	}
 		

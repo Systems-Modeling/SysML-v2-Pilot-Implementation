@@ -45,11 +45,6 @@ import org.eclipse.emf.common.util.EList;
  *     else relatedFeature->excluding(sourceFeature)
  *     endif
  * connectorEnd = feature->select(isEnd)
- * association->forAll(a |
- *     a.associationEnd->forAll(ae |
- *         connectorEnd->one(ce | 
- *             ce.ownedRedefinition.redefinedFeature->includes(ae))))
- * 
  * not isAbstract implies relatedFeature->size() >= 2
  * <!-- end-model-doc -->
  *

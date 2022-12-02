@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,11 +24,9 @@
 
 package org.omg.sysml.lang.sysml.util;
 
-import java.util.Set;
-
 import org.eclipse.xtext.scoping.IScope;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Element;
 
 public interface ISysMLScope extends IScope {
-	Set<Membership> getMemberships(String name, boolean includeAll);
+	Element getElement(String name);
 }

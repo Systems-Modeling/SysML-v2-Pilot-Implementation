@@ -88,6 +88,8 @@ class PRelation {
             return compElemId(s2p, (Element) o);
         } else if (o instanceof Integer) {
             return makeIdStr((Integer) o);
+        } else if (o == null) {
+            return "[*]";
         } else {
             return null;
         }

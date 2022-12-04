@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -93,6 +94,12 @@ public class VCase extends VTree {
             processSubtrees(vr, subtrees);
         }
         addSpecializations(id, ru);
+        return "";
+    }
+
+    @Override
+    public String caseSubjectMembership(SubjectMembership sm) {
+        addSubjectMembership(sm, true);
         return "";
     }
 

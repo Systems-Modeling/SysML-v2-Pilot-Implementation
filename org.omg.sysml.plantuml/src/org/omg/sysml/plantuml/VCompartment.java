@@ -46,7 +46,6 @@ import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
@@ -67,7 +66,6 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
@@ -102,6 +100,12 @@ public class VCompartment extends VStructure {
             if (e.equals(m.getMemberElement())) return m;
         }
         return null;
+    }
+
+    private boolean recOrAddOwningMembership(OwningMembership ms) {
+        if (!isCompartmentMost() && rec(ms, ms, false)) return true;
+        add(CompartmentEntry.feature(ms, "", isInherited()), null, true);
+        return false;
     }
 
     private boolean recCurrentMembership(Element e, boolean force) {
@@ -304,46 +308,26 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        rec(om, om, true);
+        //rec(om, om, true);
+        recOrAddOwningMembership(om);
         return "";
     }
 
     @Override
     public String caseActorMembership(ActorMembership am) {
-        rec(am, am, false);
+        recOrAddOwningMembership(am);
         return "";
     }
 
     @Override
     public String caseStakeholderMembership(StakeholderMembership sm) {
-        rec(sm, sm, false);
+        recOrAddOwningMembership(sm);
         return "";
-    }
-
-    private static boolean isEmptyFeature(Feature f) {
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            if (fm.getOwnedMemberFeature() instanceof BindingConnector) continue;
-            return false;
-        }
-        return true;
     }
 
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
-        Usage u = sm.getOwnedSubjectParameter();
-        boolean added = false;
-        for (FeatureTyping ft: u.getOwnedTyping()) {
-            Type typ = ft.getType();
-            addPRelation(sm.getMembershipOwningNamespace(), typ, sm, "<<subject>>");
-            added = true;
-        }
-        if (!added) {
-            if (u instanceof ReferenceUsage) {
-                // Do not show empty ReferenceUsage.
-                if (isEmptyFeature(u)) return "";
-            }
-            addEntry(u);
-        }
+        recOrAddOwningMembership(sm);
         return "";
     }
 
@@ -456,6 +440,8 @@ public class VCompartment extends VStructure {
             }
         } else if (ce.f instanceof Connector) {
             addConnectorText((Connector) ce.f, ce.isInherited);
+        } else if (ce.f instanceof RequirementUsage) {
+            return addFeatureText(ce.f, ce.isInherited);
         } else if (ce.f instanceof ConstraintUsage) {
             return appendFeatureText(ce.f, "constraint");
         } else if (ce.om instanceof FeatureValue) {

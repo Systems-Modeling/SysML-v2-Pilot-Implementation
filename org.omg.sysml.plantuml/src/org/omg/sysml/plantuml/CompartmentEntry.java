@@ -27,6 +27,7 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
@@ -36,7 +37,10 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -50,6 +54,9 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
 
     public String getParameterPrefix() {
         FeatureDirectionKind fdk = f.getDirection();
+        if ((om instanceof SubjectMembership)
+            || (om instanceof ActorMembership)
+            || (om instanceof StakeholderMembership)) return "";  // Do not show `in' for subjects, actors, stakeholders
         if (fdk == null) return "";
         switch (fdk) {
         case IN:
@@ -83,6 +90,18 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
         if (om instanceof FeatureValue) {
             return "values";
         }
+        if (om instanceof SubjectMembership) {
+            return "subjects";
+        }
+        if (om instanceof ActorMembership) {
+            return "actors";
+        }
+        if (om instanceof StakeholderMembership) {
+            return "stakeholders";
+        }
+        if (om instanceof ObjectiveMembership) {
+            return "objectives";
+        }
         if (isParameter()) {
             return "parameters";
         }
@@ -94,6 +113,17 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
         } else {
             return s + "s";
         }
+    }
+
+    private static int owningMembershipCompare(OwningMembership om1, OwningMembership om2) {
+    	if (om1 == null) {
+    		if (om2 == null) return 0;
+    		return -1;
+    	}
+    	if (om2 == null) return 1;
+        String ec1 = om1.eClass().getName();
+        String ec2 = om2.eClass().getName();
+        return ec1.compareTo(ec2);
     }
 
     private static int featureParameterCompare(Feature f1, Feature f2) {
@@ -158,7 +188,9 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
     }
 
     public int compareTo(CompartmentEntry o) {
-        int v = featureCompare(f, o.f);
+        int v = owningMembershipCompare(om, o.om);
+        if (v != 0) return v;
+        v = featureCompare(f, o.f);
         if (v != 0) return v;
         if (alias == null) {
             if (o.alias == null) return 0;

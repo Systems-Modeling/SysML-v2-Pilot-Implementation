@@ -476,7 +476,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseSubjectMembership(SubjectMembership sm) {
-            return " ..> ";
+            return " o-- ";
 		}
 
 		@Override

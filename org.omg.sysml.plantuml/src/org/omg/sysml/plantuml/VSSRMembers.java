@@ -44,6 +44,7 @@ public class VSSRMembers extends VStructure {
         return isRedefining(f, "StateSpaceRepresentation::StateSpaceDynamics::");
     }
 
+    @Override
     public String caseFeature(Feature f) {
         addType(f, "comp usage ");
         VCompartment vc = new VCompartment(this);

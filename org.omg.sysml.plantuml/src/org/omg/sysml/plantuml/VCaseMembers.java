@@ -30,13 +30,11 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 public class VCaseMembers extends VBehavior {
     private List<VCase> queue = new ArrayList<>();
@@ -95,18 +93,14 @@ public class VCaseMembers extends VBehavior {
     }
 
     @Override
-    public String caseObjectiveMembership(ObjectiveMembership om) {
-        recMembership(om, true);
+    public String caseSubjectMembership(SubjectMembership sm) {
+        recMembership(sm, false);
         return "";
     }
 
     @Override
-    public String caseSubjectMembership(SubjectMembership sm) {
-        Usage u = sm.getOwnedSubjectParameter();
-        for (FeatureTyping ft: u.getOwnedTyping()) {
-            Type typ = ft.getType();
-            addPRelation(sm.getMembershipOwningNamespace(), typ, sm, "<<subject>>");
-        }
+    public String caseObjectiveMembership(ObjectiveMembership om) {
+        recMembership(om, true);
         return "";
     }
 

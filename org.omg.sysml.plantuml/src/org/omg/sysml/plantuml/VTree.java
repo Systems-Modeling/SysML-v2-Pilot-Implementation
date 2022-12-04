@@ -117,10 +117,13 @@ public class VTree extends VStructure {
         	name = "variant";
         }
 
-        addRel(u, vm, "<<variant>>");
+        addRel(u, vm, null);
     	if (checkVisited(u)) return "";
 
-        addPUMLLine(u, "comp usage ", name);
+        String style = styleString(u);
+        style = "<<variant>>\\n" + style;
+
+        addPUMLLine(u, "comp usage ", name, style);
         process(new VCompartment(this), u);
 
         return "";

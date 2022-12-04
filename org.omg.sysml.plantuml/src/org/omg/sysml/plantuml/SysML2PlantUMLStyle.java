@@ -481,7 +481,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseVariantMembership(VariantMembership vm) {
-            return " )-->> ";
+            return " +--- ";
 		}
 
 		@Override

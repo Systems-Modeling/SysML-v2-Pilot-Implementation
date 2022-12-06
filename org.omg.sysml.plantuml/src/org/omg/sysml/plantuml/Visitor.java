@@ -408,7 +408,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (shortName != null) {
             String shortNameDesc;
             if (creole) {
-                shortNameDesc = "<b>~<" + shortName + "></b>";
+                shortNameDesc = "~<" + shortName + ">";
             } else {
                 shortNameDesc = '<' + shortName + '>';
             }

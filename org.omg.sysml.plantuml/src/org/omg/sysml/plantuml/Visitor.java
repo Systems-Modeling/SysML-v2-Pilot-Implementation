@@ -398,11 +398,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected String getNameAnyway(Element e, boolean creole, boolean isInherited) {
         String ret = null;
+        String shortName = e.getShortName();
         if (e.equals(fullyQualifiedElement)) {
             ret = e.getQualifiedName();
         }
         if (ret == null) {
             ret = getName(e);
+        }
+        if (shortName != null) {
+            String shortNameDesc;
+            if (creole) {
+                shortNameDesc = "~<" + shortName + ">";
+            } else {
+                shortNameDesc = '<' + shortName + '>';
+            }
+            if (ret == null) {
+                ret = shortNameDesc;
+            } else {
+                ret = shortNameDesc + ' ' + ret;
+            }
         }
         if (ret == null) {
             if (creole) {

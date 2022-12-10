@@ -56,9 +56,11 @@ import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
-	public static Feature getAnnotatedElementFeature(MetadataFeature context) {
-		return (Feature)SysMLLibraryUtil.getLibraryType(context, 
-				ImplicitGeneralizationMap.getDefaultSupertypeFor(context.getClass(), "annotatedElement"));
+	public static Feature getAnnotatedElementFeature(MetadataFeature metadata) {
+		EList<Element> annotatedElements = metadata.getAnnotatedElement();
+		return (Feature)SysMLLibraryUtil.getLibraryType(
+				annotatedElements.isEmpty()? metadata: annotatedElements.get(0), 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(metadata.getClass(), "annotatedElement"));
 	}
 	
 	public static Type getPrimitiveType(Element context, EClass eClass) {

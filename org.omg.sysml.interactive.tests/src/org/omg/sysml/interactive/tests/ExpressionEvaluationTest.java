@@ -252,4 +252,30 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 120", instance.eval("test.fact5", "EvalTest7"));
 		assertElement("LiteralInteger 6", instance.eval("Fact(3)", "EvalTest7"));
 	}
+	
+	// Tests recursive invocation and binding of feature references in invocation arguments.
+	public final String chainTest =
+			"package ChainTest {"
+			+ "  part def A {\n"
+			+ "    attribute z;\n"
+			+ " }\n"
+			+  "part x {\n"
+			+ "    part a = b;\n"
+			+ "    part b : A {\n"
+			+ "        attribute :>> z = 0;\n"
+			+ "    }\n"
+			+ " }\n"
+			+ " part y :> x {\n"
+			+ "    part :>> b {\n"
+			+ "        attribute :>> z = 1;\n"
+			+ "    }\n"
+			+ " }"
+			+ "}";
+	
+	@Test
+	public void testChainEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, chainTest);
+		assertElement("LiteralInteger 1", instance.eval("y.a.z", "ChainTest"));
+	}
 }

@@ -4,8 +4,8 @@ standard library package DerivationConnections {
 	 * This package provides a library model for derivation connections between requirements.
 	 */
 	 
-	import SequenceFunctions::excludes;
-	import ControlFunctions::allTrue;
+	private import SequenceFunctions::excludes;
+	private import ControlFunctions::allTrue;
 	
 	requirement originalRequirements[*] {
 		doc /* originalRequirements are the original requirements in Derivation connections. */

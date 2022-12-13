@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -192,6 +193,12 @@ public class VDefault extends VTraverser {
     @Override
     public String caseConnector(Connector c) {
         addConnector(c, c.getName());
+        return "";
+    }
+
+    @Override
+    public String caseBindingConnectorAsUsage(BindingConnectorAsUsage bcau) {
+        addConnector(bcau, "=");
         return "";
     }
 

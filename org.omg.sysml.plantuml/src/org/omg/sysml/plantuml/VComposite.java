@@ -132,6 +132,7 @@ public class VComposite extends VMixed {
 
     @Override
     public String casePortUsage(PortUsage pu) {
+        addFeatureValueBindings(pu);
         String name = extractTitleName(pu);
         if (name == null) return "";
 

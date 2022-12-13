@@ -23,7 +23,6 @@ package org.omg.sysml.expressions.util;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -57,9 +56,11 @@ import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
-	public static Feature getAnnotatedElementFeature(MetadataFeature context) {
-		return (Feature)SysMLLibraryUtil.getLibraryType(context, 
-				ImplicitGeneralizationMap.getDefaultSupertypeFor(context.getClass(), "annotatedElement"));
+	public static Feature getAnnotatedElementFeature(MetadataFeature metadata) {
+		EList<Element> annotatedElements = metadata.getAnnotatedElement();
+		return (Feature)SysMLLibraryUtil.getLibraryType(
+				annotatedElements.isEmpty()? metadata: annotatedElements.get(0), 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(metadata.getClass(), "annotatedElement"));
 	}
 	
 	public static Type getPrimitiveType(Element context, EClass eClass) {
@@ -251,19 +252,13 @@ public class EvaluationUtil {
 		}
 	}
 	
-	public static Optional<Feature> getTypeFeatureFor(Feature feature, Type type) {
-		return type.getFeature().stream().
-				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
-				findFirst();
+	public static Feature getTypeFeatureFor(Feature feature, Type type) {
+		return type == null? null :
+			type.getFeature().stream().
+				filter(f->FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
+				findFirst().orElse(null);
 	}
 
-	public static Expression getValueExpressionFor(Feature feature, Type type) {
-		return type == null? FeatureUtil.getValueExpressionFor(feature):
-			   getTypeFeatureFor(feature, type).
-					map(FeatureUtil::getValueExpressionFor).
-					orElse(null);
-	}
-	
 	public static boolean isMetaclassFeature(Element element) {
 		return getMetaclassReferenceOf(element) != null;
 	}

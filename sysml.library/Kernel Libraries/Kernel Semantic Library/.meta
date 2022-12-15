@@ -3,7 +3,7 @@
     "Base": "Base.kerml",
     "Clocks": "Clocks.kerml",
     "ControlPerformances": "ControlPerformances.kerml",
-    "FeatureReferencingPerformances": "FeatureReferencingPerformances".kerml,
+    "FeatureReferencingPerformances": "FeatureReferencingPerformances.kerml",
     "KerML": "KerML.kerml",
     "Links": "Links.kerml",
     "Metaobjects": "Metaobjects.kerml",
@@ -17,6 +17,6 @@
     "TransitionPerformances": "TransitionPerformances.kerml",
     "Triggers": "Triggers.kerml"
   },
-  "created": "2022-12-16",
+  "created": "2022-12-16T00:00:00Z",
   "metamodel": "https://www.omg.org/spec/KerML/20230201"
 }

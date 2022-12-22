@@ -112,7 +112,7 @@ public class VPath extends VTraverser {
         private boolean match(Element e) {
             if (isTerminal()) return false;
             Element et = getTarget();
-            return e.equals(et);
+            return InheritKey.matchElement(e, et);
         }
 
         public Element requiredElement() {

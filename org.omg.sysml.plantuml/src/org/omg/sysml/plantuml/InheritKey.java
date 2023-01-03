@@ -24,20 +24,34 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Type;
 
 class InheritKey {
     public final Type[] keys;
     private final boolean isDirect;
 
+    private static boolean containsWithRedefined(List<Feature> fs, Feature ft) {
+        for (Feature f : fs) {
+            if (f.equals(ft)) return true;
+            if (matchRedefined(f, ft)) return true;
+        }
+        return false;
+    }
+
     private static boolean isBelonging(Type typ, Feature f) {
-        if (typ.getOwnedFeature().contains(f)) return true;
-        if (typ.getInheritedFeature().contains(f)) return true;
+        if (containsWithRedefined(typ.getOwnedFeature(), f)) return true;
+        // if (typ.getOwnedFeature().contains(f)) return true;
+        if (containsWithRedefined(typ.getInheritedFeature(), f)) return true;
+        // if (typ.getInheritedFeature().contains(f)) return true;
         return false;
     }
 
@@ -164,6 +178,29 @@ class InheritKey {
         return constructInternal(ctx, inheritIdices, idx);
     }
 
+    private static boolean matchRedefined(Feature f, Feature ft, Set<Feature> visited) {
+        if (visited.contains(f)) return false;
+        visited.add(f);
+        for (Redefinition rd: f.getOwnedRedefinition()) {
+            Feature rf = rd.getRedefinedFeature();
+            if (ft.equals(rf)) return true;
+            return matchRedefined(rf, ft, visited);
+        }
+        return false;
+    }
+
+    private static boolean matchRedefined(Feature f, Feature ft) {
+        return matchRedefined(f, ft, new HashSet<Feature>());
+    }
+
+    public static boolean matchElement(Element e, Element et) {
+        if (e.equals(et)) return true;
+        if ((e instanceof Feature) && (et instanceof Feature)) {
+            return matchRedefined((Feature) e, (Feature) et);
+        }
+        return false;
+    }
+
     public static boolean match(InheritKey ik, List<Namespace> ctx, List<Integer> inheritIdices) {
         if (ik == null) {
             return inheritIdices.isEmpty();
@@ -179,11 +216,11 @@ class InheritKey {
             for (int i = 0; i < iSize; i++) {
                 int idx = inheritIdices.get(i);
                 Namespace ns = ctx.get(idx);
-                if (!ik.keys[i].equals(ns)) return false;
+                if (!matchElement(ns, ik.keys[i])) return false;
             }
             if (diff == 0) return true;
             // In the case that ik is in the form of [..., ^ow]
-            return ik.keys[kLen - 1].equals(ctx.get(ctxSize - 1));
+            return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
         }
     }
 

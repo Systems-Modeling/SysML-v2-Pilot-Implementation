@@ -112,7 +112,7 @@ public class VPath extends VTraverser {
         private boolean match(Element e) {
             if (isTerminal()) return false;
             Element et = getTarget();
-            return e.equals(et);
+            return InheritKey.matchElement(e, et);
         }
 
         public Element requiredElement() {
@@ -419,10 +419,9 @@ public class VPath extends VTraverser {
         }
     }
 
-    // InheritKey->Element->Integer
+    // InheritKey->Element->ID
     private final Map<InheritKey, Map<Element, Integer>> inheritedPathIdMap = new HashMap<>();
-
-    // Element -> Integer or Map<Element, Integer>
+    // ID -> Elements
     private final Map<Integer, Set<Element>> pathIdRevMap = new HashMap<Integer, Set<Element>>();
 
     private void putPathIdMap(Integer id, InheritKey ik, Element pt) {

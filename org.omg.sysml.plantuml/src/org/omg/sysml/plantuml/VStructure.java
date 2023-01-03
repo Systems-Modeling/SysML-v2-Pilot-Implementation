@@ -186,8 +186,7 @@ public abstract class VStructure extends VDefault {
     }
     
     protected boolean addFeatureText(Feature f, boolean isInherited) {
-        String name = getFeatureName(f);
-        if (name == null) return false;
+        String name = getNameAnyway(f, false, isInherited);
 
         if (styleValue("decoratedRedefined") != null) {
             String rt = redefinedFeatureText(f);
@@ -268,6 +267,7 @@ public abstract class VStructure extends VDefault {
     protected boolean addType(Type typ, String name, String keyword) {
         int id = addPUMLLine(typ, keyword, name);
         addSpecializations(id, typ);
+        addFeatureValueBindings(typ);
         return true;
     }
 

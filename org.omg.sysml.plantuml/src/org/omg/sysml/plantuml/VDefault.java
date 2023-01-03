@@ -107,14 +107,14 @@ public class VDefault extends VTraverser {
         return sb.toString();        
     }
 
-    protected void addFeatureValueBindings(Feature f) {
-        for (Membership m: f.getOwnedMembership()) {
+    protected void addFeatureValueBindings(Type typ) {
+        for (Membership m: typ.getOwnedMembership()) {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 Expression v = fv.getValue();
                 Element tgt = resolveReference(v);
                 if (tgt != null) {
-                    addPRelation(f, tgt, fv, "=");
+                    addPRelation(typ, tgt, fv, "=");
                 }
             }
         }

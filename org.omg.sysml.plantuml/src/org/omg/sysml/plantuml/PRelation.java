@@ -65,21 +65,25 @@ class PRelation {
         return 'E' + ii.toString();
     }
 
+    private Integer getElemId(SysML2PlantUMLText s2p, Element e) {
+        Integer ii = s2p.getVPath().getId(ik, e);
+        if (ii != null) return ii;
+        if (!s2p.checkId(e)) {
+            if (e instanceof Subsetting) {
+                Subsetting ss = (Subsetting) e;
+                e = ss.getSubsettedFeature();
+                if (!s2p.checkId(e)) return null;
+            } else {
+                return null;
+            }
+        }
+        return s2p.getId(e);
+    }
+
     private String compElemId(SysML2PlantUMLText s2p, Element e) {
         if (e == null) return "[*]";
-        Integer ii = s2p.getVPath().getId(ik, e);
-        if (ii == null) {
-            if (!s2p.checkId(e)) {
-                if (e instanceof Subsetting) {
-                    Subsetting ss = (Subsetting) e;
-                    e = ss.getSubsettedFeature();
-                    if (!s2p.checkId(e)) return null;
-                } else {
-                	return null;
-                }
-            }
-            ii = s2p.getId(e);
-        }
+        Integer ii = getElemId(s2p, e);
+        if (ii == null) return null;
         return makeIdStr(ii);
     }
 
@@ -95,12 +99,29 @@ class PRelation {
         }
     }
 
+    private Integer getId(SysML2PlantUMLText s2p, Object o) {
+        if (o instanceof Element) {
+            return getElemId(s2p, (Element) o);
+        } else if (o instanceof Integer) {
+            return (Integer) o;
+        } 
+        return null;
+    }
+
     public String compSrcId(SysML2PlantUMLText s2p) {
         return compId(s2p, src);
     }
 
+    public Integer getSrcId(SysML2PlantUMLText s2p) {
+        return getId(s2p, src);
+    }
+
     public String compDestId(SysML2PlantUMLText s2p) {
         return compId(s2p, dest);
+    }
+
+    public Integer getDestId(SysML2PlantUMLText s2p) {
+        return getId(s2p, dest);
     }
 
     public PRelation(InheritKey ik, Element src, Element dest, Element rel, String description) {

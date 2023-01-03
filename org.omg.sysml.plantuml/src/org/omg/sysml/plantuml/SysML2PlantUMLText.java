@@ -70,6 +70,7 @@ public class SysML2PlantUMLText {
         Action,
         Sequence,
         Case,
+        Swimlane,
         MIXED;
     }
 
@@ -347,6 +348,8 @@ public class SysML2PlantUMLText {
         	return new VSequence();
         case Case:
             return new VCase();
+        case Swimlane:
+            return new VSwimlane();
         case MIXED:
         	return new VMixed();
 		default:

@@ -128,16 +128,24 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.getVPath();
     }
 
-    private Integer newId(Element e) {
+    protected Integer newId(Element e) {
         return s2p.newId(e);
     }
 
-    private Integer getId(Element e) {
+    protected Integer getId(Element e) {
         return s2p.getId(e);
     }
 
     protected boolean checkId(Element e) {
         return s2p.checkId(e);
+    }
+
+    protected Integer getSrcId(PRelation pr) {
+        return pr.getSrcId(s2p);
+    }
+
+    protected Integer getDestId(PRelation pr) {
+        return pr.getDestId(s2p);
     }
 
     protected void pushIdMap() {
@@ -604,9 +612,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
             ss.insert(idx, ": ");
         }
     }
-    
 
-    private boolean outputPRelation(StringBuilder ss, PRelation pr) {
+    protected boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if (pr.isInvalid()) return true;
 
         String srcId = pr.compSrcId(s2p);
@@ -669,7 +676,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    private void flushPRelations(boolean last) {
+    protected void flushPRelations(boolean last) {
         PRelation[] prs = new PRelation[pRelations.size()];
         prs = pRelations.toArray(prs);
         pRelations.clear();

@@ -90,7 +90,9 @@ public class VSwimlane extends VBehavior {
     private class Pair {
         public final PartUsage participant;
         public final OccurrenceUsage oc; // actually Action
-        public final Integer id;
+        public final boolean isInherited;
+        public final int id;
+        public List<SLink> slinks;
         // public final Feature pin; // Parameter (or Port?)
 
         public boolean isSame(Pair p) {
@@ -99,7 +101,7 @@ public class VSwimlane extends VBehavior {
 
         @Override
         public int hashCode() {
-            return oc.hashCode();
+            return id;
         }
 
         @Override
@@ -107,14 +109,16 @@ public class VSwimlane extends VBehavior {
             if (this == o) return true;
             if (!(o instanceof Pair)) return false;
             Pair p = (Pair) o;
-            return oc.equals(p.oc);
+            return id == p.id;
         }
 
-        private Pair(PartUsage participant, OccurrenceUsage oc, Integer id) {
+        private Pair(PartUsage participant, OccurrenceUsage oc, boolean isInherited, Integer id) {
             this.participant = participant;
             this.oc = oc;
-            this.id = id;
+            this.isInherited = isInherited;
+            this.id = id == null ? -1 : id;
         }
+
     }
 
     private HashMap<Integer, Pair> pairMap = new HashMap<>();
@@ -127,7 +131,7 @@ public class VSwimlane extends VBehavior {
 
         for (Namespace ns = oc.getOwningNamespace(); ns != null; ns = ns.getOwningNamespace()) {
             if (ns instanceof PartUsage) {
-                p = new Pair((PartUsage) ns, oc, id);
+                p = new Pair((PartUsage) ns, oc, isInherited(), id);
                 pairMap.put(id, p);
                 return p;
             }
@@ -268,6 +272,19 @@ public class VSwimlane extends VBehavior {
         }
     }
 
+    private List<Pair> resolveAll() {
+        Set<Pair> added = new HashSet<>();
+        for (Pair p : pairs) {
+            p.slinks = resolve(p, added);
+        }
+        List<Pair> ret = new ArrayList<>();
+        for (Pair p : pairs) {
+            if (added.contains(p)) continue;
+            ret.add(p);
+        }
+        return ret;
+    }
+
     private static class SLink {
         public final Pair p1;
         public final Pair p2;
@@ -280,7 +297,7 @@ public class VSwimlane extends VBehavior {
         }
     }
 
-    private List<SLink> resolve(Pair p1) {
+    private List<SLink> resolve(Pair p1, Set<Pair> added) {
         List<SLink> ret = new ArrayList<>();
         for (Integer id : equivMap.get(p1)) {
             Set<PRelation> prs = prMap.get(id);
@@ -291,6 +308,7 @@ public class VSwimlane extends VBehavior {
                     Pair p2 = pairMap.get(did);
                     if (p2 == null) continue;
                     ret.add(new SLink(p1, p2, pr));
+                    added.add(p2);
                 }
             }
         }
@@ -310,13 +328,13 @@ public class VSwimlane extends VBehavior {
         PartUsage pu = p.participant;
         if (sw.update(pu)) {
             sb.append('|');
-            sb.append(getNameAnyway(pu));
+            sb.append(getNameAnyway(pu, true, p.isInherited));
             sb.append("|\n");
         }
 
         OccurrenceUsage oc = p.oc;
         sb.append(':');
-        sb.append(getNameAnyway(oc));
+        sb.append(getNameAnyway(oc, true, p.isInherited));
         sb.append(";\n");
         return true;
     }
@@ -325,8 +343,10 @@ public class VSwimlane extends VBehavior {
         if (added.contains(p)) return false;
         if (!outputPair0(sb, p, sw)) return false;
         added.add(p);
-        List<SLink> sls = resolve(p);
-        outputSLinks(sb, sls, sw, added);
+        List<SLink> sls = p.slinks;
+        if (sls != null) {
+            outputSLinks(sb, sls, sw, added);
+        }
         return true;
     }
 
@@ -385,17 +405,39 @@ public class VSwimlane extends VBehavior {
         return true;
     }
 
-    private StringBuilder output() {
+    private StringBuilder output(List<Pair> ps) {
         StringBuilder sb = new StringBuilder();
         Swimlane sw = new Swimlane();
-        Set<Pair> added = new HashSet<>();
 
-        for (Pair p: pairs) {
-            if (outputPair(sb, p, sw, added)) {
+        int size = ps.size();
+        if (size == 0) return sb;
+        if (size == 1) {
+            if (outputPair(sb, ps.get(0), sw, new HashSet<Pair>())) {
                 sb.append("kill\n"); 
             }
+        } else {
+            StringBuilder sb2 = new StringBuilder();
+            boolean splitted = false;
+            for (Pair p: ps) {
+                int pt = sb2.length();
+                if (outputPair(sb2, p, sw, new HashSet<Pair>())) {
+                    if (pt > 0) {
+                        splitted = true;
+                        sb2.insert(pt, "split again\n-[hidden]->\n");
+                    }
+                    sb2.append("kill\n"); 
+                }
+            }
+            if (sb2.length() == 0) return sb;
+            if (splitted) {
+                sb.append("split\n-[hidden]->\n");
+                sb.append(sb2);
+                sb.append("end split\n");
+            } else {
+                sb.append(sb2);
+            }
+            sb.append("kill\n"); 
         }
-        pairs.clear();
         return sb;
     }
 
@@ -403,7 +445,8 @@ public class VSwimlane extends VBehavior {
     protected String getString() {
         flushPRelations(true);
         buildEquiv();
-        StringBuilder sb = output();
+        List<Pair> ps = resolveAll();
+        StringBuilder sb = output(ps);
         return sb.toString();
     }
 

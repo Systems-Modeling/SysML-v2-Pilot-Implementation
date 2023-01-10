@@ -83,7 +83,7 @@ standard library package StandardViewDefinitions {
              * View definition to present use cases, analysis cases or verification cases.
              * In one view in principle only one of use cases, analysis cases or verification cases is rendered.
              * - Valid nodes and edges in any CaseView are: CaseDefinition, CaseUsage, SubjectMembership, 
-             *   ObjectiveMembership, ActorMembership
+             *   ObjectiveMembership, ActorMembership, RequirementDefinition, RequirementUsage
              * - Valid nodes and edges in a use case view are: UseCaseDefinition, UseCaseUsage, 
              *   IncludeUseCaseUsage, ...
              * - Valid nodes and edges in an analysis view are: AnalysisCaseDefinition, AnalysisCaseUsage, 

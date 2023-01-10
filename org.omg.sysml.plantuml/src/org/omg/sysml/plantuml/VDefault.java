@@ -48,7 +48,6 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;

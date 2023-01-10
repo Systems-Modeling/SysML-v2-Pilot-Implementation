@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -108,16 +109,23 @@ public class VDefault extends VTraverser {
     }
 
     protected void addFeatureValueBindings(Type typ) {
-        for (Membership m: typ.getOwnedMembership()) {
-            if (m instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) m;
+        // To properly process inheritings, use VTraverser.
+        VTraverser vt = new VTraverser(this) {
+            @Override
+            public String caseFeatureValue(FeatureValue fv) {
                 Expression v = fv.getValue();
                 Element tgt = resolveReference(v);
                 if (tgt != null) {
                     addPRelation(typ, tgt, fv, "=");
                 }
+                return "";
             }
-        }
+            @Override
+            public String caseNamespace(Namespace ns) {
+                return "";
+            }
+        };
+        vt.traverse(typ);
     }
 
     protected void addSpecializations(int typId, Type typ) {

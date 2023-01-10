@@ -111,6 +111,10 @@ public class SysML2PlantUMLStyle {
                  public String caseBindingConnector(BindingConnector object) {
                      return " -[thickness=5,#red]- ";
                  }
+                 @Override
+                 public String caseFeatureValue(FeatureValue fv) {
+                     return " -[thickness=5,#red]- ";
+                 }
              }, null),
              "decoratedRedefined", "true");
         addp("PLANTUML",

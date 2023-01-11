@@ -276,7 +276,7 @@ standard library package Occurrences {
 			binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
 		}
 
-		portion feature timeSlices: Occurrence[1..*] subsets portions inverse of timeSlices {
+		portion feature timeSlices: Occurrence[1..*] subsets portions {
 			doc
 			/*
 			 * Portions of an occurrence taking up all of its space over some period of time,
@@ -284,7 +284,7 @@ standard library package Occurrences {
 			 */
 		}
 
-		feature timeSliceOf : Occurrence[1..*] subsets portionOf {
+		feature timeSliceOf : Occurrence[1..*] subsets portionOf inverse of timeSlices {
 			doc
 			/*
 			 * Occurrences of which this occurrence is a time slice, including at least this

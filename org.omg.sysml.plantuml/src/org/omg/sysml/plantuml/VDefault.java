@@ -129,10 +129,14 @@ public class VDefault extends VTraverser {
 
     protected void addSpecializations(int typId, Type typ) {
         if (typId < 0) return;
+        InheritKey ik = null;
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            PRelation pr = new PRelation(typId, gt, s, null);
+            if (ik != null && typ instanceof Feature) {
+            	ik = makeInheritKey((Feature) typ);
+            }
+            PRelation pr = new PRelation(ik, typId, gt, s, null);
             addPRelation(pr);
         }
     }

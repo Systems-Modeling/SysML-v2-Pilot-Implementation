@@ -96,8 +96,8 @@ standard library package Occurrences {
 			 */
 
 			/* successors is transitive. */
-			feature earlierOccurrence: Occurrence[1] redefines that;
-			feature laterOccurrence: Occurrence[1] redefines self;
+			feature earlierOccurrence: Occurrence[1] subsets that;
+			feature laterOccurrence: Occurrence[1] subsets self;
 			subset laterOccurrence.successors subsets earlierOccurrence.successors;
 		}
 
@@ -133,8 +133,8 @@ standard library package Occurrences {
 			 * And predecessors of (occurrences happening before) time enclosing occurrences
 			 * are predecessors of their timeEnclosedOccurrences.
 			 */
-			feature longerOccurrence: Occurrence[1] redefines that;
-			feature shorterOccurrence: Occurrence[1] redefines self;
+			feature longerOccurrence: Occurrence[1] subsets that;
+			feature shorterOccurrence: Occurrence[1] subsets self;
 			subset longerOccurrence.predecessors subsets shorterOccurrence.predecessors;
 			subset longerOccurrence.successors subsets shorterOccurrence.successors;
 
@@ -150,8 +150,8 @@ standard library package Occurrences {
 			 */
 
 			/* timeCoincidentOccurrences occurrences happen during each other. */
-			feature thisOccurrence: Occurrence[1] redefines that;
-			feature thatOccurrence: Occurrence[1] redefines self;
+			feature thisOccurrence: Occurrence[1] subsets that;
+			feature thatOccurrence: Occurrence[1] subsets self;
 			connector :HappensDuring
 				from shorterOccurrence references thatOccurrence [1]
 				to longerOccurrence references thisOccurrence [1];
@@ -165,8 +165,8 @@ standard library package Occurrences {
 			 */
 
 			/* spaceEnclosedOccurrences is transitive. */
-			feature smallerSpace: Occurrence[1] redefines that;
-			feature largerSpace: Occurrence[1] redefines self;
+			feature smallerSpace: Occurrence[1] subsets that;
+			feature largerSpace: Occurrence[1] subsets self;
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 		}
 
@@ -209,13 +209,12 @@ standard library package Occurrences {
 			 * Occurrences that have no space between some of their space slices and some space slices of this occurrence.
 			 */
 
-			feature separateSpaceToo: Occurrence[1] redefines that;
-			feature separateSpace: Occurrence[1] redefines self;
+			feature separateSpaceToo: Occurrence[1] subsets that;
+			feature separateSpace: Occurrence[1] subsets self;
 
 			connector :MatesWith [1..*]
 				from separateSpaceToo references separateSpaceToo.spaceSlices [0..*]
 				to separateSpace references separateSpace.spaceSlices [0..*];
-			}
 		}
 
 		feature matingOccurrences: Occurrence[1..*] subsets justOutsideOfOccurrences inverse of matingOccurrences {
@@ -224,8 +223,8 @@ standard library package Occurrences {
 			 * Occurrences that have no space between them and this one.
 			 */
 
-			feature matingSpaceToo: Occurrence[1] redefines that;
-			feature matingSpace: Occurrence[1] redefines self;
+			feature matingSpaceToo: Occurrence[1] subsets that;
+			feature matingSpace: Occurrence[1] subsets self;
 			feature matingOccurrence: Occurrence [1] {
 				portion feature redefines spaceBoundary [1];
 				inv { contains(unionsOf, union(matingSpaceToo, matingSpace)) }
@@ -271,8 +270,8 @@ standard library package Occurrences {
 			 * least this occurrence.
 			 */
 
-			feature portionOccurrence: Occurrence[1] redefines that;
-			feature portionedOccurrence: Occurrence[1] redefines self;
+			feature portionOccurrence: Occurrence[1] subsets that;
+			feature portionedOccurrence: Occurrence[1] subsets self;
 			binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
 		}
 
@@ -366,8 +365,8 @@ standard library package Occurrences {
 			 * occurrence.
 			 */
 
-			feature spaceSliceOccurrence: Occurrence[1] redefines that;
-			feature spaceSlicedOccurrence: Occurrence[1] redefines self;
+			feature spaceSliceOccurrence: Occurrence[1] subsets that;
+			feature spaceSlicedOccurrence: Occurrence[1] subsets self;
 			inv { spaceSliceOccurrence.innerSpaceDimension <= spaceSlicedOccurrence.innerSpaceDimension }
 		}
 
@@ -384,8 +383,8 @@ standard library package Occurrences {
 			 * Occurrences of which this occurrence is a space shot.
 			 */
 
-			feature spaceShotOccurrence: Occurrence[1] redefines that;
-			feature spaceShottedOccurrence: Occurrence[1] redefines self;
+			feature spaceShotOccurrence: Occurrence[1] subsets that;
+			feature spaceShottedOccurrence: Occurrence[1] subsets self;
 			inv { spaceShotOccurrence.innerSpaceDimension < spaceShottedOccurrence.innerSpaceDimension }
 		}
 
@@ -492,7 +491,7 @@ standard library package Occurrences {
 
 			feature redefines isClosed = true;
 
-			feature spaceBounder: Occurrence redefines self;
+			feature spaceBounder: Occurrence subsets self;
 
 			outer: Occurrence [0..1] subsets spaceSlices {
 				feature redefines isClosed = true;
@@ -515,7 +514,7 @@ standard library package Occurrences {
 			 * An Occurrence of which this one is the space boundary.
 			 */
 
-			feature spaceBounderOf: Occurrence redefines self;
+			feature spaceBounderOf: Occurrence subsets self;
 			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
@@ -539,8 +538,8 @@ standard library package Occurrences {
 			feature redefines innerSpaceOccurrences [0];
 
 		 	/* innerSpace is the spaceInterior of hOccurrence, which is formed from an inner space boundary of outerSpace. */
-			feature outerSpace: Occurrence[1] redefines that;
-			feature innerSpace: Occurrence[1] redefines self;
+			feature outerSpace: Occurrence[1] subsets that;
+			feature innerSpace: Occurrence[1] subsets self;
 			feature hOccurrence: Occurrence [1];
 			connector hbi: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace.spaceBoundary.inner [0..1];
 			connector hbo: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace [0..1];
@@ -554,8 +553,8 @@ standard library package Occurrences {
 			 * Occurrences that have inner spaces that completely include this occurrence.
 			 */
 
-			feature surroundedSpace: Occurrence[1] redefines that;
-			end feature surroundingSpace: Occurrence[1] redefines self;
+			feature surroundedSpace: Occurrence[1] subsets that;
+			end feature surroundingSpace: Occurrence[1] subsets self;
 
 			connector :InsideOf
 				from smallerOccurrence references surroundedSpace [0..1]
@@ -893,9 +892,9 @@ standard library package Occurrences {
 		 * no space between them.
 		 */
 
-		end feature separateSpaceToo: Occurrence[0..*] redefines separateOccurrenceToo
+		end feature redefines separateSpaceToo: Occurrence[0..*]
 		  subsets separateSpace.justOutsideOfOccurrences;
-		end feature separateSpace: Occurrence[0..*] redefines separateOccurrence
+		end feature redefines separateSpace: Occurrence[0..*]
 		  subsets separateSpaceToo.justOutsideOfOccurrences;
 	}
 

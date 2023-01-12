@@ -496,9 +496,6 @@ public class VCompartment extends VStructure {
                 append(' ');
             }
             append(ce.getParameterPrefix());
-            if (ce.isInherited) {
-                append('^');
-            }
             if (ce.prefix != null) {
                 append(ce.prefix);
             }

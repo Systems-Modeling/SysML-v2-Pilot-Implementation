@@ -177,9 +177,6 @@ public abstract class VStructure extends VDefault {
     }
 
     private void addFeatureTextInternal(Feature f, String name, boolean isInherited) {
-        if (isInherited) {
-            append('^');
-        }
         append(name);
         addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);

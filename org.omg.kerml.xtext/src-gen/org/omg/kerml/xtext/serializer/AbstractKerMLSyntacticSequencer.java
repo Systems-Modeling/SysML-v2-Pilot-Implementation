@@ -32,6 +32,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0;
 	protected AbstractElementAlias match_Conjugation_ConjugationKeyword_0_0_q;
+	protected AbstractElementAlias match_Dependency_FromKeyword_2_1_q;
 	protected AbstractElementAlias match_Disjoining_DisjoiningKeyword_0_0_q;
 	protected AbstractElementAlias match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_FeatureInverting_InvertingKeyword_0_0_q;
@@ -81,6 +82,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getTildeKeyword_0_0()));
 		match_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationAccess().getConjugatesKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getConjugationAccess().getTildeKeyword_3_0()));
 		match_Conjugation_ConjugationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getConjugationAccess().getConjugationKeyword_0_0());
+		match_Dependency_FromKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getDependencyAccess().getFromKeyword_2_1());
 		match_Disjoining_DisjoiningKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDisjoiningAccess().getDisjoiningKeyword_0_0());
 		match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getTildeKeyword_0_0()));
 		match_FeatureInverting_InvertingKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureInvertingAccess().getInvertingKeyword_0_0());
@@ -162,6 +164,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Conjugation_ConjugationKeyword_0_0_q.equals(syntax))
 				emit_Conjugation_ConjugationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Dependency_FromKeyword_2_1_q.equals(syntax))
+				emit_Dependency_FromKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Disjoining_DisjoiningKeyword_0_0_q.equals(syntax))
 				emit_Disjoining_DisjoiningKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0.equals(syntax))
@@ -464,6 +468,21 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * </pre>
 	 */
 	protected void emit_Conjugation_ConjugationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'from'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'dependency' (ambiguity) client+=[Element|QualifiedName]
+	 *     ownedRelationship+=PrefixMetadataAnnotation 'dependency' (ambiguity) client+=[Element|QualifiedName]
+	 
+	 * </pre>
+	 */
+	protected void emit_Dependency_FromKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1253,6 +1272,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     redefinedFeature=[Feature|QualifiedName] (ambiguity) (rule end)
 	 *     subsettedFeature=[Feature|QualifiedName] (ambiguity) (rule end)
 	 *     superclassifier=[Classifier|QualifiedName] (ambiguity) (rule end)
+	 *     supplier+=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     type=[Type|QualifiedName] (ambiguity) (rule end)
 	 
 	 * </pre>

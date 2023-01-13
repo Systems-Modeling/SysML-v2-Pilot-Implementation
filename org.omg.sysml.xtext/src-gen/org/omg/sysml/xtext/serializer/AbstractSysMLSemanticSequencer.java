@@ -8870,8 +8870,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     DefinitionElement returns Dependency
 	 *     Dependency returns Dependency
+	 *     DefinitionElement returns Dependency
 	 *
 	 * Constraint:
 	 *     (

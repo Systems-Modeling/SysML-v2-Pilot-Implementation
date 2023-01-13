@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Differencing;
 import org.omg.sysml.lang.sysml.Disjoining;
 import org.omg.sysml.lang.sysml.Documentation;
@@ -202,6 +203,9 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				else break;
 			case SysMLPackage.DATA_TYPE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (DataType) semanticObject); 
+				return; 
+			case SysMLPackage.DEPENDENCY:
+				sequence_Dependency_Identification_RelationshipOwnedElement(context, (Dependency) semanticObject); 
 				return; 
 			case SysMLPackage.DIFFERENCING:
 				sequence_Differencing(context, (Differencing) semanticObject); 
@@ -3073,6 +3077,31 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OwnedRelatedElement returns Dependency
+	 *     Dependency returns Dependency
+	 *     MemberElement returns Dependency
+	 *     NonFeatureElement returns Dependency
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship+=PrefixMetadataAnnotation* 
+	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
+	 *         client+=[Element|QualifiedName] 
+	 *         client+=[Element|QualifiedName]* 
+	 *         supplier+=[Element|QualifiedName] 
+	 *         supplier+=[Element|QualifiedName]* 
+	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_Dependency_Identification_RelationshipOwnedElement(ISerializationContext context, Dependency semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

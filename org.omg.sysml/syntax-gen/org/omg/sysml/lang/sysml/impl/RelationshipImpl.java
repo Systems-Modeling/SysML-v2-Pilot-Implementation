@@ -240,7 +240,7 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	/**
 	 * <!-- begin-user-doc --> 
 	 * Xtext workaround:
-	 * If target is empty, then add all ownedRelatedElements to it.
+	 * Add all ownedRelatedElements to target.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

@@ -121,17 +121,19 @@ public class VSwimlane extends VBehavior {
 
     }
 
-    private HashMap<Integer, Pair> pairMap = new HashMap<>();
+    private SetMultimap<Integer, Pair> pairMap = MultimapBuilder.hashKeys().hashSetValues().build();
 
     private Pair createPair(Element e, Feature pin, Integer id) {
         if (!(e instanceof OccurrenceUsage)) return null;
         OccurrenceUsage oc = (OccurrenceUsage) e;
+        /*
         Pair p = pairMap.get(id);
         if (p != null) return p;
+        */
 
         for (Namespace ns = oc.getOwningNamespace(); ns != null; ns = ns.getOwningNamespace()) {
             if (ns instanceof PartUsage) {
-                p = new Pair((PartUsage) ns, oc, isInherited(), id);
+                Pair p = new Pair((PartUsage) ns, oc, isInherited(), id);
                 pairMap.put(id, p);
                 return p;
             }
@@ -279,6 +281,7 @@ public class VSwimlane extends VBehavior {
         }
         List<Pair> ret = new ArrayList<>();
         for (Pair p : pairs) {
+            // TODO: It effectively removes loops without incoming edges, another alogrithm is needed.
             if (added.contains(p)) continue;
             ret.add(p);
         }
@@ -305,10 +308,10 @@ public class VSwimlane extends VBehavior {
                 if (isSuccessionLike(pr.rel)) {
                     Integer did = getDestId(pr);
                     if (did == null) continue;
-                    Pair p2 = pairMap.get(did);
-                    if (p2 == null) continue;
-                    ret.add(new SLink(p1, p2, pr));
-                    added.add(p2);
+                    for (Pair p2 : pairMap.get(did)) {
+                        ret.add(new SLink(p1, p2, pr));
+                        added.add(p2);
+                    }
                 }
             }
         }
@@ -338,9 +341,16 @@ public class VSwimlane extends VBehavior {
         sb.append(";\n");
         return true;
     }
+    
+    private static final int LEVEL_MAX = 5;
+
+    private int level;
 
     private boolean outputPair(StringBuilder sb, Pair p, Swimlane sw, Set<Pair> added) {
-        if (added.contains(p)) return false;
+        if (added.contains(p)) {
+            if (level > LEVEL_MAX) return false;
+            level += 3;
+        }
         if (!outputPair0(sb, p, sw)) return false;
         added.add(p);
         List<SLink> sls = p.slinks;
@@ -406,6 +416,7 @@ public class VSwimlane extends VBehavior {
     }
 
     private StringBuilder output(List<Pair> ps) {
+        this.level = 0;
         StringBuilder sb = new StringBuilder();
         Swimlane sw = new Swimlane();
 

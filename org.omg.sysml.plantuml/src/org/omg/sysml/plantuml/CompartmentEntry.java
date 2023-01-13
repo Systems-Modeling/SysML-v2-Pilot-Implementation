@@ -91,7 +91,7 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
             return "values";
         }
         if (om instanceof SubjectMembership) {
-            return "subjects";
+            return "subject";
         }
         if (om instanceof ActorMembership) {
             return "actors";

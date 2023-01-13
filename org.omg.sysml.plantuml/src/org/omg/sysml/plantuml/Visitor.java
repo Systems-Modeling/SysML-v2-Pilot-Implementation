@@ -442,6 +442,17 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return getNameAnyway(e, true, isInherited());
     }
 
+    private static String getFeatureChainName(List<FeatureChaining> fcs) {
+        StringBuilder sb = new StringBuilder();
+        for (FeatureChaining fc : fcs) {
+            if (sb.length() > 0) {
+                sb.append('.');
+            }
+            sb.append(fc.getChainingFeature().getEffectiveName());
+        }
+        return sb.toString();
+    }
+
     protected static String getFeatureChainName(Feature f) {
         String name = f.getEffectiveName();
         if (name != null) return name;
@@ -449,19 +460,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) continue;
-            StringBuilder sb = new StringBuilder();
-            for (FeatureChaining fc : fcs) {
-                if (sb.length() > 0) {
-                    sb.append('.');
-                }
-                sb.append(fc.getChainingFeature().getEffectiveName());
-            }
-            return sb.toString();
+            return getFeatureChainName(fcs);
         }
         return null;
     }
 
-    protected static String getNameWithNamespace(Feature f) {
+    private static String getNameWithNamespace(Feature f) {
         String name = getFeatureName(f);
         if (name == null) return null;
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
@@ -470,6 +474,13 @@ public abstract class Visitor extends SysMLSwitch<String> {
         } else {
             return pkg.getName() + "::" + name;
         }
+    }
+
+
+    protected static String getRefName(Feature f) {
+        List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+        if (fcs.isEmpty()) return getNameWithNamespace(f);
+        return getFeatureChainName(fcs);
     }
 
     protected static boolean appendSubsettingFeature(StringBuilder sb, String prefix, Feature f) {
@@ -481,7 +492,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (s instanceof Redefinition) continue;
             Feature sf = s.getSubsettedFeature();
             if (sf == null) continue;
-            String name = getNameWithNamespace(sf);
+            String name = getRefName(sf);
             if (name == null) continue;
             if (added) {
                 sb.append(", ");

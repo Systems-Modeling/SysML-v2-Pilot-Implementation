@@ -35,8 +35,13 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Type;
 
+
+/* InheritKey identifies a feature or a membership with the context of inheriting.
+ * The target feature to be identified must be "connectors" owning ends
+ * or "types" owning features referring to others. */
 class InheritKey {
     public final Type[] keys;
+    /* If isDirect, the last key directly owns the target feature. */
     private final boolean isDirect;
 
     private static boolean containsWithRedefined(List<Feature> fs, Feature ft) {

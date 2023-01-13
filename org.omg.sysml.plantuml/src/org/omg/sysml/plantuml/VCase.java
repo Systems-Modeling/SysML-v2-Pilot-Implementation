@@ -67,7 +67,7 @@ public class VCase extends VTree {
     }
 
     private String addCase(Type typ) {
-        String name = getNameAnyway(typ);
+        String name = extractTitleName(typ);
         int id = addRecLine(name, typ, true);
         addSpecializations(id, typ);
 
@@ -99,7 +99,7 @@ public class VCase extends VTree {
 
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
-        addSubjectMembership(sm, true);
+        addSubjectMembership(sm, false);
         return "";
     }
 

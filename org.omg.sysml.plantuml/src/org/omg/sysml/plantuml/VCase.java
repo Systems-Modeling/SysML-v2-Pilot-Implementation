@@ -99,7 +99,7 @@ public class VCase extends VTree {
 
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
-        addSubjectMembership(sm, true);
+        addSubjectMembership(sm, false);
         return "";
     }
 

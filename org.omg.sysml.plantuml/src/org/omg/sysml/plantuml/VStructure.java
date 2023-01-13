@@ -163,7 +163,7 @@ public abstract class VStructure extends VDefault {
     private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
         if (rf == null) return null;
-        return getNameWithNamespace(rf);
+        return getRefName(rf);
     }
 
     private boolean addRedefinedFeatureText(Feature f) {
@@ -177,9 +177,6 @@ public abstract class VStructure extends VDefault {
     }
 
     private void addFeatureTextInternal(Feature f, String name, boolean isInherited) {
-        if (isInherited) {
-            append('^');
-        }
         append(name);
         addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);

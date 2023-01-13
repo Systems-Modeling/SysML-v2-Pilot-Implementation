@@ -496,9 +496,6 @@ public class VCompartment extends VStructure {
                 append(' ');
             }
             append(ce.getParameterPrefix());
-            if (ce.isInherited) {
-                append('^');
-            }
             if (ce.prefix != null) {
                 append(ce.prefix);
             }
@@ -543,7 +540,7 @@ public class VCompartment extends VStructure {
     	if (documentations == null) return;
 
         boolean flag = false;
-        append("##//documentations//##\n");
+        append("##//doc//##\n");
         for (Documentation doc: documentations) {
             String name = doc.getName();
             if (name != null && !name.isEmpty()) {

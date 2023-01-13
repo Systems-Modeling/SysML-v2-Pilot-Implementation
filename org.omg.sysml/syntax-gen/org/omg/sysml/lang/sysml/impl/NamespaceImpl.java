@@ -49,6 +49,8 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -329,12 +331,12 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Membership resolveGlobal(String qualifiedName) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// TODO: Resolve elements other than to owning membership.
+		Element element = SysMLLibraryUtil.getLibraryElement(this, qualifiedName);
+		return element.getOwningMembership();
 	}
 
 	/**
@@ -343,41 +345,42 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	public Membership resolveLocal(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		String escapedName = ElementUtil.escapeName(name);
+		return getOwningNamespace() == null?
+				resolveGlobal(escapedName):
+				NamespaceUtil.getNamedMembershipFor(this, escapedName);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Membership resolveVisible(String name) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return visibleMemberships(new BasicEList<>(), false, false).stream().
+				filter(mem->
+						name.equals(mem.getMemberShortName()) || 
+						name.equals(mem.getMemberName())).
+				findFirst().orElse(null);		
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String qualificationOf(String qualifiedName) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String unqualifiedNameOf(String qualifiedName) {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -414,6 +417,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		}
 		return importedMembership;
 	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

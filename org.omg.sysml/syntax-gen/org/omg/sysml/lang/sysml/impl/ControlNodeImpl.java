@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.ControlNode;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -59,12 +60,13 @@ public abstract class ControlNodeImpl extends ActionUsageImpl implements Control
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean multiplicityHasBounds(Multiplicity mult, int lower, int upper) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return mult != null &&
+				(mult instanceof MultiplicityRange? ((MultiplicityRange)mult).hasBounds(lower, upper):
+				 mult.allSupertypes().stream().anyMatch(sup -> 
+					sup instanceof MultiplicityRange && ((MultiplicityRange)sup).hasBounds(lower, upper)));
 	}
 
 	/**

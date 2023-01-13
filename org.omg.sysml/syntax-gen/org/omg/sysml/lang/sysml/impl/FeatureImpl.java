@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -958,34 +959,45 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean redefines(Feature redefinedFeature) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).
+				contains(redefinedFeature);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean redefinesFromLibrary(String libraryFeatureName) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Membership membership = resolveGlobal(libraryFeatureName);
+		if (membership != null) {
+			Element memberElement = membership.getMemberElement();
+			if (memberElement instanceof Feature) {
+				return redefines((Feature)memberElement);
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean subsetsChain(Feature first, Feature second) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return allSupertypes().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast).
+				anyMatch(feat->{
+					EList<Feature> chainingFeatures = feat.getChainingFeature();
+					int n = chainingFeatures.size();
+					return n >= 2 && 
+						   chainingFeatures.get(n-2) == first && 
+						   chainingFeatures.get(n-1) == second;
+				});
 	}
 
 	/**

@@ -38,6 +38,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -259,9 +261,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated
 	 */
 	public boolean includeAsExposed(Element element) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Expression> viewConditions = UsageUtil.getAllViewConditionsOf(this);
+		return ExpressionUtil.checkConditionsOn(element, viewConditions);
 	}
 
 	//

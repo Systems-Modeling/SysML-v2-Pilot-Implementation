@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -201,23 +203,42 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean hasBounds(int lower, int upper) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (valueOf(getUpperBound()) != upper) {
+			return false;
+		} else {
+			int lowerValue = valueOf(getLowerBound());
+			return lowerValue == lower ||
+				   lowerValue < -1 &&
+				   		(lower == upper || lower == 0 && upper == -1);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public int valueOf(Expression bound) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (bound != null && bound.isModelLevelEvaluable()) {
+			EList<Element> boundEval = bound.evaluate(getOwningNamespace());
+			if (boundEval.size() == 1) {
+				Element valueEval = boundEval.get(0);
+				if (valueEval instanceof LiteralInfinity) {
+					// Return -1 to represent "*".
+					return -1;
+				} else if (valueEval instanceof LiteralInteger) {
+					int value = ((LiteralInteger)valueEval).getValue();
+					if (value >= 0) {
+						return value;
+					}
+				}
+			}
+		}
+		// Return -2 to represent a "null" result.
+		return -2;
 	}
 
 	//

@@ -926,23 +926,31 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean specializes(Type supertype) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (isConjugated()) {
+			Type originalType = getOwnedConjugator().getOriginalType();
+			return originalType != null && originalType.specializes(supertype);
+		} else {
+			return allSupertypes().contains(supertype);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean specializesFromLibrary(String libraryTypeName) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Membership membership = resolveGlobal(libraryTypeName);
+		if (membership != null) {
+			Element memberElement = membership.getMemberElement();
+			if (memberElement instanceof Type) {
+				return specializes((Type)memberElement);
+			}
+		}
+		return false;
 	}
 
 	//

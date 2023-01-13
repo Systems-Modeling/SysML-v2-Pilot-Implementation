@@ -29,10 +29,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A JoinNode is a ControlNode that waits for the completion of all the predecessor Actions given by incoming Successions. All incoming Successions must have a source multiplicity of 1..1. A JoinNode may have at most one outgoing Succession.</p>
- * 
- * <p>A JoinNode must subset, directly or indirectly, the ActionUsage <em><code>Action::joins</code></em>, implying that it is typed by <code><em>JoinAction</em></code> from the Systems model library (or a subtype of it).</p>
- * 
+ * <p>A <code>JoinNode</code> is a <code>ControlNode</code> that waits for the completion of all the predecessor <code>Actions</code> given by incoming <code>Successions</code>.</p>
+ * sourceConnector->selectByKind(Succession)->size() <= 1
+ * specializesFromLibrary("Actions::Action::join")
  * <!-- end-model-doc -->
  *
  *

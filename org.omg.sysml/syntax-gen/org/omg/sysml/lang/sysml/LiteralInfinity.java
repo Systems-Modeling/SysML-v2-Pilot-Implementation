@@ -29,7 +29,6 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A LiteralInfinity is a LiteralExpression that provides the positive infinity value (<code>*</code>). It's <code>result</code> must have the type <code><em>Positive</em></code>.</p>
  * 
- * <p>An Expression that provides a value without a given bound as a result.</p>
  * <!-- end-model-doc -->
  *
  *

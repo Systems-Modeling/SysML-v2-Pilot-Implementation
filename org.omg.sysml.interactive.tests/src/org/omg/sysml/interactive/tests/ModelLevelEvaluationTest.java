@@ -126,7 +126,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		
 		Element metadataFeature = ((Namespace)target).getOwnedMembership().get(0).getMemberElement();
 		assertTrue(metadataFeature instanceof MetadataFeature);		
-		assertTrue(annotationName.equals(((MetadataFeature)metadataFeature).getMetaclass().getName()));
+		assertTrue(annotationName.equals(((MetadataFeature)metadataFeature).getMetaclass().getDeclaredName()));
 		
 		return (MetadataFeature)metadataFeature;
 	}

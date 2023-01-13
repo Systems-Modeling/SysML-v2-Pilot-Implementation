@@ -21,9 +21,12 @@
 
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.ControlNode;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -51,6 +54,31 @@ public abstract class ControlNodeImpl extends ActionUsageImpl implements Control
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONTROL_NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean multiplicityHasBounds(Multiplicity mult, int lower, int upper) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.CONTROL_NODE___MULTIPLICITY_HAS_BOUNDS__MULTIPLICITY_INT_INT:
+				return multiplicityHasBounds((Multiplicity)arguments.get(0), (Integer)arguments.get(1), (Integer)arguments.get(2));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ControlNodeImpl

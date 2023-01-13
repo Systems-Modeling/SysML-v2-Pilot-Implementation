@@ -211,6 +211,6 @@ public interface ViewUsage extends PartUsage {
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated
 	 */
-	boolean includeAsExposed(Object element);
+	boolean includeAsExposed(Element element);
 
 } // ViewUsage

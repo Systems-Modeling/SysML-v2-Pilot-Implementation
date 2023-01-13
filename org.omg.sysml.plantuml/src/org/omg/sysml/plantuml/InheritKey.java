@@ -144,10 +144,10 @@ class InheritKey {
         StringBuilder sb = new StringBuilder();
         if (keys.length == 0) return "Empty InherityKey";
         sb.append("InheritKey: [");
-        sb.append(keys[0].getName());
+        sb.append(keys[0].getDeclaredName());
         for (int i = 1; i < keys.length; i++) {
             sb.append(", ");
-            sb.append(keys[i].getName());
+            sb.append(keys[i].getDeclaredName());
         }
         sb.append(']');
         return sb.toString();

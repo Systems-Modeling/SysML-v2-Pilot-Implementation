@@ -256,12 +256,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {
 
 						// Note: Proxy resolution may result in recursive name resolution. In this case, the
-						// membership r should be excluded from the scope, to avoid a cyclic linking error.
+						// membership mem should be excluded from the scope, to avoid a cyclic linking error.
 						scopeProvider.addVisited(mem)
 						
 						var memberName = 
 							if (mem instanceof OwningMembership && isFirstScope && ns == this.ns && mem.memberElement === element) 
-								mem.memberElement?.name // Note: Don't use effective name.
+								mem.memberElement?.declaredName // Note: Don't use effective name.
 							else mem.memberName
 					
 						if (checkElementName(memberName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
@@ -270,7 +270,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						
 						scopeProvider.addVisited(mem) // In case it was removed during the previous checkElementName call.
 						
-						if (checkElementName(mem.memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
+						var memberShortName = 
+							if (mem instanceof OwningMembership && isFirstScope && ns == this.ns && mem.memberElement === element) 
+								mem.memberElement?.declaredShortName // Note: Don't use effective shortName.
+							else mem.memberShortName
+					
+						if (checkElementName(memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
 							return true
 						}
 					

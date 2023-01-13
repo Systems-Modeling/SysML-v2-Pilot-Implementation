@@ -29,11 +29,11 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Relationship is an Element that relates other Elements. Some of its <code>relatedElements</code> may be owned, in which case those <code>ownedRelatedElements</code> will be deleted from a model if their <code>owningRelationship</code> is. A Relationship may also be owned by another Element, in which case the <code>ownedRelatedElements</code> of the Relationship are also considered to be transitively owned by the <code>owningRelatedElement</code> of the Relationship.</p>
+ * <p>A <code>Relationship</code> is an <code>Element</code> that relates other <code>Element<s/code>. Some of its <code>relatedElements</code> may be owned, in which case those <code>ownedRelatedElements</code> will be deleted from a model if their <code>owningRelationship</code> is. A <code>Relationship</code> may also be owned by another <code>Element</code>, in which case the <code>ownedRelatedElements</code> of the <code>Relationship</code> are also considered to be transitively owned by the <code>owningRelatedElement</code> of the Relationship.</p>
  * 
- * <p>The <code>relatedElements</code> of a Relationship are divided into <code>source</code> and <code>target</code> Elements. The Relationship is considered to be directed from the <code>source</code> to the <code>target</code> Elements. An undirected Relationship may have either all <code>source</code> or all <code>target</code> Elements.</p>
+ * <p>The <code>relatedElements</code> of a Relationship are divided into <code>source</code> and <code>target</code> <code>Elements</code>. The <code>Relationship</code> is considered to be directed from the <code>source</code> to the <code>target</code> <code>Elements</code>. An undirected <code>Relationship</code> may have either all <code>source</code> or all <code>target</code> <code>Elements</code>.</p>
  * 
- * <p>A &quot;relationship Element&quot; in the abstract syntax is generically any Element that is an instance of either Relationship or a direct or indirect specialization of Relationship. Any other kind of Element is a &quot;non-relationship Element&quot;. It is a convention of that non-relationship Elements are <em>only</em> related via reified relationship Elements. Any meta-associations directly between non-relationship Elements must be derived from underlying reified Relationships.</p>
+ * <p>A &quot;relationship <code>Element</code>&quot; in the abstract syntax is generically any <code>Element</code> that is an instance of either <code>Relationship</code> or a direct or indirect specialization of <code>Relationship</code>. Any other kind of <code>Element</code> is a &quot;non-relationship <code>Element</code>&quot;. It is a convention of that non-relationship <code>Elements</code> are <em>only</em> related via reified relationship <code>Elements</code>. Any meta-associations directly between non-relationship <code>Elements</code> must be derived from underlying reified <code>Relationship</code>.</p>
  * 
  * relatedElement = source->union(target)
  * <!-- end-model-doc -->
@@ -51,7 +51,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Relationship extends Element {

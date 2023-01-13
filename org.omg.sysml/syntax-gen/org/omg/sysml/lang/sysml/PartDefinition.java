@@ -29,10 +29,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PartDefinition is a ItemDefinition of a Class of systems or parts of systems. Note that all parts may be considered items for certain purposes, but not all items are parts that can perform actions within a system.</p>
+ * <p>A <code>PartDefinition</code> is an <code>ItemDefinition</code> of a <code>Class</code> of systems or parts of systems. Note that all parts may be considered items for certain purposes, but not all items are parts that can perform actions within a system.</p>
  * 
- * </p>A PartDefinition must subclass, directly or indirectly, the base PartDefinition Part from the Systems model library.</p>
+ * </p>A <code>PartDefinition</code> must specialize, directly or indirectly, the base <code>PartDefinition<code> <em><code>Part</code></em> from the Systems Model Library.</p>
  * 
+ * specializesFromLibrary("Parts::Part")
  * <!-- end-model-doc -->
  *
  *

@@ -64,10 +64,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String idText(Element element) {
 		var text = ""
-		if (element?.shortName !== null) {
-			text += ' <' + element.shortName + '>'
+		if (element?.declaredShortName !== null) {
+			text += ' <' + element.declaredShortName + '>'
 		}
-		val name = element?.getEffectiveName
+		val name = element?.getName
 		if (name !== null) {
 			text += ' ' + name
 		}
@@ -154,8 +154,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				text = text + ' filter'
 			}
 		}
-		if (imp.importedNamespace?.name !== null) {
-			text += ' ' + imp.importedNamespace.name
+		if (imp.importedNamespace?.declaredName !== null) {
+			text += ' ' + imp.importedNamespace.declaredName
 		}
 		text += "::*"
 		if (imp.isRecursive) {

@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -41,6 +42,7 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -194,6 +196,54 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	public boolean isSetType() {
   		return false;
 	}
+	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> evaluateFeature(Feature baseFeature) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSemantic() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSyntactic() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element syntaxElement() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -340,6 +390,26 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.METADATA_FEATURE___EVALUATE_FEATURE__FEATURE:
+				return evaluateFeature((Feature)arguments.get(0));
+			case SysMLPackage.METADATA_FEATURE___IS_SEMANTIC:
+				return isSemantic();
+			case SysMLPackage.METADATA_FEATURE___IS_SYNTACTIC:
+				return isSyntactic();
+			case SysMLPackage.METADATA_FEATURE___SYNTAX_ELEMENT:
+				return syntaxElement();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //AnnotatingFeatureImpl

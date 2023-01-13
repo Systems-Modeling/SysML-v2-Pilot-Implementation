@@ -372,7 +372,7 @@ public class SysMLInteractive extends SysMLUtil {
 			} else if (!this.isInputResource(element.eResource())) {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
-				String modelName = element.getName() + " " + new Date();
+				String modelName = element.getDeclaredName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit();
@@ -423,7 +423,7 @@ public class SysMLInteractive extends SysMLUtil {
     	ViewUsage viewSpec = (ViewUsage)element;
     	RenderingUsage rendering = viewSpec.getViewRendering();
     	if (rendering != null) {
-    		String renderingName = rendering.getEffectiveName();
+    		String renderingName = rendering.getName();
     		if ("asTreeDiagram".equals(renderingName)) {
     			renders.add(0, "TREE");
     		} else if ("asInterconnectionDiagram".equals(renderingName)) {

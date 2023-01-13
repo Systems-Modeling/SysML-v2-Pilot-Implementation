@@ -31,9 +31,16 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PartUsage is a usage of a PartDefinition to represent a system or a part of a system. At least one of the types of the PartUsage must be a PartDefinition.</p>
+ * <p>A <code>PartUsage</code> is a usage of a <code>PartDefinition</code> to represent a system or a part of a system. At least one of the <code>itemDefinitions</code> of the <code>PartUsage</code> must be a <code>PartDefinition</code>.</p>
  * 
- * <p>A PartUsage must subset, directly or indirectly, the base PartUsage <code>parts</code> from the Systems model library.</p>
+ * <p>A <code>PartUsage</code> must subset, directly or indirectly, the base <code>PartUsage</code> <em><code>parts</code></em> from the Systems Model Library.</p>
+ * itemDefinition->selectByKind(PartDefinition)
+ * partDefinition->notEmpty()
+ * specializesFromLibrary("Parts::parts")
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ItemDefinition) or
+ *  owningType.oclIsKindOf(ItemUsage)) implies
+ *     specializesFromLibrary("Items::Item::subparts")
  * <!-- end-model-doc -->
  *
  * <p>

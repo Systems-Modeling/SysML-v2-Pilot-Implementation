@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>An AllocationUsage is a usage of an AllocationDefinition asserting the allocation of the <code>source</code> feature to the <code>target</code> feature.</p>
  * 
  * <p>An AllocationUsage must subset, directly or indirectly, the base AllocatopnUsage <code>allocations</code> from the Systems model library.</p>
+ * specializesFromLibrary("Allocations::allocations")
  * <!-- end-model-doc -->
  *
  * <p>

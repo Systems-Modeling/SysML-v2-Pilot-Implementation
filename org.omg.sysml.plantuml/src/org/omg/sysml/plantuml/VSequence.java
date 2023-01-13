@@ -240,7 +240,7 @@ public class VSequence extends VDefault {
     private void addMessage(Pair p1, Pair p2, FlowConnectionUsage fcu) {
         addParticipant(p1.participant);
         addParticipant(p2.participant);
-        messages.add(new Message(makeInheritKey(fcu), p1, p2, fcu, fcu.getEffectiveName()));
+        messages.add(new Message(makeInheritKey(fcu), p1, p2, fcu, fcu.getName()));
     }
 
     @Override
@@ -460,7 +460,7 @@ public class VSequence extends VDefault {
         VSequence vseq = new VSequence(this);
         vseq.traverse(od);
         if (vseq.isEmpty()) return "";
-        String name = od.getEffectiveName();
+        String name = od.getName();
         if (name != null) {
             append("box ");
             quote(name);

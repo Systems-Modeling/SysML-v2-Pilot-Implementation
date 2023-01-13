@@ -10,6 +10,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A MetadataAccessExpression is an Expression whose <code>result</code> is a sequence of instances of Metaclasses representing all the MetadataFeature annotations of the <code>referencedElement</code>. In addition, the sequence includes an instance of the reflective Metaclass corresponding to the MOF class of the <code>referencedElement</code>, with values for all the abstract syntax properties of the Element.</p>
+ * specializesFromLibrary("Performances::metadataAccessEvaluations")
  * <!-- end-model-doc -->
  *
  * <p>

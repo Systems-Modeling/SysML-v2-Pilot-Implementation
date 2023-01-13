@@ -44,59 +44,11 @@ RootNamespace returns SysML::Namespace :
 /* Elements */
 
 fragment Identification returns SysML::Element :
-	  '<' shortName = Name '>' ( name = Name )?
-	| name = Name
-;
-
-Element returns SysML::Element :
-	( ownedRelationship += PrefixMetadataAnnotation )*
-    'element' Identification? ElementBody
-;
-
-fragment ElementBody returns SysML::Element :
-    ';' | '{' OwnedElement* '}'
-;
-
-fragment OwnedElement returns SysML::Element :
-      ownedRelationship += OwnedRelationship
-    | ownedRelationship += OwnedAnnotation
+	  '<' declaredShortName = Name '>' ( declaredName = Name )?
+	| declaredName = Name
 ;
 
 /* Relationships */
-
-Relationship returns SysML::Relationship :
-	( ownedRelationship += PrefixMetadataAnnotation )*
-    'relationship' Identification?
-    RelationshipRelatedElements
-    RelationshipBody
-;
-
-OwnedRelationship returns SysML::Relationship :
-	( ownedRelationship += PrefixMetadataAnnotation )*
-    'relationship' Identification?
-    ( 'to' RelationshipTargetList )?
-    RelationshipBody
-;
-
-fragment RelationshipRelatedElements returns SysML::Relationship :
-      ('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
-;
-
-fragment RelationshipSourceList returns SysML::Relationship :
-    RelationshipSource ( ',' RelationshipSource )*
-;
-
-fragment RelationshipSource returns SysML::Relationship :
-    source += [SysML::Element | QualifiedName]
-;
-
-fragment RelationshipTargetList returns SysML::Relationship :
-    RelationshipTarget ( ',' RelationshipTarget )*
-;
-
-fragment RelationshipTarget returns SysML::Relationship :
-    target += [SysML::Element | QualifiedName]
-;
 
 fragment RelationshipBody returns SysML::Relationship :
     ';' | '{' RelationshipOwnedElement* '}'
@@ -269,9 +221,7 @@ MemberElement returns SysML::Element :
 ;
 
 NonFeatureElement returns SysML::Element :
-	  Element
-	| Relationship
-	| Namespace
+	  Namespace
 	| Package
 	| LibraryPackage 
 	| Multiplicity
@@ -891,7 +841,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;

@@ -113,7 +113,7 @@ public class VMetadata extends Visitor {
         append('\n');
         Metaclass dt = mf.getMetaclass();
         if (dt != null) {
-            String name = dt.getEffectiveName();
+            String name = dt.getName();
             if (name != null) {
                 append("==== ");
                 append("\"\"");

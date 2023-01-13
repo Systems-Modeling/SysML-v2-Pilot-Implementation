@@ -29,11 +29,13 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Namespace</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Namespace is an Element that contains other Elements, known as its <code>members</code>, via Membership Relationships with those Elements. The <code>members</code> of a Namespace may be owned by the Namespace, aliased in the Namespace, or imported into the Namespace via Import Relationships with other Namespaces.</p>
+ * <p>A <code>Namespace</code> is an <code>Element</code> that contains other <code>Element</code>, known as its <code>members</code>, via <code>Membership</code> <code>Relationships</code> with those <code>Elements</code>. The <code>members</code> of a <code>Namespace</code> may be owned by the <code>Namespace</code>, aliased in the <code>Namespace</code>, or imported into the <code>Namespace</code> via <code>Import</code> <code>Relationships</code> with other <code>Namespace</code>.</p>
  * 
- * <p>A Namespace can provide names for its <code>members</code> via the <code>memberNames</code> specified by the Memberships in the Namespace. If a Membership specifies a <code>memberName</code>, then that is the name of the corresponding <code>memberElement</code> relative to the Namespace. Note that the same Element may be the <code>memberElement</code> of multiple Memberships in a Namespace (though it may be owned at most once), each of which may define a separate alias for the Element relative to the Namespace.</p>
+ * <p>A <code>Namespace</code> can provide names for its <code>members</code> via the <code>memberNames</code> and <code>memberShortNames</code> specified by the <code>Memberships</code> in the <code>Namespace</code>. If a <code>Membership</code> specifies a <code>memberName</code> and/or <code>memberShortName</code>, then that those are names of the corresponding <code>memberElement</code> relative to the <code>Namespace</code>. For an <code>OwningMembership</code>, the <code>owningMemberName</code> and <code>owningMemberShortName</code> are given by the <code>Element</code> <code>name</code> and <code>shortName</code>. Note that the same <code>Element</code> may be the <code>memberElement</code> of multiple <code>Memberships</code> in a <code>Namespace</code> (though it may be owned at most once), each of which may define a separate alias for the <code>Element</code> relative to the <code>Namespace</code>.</p>
  * 
- * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
+ * membership->forAll(m1 | 
+ *     membership->forAll(m2 | 
+ *         m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
  * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
  * importedMembership = importedMemberships(Set{})
@@ -45,11 +47,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
  * </ul>
  *
@@ -118,11 +120,10 @@ public interface Namespace extends Element {
 	 * <p>Return the names of the given <code>element</code> as it is known in this Namespace.</p>
 	 * 
 	 * let elementMemberships : Sequence(Membership) = 
-	 *     memberships->select(memberElement = element) 
-	 * in
-	 *     memberships.memberShortName->
-	 *         union(memberships.memberName)->
-	 *         asSet()
+	 *     memberships->select(memberElement = element) in
+	 * memberships.memberShortName->
+	 *     union(memberships.memberName)->
+	 *     asSet()
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated
@@ -135,7 +136,9 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Returns this visibility of <code>mem</code> relative to this Namespace. If <code>mem</code> is an <code>importedMembership</code>, this is the <code>visibility</code> of its Import. Otherwise it is the <code>visibility</code> of the Membership itself.</p>
 	 * if importedMembership->includes(mem) then
-	 *     ownedImport->any(importedMemberships(Set{})->includes(mem)).visibility
+	 *     ownedImport->
+	 *         select(importedMemberships(Set{})->includes(mem)).
+	 *         first().visibility
 	 * else if memberships->includes(mem) then
 	 *     mem.visibility
 	 * else
@@ -160,7 +163,7 @@ public interface Namespace extends Element {
 	 *         select(visibility = VisibilityKind::public)->
 	 *         union(ownedImport->
 	 *             select(visibility = VisibilityKind::public).
-	 *             importedMemberships(excluded->including(this)))
+	 *             importedMemberships(excluded->including(self)))
 	 *     endif in
 	 * if not isRecursive then visibleMemberships
 	 * else visibleMemberships->union(visibleMemberships->
@@ -189,12 +192,92 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Resolve the given qualified name to the named Element (if any), starting with this Namespace as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rule every qualified name will resolve to either a single qualified name, or none.</p>
+	 * <p>Resolve the given qualified name to the named Membership (if any), starting with this Namespace as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rule every qualified name will resolve to either a single Membership, or to none.</p>
+	 * let qualification : String = qualificationOf(qualifiedName) in
+	 * let name : String = unqualifiedNameOf(qualifiedName) in
+	 * if qualification = null then resolveLocal(name)
+	 * else 
+	 *     let namespace : Element = resolve(qualification) in
+	 *     if namespace = null or not namespace.oclIsKindOf(Namespace) then null
+	 *     else namespace.oclAsType(Namespace).resolveVisible(name) endif
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
 	 * @generated
 	 */
-	Element resolve(String qualifiedName);
+	Membership resolve(String qualifiedName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Resolve the given qualified name to the named Membership (if any) in the effective global Namespace that is the outmost naming scope. The qualified name string must conform to the concrete syntax of the KerML textual notation.</p>
+	 * No OCL
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 * @generated
+	 */
+	Membership resolveGlobal(String qualifiedName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Resolve a simple name starting with this Namespace as the local scope, and continuing with containing outer scopes as necessary. However, if this Namespace is a root Namespace, then the resolution done directly in global scope.</p>
+	 * if owningNamespace = null then resolveGlobal(name)
+	 * else
+	 *     let memberships : Membership = membership->
+	 *         select(memberShortName = name or memberName = name) in
+	 *     if memberships->notEmpty() then memberships->first()
+	 *     else owningNamspace.resolveLocal(name)
+	 *     endif
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" nameDataType="org.omg.sysml.lang.types.String" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	Membership resolveLocal(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Resolve a simple name from the visible Memberships of this Namespace.</p>
+	 * let memberships : Sequence(Membership) =
+	 *     visibleMemberships(Set{}, false, false)->
+	 *     select(memberShortName = name or memberName = name) in
+	 * if memberships->isEmpty() then null
+	 * else memberships->first()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" nameDataType="org.omg.sysml.lang.types.String" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	Membership resolveVisible(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return a string with valid KerML syntax representing the qualification part of a given <code>qualifiedName</code>, that is, a qualified name with all the segment names of the given name except the last. If the given <code>qualifiedName</code> has only one segment, then return null.</p>
+	 * No OCL
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 * @generated
+	 */
+	String qualificationOf(String qualifiedName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the simple name that is the last segment name of the given <code>qualifiedName</code>. If this segment name has the form of a KerML unrestricted name, then "unescape" it by removing the surrounding single quotes and replacing all escape sequences with the specified character.</p>
+	 * No OCL
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 * @generated
+	 */
+	String unqualifiedNameOf(String qualifiedName);
 
 	/**
 	 * Returns the value of the '<em><b>Member</b></em>' reference list. The list

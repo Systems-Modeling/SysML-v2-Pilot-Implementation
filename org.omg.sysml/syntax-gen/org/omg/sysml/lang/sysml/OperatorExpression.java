@@ -30,6 +30,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An OperatorExpression is an InvocationExpression whose <code>function</code> is determined by resolving its <code>operator</code> in the context of one of the standard Function packages from the Kernel Model Library.</p>
+ * let libFunctions : Sequence(Element) = 
+ *     Sequence{"BaseFunctions", "DataFunctions", "ControlFunctions"}->
+ *     collect(ns | resolveGlobal(ns + "::'" + operator + "'")) in
+ * libFunctions->includes(function)
+ *     
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -194,6 +195,32 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	public boolean isSetOwnedMember() {
   		return false;
 	}
+	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasBounds(int lower, int upper) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int valueOf(Expression bound) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,6 +296,22 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 				return UPPER_BOUND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.MULTIPLICITY_RANGE___HAS_BOUNDS__INT_INT:
+				return hasBounds((Integer)arguments.get(0), (Integer)arguments.get(1));
+			case SysMLPackage.MULTIPLICITY_RANGE___VALUE_OF__EXPRESSION:
+				return valueOf((Expression)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MultiplicityRangeImpl

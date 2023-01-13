@@ -31,10 +31,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ActionUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is an ActionDefinition, an ActionUsage is a Usage of that ActionDefinition within a system. However, other kinds of kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+ * <p>An <code>ActionUsage</code> is a <code>Usage</code> that is also a <code>Step</code>, and, so, is typed by a <code>Behavior</code>. Nominally, if the type is an <code>ActionDefinition</code>, an <code>ActionUsage</code> is a <code>Usage</code> of that <code>ActionDefinition</code> within a system. However, other kinds of kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behavior</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An ActionUsage must subset, directly or indirectly, the base ActionUsage <em><code>actions</code></em> from the Systems model library. if it is a <code>feature</code> of an ActionDefinition or ActionUsage, then it must subset, directly or indirectly, the ActionUsage <em><code>Action::subactions</code></em>.</p>
- * 
+ * specializesFromLibrary('Actions::actions')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ActionDefinition) or
+ *  owningType.oclIsKindOf(ActionUsage)) implies
+ *     specializesFromLibrary('Actions::Action::subactions')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PartDefinition) or
+ *  owningType.oclIsKindOf(PartUsage)) implies
+ *     specializesFromLibrary('Parts::Part::ownedActions')
  * <!-- end-model-doc -->
  *
  * <p>

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Element is a constituent of a model that is uniquely identified relative to all other Elements. It can have Relationships with other Elements. Some of these Relationships might imply ownership of other Elements, which means that if an Element is deleted from a model, then so are all the Elements that it owns.</p>
+ * <p>An <code>Element</code> is a constituent of a model that is uniquely identified relative to all other <code>Elements</code>. It can have <code>Relationships</code> with other <code>Elements</code>. Some of these <code>Relationships</code> might imply ownership of other <code>Elements</code>, which means that if an <code>Element</code> is deleted from a model, then so are all the <code>Elements</code> that it owns.</p>
  * 
  * ownedElement = ownedRelationship.ownedRelatedElement
  * owner = owningRelationship.owningRelatedElement
@@ -44,10 +44,11 @@ import org.eclipse.emf.ecore.EObject;
  * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
- * effectiveName()
+ * name = effectiveName()
  * ownedRelationship->exists(isImplied) implies isImpliedIncluded
  * isLibraryElement = libraryNamespace() <>null
  * 
+ * shortName = effectiveShortName()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -65,16 +66,17 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasIds <em>Alias Ids</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getDeclaredShortName <em>Declared Short Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getDeclaredName <em>Declared Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#isImpliedIncluded <em>Is Implied Included</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#isLibraryElement <em>Is Library Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Element extends EObject {
@@ -236,7 +238,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The full ownership-qualified name of this Element, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this Element has no <code>owningNamespace</code> or if there is not a complete ownership chain of named Namespaces from a root Namespace to this Element.</p>
+	 * <p>The full ownership-qualified name of this <code>Element</code>, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this <code>Element</code> has no <code>owningNamespace</code> or if there is not a complete ownership chain of named <code>Namespaces</code> from a root <code>Namespace</code> to this <code>Element</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
@@ -310,30 +312,30 @@ public interface Element extends EObject {
 	void setIsLibraryElement(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Effective Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The effective name to be used for this Element during name resolution within its <code>owningNamespace</code>.</p>
+	 * <p>The name to be used for this <code>Element</code> during name resolution within its <code>owningNamespace</code>. This is derived using the <code>effectiveName()</code> operation. By default, it is the same as the <code>declaredName</code>, but this is overridden for certain kinds of <code>Elements</code> to compute a <code>name</code> even when the <code>declaredName</code> is null.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Effective Name</em>' attribute.
-	 * @see #setEffectiveName(String)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	String getEffectiveName();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Effective Name</em>' attribute.
-	 * @see #getEffectiveName()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setEffectiveName(String value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' reference.
@@ -368,7 +370,7 @@ public interface Element extends EObject {
 	void setOwner(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Declared Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -376,26 +378,52 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The primary name of this Element.</p>
+	 * <p>The declared name of this <code>Element</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
+	 * @return the value of the '<em>Declared Name</em>' attribute.
+	 * @see #setDeclaredName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_DeclaredName()
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
-	String getName();
+	String getDeclaredName();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getDeclaredName <em>Declared Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Declared Name</em>' attribute.
+	 * @see #getDeclaredName()
 	 * @generated
 	 */
-	void setName(String value);
+	void setDeclaredName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The short name to be used for this <code>Element</code> during name resolution within its <code>owningNamespace</code>. This is derived using the <code>effectiveShortName()</code> operation. By default, it is the same as the <code>declaredShortName</code>, but this is overridden for certain kinds of <code>Elements</code> to compute a <code>shortName</code> even when the <code>declaredName</code> is null.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Short Name</em>' attribute.
+	 * @see #setShortName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ShortName()
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	String getShortName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Short Name</em>' attribute.
+	 * @see #getShortName()
+	 * @generated
+	 */
+	void setShortName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -513,36 +541,36 @@ public interface Element extends EObject {
 	EList<String> getAliasIds();
 
 	/**
-	 * Returns the value of the '<em><b>Short Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Declared Short Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional alternative name for the Element that is intended to be shorter or in some way more succinct than its primary <code>name</code>. It may act as a modeler-specified identifier for the Element, though it is then the responsibility of the modeler to maintain the uniqueness of this identifier within a model or relative to some other context.</p> 
+	 * <p>An optional alternative name for the <code>Element</code> that is intended to be shorter or in some way more succinct than its primary <code>name</code>. It may act as a modeler-specified identifier for the <code>Element</code>, though it is then the responsibility of the modeler to maintain the uniqueness of this identifier within a model or relative to some other context.</p> 
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Short Name</em>' attribute.
-	 * @see #setShortName(String)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ShortName()
+	 * @return the value of the '<em>Declared Short Name</em>' attribute.
+	 * @see #setDeclaredShortName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_DeclaredShortName()
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
-	String getShortName();
+	String getDeclaredShortName();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getDeclaredShortName <em>Declared Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Short Name</em>' attribute.
-	 * @see #getShortName()
+	 * @param value the new value of the '<em>Declared Short Name</em>' attribute.
+	 * @see #getDeclaredShortName()
 	 * @generated
 	 */
-	void setShortName(String value);
+	void setDeclaredShortName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return <code>effectiveName</code>, if that is not null, otherwise <code>shortName</code>, if that is not null, otherwise null. If the returned name is non-null, it is returned as-is if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
+	 * <p>Return <code>name</code>, if that is not null, otherwise the <code>shortName</code>, if that is not null, otherwise null. If the returned value is non-null, it is returned as-is if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
@@ -553,8 +581,20 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the effective name for this Element. By default this is the same as its <code>name</code>, but, for certain kinds of Elements, this may be overridden if the Element <code>name</code> is empty (e.g., for redefining Features).</p>
-	 * name
+	 * <p>Return an effective <code>shortName</code> for this <code>Element</code>. By default this is the same as its <code>declaredShortName</code>.</p>
+	 * declaredShortName
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	String effectiveShortName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return an effective <code>name</code> for this <code>Element</code>. By default this is the same as its <code>declaredName</code>.</p>
+	 * declaredName
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated

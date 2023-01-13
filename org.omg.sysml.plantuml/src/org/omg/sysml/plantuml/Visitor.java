@@ -383,14 +383,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected static String getFeatureName(Feature f) {
-        return f.getEffectiveName();
+        return f.getName();
     }
 
     protected static String getName(Element e) {
         if (e instanceof Feature) {
             return getFeatureName((Feature) e);
         } else {
-            return e.getName();
+            return e.getDeclaredName();
         }
     }
 
@@ -398,7 +398,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected String getNameAnyway(Element e, boolean creole, boolean isInherited) {
         String ret = null;
-        String shortName = e.getShortName();
+        String shortName = e.getDeclaredShortName();
         if (e.equals(fullyQualifiedElement)) {
             ret = e.getQualifiedName();
         }
@@ -448,13 +448,13 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (sb.length() > 0) {
                 sb.append('.');
             }
-            sb.append(fc.getChainingFeature().getEffectiveName());
+            sb.append(fc.getChainingFeature().getName());
         }
         return sb.toString();
     }
 
     protected static String getFeatureChainName(Feature f) {
-        String name = f.getEffectiveName();
+        String name = f.getName();
         if (name != null) return name;
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
@@ -472,7 +472,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (pkg == null) {
             return name;
         } else {
-            return pkg.getName() + "::" + name;
+            return pkg.getDeclaredName() + "::" + name;
         }
     }
 
@@ -513,7 +513,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (ft == null) continue;
             Type typ = ft.getType();
             if (typ == null) continue;
-            String typeName = typ.getEffectiveName();
+            String typeName = typ.getName();
             if (typeName == null) continue;
             if (added) {
                 sb.append(", ");

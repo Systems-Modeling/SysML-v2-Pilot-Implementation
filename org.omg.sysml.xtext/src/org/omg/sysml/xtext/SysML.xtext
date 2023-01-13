@@ -42,8 +42,8 @@ RootNamespace returns SysML::Namespace :
 /* BASIC ELEMENTS */
 
 fragment Identification returns SysML::Element :
-	  '<' shortName = Name '>' ( name = Name )?
-	| name = Name
+	  '<' declaredShortName = Name '>' ( declaredName = Name )?
+	| declaredName = Name
 ;
 
 /* ANNOTATIONS */
@@ -981,7 +981,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
@@ -1280,7 +1280,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 ;
 
 InterfaceEnd returns SysML::PortUsage :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;

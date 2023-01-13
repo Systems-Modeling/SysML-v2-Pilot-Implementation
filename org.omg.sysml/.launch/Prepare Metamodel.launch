@@ -12,7 +12,7 @@
     <booleanAttribute key="org.eclipse.m2m.qvt.oml.interpreter.isInrementalUpdate" value="false"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.module" value="platform:/resource/org.omg.sysml/transforms/PrepareMetamodel.qvto"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel1" value="platform:/resource/org.omg.sysml/model/Export/Track_4_-_Metamodel_Development.uml"/>
-    <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel2" value="platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml"/>
+    <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel2" value="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel3" value="platform:/resource/org.omg.sysml/model/Export/SysML.uml"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetType1" value="NEW_MODEL"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetType2" value="NEW_MODEL"/>

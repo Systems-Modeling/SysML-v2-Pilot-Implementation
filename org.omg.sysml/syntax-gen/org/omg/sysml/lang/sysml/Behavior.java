@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Behavior coordinates occurrences of other Behaviors, as well as&nbsp;changes in objects. Behaviors can be decomposed into Steps and be characterized by <code>parameters</code>.</p>
  * 
- * allSupertypes()->includes(resolve("Performances::Performance"))
+ * specializesFromLibrary("Performances::Performance")
  * <!-- end-model-doc -->
  *
  * <p>

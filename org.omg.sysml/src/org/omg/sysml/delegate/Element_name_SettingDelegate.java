@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  * Copyright (c) 2022 Siemens AG
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
 
-public class Element_effectiveName_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class Element_name_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public Element_effectiveName_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_name_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 

@@ -118,17 +118,17 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getIdentificationAccess().getShortNameNameParserRuleCall_0_1_0());
+						newCompositeNode(grammarAccess.getIdentificationAccess().getDeclaredShortNameNameParserRuleCall_0_1_0());
 					}
-					lv_shortName_1_0=ruleName
+					lv_declaredShortName_1_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getIdentificationRule());
 						}
 						set(
 							$current,
-							"shortName",
-							lv_shortName_1_0,
+							"declaredShortName",
+							lv_declaredShortName_1_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -141,17 +141,17 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getIdentificationAccess().getNameNameParserRuleCall_0_3_0());
+						newCompositeNode(grammarAccess.getIdentificationAccess().getDeclaredNameNameParserRuleCall_0_3_0());
 					}
-					lv_name_3_0=ruleName
+					lv_declaredName_3_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getIdentificationRule());
 						}
 						set(
 							$current,
-							"name",
-							lv_name_3_0,
+							"declaredName",
+							lv_declaredName_3_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -162,17 +162,17 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIdentificationAccess().getNameNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getIdentificationAccess().getDeclaredNameNameParserRuleCall_1_0());
 				}
-				lv_name_4_0=ruleName
+				lv_declaredName_4_0=ruleName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIdentificationRule());
 					}
 					set(
 						$current,
-						"name",
-						lv_name_4_0,
+						"declaredName",
+						lv_declaredName_4_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 					afterParserOrEnumRuleCall();
 				}
@@ -8898,17 +8898,17 @@ ruleConnectorEnd returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConnectorEndAccess().getNameNameParserRuleCall_0_0_0());
+						newCompositeNode(grammarAccess.getConnectorEndAccess().getDeclaredNameNameParserRuleCall_0_0_0());
 					}
-					lv_name_0_0=ruleName
+					lv_declaredName_0_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
 						}
 						set(
 							$current,
-							"name",
-							lv_name_0_0,
+							"declaredName",
+							lv_declaredName_0_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -12082,17 +12082,17 @@ ruleInterfaceEnd returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInterfaceEndAccess().getNameNameParserRuleCall_0_0_0());
+						newCompositeNode(grammarAccess.getInterfaceEndAccess().getDeclaredNameNameParserRuleCall_0_0_0());
 					}
-					lv_name_0_0=ruleName
+					lv_declaredName_0_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInterfaceEndRule());
 						}
 						set(
 							$current,
-							"name",
-							lv_name_0_0,
+							"declaredName",
+							lv_declaredName_0_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -27066,17 +27066,17 @@ ruleBodyParameter returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0());
+				newCompositeNode(grammarAccess.getBodyParameterAccess().getDeclaredNameNameParserRuleCall_0());
 			}
-			lv_name_0_0=ruleName
+			lv_declaredName_0_0=ruleName
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getBodyParameterRule());
 				}
 				set(
 					$current,
-					"name",
-					lv_name_0_0,
+					"declaredName",
+					lv_declaredName_0_0,
 					"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 				afterParserOrEnumRuleCall();
 			}

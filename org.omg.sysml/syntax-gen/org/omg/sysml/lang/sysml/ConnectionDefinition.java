@@ -34,6 +34,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>A ConnectionDefinition is a PartDefinition that is also an AssociationStructure, with two or more end features. The <code>associationEnds</code> of a ConnectionDefinition must be Usages.</p>
  * 
  * <p>A ConnectionDefinition must subclass, directly or indirectly, the base ConnectionDefinition <em><code>Connection</code></em> from the Systems model library.</p>
+ * specializesFromLibrary("Connections::Connection")
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Connections::BinaryConnections")
  * <!-- end-model-doc -->
  *
  * <p>

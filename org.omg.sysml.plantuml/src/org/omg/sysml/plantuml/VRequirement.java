@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class VRequirement extends VCompartment {
     private boolean isAnonymousConstraint(RequirementConstraintMembership rcm) {
         ConstraintUsage c = rcm.getOwnedConstraint();
-        return c.getName() == null;
+        return c.getDeclaredName() == null;
     }
 
     @Override

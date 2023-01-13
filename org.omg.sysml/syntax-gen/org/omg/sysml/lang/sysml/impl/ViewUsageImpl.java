@@ -250,17 +250,21 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	public boolean isSetPartDefinition() {
   		return false;
 	}
-
+	
+	// Operations
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean includeAsExposed(Object element) {
+	public boolean includeAsExposed(Element element) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
+
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -376,8 +380,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case SysMLPackage.VIEW_USAGE___INCLUDE_AS_EXPOSED__OBJECT:
-				return includeAsExposed(arguments.get(0));
+			case SysMLPackage.VIEW_USAGE___INCLUDE_AS_EXPOSED__ELEMENT:
+				return includeAsExposed((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -44,9 +44,17 @@ import org.eclipse.emf.common.util.EList;
  * ownedSubsetting = ownedGeneralization->selectByKind(Subsetting)
  * isComposite = owningFeatureMembership <> null and owningFeatureMembership.isComposite
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
+ * type =
+ *     if chainingFeature->notEmpty() then
+ *         chainingFeature->last().type
+ *     else
+ *         ownedTyping.type->
+ *             union(ownedSubsetting.subsettedFeature.type)->
+ *             asOrderedSet()
+ *     endif
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * allSupertypes()->includes(resolve("Base::things"))
+ * specializesFromLibrary("Base::things")
  * chainingFeatures->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingFeature = ownedFeatureChaining.chainingFeature
@@ -54,25 +62,110 @@ import org.eclipse.emf.common.util.EList;
  * inverseFeature = invertingFeatureInverting.featureInverse
  * invertedFeature = invertedFeatureInverting.featureInverted
  * ownedTyping.type->exists(selectByKind(DataType)) implies
- *     allSupertypes()->includes(resolve("Base::dataValues"))
+ *     specializesFromLibary("Base::dataValues")
  * ownedTyping.type->exists(selectByKind(Class)) implies
- *     allSupertypes()->includes(resolve("Occurrences::occurrences"))
+ *     specializesFromLibrary("Occurrences::occurrences")
+ * isComposite and
+ * ownedTyping.type->includes(oclIsKindOf(Class)) and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Class) or
+ *  owningType.oclIsKindOf(Feature) and
+ *     owningType.oclAsType(Feature).type->
+ *         exists(oclIsKindOf(Class))) implies
+ *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
+ * isComposite and
+ * ownedTyping.type->includes(oclIsKindOf(Structure)) and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Structure) or
+ *  owningType.type->includes(oclIsKindOf(Structure))) implies
+ *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
+ * isEnd and owningType <> null and
+ * owningType.oclIsKindOf(Association) implies
+ *     specializesFromLibrary("Links::Link::participants")
+ * isEnd and owningType <> null implies
+ *     let i : Integer = 
+ *         owningType.ownedFeature->select(isEnd) in
+ *     owningType.ownedSpecialization.general->
+ *         forAll(supertype |
+ *             let ownedEndFeatures : Sequence(Feature) = 
+ *                 supertype.ownedFeature->select(isEnd) in
+ *             ownedEndFeatures->size() >= i implies
+ *                 redefines(ownedEndFeatures->at(i))
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Behavior) or
+ *  owningType.oclIsKindOf(Step)) implies
+ *     let i : Integer = 
+ *         owningType.ownedFeature->select(direction <> null) in
+ *     owningType.ownedSpecialization.general->
+ *         forAll(supertype |
+ *             let ownedParameters : Sequence(Feature) = 
+ *                 supertype.ownedFeature->select(direction <> null) in
+ *             ownedParameters->size() >= i implies
+ *                 redefines(ownedParameters->at(i))
+ * owningType <> null and
+ * (owningType.oclIsKindOf(LiteralExpression) or
+ *  owningType.oclIsKindOf(FeatureReferenceExpression)) implies
+ *     if owningType.oclIsKindOf(LiteralString) then
+ *         specializesFromLibrary("ScalarValues::String")
+ *     else if owningType.oclIsKindOf(LiteralBoolean) then
+ *         specializesFromLibrary("ScalarValues::Boolean")
+ *     else if owningType.oclIsKindOf(LiteralInteger) then
+ *         specializesFromLibrary("ScalarValues::Rational")
+ *     else if owningType.oclIsKindOf(LiteralBoolean) then
+ *         specializesFromLibrary("ScalarValues::Rational")
+ *     else if owningType.oclIsKindOf(LiteralBoolean) then
+ *         specializesFromLibrary("ScalarValues::Real")
+ *     else specializes(
+ *         owningType.oclAsType(FeatureReferenceExpression).referent)
+ *     endif endif endif endif endif
+ * 
+ * owningType <> null and
+ * owningType.oclIsKindOf(ItemFlowEnd) and
+ * owningType.ownedFeature->at(1) = self implies
+ *     let flowType : Type = owningType.owningType in
+ *     flowType <> null implies
+ *         let i : Integer = 
+ *             flowType.ownedFeature.indexOf(owningType) in
+ *         (i = 1 implies 
+ *             redefinesFromLibrary("Transfers::Transfer::source::sourceOutput")) and
+ *         (i = 2 implies
+ *             redefinesFromLibrary("Transfers::Transfer::source::targetInput"))
+ *                  
+ * ownedMembership->
+ *     selectByKind(FeatureValue)->
+ *     forAll(fv | specializes(fv.value.result))
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Function) and
+ *     self = owningType.oclAsType(Function).result or
+ *  owningType.oclIsKindOf(Expression) and
+ *     self = owningType.oclAsType(Expression).result) implies
+ *     owningType.ownedSpecialization.general->
+ *         select(oclIsKindOf(Function) or oclIsKindOf(Expression))->
+ *         forAll(supertype |
+ *             redefines(
+ *                 if superType.oclIsKindOf(Function) then
+ *                     superType.oclAsType(Function).result
+ *                 else
+ *                     superType.oclAsType(Expression).result
+ *                 endif)
+ * ownedTyping.type->exists(selectByKind(Structure)) implies
+ *     specializesFromLibary("Objects::objects")
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -516,7 +609,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the Feature is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the Feature cannot exist after the instance of the <code>featuringType</code> no longer does.</p>.
+	 * <p>Whether the Feature is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the Feature cannot exist after the instance of the <code>featuringType</code> no longer does.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
@@ -759,17 +852,56 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>By default, the naming feature of a Feature is given by its first redefined Feature, if any.</p>
-	 * let redefinitions : Sequence(Redefinition) = ownedRedefinition in
-	 * if redefinitions->isEmpty() then
+	 * <p>By default, the naming <code>Feature</code> of a <code>Feature</code> is given by its first <code>redefinedFeature</code> of its first <code>ownedRedefinition</code>, if any.</p>
+	 * if ownedRedefinition->isEmpty() then
 	 *     null
 	 * else
-	 *     redefinitions->at(1).redefinedFeature
+	 *     ownedRedefinition->at(1).redefinedFeature
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 * @generated
 	 */
 	Feature namingFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Feature</code> <em>directly</em> redefines the given <code>redefinedFeature</code>.</p>
+	 * ownedRedefinition.redefinedFeature->includes(redefinedFeature)
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" redefinedFeatureRequired="true" redefinedFeatureOrdered="false"
+	 * @generated
+	 */
+	boolean redefines(Feature redefinedFeature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Feature</code> <em>directly</em> redefines the named library <code>Feature</code>. <code>libraryFeatureName</code> must conform to the syntax of a KerML qualified name and must resolve to a <code>Feature</code> in global scope.</p>
+	 * redefines(resolveGlobal(libraryFeatureName).oclAsType(Feature))
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" libraryFeatureNameDataType="org.omg.sysml.lang.types.String" libraryFeatureNameRequired="true" libraryFeatureNameOrdered="false"
+	 * @generated
+	 */
+	boolean redefinesFromLibrary(String libraryFeatureName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Feature</code> directly or indirectly specializes a <code>Feature</code> whose last two <code>chainingFeatures</code> are the given <code>Features</code> <code>first</code> and <code>second</code>.</p>
+	 * allSuperTypes()->selectAsKind(Feature)->
+	 *     exists(f | let n: Integer = f.chainingFeature->size() in
+	 *         n >= 2 and
+	 *         f.chainingFeature->at(n-1) = first and
+	 *         f.chainingFeature->at(n) = second)
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" firstRequired="true" firstOrdered="false" secondRequired="true" secondOrdered="false"
+	 * @generated
+	 */
+	boolean subsetsChain(Feature first, Feature second);
 
 } // Feature

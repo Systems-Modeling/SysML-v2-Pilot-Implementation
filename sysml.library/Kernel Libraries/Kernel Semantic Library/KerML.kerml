@@ -1,4 +1,4 @@
-standard library package KerML { 
+standard library package KerML {
 	doc 
 	/*
 	 * This package contains a reflective KerML model of the KerML abstract syntax.
@@ -39,7 +39,7 @@ standard library package KerML {
 			feature declaredShortName : String[0..1];
 			feature declaredName : String[0..1];
 			feature isImpliedIncluded : Boolean[1..1];
-			derived feature shortName : [0..1];
+			derived feature shortName : String[0..1];
 			derived feature name : String[0..1];
 			derived feature qualifiedName : String[0..1];
 			derived feature isLibraryElement : Boolean[1..1];

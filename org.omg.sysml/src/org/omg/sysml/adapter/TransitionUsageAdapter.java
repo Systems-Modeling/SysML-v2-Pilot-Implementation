@@ -60,7 +60,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		TransitionUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() && 
-			   (target instanceof ActionDefinition || owningType instanceof ActionUsage);
+			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
 	}	
 	
 	protected boolean isStateTransition() {

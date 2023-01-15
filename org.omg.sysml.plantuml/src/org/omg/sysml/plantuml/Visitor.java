@@ -468,12 +468,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private static String getNameWithNamespace(Feature f) {
         String name = getFeatureName(f);
         if (name == null) return null;
+
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
-        if (pkg == null) {
-            return name;
-        } else {
-            return pkg.getDeclaredName() + "::" + name;
-        }
+        if (pkg == null) return name;
+        String pkgName = pkg.getDeclaredName();
+        if (pkgName == null) return name;
+        return pkgName + "::" + name;
     }
 
 

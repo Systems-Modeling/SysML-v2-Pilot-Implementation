@@ -34,9 +34,7 @@ package org.omg.sysml.lang.sysml;
  * 	<li>Can be distinguished when they are related to other things in different ways, even when they are intended to be about the same thing.</li>
  * </ul>
  * 
- * <p>DataTypes serve to subdivide Classifiers into two kinds of objects: those that have some definition beyond their property values and those that are defined entirely by their values. DataTypes are the second kind. If two objects classified by DataType have identical property values, they are understood to be in fact the same object. DataTypes are intended to represent data or mathematical objects which is where the equivalence based on matched values is appropriate.</p>
- * 
- * allSupertypes()->includes(resolve("Base::DataValue"))
+ * specializesFromLibrary("Base::DataValue")
  * ownedGeneralization.general->
  *     forAll(not oclIsKindOf(Class))
  * <!-- end-model-doc -->

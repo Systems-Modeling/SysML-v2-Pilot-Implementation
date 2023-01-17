@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -47,8 +48,8 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -96,7 +97,7 @@ public class VDefault extends VTraverser {
         if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
                Use getName() instead. */
-            String name = f.getName();
+            String name = f.getDeclaredName();
             if (name != null) {
                 sb.append(name);
             }
@@ -106,25 +107,36 @@ public class VDefault extends VTraverser {
         return sb.toString();        
     }
 
-    protected void addFeatureValueBindings(Feature f) {
-        for (Membership m: f.getOwnedMembership()) {
-            if (m instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) m;
+    protected void addFeatureValueBindings(Type typ) {
+        // To properly process inheritings, use VTraverser.
+        VTraverser vt = new VTraverser(this) {
+            @Override
+            public String caseFeatureValue(FeatureValue fv) {
                 Expression v = fv.getValue();
                 Element tgt = resolveReference(v);
                 if (tgt != null) {
-                    addPRelation(f, tgt, fv, "=");
+                    addPRelation(typ, tgt, fv, "=");
                 }
+                return "";
             }
-        }
+            @Override
+            public String caseNamespace(Namespace ns) {
+                return "";
+            }
+        };
+        vt.traverse(typ);
     }
 
     protected void addSpecializations(int typId, Type typ) {
         if (typId < 0) return;
+        InheritKey ik = null;
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            PRelation pr = new PRelation(typId, gt, s, null);
+            if (ik != null && typ instanceof Feature) {
+            	ik = makeInheritKey((Feature) typ);
+            }
+            PRelation pr = new PRelation(ik, typId, gt, s, null);
             addPRelation(pr);
         }
     }
@@ -191,7 +203,13 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c, c.getName());
+        addConnector(c, c.getDeclaredName());
+        return "";
+    }
+
+    @Override
+    public String caseBindingConnectorAsUsage(BindingConnectorAsUsage bcau) {
+        addConnector(bcau, "=");
         return "";
     }
 

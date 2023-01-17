@@ -611,16 +611,16 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     BodyParameter returns Feature
 	 *
 	 * Constraint:
-	 *     name=Name
+	 *     declaredName=Name
 	 * </pre>
 	 */
 	protected void sequence_BodyParameter(ISerializationContext context, Feature semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT__NAME));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT__DECLARED_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT__DECLARED_NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getBodyParameterAccess().getDeclaredNameNameParserRuleCall_0(), semanticObject.getDeclaredName());
 		feeder.finish();
 	}
 	

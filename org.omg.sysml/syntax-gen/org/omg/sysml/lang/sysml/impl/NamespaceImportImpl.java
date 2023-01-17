@@ -136,6 +136,29 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 		return importedNamespace != null;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Namespace importedNamespace = getImportedNamespace();
+		if (importedNamespace != null) {
+			target.add(importedNamespace);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
 	// Operation Overrides
 	
 	@Override
@@ -214,29 +237,6 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 				return isSetImportedNamespace();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Namespace importedNamespace = getImportedNamespace();
-		if (importedNamespace != null) {
-			target.add(importedNamespace);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
 	}
 
 } //NamespaceImportImpl

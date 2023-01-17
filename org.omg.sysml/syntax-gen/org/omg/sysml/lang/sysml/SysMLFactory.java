@@ -303,15 +303,6 @@ public interface SysMLFactory extends EFactory {
 	Membership createMembership();
 
 	/**
-	 * Returns a new object of class '<em>Relationship</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relationship</em>'.
-	 * @generated
-	 */
-	Relationship createRelationship();
-
-	/**
 	 * Returns a new object of class '<em>Documentation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -319,15 +310,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Documentation createDocumentation();
-
-	/**
-	 * Returns a new object of class '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
-	 * @generated
-	 */
-	Element createElement();
 
 	/**
 	 * Returns a new object of class '<em>Owning Membership</em>'.

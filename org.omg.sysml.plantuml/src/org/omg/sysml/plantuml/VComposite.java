@@ -73,6 +73,7 @@ public class VComposite extends VMixed {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
         int id = addPUMLLine(f, "rec usage ", featureText);
+        addFeatureValueBindings(f);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
@@ -132,6 +133,7 @@ public class VComposite extends VMixed {
 
     @Override
     public String casePortUsage(PortUsage pu) {
+        addFeatureValueBindings(pu);
         String name = extractTitleName(pu);
         if (name == null) return "";
 

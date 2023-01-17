@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -80,7 +79,7 @@ public class VTree extends VStructure {
         for (FeatureTyping ft: ru.getOwnedTyping()) {
             Type typ = ft.getType();
             if (typ != null) {
-                addRel(typ, ru, ru.getName());
+                addRel(typ, ru, ru.getDeclaredName());
             }
         }
         return "";
@@ -109,7 +108,7 @@ public class VTree extends VStructure {
     public String caseVariantMembership(VariantMembership vm) {
         Usage u = vm.getOwnedVariantUsage();
 
-        String name = vm.getName();
+        String name = vm.getDeclaredName();
         if (name == null) {
         	name = extractTitleName(u);
         }
@@ -141,7 +140,7 @@ public class VTree extends VStructure {
     protected boolean addSubjectMembership(SubjectMembership sm, boolean force) {
         Usage u = sm.getOwnedSubjectParameter();
         Relationship rel = findBindingLikeRel(u);
-        if (force || (u.getName() != null && rel != null)) {
+        if (force || (u.getDeclaredName() != null && rel != null)) {
             addRel(u, sm, null);
             String name = getNameAnyway(u);
             int id = addPUMLLine(u, "comp usage ", name, "<<subject>>");

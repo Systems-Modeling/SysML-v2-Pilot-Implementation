@@ -383,14 +383,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected static String getFeatureName(Feature f) {
-        return f.getEffectiveName();
+        return f.getName();
     }
 
     protected static String getName(Element e) {
         if (e instanceof Feature) {
             return getFeatureName((Feature) e);
         } else {
-            return e.getName();
+            return e.getDeclaredName();
         }
     }
 
@@ -442,34 +442,45 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return getNameAnyway(e, true, isInherited());
     }
 
+    private static String getFeatureChainName(List<FeatureChaining> fcs) {
+        StringBuilder sb = new StringBuilder();
+        for (FeatureChaining fc : fcs) {
+            if (sb.length() > 0) {
+                sb.append('.');
+            }
+            sb.append(fc.getChainingFeature().getName());
+        }
+        return sb.toString();
+    }
+
     protected static String getFeatureChainName(Feature f) {
-        String name = f.getEffectiveName();
+        String name = f.getName();
         if (name != null) return name;
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) continue;
-            StringBuilder sb = new StringBuilder();
-            for (FeatureChaining fc : fcs) {
-                if (sb.length() > 0) {
-                    sb.append('.');
-                }
-                sb.append(fc.getChainingFeature().getEffectiveName());
-            }
-            return sb.toString();
+            return getFeatureChainName(fcs);
         }
         return null;
     }
 
-    protected static String getNameWithNamespace(Feature f) {
+    private static String getNameWithNamespace(Feature f) {
         String name = getFeatureName(f);
         if (name == null) return null;
+
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
-        if (pkg == null) {
-            return name;
-        } else {
-            return pkg.getName() + "::" + name;
-        }
+        if (pkg == null) return name;
+        String pkgName = pkg.getDeclaredName();
+        if (pkgName == null) return name;
+        return pkgName + "::" + name;
+    }
+
+
+    protected static String getRefName(Feature f) {
+        List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+        if (fcs.isEmpty()) return getNameWithNamespace(f);
+        return getFeatureChainName(fcs);
     }
 
     protected static boolean appendSubsettingFeature(StringBuilder sb, String prefix, Feature f) {
@@ -481,7 +492,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (s instanceof Redefinition) continue;
             Feature sf = s.getSubsettedFeature();
             if (sf == null) continue;
-            String name = getNameWithNamespace(sf);
+            String name = getRefName(sf);
             if (name == null) continue;
             if (added) {
                 sb.append(", ");
@@ -502,7 +513,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (ft == null) continue;
             Type typ = ft.getType();
             if (typ == null) continue;
-            String typeName = typ.getEffectiveName();
+            String typeName = typ.getName();
             if (typeName == null) continue;
             if (added) {
                 sb.append(", ");

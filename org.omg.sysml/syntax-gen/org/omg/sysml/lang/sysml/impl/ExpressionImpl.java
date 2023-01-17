@@ -278,7 +278,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean checkCondition(Element target) {
 		return ExpressionUtil.checkConditionOn(target, this);

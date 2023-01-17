@@ -136,23 +136,27 @@ public class ModelLevelExpressionEvaluator {
 					if (!(feature instanceof Expression)) {
 						// Evaluate the feature as a reflective metaclass attribute.
 						Element element = ((AnnotatingElement)t).getAnnotatedElement().get(0);
-						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getName());
+						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getDeclaredName());
 						if (eFeature != null) {
 							return EvaluationUtil.results(element.eGet(eFeature, true));
 						}
 					}
 				} else {
 					// Evaluate the feature as a regular binding.
-					Expression valueExpression = EvaluationUtil.getValueExpressionFor(feature, t);
-					if (valueExpression != null) {
-						EList<Element> results = evaluate(valueExpression, type);
-						if (results != null) {
-							return results;
+					Feature typeFeature = EvaluationUtil.getTypeFeatureFor(feature, t);
+					if (typeFeature != null) {
+						Expression valueExpression = FeatureUtil.getValueExpressionFor(typeFeature);
+						if (valueExpression != null) {
+							EList<Element> results = evaluate(valueExpression, type);
+							if (results != null) {
+								return results;
+							}
 						}
+						return EvaluationUtil.singletonList(typeFeature);
 					}
 				}
 			}
-			Expression valueExpression = EvaluationUtil.getValueExpressionFor(feature, null);			
+			Expression valueExpression = FeatureUtil.getValueExpressionFor(feature);			
 			if (valueExpression != null) {
 				EList<Element> results = evaluate(valueExpression, type);
 				if (results != null) {

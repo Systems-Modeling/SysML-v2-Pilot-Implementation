@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2023 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -42,8 +42,22 @@ RootNamespace returns SysML::Namespace :
 /* BASIC ELEMENTS */
 
 fragment Identification returns SysML::Element :
-	  '<' shortName = Name '>' ( name = Name )?
-	| name = Name
+	  '<' declaredShortName = Name '>' ( declaredName = Name )?
+	| declaredName = Name
+;
+
+fragment RelationshipBody returns SysML::Relationship :
+	';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
+;
+
+/* DEPENDENCIES */
+
+Dependency returns SysML::Dependency :
+	( ownedRelationship += PrefixMetadataAnnotation )*
+	'dependency' ( Identification? 'from' )?
+    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
+    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )*
+    RelationshipBody
 ;
 
 /* ANNOTATIONS */
@@ -65,10 +79,6 @@ AnnotatingElement returns SysML::AnnotatingElement :
 	| Documentation
 	| TextualRepresentation
 	| MetadataUsage
-;
-
-fragment RelationshipBody returns SysML::Relationship :
-	';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
 ;
 
 /* Comments */
@@ -447,16 +457,6 @@ MultiplicityRange returns SysML::MultiplicityRange :
 
 MultiplicityExpressionMember returns SysML::OwningMembership :
 	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) 
-;
-
-/* DEPENDENCIES */
-
-Dependency returns SysML::Dependency :
-	( ownedRelationship += PrefixMetadataAnnotation )*
-	'dependency' ( Identification? 'from' )?
-    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
-    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )*
-    RelationshipBody
 ;
 
 /* DEFINITION AND USAGE */
@@ -981,7 +981,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
@@ -1280,7 +1280,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 ;
 
 InterfaceEnd returns SysML::PortUsage :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;

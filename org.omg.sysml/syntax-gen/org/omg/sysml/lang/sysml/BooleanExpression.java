@@ -33,6 +33,7 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>A BooleanExpression must subset, directly or indirectly, the Expression <em>booleanEvaluations</em> from the Base model library, which is typed by the base Predicate <em>BooleanEvaluation</em>. As a result, a BooleanExpression must always be typed by BooleanEvaluation or a subclass of BooleanEvaluation.</p>
  * 
+ * specializesFromLibrary("Performances::booleanEvaluations")
  * <!-- end-model-doc -->
  *
  * <p>

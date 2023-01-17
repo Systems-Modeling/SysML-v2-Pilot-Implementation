@@ -29,10 +29,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemDefinition is an OccurrenceDefinition of the Structure of things that may be acted on by a system or parts of a system, which do not necessarily perform actions themselves. This includes items that can be exchanged between parts of a system, such as water or electrical signals.</p>
+ * <p>An <code>ItemDefinition</code> is an <code>OccurrenceDefinition</code> of the <code>Structure</code> of things that may themselves be systems or parts of systems, but may also be things that are acted on by a system or parts of a system, but which do not necessarily perform actions themselves. This includes items that can be exchanged between parts of a system, such as water or electrical signals.</p>
  * 
- * <p>An ItemDefinition must subclass, directly or indirectly, the base ItemDefinition Item from the Systems model library.</p>
+ * <p>An <code>ItemDefinition</code> must specialize, directly or indirectly, the base <code>ItemDefinition</code> <em><code>Items::Item</code></em> from the Systems Model Library.</p>
  * 
+ * specializesFromLibrary("Items::Item")
  * <!-- end-model-doc -->
  *
  *

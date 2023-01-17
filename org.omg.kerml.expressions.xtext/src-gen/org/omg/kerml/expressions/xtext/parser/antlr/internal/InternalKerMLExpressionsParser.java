@@ -9459,31 +9459,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
 
 
     // $ANTLR start "ruleBodyParameter"
-    // InternalKerMLExpressions.g:3562:1: ruleBodyParameter returns [EObject current=null] : ( (lv_name_0_0= ruleName ) ) ;
+    // InternalKerMLExpressions.g:3562:1: ruleBodyParameter returns [EObject current=null] : ( (lv_declaredName_0_0= ruleName ) ) ;
     public final EObject ruleBodyParameter() throws RecognitionException {
         EObject current = null;
 
-        AntlrDatatypeRuleToken lv_name_0_0 = null;
+        AntlrDatatypeRuleToken lv_declaredName_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerMLExpressions.g:3568:2: ( ( (lv_name_0_0= ruleName ) ) )
-            // InternalKerMLExpressions.g:3569:2: ( (lv_name_0_0= ruleName ) )
+            // InternalKerMLExpressions.g:3568:2: ( ( (lv_declaredName_0_0= ruleName ) ) )
+            // InternalKerMLExpressions.g:3569:2: ( (lv_declaredName_0_0= ruleName ) )
             {
-            // InternalKerMLExpressions.g:3569:2: ( (lv_name_0_0= ruleName ) )
-            // InternalKerMLExpressions.g:3570:3: (lv_name_0_0= ruleName )
+            // InternalKerMLExpressions.g:3569:2: ( (lv_declaredName_0_0= ruleName ) )
+            // InternalKerMLExpressions.g:3570:3: (lv_declaredName_0_0= ruleName )
             {
-            // InternalKerMLExpressions.g:3570:3: (lv_name_0_0= ruleName )
-            // InternalKerMLExpressions.g:3571:4: lv_name_0_0= ruleName
+            // InternalKerMLExpressions.g:3570:3: (lv_declaredName_0_0= ruleName )
+            // InternalKerMLExpressions.g:3571:4: lv_declaredName_0_0= ruleName
             {
 
-            				newCompositeNode(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0());
+            				newCompositeNode(grammarAccess.getBodyParameterAccess().getDeclaredNameNameParserRuleCall_0());
             			
             pushFollow(FOLLOW_2);
-            lv_name_0_0=ruleName();
+            lv_declaredName_0_0=ruleName();
 
             state._fsp--;
 
@@ -9493,8 +9493,8 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
             				}
             				set(
             					current,
-            					"name",
-            					lv_name_0_0,
+            					"declaredName",
+            					lv_declaredName_0_0,
             					"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
             				afterParserOrEnumRuleCall();
             			

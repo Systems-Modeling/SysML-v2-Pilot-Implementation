@@ -91,7 +91,7 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
             return "values";
         }
         if (om instanceof SubjectMembership) {
-            return "subjects";
+            return "subject";
         }
         if (om instanceof ActorMembership) {
             return "actors";
@@ -167,8 +167,8 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
     */
 
     private static int featureNameCompare(Feature f1, Feature f2) {
-        String name1 = f1.getName();
-        String name2 = f2.getName();
+        String name1 = f1.getDeclaredName();
+        String name2 = f2.getDeclaredName();
         if (name1 == null) {
             if (name2 == null) return 0;
             return -1;

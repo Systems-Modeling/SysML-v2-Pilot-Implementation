@@ -67,7 +67,7 @@ public class VCase extends VTree {
     }
 
     private String addCase(Type typ) {
-        String name = getNameAnyway(typ);
+        String name = extractTitleName(typ);
         int id = addRecLine(name, typ, true);
         addSpecializations(id, typ);
 
@@ -80,7 +80,7 @@ public class VCase extends VTree {
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
-        String name = ru.getEffectiveName();
+        String name = ru.getName();
         if ("obj".equals(name)) name = null;
         VRequirement vr = new VRequirement(this);
         List<VTree> subtrees = processCompartment(vr, ru);
@@ -99,7 +99,7 @@ public class VCase extends VTree {
 
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
-        addSubjectMembership(sm, true);
+        addSubjectMembership(sm, false);
         return "";
     }
 

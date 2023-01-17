@@ -66,6 +66,7 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
@@ -325,8 +326,15 @@ public class VCompartment extends VStructure {
         return "";
     }
 
+    private boolean isEmptySubject(SubjectMembership sm) {
+        Usage u = sm.getOwnedSubjectParameter();
+        if (!"subj".equals(u.getName())) return false;
+        return u.getOwnedRelationship().isEmpty();
+    }
+
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
+        if (isEmptySubject(sm)) return "";
         recOrAddOwningMembership(sm);
         return "";
     }
@@ -488,9 +496,6 @@ public class VCompartment extends VStructure {
                 append(' ');
             }
             append(ce.getParameterPrefix());
-            if (ce.isInherited) {
-                append('^');
-            }
             if (ce.prefix != null) {
                 append(ce.prefix);
             }
@@ -535,9 +540,9 @@ public class VCompartment extends VStructure {
     	if (documentations == null) return;
 
         boolean flag = false;
-        append("##//documentations//##\n");
+        append("##//doc//##\n");
         for (Documentation doc: documentations) {
-            String name = doc.getName();
+            String name = doc.getDeclaredName();
             if (name != null && !name.isEmpty()) {
                 append("\"\"");
                 appendText(name, true);

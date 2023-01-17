@@ -76,7 +76,7 @@ public abstract class VStructure extends VDefault {
             Object o = EvaluationUtil.valueOf(e);
             sb.append(" <&arrow-thick-right> ");
             if (o instanceof Element) {
-                sb.append(e.getEffectiveName());
+                sb.append(e.getName());
             } else {
                 sb.append(o);
             }
@@ -93,7 +93,7 @@ public abstract class VStructure extends VDefault {
                     flag = true;
                 }
                 if (o == e) {
-                    sb.append(e.getEffectiveName());
+                    sb.append(e.getName());
                 } else {
                     sb.append(o);
                 }
@@ -163,7 +163,7 @@ public abstract class VStructure extends VDefault {
     private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
         if (rf == null) return null;
-        return getNameWithNamespace(rf);
+        return getRefName(rf);
     }
 
     private boolean addRedefinedFeatureText(Feature f) {
@@ -177,17 +177,13 @@ public abstract class VStructure extends VDefault {
     }
 
     private void addFeatureTextInternal(Feature f, String name, boolean isInherited) {
-        if (isInherited) {
-            append('^');
-        }
         append(name);
         addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);
     }
     
     protected boolean addFeatureText(Feature f, boolean isInherited) {
-        String name = getFeatureName(f);
-        if (name == null) return false;
+        String name = getNameAnyway(f, false, isInherited);
 
         if (styleValue("decoratedRedefined") != null) {
             String rt = redefinedFeatureText(f);
@@ -268,6 +264,7 @@ public abstract class VStructure extends VDefault {
     protected boolean addType(Type typ, String name, String keyword) {
         int id = addPUMLLine(typ, keyword, name);
         addSpecializations(id, typ);
+        addFeatureValueBindings(typ);
         return true;
     }
 

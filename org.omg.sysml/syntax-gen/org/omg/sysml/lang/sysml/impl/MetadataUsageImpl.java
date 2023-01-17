@@ -21,6 +21,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -36,10 +37,12 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataUsage;
@@ -251,6 +254,46 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	public boolean isSetItemDefinition() {
   		return false;
 	}
+	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Element> evaluateFeature(Feature baseFeature) {
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeature(baseFeature, this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSemantic() {
+		return specializesFromLibrary("Metaobjects::SemanticMetadata");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSyntactic() {
+		return specializesFromLibrary("KerML::Element");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Element syntaxElement() {
+		return EvaluationUtil.getMetaclassReferenceOf(this);				
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -422,6 +465,50 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == AnnotatingElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == MetadataFeature.class) {
+			switch (baseOperationID) {
+				case SysMLPackage.METADATA_FEATURE___EVALUATE_FEATURE__FEATURE: return SysMLPackage.METADATA_USAGE___EVALUATE_FEATURE__FEATURE;
+				case SysMLPackage.METADATA_FEATURE___IS_SEMANTIC: return SysMLPackage.METADATA_USAGE___IS_SEMANTIC;
+				case SysMLPackage.METADATA_FEATURE___IS_SYNTACTIC: return SysMLPackage.METADATA_USAGE___IS_SYNTACTIC;
+				case SysMLPackage.METADATA_FEATURE___SYNTAX_ELEMENT: return SysMLPackage.METADATA_USAGE___SYNTAX_ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.METADATA_USAGE___EVALUATE_FEATURE__FEATURE:
+				return evaluateFeature((Feature)arguments.get(0));
+			case SysMLPackage.METADATA_USAGE___IS_SEMANTIC:
+				return isSemantic();
+			case SysMLPackage.METADATA_USAGE___IS_SYNTACTIC:
+				return isSyntactic();
+			case SysMLPackage.METADATA_USAGE___SYNTAX_ELEMENT:
+				return syntaxElement();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MetadataUsageImpl

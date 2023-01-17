@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A CaseUsage is a Usage of a CaseDefinition.</p>
  * 
- * <p>A CaseUsage must subset, directly or indirectly, either the base CaseUsage <em><code>cases</code></em> from the Systems model library. If it is owned by a CaseDefinition or CaseUsage, it must subset the CaseUsage <em><code>Cases::subcases</code></em>.</p>
+ * <p>A CaseUsage must subset, directly or indirectly, the base CaseUsage <em><code>cases</code></em> from the Systems model library. If it is owned by a CaseDefinition or CaseUsage, it must subset the CaseUsage <em><code>Cases::subcases</code></em>.</p>
  * <!-- end-model-doc -->
  *
  * <p>

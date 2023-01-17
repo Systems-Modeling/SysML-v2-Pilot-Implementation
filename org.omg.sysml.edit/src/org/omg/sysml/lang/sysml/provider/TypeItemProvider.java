@@ -46,16 +46,15 @@ public class TypeItemProvider extends NamespaceItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwnedSpecializationPropertyDescriptor(object);
 			addOwnedFeatureMembershipPropertyDescriptor(object);
-			addFeaturePropertyDescriptor(object);
 			addOwnedFeaturePropertyDescriptor(object);
+			addOwnedEndFeaturePropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
 			addInputPropertyDescriptor(object);
 			addOutputPropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
 			addInheritedMembershipPropertyDescriptor(object);
 			addEndFeaturePropertyDescriptor(object);
-			addOwnedEndFeaturePropertyDescriptor(object);
 			addIsSufficientPropertyDescriptor(object);
 			addOwnedConjugatorPropertyDescriptor(object);
 			addIsConjugatedPropertyDescriptor(object);
@@ -70,6 +69,7 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			addDifferencingTypePropertyDescriptor(object);
 			addOwnedDifferencingPropertyDescriptor(object);
 			addDirectedFeaturePropertyDescriptor(object);
+			addOwnedSpecializationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -640,7 +640,6 @@ public class TypeItemProvider extends NamespaceItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Type.class)) {
-			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 			case SysMLPackage.TYPE__IS_ABSTRACT:
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 			case SysMLPackage.TYPE__OWNED_CONJUGATOR:
@@ -649,6 +648,7 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			case SysMLPackage.TYPE__OWNED_UNIONING:
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 			case SysMLPackage.TYPE__OWNED_DIFFERENCING:
+			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -665,41 +665,6 @@ public class TypeItemProvider extends NamespaceItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createSpecialization()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createSubsetting()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createRedefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createFeatureTyping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createReferenceSubsetting()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createSubclassification()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
-				 SysMLFactory.eINSTANCE.createConjugatedPortTyping()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -730,6 +695,41 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING,
 				 SysMLFactory.eINSTANCE.createDifferencing()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createSpecialization()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createSubclassification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createSubsetting()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createRedefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createFeatureTyping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createReferenceSubsetting()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createConjugatedPortTyping()));
 	}
 
 	/**

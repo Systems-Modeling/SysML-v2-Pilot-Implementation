@@ -46,7 +46,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwnedUsagePropertyDescriptor(object);
 			addOwnedPortPropertyDescriptor(object);
 			addDirectedUsagePropertyDescriptor(object);
 			addUsagePropertyDescriptor(object);
@@ -78,6 +77,7 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			addOwnedUseCasePropertyDescriptor(object);
 			addOwnedFlowPropertyDescriptor(object);
 			addOwnedMetadataPropertyDescriptor(object);
+			addOwnedUsagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

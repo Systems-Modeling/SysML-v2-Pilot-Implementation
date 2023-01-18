@@ -27,6 +27,8 @@
 package org.omg.sysml.plantuml;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;
@@ -111,6 +113,8 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
+    private static Pattern patEqFeatureValue = Pattern.compile("^\\s*=");
+
     protected boolean appendFeatureValue(FeatureValue fv) {
         Expression ex = fv.getValue();
         String text = getText(fv);
@@ -120,6 +124,12 @@ public abstract class VStructure extends VDefault {
                 int pos = text.indexOf("default");
                 if (pos >= 0) {
                     text = text.substring(pos + "default".length()); // 
+                }
+            } else {
+                append(' '); // appendText() trims the text.
+                Matcher m = patEqFeatureValue.matcher(text);
+                if (!m.matches()) {
+                    text = "= " + text;
                 }
             }
             boolean flag = appendText(text, true);

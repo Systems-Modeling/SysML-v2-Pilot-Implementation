@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -347,7 +349,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private MultiplicityRange getEffectiveMultiplicityRange(Element e) {
         if (!(e instanceof Type)) return null;
         Type typ = (Type) e;
-        Multiplicity m = typ.getMultiplicity();
+        Multiplicity m = FeatureUtil.getMultiplicityOf(typ);
         return FeatureUtil.getMultiplicityRangeOf(m);
     }
 

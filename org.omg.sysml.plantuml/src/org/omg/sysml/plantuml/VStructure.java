@@ -128,7 +128,7 @@ public abstract class VStructure extends VDefault {
             } else {
                 append(' '); // appendText() trims the text.
                 Matcher m = patEqFeatureValue.matcher(text);
-                if (!m.matches()) {
+                if (!m.lookingAt()) {
                     text = "= " + text;
                 }
             }

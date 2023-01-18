@@ -36,6 +36,17 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>Multiplicity co-domains (in models) can be specified by Expression that might vary in their results. If the <code>typeWithMultiplicity</code> is a Classifier, the domain of the Multiplicity shall be <em>Anything</em>.  If the <code>typeWithMultiplicity</code> is a Feature,  the Multiplicity shall have the same domain as the <code>typeWithMultiplicity</code>.</p>
  * 
+ * if typeWithMultiplicity.oclIsKindOf(Feature) then
+ *     featuringType = 
+ *         typeWithMultiplicity.oclAsType(Feature).featuringType
+ * else
+ *     featuringType = Sequence{resolveGlobal("Base::Anything"))}
+ * endif
+ * specializesFromLibrary("Base::naturals")
+ * owningNamespace.oclIsKindOf(Type) implies
+ *     owningNamespace.oclAsType(Type).ownedSpecialization.general.multiplicity->
+ *         forAll(m | redefines(m))
+ * 
  * <!-- end-model-doc -->
  *
  *

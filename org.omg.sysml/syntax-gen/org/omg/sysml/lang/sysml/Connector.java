@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Connector is a usage of Associations, with links restricted to instances of the Type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
+ * <p>A Connector is a usage of Associations, with links restricted according to instances of the Type in which they are used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its domain.</p>
  * 
  * relatedFeature = connectorEnd.ownedReferenceSubsetting.subsettedFeature
  * relatedFeature->forAll(f | 
@@ -46,6 +46,16 @@ import org.eclipse.emf.common.util.EList;
  *     endif
  * connectorEnd = feature->select(isEnd)
  * not isAbstract implies relatedFeature->size() >= 2
+ * specializesFromLibrary("Links::links")
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::binaryLinks')
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary("Objects::linkObjects")
+ * connectorEnds->size() = 2 and
+ * association->exists(oclIsKindOf(AssocationStructure)) implies
+ *     specializesFromLibrary("Objects::binaryLinkObjects")
+ * connectorEnds->size() > 2 implies
+ *     not specializesFromLibrary("Links::BinaryLink")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -81,7 +91,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that are related by this Connector considered as a Relationship, derived as the referenced Features of the <code>connectorEnds</code> of the Connector.</p>
+	 * <p>The Features that are related by this Connector considered as a Relationship and restrict the links it identifies, derived as the referenced Features of the <code>connectorEnds</code> of the Connector.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.

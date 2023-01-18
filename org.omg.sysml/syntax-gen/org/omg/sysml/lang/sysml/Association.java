@@ -33,11 +33,13 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Association is a Relationship and a Classifier to enable classification of links between things (in the universe). The co-domains (<code>types</code>) of the <code>associationEnd</code> Features are the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
  * 
  * relatedTypes = associationEnd.type
- * allSupertypes()->includes(resolve("Links::Link"))
+ * specializesFromLibrary("Links::Link")
  * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
- * endFeatures()->size() = 2 implies
- *     allSupertypes()->includes(resolve("Links::Link))
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Links::BinaryLink)
  * not isAbstract implies relatedType->size() >= 2
+ * associationEnds->size() > 2 implies
+ *     not specializesFromLibrary("Links::BinaryLink")
  * <!-- end-model-doc -->
  *
  * <p>

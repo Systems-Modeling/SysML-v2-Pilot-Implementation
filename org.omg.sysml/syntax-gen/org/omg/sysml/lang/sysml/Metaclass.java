@@ -10,6 +10,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A Metaclass is a Structure used to type MetadataFeatures. It must subclassify, directly or indirectly, the base type <em><code>Metadata</code></em> from the Kernel Library.</p>
+ * specializesFromLibrary("Metaobjects::Metaobject")
  * <!-- end-model-doc -->
  *
  *

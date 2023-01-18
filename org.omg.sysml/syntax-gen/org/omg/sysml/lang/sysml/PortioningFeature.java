@@ -8,8 +8,17 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PortioningFeature is a Feature that is a redefinition of one of the Features<code> <em>timeSliceOf</em></code> or <em><code>snapshotOf</code></em> of the <em><code>portionOfLife</code></em> of each of the types of its <code>portioningUsage</code>.</p>
+ * <p>A PortioningFeature is a Feature that is a redefinition of one of the Features<code> <em>timeSliceOf</em></code> or <em><code>snapshotOf</code></em> of the <em><code>occurrenceDefinitions</code></em> of its <code>portioningUsage</code>.</p>
  * 
+ * portionKind = portioningUsage.portionKind
+ * type = portioningUsage.occurrenceDefinition
+ * if portionKind = PortionKind::timeslice then
+ *     redefinesFromLibrary("Occurrences::Occurrence::timeSliceOf")
+ * else
+ *     redefinesFromLibrary("Occurrences::Occurrence::snapshotOf")
+ * endif
+ * multiplicity <> null and
+ * multiplicity.specializesFromLibrary("Base::exactlyOne")
  * <!-- end-model-doc -->
  *
  * <p>

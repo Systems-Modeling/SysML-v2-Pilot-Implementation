@@ -31,6 +31,7 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>A SuccessionItemFlow must be typed by the Interaction <em>TransferBefore</em> from the Kernel Library, or a specialization of it.</p>
  * 
+ * specializesFromLibrary("Transfers::flowTransfersBefore")
  * <!-- end-model-doc -->
  *
  *

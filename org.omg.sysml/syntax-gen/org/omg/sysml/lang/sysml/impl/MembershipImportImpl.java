@@ -115,6 +115,29 @@ public class MembershipImportImpl extends ImportImpl implements MembershipImport
 		return importedMembership != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Membership importedMembership = getImportedMembership();
+		if (importedMembership != null) {
+			target.add(importedMembership);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
 	// Other overrides
 	
 	public EList<Membership> importMemberships(EList<Membership> importedMemberships,
@@ -197,29 +220,6 @@ public class MembershipImportImpl extends ImportImpl implements MembershipImport
 				return isSetImportedMembership();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Membership importedMembership = getImportedMembership();
-		if (importedMembership != null) {
-			target.add(importedMembership);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
 	}
 
 } //MembershipImportImpl

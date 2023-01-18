@@ -30,9 +30,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An EnumerationDefinition is an AttributeDefinition all of whose instances are given by an explicit list of <code>enumeratedValues</code>.</p> 
- * 
- * <p>An EnumerationDefinition must subclass, directly or indirectly, the base EnumerationDefinition EnumerationValue from the Systems model library.</p>
+ * <p>An <code>EnumerationDefinition</code> is an <code>AttributeDefinition</code> all of whose instances are given by an explicit list of <code>enumeratedValues</code>. This is realized by requiring that the <code>EnumerationDefinition</code> have <code>isVariation = true</code>, with the <code>enumeratedValues</code> being its variants.</p> 
+ * isVariation
  * <!-- end-model-doc -->
  *
  * <p>
@@ -59,7 +58,7 @@ public interface EnumerationDefinition extends AttributeDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A EnumerationUsage of this EnumerationDefinition with a fixed value, distinct from the value of all other <code>enumerationValues</code>, which specifies one of the allowed instances of the EnumerationDefinition.</p>
+	 * <p>An EnumerationUsage of this EnumerationDefinition with a fixed value, distinct from the value of all other <code>enumerationValues</code>, which specifies one of the allowed instances of the EnumerationDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Enumerated Value</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getEnumerationDefinition_EnumeratedValue()

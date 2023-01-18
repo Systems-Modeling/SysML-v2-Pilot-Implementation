@@ -65,9 +65,10 @@ import org.omg.sysml.util.ElementUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getAliasIds <em>Alias Ids</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDeclaredShortName <em>Declared Short Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDeclaredName <em>Declared Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getShortName <em>Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isImpliedIncluded <em>Is Implied Included</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isLibraryElement <em>Is Library Element</em>}</li>
@@ -75,7 +76,7 @@ import org.omg.sysml.util.ElementUtil;
  *
  * @generated
  */
-public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
+public abstract class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
 	 * The cached value of the '{@link #getOwnedRelationship() <em>Owned Relationship</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -187,54 +188,64 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected EList<String> aliasIds;
 
 	/**
-	 * The default value of the '{@link #getShortName() <em>Short Name</em>}' attribute.
+	 * The default value of the '{@link #getDeclaredShortName() <em>Declared Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaredShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DECLARED_SHORT_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDeclaredShortName() <em>Declared Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaredShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String declaredShortName = DECLARED_SHORT_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDeclaredName() <em>Declared Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaredName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DECLARED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDeclaredName() <em>Declared Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaredName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String declaredName = DECLARED_NAME_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getShortName() <em>Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getShortName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SHORT_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate SHORT_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__SHORT_NAME).getSettingDelegate();
 
 	/**
-	 * The cached value of the '{@link #getShortName() <em>Short Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getShortName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String shortName = SHORT_NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached setting delegate for the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEffectiveName()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate EFFECTIVE_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__EFFECTIVE_NAME).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__NAME).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
@@ -469,13 +480,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
-	public String getName() {
-		return name;
+	public String getDeclaredName() {
+		return declaredName;
 	}
 	
 	@Override
-	public void setName(String newName) {
-		setNameGen(ElementUtil.unescapeString(newName));
+	public void setDeclaredName(String newName) {
+		setDeclaredNameGen(ElementUtil.unescapeString(newName));
 	}
 
 	/**
@@ -483,13 +494,33 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNameGen(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setDeclaredNameGen(String newDeclaredName) {
+		String oldDeclaredName = declaredName;
+		declaredName = newDeclaredName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__DECLARED_NAME, oldDeclaredName, declaredName));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getShortName() {
+		return (String)SHORT_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setShortName(String newShortName) {
+		SHORT_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newShortName);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,13 +597,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
-	public String getShortName() {
-		return shortName;
+	public String getDeclaredShortName() {
+		return declaredShortName;
 	}
 
 	@Override
-	public void setShortName(String shortName) {
-		setShortNameGen(ElementUtil.unescapeString(shortName));
+	public void setDeclaredShortName(String shortName) {
+		setDeclaredShortNameGen(ElementUtil.unescapeString(shortName));
 	}
 
 	/**
@@ -580,11 +611,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShortNameGen(String newShortName) {
-		String oldShortName = shortName;
-		shortName = newShortName;
+	public void setDeclaredShortNameGen(String newDeclaredShortName) {
+		String oldDeclaredShortName = declaredShortName;
+		declaredShortName = newDeclaredShortName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__SHORT_NAME, oldShortName, shortName));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__DECLARED_SHORT_NAME, oldDeclaredShortName, declaredShortName));
 	}
 
 	/**
@@ -657,8 +688,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
-	public String getEffectiveName() {
-		return (String)EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -667,8 +698,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
-	public void setEffectiveName(String newEffectiveName) {
-		EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEffectiveName);
+	public void setName(String newName) {
+		NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newName);
 	}
 	
 	// Operations
@@ -679,8 +710,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public String escapedName() {
-		String effectiveName = getEffectiveName();
-		String shortName = getShortName();
+		String effectiveName = getName();
+		String shortName = getDeclaredShortName();
 		String elementName = 
 				effectiveName != null? effectiveName:
 				shortName != null? shortName:
@@ -693,8 +724,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public String effectiveShortName() {
+		return getDeclaredShortName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public String effectiveName() {
-		return getName();
+		return getDeclaredName();
 	}
 	
 	/**
@@ -791,12 +831,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getTextualRepresentation();
 			case SysMLPackage.ELEMENT__ALIAS_IDS:
 				return getAliasIds();
+			case SysMLPackage.ELEMENT__DECLARED_SHORT_NAME:
+				return getDeclaredShortName();
+			case SysMLPackage.ELEMENT__DECLARED_NAME:
+				return getDeclaredName();
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				return getShortName();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return getEffectiveName();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
@@ -855,14 +897,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				getAliasIds().clear();
 				getAliasIds().addAll((Collection<? extends String>)newValue);
 				return;
+			case SysMLPackage.ELEMENT__DECLARED_SHORT_NAME:
+				setDeclaredShortName((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__DECLARED_NAME:
+				setDeclaredName((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				setShortName((String)newValue);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
-				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				setEffectiveName((String)newValue);
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
@@ -918,14 +963,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__ALIAS_IDS:
 				getAliasIds().clear();
 				return;
+			case SysMLPackage.ELEMENT__DECLARED_SHORT_NAME:
+				setDeclaredShortName(DECLARED_SHORT_NAME_EDEFAULT);
+				return;
+			case SysMLPackage.ELEMENT__DECLARED_NAME:
+				setDeclaredName(DECLARED_NAME_EDEFAULT);
+				return;
 			case SysMLPackage.ELEMENT__SHORT_NAME:
-				setShortName(SHORT_NAME_EDEFAULT);
+				SHORT_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				QUALIFIED_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
@@ -970,12 +1018,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return TEXTUAL_REPRESENTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__ALIAS_IDS:
 				return aliasIds != null && !aliasIds.isEmpty();
+			case SysMLPackage.ELEMENT__DECLARED_SHORT_NAME:
+				return DECLARED_SHORT_NAME_EDEFAULT == null ? declaredShortName != null : !DECLARED_SHORT_NAME_EDEFAULT.equals(declaredShortName);
+			case SysMLPackage.ELEMENT__DECLARED_NAME:
+				return DECLARED_NAME_EDEFAULT == null ? declaredName != null : !DECLARED_NAME_EDEFAULT.equals(declaredName);
 			case SysMLPackage.ELEMENT__SHORT_NAME:
-				return SHORT_NAME_EDEFAULT == null ? shortName != null : !SHORT_NAME_EDEFAULT.equals(shortName);
+				return SHORT_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
@@ -996,6 +1046,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (operationID) {
 			case SysMLPackage.ELEMENT___ESCAPED_NAME:
 				return escapedName();
+			case SysMLPackage.ELEMENT___EFFECTIVE_SHORT_NAME:
+				return effectiveShortName();
 			case SysMLPackage.ELEMENT___EFFECTIVE_NAME:
 				return effectiveName();
 			case SysMLPackage.ELEMENT___LIBRARY_NAMESPACE:
@@ -1018,10 +1070,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		result.append(elementId);
 		result.append(", aliasIds: ");
 		result.append(aliasIds);
-		result.append(", shortName: ");
-		result.append(shortName);
-		result.append(", name: ");
-		result.append(name);
+		result.append(", declaredShortName: ");
+		result.append(declaredShortName);
+		result.append(", declaredName: ");
+		result.append(declaredName);
 		result.append(", isImpliedIncluded: ");
 		result.append(isImpliedIncluded);
 		result.append(')');

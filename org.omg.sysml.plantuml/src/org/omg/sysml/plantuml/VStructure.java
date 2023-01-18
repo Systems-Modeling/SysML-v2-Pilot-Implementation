@@ -78,7 +78,7 @@ public abstract class VStructure extends VDefault {
             Object o = EvaluationUtil.valueOf(e);
             sb.append(" <&arrow-thick-right> ");
             if (o instanceof Element) {
-                sb.append(e.getEffectiveName());
+                sb.append(e.getName());
             } else {
                 sb.append(o);
             }
@@ -95,7 +95,7 @@ public abstract class VStructure extends VDefault {
                     flag = true;
                 }
                 if (o == e) {
-                    sb.append(e.getEffectiveName());
+                    sb.append(e.getName());
                 } else {
                     sb.append(o);
                 }

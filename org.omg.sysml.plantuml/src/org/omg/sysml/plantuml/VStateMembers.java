@@ -56,7 +56,7 @@ public class VStateMembers extends VBehavior {
             || (au instanceof AcceptActionUsage)) {
             name = getText(au);
         } else {
-            name = au.getName();
+            name = au.getDeclaredName();
         }
         if ((name == null) || (name.isEmpty())) {
             for (Subsetting ss: au.getOwnedSubsetting()) {

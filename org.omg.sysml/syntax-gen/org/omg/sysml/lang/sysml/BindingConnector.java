@@ -31,6 +31,7 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p> A BindingConnector must be directly or indirectly typed by the <em><code>SelfLink</code></em> Association from the <em><code>Links</code</em> library model. Both end multiplicities must be 1..1 when the <code>relatedFeatures</code> have unique values.</p>
  * 
+ * specializesFromLibrary("Links::selfLinks")
  * <!-- end-model-doc -->
  *
  *

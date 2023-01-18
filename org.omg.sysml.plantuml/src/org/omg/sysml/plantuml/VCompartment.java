@@ -328,7 +328,7 @@ public class VCompartment extends VStructure {
 
     private boolean isEmptySubject(SubjectMembership sm) {
         Usage u = sm.getOwnedSubjectParameter();
-        if (!"subj".equals(u.getEffectiveName())) return false;
+        if (!"subj".equals(u.getName())) return false;
         return u.getOwnedRelationship().isEmpty();
     }
 
@@ -542,7 +542,7 @@ public class VCompartment extends VStructure {
         boolean flag = false;
         append("##//doc//##\n");
         for (Documentation doc: documentations) {
-            String name = doc.getName();
+            String name = doc.getDeclaredName();
             if (name != null && !name.isEmpty()) {
                 append("\"\"");
                 appendText(name, true);

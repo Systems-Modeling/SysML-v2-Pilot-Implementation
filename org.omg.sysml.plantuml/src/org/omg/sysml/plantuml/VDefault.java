@@ -97,7 +97,7 @@ public class VDefault extends VTraverser {
         if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
                Use getName() instead. */
-            String name = f.getName();
+            String name = f.getDeclaredName();
             if (name != null) {
                 sb.append(name);
             }
@@ -203,7 +203,7 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c, c.getName());
+        addConnector(c, c.getDeclaredName());
         return "";
     }
 

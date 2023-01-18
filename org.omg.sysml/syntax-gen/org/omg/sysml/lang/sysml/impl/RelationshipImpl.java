@@ -57,7 +57,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class RelationshipImpl extends ElementImpl implements Relationship {
+public abstract class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * The cached setting delegate for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -240,7 +240,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc --> 
 	 * Xtext workaround:
-	 * If target is empty, then add all ownedRelatedElements to it.
+	 * Add all ownedRelatedElements to target.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

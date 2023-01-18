@@ -136,7 +136,7 @@ public class ModelLevelExpressionEvaluator {
 					if (!(feature instanceof Expression)) {
 						// Evaluate the feature as a reflective metaclass attribute.
 						Element element = ((AnnotatingElement)t).getAnnotatedElement().get(0);
-						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getName());
+						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getDeclaredName());
 						if (eFeature != null) {
 							return EvaluationUtil.results(element.eGet(eFeature, true));
 						}

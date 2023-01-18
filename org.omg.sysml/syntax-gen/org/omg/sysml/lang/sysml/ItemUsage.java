@@ -30,9 +30,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemUsage is a Usage whose type is a Structure. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Structure are also allowed, to permit use of Structures from the Kernel Library.</p>
+ * <p>An <code>ItemUsage</code> is a <code>ItemUsage</code> whose <code>definition</code> is a <code>Structure</code>. Nominally, if the <code>definition</code> is an <code>ItemDefinition</code>, an <code>ItemUsage</code> is a <code>ItemUsage</code> of that <code>ItemDefinition</code> within a system. However, other kinds of Kernel <code>Structures</code> are also allowed, to permit use of <code>Structures</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An ItemUsage must subset, directly or indirectly, the base ItemUsage <code>items</code> from the Systems model library.</p>
+ * <p>An <code>ItemUsage</code> must specialize, directly or indirectly, the base <code>ItemUsage</code> <em><code>items</code></em> from the Systems Model Library.</p>
+ * itemDefinition = occurrenceDefinition->selectByKind(ItemDefinition)
+ * specializesFromLibrary("Items::items")
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ItemDefinition) or
+ *  owningType.oclIsKindOf(ItemUsage)) implies
+ *     specializesFromLibrary("Items::Item::subitem")
  * <!-- end-model-doc -->
  *
  * <p>

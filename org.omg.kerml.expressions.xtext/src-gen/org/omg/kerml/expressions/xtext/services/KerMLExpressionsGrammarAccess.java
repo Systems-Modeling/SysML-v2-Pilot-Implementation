@@ -2111,19 +2111,19 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class BodyParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.BodyParameter");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final Assignment cDeclaredNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cDeclaredNameNameParserRuleCall_0 = (RuleCall)cDeclaredNameAssignment.eContents().get(0);
 		
 		//BodyParameter returns SysML::Feature :
-		//    name = Name
+		//    declaredName = Name
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name = Name
-		public Assignment getNameAssignment() { return cNameAssignment; }
+		//declaredName = Name
+		public Assignment getDeclaredNameAssignment() { return cDeclaredNameAssignment; }
 		
 		//Name
-		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
+		public RuleCall getDeclaredNameNameParserRuleCall_0() { return cDeclaredNameNameParserRuleCall_0; }
 	}
 	public class SequenceExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.SequenceExpression");
@@ -3900,7 +3900,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//BodyParameter returns SysML::Feature :
-	//    name = Name
+	//    declaredName = Name
 	//;
 	public BodyParameterElements getBodyParameterAccess() {
 		return pBodyParameter;

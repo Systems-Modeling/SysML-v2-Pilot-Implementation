@@ -32,7 +32,17 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Expression is a Step that is typed by a Function. An Expression that also has a Function as its <code>featuringType</code> is a computational step within that Function. An Expression always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows Expressions to be interconnected in tree structures, in which inputs to each Expression in the tree are determined as the results of other Expressions in the tree.</p>
  * 
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
- * value.featuringType = featureWithValue.featuringType
+ * specializesFromLibrary("Performances::evaluations")
+ * ownedMembership.selectByKind(ResultExpressionMembership)->
+ *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
+ *         exists(binding |
+ *             binding.relatedFeature->includes(result) and
+ *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
+ * owningMembership <> null and 
+ * owningMembership.oclIsKindOf(FeatureValue) implies
+ *     let featureWithValue : Feature = 
+ *         owningMembership.oclAsType(FeatureValue).featureWithValue in
+ *     featuringType = featureWithValue.featuringType
  * <!-- end-model-doc -->
  *
  * <p>
@@ -161,7 +171,7 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * >p>Return whether this Expression is model-level evaluable. The <code>visited</code> parameter is used to track possible circular feature references. Such circular references are not allowed in model-level evaluable expressions.</p>
+	 * <p>Return whether this Expression is model-level evaluable. The <code>visited</code> parameter is used to track possible circular feature references. Such circular references are not allowed in model-level evaluable expressions.</p>
 	 * 
 	 * <p>An Expression that is not otherwise specialized is model-level evaluable if all of its <code>features</code> are either <code>in</code> parameters, its single <code>resultParameter</code> or a result Expression owned via a ResultExpressionMembership (and possibly its implicit BindingConnector). The <code>parameters</code> parameters must not have and <code>ownedFeatures</code> and the result Expression must be model-level evaluable.</p>
 	 * parameters->forAll(

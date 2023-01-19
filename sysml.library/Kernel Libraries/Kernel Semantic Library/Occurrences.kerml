@@ -72,7 +72,8 @@ standard library package Occurrences {
 			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
-		feature withoutOccurrences: Occurrence[0..*] subsets occurrences inverse of withoutOccurrences {
+		feature withoutOccurrences: Occurrence[0..*] unions successors, predecessors, outsideOfOccurrences
+			inverse of withoutOccurrences {
 			doc
 			/*
 			 * Occurrences that are completely separate either in time or space or both.
@@ -377,10 +378,10 @@ standard library package Occurrences {
 			 */
 		}
 
-		feature spaceShotOf: Occurrence[0..*] subsets spaceSliceOf inverse of spaceShots {
+		feature all spaceShotOf: Occurrence[0..*] subsets spaceSliceOf inverse of spaceShots {
 			doc
 			/*
-			 * Occurrences of which this occurrence is a space shot.
+			 * All occurrences of which this occurrence is a space shot.
 			 */
 
 			feature spaceShotOccurrence: Occurrence[1] subsets that;
@@ -491,7 +492,7 @@ standard library package Occurrences {
 
 			feature redefines isClosed = true;
 
-			feature spaceBounder: Occurrence subsets self;
+			feature spaceBounder: Occurrence [1] subsets self;
 
 			outer: Occurrence [0..1] subsets spaceSlices {
 				feature redefines isClosed = true;
@@ -529,7 +530,7 @@ standard library package Occurrences {
 			from surroundedSpace references spaceBoundary.inner [0..*]
 			to surroundingSpace references spaceInterior [1];
 
-		feature innerSpaceOccurrences: Occurrence [0..*] {
+		feature innerSpaceOccurrences: Occurrence [0..*] subsets outsideOfOccurrences {
 			doc
 			/*
 			 * Occurrences that completely occupy the space surrounded by an inner space boundary of this occurrence.
@@ -547,7 +548,7 @@ standard library package Occurrences {
 			inv { (isEmpty(hbi) == notEmpty(hbo)) & (notEmpty(hbo) == outerSpace.isClosed) }
 		}
 
-		feature surroundedByOccurrences: Occurrence [0..*] {
+		feature surroundedByOccurrences: Occurrence [0..*] subsets outsideOfOccurrences {
 			doc
 			/*
 			 * Occurrences that have inner spaces that completely include this occurrence.
@@ -688,7 +689,7 @@ standard library package Occurrences {
 		/*
 		 * HappensLink is the most general associations that assert temporal relationships between a
 		 * sourceOccurrence and a targetOccurrence. Because HappensLinks assert temporal
-		 * relationships, they cannot themselves be Occurrences that happen in time.  Therefore
+		 * relationships, they cannot also be Occurrences that happen in time.  Therefore
 		 * HappensLink is disjoint with LinkObject, that is, no HappensLink can also be a
 		 * LinkObject.
 		 */

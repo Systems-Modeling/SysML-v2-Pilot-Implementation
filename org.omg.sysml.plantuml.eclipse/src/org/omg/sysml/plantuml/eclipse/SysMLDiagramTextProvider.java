@@ -26,18 +26,24 @@ package org.omg.sysml.plantuml.eclipse;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -54,17 +60,18 @@ import net.sourceforge.plantuml.ecore.AbstractEcoreClassDiagramTextProvider;
 
 public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvider implements DiagramTextProviderS3 {
     public SysMLDiagramTextProvider() {
-        super(XtextEditor.class);
+        super(IEditorPart.class);
     }
 
     @Override
     public boolean supportsSelection(final ISelection selection) {
-        return selection instanceof ITextSelection;
+        return selection instanceof ITextSelection || selection instanceof IStructuredSelection;
     }
     
     // @Override
     public boolean supportsPath(IPath path) {
-        return "sysml".equals(path.getFileExtension());
+        String ext = path.getFileExtension();
+        return "sysml".equals(ext) || "sysmlx".equals(ext);
     }
 
     private static class LinkProvider implements SysML2PlantUMLLinkProvider {
@@ -111,9 +118,7 @@ public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvi
 		mode = SysML2PlantUMLText.MODE.valueOf(view);
 	}
 
-    @Override
-    public String getDiagramText(IEditorPart editorPart, ISelection selection, Map<String, Object> markerAttributes) {
-        XtextEditor xe = (XtextEditor) editorPart;
+    private String getDiagramXtext(XtextEditor xe, ISelection selection, Map<String, Object> markerAttributes) {
         XtextResource res = xe.getDocument().readOnly(new IUnitOfWork<XtextResource, XtextResource>() {
             @Override
             public XtextResource exec(XtextResource st) {
@@ -134,6 +139,61 @@ public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvi
 
         sysml2PlantUMLText.setMode(mode);
         return sysml2PlantUMLText.sysML2PUML(res.getContents());
+    }
+
+    private String getDiagram(List<? extends EObject> eObjs) {
+        if (eObjs == null) return null;
+        sysml2PlantUMLText.setMode(mode);
+        return sysml2PlantUMLText.sysML2PUML(eObjs);
+    }
+
+    private String getDiagramFromSelection(IStructuredSelection selection, Map<String, Object> markerAttributes) {
+        final Object obj = selection.getFirstElement();
+        if (obj instanceof EObject) {
+            EObject eObj = (EObject) obj;
+            if (markerAttributes != null) {
+                markerAttributes.put("eObjectUri", EcoreUtil.getURI(eObj).toString());
+            }
+            sysml2PlantUMLText.setupVisualizationEObjects(eObj);
+            // Visualize eObj only.
+            return getDiagram(Arrays.asList(eObj));
+		} else if (obj instanceof Resource) {
+            Resource res = (Resource) obj;
+            List<EObject> eObjs = res.getContents();
+            return getDiagram(eObjs);
+        }
+		return null;
+    }
+
+    private String getDiagramFromEditingDomain(IEditingDomainProvider provider, Map<String, Object> markerAttributes) {
+		ResourceSet rset = provider.getEditingDomain().getResourceSet();
+        sysml2PlantUMLText.setMode(mode);
+        List<EObject> eObjs = new ArrayList<>();
+        Iterator<Notifier> it = rset.getAllContents();
+        while (it.hasNext()) {
+            Notifier n = it.next();
+            if (n instanceof EObject) {
+                eObjs.add((EObject) n);
+            }
+        }
+        return sysml2PlantUMLText.sysML2PUML(eObjs);
+    }
+
+    @Override
+    public String getDiagramText(IEditorPart editorPart, ISelection selection, Map<String, Object> markerAttributes) {
+        if (editorPart instanceof XtextEditor) {
+            return getDiagramXtext((XtextEditor) editorPart, selection, markerAttributes);
+        } 
+
+        String ret = null;
+        if (selection instanceof IStructuredSelection) {
+            ret = getDiagramFromSelection((IStructuredSelection) selection, markerAttributes);
+        }
+        if (ret != null) return ret;
+        if (editorPart instanceof IEditingDomainProvider) {
+            return getDiagramFromEditingDomain((IEditingDomainProvider) editorPart, markerAttributes);
+        }
+        return null;
     }
 
     //@Override

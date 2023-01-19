@@ -40,6 +40,12 @@ import org.eclipse.emf.common.util.EList;
  * not isVariation implies variantMembership->isEmpty()
  * isVariation implies variantMembership = ownedMembership
  * isReference = not isComposite
+ * owningVariationDefinition <> null implies
+ *     specializes(owningVariationDefinition)
+ * owningVariationUsage <> null implies
+ *     specializes(owningVariationUsage)
+ * isVariation implies
+ *     not ownedSpecialization.specific->exists(isVariation)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -48,6 +54,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
@@ -81,7 +88,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedMetadata <em>Nested Metadata</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()

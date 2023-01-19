@@ -87,14 +87,14 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		Feature input = null;
 		if (!inputs.isEmpty() && feature != null) {
 			input = inputs.get(0);
-			String argumentName = input.getName();
-			String featureName = feature.getEffectiveName();
+			String argumentName = input.getDeclaredName();
+			String featureName = feature.getName();
 			if (argumentName == null || featureName == null) {
 				if (index < inputs.size()) {
 					input = inputs.get(index);
 				}
 			} else {
-				input = inputs.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
+				input = inputs.stream().filter(a->featureName.equals(a.getDeclaredName())).findFirst().orElse(null);
 			}
 		}
 		return input;

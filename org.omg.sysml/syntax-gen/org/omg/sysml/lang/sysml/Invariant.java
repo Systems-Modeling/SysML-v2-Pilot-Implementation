@@ -31,6 +31,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An Invariant is a BooleanExpression that is asserted to have a specific Boolean result value. If <code>isNegated = false</code>, then the Invariant must subset, directly or indirectly, the BooleanExpression <em>trueEvaluations</em> from the Kernel library, meaning that the result is asserted to be true. If <code>isNegated = true</code>, then the Invariant must subset, directly or indirectly, the BooleanExpression <em>falseEvaluations</em> from the Kernel library, meaning that the result is asserted to be false.</p>
  * 
+ * if isNegated then
+ *     specializesFromLibrary("Performances::falseEvaluations")
+ * else
+ *     specializesFromLibrary("Performances::trueEvaluations")
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

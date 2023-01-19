@@ -376,7 +376,7 @@ BodyParameterMember returns SysML::ParameterMembership :
 ;
 
 BodyParameter returns SysML::Feature :
-	name = Name
+	declaredName = Name
 ;
 
 // Sequence Expressions

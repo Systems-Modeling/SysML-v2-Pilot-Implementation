@@ -208,7 +208,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getShortName() <em>Short Name</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getDeclaredShortName() <em>Declared Short Name</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

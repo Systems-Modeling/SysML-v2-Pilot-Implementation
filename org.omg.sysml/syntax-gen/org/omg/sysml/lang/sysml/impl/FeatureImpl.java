@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -905,6 +906,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 
 	protected String effectiveName = null;
+	protected String effectiveShortName = null;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -913,22 +915,36 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public String effectiveName() {
-		return effectiveName(new HashSet<Feature>());
+		computeEffectiveNames(new HashSet<Feature>());
+		return effectiveName;
 	}
 	
-	public String effectiveName(Set<Feature> visited) {
-		String name = super.effectiveName();
-		if (name == null) {
-			if (effectiveName == null) {
-				visited.add(this);
-				Feature namingFeature = namingFeature();
-				if (namingFeature != null && !visited.contains(namingFeature)) {
-					effectiveName = ((FeatureImpl)namingFeature).effectiveName(visited);
-				}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String effectiveShortName() {
+		computeEffectiveNames(new HashSet<Feature>());
+		return effectiveShortName;
+	}
+	
+	public void computeEffectiveNames(Set<Feature> visited) {
+		String declaredName = getDeclaredName();
+		String declaredShortName = getDeclaredShortName();
+		if (declaredName != null || declaredShortName != null) {
+			effectiveName = declaredName;
+			effectiveShortName = declaredShortName;
+		} else if (effectiveName == null && effectiveShortName == null) {
+			visited.add(this);
+			FeatureImpl namingFeature = (FeatureImpl)namingFeature();
+			if (namingFeature != null && !visited.contains(namingFeature)) {
+				namingFeature.computeEffectiveNames(visited);
+				effectiveName = namingFeature.effectiveName;
+				effectiveShortName = namingFeature.effectiveShortName;
 			}
-			name = effectiveName;
 		}
-		return name;
 	}
 	
 	/**
@@ -940,6 +956,50 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return firstRedefinedFeature();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean redefines(Feature redefinedFeature) {
+		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).
+				contains(redefinedFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean redefinesFromLibrary(String libraryFeatureName) {
+		Membership membership = resolveGlobal(libraryFeatureName);
+		if (membership != null) {
+			Element memberElement = membership.getMemberElement();
+			if (memberElement instanceof Feature) {
+				return redefines((Feature)memberElement);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean subsetsChain(Feature first, Feature second) {
+		return allSupertypes().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast).
+				anyMatch(feat->{
+					EList<Feature> chainingFeatures = feat.getChainingFeature();
+					int n = chainingFeatures.size();
+					return n >= 2 && 
+						   chainingFeatures.get(n-2) == first && 
+						   chainingFeatures.get(n-1) == second;
+				});
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1301,6 +1361,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return isFeaturedWithin((Type)arguments.get(0));
 			case SysMLPackage.FEATURE___NAMING_FEATURE:
 				return namingFeature();
+			case SysMLPackage.FEATURE___REDEFINES__FEATURE:
+				return redefines((Feature)arguments.get(0));
+			case SysMLPackage.FEATURE___REDEFINES_FROM_LIBRARY__STRING:
+				return redefinesFromLibrary((String)arguments.get(0));
+			case SysMLPackage.FEATURE___SUBSETS_CHAIN__FEATURE_FEATURE:
+				return subsetsChain((Feature)arguments.get(0), (Feature)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

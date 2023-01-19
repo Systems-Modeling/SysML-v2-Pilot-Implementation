@@ -29,10 +29,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ForkNode is a ControlNode that must be followed by successor Actions as given by all its outgoing Successions. All outgoing Successions must have a target multiplicity of 1..1. A ForkNode may have at most one incoming Succession.</p>
- * 
- * <p>A ForkNode must subset, directly or indirectly, the ActionUsage <em><code>Action::forks</code></em>, implying that it is typed by <code><em>ForkAction</em></code> from the Systems model library (or a subtype of it).</p>
- * 
+ * <p>A <code>ForkNode</code> is a <code>ControlNode</code> that must be followed by successor <code>Actions</code> as given by all its outgoing <code>Successions</code>.</p>
+ * targetConnector->selectByKind(Succession)->size() <= 1
+ * specializesFromLibrary("Actions::Action::forks")
  * <!-- end-model-doc -->
  *
  *

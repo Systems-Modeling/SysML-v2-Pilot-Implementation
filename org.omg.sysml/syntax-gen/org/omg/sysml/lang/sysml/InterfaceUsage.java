@@ -34,6 +34,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.</p>
  * 
  * <p>An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage <code>interfaces</code> from the Systems model libary.</p>
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Interfaces::binaryInterfaces")
+ * specializesFromLibrary("Interfaces::interfaces")
  * <!-- end-model-doc -->
  *
  * <p>

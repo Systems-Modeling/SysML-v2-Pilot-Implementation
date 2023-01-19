@@ -3569,17 +3569,17 @@ ruleBodyParameter returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getBodyParameterAccess().getNameNameParserRuleCall_0());
+				newCompositeNode(grammarAccess.getBodyParameterAccess().getDeclaredNameNameParserRuleCall_0());
 			}
-			lv_name_0_0=ruleName
+			lv_declaredName_0_0=ruleName
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getBodyParameterRule());
 				}
 				set(
 					$current,
-					"name",
-					lv_name_0_0,
+					"declaredName",
+					lv_declaredName_0_0,
 					"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 				afterParserOrEnumRuleCall();
 			}

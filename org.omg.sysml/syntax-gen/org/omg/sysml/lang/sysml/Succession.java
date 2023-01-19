@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Succession is a binary&nbsp;Connector that requires its <code>relatedFeatures</code> to happen separately in time. A Succession must be typed by the Association <em>HappensBefore</em> from the Kernel Model Library (or a specialization of it).</p>
  * 
+ * specializesFromLibrary("Occurences::happensBeforeLinks")
  * <!-- end-model-doc -->
  *
  * <p>

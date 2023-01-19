@@ -53,7 +53,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 			Feature accepterParameter = UsageUtil.getAccepterPayloadParameterOf((TransitionUsage)type);
 			if (accepterParameter != null) {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), accepterParameter);
-				target.setName(accepterParameter.getName());
+				target.setDeclaredName(accepterParameter.getDeclaredName());
 				return;
 			}
 		}

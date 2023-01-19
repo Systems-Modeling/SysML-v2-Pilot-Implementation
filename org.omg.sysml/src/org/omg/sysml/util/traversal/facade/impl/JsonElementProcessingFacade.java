@@ -233,7 +233,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static String descriptionOf(Element element) {
 		String s = element.eClass().getName();
-		String name = element.getName();
+		String name = element.getDeclaredName();
 		if (name != null) {
 			s += " (" + name + ")";
 		}		

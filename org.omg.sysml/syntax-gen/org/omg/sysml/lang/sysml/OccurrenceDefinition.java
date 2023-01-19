@@ -8,17 +8,19 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An OccurrenceDefinition is a Definition of a Class of individuals that have an independent life over time and potentially an extent over space. This includes both structural things and behaviors that act on such structures.</p>
+ * <p>An <code>OccurrenceDefinition</code> is a <code>Definition</code> of a <code>Class</code> of individuals that have an independent life over time and potentially an extent over space. This includes both structural things and behaviors that act on such structures.</p>
  * 
- * <p>If <code>isIndividual</code> is true, then the OccurrenceDefinition is constrained to represent an individual thing. The instances of such an OccurrenceDefinition include all spatial and temporal portions of the individual being represented, but only one of these can be the complete Life of the individual. All other instances must be portions of the &quot;maximal portion&quot; that is single Life instance, capturing the conception that all of the instances represent one individual with a single &quot;identity&quot;.</p>
+ * <p>If <code>isIndividual</code> is true, then the <code>OccurrenceDefinition</code> is constrained to represent an individual thing. The instances of such an <code>OccurrenceDefinition</code> include all spatial and temporal portions of the individual being represented, but only one of these can be the complete <code>Life</code> of the individual. All other instances must be portions of the &quot;maximal portion&quot; that is single <code>Life</code> instance, capturing the conception that all of the instances represent one individual with a single &quot;identity&quot;.</p>
  * 
- * <p>An OccurrenceDefinition must subclass, directly or indirectly, the base Class <em>Occurrence</em> from the Kernel model library.</p>
+ * <p>An <code>OccurrenceDefinition</code> must specialize, directly or indirectly, the base <code>Class</code> <code><em>Occurrence</em></code> from the Kernel Semantic Library.</p>
  * 
- * if not isIndividual then lifeClass = null
- * else
- *     lifeClass <> null and
- *     lifeClass.allSupertypes()->includes(self)
- * endif
+ * (lifeClass <> null) = isIndividual
+ * lifeClass =
+ *     let lifeClasses: Sequence(LifeClass) = 
+ *         ownedMember->selectByKind(LifeClass) in
+ *     if lifeClasses->isEmpty() then null
+ *     else lifeClasses->at(1)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>

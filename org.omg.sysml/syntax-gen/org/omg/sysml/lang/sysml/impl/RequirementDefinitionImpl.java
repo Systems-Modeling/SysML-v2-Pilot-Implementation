@@ -307,7 +307,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getShortName() {
+	public String getDeclaredShortName() {
 		return getReqId();
 	}
 
@@ -316,8 +316,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShortName(String newShortName) {
-		setReqId(newShortName);
+	public void setDeclaredShortName(String newDeclaredShortName) {
+		setReqId(newDeclaredShortName);
 	}
 
 	/**
@@ -325,7 +325,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetShortName() {
+	public boolean isSetDeclaredShortName() {
   		return false;
 	}
 
@@ -445,8 +445,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_DEFINITION__SHORT_NAME:
-				return isSetShortName();
+			case SysMLPackage.REQUIREMENT_DEFINITION__DECLARED_SHORT_NAME:
+				return isSetDeclaredShortName();
 			case SysMLPackage.REQUIREMENT_DEFINITION__REQ_ID:
 				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:

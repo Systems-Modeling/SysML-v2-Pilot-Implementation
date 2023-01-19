@@ -398,7 +398,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getShortName() {
+	public String getDeclaredShortName() {
 		return getReqId();
 	}
 
@@ -407,8 +407,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setShortName(String newShortName) {
-		setReqId(newShortName);
+	public void setDeclaredShortName(String newDeclaredShortName) {
+		setReqId(newDeclaredShortName);
 	}
 
 	/**
@@ -416,7 +416,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetShortName() {
+	public boolean isSetDeclaredShortName() {
   		return false;
 	}
 
@@ -547,8 +547,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__SHORT_NAME:
-				return isSetShortName();
+			case SysMLPackage.REQUIREMENT_USAGE__DECLARED_SHORT_NAME:
+				return isSetDeclaredShortName();
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				return isSetRequirementDefinition();
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:

@@ -30,10 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ActionDefinition is a Definition that is also a Behavior that defines an action performed by a system or part of a system.</p>
- * 
- * <p>An ActionDefinition must subclass, directly or indirectly, the base ActionDefinition <code><em>Action</em></code> from the Systems model library.</p>
- * 
+ * <p>An <code>ActionDefinition</code> is a <code>Definition</code> that is also a <code>Behavior</code> that defines an <em><code>Action</code></em> performed by a system or part of a system.</p>
+ * specializesFromLibrary('Actions::Action')
+ * action = usage->selectByKind(ActionUsage)
  * <!-- end-model-doc -->
  *
  * <p>

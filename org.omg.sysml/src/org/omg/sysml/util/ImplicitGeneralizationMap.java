@@ -294,7 +294,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
 
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
-		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
+		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::decisionTransitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
 		put(TriggerInvocationExpressionImpl.class, "when", "Triggers::TriggerWhen");

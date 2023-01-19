@@ -247,17 +247,14 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	
 	@Override
 	public String effectiveName() {
-		String name = super.getName();
-		if (name == null) {
-			PortDefinition originalPortDefinition = getOriginalPortDefinition();
-			if (originalPortDefinition != null) {
-				name = originalPortDefinition.getName();
-				if (name != null) {
-					name = "~" + name;
-				}
+		PortDefinition originalPortDefinition = getOriginalPortDefinition();
+		if (originalPortDefinition != null) {
+			String name = originalPortDefinition.getName();
+			if (name != null) {
+				return "~" + name;
 			}
 		}
-		return name;
+		return null;
 	}
 	
 	//

@@ -10,16 +10,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An OccurrenceUsage is a Usage whose type is a Class. Nominally, if the type is an OccurrenceDefinition, an OccurrenceUsage is a Usage of that OccurrenceDefinition within a system. However, other types of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+ * <p>An <code>OccurrenceUsage</code> is a <code>Usage</code> whose <code>types</code> are all <code>Classes</code>. Nominally, if a <code>type</code> is an <code>OccurrenceDefinition</code>, an <code>OccurrenceUsage</code> is a <code>Usage</code> of that <code>OccurrenceDefinition</code> within a system. However, other types of Kernel <code>Classes</code> are also allowed, to permit use of <code>Classes</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An OccurrenceUsage must subset, directly or indirectly, the base Feature <em><code>occurrences</code></em> from the Kernel model library.</p>
+ * <p>An <code>OccurrenceUsage</code> must subset, directly or indirectly, the base <code>Feature</code> <em><code>occurrences</code></em> from the Kernel Semantic Library.</p>
  * 
- * if portionKind = null then portioningFeature = null
- * else 
- *     portioningFeature <> null and
- *     portionKind = portioningFeature.portionKind and
- *     occurrenceDefinition.asSet() = portioningFeature.type.asSet()
- * endif
+ * (portionKind <> null) = (portioningFeature <> null)
  * let individualDefinitions : Sequence(OccurrenceDefinition) = 
  *     occurrenceDefinition->
  *         selectByKind(OccurrenceDefinition)->
@@ -27,6 +22,16 @@ import org.eclipse.emf.common.util.EList;
  * if individualDefinitions->isEmpty() then null
  * else individualDefinitions->at(1) endif
  * isIndividual implies individualDefinition <> null
+ * occurrenceDefinition->select(isIndividual).size() <= 1
+ * specializesFromLibrary("Occurrences::occurrences")
+ * isComposite and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Class) or
+ *  owningType.oclIsKindOf(OccurrenceUsage) or
+ *  owningType.oclIsKindOf(Feature) and
+ *     owningType.oclAsType(Feature).type->
+ *         exists(oclIsKind(Class))) implies
+ *     specializesFromLibrary("Occurrences::Occurrence::suboccurrences")
  * <!-- end-model-doc -->
  *
  * <p>

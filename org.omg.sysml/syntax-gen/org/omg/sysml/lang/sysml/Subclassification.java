@@ -18,8 +18,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getSuperclassifier <em>Superclassifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getSubclassifier <em>Subclassifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier <em>Owning Classifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getSubclassifier <em>Subclassifier</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubclassification()

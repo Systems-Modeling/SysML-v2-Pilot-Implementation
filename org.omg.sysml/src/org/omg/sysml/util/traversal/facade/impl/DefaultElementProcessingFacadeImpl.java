@@ -108,7 +108,7 @@ public class DefaultElementProcessingFacadeImpl implements ElementProcessingFaca
 	 */
 	@Override
 	public void preProcess(Element element) {
-		String name = element.getName();
+		String name = element.getDeclaredName();
 		String kind = element instanceof Relationship? "Relationship": "Element";
 		String id = getId(element);
 		this.println(this.getIndent() + element.eClass().getName() + (name == null? "": " " + name) + " (" + kind + "@" + id + ")");

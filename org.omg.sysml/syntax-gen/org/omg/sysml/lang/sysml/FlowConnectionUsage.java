@@ -14,6 +14,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>A FlowConnectionUsage is a ConnectionUsage that is also an ItemFlow.</p>
  * 
  * <p>A FlowConnectionUsage must subset the base FlowConnectionUsage <em><code>flowConnections</code></em> from the Systems model library.</p>
+ * if itemFlowEnds->isEmpty() then
+ *     specializesFromLibrary("Connections::messageConnections")
+ * else
+ *     specializesFromLibrary("Connections::flowConnections"
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

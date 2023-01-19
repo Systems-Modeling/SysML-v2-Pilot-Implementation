@@ -22,12 +22,16 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -179,6 +183,21 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	public void setPayloadArgument(Expression newPayloadArgument) {
 		PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadArgument);
 	}
+	
+	// Operations
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isTriggerAction() {
+		Type owningType = getOwningType();
+		return owningType instanceof TransitionUsage &&
+				((TransitionUsage)owningType).getTriggerAction() == this;
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -259,6 +278,20 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 				return PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE___IS_TRIGGER_ACTION:
+				return isTriggerAction();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //AcceptActionUsageImpl

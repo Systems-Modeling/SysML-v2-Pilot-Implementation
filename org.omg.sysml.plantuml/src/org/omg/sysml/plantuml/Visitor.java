@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -355,7 +357,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private MultiplicityRange getEffectiveMultiplicityRange(Element e) {
         if (!(e instanceof Type)) return null;
         Type typ = (Type) e;
-        Multiplicity m = typ.getMultiplicity();
+        Multiplicity m = FeatureUtil.getMultiplicityOf(typ);
         return FeatureUtil.getMultiplicityRangeOf(m);
     }
 
@@ -391,14 +393,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected static String getFeatureName(Feature f) {
-        return f.getEffectiveName();
+        return f.getName();
     }
 
     protected static String getName(Element e) {
         if (e instanceof Feature) {
             return getFeatureName((Feature) e);
         } else {
-            return e.getName();
+            return e.getDeclaredName();
         }
     }
 
@@ -456,13 +458,13 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (sb.length() > 0) {
                 sb.append('.');
             }
-            sb.append(fc.getChainingFeature().getEffectiveName());
+            sb.append(fc.getChainingFeature().getName());
         }
         return sb.toString();
     }
 
     protected static String getFeatureChainName(Feature f) {
-        String name = f.getEffectiveName();
+        String name = f.getName();
         if (name != null) return name;
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
@@ -476,12 +478,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private static String getNameWithNamespace(Feature f) {
         String name = getFeatureName(f);
         if (name == null) return null;
+
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
-        if (pkg == null) {
-            return name;
-        } else {
-            return pkg.getName() + "::" + name;
-        }
+        if (pkg == null) return name;
+        String pkgName = pkg.getDeclaredName();
+        if (pkgName == null) return name;
+        return pkgName + "::" + name;
     }
 
 
@@ -521,7 +523,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (ft == null) continue;
             Type typ = ft.getType();
             if (typ == null) continue;
-            String typeName = typ.getEffectiveName();
+            String typeName = typ.getName();
             if (typeName == null) continue;
             if (added) {
                 sb.append(", ");

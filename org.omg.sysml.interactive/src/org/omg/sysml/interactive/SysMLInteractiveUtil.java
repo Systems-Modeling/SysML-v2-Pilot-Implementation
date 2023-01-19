@@ -51,7 +51,7 @@ public class SysMLInteractiveUtil {
 		if (EvaluationUtil.isMetaclassFeature(element)) {
 			formatElement(buffer, " ", ((MetadataFeature)element).getAnnotatedElement().get(0), "");
 		} else {		
-			String shortName = element.getShortName();
+			String shortName = element.getDeclaredShortName();
 			String name = nameOf(element);
 			buffer.append(
 					(shortName == null? "": " <" + shortName + ">") +
@@ -66,7 +66,7 @@ public class SysMLInteractiveUtil {
 		} else if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
 			String name = "";
 			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
-				String nextName = chainingFeature.getEffectiveName();
+				String nextName = chainingFeature.getName();
 				if (nextName == null) {
 					nextName = "";
 				}
@@ -86,7 +86,7 @@ public class SysMLInteractiveUtil {
 				   element instanceof FeatureReferenceExpression? nameOf(((FeatureReferenceExpression)element).getReferent()):
 				   element instanceof OperatorExpression? ((OperatorExpression)element).getOperator():
 				   element instanceof InvocationExpression? nameOf(((InvocationExpression)element).getFunction()):
-				   element.getEffectiveName();
+				   element.getName();
 		}
 	}
 
@@ -160,10 +160,10 @@ public class SysMLInteractiveUtil {
 	}
 	
 	public static int compare(Element element1, Element element2) {
-		String humanId1 = element1.getShortName();
-		String humanId2 = element2.getShortName();
-		String name1 = element1.getEffectiveName();
-		String name2 = element2.getEffectiveName();
+		String humanId1 = element1.getDeclaredShortName();
+		String humanId2 = element2.getDeclaredShortName();
+		String name1 = element1.getName();
+		String name2 = element2.getName();
 		return name1 != null && name2 != null? name1.compareToIgnoreCase(name2):
 			   name1 == null && name2 != null? -1:
 			   name1 != null && name2 == null? 1:

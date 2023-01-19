@@ -80,7 +80,7 @@ public class VCase extends VTree {
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
-        String name = ru.getEffectiveName();
+        String name = ru.getName();
         if ("obj".equals(name)) name = null;
         VRequirement vr = new VRequirement(this);
         List<VTree> subtrees = processCompartment(vr, ru);

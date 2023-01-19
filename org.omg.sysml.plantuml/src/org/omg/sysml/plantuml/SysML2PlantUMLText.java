@@ -232,9 +232,9 @@ public class SysML2PlantUMLText {
                     if (ft == null) continue;
                     Type typ = ft.getType();
                     if (typ == null) continue;
-                    String mName = typ.getShortName();
+                    String mName = typ.getDeclaredShortName();
                     if (mName == null || mName.isEmpty()) {
-                        mName = typ.getName();
+                        mName = typ.getDeclaredName();
                         if (mName == null || mName.isEmpty()) {
                             continue;
                         }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,6 +35,6 @@ public class OwningMembership_ownedMemberName_SettingDelegate extends BasicDeriv
 	@Override
 	protected Object basicGet(InternalEObject owner) {
 		Element ownedMemberElement = ((OwningMembership) owner).getOwnedMemberElement();
-		return ownedMemberElement == null? null: ownedMemberElement.getEffectiveName();
+		return ownedMemberElement == null? null: ownedMemberElement.getName();
 	}
 }

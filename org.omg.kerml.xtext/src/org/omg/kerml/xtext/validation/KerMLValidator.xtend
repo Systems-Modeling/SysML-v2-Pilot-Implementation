@@ -151,7 +151,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkElement(Element elm) {
-		if (elm.shortName !== null || elm.getEffectiveName !== null) {
+		if (elm.declaredShortName !== null || elm.getName !== null) {
 			val owner = elm.owner;
 			if (owner !== null && 
 				// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
@@ -159,11 +159,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 			    	owner instanceof NullExpression || owner instanceof BindingConnector)) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.shortName !== null && (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
+						if (elm.declaredShortName !== null && (elm.declaredShortName == e.declaredShortName || elm.declaredShortName == e.getName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
 							return						
-						} else if (elm.getEffectiveName !== null && (elm.getEffectiveName == e.shortName || elm.getEffectiveName == e.getEffectiveName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.name !== null) SysMLPackage.eINSTANCE.element_Name else null, INVALID_ELEMENT__DISTINGUISHABILITY)
+						} else if (elm.getName !== null && (elm.getName == e.declaredShortName || elm.getName == e.getName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.declaredName !== null) SysMLPackage.eINSTANCE.element_DeclaredName else null, INVALID_ELEMENT__DISTINGUISHABILITY)
 							return														
 						}												
 					}
@@ -180,9 +180,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
 			if (!(mem instanceof OwningMembership)) {
 				for (e: namesp.ownedElement) {
-					if (mem.memberShortName !== null && (mem.memberShortName == e.shortName || mem.memberShortName == e.getEffectiveName)) {
+					if (mem.memberShortName !== null && (mem.memberShortName == e.declaredShortName || mem.memberShortName == e.getName)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else if (mem.memberName !== null && (mem.memberName == e.shortName || mem.memberName == e.getEffectiveName)) {
+					} else if (mem.memberName !== null && (mem.memberName == e.declaredShortName || mem.memberName == e.getName)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
@@ -209,13 +209,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (mem.memberElement !== other.memberElement) {
 			if (memShortName !== null && (memShortName == otherShortName || memShortName == otherName)) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_ShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
 			} else if (memName !== null && (memName == otherShortName || memName == otherName)) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
@@ -315,7 +315,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			for (element: mf.annotatedElement) {
 				val metaclass = ElementUtil.getMetaclassOf(element)
 				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
-					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
+					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.declaredName), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
 		}

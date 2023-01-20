@@ -1,4 +1,5 @@
 package SimpleVehicleModel{
+    // ran 2022-11 release
     import Definitions::*;  
     import ISQ::*;
     package Definitions{
@@ -29,6 +30,7 @@ package SimpleVehicleModel{
                 port ignitionCmdPort:IgnitionCmdPort;
                 port pwrCmdPort:PwrCmdPort;
                 port vehicleToRoadPort:VehicleToRoadPort;
+                port statusPort:StatusPort;
                 perform action providePower;
                 perform action provideBraking;
                 perform action controlDirection;
@@ -226,6 +228,7 @@ package SimpleVehicleModel{
             port def IgnitionCmdPort{
                 in item ignitionCmd:IgnitionCmd;
             }
+            port def StatusPort;
             port def GearPort;
             port def PwrCmdPort{
                 in item pwrCmd:PwrCmd;
@@ -267,7 +270,7 @@ package SimpleVehicleModel{
             
             port def VehicleToRoadPort;
             port def ControlPort;
-            port def CruiseControlPort;
+            port def CruiseControlPort:>ControlPort;
             port def SpeedSensorPort;
             port def SetSpeedPort;
 
@@ -301,6 +304,7 @@ package SimpleVehicleModel{
             item def IgnitionCmd:>DriverCmd{
                 attribute ignitionOnOff:IgnitionOnOff;
             }
+            item def EngineStatus;
             
             attribute def VehicleStartSignal;
             attribute def VehicleOnSignal;
@@ -320,7 +324,7 @@ package SimpleVehicleModel{
             interface def FuelInterface {
                 end fuelOutPort:FuelPort;
                 end fuelInPort:~FuelPort;
-                flow fuelOutPort.fuel to fuelInPort.fuel;
+                flow of Fuel from fuelOutPort.fuel to fuelInPort.fuel;
             }
             
             interface def WheelFastenerInterface{
@@ -335,6 +339,7 @@ package SimpleVehicleModel{
                 interface wheelFastenerInterface:WheelFastenerInterface [5]
                     connect lugNutCompositePort.lugNutPort to shankCompositePort.shankPort;
             }
+            
             connection def GenericConnection {
                 end genericItem1:GenericItem;
                 end genericItem2:GenericItem;
@@ -705,7 +710,7 @@ package SimpleVehicleModel{
                     connect vehicleSoftware.vehicleController.controlPort to engine.engineControlPort;
                     bind vehicle_b.setSpeedPort = vehicleSoftware.vehicleController.cruiseController.setSpeedPort;
                     connect speedSensor.speedSensorPort to vehicleSoftware.vehicleController.cruiseController.speedSensorPort;
-                    connect vehicleSoftware.vehicleController.cruiseController.cruiseControlPort to engine.engineControlPort;
+                    bind vehicleSoftware.vehicleController.cruiseController.cruiseControlPort = vehicleSoftware.vehicleController.controlPort;
                     connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
                     connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
                     bind rearAxleAssembly.rearWheel1.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort1;
@@ -743,6 +748,51 @@ package SimpleVehicleModel{
                 action senseTemperature: SenseTemperature;
             }                   
             package DiscreteInteractions{
+                package Sequence{
+                    part def Driver{
+                        port p1;
+                        port p2;
+                    }
+                    /*
+                    part def Vehicle{
+                        port ignitionCmdPort;
+                    }
+                    item def IgnitionCmd;
+                    item def EngineStatus;
+                    */
+
+                    part part0{
+                        perform action startVehicle{
+                            action turnVehicleOn send ignitionCmd via driver.p1{
+                                in ignitionCmd:IgnitionCmd;
+                            }
+                            action trigger1 accept ignitionCmd:IgnitionCmd via vehicle.ignitionCmdPort;
+                            flow of IgnitionCmd from trigger1.ignitionCmd to startEngine.ignitionCmd;
+                            action startEngine{
+                                in item ignitionCmd:IgnitionCmd; 
+                                out item es:EngineStatus;
+                            }
+                            flow of EngineStatus from startEngine.es to sendStatus.es;
+                            action sendStatus send es via vehicle.statusPort{
+                                in es:EngineStatus;
+                            }
+                            action trigger2 accept es:EngineStatus via driver.p2;
+                        }
+                        part driver : Driver {
+                            perform startVehicle.turnVehicleOn;
+                            perform startVehicle.trigger2;
+                            event occurrence driverReady;
+                        }
+                        part vehicle : Vehicle {
+                            perform startVehicle.trigger1;
+                            perform startVehicle.sendStatus;
+                            event occurrence doorClosed;
+                        }
+                        first vehicle.doorClosed then driver.driverReady;
+                        message of ignitionCmd:IgnitionCmd from driver.turnVehicleOn to vehicle.trigger1;  
+                        message of es:EngineStatus from vehicle.sendStatus to driver.trigger2;
+                    }
+                }
                 occurrence CruiseControl1{
                     part vehicle_b:>PartsTree::vehicle_b{
                         port redefines setSpeedPort{
@@ -881,7 +931,7 @@ package SimpleVehicleModel{
                 #derivation connection {
                     end #original ::> vehicleSpecification.vehicleMassRequirement;
                     end #derive ::> engineSpecification.engineMassRequirement;
-                    //end #derive :> other mass requirements;
+                    //end #derive ::> other mass requirements;
                 }
 
             }
@@ -1201,6 +1251,8 @@ package SimpleVehicleModel{
                     in massMeasured:>ISQ::mass;
                     out verdict = PassIf(vehicleSpecification.vehicleMassRequirement(vehicle_uut));
                 }
+                flow from weighVehicle.massMeasured to evaluatePassFail.massMeasured;
+                return :>> verdict = evaluatePassFail.verdict;
             }
         }
         package VerificationSystem{
@@ -1476,7 +1528,7 @@ package SimpleVehicleModel{
                 // optional variation point
                 variation part sunroof:Sunroof;
                 // selection constraint
-                assert constraint {
+                assert constraint selectionConstraint{
                     (engine==engine::engine4Cyl and transmissionChoices==TransmissionChoices::transmissionManual) xor
                     (engine==engine::engine6Cyl and transmissionChoices==TransmissionChoices::transmissionAutomatic)
                 }
@@ -1546,5 +1598,6 @@ package SimpleVehicleModel{
             }
         }
     }
-    
 }
+
+

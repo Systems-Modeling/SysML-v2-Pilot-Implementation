@@ -80,7 +80,7 @@ standard library package Occurrences {
 			 */
 
 			/* withoutOccurrences is irreflexive. */
-			inv { (that as Occurrence) != (self as Occurrence) }
+			inv { (that as Occurrence) != (that.that as Occurrence) }
 		}
 
 		feature predecessors: Occurrence[0..*] subsets withoutOccurrences {
@@ -323,7 +323,7 @@ standard library package Occurrences {
 			 * is none when the startShot and endShot are the same.
 			 */
 		}
-		inv { isEmpty(middleTimeSlice) == (startShot == endShot) }
+		inv { isEmpty((this as Occurrence).middleTimeSlice) == ((this as Occurrence).startShot == (this as Occurrence).endShot) }
 
 		connector :HappensJustBefore
 			from earlierOccurrence references startShot [1]
@@ -519,7 +519,7 @@ standard library package Occurrences {
 			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
-		inv { not isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { not isClosed implies contains((this as Occurrence).unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy
@@ -568,7 +568,7 @@ standard library package Occurrences {
 			 * Tells whether an occurrence has a spaceBoundary, true if it does, false otherwise.
 			 */
 		}
-		inv { isClosed == isEmpty(spaceBoundary) }
+		inv { isClosed == isEmpty((this as Occurrence).spaceBoundary) }
 
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
@@ -614,9 +614,8 @@ standard library package Occurrences {
 			 */
 
 			end feature redefines source;
-			end feature redefines target;
+			end feature redefines target = that;
 		}
-		binding incomingTransfersToSelf.target = self;
 
 		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
@@ -634,10 +633,9 @@ standard library package Occurrences {
 			 * The outgoing transfers with this occurrence as the source.
 			 */
 
-			end feature redefines source;
+			end feature redefines source = that;
 			end feature redefines target;
 		}
-		binding outgoingTransfersFromSelf.source = self;
 	}
 
 	abstract class all Life specializes Occurrence {

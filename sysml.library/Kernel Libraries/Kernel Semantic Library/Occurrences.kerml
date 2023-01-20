@@ -323,7 +323,7 @@ standard library package Occurrences {
 			 * is none when the startShot and endShot are the same.
 			 */
 		}
-		inv { isEmpty((this as Occurrence).middleTimeSlice) == ((this as Occurrence).startShot == (this as Occurrence).endShot) }
+		inv { isEmpty((that as Occurrence).middleTimeSlice) == ((that as Occurrence).startShot == (that as Occurrence).endShot) }
 
 		connector :HappensJustBefore
 			from earlierOccurrence references startShot [1]
@@ -519,7 +519,7 @@ standard library package Occurrences {
 			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
-		inv { not isClosed implies contains((this as Occurrence).unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { not isClosed implies contains((that as Occurrence).unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy
@@ -568,7 +568,7 @@ standard library package Occurrences {
 			 * Tells whether an occurrence has a spaceBoundary, true if it does, false otherwise.
 			 */
 		}
-		inv { isClosed == isEmpty((this as Occurrence).spaceBoundary) }
+		inv { isClosed == isEmpty((that as Occurrence).spaceBoundary) }
 
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc

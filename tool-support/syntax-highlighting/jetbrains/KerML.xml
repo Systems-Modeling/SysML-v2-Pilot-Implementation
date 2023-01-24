@@ -11,8 +11,8 @@
       <option name="HAS_PARENS" value="true" />
       <option name="HAS_STRING_ESCAPES" value="true" />
     </options>
-    <keywords keywords="about;abstract;alias;all;and;as;assoc;behavior;binding;bool;by;chains;class;classifier;comment;composite;conjugate;conjugates;conjugation;connector;datatype;default;derived;differences;disjoining;disjoint;doc;element;else;end;expr;false;feature;featured;featuring;filter;first;flow;for;from;function;hastype;if;implies;import;in;inout;interaction;intersects;inv;inverse;inverting;istype;language;library;member;meta;metaclass;metadata;multiplicity;namespace;nonunique;not;null;of;or;ordered;out;package;portion;predicate;private;protected;public;readonly;redefines;redefinition;references;relationship;rep;return;specialization;specializes;standard;step;struct;subclassifier;subset;subsets;subtype;succession;then;to;true;type;typed;typing;unions;xor" ignore_case="false" />
-    <keywords2 keywords="!=;!==;%;&amp;;*;**;+;-;-&gt;;..;.?;/;:;::;::&gt;;:=;:&gt;;:&gt;&gt;;&lt;;&lt;=;=;==;===;&gt;;&gt;=;?;??;@;@@;^;|;~" />
+    <keywords keywords="about;abstract;alias;all;and;as;assoc;behavior;binding;bool;by;chains;class;classifier;comment;composite;conjugate;conjugates;conjugation;connector;datatype;default;dependency;derived;differences;disjoining;disjoint;doc;else;end;expr;false;feature;featured;featuring;filter;first;flow;for;from;function;hastype;if;implies;import;in;inout;interaction;intersects;inv;inverse;inverting;istype;language;library;member;meta;metaclass;metadata;multiplicity;namespace;nonunique;not;null;of;or;ordered;out;package;portion;predicate;private;protected;public;readonly;redefines;redefinition;references;rep;return;specialization;specializes;standard;step;struct;subclassifier;subset;subsets;subtype;succession;then;to;true;type;typed;typing;unions;xor" ignore_case="false" />
+    <keywords2 keywords="!=;!==;#;%;&amp;;*;**;+;-;-&gt;;..;.?;/;:;::;::&gt;;:=;:&gt;;:&gt;&gt;;&lt;;&lt;=;=;==;===;&gt;;&gt;=;?;??;@;@@;^;|;~" />
   </highlighting>
   <extensionMap>
     <mapping ext="kerml" />

@@ -26,6 +26,8 @@ modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
 transformation PrepareMetamodel(in export: UML, in standard: UML, out prepared: UML);
 
+property version = "20230201";
+
 main() {
 	run()
 }
@@ -36,7 +38,7 @@ helper run() {
 	
 	var model = object Model { 
 		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/2.0";
+		URI := "http://www.omg.org/spec/SysML/" + version;
 	};
 	
 	mapModel(syntax, model);

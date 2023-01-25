@@ -65,7 +65,7 @@ public interface ControlNode extends ActionUsage {
 	 *         oclAsType(MultiplicityRange).hasBounds(lower, upper)
 	 * endif
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" multRequired="true" multOrdered="false" lowerDataType="org.omg.sysml.lang.types.Integer" lowerRequired="true" lowerOrdered="false" upperDataType="org.omg.sysml.lang.types.Integer" upperRequired="true" upperOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" multRequired="true" multOrdered="false" lowerDataType="org.omg.sysml.lang.types.Integer" lowerRequired="true" lowerOrdered="false" upperDataType="org.omg.sysml.lang.types.UnlimitedNatural" upperRequired="true" upperOrdered="false"
 	 * @generated
 	 */
 	boolean multiplicityHasBounds(Multiplicity mult, int lower, int upper);

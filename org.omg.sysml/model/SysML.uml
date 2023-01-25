@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_npe-YJLJEe2jdZZEvF-VJg" name="sysml" URI="http://www.omg.org/spec/SysML/2.0">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_npe-YJLJEe2jdZZEvF-VJg" name="sysml" URI="https://www.omg.org/spec/SysML/20230201">
   <packagedElement xmi:type="uml:Enumeration" xmi:id="796fe363-bffa-4627-835b-596597fa363f" name="VisibilityKind" visibility="public">
     <ownedComment xmi:id="01178ace-ae76-418a-9365-4fed5a72f843" annotatedElement="796fe363-bffa-4627-835b-596597fa363f">
       <body>&lt;p>VisibilityKind is an enumeration whose literals specify the visibility of a Membership of an Element in a Namespace outside of that Namespace. Note that &amp;quot;visibility&amp;quot; specifically restricts whether an Element in a Namespace may be referenced by name from outside the Namespace and only otherwise restricts access to an Element as provided by specific constraints in the abstract syntax (e.g., preventing the import or inheritance of private Elements).&lt;/p>

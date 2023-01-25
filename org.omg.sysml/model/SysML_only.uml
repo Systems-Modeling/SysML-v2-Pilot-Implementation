@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_35vmIJOgEe2VVNXoaOmB0w" name="sysml" URI="http://www.omg.org/spec/SysML/2.0">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_35vmIJOgEe2VVNXoaOmB0w" name="sysml" URI="https://www.omg.org/spec/SysML/20230201">
   <packagedElement xmi:type="uml:Class" xmi:id="16faf4d7-4d1b-4383-baa9-86651cb24e32" name="PartDefinition" visibility="public">
     <ownedComment xmi:id="ce56b582-c687-4a06-89ee-034ddb9fc757" annotatedElement="16faf4d7-4d1b-4383-baa9-86651cb24e32">
       <body>&lt;p>A &lt;code>PartDefinition&lt;/code> is an &lt;code>ItemDefinition&lt;/code> of a &lt;code>Class&lt;/code> of systems or parts of systems. Note that all parts may be considered items for certain purposes, but not all items are parts that can perform actions within a system.&lt;/p>

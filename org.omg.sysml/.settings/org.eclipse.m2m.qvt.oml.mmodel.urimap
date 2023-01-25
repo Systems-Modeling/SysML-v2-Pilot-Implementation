@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
-  <mapping sourceURI="http://www.omg.org/spec/SysML/2.0" targetURI="platform:/resource/org.omg.sysml/model/SysML.ecore"/>
+  <mapping sourceURI="https://www.omg.org/spec/SysML/20230201" targetURI="platform:/resource/org.omg.sysml/model/SysML.ecore"/>
   <mapping sourceURI="http://www.eclipse.org/uml2/5.0.0/Types" targetURI="platform:/resource/org.omg.sysml/model/types.ecore"/>
 </uriMap:MappingContainer>

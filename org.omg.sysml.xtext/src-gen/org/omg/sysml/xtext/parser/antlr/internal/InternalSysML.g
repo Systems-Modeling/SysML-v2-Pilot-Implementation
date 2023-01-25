@@ -181,6 +181,53 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 	)
 ;
 
+
+// Rule RelationshipBody
+ruleRelationshipBody[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0=';'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0());
+		}
+		    |
+		(
+			otherlv_1='{'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRelationshipBodyAccess().getOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0());
+					}
+					lv_ownedRelationship_2_0=ruleOwnedAnnotation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRelationshipBodyRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.xtext.SysML.OwnedAnnotation");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+			otherlv_3='}'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2());
+			}
+		)
+	)
+;
+
 // Entry rule entryRuleDependency
 entryRuleDependency returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getDependencyRule()); }
@@ -489,53 +536,6 @@ ruleAnnotatingElement returns [EObject current=null]
 			$current = $this_MetadataUsage_3.current;
 			afterParserOrEnumRuleCall();
 		}
-	)
-;
-
-
-// Rule RelationshipBody
-ruleRelationshipBody[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0=';'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0());
-		}
-		    |
-		(
-			otherlv_1='{'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getRelationshipBodyAccess().getOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0());
-					}
-					lv_ownedRelationship_2_0=ruleOwnedAnnotation
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRelationshipBodyRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_2_0,
-							"org.omg.sysml.xtext.SysML.OwnedAnnotation");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-			otherlv_3='}'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2());
-			}
-		)
 	)
 ;
 

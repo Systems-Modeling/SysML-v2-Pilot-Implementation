@@ -46,7 +46,7 @@ standard library package StatePerformances {
 		feature accepted: Transfer[0..1] subsets acceptable {
 			doc
 			/* A transfer to the trigger target of an outgoing transition performance
-			 * for an outoging successon that is taken for this state occurrence.
+			 * for an outgoing successon that is taken for this state occurrence.
 			 */
 		}
 		feature deferrable: Transfer[0..*] subsets acceptable {
@@ -99,8 +99,9 @@ standard library package StatePerformances {
 			return  : TransitionPerformance [*] =
 				union(subtransitionPerformances,  
 		      		subtransitionPerformances->collect{in sp:TransitionPerformance; 
-							 		allSubtransitionPerformances(sp) } ); }
-		}
+							 		allSubtransitionPerformances(sp) } ); 
+ 		}
+	}
 	
 	behavior StateTransitionPerformance specializes TransitionPerformance {
 		feature isTriggerDuring: Boolean[1];

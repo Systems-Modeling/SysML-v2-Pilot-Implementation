@@ -38,7 +38,7 @@ helper run() {
 	
 	var model = object Model { 
 		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/" + version;
+		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
 	
 	mapModel(syntax, model);

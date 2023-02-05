@@ -258,7 +258,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean includeAsExposed(Element element) {
 		EList<Expression> viewConditions = UsageUtil.getAllViewConditionsOf(this);

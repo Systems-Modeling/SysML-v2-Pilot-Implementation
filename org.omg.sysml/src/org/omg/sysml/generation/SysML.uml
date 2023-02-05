@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gLzKIJOgEe2VVNXoaOmB0w" name="sysml" URI="http://www.omg.org/spec/SysML/2.0">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gLzKIJOgEe2VVNXoaOmB0w" name="sysml" URI="https://www.omg.org/spec/SysML/20230201">
   <packagedElement xmi:type="uml:Package" xmi:id="_gLzKIZOgEe2VVNXoaOmB0w" name="Systems">
     <packagedElement xmi:type="uml:Class" xmi:id="95169eaa-ae12-49c8-bd48-a99172a75af5" name="ViewRenderingMembership" visibility="public">
       <ownedComment xmi:id="4a23c2bd-8006-4392-acfd-f6ff3f55f753" annotatedElement="95169eaa-ae12-49c8-bd48-a99172a75af5">
@@ -10230,7 +10230,7 @@ endif</body>
         <ownedComment xmi:id="1a2957db-12f0-41ee-899c-fde650c7b39e" annotatedElement="7db21a79-717f-4f97-b646-7e6ab9106c43">
           <body>&lt;p>The Real value that is the result of evaluating this Expression.&lt;/p></body>
         </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml#Real"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="c8059061-a218-4e1a-974a-072b7659d8c7" name="NullExpression" visibility="public">

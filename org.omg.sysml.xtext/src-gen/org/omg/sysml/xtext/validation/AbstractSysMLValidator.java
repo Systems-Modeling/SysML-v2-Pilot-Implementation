@@ -13,7 +13,7 @@ public abstract class AbstractSysMLValidator extends KerMLExpressionsValidator {
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>(super.getEPackages());
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/SysML/2.0"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("https://www.omg.org/spec/SysML/20230201"));
 		return result;
 	}
 }

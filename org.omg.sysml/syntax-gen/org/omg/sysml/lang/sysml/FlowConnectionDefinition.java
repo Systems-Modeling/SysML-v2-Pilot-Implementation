@@ -10,8 +10,6 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A FlowConnectionDefinition is a ConnectionDefinition and ActionDefinition that is also an Interaction representing flows between Usages.</p>
- * 
- * <p>A FlowConnectionDefinition must subclassify, directly or indirectly, the base FlowConnectionDefinition <em><code>FlowConnection<code></em> from the Systems model library.</p>
  * specializesFromLibrary("Connections::MessageConnection")
  * <!-- end-model-doc -->
  *

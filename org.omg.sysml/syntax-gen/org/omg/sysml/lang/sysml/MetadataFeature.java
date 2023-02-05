@@ -134,7 +134,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Check it this MetadataFeature has a <code>metaclass</code> which is a kind of <code><em>SemanticMetadata</code>.<p>
-	 * specializes("Metaobjects::SemanticMetadata")
+	 * specializesFromLibrary('Metaobjects::SemanticMetadata')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
@@ -146,7 +146,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Check if this MetadataFeature has a <code>metaclass</code> that is a kind of <code><em>KerML::Element<em></code> (that is, it is from the reflective abstract syntax model).</p>
-	 * specializes("KerML::Element")
+	 * specializesFromLibrary('KerML::Element')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
@@ -157,7 +157,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this MetadataFeature reflectively represents a model element, then return the corresponding Element instance from the MOF abstract syntax representation of the model.</p>
+	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element<code> instance from the MOF abstract syntax representation of the model.</p>
 	 * isSyntactic()
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"

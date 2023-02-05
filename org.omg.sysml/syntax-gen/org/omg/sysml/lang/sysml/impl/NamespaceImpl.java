@@ -367,7 +367,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String qualificationOf(String qualifiedName) {
 		// TODO: implement this method
@@ -377,7 +377,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String unqualifiedNameOf(String qualifiedName) {
 		// TODO: implement this method

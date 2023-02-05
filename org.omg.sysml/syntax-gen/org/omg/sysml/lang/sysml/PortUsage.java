@@ -37,6 +37,15 @@ import org.eclipse.emf.common.util.EList;
  * nestedUsage->
  *     select(not oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)
+ * specializesFromLibrary('Ports::ports')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PortDefinition) or
+ *  owningType.oclIsKindOf(PortUsage)) implies
+ *     specializesFromLibrary('Ports::Port::subport')
+ * owningType = null or
+ * not owningType.oclIsKindOf(PortDefinition) and
+ * not owningType.oclIsKindOf(PortUsage) implies
+ *     isReference
  * <!-- end-model-doc -->
  *
  * <p>

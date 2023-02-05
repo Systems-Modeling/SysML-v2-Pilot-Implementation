@@ -10,6 +10,11 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A FeatureInverting is a Relationship between Features asserting that their interpretations (sequences) are the reverse of each other, identified as <code>featureInverted</code> and <code>invertingFeature</code>. For example, a Feature identifying each person's parents is the inverse of a Feature identifying each person's children.  A person identified as a parent of another will identify that other as one of their children.</p>
+ * if owningRelatedElement.oclIsKindOf(Feature) then
+ *     owningRelatedElement.oclAsType(Feature)
+ * else 
+ *     null
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

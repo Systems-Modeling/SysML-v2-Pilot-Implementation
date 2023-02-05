@@ -180,15 +180,17 @@ public interface MultiplicityRange extends Multiplicity {
 	 * if bound = null or not bound.isModelLevelEvaluable then 
 	 *     null
 	 * else
-	 *     let boundEval: Element = bound.evaluate(owningType) in
-	 *     if boundEval.oclIsKindOf(LiteralInfinity) then *
-	 *     else if boundEval.oclIsKindOf(LiteralInteger) then
-	 *         let boundValue : Integer = 
-	 *             boundEval.oclAsKindOf(LiteralInteger).value in
-	 *         if boundValue >= 0 then boundValue
-	 *         else null endif
-	 *     else null
-	 *     endif endif
+	 *     let boundEval: Sequence(Element) = bound.evaluate(owningType) in
+	 *     if boundEval->size() <> 1 then null else
+	 *         let valueEval: Element = boundEval->at(1) in
+	 *         if valueEval.oclIsKindOf(LiteralInfinity) then *
+	 *         else if valueEval.oclIsKindOf(LiteralInteger) then
+	 *             let value : Integer = 
+	 *                 valueEval.oclAsKindOf(LiteralInteger).value in
+	 *             if value >= 0 then value else null endif
+	 *         else null
+	 *         endif endif
+	 *     endif
 	 * endif 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.UnlimitedNatural" ordered="false" boundOrdered="false"

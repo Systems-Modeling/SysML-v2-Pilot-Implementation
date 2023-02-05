@@ -30,19 +30,50 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A StateUsage is an ActionUsage that is nominally the Usage of a StateDefinition. However, other kinds of kernel Behaviors are also allowed as types, to permit use of Behaviors from the Kernel Library.</p>
+ * <p>A <code>StateUsage</code> is an <code>ActionUsage</code> that is nominally the <code>Usage</code> of a <code>StateDefinition</code>. However, other kinds of kernel <code>Behaviors</code> are also allowed as <code>types</code>, to permit use of <code>Behaviors</code from the Kernel Model Libraries.</p>
  * 
- * <p>A StateUsage (other than an ExhibitStateUsage owned by a PartDefinition or PartUsage) must subset, directly or indirectly, either the base StateUsage <em><code>stateActions</code></em> from the Systems model library, if it is not a composite feature, or the StateUsage <em><code>substates</code></em> inherited from its owner, if it is a composite feature.</p>
- * 
- * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateUsage.</code></p>
+ * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by <code>StateSubactionMembership</code> <code>Relationships<code>, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the <code>StateUsage</code>.</p>
  * 
  * let general : Sequence(Type) = ownedGeneralization.general in
- * general ->
- *     selectByKind(StateDefinition).isParallel->
- *     forAll(p | p = isParallel) and
- * general ->
- *     selectByKind(StateUsage).isParallel->
- *     forAll(p | p = isParallel)
+ * general->selectByKind(StateDefinition)->
+ *     forAll(g | g.isParallel = isParallel) and
+ * general->selectByKind(StateUsage)->
+ *     forAll(g | g.parallel = isParallel)
+ * entryAction <> null implies
+ *     entryAction.specializesFromLibrary('StateAction::entryAction')
+ * doAction =
+ *     let doMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::do) in
+ *     if doMemberships->isEmpty() then null
+ *     else doMemberships->at(1)
+ *     endif
+ * entryAction =
+ *     let entryMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::entry) in
+ *     if entryMemberships->isEmpty() then null
+ *     else entryMemberships->at(1)
+ *     endif
+ * isParallel implies
+ *     nestedAction.incomingTransition->isEmpty() and
+ *     nestedAction.outgoingTransition->isEmpty()
+ * isSubstateUsage(false) implies
+ *     specializesFromLibrary('States::State::substates')
+ * exitAction =
+ *     let exitMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::exit) in
+ *     if exitMemberships->isEmpty() then null
+ *     else exitMemberships->at(1)
+ *     endif
+ * specializesFromLibrary('States::StateAction')
+ * ownedMembership->
+ *     selectByKind(StateSubactionMembership)->
+ *     isUnique(kind)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -77,7 +108,7 @@ public interface StateUsage extends ActionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Behaviors that are the types of this StateUsage. Nominally, these would be StateDefinitions, but non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+	 * <p>The <code>Behaviors<code> that are the <code>types</code> of this <code>StateUsage<code>. Nominally, these would be <code>StateDefinitions</code>, but kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateDefinition()
@@ -94,7 +125,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateUsage to be performed on entry to the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>entry</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateUsage</code> to be performed on entry to the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateUsage</code> by a <code>StateSubactionMembership</code>  with <code>kind = entry</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Entry Action</em>' reference.
 	 * @see #setEntryAction(ActionUsage)
@@ -121,7 +152,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateUsage to be performed while in the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>do</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateUsage</code> to be performed while in the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateUsage</code> by a <code>StateSubactionMembership</code>  with <code>kind = do</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Do Action</em>' reference.
 	 * @see #setDoAction(ActionUsage)
@@ -148,7 +179,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateUsage to be performed on exit from the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>exit</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateUsage</code> to be performed on exit to the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateUsage</code> by a <code>StateSubactionMembership</code>  with <code>kind = exit</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exit Action</em>' reference.
 	 * @see #setExitAction(ActionUsage)
@@ -176,7 +207,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the <code>nestedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>nestedStates</code> may have any incoming or outgoing <code><code>transitions. </code></code>If false, only one <code>nestedState</code> may be performed at a time.</p>
+	 * <p>Whether the <code>nestedStates</code> of this <code>StateUsage</code> are to all be performed in parallel. If true, none of the <code>nestedActions</code> (which include <code>nestedStates</code>) may have any incoming or outgoing <code>Transitions</code>. If false, only one <code>nestedState</code> may be performed at a time.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Parallel</em>' attribute.
@@ -196,5 +227,22 @@ public interface StateUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setIsParallel(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check if this <code>StateUsage</code> is composite and has an <code>owningType</code> that is an <code>StateDefinition</code> or <code>StateUsage</code> with the given value of <code>isParallel</code>, but is <em>not</em> an <code>entryAction</code> or <code>exitAction</code>. If so, then it represents a <code><em>StateAction</em></code> that is a <code><em>substate</em></code> or <code><em>exclusiveState</em></code> (for <code>isParallel = false</code>) of another <code><em>StateAction</em></code>.</p>
+	 * owningType <> null and
+	 * (owningType.oclIsKindOf(StateDefinition) and
+	 *     owningType.oclAsType(StateDefinition).isParallel = isParallel or
+	 *  owningType.oclIsKindOf(StateUsage) and
+	 *     owningType.oclAsType(StateUsage).isParallel = isParallel) and
+	 * not owningFeatureMembership.oclIsKindOf(StateSubactionUsage)
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" isParallelDataType="org.omg.sysml.lang.types.Boolean" isParallelRequired="true" isParallelOrdered="false"
+	 * @generated
+	 */
+	boolean isSubstateUsage(boolean isParallel);
 
 } // StateUsage

@@ -31,17 +31,15 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>AcceptActionUsage</code> is an <code>ActionUsage</code> that specifies the acceptance of an <em><code>incomingTransfer</code></em> from the <code><em>Occurrence</em></code> given by the result of its <code>receiverArgument</code> Expression. (If no <code>receiverArgument</code> is provided, the default is the <em><code>this</code></em> context of the AcceptActionUsage.) The payload of the accepted <em><code>Transfer</em></code> is output on its <code>payloadParameter</code>. Which <em><code>Transfers</em></code> may be accepted is determined by conformance to the typing and (potentially) binding of the <code>payloadParameter</code>.</p>
  * 
+ * inputParameters()->size() >= 2
  * receiverArgument = argument(2)
  * payloadArgument = argument(1)
  * payloadParameter = 
  *  if parameter->isEmpty() then null
  *  else parameter->at(1) endif
- * inputParameters->size() >= 2
  * not isTriggerAction() implies
  *     specializesFromLibrary('Actions::acceptActions')
- * isComposite and owningType <> null and
- * (owningType.oclIsKindOf(ActionDefinition) or
- *  owningType.oclIsKindOf(ActionUsage)) implies
+ * isSubactionUsage() and not isTriggerAction() implies
  *     specializesFromLibrary('Actions::Action::acceptSubactions')
  * isTriggerAction() implies
  *     specializesFromLibrary('Actions::TransitionAction::accepter')
@@ -76,7 +74,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>Expression<code> whose result is bound to the <em><code>receiver</code></em> input parameter of this AcceptActionUsage.</p> 
+	 * <p>An <code>Expression<code> whose <code>result</code> is bound to the <em><code>receiver</code></em> input <code>parameter</code> of this <code>AcceptActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Receiver Argument</em>' reference.
@@ -111,7 +109,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedReference</code> of this AcceptActionUsage that redefines the <code>payload</code> output parameter of the base AcceptActionUsage <em><code>AcceptAction</code></em> from the Systems model library.</p>
+	 * <p>The <code>nestedReference</code> of this <code>AcceptActionUsage</code> that redefines the <code>payload</code> output <code>parameter</code> of the base <code>AcceptActionUsage</code> <em><code>AcceptAction</code></em> from the Systems Model Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Payload Parameter</em>' reference.
 	 * @see #setPayloadParameter(ReferenceUsage)
@@ -139,7 +137,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>Expression<code> whose result is bound to the <code><em>payload</em></code> parameter of this <code>AcceptActionUsage</code>. If provided, the <code>AcceptActionUsage</code> will only accept a <code><em>Transfer</em></code> with exactly this <code><em>payload</em></code>.</p> 
+	 * <p>An <code>Expression<code> whose <code>result</code> is bound to the <code><em>payload</em></code> <code>parameter </code> of this <code>AcceptActionUsage</code>. If provided, the <code>AcceptActionUsage</code> will only accept a <code><em>Transfer</em></code> with exactly this <code><em>payload</em></code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Payload Argument</em>' reference.

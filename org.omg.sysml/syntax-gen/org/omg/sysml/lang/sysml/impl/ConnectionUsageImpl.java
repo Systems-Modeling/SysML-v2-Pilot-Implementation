@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
-import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
@@ -56,7 +55,6 @@ import org.omg.sysml.util.UsageUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOccurrenceDefinition <em>Occurrence Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getPortioningFeature <em>Portioning Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getIndividualDefinition <em>Individual Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isIndividual <em>Is Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getPortionKind <em>Portion Kind</em>}</li>
@@ -78,16 +76,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OCCURRENCE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getPortioningFeature() <em>Portioning Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPortioningFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate PORTIONING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__PORTIONING_FEATURE).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getIndividualDefinition() <em>Individual Definition</em>}' reference.
@@ -207,35 +195,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	public boolean isSetOccurrenceDefinition() {
 		return !getOccurrenceDefinition().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public PortioningFeature getPortioningFeature() {
-		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PortioningFeature basicGetPortioningFeature() {
-		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setPortioningFeature(PortioningFeature newPortioningFeature) {
-		PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPortioningFeature);
 	}
 
 	/**
@@ -428,9 +387,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		switch (featureID) {
 			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
 				return getOccurrenceDefinition();
-			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
-				if (resolve) return getPortioningFeature();
-				return basicGetPortioningFeature();
 			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
 				if (resolve) return getIndividualDefinition();
 				return basicGetIndividualDefinition();
@@ -460,9 +416,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
 				getOccurrenceDefinition().clear();
 				getOccurrenceDefinition().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
-				setPortioningFeature((PortioningFeature)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
 				setIndividualDefinition((OccurrenceDefinition)newValue);
@@ -500,9 +453,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
 				getOccurrenceDefinition().clear();
 				return;
-			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
-				setPortioningFeature((PortioningFeature)null);
-				return;
 			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
 				setIndividualDefinition((OccurrenceDefinition)null);
 				return;
@@ -537,8 +487,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 				return isSetDefinition();
 			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
 				return isSetOccurrenceDefinition();
-			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
-				return PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
 				return INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
@@ -567,7 +515,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		if (baseClass == OccurrenceUsage.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION;
-				case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE: return SysMLPackage.OCCURRENCE_USAGE__PORTIONING_FEATURE;
 				case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION;
 				case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL: return SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL;
 				case SysMLPackage.CONNECTION_USAGE__PORTION_KIND: return SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND;
@@ -599,7 +546,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		if (baseClass == OccurrenceUsage.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION;
-				case SysMLPackage.OCCURRENCE_USAGE__PORTIONING_FEATURE: return SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE;
 				case SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION;
 				case SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL: return SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL;
 				case SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND: return SysMLPackage.CONNECTION_USAGE__PORTION_KIND;

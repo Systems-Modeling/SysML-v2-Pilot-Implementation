@@ -18,13 +18,13 @@ package org.omg.sysml.lang.sysml;
  *         ownedReferenceSubsetting.referencedFeature.oclAsType(OccurrenceUsage)
  *     else null
  *     endif endif
- * isReference
  * ownedReferenceSubsetting <> null implies
  *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage)
  * owningType <> null and
  * (owningType.oclIsKindOf(OccurrenceDefinition) or
  *  owningType.oclIsKindOf(OccurrenceUsage)) implies
  *     specializesFromLibrary("Occurrences::Occurrence::timeEnclosedOccurrences")
+ * isReference
  * <!-- end-model-doc -->
  *
  * <p>

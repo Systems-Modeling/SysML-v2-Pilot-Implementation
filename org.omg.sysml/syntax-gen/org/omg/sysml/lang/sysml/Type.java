@@ -38,14 +38,8 @@ import org.eclipse.emf.common.util.EList;
  * multiplicity = 
  *     let ownedMultiplicities: Sequence(Multiplicity) =
  *         ownedMember->selectByKind(Multiplicity) in
- *     if ownedMultiplicities->notEmpty() then 
- *         ownedMultiplicities->first()
- *     else 
- *         let inheritedMultiplicities: Sequence(Multiplicity) =
- *             ownedSpecialization.general.multiplicity in
- *         if inheritedMultiplicities->notEmpty() then
- *             inheritedMultiplicities->first()
- *         endif
+ *     if ownedMultiplicities->isEmpty() then null
+ *     else ownedMultiplicities->first()
  *     endif
  * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
  * let ownedConjugators: Sequence(Conjugator) = 
@@ -66,39 +60,41 @@ import org.eclipse.emf.common.util.EList;
  *         feature->select(direction = _'in' or direction = inout)
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
- * disjointType = disjoiningTypeDisjoining.disjoiningType
- * specializesFromLibrary("Base::Anything")
+ * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(direction <> null)
  * feature = featureMembership.ownedMemberFeature
  * featureMembership = ownedMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
  * ownedFeature = ownedFeatureMembership.ownedMemberFeature
- * intersectingType->excludes(self)
- * unioningType->excludes(self)
- * differencingType->excludes(self)
  * differencingType = ownedDifferencing.differencingType
+ * intersectingType->excludes(self)
+ * differencingType->excludes(self)
  * unioningType = ownedUnioning.unioningType
+ * unioningType->excludes(self)
  * intersectingType = ownedIntersecting.intersectingType
  * ownedRelationship->selectByKind(Conjugator)->size() <= 1
  * ownedMember->selectByKind(Multiplicity)->size() <= 1
  * endFeature = feature->select(isEnd)
- * not ownedMember->exists(oclIsType(Multiplicity)) implies
- *     ownedSpecialization.general.multiplicity->size() <= 1
+ * ownedRelationship->selectByKind(Disjoining)
+ * ownedRelationship->selectByKind(Unioning)
+ * ownedRelationship->selectByKind(Intersecting)
+ * ownedRelationship->selectByKind(Differencing)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -113,7 +109,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -208,7 +203,9 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Check whether this Type is a direct or indirect specialization of the named library Type. <code>libraryTypeName</code> must conform to the syntax of a KerML qualified name and must resolve to a Type in global scope.</p>
-	 * specializes(resolveGlobal(libraryTypeName).oclAsType(Type))
+	 * let mem : Membership = resolveGlobal(libraryTypeName) in
+	 * mem <> null and mem.memberElement.oclIsKindOf(Type) and
+	 * specializes(mem.memberElement.oclAsType(Type))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" libraryTypeNameDataType="org.omg.sysml.lang.types.String" libraryTypeNameRequired="true" libraryTypeNameOrdered="false"
 	 * @generated
@@ -621,12 +618,12 @@ public interface Type extends Namespace {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The one <code>member</code> (at most) of this Type that is a Multiplicity, which constrains the cardinality of the Type. A <code>multiplicity</code> can be owned or inherited. If it is owned, the <code>multiplicity</code> must redefine the <code>multiplicity</code> (if it has one) of any <code>general</code> Type of an <code>ownedSpecialization</code> of this Type.</p>
+	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</p>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)

@@ -7445,42 +7445,21 @@ ruleOccurrenceUsagePrefix[EObject in_current]  returns [EObject current=in_curre
 		)?
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getOccurrenceUsagePrefixAccess().getPortionKindPortionKindEnumRuleCall_2_0_0());
+				{
+					newCompositeNode(grammarAccess.getOccurrenceUsagePrefixAccess().getPortionKindPortionKindEnumRuleCall_2_0());
+				}
+				lv_portionKind_2_0=rulePortionKind
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOccurrenceUsagePrefixRule());
 					}
-					lv_portionKind_2_0=rulePortionKind
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getOccurrenceUsagePrefixRule());
-						}
-						set(
-							$current,
-							"portionKind",
-							lv_portionKind_2_0,
-							"org.omg.sysml.xtext.SysML.PortionKind");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getOccurrenceUsagePrefixAccess().getOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0());
-					}
-					lv_ownedRelationship_3_0=rulePortioningFeatureMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getOccurrenceUsagePrefixRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.sysml.xtext.SysML.PortioningFeatureMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"portionKind",
+						lv_portionKind_2_0,
+						"org.omg.sysml.xtext.SysML.PortionKind");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)?
 		(
@@ -7490,9 +7469,9 @@ ruleOccurrenceUsagePrefix[EObject in_current]  returns [EObject current=in_curre
 				}
 				newCompositeNode(grammarAccess.getOccurrenceUsagePrefixAccess().getUsageExtensionKeywordParserRuleCall_3());
 			}
-			this_UsageExtensionKeyword_4=ruleUsageExtensionKeyword[$current]
+			this_UsageExtensionKeyword_3=ruleUsageExtensionKeyword[$current]
 			{
-				$current = $this_UsageExtensionKeyword_4.current;
+				$current = $this_UsageExtensionKeyword_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*
@@ -7676,34 +7655,15 @@ rulePortionUsage returns [EObject current=null]
 			)
 		)
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getPortionUsageAccess().getOwnedRelationshipPortioningFeatureMemberParserRuleCall_3_0());
-				}
-				lv_ownedRelationship_3_0=rulePortioningFeatureMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPortionUsageRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_3_0,
-						"org.omg.sysml.xtext.SysML.PortioningFeatureMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getPortionUsageRule());
 				}
-				newCompositeNode(grammarAccess.getPortionUsageAccess().getUsageExtensionKeywordParserRuleCall_4());
+				newCompositeNode(grammarAccess.getPortionUsageAccess().getUsageExtensionKeywordParserRuleCall_3());
 			}
-			this_UsageExtensionKeyword_4=ruleUsageExtensionKeyword[$current]
+			this_UsageExtensionKeyword_3=ruleUsageExtensionKeyword[$current]
 			{
-				$current = $this_UsageExtensionKeyword_4.current;
+				$current = $this_UsageExtensionKeyword_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*
@@ -7711,72 +7671,12 @@ rulePortionUsage returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getPortionUsageRule());
 			}
-			newCompositeNode(grammarAccess.getPortionUsageAccess().getUsageParserRuleCall_5());
+			newCompositeNode(grammarAccess.getPortionUsageAccess().getUsageParserRuleCall_4());
 		}
-		this_Usage_5=ruleUsage[$current]
+		this_Usage_4=ruleUsage[$current]
 		{
-			$current = $this_Usage_5.current;
+			$current = $this_Usage_4.current;
 			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRulePortioningFeatureMember
-entryRulePortioningFeatureMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPortioningFeatureMemberRule()); }
-	iv_rulePortioningFeatureMember=rulePortioningFeatureMember
-	{ $current=$iv_rulePortioningFeatureMember.current; }
-	EOF;
-
-// Rule PortioningFeatureMember
-rulePortioningFeatureMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getPortioningFeatureMemberAccess().getOwnedRelatedElementPortioningFeatureParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=rulePortioningFeature
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getPortioningFeatureMemberRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.PortioningFeature");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRulePortioningFeature
-entryRulePortioningFeature returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPortioningFeatureRule()); }
-	iv_rulePortioningFeature=rulePortioningFeature
-	{ $current=$iv_rulePortioningFeature.current; }
-	EOF;
-
-// Rule PortioningFeature
-rulePortioningFeature returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getPortioningFeatureAccess().getPortioningFeatureAction(),
-				$current);
 		}
 	)
 ;
@@ -15738,42 +15638,21 @@ ruleControlNodePrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getControlNodePrefixAccess().getPortionKindPortionKindEnumRuleCall_2_0_0());
+				{
+					newCompositeNode(grammarAccess.getControlNodePrefixAccess().getPortionKindPortionKindEnumRuleCall_2_0());
+				}
+				lv_portionKind_2_0=rulePortionKind
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getControlNodePrefixRule());
 					}
-					lv_portionKind_2_0=rulePortionKind
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getControlNodePrefixRule());
-						}
-						set(
-							$current,
-							"portionKind",
-							lv_portionKind_2_0,
-							"org.omg.sysml.xtext.SysML.PortionKind");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getControlNodePrefixAccess().getOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0());
-					}
-					lv_ownedRelationship_3_0=rulePortioningFeatureMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getControlNodePrefixRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.sysml.xtext.SysML.PortioningFeatureMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"portionKind",
+						lv_portionKind_2_0,
+						"org.omg.sysml.xtext.SysML.PortionKind");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)?
 	)

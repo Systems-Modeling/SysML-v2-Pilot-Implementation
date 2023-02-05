@@ -29,7 +29,18 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage. The <code>ownedMemberFeature</code> must be a Step. For a trigger, the <code>ownedMemberFeature</code> must more specifically be a Transfer, while for a guard it must be an Expression with a result type of Boolean.</p>
+ * <p>A <code>TransitionFeatureMembership</code> is a <code>FeatureMembership<code> for a trigger, guard or effect of a <code>TransitionUsage</code>, whose <code>transitionFeature</code> is a <code>AcceptActionUsage</code>, <em><code>Boolean</code></em>-valued <code>Expression</code> or <code>ActionUsage</code>, depending on its <code>kind</code>. </p>
+ * kind = TransitionFeatureKind::trigger implies
+ *     transitionFeature.oclIsKindOf(AcceptActionUsage)
+ * owningType.oclIsKindOf(TransitionUsage)
+ * kind = TransitionFeatureKind::guard implies
+ *     transitionFeature.oclIsKindOf(Expression) and
+ *     let guard : Expression = transitionFeature.oclIsKindOf(Expression) in
+ *     guard.result.specializesFromLibrary('ScalarValues::Boolean') and
+ *     guard.result.multiplicity <> null and
+ *     guard.result.multiplicity.hasBounds(1,1)
+ * kind = TransitionFeatureKind::effect implies
+ *     transitionFeature.oclIsKindOf(ActionUsage)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +66,7 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this TransitionFeatureMembership is for a trigger, guard or effect.</p>
+	 * <p>Whether this <code>TransitionFeatureMembership </code> is for a trigger, guard or effect.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.TransitionFeatureKind
@@ -88,7 +99,7 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Step that is the <tt>ownedMemberFeature</tt> of this TransitionFeatureMembership.</p>
+	 * <p>The <codeStep</code> that is the <cpde>ownedMemberFeature</code> of this <code>TransitionFeatureMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Feature</em>' reference.
 	 * @see #setTransitionFeature(Step)

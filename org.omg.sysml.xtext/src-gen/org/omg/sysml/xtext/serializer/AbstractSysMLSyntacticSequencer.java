@@ -1039,12 +1039,12 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ActionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ActionUsageKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1099,10 +1099,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'decide' (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'fork' (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'join' (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'merge' (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'decide' (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'fork' (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'join' (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'merge' (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1134,10 +1134,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     portionKind=PortionKind (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     portionKind=PortionKind (ambiguity) ownedRelationship+=ConnectorEndMember
 	 
 	 * </pre>
 	 */
@@ -1300,11 +1300,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember CaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember AnalysisCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember AnalysisCaseUsageKeyword (ambiguity) (rule end)
@@ -1314,6 +1309,11 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember VerificationCaseUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'include' UseCaseUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind AnalysisCaseUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind CaseUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind UseCaseUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1359,10 +1359,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     portionKind=PortionKind (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     portionKind=PortionKind (ambiguity) ownedRelationship+=ConnectorEndMember
 	 
 	 * </pre>
 	 */
@@ -1569,18 +1569,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember AllocationUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember FlowConnectionKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ItemUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember MessageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember OccurrenceUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember PartUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember PortUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember RenderingUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'def' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'def' (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     ownedRelationship+=PrefixMetadataMember 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1607,6 +1595,18 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember RenderingUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind (ambiguity) (rule end)
+	 *     portionKind=PortionKind AllocationUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ConnectionUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind FlowConnectionKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ItemUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind MessageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind OccurrenceUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind PartUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind PortUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind RenderingUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1750,9 +1750,9 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember InterfaceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind InterfaceUsageKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1784,10 +1784,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     ownedRelationship+=PrefixMetadataMember InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     ownedRelationship+=PrefixMetadataMember InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     portionKind=PortionKind InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     portionKind=PortionKind InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 
 	 * </pre>
 	 */
@@ -1983,10 +1983,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ConcernUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember RequirementUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ConcernDefKeyword (ambiguity) (rule end)
@@ -1996,6 +1992,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember ViewpointDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=SatisfactionSubjectMember (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ConcernUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind RequirementUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ViewpointUsageKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -2261,34 +2261,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isVariation?='variation' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isVariation?='variation' (ambiguity) isNegated?='not'
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=AliasMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=DefinitionMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=FramedConcernMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=Import
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=NonOccurrenceUsageMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=OccurrenceUsageMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=StakeholderMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword declaredName=Name
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) isNegated?='not'
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
@@ -2317,6 +2289,34 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isNegated?='not'
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=AliasMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=DefinitionMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=FramedConcernMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=Import
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=NonOccurrenceUsageMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=OccurrenceUsageMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=StakeholderMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword declaredName=Name
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
+	 *     portionKind=PortionKind (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
+	 *     portionKind=PortionKind (ambiguity) isNegated?='not'
 	 
 	 * </pre>
 	 */
@@ -2451,8 +2451,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember ViewUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ViewUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind ViewUsageKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

@@ -33,10 +33,19 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>A PortDefinition must subclass, directly or indirectly, the base Class <em>Port</em> from the Systems model library.</p>
  * 
- * conjugatedPortDefinition = ownedMember->select(oclIsKindOf(ConjugatedPortDefinition))
+ * conjugatedPortDefinition = 
+ * let conjugatedPortDefinitions : Sequence(ConjugatedPortDefinition) =
+ *     ownedMember->selectByKind(ConjugatedPortDefinition) in
+ * if conjugatedPortDefinitions->isEmpty() then null
+ * else conjugatedPortDefinitions->first()
+ * endif
  * ownedUsage->
  *     select(not oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)
+ * ownedFeature->
+ *     selectByKind(ConjugatedPortDefinition)->
+ *     size() <= 1
+ * specializeFromLibrary('Ports::Port')
  * <!-- end-model-doc -->
  *
  * <p>

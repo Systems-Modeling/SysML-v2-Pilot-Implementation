@@ -9,8 +9,36 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AssignmentActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em><code>AssignmentAction</code> </em>from the Systems model library. It specifies that the value of the <code>referent</code> Feature, relative to the target given by the result of the <code>targetArgument</code> Expression, should be set to the result of the <code>valueExpression</code>.</p>
+ * <p>An <code>AssignmentActionUsage</code> is an <code>ActionUsage</code> that is defined, directly or indirectly, by the <code>ActionDefinition</code> <em><code>AssignmentAction</code></em> from the Systems Model Library. It specifies that the value of the <code>referent</code> <code>Feature</code>, relative to the target given by the result of the <code>targetArgument</code> <code>Expression</code>, should be set to the result of the <code>valueExpression</code>.</p>
  * 
+ * specializesFromLibrary('Actions::assignmentActions')
+ * let targetParameter : Feature = inputParameter(1) in
+ * targetParameter <> null and
+ * targetParameter.ownedFeature->notEmpty() and
+ * targetParameter.ownedFeature->first().
+ *     redefines('AssignmentAction::target::startingAt')
+ * valueExpression = argument(2)
+ * targetArgument = argument(1)
+ * isSubactionUsage() implies
+ *     specializesFromLibrary('Actions::Action::assignments')
+ * let targetParameter : Feature = inputParameter(1) in
+ * targetParameter <> null and
+ * targetParameter.ownedFeature->notEmpty() and
+ * targetParameter->first().ownedFeature->notEmpty() and
+ * targetParameter->first().ownedFeature->first().
+ *     redefines('AssigmentAction::target::startingAt::accessedFeature')
+ * let targetParameter : Feature = inputParameter(1) in
+ * targetParameter <> null and
+ * targetParameter.ownedFeature->notEmpty() and
+ * targetParameter->first().ownedFeature->notEmpty() and
+ * targetParameter->first().ownedFeature->first().redefines(referent)
+ * referent =
+ *     let unownedFeatures : Sequence(Feature) = ownedMembership->
+ *         reject(oclIsKindOf(OwningMembership)).memberElement->
+ *         selectByKind(Feature) in
+ *     if unownedFeatures->isEmpty() then null
+ *     else unownedFeatures->first().oclAsType(Feature)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -32,7 +60,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose value is an occurrence in the domain of the <code>referent</code> Feature, for which the value of the <code>referent</code> will be set to the result of the <code>valueExpression</code> by this AssignmentActionUsage. Derived as the <code>value</code> of the FeatureValue of the redefined <em><code>target</code></em> parameter of the AssignmentActionUsage.</p>
+	 * <p>The <code>Expression</code> whose value is an occurrence in the domain of the <code>referent</code> <code>Feature</code>, for which the value of the <code>referent</code> will be set to the result of the <code>valueExpression</code> by this <code>AssignmentActionUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Argument</em>' reference.
 	 * @see #setTargetArgument(Expression)
@@ -59,7 +87,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result is to be assigned to the <code>referent</code> Feature. Derived as the <code>value</code> of the FeatureValue of the redefined <em><code>replacementValues</code></em> parameter of the AssignmentActionUsage.</p>
+	 * <p>The <code>Expression</code> whose result is to be assigned to the <code>referent</code> <code>Feature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Expression</em>' reference.
 	 * @see #setValueExpression(Expression)
@@ -92,7 +120,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose value is to be set, derived as an unowned <code>member</code> of the AssignmentActionUsage. It shall not be a FeatureChain. It is redefined by the <em><code>target::accessedFeature</code></em> of the AssignmentActionUsage.</p>
+	 * <p>The <code>Feature</code> whose value is to be set.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(Feature)

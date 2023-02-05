@@ -27,26 +27,21 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Multiplicity</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Multiplicity is a Feature whose co-domain is a set of natural numbers that includes the number&nbsp;of sequences determined below, based on the kind of&nbsp;typeWithMultiplicity:</p>
- * 
+ * <p>A <code>Multiplicity</code> is a <code>Feature>/code> whose co-domain is a set of natural numbers giving the allowed cardinalities of each <code>typeWithMultiplicity</code>. The <em>cardinality</em> of a <code>Type</code> is defined as follows, depending on whether the <code>Type</code> is a <code>Classifier</code> or <code>Feature</code>.
  * <ul>
- * 	<li>Classifiers: minimal sequences (the single length sequences of the Classifier).</li>
- * 	<li>Features: sequences with the same feature-pair head.&nbsp; In the case of Features with Classifiers as domain and co-domain, these sequences are pairs, with the first element in&nbsp;a single-length sequence of the domain Classifier (head of the pair), and the number of pairs with the same first element being among the Multiplicity co-domain numbers.</li>
+ * <li><code>Classifier/code> – The number of basic instances of the <code>Classifier</code>, that is, those instances representing things, which are not instances of any subtypes of the <code>Classifier</code> that are <code>Features</code>.
+ * <li><code>Features</code> – The number of instances with the same featuring instances. In the case of a <code>Feature</code> with a <code>Classifier</code> as its <code>featuringType</code>, this is the number of values of <code>Feature</code> for each basic instance of the <code>Classifier</code>. Note that, for non-unique <code>Features</code>, all duplicate values are included in this count.</li>
  * </ul>
  * 
- * <p>Multiplicity co-domains (in models) can be specified by Expression that might vary in their results. If the <code>typeWithMultiplicity</code> is a Classifier, the domain of the Multiplicity shall be <em>Anything</em>.  If the <code>typeWithMultiplicity</code> is a Feature,  the Multiplicity shall have the same domain as the <code>typeWithMultiplicity</code>.</p>
+ * <p><code>Multiplicity</code> co-domains (in models) can be specified by <code>Expression</code> that might vary in their results. If the <code>typeWithMultiplicity</code> is a <code>Classifier</code>, the domain of the <code>Multiplicity</code> shall be <em><code>Base::Anything</code></em>.  If the <code>typeWithMultiplicity</code> is a <code>Feature</code>,  the <code>Multiplicity</code> shall have the same domain as the <code>typeWithMultiplicity</code>.</p>
  * 
- * if typeWithMultiplicity.oclIsKindOf(Feature) then
+ * if owningType <> null and owningType.oclIsKindOf(Feature) then
  *     featuringType = 
- *         typeWithMultiplicity.oclAsType(Feature).featuringType
+ *         owningType.oclAsType(Feature).featuringType
  * else
- *     featuringType = Sequence{resolveGlobal("Base::Anything"))}
+ *     featuringType->isEmpty()
  * endif
  * specializesFromLibrary("Base::naturals")
- * owningNamespace.oclIsKindOf(Type) implies
- *     owningNamespace.oclAsType(Type).ownedSpecialization.general.multiplicity->
- *         forAll(m | redefines(m))
- * 
  * <!-- end-model-doc -->
  *
  *

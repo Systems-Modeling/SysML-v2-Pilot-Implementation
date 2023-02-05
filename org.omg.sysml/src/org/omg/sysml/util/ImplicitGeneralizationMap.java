@@ -252,6 +252,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
+		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");

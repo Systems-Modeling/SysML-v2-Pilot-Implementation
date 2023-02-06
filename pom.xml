@@ -58,6 +58,7 @@
     <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.jupyter.installer</module>
     <module>org.omg.sysml.feature</module>
+    <module>org.omg.sysml.editor.feature</module>
     <module>org.omg.sysml.plantuml</module>
     <module>org.omg.sysml.plantuml.eclipse</module>
     <module>org.omg.sysml.plantuml.feature</module>

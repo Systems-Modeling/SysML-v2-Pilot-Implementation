@@ -6,14 +6,19 @@
    <feature id="org.omg.sysml.feature">
       <category name="KerML and SysML Editors"/>
    </feature>
+   <feature id="org.omg.sysml.editor.feature">
+      <category name="KerML and SysML Editors"/>
+   </feature>
    <feature id="org.omg.sysml.plantuml.feature">
       <category name="KerML and SysML Editors"/>
    </feature>
    <category-def name="KerML and SysML Editors" label="KerML and SysML Editors">
       <description>
          Xtext editors for the KerML and SysML textual notations.
+         Generated editor for SysML XMI.
+         PlantUML-base graphical visualization for XMI.
       </description>
    </category-def>
-   <repository-reference location="https://download.eclipse.org/releases/2020-06" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/releases/2022-09" enabled="true" />
    <repository-reference location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates" enabled="true" />
 </site>

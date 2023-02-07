@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -315,7 +315,18 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public String getElementId() {
 		if (elementId == null) {
-			elementId = UUID.randomUUID().toString();
+			UUID uuid = UUID.randomUUID();
+			if (ElementUtil.isStandardLibraryElement(this)) {
+				String qualifiedName = getQualifiedName();
+				if (qualifiedName != null) {
+					Namespace libraryNamespace = libraryNamespace();
+					if (this != libraryNamespace) {
+						UUID namespaceUUID = UUID.fromString(libraryNamespace.getElementId());
+						uuid = ElementUtil.constructNameUUID(namespaceUUID, qualifiedName);
+					}
+				}
+			}
+			elementId = uuid.toString();
 		}
 		return elementId;
 	}
@@ -710,10 +721,10 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * @generated NOT
 	 */
 	public String escapedName() {
-		String effectiveName = getName();
-		String shortName = getDeclaredShortName();
+		String name = getName();
+		String shortName = getShortName();
 		String elementName = 
-				effectiveName != null? effectiveName:
+				name != null? name:
 				shortName != null? shortName:
 				null;
 		return ElementUtil.escapeName(elementName);

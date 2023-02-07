@@ -24,8 +24,11 @@
 
 package org.omg.sysml.util;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -134,6 +137,19 @@ public class ElementUtil {
 		Namespace libraryNamespace = element.libraryNamespace();
 		return libraryNamespace instanceof LibraryPackage && 
 				((LibraryPackage)libraryNamespace).isStandard();
+	}
+	
+	public static UUID constructNameUUID(UUID namespaceUUID, String name) {
+		try {
+			byte[] nameBytes = name.getBytes("UTF-8");
+			ByteBuffer bb = ByteBuffer.wrap(new byte[16 + nameBytes.length]);
+			bb.putLong(namespaceUUID.getMostSignificantBits());
+			bb.putLong(namespaceUUID.getLeastSignificantBits());
+			bb.put(nameBytes);
+			return UUID.nameUUIDFromBytes(bb.array());
+		} catch (UnsupportedEncodingException e) {
+			return null;
+		}
 	}
 	
 	// Annotation

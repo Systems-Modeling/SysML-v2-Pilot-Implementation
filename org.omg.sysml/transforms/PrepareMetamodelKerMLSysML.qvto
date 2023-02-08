@@ -38,12 +38,12 @@ helper run() {
 	
 	var kermlModel = object Model@kerml { 
 		name := "kerml";
-		URI := "http://www.omg.org/spec/KerML/" + version;
+		URI := "https://www.omg.org/spec/KerML/" + version;
 	};
 	
 	var sysmlModel = object Model@sysml { 
 		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/" + version;
+		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
 	
 	mapModel(syntax, kermlModel, sysmlModel);

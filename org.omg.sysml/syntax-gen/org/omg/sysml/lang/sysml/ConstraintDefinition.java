@@ -29,9 +29,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConstraintDefinition is an OccurrenceDefinition that is also a Predicate that defines a constraint that may be asserted to hold on a system or part of a system.</p>
+ * <p>A <code>ConstraintDefinition</code> is an <code>OccurrenceDefinition</code> that is also a <code>Predicate</code> that defines a constraint that may be asserted to hold on a system or part of a system.</p>
  * 
- * <p>A ConstraintDefinition must subclass, directly or indirectly, the base ConstraintDefinition ConstraintCheck from the Systems model library.</p>
+ * 
+ * specializesFromLibrary('Constraints::ConstraintCheck')
  * <!-- end-model-doc -->
  *
  *

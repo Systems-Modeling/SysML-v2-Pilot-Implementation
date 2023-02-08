@@ -64,7 +64,7 @@ public interface ActionDefinition extends OccurrenceDefinition, Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are Steps in this ActionDefinition, which define the actions that specify the behavior of the ActionDefinition.</p> 
+	 * <p>The <code>ActionUsages</code> that are <code>steps</code> in this <code>ActionDefinition</code>, which define the actions that specify the behavior of the <code>ActionDefinition</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action</em>' reference list.

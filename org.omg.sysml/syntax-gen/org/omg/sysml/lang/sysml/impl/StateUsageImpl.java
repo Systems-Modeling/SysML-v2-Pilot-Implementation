@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -31,8 +32,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -256,6 +260,40 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_USAGE__IS_PARALLEL, oldIsParallel, isParallel));
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getActionDefinition() {
+		return getStateDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionDefinition() {
+  		return false;
+	}
+
+	// Operations
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSubstateUsage(boolean isParallel) {
+		Type owningType = getOwningType();
+		return (owningType instanceof StateDefinition && ((StateDefinition)owningType).isParallel() == isParallel || 
+				owningType instanceof StateUsage && ((StateDefinition)owningType).isParallel() == isParallel) &&
+			   !(getOwningFeatureMembership() instanceof StateSubactionMembership);
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -368,6 +406,20 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @generated
 	 */
 	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.STATE_USAGE___IS_SUBSTATE_USAGE__BOOLEAN:
+				return isSubstateUsage((Boolean)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -376,24 +428,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		result.append(isParallel);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Behavior> getActionDefinition() {
-		return getStateDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetActionDefinition() {
-  		return false;
 	}
 
 } //StateUsageImpl

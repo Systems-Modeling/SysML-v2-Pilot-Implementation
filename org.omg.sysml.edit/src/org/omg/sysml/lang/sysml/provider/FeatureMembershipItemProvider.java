@@ -214,11 +214,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createMultiplicity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createUsage()));
 
 		newChildDescriptors.add
@@ -229,22 +224,37 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createConstraintUsage()));
+				 SysMLFactory.eINSTANCE.createActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createRequirementUsage()));
+				 SysMLFactory.eINSTANCE.createStateUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createViewpointUsage()));
+				 SysMLFactory.eINSTANCE.createExhibitStateUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createMultiplicity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createPortUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createConstraintUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -255,21 +265,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createBooleanExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createPortUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createActionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createStateUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -299,6 +294,26 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createRequirementUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createConcernUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createItemUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createPartUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createCalculationUsage()));
 
 		newChildDescriptors.add
@@ -310,16 +325,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createAnalysisCaseUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createItemUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createPartUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -344,6 +349,11 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createViewpointUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createRenderingUsage()));
 
 		newChildDescriptors.add
@@ -360,11 +370,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createAllocationUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createConcernUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -404,7 +409,7 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createPortioningFeature()));
+				 SysMLFactory.eINSTANCE.createPerformActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -424,71 +429,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createExhibitStateUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createPerformActionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createBindingConnector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createMergeNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createDecisionNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createForkNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createIfActionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createSendActionUsage()));
 
 		newChildDescriptors.add
@@ -504,7 +444,7 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createWhileLoopActionUsage()));
+				 SysMLFactory.eINSTANCE.createForLoopActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -514,12 +454,82 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createForLoopActionUsage()));
+				 SysMLFactory.eINSTANCE.createMergeNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createJoinNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createForkNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createWhileLoopActionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createDecisionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createIfActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createBindingConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createMultiplicityRange()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createLiteralExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createLiteralRational()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -534,17 +544,32 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createNullExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
+				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createLiteralExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createLiteralRational()));
+				 SysMLFactory.eINSTANCE.createLiteralInteger()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -560,36 +585,6 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
 				 SysMLFactory.eINSTANCE.createCollectExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createLiteralInteger()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createNullExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE,
-				 SysMLFactory.eINSTANCE.createMultiplicityRange()));
 	}
 
 	/**

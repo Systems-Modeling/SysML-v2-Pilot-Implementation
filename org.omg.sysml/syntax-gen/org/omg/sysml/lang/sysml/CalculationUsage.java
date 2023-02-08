@@ -28,9 +28,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CalculationUsage is an ActionUsage that is also an Expression, and, so, is typed by a Function. Nominally, if the type is a CalculationDefinition, a CalculationUsage is a Usage of that CalculationDefinition within a system. However, other kinds of kernel Functions are also allowed, to permit use of Functions from the Kernel Library.</p>
- * 
- * <p>A CalculationUsage must subset, directly or indirectly, either the base CalculationUsage <code>calculations</code> from the Systems model library, if it is not a composite feature, or the CalculationUsage <code>subcalculations</code> inherited from its owner, if it is a composite feature.</p>
+ * <p>A <code>CalculationUsage</code> is an <code>ActionUsage<code> that is also an <code>Expression</code>, and, so, is typed by a <code>Function</code>. Nominally, if the <code>type</code> is a <code>CalculationDefinition</code>, a <code>CalculationUsage</code> is a <code>Usage</code> of that <code>CalculationDefinition</code> within a system. However, other kinds of kernel <code>Functions</code> are also allowed, to permit use of <code>Functions</code> from the Kernel Model Libraries.</p>
+ * specializesFromLibrary('Calculations::calculations')
+ * owningType <> null and
+ * (owningType.oclIsKindOf(CalculationDefinition) or
+ *  owningType.oclIsKindOf(CalculationUsage)) implies
+ *     specializesFromLibrary('Calculations::Calculation::subcalculations')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -57,7 +60,7 @@ public interface CalculationUsage extends ActionUsage, Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Function that is the type of this CalculationUsage. Nominally, this would be a CalculationDefinition, but a kernel Function is also allowed, to permit use of Functions from the Kernel Library.</p>
+	 * <p>The <ode>Function</code> that is the <code>type</code> of this <code>CalculationUsage</code>. Nominally, this would be a <code>CalculationDefinition</code>, but a kernel <code>Function</code> is also allowed, to permit use of <code>Functions</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Calculation Definition</em>' reference.
 	 * @see #setCalculationDefinition(Function)

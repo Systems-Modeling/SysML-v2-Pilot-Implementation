@@ -31,11 +31,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>DecisionNode</code> is a <code>ControlNode</code> that makes a selection from its outgoing <code>Successions</code>.</p>
  * targetConnector->selectByKind(Succession)->size() <= 1
- * specializesFromLibrary("Actions::Action::decisions")
  * sourceConnector->selectAsKind(Succession)->
  *     collect(connectorEnd->at(2))->
  *     forAll(targetMult |
  *         multiplicityHasBounds(targetMult, 0, 1))
+ * specializesFromLibrary("Actions::Action::decisions")
  * sourceConnector->selectByKind(Succession)->
  *     forAll(subsetsChain(this, 
  *         resolveGlobal("ControlPerformances::MergePerformance::outgoingHBLink")))

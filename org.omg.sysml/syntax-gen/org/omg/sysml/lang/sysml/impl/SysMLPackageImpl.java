@@ -32,186 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.ActorMembership;
-import org.omg.sysml.lang.sysml.AllocationDefinition;
-import org.omg.sysml.lang.sysml.AllocationUsage;
-import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
-import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.Annotation;
-import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.AssignmentActionUsage;
-import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.AssociationStructure;
-import org.omg.sysml.lang.sysml.AttributeDefinition;
-import org.omg.sysml.lang.sysml.AttributeUsage;
-import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
-import org.omg.sysml.lang.sysml.BooleanExpression;
-import org.omg.sysml.lang.sysml.CalculationDefinition;
-import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.CollectExpression;
-import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.lang.sysml.ConcernDefinition;
-import org.omg.sysml.lang.sysml.ConcernUsage;
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
-import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
-import org.omg.sysml.lang.sysml.Conjugation;
-import org.omg.sysml.lang.sysml.ConnectionDefinition;
-import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.ConnectorAsUsage;
-import org.omg.sysml.lang.sysml.ConstraintDefinition;
-import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.ControlNode;
-import org.omg.sysml.lang.sysml.DataType;
-import org.omg.sysml.lang.sysml.DecisionNode;
-import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.Dependency;
-import org.omg.sysml.lang.sysml.Differencing;
-import org.omg.sysml.lang.sysml.Disjoining;
-import org.omg.sysml.lang.sysml.Documentation;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
-import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.EnumerationDefinition;
-import org.omg.sysml.lang.sysml.EnumerationUsage;
-import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
-import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.Expose;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChainExpression;
-import org.omg.sysml.lang.sysml.FeatureChaining;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureInverting;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Featuring;
-import org.omg.sysml.lang.sysml.FlowConnectionDefinition;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
-import org.omg.sysml.lang.sysml.ForLoopActionUsage;
-import org.omg.sysml.lang.sysml.ForkNode;
-import org.omg.sysml.lang.sysml.FramedConcernMembership;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.IfActionUsage;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
-import org.omg.sysml.lang.sysml.Interaction;
-import org.omg.sysml.lang.sysml.InterfaceDefinition;
-import org.omg.sysml.lang.sysml.InterfaceUsage;
-import org.omg.sysml.lang.sysml.Intersecting;
-import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.JoinNode;
-import org.omg.sysml.lang.sysml.LibraryPackage;
-import org.omg.sysml.lang.sysml.LifeClass;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.LiteralInfinity;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralRational;
-import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LoopActionUsage;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MembershipExpose;
-import org.omg.sysml.lang.sysml.MembershipImport;
-import org.omg.sysml.lang.sysml.MergeNode;
-import org.omg.sysml.lang.sysml.Metaclass;
-import org.omg.sysml.lang.sysml.MetadataAccessExpression;
-import org.omg.sysml.lang.sysml.MetadataDefinition;
-import org.omg.sysml.lang.sysml.MetadataFeature;
-import org.omg.sysml.lang.sysml.MetadataUsage;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.NamespaceExpose;
-import org.omg.sysml.lang.sysml.NamespaceImport;
-import org.omg.sysml.lang.sysml.NullExpression;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.OperatorExpression;
-import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PerformActionUsage;
-import org.omg.sysml.lang.sysml.PortConjugation;
-import org.omg.sysml.lang.sysml.PortDefinition;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.PortionKind;
-import org.omg.sysml.lang.sysml.PortioningFeature;
-import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.ReferenceSubsetting;
-import org.omg.sysml.lang.sysml.ReferenceUsage;
-import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.RenderingDefinition;
-import org.omg.sysml.lang.sysml.RenderingUsage;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
-import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.SelectExpression;
-import org.omg.sysml.lang.sysml.SendActionUsage;
-import org.omg.sysml.lang.sysml.Specialization;
-import org.omg.sysml.lang.sysml.StakeholderMembership;
-import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.StateSubactionKind;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
-import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Structure;
-import org.omg.sysml.lang.sysml.Subclassification;
-import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionAsUsage;
-import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
-import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.lang.sysml.TransitionFeatureKind;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
-import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
-import org.omg.sysml.lang.sysml.TriggerKind;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.Unioning;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
-import org.omg.sysml.lang.sysml.UseCaseUsage;
-import org.omg.sysml.lang.sysml.VariantMembership;
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
-import org.omg.sysml.lang.sysml.VerificationCaseUsage;
-import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewRenderingMembership;
-import org.omg.sysml.lang.sysml.ViewUsage;
-import org.omg.sysml.lang.sysml.ViewpointDefinition;
-import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.WhileLoopActionUsage;
+import org.omg.sysml.lang.sysml.*;
 import org.omg.sysml.lang.types.TypesPackage;
 import org.omg.sysml.lang.types.impl.TypesPackageImpl;
 
@@ -781,13 +602,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass occurrenceUsageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass portioningFeatureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1576,7 +1390,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getSubclassification_OwningClassifier() {
-		return (EReference)subclassificationEClass.getEStructuralFeatures().get(1);
+		return (EReference)subclassificationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1586,7 +1400,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getSubclassification_Subclassifier() {
-		return (EReference)subclassificationEClass.getEStructuralFeatures().get(2);
+		return (EReference)subclassificationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1606,7 +1420,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getSpecialization_OwningType() {
-		return (EReference)specializationEClass.getEStructuralFeatures().get(0);
+		return (EReference)specializationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1616,7 +1430,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getSpecialization_General() {
-		return (EReference)specializationEClass.getEStructuralFeatures().get(1);
+		return (EReference)specializationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1626,7 +1440,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getSpecialization_Specific() {
-		return (EReference)specializationEClass.getEStructuralFeatures().get(2);
+		return (EReference)specializationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3055,6 +2869,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EOperation getTransitionUsage__TriggerPayloadParameter() {
+		return transitionUsageEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFunction() {
 		return functionEClass;
 	}
@@ -3156,7 +2980,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_OwnedFeatureMembership() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(0);
+		return (EReference)typeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3376,7 +3200,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_Feature() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(3);
+		return (EReference)typeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3386,7 +3210,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_OwnedFeature() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(1);
+		return (EReference)typeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3446,7 +3270,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getType_IsSufficient() {
-		return (EAttribute)typeEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)typeEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -3456,7 +3280,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_OwnedConjugator() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(10);
+		return (EReference)typeEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -3466,7 +3290,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getType_IsConjugated() {
-		return (EAttribute)typeEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)typeEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -3476,16 +3300,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_FeatureMembership() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(19);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_DifferencingType() {
 		return (EReference)typeEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -3495,7 +3309,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getType_OwnedDifferencing() {
+	public EReference getType_DifferencingType() {
 		return (EReference)typeEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -3505,67 +3319,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getType_InheritedFeature() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_Multiplicity() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_UnioningType() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_OwnedIntersecting() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_IntersectingType() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_OwnedUnioning() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(17);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getType_DirectedFeature() {
+	public EReference getType_OwnedDifferencing() {
 		return (EReference)typeEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -3575,7 +3329,57 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getType_OwnedDisjoining() {
+	public EReference getType_InheritedFeature() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_Multiplicity() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_UnioningType() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_OwnedIntersecting() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_IntersectingType() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_OwnedUnioning() {
 		return (EReference)typeEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -3585,8 +3389,28 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getType_OwnedSpecialization() {
+	public EReference getType_DirectedFeature() {
 		return (EReference)typeEClass.getEStructuralFeatures().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_OwnedDisjoining() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getType_OwnedSpecialization() {
+		return (EReference)typeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3606,7 +3430,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getType_OwnedEndFeature() {
-		return (EReference)typeEClass.getEStructuralFeatures().get(2);
+		return (EReference)typeEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3686,7 +3510,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_OwningType() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(0);
+		return (EReference)featureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3696,7 +3520,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getFeature_IsUnique() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3706,7 +3530,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getFeature_IsOrdered() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -3716,7 +3540,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_Type() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(3);
+		return (EReference)featureEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -3726,7 +3550,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_OwnedRedefinition() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(4);
+		return (EReference)featureEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -3736,7 +3560,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_OwnedSubsetting() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(5);
+		return (EReference)featureEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3766,7 +3590,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_OwningFeatureMembership() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(6);
+		return (EReference)featureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3776,7 +3600,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getFeature_IsComposite() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3796,7 +3620,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getFeature_IsEnd() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3826,7 +3650,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EReference getFeature_EndOwningType() {
-		return (EReference)featureEClass.getEStructuralFeatures().get(9);
+		return (EReference)featureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5405,8 +5229,28 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getActionUsage__Argument__int() {
+	public EOperation getActionUsage__InputParameter__int() {
 		return actionUsageEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getActionUsage__Argument__int() {
+		return actionUsageEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getActionUsage__IsSubactionUsage() {
+		return actionUsageEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -5435,7 +5279,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getOccurrenceUsage_PortioningFeature() {
+	public EReference getOccurrenceUsage_IndividualDefinition() {
 		return (EReference)occurrenceUsageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -5445,18 +5289,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getOccurrenceUsage_IndividualDefinition() {
-		return (EReference)occurrenceUsageEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EAttribute getOccurrenceUsage_IsIndividual() {
-		return (EAttribute)occurrenceUsageEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)occurrenceUsageEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -5466,27 +5300,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	@Override
 	public EAttribute getOccurrenceUsage_PortionKind() {
-		return (EAttribute)occurrenceUsageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getPortioningFeature() {
-		return portioningFeatureEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPortioningFeature_PortionKind() {
-		return (EAttribute)portioningFeatureEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)occurrenceUsageEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -5547,6 +5361,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	@Override
 	public EAttribute getStateUsage_IsParallel() {
 		return (EAttribute)stateUsageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getStateUsage__IsSubstateUsage__boolean() {
+		return stateUsageEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -7938,6 +7762,89 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		isCreated = true;
 
 		// Create classes and their features
+		exhibitStateUsageEClass = createEClass(EXHIBIT_STATE_USAGE);
+		createEReference(exhibitStateUsageEClass, EXHIBIT_STATE_USAGE__EXHIBITED_STATE);
+
+		stateUsageEClass = createEClass(STATE_USAGE);
+		createEReference(stateUsageEClass, STATE_USAGE__STATE_DEFINITION);
+		createEReference(stateUsageEClass, STATE_USAGE__ENTRY_ACTION);
+		createEReference(stateUsageEClass, STATE_USAGE__DO_ACTION);
+		createEReference(stateUsageEClass, STATE_USAGE__EXIT_ACTION);
+		createEAttribute(stateUsageEClass, STATE_USAGE__IS_PARALLEL);
+		createEOperation(stateUsageEClass, STATE_USAGE___IS_SUBSTATE_USAGE__BOOLEAN);
+
+		actionUsageEClass = createEClass(ACTION_USAGE);
+		createEReference(actionUsageEClass, ACTION_USAGE__ACTION_DEFINITION);
+		createEOperation(actionUsageEClass, ACTION_USAGE___INPUT_PARAMETERS);
+		createEOperation(actionUsageEClass, ACTION_USAGE___INPUT_PARAMETER__INT);
+		createEOperation(actionUsageEClass, ACTION_USAGE___ARGUMENT__INT);
+		createEOperation(actionUsageEClass, ACTION_USAGE___IS_SUBACTION_USAGE);
+
+		stepEClass = createEClass(STEP);
+		createEReference(stepEClass, STEP__BEHAVIOR);
+		createEReference(stepEClass, STEP__PARAMETER);
+
+		featureEClass = createEClass(FEATURE);
+		createEReference(featureEClass, FEATURE__OWNING_FEATURE_MEMBERSHIP);
+		createEReference(featureEClass, FEATURE__OWNING_TYPE);
+		createEReference(featureEClass, FEATURE__END_OWNING_TYPE);
+		createEAttribute(featureEClass, FEATURE__IS_UNIQUE);
+		createEAttribute(featureEClass, FEATURE__IS_ORDERED);
+		createEReference(featureEClass, FEATURE__TYPE);
+		createEReference(featureEClass, FEATURE__OWNED_REDEFINITION);
+		createEReference(featureEClass, FEATURE__OWNED_SUBSETTING);
+		createEAttribute(featureEClass, FEATURE__IS_COMPOSITE);
+		createEAttribute(featureEClass, FEATURE__IS_END);
+		createEReference(featureEClass, FEATURE__OWNED_TYPING);
+		createEReference(featureEClass, FEATURE__FEATURING_TYPE);
+		createEReference(featureEClass, FEATURE__OWNED_TYPE_FEATURING);
+		createEAttribute(featureEClass, FEATURE__IS_DERIVED);
+		createEReference(featureEClass, FEATURE__CHAINING_FEATURE);
+		createEReference(featureEClass, FEATURE__OWNED_FEATURE_INVERTING);
+		createEReference(featureEClass, FEATURE__OWNED_FEATURE_CHAINING);
+		createEAttribute(featureEClass, FEATURE__IS_READ_ONLY);
+		createEAttribute(featureEClass, FEATURE__IS_PORTION);
+		createEAttribute(featureEClass, FEATURE__DIRECTION);
+		createEReference(featureEClass, FEATURE__OWNED_REFERENCE_SUBSETTING);
+		createEAttribute(featureEClass, FEATURE__IS_NONUNIQUE);
+		createEOperation(featureEClass, FEATURE___DIRECTION_FOR__TYPE);
+		createEOperation(featureEClass, FEATURE___IS_FEATURED_WITHIN__TYPE);
+		createEOperation(featureEClass, FEATURE___NAMING_FEATURE);
+		createEOperation(featureEClass, FEATURE___REDEFINES__FEATURE);
+		createEOperation(featureEClass, FEATURE___REDEFINES_FROM_LIBRARY__STRING);
+		createEOperation(featureEClass, FEATURE___SUBSETS_CHAIN__FEATURE_FEATURE);
+
+		typeEClass = createEClass(TYPE);
+		createEReference(typeEClass, TYPE__OWNED_SPECIALIZATION);
+		createEReference(typeEClass, TYPE__OWNED_FEATURE_MEMBERSHIP);
+		createEReference(typeEClass, TYPE__FEATURE);
+		createEReference(typeEClass, TYPE__OWNED_FEATURE);
+		createEReference(typeEClass, TYPE__INPUT);
+		createEReference(typeEClass, TYPE__OUTPUT);
+		createEAttribute(typeEClass, TYPE__IS_ABSTRACT);
+		createEReference(typeEClass, TYPE__INHERITED_MEMBERSHIP);
+		createEReference(typeEClass, TYPE__END_FEATURE);
+		createEReference(typeEClass, TYPE__OWNED_END_FEATURE);
+		createEAttribute(typeEClass, TYPE__IS_SUFFICIENT);
+		createEReference(typeEClass, TYPE__OWNED_CONJUGATOR);
+		createEAttribute(typeEClass, TYPE__IS_CONJUGATED);
+		createEReference(typeEClass, TYPE__INHERITED_FEATURE);
+		createEReference(typeEClass, TYPE__MULTIPLICITY);
+		createEReference(typeEClass, TYPE__UNIONING_TYPE);
+		createEReference(typeEClass, TYPE__OWNED_INTERSECTING);
+		createEReference(typeEClass, TYPE__INTERSECTING_TYPE);
+		createEReference(typeEClass, TYPE__OWNED_UNIONING);
+		createEReference(typeEClass, TYPE__OWNED_DISJOINING);
+		createEReference(typeEClass, TYPE__FEATURE_MEMBERSHIP);
+		createEReference(typeEClass, TYPE__DIFFERENCING_TYPE);
+		createEReference(typeEClass, TYPE__OWNED_DIFFERENCING);
+		createEReference(typeEClass, TYPE__DIRECTED_FEATURE);
+		createEOperation(typeEClass, TYPE___INHERITED_MEMBERSHIPS__ELIST);
+		createEOperation(typeEClass, TYPE___DIRECTION_OF__FEATURE);
+		createEOperation(typeEClass, TYPE___ALL_SUPERTYPES);
+		createEOperation(typeEClass, TYPE___SPECIALIZES__TYPE);
+		createEOperation(typeEClass, TYPE___SPECIALIZES_FROM_LIBRARY__STRING);
+
 		namespaceEClass = createEClass(NAMESPACE);
 		createEReference(namespaceEClass, NAMESPACE__OWNED_MEMBERSHIP);
 		createEReference(namespaceEClass, NAMESPACE__OWNED_MEMBER);
@@ -8032,56 +7939,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(importEClass, IMPORT__IMPORT_OWNING_NAMESPACE);
 		createEOperation(importEClass, IMPORT___IMPORTED_MEMBERSHIPS__ELIST);
 
-		membershipImportEClass = createEClass(MEMBERSHIP_IMPORT);
-		createEReference(membershipImportEClass, MEMBERSHIP_IMPORT__IMPORTED_MEMBERSHIP);
-
-		namespaceImportEClass = createEClass(NAMESPACE_IMPORT);
-		createEReference(namespaceImportEClass, NAMESPACE_IMPORT__IMPORTED_NAMESPACE);
-
-		dependencyEClass = createEClass(DEPENDENCY);
-		createEReference(dependencyEClass, DEPENDENCY__CLIENT);
-		createEReference(dependencyEClass, DEPENDENCY__SUPPLIER);
-
-		subclassificationEClass = createEClass(SUBCLASSIFICATION);
-		createEReference(subclassificationEClass, SUBCLASSIFICATION__SUPERCLASSIFIER);
-		createEReference(subclassificationEClass, SUBCLASSIFICATION__OWNING_CLASSIFIER);
-		createEReference(subclassificationEClass, SUBCLASSIFICATION__SUBCLASSIFIER);
-
 		specializationEClass = createEClass(SPECIALIZATION);
-		createEReference(specializationEClass, SPECIALIZATION__OWNING_TYPE);
 		createEReference(specializationEClass, SPECIALIZATION__GENERAL);
 		createEReference(specializationEClass, SPECIALIZATION__SPECIFIC);
-
-		typeEClass = createEClass(TYPE);
-		createEReference(typeEClass, TYPE__OWNED_FEATURE_MEMBERSHIP);
-		createEReference(typeEClass, TYPE__OWNED_FEATURE);
-		createEReference(typeEClass, TYPE__OWNED_END_FEATURE);
-		createEReference(typeEClass, TYPE__FEATURE);
-		createEReference(typeEClass, TYPE__INPUT);
-		createEReference(typeEClass, TYPE__OUTPUT);
-		createEAttribute(typeEClass, TYPE__IS_ABSTRACT);
-		createEReference(typeEClass, TYPE__INHERITED_MEMBERSHIP);
-		createEReference(typeEClass, TYPE__END_FEATURE);
-		createEAttribute(typeEClass, TYPE__IS_SUFFICIENT);
-		createEReference(typeEClass, TYPE__OWNED_CONJUGATOR);
-		createEAttribute(typeEClass, TYPE__IS_CONJUGATED);
-		createEReference(typeEClass, TYPE__INHERITED_FEATURE);
-		createEReference(typeEClass, TYPE__MULTIPLICITY);
-		createEReference(typeEClass, TYPE__UNIONING_TYPE);
-		createEReference(typeEClass, TYPE__OWNED_INTERSECTING);
-		createEReference(typeEClass, TYPE__INTERSECTING_TYPE);
-		createEReference(typeEClass, TYPE__OWNED_UNIONING);
-		createEReference(typeEClass, TYPE__OWNED_DISJOINING);
-		createEReference(typeEClass, TYPE__FEATURE_MEMBERSHIP);
-		createEReference(typeEClass, TYPE__DIFFERENCING_TYPE);
-		createEReference(typeEClass, TYPE__OWNED_DIFFERENCING);
-		createEReference(typeEClass, TYPE__DIRECTED_FEATURE);
-		createEReference(typeEClass, TYPE__OWNED_SPECIALIZATION);
-		createEOperation(typeEClass, TYPE___INHERITED_MEMBERSHIPS__ELIST);
-		createEOperation(typeEClass, TYPE___DIRECTION_OF__FEATURE);
-		createEOperation(typeEClass, TYPE___ALL_SUPERTYPES);
-		createEOperation(typeEClass, TYPE___SPECIALIZES__TYPE);
-		createEOperation(typeEClass, TYPE___SPECIALIZES_FROM_LIBRARY__STRING);
+		createEReference(specializationEClass, SPECIALIZATION__OWNING_TYPE);
 
 		featureMembershipEClass = createEClass(FEATURE_MEMBERSHIP);
 		createEReference(featureMembershipEClass, FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE);
@@ -8091,35 +7952,29 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(featuringEClass, FEATURING__TYPE);
 		createEReference(featuringEClass, FEATURING__FEATURE);
 
-		featureEClass = createEClass(FEATURE);
-		createEReference(featureEClass, FEATURE__OWNING_TYPE);
-		createEAttribute(featureEClass, FEATURE__IS_UNIQUE);
-		createEAttribute(featureEClass, FEATURE__IS_ORDERED);
-		createEReference(featureEClass, FEATURE__TYPE);
-		createEReference(featureEClass, FEATURE__OWNED_REDEFINITION);
-		createEReference(featureEClass, FEATURE__OWNED_SUBSETTING);
-		createEReference(featureEClass, FEATURE__OWNING_FEATURE_MEMBERSHIP);
-		createEAttribute(featureEClass, FEATURE__IS_COMPOSITE);
-		createEAttribute(featureEClass, FEATURE__IS_END);
-		createEReference(featureEClass, FEATURE__END_OWNING_TYPE);
-		createEReference(featureEClass, FEATURE__OWNED_TYPING);
-		createEReference(featureEClass, FEATURE__FEATURING_TYPE);
-		createEReference(featureEClass, FEATURE__OWNED_TYPE_FEATURING);
-		createEAttribute(featureEClass, FEATURE__IS_DERIVED);
-		createEReference(featureEClass, FEATURE__CHAINING_FEATURE);
-		createEReference(featureEClass, FEATURE__OWNED_FEATURE_INVERTING);
-		createEReference(featureEClass, FEATURE__OWNED_FEATURE_CHAINING);
-		createEAttribute(featureEClass, FEATURE__IS_READ_ONLY);
-		createEAttribute(featureEClass, FEATURE__IS_PORTION);
-		createEAttribute(featureEClass, FEATURE__DIRECTION);
-		createEReference(featureEClass, FEATURE__OWNED_REFERENCE_SUBSETTING);
-		createEAttribute(featureEClass, FEATURE__IS_NONUNIQUE);
-		createEOperation(featureEClass, FEATURE___DIRECTION_FOR__TYPE);
-		createEOperation(featureEClass, FEATURE___IS_FEATURED_WITHIN__TYPE);
-		createEOperation(featureEClass, FEATURE___NAMING_FEATURE);
-		createEOperation(featureEClass, FEATURE___REDEFINES__FEATURE);
-		createEOperation(featureEClass, FEATURE___REDEFINES_FROM_LIBRARY__STRING);
-		createEOperation(featureEClass, FEATURE___SUBSETS_CHAIN__FEATURE_FEATURE);
+		conjugationEClass = createEClass(CONJUGATION);
+		createEReference(conjugationEClass, CONJUGATION__ORIGINAL_TYPE);
+		createEReference(conjugationEClass, CONJUGATION__CONJUGATED_TYPE);
+		createEReference(conjugationEClass, CONJUGATION__OWNING_TYPE);
+
+		multiplicityEClass = createEClass(MULTIPLICITY);
+
+		intersectingEClass = createEClass(INTERSECTING);
+		createEReference(intersectingEClass, INTERSECTING__INTERSECTING_TYPE);
+		createEReference(intersectingEClass, INTERSECTING__TYPE_INTERSECTED);
+
+		unioningEClass = createEClass(UNIONING);
+		createEReference(unioningEClass, UNIONING__UNIONING_TYPE);
+		createEReference(unioningEClass, UNIONING__TYPE_UNIONED);
+
+		disjoiningEClass = createEClass(DISJOINING);
+		createEReference(disjoiningEClass, DISJOINING__TYPE_DISJOINED);
+		createEReference(disjoiningEClass, DISJOINING__DISJOINING_TYPE);
+		createEReference(disjoiningEClass, DISJOINING__OWNING_TYPE);
+
+		differencingEClass = createEClass(DIFFERENCING);
+		createEReference(differencingEClass, DIFFERENCING__DIFFERENCING_TYPE);
+		createEReference(differencingEClass, DIFFERENCING__TYPE_DIFFERENCED);
 
 		redefinitionEClass = createEClass(REDEFINITION);
 		createEReference(redefinitionEClass, REDEFINITION__REDEFINING_FEATURE);
@@ -8153,84 +8008,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(referenceSubsettingEClass, REFERENCE_SUBSETTING__REFERENCED_FEATURE);
 		createEReference(referenceSubsettingEClass, REFERENCE_SUBSETTING__REFERENCING_FEATURE);
 
-		conjugationEClass = createEClass(CONJUGATION);
-		createEReference(conjugationEClass, CONJUGATION__ORIGINAL_TYPE);
-		createEReference(conjugationEClass, CONJUGATION__CONJUGATED_TYPE);
-		createEReference(conjugationEClass, CONJUGATION__OWNING_TYPE);
-
-		multiplicityEClass = createEClass(MULTIPLICITY);
-
-		intersectingEClass = createEClass(INTERSECTING);
-		createEReference(intersectingEClass, INTERSECTING__INTERSECTING_TYPE);
-		createEReference(intersectingEClass, INTERSECTING__TYPE_INTERSECTED);
-
-		unioningEClass = createEClass(UNIONING);
-		createEReference(unioningEClass, UNIONING__UNIONING_TYPE);
-		createEReference(unioningEClass, UNIONING__TYPE_UNIONED);
-
-		disjoiningEClass = createEClass(DISJOINING);
-		createEReference(disjoiningEClass, DISJOINING__TYPE_DISJOINED);
-		createEReference(disjoiningEClass, DISJOINING__DISJOINING_TYPE);
-		createEReference(disjoiningEClass, DISJOINING__OWNING_TYPE);
-
-		differencingEClass = createEClass(DIFFERENCING);
-		createEReference(differencingEClass, DIFFERENCING__DIFFERENCING_TYPE);
-		createEReference(differencingEClass, DIFFERENCING__TYPE_DIFFERENCED);
-
-		classifierEClass = createEClass(CLASSIFIER);
-		createEReference(classifierEClass, CLASSIFIER__OWNED_SUBCLASSIFICATION);
-
-		endFeatureMembershipEClass = createEClass(END_FEATURE_MEMBERSHIP);
-
-		viewpointUsageEClass = createEClass(VIEWPOINT_USAGE);
-		createEReference(viewpointUsageEClass, VIEWPOINT_USAGE__VIEWPOINT_DEFINITION);
-		createEReference(viewpointUsageEClass, VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER);
-
-		requirementUsageEClass = createEClass(REQUIREMENT_USAGE);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__REQUIREMENT_DEFINITION);
-		createEAttribute(requirementUsageEClass, REQUIREMENT_USAGE__REQ_ID);
-		createEAttribute(requirementUsageEClass, REQUIREMENT_USAGE__TEXT);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__SUBJECT_PARAMETER);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__FRAMED_CONCERN);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__ACTOR_PARAMETER);
-		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER);
-
-		constraintUsageEClass = createEClass(CONSTRAINT_USAGE);
-		createEReference(constraintUsageEClass, CONSTRAINT_USAGE__CONSTRAINT_DEFINITION);
-
-		booleanExpressionEClass = createEClass(BOOLEAN_EXPRESSION);
-		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__PREDICATE);
-
-		expressionEClass = createEClass(EXPRESSION);
-		createEReference(expressionEClass, EXPRESSION__FUNCTION);
-		createEReference(expressionEClass, EXPRESSION__RESULT);
-		createEAttribute(expressionEClass, EXPRESSION__IS_MODEL_LEVEL_EVALUABLE);
-		createEOperation(expressionEClass, EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST);
-		createEOperation(expressionEClass, EXPRESSION___EVALUATE__ELEMENT);
-		createEOperation(expressionEClass, EXPRESSION___CHECK_CONDITION__ELEMENT);
-
-		stepEClass = createEClass(STEP);
-		createEReference(stepEClass, STEP__BEHAVIOR);
-		createEReference(stepEClass, STEP__PARAMETER);
-
 		behaviorEClass = createEClass(BEHAVIOR);
 		createEReference(behaviorEClass, BEHAVIOR__STEP);
 		createEReference(behaviorEClass, BEHAVIOR__PARAMETER);
 
 		classEClass = createEClass(CLASS);
 
-		functionEClass = createEClass(FUNCTION);
-		createEReference(functionEClass, FUNCTION__EXPRESSION);
-		createEReference(functionEClass, FUNCTION__RESULT);
-		createEAttribute(functionEClass, FUNCTION__IS_MODEL_LEVEL_EVALUABLE);
+		classifierEClass = createEClass(CLASSIFIER);
+		createEReference(classifierEClass, CLASSIFIER__OWNED_SUBCLASSIFICATION);
 
-		predicateEClass = createEClass(PREDICATE);
+		subclassificationEClass = createEClass(SUBCLASSIFICATION);
+		createEReference(subclassificationEClass, SUBCLASSIFICATION__SUPERCLASSIFIER);
+		createEReference(subclassificationEClass, SUBCLASSIFICATION__SUBCLASSIFIER);
+		createEReference(subclassificationEClass, SUBCLASSIFICATION__OWNING_CLASSIFIER);
 
 		occurrenceUsageEClass = createEClass(OCCURRENCE_USAGE);
 		createEReference(occurrenceUsageEClass, OCCURRENCE_USAGE__OCCURRENCE_DEFINITION);
-		createEReference(occurrenceUsageEClass, OCCURRENCE_USAGE__PORTIONING_FEATURE);
 		createEReference(occurrenceUsageEClass, OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION);
 		createEAttribute(occurrenceUsageEClass, OCCURRENCE_USAGE__IS_INDIVIDUAL);
 		createEAttribute(occurrenceUsageEClass, OCCURRENCE_USAGE__PORTION_KIND);
@@ -8329,17 +8122,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(portConjugationEClass, PORT_CONJUGATION__ORIGINAL_PORT_DEFINITION);
 		createEReference(portConjugationEClass, PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION);
 
-		stateUsageEClass = createEClass(STATE_USAGE);
-		createEReference(stateUsageEClass, STATE_USAGE__STATE_DEFINITION);
-		createEReference(stateUsageEClass, STATE_USAGE__ENTRY_ACTION);
-		createEReference(stateUsageEClass, STATE_USAGE__DO_ACTION);
-		createEReference(stateUsageEClass, STATE_USAGE__EXIT_ACTION);
-		createEAttribute(stateUsageEClass, STATE_USAGE__IS_PARALLEL);
+		constraintUsageEClass = createEClass(CONSTRAINT_USAGE);
+		createEReference(constraintUsageEClass, CONSTRAINT_USAGE__CONSTRAINT_DEFINITION);
 
-		actionUsageEClass = createEClass(ACTION_USAGE);
-		createEReference(actionUsageEClass, ACTION_USAGE__ACTION_DEFINITION);
-		createEOperation(actionUsageEClass, ACTION_USAGE___INPUT_PARAMETERS);
-		createEOperation(actionUsageEClass, ACTION_USAGE___ARGUMENT__INT);
+		booleanExpressionEClass = createEClass(BOOLEAN_EXPRESSION);
+		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__PREDICATE);
+
+		expressionEClass = createEClass(EXPRESSION);
+		createEReference(expressionEClass, EXPRESSION__FUNCTION);
+		createEReference(expressionEClass, EXPRESSION__RESULT);
+		createEAttribute(expressionEClass, EXPRESSION__IS_MODEL_LEVEL_EVALUABLE);
+		createEOperation(expressionEClass, EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST);
+		createEOperation(expressionEClass, EXPRESSION___EVALUATE__ELEMENT);
+		createEOperation(expressionEClass, EXPRESSION___CHECK_CONDITION__ELEMENT);
+
+		functionEClass = createEClass(FUNCTION);
+		createEReference(functionEClass, FUNCTION__EXPRESSION);
+		createEReference(functionEClass, FUNCTION__RESULT);
+		createEAttribute(functionEClass, FUNCTION__IS_MODEL_LEVEL_EVALUABLE);
+
+		predicateEClass = createEClass(PREDICATE);
 
 		transitionUsageEClass = createEClass(TRANSITION_USAGE);
 		createEReference(transitionUsageEClass, TRANSITION_USAGE__SOURCE);
@@ -8348,6 +8150,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(transitionUsageEClass, TRANSITION_USAGE__GUARD_EXPRESSION);
 		createEReference(transitionUsageEClass, TRANSITION_USAGE__EFFECT_ACTION);
 		createEReference(transitionUsageEClass, TRANSITION_USAGE__SUCCESSION);
+		createEOperation(transitionUsageEClass, TRANSITION_USAGE___TRIGGER_PAYLOAD_PARAMETER);
 
 		acceptActionUsageEClass = createEClass(ACCEPT_ACTION_USAGE);
 		createEReference(acceptActionUsageEClass, ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT);
@@ -8377,6 +8180,44 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(associationEClass, ASSOCIATION__TARGET_TYPE);
 		createEReference(associationEClass, ASSOCIATION__ASSOCIATION_END);
 
+		requirementUsageEClass = createEClass(REQUIREMENT_USAGE);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__REQUIREMENT_DEFINITION);
+		createEAttribute(requirementUsageEClass, REQUIREMENT_USAGE__REQ_ID);
+		createEAttribute(requirementUsageEClass, REQUIREMENT_USAGE__TEXT);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__SUBJECT_PARAMETER);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__FRAMED_CONCERN);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__ACTOR_PARAMETER);
+		createEReference(requirementUsageEClass, REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER);
+
+		requirementDefinitionEClass = createEClass(REQUIREMENT_DEFINITION);
+		createEAttribute(requirementDefinitionEClass, REQUIREMENT_DEFINITION__REQ_ID);
+		createEAttribute(requirementDefinitionEClass, REQUIREMENT_DEFINITION__TEXT);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__SUBJECT_PARAMETER);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__FRAMED_CONCERN);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__ACTOR_PARAMETER);
+		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER);
+
+		constraintDefinitionEClass = createEClass(CONSTRAINT_DEFINITION);
+
+		concernUsageEClass = createEClass(CONCERN_USAGE);
+		createEReference(concernUsageEClass, CONCERN_USAGE__CONCERN_DEFINITION);
+
+		concernDefinitionEClass = createEClass(CONCERN_DEFINITION);
+
+		partUsageEClass = createEClass(PART_USAGE);
+		createEReference(partUsageEClass, PART_USAGE__PART_DEFINITION);
+
+		itemUsageEClass = createEClass(ITEM_USAGE);
+		createEReference(itemUsageEClass, ITEM_USAGE__ITEM_DEFINITION);
+
+		partDefinitionEClass = createEClass(PART_DEFINITION);
+
+		itemDefinitionEClass = createEClass(ITEM_DEFINITION);
+
 		calculationUsageEClass = createEClass(CALCULATION_USAGE);
 		createEReference(calculationUsageEClass, CALCULATION_USAGE__CALCULATION_DEFINITION);
 
@@ -8404,16 +8245,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		actionDefinitionEClass = createEClass(ACTION_DEFINITION);
 		createEReference(actionDefinitionEClass, ACTION_DEFINITION__ACTION);
-
-		partUsageEClass = createEClass(PART_USAGE);
-		createEReference(partUsageEClass, PART_USAGE__PART_DEFINITION);
-
-		itemUsageEClass = createEClass(ITEM_USAGE);
-		createEReference(itemUsageEClass, ITEM_USAGE__ITEM_DEFINITION);
-
-		partDefinitionEClass = createEClass(PART_DEFINITION);
-
-		itemDefinitionEClass = createEClass(ITEM_DEFINITION);
 
 		analysisCaseDefinitionEClass = createEClass(ANALYSIS_CASE_DEFINITION);
 		createEReference(analysisCaseDefinitionEClass, ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION);
@@ -8454,6 +8285,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(viewDefinitionEClass, VIEW_DEFINITION__VIEW_RENDERING);
 		createEReference(viewDefinitionEClass, VIEW_DEFINITION__VIEW_CONDITION);
 
+		viewpointUsageEClass = createEClass(VIEWPOINT_USAGE);
+		createEReference(viewpointUsageEClass, VIEWPOINT_USAGE__VIEWPOINT_DEFINITION);
+		createEReference(viewpointUsageEClass, VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER);
+
+		viewpointDefinitionEClass = createEClass(VIEWPOINT_DEFINITION);
+		createEReference(viewpointDefinitionEClass, VIEWPOINT_DEFINITION__VIEWPOINT_STAKEHOLDER);
+
 		renderingUsageEClass = createEClass(RENDERING_USAGE);
 		createEReference(renderingUsageEClass, RENDERING_USAGE__RENDERING_DEFINITION);
 
@@ -8480,23 +8318,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		allocationDefinitionEClass = createEClass(ALLOCATION_DEFINITION);
 		createEReference(allocationDefinitionEClass, ALLOCATION_DEFINITION__ALLOCATION);
-
-		concernUsageEClass = createEClass(CONCERN_USAGE);
-		createEReference(concernUsageEClass, CONCERN_USAGE__CONCERN_DEFINITION);
-
-		concernDefinitionEClass = createEClass(CONCERN_DEFINITION);
-
-		requirementDefinitionEClass = createEClass(REQUIREMENT_DEFINITION);
-		createEAttribute(requirementDefinitionEClass, REQUIREMENT_DEFINITION__REQ_ID);
-		createEAttribute(requirementDefinitionEClass, REQUIREMENT_DEFINITION__TEXT);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__SUBJECT_PARAMETER);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__FRAMED_CONCERN);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__ACTOR_PARAMETER);
-		createEReference(requirementDefinitionEClass, REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER);
-
-		constraintDefinitionEClass = createEClass(CONSTRAINT_DEFINITION);
 
 		useCaseUsageEClass = createEClass(USE_CASE_USAGE);
 		createEReference(useCaseUsageEClass, USE_CASE_USAGE__USE_CASE_DEFINITION);
@@ -8534,27 +8355,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		metaclassEClass = createEClass(METACLASS);
 
-		portioningFeatureEClass = createEClass(PORTIONING_FEATURE);
-		createEAttribute(portioningFeatureEClass, PORTIONING_FEATURE__PORTION_KIND);
-
-		viewpointDefinitionEClass = createEClass(VIEWPOINT_DEFINITION);
-		createEReference(viewpointDefinitionEClass, VIEWPOINT_DEFINITION__VIEWPOINT_STAKEHOLDER);
-
-		exposeEClass = createEClass(EXPOSE);
-
-		viewRenderingMembershipEClass = createEClass(VIEW_RENDERING_MEMBERSHIP);
-		createEReference(viewRenderingMembershipEClass, VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING);
-		createEReference(viewRenderingMembershipEClass, VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING);
-
-		membershipExposeEClass = createEClass(MEMBERSHIP_EXPOSE);
-
-		namespaceExposeEClass = createEClass(NAMESPACE_EXPOSE);
+		performActionUsageEClass = createEClass(PERFORM_ACTION_USAGE);
+		createEReference(performActionUsageEClass, PERFORM_ACTION_USAGE__PERFORMED_ACTION);
 
 		eventOccurrenceUsageEClass = createEClass(EVENT_OCCURRENCE_USAGE);
 		createEReference(eventOccurrenceUsageEClass, EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE);
 
-		objectiveMembershipEClass = createEClass(OBJECTIVE_MEMBERSHIP);
-		createEReference(objectiveMembershipEClass, OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT);
+		stateDefinitionEClass = createEClass(STATE_DEFINITION);
+		createEReference(stateDefinitionEClass, STATE_DEFINITION__STATE);
+		createEReference(stateDefinitionEClass, STATE_DEFINITION__ENTRY_ACTION);
+		createEReference(stateDefinitionEClass, STATE_DEFINITION__DO_ACTION);
+		createEReference(stateDefinitionEClass, STATE_DEFINITION__EXIT_ACTION);
+		createEAttribute(stateDefinitionEClass, STATE_DEFINITION__IS_PARALLEL);
+
+		transitionFeatureMembershipEClass = createEClass(TRANSITION_FEATURE_MEMBERSHIP);
+		createEAttribute(transitionFeatureMembershipEClass, TRANSITION_FEATURE_MEMBERSHIP__KIND);
+		createEReference(transitionFeatureMembershipEClass, TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE);
+
+		stateSubactionMembershipEClass = createEClass(STATE_SUBACTION_MEMBERSHIP);
+		createEAttribute(stateSubactionMembershipEClass, STATE_SUBACTION_MEMBERSHIP__KIND);
+		createEReference(stateSubactionMembershipEClass, STATE_SUBACTION_MEMBERSHIP__ACTION);
 
 		conjugatedPortTypingEClass = createEClass(CONJUGATED_PORT_TYPING);
 		createEReference(conjugatedPortTypingEClass, CONJUGATED_PORT_TYPING__PORT_DEFINITION);
@@ -8566,41 +8386,24 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		invariantEClass = createEClass(INVARIANT);
 		createEAttribute(invariantEClass, INVARIANT__IS_NEGATED);
 
-		stateSubactionMembershipEClass = createEClass(STATE_SUBACTION_MEMBERSHIP);
-		createEAttribute(stateSubactionMembershipEClass, STATE_SUBACTION_MEMBERSHIP__KIND);
-		createEReference(stateSubactionMembershipEClass, STATE_SUBACTION_MEMBERSHIP__ACTION);
+		exposeEClass = createEClass(EXPOSE);
 
-		stateDefinitionEClass = createEClass(STATE_DEFINITION);
-		createEReference(stateDefinitionEClass, STATE_DEFINITION__STATE);
-		createEReference(stateDefinitionEClass, STATE_DEFINITION__ENTRY_ACTION);
-		createEReference(stateDefinitionEClass, STATE_DEFINITION__DO_ACTION);
-		createEReference(stateDefinitionEClass, STATE_DEFINITION__EXIT_ACTION);
-		createEAttribute(stateDefinitionEClass, STATE_DEFINITION__IS_PARALLEL);
+		namespaceExposeEClass = createEClass(NAMESPACE_EXPOSE);
 
-		exhibitStateUsageEClass = createEClass(EXHIBIT_STATE_USAGE);
-		createEReference(exhibitStateUsageEClass, EXHIBIT_STATE_USAGE__EXHIBITED_STATE);
+		namespaceImportEClass = createEClass(NAMESPACE_IMPORT);
+		createEReference(namespaceImportEClass, NAMESPACE_IMPORT__IMPORTED_NAMESPACE);
 
-		performActionUsageEClass = createEClass(PERFORM_ACTION_USAGE);
-		createEReference(performActionUsageEClass, PERFORM_ACTION_USAGE__PERFORMED_ACTION);
+		membershipExposeEClass = createEClass(MEMBERSHIP_EXPOSE);
 
-		transitionFeatureMembershipEClass = createEClass(TRANSITION_FEATURE_MEMBERSHIP);
-		createEAttribute(transitionFeatureMembershipEClass, TRANSITION_FEATURE_MEMBERSHIP__KIND);
-		createEReference(transitionFeatureMembershipEClass, TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE);
+		membershipImportEClass = createEClass(MEMBERSHIP_IMPORT);
+		createEReference(membershipImportEClass, MEMBERSHIP_IMPORT__IMPORTED_MEMBERSHIP);
 
-		successionFlowConnectionUsageEClass = createEClass(SUCCESSION_FLOW_CONNECTION_USAGE);
+		viewRenderingMembershipEClass = createEClass(VIEW_RENDERING_MEMBERSHIP);
+		createEReference(viewRenderingMembershipEClass, VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING);
+		createEReference(viewRenderingMembershipEClass, VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING);
 
-		successionItemFlowEClass = createEClass(SUCCESSION_ITEM_FLOW);
-
-		bindingConnectorAsUsageEClass = createEClass(BINDING_CONNECTOR_AS_USAGE);
-
-		bindingConnectorEClass = createEClass(BINDING_CONNECTOR);
-
-		successionAsUsageEClass = createEClass(SUCCESSION_AS_USAGE);
-
-		flowConnectionDefinitionEClass = createEClass(FLOW_CONNECTION_DEFINITION);
-
-		includeUseCaseUsageEClass = createEClass(INCLUDE_USE_CASE_USAGE);
-		createEReference(includeUseCaseUsageEClass, INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED);
+		objectiveMembershipEClass = createEClass(OBJECTIVE_MEMBERSHIP);
+		createEReference(objectiveMembershipEClass, OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT);
 
 		requirementVerificationMembershipEClass = createEClass(REQUIREMENT_VERIFICATION_MEMBERSHIP);
 		createEReference(requirementVerificationMembershipEClass, REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT);
@@ -8611,26 +8414,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(requirementConstraintMembershipEClass, REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT);
 		createEReference(requirementConstraintMembershipEClass, REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT);
 
-		mergeNodeEClass = createEClass(MERGE_NODE);
-
-		controlNodeEClass = createEClass(CONTROL_NODE);
-		createEOperation(controlNodeEClass, CONTROL_NODE___MULTIPLICITY_HAS_BOUNDS__MULTIPLICITY_INT_INT);
-
-		decisionNodeEClass = createEClass(DECISION_NODE);
-
-		forkNodeEClass = createEClass(FORK_NODE);
-
-		joinNodeEClass = createEClass(JOIN_NODE);
-
-		ifActionUsageEClass = createEClass(IF_ACTION_USAGE);
-		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__ELSE_ACTION);
-		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__THEN_ACTION);
-		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__IF_ARGUMENT);
-
 		sendActionUsageEClass = createEClass(SEND_ACTION_USAGE);
 		createEReference(sendActionUsageEClass, SEND_ACTION_USAGE__RECEIVER_ARGUMENT);
 		createEReference(sendActionUsageEClass, SEND_ACTION_USAGE__PAYLOAD_ARGUMENT);
 		createEReference(sendActionUsageEClass, SEND_ACTION_USAGE__SENDER_ARGUMENT);
+
+		controlNodeEClass = createEClass(CONTROL_NODE);
+		createEOperation(controlNodeEClass, CONTROL_NODE___MULTIPLICITY_HAS_BOUNDS__MULTIPLICITY_INT_INT);
 
 		triggerInvocationExpressionEClass = createEClass(TRIGGER_INVOCATION_EXPRESSION);
 		createEAttribute(triggerInvocationExpressionEClass, TRIGGER_INVOCATION_EXPRESSION__KIND);
@@ -8638,9 +8428,9 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		invocationExpressionEClass = createEClass(INVOCATION_EXPRESSION);
 		createEReference(invocationExpressionEClass, INVOCATION_EXPRESSION__ARGUMENT);
 
-		whileLoopActionUsageEClass = createEClass(WHILE_LOOP_ACTION_USAGE);
-		createEReference(whileLoopActionUsageEClass, WHILE_LOOP_ACTION_USAGE__WHILE_ARGUMENT);
-		createEReference(whileLoopActionUsageEClass, WHILE_LOOP_ACTION_USAGE__UNTIL_ARGUMENT);
+		forLoopActionUsageEClass = createEClass(FOR_LOOP_ACTION_USAGE);
+		createEReference(forLoopActionUsageEClass, FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT);
+		createEReference(forLoopActionUsageEClass, FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE);
 
 		loopActionUsageEClass = createEClass(LOOP_ACTION_USAGE);
 		createEReference(loopActionUsageEClass, LOOP_ACTION_USAGE__BODY_ACTION);
@@ -8650,11 +8440,31 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(assignmentActionUsageEClass, ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION);
 		createEReference(assignmentActionUsageEClass, ASSIGNMENT_ACTION_USAGE__REFERENT);
 
-		forLoopActionUsageEClass = createEClass(FOR_LOOP_ACTION_USAGE);
-		createEReference(forLoopActionUsageEClass, FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT);
-		createEReference(forLoopActionUsageEClass, FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE);
+		mergeNodeEClass = createEClass(MERGE_NODE);
 
-		metadataDefinitionEClass = createEClass(METADATA_DEFINITION);
+		joinNodeEClass = createEClass(JOIN_NODE);
+
+		forkNodeEClass = createEClass(FORK_NODE);
+
+		whileLoopActionUsageEClass = createEClass(WHILE_LOOP_ACTION_USAGE);
+		createEReference(whileLoopActionUsageEClass, WHILE_LOOP_ACTION_USAGE__WHILE_ARGUMENT);
+		createEReference(whileLoopActionUsageEClass, WHILE_LOOP_ACTION_USAGE__UNTIL_ARGUMENT);
+
+		decisionNodeEClass = createEClass(DECISION_NODE);
+
+		ifActionUsageEClass = createEClass(IF_ACTION_USAGE);
+		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__ELSE_ACTION);
+		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__THEN_ACTION);
+		createEReference(ifActionUsageEClass, IF_ACTION_USAGE__IF_ARGUMENT);
+
+		subjectMembershipEClass = createEClass(SUBJECT_MEMBERSHIP);
+		createEReference(subjectMembershipEClass, SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER);
+
+		parameterMembershipEClass = createEClass(PARAMETER_MEMBERSHIP);
+		createEReference(parameterMembershipEClass, PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER);
+
+		stakeholderMembershipEClass = createEClass(STAKEHOLDER_MEMBERSHIP);
+		createEReference(stakeholderMembershipEClass, STAKEHOLDER_MEMBERSHIP__OWNED_STAKEHOLDER_PARAMETER);
 
 		satisfyRequirementUsageEClass = createEClass(SATISFY_REQUIREMENT_USAGE);
 		createEReference(satisfyRequirementUsageEClass, SATISFY_REQUIREMENT_USAGE__SATISFIED_REQUIREMENT);
@@ -8667,71 +8477,28 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		actorMembershipEClass = createEClass(ACTOR_MEMBERSHIP);
 		createEReference(actorMembershipEClass, ACTOR_MEMBERSHIP__OWNED_ACTOR_PARAMETER);
 
-		parameterMembershipEClass = createEClass(PARAMETER_MEMBERSHIP);
-		createEReference(parameterMembershipEClass, PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER);
+		metadataDefinitionEClass = createEClass(METADATA_DEFINITION);
 
-		stakeholderMembershipEClass = createEClass(STAKEHOLDER_MEMBERSHIP);
-		createEReference(stakeholderMembershipEClass, STAKEHOLDER_MEMBERSHIP__OWNED_STAKEHOLDER_PARAMETER);
+		flowConnectionDefinitionEClass = createEClass(FLOW_CONNECTION_DEFINITION);
 
-		subjectMembershipEClass = createEClass(SUBJECT_MEMBERSHIP);
-		createEReference(subjectMembershipEClass, SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER);
+		bindingConnectorAsUsageEClass = createEClass(BINDING_CONNECTOR_AS_USAGE);
 
-		featureReferenceExpressionEClass = createEClass(FEATURE_REFERENCE_EXPRESSION);
-		createEReference(featureReferenceExpressionEClass, FEATURE_REFERENCE_EXPRESSION__REFERENT);
+		bindingConnectorEClass = createEClass(BINDING_CONNECTOR);
 
-		featureChainExpressionEClass = createEClass(FEATURE_CHAIN_EXPRESSION);
-		createEReference(featureChainExpressionEClass, FEATURE_CHAIN_EXPRESSION__TARGET_FEATURE);
+		successionFlowConnectionUsageEClass = createEClass(SUCCESSION_FLOW_CONNECTION_USAGE);
 
-		operatorExpressionEClass = createEClass(OPERATOR_EXPRESSION);
-		createEAttribute(operatorExpressionEClass, OPERATOR_EXPRESSION__OPERATOR);
-		createEReference(operatorExpressionEClass, OPERATOR_EXPRESSION__OPERAND);
+		successionItemFlowEClass = createEClass(SUCCESSION_ITEM_FLOW);
 
-		literalExpressionEClass = createEClass(LITERAL_EXPRESSION);
+		successionAsUsageEClass = createEClass(SUCCESSION_AS_USAGE);
 
-		literalRationalEClass = createEClass(LITERAL_RATIONAL);
-		createEAttribute(literalRationalEClass, LITERAL_RATIONAL__VALUE);
-
-		literalStringEClass = createEClass(LITERAL_STRING);
-		createEAttribute(literalStringEClass, LITERAL_STRING__VALUE);
-
-		selectExpressionEClass = createEClass(SELECT_EXPRESSION);
-
-		collectExpressionEClass = createEClass(COLLECT_EXPRESSION);
-
-		literalIntegerEClass = createEClass(LITERAL_INTEGER);
-		createEAttribute(literalIntegerEClass, LITERAL_INTEGER__VALUE);
-
-		literalInfinityEClass = createEClass(LITERAL_INFINITY);
-
-		nullExpressionEClass = createEClass(NULL_EXPRESSION);
-
-		literalBooleanEClass = createEClass(LITERAL_BOOLEAN);
-		createEAttribute(literalBooleanEClass, LITERAL_BOOLEAN__VALUE);
-
-		metadataAccessExpressionEClass = createEClass(METADATA_ACCESS_EXPRESSION);
-		createEReference(metadataAccessExpressionEClass, METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT);
-		createEOperation(metadataAccessExpressionEClass, METADATA_ACCESS_EXPRESSION___METACLASS_FEATURE);
-
-		resultExpressionMembershipEClass = createEClass(RESULT_EXPRESSION_MEMBERSHIP);
-		createEReference(resultExpressionMembershipEClass, RESULT_EXPRESSION_MEMBERSHIP__OWNED_RESULT_EXPRESSION);
-
-		returnParameterMembershipEClass = createEClass(RETURN_PARAMETER_MEMBERSHIP);
+		includeUseCaseUsageEClass = createEClass(INCLUDE_USE_CASE_USAGE);
+		createEReference(includeUseCaseUsageEClass, INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED);
 
 		featureValueEClass = createEClass(FEATURE_VALUE);
 		createEReference(featureValueEClass, FEATURE_VALUE__FEATURE_WITH_VALUE);
 		createEReference(featureValueEClass, FEATURE_VALUE__VALUE);
 		createEAttribute(featureValueEClass, FEATURE_VALUE__IS_INITIAL);
 		createEAttribute(featureValueEClass, FEATURE_VALUE__IS_DEFAULT);
-
-		packageEClass = createEClass(PACKAGE);
-		createEReference(packageEClass, PACKAGE__FILTER_CONDITION);
-		createEOperation(packageEClass, PACKAGE___INCLUDE_AS_MEMBER__ELEMENT);
-
-		libraryPackageEClass = createEClass(LIBRARY_PACKAGE);
-		createEAttribute(libraryPackageEClass, LIBRARY_PACKAGE__IS_STANDARD);
-
-		elementFilterMembershipEClass = createEClass(ELEMENT_FILTER_MEMBERSHIP);
-		createEReference(elementFilterMembershipEClass, ELEMENT_FILTER_MEMBERSHIP__CONDITION);
 
 		multiplicityRangeEClass = createEClass(MULTIPLICITY_RANGE);
 		createEReference(multiplicityRangeEClass, MULTIPLICITY_RANGE__LOWER_BOUND);
@@ -8740,12 +8507,69 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEOperation(multiplicityRangeEClass, MULTIPLICITY_RANGE___HAS_BOUNDS__INT_INT);
 		createEOperation(multiplicityRangeEClass, MULTIPLICITY_RANGE___VALUE_OF__EXPRESSION);
 
+		returnParameterMembershipEClass = createEClass(RETURN_PARAMETER_MEMBERSHIP);
+
+		resultExpressionMembershipEClass = createEClass(RESULT_EXPRESSION_MEMBERSHIP);
+		createEReference(resultExpressionMembershipEClass, RESULT_EXPRESSION_MEMBERSHIP__OWNED_RESULT_EXPRESSION);
+
+		literalRationalEClass = createEClass(LITERAL_RATIONAL);
+		createEAttribute(literalRationalEClass, LITERAL_RATIONAL__VALUE);
+
+		literalExpressionEClass = createEClass(LITERAL_EXPRESSION);
+
+		featureReferenceExpressionEClass = createEClass(FEATURE_REFERENCE_EXPRESSION);
+		createEReference(featureReferenceExpressionEClass, FEATURE_REFERENCE_EXPRESSION__REFERENT);
+
+		operatorExpressionEClass = createEClass(OPERATOR_EXPRESSION);
+		createEAttribute(operatorExpressionEClass, OPERATOR_EXPRESSION__OPERATOR);
+		createEReference(operatorExpressionEClass, OPERATOR_EXPRESSION__OPERAND);
+
+		nullExpressionEClass = createEClass(NULL_EXPRESSION);
+
+		metadataAccessExpressionEClass = createEClass(METADATA_ACCESS_EXPRESSION);
+		createEReference(metadataAccessExpressionEClass, METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT);
+		createEOperation(metadataAccessExpressionEClass, METADATA_ACCESS_EXPRESSION___METACLASS_FEATURE);
+
+		literalBooleanEClass = createEClass(LITERAL_BOOLEAN);
+		createEAttribute(literalBooleanEClass, LITERAL_BOOLEAN__VALUE);
+
+		literalInfinityEClass = createEClass(LITERAL_INFINITY);
+
+		featureChainExpressionEClass = createEClass(FEATURE_CHAIN_EXPRESSION);
+		createEReference(featureChainExpressionEClass, FEATURE_CHAIN_EXPRESSION__TARGET_FEATURE);
+
+		literalIntegerEClass = createEClass(LITERAL_INTEGER);
+		createEAttribute(literalIntegerEClass, LITERAL_INTEGER__VALUE);
+
+		literalStringEClass = createEClass(LITERAL_STRING);
+		createEAttribute(literalStringEClass, LITERAL_STRING__VALUE);
+
+		selectExpressionEClass = createEClass(SELECT_EXPRESSION);
+
+		collectExpressionEClass = createEClass(COLLECT_EXPRESSION);
+
+		libraryPackageEClass = createEClass(LIBRARY_PACKAGE);
+		createEAttribute(libraryPackageEClass, LIBRARY_PACKAGE__IS_STANDARD);
+
+		packageEClass = createEClass(PACKAGE);
+		createEReference(packageEClass, PACKAGE__FILTER_CONDITION);
+		createEOperation(packageEClass, PACKAGE___INCLUDE_AS_MEMBER__ELEMENT);
+
+		elementFilterMembershipEClass = createEClass(ELEMENT_FILTER_MEMBERSHIP);
+		createEReference(elementFilterMembershipEClass, ELEMENT_FILTER_MEMBERSHIP__CONDITION);
+
+		endFeatureMembershipEClass = createEClass(END_FEATURE_MEMBERSHIP);
+
+		dependencyEClass = createEClass(DEPENDENCY);
+		createEReference(dependencyEClass, DEPENDENCY__CLIENT);
+		createEReference(dependencyEClass, DEPENDENCY__SUPPLIER);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
 		portionKindEEnum = createEEnum(PORTION_KIND);
-		stateSubactionKindEEnum = createEEnum(STATE_SUBACTION_KIND);
 		transitionFeatureKindEEnum = createEEnum(TRANSITION_FEATURE_KIND);
+		stateSubactionKindEEnum = createEEnum(STATE_SUBACTION_KIND);
 		requirementConstraintKindEEnum = createEEnum(REQUIREMENT_CONSTRAINT_KIND);
 		triggerKindEEnum = createEEnum(TRIGGER_KIND);
 	}
@@ -8781,6 +8605,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		exhibitStateUsageEClass.getESuperTypes().add(this.getStateUsage());
+		exhibitStateUsageEClass.getESuperTypes().add(this.getPerformActionUsage());
+		stateUsageEClass.getESuperTypes().add(this.getActionUsage());
+		actionUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
+		actionUsageEClass.getESuperTypes().add(this.getStep());
+		stepEClass.getESuperTypes().add(this.getFeature());
+		featureEClass.getESuperTypes().add(this.getType());
+		typeEClass.getESuperTypes().add(this.getNamespace());
 		namespaceEClass.getESuperTypes().add(this.getElement());
 		owningMembershipEClass.getESuperTypes().add(this.getMembership());
 		membershipEClass.getESuperTypes().add(this.getRelationship());
@@ -8791,16 +8623,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		annotationEClass.getESuperTypes().add(this.getRelationship());
 		textualRepresentationEClass.getESuperTypes().add(this.getAnnotatingElement());
 		importEClass.getESuperTypes().add(this.getRelationship());
-		membershipImportEClass.getESuperTypes().add(this.getImport());
-		namespaceImportEClass.getESuperTypes().add(this.getImport());
-		dependencyEClass.getESuperTypes().add(this.getRelationship());
-		subclassificationEClass.getESuperTypes().add(this.getSpecialization());
 		specializationEClass.getESuperTypes().add(this.getRelationship());
-		typeEClass.getESuperTypes().add(this.getNamespace());
 		featureMembershipEClass.getESuperTypes().add(this.getOwningMembership());
 		featureMembershipEClass.getESuperTypes().add(this.getFeaturing());
 		featuringEClass.getESuperTypes().add(this.getRelationship());
-		featureEClass.getESuperTypes().add(this.getType());
+		conjugationEClass.getESuperTypes().add(this.getRelationship());
+		multiplicityEClass.getESuperTypes().add(this.getFeature());
+		intersectingEClass.getESuperTypes().add(this.getRelationship());
+		unioningEClass.getESuperTypes().add(this.getRelationship());
+		disjoiningEClass.getESuperTypes().add(this.getRelationship());
+		differencingEClass.getESuperTypes().add(this.getRelationship());
 		redefinitionEClass.getESuperTypes().add(this.getSubsetting());
 		subsettingEClass.getESuperTypes().add(this.getSpecialization());
 		featureTypingEClass.getESuperTypes().add(this.getSpecialization());
@@ -8808,25 +8640,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		featureInvertingEClass.getESuperTypes().add(this.getRelationship());
 		featureChainingEClass.getESuperTypes().add(this.getRelationship());
 		referenceSubsettingEClass.getESuperTypes().add(this.getSubsetting());
-		conjugationEClass.getESuperTypes().add(this.getRelationship());
-		multiplicityEClass.getESuperTypes().add(this.getFeature());
-		intersectingEClass.getESuperTypes().add(this.getRelationship());
-		unioningEClass.getESuperTypes().add(this.getRelationship());
-		disjoiningEClass.getESuperTypes().add(this.getRelationship());
-		differencingEClass.getESuperTypes().add(this.getRelationship());
-		classifierEClass.getESuperTypes().add(this.getType());
-		endFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		viewpointUsageEClass.getESuperTypes().add(this.getRequirementUsage());
-		requirementUsageEClass.getESuperTypes().add(this.getConstraintUsage());
-		constraintUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
-		constraintUsageEClass.getESuperTypes().add(this.getBooleanExpression());
-		booleanExpressionEClass.getESuperTypes().add(this.getExpression());
-		expressionEClass.getESuperTypes().add(this.getStep());
-		stepEClass.getESuperTypes().add(this.getFeature());
 		behaviorEClass.getESuperTypes().add(this.getClass_());
 		classEClass.getESuperTypes().add(this.getClassifier());
-		functionEClass.getESuperTypes().add(this.getBehavior());
-		predicateEClass.getESuperTypes().add(this.getFunction());
+		classifierEClass.getESuperTypes().add(this.getType());
+		subclassificationEClass.getESuperTypes().add(this.getSpecialization());
 		occurrenceUsageEClass.getESuperTypes().add(this.getUsage());
 		usageEClass.getESuperTypes().add(this.getFeature());
 		definitionEClass.getESuperTypes().add(this.getClassifier());
@@ -8839,9 +8656,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		structureEClass.getESuperTypes().add(this.getClass_());
 		conjugatedPortDefinitionEClass.getESuperTypes().add(this.getPortDefinition());
 		portConjugationEClass.getESuperTypes().add(this.getConjugation());
-		stateUsageEClass.getESuperTypes().add(this.getActionUsage());
-		actionUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
-		actionUsageEClass.getESuperTypes().add(this.getStep());
+		constraintUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
+		constraintUsageEClass.getESuperTypes().add(this.getBooleanExpression());
+		booleanExpressionEClass.getESuperTypes().add(this.getExpression());
+		expressionEClass.getESuperTypes().add(this.getStep());
+		functionEClass.getESuperTypes().add(this.getBehavior());
+		predicateEClass.getESuperTypes().add(this.getFunction());
 		transitionUsageEClass.getESuperTypes().add(this.getActionUsage());
 		acceptActionUsageEClass.getESuperTypes().add(this.getActionUsage());
 		referenceUsageEClass.getESuperTypes().add(this.getUsage());
@@ -8850,6 +8670,17 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		connectorEClass.getESuperTypes().add(this.getRelationship());
 		associationEClass.getESuperTypes().add(this.getClassifier());
 		associationEClass.getESuperTypes().add(this.getRelationship());
+		requirementUsageEClass.getESuperTypes().add(this.getConstraintUsage());
+		requirementDefinitionEClass.getESuperTypes().add(this.getConstraintDefinition());
+		constraintDefinitionEClass.getESuperTypes().add(this.getOccurrenceDefinition());
+		constraintDefinitionEClass.getESuperTypes().add(this.getPredicate());
+		concernUsageEClass.getESuperTypes().add(this.getRequirementUsage());
+		concernDefinitionEClass.getESuperTypes().add(this.getRequirementDefinition());
+		partUsageEClass.getESuperTypes().add(this.getItemUsage());
+		itemUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
+		partDefinitionEClass.getESuperTypes().add(this.getItemDefinition());
+		itemDefinitionEClass.getESuperTypes().add(this.getOccurrenceDefinition());
+		itemDefinitionEClass.getESuperTypes().add(this.getStructure());
 		calculationUsageEClass.getESuperTypes().add(this.getActionUsage());
 		calculationUsageEClass.getESuperTypes().add(this.getExpression());
 		variantMembershipEClass.getESuperTypes().add(this.getOwningMembership());
@@ -8860,11 +8691,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		calculationDefinitionEClass.getESuperTypes().add(this.getFunction());
 		actionDefinitionEClass.getESuperTypes().add(this.getOccurrenceDefinition());
 		actionDefinitionEClass.getESuperTypes().add(this.getBehavior());
-		partUsageEClass.getESuperTypes().add(this.getItemUsage());
-		itemUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
-		partDefinitionEClass.getESuperTypes().add(this.getItemDefinition());
-		itemDefinitionEClass.getESuperTypes().add(this.getOccurrenceDefinition());
-		itemDefinitionEClass.getESuperTypes().add(this.getStructure());
 		analysisCaseDefinitionEClass.getESuperTypes().add(this.getCaseDefinition());
 		connectorAsUsageEClass.getESuperTypes().add(this.getUsage());
 		connectorAsUsageEClass.getESuperTypes().add(this.getConnector());
@@ -8880,6 +8706,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		dataTypeEClass.getESuperTypes().add(this.getClassifier());
 		viewUsageEClass.getESuperTypes().add(this.getPartUsage());
 		viewDefinitionEClass.getESuperTypes().add(this.getPartDefinition());
+		viewpointUsageEClass.getESuperTypes().add(this.getRequirementUsage());
+		viewpointDefinitionEClass.getESuperTypes().add(this.getRequirementDefinition());
 		renderingUsageEClass.getESuperTypes().add(this.getPartUsage());
 		renderingDefinitionEClass.getESuperTypes().add(this.getPartDefinition());
 		verificationCaseUsageEClass.getESuperTypes().add(this.getCaseUsage());
@@ -8890,11 +8718,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		attributeDefinitionEClass.getESuperTypes().add(this.getDataType());
 		allocationUsageEClass.getESuperTypes().add(this.getConnectionUsage());
 		allocationDefinitionEClass.getESuperTypes().add(this.getConnectionDefinition());
-		concernUsageEClass.getESuperTypes().add(this.getRequirementUsage());
-		concernDefinitionEClass.getESuperTypes().add(this.getRequirementDefinition());
-		requirementDefinitionEClass.getESuperTypes().add(this.getConstraintDefinition());
-		constraintDefinitionEClass.getESuperTypes().add(this.getOccurrenceDefinition());
-		constraintDefinitionEClass.getESuperTypes().add(this.getPredicate());
 		useCaseUsageEClass.getESuperTypes().add(this.getCaseUsage());
 		useCaseDefinitionEClass.getESuperTypes().add(this.getCaseDefinition());
 		flowConnectionUsageEClass.getESuperTypes().add(this.getConnectionUsage());
@@ -8911,87 +8734,199 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		metadataFeatureEClass.getESuperTypes().add(this.getFeature());
 		metadataFeatureEClass.getESuperTypes().add(this.getAnnotatingElement());
 		metaclassEClass.getESuperTypes().add(this.getStructure());
-		portioningFeatureEClass.getESuperTypes().add(this.getFeature());
-		viewpointDefinitionEClass.getESuperTypes().add(this.getRequirementDefinition());
-		exposeEClass.getESuperTypes().add(this.getImport());
-		viewRenderingMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		membershipExposeEClass.getESuperTypes().add(this.getMembershipImport());
-		membershipExposeEClass.getESuperTypes().add(this.getExpose());
-		namespaceExposeEClass.getESuperTypes().add(this.getNamespaceImport());
-		namespaceExposeEClass.getESuperTypes().add(this.getExpose());
+		performActionUsageEClass.getESuperTypes().add(this.getActionUsage());
+		performActionUsageEClass.getESuperTypes().add(this.getEventOccurrenceUsage());
 		eventOccurrenceUsageEClass.getESuperTypes().add(this.getOccurrenceUsage());
-		objectiveMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		stateDefinitionEClass.getESuperTypes().add(this.getActionDefinition());
+		transitionFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		stateSubactionMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 		conjugatedPortTypingEClass.getESuperTypes().add(this.getFeatureTyping());
 		assertConstraintUsageEClass.getESuperTypes().add(this.getConstraintUsage());
 		assertConstraintUsageEClass.getESuperTypes().add(this.getInvariant());
 		invariantEClass.getESuperTypes().add(this.getBooleanExpression());
-		stateSubactionMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		stateDefinitionEClass.getESuperTypes().add(this.getActionDefinition());
-		exhibitStateUsageEClass.getESuperTypes().add(this.getStateUsage());
-		exhibitStateUsageEClass.getESuperTypes().add(this.getPerformActionUsage());
-		performActionUsageEClass.getESuperTypes().add(this.getActionUsage());
-		performActionUsageEClass.getESuperTypes().add(this.getEventOccurrenceUsage());
-		transitionFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		successionFlowConnectionUsageEClass.getESuperTypes().add(this.getFlowConnectionUsage());
-		successionFlowConnectionUsageEClass.getESuperTypes().add(this.getSuccessionItemFlow());
-		successionItemFlowEClass.getESuperTypes().add(this.getItemFlow());
-		successionItemFlowEClass.getESuperTypes().add(this.getSuccession());
-		bindingConnectorAsUsageEClass.getESuperTypes().add(this.getConnectorAsUsage());
-		bindingConnectorAsUsageEClass.getESuperTypes().add(this.getBindingConnector());
-		bindingConnectorEClass.getESuperTypes().add(this.getConnector());
-		successionAsUsageEClass.getESuperTypes().add(this.getConnectorAsUsage());
-		successionAsUsageEClass.getESuperTypes().add(this.getSuccession());
-		flowConnectionDefinitionEClass.getESuperTypes().add(this.getConnectionDefinition());
-		flowConnectionDefinitionEClass.getESuperTypes().add(this.getActionDefinition());
-		flowConnectionDefinitionEClass.getESuperTypes().add(this.getInteraction());
-		includeUseCaseUsageEClass.getESuperTypes().add(this.getUseCaseUsage());
-		includeUseCaseUsageEClass.getESuperTypes().add(this.getPerformActionUsage());
+		exposeEClass.getESuperTypes().add(this.getImport());
+		namespaceExposeEClass.getESuperTypes().add(this.getNamespaceImport());
+		namespaceExposeEClass.getESuperTypes().add(this.getExpose());
+		namespaceImportEClass.getESuperTypes().add(this.getImport());
+		membershipExposeEClass.getESuperTypes().add(this.getMembershipImport());
+		membershipExposeEClass.getESuperTypes().add(this.getExpose());
+		membershipImportEClass.getESuperTypes().add(this.getImport());
+		viewRenderingMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		objectiveMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 		requirementVerificationMembershipEClass.getESuperTypes().add(this.getRequirementConstraintMembership());
 		requirementConstraintMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		mergeNodeEClass.getESuperTypes().add(this.getControlNode());
-		controlNodeEClass.getESuperTypes().add(this.getActionUsage());
-		decisionNodeEClass.getESuperTypes().add(this.getControlNode());
-		forkNodeEClass.getESuperTypes().add(this.getControlNode());
-		joinNodeEClass.getESuperTypes().add(this.getControlNode());
-		ifActionUsageEClass.getESuperTypes().add(this.getActionUsage());
 		sendActionUsageEClass.getESuperTypes().add(this.getActionUsage());
+		controlNodeEClass.getESuperTypes().add(this.getActionUsage());
 		triggerInvocationExpressionEClass.getESuperTypes().add(this.getInvocationExpression());
 		invocationExpressionEClass.getESuperTypes().add(this.getExpression());
-		whileLoopActionUsageEClass.getESuperTypes().add(this.getLoopActionUsage());
+		forLoopActionUsageEClass.getESuperTypes().add(this.getLoopActionUsage());
 		loopActionUsageEClass.getESuperTypes().add(this.getActionUsage());
 		assignmentActionUsageEClass.getESuperTypes().add(this.getActionUsage());
-		forLoopActionUsageEClass.getESuperTypes().add(this.getLoopActionUsage());
-		metadataDefinitionEClass.getESuperTypes().add(this.getItemDefinition());
-		metadataDefinitionEClass.getESuperTypes().add(this.getMetaclass());
+		mergeNodeEClass.getESuperTypes().add(this.getControlNode());
+		joinNodeEClass.getESuperTypes().add(this.getControlNode());
+		forkNodeEClass.getESuperTypes().add(this.getControlNode());
+		whileLoopActionUsageEClass.getESuperTypes().add(this.getLoopActionUsage());
+		decisionNodeEClass.getESuperTypes().add(this.getControlNode());
+		ifActionUsageEClass.getESuperTypes().add(this.getActionUsage());
+		subjectMembershipEClass.getESuperTypes().add(this.getParameterMembership());
+		parameterMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		stakeholderMembershipEClass.getESuperTypes().add(this.getParameterMembership());
 		satisfyRequirementUsageEClass.getESuperTypes().add(this.getRequirementUsage());
 		satisfyRequirementUsageEClass.getESuperTypes().add(this.getAssertConstraintUsage());
 		framedConcernMembershipEClass.getESuperTypes().add(this.getRequirementConstraintMembership());
 		actorMembershipEClass.getESuperTypes().add(this.getParameterMembership());
-		parameterMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		stakeholderMembershipEClass.getESuperTypes().add(this.getParameterMembership());
-		subjectMembershipEClass.getESuperTypes().add(this.getParameterMembership());
-		featureReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
-		featureChainExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
-		operatorExpressionEClass.getESuperTypes().add(this.getInvocationExpression());
-		literalExpressionEClass.getESuperTypes().add(this.getExpression());
+		metadataDefinitionEClass.getESuperTypes().add(this.getItemDefinition());
+		metadataDefinitionEClass.getESuperTypes().add(this.getMetaclass());
+		flowConnectionDefinitionEClass.getESuperTypes().add(this.getConnectionDefinition());
+		flowConnectionDefinitionEClass.getESuperTypes().add(this.getActionDefinition());
+		flowConnectionDefinitionEClass.getESuperTypes().add(this.getInteraction());
+		bindingConnectorAsUsageEClass.getESuperTypes().add(this.getConnectorAsUsage());
+		bindingConnectorAsUsageEClass.getESuperTypes().add(this.getBindingConnector());
+		bindingConnectorEClass.getESuperTypes().add(this.getConnector());
+		successionFlowConnectionUsageEClass.getESuperTypes().add(this.getFlowConnectionUsage());
+		successionFlowConnectionUsageEClass.getESuperTypes().add(this.getSuccessionItemFlow());
+		successionItemFlowEClass.getESuperTypes().add(this.getItemFlow());
+		successionItemFlowEClass.getESuperTypes().add(this.getSuccession());
+		successionAsUsageEClass.getESuperTypes().add(this.getConnectorAsUsage());
+		successionAsUsageEClass.getESuperTypes().add(this.getSuccession());
+		includeUseCaseUsageEClass.getESuperTypes().add(this.getUseCaseUsage());
+		includeUseCaseUsageEClass.getESuperTypes().add(this.getPerformActionUsage());
+		featureValueEClass.getESuperTypes().add(this.getOwningMembership());
+		multiplicityRangeEClass.getESuperTypes().add(this.getMultiplicity());
+		returnParameterMembershipEClass.getESuperTypes().add(this.getParameterMembership());
+		resultExpressionMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 		literalRationalEClass.getESuperTypes().add(this.getLiteralExpression());
+		literalExpressionEClass.getESuperTypes().add(this.getExpression());
+		featureReferenceExpressionEClass.getESuperTypes().add(this.getExpression());
+		operatorExpressionEClass.getESuperTypes().add(this.getInvocationExpression());
+		nullExpressionEClass.getESuperTypes().add(this.getExpression());
+		metadataAccessExpressionEClass.getESuperTypes().add(this.getExpression());
+		literalBooleanEClass.getESuperTypes().add(this.getLiteralExpression());
+		literalInfinityEClass.getESuperTypes().add(this.getLiteralExpression());
+		featureChainExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
+		literalIntegerEClass.getESuperTypes().add(this.getLiteralExpression());
 		literalStringEClass.getESuperTypes().add(this.getLiteralExpression());
 		selectExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
 		collectExpressionEClass.getESuperTypes().add(this.getOperatorExpression());
-		literalIntegerEClass.getESuperTypes().add(this.getLiteralExpression());
-		literalInfinityEClass.getESuperTypes().add(this.getLiteralExpression());
-		nullExpressionEClass.getESuperTypes().add(this.getExpression());
-		literalBooleanEClass.getESuperTypes().add(this.getLiteralExpression());
-		metadataAccessExpressionEClass.getESuperTypes().add(this.getExpression());
-		resultExpressionMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
-		returnParameterMembershipEClass.getESuperTypes().add(this.getParameterMembership());
-		featureValueEClass.getESuperTypes().add(this.getOwningMembership());
-		packageEClass.getESuperTypes().add(this.getNamespace());
 		libraryPackageEClass.getESuperTypes().add(this.getPackage());
+		packageEClass.getESuperTypes().add(this.getNamespace());
 		elementFilterMembershipEClass.getESuperTypes().add(this.getOwningMembership());
-		multiplicityRangeEClass.getESuperTypes().add(this.getMultiplicity());
+		endFeatureMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
+		dependencyEClass.getESuperTypes().add(this.getRelationship());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(exhibitStateUsageEClass, ExhibitStateUsage.class, "ExhibitStateUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExhibitStateUsage_ExhibitedState(), this.getStateUsage(), null, "exhibitedState", null, 1, 1, ExhibitStateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(stateUsageEClass, StateUsage.class, "StateUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateUsage_StateDefinition(), this.getBehavior(), null, "stateDefinition", null, 0, -1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getStateUsage_EntryAction(), this.getActionUsage(), null, "entryAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getStateUsage_DoAction(), this.getActionUsage(), null, "doAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getStateUsage_ExitAction(), this.getActionUsage(), null, "exitAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getStateUsage_IsParallel(), theTypesPackage.getBoolean(), "isParallel", "false", 1, 1, StateUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = initEOperation(getStateUsage__IsSubstateUsage__boolean(), theTypesPackage.getBoolean(), "isSubstateUsage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getBoolean(), "isParallel", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(actionUsageEClass, ActionUsage.class, "ActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActionUsage_ActionDefinition(), this.getBehavior(), null, "actionDefinition", null, 0, -1, ActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getActionUsage__InputParameters(), this.getFeature(), "inputParameters", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getActionUsage__InputParameter__int(), ecorePackage.getEJavaObject(), "inputParameter", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getInteger(), "i", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getActionUsage__Argument__int(), this.getExpression(), "argument", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getInteger(), "i", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEOperation(getActionUsage__IsSubactionUsage(), theTypesPackage.getBoolean(), "isSubactionUsage", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(stepEClass, Step.class, "Step", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStep_Behavior(), this.getBehavior(), null, "behavior", null, 0, -1, Step.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getStep_Parameter(), this.getFeature(), null, "parameter", null, 0, -1, Step.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeature_OwningFeatureMembership(), this.getFeatureMembership(), this.getFeatureMembership_OwnedMemberFeature(), "owningFeatureMembership", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_OwningType(), this.getType(), this.getType_OwnedFeature(), "owningType", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_EndOwningType(), this.getType(), this.getType_OwnedEndFeature(), "endOwningType", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsUnique(), theTypesPackage.getBoolean(), "isUnique", "true", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsOrdered(), theTypesPackage.getBoolean(), "isOrdered", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_Type(), this.getType(), null, "type", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_OwnedRedefinition(), this.getRedefinition(), null, "ownedRedefinition", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_OwnedSubsetting(), this.getSubsetting(), this.getSubsetting_OwningFeature(), "ownedSubsetting", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsComposite(), theTypesPackage.getBoolean(), "isComposite", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsEnd(), theTypesPackage.getBoolean(), "isEnd", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_OwnedTyping(), this.getFeatureTyping(), this.getFeatureTyping_OwningFeature(), "ownedTyping", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_FeaturingType(), this.getType(), null, "featuringType", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_OwnedTypeFeaturing(), this.getTypeFeaturing(), this.getTypeFeaturing_OwningFeatureOfType(), "ownedTypeFeaturing", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_IsDerived(), theTypesPackage.getBoolean(), "isDerived", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_ChainingFeature(), this.getFeature(), null, "chainingFeature", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_OwnedFeatureInverting(), this.getFeatureInverting(), this.getFeatureInverting_OwningFeature(), "ownedFeatureInverting", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_OwnedFeatureChaining(), this.getFeatureChaining(), this.getFeatureChaining_FeatureChained(), "ownedFeatureChaining", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_IsReadOnly(), theTypesPackage.getBoolean(), "isReadOnly", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsPortion(), theTypesPackage.getBoolean(), "isPortion", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_Direction(), this.getFeatureDirectionKind(), "direction", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeature_OwnedReferenceSubsetting(), this.getReferenceSubsetting(), this.getReferenceSubsetting_ReferencingFeature(), "ownedReferenceSubsetting", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFeature_IsNonunique(), theTypesPackage.getBoolean(), "isNonunique", "false", 1, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		op = initEOperation(getFeature__DirectionFor__Type(), this.getFeatureDirectionKind(), "directionFor", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFeature__IsFeaturedWithin__Type(), theTypesPackage.getBoolean(), "isFeaturedWithin", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getType(), "type", 0, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEOperation(getFeature__NamingFeature(), this.getFeature(), "namingFeature", 0, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFeature__Redefines__Feature(), theTypesPackage.getBoolean(), "redefines", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFeature(), "redefinedFeature", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFeature__RedefinesFromLibrary__String(), theTypesPackage.getBoolean(), "redefinesFromLibrary", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getString(), "libraryFeatureName", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getFeature__SubsetsChain__Feature_Feature(), theTypesPackage.getBoolean(), "subsetsChain", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFeature(), "first", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFeature(), "second", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getType_OwnedSpecialization(), this.getSpecialization(), this.getSpecialization_OwningType(), "ownedSpecialization", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedFeatureMembership(), this.getFeatureMembership(), this.getFeatureMembership_OwningType(), "ownedFeatureMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_Feature(), this.getFeature(), null, "feature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedFeature(), this.getFeature(), this.getFeature_OwningType(), "ownedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_Input(), this.getFeature(), null, "input", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_Output(), this.getFeature(), null, "output", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getType_IsAbstract(), theTypesPackage.getBoolean(), "isAbstract", "false", 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getType_InheritedMembership(), this.getMembership(), null, "inheritedMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_EndFeature(), this.getFeature(), null, "endFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedEndFeature(), this.getFeature(), this.getFeature_EndOwningType(), "ownedEndFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getType_IsSufficient(), theTypesPackage.getBoolean(), "isSufficient", "false", 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getType_OwnedConjugator(), this.getConjugation(), this.getConjugation_OwningType(), "ownedConjugator", null, 0, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getType_IsConjugated(), theTypesPackage.getBoolean(), "isConjugated", null, 1, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getType_InheritedFeature(), this.getFeature(), null, "inheritedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_Multiplicity(), this.getMultiplicity(), null, "multiplicity", null, 0, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getType_UnioningType(), this.getType(), null, "unioningType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedIntersecting(), this.getIntersecting(), this.getIntersecting_TypeIntersected(), "ownedIntersecting", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_IntersectingType(), this.getType(), null, "intersectingType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedUnioning(), this.getUnioning(), this.getUnioning_TypeUnioned(), "ownedUnioning", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedDisjoining(), this.getDisjoining(), this.getDisjoining_OwningType(), "ownedDisjoining", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getType_FeatureMembership(), this.getFeatureMembership(), null, "featureMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_DifferencingType(), this.getType(), null, "differencingType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_OwnedDifferencing(), this.getDifferencing(), this.getDifferencing_TypeDifferenced(), "ownedDifferencing", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getType_DirectedFeature(), this.getFeature(), null, "directedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getType__InheritedMemberships__EList(), this.getMembership(), "inheritedMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getType(), "excluded", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getType__DirectionOf__Feature(), this.getFeatureDirectionKind(), "directionOf", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFeature(), "feature", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEOperation(getType__AllSupertypes(), this.getType(), "allSupertypes", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getType__Specializes__Type(), theTypesPackage.getBoolean(), "specializes", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getType(), "supertype", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getType__SpecializesFromLibrary__String(), theTypesPackage.getBoolean(), "specializesFromLibrary", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getString(), "libraryTypeName", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(namespaceEClass, Namespace.class, "Namespace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNamespace_OwnedMembership(), this.getMembership(), this.getMembership_MembershipOwningNamespace(), "ownedMembership", null, 0, -1, Namespace.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getNamespace_OwnedMember(), this.getElement(), this.getElement_OwningNamespace(), "ownedMember", null, 0, -1, Namespace.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -9000,7 +8935,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getNamespace_Member(), this.getElement(), null, "member", null, 0, -1, Namespace.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getNamespace_ImportedMembership(), this.getMembership(), null, "importedMembership", null, 0, -1, Namespace.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getNamespace__NamesOf__Element(), theTypesPackage.getString(), "namesOf", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getNamespace__NamesOf__Element(), theTypesPackage.getString(), "namesOf", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getElement(), "element", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getNamespace__VisibilityOf__Membership(), this.getVisibilityKind(), "visibilityOf", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -9116,65 +9051,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		op = initEOperation(getImport__ImportedMemberships__EList(), this.getMembership(), "importedMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNamespace(), "excluded", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(membershipImportEClass, MembershipImport.class, "MembershipImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMembershipImport_ImportedMembership(), this.getMembership(), null, "importedMembership", null, 1, 1, MembershipImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(namespaceImportEClass, NamespaceImport.class, "NamespaceImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamespaceImport_ImportedNamespace(), this.getNamespace(), null, "importedNamespace", null, 1, 1, NamespaceImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependency_Client(), this.getElement(), null, "client", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Supplier(), this.getElement(), null, "supplier", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(subclassificationEClass, Subclassification.class, "Subclassification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSubclassification_Superclassifier(), this.getClassifier(), null, "superclassifier", null, 1, 1, Subclassification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSubclassification_OwningClassifier(), this.getClassifier(), this.getClassifier_OwnedSubclassification(), "owningClassifier", null, 0, 1, Subclassification.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getSubclassification_Subclassifier(), this.getClassifier(), null, "subclassifier", null, 1, 1, Subclassification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(specializationEClass, Specialization.class, "Specialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecialization_OwningType(), this.getType(), this.getType_OwnedSpecialization(), "owningType", null, 0, 1, Specialization.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getSpecialization_General(), this.getType(), null, "general", null, 1, 1, Specialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSpecialization_Specific(), this.getType(), null, "specific", null, 1, 1, Specialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getType_OwnedFeatureMembership(), this.getFeatureMembership(), this.getFeatureMembership_OwningType(), "ownedFeatureMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedFeature(), this.getFeature(), this.getFeature_OwningType(), "ownedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedEndFeature(), this.getFeature(), this.getFeature_EndOwningType(), "ownedEndFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_Feature(), this.getFeature(), null, "feature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_Input(), this.getFeature(), null, "input", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_Output(), this.getFeature(), null, "output", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getType_IsAbstract(), theTypesPackage.getBoolean(), "isAbstract", "false", 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getType_InheritedMembership(), this.getMembership(), null, "inheritedMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_EndFeature(), this.getFeature(), null, "endFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getType_IsSufficient(), theTypesPackage.getBoolean(), "isSufficient", "false", 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getType_OwnedConjugator(), this.getConjugation(), this.getConjugation_OwningType(), "ownedConjugator", null, 0, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getType_IsConjugated(), theTypesPackage.getBoolean(), "isConjugated", null, 1, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getType_InheritedFeature(), this.getFeature(), null, "inheritedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_Multiplicity(), this.getMultiplicity(), null, "multiplicity", null, 0, 1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getType_UnioningType(), this.getType(), null, "unioningType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedIntersecting(), this.getIntersecting(), this.getIntersecting_TypeIntersected(), "ownedIntersecting", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_IntersectingType(), this.getType(), null, "intersectingType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedUnioning(), this.getUnioning(), this.getUnioning_TypeUnioned(), "ownedUnioning", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedDisjoining(), this.getDisjoining(), this.getDisjoining_OwningType(), "ownedDisjoining", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getType_FeatureMembership(), this.getFeatureMembership(), null, "featureMembership", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_DifferencingType(), this.getType(), null, "differencingType", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedDifferencing(), this.getDifferencing(), this.getDifferencing_TypeDifferenced(), "ownedDifferencing", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_DirectedFeature(), this.getFeature(), null, "directedFeature", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getType_OwnedSpecialization(), this.getSpecialization(), this.getSpecialization_OwningType(), "ownedSpecialization", null, 0, -1, Type.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getType__InheritedMemberships__EList(), this.getMembership(), "inheritedMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getType(), "excluded", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getType__DirectionOf__Feature(), this.getFeatureDirectionKind(), "directionOf", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFeature(), "feature", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEOperation(getType__AllSupertypes(), this.getType(), "allSupertypes", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getType__Specializes__Type(), theTypesPackage.getBoolean(), "specializes", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getType(), "supertype", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getType__SpecializesFromLibrary__String(), theTypesPackage.getBoolean(), "specializesFromLibrary", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theTypesPackage.getString(), "libraryTypeName", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEReference(getSpecialization_OwningType(), this.getType(), this.getType_OwnedSpecialization(), "owningType", null, 0, 1, Specialization.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(featureMembershipEClass, FeatureMembership.class, "FeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureMembership_OwnedMemberFeature(), this.getFeature(), this.getFeature_OwningFeatureMembership(), "ownedMemberFeature", null, 1, 1, FeatureMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9184,47 +9064,29 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getFeaturing_Type(), this.getType(), null, "type", null, 1, 1, Featuring.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeaturing_Feature(), this.getFeature(), null, "feature", null, 1, 1, Featuring.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_OwningType(), this.getType(), this.getType_OwnedFeature(), "owningType", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsUnique(), theTypesPackage.getBoolean(), "isUnique", "true", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsOrdered(), theTypesPackage.getBoolean(), "isOrdered", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_Type(), this.getType(), null, "type", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_OwnedRedefinition(), this.getRedefinition(), null, "ownedRedefinition", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_OwnedSubsetting(), this.getSubsetting(), this.getSubsetting_OwningFeature(), "ownedSubsetting", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_OwningFeatureMembership(), this.getFeatureMembership(), this.getFeatureMembership_OwnedMemberFeature(), "owningFeatureMembership", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsComposite(), theTypesPackage.getBoolean(), "isComposite", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsEnd(), theTypesPackage.getBoolean(), "isEnd", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_EndOwningType(), this.getType(), this.getType_OwnedEndFeature(), "endOwningType", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_OwnedTyping(), this.getFeatureTyping(), this.getFeatureTyping_OwningFeature(), "ownedTyping", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_FeaturingType(), this.getType(), null, "featuringType", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_OwnedTypeFeaturing(), this.getTypeFeaturing(), this.getTypeFeaturing_OwningFeatureOfType(), "ownedTypeFeaturing", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeature_IsDerived(), theTypesPackage.getBoolean(), "isDerived", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_ChainingFeature(), this.getFeature(), null, "chainingFeature", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getFeature_OwnedFeatureInverting(), this.getFeatureInverting(), this.getFeatureInverting_OwningFeature(), "ownedFeatureInverting", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_OwnedFeatureChaining(), this.getFeatureChaining(), this.getFeatureChaining_FeatureChained(), "ownedFeatureChaining", null, 0, -1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeature_IsReadOnly(), theTypesPackage.getBoolean(), "isReadOnly", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsPortion(), theTypesPackage.getBoolean(), "isPortion", "false", 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_Direction(), this.getFeatureDirectionKind(), "direction", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFeature_OwnedReferenceSubsetting(), this.getReferenceSubsetting(), this.getReferenceSubsetting_ReferencingFeature(), "ownedReferenceSubsetting", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsNonunique(), theTypesPackage.getBoolean(), "isNonunique", "false", 1, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(conjugationEClass, Conjugation.class, "Conjugation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConjugation_OriginalType(), this.getType(), null, "originalType", null, 1, 1, Conjugation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConjugation_ConjugatedType(), this.getType(), null, "conjugatedType", null, 1, 1, Conjugation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConjugation_OwningType(), this.getType(), this.getType_OwnedConjugator(), "owningType", null, 0, 1, Conjugation.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		op = initEOperation(getFeature__DirectionFor__Type(), this.getFeatureDirectionKind(), "directionFor", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(multiplicityEClass, Multiplicity.class, "Multiplicity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getFeature__IsFeaturedWithin__Type(), theTypesPackage.getBoolean(), "isFeaturedWithin", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getType(), "type", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(intersectingEClass, Intersecting.class, "Intersecting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIntersecting_IntersectingType(), this.getType(), null, "intersectingType", null, 1, 1, Intersecting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getIntersecting_TypeIntersected(), this.getType(), this.getType_OwnedIntersecting(), "typeIntersected", null, 1, 1, Intersecting.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEOperation(getFeature__NamingFeature(), this.getFeature(), "namingFeature", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(unioningEClass, Unioning.class, "Unioning", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUnioning_UnioningType(), this.getType(), null, "unioningType", null, 1, 1, Unioning.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getUnioning_TypeUnioned(), this.getType(), this.getType_OwnedUnioning(), "typeUnioned", null, 1, 1, Unioning.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		op = initEOperation(getFeature__Redefines__Feature(), theTypesPackage.getBoolean(), "redefines", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFeature(), "redefinedFeature", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(disjoiningEClass, Disjoining.class, "Disjoining", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDisjoining_TypeDisjoined(), this.getType(), null, "typeDisjoined", null, 1, 1, Disjoining.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDisjoining_DisjoiningType(), this.getType(), null, "disjoiningType", null, 1, 1, Disjoining.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDisjoining_OwningType(), this.getType(), this.getType_OwnedDisjoining(), "owningType", null, 0, 1, Disjoining.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		op = initEOperation(getFeature__RedefinesFromLibrary__String(), theTypesPackage.getBoolean(), "redefinesFromLibrary", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theTypesPackage.getString(), "libraryFeatureName", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getFeature__SubsetsChain__Feature_Feature(), theTypesPackage.getBoolean(), "subsetsChain", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFeature(), "first", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFeature(), "second", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(differencingEClass, Differencing.class, "Differencing", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDifferencing_DifferencingType(), this.getType(), null, "differencingType", null, 1, 1, Differencing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDifferencing_TypeDifferenced(), this.getType(), this.getType_OwnedDifferencing(), "typeDifferenced", null, 1, 1, Differencing.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(redefinitionEClass, Redefinition.class, "Redefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRedefinition_RedefiningFeature(), this.getFeature(), null, "redefiningFeature", null, 1, 1, Redefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -9258,90 +9120,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getReferenceSubsetting_ReferencedFeature(), this.getFeature(), null, "referencedFeature", null, 1, 1, ReferenceSubsetting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getReferenceSubsetting_ReferencingFeature(), this.getFeature(), this.getFeature_OwnedReferenceSubsetting(), "referencingFeature", null, 1, 1, ReferenceSubsetting.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(conjugationEClass, Conjugation.class, "Conjugation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConjugation_OriginalType(), this.getType(), null, "originalType", null, 1, 1, Conjugation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConjugation_ConjugatedType(), this.getType(), null, "conjugatedType", null, 1, 1, Conjugation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConjugation_OwningType(), this.getType(), this.getType_OwnedConjugator(), "owningType", null, 0, 1, Conjugation.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(multiplicityEClass, Multiplicity.class, "Multiplicity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(intersectingEClass, Intersecting.class, "Intersecting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntersecting_IntersectingType(), this.getType(), null, "intersectingType", null, 1, 1, Intersecting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getIntersecting_TypeIntersected(), this.getType(), this.getType_OwnedIntersecting(), "typeIntersected", null, 1, 1, Intersecting.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(unioningEClass, Unioning.class, "Unioning", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnioning_UnioningType(), this.getType(), null, "unioningType", null, 1, 1, Unioning.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getUnioning_TypeUnioned(), this.getType(), this.getType_OwnedUnioning(), "typeUnioned", null, 1, 1, Unioning.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(disjoiningEClass, Disjoining.class, "Disjoining", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDisjoining_TypeDisjoined(), this.getType(), null, "typeDisjoined", null, 1, 1, Disjoining.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDisjoining_DisjoiningType(), this.getType(), null, "disjoiningType", null, 1, 1, Disjoining.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDisjoining_OwningType(), this.getType(), this.getType_OwnedDisjoining(), "owningType", null, 0, 1, Disjoining.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(differencingEClass, Differencing.class, "Differencing", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDifferencing_DifferencingType(), this.getType(), null, "differencingType", null, 1, 1, Differencing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDifferencing_TypeDifferenced(), this.getType(), this.getType_OwnedDifferencing(), "typeDifferenced", null, 1, 1, Differencing.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(classifierEClass, Classifier.class, "Classifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassifier_OwnedSubclassification(), this.getSubclassification(), this.getSubclassification_OwningClassifier(), "ownedSubclassification", null, 0, -1, Classifier.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(endFeatureMembershipEClass, EndFeatureMembership.class, "EndFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(viewpointUsageEClass, ViewpointUsage.class, "ViewpointUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getViewpointUsage_ViewpointDefinition(), this.getViewpointDefinition(), null, "viewpointDefinition", null, 0, 1, ViewpointUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getViewpointUsage_ViewpointStakeholder(), this.getPartUsage(), null, "viewpointStakeholder", null, 0, -1, ViewpointUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(requirementUsageEClass, RequirementUsage.class, "RequirementUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRequirementUsage_RequirementDefinition(), this.getRequirementDefinition(), null, "requirementDefinition", null, 0, 1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRequirementUsage_ReqId(), theTypesPackage.getString(), "reqId", null, 0, 1, RequirementUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRequirementUsage_Text(), theTypesPackage.getString(), "text", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getRequirementUsage_RequiredConstraint(), this.getConstraintUsage(), null, "requiredConstraint", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementUsage_AssumedConstraint(), this.getConstraintUsage(), null, "assumedConstraint", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementUsage_SubjectParameter(), this.getUsage(), null, "subjectParameter", null, 1, 1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getRequirementUsage_FramedConcern(), this.getConcernUsage(), null, "framedConcern", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementUsage_ActorParameter(), this.getPartUsage(), null, "actorParameter", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementUsage_StakeholderParameter(), this.getPartUsage(), null, "stakeholderParameter", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(constraintUsageEClass, ConstraintUsage.class, "ConstraintUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstraintUsage_ConstraintDefinition(), this.getPredicate(), null, "constraintDefinition", null, 0, 1, ConstraintUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(booleanExpressionEClass, BooleanExpression.class, "BooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanExpression_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, BooleanExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExpression_Function(), this.getFunction(), null, "function", null, 0, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getExpression_Result(), this.getFeature(), null, "result", null, 1, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getExpression_IsModelLevelEvaluable(), theTypesPackage.getBoolean(), "isModelLevelEvaluable", null, 1, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		op = initEOperation(getExpression__ModelLevelEvaluable__EList(), theTypesPackage.getBoolean(), "modelLevelEvaluable", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFeature(), "visited", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getExpression__Evaluate__Element(), this.getElement(), "evaluate", 0, -1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getElement(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = initEOperation(getExpression__CheckCondition__Element(), theTypesPackage.getBoolean(), "checkCondition", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getElement(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(stepEClass, Step.class, "Step", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStep_Behavior(), this.getBehavior(), null, "behavior", null, 0, -1, Step.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getStep_Parameter(), this.getFeature(), null, "parameter", null, 0, -1, Step.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
 		initEClass(behaviorEClass, Behavior.class, "Behavior", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBehavior_Step(), this.getStep(), null, "step", null, 0, -1, Behavior.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getBehavior_Parameter(), this.getFeature(), null, "parameter", null, 0, -1, Behavior.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(classEClass, org.omg.sysml.lang.sysml.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunction_Expression(), this.getExpression(), null, "expression", null, 0, -1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFunction_Result(), this.getFeature(), null, "result", null, 1, 1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFunction_IsModelLevelEvaluable(), theTypesPackage.getBoolean(), "isModelLevelEvaluable", null, 1, 1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(classifierEClass, Classifier.class, "Classifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClassifier_OwnedSubclassification(), this.getSubclassification(), this.getSubclassification_OwningClassifier(), "ownedSubclassification", null, 0, -1, Classifier.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(subclassificationEClass, Subclassification.class, "Subclassification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSubclassification_Superclassifier(), this.getClassifier(), null, "superclassifier", null, 1, 1, Subclassification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSubclassification_Subclassifier(), this.getClassifier(), null, "subclassifier", null, 1, 1, Subclassification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSubclassification_OwningClassifier(), this.getClassifier(), this.getClassifier_OwnedSubclassification(), "owningClassifier", null, 0, 1, Subclassification.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(occurrenceUsageEClass, OccurrenceUsage.class, "OccurrenceUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOccurrenceUsage_OccurrenceDefinition(), this.getClass_(), null, "occurrenceDefinition", null, 0, -1, OccurrenceUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getOccurrenceUsage_PortioningFeature(), this.getPortioningFeature(), null, "portioningFeature", null, 0, 1, OccurrenceUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getOccurrenceUsage_IndividualDefinition(), this.getOccurrenceDefinition(), null, "individualDefinition", null, 0, 1, OccurrenceUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getOccurrenceUsage_IsIndividual(), theTypesPackage.getBoolean(), "isIndividual", "false", 1, 1, OccurrenceUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getOccurrenceUsage_PortionKind(), this.getPortionKind(), "portionKind", null, 0, 1, OccurrenceUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -9440,20 +9234,32 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getPortConjugation_OriginalPortDefinition(), this.getPortDefinition(), null, "originalPortDefinition", null, 1, 1, PortConjugation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPortConjugation_ConjugatedPortDefinition(), this.getConjugatedPortDefinition(), this.getConjugatedPortDefinition_OwnedPortConjugator(), "conjugatedPortDefinition", null, 1, 1, PortConjugation.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(stateUsageEClass, StateUsage.class, "StateUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateUsage_StateDefinition(), this.getBehavior(), null, "stateDefinition", null, 0, -1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getStateUsage_EntryAction(), this.getActionUsage(), null, "entryAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getStateUsage_DoAction(), this.getActionUsage(), null, "doAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getStateUsage_ExitAction(), this.getActionUsage(), null, "exitAction", null, 0, 1, StateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getStateUsage_IsParallel(), theTypesPackage.getBoolean(), "isParallel", "false", 1, 1, StateUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(constraintUsageEClass, ConstraintUsage.class, "ConstraintUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConstraintUsage_ConstraintDefinition(), this.getPredicate(), null, "constraintDefinition", null, 0, 1, ConstraintUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(actionUsageEClass, ActionUsage.class, "ActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActionUsage_ActionDefinition(), this.getBehavior(), null, "actionDefinition", null, 0, -1, ActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEClass(booleanExpressionEClass, BooleanExpression.class, "BooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBooleanExpression_Predicate(), this.getPredicate(), null, "predicate", null, 0, 1, BooleanExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEOperation(getActionUsage__InputParameters(), this.getFeature(), "inputParameters", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExpression_Function(), this.getFunction(), null, "function", null, 0, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getExpression_Result(), this.getFeature(), null, "result", null, 1, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExpression_IsModelLevelEvaluable(), theTypesPackage.getBoolean(), "isModelLevelEvaluable", null, 1, 1, Expression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		op = initEOperation(getActionUsage__Argument__int(), this.getExpression(), "argument", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, theTypesPackage.getInteger(), "i", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getExpression__ModelLevelEvaluable__EList(), theTypesPackage.getBoolean(), "modelLevelEvaluable", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFeature(), "visited", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getExpression__Evaluate__Element(), this.getElement(), "evaluate", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getElement(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getExpression__CheckCondition__Element(), theTypesPackage.getBoolean(), "checkCondition", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getElement(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunction_Expression(), this.getExpression(), null, "expression", null, 0, -1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getFunction_Result(), this.getFeature(), null, "result", null, 1, 1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFunction_IsModelLevelEvaluable(), theTypesPackage.getBoolean(), "isModelLevelEvaluable", null, 1, 1, Function.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(predicateEClass, Predicate.class, "Predicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(transitionUsageEClass, TransitionUsage.class, "TransitionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTransitionUsage_Source(), this.getActionUsage(), null, "source", null, 1, 1, TransitionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9462,6 +9268,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getTransitionUsage_GuardExpression(), this.getExpression(), null, "guardExpression", null, 0, -1, TransitionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getTransitionUsage_EffectAction(), this.getActionUsage(), null, "effectAction", null, 0, -1, TransitionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getTransitionUsage_Succession(), this.getSuccession(), null, "succession", null, 1, 1, TransitionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEOperation(getTransitionUsage__TriggerPayloadParameter(), this.getReferenceUsage(), "triggerPayloadParameter", 0, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(acceptActionUsageEClass, AcceptActionUsage.class, "AcceptActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAcceptActionUsage_ReceiverArgument(), this.getExpression(), null, "receiverArgument", null, 0, 1, AcceptActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9492,6 +9300,44 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getAssociation_TargetType(), this.getType(), null, "targetType", null, 0, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociation_AssociationEnd(), this.getFeature(), null, "associationEnd", null, 0, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
+		initEClass(requirementUsageEClass, RequirementUsage.class, "RequirementUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirementUsage_RequirementDefinition(), this.getRequirementDefinition(), null, "requirementDefinition", null, 0, 1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRequirementUsage_ReqId(), theTypesPackage.getString(), "reqId", null, 0, 1, RequirementUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRequirementUsage_Text(), theTypesPackage.getString(), "text", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getRequirementUsage_RequiredConstraint(), this.getConstraintUsage(), null, "requiredConstraint", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementUsage_AssumedConstraint(), this.getConstraintUsage(), null, "assumedConstraint", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementUsage_SubjectParameter(), this.getUsage(), null, "subjectParameter", null, 1, 1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getRequirementUsage_FramedConcern(), this.getConcernUsage(), null, "framedConcern", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementUsage_ActorParameter(), this.getPartUsage(), null, "actorParameter", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementUsage_StakeholderParameter(), this.getPartUsage(), null, "stakeholderParameter", null, 0, -1, RequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(requirementDefinitionEClass, RequirementDefinition.class, "RequirementDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRequirementDefinition_ReqId(), theTypesPackage.getString(), "reqId", null, 0, 1, RequirementDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRequirementDefinition_Text(), theTypesPackage.getString(), "text", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getRequirementDefinition_AssumedConstraint(), this.getConstraintUsage(), null, "assumedConstraint", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementDefinition_RequiredConstraint(), this.getConstraintUsage(), null, "requiredConstraint", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementDefinition_SubjectParameter(), this.getUsage(), null, "subjectParameter", null, 1, 1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getRequirementDefinition_FramedConcern(), this.getConcernUsage(), null, "framedConcern", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementDefinition_ActorParameter(), this.getPartUsage(), null, "actorParameter", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirementDefinition_StakeholderParameter(), this.getPartUsage(), null, "stakeholderParameter", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintDefinitionEClass, ConstraintDefinition.class, "ConstraintDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(concernUsageEClass, ConcernUsage.class, "ConcernUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConcernUsage_ConcernDefinition(), this.getConcernDefinition(), null, "concernDefinition", null, 0, 1, ConcernUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(concernDefinitionEClass, ConcernDefinition.class, "ConcernDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(partUsageEClass, PartUsage.class, "PartUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPartUsage_PartDefinition(), this.getPartDefinition(), null, "partDefinition", null, 0, -1, PartUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(itemUsageEClass, ItemUsage.class, "ItemUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getItemUsage_ItemDefinition(), this.getStructure(), null, "itemDefinition", null, 0, -1, ItemUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(partDefinitionEClass, PartDefinition.class, "PartDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(itemDefinitionEClass, ItemDefinition.class, "ItemDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(calculationUsageEClass, CalculationUsage.class, "CalculationUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCalculationUsage_CalculationDefinition(), this.getFunction(), null, "calculationDefinition", null, 0, 1, CalculationUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
@@ -9519,16 +9365,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		initEClass(actionDefinitionEClass, ActionDefinition.class, "ActionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionDefinition_Action(), this.getActionUsage(), null, "action", null, 0, -1, ActionDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(partUsageEClass, PartUsage.class, "PartUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPartUsage_PartDefinition(), this.getPartDefinition(), null, "partDefinition", null, 0, -1, PartUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(itemUsageEClass, ItemUsage.class, "ItemUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getItemUsage_ItemDefinition(), this.getStructure(), null, "itemDefinition", null, 0, -1, ItemUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(partDefinitionEClass, PartDefinition.class, "PartDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(itemDefinitionEClass, ItemDefinition.class, "ItemDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(analysisCaseDefinitionEClass, AnalysisCaseDefinition.class, "AnalysisCaseDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAnalysisCaseDefinition_AnalysisAction(), this.getActionUsage(), null, "analysisAction", null, 0, -1, AnalysisCaseDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -9571,6 +9407,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getViewDefinition_ViewRendering(), this.getRenderingUsage(), null, "viewRendering", null, 0, 1, ViewDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getViewDefinition_ViewCondition(), this.getExpression(), null, "viewCondition", null, 0, -1, ViewDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
+		initEClass(viewpointUsageEClass, ViewpointUsage.class, "ViewpointUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getViewpointUsage_ViewpointDefinition(), this.getViewpointDefinition(), null, "viewpointDefinition", null, 0, 1, ViewpointUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getViewpointUsage_ViewpointStakeholder(), this.getPartUsage(), null, "viewpointStakeholder", null, 0, -1, ViewpointUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(viewpointDefinitionEClass, ViewpointDefinition.class, "ViewpointDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getViewpointDefinition_ViewpointStakeholder(), this.getPartUsage(), null, "viewpointStakeholder", null, 0, -1, ViewpointDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
 		initEClass(renderingUsageEClass, RenderingUsage.class, "RenderingUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRenderingUsage_RenderingDefinition(), this.getRenderingDefinition(), null, "renderingDefinition", null, 0, 1, RenderingUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
@@ -9597,23 +9440,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		initEClass(allocationDefinitionEClass, AllocationDefinition.class, "AllocationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAllocationDefinition_Allocation(), this.getAllocationUsage(), null, "allocation", null, 0, -1, AllocationDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(concernUsageEClass, ConcernUsage.class, "ConcernUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConcernUsage_ConcernDefinition(), this.getConcernDefinition(), null, "concernDefinition", null, 0, 1, ConcernUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(concernDefinitionEClass, ConcernDefinition.class, "ConcernDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(requirementDefinitionEClass, RequirementDefinition.class, "RequirementDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRequirementDefinition_ReqId(), theTypesPackage.getString(), "reqId", null, 0, 1, RequirementDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRequirementDefinition_Text(), theTypesPackage.getString(), "text", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getRequirementDefinition_AssumedConstraint(), this.getConstraintUsage(), null, "assumedConstraint", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementDefinition_RequiredConstraint(), this.getConstraintUsage(), null, "requiredConstraint", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementDefinition_SubjectParameter(), this.getUsage(), null, "subjectParameter", null, 1, 1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getRequirementDefinition_FramedConcern(), this.getConcernUsage(), null, "framedConcern", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementDefinition_ActorParameter(), this.getPartUsage(), null, "actorParameter", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirementDefinition_StakeholderParameter(), this.getPartUsage(), null, "stakeholderParameter", null, 0, -1, RequirementDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(constraintDefinitionEClass, ConstraintDefinition.class, "ConstraintDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(useCaseUsageEClass, UseCaseUsage.class, "UseCaseUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUseCaseUsage_UseCaseDefinition(), this.getUseCaseDefinition(), null, "useCaseDefinition", null, 0, 1, UseCaseUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9656,27 +9482,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		initEClass(metaclassEClass, Metaclass.class, "Metaclass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(portioningFeatureEClass, PortioningFeature.class, "PortioningFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPortioningFeature_PortionKind(), this.getPortionKind(), "portionKind", null, 1, 1, PortioningFeature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(viewpointDefinitionEClass, ViewpointDefinition.class, "ViewpointDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getViewpointDefinition_ViewpointStakeholder(), this.getPartUsage(), null, "viewpointStakeholder", null, 0, -1, ViewpointDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(exposeEClass, Expose.class, "Expose", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(viewRenderingMembershipEClass, ViewRenderingMembership.class, "ViewRenderingMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getViewRenderingMembership_OwnedRendering(), this.getRenderingUsage(), null, "ownedRendering", null, 1, 1, ViewRenderingMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getViewRenderingMembership_ReferencedRendering(), this.getRenderingUsage(), null, "referencedRendering", null, 1, 1, ViewRenderingMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(membershipExposeEClass, MembershipExpose.class, "MembershipExpose", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(namespaceExposeEClass, NamespaceExpose.class, "NamespaceExpose", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(performActionUsageEClass, PerformActionUsage.class, "PerformActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPerformActionUsage_PerformedAction(), this.getActionUsage(), null, "performedAction", null, 1, 1, PerformActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(eventOccurrenceUsageEClass, EventOccurrenceUsage.class, "EventOccurrenceUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventOccurrenceUsage_EventOccurrence(), this.getOccurrenceUsage(), null, "eventOccurrence", null, 1, 1, EventOccurrenceUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(objectiveMembershipEClass, ObjectiveMembership.class, "ObjectiveMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectiveMembership_OwnedObjectiveRequirement(), this.getRequirementUsage(), null, "ownedObjectiveRequirement", null, 1, 1, ObjectiveMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(stateDefinitionEClass, StateDefinition.class, "StateDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateDefinition_State(), this.getStateUsage(), null, "state", null, 0, -1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getStateDefinition_EntryAction(), this.getActionUsage(), null, "entryAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getStateDefinition_DoAction(), this.getActionUsage(), null, "doAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getStateDefinition_ExitAction(), this.getActionUsage(), null, "exitAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getStateDefinition_IsParallel(), theTypesPackage.getBoolean(), "isParallel", "false", 1, 1, StateDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(transitionFeatureMembershipEClass, TransitionFeatureMembership.class, "TransitionFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransitionFeatureMembership_Kind(), this.getTransitionFeatureKind(), "kind", null, 1, 1, TransitionFeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getTransitionFeatureMembership_TransitionFeature(), this.getStep(), null, "transitionFeature", null, 1, 1, TransitionFeatureMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(stateSubactionMembershipEClass, StateSubactionMembership.class, "StateSubactionMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStateSubactionMembership_Kind(), this.getStateSubactionKind(), "kind", null, 1, 1, StateSubactionMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getStateSubactionMembership_Action(), this.getActionUsage(), null, "action", null, 1, 1, StateSubactionMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(conjugatedPortTypingEClass, ConjugatedPortTyping.class, "ConjugatedPortTyping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConjugatedPortTyping_PortDefinition(), this.getPortDefinition(), null, "portDefinition", null, 1, 1, ConjugatedPortTyping.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9688,41 +9513,24 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEClass(invariantEClass, Invariant.class, "Invariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInvariant_IsNegated(), theTypesPackage.getBoolean(), "isNegated", "false", 1, 1, Invariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(stateSubactionMembershipEClass, StateSubactionMembership.class, "StateSubactionMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStateSubactionMembership_Kind(), this.getStateSubactionKind(), "kind", null, 1, 1, StateSubactionMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getStateSubactionMembership_Action(), this.getActionUsage(), null, "action", null, 1, 1, StateSubactionMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(exposeEClass, Expose.class, "Expose", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stateDefinitionEClass, StateDefinition.class, "StateDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStateDefinition_State(), this.getStateUsage(), null, "state", null, 0, -1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getStateDefinition_EntryAction(), this.getActionUsage(), null, "entryAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getStateDefinition_DoAction(), this.getActionUsage(), null, "doAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getStateDefinition_ExitAction(), this.getActionUsage(), null, "exitAction", null, 0, 1, StateDefinition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getStateDefinition_IsParallel(), theTypesPackage.getBoolean(), "isParallel", "false", 1, 1, StateDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(namespaceExposeEClass, NamespaceExpose.class, "NamespaceExpose", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(exhibitStateUsageEClass, ExhibitStateUsage.class, "ExhibitStateUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExhibitStateUsage_ExhibitedState(), this.getStateUsage(), null, "exhibitedState", null, 1, 1, ExhibitStateUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(namespaceImportEClass, NamespaceImport.class, "NamespaceImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNamespaceImport_ImportedNamespace(), this.getNamespace(), null, "importedNamespace", null, 1, 1, NamespaceImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(performActionUsageEClass, PerformActionUsage.class, "PerformActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPerformActionUsage_PerformedAction(), this.getActionUsage(), null, "performedAction", null, 1, 1, PerformActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(membershipExposeEClass, MembershipExpose.class, "MembershipExpose", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(transitionFeatureMembershipEClass, TransitionFeatureMembership.class, "TransitionFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransitionFeatureMembership_Kind(), this.getTransitionFeatureKind(), "kind", null, 1, 1, TransitionFeatureMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getTransitionFeatureMembership_TransitionFeature(), this.getStep(), null, "transitionFeature", null, 1, 1, TransitionFeatureMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(membershipImportEClass, MembershipImport.class, "MembershipImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMembershipImport_ImportedMembership(), this.getMembership(), null, "importedMembership", null, 1, 1, MembershipImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(successionFlowConnectionUsageEClass, SuccessionFlowConnectionUsage.class, "SuccessionFlowConnectionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(viewRenderingMembershipEClass, ViewRenderingMembership.class, "ViewRenderingMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getViewRenderingMembership_OwnedRendering(), this.getRenderingUsage(), null, "ownedRendering", null, 1, 1, ViewRenderingMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getViewRenderingMembership_ReferencedRendering(), this.getRenderingUsage(), null, "referencedRendering", null, 1, 1, ViewRenderingMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(successionItemFlowEClass, SuccessionItemFlow.class, "SuccessionItemFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bindingConnectorAsUsageEClass, BindingConnectorAsUsage.class, "BindingConnectorAsUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(bindingConnectorEClass, BindingConnector.class, "BindingConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(successionAsUsageEClass, SuccessionAsUsage.class, "SuccessionAsUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(flowConnectionDefinitionEClass, FlowConnectionDefinition.class, "FlowConnectionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(includeUseCaseUsageEClass, IncludeUseCaseUsage.class, "IncludeUseCaseUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIncludeUseCaseUsage_UseCaseIncluded(), this.getUseCaseUsage(), null, "useCaseIncluded", null, 1, 1, IncludeUseCaseUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(objectiveMembershipEClass, ObjectiveMembership.class, "ObjectiveMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getObjectiveMembership_OwnedObjectiveRequirement(), this.getRequirementUsage(), null, "ownedObjectiveRequirement", null, 1, 1, ObjectiveMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(requirementVerificationMembershipEClass, RequirementVerificationMembership.class, "RequirementVerificationMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRequirementVerificationMembership_OwnedRequirement(), this.getRequirementUsage(), null, "ownedRequirement", null, 1, 1, RequirementVerificationMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9733,7 +9541,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getRequirementConstraintMembership_OwnedConstraint(), this.getConstraintUsage(), null, "ownedConstraint", null, 1, 1, RequirementConstraintMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getRequirementConstraintMembership_ReferencedConstraint(), this.getConstraintUsage(), null, "referencedConstraint", null, 1, 1, RequirementConstraintMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(mergeNodeEClass, MergeNode.class, "MergeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sendActionUsageEClass, SendActionUsage.class, "SendActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSendActionUsage_ReceiverArgument(), this.getExpression(), null, "receiverArgument", null, 0, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getSendActionUsage_PayloadArgument(), this.getExpression(), null, "payloadArgument", null, 1, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getSendActionUsage_SenderArgument(), this.getExpression(), null, "senderArgument", null, 0, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(controlNodeEClass, ControlNode.class, "ControlNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -9742,31 +9553,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		addEParameter(op, theTypesPackage.getInteger(), "lower", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theTypesPackage.getUnlimitedNatural(), "upper", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(decisionNodeEClass, DecisionNode.class, "DecisionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(forkNodeEClass, ForkNode.class, "ForkNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(joinNodeEClass, JoinNode.class, "JoinNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(ifActionUsageEClass, IfActionUsage.class, "IfActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIfActionUsage_ElseAction(), this.getActionUsage(), null, "elseAction", null, 0, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getIfActionUsage_ThenAction(), this.getActionUsage(), null, "thenAction", null, 1, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getIfActionUsage_IfArgument(), this.getExpression(), null, "ifArgument", null, 1, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(sendActionUsageEClass, SendActionUsage.class, "SendActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSendActionUsage_ReceiverArgument(), this.getExpression(), null, "receiverArgument", null, 0, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getSendActionUsage_PayloadArgument(), this.getExpression(), null, "payloadArgument", null, 1, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getSendActionUsage_SenderArgument(), this.getExpression(), null, "senderArgument", null, 0, 1, SendActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
 		initEClass(triggerInvocationExpressionEClass, TriggerInvocationExpression.class, "TriggerInvocationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTriggerInvocationExpression_Kind(), this.getTriggerKind(), "kind", null, 1, 1, TriggerInvocationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(invocationExpressionEClass, InvocationExpression.class, "InvocationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInvocationExpression_Argument(), this.getExpression(), null, "argument", null, 0, -1, InvocationExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		initEClass(whileLoopActionUsageEClass, WhileLoopActionUsage.class, "WhileLoopActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWhileLoopActionUsage_WhileArgument(), this.getExpression(), null, "whileArgument", null, 1, 1, WhileLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getWhileLoopActionUsage_UntilArgument(), this.getExpression(), null, "untilArgument", null, 0, 1, WhileLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(forLoopActionUsageEClass, ForLoopActionUsage.class, "ForLoopActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getForLoopActionUsage_SeqArgument(), this.getExpression(), null, "seqArgument", null, 1, 1, ForLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getForLoopActionUsage_LoopVariable(), this.getReferenceUsage(), null, "loopVariable", null, 1, 1, ForLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(loopActionUsageEClass, LoopActionUsage.class, "LoopActionUsage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLoopActionUsage_BodyAction(), this.getActionUsage(), null, "bodyAction", null, 1, 1, LoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9776,11 +9571,31 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getAssignmentActionUsage_ValueExpression(), this.getExpression(), null, "valueExpression", null, 1, 1, AssignmentActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssignmentActionUsage_Referent(), this.getFeature(), null, "referent", null, 1, 1, AssignmentActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(forLoopActionUsageEClass, ForLoopActionUsage.class, "ForLoopActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getForLoopActionUsage_SeqArgument(), this.getExpression(), null, "seqArgument", null, 1, 1, ForLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getForLoopActionUsage_LoopVariable(), this.getReferenceUsage(), null, "loopVariable", null, 1, 1, ForLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(mergeNodeEClass, MergeNode.class, "MergeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(metadataDefinitionEClass, MetadataDefinition.class, "MetadataDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(joinNodeEClass, JoinNode.class, "JoinNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(forkNodeEClass, ForkNode.class, "ForkNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(whileLoopActionUsageEClass, WhileLoopActionUsage.class, "WhileLoopActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWhileLoopActionUsage_WhileArgument(), this.getExpression(), null, "whileArgument", null, 1, 1, WhileLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getWhileLoopActionUsage_UntilArgument(), this.getExpression(), null, "untilArgument", null, 0, 1, WhileLoopActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(decisionNodeEClass, DecisionNode.class, "DecisionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(ifActionUsageEClass, IfActionUsage.class, "IfActionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIfActionUsage_ElseAction(), this.getActionUsage(), null, "elseAction", null, 0, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getIfActionUsage_ThenAction(), this.getActionUsage(), null, "thenAction", null, 1, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getIfActionUsage_IfArgument(), this.getExpression(), null, "ifArgument", null, 1, 1, IfActionUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(subjectMembershipEClass, SubjectMembership.class, "SubjectMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSubjectMembership_OwnedSubjectParameter(), this.getUsage(), null, "ownedSubjectParameter", null, 1, 1, SubjectMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(parameterMembershipEClass, ParameterMembership.class, "ParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getParameterMembership_OwnedMemberParameter(), this.getFeature(), null, "ownedMemberParameter", null, 1, 1, ParameterMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(stakeholderMembershipEClass, StakeholderMembership.class, "StakeholderMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStakeholderMembership_OwnedStakeholderParameter(), this.getPartUsage(), null, "ownedStakeholderParameter", null, 1, 1, StakeholderMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(satisfyRequirementUsageEClass, SatisfyRequirementUsage.class, "SatisfyRequirementUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSatisfyRequirementUsage_SatisfiedRequirement(), this.getRequirementUsage(), null, "satisfiedRequirement", null, 1, 1, SatisfyRequirementUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9793,74 +9608,28 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEClass(actorMembershipEClass, ActorMembership.class, "ActorMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActorMembership_OwnedActorParameter(), this.getPartUsage(), null, "ownedActorParameter", null, 1, 1, ActorMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
-		initEClass(parameterMembershipEClass, ParameterMembership.class, "ParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParameterMembership_OwnedMemberParameter(), this.getFeature(), null, "ownedMemberParameter", null, 1, 1, ParameterMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(metadataDefinitionEClass, MetadataDefinition.class, "MetadataDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stakeholderMembershipEClass, StakeholderMembership.class, "StakeholderMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStakeholderMembership_OwnedStakeholderParameter(), this.getPartUsage(), null, "ownedStakeholderParameter", null, 1, 1, StakeholderMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(flowConnectionDefinitionEClass, FlowConnectionDefinition.class, "FlowConnectionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(subjectMembershipEClass, SubjectMembership.class, "SubjectMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSubjectMembership_OwnedSubjectParameter(), this.getUsage(), null, "ownedSubjectParameter", null, 1, 1, SubjectMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(bindingConnectorAsUsageEClass, BindingConnectorAsUsage.class, "BindingConnectorAsUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(featureReferenceExpressionEClass, FeatureReferenceExpression.class, "FeatureReferenceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureReferenceExpression_Referent(), this.getFeature(), null, "referent", null, 1, 1, FeatureReferenceExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(bindingConnectorEClass, BindingConnector.class, "BindingConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(featureChainExpressionEClass, FeatureChainExpression.class, "FeatureChainExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureChainExpression_TargetFeature(), this.getFeature(), null, "targetFeature", null, 1, 1, FeatureChainExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(successionFlowConnectionUsageEClass, SuccessionFlowConnectionUsage.class, "SuccessionFlowConnectionUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(operatorExpressionEClass, OperatorExpression.class, "OperatorExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOperatorExpression_Operator(), theTypesPackage.getString(), "operator", null, 1, 1, OperatorExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getOperatorExpression_Operand(), this.getExpression(), null, "operand", null, 0, -1, OperatorExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEClass(successionItemFlowEClass, SuccessionItemFlow.class, "SuccessionItemFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(literalExpressionEClass, LiteralExpression.class, "LiteralExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(successionAsUsageEClass, SuccessionAsUsage.class, "SuccessionAsUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(literalRationalEClass, LiteralRational.class, "LiteralRational", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteralRational_Value(), theTypesPackage.getReal(), "value", null, 1, 1, LiteralRational.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(literalStringEClass, LiteralString.class, "LiteralString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteralString_Value(), theTypesPackage.getString(), "value", null, 1, 1, LiteralString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(selectExpressionEClass, SelectExpression.class, "SelectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(collectExpressionEClass, CollectExpression.class, "CollectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(literalIntegerEClass, LiteralInteger.class, "LiteralInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteralInteger_Value(), theTypesPackage.getInteger(), "value", null, 1, 1, LiteralInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(literalInfinityEClass, LiteralInfinity.class, "LiteralInfinity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(nullExpressionEClass, NullExpression.class, "NullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(literalBooleanEClass, LiteralBoolean.class, "LiteralBoolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteralBoolean_Value(), theTypesPackage.getBoolean(), "value", null, 1, 1, LiteralBoolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(metadataAccessExpressionEClass, MetadataAccessExpression.class, "MetadataAccessExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMetadataAccessExpression_ReferencedElement(), this.getElement(), null, "referencedElement", null, 1, 1, MetadataAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEOperation(getMetadataAccessExpression__MetaclassFeature(), this.getMetadataFeature(), "metaclassFeature", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(resultExpressionMembershipEClass, ResultExpressionMembership.class, "ResultExpressionMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getResultExpressionMembership_OwnedResultExpression(), this.getExpression(), null, "ownedResultExpression", null, 1, 1, ResultExpressionMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(returnParameterMembershipEClass, ReturnParameterMembership.class, "ReturnParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(includeUseCaseUsageEClass, IncludeUseCaseUsage.class, "IncludeUseCaseUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIncludeUseCaseUsage_UseCaseIncluded(), this.getUseCaseUsage(), null, "useCaseIncluded", null, 1, 1, IncludeUseCaseUsage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(featureValueEClass, FeatureValue.class, "FeatureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureValue_FeatureWithValue(), this.getFeature(), null, "featureWithValue", null, 1, 1, FeatureValue.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureValue_Value(), this.getExpression(), null, "value", null, 1, 1, FeatureValue.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureValue_IsInitial(), theTypesPackage.getBoolean(), "isInitial", "false", 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureValue_IsDefault(), theTypesPackage.getBoolean(), "isDefault", "false", 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(packageEClass, org.omg.sysml.lang.sysml.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackage_FilterCondition(), this.getExpression(), null, "filterCondition", null, 0, -1, org.omg.sysml.lang.sysml.Package.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getPackage__IncludeAsMember__Element(), theTypesPackage.getBoolean(), "includeAsMember", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getElement(), "element", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(libraryPackageEClass, LibraryPackage.class, "LibraryPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLibraryPackage_IsStandard(), theTypesPackage.getBoolean(), "isStandard", "false", 1, 1, LibraryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(elementFilterMembershipEClass, ElementFilterMembership.class, "ElementFilterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementFilterMembership_Condition(), this.getExpression(), null, "condition", null, 1, 1, ElementFilterMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(multiplicityRangeEClass, MultiplicityRange.class, "MultiplicityRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMultiplicityRange_LowerBound(), this.getExpression(), null, "lowerBound", null, 0, 1, MultiplicityRange.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -9873,6 +9642,66 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		op = initEOperation(getMultiplicityRange__ValueOf__Expression(), theTypesPackage.getUnlimitedNatural(), "valueOf", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getExpression(), "bound", 0, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(returnParameterMembershipEClass, ReturnParameterMembership.class, "ReturnParameterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(resultExpressionMembershipEClass, ResultExpressionMembership.class, "ResultExpressionMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResultExpressionMembership_OwnedResultExpression(), this.getExpression(), null, "ownedResultExpression", null, 1, 1, ResultExpressionMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(literalRationalEClass, LiteralRational.class, "LiteralRational", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLiteralRational_Value(), theTypesPackage.getReal(), "value", null, 1, 1, LiteralRational.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(literalExpressionEClass, LiteralExpression.class, "LiteralExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(featureReferenceExpressionEClass, FeatureReferenceExpression.class, "FeatureReferenceExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureReferenceExpression_Referent(), this.getFeature(), null, "referent", null, 1, 1, FeatureReferenceExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(operatorExpressionEClass, OperatorExpression.class, "OperatorExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOperatorExpression_Operator(), theTypesPackage.getString(), "operator", null, 1, 1, OperatorExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOperatorExpression_Operand(), this.getExpression(), null, "operand", null, 0, -1, OperatorExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		initEClass(nullExpressionEClass, NullExpression.class, "NullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(metadataAccessExpressionEClass, MetadataAccessExpression.class, "MetadataAccessExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMetadataAccessExpression_ReferencedElement(), this.getElement(), null, "referencedElement", null, 1, 1, MetadataAccessExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEOperation(getMetadataAccessExpression__MetaclassFeature(), this.getMetadataFeature(), "metaclassFeature", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(literalBooleanEClass, LiteralBoolean.class, "LiteralBoolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLiteralBoolean_Value(), theTypesPackage.getBoolean(), "value", null, 1, 1, LiteralBoolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(literalInfinityEClass, LiteralInfinity.class, "LiteralInfinity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(featureChainExpressionEClass, FeatureChainExpression.class, "FeatureChainExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeatureChainExpression_TargetFeature(), this.getFeature(), null, "targetFeature", null, 1, 1, FeatureChainExpression.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(literalIntegerEClass, LiteralInteger.class, "LiteralInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLiteralInteger_Value(), theTypesPackage.getInteger(), "value", null, 1, 1, LiteralInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(literalStringEClass, LiteralString.class, "LiteralString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLiteralString_Value(), theTypesPackage.getString(), "value", null, 1, 1, LiteralString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(selectExpressionEClass, SelectExpression.class, "SelectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(collectExpressionEClass, CollectExpression.class, "CollectExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(libraryPackageEClass, LibraryPackage.class, "LibraryPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLibraryPackage_IsStandard(), theTypesPackage.getBoolean(), "isStandard", "false", 1, 1, LibraryPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(packageEClass, org.omg.sysml.lang.sysml.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPackage_FilterCondition(), this.getExpression(), null, "filterCondition", null, 0, -1, org.omg.sysml.lang.sysml.Package.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getPackage__IncludeAsMember__Element(), theTypesPackage.getBoolean(), "includeAsMember", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getElement(), "element", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(elementFilterMembershipEClass, ElementFilterMembership.class, "ElementFilterMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElementFilterMembership_Condition(), this.getExpression(), null, "condition", null, 1, 1, ElementFilterMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(endFeatureMembershipEClass, EndFeatureMembership.class, "EndFeatureMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDependency_Client(), this.getElement(), null, "client", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependency_Supplier(), this.getElement(), null, "supplier", null, 1, -1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");
@@ -9889,15 +9718,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		addEEnumLiteral(portionKindEEnum, PortionKind.TIMESLICE);
 		addEEnumLiteral(portionKindEEnum, PortionKind.SNAPSHOT);
 
-		initEEnum(stateSubactionKindEEnum, StateSubactionKind.class, "StateSubactionKind");
-		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.ENTRY);
-		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.DO);
-		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.EXIT);
-
 		initEEnum(transitionFeatureKindEEnum, TransitionFeatureKind.class, "TransitionFeatureKind");
 		addEEnumLiteral(transitionFeatureKindEEnum, TransitionFeatureKind.TRIGGER);
 		addEEnumLiteral(transitionFeatureKindEEnum, TransitionFeatureKind.GUARD);
 		addEEnumLiteral(transitionFeatureKindEEnum, TransitionFeatureKind.EFFECT);
+
+		initEEnum(stateSubactionKindEEnum, StateSubactionKind.class, "StateSubactionKind");
+		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.ENTRY);
+		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.DO);
+		addEEnumLiteral(stateSubactionKindEEnum, StateSubactionKind.EXIT);
 
 		initEEnum(requirementConstraintKindEEnum, RequirementConstraintKind.class, "RequirementConstraintKind");
 		addEEnumLiteral(requirementConstraintKindEEnum, RequirementConstraintKind.ASSUMPTION);
@@ -9914,16 +9743,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// subsets
-		createSubsetsAnnotations();
-		// http://www.omg.org/spec/SysML
-		createSysMLAnnotations();
 		// http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
 		createEmofAnnotations();
-		// union
-		createUnionAnnotations();
 		// redefines
 		createRedefinesAnnotations();
+		// http://www.omg.org/spec/SysML
+		createSysMLAnnotations();
+		// subsets
+		createSubsetsAnnotations();
+		// union
+		createUnionAnnotations();
 	}
 
 	/**
@@ -9950,6 +9779,39 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	protected void createRedefinesAnnotations() {
 		String source = "redefines";
+		addAnnotation
+		  (getExhibitStateUsage_ExhibitedState(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//PerformActionUsage/performedAction")
+		   });
+		addAnnotation
+		  (getStateUsage_StateDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ActionUsage/actionDefinition")
+		   });
+		addAnnotation
+		  (getActionUsage_ActionDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Step/behavior"),
+			 URI.createURI(eNS_URI).appendFragment("//OccurrenceUsage/occurrenceDefinition")
+		   });
+		addAnnotation
+		  (getStep_Parameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+		   });
 		addAnnotation
 		  (getOwningMembership_OwnedMemberElementId(),
 		   source,
@@ -10039,62 +9901,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
 		   });
 		addAnnotation
-		  (getMembershipImport_ImportedMembership(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getNamespaceImport_ImportedNamespace(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getDependency_Client(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getDependency_Supplier(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getSubclassification_Superclassifier(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Specialization/general")
-		   });
-		addAnnotation
-		  (getSubclassification_OwningClassifier(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Specialization/owningType")
-		   });
-		addAnnotation
-		  (getSubclassification_Subclassifier(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Specialization/specific")
-		   });
-		addAnnotation
 		  (getSpecialization_General(),
 		   source,
 		   new String[] {
@@ -10127,6 +9933,86 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Membership/membershipOwningNamespace"),
 			 URI.createURI(eNS_URI).appendFragment("//Featuring/type")
+		   });
+		addAnnotation
+		  (getConjugation_OriginalType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getConjugation_ConjugatedType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
+		   });
+		addAnnotation
+		  (getIntersecting_IntersectingType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getIntersecting_TypeIntersected(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
+		   });
+		addAnnotation
+		  (getUnioning_UnioningType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getUnioning_TypeUnioned(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
+		   });
+		addAnnotation
+		  (getDisjoining_TypeDisjoined(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
+		   });
+		addAnnotation
+		  (getDisjoining_DisjoiningType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getDifferencing_DifferencingType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getDifferencing_TypeDifferenced(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
 		   });
 		addAnnotation
 		  (getRedefinition_RedefiningFeature(),
@@ -10256,144 +10142,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Subsetting/owningFeature"),
-			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettingFeature")
-		   });
-		addAnnotation
-		  (getConjugation_OriginalType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getConjugation_ConjugatedType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getIntersecting_IntersectingType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getIntersecting_TypeIntersected(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getUnioning_UnioningType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getUnioning_TypeUnioned(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getDisjoining_TypeDisjoined(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getDisjoining_DisjoiningType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getDifferencing_DifferencingType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
-		   });
-		addAnnotation
-		  (getDifferencing_TypeDifferenced(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
-		   });
-		addAnnotation
-		  (getViewpointUsage_ViewpointDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requirementDefinition")
-		   });
-		addAnnotation
-		  (getRequirementUsage_RequirementDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ConstraintUsage/constraintDefinition")
-		   });
-		addAnnotation
-		  (getRequirementUsage_ReqId(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/declaredShortName")
-		   });
-		addAnnotation
-		  (getConstraintUsage_ConstraintDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//BooleanExpression/predicate")
-		   });
-		addAnnotation
-		  (getBooleanExpression_Predicate(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Expression/function")
-		   });
-		addAnnotation
-		  (getExpression_Function(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Step/behavior")
-		   });
-		addAnnotation
-		  (getStep_Parameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettingFeature"),
+			 URI.createURI(eNS_URI).appendFragment("//Subsetting/owningFeature")
 		   });
 		addAnnotation
 		  (getBehavior_Parameter(),
@@ -10402,6 +10152,30 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+		   });
+		addAnnotation
+		  (getSubclassification_Superclassifier(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Specialization/general")
+		   });
+		addAnnotation
+		  (getSubclassification_Subclassifier(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Specialization/specific")
+		   });
+		addAnnotation
+		  (getSubclassification_OwningClassifier(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Specialization/owningType")
 		   });
 		addAnnotation
 		  (getOccurrenceUsage_OccurrenceDefinition(),
@@ -10460,21 +10234,28 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Conjugation/owningType")
 		   });
 		addAnnotation
-		  (getStateUsage_StateDefinition(),
+		  (getConstraintUsage_ConstraintDefinition(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ActionUsage/actionDefinition")
+			 URI.createURI(eNS_URI).appendFragment("//BooleanExpression/predicate")
 		   });
 		addAnnotation
-		  (getActionUsage_ActionDefinition(),
+		  (getBooleanExpression_Predicate(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Step/behavior"),
-			 URI.createURI(eNS_URI).appendFragment("//OccurrenceUsage/occurrenceDefinition")
+			 URI.createURI(eNS_URI).appendFragment("//Expression/function")
+		   });
+		addAnnotation
+		  (getExpression_Function(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Step/behavior")
 		   });
 		addAnnotation
 		  (getConnector_RelatedFeature(),
@@ -10547,6 +10328,38 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Type/endFeature")
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequirementDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ConstraintUsage/constraintDefinition")
+		   });
+		addAnnotation
+		  (getRequirementUsage_ReqId(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/declaredShortName")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_ReqId(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/declaredShortName")
+		   });
+		addAnnotation
+		  (getConcernUsage_ConcernDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requirementDefinition")
 		   });
 		addAnnotation
 		  (getCalculationUsage_CalculationDefinition(),
@@ -10630,6 +10443,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//PartUsage/partDefinition")
 		   });
 		addAnnotation
+		  (getViewpointUsage_ViewpointDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requirementDefinition")
+		   });
+		addAnnotation
 		  (getRenderingUsage_RenderingDefinition(),
 		   source,
 		   new String[] {
@@ -10662,22 +10483,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//ConnectionUsage/connectionDefinition")
 		   });
 		addAnnotation
-		  (getConcernUsage_ConcernDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requirementDefinition")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_ReqId(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/declaredShortName")
-		   });
-		addAnnotation
 		  (getUseCaseUsage_UseCaseDefinition(),
 		   source,
 		   new String[] {
@@ -10692,8 +10497,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//ActionUsage/actionDefinition"),
-			 URI.createURI(eNS_URI).appendFragment("//ItemFlow/interaction"),
-			 URI.createURI(eNS_URI).appendFragment("//ConnectionUsage/connectionDefinition")
+			 URI.createURI(eNS_URI).appendFragment("//ConnectionUsage/connectionDefinition"),
+			 URI.createURI(eNS_URI).appendFragment("//ItemFlow/interaction")
 		   });
 		addAnnotation
 		  (getItemFlow_Interaction(),
@@ -10722,46 +10527,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Feature/type")
 		   });
 		addAnnotation
-		  (getViewRenderingMembership_OwnedRendering(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
-		   });
-		addAnnotation
-		  (getObjectiveMembership_OwnedObjectiveRequirement(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
-		   });
-		addAnnotation
-		  (getConjugatedPortTyping_ConjugatedPortDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureTyping/type")
-		   });
-		addAnnotation
-		  (getStateSubactionMembership_Action(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
-		   });
-		addAnnotation
-		  (getExhibitStateUsage_ExhibitedState(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//PerformActionUsage/performedAction")
-		   });
-		addAnnotation
 		  (getPerformActionUsage_PerformedAction(),
 		   source,
 		   new String[] {
@@ -10778,12 +10543,52 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
 		   });
 		addAnnotation
-		  (getIncludeUseCaseUsage_UseCaseIncluded(),
+		  (getStateSubactionMembership_Action(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//PerformActionUsage/performedAction")
+			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+		   });
+		addAnnotation
+		  (getConjugatedPortTyping_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//FeatureTyping/type")
+		   });
+		addAnnotation
+		  (getNamespaceImport_ImportedNamespace(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getMembershipImport_ImportedMembership(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_OwnedRendering(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+		   });
+		addAnnotation
+		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
 		   });
 		addAnnotation
 		  (getRequirementVerificationMembership_OwnedRequirement(),
@@ -10808,6 +10613,30 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+		   });
+		addAnnotation
+		  (getSubjectMembership_OwnedSubjectParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
+		   });
+		addAnnotation
+		  (getParameterMembership_OwnedMemberParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
 		   });
 		addAnnotation
 		  (getSatisfyRequirementUsage_SatisfiedRequirement(),
@@ -10842,47 +10671,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
 		   });
 		addAnnotation
-		  (getParameterMembership_OwnedMemberParameter(),
+		  (getIncludeUseCaseUsage_UseCaseIncluded(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
-		   });
-		addAnnotation
-		  (getStakeholderMembership_OwnedStakeholderParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
-		   });
-		addAnnotation
-		  (getSubjectMembership_OwnedSubjectParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
-		   });
-		addAnnotation
-		  (getResultExpressionMembership_OwnedResultExpression(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+			 URI.createURI(eNS_URI).appendFragment("//PerformActionUsage/performedAction")
 		   });
 		addAnnotation
 		  (getFeatureValue_Value(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//OwningMembership/ownedMemberElement")
-		   });
-		addAnnotation
-		  (getElementFilterMembership_Condition(),
 		   source,
 		   new String[] {
 		   },
@@ -10897,6 +10694,38 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
 		   });
+		addAnnotation
+		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//FeatureMembership/ownedMemberFeature")
+		   });
+		addAnnotation
+		  (getElementFilterMembership_Condition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//OwningMembership/ownedMemberElement")
+		   });
+		addAnnotation
+		  (getDependency_Client(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
+		   });
+		addAnnotation
+		  (getDependency_Supplier(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/target")
+		   });
 	}
 
 	/**
@@ -10907,6 +10736,233 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	protected void createSubsetsAnnotations() {
 		String source = "subsets";
+		addAnnotation
+		  (getStep_Behavior(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Feature/type")
+		   });
+		addAnnotation
+		  (getFeature_OwningFeatureMembership(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/owningMembership")
+		   });
+		addAnnotation
+		  (getFeature_OwningType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/owningNamespace"),
+			 URI.createURI(eNS_URI).appendFragment("//Feature/featuringType")
+		   });
+		addAnnotation
+		  (getFeature_EndOwningType(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Feature/owningType")
+		   });
+		addAnnotation
+		  (getFeature_OwnedRedefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedSubsetting")
+		   });
+		addAnnotation
+		  (getFeature_OwnedSubsetting(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
+		   });
+		addAnnotation
+		  (getFeature_OwnedTyping(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
+		   });
+		addAnnotation
+		  (getFeature_OwnedTypeFeaturing(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureInverting(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureChaining(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getFeature_OwnedReferenceSubsetting(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedSubsetting")
+		   });
+		addAnnotation
+		  (getType_OwnedSpecialization(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_OwnedFeatureMembership(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMembership"),
+			 URI.createURI(eNS_URI).appendFragment("//Type/featureMembership")
+		   });
+		addAnnotation
+		  (getType_Feature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
+		   });
+		addAnnotation
+		  (getType_OwnedFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
+		   });
+		addAnnotation
+		  (getType_Input(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+		   });
+		addAnnotation
+		  (getType_Output(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+		   });
+		addAnnotation
+		  (getType_InheritedMembership(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/membership")
+		   });
+		addAnnotation
+		  (getType_EndFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
+		   });
+		addAnnotation
+		  (getType_OwnedEndFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/endFeature"),
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getType_OwnedConjugator(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_InheritedFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
+		   });
+		addAnnotation
+		  (getType_Multiplicity(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
+		   });
+		addAnnotation
+		  (getType_OwnedIntersecting(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_OwnedUnioning(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_OwnedDisjoining(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_OwnedDifferencing(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
+		   });
+		addAnnotation
+		  (getType_DirectedFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
+		   });
 		addAnnotation
 		  (getNamespace_OwnedMembership(),
 		   source,
@@ -11063,144 +11119,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
-		  (getType_OwnedFeatureMembership(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMembership"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/featureMembership")
-		   });
-		addAnnotation
-		  (getType_OwnedFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
-		   });
-		addAnnotation
-		  (getType_OwnedEndFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/endFeature"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
-		   });
-		addAnnotation
-		  (getType_Feature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
-		   });
-		addAnnotation
-		  (getType_Input(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
-		   });
-		addAnnotation
-		  (getType_Output(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
-		   });
-		addAnnotation
-		  (getType_InheritedMembership(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/membership")
-		   });
-		addAnnotation
-		  (getType_EndFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
-		   });
-		addAnnotation
-		  (getType_OwnedConjugator(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getType_InheritedFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
-		   });
-		addAnnotation
-		  (getType_Multiplicity(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
-		   });
-		addAnnotation
-		  (getType_OwnedIntersecting(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getType_OwnedUnioning(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getType_OwnedDisjoining(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getType_OwnedDifferencing(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getType_DirectedFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
-		   });
-		addAnnotation
-		  (getType_OwnedSpecialization(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
 		  (getFeaturing_Type(),
 		   source,
 		   new String[] {
@@ -11215,129 +11133,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
-		   });
-		addAnnotation
-		  (getFeature_OwningType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/owningNamespace"),
-			 URI.createURI(eNS_URI).appendFragment("//Feature/featuringType")
-		   });
-		addAnnotation
-		  (getFeature_OwnedRedefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedSubsetting")
-		   });
-		addAnnotation
-		  (getFeature_OwnedSubsetting(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
-		   });
-		addAnnotation
-		  (getFeature_OwningFeatureMembership(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/owningMembership")
-		   });
-		addAnnotation
-		  (getFeature_EndOwningType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Feature/owningType")
-		   });
-		addAnnotation
-		  (getFeature_OwnedTyping(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
-		   });
-		addAnnotation
-		  (getFeature_OwnedTypeFeaturing(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getFeature_OwnedFeatureInverting(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getFeature_OwnedFeatureChaining(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/ownedRelationship")
-		   });
-		addAnnotation
-		  (getFeature_OwnedReferenceSubsetting(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Feature/ownedSubsetting")
-		   });
-		addAnnotation
-		  (getSubsetting_OwningFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettingFeature")
-		   });
-		addAnnotation
-		  (getFeatureTyping_OwningFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//FeatureTyping/typedFeature")
-		   });
-		addAnnotation
-		  (getTypeFeaturing_OwningFeatureOfType(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//TypeFeaturing/featureOfType"),
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
-		   });
-		addAnnotation
-		  (getFeatureInverting_OwningFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement"),
-			 URI.createURI(eNS_URI).appendFragment("//FeatureInverting/featureInverted")
-		   });
-		addAnnotation
-		  (getFeatureChaining_FeatureChained(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
 		  (getConjugation_OwningType(),
@@ -11382,80 +11177,46 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
-		  (getClassifier_OwnedSubclassification(),
+		  (getSubsetting_OwningFeature(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
+			 URI.createURI(eNS_URI).appendFragment("//Subsetting/subsettingFeature")
 		   });
 		addAnnotation
-		  (getRequirementUsage_RequiredConstraint(),
+		  (getFeatureTyping_OwningFeature(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//FeatureTyping/typedFeature")
 		   });
 		addAnnotation
-		  (getRequirementUsage_AssumedConstraint(),
+		  (getTypeFeaturing_OwningFeatureOfType(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//TypeFeaturing/featureOfType"),
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
-		  (getRequirementUsage_SubjectParameter(),
+		  (getFeatureInverting_OwningFeature(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
-			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedUsage")
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement"),
+			 URI.createURI(eNS_URI).appendFragment("//FeatureInverting/featureInverted")
 		   });
 		addAnnotation
-		  (getRequirementUsage_FramedConcern(),
+		  (getFeatureChaining_FeatureChained(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requiredConstraint")
-		   });
-		addAnnotation
-		  (getRequirementUsage_ActorParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedPart"),
-			 URI.createURI(eNS_URI).appendFragment("//Step/parameter")
-		   });
-		addAnnotation
-		  (getRequirementUsage_StakeholderParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedPart"),
-			 URI.createURI(eNS_URI).appendFragment("//Step/parameter")
-		   });
-		addAnnotation
-		  (getExpression_Result(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/output")
-		   });
-		addAnnotation
-		  (getStep_Behavior(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Feature/type")
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
 		  (getBehavior_Step(),
@@ -11466,29 +11227,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Type/feature")
 		   });
 		addAnnotation
-		  (getFunction_Expression(),
+		  (getClassifier_OwnedSubclassification(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
-		   });
-		addAnnotation
-		  (getFunction_Result(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/output")
-		   });
-		addAnnotation
-		  (getOccurrenceUsage_PortioningFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedSpecialization")
 		   });
 		addAnnotation
 		  (getOccurrenceUsage_IndividualDefinition(),
@@ -12031,6 +11775,32 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
 		   });
 		addAnnotation
+		  (getExpression_Result(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
+			 URI.createURI(eNS_URI).appendFragment("//Type/output")
+		   });
+		addAnnotation
+		  (getFunction_Expression(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
+		   });
+		addAnnotation
+		  (getFunction_Result(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
+			 URI.createURI(eNS_URI).appendFragment("//Type/output")
+		   });
+		addAnnotation
 		  (getTransitionUsage_TriggerAction(),
 		   source,
 		   new String[] {
@@ -12110,6 +11880,124 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Association/relatedType")
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getRequirementUsage_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getRequirementUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
+			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedUsage")
+		   });
+		addAnnotation
+		  (getRequirementUsage_FramedConcern(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//RequirementUsage/requiredConstraint")
+		   });
+		addAnnotation
+		  (getRequirementUsage_ActorParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedPart"),
+			 URI.createURI(eNS_URI).appendFragment("//Step/parameter")
+		   });
+		addAnnotation
+		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Usage/nestedPart"),
+			 URI.createURI(eNS_URI).appendFragment("//Step/parameter")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_SubjectParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
+			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedUsage")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_FramedConcern(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//RequirementDefinition/requiredConstraint")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_ActorParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedPart"),
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter")
+		   });
+		addAnnotation
+		  (getRequirementDefinition_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedPart"),
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter")
+		   });
+		addAnnotation
+		  (getPartUsage_PartDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ItemUsage/itemDefinition")
+		   });
+		addAnnotation
+		  (getItemUsage_ItemDefinition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//OccurrenceUsage/occurrenceDefinition")
 		   });
 		addAnnotation
 		  (getAnalysisCaseUsage_AnalysisAction(),
@@ -12196,22 +12084,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Behavior/step"),
 			 URI.createURI(eNS_URI).appendFragment("//Definition/usage")
-		   });
-		addAnnotation
-		  (getPartUsage_PartDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ItemUsage/itemDefinition")
-		   });
-		addAnnotation
-		  (getItemUsage_ItemDefinition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//OccurrenceUsage/occurrenceDefinition")
 		   });
 		addAnnotation
 		  (getAnalysisCaseDefinition_AnalysisAction(),
@@ -12327,57 +12199,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Definition/usage")
 		   });
 		addAnnotation
-		  (getRequirementDefinition_AssumedConstraint(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_RequiredConstraint(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_SubjectParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
-			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedUsage")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_FramedConcern(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//RequirementDefinition/requiredConstraint")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_ActorParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedPart"),
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter")
-		   });
-		addAnnotation
-		  (getRequirementDefinition_StakeholderParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Definition/ownedPart"),
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter")
-		   });
-		addAnnotation
 		  (getItemFlow_ItemFlowEnd(),
 		   source,
 		   new String[] {
@@ -12399,7 +12220,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
+			 URI.createURI(eNS_URI).appendFragment("//ActionDefinition/action")
 		   });
 		addAnnotation
 		  (getInvocationExpression_Argument(),
@@ -12418,36 +12239,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
 		   });
 		addAnnotation
-		  (getFeatureReferenceExpression_Referent(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
-		   });
-		addAnnotation
-		  (getFeatureChainExpression_TargetFeature(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
-		   });
-		addAnnotation
 		  (getFeatureValue_FeatureWithValue(),
 		   source,
 		   new String[] {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Membership/membershipOwningNamespace")
-		   });
-		addAnnotation
-		  (getPackage_FilterCondition(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
 		   });
 		addAnnotation
 		  (getMultiplicityRange_LowerBound(),
@@ -12465,6 +12262,30 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//MultiplicityRange/bound")
 		   });
+		addAnnotation
+		  (getFeatureReferenceExpression_Referent(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
+		   });
+		addAnnotation
+		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/member")
+		   });
+		addAnnotation
+		  (getPackage_FilterCondition(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Namespace/ownedMember")
+		   });
 	}
 
 	/**
@@ -12476,112 +12297,76 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	protected void createEmofAnnotations() {
 		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName";
 		addAnnotation
-		  (getNamespace_Membership(),
+		  (getExhibitStateUsage_ExhibitedState(),
 		   source,
 		   new String[] {
-			   "body", "membershipNamespace"
+			   "body", "exhibitingState"
 		   });
 		addAnnotation
-		  (getNamespace_Member(),
+		  (getStateUsage_StateDefinition(),
 		   source,
 		   new String[] {
-			   "body", "namespace"
+			   "body", "definedState"
 		   });
 		addAnnotation
-		  (getNamespace_ImportedMembership(),
+		  (getStateUsage_EntryAction(),
 		   source,
 		   new String[] {
-			   "body", "importingNamespace"
+			   "body", "enteredState"
 		   });
 		addAnnotation
-		  (getMembership_MemberElement(),
+		  (getStateUsage_DoAction(),
 		   source,
 		   new String[] {
-			   "body", "membership"
+			   "body", "activeState"
 		   });
 		addAnnotation
-		  (getRelationship_RelatedElement(),
+		  (getStateUsage_ExitAction(),
 		   source,
 		   new String[] {
-			   "body", "relationship"
+			   "body", "exitedState"
 		   });
 		addAnnotation
-		  (getRelationship_Target(),
+		  (getActionUsage_ActionDefinition(),
 		   source,
 		   new String[] {
-			   "body", "targetRelationship"
+			   "body", "definedAction"
 		   });
 		addAnnotation
-		  (getRelationship_Source(),
+		  (getStep_Behavior(),
 		   source,
 		   new String[] {
-			   "body", "sourceRelationship"
+			   "body", "typedStep"
 		   });
 		addAnnotation
-		  (getAnnotatingElement_AnnotatedElement(),
+		  (getStep_Parameter(),
 		   source,
 		   new String[] {
-			   "body", "annotatingElement"
+			   "body", "parameteredStep"
 		   });
 		addAnnotation
-		  (getAnnotation_AnnotatedElement(),
+		  (getFeature_Type(),
 		   source,
 		   new String[] {
-			   "body", "annotation"
+			   "body", "typedFeature"
 		   });
 		addAnnotation
-		  (getImport_ImportedElement(),
+		  (getFeature_OwnedRedefinition(),
 		   source,
 		   new String[] {
-			   "body", "membershipImport"
+			   "body", "owningFeature"
 		   });
 		addAnnotation
-		  (getMembershipImport_ImportedMembership(),
+		  (getFeature_FeaturingType(),
 		   source,
 		   new String[] {
-			   "body", "import"
+			   "body", "featureOfType"
 		   });
 		addAnnotation
-		  (getNamespaceImport_ImportedNamespace(),
+		  (getFeature_ChainingFeature(),
 		   source,
 		   new String[] {
-			   "body", "import"
-		   });
-		addAnnotation
-		  (getDependency_Client(),
-		   source,
-		   new String[] {
-			   "body", "clientDependency"
-		   });
-		addAnnotation
-		  (getDependency_Supplier(),
-		   source,
-		   new String[] {
-			   "body", "supplierDependency"
-		   });
-		addAnnotation
-		  (getSubclassification_Superclassifier(),
-		   source,
-		   new String[] {
-			   "body", "superclassification"
-		   });
-		addAnnotation
-		  (getSubclassification_Subclassifier(),
-		   source,
-		   new String[] {
-			   "body", "subclassification"
-		   });
-		addAnnotation
-		  (getSpecialization_General(),
-		   source,
-		   new String[] {
-			   "body", "generalization"
-		   });
-		addAnnotation
-		  (getSpecialization_Specific(),
-		   source,
-		   new String[] {
-			   "body", "specialization"
+			   "body", "chainedFeature"
 		   });
 		addAnnotation
 		  (getType_Feature(),
@@ -12656,6 +12441,78 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "typeWithDirectedFeature"
 		   });
 		addAnnotation
+		  (getNamespace_Membership(),
+		   source,
+		   new String[] {
+			   "body", "membershipNamespace"
+		   });
+		addAnnotation
+		  (getNamespace_Member(),
+		   source,
+		   new String[] {
+			   "body", "namespace"
+		   });
+		addAnnotation
+		  (getNamespace_ImportedMembership(),
+		   source,
+		   new String[] {
+			   "body", "importingNamespace"
+		   });
+		addAnnotation
+		  (getMembership_MemberElement(),
+		   source,
+		   new String[] {
+			   "body", "membership"
+		   });
+		addAnnotation
+		  (getRelationship_RelatedElement(),
+		   source,
+		   new String[] {
+			   "body", "relationship"
+		   });
+		addAnnotation
+		  (getRelationship_Target(),
+		   source,
+		   new String[] {
+			   "body", "targetRelationship"
+		   });
+		addAnnotation
+		  (getRelationship_Source(),
+		   source,
+		   new String[] {
+			   "body", "sourceRelationship"
+		   });
+		addAnnotation
+		  (getAnnotatingElement_AnnotatedElement(),
+		   source,
+		   new String[] {
+			   "body", "annotatingElement"
+		   });
+		addAnnotation
+		  (getAnnotation_AnnotatedElement(),
+		   source,
+		   new String[] {
+			   "body", "annotation"
+		   });
+		addAnnotation
+		  (getImport_ImportedElement(),
+		   source,
+		   new String[] {
+			   "body", "membershipImport"
+		   });
+		addAnnotation
+		  (getSpecialization_General(),
+		   source,
+		   new String[] {
+			   "body", "generalization"
+		   });
+		addAnnotation
+		  (getSpecialization_Specific(),
+		   source,
+		   new String[] {
+			   "body", "specialization"
+		   });
+		addAnnotation
 		  (getFeaturing_Type(),
 		   source,
 		   new String[] {
@@ -12668,28 +12525,46 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "featuring"
 		   });
 		addAnnotation
-		  (getFeature_Type(),
+		  (getConjugation_OriginalType(),
 		   source,
 		   new String[] {
-			   "body", "typedFeature"
+			   "body", "conjugation"
 		   });
 		addAnnotation
-		  (getFeature_OwnedRedefinition(),
+		  (getConjugation_ConjugatedType(),
 		   source,
 		   new String[] {
-			   "body", "owningFeature"
+			   "body", "conjugator"
 		   });
 		addAnnotation
-		  (getFeature_FeaturingType(),
+		  (getIntersecting_IntersectingType(),
 		   source,
 		   new String[] {
-			   "body", "featureOfType"
+			   "body", "intersectedIntersecting"
 		   });
 		addAnnotation
-		  (getFeature_ChainingFeature(),
+		  (getUnioning_UnioningType(),
 		   source,
 		   new String[] {
-			   "body", "chainedFeature"
+			   "body", "unionedUnioning"
+		   });
+		addAnnotation
+		  (getDisjoining_TypeDisjoined(),
+		   source,
+		   new String[] {
+			   "body", "disjoiningTypeDisjoining"
+		   });
+		addAnnotation
+		  (getDisjoining_DisjoiningType(),
+		   source,
+		   new String[] {
+			   "body", "disjoinedTypeDisjoining"
+		   });
+		addAnnotation
+		  (getDifferencing_DifferencingType(),
+		   source,
+		   new String[] {
+			   "body", "differencedDifferencing"
 		   });
 		addAnnotation
 		  (getRedefinition_RedefiningFeature(),
@@ -12764,138 +12639,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "referencing"
 		   });
 		addAnnotation
-		  (getConjugation_OriginalType(),
-		   source,
-		   new String[] {
-			   "body", "conjugation"
-		   });
-		addAnnotation
-		  (getConjugation_ConjugatedType(),
-		   source,
-		   new String[] {
-			   "body", "conjugator"
-		   });
-		addAnnotation
-		  (getIntersecting_IntersectingType(),
-		   source,
-		   new String[] {
-			   "body", "intersectedIntersecting"
-		   });
-		addAnnotation
-		  (getUnioning_UnioningType(),
-		   source,
-		   new String[] {
-			   "body", "unionedUnioning"
-		   });
-		addAnnotation
-		  (getDisjoining_TypeDisjoined(),
-		   source,
-		   new String[] {
-			   "body", "disjoiningTypeDisjoining"
-		   });
-		addAnnotation
-		  (getDisjoining_DisjoiningType(),
-		   source,
-		   new String[] {
-			   "body", "disjoinedTypeDisjoining"
-		   });
-		addAnnotation
-		  (getDifferencing_DifferencingType(),
-		   source,
-		   new String[] {
-			   "body", "differencedDifferencing"
-		   });
-		addAnnotation
-		  (getViewpointUsage_ViewpointDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedViewpoint"
-		   });
-		addAnnotation
-		  (getViewpointUsage_ViewpointStakeholder(),
-		   source,
-		   new String[] {
-			   "body", "viewpointForStakeholder"
-		   });
-		addAnnotation
-		  (getRequirementUsage_RequirementDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_RequiredConstraint(),
-		   source,
-		   new String[] {
-			   "body", "requiringRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_AssumedConstraint(),
-		   source,
-		   new String[] {
-			   "body", "assumingRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_SubjectParameter(),
-		   source,
-		   new String[] {
-			   "body", "subjectOwningRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_FramedConcern(),
-		   source,
-		   new String[] {
-			   "body", "framingRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_ActorParameter(),
-		   source,
-		   new String[] {
-			   "body", "actorOwningRequirement"
-		   });
-		addAnnotation
-		  (getRequirementUsage_StakeholderParameter(),
-		   source,
-		   new String[] {
-			   "body", "stakholderOwningRequirement"
-		   });
-		addAnnotation
-		  (getConstraintUsage_ConstraintDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedConstraint"
-		   });
-		addAnnotation
-		  (getBooleanExpression_Predicate(),
-		   source,
-		   new String[] {
-			   "body", "typedBooleanExpression"
-		   });
-		addAnnotation
-		  (getExpression_Function(),
-		   source,
-		   new String[] {
-			   "body", "typedExpression"
-		   });
-		addAnnotation
-		  (getExpression_Result(),
-		   source,
-		   new String[] {
-			   "body", "computingExpression"
-		   });
-		addAnnotation
-		  (getStep_Behavior(),
-		   source,
-		   new String[] {
-			   "body", "typedStep"
-		   });
-		addAnnotation
-		  (getStep_Parameter(),
-		   source,
-		   new String[] {
-			   "body", "parameteredStep"
-		   });
-		addAnnotation
 		  (getBehavior_Step(),
 		   source,
 		   new String[] {
@@ -12908,28 +12651,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "parameteredBehavior"
 		   });
 		addAnnotation
-		  (getFunction_Expression(),
+		  (getSubclassification_Superclassifier(),
 		   source,
 		   new String[] {
-			   "body", "computedFunction"
+			   "body", "superclassification"
 		   });
 		addAnnotation
-		  (getFunction_Result(),
+		  (getSubclassification_Subclassifier(),
 		   source,
 		   new String[] {
-			   "body", "computingFunction"
+			   "body", "subclassification"
 		   });
 		addAnnotation
 		  (getOccurrenceUsage_OccurrenceDefinition(),
 		   source,
 		   new String[] {
 			   "body", "definedOccurrence"
-		   });
-		addAnnotation
-		  (getOccurrenceUsage_PortioningFeature(),
-		   source,
-		   new String[] {
-			   "body", "portioningUsage"
 		   });
 		addAnnotation
 		  (getOccurrenceUsage_IndividualDefinition(),
@@ -13322,34 +13059,40 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "portConjugation"
 		   });
 		addAnnotation
-		  (getStateUsage_StateDefinition(),
+		  (getConstraintUsage_ConstraintDefinition(),
 		   source,
 		   new String[] {
-			   "body", "definedState"
+			   "body", "definedConstraint"
 		   });
 		addAnnotation
-		  (getStateUsage_EntryAction(),
+		  (getBooleanExpression_Predicate(),
 		   source,
 		   new String[] {
-			   "body", "enteredState"
+			   "body", "typedBooleanExpression"
 		   });
 		addAnnotation
-		  (getStateUsage_DoAction(),
+		  (getExpression_Function(),
 		   source,
 		   new String[] {
-			   "body", "activeState"
+			   "body", "typedExpression"
 		   });
 		addAnnotation
-		  (getStateUsage_ExitAction(),
+		  (getExpression_Result(),
 		   source,
 		   new String[] {
-			   "body", "exitedState"
+			   "body", "computingExpression"
 		   });
 		addAnnotation
-		  (getActionUsage_ActionDefinition(),
+		  (getFunction_Expression(),
 		   source,
 		   new String[] {
-			   "body", "definedAction"
+			   "body", "computedFunction"
+		   });
+		addAnnotation
+		  (getFunction_Result(),
+		   source,
+		   new String[] {
+			   "body", "computingFunction"
 		   });
 		addAnnotation
 		  (getTransitionUsage_Source(),
@@ -13484,6 +13227,102 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "associationWithEnd"
 		   });
 		addAnnotation
+		  (getRequirementUsage_RequirementDefinition(),
+		   source,
+		   new String[] {
+			   "body", "definedRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequiredConstraint(),
+		   source,
+		   new String[] {
+			   "body", "requiringRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_AssumedConstraint(),
+		   source,
+		   new String[] {
+			   "body", "assumingRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+			   "body", "subjectOwningRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_FramedConcern(),
+		   source,
+		   new String[] {
+			   "body", "framingRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_ActorParameter(),
+		   source,
+		   new String[] {
+			   "body", "actorOwningRequirement"
+		   });
+		addAnnotation
+		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+			   "body", "stakholderOwningRequirement"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_AssumedConstraint(),
+		   source,
+		   new String[] {
+			   "body", "assumingRequirementDefinition"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_RequiredConstraint(),
+		   source,
+		   new String[] {
+			   "body", "requiringRequirementDefinition"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_SubjectParameter(),
+		   source,
+		   new String[] {
+			   "body", "subjectOwningRequirementDefinition"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_FramedConcern(),
+		   source,
+		   new String[] {
+			   "body", "framingRequirementDefinition"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_ActorParameter(),
+		   source,
+		   new String[] {
+			   "body", "actorOwningRequirementDefinition"
+		   });
+		addAnnotation
+		  (getRequirementDefinition_StakeholderParameter(),
+		   source,
+		   new String[] {
+			   "body", "stakholderOwiningRequirementDefinition"
+		   });
+		addAnnotation
+		  (getConcernUsage_ConcernDefinition(),
+		   source,
+		   new String[] {
+			   "body", "definedConcern"
+		   });
+		addAnnotation
+		  (getPartUsage_PartDefinition(),
+		   source,
+		   new String[] {
+			   "body", "definedPart"
+		   });
+		addAnnotation
+		  (getItemUsage_ItemDefinition(),
+		   source,
+		   new String[] {
+			   "body", "definedItem"
+		   });
+		addAnnotation
 		  (getCalculationUsage_CalculationDefinition(),
 		   source,
 		   new String[] {
@@ -13566,18 +13405,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 			   "body", "featuringActionDefinition"
-		   });
-		addAnnotation
-		  (getPartUsage_PartDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedPart"
-		   });
-		addAnnotation
-		  (getItemUsage_ItemDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedItem"
 		   });
 		addAnnotation
 		  (getAnalysisCaseDefinition_AnalysisAction(),
@@ -13676,6 +13503,24 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "owningViewDefinition"
 		   });
 		addAnnotation
+		  (getViewpointUsage_ViewpointDefinition(),
+		   source,
+		   new String[] {
+			   "body", "definedViewpoint"
+		   });
+		addAnnotation
+		  (getViewpointUsage_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+			   "body", "viewpointForStakeholder"
+		   });
+		addAnnotation
+		  (getViewpointDefinition_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+			   "body", "viewpointDefinitionForStakeholder"
+		   });
+		addAnnotation
 		  (getRenderingUsage_RenderingDefinition(),
 		   source,
 		   new String[] {
@@ -13728,48 +13573,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 			   "body", "featuringAllocationDefinition"
-		   });
-		addAnnotation
-		  (getConcernUsage_ConcernDefinition(),
-		   source,
-		   new String[] {
-			   "body", "definedConcern"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_AssumedConstraint(),
-		   source,
-		   new String[] {
-			   "body", "assumingRequirementDefinition"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_RequiredConstraint(),
-		   source,
-		   new String[] {
-			   "body", "requiringRequirementDefinition"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_SubjectParameter(),
-		   source,
-		   new String[] {
-			   "body", "subjectOwningRequirementDefinition"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_FramedConcern(),
-		   source,
-		   new String[] {
-			   "body", "framingRequirementDefinition"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_ActorParameter(),
-		   source,
-		   new String[] {
-			   "body", "actorOwningRequirementDefinition"
-		   });
-		addAnnotation
-		  (getRequirementDefinition_StakeholderParameter(),
-		   source,
-		   new String[] {
-			   "body", "stakholderOwiningRequirementDefinition"
 		   });
 		addAnnotation
 		  (getUseCaseUsage_UseCaseDefinition(),
@@ -13826,58 +13629,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "typedMetadata"
 		   });
 		addAnnotation
-		  (getViewpointDefinition_ViewpointStakeholder(),
+		  (getPerformActionUsage_PerformedAction(),
 		   source,
 		   new String[] {
-			   "body", "viewpointDefinitionForStakeholder"
-		   });
-		addAnnotation
-		  (getViewRenderingMembership_OwnedRendering(),
-		   source,
-		   new String[] {
-			   "body", "viewRenderingMembership"
-		   });
-		addAnnotation
-		  (getViewRenderingMembership_ReferencedRendering(),
-		   source,
-		   new String[] {
-			   "body", "referencingRenderingMembership"
+			   "body", "performingAction"
 		   });
 		addAnnotation
 		  (getEventOccurrenceUsage_EventOccurrence(),
 		   source,
 		   new String[] {
 			   "body", "referencingOccurrence"
-		   });
-		addAnnotation
-		  (getObjectiveMembership_OwnedObjectiveRequirement(),
-		   source,
-		   new String[] {
-			   "body", "owningObjectiveMembership"
-		   });
-		addAnnotation
-		  (getConjugatedPortTyping_PortDefinition(),
-		   source,
-		   new String[] {
-			   "body", "conjugatedPortTyping"
-		   });
-		addAnnotation
-		  (getConjugatedPortTyping_ConjugatedPortDefinition(),
-		   source,
-		   new String[] {
-			   "body", "typingByConjugatedPort"
-		   });
-		addAnnotation
-		  (getAssertConstraintUsage_AssertedConstraint(),
-		   source,
-		   new String[] {
-			   "body", "constraintAssertion"
-		   });
-		addAnnotation
-		  (getStateSubactionMembership_Action(),
-		   source,
-		   new String[] {
-			   "body", "stateSubactionMembership"
 		   });
 		addAnnotation
 		  (getStateDefinition_State(),
@@ -13904,28 +13665,64 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "exitedStateDefinition"
 		   });
 		addAnnotation
-		  (getExhibitStateUsage_ExhibitedState(),
-		   source,
-		   new String[] {
-			   "body", "exhibitingState"
-		   });
-		addAnnotation
-		  (getPerformActionUsage_PerformedAction(),
-		   source,
-		   new String[] {
-			   "body", "performingAction"
-		   });
-		addAnnotation
 		  (getTransitionFeatureMembership_TransitionFeature(),
 		   source,
 		   new String[] {
 			   "body", "transitionFeatureMembership"
 		   });
 		addAnnotation
-		  (getIncludeUseCaseUsage_UseCaseIncluded(),
+		  (getStateSubactionMembership_Action(),
 		   source,
 		   new String[] {
-			   "body", "useCaseInclusion"
+			   "body", "stateSubactionMembership"
+		   });
+		addAnnotation
+		  (getConjugatedPortTyping_PortDefinition(),
+		   source,
+		   new String[] {
+			   "body", "conjugatedPortTyping"
+		   });
+		addAnnotation
+		  (getConjugatedPortTyping_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+			   "body", "typingByConjugatedPort"
+		   });
+		addAnnotation
+		  (getAssertConstraintUsage_AssertedConstraint(),
+		   source,
+		   new String[] {
+			   "body", "constraintAssertion"
+		   });
+		addAnnotation
+		  (getNamespaceImport_ImportedNamespace(),
+		   source,
+		   new String[] {
+			   "body", "import"
+		   });
+		addAnnotation
+		  (getMembershipImport_ImportedMembership(),
+		   source,
+		   new String[] {
+			   "body", "import"
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_OwnedRendering(),
+		   source,
+		   new String[] {
+			   "body", "viewRenderingMembership"
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_ReferencedRendering(),
+		   source,
+		   new String[] {
+			   "body", "referencingRenderingMembership"
+		   });
+		addAnnotation
+		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		   source,
+		   new String[] {
+			   "body", "owningObjectiveMembership"
 		   });
 		addAnnotation
 		  (getRequirementVerificationMembership_OwnedRequirement(),
@@ -13952,24 +13749,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "referencingConstraintMembership"
 		   });
 		addAnnotation
-		  (getIfActionUsage_ElseAction(),
-		   source,
-		   new String[] {
-			   "body", "ifElseAction"
-		   });
-		addAnnotation
-		  (getIfActionUsage_ThenAction(),
-		   source,
-		   new String[] {
-			   "body", "ifThenAction"
-		   });
-		addAnnotation
-		  (getIfActionUsage_IfArgument(),
-		   source,
-		   new String[] {
-			   "body", "ifAction"
-		   });
-		addAnnotation
 		  (getSendActionUsage_ReceiverArgument(),
 		   source,
 		   new String[] {
@@ -13994,16 +13773,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "invocation"
 		   });
 		addAnnotation
-		  (getWhileLoopActionUsage_WhileArgument(),
+		  (getForLoopActionUsage_SeqArgument(),
 		   source,
 		   new String[] {
-			   "body", "whileLoopAction"
+			   "body", "forLoopAction"
 		   });
 		addAnnotation
-		  (getWhileLoopActionUsage_UntilArgument(),
+		  (getForLoopActionUsage_LoopVariable(),
 		   source,
 		   new String[] {
-			   "body", "untilLoopAction"
+			   "body", "forLoopAction"
 		   });
 		addAnnotation
 		  (getLoopActionUsage_BodyAction(),
@@ -14030,16 +13809,52 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "assignment"
 		   });
 		addAnnotation
-		  (getForLoopActionUsage_SeqArgument(),
+		  (getWhileLoopActionUsage_WhileArgument(),
 		   source,
 		   new String[] {
-			   "body", "forLoopAction"
+			   "body", "whileLoopAction"
 		   });
 		addAnnotation
-		  (getForLoopActionUsage_LoopVariable(),
+		  (getWhileLoopActionUsage_UntilArgument(),
 		   source,
 		   new String[] {
-			   "body", "forLoopAction"
+			   "body", "untilLoopAction"
+		   });
+		addAnnotation
+		  (getIfActionUsage_ElseAction(),
+		   source,
+		   new String[] {
+			   "body", "ifElseAction"
+		   });
+		addAnnotation
+		  (getIfActionUsage_ThenAction(),
+		   source,
+		   new String[] {
+			   "body", "ifThenAction"
+		   });
+		addAnnotation
+		  (getIfActionUsage_IfArgument(),
+		   source,
+		   new String[] {
+			   "body", "ifAction"
+		   });
+		addAnnotation
+		  (getSubjectMembership_OwnedSubjectParameter(),
+		   source,
+		   new String[] {
+			   "body", "owningSubjectMembership"
+		   });
+		addAnnotation
+		  (getParameterMembership_OwnedMemberParameter(),
+		   source,
+		   new String[] {
+			   "body", "owningParameterMembership"
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
+		   source,
+		   new String[] {
+			   "body", "owningStakeholderMembership"
 		   });
 		addAnnotation
 		  (getSatisfyRequirementUsage_SatisfiedRequirement(),
@@ -14072,46 +13887,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "owningActorMembership"
 		   });
 		addAnnotation
-		  (getParameterMembership_OwnedMemberParameter(),
+		  (getIncludeUseCaseUsage_UseCaseIncluded(),
 		   source,
 		   new String[] {
-			   "body", "owningParameterMembership"
-		   });
-		addAnnotation
-		  (getStakeholderMembership_OwnedStakeholderParameter(),
-		   source,
-		   new String[] {
-			   "body", "owningStakeholderMembership"
-		   });
-		addAnnotation
-		  (getSubjectMembership_OwnedSubjectParameter(),
-		   source,
-		   new String[] {
-			   "body", "owningSubjectMembership"
-		   });
-		addAnnotation
-		  (getFeatureReferenceExpression_Referent(),
-		   source,
-		   new String[] {
-			   "body", "referenceExpression"
-		   });
-		addAnnotation
-		  (getFeatureChainExpression_TargetFeature(),
-		   source,
-		   new String[] {
-			   "body", "chainExpression"
-		   });
-		addAnnotation
-		  (getMetadataAccessExpression_ReferencedElement(),
-		   source,
-		   new String[] {
-			   "body", "accessExpression"
-		   });
-		addAnnotation
-		  (getResultExpressionMembership_OwnedResultExpression(),
-		   source,
-		   new String[] {
-			   "body", "owningResultExpressionMembership"
+			   "body", "useCaseInclusion"
 		   });
 		addAnnotation
 		  (getFeatureValue_FeatureWithValue(),
@@ -14124,18 +13903,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 			   "body", "expressedValuation"
-		   });
-		addAnnotation
-		  (getPackage_FilterCondition(),
-		   source,
-		   new String[] {
-			   "body", "conditionedPackage"
-		   });
-		addAnnotation
-		  (getElementFilterMembership_Condition(),
-		   source,
-		   new String[] {
-			   "body", "owningFilter"
 		   });
 		addAnnotation
 		  (getMultiplicityRange_LowerBound(),
@@ -14154,6 +13921,54 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 			   "body", "multiplicity"
+		   });
+		addAnnotation
+		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+			   "body", "owningResultExpressionMembership"
+		   });
+		addAnnotation
+		  (getFeatureReferenceExpression_Referent(),
+		   source,
+		   new String[] {
+			   "body", "referenceExpression"
+		   });
+		addAnnotation
+		  (getMetadataAccessExpression_ReferencedElement(),
+		   source,
+		   new String[] {
+			   "body", "accessExpression"
+		   });
+		addAnnotation
+		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+			   "body", "chainExpression"
+		   });
+		addAnnotation
+		  (getPackage_FilterCondition(),
+		   source,
+		   new String[] {
+			   "body", "conditionedPackage"
+		   });
+		addAnnotation
+		  (getElementFilterMembership_Condition(),
+		   source,
+		   new String[] {
+			   "body", "owningFilter"
+		   });
+		addAnnotation
+		  (getDependency_Client(),
+		   source,
+		   new String[] {
+			   "body", "clientDependency"
+		   });
+		addAnnotation
+		  (getDependency_Supplier(),
+		   source,
+		   new String[] {
+			   "body", "supplierDependency"
 		   });
 	}
 
@@ -14185,6 +14000,221 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 */
 	protected void createSysMLAnnotations() {
 		String source = "http://www.omg.org/spec/SysML";
+		addAnnotation
+		  (getExhibitStateUsage_ExhibitedState(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_StateDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_EntryAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_DoAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_ExitAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage_ActionDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStep_Behavior(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStep_Parameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwningFeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_EndOwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_Type(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedRedefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedSubsetting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedTyping(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_FeaturingType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedTypeFeaturing(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_ChainingFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureInverting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureChaining(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedReferenceSubsetting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedSpecialization(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedFeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Input(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Output(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_InheritedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_EndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedEndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedConjugator(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_IsConjugated(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_InheritedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Multiplicity(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_UnioningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedIntersecting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_IntersectingType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedUnioning(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedDisjoining(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_FeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_DifferencingType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedDifferencing(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_DirectedFeature(),
+		   source,
+		   new String[] {
+		   });
 		addAnnotation
 		  (getNamespace_OwnedMembership(),
 		   source,
@@ -14331,122 +14361,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getSubclassification_OwningClassifier(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getSpecialization_OwningType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedFeatureMembership(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedEndFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_Feature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_Input(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_Output(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_InheritedMembership(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_EndFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedConjugator(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_IsConjugated(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_InheritedFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_Multiplicity(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_UnioningType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedIntersecting(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_IntersectingType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedUnioning(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedDisjoining(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_FeatureMembership(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_DifferencingType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedDifferencing(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_DirectedFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedSpecialization(),
 		   source,
 		   new String[] {
 		   });
@@ -14461,67 +14376,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFeature_OwningType(),
+		  (getConjugation_OwningType(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFeature_Type(),
+		  (getIntersecting_TypeIntersected(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFeature_OwnedRedefinition(),
+		  (getUnioning_TypeUnioned(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFeature_OwnedSubsetting(),
+		  (getDisjoining_OwningType(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFeature_OwningFeatureMembership(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_EndOwningType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedTyping(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_FeaturingType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedTypeFeaturing(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_ChainingFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedFeatureInverting(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedFeatureChaining(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedReferenceSubsetting(),
+		  (getDifferencing_TypeDifferenced(),
 		   source,
 		   new String[] {
 		   });
@@ -14556,121 +14431,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getConjugation_OwningType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getIntersecting_TypeIntersected(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getUnioning_TypeUnioned(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getDisjoining_OwningType(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getDifferencing_TypeDifferenced(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getClassifier_OwnedSubclassification(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewpointUsage_ViewpointDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewpointUsage_ViewpointStakeholder(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_RequirementDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_Text(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_RequiredConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_AssumedConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_SubjectParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_FramedConcern(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_ActorParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_StakeholderParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getConstraintUsage_ConstraintDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getBooleanExpression_Predicate(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getExpression_Function(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getExpression_Result(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getExpression_IsModelLevelEvaluable(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getStep_Behavior(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getStep_Parameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getBehavior_Step(),
 		   source,
 		   new String[] {
@@ -14681,27 +14441,17 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFunction_Expression(),
+		  (getClassifier_OwnedSubclassification(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getFunction_Result(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFunction_IsModelLevelEvaluable(),
+		  (getSubclassification_OwningClassifier(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getOccurrenceUsage_OccurrenceDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getOccurrenceUsage_PortioningFeature(),
 		   source,
 		   new String[] {
 		   });
@@ -15071,27 +14821,42 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getStateUsage_StateDefinition(),
+		  (getConstraintUsage_ConstraintDefinition(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getStateUsage_EntryAction(),
+		  (getBooleanExpression_Predicate(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getStateUsage_DoAction(),
+		  (getExpression_Function(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getStateUsage_ExitAction(),
+		  (getExpression_Result(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getActionUsage_ActionDefinition(),
+		  (getExpression_IsModelLevelEvaluable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_Expression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_Result(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_IsModelLevelEvaluable(),
 		   source,
 		   new String[] {
 		   });
@@ -15206,6 +14971,96 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementUsage_RequirementDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_Text(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_FramedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_Text(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_FramedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConcernUsage_ConcernDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPartUsage_PartDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemUsage_ItemDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getCalculationUsage_CalculationDefinition(),
 		   source,
 		   new String[] {
@@ -15272,16 +15127,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getActionDefinition_Action(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getPartUsage_PartDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getItemUsage_ItemDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -15366,6 +15211,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewpointUsage_ViewpointDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewpointUsage_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewpointDefinition_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRenderingUsage_RenderingDefinition(),
 		   source,
 		   new String[] {
@@ -15407,46 +15267,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getAllocationDefinition_Allocation(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getConcernUsage_ConcernDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_Text(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_AssumedConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_RequiredConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_SubjectParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_FramedConcern(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_ActorParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_StakeholderParameter(),
 		   source,
 		   new String[] {
 		   });
@@ -15511,47 +15331,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getPortioningFeature_PortionKind(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewpointDefinition_ViewpointStakeholder(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewRenderingMembership_OwnedRendering(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewRenderingMembership_ReferencedRendering(),
+		  (getPerformActionUsage_PerformedAction(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getEventOccurrenceUsage_EventOccurrence(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getObjectiveMembership_OwnedObjectiveRequirement(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getConjugatedPortTyping_PortDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getAssertConstraintUsage_AssertedConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getStateSubactionMembership_Action(),
 		   source,
 		   new String[] {
 		   });
@@ -15576,22 +15361,37 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getExhibitStateUsage_ExhibitedState(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getPerformActionUsage_PerformedAction(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getTransitionFeatureMembership_TransitionFeature(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getIncludeUseCaseUsage_UseCaseIncluded(),
+		  (getStateSubactionMembership_Action(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConjugatedPortTyping_PortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssertConstraintUsage_AssertedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_OwnedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_ReferencedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getObjectiveMembership_OwnedObjectiveRequirement(),
 		   source,
 		   new String[] {
 		   });
@@ -15616,21 +15416,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getIfActionUsage_ElseAction(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getIfActionUsage_ThenAction(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getIfActionUsage_IfArgument(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getSendActionUsage_ReceiverArgument(),
 		   source,
 		   new String[] {
@@ -15651,12 +15436,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getWhileLoopActionUsage_WhileArgument(),
+		  (getForLoopActionUsage_SeqArgument(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getWhileLoopActionUsage_UntilArgument(),
+		  (getForLoopActionUsage_LoopVariable(),
 		   source,
 		   new String[] {
 		   });
@@ -15681,12 +15466,42 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getForLoopActionUsage_SeqArgument(),
+		  (getWhileLoopActionUsage_WhileArgument(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getForLoopActionUsage_LoopVariable(),
+		  (getWhileLoopActionUsage_UntilArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_ElseAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_ThenAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_IfArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSubjectMembership_OwnedSubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getParameterMembership_OwnedMemberParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
 		   source,
 		   new String[] {
 		   });
@@ -15716,32 +15531,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getParameterMembership_OwnedMemberParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getStakeholderMembership_OwnedStakeholderParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getSubjectMembership_OwnedSubjectParameter(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeatureReferenceExpression_Referent(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeatureChainExpression_TargetFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getResultExpressionMembership_OwnedResultExpression(),
+		  (getIncludeUseCaseUsage_UseCaseIncluded(),
 		   source,
 		   new String[] {
 		   });
@@ -15756,22 +15546,37 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getPackage_FilterCondition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getElementFilterMembership_Condition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getMultiplicityRange_LowerBound(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getMultiplicityRange_UpperBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureReferenceExpression_Referent(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPackage_FilterCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElementFilterMembership_Condition(),
 		   source,
 		   new String[] {
 		   });

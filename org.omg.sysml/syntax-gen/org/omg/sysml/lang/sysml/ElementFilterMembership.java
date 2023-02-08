@@ -31,6 +31,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>ElementFilterMembership is a Mambership between a Namespace and a model-level evaluable Boolean Expression, asserting that imported <code>members</code> of the Namespace should be filtered using the <code>condition</code> Expression. A general Namespace does not define any specific filtering behavior, but such behavior may be defined for various specialized kinds of Namespaces.</p>
  * condition.isModelLevelEvaluable
+ * condition.result.specializesFromLibrary('ScalarValues::Boolean')
  * <!-- end-model-doc -->
  *
  * <p>

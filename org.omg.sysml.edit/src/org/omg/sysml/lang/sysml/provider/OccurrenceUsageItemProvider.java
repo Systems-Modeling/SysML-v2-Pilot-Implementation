@@ -46,7 +46,6 @@ public class OccurrenceUsageItemProvider extends UsageItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addOccurrenceDefinitionPropertyDescriptor(object);
-			addPortioningFeaturePropertyDescriptor(object);
 			addIndividualDefinitionPropertyDescriptor(object);
 			addIsIndividualPropertyDescriptor(object);
 			addPortionKindPropertyDescriptor(object);
@@ -68,28 +67,6 @@ public class OccurrenceUsageItemProvider extends UsageItemProvider {
 				 getString("_UI_OccurrenceUsage_occurrenceDefinition_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_occurrenceDefinition_feature", "_UI_OccurrenceUsage_type"),
 				 SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Portioning Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addPortioningFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OccurrenceUsage_portioningFeature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_portioningFeature_feature", "_UI_OccurrenceUsage_type"),
-				 SysMLPackage.Literals.OCCURRENCE_USAGE__PORTIONING_FEATURE,
 				 true,
 				 false,
 				 true,
@@ -237,17 +214,17 @@ public class OccurrenceUsageItemProvider extends UsageItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.USAGE__VARIANT_MEMBERSHIP;
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
+			childFeature == SysMLPackage.Literals.USAGE__VARIANT_MEMBERSHIP ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

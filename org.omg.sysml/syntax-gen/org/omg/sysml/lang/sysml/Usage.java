@@ -40,12 +40,12 @@ import org.eclipse.emf.common.util.EList;
  * not isVariation implies variantMembership->isEmpty()
  * isVariation implies variantMembership = ownedMembership
  * isReference = not isComposite
- * owningVariationDefinition <> null implies
- *     specializes(owningVariationDefinition)
  * owningVariationUsage <> null implies
  *     specializes(owningVariationUsage)
  * isVariation implies
  *     not ownedSpecialization.specific->exists(isVariation)
+ * owningVariationDefinition <> null implies
+ *     specializes(owningVariationDefinition)
  * <!-- end-model-doc -->
  *
  * <p>

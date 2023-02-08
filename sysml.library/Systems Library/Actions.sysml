@@ -155,14 +155,14 @@ standard library package Actions {
 		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are WhileLoopActions.
 			 */
 		}
 		
 		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are ForLoopActions.
 			 */
 		}
 	}

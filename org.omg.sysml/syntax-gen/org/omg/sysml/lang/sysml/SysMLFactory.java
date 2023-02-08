@@ -699,15 +699,6 @@ public interface SysMLFactory extends EFactory {
 	OccurrenceUsage createOccurrenceUsage();
 
 	/**
-	 * Returns a new object of class '<em>Portioning Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Portioning Feature</em>'.
-	 * @generated
-	 */
-	PortioningFeature createPortioningFeature();
-
-	/**
 	 * Returns a new object of class '<em>Exhibit State Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -31,7 +31,6 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>MergeNode</code> is a <code>ControlNode</code> that asserts the merging of its incoming <code>Successions</code>. A <code>MergeNode</code> may have at most one outgoing <code>Successions</code>.</p>
  * sourceConnector->selectAsKind(Succession)->size() <= 1
- * specializesFromLibrary("Actions::Action::merges")
  * targetConnector->selectByKind(Succession)->
  *     collect(connectorEnd->at(1))->
  *     forAll(sourceMult |
@@ -39,6 +38,7 @@ package org.omg.sysml.lang.sysml;
  * targetConnector->selectByKind(Succession)->
  *     forAll(subsetsChain(this, 
  *         resolveGlobal("ControlPerformances::MergePerformance::incomingHBLink")))
+ * specializesFromLibrary("Actions::Action::merges")
  * <!-- end-model-doc -->
  *
  *

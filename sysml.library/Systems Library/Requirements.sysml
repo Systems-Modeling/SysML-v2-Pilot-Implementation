@@ -51,8 +51,6 @@ standard library package Requirements {
 		/*
 		 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
 		 * type of all requirement definitions.
-		 * 
-		 * 
 		 */
 	
 		ref requirement :>> self: RequirementCheck;

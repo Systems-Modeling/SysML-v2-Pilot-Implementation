@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>PortionKind is an enumeration of the possible special kinds of Occurrence portions that can be represented by an OccurrenceUsage.</p>
+ * <p><code>PortionKind</code> is an enumeration of the specific kinds of <code><em>Occurrence</em></code> portions that can be represented by an <code>OccurrenceUsage</code>.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortionKind()
  * @model

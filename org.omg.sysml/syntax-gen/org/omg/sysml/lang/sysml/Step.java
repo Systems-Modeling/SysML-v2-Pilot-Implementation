@@ -36,17 +36,17 @@ import org.eclipse.emf.common.util.EList;
  *     (owningType.oclIsKindOf(Behavior) or
  *      owningType.oclIsKindOf(Step)) implies
  *     specializesFromLibrary('Performances::Performance::enclosedPerformance')
- * owningType <> null and
- *     (owningType.oclIsKindOf(Behavior) or
- *      owningType.oclIsKindOf(Step)) and
- *     self.isComposite implies
- *     specializesFromLibrary('Performances::Performance::subperformance')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(Structure) or
  *  owningType.oclIsKindOf(Feature) and
  *  owningType.oclAsType(Feature).type->
  *     exists(oclIsKindOf(Structure)) implies
  *     specializesFromLibrary('Objects::Object::ownedPerformance')
+ * owningType <> null and
+ *     (owningType.oclIsKindOf(Behavior) or
+ *      owningType.oclIsKindOf(Step)) and
+ *     self.isComposite implies
+ *     specializesFromLibrary('Performances::Performance::subperformance')
  * <!-- end-model-doc -->
  *
  * <p>

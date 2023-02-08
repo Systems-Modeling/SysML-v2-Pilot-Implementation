@@ -187,16 +187,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createMultiplicity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createClassifier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createUsage()));
 
 		newChildDescriptors.add
@@ -207,17 +197,17 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createConstraintUsage()));
+				 SysMLFactory.eINSTANCE.createActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createRequirementUsage()));
+				 SysMLFactory.eINSTANCE.createStateUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createViewpointUsage()));
+				 SysMLFactory.eINSTANCE.createExhibitStateUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -227,12 +217,12 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createExpression()));
+				 SysMLFactory.eINSTANCE.createMultiplicity()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createBooleanExpression()));
+				 SysMLFactory.eINSTANCE.createClassifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -243,16 +233,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createBehavior()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createFunction()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createPredicate()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -292,12 +272,27 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createActionUsage()));
+				 SysMLFactory.eINSTANCE.createConstraintUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createStateUsage()));
+				 SysMLFactory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createBooleanExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createFunction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createPredicate()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -332,6 +327,51 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createRequirementUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createConstraintDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createRequirementDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createConcernUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createConcernDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createItemUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createPartUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createItemDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createPartDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createCalculationUsage()));
 
 		newChildDescriptors.add
@@ -358,26 +398,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createCaseDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createItemUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createPartUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createItemDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createPartDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -432,6 +452,16 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createViewpointUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createViewpointDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createRenderingUsage()));
 
 		newChildDescriptors.add
@@ -473,26 +503,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createAllocationDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createConcernUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createConstraintDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createRequirementDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createConcernDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -547,17 +557,17 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createPortioningFeature()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createViewpointDefinition()));
+				 SysMLFactory.eINSTANCE.createPerformActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createEventOccurrenceUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createStateDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -568,81 +578,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createInvariant()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createStateDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createExhibitStateUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createPerformActionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createBindingConnector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createFlowConnectionDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createMergeNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createDecisionNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createForkNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createIfActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -662,7 +597,7 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createWhileLoopActionUsage()));
+				 SysMLFactory.eINSTANCE.createForLoopActionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -672,7 +607,37 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createForLoopActionUsage()));
+				 SysMLFactory.eINSTANCE.createMergeNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createJoinNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createForkNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createWhileLoopActionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createDecisionNode()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createIfActionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -682,7 +647,52 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
+				 SysMLFactory.eINSTANCE.createFlowConnectionDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createBindingConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createMultiplicityRange()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createLiteralExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createLiteralRational()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -697,17 +707,32 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createNullExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
+				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createLiteralExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createLiteralRational()));
+				 SysMLFactory.eINSTANCE.createLiteralInteger()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -723,36 +748,6 @@ public class ConjugationItemProvider extends RelationshipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
 				 SysMLFactory.eINSTANCE.createCollectExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createLiteralInteger()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createNullExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.CONJUGATION__OWNING_TYPE,
-				 SysMLFactory.eINSTANCE.createMultiplicityRange()));
 	}
 
 	/**

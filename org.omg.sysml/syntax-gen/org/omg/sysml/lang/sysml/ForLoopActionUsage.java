@@ -9,7 +9,27 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ForLoopActionUsage is a LoopActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>ForLoopAction</em> from the Systems model library. It specifies that the <code>bodyClause</code> ActionUsage should be performed once for each value, in order, from the sequence of values obtained as the result of the <code>seqArgument</code> Expression. The <code>bodyAction</code> must have one input parameter, which receives a value from the sequence on each iteration.</p>
+ * <p>A <code>ForLoopActionUsage</code> is a <code>LoopActionUsage</code> that specifies that its <code>bodyClause</code> <code>ActionUsage</code> should be performed once for each value, in order, from the sequence of values obtained as the result of the <code>seqArgument</code> <code>Expression</code>, with the <code>loopVariable</code> set to the value for each iteration.</p>
+ * seqArgument =
+ *     let parameter : Feature = inputParameter(1) in
+ *     if parameter <> null and parameter.oclIsKindOf(Expression) then
+ *         parameter.oclAsType(Expression)
+ *     else
+ *         null
+ *     endif
+ * 
+ * isSubactionUsage() implies
+ *     specializesFromLibrary('Actions::Action::forLoops')
+ * loopVariable <> null and
+ * loopVariable.redefinesFromLibrary('Actions::ForLoopAction::var')
+ * specializesFromLibrary('Actions::forLoopActions')
+ * loopVariable =
+ *     if ownedFeature->isEmpty() or 
+ *         not ownedFeature->first().oclIsKindOf(ReferenceUsage) then 
+ *         null
+ *     else 
+ *         ownedFeature->first().oclAsType(ReferenceUsage)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -30,7 +50,7 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result provides the sequence of values to be passed to each <code>bodyAction</code> performance. Derived as the <code>value</code> Expression of the FeatureValue for the redefined <em><code>seq</code><em> </em></em>parameter of the ForLoopActionUsage.</p> 
+	 * <p>The <code>Expression</code> whose result provides the sequence of values to which the <code>loopVariable</code> is set for each iterative performance of the <code>bodyAction</code>. It is the owned <code>parameter</code> that redefines <em><code>ForLoopAction::body</code></em>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Seq Argument</em>' reference.
@@ -62,7 +82,7 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>feature</code> of this ForLoopActionUsage that acts as the loop variable, which is assigned the successive elements of the input sequence on each iteration. Derived as the <code>feature</code> that subsets the library ReferenceUsage <em><code>ForLoopAction::var</code></em>.</p> 
+	 * <p>The <code>ownedFeature</code> of this <co>ForLoopActionUsage</code> that acts as the loop variable, which is assigned the successive values of the input sequence on each iteration. It is the <code>ownedFeature</code> that redefines <em><code>ForLoopAction::var</code></em>.</p> 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Loop Variable</em>' reference.
 	 * @see #setLoopVariable(ReferenceUsage)

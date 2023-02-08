@@ -68,8 +68,8 @@ public interface ReferenceSubsetting extends Subsetting {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature() <em>Owning Feature</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettingFeature() <em>Subsetting Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature() <em>Owning Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

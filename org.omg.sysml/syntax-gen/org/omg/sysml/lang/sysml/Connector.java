@@ -47,13 +47,13 @@ import org.eclipse.emf.common.util.EList;
  * connectorEnd = feature->select(isEnd)
  * not isAbstract implies relatedFeature->size() >= 2
  * specializesFromLibrary("Links::links")
- * connectorEnd->size() = 2 implies
- *     specializesFromLibrary('Links::binaryLinks')
  * association->exists(oclIsKindOf(AssociationStructure)) implies
  *     specializesFromLibrary("Objects::linkObjects")
  * connectorEnds->size() = 2 and
  * association->exists(oclIsKindOf(AssocationStructure)) implies
  *     specializesFromLibrary("Objects::binaryLinkObjects")
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::binaryLinks')
  * connectorEnds->size() > 2 implies
  *     not specializesFromLibrary("Links::BinaryLink")
  * <!-- end-model-doc -->

@@ -33,16 +33,16 @@ import org.eclipse.emf.common.util.EList;
  * 
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
  * specializesFromLibrary("Performances::evaluations")
- * ownedMembership.selectByKind(ResultExpressionMembership)->
- *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
- *         exists(binding |
- *             binding.relatedFeature->includes(result) and
- *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * owningMembership <> null and 
  * owningMembership.oclIsKindOf(FeatureValue) implies
  *     let featureWithValue : Feature = 
  *         owningMembership.oclAsType(FeatureValue).featureWithValue in
  *     featuringType = featureWithValue.featuringType
+ * ownedMembership.selectByKind(ResultExpressionMembership)->
+ *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
+ *         exists(binding |
+ *             binding.relatedFeature->includes(result) and
+ *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * <!-- end-model-doc -->
  *
  * <p>

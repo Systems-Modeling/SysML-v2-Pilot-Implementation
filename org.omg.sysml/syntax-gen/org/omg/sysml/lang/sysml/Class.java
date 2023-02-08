@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A Class is a Classifier of things (in the universe) that can be distinguished without regard to how they are related to other things (via Features). This means multiple things classified by the same Class can be distinguished, even&nbsp;when they are related&nbsp;other things in exactly the same way.</p>
  * 
- * specializesFromLibrary("Occurrences::Occurrence")
+ * specializesFromLibrary('Occurrences::Occurrence')
  * ownedGeneralization.general->
  *     forAll(not oclIsKindOf(DataType) and 
  *            not oclIsKindOf(Association))

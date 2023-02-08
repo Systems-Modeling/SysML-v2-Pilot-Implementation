@@ -45,7 +45,7 @@ standard library package StatePerformances {
 		private succession middle[*] then exit[1];
 
 
-		readonly feature incomingTransitionTrigger : MessageTransfer [0..1] {
+		readonly feature incomingTransitionTrigger : MessageTransfer [0..1] default null {
 			doc
 			/*
 			 * Transfer that triggered a transition into this state performance. 

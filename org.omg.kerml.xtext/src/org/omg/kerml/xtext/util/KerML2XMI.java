@@ -24,7 +24,9 @@
 
 package org.omg.kerml.xtext.util;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -53,6 +55,10 @@ public class KerML2XMI extends SysMLUtil {
 	
 	public static final String KERML_EXTENSION = "kerml";
 	public static final String KERML_XMI_EXTENSION = "kermlx";
+	
+	protected boolean isAddImplicitElements = false;
+	protected String outputDirectoryBase = null;
+	protected Path inputDirectoryBasePath = null;
 	
 	public KerML2XMI() {
 		super();
@@ -99,11 +105,9 @@ public class KerML2XMI extends SysMLUtil {
 	 * library resources. Note that, at the end of this method, all content has been removed from
 	 * the originally read resources.
 	 * 
-	 * @param	isAddImplicitElements	whether to add implicit elements to the output
-	 * 
 	 * @throws 	IOException
 	 */
-	public void write(boolean isAddImplicitElements) throws IOException {
+	public void write() throws IOException {
 		System.out.println("Transforming" + 
 				(isAddImplicitElements? " (adding implicit elements)... ": "..."));
 		this.transformAll(isAddImplicitElements);
@@ -114,7 +118,7 @@ public class KerML2XMI extends SysMLUtil {
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.getResourceSet().getResources().toArray()) {
 			Resource resource = (Resource)object;
-			Resource outputResource = this.createOutputResource(this.getOutputPath(resource.getURI().toFileString()));
+			Resource outputResource = this.createOutputResource(this.getOutputPath(resource.getURI()));
 			outputResource.getContents().addAll(resource.getContents());
 			if (this.isInputResource(resource)) {
 				outputResources.add(outputResource);
@@ -126,20 +130,74 @@ public class KerML2XMI extends SysMLUtil {
 	}
 	
 	/**
-	 * Get an output path to be used for the given input path. By default, this method simply replaces the
-	 * extension on the input path with a KerML XMI extension on the output path. However, this behavior can
-	 * be overridden in subclasses.
+	 * Get an output path to be used for the given input resource URI.
 	 * 
-	 * @param 	inputPath		the path of a resource that is to be written to a corresponding output resource
+	 * @param 	inputUri		the URI of a resource that is to be written to a corresponding output resource
 	 * @return	the path for the output resource
 	 */
-	protected String getOutputPath(String inputPath) {
-		String outputPath = inputPath;
-		int i = outputPath.lastIndexOf('.');
+	protected String getOutputPath(URI inputUri) {
+		String fileName = inputUri.lastSegment();
+		int i = fileName.lastIndexOf('.');
 		if (i >= 0) {
-			outputPath = inputPath.substring(0, i);
+			fileName = fileName.substring(0, i);
 		}
-		return outputPath + "." + KERML_XMI_EXTENSION;
+		fileName += "." + getExtension(inputUri);
+		String outputDirectory = inputUri.trimSegments(1).toFileString();
+		if (outputDirectoryBase != null && inputDirectoryBasePath != null) {
+			outputDirectory = inputDirectoryBasePath.relativize(Path.of(outputDirectory)).toString();
+			outputDirectory = outputDirectoryBase + "/" + outputDirectory;
+		}
+		if (!outputDirectory.endsWith("/")) {
+			outputDirectory += "/";
+		}
+		return outputDirectory + fileName;
+	}
+	
+	/**
+	 * Get the extension to be used for output files. By default this is the KerML XMI extension, but
+	 * this can be overridden in subclasses.
+	 * 
+	 * @param 	inputUri		the URI of the input resource
+	 * @return the extension to be used for the output file of the corresponding output resource
+	 */
+	protected String getExtension(URI inputUri) {
+		return KERML_XMI_EXTENSION;
+	}
+	
+	/**
+	 * Process the options in the command-line argument string.
+	 * 
+	 * @param 	args			the command-line arguments
+	 * @return the argument array with the options removed
+	 */
+	protected String[] processOptions(String[] args) {
+		while (args.length > 0) {
+			String arg = args[0];
+			if ("-g".equals(arg)) {
+				isAddImplicitElements = true;
+			} else if ("-o".equals(arg)) {
+				if (args.length > 1) {
+					outputDirectoryBase = args[1];
+					if (outputDirectoryBase.endsWith("/")) {
+						outputDirectoryBase += outputDirectoryBase.substring(0, outputDirectoryBase.length() - 1);
+					}
+					args = Arrays.copyOfRange(args, 1, args.length);
+				}
+			} else {
+				break;
+			}
+			args = Arrays.copyOfRange(args, 1, args.length);
+		}
+		if (args.length > 0) {
+			File input = new File(args[0]);
+			if (input != null && !input.isDirectory()) {
+				input = input.getParentFile();
+			}
+			if (input != null) {
+				inputDirectoryBasePath = input.toPath();
+			}
+		}
+		return args;
 	}
 	
 	/**
@@ -149,15 +207,9 @@ public class KerML2XMI extends SysMLUtil {
 	 */
 	public void run(String[] args) {
 		try {
-			boolean isAddImplicitGeneralizations = false;
-			
-			if (args.length > 0 && "-g".equals(args[0])) {
-				isAddImplicitGeneralizations = true;
-				args = Arrays.copyOfRange(args, 1, args.length);
-			}
-			
+			args = processOptions(args);			
 			this.read(args);			
-			this.write(isAddImplicitGeneralizations);
+			this.write();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -169,11 +221,12 @@ public class KerML2XMI extends SysMLUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>Kerml2XMI [-g] input-path [library-path library-path...]
+	 * <p>Kerml2XMI [-g] [-o output-path] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
 	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
+	 * <li>-o output-path         is a path for the output directory to be used to write resources</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources</li>
 	 */

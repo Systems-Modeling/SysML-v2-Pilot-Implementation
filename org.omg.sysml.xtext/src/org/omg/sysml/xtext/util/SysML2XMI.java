@@ -24,6 +24,7 @@
 
 package org.omg.sysml.xtext.util;
 
+import org.eclipse.emf.common.util.URI;
 import org.omg.kerml.xtext.util.KerML2XMI;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -50,23 +51,16 @@ public class SysML2XMI extends KerML2XMI {
 	}
 
 	/**
-	 * Get an output path to be used for the given input path. If the input path indicates a SysML file, then
-	 * return an output path that is the same as the input path, but with the extension replaced by the SysML
-	 * XMI extension. Otherwise, replace the input extension with the KerML XMI extension.
+	 * Get the output extension to be used for the given input URI. If the input path indicates a SysML file,
+	 * return the SysML XMI extension. Otherwise, return the KerML XMI extension.
 	 * 
-	 * @param 	inputPath		the path of a resource that is to be written to a corresponding output resource
-	 * @return	the path for the output resource
-	 */
+	 * @param 	inputUri		the URI of the input resource
+	 * @return the extension to be used for the output file of the corresponding output resource
+	 */	
 	@Override
-	protected String getOutputPath(String inputPath) {
-		int i = inputPath.lastIndexOf('.');
-		if (i >= 0) {
-			String extension = inputPath.substring(i + 1);
-			if (SYSML_EXTENSION.equals(extension)) {
-				return inputPath.substring(0, i) + "." + SYSML_XMI_EXTENSION;
-			}
-		}
-		return super.getOutputPath(inputPath);
+	protected String getExtension(URI inputUri) {
+		return SYSML_EXTENSION.equals(inputUri.fileExtension())?
+				SYSML_XMI_EXTENSION: super.getExtension(inputUri);
 	}
 	
 	/**

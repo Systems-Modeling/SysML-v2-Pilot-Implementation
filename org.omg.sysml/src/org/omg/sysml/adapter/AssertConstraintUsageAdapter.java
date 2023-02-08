@@ -44,7 +44,7 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 	}
 	
 	@Override
-	public boolean isEnclosedPerformance() {
+	public boolean isBehaviorOwned() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
 	}

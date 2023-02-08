@@ -93,13 +93,13 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 		if (isCheckedConstraint()) {
 			addDefaultGeneralType("checkedConstraint");
 		}
-		if (isOwnedPerformance()) {
+		if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
 		} 
-		if (isSubperformance()) {
+		if (isBehaviorOwnedComposite()) {
 			addDefaultGeneralType("subperformance");
 		}
-		if (isEnclosedPerformance()) {
+		if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}

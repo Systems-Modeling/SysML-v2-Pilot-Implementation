@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,13 +42,16 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isOwnedPerformance()) {
+		if (isPartOwnedComposite()) {
+			addDefaultGeneralType("ownedAction");
+		} else if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
-		} 
-		if (isSubperformance()) {
+		}
+		if (isActionOwnedComposite()) {
+			addDefaultGeneralType("subaction");
+		} else if (isBehaviorOwnedComposite()) {
 			addDefaultGeneralType("subperformance");
-		} 
-		if (isEnclosedPerformance()) {
+		} else if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}

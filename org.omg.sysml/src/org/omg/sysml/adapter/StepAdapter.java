@@ -42,11 +42,11 @@ public class StepAdapter extends FeatureAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
-			isOwnedPerformance()?
+			isStructureOwnedComposite()?
 				"ownedPerformance":
-			isSubperformance()?
+			isBehaviorOwnedComposite()?
 				"subperformance":
-			isEnclosedPerformance()? 
+			isBehaviorOwned()? 
 				"enclosedPerformance":
 			isIncomingTransfer()?
 				"incomingTransfer":

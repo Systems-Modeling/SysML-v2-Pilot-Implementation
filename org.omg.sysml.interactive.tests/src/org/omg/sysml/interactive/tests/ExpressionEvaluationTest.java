@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Mgnite, Inc.
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -278,4 +278,16 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		process(instance, chainTest);
 		assertElement("LiteralInteger 1", instance.eval("y.a.z", "ChainTest"));
 	}
+	
+	@Test
+	public void testArithmeticEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 5", instance.eval("2 + 3", null));
+		assertElement("LiteralInteger -1", instance.eval("2 - 3", null));
+		assertElement("LiteralInteger 6", instance.eval("2 * 3", null));
+		assertElement("LiteralRational " + 2.0/3, instance.eval("2.0 / 3", null));
+		assertElement("LiteralRational 4.0", instance.eval("2.0 ** 2", null));
+		assertElement("LiteralRational 4.0", instance.eval("2.0 ^ 2", null));
+	}
+
 }

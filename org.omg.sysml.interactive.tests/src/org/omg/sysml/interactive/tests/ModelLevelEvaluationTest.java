@@ -238,6 +238,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(2.0d * 3.0d, evaluateRealValue(null, null, "2.0 * 3"), 0);
 		assertEquals(2.0d/3.0d, evaluateRealValue(null, null, "2.0 / 3"), 0);
 		assertEquals(4.0d, evaluateRealValue(null, null, "2.0 ** 2"), 0);
+		assertEquals(4.0d, evaluateRealValue(null, null, "2.0 ^ 2"), 0);
 	}
 	
 	@Test

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,8 +28,8 @@ import org.omg.sysml.lang.sysml.Element;
 public class PowerFunction extends ArithmeticFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "'**'";
+	public String[] getOperatorNames() {
+		return new String[]{"'**'", "'^'"};
 	}
 	
 	@Override

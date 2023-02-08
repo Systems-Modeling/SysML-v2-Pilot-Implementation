@@ -124,6 +124,13 @@ standard library package Actions {
 			 */
 		}
 		
+		abstract action decisionTransitions : DecisionTransitionAction[0..*] :> transitionActions {
+			doc
+			/*
+			 * The subactions of this Action that are DecisionTransitionActions. 
+			 */
+		}
+		
 		abstract action assignments : AssignmentAction[0..*] :> subactions, assignmentActions {
 			doc
 			/*
@@ -148,14 +155,14 @@ standard library package Actions {
 		abstract action whileLoops : WhileLoopAction[0..*] :> loops, whileLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are WhileLoopActions.
 			 */
 		}
 		
 		abstract action forLoops : ForLoopAction[0..*] :> loops, forLoopActions {
 			doc
 			/*
-			 * The subactions of this Action that are LoopActions.
+			 * The loops of this Action that are ForLoopActions.
 			 */
 		}
 	}

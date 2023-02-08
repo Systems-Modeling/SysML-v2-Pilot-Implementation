@@ -72,14 +72,15 @@ standard library package Occurrences {
 			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
-		feature withoutOccurrences: Occurrence[0..*] subsets occurrences inverse of withoutOccurrences {
+		feature withoutOccurrences: Occurrence[0..*] unions successors, predecessors, outsideOfOccurrences
+			inverse of withoutOccurrences {
 			doc
 			/*
 			 * Occurrences that are completely separate either in time or space or both.
 			 */
 
 			/* withoutOccurrences is irreflexive. */
-			inv { (that as Occurrence) != (self as Occurrence) }
+			inv { (that as Occurrence) != (that.that as Occurrence) }
 		}
 
 		feature predecessors: Occurrence[0..*] subsets withoutOccurrences {
@@ -322,7 +323,7 @@ standard library package Occurrences {
 			 * is none when the startShot and endShot are the same.
 			 */
 		}
-		inv { isEmpty(middleTimeSlice) == (startShot == endShot) }
+		inv { isEmpty((that as Occurrence).middleTimeSlice) == ((that as Occurrence).startShot == (that as Occurrence).endShot) }
 
 		connector :HappensJustBefore
 			from earlierOccurrence references startShot [1]
@@ -377,10 +378,10 @@ standard library package Occurrences {
 			 */
 		}
 
-		feature spaceShotOf: Occurrence[0..*] subsets spaceSliceOf inverse of spaceShots {
+		feature all spaceShotOf: Occurrence[0..*] subsets spaceSliceOf inverse of spaceShots {
 			doc
 			/*
-			 * Occurrences of which this occurrence is a space shot.
+			 * All occurrences of which this occurrence is a space shot.
 			 */
 
 			feature spaceShotOccurrence: Occurrence[1] subsets that;
@@ -491,7 +492,7 @@ standard library package Occurrences {
 
 			feature redefines isClosed = true;
 
-			feature spaceBounder: Occurrence subsets self;
+			feature spaceBounder: Occurrence [1] subsets self;
 
 			outer: Occurrence [0..1] subsets spaceSlices {
 				feature redefines isClosed = true;
@@ -518,7 +519,7 @@ standard library package Occurrences {
 			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
-		inv { not isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { not isClosed implies contains((that as Occurrence).unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy
@@ -529,7 +530,7 @@ standard library package Occurrences {
 			from surroundedSpace references spaceBoundary.inner [0..*]
 			to surroundingSpace references spaceInterior [1];
 
-		feature innerSpaceOccurrences: Occurrence [0..*] {
+		feature innerSpaceOccurrences: Occurrence [0..*] subsets outsideOfOccurrences {
 			doc
 			/*
 			 * Occurrences that completely occupy the space surrounded by an inner space boundary of this occurrence.
@@ -547,7 +548,7 @@ standard library package Occurrences {
 			inv { (isEmpty(hbi) == notEmpty(hbo)) & (notEmpty(hbo) == outerSpace.isClosed) }
 		}
 
-		feature surroundedByOccurrences: Occurrence [0..*] {
+		feature surroundedByOccurrences: Occurrence [0..*] subsets outsideOfOccurrences {
 			doc
 			/*
 			 * Occurrences that have inner spaces that completely include this occurrence.
@@ -567,7 +568,7 @@ standard library package Occurrences {
 			 * Tells whether an occurrence has a spaceBoundary, true if it does, false otherwise.
 			 */
 		}
-		inv { isClosed == isEmpty(spaceBoundary) }
+		inv { isClosed == isEmpty((that as Occurrence).spaceBoundary) }
 
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
@@ -613,9 +614,8 @@ standard library package Occurrences {
 			 */
 
 			end feature redefines source;
-			end feature redefines target;
+			end feature redefines target = that;
 		}
-		binding incomingTransfersToSelf.target = self;
 
 		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
@@ -633,10 +633,9 @@ standard library package Occurrences {
 			 * The outgoing transfers with this occurrence as the source.
 			 */
 
-			end feature redefines source;
+			end feature redefines source = that;
 			end feature redefines target;
 		}
-		binding outgoingTransfersFromSelf.source = self;
 	}
 
 	abstract class all Life specializes Occurrence {
@@ -688,7 +687,7 @@ standard library package Occurrences {
 		/*
 		 * HappensLink is the most general associations that assert temporal relationships between a
 		 * sourceOccurrence and a targetOccurrence. Because HappensLinks assert temporal
-		 * relationships, they cannot themselves be Occurrences that happen in time.  Therefore
+		 * relationships, they cannot also be Occurrences that happen in time.  Therefore
 		 * HappensLink is disjoint with LinkObject, that is, no HappensLink can also be a
 		 * LinkObject.
 		 */

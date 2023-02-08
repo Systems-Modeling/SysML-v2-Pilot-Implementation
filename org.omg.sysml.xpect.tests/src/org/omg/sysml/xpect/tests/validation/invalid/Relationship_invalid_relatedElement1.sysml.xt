@@ -11,6 +11,7 @@
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -26,6 +27,7 @@
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
 	}

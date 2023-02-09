@@ -28,35 +28,12 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VRequirement extends VCompartment {
-
-    private void addReqText(List<String> ss) {
-        boolean added = false;
-        for (String text: ss) {        	
-            appendText(text, true);
-            append('\n');
-            added = true;
-        }
-        if (added) {
-            append("--\n");
-        }
-    }
-
-    private void addReqText(Type typ) {
-        if (typ instanceof RequirementUsage) {
-            addReqText(((RequirementUsage) typ).getText());
-        } else if (typ instanceof RequirementDefinition) {
-            addReqText(((RequirementDefinition) typ).getText());
-        }
-    }
-
     private boolean isAnonymousConstraint(RequirementConstraintMembership rcm) {
         ConstraintUsage c = rcm.getOwnedConstraint();
-        return c.getName() == null;
+        return c.getDeclaredName() == null;
     }
 
     @Override
@@ -75,15 +52,13 @@ public class VRequirement extends VCompartment {
             default:
                 return "";
             }
-            ConstraintUsage c = rcm.getOwnedConstraint();
-            addFeature(c, null, prefix, true);
+            addEntry(rcm, prefix);
         }
         return "";
     }
 
     @Override
     public List<VTree> process(VTree parent, Type typ) {
-        addReqText(typ);
         return super.process(parent, typ);
     }
 

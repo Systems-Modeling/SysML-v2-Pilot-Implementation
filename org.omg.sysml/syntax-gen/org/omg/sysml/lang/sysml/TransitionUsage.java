@@ -31,11 +31,77 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TransitionUsage is an ActionUsage that is a behavioral Step representing a transition between ActionUsages or StateUsages.</p>
+ * <p>A <code>TransitionUsage</code> is an <code>ActionUsage<code> representing a triggered transition between <code>ActionUsages</code> or <code>StateUsages</code>. When triggered by a <code>triggerAction</code>, when its <code>guardExpression</code> is true, the <code>TransitionUsage</code> asserts that its <code>source</code> is exited, then its <code>effectAction</code> (if any) is performed, and then its <code>target</code> is entered.</p>
  * 
- * <p>A TransitionUsage must subset, directly or indirectly, the base TransitionUsage <code>transitionActions</code>, if it is not a composite feature, or the TransitionUsage <code>subtransitions</code> inherited from its owner, if it is a composite feature.</p>
- * 
- * <p>A TransitionUsage may by related to some of its <code>ownedFeatures</code> using TransitionFeatureMembership Relationships, corresponding to the triggers, guards and effects of the TransitionUsage.</p>
+ * <p>A <code>TransitionUsage<code> can be related to some of its <code>ownedFeatures</code> using <code>TransitionFeatureMembership</code> <code>Relationships</code>, corresponding to the <code>triggerAction</code>, <code>guardExpression</code> and <code>effectAction</code> of the <code>TransitionUsage</code>.</p>
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ActionDefinition) or 
+ *  owningType.oclIsKindOf(ActionUsage)) and
+ * not (owningType.oclIsKindOf(StateDefinition) or
+ *      owningType.oclIsKindOf(StateUsage)) implies
+ *     specializesFromLibrary("Actions::Action::decisionTransitionActions")
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(StateDefinition) or
+ *  owningType.oclIsKindOf(StateUsage)) implies
+ *     specializesFromLibrary("States::State::stateTransitions")
+ * specializesFromLibrary("Actions::actions::transitionActions")
+ * source =
+ *     if ownedMembership->isEmpty() then null
+ *     else
+ *         let member : Element = 
+ *             ownedMembership->at(1).memberElement in 
+ *         if not member.oclIsKindOf(ActionUsage) then null
+ *         else member.oclAsKindOf(ActionUsage)
+ *         endif
+ *     endif
+ * target =
+ *     if succession.targetFeature->isEmpty() then null
+ *     else
+ *         let targetFeature : Feature = 
+ *             succession.targetFeature->at(1) in
+ *         if not targetFeature.oclIsKindOf(ActionUsage) then null
+ *         else targetFeature.oclAsType(ActionUsage)
+ *         endif
+ *     endif
+ * triggerAction = ownedFeatureMembership->
+ *     selectByKind(TransitionFeatureMembership)->
+ *     select(kind = TransitionFeatureKind::trigger).transitionFeature->
+ *     selectByKind(AcceptActionUsage)
+ * let successions : Sequence(Successions) = 
+ *     ownedMember->selectByKind(Succession) in
+ * successions->notEmpty() and
+ * successions->at(1).targetFeature->
+ *     forAll(oclIsKindOf(ActionUsage))
+ * guardExpression = ownedFeatureMembership->
+ *     selectByKind(TransitionFeatureMembership)->
+ *     select(kind = TransitionFeatureKind::trigger).transitionFeature->
+ *     selectByKind(Expression)
+ * triggerAction->forAll(specializesFromLibrary('Actions::TransitionAction::accepter') and
+ * guardExpression->forAll(specializesFromLibrary('Actions::TransitionAction::guard') and
+ * effectAction->forAll(specializesFromLibrary('Actions::TransitionAction::effect'))
+ * triggerAction = ownedFeatureMembership->
+ *     selectByKind(TransitionFeatureMembership)->
+ *     select(kind = TransitionFeatureKind::trigger).transitionFeatures->
+ *     selectByKind(AcceptActionUsage)
+ * succession.sourceFeature = source
+ * ownedMember->selectByKind(BindingConnector)->exists(b |
+ *     b.relatedFeatures->includes(source) and
+ *     b.relatedFeatures->includes(inputParameter(2)))
+ * triggerAction->notEmpty() implies
+ *     let payloadParameter : Feature = inputParameter(2) in
+ *     payloadParameter <> null and
+ *     payloadParameter.subsetsChain(triggerAction->at(1), triggerPayloadParameter())
+ * ownedMember->selectByKind(BindingConnector)->exists(b |
+ *     b.relatedFeatures->includes(succession) and
+ *     b.relatedFeatures->includes(resolveGlobal(
+ *         'TransitionPerformances::TransitionPerformance::transitionLink')))
+ * if triggerAction->isEmpty() then
+ *     inputParameters()->size() >= 1
+ * else
+ *     inputParameters()->size() >= 2
+ * endif
+ *     
+ * succession = ownedMember->selectByKind(Succession)->at(1)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -61,7 +127,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source ActionUsage of this TransitionUsage, derived as the <tt>source</tt> of the <tt>succession</tt> for the TransitionUsage.</p>
+	 * <p>The source <code>ActionUsage</code> of this <code>TransitionUsage</code>, which becomes the <code>source</code> of the <code>succession</code> for the <code>TransitionUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(ActionUsage)
@@ -88,7 +154,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target ActionUsage of this TransitionUsage, derived as the <tt>target</tt> of the <tt>succession</tt> for the TransitionUsage.</p>
+	 * <p>The target <code>ActionUsage</code> of this <code>TransitionUsage<code>, which is the <code>targetFeature</code> of the <code>succession</code> for the <code>TransitionUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ActionUsage)
@@ -122,7 +188,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>trigger</code>.</p>
+	 * <p>The <code>AcceptActionUsages</code> that define the triggers of this <code>TransitionUsage</code>, which are the <code>ownedFeatures</code> of the <code>TransitionUsage</code> related to it by <code>TransitionFeatureMemberships</code> with <code>kind = trigger</code>, which must all be <code>AcceptActionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TriggerAction()
@@ -146,7 +212,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expressions that define the guards of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>guard</code>.</p>
+	 * <p>The <code>Expressions</code> that define the guards of this <code>TransitionUsage</code>, which are the <code>ownedFeatures</code> of the <code>TransitionUsage</code> related to it by <code>TransitionFeatureMemberships</code> with <code>kind = guard</code>, which must all be <code>Expressions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_GuardExpression()
@@ -170,7 +236,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that define the effects of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>effect</tt>.</p>
+	 * <p>The <code>ActionUsages</code> that define the effects of this <code>TransitionUsage</code>, which are the <code>ownedFeatures</code> of the <code>TransitionUsage</code> related to it by <code>TransitionFeatureMemberships</code> with <code>kind = effect</code>, which must all be <code>Expressions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_EffectAction()
@@ -193,7 +259,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Succession that is the <code>ownedFeature</code> of this TransitionUsage that redefines <code>TransitionPerformance::transitionLink</code>.
+	 * <p>The <code>Succession</code> that is the <code>ownedFeature</code> of this <code>TransitionUsage</code>, which, if the <code>TransitionUsage</code> is triggered, asserts the temporal ordering of the <code>source</code> and <code>target</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Succession</em>' reference.
 	 * @see #setSuccession(Succession)
@@ -215,4 +281,17 @@ public interface TransitionUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setSuccession(Succession value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * if triggerAction->isEmpty() then null
+	 * else triggerAction->at(1).payloadParameter
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	ReferenceUsage triggerPayloadParameter();
 } // TransitionStep

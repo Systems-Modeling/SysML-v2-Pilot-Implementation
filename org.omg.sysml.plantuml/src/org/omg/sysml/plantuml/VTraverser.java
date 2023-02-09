@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -37,7 +39,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
@@ -78,7 +80,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private static boolean isModelLibrary(Element e) {
-        return SysMLLibraryUtil.isModelLibrary(e.eResource());
+        return ElementUtil.isStandardLibraryElement(e);
     }
 
     private void traverseInternal(Namespace n, Set<Element> covered) {
@@ -88,6 +90,7 @@ public abstract class VTraverser extends Visitor {
                 setInherited(false);
                 Element e = ms.getMemberElement();
                 markRedefining(e, covered);
+                this.currentMembership = ms;
                 visit(ms);
                 for (Relationship r2: ms.getOwnedRelationship()) {
                     setInherited(false);

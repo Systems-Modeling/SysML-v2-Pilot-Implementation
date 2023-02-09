@@ -27,12 +27,10 @@ package org.omg.sysml.lang.sysml;
  * Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A&nbsp;LiteralExpression is an Expression that provides a basic value as a result. It must directly or indirectly specialize the Function <em>LiteralEvaluation</em> from the <em>Base</em> model library, which has no parameters other than its result, which is a single <em>DataValue</em>.</p>
+ * <p>A LiteralExpression is an Expression that provides a basic value as a result. It must directly or indirectly specialize the Function <code><em>LiteralEvaluation</em></code> from the <code><em>Base</em></code> model library, which has no parameters other than its result, which is a single <code><em>DataValue</em></code>.</p>
  * 
- * <p>An Expression that provides a basic value as a result.</p>
- * 
- * <p>A LiteralExpression must be typed by a specialization of Evaluation with no input parameters and a single value as its result.</p>
  * isModelLevelEvaluable = true
+ * specializesFromLibrary("Performances::literalEvaluations")
  * <!-- end-model-doc -->
  *
  *

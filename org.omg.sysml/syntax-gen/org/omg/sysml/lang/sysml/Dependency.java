@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Dependency is a Relationship that indicates that one or more <code>client</code> Elements require one more <code>supplier</code> Elements for their complete specification. In general, this means that a change to one of the <code>supplier</code> Elements may necessitate a change to, or re-specification of, the <code>client</code> Elements.</p>
+ * <p>A <code>Dependency</code> is a <code>Relationship</code> that indicates that one or more <code>client</code> <code>Elements</code> require one more <code>supplier</code> <code>Elements</code> for their complete specification. In general, this means that a change to one of the <code>supplier</code> <code>Elements</code> may necessitate a change to, or re-specification of, the <code>client</code> <code>Elements</code>.</p>
  * 
- * <p>Note that a Dependency is entirely a model-level Relationship, without instance-level semantics.</p>
+ * <p>Note that a <code>Dependency</code> is entirely a model-level <code>Relationship</code>, without instance-level semantics.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +60,7 @@ public interface Dependency extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element or Elements dependent on the <code>supplier</code> elements.</p>
+	 * <p>The <code>Element</code> or <code>Elements</code> dependent on the <code>supplier</code> <code>Elements</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Client</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDependency_Client()
@@ -83,7 +83,7 @@ public interface Dependency extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element or Elements on which the <code>client</code> Elements depend in some respect.</p>
+	 * <p>The <code>Element</code> or <code>Elements</code> on which the <code>client</code> <code>Elements</code> depend in some respect.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Supplier</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDependency_Supplier()

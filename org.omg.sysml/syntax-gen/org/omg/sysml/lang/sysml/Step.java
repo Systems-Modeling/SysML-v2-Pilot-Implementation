@@ -31,7 +31,22 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Step is a Feature that is typed by one or more Behaviors. Steps may be used by one Behavior to coordinate the performance of other Behaviors, supporting the steady refinement of behavioral descriptions. Steps can be ordered in time and can be connected using ItemFlows to specify things flowing between their parameters.</p>
  * 
- * <p>Steps are Features for Behaviors and support the steady refinement of behavioral descriptions. Steps can be related in time and serve as sources and targets for object transfers.</p>
+ * allSupertypes()->includes(resolveGlobal("Performances::performances"))
+ * owningType <> null and
+ *     (owningType.oclIsKindOf(Behavior) or
+ *      owningType.oclIsKindOf(Step)) implies
+ *     specializesFromLibrary('Performances::Performance::enclosedPerformance')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(Structure) or
+ *  owningType.oclIsKindOf(Feature) and
+ *  owningType.oclAsType(Feature).type->
+ *     exists(oclIsKindOf(Structure)) implies
+ *     specializesFromLibrary('Objects::Object::ownedPerformance')
+ * owningType <> null and
+ *     (owningType.oclIsKindOf(Behavior) or
+ *      owningType.oclIsKindOf(Step)) and
+ *     self.isComposite implies
+ *     specializesFromLibrary('Performances::Performance::subperformance')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -52,7 +67,7 @@ public interface Step extends Feature {
 	 * Returns the value of the '<em><b>Behavior</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Behavior}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
@@ -69,9 +84,9 @@ public interface Step extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Behavior</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStep_Behavior()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedStep'"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

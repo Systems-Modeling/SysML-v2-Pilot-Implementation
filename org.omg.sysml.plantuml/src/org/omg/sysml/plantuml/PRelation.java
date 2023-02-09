@@ -88,6 +88,8 @@ class PRelation {
             return compElemId(s2p, (Element) o);
         } else if (o instanceof Integer) {
             return makeIdStr((Integer) o);
+        } else if (o == null) {
+            return "[*]";
         } else {
             return null;
         }
@@ -109,7 +111,7 @@ class PRelation {
         this.description = description;
     }
 
-    public PRelation(Object src, Object dest, Element rel, String description) {
+    public PRelation(InheritKey ik, Object src, Object dest, Element rel, String description) {
         this.ik = null;
         this.src = src;
         this.dest = dest;

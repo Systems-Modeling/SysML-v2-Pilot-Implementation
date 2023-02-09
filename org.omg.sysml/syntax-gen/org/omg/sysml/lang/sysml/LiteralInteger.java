@@ -27,11 +27,8 @@ package org.omg.sysml.lang.sysml;
  * Integer</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LiteralInteger is a LiteralExpression that provides an Integer value as a result. It must have an owned <code>result</code> parameter whose type is <em>Integer</em>.</p>
+ * <p>A LiteralInteger is a LiteralExpression that provides an <code><em>Integer</em></code> value as a result. Its <code>result</code> parameter must have the type <code><em>Integer</em></code>.</p>
  * 
- * <p>An Expression that provides an Integer value as a result.</p>
- * 
- * <p>A LiteralInteger must be typed by a specialization of Evaluation with no input parameters and a single Integer value as its result.</p>
  * <!-- end-model-doc -->
  *
  * <p>

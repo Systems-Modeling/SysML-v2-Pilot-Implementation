@@ -31,9 +31,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AttributeUsage is a Usage whose type is a DataType. Nominally, if the type is an AttributeDefinition, an AttributeUsage is a usage of a AttributeDefinition to represent the value of some system quality or characteristic. However, other kinds of kernel DataTypes are also allowed, to permit use of DataTypes from the Kernel Library. An AttributeUsage itself as well as all its nested <code>features</code> must have <code>isComposite</code> = <code>false</code>.</p>
+ * <p>An <code>AttributeUsage<code> is a <code>Usage</code> whose type is a <code>DataType</code>. Nominally, if the type is an <code>AttributeDefinition</code>, an <code>AttributeUsage<code> is a usage of a <code>AttributeDefinition</code> to represent the value of some system quality or characteristic. However, other kinds of kernel <code>DataTypes</code> are also allowed, to permit use of <code>DataTypes</code> from the Kernel Model Libraries. An <code>AttributeUsage<code> itself as well as all its nested <code>features</code> must be referential (non-composite).</p>
  * 
- * <p>An AttributeUsage must subset, directly or indirectly, the base AttributeUsage <code>attributeValues</code> from the Systems model library.</p>
+ * <p>An <code>AttributeUsage<code> must specialize, directly or indirectly, the base <code>Feature<code> <code><em>Base::dataValues</code> from the Kernel Semantic Library.</p>
+ * isReference
+ * feature->forAll(not isComposite)
+ * specializesFromLibrary("Base::dataValues")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +58,7 @@ public interface AttributeUsage extends Usage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getDefinition() <em>Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +67,7 @@ public interface AttributeUsage extends Usage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAttributeUsage_AttributeDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAttribute'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -49,10 +49,6 @@ import org.omg.sysml.util.ElementUtil
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.sysml.lang.sysml.Import
-import com.google.inject.Inject
-import org.eclipse.xtext.scoping.IScopeProvider
-import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
@@ -60,7 +56,6 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
-import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
@@ -69,6 +64,12 @@ import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.eclipse.emf.ecore.EObject
+import org.omg.sysml.lang.sysml.LiteralBoolean
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.expressions.util.EvaluationUtil
+import org.omg.sysml.lang.sysml.LibraryPackage
+import org.omg.sysml.lang.sysml.ItemFlowEnd
 
 /**
  * This class contains custom validation rules. 
@@ -118,10 +119,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__DISTINGUISHABILITY = "Invalid Element - Distinguishability"
 	public static val INVALID_ELEMENT__DISTINGUISHABILITY_MSG = "Duplicate of other element name"
-	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
-	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ElementFilterMembership - Condition not Boolean"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG = "Must have a Boolean result"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE = "Invalid MetadataFeature - Abstract type"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG = "Must have a concrete type"
 	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT = "Invalid MetadataFeature - Bad annotated element"
@@ -142,13 +143,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE = "Invalid cast Expression - Cast type conformance"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE_MSG = "Cast argument should have conforming types"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
 	
-	@Inject
-	IScopeProvider scopeProvider
 	
 	@Check
 	def checkElement(Element elm) {
-		if (elm.shortName !== null || elm.getEffectiveName !== null) {
+		if (elm.declaredShortName !== null || elm.getName !== null) {
 			val owner = elm.owner;
 			if (owner !== null && 
 				// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
@@ -156,11 +159,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 			    	owner instanceof NullExpression || owner instanceof BindingConnector)) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.shortName !== null && (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
+						if (elm.declaredShortName !== null && (elm.declaredShortName == e.declaredShortName || elm.declaredShortName == e.getName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
 							return						
-						} else if (elm.getEffectiveName !== null && (elm.getEffectiveName == e.shortName || elm.getEffectiveName == e.getEffectiveName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.name !== null) SysMLPackage.eINSTANCE.element_Name else null, INVALID_ELEMENT__DISTINGUISHABILITY)
+						} else if (elm.getName !== null && (elm.getName == e.declaredShortName || elm.getName == e.getName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.declaredName !== null) SysMLPackage.eINSTANCE.element_DeclaredName else null, INVALID_ELEMENT__DISTINGUISHABILITY)
 							return														
 						}												
 					}
@@ -177,9 +180,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
 			if (!(mem instanceof OwningMembership)) {
 				for (e: namesp.ownedElement) {
-					if (mem.memberShortName !== null && (mem.memberShortName == e.shortName || mem.memberShortName == e.getEffectiveName)) {
+					if (mem.memberShortName !== null && (mem.memberShortName == e.declaredShortName || mem.memberShortName == e.getName)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else if (mem.memberName !== null && (mem.memberName == e.shortName || mem.memberName == e.getEffectiveName)) {
+					} else if (mem.memberName !== null && (mem.memberName == e.declaredShortName || mem.memberName == e.getName)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
@@ -206,13 +209,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (mem.memberElement !== other.memberElement) {
 			if (memShortName !== null && (memShortName == otherShortName || memShortName == otherName)) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_ShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
 			} else if (memName !== null && (memName == otherShortName || memName == otherName)) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
@@ -221,20 +224,39 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
-	def checkImport(Import imp) {
-		if (imp.importedMemberName !== null && !imp.importedNamespace.eIsProxy) {
-			val scope = scopeProvider.getScope(imp, SysMLPackage.eINSTANCE.import_ImportOwningNamespace) as ISysMLScope
-			if (scope.getMemberships(imp.importedMemberName, imp.importAll).isEmpty) {
-				error(INVALID_IMPORT__NAME_NOT_RESOLVED_MSG.replace("{name}", imp.importedMemberName), imp, SysMLPackage.eINSTANCE.import_ImportedMemberName, INVALID_IMPORT__NAME_NOT_RESOLVED)
-			}
-		}
+	def checkElementFilterMembership(ElementFilterMembership efm) {
+		val condition = efm.condition
+		if (condition !== null)
+			if (!condition.isModelLevelEvaluable)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+			else if (!condition.isBoolean)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN)
+	}
+	
+	def boolean isBoolean(Expression condition) {
+		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
+		// LiteralBooleans currently don't have an inferred Boolean result type.
+		condition instanceof LiteralBoolean ||
+		// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
+		// This infers that they are actually BooleanFunctions if their arguments are Boolean.
+		condition instanceof OperatorExpression && 
+			(condition as OperatorExpression).operator.booleanOperator && 
+			(condition as OperatorExpression).argument.forall[isBoolean]
+	}
+	
+	def getBooleanType(Element context) {
+		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
+	}
+	
+	def isBooleanOperator(String operator) {
+		newArrayList("not", "xor", "&", "|").contains(operator)
 	}
 	
 	@Check
-	def checkElementFilterMembership(ElementFilterMembership efm) {
-		val condition = efm.condition
-		if (condition !== null && !condition.isModelLevelEvaluable) {
-			error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+	def checkLibraryPackage(LibraryPackage pkg) {
+		// Note: Can't suppress the warning in Xtend.
+		if (pkg.isStandard && !SysMLLibraryUtil.isModelLibrary(pkg.eResource)) {
+			warning(INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE__NOT_STANDARD)
 		}
 	}
 	
@@ -285,24 +307,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
 		if (annotatedElementFeatures.exists[!abstract]) {
 			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
 		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
-				val metaclass = ExpressionUtil.getMetaclassOf(element)
-				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
-					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
+				val metaclass = ElementUtil.getMetaclassOf(element)
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.declaredName), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
 		}
-	}
-	
-	def Feature getAnnotatedElementFeature(Element element) {
-		SysMLLibraryUtil.getLibraryType(element, 
-						ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "annotatedElement"))
-						as Feature
 	}
 	
 	def void checkMetadataBody(Type t) {
@@ -387,6 +403,22 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkCastExpression(OperatorExpression e) {
+		if (e.operator == "as") {
+			val params = TypeUtil.getOwnedParametersOf(e)
+			if (params.length >= 2) {
+				val arg = FeatureUtil.getValueExpressionFor(params.get(0))
+				if (arg !== null) {
+					val argTypes = arg.result.type
+					val targetTypes = params.get(1).type
+					if (!typesConform(argTypes, targetTypes))
+						warning(INVALID_CAST_EXPRESSION__CAST_TYPE_MSG, e, null, INVALID_CAST_EXPRESSION__CAST_TYPE)
+					}
+			}
+		}
+	}
+	
+	@Check
 	def checkTypeMultiplicity(Type t) {
 		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
 		if (multiplicityMemberships.size > 1) {
@@ -440,6 +472,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		doCheckBindingConnector(bc, bc)
 	}
 	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
+			connector.doCheckBindingConnector(type)
+		])
+	}
+	
 	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
@@ -461,23 +503,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
 						 
-			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
-			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
-			
-			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
-				f2ConformsTof1.filter[!empty].length != f1types.length)
+			if (!typesConform(f1types, f2types))
 				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
 	}
 	
-	@Check
-	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
-			if (type instanceof FeatureReferenceExpression) {
-				connector.doCheckConnector(type, kind) 
-			}
-			connector.doCheckBindingConnector(type)
-		])
+	def typesConform(List<Type> t1, List<Type> t2) {
+		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
+		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
+		t1ConformsTot2.filter[!empty].length == t2.length ||
+			t2ConformsTot1.filter[!empty].length == t1.length
 	}
 	
 	@Check 
@@ -569,7 +604,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 					!subsettedFeaturingTypes.forall[t | 
 						subsettingFeaturingTypes.exists[ f | 
 							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
-				if (subsettingFeature instanceof ItemFlowFeature) {
+				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
 					error("Must be an accessible feature (use dot notation for nesting)", sub, 
 					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
 				} else {

@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -93,15 +92,6 @@ public class ItemUsageImpl extends OccurrenceUsageImpl implements ItemUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetItemDefinition() {
-		return !getItemDefinition().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -151,32 +141,10 @@ public class ItemUsageImpl extends OccurrenceUsageImpl implements ItemUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_USAGE__DEFINITION:
-				return isSetDefinition();
 			case SysMLPackage.ITEM_USAGE__ITEM_DEFINITION:
-				return isSetItemDefinition();
+				return ITEM_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Classifier> getDefinition() {
-		@SuppressWarnings("unchecked")
-		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
-		return occurrenceDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDefinition() {
-  		return false;
 	}
 
 } //ItemUsageImpl

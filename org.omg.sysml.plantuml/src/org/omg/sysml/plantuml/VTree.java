@@ -36,9 +36,11 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
@@ -77,7 +79,7 @@ public class VTree extends VStructure {
         for (FeatureTyping ft: ru.getOwnedTyping()) {
             Type typ = ft.getType();
             if (typ != null) {
-                addRel(typ, ru, ru.getName());
+                addRel(typ, ru, ru.getDeclaredName());
             }
         }
         return "";
@@ -106,7 +108,7 @@ public class VTree extends VStructure {
     public String caseVariantMembership(VariantMembership vm) {
         Usage u = vm.getOwnedVariantUsage();
 
-        String name = vm.getName();
+        String name = vm.getDeclaredName();
         if (name == null) {
         	name = extractTitleName(u);
         }
@@ -114,10 +116,13 @@ public class VTree extends VStructure {
         	name = "variant";
         }
 
-        addRel(u, vm, "<<variant>>");
+        addRel(u, vm, null);
     	if (checkVisited(u)) return "";
 
-        addPUMLLine(u, "comp usage ", name);
+        String style = styleString(u);
+        style = "<<variant>>\\n" + style;
+
+        addPUMLLine(u, "comp usage ", name, style);
         process(new VCompartment(this), u);
 
         return "";
@@ -129,6 +134,27 @@ public class VTree extends VStructure {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
         addRel(ru, om, "<<objective>>");
         addReq("comp usage ", ru);
+        return "";
+    }
+
+    protected boolean addSubjectMembership(SubjectMembership sm, boolean force) {
+        Usage u = sm.getOwnedSubjectParameter();
+        Relationship rel = findBindingLikeRel(u);
+        if (force || (u.getDeclaredName() != null && rel != null)) {
+            addRel(u, sm, null);
+            String name = getNameAnyway(u);
+            int id = addPUMLLine(u, "comp usage ", name, "<<subject>>");
+            process(new VCompartment(this), u);
+            addSpecializations(id, u);
+            addFeatureValueBindings(u);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String caseSubjectMembership(SubjectMembership sm) {
+        addSubjectMembership(sm, false);
         return "";
     }
 

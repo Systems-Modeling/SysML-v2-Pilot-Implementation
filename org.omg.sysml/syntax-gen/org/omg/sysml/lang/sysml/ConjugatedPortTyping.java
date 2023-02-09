@@ -29,9 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConjugatedPortTyping is a FeatureTyping in which the <code>type</code> is derived as the <code>conjugatedPortDefinition</code> of a given PortDefinition. A ConjugatedPortTyping allows a PortUsage to by related directly to a PortDefinition, but to be effectively typed by the conjugation of the referenced PortDefinition.</p>
- * 
- * <p>Note that ConjugatedPortTyping is a <em>ternary</em> Relationship, with <code>portDefinition</code> being a third <code>relatedElement</code>, in addition to <code>type</code> and <code>typedFeature</code> from FeatureTyping.</p>
+ * <p>A ConjugatedPortTyping is a FeatureTyping whose <code>type</code> is a ConjugatedPortDefinition. (This relationship is intended to be an abstract syntax marker for a special surface notation for conjugated typing of ports.)</p>
  * conjugatedPortDefinition = portDefinition.conjugatedPortDefinition
  * <!-- end-model-doc -->
  *
@@ -50,12 +48,6 @@ package org.omg.sysml.lang.sysml;
 public interface ConjugatedPortTyping extends FeatureTyping {
 	/**
 	 * Returns the value of the '<em><b>Port Definition</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Port Definition</em>' reference isn't clear,
@@ -63,14 +55,14 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortDefinition whose <tt>conjugatedPortDefinition</tt> is to be the derived <tt>type</tt> of this ConjugatedPortTyping.<p>
+	 * <p>The <code>originalPortDefinition</code> of the <code>conjugatedPortDefinition</code> of this ConjugatedPortTyping.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference.
 	 * @see #setPortDefinition(PortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortTyping_PortDefinition()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='conjugatedPortTyping'"
-	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	PortDefinition getPortDefinition();
@@ -100,15 +92,15 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>conjugatedPortDefinition</tt> of the <tt>portDefinition</tt> of this ConjugatedPortTyping, which is the derived <tt>type</tt> of the ConjugatedPortTyping considered as a FeatureTyping.</p>
+	 * <p>The <code>type</code> of this ConjugatedPortTyping considered as a FeatureTyping, which must be a ConjugatedPortDefinition.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortTyping_ConjugatedPortDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typingByConjugatedPort'"
 	 *        annotation="redefines"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ConjugatedPortDefinition getConjugatedPortDefinition();

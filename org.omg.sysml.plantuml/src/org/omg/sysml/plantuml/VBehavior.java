@@ -62,6 +62,15 @@ public abstract class VBehavior extends VDefault {
         return false;
     }
 
+    protected boolean isExitAction(ActionUsage au) {
+        Membership ms = au.getOwningMembership();
+        if (ms instanceof StateSubactionMembership) {
+            StateSubactionMembership ssm = (StateSubactionMembership) ms;
+            return (ssm.getKind() == StateSubactionKind.EXIT);
+        }
+        return false;
+    }
+
     private List<PRelation> entryExitTransitions = null;
 
     protected void addEntryExitTransitions(PRelation pr) {
@@ -75,19 +84,32 @@ public abstract class VBehavior extends VDefault {
         outputPRelations(entryExitTransitions);
     }
 
+    private ActionUsage nullizeStartOrEntryAction(ActionUsage au) {
+        if (isStartAction(au) || isEntryAction(au)) return null;
+        return au;
+    }
+
+    private ActionUsage nullizeDoneOrExitAction(ActionUsage au) {
+        if (isDoneAction(au) || isExitAction(au)) return null;
+        return au;
+    }
+
+    private Element nullizeStartOrEntryAction(Element e) {
+        if (!(e instanceof ActionUsage)) return null;
+        return nullizeStartOrEntryAction((ActionUsage) e);
+    }
+
+    private Element nullizeDoneOrExitAction(Element e) {
+        if (!(e instanceof ActionUsage)) return null;
+        return nullizeDoneOrExitAction((ActionUsage) e);
+    }
+
     @Override
     public String caseSuccession(Succession su) {
         for (Element src: su.getSource()) {
-            if (!(src instanceof ActionUsage) 
-                || (isStartAction((ActionUsage) src)) 
-                || (isEntryAction((ActionUsage) src))) {
-                src = null;
-            }
+            src = nullizeStartOrEntryAction(src);
             for (Element dest: su.getTarget()) {
-                if (!(dest instanceof ActionUsage)
-                    || (isDoneAction((ActionUsage) dest))) {
-                    dest = null;
-                }
+                dest = nullizeDoneOrExitAction(dest);
                 if ((src == null) && (dest == null)) continue;
                 if ((src == null) || (dest == null)) {
                     addEntryExitTransitions(new PRelation(makeInheritKey(su), src, dest, su, null));
@@ -259,12 +281,13 @@ public abstract class VBehavior extends VDefault {
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
         String description = convertToDescription(tu);
-        Feature src = tu.getSource();
-        Feature tgt = tu.getTarget();
+        ActionUsage src = tu.getSource();
+        ActionUsage tgt = tu.getTarget();
+        src = nullizeStartOrEntryAction(src);
         if (tgt == null) {
             if (src == null) return "";
         } else {
-            if (isDoneAction(tgt)) tgt = null;
+            tgt = nullizeDoneOrExitAction(tgt);
         }
         if ((src == null) || (tgt == null)) {
             addEntryExitTransitions(new PRelation(makeInheritKey(tu), src, tgt, tu, description));

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,10 +25,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.StateSubactionKind;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -60,7 +67,34 @@ public class UsageAdapter extends FeatureAdapter {
 		return false;
 	}
 	
-	// Implicit Generalization
+	public boolean isNonEntryExitComposite() {
+		return getTarget().isComposite() && !isEntryExitAction();
+	}
+	
+	public boolean isActionOwnedComposite() {
+		Usage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && !isEntryExitAction() && 
+			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
+	}
+	
+	public boolean isPartOwnedComposite() {
+		Usage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);
+	}
+	
+	public boolean isEntryExitAction() {
+		FeatureMembership owningFeatureMembership = getTarget().getOwningFeatureMembership();
+		if (!(owningFeatureMembership instanceof StateSubactionMembership)) {
+			return false;
+		} else {
+			StateSubactionKind kind = ((StateSubactionMembership)owningFeatureMembership).getKind();
+			return kind == StateSubactionKind.ENTRY || kind == StateSubactionKind.EXIT;
+		}
+	}
+		
+// Implicit Generalization
 	
 	protected void addSubsetting(String subsettedFeatureName) {
 		Feature feature = (Feature)getLibraryType(subsettedFeatureName);

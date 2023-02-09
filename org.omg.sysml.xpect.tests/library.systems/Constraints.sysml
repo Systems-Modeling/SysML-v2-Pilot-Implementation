@@ -1,4 +1,4 @@
-package Constraints {
+standard library package Constraints {
 	doc
 	/*
 	 * This package defines the base types for constraints and related elements in the
@@ -30,14 +30,14 @@ package Constraints {
 	abstract constraint assertedConstraintChecks :> constraintChecks, trueEvaluations {
 		doc
 		/*
-		 * assertedConstraintChecks is the subset of constraintChecks for Constraints asserted to be true.
+		 * assertedConstraintChecks is the subset of constraintChecks for ConstraintChecks asserted to be true.
 		 */
 	}
 		
 	abstract constraint negatedConstraintChecks :> constraintChecks, falseEvaluations {
 		doc
 		/*
-		 * negatedConstraintChecks is the subset of constraintChecks for Constraints asserted to be false.
+		 * negatedConstraintChecks is the subset of constraintChecks for ConstraintChecks asserted to be false.
 		 */
 	}
 		

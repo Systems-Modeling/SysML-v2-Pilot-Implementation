@@ -28,7 +28,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * allSupertypes()->includes(Kernel Library::LinkObject)
+ * specializesFromLibrary("Objects::ObjectLink")
+ * endFeature->size() = 2 implies
+ *     specializesFromLibrary("Objects::BinaryLinkObject")
  * <!-- end-model-doc -->
  *
  *

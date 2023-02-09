@@ -63,7 +63,7 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 				sourceTarget = sourceFeatures.get(0);
 			} else {
 				sourceTarget = SysMLFactory.eINSTANCE.createFeature();
-				sourceTarget.setName(""); // To avoid effective naming.
+				sourceTarget.setDeclaredName(""); // To avoid effective naming.
 				TypeUtil.addOwnedFeatureTo(sourceParameter, sourceTarget);
 			}
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,

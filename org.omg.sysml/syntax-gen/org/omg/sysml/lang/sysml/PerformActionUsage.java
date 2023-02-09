@@ -29,9 +29,13 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PerformActionUsage is an ActionUsage that represents the performance of an ActionUsage. Unless it is the PerformActionUsage itself, the ActionUsage to be performed is related to the PerformActionUsage by a ReferenceSubsetting relationship. A PerformActionUsage is also an EventOccurrenceUsage, with its <code>performedAction</code> as the <code>eventOccurrence</code>.</p>
- * 
- * <p>If the PerformActionUsage is owned by a PartDefinition or PartUsage, then it also subsets the ActionUsage <em><code>Part::performedAction</code></em> from the Systems model library.</p>
+ * <p>A <code>PerformActionUsage</code> is an <code>ActionUsage</code> that represents the performance of an <code>ActionUsage</code>. Unless it is the <code>PerformActionUsage</code> itself, the <code>ActionUsage</code> to be performed is related to the <code>PerformActionUsage</code> by a <code>ReferenceSubsetting</code> relationship. A <code>PerformActionUsage</code> is also an <code>EventOccurrenceUsage</code>, with its <code>performedAction</code> as the <code>eventOccurrence</code>.</p>
+ * ownedReferenceSubsetting <> null implies
+ *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ActionUsage)
+ * owningType <> null and
+ * (owningType.oclIsKindOf(PartDefinition) or
+ *  owningType.oclIsKindOf(PartUsage)) implies
+ *     specializesFromLibrary('Parts::Part::performedActions')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -58,7 +62,7 @@ public interface PerformActionUsage extends ActionUsage, EventOccurrenceUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed by this PerformedActionUsage. It is the <code>eventOccurrence</code> of the PerformActionUsage considered as an EventOccurrenceUsage, which must be an ActionUsage.</p> 
+	 * <p>The <code>ActionUsage</code> to be performed by this <code>PerformedActionUsage</code>. It is the <code>eventOccurrence</code> of the <code>PerformActionUsage</code> considered as an <code>EventOccurrenceUsage</code>, which must be an <code>ActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Performed Action</em>' reference.

@@ -42,7 +42,7 @@ public class StringLengthFunction implements LibraryFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		String x = evaluator.stringValue(invocation, 0, target);
-		return x == null? null: EvaluationUtil.integerResult(x.length());
+		return x == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.integerResult(x.length());
 	}
 
 }

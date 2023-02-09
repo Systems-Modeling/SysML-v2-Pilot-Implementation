@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -199,23 +200,18 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void removeUnnecessaryImplicitGeneralTypes() {
 		Type target = getTarget();
-		List<Type> explicitGenerals = target.getOwnedSpecialization().stream().
+		List<Type> generals = target.getOwnedSpecialization().stream().
 				filter(spec->spec.getSpecific() == target).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
+		implicitGeneralTypes.values().forEach(generals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
 				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
-				for (Object general: implicitGenerals.toArray()) {
-					Stream<Type> generals = Stream.concat(
-							implicitGenerals.stream().filter(type->type != general), 
-							explicitGenerals.stream());
-					if (generals.anyMatch(type->TypeUtil.conforms(type, (Type)general))) {
-						implicitGenerals.remove(general);
-						if (implicitGenerals.isEmpty()) {
-							implicitGeneralTypes.remove(eClass);
-						}
-					}
+				implicitGenerals.removeIf(gen->
+					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen)));
+				if (implicitGenerals.isEmpty()) {
+					implicitGeneralTypes.remove(eClass);
 				}
 			}
 		}
@@ -295,6 +291,7 @@ public class TypeAdapter extends NamespaceAdapter {
 						map(expr->expr.evaluate(target)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
+						map(EvaluationUtil::getMetaclassReferenceOf).
 						filter(Type.class::isInstance).
 						map(Type.class::cast).
 						forEachOrdered(baseTypes::add);

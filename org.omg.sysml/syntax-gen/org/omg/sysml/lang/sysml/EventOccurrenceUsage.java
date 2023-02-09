@@ -9,13 +9,22 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A EventOccurrenceUsage is an OccurrenceUsage that represents another OccurrenceUsage occurring as a suboccurrence of the containing occurrence of the EventOccurrenceUsage. Unless it is ithe EventOccurrenceUsage itself, the referenced OccurrenceUsage performed is related to the EventOccurrenceUsage by a ReferenceSubsetting relationship.</p>
+ * <p>An <code>EventOccurrenceUsage</code> is an <code>OccurrenceUsage</code> that represents another <code>OccurrenceUsage<code> occurring as a <code><em>suboccurrence<em></code> of the containing occurrence of the <code>EventOccurrenceUsage</code>. Unless it is the <code>EventOccurrenceUsage</code> itself, the referenced <code>OccurrenceUsage</code> is related to the <code>EventOccurrenceUsage<code> by a <code>ReferenceSubsetting</code> <code>Relationship</code>.</p>
  * 
- * <p>If the EventOccurrenceUsage is owned by an OccurrenceDefinition or OccurrenceUsage, then it also subsets the <em><code>timeEnclosedOccurrences</code></em> property of the Class <em><code>Occurrence</code></em> from the Kernel Semantic Library model <em><code>Occurrences</code></em>.</p>
+ * <p>If the <code>EventOccurrenceUsage</code> is owned by an <code>OccurrenceDefinition</code> or <code>OccurrenceUsage</code>, then it also subsets the <em><code>timeEnclosedOccurrences</code></em> property of the <code>Class</code> <em><code>Occurrence</code></em> from the Kernel Semantic Library model <em><code>Occurrences</code></em>.</p>
  * eventOccurrence =
  *     if ownedReferenceSubsetting = null then self
- *     else ownedReferenceSubsetting.referencedFeature.oclAsType(OccurrenceUsage)
- *     endif
+ *     else if ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage) then 
+ *         ownedReferenceSubsetting.referencedFeature.oclAsType(OccurrenceUsage)
+ *     else null
+ *     endif endif
+ * ownedReferenceSubsetting <> null implies
+ *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage)
+ * owningType <> null and
+ * (owningType.oclIsKindOf(OccurrenceDefinition) or
+ *  owningType.oclIsKindOf(OccurrenceUsage)) implies
+ *     specializesFromLibrary("Occurrences::Occurrence::timeEnclosedOccurrences")
+ * isReference
  * <!-- end-model-doc -->
  *
  * <p>

@@ -439,7 +439,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_FLOW).getSettingDelegate();
-
 	/**
 	 * The cached setting delegate for the '{@link #getNestedMetadata() <em>Nested Metadata</em>}' reference list.
 	 * <!-- begin-user-doc -->

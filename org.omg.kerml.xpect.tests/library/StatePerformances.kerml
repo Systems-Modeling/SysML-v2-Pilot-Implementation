@@ -1,4 +1,4 @@
-package StatePerformances {
+standard library package StatePerformances {
 	doc
 	/*
 	 * This package contains a library model of the semantics of state-based behavior,
@@ -8,15 +8,19 @@ package StatePerformances {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Natural;
 	private import TransitionPerformances::TransitionPerformance;
+	private import Occurrences::Occurrence;
 	private import Occurrences::HappensDuring;
 	private import Transfers::Transfer;
+	private import Transfers::MessageTransfer;
 	private import Performances::Performance;
 	private import ControlPerformances::DecisionPerformance;
+	private import ControlFunctions::forAll;
+	private import ControlFunctions::select;
+	private import ControlFunctions::collect;
 	private import SequenceFunctions::*;
 	
 	behavior StatePerformance specializes DecisionPerformance {
 		feature isTriggerDuring: Boolean default true;
-		feature isAcceptFirst: Boolean default true;
 
 		abstract step middle[1..*] {
 			doc
@@ -38,20 +42,75 @@ package StatePerformances {
 
 		private succession entry[1] then middle[*];
 		private succession do.startShot[1] then nonDoMiddle.startShot[*];
-		private succession nonDoMiddle.endShot[*] then do.endShot[1];
 		private succession middle[*] then exit[1];
 
-		private inv { isEmpty(accepted) == isEmpty(acceptable) }
 
-		abstract feature acceptable: Transfer[*];
-		feature accepted: Transfer[0..1] subsets acceptable;
+		readonly feature incomingTransitionTrigger : MessageTransfer [0..1] default null {
+			doc
+			/*
+			 * Transfer that triggered a transition into this state performance. 
+			 */
+		}
+
+		private inv { isEmpty(accepted) == isEmpty(acceptable) }
+		feature accepted: Transfer[0..1] subsets acceptable {
+			doc
+			/* A transfer to the trigger target of an outgoing transition performance
+			 * for an outgoing successon that is taken for this state occurrence.
+			 */
+		}
+		feature deferrable: Transfer[0..*] subsets acceptable {
+			doc
+			/* Transfers to trigger targets of outgoing transition performances can be
+			 * considered for acceptance more than once.
+			 */
+		}
+		abstract feature acceptable: Transfer[*] {
+			doc
+			/*
+			 * Transfers that might be accepted. 
+			 */
+			feature thatSP : StatePerformance [1] = that as StatePerformance;
+			feature accableT : Transfer redefines self;
+			feature accT : Transfer = thatSP.accepted;
+			inv { accableT == accT | incomingTransferSort(accT, accableT) }  
+			inv { isDispatch implies
+				     allSubstatePerformances(dispatchScope)->forAll{in oSP : StatePerformance;						
+						  oSP == thatSP | isEmpty(oSP.accepted) |
+	   					  includes(thatSP.exit.startShot.successors, oSP.exit.startShot) |
+						  ( oSP.accepted != accableT & 
+							( incomingTransferSort(oSP.accepted, accableT) |
+							  includes(oSP.deferrable, accableT) ) ) } }
+		}
 		
-		private succession do[1] then accepted.endShot[0..1];
-		private feature afNum: Natural [1] =
-			if ( not isAcceptFirst | isEmpty(acceptable)) ? 0 else size(acceptable)-1;
-		private succession acceptFirst[afNum] first accepted.endShot[0..1] then acceptable.endShot[*];
+		function allSubstatePerformances {
+			in p : Performance [1];
+			feature substatePerformances: StatePerformance [*] =
+				p.subperformances->select{in subp:Performance; subp istype StatePerformance};
+			return  : StatePerformance [*] =
+				union(substatePerformances,  
+					  substatePerformances->collect{in sp:StatePerformance; allSubstatePerformances(sp) } );
+		}
 		
 		private succession acceptable[*] then exit[1];
+		
+		feature redefines isRunToCompletion default this.isRunToCompletion;
+		feature redefines runToCompletionScope default this.runToCompletionScope; 
+		inv { isRunToCompletion implies
+			     allSubtransitionPerformances(runToCompletionScope)->forAll{in tp : TransitionPerformance;
+				    includes(tp.successors, entry) | includes(tp.predecessors, entry) }
+		}
+		
+		function allSubtransitionPerformances {
+			in p : Performance [1];
+			feature subtransitionPerformances: TransitionPerformance [*] =
+	 			 p.subperformances->select{in subp:Performance;
+		 			   subp istype StateTransitionPerformance };
+			return  : TransitionPerformance [*] =
+				union(subtransitionPerformances,  
+		      		subtransitionPerformances->collect{in sp:TransitionPerformance; 
+							 		allSubtransitionPerformances(sp) } ); 
+ 		}
 	}
 	
 	behavior StateTransitionPerformance specializes TransitionPerformance {
@@ -63,8 +122,13 @@ package StatePerformances {
 			feature redefines StatePerformance::acceptable;
 		}
 		private succession transitionLinkSource.nonDoMiddle[*] then Performance::self[1];
+
+		private feature transitionLinkTarget [0..1] : Occurrence = transitionLink.laterOccurrence {
+			inv { (that istype StatePerformance) implies
+			      (that as StatePerformance).incomingTransitionTrigger == trigger }
+		}
 		
-		feature acceptable: Transfer [*] subsets transitionLinkSource.acceptable;
+		feature acceptable: Transfer [*] subsets transitionLinkSource.acceptable, triggerTarget.incomingTransfersToSelf;
 
 		feature trigger redefines TransitionPerformance::trigger subsets acceptable, transitionLinkSource.accepted {
 			feature redefines endShot;
@@ -73,7 +137,9 @@ package StatePerformances {
 		private feature tdNum: Natural [1] = if not isTriggerDuring ? 0 else size(trigger);
 		private connector linkTriggerDuring: HappensDuring[tdNum] from trigger.endShot[*] to transitionLinkSource[0..1];
 		
-		private succession all transitionLinkSource.middle[1..*] then guard[*];
+		private succession all acceptable[0..*] then guard[*];
 		private succession guard[*] then transitionLinkSource.exit[1];
+
+		private succession accept[accNum] then transitionLinkSource.exit[1];
 	}
 }

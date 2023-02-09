@@ -26,6 +26,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Item
  * Feature</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An ItemFeature is the <code>ownedFeature</code> of an ItemFlow that identifies the things carried by the kinds of transfers that are instances of the ItemFlow. It must redefine <code><em>Transfer::item</em></code>.</p>
+ * ownedRedefinition.redefinedFeature->
+ *     redefinesFromLibrary("Transfers::Transfer::item")
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFeature()
  * @model

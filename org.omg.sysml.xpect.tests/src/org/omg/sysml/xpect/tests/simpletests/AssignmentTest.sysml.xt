@@ -8,6 +8,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
        	File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ControlPerformances.kerml"}
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/FeatureReferencingPerformances.kerml"}
@@ -30,6 +31,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ControlPerformances.kerml"}
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/FeatureReferencingPerformances.kerml"}

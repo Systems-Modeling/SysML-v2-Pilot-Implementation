@@ -1,4 +1,4 @@
-package ImageMetadata {
+standard library package ImageMetadata {
 	doc
 	/*
 	 * This package provides attributive data and metadata to allow a model element to be
@@ -6,7 +6,7 @@ package ImageMetadata {
 	 * adorn graphical or textual renderings.
 	 */
 	 
-	import ScalarValues::String;
+	private import ScalarValues::String;
 	
 	attribute def Image {
 		doc

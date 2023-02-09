@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,6 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -34,13 +33,10 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class ActionUsageAdapter extends OccurrenceUsageAdapter {
-	
-	public static final String STATE_BASE = "States::StateAction";
-	public static final String TRANSITION_BASE = "Actions::TransitionAction";
-	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
 	
 	public ActionUsageAdapter(ActionUsage element) {
 		super(element);
@@ -60,9 +56,9 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		if (subactionType != null) {
 			addDefaultGeneralType(subactionType);
 		} 
-		if (isOwnedPerformance()) {
+		if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
-		} else if (isEnclosedPerformance()) {
+		} else if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
@@ -74,25 +70,13 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	@Override
 	protected boolean isSuboccurrence() {
-		return super.isSuboccurrence() && !isSubaction();
+		return super.isSuboccurrence() && !isActionOwnedComposite();
 	}
 	
 	protected String getSubactionType() {
-		return isSubaction()? "subaction": 
-			   isOwnedAction()? "ownedAction":
+		return isActionOwnedComposite()? "subaction": 
+			   isPartOwnedComposite()? "ownedAction":
 			   null;	
-	}
-		
-	public boolean isSubaction() {
-		ActionUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
-	}
-	
-	public boolean isOwnedAction() {
-		ActionUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);
 	}
 	
 	// Used in subclasses.
@@ -129,11 +113,14 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	protected static String getRedefinedFeature(Feature target) {
 		FeatureMembership membership = target.getOwningFeatureMembership();
-		return membership instanceof StateSubactionMembership?
-					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
-			   membership instanceof TransitionFeatureMembership? 
-					TRANSITION_BASE + "::" + TRANSITION_REDEFINED_FEATURES[((TransitionFeatureMembership)membership).getKind().getValue()]: 
-					null;
+		String kind = 
+				membership instanceof StateSubactionMembership?
+					((StateSubactionMembership)membership).getKind().toString():
+				membership instanceof TransitionFeatureMembership?
+					((TransitionFeatureMembership)membership).getKind().toString():
+				null;
+		return kind == null? null:
+			   ImplicitGeneralizationMap.getDefaultSupertypeFor(target.getClass(), kind);
 	}
 	
 }

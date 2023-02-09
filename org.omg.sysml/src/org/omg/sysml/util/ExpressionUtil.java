@@ -35,13 +35,11 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -52,6 +50,12 @@ public class ExpressionUtil {
 	private ExpressionUtil() {
 	}
 
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	public static Feature getSelfReferenceFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
+	
 	public static ExpressionAdapter getExpressionAdapter(Expression expression) {
 		return ((ExpressionAdapter)ElementUtil.getElementAdapter(expression));
 	}
@@ -97,13 +101,13 @@ public class ExpressionUtil {
 		} else {
 			List<Feature> metadataFeatures = new ArrayList<>(); 
 			metadataFeatures.addAll(ElementUtil.getAllMetadataFeaturesOf(element));
-			Feature metaclassFeature = getMetaclassFeatureFor(element);
+			Feature metaclassFeature = ElementUtil.getMetaclassFeatureFor(element);
 			if (metaclassFeature != null) {
 				metadataFeatures.add(metaclassFeature);
 			}
 			return conditions.stream().allMatch(cond->
-				metadataFeatures.isEmpty()? checkConditionOn(null, cond):
-				metadataFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
+				metadataFeatures.isEmpty()? cond.checkCondition(null):
+				metadataFeatures.stream().anyMatch(elem->cond.checkCondition(elem)));
 		}
 	}
 		
@@ -112,28 +116,23 @@ public class ExpressionUtil {
 			return true;
 		} else {
 			EList<Element> result = condition.evaluate(element);
-			return result == null || // If condition is ill-formed, ignore it.
-					result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
+			return result != null && result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
 					((LiteralBoolean)result.get(0)).isValue();
 		}
 	}
 	
+	/**
+	 * @deprecated Use {@link ElementUtil#getMetaclassFeatureFor(Element)} instead
+	 */
 	public static Feature getMetaclassFeatureFor(Element element) {
-		Type metaclass = getMetaclassOf(element);
-		if (metaclass == null) {
-			return null;
-		} else {
-			FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-			typing.setType(metaclass);
-			Feature metaclassFeature = SysMLFactory.eINSTANCE.createFeature();
-			metaclassFeature.getOwnedRelationship().add(typing);
-			return metaclassFeature;
-		}
+		return ElementUtil.getMetaclassFeatureFor(element);
 	}
 	
+	/**
+	 * @deprecated Use {@link ElementUtil#getMetaclassOf(Element)} instead
+	 */
 	public static Type getMetaclassOf(Element element) {
-		String metaclassName = element.eClass().getName();
-		return SysMLLibraryUtil.getLibraryType(element, "KerML::" + metaclassName, "SysML::" + metaclassName);
+		return ElementUtil.getMetaclassOf(element);
 	}
 	
 	public static InvocationExpression getInvocationExpressionFor(Expression argument) {
@@ -161,12 +160,6 @@ public class ExpressionUtil {
 
 	public static String[] getOperatorQualifiedNames(String op) {
 		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
-	}
-	
-	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
-	
-	public static Feature getSelfReferenceFeature(Element context) {
-		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
 	}
 	
 	public static Expression getResultExpressionOf(Type type) {

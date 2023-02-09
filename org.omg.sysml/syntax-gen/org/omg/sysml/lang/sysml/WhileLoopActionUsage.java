@@ -9,7 +9,26 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A WhileLoopActionUsage is a LoopActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>WhileLoopAction</em> from the Systems model library. It specifies that the <code>bodyClause</code> ActionUsage should be performed repeatedly while the result of the <code>whileArgument</code> Expression is true or until the result of the <code>untilArgument</code> Expression (if provided) is true. The <code>whileArgument</code> Expression is evaluated before each (possible) performance of the <code>bodyClause</code>, and the <code>untilArgument</code> Expression is evaluated after each performance of the <code>bodyClause</code>.</p>
+ * <p>A <code>WhileLoopActionUsage</code> is a <code>LoopActionUsage</code> that specifies that the <code>bodyClause</code> <code>ActionUsage</code> should be performed repeatedly while the result of the <code>whileArgument</code> <code>Expression</code> is true or until the result of the <code>untilArgument</code> <code>Expression</code> (if provided) is true. The <code>whileArgument</code> <code>Expression</code> is evaluated before each (possible) performance of the <code>bodyClause</code>, and the <code>untilArgument</code> <code>Expression</code> is evaluated after each performance of the <code>bodyClause</code>.</p>
+ * isSubactionUsage() implies
+ *     specializesFromLibrary('Actions::Action::whileLoops')
+ * untilArgument =
+ *     let parameter : Feature = inputParameter(3) in
+ *     if parameter <> null and parameter.oclIsKindOf(Expression) then
+ *         parameter.oclAsType(Expression)
+ *     else
+ *         null
+ *     endif
+ * 
+ * specializesFromLibrary('Actions::whileLoopActions')
+ * whileArgument =
+ *     let parameter : Feature = inputParameter(1) in
+ *     if parameter <> null and parameter.oclIsKindOf(Expression) then
+ *         parameter.oclAsType(Expression)
+ *     else
+ *         null
+ *     endif
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -30,7 +49,7 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. Derived as the owned Expression that redefines the <em><code>whileTest</code></em> parameter of the WhileLoopActionUsage.</p> 
+	 * <p>The <code>Expression</code> whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. It the owned <code>parameter</code> that redefines <em><code>WhileLoopAction::whileTest</code></em>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>While Argument</em>' reference.
@@ -58,7 +77,7 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. Derived as the owned Expression that redefines the <em><code>untilTest</code><em> </em></em>parameter of the WhileLoopActionUsage.</p> 
+	 * <p>The <code>Expression</code> whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. It is the owned <code>parameter</code> that redefines <em><code>WhileLoopAction::untilTest</code><em>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Until Argument</em>' reference.

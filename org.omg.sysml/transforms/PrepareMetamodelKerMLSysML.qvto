@@ -1,0 +1,67 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+import PrepareMetamodel;
+
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation PrepareMetamodelKerMLSysML(in export: UML, in standard: UML, out kerml: UML, out sysml: UML)
+	extends PrepareMetamodel;
+
+main() {
+	run()
+}
+
+helper run() {
+	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
+	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
+	
+	var kermlModel = object Model@kerml { 
+		name := "kerml";
+		URI := "https://www.omg.org/spec/KerML/" + version;
+	};
+	
+	var sysmlModel = object Model@sysml { 
+		name := "sysml";
+		URI := "https://www.omg.org/spec/SysML/" + version;
+	};
+	
+	mapModel(syntax, kermlModel, sysmlModel);
+	fixLiteralRational();	
+}
+
+helper mapModel(syntax : Package, kermlModel: Model, sysmlModel : Model) {
+	mapPackage(syntax, "Root", kermlModel);
+	mapPackage(syntax, "Core", kermlModel);
+	mapPackage(syntax, "Kernel", kermlModel);
+	mapPackage(syntax, "Systems", sysmlModel);
+	kermlModel.packagedElement[Package]->destroy();	
+	sysmlModel.packagedElement[Package]->destroy();	
+}
+
+helper mapPackage(syntax : Package, subpackageName : String, model : Model) {
+	var subpackage = syntax.packagedElement[Package]![name = subpackageName];
+	if subpackage <> null then {
+		subpackage.map Namespace(model);
+	} endif;
+}

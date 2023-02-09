@@ -1,7 +1,7 @@
 package MetadataTest {
 	import 'User Defined Extensions'::*;
 	
-	package 'User Defined Extensions' {
+	library package 'User Defined Extensions' {
 		
 		datatype ClassificationLevel :> ScalarValues::Natural;
 		feature uncl[1] : ClassificationLevel = 0;
@@ -28,5 +28,8 @@ package MetadataTest {
 		}
 		@Security;
 	}
+	
+	private #Classified #Security feature z1;
+	abstract #Classified z2;
 	
 }

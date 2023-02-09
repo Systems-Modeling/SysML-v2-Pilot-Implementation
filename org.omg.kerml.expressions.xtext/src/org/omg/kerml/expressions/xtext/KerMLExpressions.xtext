@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2023 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -31,7 +31,7 @@
 grammar org.omg.kerml.expressions.xtext.KerMLExpressions hidden(WS, ML_NOTE, SL_NOTE)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "http://www.omg.org/spec/SysML/2.0" as SysML
+import "https://www.omg.org/spec/SysML/20230201" as SysML
 
 /* EXPRESSIONS */
 
@@ -161,25 +161,54 @@ EqualityExpression returns SysML::Expression :
 ;
 
 EqualityOperator :
-	'==' | '!=' 
+	'==' | '!=' | '===' | '!=='
 ;
 
 // Classification Expressions
 
 ClassificationExpression returns SysML::Expression :
-	  RelationalExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	  RelationalExpression 
+	  ( {SysML::OperatorExpression.operand += current} 
+	  	operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
+	  | {SysML::OperatorExpression.operand += current}
+	    operator = CastOperator ownedRelationship += TypeResultMember
+	  )?
 	| {SysML::OperatorExpression} operand += SelfReferenceExpression 
-		operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	  operator = ClassificationTestOperator ownedRelationship += TypeReferenceMember
+	| {SysML::OperatorExpression} operand += MetadataReference
+	  operator = MetaClassificationTestOperator ownedRelationship += TypeReferenceMember
+	| {SysML::OperatorExpression} operand += SelfReferenceExpression 
+	  operator = CastOperator ownedRelationship += TypeResultMember
+	| {SysML::OperatorExpression} operand += MetadataReference
+	  operator = MetaCastOperator ownedRelationship += TypeResultMember
 ;
 
-ClassificationOperator :
-	'hastype' | 'istype' | '@' | 'as'
+ClassificationTestOperator :
+	'hastype' | 'istype' | '@'
+;
+
+MetaClassificationTestOperator :
+	'@@'
+;
+
+CastOperator :
+    'as'
+;
+
+MetaCastOperator :
+	'meta'
+;
+
+MetadataReference returns SysML::MetadataAccessExpression :
+	referencedElement = [SysML::Element | QualifiedName]
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
 	ownedRelatedElement += TypeReference
-	
+;
+
+TypeResultMember returns SysML::ReturnParameterMembership :
+	ownedRelatedElement += TypeReference
 ;
 
 TypeReference returns SysML::Feature :
@@ -263,7 +292,7 @@ UnaryOperator :
 // Extent Expressions
 
 ExtentExpression returns SysML::Expression :
-	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeReferenceMember
+	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeResultMember
 	| PrimaryExpression
 ;
 
@@ -316,6 +345,7 @@ BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| FeatureReferenceExpression 
+	| MetadataAccessExpression
 	| InvocationExpression 
 	| BodyExpression
 	| '(' SequenceExpression ')'
@@ -346,7 +376,7 @@ BodyParameterMember returns SysML::ParameterMembership :
 ;
 
 BodyParameter returns SysML::Feature :
-	name = Name
+	declaredName = Name
 ;
 
 // Sequence Expressions
@@ -367,6 +397,12 @@ FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
 
 FeatureReferenceMember returns SysML::Membership :
 	memberElement = [SysML::Feature | QualifiedName]
+;
+
+// Metadata Access Expressions
+
+MetadataAccessExpression returns SysML::MetadataAccessExpression :
+	referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
 ;
 
 // Invocation Expressions

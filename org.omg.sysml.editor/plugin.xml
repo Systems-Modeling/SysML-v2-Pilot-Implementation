@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated SysML -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.omg.sysml.lang.sysml.presentation.SysMLModelWizardID"
+            name="%_UI_SysMLModelWizard_label"
+            class="org.omg.sysml.lang.sysml.presentation.SysMLModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SysMLModelFile.gif">
+         <description>%_UI_SysMLModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated SysML -->
+      <editor
+            id="org.omg.sysml.lang.sysml.presentation.SysMLEditorID"
+            name="%_UI_SysMLEditor_label"
+            icon="icons/full/obj16/SysMLModelFile.gif"
+            extensions="sysml"
+            class="org.omg.sysml.lang.sysml.presentation.SysMLEditor"
+            contributorClass="org.omg.sysml.lang.sysml.presentation.SysMLActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,5 +1,4 @@
-
-package Base {
+standard library package Base {
 	doc 
 	/*
 	 * This package defines the classifiers and features that provide the bases for the typing
@@ -32,7 +31,7 @@ package Base {
 		feature self: DataValue redefines Anything::self;
 	}
 	
-	abstract feature things: Anything [0..*] nonunique {
+	abstract feature things: Anything [1..*] nonunique {
 		doc
 		/*
 		 * things is the top-level feature in the language.
@@ -88,7 +87,7 @@ package Base {
 	multiplicity zeroToMany [0..*] {
 		doc
 		/*
-		 * oneToMany is a multiplicity range allowing any cardinality of ozero or more
+		 * zeroToMany is a multiplicity range allowing any cardinality of zero or more
 		 * (that is, no restriction).
 		 */
 	}

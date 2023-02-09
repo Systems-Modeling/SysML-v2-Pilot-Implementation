@@ -8,7 +8,7 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
+import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import com.google.inject.Binder
 import com.google.inject.name.Names
 import org.eclipse.xtext.validation.CompositeEValidator
@@ -29,7 +29,7 @@ import org.eclipse.xtext.xbase.annotations.validation.DerivedStateAwareResourceV
 class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		KerMLQualifiedNameConverter
+		SysMLQualifiedNameConverter
 	}
 	
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {

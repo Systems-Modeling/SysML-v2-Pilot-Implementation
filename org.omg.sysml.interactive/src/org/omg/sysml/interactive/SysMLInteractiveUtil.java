@@ -16,8 +16,10 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -45,14 +47,17 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
-		String shortName = element.getShortName();
-		String name = nameOf(element);
-		buffer.append(indentation + 
-				relationshipTag + 
-				element.eClass().getName() + 
-				(shortName == null? "": " <" + shortName + ">") +
-				(name == null? "": " " + name) + 
-				" (" + element.getElementId() + ")\n");
+		buffer.append(indentation + relationshipTag + element.eClass().getName());		
+		if (EvaluationUtil.isMetaclassFeature(element)) {
+			formatElement(buffer, " ", ((MetadataFeature)element).getAnnotatedElement().get(0), "");
+		} else {		
+			String shortName = element.getDeclaredShortName();
+			String name = nameOf(element);
+			buffer.append(
+					(shortName == null? "": " <" + shortName + ">") +
+					(name == null? "": " " + name) + 
+					" (" + element.getElementId() + ")\n");
+		}
 	}
 	
 	public static String nameOf(Element element) {
@@ -61,7 +66,7 @@ public class SysMLInteractiveUtil {
 		} else if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
 			String name = "";
 			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
-				String nextName = chainingFeature.getEffectiveName();
+				String nextName = chainingFeature.getName();
 				if (nextName == null) {
 					nextName = "";
 				}
@@ -81,7 +86,7 @@ public class SysMLInteractiveUtil {
 				   element instanceof FeatureReferenceExpression? nameOf(((FeatureReferenceExpression)element).getReferent()):
 				   element instanceof OperatorExpression? ((OperatorExpression)element).getOperator():
 				   element instanceof InvocationExpression? nameOf(((InvocationExpression)element).getFunction()):
-				   element.getEffectiveName();
+				   element.getName();
 		}
 	}
 
@@ -155,10 +160,10 @@ public class SysMLInteractiveUtil {
 	}
 	
 	public static int compare(Element element1, Element element2) {
-		String humanId1 = element1.getShortName();
-		String humanId2 = element2.getShortName();
-		String name1 = element1.getEffectiveName();
-		String name2 = element2.getEffectiveName();
+		String humanId1 = element1.getDeclaredShortName();
+		String humanId2 = element2.getDeclaredShortName();
+		String name1 = element1.getName();
+		String name2 = element2.getName();
 		return name1 != null && name2 != null? name1.compareToIgnoreCase(name2):
 			   name1 == null && name2 != null? -1:
 			   name1 != null && name2 == null? 1:

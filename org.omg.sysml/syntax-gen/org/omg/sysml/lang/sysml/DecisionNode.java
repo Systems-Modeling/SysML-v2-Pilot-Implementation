@@ -29,10 +29,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A DecisionNode is a ControlNode that makes a selection from its outgoing Successions. All outgoing Successions must be must have a target multiplicity of 0..1 and subset the Feature <em><code>DecisionAction::outgoingHBLink</code></em>. A DecisionNode may have at most one incoming Succession.</p>
- * 
- * <p>A DecisionNode must subset, directly or indirectly, the ActionUsage <em><code>Action::decisions</code></em>, implying that it is typed by <code><em>DecisionAction</em></code> from the Systems model library (or a subtype of it).</p>
- * 
+ * <p>A <code>DecisionNode</code> is a <code>ControlNode</code> that makes a selection from its outgoing <code>Successions</code>.</p>
+ * targetConnector->selectByKind(Succession)->size() <= 1
+ * sourceConnector->selectAsKind(Succession)->
+ *     collect(connectorEnd->at(2))->
+ *     forAll(targetMult |
+ *         multiplicityHasBounds(targetMult, 0, 1))
+ * specializesFromLibrary("Actions::Action::decisions")
+ * sourceConnector->selectByKind(Succession)->
+ *     forAll(subsetsChain(this, 
+ *         resolveGlobal("ControlPerformances::MergePerformance::outgoingHBLink")))
  * <!-- end-model-doc -->
  *
  *

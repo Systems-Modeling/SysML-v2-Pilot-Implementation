@@ -27,12 +27,9 @@ package org.omg.sysml.lang.sysml;
  * Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A NullExpression is an&nbsp;Expression that results in a null value. It must be typed by a <em>NullEvaluation</em> that results in an empty value.</p>
+ * <p>A NullExpression is an Expression that results in a null value. It must be typed by a <code><em>NullEvaluation</em></code> that results in an empty value.</p>
  * 
- * <p>An Expression that results in a null value.</p>
- * 
- * <p>A NullExpression must be typed by a NullEvaluation which results in an empty value.</p>
- * isModelLevelEvaluable = true
+ * specializesFromLibrary("Performances::nullEvaluations")
  * <!-- end-model-doc -->
  *
  *

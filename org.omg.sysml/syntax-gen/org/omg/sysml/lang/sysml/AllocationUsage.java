@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>An AllocationUsage is a usage of an AllocationDefinition asserting the allocation of the <code>source</code> feature to the <code>target</code> feature.</p>
  * 
  * <p>An AllocationUsage must subset, directly or indirectly, the base AllocatopnUsage <code>allocations</code> from the Systems model library.</p>
+ * specializesFromLibrary("Allocations::allocations")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,7 +44,7 @@ public interface AllocationUsage extends ConnectionUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Allocation Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAllocationUsage_AllocationDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAllocation'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

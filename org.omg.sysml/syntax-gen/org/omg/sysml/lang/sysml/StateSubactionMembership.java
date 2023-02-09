@@ -29,7 +29,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A StateSubactionMembership is a FeatureMembership for an entry, do or exit ActionUsage of a StateDefinition or StateUsage. The <code>ownedMemberFeature</code> of a StateSubactionMembership must be an ActionUsage.</p>
+ * <p>A <code>StateSubactionMembership</code> is a <code>FeatureMembership</code> for an entry, do or exit <code>ActionUsage<code> of a <code>StateDefinition</code> or <code>StateUsage</code>.</p>
+ * owningType.oclIsKindOf(StateDefinition) or
+ * owningType.oclIsKindOf(StateUsage)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -51,7 +53,7 @@ public interface StateSubactionMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this StateSubactionMembership is for an entry, do or exit ActionUsage.</p>
+	 * <p>Whether this <code>StateSubactionMembership</code> is for an <code>entry<code>, <code>do</code> or <code>exit</code> <code>ActionUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.StateSubactionKind
@@ -84,7 +86,7 @@ public interface StateSubactionMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage that is the <tt>ownedMemberFeature</tt> of this StateSubactionMembership.</p>
+	 * <p>The <code>ActionUsage</code> that is the <code>ownedMemberFeature</code> of this <code>StateSubactionMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action</em>' reference.
 	 * @see #setAction(ActionUsage)

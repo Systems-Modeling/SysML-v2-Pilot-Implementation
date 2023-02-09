@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +30,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -194,6 +197,51 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	public boolean isSetOwnedMember() {
   		return false;
 	}
+	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean hasBounds(int lower, int upper) {
+		if (valueOf(getUpperBound()) != upper) {
+			return false;
+		} else {
+			int lowerValue = valueOf(getLowerBound());
+			return lowerValue == lower ||
+				   lowerValue < -1 &&
+				   		(lower == upper || lower == 0 && upper == -1);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public int valueOf(Expression bound) {
+		if (bound != null && bound.isModelLevelEvaluable()) {
+			EList<Element> boundEval = bound.evaluate(getOwningNamespace());
+			if (boundEval.size() == 1) {
+				Element valueEval = boundEval.get(0);
+				if (valueEval instanceof LiteralInfinity) {
+					// Return -1 to represent "*".
+					return -1;
+				} else if (valueEval instanceof LiteralInteger) {
+					int value = ((LiteralInteger)valueEval).getValue();
+					if (value >= 0) {
+						return value;
+					}
+				}
+			}
+		}
+		// Return -2 to represent a "null" result.
+		return -2;
+	}
+
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,6 +317,22 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 				return UPPER_BOUND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.MULTIPLICITY_RANGE___HAS_BOUNDS__INT_INT:
+				return hasBounds((Integer)arguments.get(0), (Integer)arguments.get(1));
+			case SysMLPackage.MULTIPLICITY_RANGE___VALUE_OF__EXPRESSION:
+				return valueOf((Expression)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //MultiplicityRangeImpl

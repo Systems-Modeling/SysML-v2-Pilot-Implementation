@@ -30,6 +30,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An OperatorExpression is an InvocationExpression whose <code>function</code> is determined by resolving its <code>operator</code> in the context of one of the standard Function packages from the Kernel Model Library.</p>
+ * let libFunctions : Sequence(Element) = 
+ *     Sequence{"BaseFunctions", "DataFunctions", "ControlFunctions"}->
+ *     collect(ns | resolveGlobal(ns + "::'" + operator + "'")) in
+ * libFunctions->includes(function)
+ *     
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -81,13 +87,9 @@ public interface OperatorExpression extends InvocationExpression {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <strong>Implementation note.</strong> This property is currently just an implementation workaround and is not part of the normative abstract syntax.
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
 	 * @model containment="true" transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
 	 * @generated
 	 */
 	EList<Expression> getOperand();

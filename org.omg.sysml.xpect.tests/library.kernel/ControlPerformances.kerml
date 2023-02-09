@@ -1,4 +1,4 @@
-package ControlPerformances {
+standard library package ControlPerformances {
 	doc
 	/*
 	 * This package defines Behaviors to be used to type Steps that control the sequencing of performance
@@ -30,6 +30,8 @@ package ControlPerformances {
 			 * Specializations subset this by all
 			 * successions going out of a decision step.
 			 */
+
+			 feature redefines earlierOccurrence subsets that;
 		}
 	}
 	
@@ -49,6 +51,8 @@ package ControlPerformances {
 			 * Specializations subset this by all
 			 * successions coming into a merge step.
 			 */
+
+			 feature redefines laterOccurrence subsets that;
 		}
 	}
 

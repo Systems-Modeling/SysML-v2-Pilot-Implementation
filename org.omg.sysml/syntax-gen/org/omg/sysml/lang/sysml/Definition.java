@@ -40,6 +40,8 @@ import org.eclipse.emf.common.util.EList;
  * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
  * not isVariation implies variantMembership->isEmpty()
+ * isVariation implies
+ *     not ownedSpecialization.specific->exists(isVariation)
  * <!-- end-model-doc -->
  *
  * <p>

@@ -24,6 +24,8 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -40,6 +42,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -243,16 +246,44 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean modelLevelEvaluable(EList<Feature> visited) {
+		List<Feature> parameters = TypeUtil.getAllParametersOf(this);
+		if (!parameters.stream().allMatch(
+				param->directionOf(param) == FeatureDirectionKind.IN && 
+				FeatureUtil.getValuationFor(param) == null)) {
+			return false;
+		} else {
+			Expression resultExpression = ExpressionUtil.getResultExpressionOf(this);
+			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
+		}
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public EList<Element> evaluate(Element target) {
 		return new BasicEList<>();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkCondition(Element target) {
+		return ExpressionUtil.checkConditionOn(target, this);
+	}
+
 	// Other
 
 	@Override
@@ -368,10 +399,15 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST:
+				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
+			case SysMLPackage.EXPRESSION___CHECK_CONDITION__ELEMENT:
+				return checkCondition((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -32,8 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A ConnectionDefinition is a PartDefinition that is also an AssociationStructure, with two or more end features. The <code>associationEnds</code> of a ConnectionDefinition must be Usages.</p>
- * 
- * <p>A ConnectionDefinition must subclass, directly or indirectly, the base ConnectionDefinition <em><code>Connection</code></em> from the Systems model library.</p>
+ * specializesFromLibrary("Connections::Connection")
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Connections::BinaryConnections")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -65,7 +66,7 @@ public interface ConnectionDefinition extends PartDefinition, AssociationStructu
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectionDefinition_ConnectionEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionDefinitionWithEnd'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

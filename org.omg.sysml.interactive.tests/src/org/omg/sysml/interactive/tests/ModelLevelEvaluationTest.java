@@ -41,7 +41,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
@@ -126,7 +126,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		
 		Element metadataFeature = ((Namespace)target).getOwnedMembership().get(0).getMemberElement();
 		assertTrue(metadataFeature instanceof MetadataFeature);		
-		assertTrue(annotationName.equals(((MetadataFeature)metadataFeature).getMetaclass().getName()));
+		assertTrue(annotationName.equals(((MetadataFeature)metadataFeature).getMetaclass().getDeclaredName()));
 		
 		return (MetadataFeature)metadataFeature;
 	}
@@ -135,7 +135,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		Element target = instance.resolve(elementName);
 		assertNotNull(target);
 		
-		Feature metaclassFeature = ExpressionUtil.getMetaclassFeatureFor(target);
+		Feature metaclassFeature = ElementUtil.getMetaclassFeatureFor(target);
 		assertNotNull(metaclassFeature);
 		
 		return metaclassFeature;
@@ -238,6 +238,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(2.0d * 3.0d, evaluateRealValue(null, null, "2.0 * 3"), 0);
 		assertEquals(2.0d/3.0d, evaluateRealValue(null, null, "2.0 / 3"), 0);
 		assertEquals(4.0d, evaluateRealValue(null, null, "2.0 ** 2"), 0);
+		assertEquals(4.0d, evaluateRealValue(null, null, "2.0 ^ 2"), 0);
 	}
 	
 	@Test
@@ -248,6 +249,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(true, evaluateBooleanValue(null, null, "2 >= 2"));
 		assertEquals(true, evaluateBooleanValue(null, null, "2 == 2"));
 		assertEquals(false, evaluateBooleanValue(null, null, "2 != 2"));
+		assertEquals(true, evaluateBooleanValue(null, null, "2 === 2"));
+		assertEquals(false, evaluateBooleanValue(null, null, "2 !== 2"));
 
 		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" < \"b\""));
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" > \"b\""));
@@ -255,6 +258,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" >= \"b\""));
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" == \"b\""));
 		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" != \"b\""));
+		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" === \"b\""));
+		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" !== \"b\""));
 	}
 	
 	@Test
@@ -343,6 +348,52 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertFalse(evaluateBooleanValue(instance, 
 				checkMetaclassFeature(instance, "p"), 
 				"@SysML::AttributeUsage"));
+
+		assertTrue(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"hastype SysML::PartUsage"));
+		assertFalse(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"hastype SysML::ItemUsage"));
+	}
+	
+	@Test
+	public void testReflectiveAccess() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, "abstract part def P { attribute x; }");
+		
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[1] istype SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P @@ SysML::PartDefinition"));
+		assertEquals("P", evaluateStringValue(instance, null, "P.metadata.annotatedElement.name[1]"));
+		assertEquals("P", evaluateStringValue(instance, null, "(P.metadata as KerML::Element).name"));
+		assertEquals("P", evaluateStringValue(instance, null, "(P meta KerML::Element).name"));
+		assertTrue(evaluateBooleanValue(instance, null, "(P.metadata as SysML::PartDefinition).isAbstract"));
+		assertTrue(evaluateBooleanValue(instance, null, "(P meta SysML::PartDefinition).isAbstract"));
+		assertEquals("x", evaluateStringValue(instance, null, "(P meta SysML::PartDefinition).ownedAttribute.name"));
+		assertEquals("PartDefinition", evaluateStringValue(instance, null, "(SysML::PartDefinition meta KerML::Element).name"));
+	}
+
+	@Test
+	public void testMetadataAccess() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, "metadata def M1 { attribute a; }" +
+						  "metadata def M2;" +
+						  "abstract part def P { @M1 { a = 1; } @M2; }");
+		
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[1] istype M1"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[2] istype M2"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[3] istype SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ M1"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ M2"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P @@ M1"));
+		assertTrue(evaluateBooleanValue(instance, null, "P @@ M2"));
+		assertTrue(evaluateBooleanValue(instance, null, "P @@ SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P @@ KerML::Element"));
+		assertEquals("P", evaluateStringValue(instance, null, "P.metadata.annotatedElement.name[1]"));
+		assertEquals(1, evaluateIntegerValue(instance, null, "(P.metadata as M1).a"));
+		assertEquals(1, evaluateIntegerValue(instance, null, "(P meta M1).a"));
 	}
 
 }

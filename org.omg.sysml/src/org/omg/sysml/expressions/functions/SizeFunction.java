@@ -36,7 +36,8 @@ public class SizeFunction extends SequenceFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
-		return list == null? null: EvaluationUtil.integerResult(list.size());
+		return list == null? EvaluationUtil.singletonList(invocation): 
+			EvaluationUtil.integerResult(list.size());
 	}
 
 }

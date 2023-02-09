@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package Classes {
-	// XPECT errors ---> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_Private::'." at "VisibilityPackage::c_Private::"
+	// XPECT errors ---> "Couldn't resolve reference to Membership 'VisibilityPackage::c_Private::c_private'." at "VisibilityPackage::c_Private::c_private"
 	import VisibilityPackage::c_Private::c_private;
 	classifier Try{
 		// XPECT errors ---> "Couldn't resolve reference to Type 'c_private'." at "c_private"

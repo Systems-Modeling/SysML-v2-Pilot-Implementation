@@ -9,7 +9,6 @@ import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureMembership
-import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.LiteralString
 import org.omg.sysml.lang.sysml.Membership
@@ -44,6 +43,9 @@ import org.omg.sysml.lang.sysml.Disjoining
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.FeatureInverting
+import org.omg.sysml.lang.sysml.LibraryPackage
+import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.NamespaceImport
 
 /**
  * Customization of the default outline structure.
@@ -53,17 +55,21 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
-		element?.eClass.name
+		var text = element?.eClass.name
+		if (element.isLibraryElement) {
+			text += ' lib'
+		}
+		text
 	}
 	
 	def String idText(Element element) {
 		var text = ""
-		if (element?.shortName !== null) {
-			text += ' <' + element.shortName + '>'
+		if (element?.declaredShortName !== null) {
+			text += ' <' + element.declaredShortName + '>'
 		}
-		val name = element?.getEffectiveName;
+		val name = element?.getName
 		if (name !== null) {
-			text += ' ' + name;
+			text += ' ' + name
 		}
 		text
 	}
@@ -89,60 +95,63 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' owns'
 		}
 		if (membership.visibility !== null) {
-			text += ' ' + membership.visibility._text;
+			text += ' ' + membership.visibility._text
 		}
 		text
 	}
 	
 	def String nameText(Membership membership) {
-		var text = ""
+		var text = ''
 		val shortName = membership.memberShortName
 		if (shortName !== null) {
 			text += ' <' + shortName + '>'
 		}
-		val name = membership.memberName;
+		val name = membership.memberName
 		if (name !== null) {
-			text += ' ' + name;
+			text += ' ' + name
 		}
 		text
 	}
 	
 	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
+		membership.prefixText + membership.nameText
 	}
 	
 	def String _text(FeatureValue featureValue) {
-		var text = featureValue.metaclassText;
+		var text = featureValue.metaclassText
 		if (featureValue.isDefault) {
-			text += ' default';
+			text += ' default'
 		}
 		if (featureValue.isInitial) {
-			text += ' initial';
+			text += ' initial'
 		}
 		text
 	}	
 	
-	def String _text(Import import_) {
+	def String _text(MembershipImport import_) {
 		var text = import_.metaclassText
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
-		var imp = import_
-		if (import_.importedNamespace?.owningRelationship === import_) {
-			if (!import_.importedNamespace.ownedImport.isEmpty) {
-				imp = import_.importedNamespace.ownedImport.get(0)
-				text = text + ' filter'
-			}
+		if (import_.importedMembership?.memberName !== null) {
+			text += ' ' + import_.importedMembership.memberName
 		}
-		if (imp.importedNamespace?.name !== null) {
-			text += ' ' + imp.importedNamespace.name
+		if (import_.isRecursive) {
+			text += "::**"
 		}
-		if (imp.importedMemberName === null) {
-			text += "::*"
-		} else {
-			text += "::" + imp.importedMemberName
+		text
+	}
+	
+	def String _text(NamespaceImport import_) {
+		var text = import_.metaclassText
+		if (import_.visibility !== null) {
+			text += ' ' + import_.visibility._text
 		}
-		if (imp.isRecursive) {
+		if (import_.importedNamespace?.declaredName !== null) {
+			text += ' ' + import_.importedNamespace.declaredName
+		}
+		text += "::*"
+		if (import_.isRecursive) {
 			text += "::**"
 		}
 		text
@@ -152,9 +161,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var text = type.metaclassText
 		if (type.isAbstract) {
 			text += ' abstract'
-		}
-		if (type.shortName !== null) {
-			text += ' <' + type.shortName + '>'
 		}
 		text
 	}
@@ -242,6 +248,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String _text(NullExpression expression) {
 		expression.metaclassText + ' null'
+	}
+	
+	def String _text(LibraryPackage pkg) {
+		var prefixText = pkg.metaclassText
+		if (pkg.isStandard) {
+			prefixText += ' std'
+		}
+		prefixText + pkg.idText
 	}
 	
 	def boolean _isLeaf(Relationship relationship) {
@@ -342,11 +356,25 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		_createChildren(parentNode, membership as Membership)
 	}
 	
-	def boolean _isLeaf(Import _import) {
-		_import.importedNamespace === null && _import.ownedElement.isEmpty
+	def boolean _isLeaf(MembershipImport _import) {
+		_import.importedMembership === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Import _import) {
+	def void _createChildren(IOutlineNode parentNode, MembershipImport _import) {
+		super._createChildren(parentNode, _import)
+		var importedMembership = _import.importedMembership;
+		if (importedMembership !== null) {
+			createNode(parentNode, importedMembership, 
+				importedMembership._image, importedMembership._text, true
+			)
+		}
+	}
+	
+	def boolean _isLeaf(NamespaceImport _import) {
+		_import.importedNamespace === null && _import.ownedRelatedElement.isEmpty
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, NamespaceImport _import) {
 		super._createChildren(parentNode, _import)
 		var importedNamespace = _import.importedNamespace;
 		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {
@@ -585,7 +613,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		createNode(parentNode, modelElement, image, text.toString, isLeaf);
 	}
 	
-	private def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
+	protected def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
 			boolean isLeaf) {
 		if (modelElement.eResource !== null) {
 			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)

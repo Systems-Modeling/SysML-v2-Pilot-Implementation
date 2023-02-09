@@ -2,7 +2,7 @@
 <feature
       id="org.omg.sysml.feature"
       label="SysML v2 Feature"
-      version="0.28.0.qualifier"
+      version="0.32.0.qualifier"
       provider-name="SysML v2 Submission Team">
 
    <description url="http://www.example.com/description">
@@ -10,26 +10,19 @@
    </description>
 
    <copyright>
-      Copyright (c) 2019-2020 Model Driven Solutions, Inc.
-Copyright (c) 2019-2020 California Institute of Technology (Jet Propulsion
-Laboratory)
-Copyright (c) 2019-2020 IncQuery Labs Ltd.
-Copyright (c) 2019-2020 Itemis
-Copyright (c) 2019-2020 Maplesoft (Waterloo Maple, Inc.)
-Copyright (c) 2019-2020 Mgnite Inc.
+      Copyright (c) 2019-2023 Model Driven Solutions, Inc.
+Copyright (c) 2019-2023 California Institute of Technology (Jet
+Propulsion Laboratory)
+Copyright (c) 2019-2023 IncQuery Labs Ltd.
+Copyright (c) 2019-2023 Itemis
+Copyright (c) 2019-2023 Maplesoft (Waterloo Maple, Inc.)
+Copyright (c) 2019-2023 Mgnite Inc.
    </copyright>
 
    <license url="">
       SysML v2 Pilot Implementation Licensing Agreement
 
-Copyright (c) 2019-2020 Model Driven Solutions, Inc.
-Copyright (c) 2019-2020 California Institute of Technology (Jet Propulsion Laboratory)
-Copyright (c) 2019-2020 IncQuery Labs Ltd.
-Copyright (c) 2019-2020 Itemis
-Copyright (c) 2019-2020 Maplesoft (Waterloo Maple, Inc.)
-Copyright (c) 2019-2020 Mgnite Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use and redistribute the Software and to permit persons to whom the Software is furnished to do so, subject to the conditions that the above copyright notice and this permission notice shall be included in all copies of the Software. No permission is granted to modify, merge, and/or sell copies of the Software, or to create derivative works based on the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use and redistribute the Software and to permit persons to whom the Software is furnished to do so, subject to the conditions that the copyright notice and this permission notice shall be included in all copies of the Software. No permission is granted to modify, merge, and/or sell copies of the Software, or to create derivative works based on the Software.
 
 THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    </license>
@@ -99,6 +92,13 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
    <plugin
          id="org.omg.kerml.expressions.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.omg.sysml.execution"
          download-size="0"
          install-size="0"
          version="0.0.0"

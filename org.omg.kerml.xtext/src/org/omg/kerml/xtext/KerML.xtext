@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2023 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -31,7 +31,7 @@
 grammar org.omg.kerml.xtext.KerML with org.omg.kerml.expressions.xtext.KerMLExpressions
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "http://www.omg.org/spec/SysML/2.0" as SysML
+import "https://www.omg.org/spec/SysML/20230201" as SysML
 
 /* ROOT NAMESPACE */
 
@@ -44,56 +44,11 @@ RootNamespace returns SysML::Namespace :
 /* Elements */
 
 fragment Identification returns SysML::Element :
-	  '<' shortName = Name '>' ( name = Name )?
-	| name = Name
-;
-
-Element returns SysML::Element :
-    'element' Identification? ElementBody
-;
-
-fragment ElementBody returns SysML::Element :
-    ';' | '{' OwnedElement* '}'
-;
-
-fragment OwnedElement returns SysML::Element :
-      ownedRelationship += OwnedRelationship
-    | ownedRelationship += OwnedAnnotation
+	  '<' declaredShortName = Name '>' ( declaredName = Name )?
+	| declaredName = Name
 ;
 
 /* Relationships */
-
-Relationship returns SysML::Relationship :
-    'relationship' Identification?
-    RelationshipRelatedElements
-    RelationshipBody
-;
-
-OwnedRelationship returns SysML::Relationship :
-    'relationship' Identification?
-    ( 'to' RelationshipTargetList )?
-    RelationshipBody
-;
-
-fragment RelationshipRelatedElements returns SysML::Relationship :
-      ('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
-;
-
-fragment RelationshipSourceList returns SysML::Relationship :
-    RelationshipSource ( ',' RelationshipSource )*
-;
-
-fragment RelationshipSource returns SysML::Relationship :
-    source += [SysML::Element | QualifiedName]
-;
-
-fragment RelationshipTargetList returns SysML::Relationship :
-    RelationshipTarget ( ',' RelationshipTarget )*
-;
-
-fragment RelationshipTarget returns SysML::Relationship :
-    target += [SysML::Element | QualifiedName]
-;
 
 fragment RelationshipBody returns SysML::Relationship :
     ';' | '{' RelationshipOwnedElement* '}'
@@ -106,6 +61,16 @@ fragment RelationshipOwnedElement returns SysML::Relationship:
 
 OwnedRelatedElement returns SysML::Element :
     NonFeatureElement | FeatureElement
+;
+
+/* DEPENDENCIES */
+
+Dependency returns SysML::Dependency :
+	( ownedRelationship += PrefixMetadataAnnotation )*
+	'dependency' ( Identification? 'from' )?
+    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
+    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )*
+    RelationshipBody
 ;
 
 /* ANNOTATIONS */
@@ -150,6 +115,7 @@ TextualRepresentation returns SysML::TextualRepresentation :
 /* NAMESPACES */
 
 Namespace returns SysML::Namespace :
+	( ownedRelationship += PrefixMetadataMember )*
 	NamespaceDeclaration NamespaceBody
 ;
 
@@ -198,21 +164,35 @@ AliasMember returns SysML::Membership :
 	RelationshipBody
 ;
 
-Import returns SysML::Import :
+fragment ImportPrefix returns SysML::Import :
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
-	( ImportedNamespace | ImportedFilterPackage )
+;
+
+Import returns SysML::Import :
+	( MembershipImport | NamespaceImport )
 	RelationshipBody
 ;
 
-fragment ImportedNamespace returns SysML::Import :
-	( importedNamespace = [SysML::Namespace|Qualification] )?
-	( importedMemberName = Name | '*' )
-	( '::' isRecursive ?= '**' )?
+MembershipImport returns SysML::MembershipImport :
+	ImportPrefix ImportedMembership
 ;
 
-fragment ImportedFilterPackage returns SysML::Import :
-	ownedRelatedElement += FilterPackage
+fragment ImportedMembership returns SysML::MembershipImport :
+	importedMembership = [SysML::Membership|QualifiedName]
+	( '::' isRecursive ?= '**' )?	
+;
+
+NamespaceImport returns SysML::NamespaceImport :
+	ImportPrefix 
+	( ImportedNamespace
+	| ownedRelatedElement += FilterPackage
+	)
+;
+
+fragment ImportedNamespace returns SysML::NamespaceImport :
+	importedNamespace = [SysML::Namespace|QualifiedName] '::' '*'
+	( '::' isRecursive ?= '**' )?
 ;
 
 FilterPackage returns SysML::Package :
@@ -221,11 +201,19 @@ FilterPackage returns SysML::Package :
 ;
 
 FilterPackageImport returns SysML::Import :
+	 FilterPackageMembershipImport | FilterPackageNamespaceImport
+;
+
+FilterPackageMembershipImport returns SysML::MembershipImport :
+	ImportedMembership
+;
+
+FilterPackageNamespaceImport returns SysML::NamespaceImport :
 	ImportedNamespace
 ;
 
 FilterPackageMember returns SysML::ElementFilterMembership :
-	visibility = FilterPackageMemberVisibility ownedRelatedElement += OwnedExpression ']' // condition = OwnedExpression ']'
+	visibility = FilterPackageMemberVisibility ownedRelatedElement += OwnedExpression ']'
 ;
 
 enum FilterPackageMemberVisibility returns SysML::VisibilityKind :
@@ -243,10 +231,10 @@ MemberElement returns SysML::Element :
 ;
 
 NonFeatureElement returns SysML::Element :
-	  Element
-	| Relationship
+	  Dependency
 	| Namespace
-	| Package 
+	| Package
+	| LibraryPackage 
 	| Multiplicity
 	| Type
 	| Classifier 
@@ -287,7 +275,14 @@ FeatureElement returns SysML::Feature :
 /* PACKAGES */
 
 Package returns SysML::Package :
+	( ownedRelationship += PrefixMetadataMember )*
 	PackageDeclaration PackageBody 
+;
+
+LibraryPackage returns SysML::LibraryPackage :
+	( isStandard ?= 'standard' )? 'library'
+	( ownedRelationship += PrefixMetadataMember )*
+	PackageDeclaration PackageBody
 ;
 
 fragment PackageDeclaration returns SysML::Package :
@@ -314,8 +309,13 @@ ElementFilterMember returns SysML::ElementFilterMembership :
 
 /* Types */
 
+fragment TypePrefix returns SysML::Type :
+	( isAbstract ?= 'abstract' )? 
+	( ownedRelationship += PrefixMetadataMember )*
+;
+
 Type returns SysML::Type :
-    ( isAbstract ?= 'abstract' )? 'type' 
+    TypePrefix 'type' 
     TypeDeclaration TypeBody
 ;
 
@@ -459,7 +459,7 @@ Differencing returns SysML::Differencing :
 /* Classifiers */
 
 Classifier returns SysML::Classifier :
-	( isAbstract ?= 'abstract' )? 'classifier' 
+	TypePrefix 'classifier' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -502,6 +502,10 @@ ClassifierConjugation returns SysML::Conjugation :
 
 /* Features */
 
+enum FeatureDirection returns SysML::FeatureDirectionKind:
+	in = 'in' | out = 'out' | inout = 'inout'
+;
+
 fragment FeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
@@ -509,15 +513,15 @@ fragment FeaturePrefix returns SysML::Feature :
 	( isReadOnly ?= 'readonly' )?
 	( isDerived ?= 'derived' )?
 	( isEnd ?= 'end' )?
-;
-
-enum FeatureDirection returns SysML::FeatureDirectionKind:
-	in = 'in' | out = 'out' | inout = 'inout'
+	( ownedRelationship += PrefixMetadataMember )*
 ;
 
 Feature returns SysML::Feature :
-	FeaturePrefix 
-	( 'feature'? FeatureDeclaration | 'feature' ) 
+	FeaturePrefix
+	( 'feature'? FeatureDeclaration
+	| ownedRelationship += PrefixMetadataMember
+	| 'feature'
+	) 
 	ValuePart? TypeBody
 ;
 
@@ -785,21 +789,21 @@ MultiplicityExpressionMember returns SysML::OwningMembership :
 /* Data Types */
 
 DataType returns SysML::DataType :
-	( isAbstract ?= 'abstract' )? 'datatype' 
+	TypePrefix 'datatype' 
 	ClassifierDeclaration TypeBody
 ;
 
 /* Classes */
 
 Class returns SysML::Class :
-	( isAbstract ?= 'abstract' )? 'class' 
+	TypePrefix 'class' 
 	ClassifierDeclaration TypeBody
 ;
 
 /* STRUCTURES */
 
 Structure returns SysML::Structure :
-	( isAbstract ?= 'abstract' )? 'struct' 
+	TypePrefix 'struct' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -807,12 +811,12 @@ Structure returns SysML::Structure :
 /* ASSOCIATIONS */
 
 Association returns SysML::Association :
-	( isAbstract ?= 'abstract' )? 'assoc' 
+	TypePrefix 'assoc' 
 	ClassifierDeclaration TypeBody
 ;
 
 AssociationStructure returns SysML::AssociationStructure :
-	( isAbstract ?= 'abstract' )? 'assoc' 'struct'
+	TypePrefix 'assoc' 'struct'
 	ClassifierDeclaration TypeBody
 ;
 
@@ -848,7 +852,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ReferencesKeyword )? 
+	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
@@ -861,9 +865,12 @@ BindingConnector returns SysML::BindingConnector :
 ;
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
-	( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-	ownedRelationship += ConnectorEndMember '=' 
-	ownedRelationship += ConnectorEndMember
+	  FeatureDeclaration
+	  ( 'of' ownedRelationship += ConnectorEndMember 
+	    '=' ownedRelationship += ConnectorEndMember )?
+	| ( isSufficient ?= 'all' )?
+	  ( 'of'? ownedRelationship += ConnectorEndMember 
+	    '=' ownedRelationship += ConnectorEndMember )?
 ;
 
 /* Successions */
@@ -874,9 +881,12 @@ Succession returns SysML::Succession :
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
-	( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-	ownedRelationship += ConnectorEndMember 'then' 
-	ownedRelationship += ConnectorEndMember
+	  FeatureDeclaration
+	  ( 'first' ownedRelationship += ConnectorEndMember 
+	    'then' ownedRelationship += ConnectorEndMember )?
+    | ( isSufficient ?= 'all' )?
+	  ( 'first'? ownedRelationship += ConnectorEndMember 
+	    'then' ownedRelationship += ConnectorEndMember )?
 ;
 
 /* BEHAVIORS */
@@ -884,7 +894,7 @@ fragment SuccessionDeclaration returns SysML::Succession :
 /* Behaviors */
 
 Behavior returns SysML::Behavior :
-	( isAbstract ?= 'abstract')? 'behavior' 
+	TypePrefix 'behavior' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -904,7 +914,7 @@ fragment StepDeclaration returns SysML::Step :
 /* Functions */
 
 Function returns SysML::Function :
-	( isAbstract ?= 'abstract' )? 'function' 
+	TypePrefix 'function' 
 	ClassifierDeclaration FunctionBody  
 ;
 
@@ -946,7 +956,7 @@ fragment ExpressionDeclaration returns SysML::Expression :
 /* Predicates */
 
 Predicate returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' 
+	TypePrefix 'predicate' 
 	ClassifierDeclaration FunctionBody  
 ;
 
@@ -969,7 +979,7 @@ Invariant returns SysML::Invariant :
 /* Interactions */
 
 Interaction returns SysML::Interaction :
-	( isAbstract ?= 'abstract' )? 'interaction' 
+	TypePrefix 'interaction' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -985,14 +995,13 @@ SuccessionItemFlow returns SysML::SuccessionItemFlow :
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember
-      | ownedRelationship += EmptyItemFeatureMember
-      ) 'from'
-    | ( isSufficient ?= 'all' )? ownedRelationship += EmptyItemFeatureMember
-    )
-	ownedRelationship += ItemFlowEndMember 'to' 
-	ownedRelationship += ItemFlowEndMember
+	  FeatureDeclaration? ValuePart?
+      ( 'of'  ownedRelationship += ItemFeatureMember )?
+	  ( 'from' ownedRelationship += ItemFlowEndMember 
+	    'to' ownedRelationship += ItemFlowEndMember )?
+    | ( isSufficient ?= 'all' )?
+      ownedRelationship += ItemFlowEndMember 'to'
+	  ownedRelationship += ItemFlowEndMember
 ;
 
 ItemFeatureMember returns SysML::FeatureMembership :
@@ -1000,20 +1009,15 @@ ItemFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFeature returns SysML::ItemFeature :
-	( name = Name ':' )? 
-	(  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += OwnedMultiplicity )?
-	| ownedRelationship += OwnedMultiplicity
-	  ( ownedRelationship += OwnedFeatureTyping )?
-	)
+	  Identification? ItemFeatureSpecializationPart ValuePart?
+	| Identification? ValuePart
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
+    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature 
-;
-
-EmptyItemFeature returns SysML::ItemFeature :
-	{SysML::ItemFeature}
+fragment ItemFeatureSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -1039,7 +1043,7 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFlowFeature 
 ;
 
-ItemFlowFeature returns SysML::ItemFlowFeature :
+ItemFlowFeature returns SysML::Feature :
 	ownedRelationship += ItemFlowRedefinition
 ;
 
@@ -1050,8 +1054,20 @@ ItemFlowRedefinition returns SysML::Redefinition :
 /* METADATA */
 
 Metaclass returns SysML::Metaclass :
-	( isAbstract ?= 'abstract' )? 'metaclass' 
+	TypePrefix 'metaclass' 
 	ClassifierDeclaration TypeBody
+;
+
+PrefixMetadataAnnotation returns SysML::Annotation :
+	'#' ownedRelatedElement += PrefixMetadataFeature
+;
+
+PrefixMetadataMember returns SysML::OwningMembership :
+	'#' ownedRelatedElement += PrefixMetadataFeature 
+;
+
+PrefixMetadataFeature returns SysML::MetadataFeature :
+	ownedRelationship += MetadataTyping
 ;
 
 MetadataFeature returns SysML::MetadataFeature :

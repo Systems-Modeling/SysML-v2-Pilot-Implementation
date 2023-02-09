@@ -56,12 +56,13 @@ var enableMode = function (CodeMirror) {
                 "defined", "dependency", "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit",
                 "exit", "expose", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if", "implies",
                 "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join", "language",
-                "loop", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of", "or",
-                "ordered", "out", "package", "parallel", "part", "perform", "port", "private", "protected", "public",
-                "readonly", "redefines", "ref", "references", "render", "rendering", "rep", "require", "requirement",
-                "return", "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
-                "succession", "then", "timeslice", "to", "transition", "until", "use", "variant", "variation",
-                "verification", "verify", "via", "view", "viewpoint", "when", "while", "xor"
+                "library", "loop", "merge", "message", "meta", "metadata", "nonunique", "not", "objective",
+                "occurrence", "of", "or", "ordered", "out", "package", "parallel", "part", "perform", "port", "private",
+                "protected", "public", "readonly", "redefines", "ref", "references", "render", "rendering", "rep",
+                "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes", "stakeholder",
+                "standard", "state", "subject", "subsets", "succession", "then", "timeslice", "to", "transition",
+                "until", "use", "variant", "variation", "verification", "verify", "via", "view", "viewpoint", "when",
+                "while", "xor"
             ]),
             defKeywords: words([
                 "action", "allocation", "analysis", "attribute", "binding", "calc", "case", "comment", "concern",

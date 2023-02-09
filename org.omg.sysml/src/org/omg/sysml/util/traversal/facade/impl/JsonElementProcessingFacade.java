@@ -32,13 +32,14 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.model.DataIdentity;
 import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Identified;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -157,11 +158,10 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * Create an Identified object containing the identifier of the given element.
 	 * 
 	 * @param 	element				the Element to be identified
-	 * @return	an Identified object the the given Element (or null if the input is null).
+	 * @return	an Identified object for the given Element (or null if the input is null).
 	 */
 	protected Identified getIdentified(Element element) {
-		Object identifier = this.traversal.getIdentifier(element);
-		return identifier instanceof UUID? identified((UUID)identifier): null;
+		return element == null? null: identified(UUID.fromString(element.getElementId()));
 	}
 	
 	/**
@@ -191,19 +191,33 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		org.omg.sysml.model.Data apiElement = new org.omg.sysml.model.Data();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
-		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
+		boolean isLibraryElement = ElementUtil.isStandardLibraryElement(element);
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
-			String name = feature.getName();
+			String className = eClass.getName();
+			String featureName = feature.getName();
 			if ((this.isIncludeDerived() || !feature.isDerived()) && 
-					( name == null || !(name.endsWith("_comp") || apiElement.containsKey(name)))) {
+					// Skip implementation-specific features.
+					!("Feature".equals(className) && "isNonunique".equals(featureName) || 
+					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 
+					  apiElement.containsKey(featureName))) {
 				Object value = element.eGet(feature);
-				if (feature instanceof EReference) {
-					value = isLibraryElement? null:
-							feature.isMany()?
-								getIdentified((List<Element>)value):
-								getIdentified((Element)value);
+				if (value != null) {
+					if (feature instanceof EReference) {
+						value = isLibraryElement? null:
+								feature.isMany()?
+									getIdentified((List<Element>)value):
+									getIdentified((Element)value);
+					} else if (feature.getEType() instanceof EEnum) {
+						if (feature.isMany()) {
+							value = ((List<Element>)value).stream().
+									map(v->v == null? null: v.toString()).
+									collect(Collectors.toList());
+						} else {
+							value = value.toString();
+						}
+					}
 				}
-				apiElement.put(name, value);
+				apiElement.put(featureName, value);
 			}
 		}
 		return new DataVersion().payload(apiElement).
@@ -219,7 +233,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static String descriptionOf(Element element) {
 		String s = element.eClass().getName();
-		String name = element.getName();
+		String name = element.getDeclaredName();
 		if (name != null) {
 			s += " (" + name + ")";
 		}		

@@ -33,6 +33,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>An InterfaceDefinition is a ConnectionDefinition all of whose ends are PortUsages, defining an interface between elements that interact through such ports.</p>
  * 
  * <p>An InterfaceDefinition must subclass, directly or indirectly, the base InterfaceDefinition Interface from the Systems model library.</p>
+ * specializesFromLibrary("Interfaces::Interface")
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Interfaces::BinaryInterface")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -69,7 +72,7 @@ public interface InterfaceDefinition extends ConnectionDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceDefinition_InterfaceEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceDefinitionWithEnd'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -31,12 +31,21 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PortUsage is a usage of a PortDefinition. A PortUsage must be owned by a PartDefinition, a PortDefinition, a PartUsage or another PortUsage.  Any <code>nestedUsages</code> of a PortUsage, other than nested PortUsages, must not be composite.</p>
+ * <p>A <code>PortUsage</code> is a usage of a <code>PortDefinition</code>. A <code>PortUsage<code> itself as well as all its <code>nestedUsages</code> must be referential (non-composite).</p>
  * 
- * <p>A PortUsage must subset, directly or indirectly, the PortUsage <code>ports</code> from the Systems model library.</p>
+ * <p>A <code>PortUsage</code> must specialize, directly or indirectly, the <code>PortUsage</code> <code><em>Ports::ports</em></code> from the Systems Model Library.</p>
  * nestedUsage->
  *     select(not oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)
+ * specializesFromLibrary('Ports::ports')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PortDefinition) or
+ *  owningType.oclIsKindOf(PortUsage)) implies
+ *     specializesFromLibrary('Ports::Port::subport')
+ * owningType = null or
+ * not owningType.oclIsKindOf(PortDefinition) and
+ * not owningType.oclIsKindOf(PortUsage) implies
+ *     isReference
  * <!-- end-model-doc -->
  *
  * <p>
@@ -58,7 +67,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition() <em>Occurrence Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -71,7 +80,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPort'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

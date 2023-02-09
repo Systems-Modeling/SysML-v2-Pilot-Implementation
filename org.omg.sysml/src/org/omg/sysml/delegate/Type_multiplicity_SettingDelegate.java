@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.delegate;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -30,8 +29,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
-import org.omg.sysml.util.TypeUtil;
 
 public class Type_multiplicity_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -45,21 +42,10 @@ public class Type_multiplicity_SettingDelegate extends BasicDerivedObjectSetting
 	}
 	
 	protected static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
-		Multiplicity multiplicity = (Multiplicity)type.getOwnedMembership().stream().
+		return (Multiplicity)type.getOwnedMembership().stream().
 				map(Membership::getMemberElement).
 				filter(Multiplicity.class::isInstance).
 				findFirst().orElse(null);
-		if (multiplicity == null) {
-			visited.add(type);
-			List<Type> superTypes = TypeUtil.getSupertypesOf(type);
-			if (!superTypes.isEmpty()) {
-				Type general = TypeUtil.getSupertypesOf(type).get(0);
-				if (general != null && !visited.contains(general)) { 
-					multiplicity = getMultiplicityOf((TypeImpl)general, visited);
-				}
-			}
-		}
-		return multiplicity;
 	}
 
 }

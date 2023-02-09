@@ -866,7 +866,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}	
 	
 	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMembership(excludedNamespaces, excludedTypes, false);
+		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
@@ -875,8 +875,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	@Override
-	public EList<Membership> getVisibleMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMembership(excludedNamespaces, excludedTypes, includeAll);
+	public EList<Membership> getVisibleMemberships(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
 		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
 		return visibleMembership;
 	}
@@ -923,6 +923,36 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		}
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean specializes(Type supertype) {
+		if (isConjugated()) {
+			Type originalType = getOwnedConjugator().getOriginalType();
+			return originalType != null && originalType.specializes(supertype);
+		} else {
+			return allSupertypes().contains(supertype);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean specializesFromLibrary(String libraryTypeName) {
+		Membership membership = resolveGlobal(libraryTypeName);
+		if (membership != null) {
+			Element memberElement = membership.getMemberElement();
+			if (memberElement instanceof Type) {
+				return specializes((Type)memberElement);
+			}
+		}
+		return false;
+	}
+
 	//
 	
 	/**
@@ -1283,6 +1313,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return directionOf((Feature)arguments.get(0));
 			case SysMLPackage.TYPE___ALL_SUPERTYPES:
 				return allSupertypes();
+			case SysMLPackage.TYPE___SPECIALIZES__TYPE:
+				return specializes((Type)arguments.get(0));
+			case SysMLPackage.TYPE___SPECIALIZES_FROM_LIBRARY__STRING:
+				return specializesFromLibrary((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

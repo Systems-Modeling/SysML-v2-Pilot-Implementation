@@ -9,7 +9,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TriggerInvocationExpression is an InvocationExpression that invokes one of the trigger Functions from the Kernel <em>Triggers<em> package, as indicated by its <code>kind</code>.</p>
+ * <p>A <code>TriggerInvocationExpression<code> is an <code>InvocationExpression</code> that invokes one of the trigger <code>Functions</code> from the Kernel Semantic Library <code><em>Triggers<em></code> package, as indicated by its <code>kind</code>.</p>
+ * specializesFromLibrary(
+ *     if kind = TriggerKind::when then
+ *         'Triggers::TriggerWhen'
+ *     else if kind = TriggerKind::at then
+ *         'Triggers::TriggerAt'
+ *     else 
+ *         'Triggers::TriggerAfter'
+ *     endif endif
+ * )
  * <!-- end-model-doc -->
  *
  * <p>

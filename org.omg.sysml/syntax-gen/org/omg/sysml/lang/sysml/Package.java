@@ -31,8 +31,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A Package is a Namespace used to group Elements, without any instance-level semantics. It may have one or more model-level evaluable <code>filterCondition</code> Expressions used to filter its <code>importedMemberships</code>. Any imported <code>member</code> must meet all of the <code>filterConditions</code>.</p>
- * ownedMembership->forAll(visibility <> VisibilityKind::protected)
- * ownedImport->forAll(visibility <> VisibilityKind::protected)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -76,32 +74,16 @@ public interface Package extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Determine whether the given <code>element</code> meets all the <code>filterConditions</code>.</p>
-	 * let metadataAnnotations: Sequence(AnnotatingElement) = 
+	 * let metadataFeatures: Sequence(AnnotatingElement) = 
 	 *     element.ownedAnnotation.annotatingElement->
-	 *         select(oclIsKindOf(AnnotatingFeature)) in
+	 *         selectByKind(MetadataFeature) in
 	 *     self.filterCondition->forAll(cond | 
-	 *         metadataAnnotations->exists(elem | 
-	 *             self.checkCondition(elem, cond)))
+	 *         metadataFeatures->exists(elem | 
+	 *             cond.checkCondition(elem)))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated
 	 */
 	boolean includeAsMember(Element element);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Model-level evaluate the given <code>condition</code> Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
-	 * 
-	 * let results: Sequence(Element) = condition.evaluate(element) in
-	 *     result->size() = 1 and
-	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
-	 *     results->at(1).oclAsType(LiteralBoolean).value
-	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false" conditionRequired="true" conditionOrdered="false"
-	 * @generated
-	 */
-	boolean checkCondition(Element element, Expression condition);
 
 } // Package

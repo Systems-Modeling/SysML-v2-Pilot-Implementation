@@ -9,7 +9,15 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LoopActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>LoopAction</em> from the Systems model library. It specifies that its <code>bodyAction</code> should be performed repeatedly. Its subclasses WhileLoopActionUsage and ForLoopActionUsage provide different ways to determine how many times the <code>bodyAction should be performed.</p>
+ * <p>A <code>LoopActionUsage</code> is an <code>ActionUsage</code> that specifies that its <code>bodyAction</code> should be performed repeatedly. Its subclasses <code>WhileLoopActionUsage</code> and <code>ForLoopActionUsage</code> provide different ways to determine how many times the <code>bodyAction</code> should be performed.</p>
+ * bodyAction =
+ *     let parameter : Feature = inputParameter(2) in
+ *     if parameter <> null and parameter.oclIsKindOf(Action) then
+ *         parameter.oclAsType(Action)
+ *     else
+ *         null
+ *     endif
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

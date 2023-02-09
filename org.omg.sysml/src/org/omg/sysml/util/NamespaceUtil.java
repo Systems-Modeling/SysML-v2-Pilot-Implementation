@@ -21,7 +21,6 @@
 
 package org.omg.sysml.util;
 
-import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -34,7 +33,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -94,9 +92,8 @@ public class NamespaceUtil {
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
 	
-	public static Collection<Membership> getNamedMembershipsFor(Import import_) {
-		return SysMLScopeUtil.getMembershipsFor(import_, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), 
-				import_.getImportedMemberName(), import_.isImportAll());
+	public static Membership getNamedMembershipFor(Namespace namespace, String name) {
+		return (Membership)SysMLScopeUtil.getElementFor(namespace, SysMLPackage.eINSTANCE.getNamespace_Membership(), name);
 	}
 	
 	// Related Namespaces

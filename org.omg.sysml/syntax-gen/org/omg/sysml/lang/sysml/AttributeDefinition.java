@@ -29,9 +29,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AttributeDefinition is a Definition and a DataType of information about a quality or characteristic of a system or part of a system that has no independent identity other than its value. All <code>features</code> of an AttributeDefinition must have <code>isComposite</code> = <code>false</code>.</p>
+ * <p>An <code>AttributeDefinition</code> is a <code>Definition</code> and a <code>DataType</code> of information about a quality or characteristic of a system or part of a system that has no independent identity other than its value. All <code>features</code> of an <code>AttributeDefinition</code>AttributeDefinition must be referential (non-composite).</p>
  * 
- * <p>An AttributeDefinition must subclass, directly or indirectly, the base AttributeDefinition AttributeValue from the Systems model library.</p>
+ * <p>As a <code>DataType</code>, an <code>AttributeDefinition</code> must specialize, directly or indirectly, the base <code>DataType</code> <code><em>Base::DataValue</em></code> from the Kernel Semantic Library.</p>
+ * feature->forAll(not isComposite)
  * <!-- end-model-doc -->
  *
  *

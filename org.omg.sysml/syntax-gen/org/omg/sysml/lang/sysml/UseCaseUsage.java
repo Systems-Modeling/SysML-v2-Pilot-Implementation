@@ -44,7 +44,7 @@ public interface UseCaseUsage extends CaseUsage {
 	 * @return the value of the '<em>Use Case Definition</em>' reference.
 	 * @see #setUseCaseDefinition(UseCaseDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUseCaseUsage_UseCaseDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUseCase'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

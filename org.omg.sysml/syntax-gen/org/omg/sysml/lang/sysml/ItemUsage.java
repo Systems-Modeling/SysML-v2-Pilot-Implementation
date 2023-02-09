@@ -30,9 +30,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemUsage is a Usage whose type is a Structure. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Structure are also allowed, to permit use of Structures from the Kernel Library.</p>
+ * <p>An <code>ItemUsage</code> is a <code>ItemUsage</code> whose <code>definition</code> is a <code>Structure</code>. Nominally, if the <code>definition</code> is an <code>ItemDefinition</code>, an <code>ItemUsage</code> is a <code>ItemUsage</code> of that <code>ItemDefinition</code> within a system. However, other kinds of Kernel <code>Structures</code> are also allowed, to permit use of <code>Structures</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An ItemUsage must subset, directly or indirectly, the base ItemUsage <code>items</code> from the Systems model library.</p>
+ * <p>An <code>ItemUsage</code> must specialize, directly or indirectly, the base <code>ItemUsage</code> <em><code>items</code></em> from the Systems Model Library.</p>
+ * itemDefinition = occurrenceDefinition->selectByKind(ItemDefinition)
+ * specializesFromLibrary("Items::items")
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ItemDefinition) or
+ *  owningType.oclIsKindOf(ItemUsage)) implies
+ *     specializesFromLibrary("Items::Item::subitem")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -51,10 +57,10 @@ public interface ItemUsage extends OccurrenceUsage {
 	 * Returns the value of the '<em><b>Item Definition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Structure}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getDefinition() <em>Definition</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition() <em>Occurrence Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,9 +69,9 @@ public interface ItemUsage extends OccurrenceUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemUsage_ItemDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedItem'"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

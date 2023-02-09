@@ -42,13 +42,13 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isOwnedPerformance()) {
+		if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
 		}
-		if (isSubperformance()) {
+		if (isBehaviorOwnedComposite()) {
 			addDefaultGeneralType("subperformance");
 		}
-		if (isEnclosedPerformance()) {
+		if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}

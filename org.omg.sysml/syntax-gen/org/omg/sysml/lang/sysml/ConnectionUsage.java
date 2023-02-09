@@ -32,8 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A ConnectionUsage is a ConnectorAsUsage that is also a PartUsage. Nominally, if its type is a ConnectionDefinition, then a ConnectionUsage is a Usage of that ConnectionDefinition, representing a connection between parts of a system. However, other kinds of kernel AssociationStructures are also allowed, to permit use of AssociationStructures from the Kernel Library (such as the default BinaryLinkObject).</p>
- * 
- * <p>A ConnectionUsage must subset the base ConnectionUsage <em><code>connections</code></em> from the Systems model library.</p>
+ * specializesFromLibrary("Connections::connections")
+ * ownedEndFeature->size() = 2 implies
+ *     specializesFromLibrary("Connections::binaryConnections")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -71,7 +72,7 @@ public interface ConnectionUsage extends ConnectorAsUsage, PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectionUsage_ConnectionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConnection'"
 	 *        annotation="redefines"
 	 *        annotation="subsets"

@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -175,27 +175,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 */
 	public boolean isSetConstraintDefinition() {
 		return basicGetConstraintDefinition() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 	/**
@@ -370,8 +349,26 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public boolean modelLevelEvaluable(EList<Feature> visited) {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public EList<Element> evaluate(Element target) {
 		return new BasicEList<>();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean checkCondition(Element target) {
+		return ExpressionUtil.checkConditionOn(target, this);
 	}
 
 	// Additional
@@ -492,8 +489,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONSTRAINT_USAGE__TYPE:
-				return isSetType();
 			case SysMLPackage.CONSTRAINT_USAGE__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:
@@ -590,7 +585,9 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		}
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST: return SysMLPackage.CONSTRAINT_USAGE___MODEL_LEVEL_EVALUABLE__ELIST;
 				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT;
+				case SysMLPackage.EXPRESSION___CHECK_CONDITION__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___CHECK_CONDITION__ELEMENT;
 				default: return -1;
 			}
 		}
@@ -608,10 +605,15 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case SysMLPackage.CONSTRAINT_USAGE___MODEL_LEVEL_EVALUABLE__ELIST:
+				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
+			case SysMLPackage.CONSTRAINT_USAGE___CHECK_CONDITION__ELEMENT:
+				return checkCondition((Element)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

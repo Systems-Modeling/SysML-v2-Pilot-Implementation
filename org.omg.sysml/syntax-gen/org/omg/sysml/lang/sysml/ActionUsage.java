@@ -31,10 +31,26 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ActionUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is an ActionDefinition, an ActionUsage is a Usage of that ActionDefinition within a system. However, other kinds of kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+ * <p>An <code>ActionUsage</code> is a <code>Usage</code> that is also a <code>Step</code>, and, so, is typed by a <code>Behavior</code>. Nominally, if the type is an <code>ActionDefinition</code>, an <code>ActionUsage</code> is a <code>Usage</code> of that <code>ActionDefinition</code> within a system. However, other kinds of kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behavior</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An ActionUsage must subset, directly or indirectly, the base ActionUsage <em><code>actions</code></em> from the Systems model library. if it is a <code>feature</code> of an ActionDefinition or ActionUsage, then it must subset, directly or indirectly, the ActionUsage <em><code>Action::subactions</code></em>.</p>
- * 
+ * isSubactionUsage() implies
+ *     specializesFromLibrary('Actions::Action::subactions')
+ * specializesFromLibrary('Actions::actions')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PartDefinition) or
+ *  owningType.oclIsKindOf(PartUsage)) implies
+ *     specializesFromLibrary('Parts::Part::ownedActions')
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(StateSubactionMembership) implies
+ *     let kind : StateSubactionKind = 
+ *         owningFeatureMembership.oclAsType(StateSubactionMembership).kind in
+ *     if kind = StateSubactionKind::entry then
+ *         redefinesFromLibrary('States::StateAction::entryAction')
+ *     else if kind = StateSubactionKind::do then
+ *         redefinesFromLibrary('States::StateAction::doAction')
+ *     else
+ *         redefinesFromLibrary('States::StateAction::exitAction')
+ *     endif endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -67,12 +83,74 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_ActionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAction'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Behavior> getActionDefinition();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the owned input <code>parameters</code> of this <code>ActionUsage</code>.</p>
+	 * input->select(f | f.owner = self)
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Feature> inputParameters();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>i<code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i<code> owned input <code>parameters</code>.</p>
+	 * if inputParameters()->size() < i then null
+	 * else inputParameters()->at(i)
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
+	 * @generated
+	 */
+	Object inputParameter(int i);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>i<code>-th argument <code>Expression</code> of an <code>ActionUsage</code>, defined as the <code>value</code> <code>Expression</code> of the <code>FeatureValue</code> of the <code>i<code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i<code> owned input <code>parameters</code> or the <code>i<code>-th owned input <code>parameter</code> has no <code>FeatureValue</code>.</code>
+	 * if inputParameter(i) = null then null
+	 * else
+	 *     let featureValue : Sequence(FeatureValue) = inputParameter(i).
+	 *         ownedMembership->select(oclIsKindOf(FeatureValue)) in
+	 *     if featureValue->isEmpty() then null
+	 *     else featureValue->at(1).value
+	 *     endif
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
+	 * @generated
+	 */
+	Expression argument(int i);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check if this <code>ActionUsage</code> is composite and has an <code>owningType</code> that is an <code>ActionDefinition</code> or <code>ActionUsage</code> but is <em>not</em> the <code>entryAction</code> or <code>exitAction</em></code> of a <code>StateDefinition</code> or <code>StateUsage</code>. If so, then it represents an <code><em>Action</em></code> that is a <code><em>subaction</em></code> of another <code><em>Action</em></code>.</p>
+	 * isComposite and owningType <> null and
+	 * (owningType.oclIsKindOf(ActionDefinition) or
+	 *  owningType.oclIsKindOf(ActionUsage)) and
+	 * (owningFeatureMembership.oclIsKindOf(StateSubactionMembership) implies
+	 *  owningFeatureMembership.oclAsType(StateSubactionMembership).kind = 
+	 *     StateSubactionKind::do)
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isSubactionUsage();
 
 } // Action

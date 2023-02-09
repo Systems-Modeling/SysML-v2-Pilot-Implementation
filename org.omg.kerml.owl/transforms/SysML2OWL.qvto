@@ -22,7 +22,7 @@
  * 
  *****************************************************************************/
 
-modeltype SysML uses "http://www.omg.org/spec/SysML/2.0";
+modeltype SysML uses "https://www.omg.org/spec/SysML/20230201";
 modeltype OWL uses "http://www.omg.org/spec/SysML/2.0/OWL";
 modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
 

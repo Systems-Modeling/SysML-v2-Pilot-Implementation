@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotating Feature</b></em>'.
@@ -33,6 +35,29 @@ package org.omg.sysml.lang.sysml;
  * <p>A MetadataFeature must subset, directly or indirectly, the base MetadataFeature <em><code>metadata</code></em> from the Kernel Library.</p>
  * 
  * 
+ * specializesFromLibrary("Metaobjects::metaobjects")
+ * isSemantic() implies
+ *     let annotatedTypes : Sequence(Type) = 
+ *         annotatedElement->selectAsKind(Type) in
+ *     let baseTypes : Sequence(MetadataFeature) = 
+ *         evaluateFeature(resolveGlobal(
+ *             'Metaobjects::SemanticMetadata::baseType').
+ *             oclAsType(Feature))->
+ *         selectAsKind(MetadataFeature) in
+ *     annotatedTypes->notEmpty() and 
+ *     baseTypes()->notEmpty() and 
+ *     baseTypes()->first().isSyntactic() implies
+ *         let annotatedType : Type = annotatedTypes->first() in
+ *         let baseType : Element = baseTypes->first().syntaxElement() in
+ *         if annotatedType.oclIsKindOf(Classifier) and 
+ *             baseType.oclIsKindOf(Feature) then
+ *             baseType.oclAsType(Feature).type->
+ *                 forAll(t | annotatedType.specializes(t))
+ *         else if baseType.oclIsKindOf(Type) then
+ *             annotatedType.specializes(baseType.oclAsType(Type))
+ *         else
+ *             true
+ *         endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +88,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * @return the value of the '<em>Metaclass</em>' reference.
 	 * @see #setMetaclass(Metaclass)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_Metaclass()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedMetadata'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -80,5 +105,64 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * @generated
 	 */
 	void setMetaclass(Metaclass value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If the given <code>baseFeature</code> is a <code>feature</code> of this MetadataFeature, or is directly or indirectly redefined by a <code>feature</code>, then return the result of evaluating the appropriate (model-level evaluable) <code>value</code> <code>Expression</code> for it (if any), with the MetadataFeature as the target.</p>
+	 * let selectedFeatures : Sequence(Feature) = feature->
+	 *     select(closure(ownedRedefinition.redefinedFeature)->
+	 *            includes(baseFeature)) in
+	 * if selectedFeatures->isEmpty() then null
+	 * else
+	 *     let selectedFeature : Feature = selectedFeatures->first() in
+	 *     let featureValues : FeatureValue = selectedFeature->
+	 *         closure(ownedRedefinition.redefinedFeature).ownedMember->
+	 *         selectAsKind(FeatureValue) in
+	 *     if featureValues->isEmpty() then null
+	 *     else featureValues->first().value.evaluate(self)
+	 *     endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" baseFeatureRequired="true" baseFeatureOrdered="false"
+	 * @generated
+	 */
+	EList<Element> evaluateFeature(Feature baseFeature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check it this MetadataFeature has a <code>metaclass</code> which is a kind of <code><em>SemanticMetadata</code>.<p>
+	 * specializesFromLibrary('Metaobjects::SemanticMetadata')
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isSemantic();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check if this MetadataFeature has a <code>metaclass</code> that is a kind of <code><em>KerML::Element<em></code> (that is, it is from the reflective abstract syntax model).</p>
+	 * specializesFromLibrary('KerML::Element')
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isSyntactic();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element<code> instance from the MOF abstract syntax representation of the model.</p>
+	 * isSyntactic()
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	Element syntaxElement();
 
 } // AnnotatingFeature

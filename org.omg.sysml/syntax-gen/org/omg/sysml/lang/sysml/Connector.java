@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Connector is a usage of Associations, with links restricted to instances of the Type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
+ * <p>A Connector is a usage of Associations, with links restricted according to instances of the Type in which they are used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its domain.</p>
  * 
  * relatedFeature = connectorEnd.ownedReferenceSubsetting.subsettedFeature
  * relatedFeature->forAll(f | 
@@ -45,11 +45,17 @@ import org.eclipse.emf.common.util.EList;
  *     else relatedFeature->excluding(sourceFeature)
  *     endif
  * connectorEnd = feature->select(isEnd)
- * association->forAll(a |
- *     a.associationEnd->forAll(ae |
- *         connectorEnd->one(ce | 
- *             ce.ownedRedefinition.redefinedFeature->includes(ae))))
- * 
+ * not isAbstract implies relatedFeature->size() >= 2
+ * specializesFromLibrary("Links::links")
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary("Objects::linkObjects")
+ * connectorEnds->size() = 2 and
+ * association->exists(oclIsKindOf(AssocationStructure)) implies
+ *     specializesFromLibrary("Objects::binaryLinkObjects")
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::binaryLinks')
+ * connectorEnds->size() > 2 implies
+ *     not specializesFromLibrary("Links::BinaryLink")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -85,12 +91,12 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that are related by this Connector considered as a Relationship, derived as the referenced Features of the <code>connectorEnds</code> of the Connector.</p>
+	 * <p>The Features that are related by this Connector considered as a Relationship and restrict the links it identifies, derived as the referenced Features of the <code>connectorEnds</code> of the Connector.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -119,7 +125,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedConnector'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -179,7 +185,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connector End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringConnector'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -204,7 +210,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedFeature</code> for this Connector. If this is a binary Connector, then the <code>sourceFeature</code> is the first <code>relatedFeature</code>, and the first end Feature of the Connector must redefine the <em><code>source</code></em> Feature of the Connector <em><code>binaryLinks</code></em> from the Kernel Semantic Library. If the Connector is not binary, then it has no <code>sourceFeature</code>.</p>
+	 * <p>The source <code>relatedFeature</code> for this Connector. It is  derived as the first <code>relatedFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Feature</em>' reference.
 	 * @see #setSourceFeature(Feature)
@@ -246,11 +252,11 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedFeatures</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Feature corresponding to the <code>targetFeature</code> must redefine the <em><code>target</code></em> Feature of the Connector <em><code>binaryLinks</code></em> from the Kernel Library.</p>
+	 * <p>The target <code>relatedFeatures</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_TargetFeature()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetConnector'"
 	 *        annotation="redefines"
 	 *        annotation="subsets"

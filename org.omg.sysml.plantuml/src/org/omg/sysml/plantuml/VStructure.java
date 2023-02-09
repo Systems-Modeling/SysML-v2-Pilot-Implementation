@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +27,7 @@
 package org.omg.sysml.plantuml;
 
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.omg.sysml.expressions.util.EvaluationUtil;
@@ -38,7 +39,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -47,7 +47,8 @@ import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
-    protected void appendText(String text, boolean unfold) {
+    protected boolean appendText(String text, boolean unfold) {
+        if (text == null) return false;
         text = text.replace("\r", "");
         if (unfold) {
             text = text.replace("\n", "");
@@ -55,11 +56,13 @@ public abstract class VStructure extends VDefault {
             text = text.replace("\n", "\\n");
         }
         text = text.trim();
+        if (text.isEmpty()) return false;
         if (text.endsWith(";")) {
-        	append(text, 0, text.length() - 1);
+        	cQuote(text.substring(0, text.length() - 1));
         } else {
-        	append(text);
+        	cQuote(text);
         }
+        return true;
     }
 
     protected String getEvaluatedResults(Element elem) {
@@ -74,7 +77,7 @@ public abstract class VStructure extends VDefault {
             Object o = EvaluationUtil.valueOf(e);
             sb.append(" <&arrow-thick-right> ");
             if (o instanceof Element) {
-                sb.append(e.getEffectiveName());
+                sb.append(e.getName());
             } else {
                 sb.append(o);
             }
@@ -91,7 +94,7 @@ public abstract class VStructure extends VDefault {
                     flag = true;
                 }
                 if (o == e) {
-                    sb.append(e.getEffectiveName());
+                    sb.append(e.getName());
                 } else {
                     sb.append(o);
                 }
@@ -109,23 +112,37 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
-    private static Pattern patEq = Pattern.compile("^\\s*:?=");
+    private static Pattern patEqFeatureValue = Pattern.compile("^\\s*=");
+
+    protected boolean appendFeatureValue(FeatureValue fv) {
+        Expression ex = fv.getValue();
+        String text = getText(fv);
+        if (text != null) {
+            if (fv.isDefault()) {
+                append("<b> default </b>");
+                int pos = text.indexOf("default");
+                if (pos >= 0) {
+                    text = text.substring(pos + "default".length()); // 
+                }
+            } else {
+                append(' '); // appendText() trims the text.
+                Matcher m = patEqFeatureValue.matcher(text);
+                if (!m.lookingAt()) {
+                    text = "= " + text;
+                }
+            }
+            boolean flag = appendText(text, true);
+            return addEvaluatedResults(ex) || flag;
+        } else {
+            return addEvaluatedResults(ex);
+        }
+    }
+
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
         for (Membership m: f.getOwnedMembership()) {
             if (m instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) m;
-                String text = getText(fv);
-                if (text != null) {
-                    if (!patEq.matcher(text).lookingAt()) {
-                        append('=');
-                    }
-                    appendText(text, true);
-                    append("; ");
-                    flag = true;
-                }
-                Expression ex = fv.getValue();
-                flag = addEvaluatedResults(ex) || flag;
+                return appendFeatureValue((FeatureValue) m);
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();
@@ -155,7 +172,7 @@ public abstract class VStructure extends VDefault {
     private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
         if (rf == null) return null;
-        return getNameWithNamespace(rf);
+        return getRefName(rf);
     }
 
     private boolean addRedefinedFeatureText(Feature f) {
@@ -169,17 +186,13 @@ public abstract class VStructure extends VDefault {
     }
 
     private void addFeatureTextInternal(Feature f, String name, boolean isInherited) {
-        if (isInherited) {
-            append('^');
-        }
         append(name);
         addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);
     }
     
     protected boolean addFeatureText(Feature f, boolean isInherited) {
-        String name = getFeatureName(f);
-        if (name == null) return false;
+        String name = getNameAnyway(f, false, isInherited);
 
         if (styleValue("decoratedRedefined") != null) {
             String rt = redefinedFeatureText(f);
@@ -260,6 +273,7 @@ public abstract class VStructure extends VDefault {
     protected boolean addType(Type typ, String name, String keyword) {
         int id = addPUMLLine(typ, keyword, name);
         addSpecializations(id, typ);
+        addFeatureValueBindings(typ);
         return true;
     }
 
@@ -301,12 +315,6 @@ public abstract class VStructure extends VDefault {
     @Override
     public String caseLifeClass(LifeClass lc) {
         // Do not show life classes
-        return "";
-    }
-
-    @Override
-    public String casePortioningFeature(PortioningFeature tsf) {
-        // Do not show portioning feature
         return "";
     }
 

@@ -31,6 +31,18 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An Expression is a Step that is typed by a Function. An Expression that also has a Function as its <code>featuringType</code> is a computational step within that Function. An Expression always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows Expressions to be interconnected in tree structures, in which inputs to each Expression in the tree are determined as the results of other Expressions in the tree.</p>
  * 
+ * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
+ * specializesFromLibrary("Performances::evaluations")
+ * owningMembership <> null and 
+ * owningMembership.oclIsKindOf(FeatureValue) implies
+ *     let featureWithValue : Feature = 
+ *         owningMembership.oclAsType(FeatureValue).featureWithValue in
+ *     featuringType = featureWithValue.featuringType
+ * ownedMembership.selectByKind(ResultExpressionMembership)->
+ *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
+ *         exists(binding |
+ *             binding.relatedFeature->includes(result) and
+ *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -71,7 +83,7 @@ public interface Expression extends Step {
 	 * @return the value of the '<em>Function</em>' reference.
 	 * @see #setFunction(Function)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Function()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedExpression'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -159,6 +171,25 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>Return whether this Expression is model-level evaluable. The <code>visited</code> parameter is used to track possible circular feature references. Such circular references are not allowed in model-level evaluable expressions.</p>
+	 * 
+	 * <p>An Expression that is not otherwise specialized is model-level evaluable if all of its <code>features</code> are either <code>in</code> parameters, its single <code>resultParameter</code> or a result Expression owned via a ResultExpressionMembership (and possibly its implicit BindingConnector). The <code>parameters</code> parameters must not have and <code>ownedFeatures</code> and the result Expression must be model-level evaluable.</p>
+	 * parameters->forAll(
+	 *     p | directionOf(p) = FeatureDirectionKind::_'in' and 
+	 *     p.valuation = null) and
+	 * ownedFeatureMembership->
+	 *     select(oclIsKindOf(ResultExpressionMembership))->
+	 *     forAll(resultExpression.modelLevelEvaluable(visited))
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" visitedMany="true" visitedOrdered="false"
+	 * @generated
+	 */
+	boolean modelLevelEvaluable(EList<Feature> visited);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or a Feature that is not an Expression.</p>
 	 * isModelLevelEvaluable
 	 * <!-- end-model-doc -->
@@ -166,4 +197,20 @@ public interface Expression extends Step {
 	 * @generated
 	 */
 	EList<Element> evaluate(Element target);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Model-level evaluate this Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
+	 * 
+	 * let results: Sequence(Element) = evaluate(target) in
+	 *     result->size() = 1 and
+	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
+	 *     results->at(1).oclAsType(LiteralBoolean).value
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" targetRequired="true" targetOrdered="false"
+	 * @generated
+	 */
+	boolean checkCondition(Element target);
 } // Expression

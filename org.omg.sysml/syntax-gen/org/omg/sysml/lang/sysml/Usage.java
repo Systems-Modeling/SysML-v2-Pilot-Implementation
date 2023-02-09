@@ -40,6 +40,12 @@ import org.eclipse.emf.common.util.EList;
  * not isVariation implies variantMembership->isEmpty()
  * isVariation implies variantMembership = ownedMembership
  * isReference = not isComposite
+ * owningVariationUsage <> null implies
+ *     specializes(owningVariationUsage)
+ * isVariation implies
+ *     not ownedSpecialization.specific->exists(isVariation)
+ * owningVariationDefinition <> null implies
+ *     specializes(owningVariationDefinition)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -906,7 +912,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUsage'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

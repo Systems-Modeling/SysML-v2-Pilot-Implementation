@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getReceiverArgument <em>Receiver Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getPayloadArgument <em>Payload Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getSenderArgument <em>Sender Argument</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,6 +65,15 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getSenderArgument() <em>Sender Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSenderArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SENDER_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SEND_ACTION_USAGE__SENDER_ARGUMENT).getSettingDelegate();
 	/**
 	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
 	 * its ItemFeature.
@@ -153,6 +163,35 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated
 	 */
 	@Override
+	public Expression getSenderArgument() {
+		return (Expression)SENDER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression basicGetSenderArgument() {
+		return (Expression)SENDER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSenderArgument(Expression newSenderArgument) {
+		SENDER_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSenderArgument);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
@@ -161,6 +200,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				if (resolve) return getPayloadArgument();
 				return basicGetPayloadArgument();
+			case SysMLPackage.SEND_ACTION_USAGE__SENDER_ARGUMENT:
+				if (resolve) return getSenderArgument();
+				return basicGetSenderArgument();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -178,6 +220,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 				return;
 			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				setPayloadArgument((Expression)newValue);
+				return;
+			case SysMLPackage.SEND_ACTION_USAGE__SENDER_ARGUMENT:
+				setSenderArgument((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,6 +242,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				setPayloadArgument((Expression)null);
 				return;
+			case SysMLPackage.SEND_ACTION_USAGE__SENDER_ARGUMENT:
+				setSenderArgument((Expression)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,6 +261,8 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 				return RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				return PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.SEND_ACTION_USAGE__SENDER_ARGUMENT:
+				return SENDER_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

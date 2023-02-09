@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Mgnite, Inc.
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -104,7 +104,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, evalTest3);		
 		assertElement("AttributeUsage a1", instance.eval("p1.a1", "EvalTest3"));
-		assertElement("AttributeUsage a2", instance.eval("p1.a2", "EvalTest3"));
+		assertElement("OperatorExpression +", instance.eval("p1.a2", "EvalTest3"));
 		assertElement("LiteralInteger 11", instance.eval("p11.a1", "EvalTest3"));
 		assertElement("LiteralInteger 14", instance.eval("p11.a2", "EvalTest3"));
 		assertElement("LiteralInteger 12", instance.eval("p12.a1", "EvalTest3"));
@@ -226,4 +226,68 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 17", instance.eval("p1.b(1,2,3)", "EvalTest6"));
 		assertElement("LiteralInteger 27", instance.eval("p2.b(1,2,3)", "EvalTest6"));
 	}
+	
+	// Tests recursive invocation and binding of feature references in invocation arguments.
+	public final String evalTest7 =
+			"package EvalTest7 {\n"
+			+ "	calc def Fact {\n"
+			+ "		in x;\n"
+			+ "		\n"
+			+ "		// 'x' in x-1 is evaluated in context of caller,\n"
+			+ "		// not in context of the invocation.\n"
+			+ "		if x <= 0? 1 else x * Fact(x = x - 1)\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	part test {\n"
+			+ "		attribute fact1 = Fact(1);\n"
+			+ "		attribute fact5 = Fact(5);\n"
+			+ "	}\n"
+			+ "}";
+	
+	@Test
+	public void testEvaluation7() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, evalTest7);
+		assertElement("LiteralInteger 1", instance.eval("test.fact1", "EvalTest7"));
+		assertElement("LiteralInteger 120", instance.eval("test.fact5", "EvalTest7"));
+		assertElement("LiteralInteger 6", instance.eval("Fact(3)", "EvalTest7"));
+	}
+	
+	// Tests recursive invocation and binding of feature references in invocation arguments.
+	public final String chainTest =
+			"package ChainTest {"
+			+ "  part def A {\n"
+			+ "    attribute z;\n"
+			+ " }\n"
+			+  "part x {\n"
+			+ "    part a = b;\n"
+			+ "    part b : A {\n"
+			+ "        attribute :>> z = 0;\n"
+			+ "    }\n"
+			+ " }\n"
+			+ " part y :> x {\n"
+			+ "    part :>> b {\n"
+			+ "        attribute :>> z = 1;\n"
+			+ "    }\n"
+			+ " }"
+			+ "}";
+	
+	@Test
+	public void testChainEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, chainTest);
+		assertElement("LiteralInteger 1", instance.eval("y.a.z", "ChainTest"));
+	}
+	
+	@Test
+	public void testArithmeticEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 5", instance.eval("2 + 3", null));
+		assertElement("LiteralInteger -1", instance.eval("2 - 3", null));
+		assertElement("LiteralInteger 6", instance.eval("2 * 3", null));
+		assertElement("LiteralRational " + 2.0/3, instance.eval("2.0 / 3", null));
+		assertElement("LiteralRational 4.0", instance.eval("2.0 ** 2", null));
+		assertElement("LiteralRational 4.0", instance.eval("2.0 ^ 2", null));
+	}
+
 }

@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -252,6 +254,20 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		SUCCESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSuccession);
 	}
 	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ReferenceUsage triggerPayloadParameter() {
+		EList<AcceptActionUsage> triggerAction = getTriggerAction();
+		return triggerAction.isEmpty()? null: triggerAction.get(0).getPayloadParameter();
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,6 +381,20 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 				return SUCCESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.TRANSITION_USAGE___TRIGGER_PAYLOAD_PARAMETER:
+				return triggerPayloadParameter();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //TransitionStepImpl

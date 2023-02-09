@@ -1,11 +1,11 @@
-package ParametersOfInterestMetadata {
+standard library package ParametersOfInterestMetadata {
 	doc
 	/*
 	 * This package contains definitions of metadata to identify key parameters of interest,
 	 * including measures of effectiveness (MOE) and other key measures of performance (MOP).
 	 */
 	 
-	 import Metaobjects::SemanticMetadata;
+	 private import Metaobjects::SemanticMetadata;
 	 
 	 attribute measuresOfEffectiveness[*] nonunique {
 	 	doc /* Base feature for attributes that are measures of effectiveness. */
@@ -23,7 +23,7 @@ package ParametersOfInterestMetadata {
 	 	 */
 	 	
 	 	:>> annotatedElement : SysML::Usage;
-	 	:>> baseType = measuresOfEffectiveness as SysML::Usage;
+	 	:>> baseType = measuresOfEffectiveness meta SysML::Usage;
 	 }
 	 
 	 metadata def <mop> MeasureOfPerformance :> SemanticMetadata {
@@ -34,6 +34,6 @@ package ParametersOfInterestMetadata {
 	 	 */
 	 	
 	 	:>> annotatedElement : SysML::Usage;
-	 	:>> baseType = measuresOfPerformance as SysML::Usage;
+	 	:>> baseType = measuresOfPerformance meta SysML::Usage;
 	 }
 }

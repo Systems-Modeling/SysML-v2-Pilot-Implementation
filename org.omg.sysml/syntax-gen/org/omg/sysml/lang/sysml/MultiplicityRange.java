@@ -155,4 +155,47 @@ public interface MultiplicityRange extends Multiplicity {
 	 */
 	EList<Expression> getBound();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>MultiplicityRange</code> represents the range bounded by the given values <code>lower</code> and <code>upper</code>, presuming the <code>lowerBound</code> and <code>upperBound</code> <code>Expressions</code> are model-level evaluable.</p>
+	 * valueOf(upperBound) = upper and
+	 * let lowerValue: UnlimitedNatural = valueOf(lowerBound) in
+	 * (lowerValue = lower or
+	 *  lowerValue = null and 
+	 *     (lower = upper or 
+	 *      lower = 0 and upper = *))
+	 *  
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" lowerDataType="org.omg.sysml.lang.types.Integer" lowerRequired="true" lowerOrdered="false" upperDataType="org.omg.sysml.lang.types.UnlimitedNatural" upperRequired="true" upperOrdered="false"
+	 * @generated
+	 */
+	boolean hasBounds(int lower, int upper);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * if bound = null or not bound.isModelLevelEvaluable then 
+	 *     null
+	 * else
+	 *     let boundEval: Sequence(Element) = bound.evaluate(owningType) in
+	 *     if boundEval->size() <> 1 then null else
+	 *         let valueEval: Element = boundEval->at(1) in
+	 *         if valueEval.oclIsKindOf(LiteralInfinity) then *
+	 *         else if valueEval.oclIsKindOf(LiteralInteger) then
+	 *             let value : Integer = 
+	 *                 valueEval.oclAsKindOf(LiteralInteger).value in
+	 *             if value >= 0 then value else null endif
+	 *         else null
+	 *         endif endif
+	 *     endif
+	 * endif 
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.UnlimitedNatural" ordered="false" boundOrdered="false"
+	 * @generated
+	 */
+	int valueOf(Expression bound);
+
 } // MultiplicityRange

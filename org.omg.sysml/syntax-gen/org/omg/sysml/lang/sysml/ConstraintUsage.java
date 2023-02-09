@@ -22,16 +22,26 @@
  */
 package org.omg.sysml.lang.sysml;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constraint Usage</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConstraintUsage is a OccurrenceUsage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition. However, other kinds of kernel Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
- * 
- * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage <code>constraintChecks</code> from the Systems model library.</p>
+ * <p>A <code>ConstraintUsage</code> is an <code>OccurrenceUsage</code> that is also a <code>BooleanExpression<code>, and, so, is typed by a <code>Predicate</code>. Nominally, if the type is a <code>ConstraintDefinition<code>, a <code>ConstraintUsage</code> is a <code>Usage</code> of that <code>ConstraintDefinition<code>. However, other kinds of kernel <code>Predicates</code> are also allowed, to permit use of <code>Predicates</code> from the Kernel Model Libraries.</p>
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
+ *     if owningFeatureMembership.oclAsType(RequirementConstraintMembership).kind = 
+ *         RequirementConstraintKind::assumption then
+ *         specializesFromLibrary('Requirements::RequirementCheck::assumptions')
+ *     else
+ *         specializesFromLibrary('Requirements::RequirementCheck::constraints')
+ *     endif
+ * specializesFromLibrary('Constraints::constraintChecks')
+ * owningType <> null and
+ * (owningType.oclIsKindOf(ItemDefinition) or
+ *  owningType.oclIsKindOf(ItemUsage)) implies
+ *     specializesFromLibrary('Items::Item::checkedConstraints')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -61,12 +71,12 @@ public interface ConstraintUsage extends OccurrenceUsage, BooleanExpression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The (single) Predicate the is the type of this Constraint Usage. Nominally, this will be ConstraintDefinition, but non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
+	 * <p>The (single) <code>Predicate</code> that is the type of this <code>ConstraintUsage</code>. Nominally, this will be a <code>ConstraintDefinition</code>, but other kinds of <code>Predicates</code> are also allowed, to permit use of <code>Predicates</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint Definition</em>' reference.
 	 * @see #setConstraintDefinition(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage_ConstraintDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConstraint'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

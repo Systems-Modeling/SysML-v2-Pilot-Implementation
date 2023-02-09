@@ -1,13 +1,13 @@
-package StateSpaceRepresentation {
+standard library package StateSpaceRepresentation {
 	doc
 	/*
 	 * This package provides a model of the foundational state-space system representation, 
 	 * commonly used in control systems.
 	 */
 
-    import ISQ::DurationValue;
-    import Quantities::VectorQuantityValue;
-    import VectorCalculations::*;
+    private import ISQ::DurationValue;
+    private import Quantities::VectorQuantityValue;
+    private import VectorCalculations::*;
 
     abstract attribute def StateSpace :> VectorQuantityValue;
     abstract attribute def Input :> VectorQuantityValue;

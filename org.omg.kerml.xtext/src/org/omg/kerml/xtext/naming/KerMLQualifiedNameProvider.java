@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
-  * Copyright (c) 2020 Model Driven Solutions, Inc. 
+ * Copyright (c) 2020,2023 Model Driven Solutions, Inc. 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,15 +25,18 @@ package org.omg.kerml.xtext.naming;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
+import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.omg.sysml.util.ElementUtil;
 
 import com.google.common.base.Function;
 
 public class KerMLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 
+	private Function<EObject, String> resolver = SimpleAttributeResolver.newResolver(String.class, "declaredName");
+	
 	@Override
 	protected Function<EObject, String> getResolver() {
-		Function<EObject, String> parentResolver = super.getResolver();
+		Function<EObject, String> parentResolver = resolver;
 		return object -> {
 			String unescapedName = parentResolver.apply(object);
 			return unescapedName == null ? null : "'" + ElementUtil.escapeString(unescapedName) + "'";

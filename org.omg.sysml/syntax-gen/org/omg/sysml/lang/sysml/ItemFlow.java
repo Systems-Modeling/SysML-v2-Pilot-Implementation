@@ -33,6 +33,11 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>An ItemFlow must be typed by the Interaction <em><code>Transfer</code></em> from the Kernel Semantic Library, or a specialization of it.</p>
  * 
+ * if itemFlowEnds->isEmpty() then
+ *     specializesFromLibrary("Transfers::transfers")
+ * else
+ *     specializesFromLibrary("Transfers::flowTransfers")
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +49,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getSourceOutputFeature <em>Source Output Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowEnd <em>Item Flow End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFeature <em>Item Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowFeature <em>Item Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getInteraction <em>Interaction</em>}</li>
  * </ul>
  *
@@ -79,8 +83,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that receives the ItemFlow. It must be an owned <code>output</code> of the target participant of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
-	 * <p>The Feature that receives the ItemFlow.</p>
+	 * <p>The Feature that receives the items carried by the ItemFlow. It must be an owned <code>output</code> of the target participant of the ItemFlow.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference.
 	 * @see #setTargetInputFeature(Feature)
@@ -111,9 +114,8 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that originates the ItemFlow. It must be an owned <code>output</code> of the <code>source</code>  of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
+	 * <p>The Feature that provides the items carried by the ItemFlow. It must be an owned <code>output</code> of the <code>source</code> of the ItemFlow.</p>
 	 * 
-	 * <p>The Feature that originates the ItemFlow.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference.
 	 * @see #setSourceOutputFeature(Feature)
@@ -139,7 +141,7 @@ public interface ItemFlow extends Connector, Step {
 	 * Returns the value of the '<em><b>Item Flow End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowEnd}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd() <em>Connector End</em>}'</li>
@@ -151,14 +153,13 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A <code>connectorEnd</code> of this ItemFlow. (IMPL)</p>
+	 * <p>The <code>connectorEnds</code> of this ItemFlow that are ItemFlowEnds.</p>
 	 * 
-	 * <p>TBD. Uses a class from the Interactions IMPL package.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
+	 * @model upper="2" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -179,9 +180,8 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature representing the Item in transit between the source and the target during the transfer. (IMPL)</p>
+	 * <p>The Feature of the ItemFlow that is an ItemFeature.</p>
 	 * 
-	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Feature</em>' reference.
 	 * @see #setItemFeature(ItemFeature)
@@ -204,26 +204,6 @@ public interface ItemFlow extends Connector, Step {
 	void setItemFeature(ItemFeature value);
 
 	/**
-	 * Returns the value of the '<em><b>Item Flow Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowFeature}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Item Flow Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>sourceOutputFeatures</code> and <code>targetInputFeatures</code> of this ItemFlow. (IMPL).</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ItemFlowFeature> getItemFlowFeature();
-
-	/**
 	 * Returns the value of the '<em><b>Interaction</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Interaction}.
 	 * <p>
@@ -236,11 +216,11 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Interactions that type this ItemFlow. Interactions are both Associations (which type Connectors) and Behaviors (which type Steps).</p>
+	 * <p>The Interactions that type this ItemFlow. Interactions are both Associations and Behaviors, which can type Connectors and Steps, respectively.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interaction</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_Interaction()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

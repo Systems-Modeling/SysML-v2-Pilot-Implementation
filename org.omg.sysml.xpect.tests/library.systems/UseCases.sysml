@@ -1,4 +1,4 @@
-package UseCases {
+standard library package UseCases {
 	doc
 	/*
 	 * This package defines the base types for use cases and related behavioral elements in the SysML language.
@@ -32,7 +32,7 @@ package UseCases {
 			 */
 		}
 
-		abstract ref subUseCases : UseCase[0..*] :> subcases {
+		abstract subUseCases : UseCase[0..*] :> subcases {
 			doc
 			/*
 			 * Other UseCases carried out as part of the performance of this UseCase.

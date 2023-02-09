@@ -1,8 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018, 2019, 2020, 2021 Model Driven Solutions, Inc.
- * Copyright (c) 2018, 2019, 2020 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -46,12 +46,19 @@ import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.Relationship
-import org.omg.sysml.lang.sysml.util.ISysMLScope
-import java.util.Collections
 import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.util.ISysMLScope
+import com.google.inject.Inject
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
+	
+	@Inject
+	IQualifiedNameConverter qualifiedNameConverter
 	
 	/*
 	 * The following fields are fixed on construction.
@@ -118,11 +125,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected Map<Element, Set<QualifiedName>> elements
 	
 	/**
-	 * The Memberships from which the Elements in this scope where found.
-	 */
-	protected Set<Membership> memberships
-	
-	/**
 	 * The QualifiedNames that have already been seen during a resolution search.
 	 */
 	protected Set<QualifiedName> visitedqns
@@ -154,29 +156,27 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * A qualified name is shadowed if its first segment name is shadowed.
 	 */
 	protected override isShadowed(IEObjectDescription input) {
-		!resolveInScope(QualifiedName.create(input.name.firstSegment), true, false).isEmpty()
+		!resolveInScope(QualifiedName.create(input.name.firstSegment), true).isEmpty()
+	}
+	
+	override getElement(String name) {
+		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
+		if (obj instanceof Element) obj else null
 	}
 
 	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true, false);
+		val result = resolveInScope(name, true);
 		if (!result.isEmpty) result.get(0)
 		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
 		else null
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
-		resolveInScope(name, false, false)
+		resolveInScope(name, false)
 	}
 	
 	override getAllLocalElements() {
-		resolveInScope(null, false, false)
-	}
-	
-	override Set<Membership> getMemberships(String name, boolean includeAll) {
-		val result = resolveInScope(QualifiedName.create(name), true, includeAll);
-		if (!result.isEmpty) memberships
-		else if (parent instanceof ISysMLScope && !isShadowing) (parent as ISysMLScope).getMemberships(name, includeAll)
-		else Collections.emptySet
+		resolveInScope(null, false)
 	}
 	
 	/**
@@ -187,27 +187,28 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * qualified names by which they can be resolved (except that circularities are
 	 * truncated). [Called when "XPECT scope" is used in an Xpect test.]
 	 */
-	def resolveInScope(QualifiedName targetqn, boolean findFirst, boolean includeAll) {
+	def resolveInScope(QualifiedName targetqn, boolean findFirst) {
 		this.targetqn = targetqn;
 		this.findFirst = findFirst	
 		this.elements = newHashMap
-		this.memberships = newHashSet
 		this.visitedqns = newHashSet
-		resolve(includeAll)
+		resolve()
 		elements.keySet.flatMap[key |
 			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 		]
 	}
 	
-	protected def void resolve(boolean includeAll) {
+	protected def void resolve() {
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.addVisited(skip)
 		}
-		if (ns instanceof Type && isRedefinition)
+		if (ns instanceof Type && isRedefinition) {
 			// For a redefinition within a type, start resolution search with inherited members.
 			ns.gen(QualifiedName.create(), newHashSet, null, true, true)
-		else
+		} else {
+			val includeAll = referenceType === SysMLPackage.eINSTANCE.membership && element instanceof Import && (element as Import).isImportAll
 			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, true, true, includeAll)
+		}
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.removeVisited(skip)
 		}
@@ -220,18 +221,19 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
 	}
 	
-	protected def boolean addName(QualifiedName qn, Relationship rel, Element el) {
-		if (!referenceType.isInstance(el)) {
+	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {
+		var el = elm
+		if (referenceType !== SysMLPackage.eINSTANCE.membership && !referenceType.isInstance(el)) {
 			return false
 		} else {
-			var qns = elements.get(el)
+			if (findFirst && referenceType === SysMLPackage.eINSTANCE.membership) {
+				el = mem
+			}
+			val qns = elements.get(el)
 			if (qns === null) {
 				elements.put(el, newHashSet(qn))
 			} else {
 				qns.add(qn)
-			}
-			if (rel instanceof Membership) {
-				memberships.add(rel)
 			}
 			return true
 		}
@@ -254,12 +256,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {
 
 						// Note: Proxy resolution may result in recursive name resolution. In this case, the
-						// membership r should be excluded from the scope, to avoid a cyclic linking error.
+						// membership mem should be excluded from the scope, to avoid a cyclic linking error.
 						scopeProvider.addVisited(mem)
 						
 						var memberName = 
 							if (mem instanceof OwningMembership && isFirstScope && ns == this.ns && mem.memberElement === element) 
-								mem.memberElement?.name // Note: Don't use effective name.
+								mem.memberElement?.declaredName // Note: Don't use effective name.
 							else mem.memberName
 					
 						if (checkElementName(memberName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
@@ -268,7 +270,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						
 						scopeProvider.addVisited(mem) // In case it was removed during the previous checkElementName call.
 						
-						if (checkElementName(mem.memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
+						var memberShortName = 
+							if (mem instanceof OwningMembership && isFirstScope && ns == this.ns && mem.memberElement === element) 
+								mem.memberElement?.declaredShortName // Note: Don't use effective shortName.
+							else mem.memberShortName
+					
+						if (checkElementName(memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
 							return true
 						}
 					
@@ -306,10 +313,10 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		(!checkIfAdded || !visitedqns.contains(elementqn))
 	}
 	
-	protected def addQualifiedName(QualifiedName elementqn, Relationship rel, Element memberElement) {
+	protected def addQualifiedName(QualifiedName elementqn, Membership mem, Element memberElement) {
 		visitedqns.add(elementqn)
 		if (targetqn === null || targetqn == elementqn) {
-			if (addName(elementqn, rel, memberElement)) {
+			if (addName(elementqn, mem, memberElement)) {
 				if (targetqn != elementqn && memberElement instanceof Namespace) {
 					isShadowing = true
 				}
@@ -321,12 +328,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		false
 	}
 	
-	protected def visitQualifiedName(QualifiedName elementqn, Relationship rel, Element memberElement, Set<Namespace> ownedVisited, Set<Namespace> visited, 
+	protected def visitQualifiedName(QualifiedName elementqn, Membership mem, Element memberElement, Set<Namespace> ownedVisited, Set<Namespace> visited, 
 		boolean includeImplicitGen, boolean includeAll) {
 		if (!memberElement.includeAsMember) {
 			return false
 		}
-		if (addQualifiedName(elementqn, rel, memberElement)) {
+		if (addQualifiedName(elementqn, mem, memberElement)) {
 			return true
 		}		
 		if (targetqn != elementqn) {
@@ -418,28 +425,23 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean resolveImport(Import imp, QualifiedName qn, Set<Namespace> visited, boolean includeImplicitGen) {
-		val name = imp.importedMemberName
-		if (name === null) {
+		if (imp instanceof NamespaceImport) {
 			return imp.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, false, imp.isRecursive, includeImplicitGen, imp.isImportAll)
 		} else {
-			// Find the memberships corresponding to the importedMemberName.
-			val importScope = scopeProvider.scope_import(imp)
-			val mems = (importScope as ISysMLScope).getMemberships(name, imp.isImportAll)
+			val mem = (imp as MembershipImport).importedMembership
 			
-			for (mem: mems) {
-				// Check if the targetqn resolves via the imported membership.
-				val elm = mem.memberElement
-				if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
-					return true
-				}
-				if (resolveForName(mem, elm, elm.shortName, qn, visited, includeImplicitGen, imp.isImportAll)) {
-					return true
-				}
-								
-				// If recursive, check recursively.
-				if (elm instanceof Namespace && imp.isRecursive) {
-					return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, false, true, false, imp.isImportAll)
-				}
+			// Check if the targetqn resolves via the imported membership.
+			val elm = mem.memberElement
+			if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				return true
+			}
+			if (resolveForName(mem, elm, mem.memberShortName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				return true
+			}
+							
+			// If recursive, check recursively.
+			if (elm instanceof Namespace && imp.isRecursive) {
+				return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, false, true, false, imp.isImportAll)
 			}
 				
 			return false

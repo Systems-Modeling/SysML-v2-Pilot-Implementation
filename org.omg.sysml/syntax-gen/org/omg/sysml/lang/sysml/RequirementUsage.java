@@ -75,7 +75,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @return the value of the '<em>Requirement Definition</em>' reference.
 	 * @see #setRequirementDefinition(RequirementDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedRequirement'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -159,8 +159,8 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,8 +184,8 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,7 +208,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getShortName() <em>Short Name</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getDeclaredShortName() <em>Declared Short Name</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

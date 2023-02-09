@@ -26,6 +26,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Item
  * Flow End</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An ItemFlowEnd is a Feature that is one of the <code>endFeatures</code> giving the <code><em>source</em></code> or <code><em>target</em></code> of an ItemFlow. For ItemFlows typed by FlowTransfer or its specializations, ItemFlowEnds must have exactly one <code>ownedFeature</code>, which redefines <code><em>Transfer::source::sourceOutput</em></code> or <code><em>Transfer::target::targetInput</em></code> and redefines the corresponding feature of the <code>relatedElement</code> for its end.</p>
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlowEnd()
  * @model

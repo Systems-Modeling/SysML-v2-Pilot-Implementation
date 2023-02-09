@@ -229,7 +229,7 @@ public class FeatureUtil {
 				collect(Collectors.toList());
 	}
 
-// Feature values
+	// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {
 		return (FeatureValue)feature.getOwnedMembership().stream().
@@ -395,4 +395,23 @@ public class FeatureUtil {
 		}
 	}
 	
+	public static Multiplicity getMultiplicityOf(Type type) {
+		return getMultiplicityOf(type, new HashSet<>());
+	}
+	
+	public static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
+		Multiplicity multiplicity = type.getMultiplicity();
+		if (multiplicity == null) {
+			visited.add(type);
+			for (Type general: TypeUtil.getGeneralTypesOf(type)){
+				if (general != null && !visited.contains(general)) { 
+					multiplicity = getMultiplicityOf(general, visited);
+					if (multiplicity != null) {
+						break;
+					}
+				}
+			}
+		}
+		return multiplicity;
+	}
 }

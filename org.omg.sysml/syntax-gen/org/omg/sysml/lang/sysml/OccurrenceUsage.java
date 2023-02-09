@@ -10,9 +10,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An OccurrenceUsage is a Usage whose type is a Class. Nominally, if the type is an OccurrenceDefinition, an OccurrenceUsage is a Usage of that OccurrenceDefinition within a system. However, other types of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+ * <p>An <code>OccurrenceUsage</code> is a <code>Usage</code> whose <code>types</code> are all <code>Classes</code>. Nominally, if a <code>type</code> is an <code>OccurrenceDefinition</code>, an <code>OccurrenceUsage</code> is a <code>Usage</code> of that <code>OccurrenceDefinition</code> within a system. However, other types of Kernel <code>Classes</code> are also allowed, to permit use of <code>Classes</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An OccurrenceUsage must subset, directly or indirectly, the base Feature <em><code>occurrences</code></em> from the Kernel model library.</p>
+ * <p>An <code>OccurrenceUsage</code> must subset, directly or indirectly, the base <code>Feature</code> <em><code>occurrences</code></em> from the Kernel Semantic Library.</p>
  * 
  * let individualDefinitions : Sequence(OccurrenceDefinition) = 
  *     occurrenceDefinition->
@@ -20,13 +20,20 @@ import org.eclipse.emf.common.util.EList;
  *         select(isIndividual) in
  * if individualDefinitions->isEmpty() then null
  * else individualDefinitions->at(1) endif
- * if portionKind = null then portioningFeature = null
- * else 
- *     portioningFeature <> null and
- *     portionKind = portioningFeature.portionKind and
- *     occurrenceDefinition.asSet() = portioningFeature.type.asSet()
- * endif
  * isIndividual implies individualDefinition <> null
+ * specializesFromLibrary("Occurrences::occurrences")
+ * isComposite and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Class) or
+ *  owningType.oclIsKindOf(OccurrenceUsage) or
+ *  owningType.oclIsKindOf(Feature) and
+ *     owningType.oclAsType(Feature).type->
+ *         exists(oclIsKind(Class))) implies
+ *     specializesFromLibrary("Occurrences::Occurrence::suboccurrences")
+ * occurrenceDefinition->select(isIndividual).size() <= 1
+ * portionKind <> null implies
+ *     occurrenceDefinition->forAll(occ | 
+ *         featuringType->exists(specializes(occ)))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -34,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition <em>Occurrence Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getPortioningFeature <em>Portioning Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getIndividualDefinition <em>Individual Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.OccurrenceUsage#isIndividual <em>Is Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getPortionKind <em>Portion Kind</em>}</li>
@@ -57,51 +63,17 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Classes that are the types of this OccurrenceUsage. Nominally, these are OccurrenceDefinitions, but other kinds of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+	 * <p>The <code>Classes</code> that are the types of this <code>OccurrenceUsage</code>. Nominally, these are <code>OccurrenceDefinitions</code>, but other kinds of kernel <code>Classes</code> are also allowed, to permit use of <code>Classes</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Occurrence Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOccurrenceUsage_OccurrenceDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedOccurrence'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition();
-
-	/**
-	 * Returns the value of the '<em><b>Portioning Feature</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>A PortioningFeature typed by the <code>occurrenceDefinitions</code> of this OccurrenceUsage, thereby restricting the values of the OccurrenceUsage to be general portions, time slices or snapshots of instances of those definitions, consistence with the <code>portionKind</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Portioning Feature</em>' reference.
-	 * @see #setPortioningFeature(PortioningFeature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOccurrenceUsage_PortioningFeature()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portioningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	PortioningFeature getPortioningFeature();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getPortioningFeature <em>Portioning Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Portioning Feature</em>' reference.
-	 * @see #getPortioningFeature()
-	 * @generated
-	 */
-	void setPortioningFeature(PortioningFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Individual Definition</b></em>' reference.
@@ -114,7 +86,7 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The one <code>occurrenceDefinition</code> that has <code>isIndividual = true</code> (if any).</p>
+	 * <p>The at most one <code>occurrenceDefinition</code> that has <code>isIndividual = true</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Individual Definition</em>' reference.
 	 * @see #setIndividualDefinition(OccurrenceDefinition)
@@ -143,7 +115,7 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this OccurrenceUsage represents the usage of the specific individual (or portion of it) represented by its <code>individualDefinition</code>.</p>
+	 * <p>Whether this <code>OccurrenceUsage</code> represents the usage of the specific individual (or portion of it) represented by its <code>individualDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Individual</em>' attribute.
 	 * @see #setIsIndividual(boolean)
@@ -169,7 +141,7 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The kind of portion of the instances of the <code>occurrenceDefinition</code> represented by this OccurrenceUsage, if it is so restricted.</p>
+	 * <p>The kind of (temporal) portion of the life of the <code>occurrenceDefinition</code> represented by this <code>OccurrenceUsage</code>, if it is so restricted.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Portion Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.PortionKind

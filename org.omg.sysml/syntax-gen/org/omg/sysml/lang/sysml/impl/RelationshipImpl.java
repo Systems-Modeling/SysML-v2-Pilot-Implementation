@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -56,7 +57,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class RelationshipImpl extends ElementImpl implements Relationship {
+public abstract class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * The cached setting delegate for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -239,7 +240,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
 	 * <!-- begin-user-doc --> 
 	 * Xtext workaround:
-	 * If target is empty, then add all ownedRelatedElements to it.
+	 * Add all ownedRelatedElements to target.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -290,6 +291,16 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__SOURCE);
 		}
 		return source;
+	}
+	
+	// Additional overrides
+	
+	@Override
+	public Namespace libraryNamespace() {
+		Element owningRelatedElement = getOwningRelatedElement();
+		return owningRelatedElement != null? 
+				owningRelatedElement.libraryNamespace(): 
+				super.libraryNamespace();
 	}
 
 	/**

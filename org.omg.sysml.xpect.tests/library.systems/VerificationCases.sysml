@@ -1,4 +1,4 @@
-package VerificationCases {
+standard library package VerificationCases {
 	doc
 	/*
 	 * This package defines the base types for verification cases and related behavioral elements 
@@ -24,7 +24,7 @@ package VerificationCases {
 		objective obj :>> Case::obj {
 			subject subj = VerificationCase::subj;
 			
-			requirement requirementVerifications[0..*] {
+			requirement requirementVerifications : RequirementCheck[0..*] :> subrequirements {
 				doc
 				/*
 				 * A record of the evaluations of the RequirementChecks of requirements being verified.
@@ -32,14 +32,14 @@ package VerificationCases {
 			}
 		}
 		
-		ref requirement requirementVerifications[0..*] = obj.requirementVerifications {
+		ref requirement requirementVerifications : RequirementCheck[0..*] = obj.requirementVerifications {
 			doc
 			/*
 			 * Checks on whether the verifiedRequirements of the VerificationCase have been satisfied.
 			 */
 		}
 		
-		abstract ref verification subVerificationCases : Case[0..*] :> verificationCases, subcases {
+		abstract verification subVerificationCases : Case[0..*] :> verificationCases, subcases {
 			doc
 			/*
 			 * The subcases of this VerificationCase that are VerificationCaseUsages.

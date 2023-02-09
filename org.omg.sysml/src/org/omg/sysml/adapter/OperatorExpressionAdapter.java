@@ -21,19 +21,13 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 
-	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };
-	
-	public static final String CAST_OPERATOR = "as";
+	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };	
 
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);
@@ -44,18 +38,6 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return (OperatorExpression)super.getTarget();
 	}
 
-	@Override
-	protected void addResultTyping() {
-		OperatorExpression target = getTarget();
-		if (CAST_OPERATOR.equals(target.getOperator())) {
-			EList<Feature> ownedFeatures = target.getOwnedFeature();
-			if (ownedFeatures.size() > 1) {
-				TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-						SysMLPackage.eINSTANCE.getSubsetting(), ownedFeatures.get(1));
-			}
-		}
-	}
-	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		OperatorExpression target = getTarget();

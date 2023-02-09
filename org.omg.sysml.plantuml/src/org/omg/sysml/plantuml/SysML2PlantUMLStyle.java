@@ -92,15 +92,15 @@ public class SysML2PlantUMLStyle {
     static {
         addp(null,
              "Standard B&&W",
-             "skinparam monochrome true\n"
-             + "skinparam classbackgroundcolor white\n"
-             + "skinparam shadowing false\n"
+             "skin sysmlbw\n"
+             + "skinparam monochrome true\n"
              + "skinparam wrapWidth 300\n"
              + "hide circle\n", null,
              "classic", "true");
         addp("STDCOLOR",
              "Standard style with colors",
-             "skinparam wrapWidth 300\n"
+             "skin sysmlc\n"
+             + "skinparam wrapWidth 300\n"
              + "hide circle\n",
              new StyleSwitch(new StyleRelDefaultSwitch() {
                  @Override
@@ -111,10 +111,15 @@ public class SysML2PlantUMLStyle {
                  public String caseBindingConnector(BindingConnector object) {
                      return " -[thickness=5,#red]- ";
                  }
+                 @Override
+                 public String caseFeatureValue(FeatureValue fv) {
+                     return " -[thickness=5,#red]- ";
+                 }
              }, null),
              "decoratedRedefined", "true");
         addp("PLANTUML",
-             "PlantUML Style", " ",
+             "PlantUML Style",
+             " ",
              new StyleSwitch(new StyleRelDefaultSwitch() {
                  @Override
                  public String caseConnector(Connector object) {
@@ -475,12 +480,12 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseSubjectMembership(SubjectMembership sm) {
-            return " ..> ";
+            return " o-- ";
 		}
 
 		@Override
 		public String caseVariantMembership(VariantMembership vm) {
-            return " )-->> ";
+            return " +--- ";
 		}
 
 		@Override

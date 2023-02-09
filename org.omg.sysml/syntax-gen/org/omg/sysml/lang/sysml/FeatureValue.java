@@ -29,15 +29,27 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A FeatureValue is a Membership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. The value is specified as either a bound value or an initial value, and as either a concrete or default value. A Feature can have at most one FeatureValue.</p>
  * 
- * <p>If <code>isInitial = false</code>, then the result of the <code>value</code> expression is bound to the <code>featureWithValue</code> using a BindingConnector. Otherwise, the <code>featureWithValue</code> is initialized using a FeatureWritePeformance.</p>
+ * <p>The result of the <code>value</code> expression is bound to the <code>featureWithValue</code> using a BindingConnector. If <code>isInitial = false</code>, then the <code>featuringType</code> of the BindingConnector is the same as the <code>featuringType</code> of the <code>featureWithValue</code>. If <code>isInitial = true</code>, then the <code>featuringType</code> of the BindingConnector is restricted to its <code>startShot</code>.
  * 
  * <p>If <code>isDefault = false</code>, then the above semantics of the FeatureValue are realized for the given <code>featureWithValue</code>. Otherwise, the semantics are realized for any individual of the <code>featuringType</code> of the <code>featureWithValue</code>, unless another value is explicitly given for the <code>featureWithValue</code> for that individual.</p>
  * 
- * value.featuringType = featureWithValue.featuringType
- * valueConnector.owningNamespace = featureWithValue and
- * valueConnector.relatedFeature->includes(featureWithValue) and
- * valueConnector.relatedFeature->includes(value.result) and
- * valueConnector.featuringType = featureWithValue.featuringType
+ * not isDefault implies
+ *     featureWithValue.ownedMember->
+ *         selectByKind(BindingConnector)->exists(b |
+ *             b.relatedFeature->includes(featureWithValue) and
+ *             b.relatedFeature->includes(value.result) and
+ *             if not isInitial then 
+ *                 b.featuringType = featureWithValue.featuringType
+ *             else 
+ *                 b.featuringType->exists(t |
+ *                     t.oclIsKindOf(Feature) and
+ *                     t.oclAsType(Feature).chainingFeature =
+ *                         Sequence{
+ *                             resolveGlobal("Base::things::that"),
+ *                             resolveGlobal("Occurrences::Occurrence::startShot")
+ *                         }
+ *                 )
+ *             endif)
  * <!-- end-model-doc -->
  *
  * <p>

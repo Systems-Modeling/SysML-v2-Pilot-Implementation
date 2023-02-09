@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -113,7 +112,7 @@ public class VPath extends VTraverser {
         private boolean match(Element e) {
             if (isTerminal()) return false;
             Element et = getTarget();
-            return e.equals(et);
+            return InheritKey.matchElement(e, et);
         }
 
         public Element requiredElement() {
@@ -285,19 +284,29 @@ public class VPath extends VTraverser {
         }
     }
 
+    /* It makes an inherit key of the feature owning feature
+       (such as connector and subsetting feature) */
+    private InheritKey makeInheritKeyOfOwner(Feature f) {
+        Type owningType = f.getOwningType();
+        if (owningType instanceof Feature) {
+            return makeInheritKey((Feature) owningType);
+        } else {
+            /* non-feature types cannot be inherited and it returns null */
+            return null;
+        }
+    }
+
     /*
       ife : ItemFlowEnd :> baseTarget (e.g. action) {
            // ReferenceUsage
-           iff : ItemFlowFeature :>> ioTarget: ReferenceUsage;
+           iff : Feature :>> ioTarget: ReferenceUsage;
       }
     */
     private static Feature getIOTarget(ItemFlowEnd ife) {
         for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
             Feature f = fm.getOwnedMemberFeature();
-            if (f instanceof ItemFlowFeature) {
-                for (Redefinition rd: f.getOwnedRedefinition()) {
-                    return rd.getRedefinedFeature();
-                }
+            for (Redefinition rd: f.getOwnedRedefinition()) {
+                return rd.getRedefinedFeature();
             }
         }
         return null;
@@ -308,7 +317,7 @@ public class VPath extends VTraverser {
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
-        InheritKey ik = getInheritKey(ife);
+        InheritKey ik = makeInheritKeyOfOwner(ife);
         return new RefPC(pc, ik);
     }
 
@@ -422,10 +431,9 @@ public class VPath extends VTraverser {
         }
     }
 
-    // InheritKey->Element->Integer
+    // InheritKey->Element->ID
     private final Map<InheritKey, Map<Element, Integer>> inheritedPathIdMap = new HashMap<>();
-
-    // Element -> Integer or Map<Element, Integer>
+    // ID -> Elements
     private final Map<Integer, Set<Element>> pathIdRevMap = new HashMap<Integer, Set<Element>>();
 
     private void putPathIdMap(Integer id, InheritKey ik, Element pt) {
@@ -448,25 +456,6 @@ public class VPath extends VTraverser {
 
     private List<RefPC> current = new ArrayList<RefPC>();
 
-    private InheritKey getInheritKey(List<FeatureChaining> fcs) {
-        FeatureChaining fc = fcs.get(0);
-        Feature ref = fc.getChainingFeature();
-        return makeInheritKey(ref);
-    }
-
-    private InheritKey getInheritKey(Feature f) {
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            Feature sf = ss.getSubsettedFeature();
-            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
-            if (fcs.isEmpty()) {
-                return makeInheritKey(sf);
-            } else {
-                return getInheritKey(fcs);
-            }
-        }
-        return null;
-    }
-
     private PC makeSubsettedFeaturePC(Feature f) {
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
@@ -482,7 +471,7 @@ public class VPath extends VTraverser {
 
     private RefPC makeRefPC(Feature f, PC pc) {
         if (pc == null) return null;
-        InheritKey ik = getInheritKey(f);
+        InheritKey ik = makeInheritKeyOfOwner(f);
         return new RefPC(pc, ik);
     }
 
@@ -515,22 +504,8 @@ public class VPath extends VTraverser {
         return "";
     }
 
-    private static Feature head(FeatureChainExpression fce) {
-        List<Expression> ops = fce.getOperand();
-        if (ops.isEmpty()) {
-            return null;
-        } else {
-            Expression ex = ops.get(0);
-            if (!(ex instanceof FeatureReferenceExpression)) return null;
-            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
-            return fre.getReferent();
-        }
-    }
-
     private String addContext(FeatureChainExpression fce) {
-        Feature ref = head(fce);
-        if (ref == null) return null;
-        InheritKey ik = getInheritKey(ref);
+        InheritKey ik = makeInheritKey(fce);
         PC pc = new PCFeatureChainExpression(fce);
         RefPC rpc = new RefPC(pc, ik);
         addRefPC(rpc);
@@ -605,6 +580,7 @@ public class VPath extends VTraverser {
             if (g == null) continue;
             if (checkVisited(g)) continue;
             visit(g);
+            traverse(g);
             // visit(s); // Typically this will cause double traverse but checkVisit() stops it..
         }
         return null;

@@ -12,8 +12,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A FlowConnectionUsage is a ConnectionUsage that is also an ItemFlow.</p>
- * 
- * <p>A FlowConnectionUsage must subset the base FlowConnectionUsage <em><code>flowConnections</code></em> from the Systems model library.</p>
+ * if itemFlowEnds->isEmpty() then
+ *     specializesFromLibrary("Connections::messageConnections")
+ * else
+ *     specializesFromLibrary("Connections::flowConnections"
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,8 +39,8 @@ public interface FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemF
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.ConnectionUsage#getConnectionDefinition() <em>Connection Definition</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ActionUsage#getActionDefinition() <em>Action Definition</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.ConnectionUsage#getConnectionDefinition() <em>Connection Definition</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ItemFlow#getInteraction() <em>Interaction</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -47,7 +50,7 @@ public interface FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemF
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow Connection Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFlowConnectionUsage_FlowConnectionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedFlowConnection'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -87,15 +87,6 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
-	 * Returns a new object of class '<em>Expose</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expose</em>'.
-	 * @generated
-	 */
-	Expose createExpose();
-
-	/**
 	 * Returns a new object of class '<em>View Rendering Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,6 +94,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ViewRenderingMembership createViewRenderingMembership();
+
+	/**
+	 * Returns a new object of class '<em>Namespace Expose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace Expose</em>'.
+	 * @generated
+	 */
+	NamespaceExpose createNamespaceExpose();
 
 	/**
 	 * Returns a new object of class '<em>Event Occurrence Usage</em>'.
@@ -121,6 +121,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	RequirementVerificationMembership createRequirementVerificationMembership();
+
+	/**
+	 * Returns a new object of class '<em>Membership Expose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Membership Expose</em>'.
+	 * @generated
+	 */
+	MembershipExpose createMembershipExpose();
 
 	/**
 	 * Returns a new object of class '<em>Subject Membership</em>'.
@@ -294,15 +303,6 @@ public interface SysMLFactory extends EFactory {
 	Membership createMembership();
 
 	/**
-	 * Returns a new object of class '<em>Relationship</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relationship</em>'.
-	 * @generated
-	 */
-	Relationship createRelationship();
-
-	/**
 	 * Returns a new object of class '<em>Documentation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,15 +310,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Documentation createDocumentation();
-
-	/**
-	 * Returns a new object of class '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
-	 * @generated
-	 */
-	Element createElement();
 
 	/**
 	 * Returns a new object of class '<em>Owning Membership</em>'.
@@ -339,13 +330,13 @@ public interface SysMLFactory extends EFactory {
 	Package createPackage();
 
 	/**
-	 * Returns a new object of class '<em>Import</em>'.
+	 * Returns a new object of class '<em>Library Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import</em>'.
+	 * @return a new object of class '<em>Library Package</em>'.
 	 * @generated
 	 */
-	Import createImport();
+	LibraryPackage createLibraryPackage();
 
 	/**
 	 * Returns a new object of class '<em>Predicate</em>'.
@@ -706,15 +697,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	OccurrenceUsage createOccurrenceUsage();
-
-	/**
-	 * Returns a new object of class '<em>Portioning Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Portioning Feature</em>'.
-	 * @generated
-	 */
-	PortioningFeature createPortioningFeature();
 
 	/**
 	 * Returns a new object of class '<em>Exhibit State Usage</em>'.
@@ -1239,6 +1221,24 @@ public interface SysMLFactory extends EFactory {
 	TextualRepresentation createTextualRepresentation();
 
 	/**
+	 * Returns a new object of class '<em>Membership Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Membership Import</em>'.
+	 * @generated
+	 */
+	MembershipImport createMembershipImport();
+
+	/**
+	 * Returns a new object of class '<em>Namespace Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace Import</em>'.
+	 * @generated
+	 */
+	NamespaceImport createNamespaceImport();
+
+	/**
 	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1401,24 +1401,6 @@ public interface SysMLFactory extends EFactory {
 	ItemFeature createItemFeature();
 
 	/**
-	 * Returns a new object of class '<em>Source End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source End</em>'.
-	 * @generated
-	 */
-	SourceEnd createSourceEnd();
-
-	/**
-	 * Returns a new object of class '<em>Target End</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target End</em>'.
-	 * @generated
-	 */
-	TargetEnd createTargetEnd();
-
-	/**
 	 * Returns a new object of class '<em>End Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1473,15 +1455,6 @@ public interface SysMLFactory extends EFactory {
 	ItemFlow createItemFlow();
 
 	/**
-	 * Returns a new object of class '<em>Item Flow Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Item Flow Feature</em>'.
-	 * @generated
-	 */
-	ItemFlowFeature createItemFlowFeature();
-
-	/**
 	 * Returns a new object of class '<em>Succession Item Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1507,6 +1480,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	NullExpression createNullExpression();
+
+	/**
+	 * Returns a new object of class '<em>Metadata Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metadata Access Expression</em>'.
+	 * @generated
+	 */
+	MetadataAccessExpression createMetadataAccessExpression();
 
 	/**
 	 * Returns a new object of class '<em>Collect Expression</em>'.

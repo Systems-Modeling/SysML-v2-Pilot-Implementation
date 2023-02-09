@@ -1,4 +1,4 @@
-package AnalysisCases {
+standard library package AnalysisCases {
 	doc
 	/*
 	 * This package defines the base types for analysis cases and related behavioral elements 
@@ -22,7 +22,7 @@ package AnalysisCases {
 		subject subj :>> Case::subj;
 		objective obj :>> Case::obj;
 		
-		abstract ref analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
+		abstract analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
 			doc
 			/*
 			 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.

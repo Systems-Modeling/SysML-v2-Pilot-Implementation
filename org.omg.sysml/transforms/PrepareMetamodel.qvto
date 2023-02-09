@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,48 +24,50 @@
 
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation PrepareMetamodel(in export: UML, out prepared: UML);
+transformation PrepareMetamodel(in export: UML, in standard: UML, out prepared: UML);
+
+property version = "20230201";
 
 main() {
+	run()
+}
+
+helper run() {
 	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	
 	var model = object Model { 
 		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/2.0";
+		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
+	
+	mapModel(syntax, model);
+	fixLiteralRational();	
+}
+
+helper mapModel(syntax : Package, model: Model) {
 	syntax.map Namespace(model);
-	model.packagedElement[Package]->destroy();
-
-	var featureClass := prepared.objects()[Class]![name = "Feature"];
-	assert warning (featureClass <> null) with log ("Feature class not found.");
-	if featureClass <> null then {
-		featureClass.addNonuniqueAttribute();
-	} endif;
+	model.packagedElement[Package]->destroy();	
 }
 
-helper Class::addNonuniqueAttribute() {
-    var booleanType := self.oclAsType(Class).ownedAttribute![name = "isUnique"].type;
-	var isNonuniqueProperty := object Property {
-		name := "isNonunique";
-		type := booleanType;
-		lower := 1;
-		upper := 1;
-		isDerived := true;
-		defaultValue := object LiteralBoolean {
-			value := false;
-		}
-	};
-	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
-	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
+helper fixLiteralRational() {
+	var literalRationalClass = prepared.objects()[Class]![name = 'LiteralRational'];
+	if literalRationalClass <> null then {
+		var realType = standard.objects()[Package].member[PrimitiveType]![name = 'Real'];
+		if realType <> null then {
+			log("Changing LiteralRational::value type to " + nameOf(realType));
+			var valueFeature = literalRationalClass.ownedAttribute![name = 'value'];
+			valueFeature.type := realType;
+		} endif
+	} endif
 }
 
-mapping Package::Namespace(inout model: Model) 
+mapping Package::Namespace(inout package: Package) 
 	when { self.name = null or not self.name.endsWith("TBD") } {
 	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
-	self.ownedMember[Package]->map Namespace(model);
-	if self <> model then {
-		model.packagedElement += self.packagedElement;
+	self.ownedMember[Package]->map Namespace(package);
+	if self <> package then {
+		package.packagedElement += self.packagedElement;
 	} endif;
 }
 

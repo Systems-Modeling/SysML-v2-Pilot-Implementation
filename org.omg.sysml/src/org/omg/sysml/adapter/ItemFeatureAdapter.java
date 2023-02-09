@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,19 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
+import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class ItemFeatureAdapter extends FeatureAdapter {
 
-	public static final String ITEM_FLOW_ITEM_FEATURE = "Transfers::Transfer::item";
-	
 	public ItemFeatureAdapter(ItemFeature element) {
 		super(element);
 	}
@@ -42,11 +35,15 @@ public class ItemFeatureAdapter extends FeatureAdapter {
 	public ItemFeature getTarget() {
 		return (ItemFeature)super.getTarget();
 	}
-
+	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
-		return type == getTarget().getOwner()? TypeUtil.getRelevantFeaturesOf(type):
-				Collections.singletonList((Feature)getLibraryType(ITEM_FLOW_ITEM_FEATURE));
+	protected EClass getSpecializationEClass() {
+		return SysMLPackage.eINSTANCE.getRedefinition();
 	}
 	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("payload");
+	}
+
 }

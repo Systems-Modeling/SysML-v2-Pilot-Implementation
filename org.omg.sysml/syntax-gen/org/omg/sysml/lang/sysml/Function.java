@@ -31,6 +31,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Function is a Behavior that has a single <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. Any other <code>parameters</code> of a Function than the <code>result</code> must have direction <code>in</code>. A Function represents the performance of a calculation that produces the values of its <code>result</code> parameter. This calculation may be decomposed into Expressions that are <code>steps</code> of the Function.</p>
  * 
+ * ownedMembership.selectByKind(ResultExpressionMembership)->
+ *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
+ *         exists(binding |
+ *             binding.relatedFeature->includes(result) and
+ *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
+ * specializesFromLibrary("Performances::Evaluation")
  * <!-- end-model-doc -->
  *
  * <p>

@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -66,7 +67,7 @@ public class VCase extends VTree {
     }
 
     private String addCase(Type typ) {
-        String name = getNameAnyway(typ);
+        String name = extractTitleName(typ);
         int id = addRecLine(name, typ, true);
         addSpecializations(id, typ);
 
@@ -79,7 +80,7 @@ public class VCase extends VTree {
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
-        String name = ru.getEffectiveName();
+        String name = ru.getName();
         if ("obj".equals(name)) name = null;
         VRequirement vr = new VRequirement(this);
         List<VTree> subtrees = processCompartment(vr, ru);
@@ -93,6 +94,12 @@ public class VCase extends VTree {
             processSubtrees(vr, subtrees);
         }
         addSpecializations(id, ru);
+        return "";
+    }
+
+    @Override
+    public String caseSubjectMembership(SubjectMembership sm) {
+        addSubjectMembership(sm, false);
         return "";
     }
 

@@ -35,12 +35,18 @@ import org.eclipse.emf.common.util.EList;
  * ownedSpecialization = ownedRelationship->selectByKind(Specialization)->
  *     select(g | g.special = self)
  *     
- * multiplicity = feature->select(oclIsKindOf(Multiplicity))
+ * multiplicity = 
+ *     let ownedMultiplicities: Sequence(Multiplicity) =
+ *         ownedMember->selectByKind(Multiplicity) in
+ *     if ownedMultiplicities->isEmpty() then null
+ *     else ownedMultiplicities->first()
+ *     endif
  * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
  * let ownedConjugators: Sequence(Conjugator) = 
  *     ownedRelationship->selectByKind(Conjugation) in
- *     ownedConjugators->size() = 1 and
- *     ownedConjugator = ownedConjugators->at(1)
+ *     ownedConjugator = 
+ *         if ownedConjugators->isEmpty() then null 
+ *         else ownedConjugators->at(1) endif
  * output =
  *     if isConjugated then 
  *         conjugator.originalType.input
@@ -54,19 +60,25 @@ import org.eclipse.emf.common.util.EList;
  *         feature->select(direction = _'in' or direction = inout)
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
- * ownedFeature = ownedFeatureMembership.ownedMemberFeature
- * intersectingType->excludes(self)
- * differencingType = ownedDifferencing.differencingType
- * allSupertypes()->includes(Kernel Library::Anything)
- * disjointType = disjoiningTypeDisjoining.disjoiningType
- * intersectingType = ownedIntersecting.intersectingType
- * unioningType = ownedUnioning.unioningType
+ * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(direction <> null)
- * differencingType->excludes(self)
+ * feature = featureMembership.ownedMemberFeature
  * featureMembership = ownedMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
- * feature = featureMembership.ownedMemberFeature
+ * ownedFeature = ownedFeatureMembership.ownedMemberFeature
+ * differencingType = ownedDifferencing.differencingType
+ * intersectingType->excludes(self)
+ * differencingType->excludes(self)
+ * unioningType = ownedUnioning.unioningType
  * unioningType->excludes(self)
+ * intersectingType = ownedIntersecting.intersectingType
+ * ownedRelationship->selectByKind(Conjugator)->size() <= 1
+ * ownedMember->selectByKind(Multiplicity)->size() <= 1
+ * endFeature = feature->select(isEnd)
+ * ownedRelationship->selectByKind(Disjoining)
+ * ownedRelationship->selectByKind(Unioning)
+ * ownedRelationship->selectByKind(Intersecting)
+ * ownedRelationship->selectByKind(Differencing)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -165,10 +177,40 @@ public interface Type extends Namespace {
 	 *     closure(general.ownedSpecialization).general->
 	 *     including(self)
 	 * <!-- end-model-doc -->
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Type> allSupertypes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Type</code> is a direct or indirect specialization of the given <code>supertype<code>.</p>
+	 * if isConjugated then 
+	 *     ownedConjugator.originalType.specializes(supertype)
+	 * else
+	 *     allSupertypes()->includes(supertype)
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" supertypeRequired="true" supertypeOrdered="false"
+	 * @generated
+	 */
+	boolean specializes(Type supertype);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this Type is a direct or indirect specialization of the named library Type. <code>libraryTypeName</code> must conform to the syntax of a KerML qualified name and must resolve to a Type in global scope.</p>
+	 * let mem : Membership = resolveGlobal(libraryTypeName) in
+	 * mem <> null and mem.memberElement.oclIsKindOf(Type) and
+	 * specializes(mem.memberElement.oclAsType(Type))
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" libraryTypeNameDataType="org.omg.sysml.lang.types.String" libraryTypeNameRequired="true" libraryTypeNameOrdered="false"
+	 * @generated
+	 */
+	boolean specializesFromLibrary(String libraryTypeName);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.
@@ -362,7 +404,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this Type by EndFeatureMemberships.</p>
+	 * <p>All <code>features</code> of this <code>Type</code> with <code>isEnd = true</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>End Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_EndFeature()
@@ -576,12 +618,12 @@ public interface Type extends Namespace {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The one <code>member</code> (at most) of this Type that is a Multiplicity, which constrains the cardinality of the Type. A <code>multiplicity</code> can be owned or inherited. If it is owned, the <code>multiplicity</code> must redefine the <code>multiplicity</code> (if it has one) of any <code>general</code> Type of a <code>Generalization</code> of this Type.</p>
+	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</p>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)

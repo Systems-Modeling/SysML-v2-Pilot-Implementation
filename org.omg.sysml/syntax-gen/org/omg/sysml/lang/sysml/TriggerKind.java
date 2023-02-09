@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>TriggerKind enumerates the kinds of triggers that can be represented by TriggerInvocationExpression.</p>
+ * <p><code>TriggerKind</code> enumerates the kinds of triggers that can be represented by a <code>TriggerInvocationExpression</code>.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTriggerKind()
  * @model

@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Hisashi Miyashita
  * 
  *****************************************************************************/
 
@@ -26,6 +28,7 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -40,9 +43,12 @@ import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.LibraryPackage;
+import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class ElementUtil {
 	
@@ -127,6 +133,19 @@ public class ElementUtil {
 				findFirst().orElse(null);
 	}
 	
+	public static boolean isStandardLibraryElement(Element element) {
+		Namespace libraryNamespace = element.libraryNamespace();
+		return libraryNamespace instanceof LibraryPackage && 
+				((LibraryPackage)libraryNamespace).isStandard();
+	}
+	
+	// For version 5 name-base UUIDs using SHA-1 digest.
+	private static final UUIDDigest uuidDigest = new UUIDDigest(5, "SHA-1");
+
+	public static UUID constructNameUUID(UUID namespaceUUID, String name) {
+		return uuidDigest.hash(namespaceUUID, name);
+	}
+	
 	// Annotation
 	
 	public static List<Element> getAnnotatedElementOf(AnnotatingElement annotatingElement) {
@@ -147,25 +166,27 @@ public class ElementUtil {
 	}
 	
 	/**
-	 * Get all the MetadataFeatures relevant to this Element.
+	 * Get all the MetadataFeatures owned by this Element.
+	 * 
 	 */
 	public static List<MetadataFeature> getAllMetadataFeaturesOf(Element element) {
-		List<MetadataFeature> annotatingFeatures =  element.getOwnedAnnotation().stream().
+		// Get MetadataFeatures owned via Annotations.
+		List<MetadataFeature> metadataFeatures =  element.getOwnedAnnotation().stream().
 				map(Annotation::getAnnotatingElement).
 				filter(MetadataFeature.class::isInstance).
 				map(MetadataFeature.class::cast).
 				collect(Collectors.toList());
+		
+		// Include MetadataFeatures that are members of the Element if it is a Namespace.
 		if (element instanceof Namespace) {
-			/**
-			 * Include MetadataFeatures that are members of a Namespace.
-			 */
 			(((Namespace)element).getOwnedMember()).stream().
 				filter(MetadataFeature.class::isInstance).
 				map(MetadataFeature.class::cast).
 				filter(feature->feature.getAnnotatedElement().contains(element)).
-				forEach(annotatingFeatures::add);
-			}
-		return annotatingFeatures;
+				forEach(metadataFeatures::add);
+		}
+
+		return metadataFeatures;
 	}
 
 	public static String processCommentBody(String body) {
@@ -210,6 +231,30 @@ public class ElementUtil {
 		getElementAdapter(element).clearCaches();
 	}
 	
+	// Metaclass
+	
+	public static Metaclass getMetaclassOf(Element element) {
+		Element context = element;
+		
+		// Use the annotated element of a MetadataFeature as the context, because, if it
+		// is a metaclass feature, it will not be contained in a resource.
+		if (element instanceof MetadataFeature) {
+			List<Element> annotatedElements = ((MetadataFeature)element).getAnnotatedElement();
+			if (!annotatedElements.isEmpty()) {
+				context = annotatedElements.get(0);
+			}
+		}
+		
+		String metaclassName = element.eClass().getName();
+		return (Metaclass)SysMLLibraryUtil.getLibraryType(context, 
+				"KerML::Root::" + metaclassName,  "KerML::Core::" + metaclassName, "KerML::Kernel::" + metaclassName, 
+				"SysML::Systems::" + metaclassName);
+	}
+
+	public static MetadataFeature getMetaclassFeatureFor(Element element) {
+		return element == null? null: getElementAdapter(element).getMetaclassFeature();
+	}
+
 	// Transformation 
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {

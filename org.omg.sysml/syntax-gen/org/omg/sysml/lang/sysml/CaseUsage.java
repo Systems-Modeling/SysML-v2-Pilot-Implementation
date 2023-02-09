@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A CaseUsage is a Usage of a CaseDefinition.</p>
  * 
- * <p>A CaseUsage must subset, directly or indirectly, either the base CaseUsage <em><code>cases</code></em> from the Systems model library. If it is owned by a CaseDefinition or CaseUsage, it must subset the CaseUsage <em><code>Cases::subcases</code></em>.</p>
+ * <p>A CaseUsage must subset, directly or indirectly, the base CaseUsage <em><code>cases</code></em> from the Systems model library. If it is owned by a CaseDefinition or CaseUsage, it must subset the CaseUsage <em><code>Cases::subcases</code></em>.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -163,7 +163,7 @@ public interface CaseUsage extends CalculationUsage {
 	 * @return the value of the '<em>Case Definition</em>' reference.
 	 * @see #setCaseDefinition(CaseDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage_CaseDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedCase'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

@@ -139,17 +139,12 @@ public class ElementUtil {
 				((LibraryPackage)libraryNamespace).isStandard();
 	}
 	
+	// It will use nameUUIDFromBytes();
+	// private static final UUIDDigest uuidDigest0 = new UUIDDigest();
+	private static final UUIDDigest uuidDigest = new UUIDDigest(5, "SHA-1");
+
 	public static UUID constructNameUUID(UUID namespaceUUID, String name) {
-		try {
-			byte[] nameBytes = name.getBytes("UTF-8");
-			ByteBuffer bb = ByteBuffer.wrap(new byte[16 + nameBytes.length]);
-			bb.putLong(namespaceUUID.getMostSignificantBits());
-			bb.putLong(namespaceUUID.getLeastSignificantBits());
-			bb.put(nameBytes);
-			return UUID.nameUUIDFromBytes(bb.array());
-		} catch (UnsupportedEncodingException e) {
-			return null;
-		}
+		return uuidDigest.hash(namespaceUUID, name);
 	}
 	
 	// Annotation

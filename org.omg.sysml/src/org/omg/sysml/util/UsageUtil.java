@@ -194,7 +194,7 @@ public class UsageUtil {
 		}
 	}
 	
-	public static boolean isAddressedConcern(ConcernUsage concern) {
+	public static boolean isFramedConcern(ConcernUsage concern) {
 		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	

@@ -34,8 +34,6 @@ import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	
-	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
-	
 	public RequirementUsageAdapter(RequirementUsage element) {
 		super(element);
 	}
@@ -53,7 +51,7 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	}
 	
 	// Implicit Generalization
-
+	
 	@Override
 	protected String getDefaultSupertype() {
 		return UsageUtil.isSubrequirement(getTarget())? 
@@ -62,11 +60,11 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	}
 	
 	@Override
-	public void addRequirementSubsetting() {
+	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isVerifiedRequirement(getTarget())) {
-			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+			addDefaultGeneralType("verification");
 		} else {
-			super.addRequirementSubsetting();
+			super.addRequirementConstraintSubsetting();
 		}
 	}
 	

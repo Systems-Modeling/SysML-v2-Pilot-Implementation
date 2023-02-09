@@ -155,7 +155,7 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "base", "Actions::actions");
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
-		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::performance::enclosedPerformance");
+		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
 		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");

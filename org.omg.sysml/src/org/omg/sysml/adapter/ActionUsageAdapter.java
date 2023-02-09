@@ -81,7 +81,7 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 			   isPartOwnedComposite()? "ownedAction":
 			   null;	
 	}
-		
+	
 	// Used in subclasses.
 	public boolean isPerformedAction() {		
 		Type owningType = getTarget().getOwningType();

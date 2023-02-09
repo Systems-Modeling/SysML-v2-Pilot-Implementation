@@ -415,8 +415,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
@@ -673,8 +674,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
@@ -850,8 +852,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
@@ -1133,8 +1136,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
@@ -1278,8 +1282,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
@@ -1677,8 +1682,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
@@ -4954,7 +4960,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (operand+=TargetExpression_OperatorExpression_1_1_1_0 ownedRelationship+=ReferenceTyping) | 
-	 *                 (operand+=PrimaryExpression_OperatorExpression_2_0_1_0 ownedRelationship+=ReferenceTyping)
+	 *                 (operand+=PrimaryExpression_OperatorExpression_2_0_2_0 ownedRelationship+=ReferenceTyping)
 	 *             ) 
 	 *             (
 	 *                 (ownedRelationship+=ArgumentMember ownedRelationship+=ArgumentMember*) | 
@@ -4987,9 +4993,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=UnaryExpression) | 
 	 *         (operator=UnaryOperator operand+=ExtentExpression) | 
 	 *         (operator='all' ownedRelationship+=TypeResultMember) | 
-	 *         (operand+=PrimaryExpression_OperatorExpression_2_0_0_0 operator='[' operand+=SequenceExpression) | 
+	 *         (operand+=PrimaryExpression_OperatorExpression_2_0_0_0 operator='#' operand+=SequenceExpression) | 
+	 *         (operand+=PrimaryExpression_OperatorExpression_2_0_1_0 operator='[' operand+=SequenceExpression) | 
 	 *         (
-	 *             operand+=PrimaryExpression_OperatorExpression_2_0_1_0 
+	 *             operand+=PrimaryExpression_OperatorExpression_2_0_2_0 
 	 *             ownedRelationship+=ReferenceTyping 
 	 *             (operand+=BodyExpression | operand+=FunctionReferenceExpression)?
 	 *         ) | 
@@ -10617,7 +10624,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (operand+=TargetExpression_CollectExpression_1_1_2_0 ownedRelationship+=ExpressionBodyMember) | 
-	 *         (operand+=PrimaryExpression_CollectExpression_2_0_2_0 operand+=BodyExpression)
+	 *         (operand+=PrimaryExpression_CollectExpression_2_0_3_0 operand+=BodyExpression)
 	 *     )
 	 * </pre>
 	 */
@@ -10660,7 +10667,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (operand+=TargetExpression_SelectExpression_1_1_3_0 ownedRelationship+=ExpressionBodyMember) | 
-	 *         (operand+=PrimaryExpression_SelectExpression_2_0_3_0 operand+=BodyExpression)
+	 *         (operand+=PrimaryExpression_SelectExpression_2_0_4_0 operand+=BodyExpression)
 	 *     )
 	 * </pre>
 	 */

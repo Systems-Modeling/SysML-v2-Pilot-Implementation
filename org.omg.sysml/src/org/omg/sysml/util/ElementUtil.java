@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,13 +20,12 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Hisashi Miyashita
  * 
  *****************************************************************************/
 
 package org.omg.sysml.util;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -139,8 +139,7 @@ public class ElementUtil {
 				((LibraryPackage)libraryNamespace).isStandard();
 	}
 	
-	// It will use nameUUIDFromBytes();
-	// private static final UUIDDigest uuidDigest0 = new UUIDDigest();
+	// For version 5 name-base UUIDs using SHA-1 digest.
 	private static final UUIDDigest uuidDigest = new UUIDDigest(5, "SHA-1");
 
 	public static UUID constructNameUUID(UUID namespaceUUID, String name) {

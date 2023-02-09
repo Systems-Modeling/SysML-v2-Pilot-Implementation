@@ -168,7 +168,7 @@ public class UsageUtil {
 	
 	public static boolean isSubrequirement(RequirementUsage requirement) {
 		Type owningType = requirement.getOwningType();
-		return !isAssumptionConstraint(requirement) &&
+		return !isAssumptionConstraint(requirement) && requirement.isComposite() &&
 			   (owningType instanceof RequirementDefinition || 
 			    owningType instanceof RequirementUsage);
 	}

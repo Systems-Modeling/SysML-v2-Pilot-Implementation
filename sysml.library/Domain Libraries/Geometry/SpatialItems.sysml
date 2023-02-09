@@ -9,10 +9,13 @@ standard library package SpatialItems {
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
 	private import MeasurementReferences::CoordinateFrame;
+	private import MeasurementReferences::nullTransformation;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
+	private import ScalarValues::Natural;
 	private import ISQ::Cartesian3dSpatialCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
+	private import SequenceFunctions::isEmpty;
 	private import ControlFunctions::forAll;
 	
 	item def SpatialItem :> SpatialFrame {
@@ -56,42 +59,43 @@ standard library package SpatialItems {
 		
 			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
-	}
 
-	item def CompoundSpatialItem :> SpatialItem {
-		doc
-		/*
-		 * A CompoundSpatialItem is a SpatialItem that is a spatial union of a collection of component SpatialItems.
-		 */	
-		
 		item componentItems : SpatialItem[1..*] ordered :> subitems {
+			/* REVIEW Copied from CompoundSpatialItem, except for mRefs, see below.
+			     What is it ordered for? */
 			doc
 			/*
-			 * The composite SpatialItems that together make up this CompoundSpatialItem. 
-			 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
-			 * and, by default, they have the same localClock as the CompoundSpatialItem.
-			 */
-		
+			 * The composite SpatialItems that make up this CompoundSpatialItem. 
+			 * The coordinateFrames of compositeItems are nested in the coordinateFrame of the Spatialitem, 
+			 * which have the same localClock as the CompoundSpatialItem by default.
+			 */		
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
-				attribute :>> transformation[1] {
-				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
-				 	attribute :>> target default that;
+				/* REMOVED: attribute :>> mRefs default (that as CoordinateFrame).mRefs; */
+				attribute :>> mRefs default (that.that as SpatialItem).coordinateFrame.mRefs;
+				/* REVIEW Added to ensure the component item uses the same ScalarMeasurementReferences (units) on each dimensions as 'that.that' (SpatialItem "parent"). */
+				attribute :>> transformation[1] default nullTransformation {
+					attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
+					attribute :>> target default that;
+					/* REVIEW Ensures that by default the component coordinateFrame has the same position and orientation as the coordinateFrame of the owning SpatialItem.
+					   Is there a way to default coordframe for elements?
+					   Maybe provide help function instead for defining transformations that defaults cf to source. */
 				}
 			}
 		}
-		
-		attribute componentUnion[1] :> unionsOf {
+
+		private attribute cunionNum: Natural [1] = if isEmpty(componentItems) ? 0 else 1;
+		  /* REVIEW Copied from CompoundSpatialItem and conditioned on having componentItems. */
+		private attribute componentUnion[cunionNum] :> unionsOf {
 			doc
 			/*
-			 * A CompoundSpatialItem is a spatial union of its componentItems.
+			 * A SpatialItem with componentItems is is a spatial union of them.
 			 */
 		
-			item :>> elements = componentItems;
+			item :>> elements : SpatialItem [1..*] = componentItems;
 		}
-		
 	}
-	
+
 	calc def PositionOf :> SpatialFrames::PositionOf {
 		doc
 		/*

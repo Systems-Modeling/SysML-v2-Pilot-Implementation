@@ -231,6 +231,18 @@ standard library package MeasurementReferences {
 			assert constraint { source.dimensions == 3 }
 	}
 
+	attribute def NullTransformation :> CoordinateTransformation {
+		doc
+		/*
+		 * NullTransformation is a three dimensional CoordinateTransformation that places the target CoordinateFrame at the
+		 * same position and orientation as the source CoordinateFrame.
+		 */
+
+		 
+	}
+
+	attribute nullTransformation : NullTransformation [1];
+
 	abstract attribute def MeasurementUnit :> ScalarMeasurementReference {
 		doc
 		/*

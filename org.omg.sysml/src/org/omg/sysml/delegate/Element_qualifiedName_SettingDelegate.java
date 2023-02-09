@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022-2023 Model Driven Solutions, Inc.
  * Copyright (c) 2022 Siemens AG
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -38,11 +38,14 @@ public class Element_qualifiedName_SettingDelegate extends BasicDerivedPropertyS
 		Namespace owningNamespace = ((Element) owner).getOwningNamespace();
 		if (owningNamespace == null) {
 			return null;
-		} else if (owningNamespace.getOwner() == null) {
-			return ((Element) owner).escapedName();
 		} else {
-			String qualification = owningNamespace.getQualifiedName();
-			return qualification == null? null: qualification + "::" + ((Element) owner).escapedName();
+			String name = ((Element) owner).escapedName();
+			if (name == null || owningNamespace.getOwner() == null) {
+				return name;
+			} else {
+				String qualification = owningNamespace.getQualifiedName();
+				return qualification == null? null: qualification + "::" + name;
+			}
 		}
 	}
 

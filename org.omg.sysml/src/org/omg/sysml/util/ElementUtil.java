@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Hisashi Miyashita
  * 
  *****************************************************************************/
 
@@ -26,6 +28,7 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -134,6 +137,13 @@ public class ElementUtil {
 		Namespace libraryNamespace = element.libraryNamespace();
 		return libraryNamespace instanceof LibraryPackage && 
 				((LibraryPackage)libraryNamespace).isStandard();
+	}
+	
+	// For version 5 name-base UUIDs using SHA-1 digest.
+	private static final UUIDDigest uuidDigest = new UUIDDigest(5, "SHA-1");
+
+	public static UUID constructNameUUID(UUID namespaceUUID, String name) {
+		return uuidDigest.hash(namespaceUUID, name);
 	}
 	
 	// Annotation

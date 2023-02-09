@@ -53,7 +53,7 @@ standard library package Cases {
 			 */
 		}
 		
-		abstract ref case subcases : Case[0..*] :> cases, subcalculations {
+		abstract case subcases : Case[0..*] :> cases, subcalculations {
 			doc
 			/*
 			 * Other Cases carried out as part of the performance of this Case.

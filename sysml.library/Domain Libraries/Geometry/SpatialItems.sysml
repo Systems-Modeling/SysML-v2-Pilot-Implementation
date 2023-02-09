@@ -8,7 +8,7 @@ standard library package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
-	private import MeasurementReferences::CoordinateFrame;
+	private import MeasurementReferences::ThreeDCoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
 	private import VectorFunctions::isZeroVector;
@@ -28,7 +28,7 @@ standard library package SpatialItems {
 			 */
 			}
 		
-		attribute coordinateFrame : CoordinateFrame[1] default ISQ::universalCartesianSpatial3dCoordinateFrame {
+		attribute coordinateFrame : ThreeDCoordinateFrame[1] default ISQ::universalCartesianSpatial3dCoordinateFrame {
             doc
             /*
              * The three-dimensional CoordinateFrame to be used as the measurement reference for position 

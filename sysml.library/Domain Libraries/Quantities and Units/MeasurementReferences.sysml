@@ -120,6 +120,7 @@ standard library package MeasurementReferences {
          */
         attribute :>> dimensions = 3;
     }
+    alias ThreeDCoordinateFrame for '3dCoordinateFrame';
 
     abstract attribute def CoordinateTransformation {
         doc

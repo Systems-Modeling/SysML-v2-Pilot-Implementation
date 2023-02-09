@@ -64,7 +64,8 @@ standard library package Quantities {
 
         attribute :>> num: Real[3];
 	}
-
+	alias ThreeDVectorQuantityValue for '3dVectorQuantityValue';
+	
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.
      */

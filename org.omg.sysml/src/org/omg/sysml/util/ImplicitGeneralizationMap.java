@@ -208,6 +208,8 @@ public class ImplicitGeneralizationMap {
 		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ConstraintUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(ConstraintUsageImpl.class, "assumption", "Requirements::RequirementCheck::assumptions");
+		put(ConstraintUsageImpl.class, "requirement", "Requirements::RequirementCheck::constraints");
 		
 		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
@@ -283,6 +285,7 @@ public class ImplicitGeneralizationMap {
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
 		put(RequirementUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::subrequirements");
+		put(RequirementUsageImpl.class, "verification", "Verifications::VerificationCase::obj::requirementVerifications");
 		
 		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
 		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");

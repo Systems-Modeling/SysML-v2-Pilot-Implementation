@@ -46,7 +46,7 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	public boolean isSubcalculation() {
 		CalculationUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		return !isEntryExitAction() && target.isComposite() &&
+		return isNonEntryExitComposite() &&
 			   owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
 	}
 	

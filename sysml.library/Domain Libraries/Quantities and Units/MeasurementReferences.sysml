@@ -223,7 +223,7 @@ standard library package MeasurementReferences {
 		    }
 			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
 			attribute :>> dimensions = (4, 4);
-			attribute :>> elements : Real[16] ordered nonunique = (
+			derived attribute :>> elements : Real[16] ordered nonunique = (
 				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
 				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
 				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],
@@ -231,15 +231,19 @@ standard library package MeasurementReferences {
 			assert constraint { source.dimensions == 3 }
 	}
 
-	attribute def NullTransformation :> CoordinateTransformation {
+	attribute def NullTransformation :> AffineTransformationMatrix3d {
 		doc
 		/*
 		 * NullTransformation is a three dimensional CoordinateTransformation that places the target CoordinateFrame at the
 		 * same position and orientation as the source CoordinateFrame.
 		 */
-
-		 
-	}
+		 attribute :>> rotationMatrix {
+		     attribute :>> elements = (1, 0, 0, 0, 1, 0, 0, 0, 1);
+		 }
+		 attribute :>> translationVector {
+		     attribute :>> elements = (0, 0, 0);
+		 }
+ 	}
 
 	attribute nullTransformation : NullTransformation [1];
 

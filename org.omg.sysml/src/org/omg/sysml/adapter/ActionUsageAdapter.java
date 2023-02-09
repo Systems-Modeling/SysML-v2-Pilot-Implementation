@@ -33,13 +33,10 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class ActionUsageAdapter extends OccurrenceUsageAdapter {
-	
-	public static final String STATE_BASE = "States::StateAction";
-	public static final String TRANSITION_BASE = "Actions::TransitionAction";
-	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
 	
 	public ActionUsageAdapter(ActionUsage element) {
 		super(element);
@@ -116,11 +113,14 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	protected static String getRedefinedFeature(Feature target) {
 		FeatureMembership membership = target.getOwningFeatureMembership();
-		return membership instanceof StateSubactionMembership?
-					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
-			   membership instanceof TransitionFeatureMembership? 
-					TRANSITION_BASE + "::" + TRANSITION_REDEFINED_FEATURES[((TransitionFeatureMembership)membership).getKind().getValue()]: 
-					null;
+		String kind = 
+				membership instanceof StateSubactionMembership?
+					((StateSubactionMembership)membership).getKind().toString():
+				membership instanceof TransitionFeatureMembership?
+					((TransitionFeatureMembership)membership).getKind().toString():
+				null;
+		return kind == null? null:
+			   ImplicitGeneralizationMap.getDefaultSupertypeFor(target.getClass(), kind);
 	}
 	
 }

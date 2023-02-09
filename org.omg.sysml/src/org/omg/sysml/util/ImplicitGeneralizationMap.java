@@ -148,7 +148,6 @@ public class ImplicitGeneralizationMap {
 		// SysML
 		
 		put(AcceptActionUsageImpl.class, "base", "Actions::acceptActions");
-		put(AcceptActionUsageImpl.class, "trigger", "Actions::acceptMessageActions");
 		put(AcceptActionUsageImpl.class, "subaction", "Actions::Action::acceptSubactions");
 		
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
@@ -157,6 +156,12 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
 		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(ActionUsageImpl.class, "entry", "States::StateAction::entryAction");
+		put(ActionUsageImpl.class, "do", "States::StateAction::doAction");
+		put(ActionUsageImpl.class, "exit", "States::StateAction::exitAction");
+		put(ActionUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
+		put(ActionUsageImpl.class, "guard", "Actions::TransitionAction::guard");
+		put(ActionUsageImpl.class, "effect", "Actions::TransitionAction::effect");
 		
 		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");

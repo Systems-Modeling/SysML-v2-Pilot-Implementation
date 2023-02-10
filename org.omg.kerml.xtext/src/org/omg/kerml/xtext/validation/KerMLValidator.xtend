@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2023 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -148,6 +148,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
 	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
 	
+	public static val INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR = "Invalid index Expression - Bracket operator"
+	public static val INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR_MSG = "Use #(...) for indexing"
 	
 	@Check
 	def checkElement(Element elm) {
@@ -415,6 +417,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 						warning(INVALID_CAST_EXPRESSION__CAST_TYPE_MSG, e, null, INVALID_CAST_EXPRESSION__CAST_TYPE)
 					}
 			}
+		}
+	}
+	
+	@Check
+	def checkOperatorExpression(OperatorExpression e) {
+		if (e.operator == '[') {
+			warning(org.omg.kerml.xtext.validation.KerMLValidator.INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR_MSG, e, null, org.omg.kerml.xtext.validation.KerMLValidator.INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR)
 		}
 	}
 	

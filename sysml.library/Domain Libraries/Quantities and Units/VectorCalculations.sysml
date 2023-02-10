@@ -2,6 +2,7 @@ standard library package VectorCalculations {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Number;
     private import Quantities::VectorQuantityValue;
+    private import MeasurementReferences::CoordinateTransformation;
     
     calc def isZeroVectorQuantity :> VectorFunctions::isZeroVector{ in : VectorQuantityValue[1]; return : Boolean[1]; }
 
@@ -20,4 +21,15 @@ standard library package VectorCalculations {
     /* Norm and angle */
 	calc def norm :> VectorFunctions::norm { in : VectorQuantityValue[1]; return : Number[1]; }
 	calc def angle :> VectorFunctions::angle { in : VectorQuantityValue[1]; in : VectorQuantityValue[1]; return : Number[1]; }
+	
+	/* Coordinate transformation */
+	calc def transform {
+	    in transformation : CoordinateTransformation;
+	    in sourceVector : VectorQuantityValue {
+	        :>> mRef = transformation.source;
+	    }
+	    return targetVector : VectorQuantityValue {
+	        :>> mRef = transformation.target;
+    	}
+	}
 }

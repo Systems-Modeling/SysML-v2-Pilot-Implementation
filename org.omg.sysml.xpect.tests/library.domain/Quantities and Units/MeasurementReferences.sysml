@@ -140,9 +140,9 @@ standard library package MeasurementReferences {
 	 	attribute origin : VectorQuantityValue[1];
 	 	attribute basisDirections : VectorQuantityValue[0..*] ordered;
 	 	assert constraint { origin.dimensions == source.dimensions }
-	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
+	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions#(1)}
 	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
-	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
+	 		(basisDirections#(i) as VectorQuantityValue).dimensions == source.dimensions } 
 	 	}
 	 }
 
@@ -224,9 +224,9 @@ standard library package MeasurementReferences {
 			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
 			attribute :>> dimensions = (4, 4);
 			attribute :>> elements : Real[16] ordered nonunique = (
-				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
-				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
-				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],
+				rotationMatrix.elements#(1), rotationMatrix.elements#(2), rotationMatrix.elements#(3), translationVector#(1),
+				rotationMatrix.elements#(4), rotationMatrix.elements#(5), rotationMatrix.elements#(6), translationVector#(2),
+				rotationMatrix.elements#(7), rotationMatrix.elements#(8), rotationMatrix.elements#(9), translationVector#(3),
 				0, 0, 0, 1);
 			assert constraint { source.dimensions == 3 }
 	}
@@ -458,7 +458,7 @@ standard library package MeasurementReferences {
 	}
 	attribute dimensionOneQuantities : DimensionOneValue[*] nonunique :> scalarQuantities;
 
-	attribute one = DimensionOneUnit();
+	attribute one : DimensionOneUnit = DimensionOneUnit();
 
 	attribute def CountValue :> DimensionOneValue {
 		doc

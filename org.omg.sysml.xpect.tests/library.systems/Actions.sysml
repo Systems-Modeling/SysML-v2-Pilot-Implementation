@@ -468,7 +468,7 @@ standard library package Actions {
 			assign index := 1;
 		then private action whileLoop
 			while index <= size(seq) {
-				assign var := seq[index];
+				assign var := seq#(index);
 				then perform body;
 				then assign index := index + 1;
 			}

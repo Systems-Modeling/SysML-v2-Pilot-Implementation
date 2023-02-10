@@ -63,9 +63,10 @@ standard library package SpatialItems {
 		item componentItems : SpatialItem[1..*] :> subitems {
 			doc
 			/*
-			 * The composite SpatialItems that make up this CompoundSpatialItem. 
-			 * The coordinateFrames of compositeItems are nested in the coordinateFrame of the Spatialitem, 
-			 * and by default have the same localClock and equivalent coordinate frame.
+			 * A SpatialItem with componentItems is entirely made up of those items (the SpatialItem occurs only
+			 * as a collection of its componentItems).  By default they have the same localClock and equivalent
+			 * coordinate frame as the SpatialItem they make up.  A SpatialItem without componentItems occurs
+			 * on its own, separately from its subitems.
 			 */		
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {

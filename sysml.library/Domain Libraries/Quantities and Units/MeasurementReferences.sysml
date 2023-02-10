@@ -113,37 +113,45 @@ standard library package MeasurementReferences {
 		}
 	}
 
+    attribute def '3dCoordinateFrame' :> CoordinateFrame {
+        doc
+    	/*
+         * Most general 3-dimensional coordinate frame
+         */
+        attribute :>> dimensions = 3;
+    }
+    alias ThreeDCoordinateFrame for '3dCoordinateFrame';
+
     abstract attribute def CoordinateTransformation {
-		doc
-		/*
-		 * CoordinateTransformation is the most general representation of the transformation of a target coordinate frame 
-		 * with respect to a source coordinate frame.
-		 */
-	
+        doc
+        /*
+	     * CoordinateTransformation is the most general representation of the transformation of a target VectorMeasurementReference 
+	     * with respect to a source VectorMeasurementReference.
+	     */
 	 	attribute source: VectorMeasurementReference[1];
 	 	attribute target: VectorMeasurementReference[1];
 	 	assert constraint { source.dimensions == target.dimensions }
     }
 
 	attribute def CoordinateFramePlacement :> CoordinateTransformation {
-		doc
-		/*
-		 * CoordinateFramePlacement is a CoordinateTransformation by placement of the target frame in the source frame.
-		 *  
-		 * Attribute origin specifies the location of the origin of the target frame through a vector in the source frame.
-		 * 
-		 * Attribute basisDirections specifies the orientation of the target frame by specifying the directions of 
-		 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
-		 * basisDirections signifies no change of orientation of the target coordinate frame.
-		 */
-	
-	 	attribute origin : VectorQuantityValue[1];
-	 	attribute basisDirections : VectorQuantityValue[0..*] ordered;
-	 	assert constraint { origin.dimensions == source.dimensions }
-	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
-	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
-	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
-	 	}
+    	doc
+    	/*
+    	 * CoordinateFramePlacement is a CoordinateTransformation by placement of the target frame in the source frame.
+    	 *  
+    	 * Attribute origin specifies the location of the origin of the target frame as a vector in the source frame.
+    	 * 
+    	 * Attribute basisDirections specifies the orientation of the target frame by specifying the directions of 
+    	 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
+    	 * basisDirections signifies no change of orientation of the target coordinate frame.
+    	 */
+
+		attribute origin : VectorQuantityValue[1];
+		attribute basisDirections : VectorQuantityValue[0..*] ordered;
+		assert constraint { origin.dimensions == source.dimensions }
+		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
+        assert constraint { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
+            basisDirection.dimensions == source.dimensions }
+        }
 	 }
 
 	abstract attribute def TranslationOrRotation {

@@ -8,10 +8,9 @@ standard library package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
-	private import MeasurementReferences::CoordinateFrame;
+	private import MeasurementReferences::ThreeDCoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
-	private import ISQ::Cartesian3dSpatialCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
 	private import ControlFunctions::forAll;
 	
@@ -21,8 +20,6 @@ standard library package SpatialItems {
 		 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 		 */
 	
-		ref item :>> self : SpatialItem;
-
 		ref item :>> localClock : Clock[1] default Time::universalClock {
 			doc
 			/*
@@ -31,16 +28,15 @@ standard library package SpatialItems {
 			 */
 			}
 		
-		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {
-			doc
-			/*
-			 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
-			 * and displacement vector values relative to this SpatialItem.
-			 */
-		
-			attribute :>> dimensions = 3;
-		}
-		
+		attribute coordinateFrame : ThreeDCoordinateFrame[1] default ISQ::universalCartesianSpatial3dCoordinateFrame {
+            doc
+            /*
+             * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
+             * and displacement vector values relative to this SpatialItem.
+             * By default this is the singleton universalCartesianSpatial3dCoordinateFrame.
+             */
+        }
+        		
 		item originPoint : Point[1] :> spaceShots {
 			doc
 			/*
@@ -74,6 +70,7 @@ standard library package SpatialItems {
 		
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
+			    attribute :>> mRefs default (that.that.that as SpatialItem).coordinateFrame.mRefs;
 				attribute :>> transformation[1] {
 				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
 				 	attribute :>> target default that;
@@ -96,7 +93,7 @@ standard library package SpatialItems {
 		doc
 		/*
 		 * The PositionOf a Point relative to a SpatialItem, at a specific TimeInstantValue relative to a given Clock,
-		 * is a positionVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
+	 * is a position3dVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
 		 * The default Clock is the localClock of the SpatialItem.
 		 */
 	
@@ -104,7 +101,7 @@ standard library package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return position3dVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}
@@ -120,7 +117,7 @@ standard library package SpatialItems {
 		in point : Point[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return position3dVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}
@@ -161,5 +158,4 @@ standard library package SpatialItems {
 			attribute :>> isBound = false;
 		}
 	}
-
 }

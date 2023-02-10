@@ -6,10 +6,21 @@ standard library package VectorCalculations {
     private import MeasurementReferences::VectorMeasurementReference;
     private import MeasurementReferences::CoordinateTransformation;
     
-    calc def '[' specializes BaseFunctions::'[' { in x: Number[1..*] ordered; in y: VectorMeasurementReference[1]; return : VectorQuantityValue[1]; }
+    calc def '[' :> BaseFunctions::'[' { 
+    	in elements: Number[1..n] ordered; 
+    	in mRef: VectorMeasurementReference[1]; 
+    	return quantity : VectorQuantityValue[1];
+    	private attribute n = mRef.flattenedSize;
+    }
 
-    calc def isZeroVectorQuantity :> VectorFunctions::isZeroVector { in : VectorQuantityValue[1]; return : Boolean[1]; }
-    calc def isUnitVectorQuantity { in : VectorQuantityValue[1]; return : Boolean[1]; }
+    calc def isZeroVectorQuantity :> VectorFunctions::isZeroVector { 
+    	in : VectorQuantityValue[1]; 
+    	return : Boolean[1];
+    }
+    calc def isUnitVectorQuantity { 
+    	in : VectorQuantityValue[1]; 
+    	return : Boolean[1];
+    }
 
     /* Addition and subtraction */
 	calc def '+' :> VectorFunctions::'+' { in : VectorQuantityValue[1]; in : VectorQuantityValue[1]; return : VectorQuantityValue[1]; }
@@ -39,6 +50,7 @@ standard library package VectorCalculations {
 	    }
 	    return targetVector : VectorQuantityValue {
 	        :>> mRef = transformation.target;
+	        :>> dimensions = sourceVector.dimensions;
     	}
 	}
 }

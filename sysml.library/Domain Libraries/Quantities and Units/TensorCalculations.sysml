@@ -7,10 +7,21 @@ standard library package TensorCalculations {
     private import MeasurementReferences::TensorMeasurementReference;
     private import MeasurementReferences::CoordinateTransformation;
     
-    calc def '[' specializes BaseFunctions::'[' { in x: Number[1..*] ordered; in y: TensorMeasurementReference[1]; return : TensorQuantityValue[1]; }
+    calc def '[' specializes BaseFunctions::'[' { 
+    	in elements: Number[1..n] ordered; 
+    	in mRef: TensorMeasurementReference[1]; 
+    	return quantity: TensorQuantityValue[1];
+    	private attribute n = mRef.flattenedSize;
+    }
 
-    calc def isZeroTensorQuantity { in : TensorQuantityValue[1]; return : Boolean[1]; }
-    calc def isUnitTensorQuantity { in : TensorQuantityValue[1]; return : Boolean[1]; }
+    calc def isZeroTensorQuantity { 
+    	in x : TensorQuantityValue[1]; 
+    	return : Boolean[1];
+    }
+    calc def isUnitTensorQuantity { 
+    	in x : TensorQuantityValue[1]; 
+    	return : Boolean[1];
+    }
 
     /* Addition and subtraction */
     calc def '+' :> DataFunctions::'+' { in : TensorQuantityValue[1]; in : TensorQuantityValue[1]; return : TensorQuantityValue[1]; }

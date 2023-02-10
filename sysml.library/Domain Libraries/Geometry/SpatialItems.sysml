@@ -78,7 +78,6 @@ standard library package SpatialItems {
 		}
 
 		private attribute cunionNum: Natural [1] = if isEmpty(componentItems) ? 0 else 1;
-		  /* REVIEW Copied from CompoundSpatialItem and conditioned on having componentItems. */
 		private attribute componentUnion[cunionNum] :> unionsOf {
 			doc
 			/*

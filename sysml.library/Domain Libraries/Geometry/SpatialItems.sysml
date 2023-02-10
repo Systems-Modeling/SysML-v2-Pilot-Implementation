@@ -60,26 +60,19 @@ standard library package SpatialItems {
 			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
 
-		item componentItems : SpatialItem[1..*] ordered :> subitems {
-			/* REVIEW Copied from CompoundSpatialItem, except for mRefs, see below.
-			     What is it ordered for? */
+		item componentItems : SpatialItem[1..*] :> subitems {
 			doc
 			/*
 			 * The composite SpatialItems that make up this CompoundSpatialItem. 
 			 * The coordinateFrames of compositeItems are nested in the coordinateFrame of the Spatialitem, 
-			 * which have the same localClock as the CompoundSpatialItem by default.
+			 * and by default have the same localClock and equivalent coordinate frame.
 			 */		
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
-				/* REMOVED: attribute :>> mRefs default (that as CoordinateFrame).mRefs; */
 				attribute :>> mRefs default (that.that as SpatialItem).coordinateFrame.mRefs;
-				/* REVIEW Added to ensure the component item uses the same ScalarMeasurementReferences (units) on each dimensions as 'that.that' (SpatialItem "parent"). */
 				attribute :>> transformation[1] default nullTransformation {
 					attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
 					attribute :>> target default that;
-					/* REVIEW Ensures that by default the component coordinateFrame has the same position and orientation as the coordinateFrame of the owning SpatialItem.
-					   Is there a way to default coordframe for elements?
-					   Maybe provide help function instead for defining transformations that defaults cf to source. */
 				}
 			}
 		}

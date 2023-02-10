@@ -223,7 +223,7 @@ standard library package MeasurementReferences {
 		    }
 			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
 			attribute :>> dimensions = (4, 4);
-			derived attribute :>> elements : Real[16] ordered nonunique = (
+			attribute :>> elements : Real[16] ordered nonunique = (
 				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
 				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
 				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],

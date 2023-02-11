@@ -508,7 +508,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-            return "<<exhibit state>> ";
+            if (esu.getOwnedReferenceSubsetting() != null) {
+                return " exhibit>> ";
+            } else {
+                return " exhibit state>> ";
+            }
 		}
 
 		@Override
@@ -523,7 +527,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            return " perform action>> ";
+            if (pau.getOwnedReferenceSubsetting() != null) {
+                return " perform>> ";
+            } else {
+                return " perform action>> ";
+            }
 		}
 
 		@Override

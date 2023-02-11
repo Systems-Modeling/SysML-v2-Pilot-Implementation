@@ -55,8 +55,9 @@ public class VAction extends VDefault {
     }
 
     private void addAction(Type typ) {
-        if (addRecLine(typ, true) < 0) return;
-        // addGeneralizations(typ);
+        int id = addRecLine(typ, true);
+        if (id < 0) return;
+        addSpecializations(id, typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);
         append("\n");

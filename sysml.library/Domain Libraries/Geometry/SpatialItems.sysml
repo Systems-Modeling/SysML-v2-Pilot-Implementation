@@ -9,9 +9,12 @@ standard library package SpatialItems {
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
 	private import MeasurementReferences::ThreeDCoordinateFrame;
+	private import MeasurementReferences::nullTransformation;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
+	private import ISQ::universalCartesianSpatial3dCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
+	private import SequenceFunctions::isEmpty;
 	private import ControlFunctions::forAll;
 	
 	item def SpatialItem :> SpatialFrame {
@@ -28,7 +31,7 @@ standard library package SpatialItems {
 			 */
 			}
 		
-		attribute coordinateFrame : ThreeDCoordinateFrame[1] default ISQ::universalCartesianSpatial3dCoordinateFrame {
+		attribute coordinateFrame : ThreeDCoordinateFrame[1] default universalCartesianSpatial3dCoordinateFrame {
             doc
             /*
              * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
@@ -52,48 +55,41 @@ standard library package SpatialItems {
 		
 			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
-	}
 
-	item def CompoundSpatialItem :> SpatialItem {
-		doc
-		/*
-		 * A CompoundSpatialItem is a SpatialItem that is a spatial union of a collection of component SpatialItems.
-		 */	
-		
-		item componentItems : SpatialItem[1..*] ordered :> subitems {
+		item componentItems : SpatialItem[1..*] :> subitems {
 			doc
 			/*
-			 * The composite SpatialItems that together make up this CompoundSpatialItem. 
-			 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
-			 * and, by default, they have the same localClock as the CompoundSpatialItem.
-			 */
-		
+			 * A SpatialItem with componentItems is entirely made up of those items (the SpatialItem occurs only
+			 * as a collection of its componentItems).  By default they have the same localClock and equivalent
+			 * coordinate frame as the SpatialItem they make up.  A SpatialItem without componentItems occurs
+			 * on its own, separately from its subitems.
+			 */		
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
-			    attribute :>> mRefs default (that.that.that as SpatialItem).coordinateFrame.mRefs;
-				attribute :>> transformation[1] {
-				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
-				 	attribute :>> target default that;
+				attribute :>> mRefs default (that.that as SpatialItem).coordinateFrame.mRefs;
+				attribute :>> transformation[1] default nullTransformation {
+					attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
+					attribute :>> target default that;
 				}
 			}
 		}
-		
-		attribute componentUnion[1] :> unionsOf {
+
+		private attribute cunionNum: Natural [1] = if isEmpty(componentItems) ? 0 else 1;
+		private attribute componentUnion[cunionNum] :> unionsOf {
 			doc
 			/*
-			 * A CompoundSpatialItem is a spatial union of its componentItems.
+			 * A SpatialItem with componentItems is is a spatial union of them.
 			 */
 		
-			item :>> elements = componentItems;
+			item :>> elements : SpatialItem [1..*] = componentItems;
 		}
-		
 	}
-	
+
 	calc def PositionOf :> SpatialFrames::PositionOf {
 		doc
 		/*
 		 * The PositionOf a Point relative to a SpatialItem, at a specific TimeInstantValue relative to a given Clock,
-	 * is a position3dVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
+		 * is a positionVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
 		 * The default Clock is the localClock of the SpatialItem.
 		 */
 	
@@ -101,7 +97,7 @@ standard library package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return position3dVector : VectorQuantityValue[1] {
+		return positionVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}
@@ -117,7 +113,7 @@ standard library package SpatialItems {
 		in point : Point[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return position3dVector : VectorQuantityValue[1] {
+		return positionVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}
@@ -158,4 +154,5 @@ standard library package SpatialItems {
 			attribute :>> isBound = false;
 		}
 	}
+
 }

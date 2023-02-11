@@ -239,6 +239,22 @@ standard library package MeasurementReferences {
 			assert constraint { source.dimensions == 3 }
 	}
 
+	attribute def NullTransformation :> AffineTransformationMatrix3d {
+		doc
+		/*
+		 * NullTransformation is a three dimensional CoordinateTransformation that places the target CoordinateFrame at the
+		 * same position and orientation as the source CoordinateFrame.
+		 */
+		 attribute :>> rotationMatrix {
+		     attribute :>> elements = (1, 0, 0, 0, 1, 0, 0, 0, 1);
+		 }
+		 attribute :>> translationVector {
+		     attribute :>> elements = (0, 0, 0);
+		 }
+ 	}
+
+	attribute nullTransformation : NullTransformation [1];
+
 	abstract attribute def MeasurementUnit :> ScalarMeasurementReference {
 		doc
 		/*
@@ -497,8 +513,6 @@ standard library package MeasurementReferences {
 		doc
 		/*
 		 * Constraint definition to verify that the given unit power factors comply with the required quantity dimension
-		 *
-		 * TODO: The implementation of this constraint requires reflection.
 		 */
 	
     	in unitPowerFactors: UnitPowerFactor[*] ordered;

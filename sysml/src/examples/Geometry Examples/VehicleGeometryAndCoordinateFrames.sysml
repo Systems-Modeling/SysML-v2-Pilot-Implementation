@@ -76,7 +76,7 @@ package VehicleGeometryAndCoordinateFrames {
     	}
     }
 
-    part vehicle : Vehicle, CompoundSpatialItem {
+    part vehicle : Vehicle, SpatialItem {
 		/* 
 		 * Vehicle frame origin at center of bottom plate of chassis
 		 * with +Z upwards and +X in the forward (front) direction

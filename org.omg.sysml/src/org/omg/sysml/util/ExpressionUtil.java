@@ -30,6 +30,7 @@ import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.adapter.OperatorExpressionAdapter;
+import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -49,11 +50,32 @@ public class ExpressionUtil {
 	
 	private ExpressionUtil() {
 	}
+	
+	public static final String ORDERED_COLLECTION_DATA_TYPE = "Collections::OrderedCollection";
+	public static final String ARRAY_DATA_TYPE = "Collections::Array";
 
 	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	public static final String COLLECTION_ELEMENTS_FEATURE = "Collections::Collection::elements";
+	public static final String ARRAY_DIMENSIONS_FEATURE = "Collections::Array::dimensions";
+	
+	public static DataType getOrderedCollectionDataType(Element context) {
+		return (DataType)SysMLLibraryUtil.getLibraryType(context, ORDERED_COLLECTION_DATA_TYPE);
+	}
+	
+	public static DataType getArrayDataType(Element context) {
+		return (DataType)SysMLLibraryUtil.getLibraryType(context, ARRAY_DATA_TYPE);
+	}
 	
 	public static Feature getSelfReferenceFeature(Element context) {
 		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
+	
+	public static Feature getCollectionElementsFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, COLLECTION_ELEMENTS_FEATURE);
+	}
+	
+	public static Feature getArrayDimensionsFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, ARRAY_DIMENSIONS_FEATURE);
 	}
 	
 	public static ExpressionAdapter getExpressionAdapter(Expression expression) {

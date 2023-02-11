@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -99,6 +99,10 @@ import org.omg.sysml.lang.sysml.FlowConnectionDefinition
 import org.omg.sysml.lang.sysml.SendActionUsage
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.FeatureChainExpression
+import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.InvocationExpression
 
 /**
  * This class contains custom validation rules. 
@@ -106,6 +110,9 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SysMLValidator extends KerMLValidator {
+	
+	public static val INVALID_QUANTITY_EXPRESSION = 'Invalid quantity OperatorExpression - Argument not MeasurementReference'
+	public static val INVALID_QUANTITY_EXPRESSION_MSG = 'Should be a measurement reference (unit).'
 	
 	public static val INVALID_USAGE_VARIANT = 'Invalid Usage - invalid variant'
 	public static val INVALID_USAGE_VARIANT_MSG = 'A variant must be an owned member of a variation.'
@@ -201,6 +208,41 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SENDACTIONUSAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
 	public static val INVALID_SENDACTIONUSAGE_NO_ARGS = 'Invalid SendActionUsage - No arguments'
 	public static val INVALID_SENDACTIONUSAGE_NO_ARGS_MSG = 'A send action must have at least one of "via" or "to".'
+	
+
+	@Check
+	override checkOperatorExpression(OperatorExpression e) {
+		if (e.operator != '[') {
+			super.checkOperatorExpression(e)
+		} else {
+			val arguments = e.argument
+			if (arguments.size >= 2) {
+				val indexArg = arguments.get(1)
+				val mRefType = SysMLLibraryUtil.getLibraryElement(e, "MeasurementReferences::TensorMeasurementReference") as Type
+				if (!indexArg.resultConformsTo(mRefType)) {
+					warning(INVALID_QUANTITY_EXPRESSION_MSG, indexArg, null, SysMLValidator.INVALID_QUANTITY_EXPRESSION)	
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Check if the result of the given Expression conforms to the given Type, or, alternatively, if the 
+	 * Expression is an InvocationExpression with a result that has a type to which the given Type conforms, 
+	 * check whether all the argument Expression results conform to the given Type in a similar way.
+	 * (This works, for example, for nested OperatorExpressions with arithmetic operations that
+	 * return the same result Type as their arguments.)
+	 */
+	def boolean resultConformsTo(Expression expr, Type type) {
+		val result = expr.result;
+		if (result.conformsTo(type)) {
+			true
+		} else if (expr instanceof InvocationExpression) {
+			result.type.exists[t | type.conformsTo(t)] && expr.argument.forall[resultConformsTo(type)]
+		} else {
+			false
+		}
+	}
 	
 	@Check
 	def checkUsage(Usage usage) {

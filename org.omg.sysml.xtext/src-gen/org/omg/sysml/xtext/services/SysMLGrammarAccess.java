@@ -20569,6 +20569,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += FeatureChainMember
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
+	//        operator = '#' '(' operand += SequenceExpression ')'
+	//      | {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
 	//      | {SysML::OperatorExpression.operand += current} '->'
 	//        ownedRelationship += ReferenceTyping

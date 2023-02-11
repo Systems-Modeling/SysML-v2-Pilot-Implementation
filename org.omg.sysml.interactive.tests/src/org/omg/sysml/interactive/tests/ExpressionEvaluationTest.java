@@ -279,6 +279,54 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 1", instance.eval("y.a.z", "ChainTest"));
 	}
 	
+	// Test index operator functionality.
+	public final String indexOperatorTest =
+			"package IndexOperatorTest {\n"
+			+ "	   import Collections::*;\n"
+			+ "    attribute seq [*] ordered = (\"a\", \"b\", \"c\");\n"
+			+ "	   attribute list : List {\n"
+			+ "	       :>> elements = (1, 2, 3, 4);\n"
+			+ "	   }\n"
+			+ "    attribute arr1 : Array {\n"
+			+ "        :>> dimensions = (2, 3);\n"
+			+ "        :>> elements = (\"a\", \"b\", \"c\",\n"
+			+ "                        \"x\", \"y\", \"z\");\n"
+			+ "    }\n"
+			+ "    attribute arr2 : Array {\n"
+			+ "        :>> dimensions = (2, 3, 4);\n"
+			+ "        :>> elements = ((111, 112, 113, 114,\n"
+			+ "                         121, 122, 123, 124,\n"
+			+ "                         131, 132, 133, 134),\n"
+			+ "                        (211, 212, 213, 214,\n"
+			+ "			                221, 222, 223, 224,\n"
+			+ "                         231, 232, 233, 234));\n"
+			+ "    }\n"
+			+ "}";
+	
+	@Test
+	public void testIndexOperator() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, indexOperatorTest);
+		assertElement("LiteralString a", instance.eval("seq#(1)", "IndexOperatorTest"));
+		assertElement("LiteralString b", instance.eval("seq#(2)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 1", instance.eval("list#(1)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 2", instance.eval("list#(2)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 3", instance.eval("list#(3)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 4", instance.eval("list#(4)", "IndexOperatorTest"));
+		assertElement("LiteralString a", instance.eval("arr1#(1,1)", "IndexOperatorTest"));
+		assertElement("LiteralString b", instance.eval("arr1#(1,2)", "IndexOperatorTest"));
+		assertElement("LiteralString c", instance.eval("arr1#(1,3)", "IndexOperatorTest"));
+		assertElement("LiteralString x", instance.eval("arr1#(2,1)", "IndexOperatorTest"));
+		assertElement("LiteralString y", instance.eval("arr1#(2,2)", "IndexOperatorTest"));
+		assertElement("LiteralString z", instance.eval("arr1#(2,3)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 111", instance.eval("arr2#(1,1,1)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 123", instance.eval("arr2#(1,2,3)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 134", instance.eval("arr2#(1,3,4)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 211", instance.eval("arr2#(2,1,1)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 232", instance.eval("arr2#(2,3,2)", "IndexOperatorTest"));
+		assertElement("LiteralInteger 234", instance.eval("arr2#(2,3,4)", "IndexOperatorTest"));
+	}
+	
 	@Test
 	public void testArithmeticEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();

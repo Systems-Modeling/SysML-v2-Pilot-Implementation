@@ -2344,6 +2344,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     operand+=OrExpressionReference (ambiguity) ')' (rule end)
 	 *     operand+=OwnedExpressionReference (ambiguity) ')' (rule end)
 	 *     operand+=RangeExpression (ambiguity) ')' (rule end)
+	 *     operand+=SequenceExpression ')' (ambiguity) ')' (rule end)
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
 	 *     operand+=UnaryExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)

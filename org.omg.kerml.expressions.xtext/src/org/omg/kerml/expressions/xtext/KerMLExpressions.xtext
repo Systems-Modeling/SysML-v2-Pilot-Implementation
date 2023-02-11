@@ -304,6 +304,8 @@ PrimaryExpression returns SysML::Expression :
 	  ownedRelationship += FeatureChainMember
 	)?
 	( ( {SysML::OperatorExpression.operand += current} 
+	    operator = '#' '(' operand += SequenceExpression ')'
+	  | {SysML::OperatorExpression.operand += current} 
 	    operator = '[' operand += SequenceExpression ']'
 	  | {SysML::OperatorExpression.operand += current} '->' 
 	    ownedRelationship += ReferenceTyping 

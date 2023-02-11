@@ -305,33 +305,33 @@ standard library package ISQSpaceTime {
     attribute position3dVector: Position3dVector :> vectorQuantities;
 
     attribute def CartesianPosition3dVector :> Position3dVector {
-        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
-        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute x : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute y : LengthValue = num#(2) [mRef.mRefs#(2)];
+        attribute z : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
     }
     attribute cartesianPosition3dVector : CartesianPosition3dVector :> position3dVector;
 
     attribute def CylindricalPosition3dVector :> Position3dVector {
-        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <'ρ'> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> height : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : CylindricalSpatial3dCoordinateFrame[1];
     }
     attribute cylindricalPosition3dVector : CylindricalPosition3dVector :> position3dVector;
 
     attribute def SphericalPosition3dVector :> Position3dVector {
-        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+        attribute <r> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'θ'> inclination : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : SphericalSpatial3dCoordinateFrame[1];
     }
     attribute sphericalPosition3dVector : SphericalPosition3dVector :> position3dVector;
 
     attribute def PlanetaryPosition3dVector :> Position3dVector {
-        attribute <lat> latitude : AngularMeasureUnit = num[1] [mRef.mRefs[1]];
-        attribute <long> longitude : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> altitude : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <lat> latitude : AngularMeasureUnit = num#(1) [mRef.mRefs#(1)];
+        attribute <long> longitude : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> altitude : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : PlanetarySpatial3dCoordinateFrame[1];
     }
     attribute planetaryPosition3dVector : PlanetaryPosition3dVector :> position3dVector;
@@ -356,25 +356,25 @@ standard library package ISQSpaceTime {
     attribute displacement3dVector: Displacement3dVector :> vectorQuantities;
 
     attribute def CartesianDisplacement3dVector :> Displacement3dVector {
-        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
-        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute x : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute y : LengthValue = num#(2) [mRef.mRefs#(2)];
+        attribute z : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
     attribute cartesianDisplacement3dVector: CartesianDisplacement3dVector :> displacement3dVector;
 
     attribute def CylindricalDisplacement3dVector :> Displacement3dVector {
-        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <'ρ'> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> height : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: CylindricalSpatial3dCoordinateFrame[1];
     }
     attribute cylindricalDisplacement3dVector: CylindricalDisplacement3dVector :> displacement3dVector;
 
     attribute def SphericalDisplacement3dVector :> Displacement3dVector {
-        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+        attribute <r> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'θ'> inclination : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: SphericalSpatial3dCoordinateFrame[1];
     }
     attribute sphericalDisplacement3dVector: SphericalDisplacement3dVector :> displacement3dVector;

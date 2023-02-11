@@ -473,7 +473,7 @@ public class VCompartment extends VStructure {
         } else if (getFeatureName(ce.f) == null) {
             addAnonymouseFeatureText(ce.f);
         } else {
-            return addFeatureText(ce.f, false);
+            return addFeatureText(ce.f, ce.isInherited);
         }
         return true;
     }

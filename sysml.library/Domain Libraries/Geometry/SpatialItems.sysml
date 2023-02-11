@@ -12,6 +12,7 @@ standard library package SpatialItems {
 	private import MeasurementReferences::nullTransformation;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
+	private import ScalarValues::Natural;
 	private import ISQ::universalCartesianSpatial3dCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
 	private import SequenceFunctions::isEmpty;

@@ -1,4 +1,9 @@
 standard library package TensorCalculations {
+	doc
+	/*
+	 * This package package defines calculations for the construction of and computations on TensorQuantityValues.
+	 */
+	 
     private import ScalarValues::Boolean;
     private import ScalarValues::Number;
     private import Quantities::ScalarQuantityValue;

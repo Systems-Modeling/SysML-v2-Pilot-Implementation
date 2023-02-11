@@ -1,4 +1,9 @@
 standard library package MeasurementRefCalculations {
+	doc
+	/*
+	 * This package package defines calculations on MeasurementUnits and CoordinateFrames.
+	 */
+	 
     private import ScalarValues::String;
     private import ScalarValues::Real;
     private import MeasurementReferences::MeasurementUnit;

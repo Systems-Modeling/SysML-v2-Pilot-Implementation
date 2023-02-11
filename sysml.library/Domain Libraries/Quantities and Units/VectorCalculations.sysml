@@ -1,4 +1,9 @@
 standard library package VectorCalculations {
+	doc
+	/*
+	 * This package package defines calculations for the construction of and computations on VectorQuantityValues.
+	 */
+	 
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Number;
     private import Quantities::ScalarQuantityValue;

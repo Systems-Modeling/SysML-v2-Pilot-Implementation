@@ -1,8 +1,13 @@
 standard library package QuantityCalculations {
-	import ScalarValues::*;
-    import Quantities::ScalarQuantityValue;
-    import MeasurementReferences::ScalarMeasurementReference;
-    import MeasurementReferences::DimensionOneValue;
+	doc
+	/*
+	 * This package package defines calculations for the construction of and computations on ScalarQuantityValues.
+	 */
+	 
+	private import ScalarValues::*;
+    private import Quantities::ScalarQuantityValue;
+    private import MeasurementReferences::ScalarMeasurementReference;
+    private import MeasurementReferences::DimensionOneValue;
     
     calc def '[' specializes BaseFunctions::'[' { 
     	in num: Number[1]; 

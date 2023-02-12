@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -485,13 +486,27 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return getFeatureChainName(fcs);
     }
 
-    protected static boolean appendSubsettingFeature(StringBuilder sb, String prefix, Feature f) {
+    protected static boolean appendReferenceSubsetting(StringBuilder sb, Feature f) {
+        ReferenceSubsetting rs = f.getOwnedReferenceSubsetting();
+        if (rs == null) return false;
+        Feature rsf = rs.getSubsettedFeature();
+        if (rsf == null) return false;
+        String name = getRefName(rsf);
+        if (name == null) return false;
+        sb.append("::> ");
+        sb.append(name);
+        return true;
+    }
+
+    protected static boolean appendSubsettings(StringBuilder sb, Feature f) {
         List<Subsetting> ss = f.getOwnedSubsetting();
         if (ss.isEmpty()) return false;
         boolean added = false;
         for (Subsetting s: ss) {
             if (s == null) continue;
             if (s instanceof Redefinition) continue;
+            if (s instanceof ReferenceSubsetting) continue;
+
             Feature sf = s.getSubsettedFeature();
             if (sf == null) continue;
             String name = getRefName(sf);
@@ -499,7 +514,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (added) {
                 sb.append(", ");
             } else {
-                sb.append(prefix);
+                sb.append(":>");
                 added = true;
             }
             sb.append(name);
@@ -534,7 +549,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected void addFeatureTypeAndSubsettedText(Feature f) {
         appendFeatureType(sb, ": ", f);
-        appendSubsettingFeature(sb, ":> ", f);
+        appendReferenceSubsetting(sb, f);
+        appendSubsettings(sb, f);
     }
 
     private boolean exists(Element e) {

@@ -500,6 +500,13 @@ public class SysML2PlantUMLStyle {
     }
 
     public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
+        private static boolean hasRefSubsettingWithoutDeclaredName(Feature f) {
+            if (f.getOwnedReferenceSubsetting() == null) return false;
+            if (f.getDeclaredName() != null) return false;
+            if (f.getDeclaredShortName() != null) return false;
+            return f.getOwnedRedefinition().isEmpty();
+        }
+
 		@Override
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
@@ -508,7 +515,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-            if (esu.getOwnedReferenceSubsetting() != null) {
+            if (hasRefSubsettingWithoutDeclaredName(esu)) {
                 return " exhibit>> ";
             } else {
                 return " exhibit state>> ";
@@ -527,7 +534,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            if (pau.getOwnedReferenceSubsetting() != null) {
+            if (hasRefSubsettingWithoutDeclaredName(pau)) {
                 return " perform>> ";
             } else {
                 return " perform action>> ";

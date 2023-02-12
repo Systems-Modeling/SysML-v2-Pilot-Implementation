@@ -129,14 +129,6 @@ public class ExpressionAdapter extends StepAdapter {
 		}
 	}
 	
-	protected void computeInput() {
-//		if (getTarget().getInput().isEmpty()) {
-//			for (Feature parameter: getTypeParameters()) {
-//				createFeatureForParameter(parameter);
-//			}
-//		}
-	}
-	
 	protected void computeOutput() {
 		Expression expression = getTarget();
 		if (expression.getOutput().isEmpty()) {
@@ -155,7 +147,6 @@ public class ExpressionAdapter extends StepAdapter {
 				expression.getOwningMembership() instanceof FeatureValue) {
 			addImplicitFeaturingTypesIfNecessary();
 		}
-//		computeInput();
 		computeOutput();
 		createResultConnector(expression.getResult());
 	}

@@ -8,7 +8,6 @@ package 'Analysis Case Definition Example' {
 	import ScalarValues::Positive;
 	
 	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
-    attribute gallon = 231.0 * 'in' ** 3;
 
 	part def Vehicle {
         attribute mass : MassValue;
@@ -43,7 +42,7 @@ package 'Analysis Case Definition Example' {
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30 [mi / gallon]
+				fuelEconomyResult > 30 [mi / gal]
 			}
 		}
 	    

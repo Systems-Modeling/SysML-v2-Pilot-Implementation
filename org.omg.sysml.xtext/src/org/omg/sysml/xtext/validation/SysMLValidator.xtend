@@ -102,7 +102,6 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.lang.sysml.Expression
-import org.omg.sysml.lang.sysml.InvocationExpression
 
 /**
  * This class contains custom validation rules. 
@@ -228,17 +227,17 @@ class SysMLValidator extends KerMLValidator {
 	
 	/**
 	 * Check if the result of the given Expression conforms to the given Type, or, alternatively, if the 
-	 * Expression is an InvocationExpression with a result that has a type to which the given Type conforms, 
-	 * check whether all the argument Expression results conform to the given Type in a similar way.
-	 * (This works, for example, for nested OperatorExpressions with arithmetic operations that
-	 * return the same result Type as their arguments.)
+	 * Expression is an OpeartorExpression with a result that has a type to which the given Type conforms, 
+	 * check whether at least one of the argument Expression results conforms to the given Type in a similar way.
+	 * (This works, for example, for nested OperatorExpressions with arithmetic operations that return the same
+	 * result Type as one of their arguments, such as for MeasurementReference operations.)
 	 */
 	def boolean resultConformsTo(Expression expr, Type type) {
 		val result = expr.result;
 		if (result.conformsTo(type)) {
 			true
-		} else if (expr instanceof InvocationExpression) {
-			result.type.exists[t | type.conformsTo(t)] && expr.argument.forall[resultConformsTo(type)]
+		} else if (expr instanceof OperatorExpression) {
+			result.type.exists[t | type.conformsTo(t)] && expr.argument.exists[resultConformsTo(type)]
 		} else {
 			false
 		}

@@ -1284,7 +1284,7 @@ package SimpleVehicleModel{
                     snapshot t0_v:Vehicle_1{
                         :>>Vehicle::position=0 [m];
                         :>>Vehicle::velocity=0 [m];
-                        :>>Vehicle::acceleration=1.96 [m/s**2];
+                        :>>Vehicle::acceleration=1.96 [m/s**2]; 
                         // .2 g where 1 g = 9.8 meters/sec^2
                         snapshot t0_fa:FrontAxleAssembly_1{
                             snapshot t0_leftFront:Wheel_1;
@@ -1383,7 +1383,7 @@ package SimpleVehicleModel{
                 subject vehicle:Vehicle;
                 actor driver [0..1];
                 actor passenger [0..1];
-                assert constraint {driver[1] xor passenger[1]}
+                assert constraint {driver != null xor passenger != null}
             }
 
             use case getOutOfVehicle:GetOutOfVehicle {
@@ -1396,7 +1396,7 @@ package SimpleVehicleModel{
                 subject vehicle:Vehicle;
                 actor driver [0..1];
                 actor passenger [0..1];
-                assert constraint {driver[1] xor passenger[1]}
+                assert constraint {driver != null xor passenger != null}
             }
         }
         package TransportPassengerScenario{

@@ -10,6 +10,7 @@ standard library package MeasurementReferences {
 	private import VectorValues::ThreeVectorValue;
 
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::equals;
 	private import ControlFunctions::forAll;
 	private import Quantities::QuantityDimension;
 	private import Quantities::VectorQuantityValue;
@@ -142,7 +143,7 @@ standard library package MeasurementReferences {
 	 	assert constraint { origin.dimensions == source.dimensions }
 	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions#(1)}
 	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
-	 		(basisDirections#(i) as VectorQuantityValue).dimensions == source.dimensions } 
+	 		basisDirections#(i).dimensions->equals(source.dimensions) } 
 	 	}
 	 }
 

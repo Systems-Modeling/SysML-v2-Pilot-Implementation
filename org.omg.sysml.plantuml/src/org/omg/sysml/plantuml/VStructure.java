@@ -245,10 +245,11 @@ public abstract class VStructure extends VDefault {
             Feature f = (Feature) e;
             boolean added = appendFeatureType(sb, ": ", f);
             sb.append(' ');
+            added = appendSubsettings(sb, f) || added;
             if (!hasRefSubsettingWithoutDeclaredName(f)) {
+                sb.append(' ');
                 added = appendReferenceSubsetting(sb, f) || added;
             }
-            added = appendSubsettings(sb, f) || added;
             sb.insert(0, name);
             /*
               if (f instanceof Usage) {

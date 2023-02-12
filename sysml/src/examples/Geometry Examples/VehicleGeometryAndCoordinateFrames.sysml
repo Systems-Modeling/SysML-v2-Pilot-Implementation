@@ -58,7 +58,7 @@ package VehicleGeometryAndCoordinateFrames {
 		assert constraint {
 			1..numberOfBolts->forAll { 
 				in i : Natural;
-				private attribute lbcf = (lugBolts[i] as LugBolt).coordinateFrame;
+				private attribute lbcf = (lugBolts#(i) as LugBolt).coordinateFrame;
 				private attribute trs : TranslationRotationSequence {
 					:>> source = wcf;
 					:>> target = lbcf;
@@ -76,7 +76,7 @@ package VehicleGeometryAndCoordinateFrames {
     	}
     }
 
-    part vehicle : Vehicle, CompoundSpatialItem {
+    part vehicle : Vehicle, SpatialItem {
 		/* 
 		 * Vehicle frame origin at center of bottom plate of chassis
 		 * with +Z upwards and +X in the forward (front) direction

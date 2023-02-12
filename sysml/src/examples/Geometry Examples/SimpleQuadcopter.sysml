@@ -18,8 +18,8 @@ package SimpleQuadcopter {
         }
     }
     
-    part def Strut :> CompoundSpatialItem {
-        // By default will get same coordinateFrame.mRefs as owning CompoundSpatialItem, i.e.:
+    part def Strut :> SpatialItem {
+        // By default will get same coordinateFrame.mRefs as owning SpatialItem, i.e.:
         // attribute :>> coordinateFrame { :>> mRefs = (mm, mm, mm); }
         
         /* rawStrut is a construction shape: a rectangular beam */
@@ -56,7 +56,7 @@ package SimpleQuadcopter {
         // item :>> shape = rawStrut - motorCutout;
     }
     
-    part def PropellerMotorAssy :> CompoundSpatialItem {
+    part def PropellerMotorAssy :> SpatialItem {
         // By default will get same coordinateFrame.mRefs as owning CompoundSpatialItem, i.e.:
         // attribute :>> coordinateFrame { :>> mRefs = (mm, mm, mm); }
 
@@ -85,7 +85,7 @@ package SimpleQuadcopter {
         // By default the shape of a PropellerMotorAssy is the union of its owned composite items and parts that are SpatialItems.
     }
 
-    part def Camera :> CompoundSpatialItem {
+    part def Camera :> SpatialItem {
         // By default will get same coordinateFrame.mRefs as owning CompoundSpatialItem, i.e.:
         // attribute :>> coordinateFrame { :>> mRefs = (mm, mm, mm); }
 
@@ -115,7 +115,7 @@ package SimpleQuadcopter {
         // By default the shape of a Camera is the union of its owned composite items and parts that are SpatialItems.
     }
 
-    part quadCopter : CompoundSpatialItem {
+    part quadCopter : SpatialItem {
         attribute datum :>> coordinateFrame {
             doc /* The datum is the top level coordinate frame of the system-of-interest, i.e., the quadcopter.
                  * By convention its origin is placed at the bottom of the mainBody with the +X axis pointing in the 
@@ -125,7 +125,7 @@ package SimpleQuadcopter {
             :>> mRefs = (mm, mm, mm);
         }
 
-        part mainBody : CompoundSpatialItem {
+        part mainBody : SpatialItem {
 
             /* rawBody is a construction shape: the enveloping rectangular box */
             part rawBody : SpatialItem {

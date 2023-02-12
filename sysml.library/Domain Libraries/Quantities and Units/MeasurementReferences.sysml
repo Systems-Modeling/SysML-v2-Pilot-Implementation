@@ -10,6 +10,7 @@ standard library package MeasurementReferences {
 	private import VectorValues::ThreeVectorValue;
 
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::equals;
 	private import ControlFunctions::forAll;
 	private import Quantities::QuantityDimension;
 	private import Quantities::VectorQuantityValue;
@@ -148,9 +149,9 @@ standard library package MeasurementReferences {
 		attribute origin : VectorQuantityValue[1];
 		attribute basisDirections : VectorQuantityValue[0..*] ordered;
 		assert constraint { origin.dimensions == source.dimensions }
-		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
+		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions#(1)}
         assert constraint { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
-            basisDirection.dimensions == source.dimensions }
+            basisDirection.dimensions->equals(source.dimensions) }
         }
 	 }
 
@@ -232,12 +233,28 @@ standard library package MeasurementReferences {
 			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
 			attribute :>> dimensions = (4, 4);
 			attribute :>> elements : Real[16] ordered nonunique = (
-				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
-				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
-				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],
+				rotationMatrix.elements#(1), rotationMatrix.elements#(2), rotationMatrix.elements#(3), translationVector#(1),
+				rotationMatrix.elements#(4), rotationMatrix.elements#(5), rotationMatrix.elements#(6), translationVector#(2),
+				rotationMatrix.elements#(7), rotationMatrix.elements#(8), rotationMatrix.elements#(9), translationVector#(3),
 				0, 0, 0, 1);
 			assert constraint { source.dimensions == 3 }
 	}
+
+	attribute def NullTransformation :> AffineTransformationMatrix3d {
+		doc
+		/*
+		 * NullTransformation is a three dimensional CoordinateTransformation that places the target CoordinateFrame at the
+		 * same position and orientation as the source CoordinateFrame.
+		 */
+		 attribute :>> rotationMatrix {
+		     attribute :>> elements = (1, 0, 0, 0, 1, 0, 0, 0, 1);
+		 }
+		 attribute :>> translationVector {
+		     attribute :>> elements = (0, 0, 0);
+		 }
+ 	}
+
+	attribute nullTransformation : NullTransformation [1];
 
 	abstract attribute def MeasurementUnit :> ScalarMeasurementReference {
 		doc
@@ -466,7 +483,7 @@ standard library package MeasurementReferences {
 	}
 	attribute dimensionOneQuantities : DimensionOneValue[*] nonunique :> scalarQuantities;
 
-	attribute one = DimensionOneUnit();
+	attribute one : DimensionOneUnit[1] = DimensionOneUnit();
 
 	attribute def CountValue :> DimensionOneValue {
 		doc
@@ -497,8 +514,6 @@ standard library package MeasurementReferences {
 		doc
 		/*
 		 * Constraint definition to verify that the given unit power factors comply with the required quantity dimension
-		 *
-		 * TODO: The implementation of this constraint requires reflection.
 		 */
 	
     	in unitPowerFactors: UnitPowerFactor[*] ordered;

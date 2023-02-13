@@ -42,7 +42,7 @@ standard library package MeasurementReferences {
 		 * 
 		 * Attribute mRefs specifies the scalar measurement references for all dimensions of a tensor quantity.
 		 *
-		 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
+		 * The short name of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
 		 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
 		 *
 		 * For example, typical measurement references for (scalar) quantity speed are declared with the following humanId and name:
@@ -56,7 +56,7 @@ standard library package MeasurementReferences {
 	
 		attribute isBound: Boolean[1] default false;
 		attribute order :>> rank;
-		attribute mRefs: ScalarMeasurementReference[1..*] :>> elements;
+		attribute mRefs: ScalarMeasurementReference[1..*] nonunique :>> elements;
 		attribute definitionalQuantityValues: DefinitionalQuantityValue[0..*];
 	}
 
@@ -131,7 +131,7 @@ standard library package MeasurementReferences {
 	     */
 	 	attribute source: VectorMeasurementReference[1];
 	 	attribute target: VectorMeasurementReference[1];
-	 	assert constraint { source.dimensions == target.dimensions }
+	 	assert constraint validSourceTargetDimensions { source.dimensions == target.dimensions }
     }
 
 	attribute def CoordinateFramePlacement :> CoordinateTransformation {
@@ -147,10 +147,10 @@ standard library package MeasurementReferences {
     	 */
 
 		attribute origin : VectorQuantityValue[1];
-		attribute basisDirections : VectorQuantityValue[0..*] ordered;
-		assert constraint { origin.dimensions == source.dimensions }
+		attribute basisDirections : VectorQuantityValue[0..*] ordered nonunique;
+		assert constraint validOriginDimensions { origin.dimensions == source.dimensions }
 		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions#(1)}
-        assert constraint { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
+        assert constraint validateBasisDirections { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
             basisDirection.dimensions->equals(source.dimensions) }
         }
 	 }
@@ -203,7 +203,7 @@ standard library package MeasurementReferences {
 	 * the original sequence cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
 	 */
 	
-		attribute :>> elements : TranslationOrRotation[1..*];
+		attribute :>> elements : TranslationOrRotation[1..*] ordered nonunique;
 	}
 
 	attribute def AffineTransformationMatrix3d :> CoordinateTransformation, Array {
@@ -237,7 +237,7 @@ standard library package MeasurementReferences {
 				rotationMatrix.elements#(4), rotationMatrix.elements#(5), rotationMatrix.elements#(6), translationVector#(2),
 				rotationMatrix.elements#(7), rotationMatrix.elements#(8), rotationMatrix.elements#(9), translationVector#(3),
 				0, 0, 0, 1);
-			assert constraint { source.dimensions == 3 }
+			assert constraint validSourceDimensions { source.dimensions == 3 }
 	}
 
 	attribute def NullTransformation :> AffineTransformationMatrix3d {
@@ -472,12 +472,16 @@ standard library package MeasurementReferences {
 	attribute def DimensionOneUnit :> DerivedUnit {
 		doc
 		/*
-		 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
+		 * Explicit definition of "unit of dimension one", also known as "dimensionless unit".
 		 */
 	
 		attribute :>> unitPowerFactors = ();
 	}
 	attribute def DimensionOneValue :> ScalarQuantityValue {
+		doc
+		/*
+		 * A ScalarQuantityValue with a DimensionOneUnit.
+		 */
 		attribute :>> num: Real;
 		attribute :>> mRef: DimensionOneUnit;
 	}
@@ -488,7 +492,7 @@ standard library package MeasurementReferences {
 	attribute def CountValue :> DimensionOneValue {
 		doc
 		/*
-		 * Explicit definitions of generic "count" quantity.
+		 * Explicit definition of a generic "count" quantity as a DimensionOneValue.
 		 */
 	}
 	attribute countQuantities : CountValue[*] nonunique :> dimensionOneQuantities;

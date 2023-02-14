@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -60,7 +60,8 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 		"15-Properties-Values-Expressions/15_19-Materials with Properties.sysml",
 		"17-Sequence Modeling/17a-Sequence-Modeling.sysml",
 		"17-Sequence Modeling/17b-Sequence-Modeling.sysml",
-		"18-Use Case/18-Use Case.sysml"
+		"18-Use Case/18-Use Case.sysml",
+		"../examples/Geometry Examples/SimpleQuadcopter.sysml"
 	};
 	
 	protected String testFilePath;

@@ -52,24 +52,24 @@ standard library package AnalysisCases {
 	}
 	
 	abstract analysis analysisCases : AnalysisCase[0..*] nonunique :> cases {
-	doc
-	/*
-	 * analysisCases is the base feature of all AnalysisCaseUsages.
-	 */
+		doc
+		/*
+		 * analysisCases is the base feature of all AnalysisCaseUsages.
+		 */
 	}
 	
 	action def AnalysisAction {
-	doc
-	/*
-	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
-	 */
+		doc
+		/*
+		 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
+		 */
 	}
 	
 	calc def AnalysisCalculation :> Calculation, AnalysisAction {
-	doc
-	/*
-	 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
-	 */
+		doc
+		/*
+		 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
+		 */
 	}
 	
 }

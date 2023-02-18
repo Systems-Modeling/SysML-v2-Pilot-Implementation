@@ -39,7 +39,7 @@ standard library package UseCases {
 			 */
 		}
 		
-		abstract ref includedUseCases : UseCase[0..*] :> subUseCases {
+		abstract ref includedUseCases : UseCase[0..*] :> enclosedPerformances {
 			doc
 			/*
 			 * Other UseCases included by this UseCase (i.e., as modeled by an 

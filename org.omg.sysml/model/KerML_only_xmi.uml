@@ -1497,7 +1497,7 @@ subsettingFeaturingTypes &lt;> subsettedFeaturingType</body>
 
 &lt;p>Since &lt;code>Features&lt;/code> are &lt;code>Types&lt;/code>, their &lt;code>featuringTypes&lt;/code> and &lt;code>types&lt;/code> can be &lt;code>Features&lt;/code>. In this case, the &lt;code>Feature&lt;/code> effectively classifies relations between relations, which can be interpreted as the sequence of things related by the domain &lt;code>Feature&lt;/code> concatenated with the sequence of things related by the co-domain &lt;code>Feature&lt;/code>.&lt;/p>
 
-&lt;p>The &lt;em>values&lt;/em> of a &lt;code>Feature&lt;/code> for a given instance of its domain are all the instances of its co-domain that are related that domain instance by the &lt;code>Feature&lt;/code>. The values of a &lt;code>Feature&lt;/code> with &lt;code>chainingFeatures&lt;/code> are the same as values of the last &lt;code>Feature&lt;/code> in the chain, which can be found by starting with values of the first &lt;code>Feature&lt;/code>, then using those values as domain instances to obtain valus of the second &lt;code>Feature&lt;/code>, and so on, to values of the last &lt;code>Feature&lt;/code>.&lt;/p>
+&lt;p>The &lt;em>values&lt;/em> of a &lt;code>Feature&lt;/code> for a given instance of its domain are all the instances of its co-domain that are related to that domain instance by the &lt;code>Feature&lt;/code>. The values of a &lt;code>Feature&lt;/code> with &lt;code>chainingFeatures&lt;/code> are the same as values of the last &lt;code>Feature&lt;/code> in the chain, which can be found by starting with values of the first &lt;code>Feature&lt;/code>, then using those values as domain instances to obtain valus of the second &lt;code>Feature&lt;/code>, and so on, to values of the last &lt;code>Feature&lt;/code>.&lt;/p>
 </body>
         </ownedComment>
         <ownedRule xmi:id="Core-Features-Feature-deriveFeatureOwnedRedefinition" name="deriveFeatureOwnedRedefinition" visibility="public" constrainedElement="Core-Features-Feature">
@@ -1962,7 +1962,7 @@ owningType.ownedFeature->at(1) = self implies
         </ownedAttribute>
         <ownedAttribute xmi:id="Core-Features-Feature-ownedFeatureChaining" name="ownedFeatureChaining" visibility="public" type="Core-Features-FeatureChaining" isOrdered="true" aggregation="composite" isDerived="true" subsettedProperty="Root-Elements-_packagedElement.5-sourceRelationship Root-Elements-Element-ownedRelationship" association="Core-Features-_packagedElement.20">
           <ownedComment xmi:id="Core-Features-Feature-ownedFeatureChaining-_ownedComment.0" annotatedElement="Core-Features-Feature-ownedFeatureChaining">
-            <body>&lt;p>The &lt;code>ownedRelationships&lt;/owned> of this &lt;code>Feature&lt;/code> that are &lt;code>FeatureChainings&lt;/code>, for which the &lt;code>Feature&lt;/code> will be the &lt;code>featureChained&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>ownedRelationships&lt;/code> of this &lt;code>Feature&lt;/code> that are &lt;code>FeatureChainings&lt;/code>, for which the &lt;code>Feature&lt;/code> will be the &lt;code>featureChained&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Core-Features-Feature-ownedFeatureChaining-_lowerValue" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Core-Features-Feature-ownedFeatureChaining-_upperValue" name="" visibility="public" value="*"/>
@@ -2192,7 +2192,7 @@ redefines(mem.memberElement.oclAsType(Feature))</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Core-Features-Subsetting" name="Subsetting" visibility="public">
         <ownedComment xmi:id="Core-Features-Subsetting-_ownedComment.0" annotatedElement="Core-Features-Subsetting">
-          <body>&lt;p>&lt;code>Subsetting&lt;/code> is &lt;code>Specialization&lt;/code> in which the &lt;code>specific&lt;/code> and &lt;code>general&lt;/code> &lt;code>Types&lt;/code> that are &lt;code>Features&lt;/code>. This means all values of the &lt;code>subsettingFeature&lt;/code> (on instances of its domain, i.e., the intersection of its &lt;code>featuringTypes&lt;/code>) are values of the &lt;code>subsettedFeature&lt;/code> on instances of its domain. To support this the domain of the &lt;code>subsettingFeature&lt;/code> must be the same or specialize (at least indirectly) the domain of the &lt;code>subsettedFeature&lt;/code> (via &lt;code>Specialization&lt;/code>), and the co-domain (intersection of the &lt;code>types&lt;/code>) of the &lt;code>subsettingFeature&lt;/code> must specialize the co-domain of the &lt;code>subsettedFeature&lt;/code>.&lt;/p>
+          <body>&lt;p>&lt;code>Subsetting&lt;/code> is &lt;code>Specialization&lt;/code> in which the &lt;code>specific&lt;/code> and &lt;code>general&lt;/code> &lt;code>Types&lt;/code> are &lt;code>Features&lt;/code>. This means all values of the &lt;code>subsettingFeature&lt;/code> (on instances of its domain, i.e., the intersection of its &lt;code>featuringTypes&lt;/code>) are values of the &lt;code>subsettedFeature&lt;/code> on instances of its domain. To support this the domain of the &lt;code>subsettingFeature&lt;/code> must be the same or specialize (at least indirectly) the domain of the &lt;code>subsettedFeature&lt;/code> (via &lt;code>Specialization&lt;/code>), and the co-domain (intersection of the &lt;code>types&lt;/code>) of the &lt;code>subsettingFeature&lt;/code> must specialize the co-domain of the &lt;code>subsettedFeature&lt;/code>.&lt;/p>
 </body>
         </ownedComment>
         <ownedRule xmi:id="Core-Features-Subsetting-validateSubsettingFeaturingTypes" name="validateSubsettingFeaturingTypes" visibility="public" constrainedElement="Core-Features-Subsetting">
@@ -2450,7 +2450,7 @@ subsettedFeaturingTypes->forAll(t |
       <packagedElement xmi:type="uml:Association" xmi:id="Core-Features-_packagedElement.31" name="" visibility="private" memberEnd="Core-Features-Feature-ownedReferenceSubsetting Core-Features-ReferenceSubsetting-referencingFeature"/>
       <packagedElement xmi:type="uml:Class" xmi:id="Core-Features-Featuring" name="Featuring" visibility="public" isAbstract="true">
         <ownedComment xmi:id="Core-Features-Featuring-_ownedComment.0" annotatedElement="Core-Features-Featuring">
-          <body>&lt;p>&lt;code>Featuring&lt;/code> is a &lt;code>Relationship&lt;/code> between a &lt;code>Type&lt;/code> and a &lt;code>Feature&lt;/code> that is featured by that code>Type&lt;/code>. It asserts that every instance in the domain of the &lt;code>feature&lt;/code> must be classified by the &lt;code>type&lt;/code>.&lt;/p>
+          <body>&lt;p>&lt;code>Featuring&lt;/code> is a &lt;code>Relationship&lt;/code> between a &lt;code>Type&lt;/code> and a &lt;code>Feature&lt;/code> that is featured by that &lt;code>Type&lt;/code>. It asserts that every instance in the domain of the &lt;code>feature&lt;/code> must be classified by the &lt;code>type&lt;/code>.&lt;/p>
 
 &lt;p>&lt;code>Featuring&lt;/code> is abstract and does not commit to which of &lt;code>feature&lt;/code> or &lt;code>type&lt;/code> are the &lt;code>source&lt;/code> or &lt;code>target&lt;/code> of the &lt;code>Relationship&lt;/code>. This commitment is made in the subclasses of &lt;code>Featuring&lt;/code>, &lt;code>TypeFeaturing&lt;/code> and &lt;code>FeatureMembership&lt;/code>, which have opposite directions.&lt;/p></body>
         </ownedComment>
@@ -3069,7 +3069,7 @@ subsettedFeaturingTypes->forAll(t |
           <ownedComment xmi:id="Core-Types-Type-isSufficient-_ownedComment.0" annotatedElement="Core-Types-Type-isSufficient">
             <body>&lt;p>Whether all things that meet the classification conditions of this &lt;code>Type&lt;/code> must be classified by the &lt;code>Type&lt;/code>.&lt;/p>
 
-&lt;p>(A &lt;code>Type&lt;/code>&amp;nbsp;gives conditions that must be met by whatever it classifies, but when &lt;code>isSufficient&lt;/code> is false, things may meet those conditions but still not be classified by the &lt;code>Type&lt;/code>. For example, a Type &lt;code>&lt;em>Car&lt;/em>&lt;/code> that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars. However, if the &lt;code>Type&lt;/code> &lt;code>&lt;em>Car&lt;/em>&lt;/code> were sufficient, it would classify all four-wheeled things.)&lt;/p>
+&lt;p>(A &lt;code>Type&lt;/code>&amp;nbsp;gives conditions that must be met by whatever it classifies, but when &lt;code>isSufficient&lt;/code> is false, things may meet those conditions but still not be classified by the &lt;code>Type&lt;/code>. For example, a Type &lt;code>&lt;em>Car&lt;/em>&lt;/code> that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would classify as cars. However, if the &lt;code>Type&lt;/code> &lt;code>&lt;em>Car&lt;/em>&lt;/code> were sufficient, it would classify all four-wheeled things.)&lt;/p>
 </body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -4083,11 +4083,11 @@ libFunctions->includes(function)
         </ownedComment>
         <ownedRule xmi:id="Kernel-Expressions-CollectExpression-validateCollectExpressionOperator" name="validateCollectExpressionOperator" visibility="public" constrainedElement="Kernel-Expressions-CollectExpression">
           <ownedComment xmi:id="Kernel-Expressions-CollectExpression-validateCollectExpressionOperator-_ownedComment.0" annotatedElement="Kernel-Expressions-CollectExpression-validateCollectExpressionOperator">
-            <body>&lt;p>The &lt;code>operator&lt;/code> of a &lt;code>CollectExpression&lt;/code> must be &lt;code>'collect'&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>operator&lt;/code> of a &lt;code>CollectExpression&lt;/code> must be &lt;code>&quot;collect&quot;&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Expressions-CollectExpression-validateCollectExpressionOperator-_specification" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>operator = 'collect'</body>
+            <body>operator = &quot;collect&quot;</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="Kernel-Expressions-CollectExpression-_generalization.0" general="Kernel-Expressions-OperatorExpression"/>
@@ -4098,7 +4098,7 @@ libFunctions->includes(function)
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Kernel-Expressions-FeatureChainExpression" name="FeatureChainExpression" visibility="public">
         <ownedComment xmi:id="Kernel-Expressions-FeatureChainExpression-_ownedComment.0" annotatedElement="Kernel-Expressions-FeatureChainExpression">
-          <body>&lt;p>A &lt;code>FeatureChainExpression&lt;/code> is an &lt;code>OperatorExpression&lt;/code> whose operator is &lt;code>&quot;.&quot;&lt;/code>, which resolves to the code>Function&lt;/code> &lt;em>&lt;code>ControlFunctions::'.'&lt;/code>&lt;/em> from the Kernel Functions Library. It evaluates to the result of chaining the &lt;code>result&lt;/code> &lt;code>Feature&lt;/code> of its single &lt;code>argument&lt;/code> Expression with its &lt;code>targetFeature&lt;/code>.&lt;/p></body>
+          <body>&lt;p>A &lt;code>FeatureChainExpression&lt;/code> is an &lt;code>OperatorExpression&lt;/code> whose operator is &lt;code>&quot;.&quot;&lt;/code>, which resolves to the &lt;code>Function&lt;/code> &lt;em>&lt;code>ControlFunctions::'.'&lt;/code>&lt;/em> from the Kernel Functions Library. It evaluates to the result of chaining the &lt;code>result&lt;/code> &lt;code>Feature&lt;/code> of its single &lt;code>argument&lt;/code> &lt;code>Expression&lt;/code> with its &lt;code>targetFeature&lt;/code>.&lt;/p></body>
         </ownedComment>
         <ownedRule xmi:id="Kernel-Expressions-FeatureChainExpression-checkFeatureChainExpressionTargetRedefinition" name="checkFeatureChainExpressionTargetRedefinition" visibility="public" constrainedElement="Kernel-Expressions-FeatureChainExpression">
           <ownedComment xmi:id="Kernel-Expressions-FeatureChainExpression-checkFeatureChainExpressionTargetRedefinition-_ownedComment.0" annotatedElement="Kernel-Expressions-FeatureChainExpression-checkFeatureChainExpressionTargetRedefinition">
@@ -4733,7 +4733,7 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-checkConnectorTypeFeaturing" name="checkConnectorTypeFeaturing" visibility="public" constrainedElement="Kernel-Connectors-Connector">
           <ownedComment xmi:id="Kernel-Connectors-Connector-checkConnectorTypeFeaturing-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-checkConnectorTypeFeaturing">
-            <body>&lt;p>Each &lt;code>relatedFeature&lt;/code> of a Connector must have some &lt;code>featuringType&lt;/code> of the Connector as a direct or indirect &lt;code>featuringType&lt;/code> (where a Feature with no &lt;code>featuringType&lt;/code> is treated as if the Classifier &lt;em>Base::Anything&lt;/em> was its &lt;code>featuringType&lt;/code>).&lt;/p></body>
+            <body>&lt;p>Each &lt;code>relatedFeature&lt;/code> of a &lt;code>Connector&lt;/code> must have some &lt;code>featuringType&lt;/code> of the &lt;code>Connector&lt;/code> as a direct or indirect &lt;code>featuringType&lt;/code> (where a &lt;code>Feature&lt;/code> with no &lt;code>featuringType&lt;/code> is treated as if the &lt;code>Classifier&lt;/code> &lt;code>&lt;em>Base::Anything&lt;/em>&lt;/code> was its &lt;code>featuringType&lt;/code>).&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Connectors-Connector-checkConnectorTypeFeaturing-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4781,7 +4781,7 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-checkConnectorSpecialization" name="checkConnectorSpecialization" visibility="public" constrainedElement="Kernel-Connectors-Connector">
           <ownedComment xmi:id="Kernel-Connectors-Connector-checkConnectorSpecialization-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-checkConnectorSpecialization">
-            <body>&lt;p>A Connector must directly or indirectly specialize the base Connector &lt;code>&lt;em>Links::links&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+            <body>&lt;p>A &lt;code>Connector&lt;/code> must directly or indirectly specialize the base &lt;code>Connector&lt;/code> &lt;code>&lt;em>Links::links&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Connectors-Connector-checkConnectorSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4790,7 +4790,7 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-checkConnectorObjectSpecialization" name="checkConnectorObjectSpecialization" visibility="public" constrainedElement="Kernel-Connectors-Connector">
           <ownedComment xmi:id="Kernel-Connectors-Connector-checkConnectorObjectSpecialization-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-checkConnectorObjectSpecialization">
-            <body>&lt;p>A Connector for an AssociationStructure must directly or indirectly specialize the base Connector &lt;code>&lt;em>Objects::linkObjects&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+            <body>&lt;p>A &lt;code>Connector&lt;/code> for an &lt;code>AssociationStructure&lt;/code> must directly or indirectly specialize the base &lt;code>Connector&lt;/code> &lt;code>&lt;em>Objects::linkObjects&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Connectors-Connector-checkConnectorObjectSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4800,7 +4800,7 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-checkConnectorBinaryObjectSpecialization" name="checkConnectorBinaryObjectSpecialization" visibility="public" constrainedElement="Kernel-Connectors-Connector">
           <ownedComment xmi:id="Kernel-Connectors-Connector-checkConnectorBinaryObjectSpecialization-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-checkConnectorBinaryObjectSpecialization">
-            <body>&lt;p>A binary Connector for an AssociationStructure  must directly or indirectly specialize the base Connector &lt;code>&lt;em>Objects::binaryLinkObjects&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+            <body>&lt;p>A binary &lt;code>Connector&lt;/code> for an &lt;code>AssociationStructure&lt;/code>  must directly or indirectly specialize the base &lt;code>Connector&lt;/code> &lt;code>&lt;em>Objects::binaryLinkObjects&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Connectors-Connector-checkConnectorBinaryObjectSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4811,12 +4811,12 @@ association->exists(oclIsKindOf(AssocationStructure)) implies
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-checkConnectorBinarySpecialization" name="checkConnectorBinarySpecialization" visibility="public" constrainedElement="Kernel-Connectors-Connector">
           <ownedComment xmi:id="Kernel-Connectors-Connector-checkConnectorBinarySpecialization-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-checkConnectorBinarySpecialization">
-            <body>&lt;p>A binary Connector must directly or indirectly specialize the base Connector &lt;code>&lt;em>Links::binaryLinks&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+            <body>&lt;p>A binary &lt;code>Connector&lt;/code> must directly or indirectly specialize the base &lt;code>Connector&lt;/code> &lt;code>&lt;em>Links::binaryLinks&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Connectors-Connector-checkConnectorBinarySpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>connectorEnd->size() = 2 implies
-    specializesFromLibrary('Links::binaryLinks')</body>
+    specializesFromLibrary(&quot;Links::binaryLinks&quot;)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="Kernel-Connectors-Connector-validateConnectorBinarySpecialization" name="validateConnectorBinarySpecialization" visibility="public" constrainedElement="Kernel-Connectors-Connector">
@@ -4857,7 +4857,7 @@ association->exists(oclIsKindOf(AssocationStructure)) implies
         </ownedAttribute>
         <ownedAttribute xmi:id="Kernel-Connectors-Connector-connectorEnd" name="connectorEnd" visibility="public" type="Core-Features-Feature" isOrdered="true" isDerived="true" redefinedProperty="Core-Types-Type-endFeature" association="Kernel-Connectors-_packagedElement.5">
           <ownedComment xmi:id="Kernel-Connectors-Connector-connectorEnd-_ownedComment.0" annotatedElement="Kernel-Connectors-Connector-connectorEnd">
-            <body>&lt;p>The &lt;code>endFeatures&lt;/code> of a &lt;code>Connector&lt;/code>, which redefine the &lt;code>endFeatures&lt;code> of the &lt;code>associations&lt;/code> of the &lt;code>Connector&lt;/code>. The &lt;code>connectorEnds&lt;/code> determine via &lt;code>ReferenceSubsetting&lt;/code> &lt;code>Relationships&lt;/code> which &lt;code>Features&lt;/code> are related by the &lt;code>Connector&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>endFeatures&lt;/code> of a &lt;code>Connector&lt;/code>, which redefine the &lt;code>endFeatures&lt;/code> of the &lt;code>associations&lt;/code> of the &lt;code>Connector&lt;/code>. The &lt;code>connectorEnds&lt;/code> determine via &lt;code>ReferenceSubsetting&lt;/code> &lt;code>Relationships&lt;/code> which &lt;code>Features&lt;/code> are related by the &lt;code>Connector&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Kernel-Connectors-Connector-connectorEnd-_lowerValue" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Kernel-Connectors-Connector-connectorEnd-_upperValue" name="" visibility="public" value="*"/>
@@ -5348,7 +5348,7 @@ association->exists(oclIsKindOf(AssocationStructure)) implies
         </ownedAttribute>
         <ownedAttribute xmi:id="Kernel-FeatureValues-FeatureValue-isDefault" name="isDefault" visibility="public">
           <ownedComment xmi:id="Kernel-FeatureValues-FeatureValue-isDefault-_ownedComment.0" annotatedElement="Kernel-FeatureValues-FeatureValue-isDefault">
-            <body>&lt;p>Whether this &lt;code>FeatureValue&lt;/code> is a concrete specification of the bound of initial value of the &lt;code>featureWithValue&lt;/code>, or just a default value that may be overridden.&lt;/p></body>
+            <body>&lt;p>Whether this &lt;code>FeatureValue&lt;/code> is a concrete specification of the bound or initial value of the &lt;code>featureWithValue&lt;/code>, or just a default value that may be overridden.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="Kernel-FeatureValues-FeatureValue-isDefault-_defaultValue" name="" visibility="public"/>
@@ -5614,7 +5614,7 @@ endif </body>
           <ownedComment xmi:id="Kernel-Functions-Function-isModelLevelEvaluable-_ownedComment.0" annotatedElement="Kernel-Functions-Function-isModelLevelEvaluable">
             <body>&lt;p>Whether this &lt;code>Function&lt;/code> can be used as the &lt;code>function&lt;/code> of a model-level evaluable &lt;code>InvocationExpression&lt;/code>. Certain &lt;code>Functions&lt;/code> from the Kernel Functions Library are considered to have &lt;code>isModelLevelEvaluable = true&lt;/code>. For all other &lt;code>Functions&lt;/code> it is &lt;code>false&lt;/code>.&lt;/p>
 
-&lt;p> Note: See the specification of the KerML concrete syntax notation for &lt;code>Expressions&lt;/code> for an identification of which library &lt;code>Functions&lt;/code> are model-level evaluable.&lt;/p></body>
+&lt;p>&lt;strong>Note:&lt;/strong> See the specification of the KerML concrete syntax notation for &lt;code>Expressions&lt;/code> for an identification of which library &lt;code>Functions&lt;/code> are model-level evaluable.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
@@ -5687,7 +5687,7 @@ owningMembership.oclIsKindOf(FeatureValue) implies
         </ownedRule>
         <ownedRule xmi:id="Kernel-Functions-Expression-validateExpressionResultParameterMembership" name="validateExpressionResultParameterMembership" visibility="public" constrainedElement="Kernel-Functions-Expression">
           <ownedComment xmi:id="Kernel-Functions-Expression-validateExpressionResultParameterMembership-_ownedComment.0" annotatedElement="Kernel-Functions-Expression-validateExpressionResultParameterMembership">
-            <body>&lt;p>A &lt;code>Expression&lt;/code> must own at most one &lt;code>ResultParameterMembership&lt;/code>.&lt;/p></body>
+            <body>&lt;p>An &lt;code>Expression&lt;/code> must own at most one &lt;code>ResultParameterMembership&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Kernel-Functions-Expression-validateExpressionResultParameterMembership-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -5781,7 +5781,7 @@ endif</body>
         </ownedOperation>
         <ownedOperation xmi:id="Kernel-Functions-Expression-checkCondition" name="checkCondition" visibility="public" bodyCondition="Kernel-Functions-Expression-checkCondition-unnamed1">
           <ownedComment xmi:id="Kernel-Functions-Expression-checkCondition-_ownedComment.0" annotatedElement="Kernel-Functions-Expression-checkCondition">
-            <body>&lt;p>Model-level evaluate this &lt;code>Expression&lt;/code> with the given &lt;code>target&lt;/code>t. If the result is a &lt;code>LiteralBoolean&lt;/code>, return its &lt;code>value&lt;/code>. Otherwise return &lt;code>false&lt;/code>.&lt;/p>
+            <body>&lt;p>Model-level evaluate this &lt;code>Expression&lt;/code> with the given &lt;code>target&lt;/code>. If the result is a &lt;code>LiteralBoolean&lt;/code>, return its &lt;code>value&lt;/code>. Otherwise return &lt;code>false&lt;/code>.&lt;/p>
 </body>
           </ownedComment>
           <ownedRule xmi:id="Kernel-Functions-Expression-checkCondition-unnamed1" name="unnamed1" visibility="public">
@@ -6278,7 +6278,7 @@ else
     <packagedElement xmi:type="uml:Package" xmi:id="Kernel-Structures" name="Structures" visibility="public" URI="">
       <packagedElement xmi:type="uml:Class" xmi:id="Kernel-Structures-Structure" name="Structure" visibility="public">
         <ownedComment xmi:id="Kernel-Structures-Structure-_ownedComment.0" annotatedElement="Kernel-Structures-Structure">
-          <body>&lt;p>A &lt;code>Structure&lt;/code> is a &lt;code>Class&lt;/code> of objects in the modeled universe that are primarily structural in nature. While an object is not itself behavioral, it may be involved in and acted on by &lt;code>Behaviors&lt;/code>, and it may be the performer of some of them.&lt;/p>
+          <body>&lt;p>A &lt;code>Structure&lt;/code> is a &lt;code>Class&lt;/code> of objects in the modeled universe that are primarily structural in nature. While such an object is not itself behavioral, it may be involved in and acted on by &lt;code>Behaviors&lt;/code>, and it may be the performer of some of them.&lt;/p>
 </body>
         </ownedComment>
         <ownedRule xmi:id="Kernel-Structures-Structure-checkStructureSpecialization" name="checkStructureSpecialization" visibility="public" constrainedElement="Kernel-Structures-Structure">

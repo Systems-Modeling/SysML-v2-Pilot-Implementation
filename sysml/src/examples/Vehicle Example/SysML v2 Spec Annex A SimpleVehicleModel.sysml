@@ -1,5 +1,5 @@
 package SimpleVehicleModel{
-    // ran 2022-11 release
+    // 2023-02 release
     import Definitions::*;  
     import ISQ::*;
     package Definitions{
@@ -8,6 +8,7 @@ package SimpleVehicleModel{
         import ItemDefinitions::*;
         import SignalDefinitions::*;
         import InterfaceDefinitions::*;
+        import AllocationDefinitions::*;
         import ActionDefinitions::*;
         import StateDefinitions::*;
         import RequirementDefinitions::*;
@@ -16,7 +17,7 @@ package SimpleVehicleModel{
         import MetadataDefinitions::**;
         import KeyWord_MetadataDefinitions::*;
         package PartDefinitions{
-            part def Vehicle:>PhysicalComponent {
+            part def Vehicle {
                 attribute mass :> ISQ::mass;
                 attribute dryMass:>ISQ::mass;
                 attribute cargoMass:>ISQ::mass;
@@ -214,11 +215,7 @@ package SimpleVehicleModel{
             part def TransmissionManual;
             part def Sunroof;
             
-            //create abstract physical element to support allocation def from logical to Physical
-            part def PhysicalComponent:>PhysicalItem, Parts::Part;
             //logical Components
-            part def LogicalComponent:>LogicalItem, Parts::Part;
-            part def VehicleLogical:>LogicalComponent;
             part def ElectricalGenerator;
             part def TorqueGenerator;
             part def SteeringSubsystem;
@@ -293,9 +290,6 @@ package SimpleVehicleModel{
             item def SensedSpeed{
                 attribute speed:>ISQ::speed;
             }
-            item def LogicalItem;
-            item def PhysicalItem;
-            item def GenericItem;
         }
         package SignalDefinitions{
             item def Cmd{
@@ -339,20 +333,11 @@ package SimpleVehicleModel{
                 interface wheelFastenerInterface:WheelFastenerInterface [5]
                     connect lugNutCompositePort.lugNutPort to shankCompositePort.shankPort;
             }
-            
-            connection def GenericConnection {
-                end genericItem1:GenericItem;
-                end genericItem2:GenericItem;
-            }
         }
         package AllocationDefinitions{
-            allocation def LogicalToPhysicalItem{
-                end logicalItem:LogicalItem;
-                end physicalItem:PhysicalItem;
-            }
-            allocation def ConnectionToConnection{
-                end genericConnection1:GenericConnection;
-                end genericConnection2:GenericConnection;
+            allocation def LogicalToPhysical{
+                end #logical logicalEnd;
+                end #physical physicalEnd;
             }
         }
         package ActionDefinitions{
@@ -474,6 +459,18 @@ package SimpleVehicleModel{
             metadata def <fm> failureMode :> SemanticMetadata {
                 :>> baseType = failureModes meta SysML::StateUsage;
             }
+            
+            occurrence logicalOccurrences [*] nonunique;
+            
+            metadata def <l> logical :> SemanticMetadata {
+                :>> baseType = logicalOccurrences meta SysML::Usage;
+            }
+            
+            occurrence physicalOccurrences [*] nonunique;
+            
+            metadata def <p> physical :> SemanticMetadata {
+                :>> baseType = physicalOccurrences meta SysML::Usage;
+            }  
         }
         package GenericContext {
 
@@ -485,9 +482,10 @@ package SimpleVehicleModel{
             }
         }
     }
+
     package VehicleLogicalConfiguration{
         package PartsTree{
-            part vehicleLogical:VehicleLogical{
+            #logical part vehicleLogical:Vehicle{
                 part torqueGenerator:TorqueGenerator{
                     action generateTorque;
                 }
@@ -500,9 +498,10 @@ package SimpleVehicleModel{
         }
     }
     package VehicleLogicalToPhysicalAllocation{
-        import VehicleLogicalConfiguration::PartsTree::*;
         import VehicleConfigurations::VehicleConfiguration_b::PartsTree::**;
-        allocation vehicleLogicalToPhysicalAllocation:AllocationDefinitions::LogicalToPhysicalItem
+        import VehicleLogicalConfiguration::PartsTree::*;
+
+        allocation vehicleLogicalToPhysicalAllocation:LogicalToPhysical
             allocate vehicleLogical to vehicle_b{
                 allocate vehicleLogical.torqueGenerator to vehicle_b.engine{
                     allocate vehicleLogical.torqueGenerator.generateTorque to vehicle_b.engine.generateTorque;
@@ -511,7 +510,7 @@ package SimpleVehicleModel{
                     allocate vehicleLogical.electricalGenerator.generateElectricity to vehicle_b.engine.alternator.generateElectricity;
                 }
             }
-    }
+    } 
     package VehicleConfigurations{
         package VehicleConfiguration_a{
             package PartsTree{
@@ -698,10 +697,9 @@ package SimpleVehicleModel{
 
                     interface engineToTransmissionInterface:EngineToTransmissionInterface
                         connect engine.drivePwrPort to transmission.clutchPort;
-                        //can ref or allocate the flow - generateToAmplify :> ActionTree::providePower.generateToAmplify;
+                
                     interface fuelInterface:FuelInterface
                         connect fuelTank.fuelOutPort to engine.fuelInPort;
-                    //allocate flow from action flows to connections
 
                     allocate ActionTree::providePower.generateToAmplify to engineToTransmissionInterface;
                     
@@ -716,9 +714,7 @@ package SimpleVehicleModel{
                     bind rearAxleAssembly.rearWheel1.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort1;
                     bind rearAxleAssembly.rearWheel2.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort2;
                     
-                    // assert the vehicle features (e.g, mass, reliability) satisfy the requirements
                     satisfy Requirements::vehicleSpecification by vehicle_b{
-                        // attribute redefines vehicleMassRequirement.massActual = vehicle_b.mass;
                         requirement vehicleMassRequirement:>>vehicleMassRequirement{
                             attribute redefines massActual=vehicle_b.mass;
                             attribute redefines fuelMassActual = vehicle_b.fuelTank.fuel.fuelMass;
@@ -753,13 +749,6 @@ package SimpleVehicleModel{
                         port p1;
                         port p2;
                     }
-                    /*
-                    part def Vehicle{
-                        port ignitionCmdPort;
-                    }
-                    item def IgnitionCmd;
-                    item def EngineStatus;
-                    */
 
                     part part0{
                         perform action startVehicle{
@@ -843,8 +832,6 @@ package SimpleVehicleModel{
                         part redefines vehicleSoftware{
                             part redefines vehicleController{
                                 part redefines cruiseController{
-                                /* introduce loop operand with test when available so that
-                                 sensedSpeedSent continues at periodic intervals until cancelSpeedReceived */
                                     port redefines setSpeedPort{
                                         //analagous to gate: event occurrence bound but may not need this since the port is bound
                                         event occurrence setSpeedReceived = vehicle_b.setSpeedPort.setSpeedReceived;
@@ -931,7 +918,6 @@ package SimpleVehicleModel{
                 #derivation connection {
                     end #original ::> vehicleSpecification.vehicleMassRequirement;
                     end #derive ::> engineSpecification.engineMassRequirement;
-                    //end #derive ::> other mass requirements;
                 }
 
             }
@@ -1065,8 +1051,6 @@ package SimpleVehicleModel{
                     attribute position[1] :> ISQ::distance;
                 }
             }
-
-            //calc def FuelConsumption (bestFuelConsumption: Real, idlingFuelConsumption: Real, tpd_avg: Real) : KilometersPerLitre {
             
             calc def FuelConsumption {
                 in bestFuelConsumption: Real;
@@ -1132,7 +1116,6 @@ package SimpleVehicleModel{
         }
         package VehicleTradeOffAnalysis{
             /* The following example provides the rationale for selecting the engine4cyl. 
-            The rationale could be contained in the vehicle configuration with the selected engine.
             The rationale and risk are contained in a metadata library. */
             
             @Rationale about engineTradeOffAnalysis::vehicle_b_engine4cyl{
@@ -1157,7 +1140,7 @@ package SimpleVehicleModel{
             
                 
             import TradeStudies::*;
-            //objective function with criterion engine mass, engine power, and engine cost
+            //evaluation function with criterion engine mass, engine power, and engine cost
             calc def EngineEvaluation {
                 in engineMass:>ISQ::mass;
                 in enginePower:>ISQ::power; 
@@ -1201,12 +1184,9 @@ package SimpleVehicleModel{
                     }
                 }
                 
-                // the objective includes the objectiveFunction to select the maximum
                 objective :MaximizeObjective;
                     /*Select vehicle alternative with the engine whose evaluation function returns the max value*/
                 
-                
-                // Use the following if the evaluation function is different for each alternative
                 calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
                     return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
@@ -1271,9 +1251,7 @@ package SimpleVehicleModel{
         }
     }
     package VehicleIndividuals{
-        // VehicleRoadContext_1 subclasses GenericContext::Context with spatial reference and time attribute
         individual a:VehicleRoadContext_1{
-            //timeslice t0_t2:VehicleRoadContext_1{
             timeslice t0_t2_a{
                 snapshot t0_a {             
                     attribute t0 redefines time=0 [s];
@@ -1284,7 +1262,7 @@ package SimpleVehicleModel{
                     snapshot t0_v:Vehicle_1{
                         :>>Vehicle::position=0 [m];
                         :>>Vehicle::velocity=0 [m];
-                        :>>Vehicle::acceleration=1.96 [m/s**2]; 
+                        :>>Vehicle::acceleration=1.96 [m/s**2];
                         // .2 g where 1 g = 9.8 meters/sec^2
                         snapshot t0_fa:FrontAxleAssembly_1{
                             snapshot t0_leftFront:Wheel_1;
@@ -1402,9 +1380,8 @@ package SimpleVehicleModel{
         package TransportPassengerScenario{
             import ContextDefinitions::TransportPassenger;
             
-            // action defined by Use Case Def
             // this version uses nesting vs fork and join for concurrent actions
-            action transportPassenger:TransportPassenger{
+            use case transportPassenger:TransportPassenger{
                 first start; 
                 then action a{
                     action driverGetInVehicle subsets getInVehicle_a[1];
@@ -1422,8 +1399,9 @@ package SimpleVehicleModel{
                 then done;
             }
             
+            
             //this version uses forks and joins
-            action transportPassenger_1:TransportPassenger{
+            use case transportPassenger_1:TransportPassenger{
                 // declare actions
                 action driverGetInVehicle subsets getInVehicle_a[1];
                 action passenger1GetInVehicle subsets getInVehicle_a[1];
@@ -1599,5 +1577,4 @@ package SimpleVehicleModel{
         }
     }
 }
-
 

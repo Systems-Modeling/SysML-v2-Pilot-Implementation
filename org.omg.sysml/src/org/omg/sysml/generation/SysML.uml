@@ -2870,7 +2870,7 @@ endif</body>
         <ownedComment xmi:id="1a2957db-12f0-41ee-899c-fde650c7b39e" annotatedElement="7db21a79-717f-4f97-b646-7e6ab9106c43">
           <body>&lt;p>The Real value that is the result of evaluating this Expression.&lt;/p></body>
         </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml#Real"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="75dec4cf-666d-4957-9f0a-9747fffae584" name="LiteralInfinity" visibility="public">
@@ -7744,8 +7744,7 @@ endif</body>
         <ownedParameter xmi:id="45b921ea-eb40-4281-8cae-a5970efe4754" name="i" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         </ownedParameter>
-        <ownedParameter xmi:id="fd55b269-ecb9-4f36-a995-f0c547d2a7be" name="" visibility="public" direction="return">
-          <type xmi:type="uml:Stereotype" href="Track_4_-_Metamodel_Development.Models.5._Profiles.KerML_Profile.profile.uml#d716fe09-d0b2-4547-8222-7b0cf69c8569"/>
+        <ownedParameter xmi:id="fd55b269-ecb9-4f36-a995-f0c547d2a7be" name="" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b77b963d-b6e4-4fb7-a0b0-ea37340b9721" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7279d7bc-1329-4d33-8243-797b809c807e" name="" visibility="public" value="1"/>
         </ownedParameter>

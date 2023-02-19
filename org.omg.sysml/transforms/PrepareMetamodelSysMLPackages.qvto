@@ -25,7 +25,7 @@ import PrepareMetamodel;
 
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation PrepareMetamodelKerMLSysML(in export: UML, in standard: UML, out kerml: UML, out sysml: UML)
+transformation PrepareMetamodelSysMLPackages(in export: UML, in standard: UML, out sysml: UML)
 	extends PrepareMetamodel;
 
 main() {
@@ -36,25 +36,18 @@ helper run() {
 	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	
-	var kermlModel = object Model@kerml { 
-		name := "kerml";
-		URI := "https://www.omg.org/spec/KerML/" + version;
-	};
-	
 	var sysmlModel = object Model@sysml { 
-		name := "sysml";
+		name := "SysML";
 		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
 	
-	mapModel(syntax, kermlModel, sysmlModel);
+	mapModel(syntax, sysmlModel);
 	fixLiteralRational();	
 }
 
-helper mapModel(syntax : Package, kermlModel: Model, sysmlModel : Model) {
-	mapPackageFlat(syntax, "Root", kermlModel);
-	mapPackageFlat(syntax, "Core", kermlModel);
-	mapPackageFlat(syntax, "Kernel", kermlModel);
-	mapPackageFlat(syntax, "Systems", sysmlModel);
-	kermlModel.packagedElement[Package]->destroy();	
-	sysmlModel.packagedElement[Package]->destroy();	
+helper mapModel(syntax : Package, sysmlModel : Model) {
+	mapPackageNested(syntax, "Root", sysmlModel);
+	mapPackageNested(syntax, "Core", sysmlModel);
+	mapPackageNested(syntax, "Kernel", sysmlModel);
+	mapPackageNested(syntax, "Systems", sysmlModel);
 }

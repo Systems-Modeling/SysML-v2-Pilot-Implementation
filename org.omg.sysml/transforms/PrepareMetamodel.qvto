@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,7 +47,22 @@ helper run() {
 
 helper mapModel(syntax : Package, model: Model) {
 	syntax.map Namespace(model);
-	model.packagedElement[Package]->destroy();	
+	model.packagedElement[Package]->destroy();
+}
+
+helper mapPackageNested(syntax : Package, subpackageName : String, inout model : Model) {
+	var subpackage = syntax.packagedElement[Package]![name = subpackageName];
+	if subpackage <> null then {
+		log("Package " + nameOf(subpackage) + " to " + nameOf(model));
+		model.packagedElement += subpackage;
+	} endif;
+}
+
+helper mapPackageFlat(syntax : Package, subpackageName : String, model : Model) {
+	var subpackage = syntax.packagedElement[Package]![name = subpackageName];
+	if subpackage <> null then {
+		subpackage.map Namespace(model);
+	} endif;
 }
 
 helper fixLiteralRational() {

@@ -4685,7 +4685,7 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="Systems-Constraints-ConstraintUsage-checkConstraintUsageRequirementConstraintSpecialization" name="checkConstraintUsageRequirementConstraintSpecialization" visibility="public" constrainedElement="Systems-Constraints-ConstraintUsage">
           <ownedComment xmi:id="Systems-Constraints-ConstraintUsage-checkConstraintUsageRequirementConstraintSpecialization-_ownedComment.0" annotatedElement="Systems-Constraints-ConstraintUsage-checkConstraintUsageRequirementConstraintSpecialization">
-            <body>&lt;p>A composite &lt;code>ConstraintUsage&lt;/code> whose &lt;code>owningType&lt;/code> is an &lt;code>ItemDefinition&lt;/code> or an &lt;code>ItemUsage&lt;/code> must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Items::Item::checkedConstraints&lt;/em>&lt;/code> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A &lt;code>ConstraintUsage&lt;/code> whose &lt;code>owningFeatureMembership&lt;/code> is a &lt;code>RequirementConstraintMembership&lt;/code> must directly or indirectly specialize on the &lt;code>ConstraintUsages&lt;/code> &lt;code>&lt;em>assumptions&lt;/em>&lt;/code> or &lt;code>&lt;em>constraints&lt;/em>&lt;/code> from the &lt;code>ConstraintDefinition&lt;/code> &lt;code>&lt;em>Requirements::RequirementCheck&lt;/em>&lt;/code> in the Systems Model Library, depending on whether the &lt;code>kind&lt;/code> of the &lt;code>RequirementConstraintMembership&lt;/code> is &lt;code>assumption&lt;/code> or &lt;code>requirement&lt;/code>, respectively.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Constraints-ConstraintUsage-checkConstraintUsageRequirementConstraintSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4829,6 +4829,19 @@ endif</body>
     if ownedReferenceSubsetting = null then self
     else ownedReferenceSubsetting.referencedFeature.oclAsType(ConstraintUsage)
     endif</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="Systems-Constraints-AssertConstraintUsage-checkAssertConstraintUsageSpecialization" name="checkAssertConstraintUsageSpecialization" visibility="public" constrainedElement="Systems-Constraints-AssertConstraintUsage">
+          <ownedComment xmi:id="Systems-Constraints-AssertConstraintUsage-checkAssertConstraintUsageSpecialization-_ownedComment.0" annotatedElement="Systems-Constraints-AssertConstraintUsage-checkAssertConstraintUsageSpecialization">
+            <body>&lt;p>If a &lt;code>AssertConstraintUsage&lt;/code> is negated, then it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::negatedConstraints&lt;/em>&lt;/code>. Otherwise, it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::assertedConstraints&lt;/em>&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Constraints-AssertConstraintUsage-checkAssertConstraintUsageSpecialization-_specification" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>if isNegated then
+    specializesFromLibrary('Constraints::negatedConstraints')
+else
+    specializesFromLibrary('Constraints::assertedConstraints')
+endif</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="Systems-Constraints-AssertConstraintUsage-_generalization.0" general="Systems-Constraints-ConstraintUsage"/>
@@ -4978,11 +4991,11 @@ endif</body>
             <body>input->notEmpty() and input->first() = subjectParameter</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinition" name="checkRequirementDefinition" visibility="public" constrainedElement="Systems-Requirements-RequirementDefinition">
-          <ownedComment xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinition-_ownedComment.0" annotatedElement="Systems-Requirements-RequirementDefinition-checkRequirementDefinition">
+        <ownedRule xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinitionSpecialization" name="checkRequirementDefinitionSpecialization" visibility="public" constrainedElement="Systems-Requirements-RequirementDefinition">
+          <ownedComment xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinitionSpecialization-_ownedComment.0" annotatedElement="Systems-Requirements-RequirementDefinition-checkRequirementDefinitionSpecialization">
             <body>&lt;p>A &lt;code>RequirementDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>RequirementDefinition&lt;/code> &lt;code>&lt;em>Requirements::RequirementCheck&lt;/em>&lt;/code> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinition-_specification" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-RequirementDefinition-checkRequirementDefinitionSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>specializesFromLibrary('Requirements::RequirementCheck')</body>
           </specification>
@@ -5108,7 +5121,7 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Systems-Requirements-SatisfyRequirementUsage-checkSatisfyRequirementUsageBindingConnector" name="checkSatisfyRequirementUsageBindingConnector" visibility="public" constrainedElement="Systems-Requirements-SatisfyRequirementUsage">
           <ownedComment xmi:id="Systems-Requirements-SatisfyRequirementUsage-checkSatisfyRequirementUsageBindingConnector-_ownedComment.0" annotatedElement="Systems-Requirements-SatisfyRequirementUsage-checkSatisfyRequirementUsageBindingConnector">
-            <body>&lt;p>A &lt;code>SatisfyRequirementUsage&lt;/code> must exactly one &lt;code>ownedMember&lt;/code> that is a &lt;code>BindingConnector&lt;/code> between its &lt;code>subjectParameter&lt;/code> and some other &lt;code>Feature&lt;/code>.&lt;/p></body>
+            <body>&lt;p>A &lt;code>SatisfyRequirementUsage&lt;/code> must have exactly one &lt;code>ownedMember&lt;/code> that is a &lt;code>BindingConnector&lt;/code> between its &lt;code>subjectParameter&lt;/code> and some &lt;code>Feature&lt;/code> other than the &lt;code>subjectParameter&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-SatisfyRequirementUsage-checkSatisfyRequirementUsageBindingConnector-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -5262,15 +5275,15 @@ endif</body>
     specializesFromLibrary('Requirements::RequirementCheck::subrequirements')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveSpecialization" name="checkRequirementUsageObjectiveSpecialization" visibility="public" constrainedElement="Systems-Requirements-RequirementUsage">
-          <ownedComment xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveSpecialization-_ownedComment.0" annotatedElement="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveSpecialization">
-            <body>&lt;p>A &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningFeatureMembership&lt;/code> is a &lt;code>ObjectiveMembership&lt;/code> must directly or indirectly specialize the &lt;code>RequirementUsage&lt;/code> &lt;code>&lt;em>Cases::Case::obj&lt;/em>&lt;/code>.&lt;/p></body>
+        <ownedRule xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition" name="checkRequirementUsageObjectiveRedefinition" visibility="public" constrainedElement="Systems-Requirements-RequirementUsage">
+          <ownedComment xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition-_ownedComment.0" annotatedElement="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition">
+            <body>&lt;p>A &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningFeatureMembership&lt;/code> is a &lt;code>ObjectiveMembership&lt;/code> must redefine the &lt;code>RequirementUsage&lt;/code> &lt;code>&lt;em>Cases::Case::obj&lt;/em>&lt;/code>.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveSpecialization-_specification" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>owningfeatureMembership &lt;> null and
 owningfeatureMembership.oclIsKindOf(ObjectiveMembership) implies
-    specializesFromLibrary('Cases::Case::obj')</body>
+    redefinesFromLibrary('Cases::Case::obj')</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageRequirementVerificationSpecialization" name="checkRequirementUsageRequirementVerificationSpecialization" visibility="public" constrainedElement="Systems-Requirements-RequirementUsage">
@@ -5630,11 +5643,11 @@ owningType.oclIsType(CaseUsage)
             <body>specializesFromLibrary('Requirements::concernChecks')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedSpecialization" name="checkConcernUsageFramedSpecialization" visibility="public" constrainedElement="Systems-Requirements-ConcernUsage">
-          <ownedComment xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedSpecialization-_ownedComment.0" annotatedElement="Systems-Requirements-ConcernUsage-checkConcernUsageFramedSpecialization">
+        <ownedRule xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedConcernSpecialization" name="checkConcernUsageFramedConcernSpecialization" visibility="public" constrainedElement="Systems-Requirements-ConcernUsage">
+          <ownedComment xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedConcernSpecialization-_ownedComment.0" annotatedElement="Systems-Requirements-ConcernUsage-checkConcernUsageFramedConcernSpecialization">
             <body>&lt;p>If a &lt;code>ConcernUsage&lt;/code> is owned via a &lt;code>FramedConcernMembership&lt;/code>, then it must directly or indirectly specialize the &lt;code>ConcernUsage&lt;/code> &lt;code>&lt;em>Requirements::RequirementCheck::concerns&lt;/em>&lt;/code> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedSpecialization-_specification" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-ConcernUsage-checkConcernUsageFramedConcernSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>owningFeatureMembership &lt;> null and
 owningFeatureMembership.oclIsKindOf(FramedConcernMembership) implies
@@ -6094,7 +6107,7 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="Systems-Connections-FlowConnectionDefinition-checkFlowConnectionDefinitionSpecialization" name="checkFlowConnectionDefinitionSpecialization" visibility="public" constrainedElement="Systems-Connections-FlowConnectionDefinition">
           <ownedComment xmi:id="Systems-Connections-FlowConnectionDefinition-checkFlowConnectionDefinitionSpecialization-_ownedComment.0" annotatedElement="Systems-Connections-FlowConnectionDefinition-checkFlowConnectionDefinitionSpecialization">
-            <body>&lt;p>A &lt;code>FlowConnectionDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionDefinition&lt;/code> &lt;em>&lt;code>FlowConnectionDefinition&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A &lt;code>FlowConnectionDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionDefinition&lt;/code> &lt;em>&lt;code>MessageConnectionDefinition&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Connections-FlowConnectionDefinition-checkFlowConnectionDefinitionSpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -7839,7 +7852,7 @@ owningType.owningFeatureMembership.oclIsKindOf(ObjectiveMembership)</body>
         </ownedRule>
         <ownedRule xmi:id="Systems-Occurrences-LifeClass-checkLifeClassMultiplicitySpecialization" name="checkLifeClassMultiplicitySpecialization" visibility="public" constrainedElement="Systems-Occurrences-LifeClass">
           <ownedComment xmi:id="Systems-Occurrences-LifeClass-checkLifeClassMultiplicitySpecialization-_ownedComment.0" annotatedElement="Systems-Occurrences-LifeClass-checkLifeClassMultiplicitySpecialization">
-            <body>&lt;p>The &lt;code>multiplicity&lt;/code> of a &lt;code>LifeClass&lt;/code> is &lt;em>&lt;code>exactlyOne&lt;/code>&lt;/em>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>multiplicity&lt;/code> of a &lt;code>LifeClass&lt;/code> is &lt;em>&lt;code>zeroOrOne&lt;/code>&lt;/em>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Occurrences-LifeClass-checkLifeClassMultiplicitySpecialization-_specification" name="" visibility="public">
             <language>OCL2.0</language>
@@ -7981,11 +7994,11 @@ owningType &lt;> null and
             <body>occurrenceDefinition->select(isIndividual).size() &lt;= 1</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageFeatureTyping" name="checkOccurrenceUsageFeatureTyping" visibility="public" constrainedElement="Systems-Occurrences-OccurrenceUsage">
-          <ownedComment xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageFeatureTyping-_ownedComment.0" annotatedElement="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageFeatureTyping">
-            <body>&lt;p>If the &lt;code>portionKind&lt;/code> of an &lt;code>OccurrenceUsage&lt;/code> is not empty, then, for each &lt;code>occurrenceDefinition&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code>, there must be a &lt;code>featuringType&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code> which either is that &lt;code>OccurrenceUsage&lt;/code> or directly or indirectly specializes it.&lt;/p></body>
+        <ownedRule xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageTypeFeaturing" name="checkOccurrenceUsageTypeFeaturing" visibility="public" constrainedElement="Systems-Occurrences-OccurrenceUsage">
+          <ownedComment xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageTypeFeaturing-_ownedComment.0" annotatedElement="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageTypeFeaturing">
+            <body>&lt;p>If the &lt;code>portionKind&lt;/code> of an &lt;code>OccurrenceUsage&lt;/code> is not empty, then, for each &lt;code>occurrenceDefinition&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code>, there must be a &lt;code>featuringType&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code> which either is the &lt;code>occurrenceDefinition&lt;/code> or directly or indirectly specializes it.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageFeatureTyping-_specification" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Occurrences-OccurrenceUsage-checkOccurrenceUsageTypeFeaturing-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>portionKind &lt;> null implies
     occurrenceDefinition->forAll(occ | 

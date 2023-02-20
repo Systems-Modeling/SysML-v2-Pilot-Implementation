@@ -3736,7 +3736,7 @@ endif</body>
           <ownedComment xmi:id="Kernel-Expressions-LiteralRational-value-_ownedComment.1" annotatedElement="Kernel-Expressions-LiteralRational-value">
             <body>&lt;p>The Real value that is the result of evaluating this Expression.&lt;/p></body>
           </ownedComment>
-          <type xmi:type="uml:PrimitiveType" href="platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml#Real"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="Kernel-Expressions-LiteralInfinity" name="LiteralInfinity" visibility="public">

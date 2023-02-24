@@ -5277,13 +5277,17 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition" name="checkRequirementUsageObjectiveRedefinition" visibility="public" constrainedElement="Systems-Requirements-RequirementUsage">
           <ownedComment xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition-_ownedComment.0" annotatedElement="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition">
-            <body>&lt;p>A &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningFeatureMembership&lt;/code> is a &lt;code>ObjectiveMembership&lt;/code> must redefine the &lt;code>RequirementUsage&lt;/code> &lt;code>&lt;em>Cases::Case::obj&lt;/em>&lt;/code>.&lt;/p></body>
+            <body>&lt;p>A &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningFeatureMembership&lt;/code> is a &lt;code>ObjectiveMembership&lt;/code> must redefine the &lt;code>objectiveRequirement&lt;/code> of each &lt;code>CaseDefinition&lt;/code> or &lt;code>CaseUsage&lt;/code> that is specialized by the &lt;code>owningType&lt;/code> of the &lt;code>RequirementUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageObjectiveRedefinition-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>owningfeatureMembership &lt;> null and
 owningfeatureMembership.oclIsKindOf(ObjectiveMembership) implies
-    redefinesFromLibrary('Cases::Case::obj')</body>
+    owningType.ownedSpecialization.general->forAll(gen |
+        (gen.oclIsKindOf(CaseDefinition) implies
+            redefines(gen.oclAsType(CaseDefinition).objectiveRequirement)) and
+        (gen.oclIsKindOf(CaseUsage) implies
+            redefines(gen.oclAsType(CaseUsage).objectiveRequirement))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="Systems-Requirements-RequirementUsage-checkRequirementUsageRequirementVerificationSpecialization" name="checkRequirementUsageRequirementVerificationSpecialization" visibility="public" constrainedElement="Systems-Requirements-RequirementUsage">
@@ -6359,7 +6363,7 @@ endif</body>
         <generalization xmi:id="Systems-Cases-CaseDefinition-_generalization.0" general="Systems-Calculations-CalculationDefinition"/>
         <ownedAttribute xmi:id="Systems-Cases-CaseDefinition-objectiveRequirement" name="objectiveRequirement" visibility="public" type="Systems-Requirements-RequirementUsage" isOrdered="true" isDerived="true" subsettedProperty="Systems-DefinitionAndUsage-Definition-ownedRequirement" association="Systems-Cases-_packagedElement.6">
           <ownedComment xmi:id="Systems-Cases-CaseDefinition-objectiveRequirement-_ownedComment.0" annotatedElement="Systems-Cases-CaseDefinition-objectiveRequirement">
-            <body>&lt;p>The &lt;code>objectiveRequirement&lt;/code> of this &lt;code>CaseDefinition&lt;/code>, that is owned via an &lt;code>ObjectiveMembership&lt;/code>, and that must redefine, directly or indirectly, the &lt;code>objective&lt;/code> &lt;code>RequirementUsage&lt;code> of the base &lt;code>CaseDefinition&lt;/code> &lt;code>&lt;em>Case&lt;/em>&lt;/code> from the Systems Model lLibrary.&lt;/p> 
+            <body>&lt;p>The &lt;code>objectiveRequirement&lt;/code> of this &lt;code>CaseDefinition&lt;/code>, that is owned via an &lt;code>ObjectiveMembership&lt;/code>, and will redefine, directly or indirectly, the &lt;code>objective&lt;/code> &lt;code>RequirementUsage&lt;code> of the base &lt;code>CaseDefinition&lt;/code> &lt;code>&lt;em>Case&lt;/em>&lt;/code> from the Systems Model Library.&lt;/p> 
 </body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Systems-Cases-CaseDefinition-objectiveRequirement-_lowerValue" name="" visibility="public"/>
@@ -6844,6 +6848,9 @@ owningType.oclIsType(CaseUsage)
           </specification>
         </ownedRule>
         <ownedRule xmi:id="Systems-Views-ViewUsage-validateViewUsageOnlyOneViewRendering" name="validateViewUsageOnlyOneViewRendering" visibility="public" constrainedElement="Systems-Views-ViewUsage">
+          <ownedComment xmi:id="Systems-Views-ViewUsage-validateViewUsageOnlyOneViewRendering-_ownedComment.0" annotatedElement="Systems-Views-ViewUsage-validateViewUsageOnlyOneViewRendering">
+            <body>&lt;p>A &lt;code>ViewDefinition&lt;/code> must have at most one &lt;code>ViewRenderingMembership&lt;/code>.&lt;/p></body>
+          </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Views-ViewUsage-validateViewUsageOnlyOneViewRendering-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>featureMembership->
@@ -7260,6 +7267,9 @@ self.membership->selectByKind(ElementFilterMembership).
           </specification>
         </ownedRule>
         <ownedRule xmi:id="Systems-Views-ViewDefinition-validateViewDefinitionOnlyOneViewRendering" name="validateViewDefinitionOnlyOneViewRendering" visibility="public" constrainedElement="Systems-Views-ViewDefinition">
+          <ownedComment xmi:id="Systems-Views-ViewDefinition-validateViewDefinitionOnlyOneViewRendering-_ownedComment.0" annotatedElement="Systems-Views-ViewDefinition-validateViewDefinitionOnlyOneViewRendering">
+            <body>&lt;p>A &lt;code>ViewDefinition&lt;/code> must have at most one &lt;code>ViewRenderingMembership&lt;/code>.&lt;/p></body>
+          </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="Systems-Views-ViewDefinition-validateViewDefinitionOnlyOneViewRendering-_specification" name="" visibility="public">
             <language>OCL2.0</language>
             <body>featureMembership->

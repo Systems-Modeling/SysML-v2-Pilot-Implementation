@@ -29,8 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConjugatedPortTyping is a FeatureTyping whose <code>type</code> is a ConjugatedPortDefinition. (This relationship is intended to be an abstract syntax marker for a special surface notation for conjugated typing of ports.)</p>
- * conjugatedPortDefinition = portDefinition.conjugatedPortDefinition
+ * <p>A <code>ConjugatedPortTyping</code> is a <code>FeatureTyping</code> whose <code>type</code> is a <code>ConjugatedPortDefinition</code>. (This relationship is intended to be an abstract-syntax marker for a special surface notation for conjugated typing of ports.)</p>
+ * portDefinition = conjugatedPortDefinition.originalPortDefinition
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +55,7 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>originalPortDefinition</code> of the <code>conjugatedPortDefinition</code> of this ConjugatedPortTyping.</p>
+	 * <p>The <code>originalPortDefinition</code> of the <code>conjugatedPortDefinition</code> of this <code>ConjugatedPortTyping</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference.
 	 * @see #setPortDefinition(PortDefinition)
@@ -92,7 +92,7 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>type</code> of this ConjugatedPortTyping considered as a FeatureTyping, which must be a ConjugatedPortDefinition.</p>
+	 * <p>The <code>type</code> of this <code>ConjugatedPortTyping</code> considered as a <code>FeatureTyping</code>, which must be a <code>ConjugatedPortDefinition</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.

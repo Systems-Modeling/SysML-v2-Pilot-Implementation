@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>A RequirementConstraintKind indicates whether a ConstraintUsage is an assumption or a requirement in a RequirementDefinition or RequirementUsage.</p>
+ * <p>A <code>RequirementConstraintKind</code> indicates whether a <code>ConstraintUsage</code> is an assumption or a requirement in a <code>RequirementDefinition</code> or <code>RequirementUsage</code>.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintKind()
  * @model
@@ -46,7 +46,7 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an assumption.</p>
+	 * <p>Indicates that a member <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code> represents an assumption.</p>
 	 * <!-- end-model-doc -->
 	 * @see #ASSUMPTION_VALUE
 	 * @generated
@@ -59,7 +59,7 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an requirement.</p>
+	 * <p>Indicates that a member <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code>represents an requirement.</p>
 	 * <!-- end-model-doc -->
 	 * @see #REQUIREMENT_VALUE
 	 * @generated
@@ -72,7 +72,7 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an assumption.</p>
+	 * <p>Indicates that a member <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code> represents an assumption.</p>
 	 * <!-- end-model-doc -->
 	 * @see #ASSUMPTION
 	 * @model name="assumption"
@@ -86,7 +86,7 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an requirement.</p>
+	 * <p>Indicates that a member <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code>represents an requirement.</p>
 	 * <!-- end-model-doc -->
 	 * @see #REQUIREMENT
 	 * @model name="requirement"

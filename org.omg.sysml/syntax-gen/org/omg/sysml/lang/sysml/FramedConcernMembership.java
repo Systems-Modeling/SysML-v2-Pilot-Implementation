@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FramedConcernMembership is a RequirementConstraintMembership for a framed ConcernUsage of a RequirementDefinition or RequirementUsage. The <code>ownedConstraint</code> of a FramedConcernMembership must be a ConcernUsage.</p>
+ * <p>A <code>FramedConcernMembership</code> is a <code>RequirementConstraintMembership</code> for a framed <code>ConcernUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code>.</p>
+ * kind = RequirementConstraintKind::requirement
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +37,7 @@ public interface FramedConcernMembership extends RequirementConstraintMembership
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConcernUsage that is the <code>ownedConstraint</code> of this AddressedConcernMembership.</p>
+	 * <p>The <code>ConcernUsage</code> that is the <code>ownedConstraint</code> of this <code>FramedConcernMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Concern</em>' reference.
 	 * @see #setOwnedConcern(ConcernUsage)
@@ -70,7 +71,7 @@ public interface FramedConcernMembership extends RequirementConstraintMembership
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The ConcernUsage that is referenced through this AddressedConcernMembership. It is the <code>referencedConstraint</code> of the FramedConcernMembership considered as a RequirementConstraintMembership, which must be a ConcernUsage.</p>
+	 * <p> The <code>ConcernUsage</code> that is referenced through this <code>FramedConcernMembership</code>. It is the <code>referencedConstraint</code> of the <code>FramedConcernMembership</code> considered as a <code>RequirementConstraintMembership</code>, which must be a <code>ConcernUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Concern</em>' reference.
 	 * @see #setReferencedConcern(ConcernUsage)

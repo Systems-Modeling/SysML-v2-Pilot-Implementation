@@ -31,9 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.</p>
- * 
- * <p>An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage <code>interfaces</code> from the Systems model libary.</p>
+ * <p>An <code>InterfaceUsage</code> is a Usage of an <code>InterfaceDefinition</code> to represent an interface connecting parts of a system through specific ports.</p>
  * ownedEndFeature->size() = 2 implies
  *     specializesFromLibrary("Interfaces::binaryInterfaces")
  * specializesFromLibrary("Interfaces::interfaces")
@@ -67,7 +65,7 @@ public interface InterfaceUsage extends ConnectionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The InterfaceDefinitions that type this InterfaceUsage.</p>
+	 * <p>The <code>InterfaceDefinitions</code> that type this <code>InterfaceUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceUsage_InterfaceDefinition()

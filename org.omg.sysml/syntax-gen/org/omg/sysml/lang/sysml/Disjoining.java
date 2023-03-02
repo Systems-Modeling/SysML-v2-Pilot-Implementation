@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Disjoining is a Relationship between Types asserted to have interpretations that are not shared (disjoint) between them, identified as <code>typeDisjoined</code> and <code>disjoiningType</code>. For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people&#39;s parents is disjoint from a Feature for their children. </code></p>
+ * <p>A <code>Disjoining</code> is a <code>Relationship</code> between <code>Types</code> asserted to have interpretations that are not shared (disjoint) between them, identified as <code>typeDisjoined</code> and <code>disjoiningType</code>. For example, a <code>Classifier</code> for mammals is disjoint from a <code>Classifier</code> for minerals, and a <code>Feature</code> for people&#39;s parents is disjoint from a <code>Feature</code> for their children.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -38,7 +38,8 @@ public interface Disjoining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type asserted to be disjoint with the <code>typeDisjoined</code>.<p>
+	 * <p><code>Type</code> asserted to be disjoint with the <code>typeDisjoined</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Disjoining Type</em>' reference.
 	 * @see #setDisjoiningType(Type)
@@ -111,7 +112,8 @@ public interface Disjoining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type asserted to be disjoint with the <code>disjoiningType</code>.<p>
+	 * <p><code>Type</code> asserted to be disjoint with the <code>disjoiningType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type Disjoined</em>' reference.
 	 * @see #setTypeDisjoined(Type)

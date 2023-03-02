@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Unioning is a Relationship that makes its <code>unioningType</code> one of the <code>unioningTypes</code> of its <code>typeUnioned</code>.</p>
+ * <p><code>Unioning</code> is a <code>Relationship</code> that makes its <code>unioningType</code> one of the <code>unioningTypes</code> of its <code>typeUnioned</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +37,8 @@ public interface Unioning extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type that partly determines interpretations of <code>typeUnioned</code>, as described in <code>Type::unioningType</code>.</p>
+	 * <p><code>Type</code> that partly determines interpretations of <code>typeUnioned</code>, as described in <code>Type::unioningType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Unioning Type</em>' reference.
 	 * @see #setUnioningType(Type)
@@ -76,7 +78,8 @@ public interface Unioning extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type with interpretations partly determined by <code>unioningType</code>, as described in <code>Type::unioningType</code>.</p>
+	 * <p><code>Type</code> with interpretations partly determined by <code>unioningType</code>, as described in <code>Type::unioningType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type Unioned</em>' reference.
 	 * @see #setTypeUnioned(Type)

@@ -66,7 +66,7 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this <code>TransitionFeatureMembership </code> is for a trigger, guard or effect.</p>
+	 * <p>Whether this <code>TransitionFeatureMembership </code> is for a <code>trigger</code>, <code>guard</code> or <code>effect</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.TransitionFeatureKind
@@ -99,7 +99,7 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <codeStep</code> that is the <cpde>ownedMemberFeature</code> of this <code>TransitionFeatureMembership</code>.</p>
+	 * <p>The <code>Step</code> that is the <code>ownedMemberFeature</code> of this <code>TransitionFeatureMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Feature</em>' reference.
 	 * @see #setTransitionFeature(Step)

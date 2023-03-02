@@ -41,6 +41,15 @@ import org.eclipse.emf.common.util.EList;
  * (owningType.oclIsKindOf(ItemDefinition) or
  *  owningType.oclIsKindOf(ItemUsage)) implies
  *     specializesFromLibrary("Items::Item::subparts")
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(ActorMembership) implies
+ *     if owningType.oclIsKindOf(RequirementDefinition) or 
+ *        owningType.oclIsKindOf(RequirementUsage)
+ *     then specializesFromLibrary('Requirements::RequirementCheck::actors')
+ *     else specializesFromLibrary('Cases::Case::actors')
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(StakeholderMembership) implies
+ *     specializesFromLibrary('Requirements::RequirementCheck::stakeholders')
  * <!-- end-model-doc -->
  *
  * <p>

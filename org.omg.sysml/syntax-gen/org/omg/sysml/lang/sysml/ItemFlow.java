@@ -29,15 +29,37 @@ import org.eclipse.emf.common.util.EList;
  * Flow</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemFlow is a Step that represents the transfer of objects or values from one Feature to another. ItemFlows can take non-zero time to complete.</p>
- * 
- * <p>An ItemFlow must be typed by the Interaction <em><code>Transfer</code></em> from the Kernel Semantic Library, or a specialization of it.</p>
+ * <p>An <code>ItemFlow</code> is a <code>Step</code> that represents the transfer of objects or data values from one <code>Feature</code> to another. <code>ItemFlows</code> can take non-zero time to complete.</p>
  * 
  * if itemFlowEnds->isEmpty() then
  *     specializesFromLibrary("Transfers::transfers")
  * else
  *     specializesFromLibrary("Transfers::flowTransfers")
  * endif
+ * itemType =
+ *     if itemFeature = null then Sequence{}
+ *     else itemFeature.type
+ *     endif
+ * sourceOutputFeature =
+ *     if connectorEnd->isEmpty() or 
+ *         connectorEnd.ownedFeature->isEmpty()
+ *     then null
+ *     else connectorEnd.ownedFeature->first()
+ *     endif
+ * targetInputFeature =
+ *     if connectorEnd->size() < 2 or 
+ *         connectorEnd->at(2).ownedFeature->isEmpty()
+ *     then null
+ *     else connectorEnd->at(2).ownedFeature->first()
+ *     endif
+ * itemFlowEnd = connectorEnd->selectByKind(ItemFlowEnd)
+ * itemFeature =
+ *     let itemFeatures : Sequence(ItemFeature) = 
+ *         ownedFeature->selectByKind(ItemFeature) in
+ *     if itemFeatures->isEmpty() then null
+ *     else itemFeatures->first()
+ *     endif
+ * ownedFeature->selectByKind(ItemFeature)->size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -83,7 +105,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that receives the items carried by the ItemFlow. It must be an owned <code>output</code> of the target participant of the ItemFlow.</p>
+	 * <p>The <code>Feature</code> that receives the values carried by the <code>ItemFlow</code>. It must be an owned <code>output</code> of the target participant of the <code>ItemFlow</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference.
 	 * @see #setTargetInputFeature(Feature)
@@ -114,7 +136,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that provides the items carried by the ItemFlow. It must be an owned <code>output</code> of the <code>source</code> of the ItemFlow.</p>
+	 * <p>The <code>Feature</code> that provides the items carried by the <code>ItemFlow</code>. It must be an owned <code>output</code> of the <code>source</code> of the <code>ItemFlow</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference.
@@ -153,7 +175,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>connectorEnds</code> of this ItemFlow that are ItemFlowEnds.</p>
+	 * <p>The <code>connectorEnds</code> of this <code>ItemFlow</code> that are <code>ItemFlowEnds</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
@@ -180,7 +202,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature of the ItemFlow that is an ItemFeature.</p>
+	 * <p>The <code>ownedFeature</code> of the <code>ItemFlow</code> that is an <code>ItemFeature</code> (if any).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Feature</em>' reference.
@@ -216,7 +238,7 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Interactions that type this ItemFlow. Interactions are both Associations and Behaviors, which can type Connectors and Steps, respectively.</p>
+	 * <p>The <code>Interactions</code> that type this <code>ItemFlow</code>. <code>Interactions</code> are both <code>Associations</code> and <code>Behaviors</code>, which can type <code>Connectors</code> and <code>Steps</code>, respectively.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interaction</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_Interaction()

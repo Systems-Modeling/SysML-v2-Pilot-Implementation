@@ -26,7 +26,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A time slice of an Occurrence (a portion over time).</p>
+	 * <p>A time slice of an <code>Occurrence</code> (a portion over time).</p>
 	 * <!-- end-model-doc -->
 	 * @see #TIMESLICE_VALUE
 	 * @generated
@@ -39,7 +39,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A snapshot of an Occurrence (a time slice with zero duration).</p>
+	 * <p>A snapshot of an <code>Occurrence</code> (a time slice with zero duration).</p>
 	 * <!-- end-model-doc -->
 	 * @see #SNAPSHOT_VALUE
 	 * @generated
@@ -52,7 +52,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A time slice of an Occurrence (a portion over time).</p>
+	 * <p>A time slice of an <code>Occurrence</code> (a portion over time).</p>
 	 * <!-- end-model-doc -->
 	 * @see #TIMESLICE
 	 * @model name="timeslice"
@@ -66,7 +66,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A snapshot of an Occurrence (a time slice with zero duration).</p>
+	 * <p>A snapshot of an <code>Occurrence</code> (a time slice with zero duration).</p>
 	 * <!-- end-model-doc -->
 	 * @see #SNAPSHOT
 	 * @model name="snapshot"

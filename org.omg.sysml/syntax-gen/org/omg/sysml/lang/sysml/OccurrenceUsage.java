@@ -12,14 +12,13 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>OccurrenceUsage</code> is a <code>Usage</code> whose <code>types</code> are all <code>Classes</code>. Nominally, if a <code>type</code> is an <code>OccurrenceDefinition</code>, an <code>OccurrenceUsage</code> is a <code>Usage</code> of that <code>OccurrenceDefinition</code> within a system. However, other types of Kernel <code>Classes</code> are also allowed, to permit use of <code>Classes</code> from the Kernel Model Libraries.</p>
  * 
- * <p>An <code>OccurrenceUsage</code> must subset, directly or indirectly, the base <code>Feature</code> <em><code>occurrences</code></em> from the Kernel Semantic Library.</p>
- * 
- * let individualDefinitions : Sequence(OccurrenceDefinition) = 
- *     occurrenceDefinition->
- *         selectByKind(OccurrenceDefinition)->
- *         select(isIndividual) in
- * if individualDefinitions->isEmpty() then null
- * else individualDefinitions->at(1) endif
+ * individualDefinition =
+ *     let individualDefinitions : OrderedSet(OccurrenceDefinition) = 
+ *         occurrenceDefinition->
+ *             selectByKind(OccurrenceDefinition)->
+ *             select(isIndividual) in
+ *     if individualDefinitions->isEmpty() then null
+ *     else individualDefinitions->first() endif
  * isIndividual implies individualDefinition <> null
  * specializesFromLibrary("Occurrences::occurrences")
  * isComposite and

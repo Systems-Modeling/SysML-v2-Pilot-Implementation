@@ -9,10 +9,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An IncludeUseCaseUsage is a UseCaseUsage that represents the inclusion of a UseCaseUsage by a UseCaseDefinition or UseCaseUsage. Unless it is the IncludeUseCaseUsage itself, the UseCaseUsage to be included is related to the <code>includedUseCase</code> by a ReferenceSubsetting Relationship. An IncludeUseCaseUsage is also a PerformActionUsage, with its <code>includedUseCase</code> as the <code>performedAction</code>.</p>
+ * <p>An <code>IncludeUseCaseUsage</code> is a <code>UseCaseUsage</code> that represents the inclusion of a <code>UseCaseUsage</code> by a <code>UseCaseDefinition</code> or <code>UseCaseUsage</code>. Unless it is the <code>IncludeUseCaseUsage</code> itself, the <code>UseCaseUsage</code> to be included is related to the <code>includedUseCase</code> by a <code>ReferenceSubsetting</code> <code>Relationship</code>. An <code>IncludeUseCaseUsage</code> is also a PerformActionUsage, with its <code>useCaseIncluded</code> as the <code>performedAction</code>.</p>
  * 
- * <p>If the IncludeUseCaseUsage is owned by a UseCaseDefinition or UseCaseUsage, then it also subsets the UseCaseUsage <em><code>UseCase::includedUseCases</code></em> from the Systems model library.</p>
- * 
+ * owningType <> null and
+ * (owningType.oclIsKindOf(UseCaseDefinition) or
+ *  owningType.oclIsKindOf(UseCaseUsage) implies
+ *     specializesFromLibrary('UseCases::UseCase::includedUseCases')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,7 +41,7 @@ public interface IncludeUseCaseUsage extends UseCaseUsage, PerformActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the <code>subsettedFeature</code> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.</p> 
+	 * <p>The <code>UseCaseUsage</code> to be included by this <code>IncludeUseCaseUsage</code>. It is the <code>performedAction</code> of the <code>IncludeUseCaseUsage</code> considered as a <code>PerformActionUsage</code>, which must be a <code>UseCaseUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Use Case Included</em>' reference.

@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Predicate</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Predicate is a Function whose <code>result</code> Parameter has type <em>Boolean</em> and multiplicity 1..1.</p>
+ * <p>A <code>Predicate</code> is a <code>Function</code> whose <code>result</code> <code>parameter</code> has type <code><em>Boolean</em></code> and multiplicity <code>1..1</code>.</p>
  * 
  * specializesFromLibrary("Performances::BooleanEvaluation")
  * <!-- end-model-doc -->

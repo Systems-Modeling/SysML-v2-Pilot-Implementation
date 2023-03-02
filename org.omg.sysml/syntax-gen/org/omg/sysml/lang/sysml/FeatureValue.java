@@ -27,11 +27,11 @@ package org.omg.sysml.lang.sysml;
  * Value</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FeatureValue is a Membership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. The value is specified as either a bound value or an initial value, and as either a concrete or default value. A Feature can have at most one FeatureValue.</p>
+ * <p>A <code>FeatureValue</code> is a <code>Membership</code> that identifies a particular member <code>Expression</code> that provides the value of the <code>Feature</code> that owns the <code>FeatureValue</code>. The value is specified as either a bound value or an initial value, and as either a concrete or default value. A <code>Feature</code> can have at most one <code>FeatureValue</code>.</p>
  * 
- * <p>The result of the <code>value</code> expression is bound to the <code>featureWithValue</code> using a BindingConnector. If <code>isInitial = false</code>, then the <code>featuringType</code> of the BindingConnector is the same as the <code>featuringType</code> of the <code>featureWithValue</code>. If <code>isInitial = true</code>, then the <code>featuringType</code> of the BindingConnector is restricted to its <code>startShot</code>.
+ * <p>The result of the <code>value</code> <code>Expression</code> is bound to the <code>featureWithValue</code> using a <code>BindingConnector</code>. If <code>isInitial = false</code>, then the <code>featuringType</code> of the <code>BindingConnector</code> is the same as the <code>featuringType</code> of the <code>featureWithValue</code>. If <code>isInitial = true</code>, then the <code>featuringType</code> of the <code>BindingConnector</code> is restricted to its <code>startShot</code>.
  * 
- * <p>If <code>isDefault = false</code>, then the above semantics of the FeatureValue are realized for the given <code>featureWithValue</code>. Otherwise, the semantics are realized for any individual of the <code>featuringType</code> of the <code>featureWithValue</code>, unless another value is explicitly given for the <code>featureWithValue</code> for that individual.</p>
+ * <p>If <code>isDefault = false</code>, then the above semantics of the <code>FeatureValue</code> are realized for the given <code>featureWithValue</code>. Otherwise, the semantics are realized for any individual of the <code>featuringType</code> of the <code>featureWithValue</code>, unless another value is explicitly given for the <code>featureWithValue</code> for that individual.</p>
  * 
  * not isDefault implies
  *     featureWithValue.ownedMember->
@@ -82,7 +82,7 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression that provides the value of the <code>featureWithValue</code> as its <code>result</code>.</p>
+	 * <p>The <code>Expression</code> that provides the value of the <code>featureWithValue</code> as its <code>result</code>.</p>
 	 * 
 	 * <p>The Expression that provides the value as a result.</p>
 	 * <!-- end-model-doc -->
@@ -112,7 +112,7 @@ public interface FeatureValue extends OwningMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this FeatureValue specifies a bound value or an initial value for the <code>featureWithValue</code>.</p>
+	 * <p>Whether this <code>FeatureValue</code> specifies a bound value or an initial value for the <code>featureWithValue</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Initial</em>' attribute.
 	 * @see #setIsInitial(boolean)
@@ -138,7 +138,7 @@ public interface FeatureValue extends OwningMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this FeatureValue is a concrete specification of the bound of initial value of the <code>featureWithValue</code>, or just a default value that may be overridden.</p>
+	 * <p>Whether this <code>FeatureValue</code> is a concrete specification of the bound or initial value of the <code>featureWithValue</code>, or just a default value that may be overridden.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Default</em>' attribute.
 	 * @see #setIsDefault(boolean)
@@ -173,7 +173,7 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature to be provided a value.</p>
+	 * <p>The <code>Feature</code> to be provided a value.</p>
 	 * 
 	 * <p>The Feature to be provided a value.</p>
 	 * <!-- end-model-doc -->

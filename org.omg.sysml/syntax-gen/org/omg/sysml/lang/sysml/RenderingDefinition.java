@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RenderingDefinition is a PartDefinition that defines a specific rendering of the content of a model view (e.g., symbols, style, layout, etc.).</p>
- * 
- * <p>A RenderingDefinition must subclass, directly or indirectly, the base RenderingDefinition Rendering from the Systems model library.</p>
+ * <p>A <code>RenderingDefinition</code> is a <code>PartDefinition</code> that defines a specific rendering of the content of a model view (e.g., symbols, style, layout, etc.).</p>
+ * rendering = usages->selectByKind(RenderingUsage)
+ * specializesFromLibrary('Views::Rendering')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -59,7 +59,7 @@ public interface RenderingDefinition extends PartDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of a RenderingDefinition that are RenderingUsages.</p>
+	 * <p>The <code>usages</code> of a <code>RenderingDefinition</code> that are <code>RenderingUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRenderingDefinition_Rendering()

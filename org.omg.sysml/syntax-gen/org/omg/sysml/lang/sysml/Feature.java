@@ -30,29 +30,28 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Feature is a Type that classifies sequences of multiple things (in the universe). These must concatenate a sequence drawn from the intersection of the Feature&#39;s <code>featuringTypes</code> (<em>domain</em>) with a sequence drawn from the intersection of its <code>types</code> (<em>co-domain</em>), treating (co)domains as sets of sequences. The domain of Features that do not have any <code>featuringTypes</code> is the same as if it were the library Type Anything. A Feature&#39;s <code>types</code> include at least Anything, which can be narrowed to other Classifiers by Redefinition.</p>
+ * <p>A <code>Feature</code> is a <code>Type</code> that classifies relations between multiple things (in the universe). The domain of the relation is the intersection of the <code>featuringTypes</code> of the <code>Feature</code>. (The domain of a <code>Feature</code> with no <code>featuringTyps</code> is implicitly the most general <code>Type</code> <em><code>Base::Anything</code></em> from the Kernel Semantic Library.) The co-domain of the relation is the intersection of the <code>types</code> of the <code>Feature</code>.
  * 
- * <p>In the simplest cases, a Feature&#39;s <code>featuringTypes</code> and <code>types</code> are Classifiers, its sequences being pairs (length = 2), with the first element drawn from the Feature&#39;s domain and the second element from its co-domain (the Feature &quot;value&quot;). Examples include cars paired with wheels, people paired with other people, and cars paired with numbers&nbsp;representing the car length.</p>
+ * <p>In the simplest cases, the <code>featuringTypes</code> and <code>types</code> are <code>Classifiers</code> and the <code>Feature</code> relates two things, one from the domain and one from the range. Examples include cars paired with wheels, people paired with other people, and cars paired with numbers representing the car length.</p>
  * 
- * <p>Since Features are Types, their <code>featuringTypes</code> and <code>types</code> can be Features. When both are, Features classify sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2). The <code>featuringTypes</code> of <em>nested</em> Features are Features.</p>
+ * <p>Since <code>Features</code> are <code>Types</code>, their <code>featuringTypes</code> and <code>types</code> can be <code>Features</code>. In this case, the <code>Feature</code> effectively classifies relations between relations, which can be interpreted as the sequence of things related by the domain <code>Feature</code> concatenated with the sequence of things related by the co-domain <code>Feature</code>.</p>
  * 
- * <p>The values of a Feature with <code>chainingFeatures</code> are the same as values of the last Feature in the chain, which can be found by starting with values of the first Feature, then from those values to values of the second feature, and so on, to values of the last feature.</p>
+ * <p>The <em>values</em> of a <code>Feature</code> for a given instance of its domain are all the instances of its co-domain that are related to that domain instance by the <code>Feature</code>. The values of a <code>Feature</code> with <code>chainingFeatures</code> are the same as values of the last <code>Feature</code> in the chain, which can be found by starting with values of the first <code>Feature</code>, then using those values as domain instances to obtain valus of the second <code>Feature</code>, and so on, to values of the last <code>Feature</code>.</p>
  * 
  * ownedRedefinition = ownedSubsetting->selectByKind(Redefinition)
  * ownedTypeFeaturing = ownedRelationship->selectByKind(TypeFeaturing)->
  *     select(tf | tf.featureOfType = self)
- * ownedSubsetting = ownedGeneralization->selectByKind(Subsetting)
- * isComposite = owningFeatureMembership <> null and owningFeatureMembership.isComposite
+ * ownedSubsetting = ownedSpecialization->selectByKind(Subsetting)
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
  * type =
- *     if chainingFeature->notEmpty() then
- *         chainingFeature->last().type
- *     else
- *         ownedTyping.type->
- *             union(ownedSubsetting.subsettedFeature.type)->
- *             asOrderedSet()
+ *     let types : OrderedSet(Type) = typing.type->
+ *         union(subsetting.subsettedFeature.type)->
+ *         asOrderedSet() in
+ *     if chainingFeature->isEmpty() then types
+ *     else 
+ *         types->union(chainingFeature->last().type)->
+ *         asOrderedSet()
  *     endif
- * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * specializesFromLibrary("Base::things")
  * chainingFeatures->excludes(self)
@@ -148,7 +147,23 @@ import org.eclipse.emf.common.util.EList;
  *                 else
  *                     superType.oclAsType(Expression).result
  *                 endif)
- * ownedRelationship->selectByKind(FeatureInverting)
+ * ownedFeatureInverting = ownedRelationship->selectByKind(FeatureInverting)->
+ *     select(fi | fi.featureInverted = self)
+ * featuringType =
+ *     let featuringTypes : OrderedSet(Type) = 
+ *         typeFeaturing.featuringType->asOrderedSet() in
+ *     if chainingFeature->isEmpty() then featuringTypes
+ *     else
+ *         featuringTypes->
+ *             union(chainingFeature->first().featuringType)->
+ *             asOrderedSet()
+ *     endif
+ * ownedReferenceSubsetting =
+ *     let referenceSubsettings : OrderedSet(ReferenceSubsetting) =
+ *         ownedSubsetting->selectByKind(ReferenceSubsetting) in
+ *     if referenceSubsettings->isEmpty() then null
+ *     else referenceSubsettings->first() endif
+ * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -197,7 +212,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Feature that are TypeFeaturings, for which the Feature is the <code>featureOfType</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Feature</code> that are <code>TypeFeaturings</code> and for which the <code>Feature</code> is the <code>featureOfType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Type Featuring</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTypeFeaturing()
@@ -215,7 +230,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that are chained together to determine the values of this Feature, derived from the <code>chainingFeatures</code> of the <code>ownedFeatureChainings</code> of this Feature, in the same order. The values of a Feature with chainingFeatures are the same as values of the last Feature in the chain, which can be found by starting with the values of the first Feature (for each instance of the original Feature's domain), then on each of those to the values of the second Feature in chainingFeatures, and so on, to values of the last Feature. The Features related to a Feature by a FeatureChaining are identified as its chainingFeatures.</p>
+	 * <p>The <code>Feature</code> that are chained together to determine the values of this <code>Feature</code>, derived from the <code>chainingFeatures</code> of the <code>ownedFeatureChainings</code> of this <code>Feature</code>, in the same order. The values of a <code>Feature</code> with <code>chainingFeatures</code> are the same as values of the last <code>Feature</code> in the chain, which can be found by starting with the values of the first <code>Feature</code> (for each instance of the domain of the original <code>Feature</code>), then using each of those as domain instances to find the values of the second <code>Feature</code> in chainingFeatures, and so on, to values of the last <code>Feature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Chaining Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ChainingFeature()
@@ -239,7 +254,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Feature that are FeatureInvertings, for which the Feature is the <code>featureInverted</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Feature</code> that are <code>FeatureInvertings</code> and for which the <code>Feature</code> is the <code>featureInverted</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Inverting</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedFeatureInverting()
@@ -264,7 +279,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureChainings that are among the <code>ownedRelationships</owned> of this Feature (identify their <code>featureChained</code> also as an <code>owningRelatedElement</code>).</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Feature</code> that are <code>FeatureChainings</code>, for which the <code>Feature</code> will be the <code>featureChained</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Chaining</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedFeatureChaining()
@@ -282,7 +297,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this Feature&nbsp;can always be computed from the values of other Features.</p>
+	 * <p>Whether the values of this <code>Feature</code> can always be computed from the values of other <code>Feature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Derived</em>' attribute.
@@ -309,7 +324,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this Feature can change over the lifetime of an instance of the domain.</p>
+	 * <p>Whether the values of this <code>Feature</code> can change over the lifetime of an instance of the domain.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
@@ -347,7 +362,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is the <code>owningType</code> of the <code>owningFeatureMembership</code> of this Type.</p>
+	 * <p>The <code>Type</code> that is the <code>owningType</code> of the <code>owningFeatureMembership</code> of this <code>Feature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
@@ -380,7 +395,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not values for this Feature must have no duplicates or not.</p>
+	 * <p>Whether or not values for this <code>Feature</code> must have no duplicates or not.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Unique</em>' attribute.
@@ -411,7 +426,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether an order exists for the values of this Feature or not.</p>
+	 * <p>Whether an order exists for the values of this <code>Feature</code> or not.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
@@ -441,7 +456,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Types that restrict the values of this Feature, such that the values must be instances of all the types. The types of a Feature are derived from its <code>ownedFeatureTypings</code> and the <code>types</code> of its <code>ownedSubsettings</code>.</p>
+	 * <p><code>Types</code> that restrict the values of this <code>Feature</code>, such that the values must be instances of all the <code>types</code>. The types of a <code>Feature</code> are derived from its <code>typings</code> and the <code>types</code> of its <code>subsettings</code>. If the <code>Feature</code> is chained, then the <code>types</code> of the last <code>Feature</code> in the chain are also <code>types</code> of the chained <code>Feature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
@@ -469,7 +484,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedSubsettings</code> of this Feature that are Redefinitions, for which the Feature is the <code>redefiningFeature</code>.</p>
+	 * <p>The <code>ownedSubsettings</code> of this <code>Feature</code> that are <code>Redefinitions</code>, for which the <code>Feature</code> is the <code>redefiningFeature</code>.</p>
 	 * 
 	 * 
 	 * <!-- end-model-doc -->
@@ -500,7 +515,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedGeneralizations</code> of this Feature that are Subsettings, for which the Feature is the <code>subsettingFeature</code>.</p>
+	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>Subsettings</code>, for which the <code>Feature</code> is the <code>subsettingFeature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
@@ -530,7 +545,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedGeneralizations</code> of this Feature that are FeatureTypings, for which the Feature is the <code>typedFeature</code>.</p>
+	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>FeatureTypings</code>, for which the <code>Feature</code> is the <code>typedFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
@@ -548,7 +563,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Types that feature this Feature, such that any instance in the domain of the Feature must be classified by all of these Types, including at least all the <code>featuringTypes</code> of its <code>ownedTypeFeaturings</code>.</p>
+	 * <p><code>Types</code> that feature this <code>Feature</code>, such that any instance in the domain of the <code>Feature</code> must be classified by all of these <code>Types</code>, including at least all the <code>featuringTypes</code> of its <code>typeFeaturings</code>.  If the <code>Feature</code> is chained, then the <code>featuringTypes</code> of the first <code>Feature</code> in the chain are also <code>featuringTypes</code> of the chained <code>Feature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Featuring Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
@@ -575,7 +590,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureMembership that owns this Feature as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
+	 * <p>The <code>FeatureMembership</code> that owns this <code>Feature</code> as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
@@ -608,7 +623,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the Feature is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the Feature cannot exist after the instance of the <code>featuringType</code> no longer does.</p>
+	 * <p>Whether the <code>Feature</code> is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the <code>Feature</code> cannot exist after its featuring instance no longer does.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
@@ -635,7 +650,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
+	 * <p>Whether the values of this <code>Feature</code> are contained in the space and time of instances of the domain of the <code>Feature</code> and represent the same thing as those instances.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Portion</em>' attribute.
@@ -666,9 +681,9 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the this Feature is an end Feature, requiring a different interpretation of the <code>multiplicity</code> of the Feature.</p>
+	 * <p>Whether or not the this <code>Feature</code> is an end <code>Feature</code>, requiring a different interpretation of the <code>multiplicity</code> of the <code>Feature</code>.</p>
 	 * 
-	 * <p>An end Feature is always considered to map each domain entity to a single co-domain entity, whether or not a Multiplicity is given for it. If a Multiplicity is given for an end Feature, rather than giving the co-domain cardinality for the Feature as usual, it specifies a cardinality constraint for <em>navigating</em> across the <code>endFeatures</code> of the <code>featuringType</code> of the end Feature. That is, if a Type has <em>n</em> <code>endFeatures</code>, then the Multiplicity of any one of those end Features constrains the cardinality of the set of values of that Feature when the values of the other <em>n-1</em> end Features are held fixed.</p>
+	 * <p>An end <code>Feature</code> is always considered to map each domain instance to a single co-domain instance, whether or not a <code>Multiplicity</code> is given for it. If a <code>Multiplicity</code> is given for an end <code>Feature</code>, rather than giving the co-domain cardinality for the <code>Feature</code> as usual, it specifies a cardinality constraint for <em>navigating</em> across the <code>endFeatures</code> of the <code>featuringType</code> of the end <code>Feature</code>. That is, if a <code>Type</code> has <em>n</em> <code>endFeatures</code>, then the <code>Multiplicity</code> of any one of those end <code>Features</code> constrains the cardinality of the set of values of that <code>Feature</code> when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is End</em>' attribute.
@@ -695,7 +710,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Determines how values of this Feature are determined or used (see FeatureDirectionKind).</p>
+	 * <p>Indicates how values of this <code>Feature</code> are determined or used (as specified for the <code>FeatureDirectionKind</code>).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Direction</em>' attribute.
@@ -730,7 +745,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The one <code>ownedSubsetting</code> of this Feature, if any, that is a ReferenceSubsetting, for which the Feature is the <code>referencingFeature</code>.</p>
+	 * <p>The one <code>ownedSubsetting</code> of this <code>Feature</code>, if any, that is a <code>ReferenceSubsetting</code>, for which the <code>Feature</code> is the <code>referencingFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Reference Subsetting</em>' reference.
 	 * @see #setOwnedReferenceSubsetting(ReferenceSubsetting)
@@ -769,7 +784,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is related to this Feature by an EndFeatureMembership in which the Feature is an <code>ownedMemberFeature</code>.</p>
+	 * <p>The <code>Type</code> that is related to this <code>Feature</code> by an <code>EndFeatureMembership</code> in which the <code>Feature</code> is an <code>ownedMemberFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>End Owning Type</em>' reference.
 	 * @see #setEndOwningType(Type)
@@ -823,7 +838,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>directionOf</code> this Feature relative to the given <code>type</code>.</p>
+	 * <p>Return the <code>directionOf</code> this <code>Feature</code> relative to the given <code>type</code>.</p>
 	 * type.directionOf(self)
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" typeRequired="true" typeOrdered="false"

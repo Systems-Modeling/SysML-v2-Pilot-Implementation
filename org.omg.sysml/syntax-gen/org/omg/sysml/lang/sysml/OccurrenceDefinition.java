@@ -14,12 +14,13 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>An <code>OccurrenceDefinition</code> must specialize, directly or indirectly, the base <code>Class</code> <code><em>Occurrence</em></code> from the Kernel Semantic Library.</p>
  * 
- * (lifeClass <> null) = isIndividual
+ * let n : Integer = ownedMember->selectByKind(LifeClass) in
+ * if isIndividual then n = 1 else n = 0 endif
  * lifeClass =
- *     let lifeClasses: Sequence(LifeClass) = 
+ *     let lifeClasses: OrderedSet(LifeClass) = 
  *         ownedMember->selectByKind(LifeClass) in
  *     if lifeClasses->isEmpty() then null
- *     else lifeClasses->at(1)
+ *     else lifeClasses->first()
  *     endif
  * <!-- end-model-doc -->
  *
@@ -47,7 +48,7 @@ public interface OccurrenceDefinition extends Definition, org.omg.sysml.lang.sys
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If <code>isIndividual</code> is true, a LifeClass that specializes this OccurrenceDefinition, restricting it to represent an individual.</p>
+	 * <p>If <code>isIndividual</code> is true, a <code>LifeClass</code> that specializes this <code>OccurrenceDefinition</code>, restricting it to represent an individual.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Life Class</em>' reference.
 	 * @see #setLifeClass(LifeClass)

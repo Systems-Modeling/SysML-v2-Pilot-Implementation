@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Function is a Behavior that has a single <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. Any other <code>parameters</code> of a Function than the <code>result</code> must have direction <code>in</code>. A Function represents the performance of a calculation that produces the values of its <code>result</code> parameter. This calculation may be decomposed into Expressions that are <code>steps</code> of the Function.</p>
+ * <p>A <code>Function</code> is a <code>Behavior</code> that has an <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. A <code>Function</code> represents the performance of a calculation that produces the values of its <code>result</code> <code>parameter</code>. This calculation may be decomposed into <code>Expressions</code? that are <code>steps</code> of the <code>Function</code>.</p>
  * 
  * ownedMembership.selectByKind(ResultExpressionMembership)->
  *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
@@ -37,6 +37,17 @@ import org.eclipse.emf.common.util.EList;
  *             binding.relatedFeature->includes(result) and
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * specializesFromLibrary("Performances::Evaluation")
+ * result =
+ *     let resultParams : Sequence(Feature) =
+ *         ownedFeatureMemberships->
+ *             selectByKind(ReturnParameterMembership).
+ *             ownedParameterMember in
+ *     if resultParams->notEmpty() then resultParams->first()
+ *     else null
+ *     endif
+ * ownedFeatureMembership->
+ *     selectByKind(ReturnParameterMembership)->
+ *     size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -70,7 +81,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expressions that are steps in the calculation of the <code>result</code> of this Function.</p>
+	 * <p>The <code>Expressions</code> that are <code>steps</code> in the calculation of the <code>result</code> of this <code>Function</code>.</p>
 	 * 
 	 * <p>The set of expressions that represent computational steps or parts of a system of equations within the Function.</p>
 	 * 
@@ -101,7 +112,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>result</code> parameter of the Function, derived as the single <code>parameter</code> of the Function with direction <code>out</code>.</p>
+	 * <p>The <code>result</code> <code>parameter</code> of the <code>Function</code>, which is owned by the <code>Function</code> via a <code>ReturnParameterMembership</code>.</p>
 	 * 
 	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->
@@ -131,7 +142,9 @@ public interface Function extends Behavior {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Function can be used as the <code>function</code> of a model-level evaluable InvocationExpression.</p>
+	 * <p>Whether this <code>Function</code> can be used as the <code>function</code> of a model-level evaluable <code>InvocationExpression</code>. Certain <code>Functions</code> from the Kernel Functions Library are considered to have <code>isModelLevelEvaluable = true</code>. For all other <code>Functions</code> it is <code>false</code>.</p>
+	 * 
+	 * <p><strong>Note:</strong> See the specification of the KerML concrete syntax notation for <code>Expressions</code> for an identification of which library <code>Functions</code> are model-level evaluable.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Model Level Evaluable</em>' attribute.
 	 * @see #setIsModelLevelEvaluable(boolean)

@@ -10,9 +10,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A UseCaseUsage is a Usage of a UseCaseDefinition.</p>
- * 
- * <p>A UseCaseUsage must subset, directly or indirectly, either the base UseCaseUsage <em><code>useCases</code></em> from the Systems model library. If it is owned by a UseCaseDefinition or UseCaseUsage then it must subset the UseCaseUsage <em><code>UseCase::subUseCases</code></em>.</p>
+ * <p>A <code>UseCaseUsage</code> is a <code>Usage</code> of a <code>UseCaseDefinition</code>.</p>
+ * includedUseCase = ownedUseCase->
+ *     selectByKind(IncludeUseCaseUsage).
+ *     useCaseIncluded
+ * specializesFromLibrary('UseCases::useCases')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(UseCaseDefinition) or
+ *  owningType.oclIsKindOf(UseCaseUsage)) implies
+ *     specializesFromLibrary('UseCases::UseCase::subUseCases')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,7 +45,7 @@ public interface UseCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseDefinition that is the type of this UseCaseUsage.</p>
+	 * <p>The <code>UseCaseDefinition</code> that is the <code>definition</code> of this <code>UseCaseUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Use Case Definition</em>' reference.
 	 * @see #setUseCaseDefinition(UseCaseDefinition)
@@ -68,7 +74,7 @@ public interface UseCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsages that are included by this UseCaseUsage. Derived as the <code>includedUseCase</code> of the IncludeUseCaseUsages owned by this UseCaseUsage.</p>
+	 * <p>The <code>UseCaseUsages</code> that are included by this <code>UseCaseUse</code>, which are the <code>useCaseIncludeds</code> of the <code>IncludeUseCaseUsages</code> owned by this <code>UseCaseUsage<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Included Use Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUseCaseUsage_IncludedUseCase()

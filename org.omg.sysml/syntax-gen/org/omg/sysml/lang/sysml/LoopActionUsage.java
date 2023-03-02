@@ -37,7 +37,7 @@ public interface LoopActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed repeatedly by the LoopActionUsage. Derived as the owned ActionUsage that redefines the <em><code>body</code><em> </em></em>parameter of the LoopActionUsage.</p> 
+	 * <p>The <code>ActionUsage</code> to be performed repeatedly by the <code>LoopActionUsage</code>. It is the second <code>parameter</code> of the <code>LoopActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body Action</em>' reference.

@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A BindingConnectorAsUsage is both a BindingConnector and a ConnectorAsUsage.</p>
+ * <p>A <code>BindingConnectorAsUsage</code> is both a <code>BindingConnector</code> and a <code>ConnectorAsUsage</code>.</p>
  * <!-- end-model-doc -->
  *
  *

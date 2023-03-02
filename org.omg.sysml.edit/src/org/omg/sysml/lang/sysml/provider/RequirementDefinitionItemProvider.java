@@ -47,12 +47,12 @@ public class RequirementDefinitionItemProvider extends ConstraintDefinitionItemP
 
 			addReqIdPropertyDescriptor(object);
 			addTextPropertyDescriptor(object);
-			addAssumedConstraintPropertyDescriptor(object);
-			addRequiredConstraintPropertyDescriptor(object);
 			addSubjectParameterPropertyDescriptor(object);
-			addFramedConcernPropertyDescriptor(object);
 			addActorParameterPropertyDescriptor(object);
 			addStakeholderParameterPropertyDescriptor(object);
+			addAssumedConstraintPropertyDescriptor(object);
+			addRequiredConstraintPropertyDescriptor(object);
+			addFramedConcernPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

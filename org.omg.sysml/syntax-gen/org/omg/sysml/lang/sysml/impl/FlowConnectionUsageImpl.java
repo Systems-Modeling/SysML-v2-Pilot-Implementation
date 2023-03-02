@@ -453,7 +453,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Object inputParameter(int i) {
+	public Feature inputParameter(int i) {
 		EList<Feature> parameters = inputParameters();
 		return parameters.size() > i? null: parameters.get(i-1);
 	}

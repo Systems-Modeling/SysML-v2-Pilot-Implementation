@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SelectExpression is an OperatorExpression whose operator is <code>"select"</code>, which resolves to the library Function <em><code>ControlFunctions::select</code></em>.</p>
+ * <p>A <code>SelectExpression</code> is an <code>OperatorExpression</code> whose operator is <code>"select"</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::select</code></em> from the Kernel Functions Library.</p>
  * <!-- end-model-doc -->
  *
  *

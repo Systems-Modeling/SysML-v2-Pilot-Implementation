@@ -36,7 +36,7 @@ package org.omg.sysml.lang.sysml;
  * payloadArgument = argument(1)
  * payloadParameter = 
  *  if parameter->isEmpty() then null
- *  else parameter->at(1) endif
+ *  else parameter->first() endif
  * not isTriggerAction() implies
  *     specializesFromLibrary('Actions::acceptActions')
  * isSubactionUsage() and not isTriggerAction() implies

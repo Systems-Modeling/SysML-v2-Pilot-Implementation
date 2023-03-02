@@ -71,7 +71,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Memberships in this Namespace, including (at least) the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
+	 * <p>All <code>Memberships</code> in this <code>Namespace</code>, including (at least) the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership</em>' reference list.
@@ -100,7 +100,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Namespace that are Imports, for which the Namespace is the <code>importOwningNamespace</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Namespace</code> that are <code>Imports</code>, for which the <code>Namespace</code> is the <code>importOwningNamespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Import</em>' reference list.
@@ -117,7 +117,7 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the names of the given <code>element</code> as it is known in this Namespace.</p>
+	 * <p>Return the names of the given <code>element</code> as it is known in this <code>Namespace</code>.</p>
 	 * 
 	 * let elementMemberships : Sequence(Membership) = 
 	 *     memberships->select(memberElement = element) in
@@ -134,7 +134,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Returns this visibility of <code>mem</code> relative to this Namespace. If <code>mem</code> is an <code>importedMembership</code>, this is the <code>visibility</code> of its Import. Otherwise it is the <code>visibility</code> of the Membership itself.</p>
+	 * <p>Returns this visibility of <code>mem</code> relative to this <code>Namespace</code>. If <code>mem</code> is an <code>importedMembership</code>, this is the <code>visibility</code> of its Import. Otherwise it is the <code>visibility</code> of the <code>Membership</code> itself.</p>
+	 * 
 	 * if importedMembership->includes(mem) then
 	 *     ownedImport->
 	 *         select(importedMemberships(Set{})->includes(mem)).
@@ -154,8 +155,7 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If <code>includeAll = true</code>, then return all the Memberships of this Namespace. Otherwise, return
-	 * only the publicly visible Memberships of this Namespace (which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>). If <code>isRecursive = true</code>, also recursively include all visible Memberships of any visible owned Namespaces.</p>
+	 * <p>If <code>includeAll = true</code>, then return all the <code>Memberships</code> of this <code>Namespace</code>. Otherwise, return only the publicly visible <code>Memberships</code> of this <code>Namespace</code> (which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>). If <code>isRecursive = true</code>, also recursively include all visible <code>Memberships</code> of any visible owned <code>Namespaces</code>.</p>
 	 * 
 	 * let visibleMemberships : Sequence(Membership) =
 	 *     if includeAll then memberships
@@ -180,7 +180,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Derive the imported Memberships of this Namespace as the <code>importedMembership</code> of all <code>ownedImports</code>, excluding those Imports whose <code>importOwningNamespace</code> is in the <code>excluded</code> set, and excluding Memberships that have distinguisibility collisions with each other or with any <code>ownedMembership</code>.</p>
+	 * <p>Derive the imported <code>Memberships</code> of this <code>Namespace</code> as the <code>importedMembership</code> of all <code>ownedImports</code>, excluding those Imports whose <code>importOwningNamespace</code> is in the <code>excluded</code> set, and excluding <code>Memberships</code> that have distinguisibility collisions with each other or with any <code>ownedMembership</code>.</p>
+	 * 
 	 * ownedImport.importedMemberships(excluded->including(self))
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
@@ -192,7 +193,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Resolve the given qualified name to the named Membership (if any), starting with this Namespace as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rule every qualified name will resolve to either a single Membership, or to none.</p>
+	 * <p>Resolve the given qualified name to the named <code>Membership</code> (if any), starting with this <code>Namespace</code> as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rules every qualified name will resolve to either a single <code>Membership</code>, or to none.</p>
+	 * 
 	 * let qualification : String = qualificationOf(qualifiedName) in
 	 * let name : String = unqualifiedNameOf(qualifiedName) in
 	 * if qualification = null then resolveLocal(name)
@@ -211,7 +213,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Resolve the given qualified name to the named Membership (if any) in the effective global Namespace that is the outmost naming scope. The qualified name string must conform to the concrete syntax of the KerML textual notation.</p>
+	 * <p>Resolve the given qualified name to the named <code>Membership</code> (if any) in the effective global <code>Namespace</code> that is the outermost naming scope. The qualified name string must conform to the concrete syntax of the KerML textual notation.</p>
+	 * 
 	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
@@ -223,7 +226,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Resolve a simple name starting with this Namespace as the local scope, and continuing with containing outer scopes as necessary. However, if this Namespace is a root Namespace, then the resolution done directly in global scope.</p>
+	 * <p>Resolve a simple <code>name</code> starting with this <code>Namespace</code> as the local scope, and continuing with containing outer scopes as necessary. However, if this <code>Namespace</code> is a root <code>Namespace</code>, then the resolution is done directly in global scope.</p>
+	 * 
 	 * if owningNamespace = null then resolveGlobal(name)
 	 * else
 	 *     let memberships : Membership = membership->
@@ -242,7 +246,8 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Resolve a simple name from the visible Memberships of this Namespace.</p>
+	 * <p>Resolve a simple name from the visible <code>Memberships</code> of this <code>Namespace</code>.</p>
+	 * 
 	 * let memberships : Sequence(Membership) =
 	 *     visibleMemberships(Set{}, false, false)->
 	 *     select(memberShortName = name or memberName = name) in
@@ -315,7 +320,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned <code>members</code> of this Namespace, derived as the <cpde>ownedMemberElements</code> of the <code>ownedMemberships</code> of the Namespace.</p>
+	 * <p>The owned <code>members</code> of this <code>Namespace</code>, which are the <cpde><code>ownedMemberElements</code> of the <code>ownedMemberships</code> of the .</cpde></p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member</em>' reference list.
@@ -344,7 +349,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Memberships in this Namespace that result from Import Relationships between the Namespace and other Namespaces.</p>
+	 * <p>The <code>Memberships</code> in this <code>Namespace</code> that result from the <code>ownedImports</code> of this <code>Namespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Membership</em>' reference list.
@@ -375,7 +380,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Namespace that are Memberships, for which the Namespace is the <code>membershipOwningNamespace</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Namespace</code> that are <code>Memberships</code>, for which the <code>Namespace</code> is the <code>membershipOwningNamespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Membership</em>' reference list.

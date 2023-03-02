@@ -31,9 +31,36 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CaseUsage is a Usage of a CaseDefinition.</p>
- * 
- * <p>A CaseUsage must subset, directly or indirectly, the base CaseUsage <em><code>cases</code></em> from the Systems model library. If it is owned by a CaseDefinition or CaseUsage, it must subset the CaseUsage <em><code>Cases::subcases</code></em>.</p>
+ * <p>A <code>CaseUsage</code> is a <code>Usage</code> of a <code>CaseDefinition</code>.</p>
+ * objectiveRequirement = 
+ *     let objectives: OrderedSet(RequirementUsage) = 
+ *         featureMembership->
+ *             selectByKind(ObjectiveMembership).
+ *             ownedRequirement in
+ *     if objectives->isEmpty() then null
+ *     else objectives->first().ownedObjectiveRequirement
+ *     endif
+ * featureMembership->
+ *     selectByKind(ObjectiveMembership)->
+ *     size() <= 1
+ * featureMembership->
+ * 	selectByKind(SubjectMembership)->
+ * 	size() <= 1
+ * actorParameter = featureMembership->
+ *     selectByKind(ActorMembership).
+ *     ownedActorParameter
+ * subjectParameter =
+ *     let subjects : OrderedSet(SubjectMembership) = 
+ *         featureMembership->selectByKind(SubjectMembership) in
+ *     if subjects->isEmpty() then null
+ *     else subjects->first().ownedSubjectParameter
+ *     endif
+ * input->notEmpty() and input->first() = subjectParameter
+ * specializeFromLibrary('Cases::cases')
+ * isComposite and owningType <> null and 
+ *     (owningType.oclIsKindOf(CaseDefinition) or
+ *      owningType.oclIsKindOf(CaseUsage)) implies
+ *     specializesFromLibrary('Cases::Case::subcases')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -98,7 +125,7 @@ public interface CaseUsage extends CalculationUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this <code>CaseUsage</code> that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base <code>CaseUsage</code> <code><em>Case</em></code> from the Systems Model Library.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
@@ -135,7 +162,7 @@ public interface CaseUsage extends CalculationUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this CaseUsage that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base CaseDefinition <em>Case</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>CaseUsage</code> that are owned via <code>ActorMemberships</code>, which must subset, directly or indirectly, the <code>PartUsage</code> <em><code>actors</code></em> of the base <code>CaseUsage</code> <em>Case</em> from the Systems Model Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage_ActorParameter()

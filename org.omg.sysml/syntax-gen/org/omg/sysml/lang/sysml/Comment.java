@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Comment</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Comment is an AnnotatingElement whose <code>body</code> in some way describes its <code>annotatedElements</code>.</p>
+ * <p>A <code>Comment</code> is an <code>AnnotatingElement</code> whose <code>body</code> in some way describes its <code>annotatedElements</code>.</p>
  * 
  * <!-- end-model-doc -->
  *

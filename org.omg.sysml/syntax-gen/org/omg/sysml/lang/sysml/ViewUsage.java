@@ -30,13 +30,31 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewUsage is a usage of a ViewDefinition to specify the generation of a view of the <code>members</code> of a collection of <code>exposedNamespaces</code>. The ViewDefinition can satisfy more <code>viewpoints</code> than its definition, and it can specialize the <code>rendering</code> specified by its definition.<p>
- * 
- * <p>A ViewUsage must subset, directly or indirectly, the base ViewUsage <code>views</code> from the Systems model library.</p>
+ * <p>A <code>ViewUsage</code> is a usage of a <code>ViewDefinition</code> to specify the generation of a view of the <code>members</code> of a collection of <code>exposedNamespaces</code>. The <code>ViewUsage</code> can satisfy more <code>viewpoints</code> than its definition, and it can specialize the <code>viewRendering</code> specified by its definition.<p>
  * exposedElement = ownedImport->selectByKind(Expose).
  *     importedMemberships(Set{}).memberElement->
  *     select(elm | includeAsExposed(elm))->
  *     asOrderedSet()
+ * satisfiedViewpoint = ownedRequirement->
+ *     selectByKind(ViewpointUsage)->
+ *     select(isComposite)
+ * viewCondition = featureMembership->
+ *     selectByKind(ElementFilterMembership).
+ *     condition
+ * viewRendering =
+ *     let renderings: OrderedSet(ViewRenderingMembership) =
+ *         featureMembership->selectByKind(ViewRenderingMembership) in
+ *     if renderings->isEmpty() then null
+ *     else renderings->first().referencedRendering
+ *     endif
+ * featureMembership->
+ *     selectByKind(ViewRenderingMembership)->
+ *     size() <= 1
+ * specializesFromLibrary('Views::views')
+ * owningType <> null and
+ * (owningType.oclIsKindOf(ViewDefinition) or
+ *  owningType.oclIsKindOf(ViewUsage)) implies
+ *     specializesFromLibrary('Views::View::subviews')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -66,7 +84,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The definition of this ViewUsage.</p>
+	 * <p>The <code>ViewDefinition</code> that is the <code>definition</code> of this <code>ViewUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Definition</em>' reference.
 	 * @see #setViewDefinition(ViewDefinition)
@@ -96,12 +114,12 @@ public interface ViewUsage extends PartUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedUsages</code> of this ViewUsage that are ViewpointUsages for (additional) viewpoints satisfied by the ViewUsage.</p>
+	 * <p>The <code>nestedRequirements</code> of this <code>ViewUsage</code> that are <code>ViewpointUsages</code> for (additional) viewpoints satisfied by the <code>ViewUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_SatisfiedViewpoint()
@@ -125,7 +143,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Elements that are exposed by this ViewUsage, derived as those <code>memberElements</code> of the imported Memberships from all the Expose Relationships that meet all the owned and inherited <code>viewConditions</code>.</p>
+	 * <p>The <cod>Elements</code> that are exposed by this <code>ViewUsage</code>, which are those <code>memberElements</code> of the imported <code>Memberships</code> from all the <code>Expose</code> <code>Relationships</code> that meet all the owned and inherited <code>viewConditions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exposed Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedElement()
@@ -139,23 +157,16 @@ public interface ViewUsage extends PartUsage {
 
 	/**
 	 * Returns the value of the '<em><b>View Rendering</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingUsage to be used to render views defined by this ViewUsage. Derived as the <code>referencedRendering</code> of the ViewRenderingMembership of the ViewUsage. A ViewUsage may have at most one.<p>
+	 * <p>The <code>RenderingUsage</code> to be used to render views defined by this <code>ViewUsage</code>, which is the <code>referencedRendering</code> of the <code>ViewRenderingMembership</code> of the <code>ViewUsage</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Rendering</em>' reference.
 	 * @see #setViewRendering(RenderingUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewRendering()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='renderingOwningView'"
-	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -183,7 +194,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expressions related to this ViewUsage by ElementFilterMemberships, which specify conditions on Elements to be rendered in a view.</p>
+	 * <p>The <code>Expressions</code> related to this <code>ViewUsage</code> by <code>ElementFilterMemberships</code>, which specify conditions on <code>Elements</code> to be rendered in a view.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewCondition()
@@ -203,10 +214,10 @@ public interface ViewUsage extends PartUsage {
 	 * let metadataFeatures: Sequence(AnnotatingElement) = 
 	 *     element.ownedAnnotation.annotatingElement->
 	 *         select(oclIsKindOf(MetadataFeature)) in
-	 *     self.membership->selectByKind(ElementFilterMembership).
-	 *         condition->forAll(cond | 
-	 *             metadataFeatures->exists(elem | 
-	 *                 cond.checkCondition(elem)))
+	 * self.membership->selectByKind(ElementFilterMembership).
+	 *     condition->forAll(cond | 
+	 *         metadataFeatures->exists(elem | 
+	 *             cond.checkCondition(elem)))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated

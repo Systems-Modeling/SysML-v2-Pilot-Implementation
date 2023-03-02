@@ -29,7 +29,21 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SatisfyRequirementUsage is an AssertConstraintUsage that asserts, by default, that a satisfied RequirementUsage is true for a specific <code>satisfyingSubject</code>, or, if <code>isNegated = true</code>, that the RequirementUsage is false. The satisfied RequirementUsage is related to the SatisfyRequirementUsage by a Subsetting relationship.</p>
+ * <p>A <code>SatisfyRequirementUsage</code> is an <code>AssertConstraintUsage</code> that asserts, by default, that a satisfied <code>RequirementUsage</code> is true for a specific <code>satisfyingFeature</code>, or, if <code>isNegated = true</code>, that the <code>RequirementUsage</code> is false. The satisfied <code>RequirementUsage</code> is related to the <code>SatisfyRequirementUsage</code> by a <code>ReferenceSubsetting</code> <code>Relationship</code>.</p>
+ * satisfyingFeature =
+ *     let bindings: BindingConnector = ownedMember->
+ *         selectByKind(BindingConnector)->
+ *         select(b | b.relatedElement->includes(subjectParameter)) in
+ *     if bindings->isEmpty() or 
+ *        bindings->first().relatedElement->exits(r | r <> subjectParameter) 
+ *     then null
+ *     else bindings->first().relatedElement->any(r | r <> subjectParameter)
+ *     endif
+ * ownedMember->selectByKind(BindingConnector)->
+ *     select(b |
+ *         b.relatedElement->includes(subjectParameter) and
+ *         b.relatedElement->exists(r | r <> subjectParameter))->
+ *     size() = 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,7 +70,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsage that is satisfied by the <code>satisfyingSubject</code> of this SatisfyRequirementUsage. It is the <code>assertedConstraint</code> of the SatisfyRequirementUsage considered as an AssertConstraintUsage, which must be a RequirementUsage.</p>
+	 * <p>The <code>RequirementUsage</code> that is satisfied by the <code>satisfyingSubject</code> of this <code>SatisfyRequirementUsage</code>. It is the <code>assertedConstraint</code> of the <code>SatisfyRequirementUsage</code> considered as an <code>AssertConstraintUsage</code>, which must be a <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Requirement</em>' reference.
 	 * @see #setSatisfiedRequirement(RequirementUsage)
@@ -88,7 +102,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that represents the actual subject that is asserted to satisfy the <tt>satisfiedRequirement</tt>. The <tt>satisfyingFeature</tt> must be the target of a BindingConnector from the <tt>subjectParameter</tt> of the <tt>satisfiedRequirement</tt>.</p>
+	 * <p>The <code>Feature</code> that represents the actual subject that is asserted to satisfy the <code>satisfiedRequirement</code>. The <code>satisfyingFeature</code> is bound to the <code>subjectParameter</code> of the <code>SatisfyRequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfying Feature</em>' reference.
 	 * @see #setSatisfyingFeature(Feature)

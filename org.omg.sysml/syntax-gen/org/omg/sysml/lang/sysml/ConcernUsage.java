@@ -9,10 +9,14 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConcernUsage is a Usage of a ConcernDefinition.</p>
+ * <p>A <code>ConcernUsage</code> is a <code>Usage</code> of a <code>ConcernDefinition</code>.</p>
  * 
- * <p>A ConcernUsage must subset, directly or indirectly, the base ConcernUsage <em><code>concernChecks</code></em> from the Systems model library. The <code>ownedStakeholder</code> features of the ConcernUsage shall all subset the <em><code>ConcernCheck::concernedStakeholders</code> </em>feature. If the ConcernUsage is an <code>ownedFeature</code> of a StakeholderDefinition or StakeholderUsage, then the ConcernUsage shall have an <code>ownedStakeholder</code> feature that is bound to the <em><code>self</code></em> feature of its owner.</p>
+ *  The <code>ownedStakeholder</code> features of the ConcernUsage shall all subset the <em><code>ConcernCheck::concernedStakeholders</code> </em>feature. If the ConcernUsage is an <code>ownedFeature</code> of a StakeholderDefinition or StakeholderUsage, then the ConcernUsage shall have an <code>ownedStakeholder</code> feature that is bound to the <em><code>self</code></em> feature of its owner.</p>
  * 
+ * specializesFromLibrary('Requirements::concernChecks')
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(FramedConcernMembership) implies
+ *     specializesFromLibrary('Requirements::RequirementCheck::concerns')
  * <!-- end-model-doc -->
  *
  * <p>

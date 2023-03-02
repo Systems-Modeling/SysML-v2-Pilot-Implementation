@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Differencing is a Relationship that makes its <code>differencingType</code> one of the <code>differencingTypes</code> of its <code>typeDifferenced</code>.</p>
+ * <p><code>Differencing</code> is a <code>Relationship</code> that makes its <code>differencingType</code> one of the <code>differencingTypes</code> of its <code>typeDifferenced</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +37,8 @@ public interface Differencing extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type that partly determines interpretations of <code>typeDifferenced</code>, as described in <code>Type::differencingType</code>.</p>
+	 * <p><code>Type</code> that partly determines interpretations of <code>typeDifferenced</code>, as described in <code>Type::differencingType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Differencing Type</em>' reference.
 	 * @see #setDifferencingType(Type)
@@ -76,7 +78,8 @@ public interface Differencing extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type with interpretations partly determined by <code>differencingType</code>, as described in <code>Type::differencingType</code>.</p>
+	 * <p><code>Type</code> with interpretations partly determined by <code>differencingType</code>, as described in <code>Type::differencingType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type Differenced</em>' reference.
 	 * @see #setTypeDifferenced(Type)

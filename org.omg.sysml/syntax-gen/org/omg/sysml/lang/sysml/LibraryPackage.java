@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LibraryPackage is a Package that is the container for a model library. A LibraryPackage is itself a library Element as are all Elements that are directly or indirectly contained in it.</p>
+ * <p>A <code>LibraryPackage</code> is a <code>Package</code> that is the container for a model library. A <code>LibraryPackage</code> is itself a library <code>Element</code> as are all <code>Elements</code> that are directly or indirectly contained in it.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -30,7 +31,7 @@ public interface LibraryPackage extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this LibraryPackage contains a standard library model. This should only be set to true for LibraryPackage in the standard Kernel Libraries or in normative model libraries for a language built on KerML.</p>
+	 * <p>Whether this <code>LibraryPackage</code> contains a standard library model. This should only be set to true for <code>LibraryPackages</code> in the standard Kernel Model Libraries or in normative model libraries for a language built on KerML.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Standard</em>' attribute.
 	 * @see #setIsStandard(boolean)

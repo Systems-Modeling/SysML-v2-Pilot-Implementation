@@ -101,7 +101,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>StateUsages</code> that are the <code>actions</code> of the <code>StateDefinition</code>, which specify the discrete states in the behavior defined by the <code>StateDefinition</code>.</p>
+	 * <p>The <code>StateUsages</code>, which are <code>actions</code> in the <code>StateDefinition</code>, that specify the discrete states in the behavior defined by the <code>StateDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition_State()

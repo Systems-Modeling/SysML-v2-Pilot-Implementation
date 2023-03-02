@@ -30,11 +30,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Usage is a usage of a Definition. A Usage may only be an <code>ownedFeature</code> of a Definition or another Usage.</p>
+ * <p>A <code>Usage</code> is a usage of a <code>Definition</code>. A <code>Usage</code> may only be an <code>ownedFeature</code> of a <code>Definition</code> or another <code>Usage</code>.</p>
  * 
- * <p>A Usage may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A Usage may also have Definitions nested in it, but this has no semantic significance, other than the nested scoping resulting from the Usage being considered as a Namespace for any nested Definitions.</p>
+ * <p>A <code>Usage</code> may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A <code>Usage</code> may also have <code>Definitions</code> nested in it, but this has no semantic significance, other than the nested scoping resulting from the <code>Usage</code> being considered as a <code>Namespace</code> for any nested <code>Definitions</code>.</p>
  * 
- * <p>However, if a Usage has <code>isVariation</code> = true, then it represents a <em>variation point</em> Usage. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Usage by VariantMembership Relationships. Rather than being <code>features</code> of the Usage, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for the variation point Usage.</p>
+ * <p>However, if a <code>Usage</code> has <code>isVariation = true</code>, then it represents a <em>variation point</em> <code>Usage</code>. In this case, all of its <code>members</code> must be <code>variant</code> <code>Usages</code>, related to the <code>Usage</code> by <code>VariantMembership</code> <code>Relationships</code>. Rather than being <code>features</code> of the <code>Usage</code>, <code>variant</code> <code>Usages</code> model different concrete alternatives that can be chosen to fill in for the variation point <code>Usage</code>.</p>
  * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
  * not isVariation implies variantMembership->isEmpty()
@@ -46,47 +46,79 @@ import org.eclipse.emf.common.util.EList;
  *     not ownedSpecialization.specific->exists(isVariation)
  * owningVariationDefinition <> null implies
  *     specializes(owningVariationDefinition)
+ * directedUsage = directedFeature->selectByKind(Usage)
+ * nestedAction = nestedUsage->selectByKind(ActionUsage)
+ * nestedAllocation = nestedUsage->selectByKind(AllocationUsage)
+ * nestedAnalysisCase = nestedUsage->selectByKind(AnalysisCaseUsage)
+ * nestedAttribute = nestedUsage->selectByKind(AttributeUsage)
+ * nestedCalculation = nestedUsage->selectByKind(CalculationUsage)
+ * nestedCase = nestedUsage->selectByKind(CaseUsage)
+ * nestedConcern = nestedUsage->selectByKind(ConcernUsage)
+ * nestedConnection = nestedUsage->selectByKind(ConnectorAsUsage)
+ * nestedConstraint = nestedUsage->selectByKind(ConstraintUsage)
+ * ownedNested = nestedUsage->selectByKind(EnumerationUsage)
+ * nestedFlow = nestedUsage->selectByKind(FlowUsage)
+ * nestedInterface = nestedUsage->selectByKind(ReferenceUsage)
+ * nestedItem = nestedUsage->selectByKind(ItemUsage)
+ * nestedMetadata = nestedUsage->selectByKind(MetadataUsage)
+ * nestedOccurrence = nestedUsage->selectByKind(OccurrenceUsage)
+ * nestedPart = nestedUsage->selectByKind(PartUsage)
+ * nestedPort = nestedUsage->selectByKind(PortUsage)
+ * nestedReference = nestedUsage->selectByKind(ReferenceUsage)
+ * nestedRendering = nestedUsage->selectByKind(RenderingUsage)
+ * nestedRequirement = nestedUsage->selectByKind(RequirementUsage)
+ * nestedState = nestedUsage->selectByKind(StateUsage)
+ * nestedTransition = nestedUsage->selectByKind(TransitionUsage)
+ * nestedUsage = ownedFeature->selectByKind(Usage)
+ * nestedUseCase = nestedUsage->selectByKind(UseCaseUsage)
+ * nestedVerificationCase = nestedUsage->selectByKind(VerificationCaseUsage)
+ * nestedView = nestedUsage->selectByKind(ViewUsage)
+ * nestedViewpoint = nestedUsage->selectByKind(ViewpointUsage)
+ * usage = feature->selectByKind(Usage)
+ * owningType <> null implies
+ *     (owningType.oclIsKindOf(Definition) or
+ *      ownigType.oclIsKindOf(Usage))
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation <em>Nested Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDirectedUsage <em>Directed Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getUsage <em>Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedReference <em>Nested Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection <em>Nested Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence <em>Nested Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedItem <em>Nested Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPart <em>Nested Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection <em>Nested Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedInterface <em>Nested Interface</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation <em>Nested Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConcern <em>Nested Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedView <em>Nested View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConcern <em>Nested Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence <em>Nested Occurrence</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDefinition <em>Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUseCase <em>Nested Use Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedMetadata <em>Nested Metadata</em>}</li>
  * </ul>
  *
@@ -113,7 +145,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages that are <code>ownedFeatures</code> of this Usage.</p>
+	 * <p>The <code>Usages</code> that are <code>ownedFeatures</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUsage()
@@ -141,7 +173,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usage in which this Usage is nested (if any).</p>
+	 * <p>The <code>Usage</code> in which this <code>Usage</code> is nested (if any).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Usage</em>' reference.
 	 * @see #setOwningUsage(Usage)
@@ -180,7 +212,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Definition that owns this Usage (if any).</p>
+	 * <p>The <code>Definition</code> that owns this <code>Usage</code> (if any).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Definition</em>' reference.
 	 * @see #setOwningDefinition(Definition)
@@ -219,7 +251,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Usage that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>memberships</code> of the Usages. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
+	 * <p>The <code>ownedMemberships</code> of this <code>Usage</code> that are <code>VariantMemberships</code>. If <code>isVariation = true</code>, then this must be all <code>memberships</code> of the <code>Usage</code>. If <code>isVariation = false</code>, then <code>variantMembership</code>must be empty.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership()
@@ -247,7 +279,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>PortUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
@@ -275,7 +307,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>StateUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested State</em>' reference list.
@@ -304,7 +336,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>ConstraintUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Constraint</em>' reference list.
@@ -333,7 +365,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The TransitionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>TransitionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Transition</em>' reference list.
@@ -362,7 +394,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>RequirementUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Requirement</em>' reference list.
@@ -387,7 +419,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CalculationUsage that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>CalculationUsage</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Calculation</em>' reference list.
@@ -405,7 +437,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Usage is for a variation point or not. If true, then all the <code>memberships</code> of the Usage must be VariantMemberships.</p>
+	 * <p>Whether this <code>Usage</code> is for a variation point or not. If true, then all the <code>memberships</code> of the <code>Usage</code> must be <code>VariantMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Variation</em>' attribute.
 	 * @see #setIsVariation(boolean)
@@ -438,7 +470,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of this Usage that are <code>directedFeatures</code>.</p>
+	 * <p>The <code>usages</code> of this <code>Usage</code> that are <code>directedFeatures</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Directed Usage</em>' reference list.
@@ -463,7 +495,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>CaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Case</em>' reference list.
@@ -488,7 +520,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages which represent the variants of this Usage as a variation point Usage, if <code>isVariation</code> = true. If <code>isVariation</code> = false, the there must be no <code>variants</code>.</p>
+	 * <p>The <code>Usages</code> which represent the variants of this <code>Usage</code> as a variation point <code>Usage</code>, if <code>isVariation = true</code>. If <code>isVariation = false</code>, then there must be no <code>variants</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Variant()
@@ -512,7 +544,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AnalysisCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>AnalysisCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Analysis Case</em>' reference list.
@@ -537,7 +569,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages that are <code>features</code> of this Usage (not necessarily owned).</p>
+	 * <p>The <code>Usages</code> that are <code>features</code> of this <code>Usage</code> (not necessarily owned).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Usage()
@@ -565,7 +597,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ReferenceUsages that are <code>nestedUsages</code> of this Usage.</p> 
+	 * <p>The <code>ReferenceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Reference</em>' reference list.
@@ -590,7 +622,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConnectorAsUsages that are <code>nestedUsages</code> of this Usage. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.</p>
+	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code> and <code>SuccessionAsUsages</code>, even though these are <code>ConnectorAsUsages</code> but not <code>ConnectionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
@@ -614,7 +646,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ItemUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>ItemUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Item</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedItem()
@@ -638,7 +670,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PartUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>PartUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Part</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPart()
@@ -662,7 +694,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The InterfaceUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>InterfaceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Interface</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedInterface()
@@ -686,7 +718,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AttributeUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The code>AttributeUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Attribute</em>' reference list.
@@ -711,7 +743,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ViewUsages that are <code>nestedUsages</code> of this Usage.</p> 
+	 * <p>The <code>ViewUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested View</em>' reference list.
@@ -736,7 +768,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ViewpointUsages of this Usage that are <code>nestedUsages</code>.</p> 
+	 * <p>The <code>ViewpointUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Viewpoint</em>' reference list.
@@ -761,7 +793,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingUsages that are <code>nestedUsages</code> of this Usage.</p> 
+	 * <p>The <code>RenderingUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Rendering</em>' reference list.
@@ -786,7 +818,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The VerificationCaseUsages that are <code>nestedUsages</code> of this Usage.</p> 
+	 * <p>The <code>VerificationCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
@@ -811,7 +843,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The EnumerationUsages that are <code>nestedUsages</code> of this Usage.<p>
+	 * <p>The code>EnumerationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Enumeration</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedEnumeration()
@@ -835,7 +867,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AllocationUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>AllocationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
@@ -859,7 +891,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConcernUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>ConcernUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Concern</em>' reference list.
@@ -884,7 +916,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The OccurrenceUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>OccurrenceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Occurrence</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedOccurrence()
@@ -908,7 +940,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Classifiers that are the types of this Usage. Nominally, these are Definitions, but other kinds of Kernel Classifiers are also allowed, to permit use of Classifiers from the Kernel Library.</p>
+	 * <p>The <code>Classifiers</code> that are the types of this <code>Usage</code>. Nominally, these are <code>Definitions</code>, but other kinds of Kernel <code>Classifiers</code> are also allowed, to permit use of <code>Classifiers</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
@@ -932,7 +964,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>UseCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Use Case</em>' reference list.
@@ -950,7 +982,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Usage is a reference Usage, derived as the negation of <code>isComposite</code>.<p>
+	 * <p>Whether this <code>Usage</code> is a referential <code>Usage</code>, that is, it has <code>isComposite = false</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Reference</em>' attribute.
 	 * @see #setIsReference(boolean)
@@ -983,7 +1015,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FlowConnectionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The code>FlowConnectionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Flow</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFlow()
@@ -1007,7 +1039,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The MetadataUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>MetadataUsages</code> that are <code>nestedUsages</code> of this of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedMetadata()
@@ -1035,7 +1067,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The <code>ActionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Action</em>' reference list.

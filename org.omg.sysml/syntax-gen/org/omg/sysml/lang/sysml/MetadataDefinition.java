@@ -9,9 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MetadataDefinition is an ItemDefinition that is also a Metaclass.</p>
- * 
- * <p>A MetadataDefinition must subclassofy, directly or indirectly, the base MetadataDefinition MetadataItem from the Systems model library.</p>
+ * <p>A <code>MetadataDefinition</code> is an <code>ItemDefinition</code> that is also a <code>Metaclass</code>.</p>
+ * specializesFromLibrary('Metadata::MetadataItem')
  * <!-- end-model-doc -->
  *
  *

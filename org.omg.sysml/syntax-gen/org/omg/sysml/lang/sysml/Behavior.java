@@ -29,9 +29,10 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Behavior</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Behavior coordinates occurrences of other Behaviors, as well as&nbsp;changes in objects. Behaviors can be decomposed into Steps and be characterized by <code>parameters</code>.</p>
+ * <p>A <code>Behavior </code>coordinates occurrences of other <code>Behaviors</code>, as well as changes in objects. <code>Behaviors</code> can be decomposed into <code>Steps</code> and be characterized by <code>parameters</code>.</p>
  * 
  * specializesFromLibrary("Performances::Performance")
+ * step = feature->selectByKind(Step)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +64,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Steps that make up this Behavior.</p>
+	 * <p>The <code>Steps</code> that make up this <code>Behavior</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Step</em>' reference list.
@@ -92,7 +93,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The parameters of this Behavior, which are all its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the Behavior.</p>
+	 * <p>The parameters of this <code>Behavior</code>, which are defined as its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the <code>Behavior</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.

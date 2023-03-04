@@ -82,8 +82,8 @@ public class ElementAdapter extends AdapterImpl {
 	
 	public void transform() {
 		if (!isTransformed) {
-			doTransform();
 			isTransformed = true;
+			doTransform();
 		}
 	}
 	

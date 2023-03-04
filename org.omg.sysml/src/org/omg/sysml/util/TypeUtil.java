@@ -443,6 +443,7 @@ public class TypeUtil {
 	}
 
 	public static Usage basicGetSubjectParameterOf(Type type) {
+		ElementUtil.transform(type);
 		return (Usage)getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 	

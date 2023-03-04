@@ -9,9 +9,21 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FeatureChainExpression is an OperatorExpression whose operator is <code>"."</code>, which resolves to the library Function <em><code>ControlFunctions::'.'</code></em>. It evaluates to the result of chaining the <code>result</code> Feature of its single <code>argument</code> Expression with its <code>targetFeature</code>.</p>
- * 
- * <p>The first two <code>members</code> of a FeatureChainExpression must be its single <code>argument</code> Expression and its <code>targetFeature</code>. Its only other <code>members</code> shall be those necessary to complete it as an InvocationExpression.</p>
+ * <p>A <code>FeatureChainExpression</code> is an <code>OperatorExpression</code> whose operator is <code>"."</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::'.'</code></em> from the Kernel Functions Library. It evaluates to the result of chaining the <code>result</code> <code>Feature</code> of its single <code>argument</code> <code>Expression</code> with its <code>targetFeature</code>.</p>
+ * let sourceParameter : Feature = sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * sourceTargetFeature.redefinesFromLibrary("ControlFunctions::'.'::source::target")
+ * let sourceParameter : Feature = sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * sourceTargetFeature.redefines(targetFeature)
+ * targetFeature =
+ *     let nonParameterMemberships : Sequence(Membership) = ownedMembership->
+ *         reject(oclIsKindOf(ParameterMembership)) in
+ *     if nonParameterMemberships->isEmpty() or
+ *        not nonParameterMemberships->first().memberElement.oclIsKindOf(Feature)
+ *     then null
+ *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -38,7 +50,7 @@ public interface FeatureChainExpression extends OperatorExpression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is accessed by this FeatureChainExpression, derived as its second <code>member</code> Feature (the first being its one <code>argument</code> Expression). This Feature must redefine the <em><code>target</code> Feature of the Function <em><code>ControlFunctions::'.'</code></em>.</p>
+	 * <p>The <code>Feature</code> that is accessed by this <code>FeatureChainExpression<code>, which is its first non-<code>parameter</code> <code>member</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Feature</em>' reference.
 	 * @see #setTargetFeature(Feature)
@@ -60,4 +72,22 @@ public interface FeatureChainExpression extends OperatorExpression {
 	 * @generated
 	 */
 	void setTargetFeature(Feature value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the first <code>ownedFeature</code> of the first owned input <code>parameter</code> of this <code>FeatureChainExpression</code> (if any).</p>
+	 * let inputParameters : Feature = ownedFeatures->
+	 *     select(direction = _'in') in
+	 * if inputParameters->isEmpty() or 
+	 *    inputParameters->first().ownedFeature->isEmpty()
+	 * then null
+	 * else inputParameters->first().ownedFeature->first()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	Feature sourceTargetFeature();
 } // FeatureChainExpression

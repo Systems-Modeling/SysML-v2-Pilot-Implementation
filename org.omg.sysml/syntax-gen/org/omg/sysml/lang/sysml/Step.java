@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Step</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Step is a Feature that is typed by one or more Behaviors. Steps may be used by one Behavior to coordinate the performance of other Behaviors, supporting the steady refinement of behavioral descriptions. Steps can be ordered in time and can be connected using ItemFlows to specify things flowing between their parameters.</p>
+ * <p>A <code>Step</code> is a <code>Feature</code> that is typed by one or more <code>Behaviors</code>. <code>Steps</code> may be used by one <code>Behavior</code> to coordinate the performance of other <code>Behaviors</code>, supporting a steady refinement of behavioral descriptions. <code>Steps</code> can be ordered in time and can be connected using <code>ItemFlows</code> to specify things flowing between their <code>parameters</code>.</p>
  * 
  * allSupertypes()->includes(resolveGlobal("Performances::performances"))
  * owningType <> null and
@@ -47,6 +47,7 @@ import org.eclipse.emf.common.util.EList;
  *      owningType.oclIsKindOf(Step)) and
  *     self.isComposite implies
  *     specializesFromLibrary('Performances::Performance::subperformance')
+ * behavior = type->selectByKind(Behavior)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -79,7 +80,7 @@ public interface Step extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Behaviors that type this Step.</p>
+	 * <p>The <code>Behaviors</code> that type this <code>Step</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Behavior</em>' reference list.
@@ -108,7 +109,7 @@ public interface Step extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The parameters of this Expression, which are all its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the Behavior.</p>
+	 * <p>The <code>parameters</code> of this <code>Step</code>, which are defined as its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the <code>Step</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.

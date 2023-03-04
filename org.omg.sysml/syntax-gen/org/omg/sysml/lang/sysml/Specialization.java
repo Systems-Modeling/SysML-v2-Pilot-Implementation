@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Specialization is a Relationship between two Types that requires all instances of the <code>specific</code> type to also be instances of the <code>general</code> Type (i.e., the set of instances of the <code>specific</code> Type is a <em>subset</em> of those of the <code>general</code> Type, which might be the same set).</p>
+ * <p><code>Specialization</code> is a <code>Relationship</code> between two <code>Types</code> that requires all instances of the <code>specific</code> type to also be instances of the <code>general</code> Type (i.e., the set of instances of the <code>specific</code> Type is a <em>subset</em> of those of the <code>general</code> Type, which might be the same set).</p>
  * 
  * not specific.isConjugated
  * <!-- end-model-doc -->
@@ -63,7 +63,7 @@ public interface Specialization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with a superset of all instances of the <code>specific</code> Type, which might be the same set.</p>
+	 * <p>A <code>Type</code> with a superset of all instances of the <code>specific</code> <code>Type</code>, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>General</em>' reference.
@@ -101,7 +101,7 @@ public interface Specialization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with a subset of all instances of the <code>general</code> Type, which might be the same set.</p>
+	 * <p>A <code>Type</code> with a subset of all instances of the <code>general</code> <code>Type</code>, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific</em>' reference.
@@ -141,7 +141,8 @@ public interface Specialization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is the <code>specific</code> Type of this Specialization and owns it as its <code>owningRelatedElement</code>.</p>
+	 * <p>The <code>Type</code> that is the <code>specific</code> <code>Type</code> of this <code>Specialization</code> and owns it as its <code>owningRelatedElement</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)

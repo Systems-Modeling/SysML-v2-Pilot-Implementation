@@ -10,10 +10,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A UseCaseDefinition is a CaseDefinition that specifies a set of actions performed by its subject, in interaction with one or more actors external to the subject. The objective is to yield an observable result that is of value for one or more of the actors.</p>
+ * <p>A <code>UseCaseDefinition</code> is a <code>CaseDefinition</code> that specifies a set of actions performed by its subject, in interaction with one or more actors external to the subject. The objective is to yield an observable result that is of value to one or more of the actors.</p>
  * 
- * <p>A UseCaseDefinition must subclass, directly or indirectly, the base UseCaseDefinition <em>UseCase</em> from the Systems model library.</p>
- * 
+ * includedUseCase = ownedUseCase->
+ *     selectByKind(IncludeUseCaseUsage).
+ *     useCaseIncluded
+ * specializesFromLibrary('UseCases::UseCase')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -34,7 +36,7 @@ public interface UseCaseDefinition extends CaseDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsages that are included by this UseCaseDefinition. Derived as the <code>includedUseCase</code> of the IncludeUseCaseUsages owned by this UseCaseDefinition.</p>
+	 * <p>The <code>UseCaseUsages</code> that are included by this <code>UseCaseDefinition</code>, which are the <code>useCaseIncludeds</code> of the <code>IncludeUseCaseUsages</code> owned by this <code>UseCaseDefinition<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Included Use Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUseCaseDefinition_IncludedUseCase()

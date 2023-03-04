@@ -30,9 +30,18 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AnalysisCaseDefinition is a CaseDefinition for the case of carrying out an analysis.</p>
- * 
- * <p>An AnalysisCaseDefinition must subclass, directly or indirectly, the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
+ * <p>An <code>AnalysisCaseDefinition</code> is a <code>CaseDefinition</code> for the case of carrying out an analysis.</p>
+ * analysisAction = action->select(
+ *     isComposite and 
+ *     specializes('AnalysisCases::AnalysisAction'))
+ * resultExpression =
+ *     let results : OrderedSet(ResultExpressionMembership) =
+ *         featureMembersip->
+ *             selectByKind(ResultExpressionMembership) in
+ *     if results->isEmpty() then null
+ *     else results->first().ownedResultExpression
+ *     endif
+ * specializesFromLibrary('AnalysisCases::AnalysisCase')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +69,7 @@ public interface AnalysisCaseDefinition extends CaseDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>actions</code> of the AnalysisCaseDefinitions that are typed as AnalysisActions. Each <code>analysisAction</code> ActionUsage must subset the <code<>analysisSteps</code> ActionUsage of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
+	 * <p>The composite <code>actions</code> of the <code>AnalysisCaseDefinition</code> that are defined as <code>AnalysisActions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Analysis Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnalysisCaseDefinition_AnalysisAction()
@@ -84,7 +93,7 @@ public interface AnalysisCaseDefinition extends CaseDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression used to compute the <code>result</code> of the AnalysisCaseDefinition, derived as the Expression own via a ResultExpressionMembership. The <code>resultExpression</code> must redefine directly or indirectly, the <code>resultEvaluation</code> Expression of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
+	 * <p>An <code>Expression</code> used to compute the <code>result</code> of the <code>AnalysisCaseDefinition</code>, owned via a <code>ResultExpressionMembership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result Expression</em>' reference.

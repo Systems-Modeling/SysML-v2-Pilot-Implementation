@@ -29,7 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>ElementFilterMembership is a Mambership between a Namespace and a model-level evaluable Boolean Expression, asserting that imported <code>members</code> of the Namespace should be filtered using the <code>condition</code> Expression. A general Namespace does not define any specific filtering behavior, but such behavior may be defined for various specialized kinds of Namespaces.</p>
+ * <p><code>ElementFilterMembership</code> is a <code>Membership</code> between a <code>Namespace</code> and a model-level evaluable <code><em>Boolean</em></code>-valued <code>Expression</code>, asserting that imported <code>members</code> of the <code>Namespace</code> should be filtered using the <code>condition</code> <code>Expression</code>. A general <code>Namespace</code> does not define any specific filtering behavior, but such behavior may be defined for various specialized kinds of <code>Namespaces</code>.</p>
+ * 
  * condition.isModelLevelEvaluable
  * condition.result.specializesFromLibrary('ScalarValues::Boolean')
  * <!-- end-model-doc -->
@@ -61,7 +62,8 @@ public interface ElementFilterMembership extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The model-level evaluable Boolean Expression used to filter the <code>members</code> of the <code>membershipOwningNamespace</code> of this ElementFilterMembership.</p>
+	 * <p>The model-level evaluable <code>Boolean</code>-valued <code>Expression</code> used to filter the imported <code>members</code> of the <code>membershipOwningNamespace</code> of this <code>ElementFilterMembership</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Condition</em>' reference.
 	 * @see #setCondition(Expression)

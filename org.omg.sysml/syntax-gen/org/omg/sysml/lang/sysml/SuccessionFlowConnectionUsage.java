@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SuccessionFlowConnectionUsage is a FlowConnectionUsage that is also a SuccessionItemFlow.</p>
+ * <p>A <code>SuccessionFlowConnectionUsage</code> is a <code>FlowConnectionUsage</code> that is also a <code>SuccessionItemFlow</code>.</p>
  * specializesFromLibrary("Connections::successionFlowConnections")
  * <!-- end-model-doc -->
  *

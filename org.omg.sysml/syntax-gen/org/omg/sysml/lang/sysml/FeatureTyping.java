@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureTyping is Specialization in which the <code>specific</code> Type is a Feature. This means the set of instances of the (specific) <code>typedFeature</code> is a subset of the set of instances of the (general) <code>type</code>. In the simplest case, the <code>type</code> is a Classifier, whereupon the <code>typedFeature</code> subset has instances interpreted as sequences ending in things (in the modeled universe) that are instances of the Classifier.</p>
+ * <p><code>FeatureTyping</code> is <code>Specialization</code> in which the <code>specific</code> <code>Type</code> is a <code>Feature</code>. This means the set of instances of the (specific) <code>typedFeature</code> is a subset of the set of instances of the (general) <code>type</code>. In the simplest case, the <code>type</code> is a <code>Classifier</code>, whereupon the <code>typedFeature</code> has values that are instances of the <code>Classifier</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -60,7 +60,7 @@ public interface FeatureTyping extends Specialization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is being applied by this FeatureTyping.</p>
+	 * <p>The <code>Type</code> that is being applied by this <code>FeatureTyping</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
@@ -100,7 +100,7 @@ public interface FeatureTyping extends Specialization {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that owns this FeatureTyping (which must also be the <code>typedFeature</code>).</p>
+	 * <p>A <code>typedFeature</code> that is also the <code>owningRelatedElement</code> of this <code>FeatureTyping</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.
 	 * @see #setOwningFeature(Feature)
@@ -139,7 +139,7 @@ public interface FeatureTyping extends Specialization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that has its Type determined by this FeatureTyping.</p>
+	 * <p>The <code>Feature</code> that has a <code>type</code> determined by this <code>FeatureTyping</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Typed Feature</em>' reference.
 	 * @see #setTypedFeature(Feature)

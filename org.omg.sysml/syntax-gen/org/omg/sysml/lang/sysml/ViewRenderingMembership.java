@@ -9,7 +9,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewRenderingMembership is a FeatureMembership that identifies the <code>viewRendering</code> of a View. The <code>ownedMemberFeature</code> of a RequirementConstraintMembership must be a RenderingUsage.</p>
+ * <p>A <code>ViewRenderingMembership</code> is a <coed>FeatureMembership</code> that identifies the <code>viewRendering</code> of a <code>ViewDefinition</code> or <code>ViewUsage</code>.</p>
+ * referencedRendering =
+ *     let reference: ReferenceSubsetting = 
+ *         ownedRendering.ownedReferenceSubsetting in
+ *     if reference = null then ownedRendering
+ *     else if not reference.referencedFeature.oclIsKindOf(RenderingUsage) then null
+ *     else reference.referencedFeature.oclAsType(RenderingUsage)
+ *     endif
+ * owningType.oclIsKindOf(ViewDefinition) or
+ * owningType.oclIsKindOf(ViewUsage)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,6 +48,9 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned <code>RenderingUsage</code> that is either itself the <code>referencedRendering</code> or subsets the <code>referencedRendering</code>.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Rendering</em>' reference.
 	 * @see #setOwnedRendering(RenderingUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewRenderingMembership_OwnedRendering()
@@ -65,7 +77,7 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RenderingUsage that is referenced through this ViewRenderingMembership. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the <code>ownedRendering</code>, if there is one, and, otherwise, the <code>ownedRendering</code> itself.</p>
+	 * <p> The <code>RenderingUsage</code> that is referenced through this <code>ViewRenderingMembership</code>. It is the <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code> for the <code>ownedRendering</code>, if there is one, and, otherwise, the <code>ownedRendering</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Rendering</em>' reference.
 	 * @see #setReferencedRendering(RenderingUsage)

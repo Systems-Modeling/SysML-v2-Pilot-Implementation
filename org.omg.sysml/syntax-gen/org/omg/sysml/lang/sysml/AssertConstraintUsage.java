@@ -29,13 +29,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AssertConstraintUsage is a ConstraintUsage that is also an Invariant and, so, is asserted to be true (by default). Unless it is the AssertConstraintUsage itself, the asserted ConstraintUsage is related to the AssertConstraintUsage by a ReferenceSubsetting relationship.</p>
- * 
- * <p>If the AssertConstraintUsage is owned by a PartDefinition or PartUsage, then it also subsets the <em><code>assertedConstraints</code></em> feature of the PartDefinition <em><code>Part</code></em> from the System Library model <em><code>Parts</code></em>.</p>
+ * <p>An <code>AssertConstraintUsage</code> is a <code>ConstraintUsage</code> that is also an <code>Invariant</code> and, so, is asserted to be true (by default). Unless it is the <code>AssertConstraintUsage</code> itself, the asserted <code>ConstraintUsage</code> is related to the <code>AssertConstraintUsage</code> by a ReferenceSubsetting <code>Relationship</code>.</p>
  * assertedConstraint =
  *     if ownedReferenceSubsetting = null then self
  *     else ownedReferenceSubsetting.referencedFeature.oclAsType(ConstraintUsage)
  *     endif
+ * if isNegated then
+ *     specializesFromLibrary('Constraints::negatedConstraints')
+ * else
+ *     specializesFromLibrary('Constraints::assertedConstraints')
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +58,7 @@ public interface AssertConstraintUsage extends ConstraintUsage, Invariant {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the AssertConstraintUsage, if there is one, and, otherwise, the AssertConstraintUsage itself.</p>
+	 * <p>The <code>ConstraintUsage</code> to be performed by the <code>AssertConstraintUsage</code>. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the <code>AssertConstraintUsage</code>, if there is one, and, otherwise, the <code>AssertConstraintUsage</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Asserted Constraint</em>' reference.
 	 * @see #setAssertedConstraint(ConstraintUsage)

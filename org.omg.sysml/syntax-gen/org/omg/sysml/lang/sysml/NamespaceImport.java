@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A NamespaceImport is an Import that imports Memberships from its <code>importedNamespace</code> into the <code>importOwningNamespace</code>. If <code> isRecursive = false</code>, then only the visible Memberships of the <code>importOwningNamespace</code> are imported. If <code> isRecursive = true</code>, then, in addition, Memberships are recursively imported from any <code>ownedMembers</code> of the <code>importedNamespace</code> that are Namespaces.</p>
+ * <p>A <code>NamespaceImport</code> is an Import that imports <code>Memberships</code> from its <code>importedNamespace</code> into the <code>importOwningNamespace</code>. If <code> isRecursive = false</code>, then only the visible <code>Memberships</code> of the <code>importOwningNamespace</code> are imported. If <code> isRecursive = true</code>, then, in addition, <code>Memberships</code> are recursively imported from any <code>ownedMembers</code> of the <code>importedNamespace</code> that are <code>Namespaces</code>.</p>
+ * 
  * importedElement = importedNamespace
  * <!-- end-model-doc -->
  *
@@ -36,7 +37,7 @@ public interface NamespaceImport extends Import {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Namespace whose visible Memberships are imported by this NamespaceImport.</p>
+	 * <p>The <code>Namespace</code> whose visible <code>Memberships</code> are imported by this <code>NamespaceImport</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Namespace</em>' reference.

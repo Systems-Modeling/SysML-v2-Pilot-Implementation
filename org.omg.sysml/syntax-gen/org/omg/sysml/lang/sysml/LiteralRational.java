@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Real</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LiteralRational is a LiteralExpression that provides a <code><em>Rational</em></code> value as a result. Its <code>result</code> parameter must have the type <code><em>Rational</em></code>.</p>
+ * <p>A <code>LiteralRational</code> is a <code>LiteralExpression</code> that provides a <code><em>Rational</em></code> value as a result. Its <code>result</code> <code>parameter</code> must have the type <code><em>Rational</em></code>.</p>
  * 
  * <!-- end-model-doc -->
  *

@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A NamespaceExpose is an Expose relationship that exposes a;; the Memberships of a specific <code>importedNamespace</code> and, if <code>isRecursive = true</code>, additional Memberships recursively.</p>
+ * <p>A <code>NamespaceExpose</code> is an <code>Expose</code> <code>Relationship</code> that exposes the <code>Memberships</code> of a specific <code>importedNamespace</code> and, if <code>isRecursive = true</code>, additional <code>Memberships</code> recursively.</p>
  * <!-- end-model-doc -->
  *
  *

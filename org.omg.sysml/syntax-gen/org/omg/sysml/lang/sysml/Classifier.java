@@ -31,14 +31,13 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Classifier is a Type for model elements that classify:</p>
+ * <p>A <code>Classifier</code> is a <code>Type</code> that classifies:</p>
  * 
  * <ul>
- * 	<li>Things&nbsp;(in the universe) regardless of how Features relate them.&nbsp; These are&nbsp;sequences of exactly one&nbsp;thing (sequence of length 1).</li>
- * 	<li>How the above&nbsp;things are related by Features. These are sequences of multiple things (length &gt; 1).</li>
+ * 	<li>Things (in the universe) regardless of how <code>Features</code> relate them. (These are interpreted semantically as sequences of exactly one thing.)</li>
+ * 	<li>How the above things are related by <code>Features.</code> (These are interpreted semantically as sequences of multiple things, such that the last thing in the sequence is also classified by the <code>Classifier</code>. Note that his means that a <code>Classifier</code> modeled as specializing a <code>Feature</code> cannot classify anything.)</li>
  * </ul>
  * 
- * <p>Classifiers that classify relationships (sequence length &gt; 1) must also classify the things at the end of those&nbsp;sequences (sequence length =1).&nbsp; Because of this, Classifiers specializing Features cannot classify anything (any sequences).</p>
  * 
  * ownedSubclassification = 
  *     ownedSpecialization->selectByKind(Superclassification)
@@ -71,7 +70,7 @@ public interface Classifier extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedSpecializations</code> of this Classifier that are Subclassifications, for which this Classifier is the <code>subclassifier</code>.</p>
+	 * <p>The <code>ownedSpecializations</code> of this <code>Classifier</code> that are <code>Subclassifications</code>, for which this <code>Classifier</code> is the <code>subclassifier</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subclassification</em>' reference list.

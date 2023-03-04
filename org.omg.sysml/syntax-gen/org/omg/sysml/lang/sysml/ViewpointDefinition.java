@@ -31,9 +31,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewpointDefinition is a RequirementDefinition that specifies one or more stakeholder concerns that to be satisfied by created a view of a model.</p>
- * 
- * <p>A ViewpointDefinition must subclass, directly or indirectly, the base ViewpointDefinition Viewpoint from the Systems model library.</p>
+ * <p>A <code>ViewpointDefinition</code> is a <code>RequirementDefinition</code> that specifies one or more stakeholder concerns that are to be satisfied by creating a view of a model.</p>
+ * viewpointStakeholder = framedConcern.featureMemberhsip->
+ *     selectByKind(StakeholderMembership).
+ *     ownedStakeholderParameter
+ * specializesFromLibrary('Views::Viewpoint')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +57,7 @@ public interface ViewpointDefinition extends RequirementDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The features that identify the stakeholders with concerns framed by this ViewpointDefinition, derived as the owned and inherited <code>stakeholderParameters</code> of the <code>framedConcerns</code> of this ViewpointDefinition.</p>
+	 * <p>The <code>PartUsages</code> that identify the stakeholders with concerns framed by this <code>ViewpointDefinition</code>, which are the owned and inherited <code>stakeholderParameters</code> of the <code>framedConcerns</code> of this <code>ViewpointDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointDefinition_ViewpointStakeholder()

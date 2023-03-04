@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Featuring is a Relationship between a Type and a Feature that is featured by that Type. Every instance in the domain of the <code>feature</code> must be classified by the <code>type</code>. This means that sequences that are classified by the <code>feature</code> must have a prefix subsequence that is classified by the <code>type</code>.</p>
+ * <p><code>Featuring</code> is a <code>Relationship</code> between a <code>Type</code> and a <code>Feature</code> that is featured by that <code>Type</code>. It asserts that every instance in the domain of the <code>feature</code> must be classified by the <code>type</code>.</p>
  * 
- * <p>Featuring is abstract and does not commit to which of <code>feature</code> or <code>type</code> are the source or target. This commitment is made in the subclasses of Featuring, TypeFeaturing and FeatureMembership, which are directed differently.</p>
+ * <p><code>Featuring</code> is abstract and does not commit to which of <code>feature</code> or <code>type</code> are the <code>source</code> or <code>target</code> of the <code>Relationship</code>. This commitment is made in the subclasses of <code>Featuring</code>, <code>TypeFeaturing</code> and <code>FeatureMembership</code>, which have opposite directions.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -38,7 +38,7 @@ public interface Featuring extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that features the <code>featureOfType</code>.</p>
+	 * <p>The <code>Type<code> that features the <code>featureOfType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)
@@ -71,7 +71,7 @@ public interface Featuring extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is featured by the <code>featuringType</code>.</p>
+	 * <p>The <code>Feature</code> that is featured by the <code>featuringType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(Feature)

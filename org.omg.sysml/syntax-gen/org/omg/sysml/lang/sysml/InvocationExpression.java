@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Invocation Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An InvocationExpression is an Expression each of whose input <code>parameters</code> are bound to the <code>result</code> of an owned <code>argument</code> Expression. Each input <code>parameter</code> may be bound to the <code>result</code> of at most one <code>argument</code>.</p>
+ * <p>An <code>InvocationExpression</code> is an <code>Expression</code> each of whose input <code>parameters</code> are bound to the <code>result</code> of an <code>argument</code> Expression.</p>
  * 
  * not ownedTyping->exists(oclIsKindOf(Behavior)) and
  * not ownedSubsetting.subsettedFeature.type->exists(oclIsKindOf(Behavior)) implies
@@ -38,6 +38,9 @@ import org.eclipse.emf.common.util.EList;
  *         relatedFeature->includes(result))
  *             
  * TBD
+ * ownedFeature->
+ *     select(direction = _'in').valuation->
+ *     select(v | v <> null).value
  * <!-- end-model-doc -->
  *
  * <p>
@@ -65,7 +68,7 @@ public interface InvocationExpression extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>value</code> <code>Expressions</code> of the <code>FeatureValues</code> of the input <code>parameters</code> of the <code>InvocationExpression</code>.
+	 * <p>The <code>value</code> <code>Expressions</code> of the <code>FeatureValues</code> of the owned input <code>parameters</code> of the <code>InvocationExpression</code>.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Argument</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression_Argument()

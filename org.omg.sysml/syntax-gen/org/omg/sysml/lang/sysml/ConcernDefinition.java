@@ -9,10 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConcernDefinition is a RequirementDefinition that one or more stakeholders may be interested in having addressed. These stakeholders are identified by the <code>ownedStakeholders</code>of the ConcernDefinition.</p>
+ * <p>A <code>ConcernDefinition</code> is a <code>RequirementDefinition</code> that one or more stakeholders may be interested in having addressed. These stakeholders are identified by the <code>ownedStakeholders</code>of the <code>ConcernDefinition</code>.</p>
  * 
- * <p>A ConcernDefinition must subclass, directly or indirectly, the base ConcernDefinition <em>ConcernCheck</em> from the Systems model library. The <code>ownedStakeholder</code> features of a ConcernDefinition shall all subset the <em><code>ConcernCheck::concernedStakeholders</code></em> feature.</p>
- * 
+ * specializesFromLibrary('Requirements::ConcernCheck')
  * <!-- end-model-doc -->
  *
  *

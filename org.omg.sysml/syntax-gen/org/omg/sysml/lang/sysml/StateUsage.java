@@ -39,8 +39,6 @@ import org.eclipse.emf.common.util.EList;
  *     forAll(g | g.isParallel = isParallel) and
  * general->selectByKind(StateUsage)->
  *     forAll(g | g.parallel = isParallel)
- * entryAction <> null implies
- *     entryAction.specializesFromLibrary('StateAction::entryAction')
  * doAction =
  *     let doMemberships : Sequence(StateSubactionMembership) =
  *         ownedMembership->
@@ -60,7 +58,7 @@ import org.eclipse.emf.common.util.EList;
  * isParallel implies
  *     nestedAction.incomingTransition->isEmpty() and
  *     nestedAction.outgoingTransition->isEmpty()
- * isSubstateUsage(false) implies
+ * isSubstateUsage(true) implies
  *     specializesFromLibrary('States::State::substates')
  * exitAction =
  *     let exitMemberships : Sequence(StateSubactionMembership) =
@@ -74,6 +72,8 @@ import org.eclipse.emf.common.util.EList;
  * ownedMembership->
  *     selectByKind(StateSubactionMembership)->
  *     isUnique(kind)
+ * isSubstateUsage(false) implies
+ *     specializesFromLibrary('States::State::substates')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -238,7 +238,7 @@ public interface StateUsage extends ActionUsage {
 	 *     owningType.oclAsType(StateDefinition).isParallel = isParallel or
 	 *  owningType.oclIsKindOf(StateUsage) and
 	 *     owningType.oclAsType(StateUsage).isParallel = isParallel) and
-	 * not owningFeatureMembership.oclIsKindOf(StateSubactionUsage)
+	 * not owningFeatureMembership.oclIsKindOf(StateSubactionMembership)
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" isParallelDataType="org.omg.sysml.lang.types.Boolean" isParallelRequired="true" isParallelOrdered="false"
 	 * @generated

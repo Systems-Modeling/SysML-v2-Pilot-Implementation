@@ -29,8 +29,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ResultExpressionMembership is a FeatureMembership that indicates that the <code>ownedResultExpression</code> provides the result values for the Function or Expression that owns it. The owning Function or Expression must contain a BindingConnector between the <code>result</code> parameter of the <code>ownedResultExpression</code> and the <code>result</code> parameter of the Function or Expression.</p>
+ * <p>A <code>ResultExpressionMembership</code> is a <code>FeatureMembership</code> that indicates that the <code>ownedResultExpression</code> provides the result values for the <code>Function</code> or <code>Expression</code> that owns it. The owning <code>Function</code> or <code>Expression</code> must contain a <code>BindingConnector</code> between the <code>result</code> <code>parameter</code> of the <code>ownedResultExpression</code> and the <code>result</code> <code>parameter</code> of the owning <code>Function</code> or <code>Expression</code>.</p>
  * 
+ * owningType.oclIsKindOf(Function) or owningType.oclIsKindOf(Expression)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +61,8 @@ public interface ResultExpressionMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression that provides the result for the owner of the ResultExpressionMembership.</p>
+	 * <p>The <code>Expression</code> that provides the result for the owner of the <code>ResultExpressionMembership</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Result Expression</em>' reference.
 	 * @see #setOwnedResultExpression(Expression)

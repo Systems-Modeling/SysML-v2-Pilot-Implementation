@@ -286,8 +286,9 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>payloadParameter</code> of the <code>triggerAction</code> of this <code>TransitionUsage</code>, if it has one.</p>
 	 * if triggerAction->isEmpty() then null
-	 * else triggerAction->at(1).payloadParameter
+	 * else triggerAction->first().payloadParameter
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"

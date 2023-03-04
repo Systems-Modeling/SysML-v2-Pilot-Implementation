@@ -30,9 +30,50 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementUsage is a Usage of a RequirementDefinition.</p>
- * 
- * <p>A RequirementUsage must subset, directly or indirectly, the base RequirementUsage <em><code>requirementChecks</code></em> from the Systems model library.</p>
+ * <p>A <code>RequirementUsage</code> is a <code>Usage</code> of a <code>RequirementDefinition</code>.</p>
+ * actorParameter = featureMembership->
+ *     selectByKind(ActorMembership).
+ *     ownedActorParameter
+ * assumedConstraint = ownedFeatureMembership->
+ *     selectByKind(RequirementConstraintMembership)->
+ *     select(kind = RequirementConstraintKind::assumption).
+ *     ownedConstraint
+ * framedConcern = featureMembership->
+ *     selectByKind(FramedConcernMembership).
+ *     ownedConcern
+ * requiredConstraint = ownedFeatureMembership->
+ *     selectByKind(RequirementConstraintMembership)->
+ *     select(kind = RequirementConstraintKind::requirement).
+ *     ownedConstraint
+ * stakeholderParameter = featureMembership->
+ *     selectByKind(AStakholderMembership).
+ *     ownedStakeholderParameter
+ * subjectParameter =
+ *     let subjects : OrderedSet(SubjectMembership) = 
+ *         featureMembership->selectByKind(SubjectMembership) in
+ *     if subjects->isEmpty() then null
+ *     else subjects->first().ownedSubjectParameter
+ *     endif
+ * text = documentation.body
+ * featureMembership->
+ *     selectByKind(SubjectMembership)->
+ *     size() <= 1
+ * input->notEmpty() and input->first() = subjectParameter
+ * specializesFromLibrary('Requirements::requirementChecks')
+ * isComposite and owningType <> null and
+ *     (owningType.oclIsKindOf(RequirementDefinition) or
+ *      owningType.oclIsKindOf(RequirementUsage)) implies
+ *     specializesFromLibrary('Requirements::RequirementCheck::subrequirements')
+ * owningfeatureMembership <> null and
+ * owningfeatureMembership.oclIsKindOf(ObjectiveMembership) implies
+ *     owningType.ownedSpecialization.general->forAll(gen |
+ *         (gen.oclIsKindOf(CaseDefinition) implies
+ *             redefines(gen.oclAsType(CaseDefinition).objectiveRequirement)) and
+ *         (gen.oclIsKindOf(CaseUsage) implies
+ *             redefines(gen.oclAsType(CaseUsage).objectiveRequirement))
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(RequirementVerificationMembership) implies
+ *     specializesFromLibrary('VerificationCases::VerificationCase::obj::requirementVerifications')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -70,7 +111,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementDefinition that is the single type of this RequirementUsage.</p>
+	 * <p>The <code>RequirementDefinition</code> that is the single <code>definition</code> of this <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Requirement Definition</em>' reference.
 	 * @see #setRequirementDefinition(RequirementDefinition)
@@ -105,7 +146,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this RequirementUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this <code>RequirementUsage</code> that is owned via a <code>SubjectMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)
@@ -140,7 +181,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Concerns framed by this RequirementUsage, derived as the <code>ownedConcerns</code> of all <code>FramedConcernMemberships</code> of the RequirementUsage.</p>
+	 * <p>The <code>ConcernUsages</code> framed by this <code>RequirementUsage</code>, which are the <code>ownedConcerns</code> of all <code>FramedConcernMemberships</code> of the <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Framed Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_FramedConcern()
@@ -165,7 +206,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this RequirementUsage that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that are owned via <code>ActorMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_ActorParameter()
@@ -190,7 +231,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this RequirementUsage that are owned via StakeholderMemberships, which must subset, directly or indirectly, the PartUsage <em><code>stakeholders</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that are owned via <code>StakeholderMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stakeholder Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_StakeholderParameter()
@@ -217,7 +258,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional modeler-specified identifier for this RequirementUsage (used, e.g., to link it to an original requirement text in some source document), derived as the <code>modeledId</code> for the RequirementUsage.</p>
+	 * <p>An optional modeler-specified identifier for this <code>RequirementUsage</code> (used, e.g., to link it to an original requirement text in some source document), which is the <code>declaredShortName</code> for the <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
@@ -248,7 +289,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional textual statement of the requirement represented by this RequirementUsage, derived as the <code>bodies<code> of the <code>documentaryComments</code> of the RequirementDefinition.</p>
+	 * <p>An optional textual statement of the requirement represented by this <code>RequirementUsage</code>, derived from the <code>bodies<code> of the <code>documentation</code> of the <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Text</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_Text()
@@ -274,7 +315,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementUsage with <code>kind</code> = <code>requirement</code>.</p>
+	 * <p>The owned <code>ConstraintUsages</code> that represent requirements of this <code>RequirementUsage</code>, which are the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the <code>RequirementUsage</code> with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequiredConstraint()
@@ -302,7 +343,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementUsage with <code>kind</code> = <code>assumption</code>.</p>
+	 * <p>The owned <code>ConstraintUsages</code> that represent assumptions of this <code>RequirementUsage</code>, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the <code>RequirementUsage</code> with <code>kind</code> = <code>assumption</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AssumedConstraint()

@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Association is a Relationship and a Classifier to enable classification of links between things (in the universe). The co-domains (<code>types</code>) of the <code>associationEnd</code> Features are the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
+ * <p>An <code>Association</code> is a <code>Relationship</code> and a <code>Classifier</code> to enable classification of links between things (in the universe). The co-domains (<code>types</code>) of the <code>associationEnd</code> <code>Features</code> are the <code>relatedTypes</code>, as co-domain and participants (linked things) of an <code>Association</code> identify each other.</p>
  * 
- * relatedTypes = associationEnd.type
+ * relatedType = associationEnd.type
  * specializesFromLibrary("Links::Link")
  * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
  * ownedEndFeature->size() = 2 implies
@@ -40,6 +40,16 @@ import org.eclipse.emf.common.util.EList;
  * not isAbstract implies relatedType->size() >= 2
  * associationEnds->size() > 2 implies
  *     not specializesFromLibrary("Links::BinaryLink")
+ * sourceType =
+ *     if relatedType->isEmpty() then null
+ *     else relatedType->first() endif
+ * targetType =
+ *     if relatedType->size() < 2 then OrderedSet{}
+ *     else 
+ *         relatedType->
+ *             subSequence(2, relatedType->size())->
+ *             asOrderedSet() 
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -73,7 +83,7 @@ public interface Association extends Classifier, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>types</code> of the <code>associationEnds</code> of the Association, which are the <code>relatedElements</code> of the Association considered as a Relationship.</p>
+	 * <p>The <code>types</code> of the <code>associationEnds</code> of the <code>Association</code>, which are the <code>relatedElements</code> of the <code>Association</code> considered as a <code>Relationship</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
@@ -103,7 +113,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedType</code> for this Association. It is the first <code>relatedType</code> of the Association.</p>
+	 * <p>The source <code>relatedType</code> for this <code>Association</code>. It is the first <code>relatedType</code> of the <code>Association</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Type</em>' reference.
@@ -146,7 +156,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>.</p> 
+	 * <p>The target <code>relatedTypes</code> for this <code>Association</code>. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Type</em>' reference list.
@@ -172,7 +182,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that identify the things that can be related by it. A concrete Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
+	 * <p>The <code>features</code> of the <code>Association</code> that identify the things that can be related by it. A concrete <code>Association</code> must have at least two <code>associationEnds</code>. When it has exactly two, the <code>Association</code> is called a <em>binary</em> <code>Association</code>.</p> 
 	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 

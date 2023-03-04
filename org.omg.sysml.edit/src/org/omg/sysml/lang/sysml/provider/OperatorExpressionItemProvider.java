@@ -167,12 +167,17 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createConstraintUsage()));
+				 SysMLFactory.eINSTANCE.createExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createExpression()));
+				 SysMLFactory.eINSTANCE.createCalculationUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createConstraintUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -192,11 +197,6 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createCalculationUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createCaseUsage()));
 
 		newChildDescriptors.add
@@ -207,17 +207,22 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createViewpointUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createVerificationCaseUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createUseCaseUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createViewpointUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -242,27 +247,7 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralRational()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -272,7 +257,32 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createNullExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralRational()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createSelectExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -282,7 +292,7 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+				 SysMLFactory.eINSTANCE.createCollectExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -297,22 +307,12 @@ public class OperatorExpressionItemProvider extends InvocationExpressionItemProv
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralInteger()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createLiteralString()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createSelectExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createCollectExpression()));
+				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
 	}
 
 	/**

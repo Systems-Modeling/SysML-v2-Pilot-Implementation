@@ -27,7 +27,9 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Parameter Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ParameterMembership is a FeatureMembership that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A ParameterMembership must be owned by a Behavior or a Step.</p>
+ * <p>A <code>ParameterMembership</code> is a <code>FeatureMembership</code> that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A <code>ParameterMembership</code> must be owned by a <code>Behavior</code> or a <code>Step</code>.</p>
+ * ownedMemberParameter.direction <> null
+ * owningType.oclIsKindOf(Behavior) or owningType.oclIsKindOf(Step)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -58,7 +60,7 @@ public interface ParameterMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is identified as a parameter by this ParameterMembership, which is always owned by the ParameterMembership.</p>
+	 * <p>The <code>Feature</code> that is identified as a <code>parameter</code> by this <code>ParameterMembership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Parameter</em>' reference.

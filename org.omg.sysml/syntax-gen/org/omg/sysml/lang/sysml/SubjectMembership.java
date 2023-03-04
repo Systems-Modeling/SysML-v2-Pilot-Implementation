@@ -29,7 +29,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SubjectMembership is a ParameterMembership that indicates that its <code>ownedSubjectParameter</code> is the subject Parameter for its <code>owningType</code>. The <code>owningType</code> of a SubjectMembership must be a CaseDefinition, CaseUsage, RequirementDefinition or RequirementUsage.</p>
+ * <p>A <code>SubjectMembership</code> is a <code>ParameterMembership</code> that indicates that its <code>ownedSubjectParameter</code> is the subject of its <code>owningType</code>. The <code>owningType</code> of a <code>SubjectMembership</code> must be a <code>RequirementDefinition</code>, <code>RequirementUsage</code>, <code>CaseDefinition</code>, or <code>CaseUsage</code>.</p>
+ * owningType.oclIsType(RequirementDefinition) or
+ * owningType.oclIsType(RequiremenCaseRequirementDefinition) or
+ * owningType.oclIsType(CaseDefinition) or
+ * owningType.oclIsType(CaseUsage)
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -59,7 +64,7 @@ public interface SubjectMembership extends ParameterMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usage that is the <code>ownedMemberParameter</code> of this SubjectMembership.</p>
+	 * <p>The <code>Usage</code< that is the <code>ownedMemberParameter</code> of this <code>SubjectMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subject Parameter</em>' reference.
 	 * @see #setOwnedSubjectParameter(Usage)

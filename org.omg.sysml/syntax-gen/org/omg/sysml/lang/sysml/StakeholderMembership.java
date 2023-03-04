@@ -9,7 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A StakeholderMembership is a ParameterMembership that identifies a PartUsage as a stakeholder parameter, which specifies a role played by an entity with Concerns framed by the parametered requirement.</p>
+ * <p>A <code>StakeholderMembership</code> is a <code>ParameterMembership</code> that identifies a <code>PartUsage</code> as a <code>stakeholderParameter</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage</code>, which specifies a role played by an entity with concerns framed by the <code>owningType</code>.</p>
+ * owningType.oclIsKindOf(RequirementUsage) or
+ * owningType.oclIsKindOf(RequirementDefinition)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -35,7 +37,7 @@ public interface StakeholderMembership extends ParameterMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PartUsage specifying the stakeholder.</p>
+	 * <p>The <code>PartUsage</code> specifying the stakeholder.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Stakeholder Parameter</em>' reference.
 	 * @see #setOwnedStakeholderParameter(PartUsage)

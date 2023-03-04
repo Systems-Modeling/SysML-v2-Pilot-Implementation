@@ -29,9 +29,37 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Succession</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Succession is a binary&nbsp;Connector that requires its <code>relatedFeatures</code> to happen separately in time. A Succession must be typed by the Association <em>HappensBefore</em> from the Kernel Model Library (or a specialization of it).</p>
+ * <p>A <code>Succession</code> is a binary <code>Connector</code> that requires its <code>relatedFeatures</code> to happen separately in time.</p>
  * 
  * specializesFromLibrary("Occurences::happensBeforeLinks")
+ * transitionStep =
+ *     if owningNamespace.oclIsKindOf(Step) and 
+ *         owningNamespace.oclAsType(Step).
+ *             specializesFromLibrary('TransitionPerformances::TransitionPerformance') then
+ *         owningNamespace.oclAsType(Step)
+ *     else null
+ *     endif
+ * triggerStep =
+ *     if transitionStep = null or 
+ *        transitionStep.ownedFeature.size() < 2 or
+ *        not transitionStep.ownedFeature->at(2).oclIsKindOf(Step) 
+ *     then Set{}
+ *     else Set{transitionStep.ownedFeature->at(2).oclAsType(Step)}
+ *     endif
+ * effectStep =
+ *     if transitionStep = null or 
+ *        transitionStep.ownedFeature.size() < 4 or
+ *        not transitionStep.ownedFeature->at(4).oclIsKindOf(Step) 
+ *     then Set{}
+ *     else Set{transitionStep.ownedFeature->at(4).oclAsType(Step)}
+ *     endif
+ * guardExpression =
+ *     if transitionStep = null or 
+ *        transitionStep.ownedFeature.size() < 3 or
+ *        not transitionStep.ownedFeature->at(3).oclIsKindOf(Expression) 
+ *     then Set{}
+ *     else Set{transitionStep.ownedFeature->at(3).oclAsType(Expression)}
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +88,7 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Steps that map incoming events to the timing of occurrences of the <code>transitionStep</code>. The values of <code>triggerStep</code> subset the list of acceptable events to be received by a Behavior or the object that performs it.</p>
+	 * <p><code>Steps</code> that map incoming events to the timing of occurrences of the <code>transitionStep</code>. The values of <code>triggerStep</code> subset the list of acceptable events to be received by a <code>Behavior</code> or the object that performs it.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Step</em>' reference list.
@@ -82,7 +110,7 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Steps that represent occurrences that are side effects of the <code>transitionStep</code> occurring.</p>
+	 * <p><code>Steps</code> that represent occurrences that are side effects of the <code>transitionStep</code> occurring.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Step</em>' reference list.
@@ -104,7 +132,7 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Expressions that must evaluate to true before the <code>transitionStep</code> can occur.</p>
+	 * <p><code>Expressions</code> that must evaluate to true before the <code>transitionStep</code> can occur.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
@@ -118,12 +146,6 @@ public interface Succession extends Connector {
 
 	/**
 	 * Returns the value of the '<em><b>Transition Step</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Transition Step</em>' reference isn't clear,
@@ -131,7 +153,7 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Step that is typed by the Behavior <em>TransitionPerformance</em> (from the Model Library) that has this Succession as its <em><code>transitionLink</code></em>.</p>
+	 * <p>A <code>Step</code> that is typed by the <code>Behavior</code> <code><em>TransitionPerformances::TransitionPerformance</em></code> (from the Kernel Semantic Library) that has this <code>Succession</code> as its <em><code>transitionLink</code></em>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Step</em>' reference.
@@ -139,7 +161,6 @@ public interface Succession extends Connector {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_TransitionStep()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='succession'"
-	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

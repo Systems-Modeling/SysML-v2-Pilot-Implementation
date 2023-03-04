@@ -29,7 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Documentation is a Comment that specifically documents a <code>documentedElement</code>, which must be its <code>owner</code>.</p>
+ * <p><code>Documentation</code> is a <code>Comment</code> that specifically documents a <code>documentedElement</code>, which must be its <code>owner</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -62,7 +63,8 @@ public interface Documentation extends Comment {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that is documented by this Documentation.</p>
+	 * <p>The <code>Element</code> that is documented by this <code>Documentation</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Documented Element</em>' reference.
 	 * @see #setDocumentedElement(Element)

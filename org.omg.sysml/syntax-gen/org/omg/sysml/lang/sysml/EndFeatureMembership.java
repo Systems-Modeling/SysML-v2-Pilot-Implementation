@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>EndFeatureMembership is a FeatureMembership that requires its <code>memberFeature</code> be owned and have <code>isEnd = true</code>.</p>
+ * <p><code>EndFeatureMembership</code> is a <code>FeatureMembership</code> that requires its <code>memberFeature</code> be owned and have <code>isEnd = true</code>.</p>
+ * 
  * ownedMemberFeature.isEnd
  * <!-- end-model-doc -->
  *

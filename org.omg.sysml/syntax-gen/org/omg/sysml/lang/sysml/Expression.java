@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expression is a Step that is typed by a Function. An Expression that also has a Function as its <code>featuringType</code> is a computational step within that Function. An Expression always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows Expressions to be interconnected in tree structures, in which inputs to each Expression in the tree are determined as the results of other Expressions in the tree.</p>
+ * <p>An <code>Expression</code> is a <code>Step</code> that is typed by a <code>Function</code>. An <code>Expression</code> that also has a <code>Function</code> as its <code>featuringType</code> is a computational step within that <code>Function</code>. An <code>Expression</code> always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows <code>Expressions</code> to be interconnected in tree structures, in which inputs to each <code>Expression</code> in the tree are determined as the results of other <code>Expression</code> in the tree.</p>
  * 
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
  * specializesFromLibrary("Performances::evaluations")
@@ -43,6 +43,18 @@ import org.eclipse.emf.common.util.EList;
  *         exists(binding |
  *             binding.relatedFeature->includes(result) and
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
+ * result =
+ *     let resultParams : Sequence(Feature) =
+ *         ownedFeatureMemberships->
+ *             selectByKind(ReturnParameterMembership).
+ *             ownedParameterMember in
+ *     if resultParams->notEmpty() then resultParams->first()
+ *     else if function <> null then function.result
+ *     else null
+ *     endif endif
+ * ownedFeatureMembership->
+ *     selectByKind(ReturnParameterMembership)->
+ *     size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -75,7 +87,7 @@ public interface Expression extends Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Function that types this Expression.</p>
+	 * <p>The <code>Function</code> that types this <code>Expression</code>.</p>
 	 * 
 	 * <p>This is the Function that types the Expression.</p>
 	 * 
@@ -117,7 +129,7 @@ public interface Expression extends Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p><p>The <code>result</code> parameter of the Expression, derived as the single <code>parameter</code> of the Expression with direction <code>out</code>. The result of an Expression must either be inherited from its <code>function</code> or (directly or indirectly) redefine the <code>result</code> parameter of its <code>function</code>.</p>
+	 * <p><p>An <code>output</code> <code>parameter</code> of the <code>Expression</code> whose value is the result of the <code>Expression</code>. The result of an <code>Expression</code> is either inherited from its <code>function</code> or it is related to the <code>Expression</code> via a <code>ReturnParameterMembership</code>, in which case it redefines the <code>result</code> <code>parameter</code> of its <code>function</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
@@ -146,7 +158,7 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Expression meets the constraints necessary to be evaluated at <em>model level</em>, that is, using metadata within the model.</p>
+	 * <p>Whether this <code>Expression</code> meets the constraints necessary to be evaluated at <em>model level</em>, that is, using metadata within the model.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Model Level Evaluable</em>' attribute.
 	 * @see #setIsModelLevelEvaluable(boolean)
@@ -171,15 +183,18 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return whether this Expression is model-level evaluable. The <code>visited</code> parameter is used to track possible circular feature references. Such circular references are not allowed in model-level evaluable expressions.</p>
+	 * <p>Return whether this <code>Expression</code> is model-level evaluable. The <code>visited</code> parameter is used to track possible circular <code>Feature</code> references. Such circular references are not allowed in model-level evaluable expressions.</p>
 	 * 
-	 * <p>An Expression that is not otherwise specialized is model-level evaluable if all of its <code>features</code> are either <code>in</code> parameters, its single <code>resultParameter</code> or a result Expression owned via a ResultExpressionMembership (and possibly its implicit BindingConnector). The <code>parameters</code> parameters must not have and <code>ownedFeatures</code> and the result Expression must be model-level evaluable.</p>
-	 * parameters->forAll(
-	 *     p | directionOf(p) = FeatureDirectionKind::_'in' and 
-	 *     p.valuation = null) and
-	 * ownedFeatureMembership->
-	 *     select(oclIsKindOf(ResultExpressionMembership))->
-	 *     forAll(resultExpression.modelLevelEvaluable(visited))
+	 * <p>An <code>Expression</code> that is not otherwise specialized is model-level evaluable if all of it has no <code>ownedSpecialziations</code> and all its (non-implicit) <code>features</code> are either <code>in</code> parameters, the <code>result</code> <code>parameter</code> or a result <code>Expression</code> owned via a <code>ResultExpressionMembership</code>. The <code>parameters</code>  must not have any <code>ownedFeatures</code> or a <code>FeatureValue</code>, and the result <code>Expression</code> must be model-level evaluable.</p>
+	 * ownedSpecialization->isEmpty() and
+	 * ownedFeature->forAll(f |
+	 *     (f.oclIsKindOf(Relationship) and 
+	 *         f.oclAsType(Relationship).isImplicit) or 
+	 *     (directionOf(f) = FeatureDirectionKind::_'in' or f = result) and 
+	 *         f.ownedFeature->isEmpty() f.valuation = null and  or
+	 *     f.owningFeatureMembership.oclIsKindOf(ResultExpressionMembership) and
+	 *         f.oclAsType(Expression).modelLevelEvaluable(visited)
+	 *     
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" visitedMany="true" visitedOrdered="false"
 	 * @generated
@@ -190,8 +205,15 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or a Feature that is not an Expression.</p>
+	 * <p>If this <code>Expression</code> <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context <code>Element</code> for resolving <code>Feature</code> names and testing classification. The result is a collection of <code>Elements</code>, which, for a fully evaluable <code>Expression</code>, will be a <code>LiteralExpression</code> or a <code>Feature</code> that is not an <code>Expression</code>.</p>
 	 * isModelLevelEvaluable
+	 * let resultExprs : Sequence(Expression) =
+	 *     ownedFeatureMembership->
+	 *         selectByKind(ResultExpressionMembership).
+	 *         ownedResultExpression in
+	 * if resultExpr->isEmpty() then Sequence{}
+	 * else resultExprs->first().evaluate(target)
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model unique="false" targetRequired="true" targetOrdered="false"
 	 * @generated
@@ -202,12 +224,12 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Model-level evaluate this Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
+	 * <p>Model-level evaluate this <code>Expression</code> with the given <code>target</code>. If the result is a <code>LiteralBoolean</code>, return its <code>value</code>. Otherwise return <code>false</code>.</p>
 	 * 
 	 * let results: Sequence(Element) = evaluate(target) in
 	 *     result->size() = 1 and
-	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
-	 *     results->at(1).oclAsType(LiteralBoolean).value
+	 *     results->first().oclIsKindOf(LiteralBoolean) and 
+	 *     results->first().oclAsType(LiteralBoolean).value
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" targetRequired="true" targetOrdered="false"
 	 * @generated

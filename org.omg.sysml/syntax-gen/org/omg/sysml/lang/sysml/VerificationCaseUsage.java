@@ -31,9 +31,18 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A VerificationCaseUsage is a Usage of a VerificationCaseDefinition.</p>
- * 
- * <p>A VerificationCaseUsage must subset, directly or indirectly, either the base VerificationCaseUsage <code>verificationCases</code> from the Systems model library, if it is not owned by a VerificationCaseDefinition or VerificationCaseUsage, or the VerificationCaseUsage <code>subVerificationCases</code> inherited from its owner, otherwise.</p>
+ * <p>A <code>VerificationCaseUsage</code> is a </code>Usage</code> of a <code>VerificationCaseDefinition</code>.</p>
+ * verifiedRequirement =
+ *     if objectiveRequirement = null then OrderedSet{}
+ *     else 
+ *         objectiveRequirement.featureMembership->
+ *             selectByKind(RequirementVerificationMembership).
+ *             verifiedRequirement->asOrderedSet()
+ *     endif
+ * specializesFromLibrary('VerificationCases::verificationCases')
+ * isComposite and owningType <> null and
+ *     (owningType.oclIsKindOf(VerificationCaseDefinition) or
+ *      owningType.oclIsKindOf(VerificationCaseUsage))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +69,7 @@ public interface VerificationCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The VerificationCase that defines this VerificationCaseUsage.</p>
+	 * <p>The <code>VerificationCase</code> that is the <code>definition</code> of this <code>VerificationCaseUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verification Case Definition</em>' reference.
 	 * @see #setVerificationCaseDefinition(VerificationCaseDefinition)
@@ -89,7 +98,7 @@ public interface VerificationCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages verified by this VerificationCaseUsage, derived as the <code>verifiedRequirements</code> of all RequirementVerificationMemberships of the <code>objectiveRequirement</code>.</p>
+	 * <p>The <code>RequirementUsages</code> verified by this <code>VerificationCaseUsage</code>, which are the <code>verifiedRequirements</code> of all <code>RequirementVerificationMemberships</code> of the <code>objectiveRequirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVerificationCaseUsage_VerifiedRequirement()

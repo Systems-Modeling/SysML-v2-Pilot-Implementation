@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MembershipImport is an Import that imports its <code>importedMembership</code> into the <code>importOwningNamespace</code>. If <code>isRecursive = true</code> and the <code>memberElement</code> of the <code>importedMembership</code> is a Namespace, then the equivalent of a recursive NamespaceImport is also performed on that Namespace.</p>
+ * <p>A <code>MembershipImport</code> is an <code>Import</code> that imports its <code>importedMembership</code> into the <code>importOwningNamespace</code>. If <code>isRecursive = true</code> and the <code>memberElement</code> of the <code>importedMembership</code> is a <code>Namespace</code>, then the equivalent of a recursive <code>NamespaceImport</code> is also performed on that <code>Namespace</code>.</p>
+ * 
  * importedElement = importedMembership.memberElement
  * <!-- end-model-doc -->
  *
@@ -36,7 +37,8 @@ public interface MembershipImport extends Import {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Membership to be imported.</p>
+	 * <p>The <code>Membership</code> to be imported.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Membership</em>' reference.
 	 * @see #setImportedMembership(Membership)

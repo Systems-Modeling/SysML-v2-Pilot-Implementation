@@ -29,7 +29,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ObjectiveMembership is a FeatureMembership that indicates that its <code>ownedObjectiveRequirement</code> is the objective RequirementUsage for its <code>owningType</code>. The <code>owningType</code> of an ObjectiveMembership must be a CaseDefinition or CaseUsage.</p>
+ * <p>An <code>ObjectiveMembership</code> is a <code>FeatureMembership</code> that indicates that its <code>ownedObjectiveRequirement</code> is the objective <code>RequirementUsage <code> for its <code>owningType</code>, which must be a <code>CaseDefinition</code> or <code>CaseUsage</code>.</p>
+ * owningType.oclIsType(CaseDefinition) or
+ * owningType.oclIsType(CaseUsage)
+ * 
+ * ownedObjectiveRequirement.isComposite
  * <!-- end-model-doc -->
  *
  * <p>

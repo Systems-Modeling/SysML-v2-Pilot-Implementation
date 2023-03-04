@@ -29,9 +29,17 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RenderingUsage is the usage of a RenderingDefinition to specify the rendering of a specific model view to produce a physical view artifact.</p>
+ * <p>A <code>RenderingUsage</code> is the usage of a <code>RenderingDefinition</code> to specify the rendering of a specific model view to produce a physical view artifact.</p>
  * 
- * <p>A RenderingUsage must subset, directly or indirectly, the base RenderingUsage <code>renderings</code> from the Systems model library.</p>
+ * 
+ * specializeFromLibrary('Views::renderings')
+ * owningType <> null and
+ * (owningType.oclIsKindOf(RenderingDefinition) or
+ *  owningType.oclIsKindOf(RenderingUsage)) implies
+ *     specializesFromLibrary('Views::Rendering::subrenderings')
+ * owningFeatureMembership <> null and
+ * owningFeatureMembership.oclIsKindOf(ViewRenderingMembership) implies
+ *     redefinesFromLibrary('Views::View::viewRendering')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -57,7 +65,7 @@ public interface RenderingUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingDefinition that defines this RenderingUsage.</p>
+	 * <p>The <code>RenderingDefinition</code> that is the <code>definition</code> of this <code>RenderingUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rendering Definition</em>' reference.
 	 * @see #setRenderingDefinition(RenderingDefinition)

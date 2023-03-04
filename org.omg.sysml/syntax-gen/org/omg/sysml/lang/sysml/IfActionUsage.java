@@ -59,7 +59,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is false. It an the owned <code>ActionUsage</code> that redefines the <em><code>elseClause</code></em> <code>parameter</code> of the <code>IfActionUsage</code>.</p> 
+	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is false. It is the (optional) third <code>parameter</code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Else Action</em>' reference.
@@ -87,7 +87,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is true. It is an owned <code>ActionUsage</code> that redefines the <em><code>thenClause</code></em> <code>parameter<code> of the <code>IfActionUsage</code>.</p> 
+	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is true. It is the second <code>parameter<code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Then Action</em>' reference.
@@ -115,7 +115,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. Derived as the <code>value</code> Expression of the FeatureValue for the redefined <em><code>ifTest</code></em> parameter of the IfActionUsage.</p> 
+	 * <p>The <code>Expression</code> whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. It is the first <code>parameter<code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>If Argument</em>' reference.

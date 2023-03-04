@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CollectExpression is an OperatorExpression whose operator is <code>"collect"</code>, which resolves to the library Function <em><code>ControlFunctions::collect</code></em>.</p>
+ * <p>A <code>CollectExpression</code> is an <code>OperatorExpression</code> whose <code>operator</code> is <code>"collect"</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::collect</code></em> from the Kernel Functions Library.</p>
+ * operator = "collect"
  * <!-- end-model-doc -->
  *
  *

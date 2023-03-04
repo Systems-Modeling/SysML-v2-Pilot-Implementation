@@ -56,6 +56,7 @@ public interface ControlNode extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>Check that the given <code>Multiplicity</code> has <code>lowerBound</code> and <code>upperBound</code> expressions that are model-level evaluable to the given <code>lower</code> and <code>upper</code> values.</p>
 	 * mult <> null and
 	 * if mult.oclIsKindOf(MultiplicityRange) then
 	 *     mult.oclAsType(MultiplicityRange).hasBounds(lower, upper)

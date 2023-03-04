@@ -49,7 +49,7 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Expression</code> whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. It the owned <code>parameter</code> that redefines <em><code>WhileLoopAction::whileTest</code></em>.</p> 
+	 * <p>The <code>Expression</code> whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. It is the first owned <code>parameter</code> of the <code>WhileLoopActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>While Argument</em>' reference.
@@ -77,7 +77,7 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Expression</code> whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. It is the owned <code>parameter</code> that redefines <em><code>WhileLoopAction::untilTest</code><em>.</p> 
+	 * <p>The <code>Expression</code> whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. It is the (optional) third owned <code>parameter</code> of the <code>WhileLoopActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Until Argument</em>' reference.

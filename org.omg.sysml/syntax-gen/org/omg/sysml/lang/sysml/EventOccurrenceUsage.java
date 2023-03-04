@@ -44,7 +44,7 @@ public interface EventOccurrenceUsage extends OccurrenceUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The OccurrenceUsage referenced as an event by this EventOccurrenceUsage. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the EventOccurrenceUsage, if there is one, and, otherwise, the EventOccurrenceUsage itself.</p>
+	 * <p>The <code>OccurrenceUsage</code> referenced as an event by this <code>EventOccurrenceUsage</code>. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the <code>EventOccurrenceUsage</code>, if there is one, and, otherwise, the <code>EventOccurrenceUsage</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Event Occurrence</em>' reference.
 	 * @see #setEventOccurrence(OccurrenceUsage)

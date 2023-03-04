@@ -30,10 +30,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Type is a Namespace that is the most general kind of Element supporting the semantics of classification. A Type may be a Classifier or a Feature, defining conditions on what is classified by the Type (see also the description of <code>isSufficient</code>).</p>
+ * <p>A <code>Type</code> is a <code>Namespace</code> that is the most general kind of <code>Element</code> supporting the semantics of classification. A <code>Type</code> may be a <code>Classifier</code> or a <code>Feature</code>, defining conditions on what is classified by the <code>Type</code> (see also the description of <code>isSufficient</code>).</p>
  * 
  * ownedSpecialization = ownedRelationship->selectByKind(Specialization)->
- *     select(g | g.special = self)
+ *     select(s | s.special = self)
  *     
  * multiplicity = 
  *     let ownedMultiplicities: Sequence(Multiplicity) =
@@ -61,7 +61,7 @@ import org.eclipse.emf.common.util.EList;
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
  * specializesFromLibrary('Base::Anything')
- * directedFeature = feature->select(direction <> null)
+ * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
  * featureMembership = ownedMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
@@ -79,6 +79,9 @@ import org.eclipse.emf.common.util.EList;
  * ownedRelationship->selectByKind(Unioning)
  * ownedRelationship->selectByKind(Intersecting)
  * ownedRelationship->selectByKind(Differencing)
+ * ownedEndFeature = ownedFeature->select(isEnd)
+ * inheritedFeature = inheritedMemberships->
+ *     selectByKind(FeatureMembership).memberFeature
  * <!-- end-model-doc -->
  *
  * <p>
@@ -134,7 +137,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Type that are FeatureMemberships, for which the Type is the <code>owningType</code>. Each such FeatureMembership identifies an <code>ownedFeature</code> of the Type.</p>
+	 * <p>The <code>ownedMemberships</code> of this <code>Type</code> that are <code>FeatureMemberships</code>, for which the <code>Type</code> is the <code>owningType</code>. Each such <code>FeatureMembership</code> identifies an <code>ownedFeature</code> of the <code>Type</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
@@ -151,7 +154,7 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If the given feature is a feature of this type, then return its direction relative to this type, taking conjugation into account.</p>
+	 * <p>If the given <code>feature</code> is a <code>feature</code> of this <code>Type</code>, then return its direction relative to this <code>Type</code>, taking conjugation into account.</p>
 	 * 
 	 * if input->includes(feature) and output->includes(feature) then 
 	 *     FeatureDirectionKind::inout
@@ -172,7 +175,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return all Types related to this Type as supertypes directly or transitively by Generalization Relationships.</p>
+	 * <p>Return all <code>Types</code> related to this <code>Type</code> as supertypes directly or transitively by <code>Specialization</code> <code>Relationships</code>.</p>
+	 * 
 	 * ownedSpecialization->
 	 *     closure(general.ownedSpecialization).general->
 	 *     including(self)
@@ -202,7 +206,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Check whether this Type is a direct or indirect specialization of the named library Type. <code>libraryTypeName</code> must conform to the syntax of a KerML qualified name and must resolve to a Type in global scope.</p>
+	 * <p>Check whether this <code>Type</code> is a direct or indirect specialization of the named library <code>Type</code>. <code>libraryTypeName</code> must conform to the syntax of a KerML qualified name and must resolve to a <code>Type</code> in global scope.</p>
+	 * 
 	 * let mem : Membership = resolveGlobal(libraryTypeName) in
 	 * mem <> null and mem.memberElement.oclIsKindOf(Type) and
 	 * specializes(mem.memberElement.oclAsType(Type))
@@ -229,7 +234,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberFeatures</code> of the <code>ownedFeatureMemberships</code> of this Type.</code>
+	 * <p>The <code>ownedMemberFeatures</code> of the <code>ownedFeatureMemberships</code> of this <code>Type</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature</em>' reference list.
@@ -258,7 +263,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberFeatures</code> of the <code>featureMemberships</code> of this Type.</p>
+	 * <p>The <code>ownedMemberFeatures</code> of the <code>featureMemberships</code> of this <code>Type</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference list.
@@ -287,7 +292,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this Type by FeatureMemberships that have <code>direction</code> <code>in<code> or <code>inout<code>.</p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>in<code> or <code>inout<code>.</code></code></code></code></p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Input</em>' reference list.
@@ -316,7 +321,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this Type by FeatureMemberships that have <code>direction</code> <code>out<code> or <code>inout<code>.</p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>out<code> or <code>inout<code>.</code></code></code></code></p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Output</em>' reference list.
@@ -339,7 +344,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates whether instances of this Type must also be instances of at least one of its specialized Types.</p>
+	 * <p>Indicates whether instances of this <code>Type</code> must also be instances of at least one of its specialized <code>Types</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
@@ -376,7 +381,8 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Memberships inherited by this Type via Generalization or Conjugation. These are included in the derived union for the <code>memberships</code> of the Type.</p>
+	 * <p>All <code>Memberships</code> inherited by this <code>Type</code> via <code>Specialization</code> or <code>Conjugation</code>. These are included in the derived union for the <code>memberships</code> of the <code>Type</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedMembership()
@@ -426,9 +432,9 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether all things that meet the classification conditions of this Type must be classified by the Type.</p>
+	 * <p>Whether all things that meet the classification conditions of this <code>Type</code> must be classified by the <code>Type</code>.</p>
 	 * 
-	 * <p>(A Type&nbsp;gives conditions that must be met by whatever it classifies, but when <code>isSufficient</code> is false, things may meet those conditions but still not be classified by the Type. For example, a Type <code><em>Car</em></code> that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars. However, if the type <code><em>Car</em></code> were sufficient, it would classify all four-wheeled things.)</p>
+	 * <p>(A <code>Type</code>&nbsp;gives conditions that must be met by whatever it classifies, but when <code>isSufficient</code> is false, things may meet those conditions but still not be classified by the <code>Type</code>. For example, a Type <code><em>Car</em></code> that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would classify as cars. However, if the <code>Type</code> <code><em>Car</em></code> were sufficient, it would classify all four-wheeled things.)</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Sufficient</em>' attribute.
@@ -465,7 +471,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Conjugation owned by this Type for which the Type is the <code>originalType</code>.</p>
+	 * <p>A <code>Conjugation</code> owned by this <code>Type</code> for which the <code>Type</code> is the <code>originalType</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Conjugator</em>' reference.
@@ -498,7 +504,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates whether this Type has an <code>ownedConjugator</code>. (See Conjugation.)</p>
+	 * <p>Indicates whether this <code>Type</code> has an <code>ownedConjugator</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Conjugated</em>' attribute.
@@ -530,7 +536,8 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureMemberships for <code>features</code> of this Type, which include all <code>ownedFeatureMemberships</code> and those <code>inheritedMemberships</code> that are FeatureMemberships (but does <em>not</em> include any <code>importedMemberships</code>).</p>
+	 * <p>The <code>FeatureMemberships</code> for <code>features</code> of this <code>Type</code>, which include all <code>ownedFeatureMemberships</code> and those <code>inheritedMemberships</code> that are <code>FeatureMemberships</code> (but does <em>not</em> include any <code>importedMemberships</code>).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
@@ -547,7 +554,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The interpretations of a Type with <code>differencingTypes</code> are asserted to be those of the first of those Types, but not including those of the remaining types. For example, a Classifier might be the difference of a Classifier for people and another for people of a particular nationality, leaving people who are not of that nationality. Similarly, a feature of people might be the difference between a feature for their children and a Classifier for people of a particular sex, identifying their children not of that sex (because the interpretations of the children feature that identify those of that sex are also interpretations of the Classifier for that sex).<p>
+	 * <p>The interpretations of a <code>Type</code> with <code>differencingTypes</code> are asserted to be those of the first of those <code>Types</code>, but not including those of the remaining <code>Types</code>. For example, a <code>Classifier</code> might be the difference of a <code>Classifier</code> for people and another for people of a particular nationality, leaving people who are not of that nationality. Similarly, a feature of people might be the difference between a feature for their children and a <code>Classifier</code> for people of a particular sex, identifying their children not of that sex (because the interpretations of the children <code>Feature</code> that identify those of that sex are also interpretations of the <code>Classifier</code> for that sex).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Differencing Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DifferencingType()
@@ -571,7 +579,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type that are Differencings, having this Type as their <code>typeDifferenced</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Type</code> that are <code>Differencings</code>, having this <code>Type</code> as their <code>typeDifferenced</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Differencing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedDifferencing()
@@ -599,7 +608,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All the <code>memberFeatures</code> of the <code>inheritedMemberships</code> of this Type.</p>
+	 * <p>All the <code>memberFeatures</code> of the <code>inheritedMemberships</code> of this <code>Type</code> that are <code>FeatureMemberships</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Feature</em>' reference list.
@@ -623,7 +632,10 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</p>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
+	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</code>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
+	 * 
+	 * <p>&nbsp;</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)
@@ -652,7 +664,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The interpretations of a Type with code>unioningTypes</code> are asserted to be the same as those of all the <code>unioningTypes</code> together, which are the Types  derived from the <code>unioningType</code> of the <code>ownedUnionings</code> of this Type.  For example, a Classifier for people might be the union of Classifiers for all the sexes. Similarly, a feature for people's children might be the union of features dividing them in the same ways as people in general.</p>
+	 * <p>The interpretations of a <code>Type</code> with <code>unioningTypes</code> are asserted to be the same as those of all the <code>unioningTypes</code> together, which are the <code>Types</code> derived from the <code>unioningType</code> of the <code>ownedUnionings</code> of this <code>Type</code>. For example, a <code>Classifier</code> for people might be the union of <code>Classifiers</code> for all the sexes. Similarly, a feature for people&#39;s children might be the union of features dividing them in the same ways as people in general.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Unioning Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_UnioningType()
@@ -676,7 +689,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type that are Intersectings, have the Type as their <code>typeIntersected</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Type</code> that are <code>Intersectings</code>, have the <code>Type</code> as their <code>typeIntersected</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Intersecting</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedIntersecting()
@@ -694,7 +708,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The interpretations of a Type with code>intersectingTypes</code> are asserted to be those in common among the <code>intersectingTypes</code>, which are the Types derived from the <code>intersectingType</code> of the <code>ownedIntersectings</code> of this Type.  For example, a Classifier might be an intersection of Classifiers for people of a particular sex and of a particular nationality.  Similarly, a feature for people's children of a particular sex might be the intersection of a feature for their children and a Classifier for people of that sex (because the interpretations of the children feature that identify those of that sex are also interpretations of the Classifier for that sex).<p>
+	 * <p>The interpretations of a <code>Type</code> with <code>intersectingTypes</code> are asserted to be those in common among the <code>intersectingTypes</code>, which are the <code>Types</code> derived from the <code>intersectingType</code> of the <code>ownedIntersectings</code> of this <code>Type</code>. For example, a <code>Classifier</code> might be an intersection of <code>Classifiers</code> for people of a particular sex and of a particular nationality. Similarly, a feature for people&#39;s children of a particular sex might be the intersection of a <code>Feature</code> for their children and a <code>Classifier</code> for people of that sex (because the interpretations of the children <code>Feature</code> that identify those of that sex are also interpretations of the Classifier for that sex).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Intersecting Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IntersectingType()
@@ -718,7 +733,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type that are Unionings, having the Type as their <code>typeUnioned</code>.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Type</code> that are <code>Unionings</code>, having the <code>Type</code> as their <code>typeUnioned</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Unioning</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedUnioning()
@@ -742,7 +758,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of this Type that have a non-null <code>direction</code>.</p>
+	 * <p>The <code>features</code> of this <code>Type</code> that have a non-null <code>direction</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Directed Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DirectedFeature()
@@ -767,7 +784,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type that are Disjoinings, for which the Type is the <code>typeDisjoined</code> Type.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Type</code> that are <code>Disjoinings</code>, for which the <code>Type</code> is the <code>typeDisjoined</code> <code>Type</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Disjoining</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedDisjoining()
@@ -792,7 +810,7 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type that are Specializations, for which the Type is the <code>specific</code> Type.</p>
+	 * <p>The <code>ownedRelationships</code> of this <code>Type</code> that are <code>Specializations</code>, for which the <code>Type</code> is the <code>specific</code> <code>Type</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Specialization</em>' reference list.
@@ -809,7 +827,8 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the inherited Memberships of this Type, excluding those supertypes in the <code>excluded</code> set.</code>
+	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
 	 * @generated
@@ -834,7 +853,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>endFeatures</code> of this Type that are <code>ownedFeatures</code>.</p>
+	 * <p>All <code>endFeatures</code> of this <code>Type</code> that are <code>ownedFeatures</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned End Feature</em>' reference list.

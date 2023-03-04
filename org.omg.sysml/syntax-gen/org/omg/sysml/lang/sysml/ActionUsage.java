@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An <code>ActionUsage</code> is a <code>Usage</code> that is also a <code>Step</code>, and, so, is typed by a <code>Behavior</code>. Nominally, if the type is an <code>ActionDefinition</code>, an <code>ActionUsage</code> is a <code>Usage</code> of that <code>ActionDefinition</code> within a system. However, other kinds of kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behavior</code> from the Kernel Model Libraries.</p>
+ * <p>An <code>ActionUsage</code> is a <code>Usage</code> that is also a <code>Step</code>, and, so, is typed by a <code>Behavior</code>. Nominally, if the type is an <code>ActionDefinition</code>, an <code>ActionUsage</code> is a <code>Usage</code> of that <code>ActionDefinition</code> within a system. However, other kinds of kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p>
  * 
  * isSubactionUsage() implies
  *     specializesFromLibrary('Actions::Action::subactions')
@@ -51,6 +51,14 @@ import org.eclipse.emf.common.util.EList;
  *     else
  *         redefinesFromLibrary('States::StateAction::exitAction')
  *     endif endif
+ * owningType <> null and
+ *     (owningType.oclIsKindOf(AnalysisCaseDefinition) and
+ *         owningType.oclAsType(AnalysisCaseDefinition).analysisAction->
+ *             includes(self) or
+ *      owningType.oclIsKindOf(AnalysisCaseUsage) and
+ *         owningType.oclAsType(AnalysisCaseUsage).analysisAction->
+ *             includes(self)) implies
+ *     specializesFromLibrary('AnalysisCases::AnalysisCase::analysisSteps')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -78,7 +86,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Behaviors that are the types of this ActionUsage. Nominally, these would be ActionDefinitions, but other kinds of Kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p> 
+	 * <p>The <code>Behaviors</code> that are the <code>types</code> of this <code>ActionUsage</code>. Nominally, these would be <code>ActionDefinitions<code>, but other kinds of Kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Definition</em>' reference list.
@@ -115,7 +123,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
 	 * @generated
 	 */
-	Object inputParameter(int i);
+	Feature inputParameter(int i);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TypeFeaturing is a Featuring Relationship in which the <code>featureOfType</code> is the <code>source</code> and the <code>featuringType</code> is the target. A TypeFeaturing may be owned by its <code>featureOfType</code>.</p>
+ * <p>A <code>TypeFeaturing</code> is a <code>Featuring</code> <code>Relationship</code> in which the <code>featureOfType</code> is the <code>source</code> and the <code>featuringType</code> is the <code>target</code>.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -58,7 +58,7 @@ public interface TypeFeaturing extends Featuring {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is featured by the <code>featuringType</code>. It is the <code>source</code> of the Relationship.</p>
+	 * <p>The <code>Feature</code> that is featured by the <code>featuringType</code>. It is the <code>source</code> of the <code>TypeFeaturing</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Of Type</em>' reference.
 	 * @see #setFeatureOfType(Feature)
@@ -92,7 +92,7 @@ public interface TypeFeaturing extends Featuring {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that features the <code>featureOfType</code>. It is the <code>target</code> of the Relationship.</p>
+	 * <p>The <code>Type</code> that features the <code>featureOfType</code>. It is the <code>target</code> of the <code>TypeFeaturing</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Featuring Type</em>' reference.
 	 * @see #setFeaturingType(Type)
@@ -127,7 +127,7 @@ public interface TypeFeaturing extends Featuring {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that owns this TypeFeaturing and is also the <code>featureOfType</code>.</p>
+	 * <p>A <code>featureOfType</code> that is also the <code>owningRelatedElement</code> of this <code>TypeFeaturing</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature Of Type</em>' reference.
 	 * @see #setOwningFeatureOfType(Feature)

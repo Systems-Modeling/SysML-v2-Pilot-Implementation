@@ -8,7 +8,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An OwningMembership is a Membership that owns its <code>memberElement</code> as a <code>ownedRelatedElement</code>. The <code>ownedMemberElementM</code> becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>.
+ * <p>An <code>OwningMembership</code> is a <code>Membership</code> that owns its <code>memberElement</code> as a <code>ownedRelatedElement</code>. The <code>ownedMemberElementM</code> becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>.</p>
+ * 
  * ownedMemberName = ownedMemberElement.name
  * ownedMemberShortName = ownedMemberElement.shortName
  * <!-- end-model-doc -->
@@ -146,8 +147,7 @@ public interface OwningMembership extends Membership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code> due to this OwningMembership. Derived as the first <code>ownedRelatedElement</code> of the OwningRelationship.</p>
-	 * 
+	 * <p>The <code>Element</code> that becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code> due to this <code>OwningMembership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Element</em>' reference.

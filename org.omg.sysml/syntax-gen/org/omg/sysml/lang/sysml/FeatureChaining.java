@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureChaining is a Relationship that makes its target Feature one of the <code>chainingFeatures</code> of its owning Feature.</p>
+ * <p><code>FeatureChaining</code> is a <code>Relationship</code> that makes its target <code>Feature</code> one of the <code>chainingFeatures</code> of its owning <code>Feature</code>.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +36,8 @@ public interface FeatureChaining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose values partly determine values of <code>featureChained</code>, as described in <code>Feature::chainingFeature</code>.</p>
+	 * <p>The <code>Feature</code> whose values partly determine values of <code>featureChained</code>, as described in <code>Feature::chainingFeature</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Chaining Feature</em>' reference.
 	 * @see #setChainingFeature(Feature)
@@ -76,7 +77,8 @@ public interface FeatureChaining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose values are partly determined by values of the <code>chainingFeature</code>, as described in <code>Feature::chainingFeature</code>.</p>
+	 * <p>The <code>Feature</code> whose values are partly determined by values of the <code>chainingFeature</code>, as described in <code>Feature::chainingFeature</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Chained</em>' reference.
 	 * @see #setFeatureChained(Feature)

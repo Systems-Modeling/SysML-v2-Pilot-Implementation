@@ -29,22 +29,23 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PortDefinition defines a point at which external entities can connect to and interact with a system or part of a system. Any <code>ownedUsages</code> of a PortDefinition, other than PortUsages, must not be composite.</p>
+ * <p>A <code>PortDefinition</code> defines a point at which external entities can connect to and interact with a system or part of a system. Any <code>ownedUsages</code> of a <code>PortDefinition</code>, other than <code>PortUsages</code>, must not be composite.</p>
  * 
- * <p>A PortDefinition must subclass, directly or indirectly, the base Class <em>Port</em> from the Systems model library.</p>
+ * 
  * 
  * conjugatedPortDefinition = 
- * let conjugatedPortDefinitions : Sequence(ConjugatedPortDefinition) =
+ * let conjugatedPortDefinitions : OrderedSet(ConjugatedPortDefinition) =
  *     ownedMember->selectByKind(ConjugatedPortDefinition) in
  * if conjugatedPortDefinitions->isEmpty() then null
  * else conjugatedPortDefinitions->first()
  * endif
  * ownedUsage->
- *     select(not oclIsKindOf(PortUsage))->
+ *     reject(oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)
- * ownedFeature->
- *     selectByKind(ConjugatedPortDefinition)->
- *     size() <= 1
+ * not oclIsKindOf(ConjugatedPortDefinition) implies
+ *     ownedMember->
+ *         selectByKind(ConjugatedPortDefinition)->
+ *         size() = 1
  * specializeFromLibrary('Ports::Port')
  * <!-- end-model-doc -->
  *
@@ -73,7 +74,7 @@ public interface PortDefinition extends OccurrenceDefinition, Structure {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConjugatedPortDefinition that is conjugate to this PortDefinition.</p>
+	 * <p>The <codeConjugatedPortDefinition</code> that is conjugate to this <code>PortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)

@@ -234,7 +234,7 @@ public abstract class VStructure extends VDefault {
         if (f.getOwnedReferenceSubsetting() == null) return false;
         if (f.getDeclaredName() != null) return false;
         if (f.getDeclaredShortName() != null) return false;
-        return f.getOwnedRedefinition().isEmpty();
+        return true;
     }
 
     protected String extractTitleName(Element e) {

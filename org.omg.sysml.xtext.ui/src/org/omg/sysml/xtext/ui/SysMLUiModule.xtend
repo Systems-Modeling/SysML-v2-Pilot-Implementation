@@ -9,6 +9,10 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 import org.omg.sysml.xtext.ui.quickfix.SysMLQuickfixProvider
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
 import org.omg.kerml.xtext.ui.KerMLUserKeywordHighlightingCalculator
+import org.omg.kerml.xtext.ui.KerMLAntlrTokenToAttributeIdMapper
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
+import org.omg.kerml.xtext.ui.KerMLHighlightingConfiguration
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -22,6 +26,14 @@ class SysMLUiModule extends AbstractSysMLUiModule {
 	
 	def Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return KerMLUserKeywordHighlightingCalculator
+	}
+	
+	def Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		KerMLHighlightingConfiguration
+	}
+	
+	def Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		KerMLAntlrTokenToAttributeIdMapper
 	}
 	
 	override provideIAllContainersState() {

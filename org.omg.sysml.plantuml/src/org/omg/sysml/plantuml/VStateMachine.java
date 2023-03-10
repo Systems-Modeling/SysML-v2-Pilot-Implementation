@@ -30,6 +30,8 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMachine extends VDefault {
+    private final boolean showStereotype;
+
     private void addState(Type typ, boolean isParallel, boolean withStyle) {
         String name = getNameAnyway(typ);
         if (isParallel) {
@@ -44,7 +46,7 @@ public class VStateMachine extends VDefault {
 
     @Override
     public String caseStateUsage(StateUsage su) {
-        addState(su, su.isParallel(), false);
+        addState(su, su.isParallel(), showStereotype);
         return getString();
     }
     
@@ -64,9 +66,11 @@ public class VStateMachine extends VDefault {
     public VStateMachine(Visitor prev) {
     	super(prev);
         setShowsMultiplicity(false);
+        this.showStereotype = true;
     }
 
     public VStateMachine() {
         setShowsMultiplicity(false);
+        this.showStereotype = false;
     }
 }

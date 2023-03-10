@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -55,8 +55,9 @@ public class VAction extends VDefault {
     }
 
     private void addAction(Type typ) {
-        if (addRecLine(typ, true) < 0) return;
-        // addGeneralizations(typ);
+        int id = addRecLine(typ, true);
+        if (id < 0) return;
+        addSpecializations(id, typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);
         append("\n");

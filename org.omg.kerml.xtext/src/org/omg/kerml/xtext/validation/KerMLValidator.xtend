@@ -453,6 +453,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	private def doCheckConnector(Connector c, Type location, EClass kind) {
+		ElementUtil.transform(c)
 		val cFeaturingTypes = c.featuringType
 		
 		if (kind == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {

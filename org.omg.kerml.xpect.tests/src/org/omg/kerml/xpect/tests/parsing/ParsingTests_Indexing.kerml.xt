@@ -1,0 +1,49 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Performances.kerml"}
+		File {from ="/library/ScalarValues.kerml"}
+		File {from ="/library/Collections.kerml"}
+		File {from ="/library/BaseFunctions.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Performances.kerml"}
+				File {from ="/library/ScalarValues.kerml"}
+				File {from ="/library/Collections.kerml"}
+				File {from ="/library/BaseFunctions.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Indexing {
+	classifier A {
+	  feature b : B;
+	}
+	classifier B {
+	  feature c;
+	}
+	feature a : A[*];
+	feature b = a#(1).b;
+	feature c = b.c;
+	
+	feature arr : Collections::Array {
+	  :>> dimensions = (2, 3);
+	  :>> elements = ("a", "b", "c",
+	                  "x", "y", "z");
+	}
+	feature arr13 = arr#(1,3);
+	feature arr22 = arr#(2,2);
+}

@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -47,8 +48,10 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		if (INDEXING_OPERATOR.equals(target.getOperator())) {
 			EList<Expression> arguments = target.getArgument();
 			if (!arguments.isEmpty()) {
+				Expression seqArgument = arguments.get(0);
+				ElementUtil.transform(seqArgument);
+				Feature seqResult = seqArgument.getResult();
 				Feature resultFeature = target.getResult();
-				Feature seqResult = arguments.get(0).getResult();
 				if (resultFeature != null && seqResult != null)
 				TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
 			}

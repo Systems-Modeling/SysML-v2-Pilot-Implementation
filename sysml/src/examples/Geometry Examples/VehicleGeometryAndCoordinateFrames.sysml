@@ -54,7 +54,7 @@ package VehicleGeometryAndCoordinateFrames {
 		assert constraint {
 			(1..numberOfBolts)->forAll {
 				in i : Natural;
-				private attribute lbcf : CoordinateFrame = lugBolts#(i).coordinateFrame; 
+				private attribute lbcf = lugBolts#(i).coordinateFrame; 
 				private attribute trs : TranslationRotationSequence {
 					:>> source = wcf;
 					:>> target = lbcf;

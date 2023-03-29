@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
@@ -112,7 +113,7 @@ public class SysMLInteractive extends SysMLUtil {
 	private IResourceValidator validator;
 	
 	@Inject
-	private SysMLInteractive() {
+	protected SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
 	
@@ -605,15 +606,19 @@ public class SysMLInteractive extends SysMLUtil {
         }
     }
 	
-	public static SysMLInteractive createInstance() {
+	public static <T extends SysMLInteractive> T createInstance(ISetup setup, java.lang.Class<T> cls) {
 		if (injector == null) {
 			// Note: An EPackage must be registered to be sure the correctly configured
 			// CompositeEValidator is used.
 			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
 			KerMLStandaloneSetup.doSetup();
-			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
+			injector = setup.createInjectorAndDoEMFRegistration();
 		}
-		return injector.getInstance(SysMLInteractive.class);
+		return injector.getInstance(cls);
+    }
+
+	public static SysMLInteractive createInstance() {
+        return createInstance(new SysMLStandaloneSetup(), SysMLInteractive.class);
 	}
 	
 	public static SysMLInteractive getInstance() {

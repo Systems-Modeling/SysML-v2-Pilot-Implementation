@@ -19,14 +19,16 @@
 
 package org.omg.sysml.jupyter.kernel;
 
-import io.github.spencerpark.jupyter.channels.JupyterConnection;
-import io.github.spencerpark.jupyter.channels.JupyterSocket;
-import io.github.spencerpark.jupyter.kernel.KernelConnectionProperties;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
+
+import org.omg.sysml.interactive.SysMLInteractive;
+
+import io.github.spencerpark.jupyter.channels.JupyterConnection;
+import io.github.spencerpark.jupyter.channels.JupyterSocket;
+import io.github.spencerpark.jupyter.kernel.KernelConnectionProperties;
 
 public class ISysML {
     public static final String LIBRARY_PATH_KEY = "ISYSML_LIBRARY_PATH";
@@ -35,8 +37,12 @@ public class ISysML {
 
     private static volatile SysMLKernel kernel;
 
+    public static void initialize(SysMLInteractive interactive) {
+        kernel = new SysMLKernel(interactive);
+    }
+
     public static void initialize() {
-        kernel = new SysMLKernel();
+        initialize(null);
     }
 
     public static void main(String[] args) throws Exception {

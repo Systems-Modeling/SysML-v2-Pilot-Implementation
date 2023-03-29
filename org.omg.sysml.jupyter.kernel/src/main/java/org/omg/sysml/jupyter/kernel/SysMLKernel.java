@@ -49,8 +49,12 @@ public class SysMLKernel extends BaseKernel {
         return magics;
     }
 
-    public SysMLKernel() {
-        this.interactive = SysMLInteractive.getInstance();
+    public SysMLKernel(SysMLInteractive initInteractive) {
+        if (initInteractive == null) {
+            this.interactive = SysMLInteractive.getInstance();
+        } else {
+            this.interactive = initInteractive;
+        }
         Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));
         // Replace with Optional#or in Java 9+
         if (!libraryPath.isPresent()) {

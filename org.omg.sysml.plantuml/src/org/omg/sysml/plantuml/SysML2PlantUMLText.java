@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -629,8 +630,19 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private static ModelLevelExpressionEvaluator evaluator;
+    public static void setEvaluator(ModelLevelExpressionEvaluator mlee) {
+        evaluator = mlee;
+    }
+    private static ModelLevelExpressionEvaluator getEvaluator() {
+        if (evaluator == null) {
+            evaluator = ExpressionEvaluator.INSTANCE;
+        }
+        return evaluator;
+    }
+
     private List<Element> evalInternal(Expression ex, Element target) {
-        List<Element> ret = ExpressionEvaluator.INSTANCE.evaluate(ex, target);
+        List<Element> ret = getEvaluator().evaluate(ex, target);
         if (ret == null) return null;
         int size = ret.size();
         if (size == 0) return null;

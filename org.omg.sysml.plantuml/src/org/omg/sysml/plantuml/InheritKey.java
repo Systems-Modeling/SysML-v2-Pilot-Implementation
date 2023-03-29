@@ -188,6 +188,7 @@ class InheritKey {
         visited.add(f);
         for (Redefinition rd: f.getOwnedRedefinition()) {
             Feature rf = rd.getRedefinedFeature();
+            if (rf == null) continue;
             if (ft.equals(rf)) return true;
             return matchRedefined(rf, ft, visited);
         }

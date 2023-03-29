@@ -27,7 +27,18 @@ package org.omg.sysml.lang.sysml;
  * Reference Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FeatureReferenceExpression is an Expression whose <code>result</code> is bound a <code>referent</code> Feature. The only <code>members</code> allowed for a FeatureReferenceExpression are the <code>referent</code>, the <code>result</code> and the BindingConnector between them.</p>
+ * <p>A <code>FeatureReferenceExpression</code> is an <code>Expression</code> whose <code>result</code> is bound to a <code>referent</code> <code>Feature</code>.</p>
+ * referent =
+ *     let nonParameterMemberships : Sequence(Membership) = ownedMembership->
+ *         reject(oclIsKindOf(ParameterMembership)) in
+ *     if nonParameterMemberships->isEmpty() or
+ *        not nonParameterMemberships->first().memberElement.oclIsKindOf(Feature)
+ *     then null
+ *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
+ *     endif
+ * ownedMember->selectByKind(BindingConnector)->exists(b |
+ *     b.relatedFeatures->includes(targetFeature) and
+ *     b.relatedFeatures->includes(result))
  * <!-- end-model-doc -->
  *
  * <p>

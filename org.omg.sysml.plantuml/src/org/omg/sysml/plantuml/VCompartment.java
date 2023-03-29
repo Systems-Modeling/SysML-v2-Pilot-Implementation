@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -473,7 +473,7 @@ public class VCompartment extends VStructure {
         } else if (getFeatureName(ce.f) == null) {
             addAnonymouseFeatureText(ce.f);
         } else {
-            return addFeatureText(ce.f, false);
+            return addFeatureText(ce.f, ce.isInherited);
         }
         return true;
     }

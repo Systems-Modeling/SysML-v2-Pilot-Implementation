@@ -74,41 +74,41 @@ import org.omg.sysml.util.UsageUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConstraint <em>Nested Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedTransition <em>Nested Transition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCalculation <em>Nested Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDirectedUsage <em>Directed Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCase <em>Nested Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariant <em>Variant</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getUsage <em>Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedReference <em>Nested Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConnection <em>Nested Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedOccurrence <em>Nested Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedItem <em>Nested Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPart <em>Nested Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConnection <em>Nested Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedInterface <em>Nested Interface</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedTransition <em>Nested Transition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCalculation <em>Nested Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConstraint <em>Nested Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConcern <em>Nested Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCase <em>Nested Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedView <em>Nested View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConcern <em>Nested Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedOccurrence <em>Nested Occurrence</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDefinition <em>Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUseCase <em>Nested Use Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedMetadata <em>Nested Metadata</em>}</li>
  * </ul>
  *
@@ -116,95 +116,14 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class UsageImpl extends FeatureImpl implements Usage {
 	/**
-	 * The cached setting delegate for the '{@link #getNestedUsage() <em>Nested Usage</em>}' reference list.
+	 * The cached setting delegate for the '{@link #isReference() <em>Is Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedUsage()
+	 * @see #isReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USAGE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getOwningUsage() <em>Owning Usage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_USAGE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getOwningDefinition() <em>Owning Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningDefinition()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_DEFINITION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedPort() <em>Nested Port</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedPort()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_PORT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_PORT).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedAction() <em>Nested Action</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedAction()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ACTION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedState() <em>Nested State</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedState()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_STATE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedConstraint() <em>Nested Constraint</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONSTRAINT).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedTransition() <em>Nested Transition</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedTransition()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_TRANSITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_TRANSITION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedRequirement() <em>Nested Requirement</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedRequirement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_REQUIREMENT).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedCalculation() <em>Nested Calculation</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedCalculation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CALCULATION).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate IS_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__IS_REFERENCE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -224,32 +143,14 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 	/**
-	 * The cached setting delegate for the '{@link #getDirectedUsage() <em>Directed Usage</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDirectedUsage()
+	 * @see #getVariant()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DIRECTED_USAGE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedCase() <em>Nested Case</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedCase()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CASE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedAnalysisCase() <em>Nested Analysis Case</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedAnalysisCase()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_ANALYSIS_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ANALYSIS_CASE).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__VARIANT).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -260,6 +161,42 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VARIANT_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__VARIANT_MEMBERSHIP).getSettingDelegate();
 	/**
+	 * The cached setting delegate for the '{@link #getOwningDefinition() <em>Owning Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_DEFINITION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwningUsage() <em>Owning Usage</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedUsage() <em>Nested Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getDefinition() <em>Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DEFINITION).getSettingDelegate();
+	/**
 	 * The cached setting delegate for the '{@link #getUsage() <em>Usage</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,14 +206,14 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__USAGE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getDirectedUsage() <em>Directed Usage</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariant()
+	 * @see #getDirectedUsage()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__VARIANT).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DIRECTED_USAGE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedReference() <em>Nested Reference</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -287,14 +224,32 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_REFERENCE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getNestedConnection() <em>Nested Connection</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getNestedAttribute() <em>Nested Attribute</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedConnection()
+	 * @see #getNestedAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONNECTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONNECTION).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ATTRIBUTE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedEnumeration() <em>Nested Enumeration</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedEnumeration()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_ENUMERATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ENUMERATION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedOccurrence() <em>Nested Occurrence</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedOccurrence()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_OCCURRENCE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedItem() <em>Nested Item</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -314,6 +269,33 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_PART__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_PART).getSettingDelegate();
 	/**
+	 * The cached setting delegate for the '{@link #getNestedPort() <em>Nested Port</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_PORT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_PORT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedConnection() <em>Nested Connection</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedConnection()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONNECTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONNECTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedFlow() <em>Nested Flow</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedFlow()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_FLOW).getSettingDelegate();
+	/**
 	 * The cached setting delegate for the '{@link #getNestedInterface() <em>Nested Interface</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -323,14 +305,113 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_INTERFACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_INTERFACE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getNestedAttribute() <em>Nested Attribute</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getNestedAllocation() <em>Nested Allocation</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedAttribute()
+	 * @see #getNestedAllocation()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ATTRIBUTE).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_ALLOCATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ALLOCATION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedAction() <em>Nested Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedState() <em>Nested State</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedState()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_STATE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedTransition() <em>Nested Transition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedTransition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_TRANSITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_TRANSITION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedCalculation() <em>Nested Calculation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedCalculation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CALCULATION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedConstraint() <em>Nested Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONSTRAINT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedRequirement() <em>Nested Requirement</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_REQUIREMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedConcern() <em>Nested Concern</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONCERN).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedCase() <em>Nested Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedAnalysisCase() <em>Nested Analysis Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedAnalysisCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_ANALYSIS_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ANALYSIS_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedVerificationCase() <em>Nested Verification Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedVerificationCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_VERIFICATION_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_VERIFICATION_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getNestedUseCase() <em>Nested Use Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedUseCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USE_CASE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedView() <em>Nested View</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -358,87 +439,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_RENDERING).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedVerificationCase() <em>Nested Verification Case</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedVerificationCase()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_VERIFICATION_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_VERIFICATION_CASE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedEnumeration() <em>Nested Enumeration</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedEnumeration()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_ENUMERATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ENUMERATION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedAllocation() <em>Nested Allocation</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedAllocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_ALLOCATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_ALLOCATION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedConcern() <em>Nested Concern</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedConcern()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_CONCERN).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedOccurrence() <em>Nested Occurrence</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedOccurrence()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_OCCURRENCE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getDefinition() <em>Definition</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDefinition()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DEFINITION).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedUseCase() <em>Nested Use Case</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedUseCase()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USE_CASE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #isReference() <em>Is Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isReference()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate IS_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__IS_REFERENCE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getNestedFlow() <em>Nested Flow</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNestedFlow()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate NESTED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_FLOW).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedMetadata() <em>Nested Metadata</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -985,78 +985,78 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__NESTED_USAGE:
-				return getNestedUsage();
-			case SysMLPackage.USAGE__OWNING_USAGE:
-				if (resolve) return getOwningUsage();
-				return basicGetOwningUsage();
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				return isReference();
+			case SysMLPackage.USAGE__IS_VARIATION:
+				return isVariation();
+			case SysMLPackage.USAGE__VARIANT:
+				return getVariant();
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				return getVariantMembership();
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				if (resolve) return getOwningDefinition();
 				return basicGetOwningDefinition();
-			case SysMLPackage.USAGE__NESTED_PORT:
-				return getNestedPort();
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				return getNestedAction();
-			case SysMLPackage.USAGE__NESTED_STATE:
-				return getNestedState();
-			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
-				return getNestedConstraint();
-			case SysMLPackage.USAGE__NESTED_TRANSITION:
-				return getNestedTransition();
-			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
-				return getNestedRequirement();
-			case SysMLPackage.USAGE__NESTED_CALCULATION:
-				return getNestedCalculation();
-			case SysMLPackage.USAGE__IS_VARIATION:
-				return isVariation();
-			case SysMLPackage.USAGE__DIRECTED_USAGE:
-				return getDirectedUsage();
-			case SysMLPackage.USAGE__NESTED_CASE:
-				return getNestedCase();
-			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
-				return getNestedAnalysisCase();
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				return getVariantMembership();
+			case SysMLPackage.USAGE__OWNING_USAGE:
+				if (resolve) return getOwningUsage();
+				return basicGetOwningUsage();
+			case SysMLPackage.USAGE__NESTED_USAGE:
+				return getNestedUsage();
+			case SysMLPackage.USAGE__DEFINITION:
+				return getDefinition();
 			case SysMLPackage.USAGE__USAGE:
 				return getUsage();
-			case SysMLPackage.USAGE__VARIANT:
-				return getVariant();
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				return getDirectedUsage();
 			case SysMLPackage.USAGE__NESTED_REFERENCE:
 				return getNestedReference();
-			case SysMLPackage.USAGE__NESTED_CONNECTION:
-				return getNestedConnection();
+			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
+				return getNestedAttribute();
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				return getNestedEnumeration();
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				return getNestedOccurrence();
 			case SysMLPackage.USAGE__NESTED_ITEM:
 				return getNestedItem();
 			case SysMLPackage.USAGE__NESTED_PART:
 				return getNestedPart();
+			case SysMLPackage.USAGE__NESTED_PORT:
+				return getNestedPort();
+			case SysMLPackage.USAGE__NESTED_CONNECTION:
+				return getNestedConnection();
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				return getNestedFlow();
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				return getNestedInterface();
-			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
-				return getNestedAttribute();
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				return getNestedAllocation();
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				return getNestedAction();
+			case SysMLPackage.USAGE__NESTED_STATE:
+				return getNestedState();
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				return getNestedTransition();
+			case SysMLPackage.USAGE__NESTED_CALCULATION:
+				return getNestedCalculation();
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				return getNestedConstraint();
+			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
+				return getNestedRequirement();
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				return getNestedConcern();
+			case SysMLPackage.USAGE__NESTED_CASE:
+				return getNestedCase();
+			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
+				return getNestedAnalysisCase();
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				return getNestedVerificationCase();
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				return getNestedUseCase();
 			case SysMLPackage.USAGE__NESTED_VIEW:
 				return getNestedView();
 			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
 				return getNestedViewpoint();
 			case SysMLPackage.USAGE__NESTED_RENDERING:
 				return getNestedRendering();
-			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
-				return getNestedVerificationCase();
-			case SysMLPackage.USAGE__NESTED_ENUMERATION:
-				return getNestedEnumeration();
-			case SysMLPackage.USAGE__NESTED_ALLOCATION:
-				return getNestedAllocation();
-			case SysMLPackage.USAGE__NESTED_CONCERN:
-				return getNestedConcern();
-			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
-				return getNestedOccurrence();
-			case SysMLPackage.USAGE__DEFINITION:
-				return getDefinition();
-			case SysMLPackage.USAGE__NESTED_USE_CASE:
-				return getNestedUseCase();
-			case SysMLPackage.USAGE__IS_REFERENCE:
-				return isReference();
-			case SysMLPackage.USAGE__NESTED_FLOW:
-				return getNestedFlow();
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				return getNestedMetadata();
 		}
@@ -1072,78 +1072,57 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__NESTED_USAGE:
-				getNestedUsage().clear();
-				getNestedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
-			case SysMLPackage.USAGE__OWNING_USAGE:
-				setOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_PORT:
-				getNestedPort().clear();
-				getNestedPort().addAll((Collection<? extends PortUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				getNestedAction().clear();
-				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_STATE:
-				getNestedState().clear();
-				getNestedState().addAll((Collection<? extends StateUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
-				getNestedConstraint().clear();
-				getNestedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_TRANSITION:
-				getNestedTransition().clear();
-				getNestedTransition().addAll((Collection<? extends TransitionUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
-				getNestedRequirement().clear();
-				getNestedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_CALCULATION:
-				getNestedCalculation().clear();
-				getNestedCalculation().addAll((Collection<? extends CalculationUsage>)newValue);
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				setIsReference((Boolean)newValue);
 				return;
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation((Boolean)newValue);
-				return;
-			case SysMLPackage.USAGE__DIRECTED_USAGE:
-				getDirectedUsage().clear();
-				getDirectedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_CASE:
-				getNestedCase().clear();
-				getNestedCase().addAll((Collection<? extends CaseUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
-				getNestedAnalysisCase().clear();
-				getNestedAnalysisCase().addAll((Collection<? extends AnalysisCaseUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				getVariantMembership().clear();
-				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
-				return;
-			case SysMLPackage.USAGE__USAGE:
-				getUsage().clear();
-				getUsage().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.USAGE__VARIANT:
 				getVariant().clear();
 				getVariant().addAll((Collection<? extends Usage>)newValue);
 				return;
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				getVariantMembership().clear();
+				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_USAGE:
+				setOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_USAGE:
+				getNestedUsage().clear();
+				getNestedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
+			case SysMLPackage.USAGE__DEFINITION:
+				getDefinition().clear();
+				getDefinition().addAll((Collection<? extends Classifier>)newValue);
+				return;
+			case SysMLPackage.USAGE__USAGE:
+				getUsage().clear();
+				getUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				getDirectedUsage().clear();
+				getDirectedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.USAGE__NESTED_REFERENCE:
 				getNestedReference().clear();
 				getNestedReference().addAll((Collection<? extends ReferenceUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_CONNECTION:
-				getNestedConnection().clear();
-				getNestedConnection().addAll((Collection<? extends ConnectorAsUsage>)newValue);
+			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
+				getNestedAttribute().clear();
+				getNestedAttribute().addAll((Collection<? extends AttributeUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				getNestedEnumeration().clear();
+				getNestedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				getNestedOccurrence().clear();
+				getNestedOccurrence().addAll((Collection<? extends OccurrenceUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_ITEM:
 				getNestedItem().clear();
@@ -1153,13 +1132,69 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				getNestedPart().clear();
 				getNestedPart().addAll((Collection<? extends PartUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_PORT:
+				getNestedPort().clear();
+				getNestedPort().addAll((Collection<? extends PortUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_CONNECTION:
+				getNestedConnection().clear();
+				getNestedConnection().addAll((Collection<? extends ConnectorAsUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				getNestedFlow().clear();
+				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
+				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
 				getNestedInterface().addAll((Collection<? extends InterfaceUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
-				getNestedAttribute().clear();
-				getNestedAttribute().addAll((Collection<? extends AttributeUsage>)newValue);
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				getNestedAllocation().clear();
+				getNestedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				getNestedAction().clear();
+				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_STATE:
+				getNestedState().clear();
+				getNestedState().addAll((Collection<? extends StateUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				getNestedTransition().clear();
+				getNestedTransition().addAll((Collection<? extends TransitionUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_CALCULATION:
+				getNestedCalculation().clear();
+				getNestedCalculation().addAll((Collection<? extends CalculationUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				getNestedConstraint().clear();
+				getNestedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
+				getNestedRequirement().clear();
+				getNestedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				getNestedConcern().clear();
+				getNestedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_CASE:
+				getNestedCase().clear();
+				getNestedCase().addAll((Collection<? extends CaseUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
+				getNestedAnalysisCase().clear();
+				getNestedAnalysisCase().addAll((Collection<? extends AnalysisCaseUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				getNestedVerificationCase().clear();
+				getNestedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				getNestedUseCase().clear();
+				getNestedUseCase().addAll((Collection<? extends UseCaseUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_VIEW:
 				getNestedView().clear();
@@ -1172,41 +1207,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_RENDERING:
 				getNestedRendering().clear();
 				getNestedRendering().addAll((Collection<? extends RenderingUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
-				getNestedVerificationCase().clear();
-				getNestedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_ENUMERATION:
-				getNestedEnumeration().clear();
-				getNestedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_ALLOCATION:
-				getNestedAllocation().clear();
-				getNestedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_CONCERN:
-				getNestedConcern().clear();
-				getNestedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
-				getNestedOccurrence().clear();
-				getNestedOccurrence().addAll((Collection<? extends OccurrenceUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__DEFINITION:
-				getDefinition().clear();
-				getDefinition().addAll((Collection<? extends Classifier>)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_USE_CASE:
-				getNestedUseCase().clear();
-				getNestedUseCase().addAll((Collection<? extends UseCaseUsage>)newValue);
-				return;
-			case SysMLPackage.USAGE__IS_REFERENCE:
-				setIsReference((Boolean)newValue);
-				return;
-			case SysMLPackage.USAGE__NESTED_FLOW:
-				getNestedFlow().clear();
-				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				getNestedMetadata().clear();
@@ -1224,62 +1224,47 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__NESTED_USAGE:
-				getNestedUsage().clear();
-				return;
-			case SysMLPackage.USAGE__OWNING_USAGE:
-				setOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
-				return;
-			case SysMLPackage.USAGE__NESTED_PORT:
-				getNestedPort().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				getNestedAction().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_STATE:
-				getNestedState().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
-				getNestedConstraint().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_TRANSITION:
-				getNestedTransition().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
-				getNestedRequirement().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_CALCULATION:
-				getNestedCalculation().clear();
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				IS_REFERENCE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation(IS_VARIATION_EDEFAULT);
 				return;
-			case SysMLPackage.USAGE__DIRECTED_USAGE:
-				getDirectedUsage().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_CASE:
-				getNestedCase().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
-				getNestedAnalysisCase().clear();
+			case SysMLPackage.USAGE__VARIANT:
+				getVariant().clear();
 				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
+				return;
+			case SysMLPackage.USAGE__OWNING_USAGE:
+				setOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.USAGE__NESTED_USAGE:
+				getNestedUsage().clear();
+				return;
+			case SysMLPackage.USAGE__DEFINITION:
+				getDefinition().clear();
+				return;
 			case SysMLPackage.USAGE__USAGE:
 				getUsage().clear();
 				return;
-			case SysMLPackage.USAGE__VARIANT:
-				getVariant().clear();
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				getDirectedUsage().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_REFERENCE:
 				getNestedReference().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_CONNECTION:
-				getNestedConnection().clear();
+			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
+				getNestedAttribute().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				getNestedEnumeration().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				getNestedOccurrence().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_ITEM:
 				getNestedItem().clear();
@@ -1287,11 +1272,53 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_PART:
 				getNestedPart().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_PORT:
+				getNestedPort().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_CONNECTION:
+				getNestedConnection().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				getNestedFlow().clear();
+				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
-				getNestedAttribute().clear();
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				getNestedAllocation().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				getNestedAction().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_STATE:
+				getNestedState().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				getNestedTransition().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_CALCULATION:
+				getNestedCalculation().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				getNestedConstraint().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
+				getNestedRequirement().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				getNestedConcern().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_CASE:
+				getNestedCase().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
+				getNestedAnalysisCase().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				getNestedVerificationCase().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				getNestedUseCase().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_VIEW:
 				getNestedView().clear();
@@ -1301,33 +1328,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__NESTED_RENDERING:
 				getNestedRendering().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
-				getNestedVerificationCase().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_ENUMERATION:
-				getNestedEnumeration().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_ALLOCATION:
-				getNestedAllocation().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_CONCERN:
-				getNestedConcern().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
-				getNestedOccurrence().clear();
-				return;
-			case SysMLPackage.USAGE__DEFINITION:
-				getDefinition().clear();
-				return;
-			case SysMLPackage.USAGE__NESTED_USE_CASE:
-				getNestedUseCase().clear();
-				return;
-			case SysMLPackage.USAGE__IS_REFERENCE:
-				IS_REFERENCE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
-				return;
-			case SysMLPackage.USAGE__NESTED_FLOW:
-				getNestedFlow().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				getNestedMetadata().clear();
@@ -1346,76 +1346,76 @@ public class UsageImpl extends FeatureImpl implements Usage {
 		switch (featureID) {
 			case SysMLPackage.USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.USAGE__NESTED_USAGE:
-				return NESTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__OWNING_USAGE:
-				return OWNING_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return OWNING_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_PORT:
-				return NESTED_PORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				return NESTED_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_STATE:
-				return NESTED_STATE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
-				return NESTED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_TRANSITION:
-				return NESTED_TRANSITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
-				return NESTED_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_CALCULATION:
-				return NESTED_CALCULATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
-			case SysMLPackage.USAGE__DIRECTED_USAGE:
-				return DIRECTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_CASE:
-				return NESTED_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
-				return NESTED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				return VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__USAGE:
-				return USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__VARIANT:
 				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				return VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return OWNING_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__OWNING_USAGE:
+				return OWNING_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_USAGE:
+				return NESTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__DEFINITION:
+				return isSetDefinition();
+			case SysMLPackage.USAGE__USAGE:
+				return USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				return DIRECTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_REFERENCE:
 				return NESTED_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_CONNECTION:
-				return NESTED_CONNECTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
+				return NESTED_ATTRIBUTE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				return NESTED_ENUMERATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				return NESTED_OCCURRENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_ITEM:
 				return NESTED_ITEM__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_PART:
 				return NESTED_PART__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_PORT:
+				return NESTED_PORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_CONNECTION:
+				return NESTED_CONNECTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				return NESTED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				return NESTED_INTERFACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
-				return NESTED_ATTRIBUTE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				return NESTED_ALLOCATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				return NESTED_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_STATE:
+				return NESTED_STATE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_TRANSITION:
+				return NESTED_TRANSITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_CALCULATION:
+				return NESTED_CALCULATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
+				return NESTED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
+				return NESTED_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				return NESTED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_CASE:
+				return NESTED_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
+				return NESTED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				return NESTED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				return NESTED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_VIEW:
 				return NESTED_VIEW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
 				return NESTED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_RENDERING:
 				return NESTED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
-				return NESTED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_ENUMERATION:
-				return NESTED_ENUMERATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_ALLOCATION:
-				return NESTED_ALLOCATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_CONCERN:
-				return NESTED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
-				return NESTED_OCCURRENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__DEFINITION:
-				return isSetDefinition();
-			case SysMLPackage.USAGE__NESTED_USE_CASE:
-				return NESTED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__IS_REFERENCE:
-				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__NESTED_FLOW:
-				return NESTED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				return NESTED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}

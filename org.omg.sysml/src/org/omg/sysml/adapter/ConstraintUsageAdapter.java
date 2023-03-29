@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,6 +25,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -33,9 +34,6 @@ import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
-
-	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
-	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 
 	protected BindingConnector resultConnector = null;
 
@@ -73,34 +71,28 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	
 	// Implicit Generalization
 	
-	protected void addAssumptionSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-	}
-	
-	protected void addRequirementSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
-	}
-	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		ConstraintUsage target = getTarget();
-		if (UsageUtil.isAssumptionConstraint(target)) {
-			addAssumptionSubsetting();
-		} else if (UsageUtil.isRequirementConstraint(target)){
-			addRequirementSubsetting();
-		}
+		addRequirementConstraintSubsetting();
 		super.computeImplicitGeneralTypes();
 		if (isCheckedConstraint()) {
 			addDefaultGeneralType("checkedConstraint");
 		}
-		if (isOwnedPerformance()) {
+		if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
 		} 
-		if (isSubperformance()) {
+		if (isBehaviorOwnedComposite()) {
 			addDefaultGeneralType("subperformance");
 		}
-		if (isEnclosedPerformance()) {
+		if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
+		}
+	}
+	
+	public void addRequirementConstraintSubsetting() {
+		RequirementConstraintKind kind = UsageUtil.getRequirementConstraintKindOf(getTarget());
+		if (kind != null) {
+			addDefaultGeneralType(kind.toString());
 		}
 	}
 	

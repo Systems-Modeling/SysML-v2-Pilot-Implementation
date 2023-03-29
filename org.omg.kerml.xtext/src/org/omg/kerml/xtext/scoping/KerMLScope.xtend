@@ -250,7 +250,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				ownedvisited.add(ns)		
 			}
 			
-			for (mem: ns.ownedMembership) {
+			for (mem: ns.ownedMembership.clone) { // Clone to avoid any possible ConcurrentModificationException.
 				if (!scopeProvider.visited.contains(mem)) {
 					if (includeAll || isInsideScope || mem.visibility == VisibilityKind.PUBLIC || 
 						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {

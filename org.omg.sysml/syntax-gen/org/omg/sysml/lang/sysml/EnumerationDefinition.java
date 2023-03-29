@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An <code>EnumerationDefinition</code> is an <code>AttributeDefinition</code> all of whose instances are given by an explicit list of <code>enumeratedValues</code>. This is realized by requiring that the <code>EnumerationDefinition</code> have <code>isVariation = true</code>, with the <code>enumeratedValues</code> being its variants.</p> 
+ * <p>An <code>EnumerationDefinition</code> is an <code>AttributeDefinition</code> all of whose instances are given by an explicit list of <code>enumeratedValues</code>. This is realized by requiring that the <code>EnumerationDefinition</code> have <code>isVariation = true</code>, with the <code>enumeratedValues</code> being its <code>variants</code>.</p> 
  * isVariation
  * <!-- end-model-doc -->
  *
@@ -58,7 +58,7 @@ public interface EnumerationDefinition extends AttributeDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An EnumerationUsage of this EnumerationDefinition with a fixed value, distinct from the value of all other <code>enumerationValues</code>, which specifies one of the allowed instances of the EnumerationDefinition.</p>
+	 * <p><code>EnumerationUsages</code> of this <code>EnumerationDefinition</code>that have distinct, fixed values. Each <code>enumeratedValue</code> specifies one of the allowed instances of the <code>EnumerationDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Enumerated Value</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getEnumerationDefinition_EnumeratedValue()

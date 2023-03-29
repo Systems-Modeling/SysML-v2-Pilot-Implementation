@@ -29,9 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An EnumerationUsage is an AttributeUsage whose <code>attributeDefinition</code> is an EnumerationDefinition.</p>
- * 
- * <p>An EnumerationUsage must subset, directly or indirectly, the base EnumerationUsage <code>enumerationValues</code> from the Systems model library.</p>
+ * <p>An <code>EnumerationUsage</code> is an <code>AttributeUsage</code> whose <code>attributeDefinition</code> is an <code>EnumerationDefinition</code>.</p>
  * <!-- end-model-doc -->
  *
  * <p>

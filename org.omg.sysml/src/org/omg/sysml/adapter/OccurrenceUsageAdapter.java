@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,8 +21,11 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -43,6 +46,12 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 		if (isSuboccurrence()) {
 			addDefaultGeneralType("suboccurrence");
 		}
+		PortionKind portionKind = getTarget().getPortionKind();
+		if (portionKind  == PortionKind.SNAPSHOT) {
+			addDefaultGeneralType("snapshot");
+		} else if (portionKind == PortionKind.TIMESLICE) {
+			addDefaultGeneralType("timeslice");
+		}
 	}
 	
 	@Override
@@ -62,9 +71,25 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 		}
 	}
 	
+	protected void addOccurrenceFeaturing() {
+		OccurrenceUsage target = getTarget();
+		if (target.getPortionKind() != null) {
+			EList<Type> featuringTypes = target.getFeaturingType();
+			target.getOwnedTyping().stream().
+				map(FeatureTyping::getType).
+				filter(OccurrenceDefinition.class::isInstance).
+				forEach(type->{
+					if (!(featuringTypes.contains(type))) {
+						addFeaturingType(type);
+					}
+				});
+		}
+	}
+	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addOccurrenceTyping();
+		addOccurrenceFeaturing();
 		super.computeImplicitGeneralTypes();
 	}
 	

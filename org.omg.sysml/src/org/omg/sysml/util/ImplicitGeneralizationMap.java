@@ -68,7 +68,7 @@ public class ImplicitGeneralizationMap {
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
-		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedEvaluations");
+		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
 		put(FeatureImpl.class, "base", "Base::things");
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
@@ -90,7 +90,7 @@ public class ImplicitGeneralizationMap {
 		put(ItemFeatureImpl.class, "payload", "Transfers::Transfer::item");
 		
 		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
-		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
+		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
@@ -139,7 +139,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
 		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
-		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedTransfersBefore");
+		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
 		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 
@@ -148,15 +148,20 @@ public class ImplicitGeneralizationMap {
 		// SysML
 		
 		put(AcceptActionUsageImpl.class, "base", "Actions::acceptActions");
-		put(AcceptActionUsageImpl.class, "trigger", "Actions::acceptMessageActions");
 		put(AcceptActionUsageImpl.class, "subaction", "Actions::Action::acceptSubactions");
 		
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
 		put(ActionUsageImpl.class, "base", "Actions::actions");
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
-		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::performance::enclosedPerformance");
+		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(ActionUsageImpl.class, "entry", "States::StateAction::entryAction");
+		put(ActionUsageImpl.class, "do", "States::StateAction::doAction");
+		put(ActionUsageImpl.class, "exit", "States::StateAction::exitAction");
+		put(ActionUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
+		put(ActionUsageImpl.class, "guard", "Actions::TransitionAction::guard");
+		put(ActionUsageImpl.class, "effect", "Actions::TransitionAction::effect");
 		
 		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");
@@ -200,9 +205,11 @@ public class ImplicitGeneralizationMap {
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
 		put(ConstraintUsageImpl.class, "checkedConstraint", "Items::Item::checkedConstraints");
-		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedEvaluations");
+		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ConstraintUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(ConstraintUsageImpl.class, "assumption", "Requirements::RequirementCheck::assumptions");
+		put(ConstraintUsageImpl.class, "requirement", "Requirements::RequirementCheck::constraints");
 		
 		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
@@ -213,7 +220,9 @@ public class ImplicitGeneralizationMap {
 		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");		
 		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
 		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
-		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
+		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
+		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
@@ -252,6 +261,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
+		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");
@@ -274,6 +285,7 @@ public class ImplicitGeneralizationMap {
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
 		put(RequirementUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::subrequirements");
+		put(RequirementUsageImpl.class, "verification", "Verifications::VerificationCase::obj::requirementVerifications");
 		
 		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
 		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");
@@ -291,7 +303,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
 		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
-		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
+		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
 
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::decisionTransitions");

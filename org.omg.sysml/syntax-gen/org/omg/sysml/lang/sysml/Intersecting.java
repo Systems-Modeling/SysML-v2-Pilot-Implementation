@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Intersecting is a Relationship that makes its <code>intersectingType</code> one of the <code>intersectingTypes</code> of its <code>typeIntersected</code>.</p>
+ * <p><code>Intersecting</code> is a <code>Relationship</code> that makes its <code>intersectingType</code> one of the <code>intersectingTypes</code> of its <code>typeIntersected</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +37,8 @@ public interface Intersecting extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type that partly determines interpretations of <code>typeIntersected</code>, as described in <code>Type::intersectingType</code>.</p>
+	 * <p><code>Type</code> that partly determines interpretations of <code>typeIntersected</code>, as described in <code>Type::intersectingType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Intersecting Type</em>' reference.
 	 * @see #setIntersectingType(Type)
@@ -76,7 +78,8 @@ public interface Intersecting extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Type with interpretations partly determined by <code>intersectingType</code>, as described in <code>Type::intersectingType</code>.</p>
+	 * <p><code>Type</code> with interpretations partly determined by <code>intersectingType</code>, as described in <code>Type::intersectingType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type Intersected</em>' reference.
 	 * @see #setTypeIntersected(Type)

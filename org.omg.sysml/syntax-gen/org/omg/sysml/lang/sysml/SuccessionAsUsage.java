@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SuccessionAsUsage is both a ConnectorAsUsage and a Succession.<p>
+ * <p>A <code>SuccessionAsUsage</code> is both a <code>ConnectorAsUsage</code> and a <code>Succession</code>.<p>
  * <!-- end-model-doc -->
  *
  *

@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MembershipExpose is an Expose relationship that exposes a specific <code>importedMembership</code> and, if <code>isRecursive = true</code>, additional Memberships recursively.</p>
+ * <p>A <code>MembershipExpose</code> is an <code>Expose</code> <code.Relationship</code> that exposes a specific <code>importedMembership</code> and, if <code>isRecursive = true</code>, additional <code>Memberships</code> recursively.</p>
  * <!-- end-model-doc -->
  *
  *

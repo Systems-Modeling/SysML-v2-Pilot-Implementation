@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,18 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
-
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };	
+	
+	public static final String INDEXING_OPERATOR = "#";
 
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);
@@ -36,6 +41,21 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 	@Override
 	public OperatorExpression getTarget() {
 		return (OperatorExpression)super.getTarget();
+	}
+	
+	public void addIndexingResultSubsetting() {
+		OperatorExpression target = getTarget();
+		if (INDEXING_OPERATOR.equals(target.getOperator())) {
+			EList<Expression> arguments = target.getArgument();
+			if (!arguments.isEmpty()) {
+				Expression seqArgument = arguments.get(0);
+				ElementUtil.transform(seqArgument);
+				Feature seqResult = seqArgument.getResult();
+				Feature resultFeature = target.getResult();
+				if (resultFeature != null && seqResult != null)
+				TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
+			}
+		}		
 	}
 
 	@Override
@@ -46,6 +66,7 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), ExpressionUtil.getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();
+		addIndexingResultSubsetting();
 	}
 	
 }

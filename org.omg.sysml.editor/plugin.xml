@@ -28,7 +28,7 @@
             id="org.omg.sysml.lang.sysml.presentation.SysMLEditorID"
             name="%_UI_SysMLEditor_label"
             icon="icons/full/obj16/SysMLModelFile.gif"
-            extensions="sysmlx"
+            extensions="sysml"
             class="org.omg.sysml.lang.sysml.presentation.SysMLEditor"
             contributorClass="org.omg.sysml.lang.sysml.presentation.SysMLActionBarContributor">
       </editor>

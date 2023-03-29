@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PortConjugation is a Conjugation Relationship between a PortDefinition and its corresponding ConjugatedPortDefinition. As a result of this Relationship, the ConjugatedPortDefinition inherits all the <code>features</code> of the original PortDefinition, but input <code>flows</code> of the original PortDefinition become outputs on the ConjugatedPortDefinition and output <code>flows</code> of the original PortDefinition become inputs on the ConjugatedPortDefinition.</code></p>
+ * <p>A <code>PortConjugation</code> is a <code>Conjugation</code> <code>Relationship</code> between a <code>PortDefinition</code> and its corresponding <code>ConjugatedPortDefinition</code>. As a result of this <code>Relationship</code>, the <code>ConjugatedPortDefinition</code> inherits all the <code>features</code> of the original <code>PortDefinition</code>, but input <code>flows</code> of the original <code>PortDefinition</code> become outputs on the <code>ConjugatedPortDefinition</code> and output <code>flows</code> of the original <code>PortDefinition</code> become inputs on the <code>ConjugatedPortDefinition</code>.</code></p>
  * 
  * <!-- end-model-doc -->
  *
@@ -57,7 +57,7 @@ public interface PortConjugation extends Conjugation {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortDefinition being conjugated.</p>
+	 * <p>The <code>PortDefinition</code> being conjugated.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Port Definition</em>' reference.
 	 * @see #setOriginalPortDefinition(PortDefinition)
@@ -91,7 +91,7 @@ public interface PortConjugation extends Conjugation {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConjugatedPortDefinition that is conjugate to the <tt>originalPortDefinition</tt>.</p>
+	 * <p>The <code>ConjugatedPortDefinition</code> that is conjugate to the <code>originalPortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)

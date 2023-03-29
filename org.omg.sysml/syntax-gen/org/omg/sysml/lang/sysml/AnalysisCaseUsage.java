@@ -30,9 +30,22 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AnalysisCaseUsage is a Usage of an AnalysisCaseDefinition.</p>
- * 
- * <p>An AnalysisCaseUsage must subset, directly or indirectly, either the base AnalysisCaseUsage <code>analysisCases</code> from the Systems model library, if it is not owned by an AnalysisCaseDefinition or AnalysisCaseUsage, or the AnalysisCaseUsage <code>subAnalysisCases</code> inherited from its owner, otherwise.</p>
+ * <p>An <code>AnalysisCaseUsage</code> is a <code>Usage</code> of an <code>AnalysisCaseDefinition</code>.</p>
+ * analysisAction = usage->select(
+ *     isComposite and
+ *     specializes('AnalysisCases::AnalysisAction'))
+ * resultExpression =
+ *     let results : OrderedSet(ResultExpressionMembership) =
+ *         featureMembersip->
+ *             selectByKind(ResultExpressionMembership) in
+ *     if results->isEmpty() then null
+ *     else results->first().ownedResultExpression
+ *     endif
+ * specializesFromLibrary('AnalysisCases::analysisCases')
+ * isComposite and owningType <> null and
+ *     (owningType.oclIsKindOf(AnalysisCaseDefinition) or
+ *      owningType.oclIsKindOf(AnalysisCaseUsage)) implies
+ *     specializesFromLibrary('AnalysisCases::AnalysisCase::subAnalysisCases')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,12 +69,12 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the AnalysisCaseUsage that are typed as AnalysisActions. Each <code>analysisAction</code> ActionUsage must subset the <code>analysisSteps</code> ActionUsage of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
+	 * <p>The composite <code>usages</code> of the <code>AnalysisCaseUsage</code> that are defined as <code>AnalysisActions</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Analysis Action</em>' reference list.
@@ -85,7 +98,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AnalysisCaseDefinition that is the type of this AnalysisCaseUsage.</p>
+	 * <p>The <code>AnalysisCaseDefinition</code> that is the <code>definition</code> of this <code>AnalysisCaseUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Analysis Case Definition</em>' reference.
 	 * @see #setAnalysisCaseDefinition(AnalysisCaseDefinition)
@@ -119,8 +132,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression used to compute the <code>result</code> of the AnalysisCaseUsage, derived as the Expression owned via a ResultExpressionMembership. The <code>resultExpression</code> must redefine directly or indirectly, the <code>resultEvaluation</code> Expression of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
-	 * 
+	 * <p>An <code>Expression</code> used to compute the <code>result</code> of the <code>AnalysisCaseUsage</code>, owned via a <code>ResultExpressionMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result Expression</em>' reference.
 	 * @see #setResultExpression(Expression)

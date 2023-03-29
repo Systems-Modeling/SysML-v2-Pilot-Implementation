@@ -79,6 +79,7 @@ export function defineSysMLv2Mode(): void {
                     return false;
                 },
                 "#": function(stream: CodeMirror.StringStream) {
+                	let b_first = true;
                  	do {
                  		if (stream.match("'", true)) { 
                     		let b_escaped = false;
@@ -87,9 +88,12 @@ export function defineSysMLv2Mode(): void {
                         		if(s_next === "'" && !b_escaped) break;
                         		b_escaped = !b_escaped && s_next === '\\';
                     		}
-                		} else {
+                		} else if (stream.match(/\w/, true)) {
                 			stream.eatWhile(/\w/);
+                		} else if (b_first) {
+                			return 'operator';
                 		}
+                		b_first = false;
                 	} while (stream.match('::', true))
                     return 'keyword';
                 },

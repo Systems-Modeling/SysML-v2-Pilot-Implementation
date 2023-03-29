@@ -1,7 +1,8 @@
 standard library package OccurrenceFunctions {
 	doc
 	/*
-	 * This package defines functions that operate on occurrences that exist over time.
+	 * This package defines utility functions that operate on occurrences, primarily related to 
+	 * time during which those occurrences exist.
 	 */
 	
 	private import Occurrences::Occurrence;
@@ -33,8 +34,7 @@ standard library package OccurrenceFunctions {
 	function isDuring {
 		doc
 		/*
-		 * Test whether a performance of this function happens during the input occurrence
-		 * (which means it will also be during any time-enclosed invoker of the function).
+		 * Test whether a performance of this function happens during the input occurrence.
 		 */
 		
 		in occ: Occurrence[1];
@@ -102,8 +102,8 @@ standard library package OccurrenceFunctions {
 		in index: Positive[1];
 		
 		private composite step : addAt {
-			inout seq1 = group;
-			in seq2 = create(occ);
+			inout seq = group;
+			in values = create(occ);
 			in startIndex = index;
 		}
 		
@@ -120,8 +120,8 @@ standard library package OccurrenceFunctions {
 		inout occ: Occurrence[0..1];
 		
 		private composite step removeStep : remove {
-			inout seq1 = group;
-			in seq2 = occ;
+			inout seq = group;
+			in values = occ;
 		}
 		private succession removeStep then destroyStep;
 		private composite step destroyStep : destroy {
@@ -131,14 +131,19 @@ standard library package OccurrenceFunctions {
 	}
 	
 	behavior removeOldAt {
+		doc
+		/*
+		 * Removes the occurrence at a given index in an ordered group of occurrences 
+		 * and destroy it.
+		 */
 		inout group: Occurrence[0..*] ordered nonunique;
 		in index: Positive[1];
 		
-		private feature oldOcc = group[index];
+		private feature oldOcc = group#(index);
 		
 		private composite step removeStep : remove {
-			inout seq1 = group;
-			in index;
+			inout seq = group;
+			in index = removeOldAt::index;
 		}
 		private succession removeStep then destroyStep;
 		private composite step destroyStep : destroy {

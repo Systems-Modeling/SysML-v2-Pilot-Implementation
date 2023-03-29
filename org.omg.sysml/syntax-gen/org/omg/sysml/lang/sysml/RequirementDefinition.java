@@ -30,9 +30,36 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementDefinition is a ConstraintDefinition that defines a requirement as a constraint that is used in the context of a specification of a that a valid solution must satisfy. The specification is relative to a specified subject, possibly in collaboration with one or more external actors.</p>
- * 
- * <p>A RequirementDefinition must subclass, directly or indirectly, the base RequirementDefinition <em><code>RequirementCheck</code></em> from the Systems model library.</p>
+ * <p>A <code>RequirementDefinition</code> is a <code>ConstraintDefinition</code> that defines a requirement used in the context of a specification as a constraint that a valid solution must satisfy. The specification is relative to a specified subject, possibly in collaboration with one or more external actors.</p>
+ * text = documentation.body
+ * assumedConstraint = ownedFeatureMembership->
+ *     selectByKind(RequirementConstraintMembership)->
+ *     select(kind = RequirementConstraintKind::assumption).
+ *     ownedConstraint
+ * requiredConstraint = ownedFeatureMembership->
+ *     selectByKind(RequirementConstraintMembership)->
+ *     select(kind = RequirementConstraintKind::requirement).
+ *     ownedConstraint
+ * subjectParameter =
+ *     let subjects : OrderedSet(SubjectMembership) = 
+ *         featureMembership->selectByKind(SubjectMembership) in
+ *     if subjects->isEmpty() then null
+ *     else subjects->first().ownedSubjectParameter
+ *     endif
+ * framedConcern = featureMembership->
+ *     selectByKind(FramedConcernMembership).
+ *     ownedConcern
+ * actorParameter = featureMembership->
+ *     selectByKind(ActorMembership).
+ *     ownedActorParameter
+ * stakeholderParameter = featureMembership->
+ *     selectByKind(StakholderMembership).
+ *     ownedStakeholderParameter
+ * featureMembership->	
+ *     selectByKind(SubjectMembership)->
+ *     size() <= 1
+ * input->notEmpty() and input->first() = subjectParameter
+ * specializesFromLibrary('Requirements::RequirementCheck')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,12 +68,12 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getText <em>Text</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAssumedConstraint <em>Assumed Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getFramedConcern <em>Framed Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getActorParameter <em>Actor Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getStakeholderParameter <em>Stakeholder Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAssumedConstraint <em>Assumed Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint <em>Required Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getFramedConcern <em>Framed Concern</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition()
@@ -66,7 +93,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this RequirementDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this <code>RequirementDefinition</code> that is owned via a <code>SubjectMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)
@@ -101,7 +128,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Concerns framed by this RequirementDefinition, derived as the <code>ownedConcerns</code> of all <code>FramedConcernMemberships</code> of the RequirementDefinition.</p>
+	 * <p>The <code>ConcernUsages</code> framed by this <code>RequirementDefinition</code>, which are the <code>ownedConcerns</code> of all <code>FramedConcernMemberships</code> of the <code>RequirementDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Framed Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_FramedConcern()
@@ -126,7 +153,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this RequirementDefinition that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementDefinition</code> that are owned via <code>ActorMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_ActorParameter()
@@ -151,7 +178,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this RequirementDefinition that are owned via StakeholderMemberships, which must subset, directly or indirectly, the PartUsage <em><code>stakeholders</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementDefinition</code> that are owned via <code>StakeholderMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stakeholder Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_StakeholderParameter()
@@ -178,7 +205,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional modeler-specified identifier for this RequirementDefinition (used, e.g., to link it to an original requirement text in some source document), derived as the <code>modeledId</code> for the RequirementDefinition.</p>
+	 * <p>An optional modeler-specified identifier for this <code>RequirementDefinition</code> (used, e.g., to link it to an original requirement text in some source document), which is the <code>declaredShortName</code> for the <code>RequirementDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
@@ -209,7 +236,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition, derived as the <code>bodies</code> of the <code>documentaryComments</code> of the RequirementDefinition.</p>
+	 * <p>An optional textual statement of the requirement represented by this <code>RequirementDefinition</code>, derived from the <code>bodies</code> of the <code>documentation</code> of the <code>RequirementDefinition</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Text</em>' attribute list.
@@ -236,7 +263,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementDefinition, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementDefinition with <code>kind</code> = <code>assumption</code>.</p>
+	 * <p>The owned <code>ConstraintUsages</code> that represent assumptions of this <code>RequirementDefinition</code>, which are the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the <code>RequirementDefinition</code> with <code>kind = assumption</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AssumedConstraint()
@@ -264,7 +291,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementDefinition with <code>kind</code> = <code>requirement</code>.</p>
+	 * <p>The owned <code>ConstraintUsages</code> that represent requirements of this <code>RequirementDefinition</code>, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the <code>RequirementDefinition</code> with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_RequiredConstraint()

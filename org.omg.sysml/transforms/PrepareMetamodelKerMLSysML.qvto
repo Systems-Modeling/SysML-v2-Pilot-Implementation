@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -38,12 +38,12 @@ helper run() {
 	
 	var kermlModel = object Model@kerml { 
 		name := "kerml";
-		URI := "http://www.omg.org/spec/KerML/2.0";
+		URI := "https://www.omg.org/spec/KerML/" + version;
 	};
 	
 	var sysmlModel = object Model@sysml { 
 		name := "sysml";
-		URI := "http://www.omg.org/spec/SysML/2.0";
+		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
 	
 	mapModel(syntax, kermlModel, sysmlModel);
@@ -51,17 +51,10 @@ helper run() {
 }
 
 helper mapModel(syntax : Package, kermlModel: Model, sysmlModel : Model) {
-	mapPackage(syntax, "Root", kermlModel);
-	mapPackage(syntax, "Core", kermlModel);
-	mapPackage(syntax, "Kernel", kermlModel);
-	mapPackage(syntax, "Systems", sysmlModel);
+	mapPackageFlat(syntax, "Root", kermlModel);
+	mapPackageFlat(syntax, "Core", kermlModel);
+	mapPackageFlat(syntax, "Kernel", kermlModel);
+	mapPackageFlat(syntax, "Systems", sysmlModel);
 	kermlModel.packagedElement[Package]->destroy();	
 	sysmlModel.packagedElement[Package]->destroy();	
-}
-
-helper mapPackage(syntax : Package, subpackageName : String, model : Model) {
-	var subpackage = syntax.packagedElement[Package]![name = subpackageName];
-	if subpackage <> null then {
-		subpackage.map Namespace(model);
-	} endif;
 }

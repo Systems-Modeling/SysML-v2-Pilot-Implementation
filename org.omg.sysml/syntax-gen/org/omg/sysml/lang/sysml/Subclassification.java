@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Subclassification is Specialization in which both the <code>specific</code> and <code>general</code> Types are Classifiers. This means all instances of the specific Classifier are also instances of the general Classifier.</p>
+ * <p><code>Subclassification</code> is <code>Specialization</code> in which both the <code>specific</code> and <code>general</code> <code>Types</code> are <code>Classifier</code>. This means all instances of the specific <code>Classifier</code> are also instances of the general <code>Classifier</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -18,8 +18,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getSuperclassifier <em>Superclassifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier <em>Owning Classifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getSubclassifier <em>Subclassifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubclassification()
@@ -38,7 +38,8 @@ public interface Subclassification extends Specialization {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The more general Classifier in this Subclassification.</p>
+	 * <p>The more <code>general</code> Classifier in this <code>Subclassification</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Superclassifier</em>' reference.
 	 * @see #setSuperclassifier(Classifier)
@@ -72,7 +73,8 @@ public interface Subclassification extends Specialization {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Classfier that owns this Subclassification relationship, which must also be its <code>subclassifier</code>.</p>
+	 * <p>The <code>Classifier</code> that owns this <code>Subclassification</code> relationship, which must also be its <code>subclassifier</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Classifier</em>' reference.
 	 * @see #setOwningClassifier(Classifier)
@@ -106,7 +108,8 @@ public interface Subclassification extends Specialization {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The more specific Classifier in this Subclassification.</p>
+	 * <p>The more specific <code>Classifier</code> in this <code>Subclassification</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subclassifier</em>' reference.
 	 * @see #setSubclassifier(Classifier)

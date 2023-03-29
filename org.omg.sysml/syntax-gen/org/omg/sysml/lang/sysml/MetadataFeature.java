@@ -30,9 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MetadataFeature is a Feature that is an AnnotatingElement used to annotate another Element with metadata. It is typed by a Metaclass. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
- * 
- * <p>A MetadataFeature must subset, directly or indirectly, the base MetadataFeature <em><code>metadata</code></em> from the Kernel Library.</p>
+ * <p>A <code>MetadataFeature</code> is a <code>Feature</code> that is an <code>AnnotatingElement</code> used to annotate another <code>Element</code> with metadata. It is typed by a <code>Metaclass</code>. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
  * 
  * 
  * specializesFromLibrary("Metaobjects::metaobjects")
@@ -83,7 +81,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>type</code> of this AnnotatingFeature, which must be a DataType.</p>
+	 * <p>The <code>type</code> of this <code>MetadataFeature</code>, which must be a <code>Metaclass</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metaclass</em>' reference.
 	 * @see #setMetaclass(Metaclass)
@@ -110,7 +108,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If the given <code>baseFeature</code> is a <code>feature</code> of this MetadataFeature, or is directly or indirectly redefined by a <code>feature</code>, then return the result of evaluating the appropriate (model-level evaluable) <code>value</code> <code>Expression</code> for it (if any), with the MetadataFeature as the target.</p>
+	 * <p>If the given <code>baseFeature</code> is a <code>feature</code> of this <code>MetadataFeature</code>, or is directly or indirectly redefined by a <code>feature</code>, then return the result of evaluating the appropriate (model-level evaluable) <code>value</code> <code>Expression</code> for it (if any), with the MetadataFeature as the target.</p>
 	 * let selectedFeatures : Sequence(Feature) = feature->
 	 *     select(closure(ownedRedefinition.redefinedFeature)->
 	 *            includes(baseFeature)) in
@@ -133,8 +131,8 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Check it this MetadataFeature has a <code>metaclass</code> which is a kind of <code><em>SemanticMetadata</code>.<p>
-	 * specializes("Metaobjects::SemanticMetadata")
+	 * <p>Check if this <code>MetadataFeature</code> has a <code>metaclass</code> which is a kind of <code><em>SemanticMetadata</code>.<p>
+	 * specializesFromLibrary('Metaobjects::SemanticMetadata')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
@@ -145,8 +143,8 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Check if this MetadataFeature has a <code>metaclass</code> that is a kind of <code><em>KerML::Element<em></code> (that is, it is from the reflective abstract syntax model).</p>
-	 * specializes("KerML::Element")
+	 * <p>Check if this <code>MetadataFeature</code> has a <code>metaclass</code> that is a kind of <code><em>KerML::Element<em></code> (that is, it is from the reflective abstract syntax model).</p>
+	 * specializesFromLibrary('KerML::Element')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
@@ -157,8 +155,9 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this MetadataFeature reflectively represents a model element, then return the corresponding Element instance from the MOF abstract syntax representation of the model.</p>
+	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element<code> instance from the MOF abstract syntax representation of the model.</p>
 	 * isSyntactic()
+	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 * @generated

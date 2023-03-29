@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FeatureInverting is a Relationship between Features asserting that their interpretations (sequences) are the reverse of each other, identified as <code>featureInverted</code> and <code>invertingFeature</code>. For example, a Feature identifying each person's parents is the inverse of a Feature identifying each person's children.  A person identified as a parent of another will identify that other as one of their children.</p>
+ * <p>A <code>FeatureInverting</code> is a <code>Relationship</code> between <code>Features</code> asserting that their interpretations (sequences) are the reverse of each other, identified as <code>featureInverted</code> and <code>invertingFeature</code>. For example, a <code>Feature</code> identifying each person&#39;s parents is the inverse of a <code>Feature</code> identifying each person&#39;s children. A person identified as a parent of another will identify that other as one of their children.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +38,7 @@ public interface FeatureInverting extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Feature that is an the inverse of <code>invertingFeature</code>.</p>
+	 * <p>The <code>Feature</code> that is an inverse of the <code>invertingFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Inverted</em>' reference.
 	 * @see #setFeatureInverted(Feature)
@@ -70,7 +71,7 @@ public interface FeatureInverting extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Feature that is an inverse of <code>invertedFeature</code>.</p>
+	 * <p>The <code>Feature</code> that is an inverse of the <code>invertedFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inverting Feature</em>' reference.
 	 * @see #setInvertingFeature(Feature)
@@ -105,7 +106,8 @@ public interface FeatureInverting extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A <code>featureInverted</code> that is also an <code>owningRelatedElement<code>.</p>
+	 * <p>A <code>featureInverted</code> that is also the <code>owningRelatedElement</code> of this <code>FeatureInverting</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.
 	 * @see #setOwningFeature(Feature)

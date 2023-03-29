@@ -31,9 +31,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewpointUsage is a usage of a ViewpointDefinition.</p>
+ * <p>A <code>ViewpointUsage<code> is a <code>Usage</code> of a <code>ViewpointDefinition</code>.</p>
  * 
- * <p>A ViewpointUsage must subset, directly or indirectly, the base ViewpointUsage <code>viewpoints</code> from the Systems model library.</p>
+ * 
+ * viewpointStakeholder = framedConcern.featureMemberhsip->
+ *     selectByKind(StakeholderMembership).
+ *     ownedStakeholderParameter
+ * specializesFromLibrary('Views::viewpoints')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(ViewDefinition) or
+ *  owningType.oclIsKindOf(ViewUsage)) implies
+ *     specializesFromLibrary('Views::View::viewpointSatisfactions')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +68,7 @@ public interface ViewpointUsage extends RequirementUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ViewpointDefinition that defines this ViewUsage.</p>
+	 * <p>The <code>ViewpointDefinition</code> that is the <code>definition</code> of this <code>ViewpointUsage<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Definition</em>' reference.
 	 * @see #setViewpointDefinition(ViewpointDefinition)
@@ -89,7 +97,7 @@ public interface ViewpointUsage extends RequirementUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the owned and inherited <code>stakeholderParameters</code> of the <code>framedConcerns</code> of this ViewpointUsage.</p>
+	 * <p>The <code>PartUsages</code> that identify the stakeholders with concerns framed by this <code>ViewpointUsage</code>, which are the owned and inherited <code>stakeholderParameters</code> of the <code>framedConcerns</code> of this <code>ViewpointUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointUsage_ViewpointStakeholder()

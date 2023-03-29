@@ -38,17 +38,24 @@ import org.eclipse.emf.ecore.EObject;
  * qualifiedName =
  *     if owningNamespace = null then null
  *     else if owningNamespace.owner = null then escapedName()
- *     else if owningNamespace.qualifiedName = null then null
+ *     else if owningNamespace.qualifiedName = null or 
+ *             escapedName() = null then null
  *     else owningNamespace.qualifiedName + '::' + escapedName()
  *     endif endif endif
  * documentation = ownedElement->selectByKind(Documentation)
- * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
+ * ownedAnnotation = ownedRelationship->
+ *     selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
  * name = effectiveName()
  * ownedRelationship->exists(isImplied) implies isImpliedIncluded
  * isLibraryElement = libraryNamespace() <>null
  * 
  * shortName = effectiveShortName()
+ * owningNamespace =
+ *     if owningMembership = null then null
+ *     else owningMembership.membershipOwningNamespace
+ *     endif
+ * textualRepresentation = ownedElement->selectByKind(TextualRepresentation)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -96,7 +103,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>owningRelationship</code> of this Element, if that Relationship is a Membership.</p>
+	 * <p>The <code>owningRelationship</code> of this <code>Element</code>, if that <code>Relationship</code> is a <code>Membership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Membership</em>' reference.
@@ -162,7 +169,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Namespace that owns this Element, derived as the <code>membershipOwningNamespace</code> of the <code>owningMembership</code> of this Element, if any.</p>
+	 * <p>The <code>Namespace</code> that owns this <code>Element</code>, which is the <code>membershipOwningNamespace</code> of the <code>owningMembership</code> of this <code>Element</code>, if any.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Namespace</em>' reference.
@@ -488,7 +495,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Element that are Annotations, for which this Element is the <code>annotatedElement</code>.</code>
+	 * <p>The <code>ownedRelationships</code> of this <code>Element</code> that are <code>Annotations</code>, for which this <code>Element</code> is the <code>annotatedElement</code>.</code>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Annotation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedAnnotation()
@@ -513,7 +520,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>textualRepresentations</code> that annotate this Element.</p>
+	 * <p>The <code>TextualRepresentations</code> that annotate this <code>Element</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Textual Representation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_TextualRepresentation()
@@ -605,7 +612,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>By default, return whether the library Namespace of the <code>owningRelationship</code> of this Element, if it has one.</p>
+	 * <p>By default, return the library Namespace of the <code>owningRelationship</code> of this Element, if it has one.</p>
 	 * if owningRelationship <> null then owningRelationship.libraryNamespace()
 	 * else null endif
 	 * <!-- end-model-doc -->

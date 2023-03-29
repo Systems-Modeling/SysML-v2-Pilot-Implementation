@@ -29,7 +29,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A VariantMembership is a Membership between a variation point Definition or Usage and a Usage that represents a variant in the context of that variation. The <code>membershipOwningNamespace</code> for the VariantMembership must be either a Definition or a Usage with <code>isVariation</code> = <code>true</code>.</p>
+ * <p>A <code>VariantMembership</code> is a <code>Membership</code> between a variation point <code>Definition</code> or <code>Usage</code> and a <code>Usage</code> that represents a variant in the context of that variation. The <code>membershipOwningNamespace</code> for the <code>VariantMembership</code> must be either a Definition or a <code>Usage</code> with <code>isVariation = true</code>.</p>
+ * membershipOwningNamespace.oclIsKindOf(Definition) and
+ *     membershipOwningNamespace.oclAsType(Definition).isVariation or
+ * membershipOwningNamespace.oclIsKindOf(Usage) and
+ *     membershipOwningNamespace.oclAsType(Usage).isVariation
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -59,7 +64,7 @@ public interface VariantMembership extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usage that represents a variant in the context of the <code>owningVariationDefinition</code> or <code>owningVariationUsage</code>.</p>
+	 * <p>The <code>Usage</code> that represents a variant in the context of the <code>owningVariationDefinition</code> or <code>owningVariationUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Variant Usage</em>' reference.
 	 * @see #setOwnedVariantUsage(Usage)

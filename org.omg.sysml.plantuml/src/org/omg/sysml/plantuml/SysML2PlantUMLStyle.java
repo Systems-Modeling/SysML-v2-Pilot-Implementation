@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -508,7 +508,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-            return "<<exhibit state>> ";
+            if (VStructure.hasRefSubsettingWithoutDeclaredName(esu)) {
+                return " exhibit>> ";
+            } else {
+                return " exhibit state>> ";
+            }
 		}
 
 		@Override
@@ -523,7 +527,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            return " perform action>> ";
+            if (VStructure.hasRefSubsettingWithoutDeclaredName(pau)) {
+                return " perform>> ";
+            } else {
+                return " perform action>> ";
+            }
 		}
 
 		@Override

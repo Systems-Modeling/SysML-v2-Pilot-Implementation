@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Boolean</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>LiteralBoolean is a LiteralExpression that provides a <code><em>Boolean</em></code> value as a result. Its <code>result</code> parameter must have type <code><em>Boolean</em></code>.</p>
+ * <p><code>LiteralBoolean</code> is a <code>LiteralExpression</code> that provides a <code><em>Boolean</em></code> value as a result. Its <code>result</code> <code>parameter</code> must have type <code><em>Boolean</em></code>.</p>
  * 
  * <!-- end-model-doc -->
  *

@@ -46,36 +46,36 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwnedPortPropertyDescriptor(object);
-			addDirectedUsagePropertyDescriptor(object);
-			addUsagePropertyDescriptor(object);
-			addOwnedStatePropertyDescriptor(object);
-			addOwnedConstraintPropertyDescriptor(object);
-			addOwnedTransitionPropertyDescriptor(object);
-			addOwnedRequirementPropertyDescriptor(object);
-			addOwnedCalculationPropertyDescriptor(object);
 			addIsVariationPropertyDescriptor(object);
-			addVariantMembershipPropertyDescriptor(object);
-			addOwnedAnalysisCasePropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
-			addOwnedCasePropertyDescriptor(object);
+			addVariantMembershipPropertyDescriptor(object);
+			addUsagePropertyDescriptor(object);
+			addDirectedUsagePropertyDescriptor(object);
 			addOwnedReferencePropertyDescriptor(object);
-			addOwnedActionPropertyDescriptor(object);
-			addOwnedConnectionPropertyDescriptor(object);
+			addOwnedAttributePropertyDescriptor(object);
+			addOwnedEnumerationPropertyDescriptor(object);
+			addOwnedOccurrencePropertyDescriptor(object);
 			addOwnedItemPropertyDescriptor(object);
 			addOwnedPartPropertyDescriptor(object);
+			addOwnedPortPropertyDescriptor(object);
+			addOwnedConnectionPropertyDescriptor(object);
+			addOwnedFlowPropertyDescriptor(object);
 			addOwnedInterfacePropertyDescriptor(object);
-			addOwnedAttributePropertyDescriptor(object);
+			addOwnedAllocationPropertyDescriptor(object);
+			addOwnedActionPropertyDescriptor(object);
+			addOwnedStatePropertyDescriptor(object);
+			addOwnedTransitionPropertyDescriptor(object);
+			addOwnedCalculationPropertyDescriptor(object);
+			addOwnedConstraintPropertyDescriptor(object);
+			addOwnedRequirementPropertyDescriptor(object);
+			addOwnedConcernPropertyDescriptor(object);
+			addOwnedCasePropertyDescriptor(object);
+			addOwnedAnalysisCasePropertyDescriptor(object);
+			addOwnedVerificationCasePropertyDescriptor(object);
+			addOwnedUseCasePropertyDescriptor(object);
 			addOwnedViewPropertyDescriptor(object);
 			addOwnedViewpointPropertyDescriptor(object);
 			addOwnedRenderingPropertyDescriptor(object);
-			addOwnedVerificationCasePropertyDescriptor(object);
-			addOwnedEnumerationPropertyDescriptor(object);
-			addOwnedAllocationPropertyDescriptor(object);
-			addOwnedConcernPropertyDescriptor(object);
-			addOwnedOccurrencePropertyDescriptor(object);
-			addOwnedUseCasePropertyDescriptor(object);
-			addOwnedFlowPropertyDescriptor(object);
 			addOwnedMetadataPropertyDescriptor(object);
 			addOwnedUsagePropertyDescriptor(object);
 		}
@@ -853,14 +853,14 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP;
+			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

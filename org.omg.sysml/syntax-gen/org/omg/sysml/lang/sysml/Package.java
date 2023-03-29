@@ -30,7 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Package is a Namespace used to group Elements, without any instance-level semantics. It may have one or more model-level evaluable <code>filterCondition</code> Expressions used to filter its <code>importedMemberships</code>. Any imported <code>member</code> must meet all of the <code>filterConditions</code>.</p>
+ * <p>A <code>Package</code> is a <code>Namespace</code> used to group <code>Elements</code>, without any instance-level semantics. It may have one or more model-level evaluable <code>filterCondition</code> <code>Expressions</code> used to filter its <code>importedMemberships</code>. Any imported <code>member</code> must meet all of the <code>filterConditions</code>.</p>
+ * filterCondition = ownedMembership->
+ *     selectByKind(ElementFilterMembership).condition
  * <!-- end-model-doc -->
  *
  * <p>
@@ -57,7 +59,8 @@ public interface Package extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The model-level evaluable Boolean Expressions used to filter the <code>members</code> of this Package, derived as those <code>ownedMembers</code> of the Package that are owned via ElementFilterMembership.</p>
+	 * <p>The model-level evaluable <code><em>Boolean</em></code>-valued <code>Expression</code> used to filter the <code>members</code> of this <code>Package</code>, which are owned by the <code>Package</code> are via <code>ElementFilterMemberships</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Filter Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_FilterCondition()

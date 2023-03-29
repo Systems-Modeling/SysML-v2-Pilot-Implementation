@@ -46,41 +46,41 @@ public class UsageItemProvider extends FeatureItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNestedUsagePropertyDescriptor(object);
-			addOwningUsagePropertyDescriptor(object);
-			addOwningDefinitionPropertyDescriptor(object);
-			addNestedPortPropertyDescriptor(object);
-			addNestedActionPropertyDescriptor(object);
-			addNestedStatePropertyDescriptor(object);
-			addNestedConstraintPropertyDescriptor(object);
-			addNestedTransitionPropertyDescriptor(object);
-			addNestedRequirementPropertyDescriptor(object);
-			addNestedCalculationPropertyDescriptor(object);
+			addIsReferencePropertyDescriptor(object);
 			addIsVariationPropertyDescriptor(object);
-			addDirectedUsagePropertyDescriptor(object);
-			addNestedCasePropertyDescriptor(object);
-			addNestedAnalysisCasePropertyDescriptor(object);
-			addVariantMembershipPropertyDescriptor(object);
-			addUsagePropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
+			addVariantMembershipPropertyDescriptor(object);
+			addOwningDefinitionPropertyDescriptor(object);
+			addOwningUsagePropertyDescriptor(object);
+			addNestedUsagePropertyDescriptor(object);
+			addDefinitionPropertyDescriptor(object);
+			addUsagePropertyDescriptor(object);
+			addDirectedUsagePropertyDescriptor(object);
 			addNestedReferencePropertyDescriptor(object);
-			addNestedConnectionPropertyDescriptor(object);
+			addNestedAttributePropertyDescriptor(object);
+			addNestedEnumerationPropertyDescriptor(object);
+			addNestedOccurrencePropertyDescriptor(object);
 			addNestedItemPropertyDescriptor(object);
 			addNestedPartPropertyDescriptor(object);
+			addNestedPortPropertyDescriptor(object);
+			addNestedConnectionPropertyDescriptor(object);
+			addNestedFlowPropertyDescriptor(object);
 			addNestedInterfacePropertyDescriptor(object);
-			addNestedAttributePropertyDescriptor(object);
+			addNestedAllocationPropertyDescriptor(object);
+			addNestedActionPropertyDescriptor(object);
+			addNestedStatePropertyDescriptor(object);
+			addNestedTransitionPropertyDescriptor(object);
+			addNestedCalculationPropertyDescriptor(object);
+			addNestedConstraintPropertyDescriptor(object);
+			addNestedRequirementPropertyDescriptor(object);
+			addNestedConcernPropertyDescriptor(object);
+			addNestedCasePropertyDescriptor(object);
+			addNestedAnalysisCasePropertyDescriptor(object);
+			addNestedVerificationCasePropertyDescriptor(object);
+			addNestedUseCasePropertyDescriptor(object);
 			addNestedViewPropertyDescriptor(object);
 			addNestedViewpointPropertyDescriptor(object);
 			addNestedRenderingPropertyDescriptor(object);
-			addNestedVerificationCasePropertyDescriptor(object);
-			addNestedEnumerationPropertyDescriptor(object);
-			addNestedAllocationPropertyDescriptor(object);
-			addNestedConcernPropertyDescriptor(object);
-			addNestedOccurrencePropertyDescriptor(object);
-			addDefinitionPropertyDescriptor(object);
-			addNestedUseCasePropertyDescriptor(object);
-			addIsReferencePropertyDescriptor(object);
-			addNestedFlowPropertyDescriptor(object);
 			addNestedMetadataPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -905,9 +905,9 @@ public class UsageItemProvider extends FeatureItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Usage.class)) {
+			case SysMLPackage.USAGE__IS_REFERENCE:
 			case SysMLPackage.USAGE__IS_VARIATION:
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-			case SysMLPackage.USAGE__IS_REFERENCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -946,17 +946,17 @@ public class UsageItemProvider extends FeatureItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.USAGE__VARIANT_MEMBERSHIP;
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
+			childFeature == SysMLPackage.Literals.USAGE__VARIANT_MEMBERSHIP ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

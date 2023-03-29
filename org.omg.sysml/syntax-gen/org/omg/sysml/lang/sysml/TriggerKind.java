@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>TriggerKind enumerates the kinds of triggers that can be represented by TriggerInvocationExpression.</p>
+ * <p><code>TriggerKind</code> enumerates the kinds of triggers that can be represented by a <code>TriggerInvocationExpression</code>.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTriggerKind()
  * @model
@@ -26,7 +26,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a change trigger, corresponding to the <em><code>TriggerWhen</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates a <em>change trigger</em>, corresponding to the <em><code>TriggerWhen</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #WHEN_VALUE
 	 * @generated
@@ -39,7 +39,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates an absolute time trigger, corresponding to the <em><code>TriggerAt</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates an <em>absolute time trigger</em>, corresponding to the <em><code>TriggerAt</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #AT_VALUE
 	 * @generated
@@ -52,7 +52,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a relative time trigger, corresponding to the <em><code>TriggerAfter</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates a <em>relative time trigger</em>, corresponding to the <em><code>TriggerAfter</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the <code>Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #AFTER_VALUE
 	 * @generated
@@ -65,7 +65,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a change trigger, corresponding to the <em><code>TriggerWhen</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates a <em>change trigger</em>, corresponding to the <em><code>TriggerWhen</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #WHEN
 	 * @model name="when"
@@ -79,7 +79,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates an absolute time trigger, corresponding to the <em><code>TriggerAt</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates an <em>absolute time trigger</em>, corresponding to the <em><code>TriggerAt</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #AT
 	 * @model name="at"
@@ -93,7 +93,7 @@ public enum TriggerKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a relative time trigger, corresponding to the <em><code>TriggerAfter</code></em> Function from the <em><code>Triggers</code></em> library model.</p>
+	 * <p>Indicates a <em>relative time trigger</em>, corresponding to the <em><code>TriggerAfter</code></em> <code>Function</code> from the <em><code>Triggers</code></em> model in the <code>Kernel Semantic Library.</p>
 	 * <!-- end-model-doc -->
 	 * @see #AFTER
 	 * @model name="after"

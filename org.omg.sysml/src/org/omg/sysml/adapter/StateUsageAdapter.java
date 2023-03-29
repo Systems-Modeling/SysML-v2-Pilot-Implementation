@@ -51,7 +51,8 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 		
 	public boolean isSubstate() {
 		Type owningType = getTarget().getOwningType();
-		return owningType instanceof StateDefinition || owningType instanceof StateUsage;
+		return isNonEntryExitComposite() && 
+			   (owningType instanceof StateDefinition || owningType instanceof StateUsage);
 	}
 	
 }

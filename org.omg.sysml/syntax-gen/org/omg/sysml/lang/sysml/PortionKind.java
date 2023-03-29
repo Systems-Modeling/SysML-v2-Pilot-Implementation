@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>PortionKind is an enumeration of the possible special kinds of Occurrence portions that can be represented by an OccurrenceUsage.</p>
+ * <p><code>PortionKind</code> is an enumeration of the specific kinds of <code><em>Occurrence</em></code> portions that can be represented by an <code>OccurrenceUsage</code>.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortionKind()
  * @model
@@ -26,7 +26,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A time slice of an Occurrence (a portion over time).</p>
+	 * <p>A time slice of an <code>Occurrence</code> (a portion over time).</p>
 	 * <!-- end-model-doc -->
 	 * @see #TIMESLICE_VALUE
 	 * @generated
@@ -39,7 +39,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A snapshot of an Occurrence (a time slice with zero duration).</p>
+	 * <p>A snapshot of an <code>Occurrence</code> (a time slice with zero duration).</p>
 	 * <!-- end-model-doc -->
 	 * @see #SNAPSHOT_VALUE
 	 * @generated
@@ -52,7 +52,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A time slice of an Occurrence (a portion over time).</p>
+	 * <p>A time slice of an <code>Occurrence</code> (a portion over time).</p>
 	 * <!-- end-model-doc -->
 	 * @see #TIMESLICE
 	 * @model name="timeslice"
@@ -66,7 +66,7 @@ public enum PortionKind implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A snapshot of an Occurrence (a time slice with zero duration).</p>
+	 * <p>A snapshot of an <code>Occurrence</code> (a time slice with zero duration).</p>
 	 * <!-- end-model-doc -->
 	 * @see #SNAPSHOT
 	 * @model name="snapshot"

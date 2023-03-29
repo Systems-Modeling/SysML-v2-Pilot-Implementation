@@ -31,7 +31,7 @@
 grammar org.omg.sysml.xtext.SysML with org.omg.kerml.expressions.xtext.KerMLExpressions
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "http://www.omg.org/spec/SysML/2.0" as SysML
+import "https://www.omg.org/spec/SysML/20230201" as SysML
 
 /* ROOT NAMESPACE */
 
@@ -813,8 +813,7 @@ OccurrenceUsageKeyword :
 fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
 	  BasicUsagePrefix
 	  ( isIndividual ?= 'individual' )?
-	  ( portionKind = PortionKind
-	    ownedRelationship += PortioningFeatureMember )?
+	  ( portionKind = PortionKind )?
 	  UsageExtensionKeyword*
 ;
 
@@ -830,21 +829,12 @@ IndividualUsage returns SysML::OccurrenceUsage :
 PortionUsage returns SysML::OccurrenceUsage :
 	BasicUsagePrefix ( isIndividual ?= 'individual' )?
 	portionKind = PortionKind
-	ownedRelationship += PortioningFeatureMember
 	UsageExtensionKeyword* Usage
 ;
 
 enum PortionKind returns SysML::PortionKind :
 	// Literal keywords identified explicitly so they can be found by syntax highlighting script
 	snapshot = 'snapshot' | timeslice = 'timeslice'
-;
-
-PortioningFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += PortioningFeature 
-;
-
-PortioningFeature returns SysML::PortioningFeature :
-	{SysML::PortioningFeature}
 ;
 
 EventOccurrenceUsage returns SysML::EventOccurrenceUsage :
@@ -1618,8 +1608,7 @@ ControlNode returns SysML::ControlNode :
 fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 	  RefPrefix
 	  ( isIndividual ?= 'individual' )?
-	  ( portionKind = PortionKind
-	    ownedRelationship += PortioningFeatureMember )?
+	  ( portionKind = PortionKind )?
 ;
 
 MergeNode returns SysML::MergeNode :

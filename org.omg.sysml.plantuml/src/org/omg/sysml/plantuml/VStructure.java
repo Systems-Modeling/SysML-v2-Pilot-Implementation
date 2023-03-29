@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -231,6 +230,13 @@ public abstract class VStructure extends VDefault {
         }
     }
 
+    public static boolean hasRefSubsettingWithoutDeclaredName(Feature f) {
+        if (f.getOwnedReferenceSubsetting() == null) return false;
+        if (f.getDeclaredName() != null) return false;
+        if (f.getDeclaredShortName() != null) return false;
+        return true;
+    }
+
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
         StringBuilder sb = new StringBuilder();
@@ -239,7 +245,11 @@ public abstract class VStructure extends VDefault {
             Feature f = (Feature) e;
             boolean added = appendFeatureType(sb, ": ", f);
             sb.append(' ');
-            added = appendSubsettingFeature(sb, ":> ", f) || added;
+            added = appendSubsettings(sb, f) || added;
+            if (!hasRefSubsettingWithoutDeclaredName(f)) {
+                sb.append(' ');
+                added = appendReferenceSubsetting(sb, f) || added;
+            }
             sb.insert(0, name);
             /*
               if (f instanceof Usage) {
@@ -316,12 +326,6 @@ public abstract class VStructure extends VDefault {
     @Override
     public String caseLifeClass(LifeClass lc) {
         // Do not show life classes
-        return "";
-    }
-
-    @Override
-    public String casePortioningFeature(PortioningFeature tsf) {
-        // Do not show portioning feature
         return "";
     }
 

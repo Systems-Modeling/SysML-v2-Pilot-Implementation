@@ -93,6 +93,8 @@ var enableMode = function (CodeMirror) {
                 },
                 "#": function(stream: CodeMirror.StringStream) {
                  	do {
+               	let b_first = true;
+                 	do {
                  		if (stream.match("'", true)) { 
                     		let b_escaped = false;
                     		let s_next;
@@ -100,10 +102,13 @@ var enableMode = function (CodeMirror) {
                         		if(s_next === "'" && !b_escaped) break;
                         		b_escaped = !b_escaped && s_next === '\\';
                     		}
-                		} else {
+                		} else if (stream.match(/\w/, true)) {
                 			stream.eatWhile(/\w/);
+                		} else if (b_first) {
+                			return 'operator';
                 		}
-                	} while (stream.match('::', true))
+                		b_first = false;
+               	} while (stream.match('::', true))
                     return 'keyword';
                 },
             }

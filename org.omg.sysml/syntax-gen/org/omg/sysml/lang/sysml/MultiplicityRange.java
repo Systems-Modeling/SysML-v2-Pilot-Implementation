@@ -30,9 +30,25 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MultiplicityRange is a Multiplicity whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> Expression and the result of an <code>upperBound</code> Expression. The result of the <code>lowerBound</code> Expression shall be of type <em>Natural</em>, while the result of the <code>upperBound</code> Expression shall be of type <em>UnlimitedNatural</em>. If the result of the <code>upperBound</code> Expression is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value.</p>
+ * <p>A <code>MultiplicityRange</code> is a <code>Multiplicity</code> whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> <code>Expression</code> and the result of an <code>upperBound</code> <code>Expression</code>. The result of these <code>Expressions</code> shall be of type <code><em>Natural</em></code>. If the result of the <code>upperBound</code> <code>Expression</code> is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value. If no <code>lowerBound</code> <code>Expression</code>, then the default is that the lower bound has the same value as the upper bound, except if the <code>upperBound</code> evaluates to <code>*</code>, in which case the default for the lower bound is 0.</p>
  * 
  * bound->forAll(b | b.featuringType = self.featuringType)
+ * bound.result->forAll(specializesFromLibrary('ScalarValues::Natural'))
+ * lowerBound =
+ *     let ownedMembers : Sequence(Element) = 
+ *         ownedMembership->selectByKind(OwningMembership).ownedMember in
+ *     if ownedMembers->size() < 2 or 
+ *         not ownedMembers->first().oclIsKindOf(Expression) then null
+ *     else ownedMembers->first().oclAsType(Expression)
+ *     endif
+ * upperBound =
+ *     let ownedMembers : Sequence(Element) = 
+ *         ownedMembership->selectByKind(OwningMembership).ownedMember in
+ *     if ownedMembers->isEmpty() or 
+ *        not ownedMembers->last().oclIsKindOf(Expression) 
+ *     then null
+ *     else ownedMembers->last().oclAsType(Expression)
+ *     endif 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -64,7 +80,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result provides the lower bound of MultiplicityRange. If no <code>lowerBound</code> Expression is given, then the lower bound shall have the same value as the upper bound, unless the upper bound is unbounded (<code>*</code>), in which case the lower bound shall be 0.</p>
+	 * <p>The <code>Expression</code> whose result provides the lower bound of the <code>MultiplicityRange</code>. If no <code>lowerBound</code> <code>Expression</code> is given, then the lower bound shall have the same value as the upper bound, unless the upper bound is unbounded (<code>*</code>), in which case the lower bound shall be 0.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' reference.
@@ -103,7 +119,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Expression whose result is the upper bound of the MultiplicityRange.
+	 * The <code>Expression</code> whose result is the upper bound of the <code>MultiplicityRange</code>.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' reference.
 	 * @see #setUpperBound(Expression)
@@ -143,7 +159,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The bound Expressions of the MultiplicityRange. These shall be the only <code>ownedMembers</code> of the MultiplicityRange.</p>
+	 * <p>The owned <code>Expressions</code> of the <code>MultiplicityRange</code> whose results provide its bounds. These must be the only <code>ownedMembers</code> of the <code>MultiplicityRange</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicityRange_Bound()
@@ -177,18 +193,21 @@ public interface MultiplicityRange extends Multiplicity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>Evaluate the given <code>bound</code> <code>Expression</code> (at model level) and return the result represented as a MOF <code>UnlimitedNatural</code> value.</p>
 	 * if bound = null or not bound.isModelLevelEvaluable then 
 	 *     null
 	 * else
-	 *     let boundEval: Element = bound.evaluate(owningType) in
-	 *     if boundEval.oclIsKindOf(LiteralInfinity) then *
-	 *     else if boundEval.oclIsKindOf(LiteralInteger) then
-	 *         let boundValue : Integer = 
-	 *             boundEval.oclAsKindOf(LiteralInteger).value in
-	 *         if boundValue >= 0 then boundValue
-	 *         else null endif
-	 *     else null
-	 *     endif endif
+	 *     let boundEval: Sequence(Element) = bound.evaluate(owningType) in
+	 *     if boundEval->size() <> 1 then null else
+	 *         let valueEval: Element = boundEval->at(1) in
+	 *         if valueEval.oclIsKindOf(LiteralInfinity) then *
+	 *         else if valueEval.oclIsKindOf(LiteralInteger) then
+	 *             let value : Integer = 
+	 *                 valueEval.oclAsKindOf(LiteralInteger).value in
+	 *             if value >= 0 then value else null endif
+	 *         else null
+	 *         endif endif
+	 *     endif
 	 * endif 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.UnlimitedNatural" ordered="false" boundOrdered="false"

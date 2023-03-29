@@ -30,9 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An InterfaceDefinition is a ConnectionDefinition all of whose ends are PortUsages, defining an interface between elements that interact through such ports.</p>
- * 
- * <p>An InterfaceDefinition must subclass, directly or indirectly, the base InterfaceDefinition Interface from the Systems model library.</p>
+ * <p>An <code>InterfaceDefinition</code> is a <code>ConnectionDefinition</code> all of whose ends are <code>PortUsages</code>, defining an interface between elements that interact through such ports.</p>
  * specializesFromLibrary("Interfaces::Interface")
  * ownedEndFeature->size() = 2 implies
  *     specializesFromLibrary("Interfaces::BinaryInterface")
@@ -66,7 +64,7 @@ public interface InterfaceDefinition extends ConnectionDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortUsages that are the <code>associationEnds</code> of this InterfaceDefinition.
+	 * <p>The <code>PortUsages</code> that are the <code>connectionEnds</code> of this <code>InterfaceDefinition</code>.
 	 * 
 	 * 
 	 * <!-- end-model-doc -->

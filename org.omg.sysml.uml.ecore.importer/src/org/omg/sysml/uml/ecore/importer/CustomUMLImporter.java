@@ -13,7 +13,7 @@
  *   
  * SysML Customizations:
  * Copyright (c) 2019 Obeo
- * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2023 Model Driven Solutions, Inc.
  * 
  * Contributors :
  *   William Piers, Obeo
@@ -56,7 +56,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class CustomUMLImporter extends UMLImporter {
 
-	private static final String SYSML_URI = "http://www.omg.org/spec/SysML/2.0";
+	private static final String SYSML_URI = "https://www.omg.org/spec/SysML/20230201";
 	private static final String BASE_PACKAGE = "org.omg.sysml.lang";
 	private static final String TYPES_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
 	private static final String SETTING_DELEGATES_KEY = "settingDelegates";

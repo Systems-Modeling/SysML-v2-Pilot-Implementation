@@ -49,12 +49,12 @@ import org.omg.sysml.util.ElementUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getText <em>Text</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getFramedConcern <em>Framed Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getActorParameter <em>Actor Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getStakeholderParameter <em>Stakeholder Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getFramedConcern <em>Framed Concern</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,26 +92,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	protected EStructuralFeature.Internal.SettingDelegate TEXT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__TEXT).getSettingDelegate();
 
 	/**
-	 * The cached setting delegate for the '{@link #getAssumedConstraint() <em>Assumed Constraint</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAssumedConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ASSUMED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getRequiredConstraint() <em>Required Constraint</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRequiredConstraint()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate REQUIRED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT).getSettingDelegate();
-
-	/**
 	 * The cached setting delegate for the '{@link #getSubjectParameter() <em>Subject Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,16 +100,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate SUBJECT_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getFramedConcern() <em>Framed Concern</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFramedConcern()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate FRAMED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__FRAMED_CONCERN).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getActorParameter() <em>Actor Parameter</em>}' reference list.
@@ -150,6 +120,36 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate STAKEHOLDER_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAssumedConstraint() <em>Assumed Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssumedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ASSUMED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getRequiredConstraint() <em>Required Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REQUIRED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getFramedConcern() <em>Framed Concern</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFramedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FRAMED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__FRAMED_CONCERN).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -341,19 +341,19 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 				return getReqId();
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:
 				return getText();
-			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
-				return getAssumedConstraint();
-			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
-				return getRequiredConstraint();
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
-			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
-				return getFramedConcern();
 			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
 				return getActorParameter();
 			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
 				return getStakeholderParameter();
+			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
+				return getAssumedConstraint();
+			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
+				return getRequiredConstraint();
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				return getFramedConcern();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -374,20 +374,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 				getText().clear();
 				getText().addAll((Collection<? extends String>)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
-				getAssumedConstraint().clear();
-				getAssumedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
-				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
-				getRequiredConstraint().clear();
-				getRequiredConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
-				return;
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
-				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
-				getFramedConcern().clear();
-				getFramedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
 				return;
 			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
 				getActorParameter().clear();
@@ -396,6 +384,18 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
 				getStakeholderParameter().clear();
 				getStakeholderParameter().addAll((Collection<? extends PartUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
+				getAssumedConstraint().clear();
+				getAssumedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
+				getRequiredConstraint().clear();
+				getRequiredConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				getFramedConcern().clear();
+				getFramedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -415,23 +415,23 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:
 				getText().clear();
 				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
-				getAssumedConstraint().clear();
-				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
-				getRequiredConstraint().clear();
-				return;
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
-				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
-				getFramedConcern().clear();
 				return;
 			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
 				getActorParameter().clear();
 				return;
 			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
 				getStakeholderParameter().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
+				getAssumedConstraint().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
+				getRequiredConstraint().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				getFramedConcern().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -451,18 +451,18 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:
 				return TEXT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
-				return ASSUMED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
-				return REQUIRED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				return SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
-				return FRAMED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
 				return ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
 				return STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
+				return ASSUMED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:
+				return REQUIRED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				return FRAMED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

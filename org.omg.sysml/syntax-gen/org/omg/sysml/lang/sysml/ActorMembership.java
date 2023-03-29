@@ -9,7 +9,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ActorMembership is a ParameterMembership that identifies a PartUsage as an actor parameter, which specifies a role played by an entity external in interaction with the parametered element.</p>
+ * <p>An <code>ActorMembership</code> is a <code>ParameterMembership</code> that identifies a <code>PartUsage</code> as an <em>actor</em> <code>parameter</code>, which specifies a role played by an external entity in interaction with the <code>owningType</code> of the <code>ActorMembership</code>.</p>
+ * owningType.oclIsKindOf(RequirementUsage) or
+ * owningType.oclIsKindOf(RequirementDefinition) or
+ * owningType.oclIsKindOf(CaseDefinition) or
+ * owningType.oclIsKindOf(CaseUsage)
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -35,7 +40,7 @@ public interface ActorMembership extends ParameterMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PartUsage specifying the actor.</p>
+	 * <p>The <code>PartUsage</code> specifying the actor.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Actor Parameter</em>' reference.
 	 * @see #setOwnedActorParameter(PartUsage)

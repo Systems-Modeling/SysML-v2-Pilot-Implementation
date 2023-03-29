@@ -29,7 +29,17 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <code>ownedMemberFeature</code> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
+ * <p>A <code>RequirementConstraintMembership</code> is a <code>FeatureMembership</code> for an assumed or required <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage<code>.</p>
+ * referencedConstraint =
+ *     let reference : ReferenceSubsetting = 
+ *         ownedConstraint.ownedReferenceSubsetting in
+ *     if reference = null then ownedConstraint
+ *     else if not reference.referencedFeature.oclIsKindOf(ConstraintUsage) then null 
+ *     else reference.referencedFeature.oclAsType(ConstraintUsage)
+ *     endif endif
+ * owningType.oclIsKindOf(RequirementDefinition) or
+ * owningType.oclIsKindOf(RequirementUsage)
+ * ownedConstraint.isComposite
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,7 +66,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the RequirementConstraintMembership is for an assumed or required ConstraintUsage.</p>
+	 * <p>Whether the <code>RequirementConstraintMembership</code> is for an assumed or required <code>ConstraintUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.RequirementConstraintKind
@@ -89,7 +99,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintMembership.</p>
+	 * <p>The <code>ConstraintUsage</code> that is the <code>ownedMemberFeature</code> of this <code>RequirementConstraintMembership</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference.
 	 * @see #setOwnedConstraint(ConstraintUsage)
@@ -117,7 +127,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code> of the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
+	 * <p> The <code>ConstraintUsage</code> that is referenced through this <code>RequirementConstraintMembership</code>. It is the <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code> of the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Constraint</em>' reference.
 	 * @see #setReferencedConstraint(ConstraintUsage)

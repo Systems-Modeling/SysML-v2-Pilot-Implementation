@@ -168,7 +168,7 @@ public class UsageUtil {
 	
 	public static boolean isSubrequirement(RequirementUsage requirement) {
 		Type owningType = requirement.getOwningType();
-		return !isAssumptionConstraint(requirement) &&
+		return !isAssumptionConstraint(requirement) && requirement.isComposite() &&
 			   (owningType instanceof RequirementDefinition || 
 			    owningType instanceof RequirementUsage);
 	}
@@ -194,7 +194,7 @@ public class UsageUtil {
 		}
 	}
 	
-	public static boolean isAddressedConcern(ConcernUsage concern) {
+	public static boolean isFramedConcern(ConcernUsage concern) {
 		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	

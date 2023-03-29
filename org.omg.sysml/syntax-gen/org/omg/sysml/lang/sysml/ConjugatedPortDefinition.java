@@ -29,8 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConjugatedPortDefinition is a PortDefinition that is a PortConjugation of its original PortDefinition. That is, a ConjugatedPortDefinition inherits all the <code>features</code> of the original PortDefinition, but input <code>flows</code> of the original PortDefinition become outputs on the ConjugatedPortDefinition and output <code>flows</code> of the original PortDefinition become inputs on the ConjugatedPortDefinition. Every PortDefinition (that is not itself a ConjugatedPortDefinition) has exactly one corresponding ConjugatedPortDefinition, whose effective name is the name of the <code>originalPortDefinition</code>, with the character <code>~</code> prepended.</p>
- * originalPortDefinition = ownedPortConjugator.originalPortDefinition
+ * <p>A <code>ConjugatedPortDefinition</code> is a <code>PortDefinition</code> that is a <code>PortDefinition</code> of its original <code>PortDefinition</code>. That is, a <code>ConjugatedPortDefinition</code> inherits all the <code>features</code> of the original <code>PortDefinition</code>, but input <code>flows</code> of the original <code>PortDefinition</code> become outputs on the <code>ConjugatedPortDefinition</code> and output <code>flows</code> of the original <code>PortDefinition</code> become inputs on the <code>ConjugatedPortDefinition</code>. Every <code>PortDefinition</code> (that is not itself a <code><code>ConjugatedPortDefinition</code></code>) has exactly one corresponding <code>ConjugatedPortDefinition</code>, whose effective name is the name of the <code>originalPortDefinition</code>, with the character <code>~</code> prepended.</p>
+ * ownedPortConjugator.originalPortDefinition = originalPortDefinition
  * conjugatedPortDefinition = null
  * <!-- end-model-doc -->
  *
@@ -63,7 +63,7 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortConjugation that is the <code>ownedConjugator</code> of this ConjugatedPortDefinition, linking it its <code>originalPortDefinition</code>.</p>
+	 * <p>The <code>PortConjugation</code> that is the <code>ownedConjugator</code> of this <code>ConjugatedPortDefinition</code>, linking it to its <code>originalPortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port Conjugator</em>' reference.
 	 * @see #setOwnedPortConjugator(PortConjugation)
@@ -98,7 +98,7 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The original PortDefinition for this ConjugatedPortDefinition.</p>
+	 * <p>The original <code>PortDefinition</code> for this <code>ConjugatedPortDefinition</code>, which is the <code>owningNamespace</code> of the <code>ConjugatedPortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Port Definition</em>' reference.
 	 * @see #setOriginalPortDefinition(PortDefinition)

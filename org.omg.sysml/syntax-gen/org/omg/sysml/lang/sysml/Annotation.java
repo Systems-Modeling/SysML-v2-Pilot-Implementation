@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Annotation is a Relationship between an AnnotatingElement and the Element that is annotated by that AnnotatingElement.</p>
+ * <p>An <code>Annotation</code> is a Relationship between an <code>AnnotatingElement</code> and the <code>Element</code> that is annotated by that <code>AnnotatingElement</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -59,7 +59,7 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AnnotatingElement that annotates the <code>annotatedElement</code> of this Annotation.</p>
+	 * <p>The <code>AnnotatingElement</code> that annotates the <code>annotatedElement</code> of this <code>Annotation</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotating Element</em>' reference.
@@ -97,7 +97,8 @@ public interface Annotation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that is annotated by the <code>annotatingElement</code> of this Annotation.</p>
+	 * <p>The <code>Element</code> that is annotated by the <code>annotatingElement</code> of this Annotation.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference.
 	 * @see #setAnnotatedElement(Element)
@@ -132,7 +133,8 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>annotatedElement</code> of this Annotation, when it is also its <code>owningRelatedElement</code>.
+	 * <p>The <code>annotatedElement</code> of this <code>Annotation</code>, when it is also its <code>owningRelatedElement</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Annotated Element</em>' reference.
 	 * @see #setOwningAnnotatedElement(Element)

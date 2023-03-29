@@ -30,11 +30,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AnnotatingElement is an Element that provides additional description of or metadata on some other Element. An AnnotatingElement is attached to its <code>annotatedElement</code> by an Annotation Relationship.</p>
+ * <p>An <code>AnnotatingElement</code> is an <code>Element</code> that provides additional description of or metadata on some other <code>Element</code>. An <code>AnnotatingElement</code> is either attached to its <code>annotatedElements</code> by <code>Annotation</code> <code>Relationships</code>, or it implicitly annotates its <code>owningNamespace</code>.</p>
  * 
  * annotatedElement = 
  *  if annotation->notEmpty() then annotation.annotatedElement
- *  else owningNamespace endif
+ *  else Sequence{owningNamespace} endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,7 +56,7 @@ public interface AnnotatingElement extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Elements that are annotated by this AnnotatingElement. If <code>annotation</code<> is not empty, this is derived as the <code>annotatedElements</code> of the <code>annotations</code>. If <code>annotation</code>, then it is derived as the <code>owningNamespace</code> of the AnnotatingElement.</p>
+	 * <p>The <code>Elements</code> that are annotated by this <code>AnnotatingElement</code>. If <code>annotation</code> is not empty, these are the <code>annotatedElements</code> of the <code>annotations</code>. If <code>annotation</code> is empty, then it is the <code>owningNamespace</code> of the <code>AnnotatingElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
@@ -75,7 +75,8 @@ public interface AnnotatingElement extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Annotations that relate this AnnotatingElement to its <code>annotatedElements</code>.</p>
+	 * <p>The <code>Annotations</code> that relate this <code>AnnotatingElement</code> to its <code>annotatedElements</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_Annotation()

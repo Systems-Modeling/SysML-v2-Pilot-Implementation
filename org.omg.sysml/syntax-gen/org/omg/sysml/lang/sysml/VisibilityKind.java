@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * '<em><b>Visibility Kind</b></em>', and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>VisibilityKind is an enumeration whose literals specify the visibility of a Membership of an Element in a Namespace outside of that Namespace. Note that &quot;visibility&quot; specifically restricts whether an Element in a Namespace may be referenced by name from outside the Namespace and only otherwise restricts access to an Element as provided by specific constraints in the abstract syntax (e.g., preventing the import or inheritance of private Elements).</p>
+ * <p><code>VisibilityKind</code> is an enumeration whose literals specify the visibility of a <code>Membership</code> of an <code>Element</code> in a <code>Namespace</code> outside of that <code>Namespace</code>. Note that &quot;visibility&quot; specifically restricts whether an <code>Element</code> in a <code>Namespace</code> may be referenced by name from outside the <code>Namespace</code> and only otherwise restricts access to an <code>Element</code> as provided by specific constraints in the abstract syntax (e.g., preventing the import or inheritance of private <code>Elements</code>).</p>
  * 
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getVisibilityKind()
@@ -46,7 +46,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a Membership is not visible outside its owning Namespace.</p>
+	 * <p>Indicates a <code>Membership</code> is not visible outside its owning <code>Namespace</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PRIVATE_VALUE
 	 * @generated
@@ -59,7 +59,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of Elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of <code>Elements</code> from a <code>Namespace</code>. However, other <code>Relationships</code> may be specified to include <code>Memberships</code> with <code>protected</code> visibility in the list of <code>memberships</code> for a <code>Namespace</code> (e.g., <code>Specialization</code>).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED_VALUE
@@ -71,7 +71,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
+	 * <p>Indicates that a <code>Membership</code> is publicly visible outside its owning <code>Namespace</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PUBLIC_VALUE
 	 * @generated
@@ -88,7 +88,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a Membership is not visible outside its owning Namespace.</p>
+	 * <p>Indicates a <code>Membership</code> is not visible outside its owning <code>Namespace</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PRIVATE
 	 * @model name="private"
@@ -106,7 +106,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of Elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of <code>Elements</code> from a <code>Namespace</code>. However, other <code>Relationships</code> may be specified to include <code>Memberships</code> with <code>protected</code> visibility in the list of <code>memberships</code> for a <code>Namespace</code> (e.g., <code>Specialization</code>).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED
@@ -125,7 +125,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
+	 * <p>Indicates that a <code>Membership</code> is publicly visible outside its owning <code>Namespace</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PUBLIC
 	 * @model name="public"

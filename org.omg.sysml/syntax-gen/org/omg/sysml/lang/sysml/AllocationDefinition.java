@@ -10,11 +10,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AllocationDefinition is a ConnectionDefinition that specifies that some or all of the responsibility to realize the intent of the <code>source</code> is allocated to the <code>target</code> instances. Such allocations define mappings across the various structures and hierarchies of a system model, perhaps as a precursor to more rigorous specifications and implementations. An AllocationDefinition can itself be refined using nested <code>allocations</code> that give a finer-grained decomposition of the containing allocation mapping.</p>
- * 
- * <p>An AllocationDefinition must subclass, directly or indirectly, the base AllocationDefinition Allocation from the Systems model library.</p>
- * specializesFromLibrary("Allocations::Allocation")
+ * <p>An <code>AllocationDefinition</code> is a <code>ConnectionDefinition</code> that specifies that some or all of the responsibility to realize the intent of the <code>source</code> is allocated to the <code>target</code> instances. Such allocations define mappings across the various structures and hierarchies of a system model, perhaps as a precursor to more rigorous specifications and implementations. An <code>AllocationDefinition</code> can itself be refined using nested <code>allocations</code> that give a finer-grained decomposition of the containing allocation mapping.</p>
  * allocation = usage->selectAsKind(AllocationUsage)
+ * specializesFromLibrary("Allocations::Allocation")
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,7 +39,7 @@ public interface AllocationDefinition extends ConnectionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that refine the allocation mapping defined by this AllocationDefinition.</p>
+	 * <p>The <code>AllocationUsages</code> that refine the allocation mapping defined by this <code>AllocationDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAllocationDefinition_Allocation()

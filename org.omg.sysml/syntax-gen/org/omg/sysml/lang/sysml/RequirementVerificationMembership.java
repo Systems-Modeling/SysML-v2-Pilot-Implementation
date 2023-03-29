@@ -29,7 +29,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementVerificationMembership is a RequirementConstraintMembership used in the objective of a VerificationCase to identify a Requirement that is verified by the VerificationCase.</p>
+ * <p>A <code>RequirementVerificationMembership</code> is a <code>RequirementConstraintMembership </code> used in the objective of a <code>VerificationCase</code> to identify a <code>RequirementUsage</code> that is verified by the <code>VerificationCase</code>.</p>
+ * kind = RequirementConstraintKind::requirement
+ * owningType.oclIsKindOf(RequirementUsage) and
+ * owningType.owningFeatureMembership <> null and
+ * owningType.owningFeatureMembership.oclIsKindOf(ObjectiveMembership)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,7 +60,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RequirementUsage that is identified as being verified. It is the <code>referencedConstraint</code> of the RequirementVerificationMembership considered as a RequirementConstraintMembership, which must be a RequirementUsage.</p>
+	 * <p> The <code>RequirementUsage</code> that is identified as being verified. It is the <code>referencedConstraint</code> of the <code>RequirementVerificationMembership</code> considered as a <code>RequirementConstraintMembership</code>, which must be a <code>RequirementUsage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference.
 	 * @see #setVerifiedRequirement(RequirementUsage)
@@ -94,7 +98,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned Requirement that acts as the <code>constraint</code> for this RequirementVerificationMembership. This will either be the <code>verifiedRequirement</code>, or it will subset the <code>verifiedRequirement</code>.</p>
+	 * <p>The owned <code>RequirementUsage</code> that acts as the <code>ownedConstraint</code> for this <code>RequirementVerificationMembership</code>. This will either be the <code>verifiedRequirement</code>, or it will subset the <code>verifiedRequirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference.
 	 * @see #setOwnedRequirement(RequirementUsage)

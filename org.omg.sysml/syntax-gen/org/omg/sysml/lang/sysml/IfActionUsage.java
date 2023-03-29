@@ -9,7 +9,35 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An IfActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>IfThenAction</em> from the Systems model library, or, more specifically, by <em>IfThenElseAction</em>, if it has an <code>elseAction</code>. It specifies that the <code>thenAction</code> ActionUsage should be performed if the result of the <code>ifArgument</code> Expression is true. It may also optionally specify a <code>elseAction</code> ActionUsage that is performed if the result of the <code>ifArgument</code> is false.</p>
+ * <p>An <code>IfActionUsage</code> is an <code>ActionUsage</code> that specifies that the <code>thenAction</code> <code>ActionUsage</code> should be performed if the result of the <code>ifArgument</code> <code>Expression</code> is true. It may also optionally specify an <code>elseAction</code> <code>ActionUsage</code> that is performed if the result of the <code>ifArgument</code> is false.</p>
+ * thenAction = 
+ *     let parameter : Feature = inputParameter(2) in
+ *     if parameter <> null and parameter.oclIsKindOf(ActionUsage) then
+ *         parameter.oclAsType(ActionUsage)
+ *     else
+ *         null
+ *     endif
+ * isSubactionUsage() implies
+ *     specializesFromLibrary('Actions::Action::ifSubactions')
+ * if elseAction = null then
+ *     specifiesFromLibrary('Actions::ifThenActions')
+ * else
+ *     specifiesFromLibrary('Actions::ifThenElseActions')
+ * endif
+ * ifArgument = 
+ *     let parameter : Feature = inputParameter(1) in
+ *     if parameter <> null and parameter.oclIsKindOf(Expression) then
+ *         parameter.oclAsType(Expression)
+ *     else
+ *         null
+ *     endif
+ * elseAction = 
+ *     let parameter : Feature = inputParameter(3) in
+ *     if parameter <> null and parameter.oclIsKindOf(ActionUsage) then
+ *         parameter.oclAsType(ActionUsage)
+ *     else
+ *         null
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +59,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is false. Derived as the owned ActionUsage that redefines <em><code>elseClause</code><em> </em></em>parameter of the IfActionUsage.</p> 
+	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is false. It is the (optional) third <code>parameter</code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Else Action</em>' reference.
@@ -59,7 +87,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is true. Derived as the owned ActionUsage that redefines the <em><code>thenClause</code></em> parameter of the IfActionUsage.</p> 
+	 * <p>The <code>ActionUsage</code> that is to be performed if the result of the <code>ifArgument</code> is true. It is the second <code>parameter<code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Then Action</em>' reference.
@@ -87,7 +115,7 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. Derived as the <code>value</code> Expression of the FeatureValue for the redefined <em><code>ifTest</code></em> parameter of the IfActionUsage.</p> 
+	 * <p>The <code>Expression</code> whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. It is the first <code>parameter<code> of the <code>IfActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>If Argument</em>' reference.

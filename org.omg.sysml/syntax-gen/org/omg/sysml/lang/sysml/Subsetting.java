@@ -27,8 +27,17 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Subsetting is Generalization in which the <code>specific</code> and <code>general</code> Types that are Features. This means all values of the <code>subsettingFeature</code> (on instances of its domain, i.e., the intersection of its <code>featuringTypes</code>) are values of the <code>subsettedFeature</code> on instances of its domain.&nbsp; To support this,&nbsp;the domain&nbsp;of the <code>subsettingFeature</code> must be the same or specialize (at least indirectly) the&nbsp;domain&nbsp;of the <code>subsettedFeature</code> (via Generalization), and the range (intersection of a Feature&#39;s <code>types</code>) of the <code>subsettingFeature</code> must specialize the range of the <code>subsettedFeature</code>.&nbsp;The <code>subsettedFeature</code> is imported into the <code>owningNamespace</code> of the <code>subsettingFeature</code> (if it is not already in that namespace), requiring the names of the <code>subsettingFeature</code> and <code>subsettedFeature</code> to be different.</p>
+ * <p><code>Subsetting</code> is <code>Specialization</code> in which the <code>specific</code> and <code>general</code> <code>Types</code> are <code>Features</code>. This means all values of the <code>subsettingFeature</code> (on instances of its domain, i.e., the intersection of its <code>featuringTypes</code>) are values of the <code>subsettedFeature</code> on instances of its domain. To support this the domain of the <code>subsettingFeature</code> must be the same or specialize (at least indirectly) the domain of the <code>subsettedFeature</code> (via <code>Specialization</code>), and the co-domain (intersection of the <code>types</code>) of the <code>subsettingFeature</code> must specialize the co-domain of the <code>subsettedFeature</code>.</p>
  * 
+ * let subsettingFeaturingTypes: OrderedSet(Type) =
+ *     subsettingFeature.featuringTypes in
+ * let subsettedFeaturingTypes: OrderedSet(Type) =
+ *     subsettedFeature.featuringTypes in
+ * let anythingType: Element =
+ *     subsettingFeature.resolveGlobal('Base::Anything') in 
+ * subsettedFeaturingTypes->forAll(t |
+ *     subsettingFeaturingTypes->isEmpty() and t = anythingType or
+ *     subsettingFeaturingTypes->exists(specializes(t))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +69,7 @@ public interface Subsetting extends Specialization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is subsetted by the <code>subsettingFeature</code> of this Subsetting.</p>
+	 * <p>The <code>Feature</code> that is subsetted by the <code>subsettingFeature</code> of this <code>Subsetting</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subsetted Feature</em>' reference.
@@ -97,7 +106,7 @@ public interface Subsetting extends Specialization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is a subset of the <code>subsettedFeature</code> of this Subsetting.</p>
+	 * <p>The <code>Feature</code> that is a subset of the <code>subsettedFeature</code> of this <code>Subsetting</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subsetting Feature</em>' reference.
@@ -142,7 +151,8 @@ public interface Subsetting extends Specialization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that owns this Subsetting relationship, which must also be its <code>subsettingFeature</code>.</p>
+	 * <p>A <code>subsettingFeature</code> that is also the <code>owningRelatedElement</code> of this <code>Subsetting</code>.</p>
+	 * 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.

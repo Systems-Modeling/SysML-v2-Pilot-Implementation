@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CalculationDefinition is an ActionDefinition that also defines a Function producing a <code>result</code>.</p>
- * 
- * <p>A CalculationDefinition must subclass, directly or indirectly, the base CalculationDefinition Calculation from the Systems model library.</p>
+ * <p>A <code>CalculationDefinition</code> is an <coed>ActionDefinition</code> that also defines a <code>Function</code> producing a <code>result</code>.</p>
+ * specializesFromLibrary('Calculations::Calculation')
+ * calculation = action->selectByKind(CalculationUsage)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -60,7 +60,7 @@ public interface CalculationDefinition extends ActionDefinition, Function {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CalculationUsages that are <code>actions</code> in this CalculationDefinition.</p>
+	 * <p>The <code>actions</code> of this <code>CalculationDefinition</code> that are <code>CalculationUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCalculationDefinition_Calculation()

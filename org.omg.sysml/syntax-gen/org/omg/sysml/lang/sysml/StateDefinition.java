@@ -30,14 +30,43 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A StateDefinition is the Definition of the Behavior of a system or part of a system in a certain state condition.</p>
+ * <p>A <code>StateDefinition</code> is the <code>Definition</code> of the </code>Behavior</code> of a system or part of a system in a certain state condition.</p>
  * 
- * <p>A State Definition must subclass, directly or indirectly, the base StateDefinition <em>StateAction</em> from the Systems model library.</p>
- * 
- * <p>A StateDefinition may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
- * ownedGeneralization.general->
- *     selectByKind(StateDefinition).isParallel->
- *     forAll(p | p = isParallel)
+ * <p>A <code>StateDefinition</code> may be related to up to three of its <code>ownedFeatures</code> by <code>StateBehaviorMembership</cod> <code>Relationships</code>, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the <code>StateDefinition</code>.</p>
+ * ownedGeneralization.general->selectByKind(StateDefinition)->
+ *     forAll(g | g.isParallel = isParallel)
+ * specializesFromLibrary('States::StateAction')
+ * ownedMembership->
+ *     selectByKind(StateSubactionMembership)->
+ *     isUnique(kind)
+ * state = action->selectByKind(StateUsage)
+ * doAction =
+ *     let doMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::do) in
+ *     if doMemberships->isEmpty() then null
+ *     else doMemberships->at(1)
+ *     endif
+ * entryAction =
+ *     let entryMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::entry) in
+ *     if entryMemberships->isEmpty() then null
+ *     else entryMemberships->at(1)
+ *     endif
+ * isParallel implies
+ *     ownedAction.incomingTransition->isEmpty() and
+ *     ownedAction.outgoingTransition->isEmpty()
+ * exitAction = 
+ *     let exitMemberships : Sequence(StateSubactionMembership) =
+ *         ownedMembership->
+ *             selectByKind(StateSubactionMembership)->
+ *             select(kind = StateSubactionKind::exit) in
+ *     if exitMemberships->isEmpty() then null
+ *     else exitMemberships->at(1)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +92,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getStep() <em>Step</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.ActionDefinition#getAction() <em>Action</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -72,7 +101,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsages that are the <tt>steps</tt> of the StateDefinition, which specify the discrete states in the Behavior defined by the StateDefinition.</p>
+	 * <p>The <code>StateUsages</code>, which are <code>actions</code> in the <code>StateDefinition</code>, that specify the discrete states in the behavior defined by the <code>StateDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition_State()
@@ -89,7 +118,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateDefinition to be performed on entry to the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>entry</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateDefinition</code> to be performed on entry to the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateDefinition</code> by a <code>StateSubactionMembership</code>  with <code>kind = entry</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Entry Action</em>' reference.
 	 * @see #setEntryAction(ActionUsage)
@@ -116,7 +145,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateDefinition to be performed while in the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>do</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateDefinition</code> to be performed while in the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateDefinition</code> by a <code>StateSubactionMembership</code>  with <code>kind = do</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Do Action</em>' reference.
 	 * @see #setDoAction(ActionUsage)
@@ -143,7 +172,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage of this StateDefinition to be performed on exit from the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>exit</tt>.</p>
+	 * <p>The <code>ActionUsage</code> of this <code>StateDefinition</code> to be performed on exit to the state defined by the <code>StateDefinition</code>. It is the owned <code>ActionUsage</code> related to the <code>StateDefinition</code> by a <code>StateSubactionMembership</code>  with <code>kind = exit</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exit Action</em>' reference.
 	 * @see #setExitAction(ActionUsage)
@@ -171,7 +200,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the <code>ownedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>ownedStates</code> may have any incoming or outgoing <code><code>transitions. </code></code>If false, only one <code>ownedState</code> may be performed at a time.</p>
+	 * <p>Whether the <code>ownedStates</code> of this <code>StateDefinition</code> are to all be performed in parallel. If true, none of the <code>ownedActions</code> (which includes <code>ownedStates</code>) may have any incoming or outgoing <code>Transitions</code>. If false, only one <code>ownedState</code> may be performed at a time.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Parallel</em>' attribute.

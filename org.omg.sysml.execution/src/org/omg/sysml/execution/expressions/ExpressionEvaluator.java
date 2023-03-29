@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -50,11 +50,14 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 			return super.evaluateInvocation(expression, target);
 		} else {
 			Type type = expression.getOwnedTyping().stream().map(FeatureTyping::getType).findFirst().orElse(null);
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(type);
-			if (resultExpression == null) {
-				Feature resultParameter = TypeUtil.getResultParameterOf(type);
-				if (resultParameter != null) {
-					resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
+			Expression resultExpression = null;
+			if (type != null) {
+				resultExpression = ExpressionUtil.getResultExpressionOf(type);
+				if (resultExpression == null) {
+					Feature resultParameter = TypeUtil.getResultParameterOf(type);
+					if (resultParameter != null) {
+						resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
+					}
 				}
 			}
 			if (resultExpression == null) {

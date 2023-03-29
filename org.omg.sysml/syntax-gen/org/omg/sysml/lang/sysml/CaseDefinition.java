@@ -31,9 +31,30 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CaseDefinition is a CalculationDefinition for a process, often involving collecting evidence or data, relative to a subject, possibly involving the collaboration of one or more other actors, producing a result that meets an objective.</p>
- * 
- * <p>A CaseDefinition must subclass, directly or indirectly, the base CaseDefinition <em>Case</em> from the Systems model library.</p>
+ * <p>A <code>CaseDefinition</code> is a <code>CalculationDefinition</code> for a process, often involving collecting evidence or data, relative to a subject, possibly involving the collaboration of one or more other actors, producing a result that meets an objective.</p>
+ * objectiveRequirement = 
+ *     let objectives: OrderedSet(RequirementUsage) = 
+ *         featureMembership->
+ *             selectByKind(ObjectiveMembership).
+ *             ownedRequirement in
+ *     if objectives->isEmpty() then null
+ *     else objectives->first().ownedObjectiveRequirement
+ *     endif
+ * featureMembership->
+ *     selectByKind(ObjectiveMembership)->
+ *     size() <= 1
+ * subjectParameter =
+ *     let subjectMems : OrderedSet(SubjectMembership) = 
+ *         featureMembership->selectByKind(SubjectMembership) in
+ *     if subjectMems->isEmpty() then null
+ *     else subjectMems->first().ownedSubjectParameter
+ *     endif
+ * actorParameter = featureMembership->
+ *     selectByKind(ActorMembership).
+ *     ownedActorParameter
+ * featureMembership->selectByKind(SubjectMembership)->size() <= 1
+ * input->notEmpty() and input->first() = subjectParameter
+ * specializesFromLibrary('Cases::Case')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -62,7 +83,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this CaseDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this <code>CaseDefinition</code> that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)
@@ -98,7 +119,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this CaseDefinition that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base CaseDefinition <em>Case</em> from the Systems model library.</p>
+	 * <p>The <code>parameters</code> of this <code>CaseDefinition</code> that are owned via <code>ActorMemberships</code>, which must subset, directly or indirectly, the <code>PartUsage</code> <em><code>actors</code></em> of the base <code>CaseDefinition</code> <em>Case</em> from the Systems Model Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition_ActorParameter()
@@ -121,7 +142,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedFeature</code> of this CaseDefinition that is owned via an ObjectiveMembership, and that must redefine, directly or indirectly, the <code>objective</code> RequirementUsage of the base CaseDefinition Case from the Systems model library.</p> 
+	 * <p>The <code>objectiveRequirement</code> of this <code>CaseDefinition</code>, that is owned via an <code>ObjectiveMembership</code>, and will redefine, directly or indirectly, the <code>objective</code> <code>RequirementUsage<code> of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Objective Requirement</em>' reference.

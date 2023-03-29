@@ -31,9 +31,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A VerificationCaseDefinition is a CaseDefinition for the purpose of verification of the subect of the case against its requirements.</p>
- * 
- * <p>A VerificationCaseDefinition must subclass, directly or indirectly, the base VerificationCaseDefinition VerificationCase from the Systems model library.</p>
+ * <p>A <code>VerificationCaseDefinition</code> is a <code>CaseDefinition</code> for the purpose of verification of the subject of the case against its requirements.</p>
+ * verifiedRequirement =
+ *     if objectiveRequirement = null then OrderedSet{}
+ *     else 
+ *         objectiveRequirement.featureMembership->
+ *             selectByKind(RequirementVerificationMembership).
+ *             verifiedRequirement->asOrderedSet()
+ *     endif
+ * specializesFromLibrary('VerificationCases::VerificationCase')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +61,7 @@ public interface VerificationCaseDefinition extends CaseDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages verified by this VerificationCaseDefinition, derived as the <code>verifiedRequirements</code> of all RequirementVerificationMemberships of the <code>objectiveRequirement</code>.</p>
+	 * <p>The <code>RequirementUsages</code> verified by this <code>VerificationCaseDefinition</code>, which are the <code>verifiedRequirements</code> of all <code>RequirementVerificationMemberships</code> of the <code>objectiveRequirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVerificationCaseDefinition_VerifiedRequirement()

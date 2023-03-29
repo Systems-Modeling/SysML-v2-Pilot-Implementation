@@ -98,6 +98,42 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Name
 		public RuleCall getDeclaredNameNameParserRuleCall_1_0() { return cDeclaredNameNameParserRuleCall_1_0; }
 	}
+	public class RelationshipBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RelationshipBody");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		
+		//fragment RelationshipBody returns SysML::Relationship :
+		//    ';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
+		
+		//'{' ( ownedRelationship += OwnedAnnotation )* '}'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+		
+		//( ownedRelationship += OwnedAnnotation )*
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		
+		//OwnedAnnotation
+		public RuleCall getOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0() { return cOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
+	}
 	public class DependencyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Dependency");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -301,42 +337,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//MetadataUsage
 		public RuleCall getMetadataUsageParserRuleCall_3() { return cMetadataUsageParserRuleCall_3; }
-	}
-	public class RelationshipBodyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RelationshipBody");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//fragment RelationshipBody returns SysML::Relationship :
-		//    ';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
-		
-		//'{' ( ownedRelationship += OwnedAnnotation )* '}'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
-		
-		//( ownedRelationship += OwnedAnnotation )*
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
-		
-		//OwnedAnnotation
-		public RuleCall getOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0() { return cOwnedRelationshipOwnedAnnotationParserRuleCall_1_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Comment");
@@ -4468,26 +4468,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cBasicUsagePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cIsIndividualAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cPortionKindAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0_0 = (RuleCall)cPortionKindAssignment_2_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
+		private final Assignment cPortionKindAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0 = (RuleCall)cPortionKindAssignment_2.eContents().get(0);
 		private final RuleCall cUsageExtensionKeywordParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
 		//      BasicUsagePrefix
 		//      ( isIndividual ?= 'individual' )?
-		//      ( portionKind = PortionKind
-		//        ownedRelationship += PortioningFeatureMember )?
+		//      ( portionKind = PortionKind )?
 		//      UsageExtensionKeyword*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicUsagePrefix
 		//( isIndividual ?= 'individual' )?
-		//( portionKind = PortionKind
-		//  ownedRelationship += PortioningFeatureMember )?
+		//( portionKind = PortionKind )?
 		//UsageExtensionKeyword*
 		public Group getGroup() { return cGroup; }
 		
@@ -4500,21 +4495,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'individual'
 		public Keyword getIsIndividualIndividualKeyword_1_0() { return cIsIndividualIndividualKeyword_1_0; }
 		
-		//( portionKind = PortionKind
-		//  ownedRelationship += PortioningFeatureMember )?
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//portionKind = PortionKind
-		public Assignment getPortionKindAssignment_2_0() { return cPortionKindAssignment_2_0; }
+		//( portionKind = PortionKind )?
+		public Assignment getPortionKindAssignment_2() { return cPortionKindAssignment_2; }
 		
 		//PortionKind
-		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0_0() { return cPortionKindPortionKindEnumRuleCall_2_0_0; }
-		
-		//ownedRelationship += PortioningFeatureMember
-		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
-		
-		//PortioningFeatureMember
-		public RuleCall getOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0() { return cOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0; }
+		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0() { return cPortionKindPortionKindEnumRuleCall_2_0; }
 		
 		//UsageExtensionKeyword*
 		public RuleCall getUsageExtensionKeywordParserRuleCall_3() { return cUsageExtensionKeywordParserRuleCall_3; }
@@ -4585,22 +4570,18 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
 		private final Assignment cPortionKindAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0 = (RuleCall)cPortionKindAssignment_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelationshipPortioningFeatureMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
-		private final RuleCall cUsageExtensionKeywordParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cUsageParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cUsageExtensionKeywordParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cUsageParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//PortionUsage returns SysML::OccurrenceUsage :
 		//    BasicUsagePrefix ( isIndividual ?= 'individual' )?
 		//    portionKind = PortionKind
-		//    ownedRelationship += PortioningFeatureMember
 		//    UsageExtensionKeyword* Usage
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicUsagePrefix ( isIndividual ?= 'individual' )?
 		//portionKind = PortionKind
-		//ownedRelationship += PortioningFeatureMember
 		//UsageExtensionKeyword* Usage
 		public Group getGroup() { return cGroup; }
 		
@@ -4619,45 +4600,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//PortionKind
 		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0() { return cPortionKindPortionKindEnumRuleCall_2_0; }
 		
-		//ownedRelationship += PortioningFeatureMember
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
-		
-		//PortioningFeatureMember
-		public RuleCall getOwnedRelationshipPortioningFeatureMemberParserRuleCall_3_0() { return cOwnedRelationshipPortioningFeatureMemberParserRuleCall_3_0; }
-		
 		//UsageExtensionKeyword*
-		public RuleCall getUsageExtensionKeywordParserRuleCall_4() { return cUsageExtensionKeywordParserRuleCall_4; }
+		public RuleCall getUsageExtensionKeywordParserRuleCall_3() { return cUsageExtensionKeywordParserRuleCall_3; }
 		
 		//Usage
-		public RuleCall getUsageParserRuleCall_5() { return cUsageParserRuleCall_5; }
-	}
-	public class PortioningFeatureMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortioningFeatureMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementPortioningFeatureParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//PortioningFeatureMember returns SysML::FeatureMembership :
-		//    ownedRelatedElement += PortioningFeature
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += PortioningFeature
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//PortioningFeature
-		public RuleCall getOwnedRelatedElementPortioningFeatureParserRuleCall_0() { return cOwnedRelatedElementPortioningFeatureParserRuleCall_0; }
-	}
-	public class PortioningFeatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortioningFeature");
-		private final Action cPortioningFeatureAction = (Action)rule.eContents().get(1);
-		
-		//PortioningFeature returns SysML::PortioningFeature :
-		//    {SysML::PortioningFeature}
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SysML::PortioningFeature}
-		public Action getPortioningFeatureAction() { return cPortioningFeatureAction; }
+		public RuleCall getUsageParserRuleCall_4() { return cUsageParserRuleCall_4; }
 	}
 	public class EventOccurrenceUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EventOccurrenceUsage");
@@ -9150,24 +9097,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cRefPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cIsIndividualAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cPortionKindAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0_0 = (RuleCall)cPortionKindAssignment_2_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
+		private final Assignment cPortionKindAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0 = (RuleCall)cPortionKindAssignment_2.eContents().get(0);
 		
 		//fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 		//      RefPrefix
 		//      ( isIndividual ?= 'individual' )?
-		//      ( portionKind = PortionKind
-		//        ownedRelationship += PortioningFeatureMember )?
+		//      ( portionKind = PortionKind )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//RefPrefix
 		//( isIndividual ?= 'individual' )?
-		//( portionKind = PortionKind
-		//  ownedRelationship += PortioningFeatureMember )?
+		//( portionKind = PortionKind )?
 		public Group getGroup() { return cGroup; }
 		
 		//RefPrefix
@@ -9179,21 +9121,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'individual'
 		public Keyword getIsIndividualIndividualKeyword_1_0() { return cIsIndividualIndividualKeyword_1_0; }
 		
-		//( portionKind = PortionKind
-		//  ownedRelationship += PortioningFeatureMember )?
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//portionKind = PortionKind
-		public Assignment getPortionKindAssignment_2_0() { return cPortionKindAssignment_2_0; }
+		//( portionKind = PortionKind )?
+		public Assignment getPortionKindAssignment_2() { return cPortionKindAssignment_2; }
 		
 		//PortionKind
-		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0_0() { return cPortionKindPortionKindEnumRuleCall_2_0_0; }
-		
-		//ownedRelationship += PortioningFeatureMember
-		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
-		
-		//PortioningFeatureMember
-		public RuleCall getOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0() { return cOwnedRelationshipPortioningFeatureMemberParserRuleCall_2_1_0; }
+		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0() { return cPortionKindPortionKindEnumRuleCall_2_0; }
 	}
 	public class MergeNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MergeNode");
@@ -13815,12 +13747,12 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	private final RootNamespaceElements pRootNamespace;
 	private final IdentificationElements pIdentification;
+	private final RelationshipBodyElements pRelationshipBody;
 	private final DependencyElements pDependency;
 	private final AnnotationElements pAnnotation;
 	private final OwnedAnnotationElements pOwnedAnnotation;
 	private final AnnotatingMemberElements pAnnotatingMember;
 	private final AnnotatingElementElements pAnnotatingElement;
-	private final RelationshipBodyElements pRelationshipBody;
 	private final CommentElements pComment;
 	private final DocumentationElements pDocumentation;
 	private final TextualRepresentationElements pTextualRepresentation;
@@ -13953,8 +13885,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final IndividualUsageElements pIndividualUsage;
 	private final PortionUsageElements pPortionUsage;
 	private final PortionKindElements ePortionKind;
-	private final PortioningFeatureMemberElements pPortioningFeatureMember;
-	private final PortioningFeatureElements pPortioningFeature;
 	private final EventOccurrenceUsageElements pEventOccurrenceUsage;
 	private final EmptySuccessionMemberElements pEmptySuccessionMember;
 	private final EmptySuccessionElements pEmptySuccession;
@@ -14261,12 +14191,12 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.gaKerMLExpressions = gaKerMLExpressions;
 		this.pRootNamespace = new RootNamespaceElements();
 		this.pIdentification = new IdentificationElements();
+		this.pRelationshipBody = new RelationshipBodyElements();
 		this.pDependency = new DependencyElements();
 		this.pAnnotation = new AnnotationElements();
 		this.pOwnedAnnotation = new OwnedAnnotationElements();
 		this.pAnnotatingMember = new AnnotatingMemberElements();
 		this.pAnnotatingElement = new AnnotatingElementElements();
-		this.pRelationshipBody = new RelationshipBodyElements();
 		this.pComment = new CommentElements();
 		this.pDocumentation = new DocumentationElements();
 		this.pTextualRepresentation = new TextualRepresentationElements();
@@ -14399,8 +14329,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pIndividualUsage = new IndividualUsageElements();
 		this.pPortionUsage = new PortionUsageElements();
 		this.ePortionKind = new PortionKindElements();
-		this.pPortioningFeatureMember = new PortioningFeatureMemberElements();
-		this.pPortioningFeature = new PortioningFeatureElements();
 		this.pEventOccurrenceUsage = new EventOccurrenceUsageElements();
 		this.pEmptySuccessionMember = new EmptySuccessionMemberElements();
 		this.pEmptySuccession = new EmptySuccessionElements();
@@ -14749,6 +14677,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getIdentificationAccess().getRule();
 	}
 	
+	//fragment RelationshipBody returns SysML::Relationship :
+	//    ';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
+	//;
+	public RelationshipBodyElements getRelationshipBodyAccess() {
+		return pRelationshipBody;
+	}
+	
+	public ParserRule getRelationshipBodyRule() {
+		return getRelationshipBodyAccess().getRule();
+	}
+	
 	///* DEPENDENCIES */
 	//Dependency returns SysML::Dependency :
 	//    ( ownedRelationship += PrefixMetadataAnnotation )*
@@ -14811,17 +14750,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getAnnotatingElementRule() {
 		return getAnnotatingElementAccess().getRule();
-	}
-	
-	//fragment RelationshipBody returns SysML::Relationship :
-	//    ';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
-	//;
-	public RelationshipBodyElements getRelationshipBodyAccess() {
-		return pRelationshipBody;
-	}
-	
-	public ParserRule getRelationshipBodyRule() {
-		return getRelationshipBodyAccess().getRule();
 	}
 	
 	///* Comments */
@@ -16421,8 +16349,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
 	//      BasicUsagePrefix
 	//      ( isIndividual ?= 'individual' )?
-	//      ( portionKind = PortionKind
-	//        ownedRelationship += PortioningFeatureMember )?
+	//      ( portionKind = PortionKind )?
 	//      UsageExtensionKeyword*
 	//;
 	public OccurrenceUsagePrefixElements getOccurrenceUsagePrefixAccess() {
@@ -16459,7 +16386,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//PortionUsage returns SysML::OccurrenceUsage :
 	//    BasicUsagePrefix ( isIndividual ?= 'individual' )?
 	//    portionKind = PortionKind
-	//    ownedRelationship += PortioningFeatureMember
 	//    UsageExtensionKeyword* Usage
 	//;
 	public PortionUsageElements getPortionUsageAccess() {
@@ -16480,28 +16406,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public EnumRule getPortionKindRule() {
 		return getPortionKindAccess().getRule();
-	}
-	
-	//PortioningFeatureMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += PortioningFeature
-	//;
-	public PortioningFeatureMemberElements getPortioningFeatureMemberAccess() {
-		return pPortioningFeatureMember;
-	}
-	
-	public ParserRule getPortioningFeatureMemberRule() {
-		return getPortioningFeatureMemberAccess().getRule();
-	}
-	
-	//PortioningFeature returns SysML::PortioningFeature :
-	//    {SysML::PortioningFeature}
-	//;
-	public PortioningFeatureElements getPortioningFeatureAccess() {
-		return pPortioningFeature;
-	}
-	
-	public ParserRule getPortioningFeatureRule() {
-		return getPortioningFeatureAccess().getRule();
 	}
 	
 	//EventOccurrenceUsage returns SysML::EventOccurrenceUsage :
@@ -18266,8 +18170,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 	//      RefPrefix
 	//      ( isIndividual ?= 'individual' )?
-	//      ( portionKind = PortionKind
-	//        ownedRelationship += PortioningFeatureMember )?
+	//      ( portionKind = PortionKind )?
 	//;
 	public ControlNodePrefixElements getControlNodePrefixAccess() {
 		return pControlNodePrefix;
@@ -20666,6 +20569,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += FeatureChainMember
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
+	//        operator = '#' '(' operand += SequenceExpression ')'
+	//      | {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
 	//      | {SysML::OperatorExpression.operand += current} '->'
 	//        ownedRelationship += ReferenceTyping

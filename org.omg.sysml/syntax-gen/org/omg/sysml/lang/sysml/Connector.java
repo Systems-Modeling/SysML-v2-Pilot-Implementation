@@ -29,31 +29,34 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Connector is a usage of Associations, with links restricted according to instances of the Type in which they are used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its domain.</p>
+ * <p>A <code>Connector</code> is a usage of <code>Associations</code>, with links restricted according to instances of the <code>Type</code> in which they are used (domain of the <code>Connector</code>). The <code>associations</code> of the <code>Connector</code> restrict what kinds of things might be linked. The <code>Connector</code> further restricts these links to be between values of <code>Features</code> on instances of its domain.</p>
  * 
- * relatedFeature = connectorEnd.ownedReferenceSubsetting.subsettedFeature
+ * relatedFeature = connectorEnd.ownedReferenceSubsetting->
+ *     select(s | s <> null).subsettedFeature
  * relatedFeature->forAll(f | 
  *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
  *     else featuringType->exists(t | f.isFeaturedWithin(t))
  *     endif)
  * sourceFeature = 
- *     if relatedFeature->size() = 2 then relatedFeature->at(1) 
- *     else null 
+ *     if relatedFeature->isEmpty() then null 
+ *     else relatedFeature->first() 
  *     endif
  * targetFeature =
- *     if sourceFeature = null then relatedFeature
- *     else relatedFeature->excluding(sourceFeature)
+ *     if relatedFeature->size() < 2 then OrderedSet{}
+ *     else 
+ *         relatedFeature->
+ *             subSequence(2, relatedFeature->size())->
+ *             asOrderedSet()
  *     endif
- * connectorEnd = feature->select(isEnd)
  * not isAbstract implies relatedFeature->size() >= 2
  * specializesFromLibrary("Links::links")
- * connectorEnd->size() = 2 implies
- *     specializesFromLibrary('Links::binaryLinks')
  * association->exists(oclIsKindOf(AssociationStructure)) implies
  *     specializesFromLibrary("Objects::linkObjects")
  * connectorEnds->size() = 2 and
  * association->exists(oclIsKindOf(AssocationStructure)) implies
  *     specializesFromLibrary("Objects::binaryLinkObjects")
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary("Links::binaryLinks")
  * connectorEnds->size() > 2 implies
  *     not specializesFromLibrary("Links::BinaryLink")
  * <!-- end-model-doc -->
@@ -91,7 +94,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that are related by this Connector considered as a Relationship and restrict the links it identifies, derived as the referenced Features of the <code>connectorEnds</code> of the Connector.</p>
+	 * <p>The <code>Features</code> that are related by this <code>Connector</code> considered as a <code>Relationship</code> and that restrict the links it identifies, given by the referenced <code>Features</code> of the <code>connectorEnds</code> of the <code>Connector</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
@@ -120,7 +123,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Associations that type the Connector.</p>
+	 * <p>The <code>Associations</code> that type the <code>Connector</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association</em>' reference list.
@@ -143,7 +146,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>For a binary Connector, whether or not the Connector should be considered to have a direction from <code>source</code> to <code>target</code>.</p>
+	 * <p>For a binary <code>Connector</code>, whether or not the <code>Connector</code> should be considered to have a direction from <code>sourceFeature</code> to <code>targetFeature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Directed</em>' attribute.
@@ -181,7 +184,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>endFeatures</code> of a Connector, which redefine the <code>endFeatures<code> of the <code>associations</code> of the Connector. The <code>connectorEnds</code> determine via ReferenceSubsetting Relationships which Features are related by the Connector.</p>
+	 * <p>The <code>endFeatures</code> of a <code>Connector</code>, which redefine the <code>endFeatures</code> of the <code>associations</code> of the <code>Connector</code>. The <code>connectorEnds</code> determine via <code>ReferenceSubsetting</code> <code>Relationships</code> which <code>Features</code> are related by the <code>Connector</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connector End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
@@ -210,7 +213,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedFeature</code> for this Connector. It is  derived as the first <code>relatedFeature</code>.</p>
+	 * <p>The source <code>relatedFeature</code> for this <code>Connector</code>. It is the first <code>relatedFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Feature</em>' reference.
 	 * @see #setSourceFeature(Feature)
@@ -252,7 +255,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedFeatures</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>.</p>
+	 * p>The target <code>relatedFeatures</code> for this <code>Connector</code>. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_TargetFeature()

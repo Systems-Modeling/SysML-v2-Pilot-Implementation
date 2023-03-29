@@ -27,10 +27,13 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a Relationship between a Namespace and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Namespace. Any <code>memberNames</code> specify how the <code>memberElement</code> is identified in the Namespace and the <code>visibility</code> specifies whether or not the <code>memberElement</code> is publicly visible from outside the Namespace.</p>
+ * <p>A <code>Membership</code> is a <code>Relationship</code> between a <code>Namespace</code> and an <code>Element</code> that indicates the <code>Element</code> is a <code>member</code> of (i.e., is contained in) the Namespace. Any <code>memberNames</code> specify how the <code>memberElement</code> is identified in the <code>Namespace</code> and the <code>visibility</code> specifies whether or not the <code>memberElement</code> is publicly visible from outside the <code>Namespace</code>.</p>
  * 
- * <p>If a Membership is an OwningMembership, then it owns its <code>memberElement</code>, which becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>. Otherwise, the <code>memberNames</code> of a Membership are effectively aliases within the <code>membershipOwningNamespace</code> for an Element with a separate OwningMembership in the same or a different Namespace.<p>
+ * <p>If a <code>Membership</code> is an <code>OwningMembership</code>, then it owns its <code>memberElement</code>, which becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>. Otherwise, the <code>memberNames</code> of a <code>Membership</code> are effectively aliases within the <code>membershipOwningNamespace</code> for an <code>Element</code> with a separate <code>OwningMembership</code> in the same or a different <code>Namespace</code>.</p>
  * 
+ * <p>&nbsp;</p>
+ * 
+ * memberElementId = memberElement.elementId
  * <!-- end-model-doc -->
  *
  * <p>
@@ -87,7 +90,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningNamespace</code> is publicly visible outside that Namespace.</p>
+	 * <p>Whether or not the <code>Membership</code> of the <code>memberElement</code> in the <code>membershipOwningNamespace</code> is publicly visible outside that <code>Namespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -127,7 +130,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that becomes a <code>member</code> of the <code>membershipOwningNamespace</code> due to this Membership.</p>
+	 * <p>The <code>Element</code> that becomes a <code>member</code> of the <code>membershipOwningNamespace</code> due to this <code>Membership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Element</em>' reference.
@@ -193,7 +196,7 @@ public interface Membership extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Namespace of which the <code>memberElement</code> becomes a <cpde>member</code> due to this Membership.</p>
+	 * <p>The <code>Namespace</code> of which the <code>memberElement</code> becomes a <cpde>member due to this <code>Membership</code>.</cpde></p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership Owning Namespace</em>' reference.
@@ -246,7 +249,7 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if this Membership has no <code>memberShortName</code> or <code>memberName</code>; or each of the <code>memberShortName</code> and <code>memberName</code> are different than both of those of the <code>other</code> Membership; or neither of the metaclasses of the <code>memberElement</code> of this Membership and the <code>memberElement</code> of the <code>other</code> Membership conform to the other. But this may be overridden in specializations of Membership.</p>
+	 * <p>Whether this <code>Membership</code> is distinguishable from a given <code>other</code> <code>Membership</code>. By default, this is true if this <code>Membership</code> has no <code>memberShortName</code> or <code>memberName</code>; or each of the <code>memberShortName</code> and <code>memberName</code> are different than both of those of the <code>other</code> <code>Membership</code>; or neither of the metaclasses of the <code>memberElement</code> of this <code>Membership</code> and the <code>memberElement</code> of the <code>other</code> <code>Membership</code> conform to the other. But this may be overridden in specializations of <code>Membership</code>.</p>
 	 * 
 	 * not (memberElement.oclKindOf(other.memberElement.oclType()) or
 	 *      other.memberElement.oclKindOf(memberElement.oclType())) or

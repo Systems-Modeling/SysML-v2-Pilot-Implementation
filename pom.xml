@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.31.0-SNAPSHOT</revision>
+    <revision>0.33.0-SNAPSHOT</revision>
     <tycho-version>2.7.5</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2022-09</eclipse-repository>
@@ -40,6 +40,8 @@
 
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.sysml.edit</module>
+    <module>org.omg.sysml.editor</module>
     <module>org.omg.sysml.execution</module>
     <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
@@ -56,6 +58,7 @@
     <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.jupyter.installer</module>
     <module>org.omg.sysml.feature</module>
+    <module>org.omg.sysml.editor.feature</module>
     <module>org.omg.sysml.plantuml</module>
     <module>org.omg.sysml.plantuml.eclipse</module>
     <module>org.omg.sysml.plantuml.feature</module>

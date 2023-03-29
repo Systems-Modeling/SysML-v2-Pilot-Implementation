@@ -27,16 +27,17 @@ package org.omg.sysml.lang.sysml;
  * Classifier</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A DataType is a Classifier of things (in the universe) that can only be distinguished by how they are related to other things (via Features). This means multiple things classified by the same DataType</p>
+ * <p>A <code>DataType</code> is a <code>Classifier</code> of things (in the universe) that can only be distinguished by how they are related to other things (via Features). This means multiple things classified by the same <code>DataType</code></p>
  * 
  * <ul>
  * 	<li>Cannot be distinguished when they are related to other things in exactly the same way, even when they are intended to be about different things.</li>
  * 	<li>Can be distinguished when they are related to other things in different ways, even when they are intended to be about the same thing.</li>
  * </ul>
  * 
- * specializesFromLibrary("Base::DataValue")
- * ownedGeneralization.general->
- *     forAll(not oclIsKindOf(Class))
+ * specializesFromLibrary('Base::DataValue')
+ * ownedSpecialization.general->
+ *     forAll(not oclIsKindOf(Class) and 
+ *            not oclIsKindOf(Association))
  * <!-- end-model-doc -->
  *
  *

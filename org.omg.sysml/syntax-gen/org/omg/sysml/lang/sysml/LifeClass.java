@@ -29,13 +29,13 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LifeClass is a Class that specializes both the <em>Base::Life Class</em> from the Kernel Library and a single OccurrenceDefinition, and has a multiplicity of 0..1. This constrains the OccurrenceDefinition to have at most one instance that is a complete Life.</p>
+ * <p>A <coed>LifeClass</code> is a <code>Class</code> that specializes both the <code>Class</code> <code><em>Occurrences::Life</em></code> from the Kernel Semantic Library and a single <code>OccurrenceDefinition</code>, and has a multiplicity of 0..1. This constrains the <code>OccurrenceDefinition</code> being specialized to have at most one instance that is a complete <code>Life</code>.</p>
  * 
- * isSufficient
+ * specializesFromLibrary("Occurrences::Life")
  * multiplicity <> null and
  * multiplicity.specializesFromLibrary("Base::zeroOrOne")
- * specializesFromLibrary("Occurrences::Life")
  * specializes(individualDefinition)
+ * isSufficient
  * <!-- end-model-doc -->
  *
  *

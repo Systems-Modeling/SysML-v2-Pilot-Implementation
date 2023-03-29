@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Bundle-Version: 0.31.0.qualifier
+Bundle-Version: 0.33.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
@@ -18,6 +18,7 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.common;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",

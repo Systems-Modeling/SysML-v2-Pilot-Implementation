@@ -9,9 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An MetadataUsage is a Usage and a MetadataFeature, used to annotate other Elements in a system model with metadata. As a MetadataFeature, its type must be a Metaclass, which will nominally be a MetadataDefinition. However, any Kernel Metaclass is also allowed, to permit use of Metaclasses from the Kernel Library.</p>
- * 
- * <p>A MetadataUsage must subset, directly or indirectly, the base MetadataUsage <code>metadataItems</code> from the Systems model library.</p>
+ * <p>A  <code>MetadataUsage</code> is a <code>Usage</code> and a <code>MetadataFeature</code>, used to annotate other <code>Elements</code> in a system model with metadata. As a <code>MetadataFeature</code>, its type must be a <code>Metaclass</code>, which will nominally be a <code>MetadataDefinition</code>. However, any kernel <code>Metaclass</code> is also allowed, to permit use of <code>Metaclasses</code> from the Kernel Model Libraries.</p>
+ * specializesFromLibrary('Metadata::metadataItems')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,6 +40,9 @@ public interface MetadataUsage extends ItemUsage, MetadataFeature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>MetadataDefinition</code> that is the <code>definition</code> of this <code>MetadataUsage</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metadata Definition</em>' reference.
 	 * @see #setMetadataDefinition(Metaclass)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataUsage_MetadataDefinition()

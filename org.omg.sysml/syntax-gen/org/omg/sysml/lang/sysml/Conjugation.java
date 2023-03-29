@@ -29,9 +29,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Conjugation is a Relationship between two types in which the <code>conjugatedType</code> inherits all the Features of the <code>originalType</code>, but with all <code>input</code> and <code>output</code> Features reversed. That is, any Features with a FeatureMembership with <code>direction</code> <em>in</em> relative to the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>out</em> relative to the <code>conjugatedType</code> and, similarly, Features with <code>direction</code> <em>out</em> in the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>in</em> in the <code>originalType</code>. Features with <code>direction</code> <em>inout</em>, or with no <code>direction</code>, in the <code>originalType</code>, are inherited without change.</p>
+ * <p><code>Conjugation</code> is a <code>Relationship</code> between two types in which the <code>conjugatedType</code> inherits all the <code>Features</code> of the <code>originalType</code>, but with all <code>input</code> and <code>output</code> <code>Features</code> reversed. That is, any <code>Features</code> with a <code>FeatureMembership</code> with <code>direction</code> <em>in</em> relative to the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>out</em> relative to the <code>conjugatedType</code> and, similarly, <code>Features</code> with <code>direction</code> <em>out</em> in the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>in</em> in the <code>originalType</code>. <code>Features</code> with <code>direction</code> <em>inout</em>, or with no <code>direction</code>, in the <code>originalType</code>, are inherited without change.</p>
  * 
- * <p>A Type may participate as a <code>conjugatedType</code> in at most one Conjugation relationship, and such a Type may not also be the <code>specific</code> Type in any Generalization relationship.</p>
+ * <p>A <code>Type</code> may participate as a <code>conjugatedType</code> in at most one <code>Conjugation</code> relationship, and such a <code>Type</code> may not also be the <code>specific</code> <code>Type</code> in any <code>Specialization</code> relationship.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -64,7 +64,8 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type to be conjugated.</P>
+	 * <p>The <code>Type</code> to be conjugated.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Type</em>' reference.
 	 * @see #setOriginalType(Type)
@@ -101,7 +102,8 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is the result of applying Conjugation to the <code>originalType</code>.</p>
+	 * <p>The <code>Type</code> that is the result of applying <code>Conjugation</code> to the <code>originalType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Type</em>' reference.
 	 * @see #setConjugatedType(Type)
@@ -140,7 +142,7 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>conjugatedType</code> of this Type that is also its <code>owningRelatedElement</code>.</p>
+	 * <p>The <code>conjugatedType</code> of this <code>Conjugation</code> that is also its <code>owningRelatedElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.

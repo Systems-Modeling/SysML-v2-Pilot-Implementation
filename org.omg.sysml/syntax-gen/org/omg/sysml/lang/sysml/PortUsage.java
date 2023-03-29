@@ -32,11 +32,18 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>PortUsage</code> is a usage of a <code>PortDefinition</code>. A <code>PortUsage<code> itself as well as all its <code>nestedUsages</code> must be referential (non-composite).</p>
- * 
- * <p>A <code>PortUsage</code> must specialize, directly or indirectly, the <code>PortUsage</code> <code><em>Ports::ports</em></code> from the Systems Model Library.</p>
  * nestedUsage->
- *     select(not oclIsKindOf(PortUsage))->
+ *     reject(oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)
+ * specializesFromLibrary('Ports::ports')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PortDefinition) or
+ *  owningType.oclIsKindOf(PortUsage)) implies
+ *     specializesFromLibrary('Ports::Port::subports')
+ * owningType = null or
+ * not owningType.oclIsKindOf(PortDefinition) and
+ * not owningType.oclIsKindOf(PortUsage) implies
+ *     isReference
  * <!-- end-model-doc -->
  *
  * <p>
@@ -67,7 +74,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>types</code> of this PortUsage, which must all be PortDefinitions.</p>
+	 * <p>The <code>occurrenceDefinitions</code> of this <code>PortUsage</code>, which must all be <code>PortDefinitions<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()

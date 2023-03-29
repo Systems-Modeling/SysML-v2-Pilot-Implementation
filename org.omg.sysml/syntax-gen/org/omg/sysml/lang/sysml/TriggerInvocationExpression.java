@@ -43,7 +43,7 @@ public interface TriggerInvocationExpression extends InvocationExpression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates which of the Functions from the Kernel <em>Triggers</em> package is to be invoked by this TriggerInvocationExpression.</p>
+	 * <p>Indicates which of the <code>Functions</code> from the <code><em>Triggers</em></code> model in the Kernel Semantic Library is to be invoked by this <code>TriggerInvocationExpression</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.TriggerKind

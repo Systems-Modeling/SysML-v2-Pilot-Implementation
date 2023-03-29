@@ -30,11 +30,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the subclasses of Definition (possibly as extended with user-defined <em><code>SemanticMetadata</code></em>).</p>
+ * <p>A <code>Definition</code> is a <code>Classifier</code> of <code>Usages</code>. The actual kinds of <code>Definition</code> that may appear in a model are given by the subclasses of <code>Definition</code> (possibly as extended with user-defined <em><code>SemanticMetadata</code></em>).</p>
  * 
- * <p>Normally, a Definition has owned Usages that model <code>features</code> of the thing being defined. A Definition may also have other Definitions nested in it, but this has no semantic significance, other than the nested scoping resulting from the Definition being considered as a Namespace for any nested Definitions.</p>
+ * <p>Normally, a <code>Definition</code> has owned Usages that model <code>features</code> of the thing being defined. A <code>Definition</code> may also have other <code>Definitions</code> nested in it, but this has no semantic significance, other than the nested scoping resulting from the <code>Definition</code> being considered as a <code>Namespace</code> for any nested <code>Definitions</code>.</p>
  * 
- * <p>However, if a Definition has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> Definition. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Definition by VariantMembership Relationships. Rather than being <code>features</code> of the Definition, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for an abstract Usage of the variation point Definition.</p>
+ * <p>However, if a <code>Definition</code> has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> <code>Definition</code>. In this case, all of its <code>members</code> must be <code>variant</code> <code>Usages</code>, related to the <code>Definition</code> by <code>VariantMembership</code> <code>Relationships</code>. Rather than being <code>features</code> of the <code>Definition</code>, <code>variant</code> <code>Usages</code> model different concrete alternatives that can be chosen to fill in for an abstract <code>Usage</code> of the variation point <code>Definition</code>.</p>
  * 
  * isVariation implies variantMembership = ownedMembership
  * variant = variantMembership.ownedVariantUsage
@@ -42,42 +42,71 @@ import org.eclipse.emf.common.util.EList;
  * not isVariation implies variantMembership->isEmpty()
  * isVariation implies
  *     not ownedSpecialization.specific->exists(isVariation)
+ * usage = feature->selectByKind(Usage)
+ * directedUsage = directedFeature->selectByKind(Usage)
+ * ownedUsage = ownedFeature->selectByKind(Usage)
+ * ownedAttribute = ownedUsage->selectByKind(AttributeUsage)
+ * ownedReference = ownedUsage->selectByKind(ReferenceUsage)
+ * ownedEnumeration = ownedUsage->selectByKind(EnumerationUsage)
+ * ownedOccurrence = ownedUsage->selectByKind(OccurrenceUsage)
+ * ownedItem = ownedUsage->selectByKind(ItemUsage)
+ * ownedPart = ownedUsage->selectByKind(PartUsage)
+ * ownedPort = ownedUsage->selectByKind(PortUsage)
+ * ownedConnection = ownedUsage->selectByKind(ConnectorAsUsage)
+ * ownedFlow = ownedUsage->selectByKind(FlowUsage)
+ * ownedInterface = ownedUsage->selectByKind(ReferenceUsage)
+ * ownedAllocation = ownedUsage->selectByKind(AllocationUsage)
+ * ownedAction = ownedUsage->selectByKind(ActionUsage)
+ * ownedState = ownedUsage->selectByKind(StateUsage)
+ * ownedTransition = ownedUsage->selectByKind(TransitionUsage)
+ * ownedCalculation = ownedUsage->selectByKind(CalculationUsage)
+ * ownedConstraint = ownedUsage->selectByKind(ConstraintUsage)
+ * ownedRequirement = ownedUsage->selectByKind(RequirementUsage)
+ * ownedConcern = ownedUsage->selectByKind(ConcernUsage)
+ * ownedCase = ownedUsage->selectByKind(CaseUsage)
+ * ownedAnalysisCase = ownedUsage->selectByKind(AnalysisCaseUsage)
+ * ownedVerificationCase = ownedUsage->selectByKind(VerificationCaseUsage)
+ * ownedUseCase = ownedUsage->selectByKind(UseCaseUsage)
+ * ownedView = ownedUsage->selectByKind(ViewUsage)
+ * ownedViewpoint = ownedUsage->selectByKind(ViewpointUsage)
+ * ownedRendering = ownedUsage->selectByKind(RenderingUsage)
+ * ownedMetadata = ownedUsage->selectByKind(MetadataUsage)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getDirectedUsage <em>Directed Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedState <em>Owned State</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedTransition <em>Owned Transition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCalculation <em>Owned Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAnalysisCase <em>Owned Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariant <em>Variant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase <em>Owned Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedReference <em>Owned Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection <em>Owned Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem <em>Owned Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart <em>Owned Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection <em>Owned Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFlow <em>Owned Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedInterface <em>Owned Interface</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedState <em>Owned State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedTransition <em>Owned Transition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCalculation <em>Owned Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConcern <em>Owned Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase <em>Owned Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAnalysisCase <em>Owned Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedView <em>Owned View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRendering <em>Owned Rendering</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConcern <em>Owned Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUseCase <em>Owned Use Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFlow <em>Owned Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedMetadata <em>Owned Metadata</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
@@ -103,7 +132,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>PortUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPort()
@@ -128,7 +157,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of this Definition that are <code>directedFeatures</code>.</p>
+	 * <p>The <code>usages</code> of this <code>Definition</code> that are <code>directedFeatures</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Directed Usage</em>' reference list.
@@ -153,7 +182,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages that are <code>features</code> of this Definition (not necessarily owned).</p>
+	 * <p>The <code>Usages</code> that are <code>features</code> of this <code>Definition</code> (not necessarily owned).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Usage()
@@ -181,7 +210,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are <code>ownedUsages</code> of this Definition.</code>
+	 * <p>The <code>ActionUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAction()
@@ -205,7 +234,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConnectorAsUsages that are <code>ownedUsages</code> of this Definition. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.</p>
+	 * <p>The <code>ConnectorAsUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>. Note that this list includes <code>BindingConnectorAsUsages</code> and <code>SuccessionAsUsages</code>, even though these are <code>ConnectorAsUsages</code> but not <code>ConnectionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConnection()
@@ -233,7 +262,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ItemUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>ItemUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Item</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedItem()
@@ -257,7 +286,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PartUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>PartUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Part</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPart()
@@ -281,7 +310,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The InterfaceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>InterfaceUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Interface</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedInterface()
@@ -305,7 +334,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AttributeUsages that are <code>ownedUsages</code> of this Definition.<p>
+	 * <p>The <code>AttributeUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Attribute</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAttribute()
@@ -329,7 +358,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The <code>ownedUsages</code> of this Definition that are ViewUsages.</p>
+	 * <p>The <code>ViewUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned View</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedView()
@@ -353,7 +382,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedUsages</code> of this Definition that are ViewpointUsages.</p>
+	 * <p>The <code>ViewpointUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedViewpoint()
@@ -377,7 +406,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of this Definition that are RenderingUsages.</p>
+	 * <p>The <code>RenderingUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRendering()
@@ -401,7 +430,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedUsages</code> of this Definition that are VerificationCaseUsages.</p>
+	 * <p>The <code>VerificationCaseUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Verification Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedVerificationCase()
@@ -425,7 +454,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The EnumerationUsages that are <code>ownedUsages</code> of this Definition.<p>
+	 * <p>The <code>EnumerationUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Enumeration</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedEnumeration()
@@ -449,7 +478,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AllocationUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>AllocationUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAllocation()
@@ -473,7 +502,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConcernUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>ConcernUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConcern()
@@ -497,7 +526,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The OccurrenceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>OccurrenceUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Occurrence</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedOccurrence()
@@ -521,7 +550,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>UseCaseUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Use Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUseCase()
@@ -545,7 +574,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FlowConnectionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>FlowConnectionUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Flow</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedFlow()
@@ -569,7 +598,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The MetadataUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>MetadataUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedMetadata()
@@ -597,7 +626,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Definition that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>ownedMemberships</code> of the Definition. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
+	 * <p>The <code>ownedMemberships</code> of this <code>Definition</code> that are <code>VariantMemberships</code>. If <code>isVariation</code> = true, then this must be all <code>ownedMemberships</code> of the <code>Definition</code>. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_VariantMembership()
@@ -625,7 +654,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The <code>StateUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedState()
@@ -653,7 +682,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <code>ownedUsages</code> of this Definition.</p> 
+	 * <p>The <code>ConstraintUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
@@ -682,7 +711,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The TransitionUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The <code>TransitionUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Transition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedTransition()
@@ -710,7 +739,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>RequirementUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRequirement()
@@ -734,7 +763,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CalculationUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>CalculationUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCalculation()
@@ -751,7 +780,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Definition is for a variation point or not. If true, then all the <code>memberships</code> of the Definition must be VariantMemberships.</p>
+	 * <p>Whether this <code>Definition</code> is for a variation point or not. If true, then all the <code>memberships</code> of the <code>Definition</code> must be <code>VariantMemberships</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Variation</em>' attribute.
 	 * @see #setIsVariation(boolean)
@@ -783,7 +812,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AnalysisCaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>AnalysisCaseUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Analysis Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAnalysisCase()
@@ -807,7 +836,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The code>CaseUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCase()
@@ -831,7 +860,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ReferenceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The <code>ReferenceUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Reference</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedReference()
@@ -861,7 +890,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages that are <code>ownedFeatures</code> of this Definition.</p>
+	 * <p>The <code>Usages</code> that are <code>ownedFeatures</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUsage()
@@ -885,7 +914,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages which represent the variants of this Definition as a variation point Definition, if <code>isVariation</code> = true. If <code>isVariation</code> = false, the there must be no <code>variants</code>.</p>
+	 * <p>The <code>Usages</code> which represent the variants of this <code>Definition</code> as a variation point <code>Definition</code>, if <code>isVariation</code> = true. If <code>isVariation = false</code>, the there must be no <code>variants</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Variant()

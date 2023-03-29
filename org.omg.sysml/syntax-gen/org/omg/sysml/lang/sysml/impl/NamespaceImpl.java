@@ -342,7 +342,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Membership resolveLocal(String name) {
 		String escapedName = ElementUtil.escapeName(name);

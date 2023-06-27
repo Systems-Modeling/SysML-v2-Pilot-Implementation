@@ -6,11 +6,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
-       	File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
-		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -20,39 +18,20 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Links.kerml"}
         		File {from ="/library.kernel/Occurrences.kerml"}
  		      	File {from ="/library.kernel/Objects.kerml"}
- 		      	File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.systems/Items.sysml"}
+ 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
-				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
-package BindingConnectorExample {
-	part def B0;
-	part def B1; 
-	part def V;
-	part v : V {
-		// XPECT warnings --> "Duplicate of other element name" at "b0"
-		part b0 : B0 {
-			port p0 {
-				in ref myIn;
-			}
-		}
-		part b1 : B1 {
-			port p1 {
-				out ref myOut;
-			}
-		}
-		// XPECT warnings --> "Duplicate of other element name" at "b0"
-		//* XPECT errors --- 
-		"Relationships must have at least two related elements" at "bind b0.p0.myIn to"
-		"mismatched input 'to' expecting '='" at "to"
-		"no viable alternative at input '.'" at "."
-		"no viable alternative at input '.'" at "."
-		--- */
-		bind b0.p0.myIn to b0.p1.myOut;	
+package Relationship_invalid_relatedElement {
+	part v {
+		part b0;
+		// XPECT errors ---> "Must have at least two related elements" at "connection { end ::> b0; }"
+		connection { end ::> b0; }
+		
+		abstract connection { end ::> b0; }	
 	} 
 }

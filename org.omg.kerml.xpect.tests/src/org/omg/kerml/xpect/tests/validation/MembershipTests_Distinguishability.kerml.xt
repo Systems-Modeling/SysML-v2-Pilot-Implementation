@@ -15,16 +15,16 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 END_SETUP 
 */
 package test{
-	// XPECT warnings ---> "Duplicate of other element name" at "A"
+	// XPECT warnings ---> "Duplicate of other owned member name" at "A"
 	classifier A {}
-	// XPECT warnings ---> "Duplicate of other element name" at "A"
+	// XPECT warnings ---> "Duplicate of other owned member name" at "A"
 	package A{
 		classifier A {}
 		alias A_alias for A;
 	}
-	// XPECT warnings ---> "Duplicate of other element name" at "A"
+	// XPECT warnings ---> "Duplicate of other owned member name" at "A"
 	package A{}
-	// XPECT warnings ---> "Duplicate of other element name" at "A"
+	// XPECT warnings ---> "Duplicate of other owned member name" at "A"
 	feature A: A::A_alias;
 	feature B: A::A_alias;
 	

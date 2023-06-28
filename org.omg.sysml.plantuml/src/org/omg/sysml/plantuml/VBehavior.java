@@ -95,12 +95,12 @@ public abstract class VBehavior extends VDefault {
     }
 
     private Element nullizeStartOrEntryAction(Element e) {
-        if (!(e instanceof ActionUsage)) return null;
+        if (!(e instanceof ActionUsage)) return e;
         return nullizeStartOrEntryAction((ActionUsage) e);
     }
 
     private Element nullizeDoneOrExitAction(Element e) {
-        if (!(e instanceof ActionUsage)) return null;
+        if (!(e instanceof ActionUsage)) return e;
         return nullizeDoneOrExitAction((ActionUsage) e);
     }
 

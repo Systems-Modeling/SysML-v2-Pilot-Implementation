@@ -4930,19 +4930,29 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cFeaturePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cConnectorKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cConnectorDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final RuleCall cFeatureDeclarationParserRuleCall_2_0_0 = (RuleCall)cGroup_2_0.eContents().get(0);
+		private final RuleCall cValuePartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final RuleCall cConnectorDeclarationParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
 		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* CONNECTORS */
 		///* Connectors */
 		//Connector returns SysML::Connector :
 		//    FeaturePrefix 'connector'
-		//    ConnectorDeclaration TypeBody
+		//    ( FeatureDeclaration? ValuePart?
+		//    | ConnectorDeclaration
+		//    )
+		//    TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//FeaturePrefix 'connector'
-		//ConnectorDeclaration TypeBody
+		//( FeatureDeclaration? ValuePart?
+		//| ConnectorDeclaration
+		//)
+		//TypeBody
 		public Group getGroup() { return cGroup; }
 		
 		//FeaturePrefix
@@ -4951,8 +4961,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'connector'
 		public Keyword getConnectorKeyword_1() { return cConnectorKeyword_1; }
 		
+		//( FeatureDeclaration? ValuePart?
+		//| ConnectorDeclaration
+		//)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//FeatureDeclaration? ValuePart?
+		public Group getGroup_2_0() { return cGroup_2_0; }
+		
+		//FeatureDeclaration?
+		public RuleCall getFeatureDeclarationParserRuleCall_2_0_0() { return cFeatureDeclarationParserRuleCall_2_0_0; }
+		
+		//ValuePart?
+		public RuleCall getValuePartParserRuleCall_2_0_1() { return cValuePartParserRuleCall_2_0_1; }
+		
 		//ConnectorDeclaration
-		public RuleCall getConnectorDeclarationParserRuleCall_2() { return cConnectorDeclarationParserRuleCall_2; }
+		public RuleCall getConnectorDeclarationParserRuleCall_2_1() { return cConnectorDeclarationParserRuleCall_2_1; }
 		
 		//TypeBody
 		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
@@ -5049,76 +5073,69 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.NaryConnectorDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cFeatureDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
-		private final Keyword cCommaKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cOwnedRelationshipAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_3.eContents().get(0);
-		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
-		private final Keyword cCommaKeyword_1_4_0 = (Keyword)cGroup_1_4.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_4_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_4_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedRelationshipAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_4_0 = (RuleCall)cOwnedRelationshipAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_5_1_0 = (RuleCall)cOwnedRelationshipAssignment_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//fragment NaryConnectorDeclaration returns SysML::Connector :
 		//    FeatureDeclaration?
-		//    ( '(' ownedRelationship += ConnectorEndMember ','
-		//          ownedRelationship += ConnectorEndMember
-		//          ( ',' ownedRelationship += ConnectorEndMember )*
-		//      ')' )?
+		//    '(' ownedRelationship += ConnectorEndMember ','
+		//        ownedRelationship += ConnectorEndMember
+		//        ( ',' ownedRelationship += ConnectorEndMember )*
+		//    ')'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//FeatureDeclaration?
-		//( '(' ownedRelationship += ConnectorEndMember ','
-		//      ownedRelationship += ConnectorEndMember
-		//      ( ',' ownedRelationship += ConnectorEndMember )*
-		//  ')' )?
+		//'(' ownedRelationship += ConnectorEndMember ','
+		//    ownedRelationship += ConnectorEndMember
+		//    ( ',' ownedRelationship += ConnectorEndMember )*
+		//')'
 		public Group getGroup() { return cGroup; }
 		
 		//FeatureDeclaration?
 		public RuleCall getFeatureDeclarationParserRuleCall_0() { return cFeatureDeclarationParserRuleCall_0; }
 		
-		//( '(' ownedRelationship += ConnectorEndMember ','
-		//      ownedRelationship += ConnectorEndMember
-		//      ( ',' ownedRelationship += ConnectorEndMember )*
-		//  ')' )?
-		public Group getGroup_1() { return cGroup_1; }
-		
 		//'('
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_2_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_2_0; }
 		
 		//','
-		public Keyword getCommaKeyword_1_2() { return cCommaKeyword_1_2; }
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_1_3() { return cOwnedRelationshipAssignment_1_3; }
+		public Assignment getOwnedRelationshipAssignment_4() { return cOwnedRelationshipAssignment_4; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_4_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_4_0; }
 		
 		//( ',' ownedRelationship += ConnectorEndMember )*
-		public Group getGroup_1_4() { return cGroup_1_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
-		public Keyword getCommaKeyword_1_4_0() { return cCommaKeyword_1_4_0; }
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_1_4_1() { return cOwnedRelationshipAssignment_1_4_1; }
+		public Assignment getOwnedRelationshipAssignment_5_1() { return cOwnedRelationshipAssignment_5_1; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_4_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_4_1_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_5_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_5_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_1_5() { return cRightParenthesisKeyword_1_5; }
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 	}
 	public class ConnectorEndMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ConnectorEndMember");
@@ -8865,7 +8882,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Connectors */
 	//Connector returns SysML::Connector :
 	//    FeaturePrefix 'connector'
-	//    ConnectorDeclaration TypeBody
+	//    ( FeatureDeclaration? ValuePart?
+	//    | ConnectorDeclaration
+	//    )
+	//    TypeBody
 	//;
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;
@@ -8901,10 +8921,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment NaryConnectorDeclaration returns SysML::Connector :
 	//    FeatureDeclaration?
-	//    ( '(' ownedRelationship += ConnectorEndMember ','
-	//          ownedRelationship += ConnectorEndMember
-	//          ( ',' ownedRelationship += ConnectorEndMember )*
-	//      ')' )?
+	//    '(' ownedRelationship += ConnectorEndMember ','
+	//        ownedRelationship += ConnectorEndMember
+	//        ( ',' ownedRelationship += ConnectorEndMember )*
+	//    ')'
 	//;
 	public NaryConnectorDeclarationElements getNaryConnectorDeclarationAccess() {
 		return pNaryConnectorDeclaration;

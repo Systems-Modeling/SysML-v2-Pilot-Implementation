@@ -5469,9 +5469,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final RuleCall cConnectionUsageKeywordParserRuleCall_1_0_0 = (RuleCall)cGroup_1_0.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final RuleCall cConnectorKeywordParserRuleCall_1_0_2_0 = (RuleCall)cGroup_1_0_2.eContents().get(0);
-		private final RuleCall cConnectorPartParserRuleCall_1_0_2_1 = (RuleCall)cGroup_1_0_2.eContents().get(1);
+		private final RuleCall cValuePartParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
+		private final Group cGroup_1_0_3 = (Group)cGroup_1_0.eContents().get(3);
+		private final RuleCall cConnectorKeywordParserRuleCall_1_0_3_0 = (RuleCall)cGroup_1_0_3.eContents().get(0);
+		private final RuleCall cConnectorPartParserRuleCall_1_0_3_1 = (RuleCall)cGroup_1_0_3.eContents().get(1);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final RuleCall cConnectorKeywordParserRuleCall_1_1_0 = (RuleCall)cGroup_1_1.eContents().get(0);
 		private final RuleCall cConnectorPartParserRuleCall_1_1_1 = (RuleCall)cGroup_1_1.eContents().get(1);
@@ -5479,7 +5480,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//ConnectionUsage returns SysML::ConnectionUsage :
 		//    OccurrenceUsagePrefix
-		//    ( ConnectionUsageKeyword UsageDeclaration?
+		//    ( ConnectionUsageKeyword UsageDeclaration? ValuePart?
 		//      ( ConnectorKeyword ConnectorPart )?
 		//    | ConnectorKeyword ConnectorPart
 		//    ) UsageBody
@@ -5487,7 +5488,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//OccurrenceUsagePrefix
-		//( ConnectionUsageKeyword UsageDeclaration?
+		//( ConnectionUsageKeyword UsageDeclaration? ValuePart?
 		//  ( ConnectorKeyword ConnectorPart )?
 		//| ConnectorKeyword ConnectorPart
 		//) UsageBody
@@ -5496,13 +5497,13 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OccurrenceUsagePrefix
 		public RuleCall getOccurrenceUsagePrefixParserRuleCall_0() { return cOccurrenceUsagePrefixParserRuleCall_0; }
 		
-		//( ConnectionUsageKeyword UsageDeclaration?
+		//( ConnectionUsageKeyword UsageDeclaration? ValuePart?
 		//  ( ConnectorKeyword ConnectorPart )?
 		//| ConnectorKeyword ConnectorPart
 		//)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//ConnectionUsageKeyword UsageDeclaration?
+		//ConnectionUsageKeyword UsageDeclaration? ValuePart?
 		//     ( ConnectorKeyword ConnectorPart )?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
@@ -5512,14 +5513,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//UsageDeclaration?
 		public RuleCall getUsageDeclarationParserRuleCall_1_0_1() { return cUsageDeclarationParserRuleCall_1_0_1; }
 		
+		//ValuePart?
+		public RuleCall getValuePartParserRuleCall_1_0_2() { return cValuePartParserRuleCall_1_0_2; }
+		
 		//( ConnectorKeyword ConnectorPart )?
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
+		public Group getGroup_1_0_3() { return cGroup_1_0_3; }
 		
 		//ConnectorKeyword
-		public RuleCall getConnectorKeywordParserRuleCall_1_0_2_0() { return cConnectorKeywordParserRuleCall_1_0_2_0; }
+		public RuleCall getConnectorKeywordParserRuleCall_1_0_3_0() { return cConnectorKeywordParserRuleCall_1_0_3_0; }
 		
 		//ConnectorPart
-		public RuleCall getConnectorPartParserRuleCall_1_0_2_1() { return cConnectorPartParserRuleCall_1_0_2_1; }
+		public RuleCall getConnectorPartParserRuleCall_1_0_3_1() { return cConnectorPartParserRuleCall_1_0_3_1; }
 		
 		//ConnectorKeyword ConnectorPart
 		public Group getGroup_1_1() { return cGroup_1_1; }
@@ -16853,7 +16857,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//ConnectionUsage returns SysML::ConnectionUsage :
 	//    OccurrenceUsagePrefix
-	//    ( ConnectionUsageKeyword UsageDeclaration?
+	//    ( ConnectionUsageKeyword UsageDeclaration? ValuePart?
 	//      ( ConnectorKeyword ConnectorPart )?
 	//    | ConnectorKeyword ConnectorPart
 	//    ) UsageBody

@@ -9329,7 +9329,20 @@ ruleConnectionUsage returns [EObject current=null]
 				)?
 				(
 					{
-						newCompositeNode(grammarAccess.getConnectionUsageAccess().getConnectorKeywordParserRuleCall_1_0_2_0());
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConnectionUsageRule());
+						}
+						newCompositeNode(grammarAccess.getConnectionUsageAccess().getValuePartParserRuleCall_1_0_2());
+					}
+					this_ValuePart_3=ruleValuePart[$current]
+					{
+						$current = $this_ValuePart_3.current;
+						afterParserOrEnumRuleCall();
+					}
+				)?
+				(
+					{
+						newCompositeNode(grammarAccess.getConnectionUsageAccess().getConnectorKeywordParserRuleCall_1_0_3_0());
 					}
 					ruleConnectorKeyword
 					{
@@ -9339,11 +9352,11 @@ ruleConnectionUsage returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getConnectionUsageRule());
 						}
-						newCompositeNode(grammarAccess.getConnectionUsageAccess().getConnectorPartParserRuleCall_1_0_2_1());
+						newCompositeNode(grammarAccess.getConnectionUsageAccess().getConnectorPartParserRuleCall_1_0_3_1());
 					}
-					this_ConnectorPart_4=ruleConnectorPart[$current]
+					this_ConnectorPart_5=ruleConnectorPart[$current]
 					{
-						$current = $this_ConnectorPart_4.current;
+						$current = $this_ConnectorPart_5.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -9363,9 +9376,9 @@ ruleConnectionUsage returns [EObject current=null]
 					}
 					newCompositeNode(grammarAccess.getConnectionUsageAccess().getConnectorPartParserRuleCall_1_1_1());
 				}
-				this_ConnectorPart_6=ruleConnectorPart[$current]
+				this_ConnectorPart_7=ruleConnectorPart[$current]
 				{
-					$current = $this_ConnectorPart_6.current;
+					$current = $this_ConnectorPart_7.current;
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -9376,9 +9389,9 @@ ruleConnectionUsage returns [EObject current=null]
 			}
 			newCompositeNode(grammarAccess.getConnectionUsageAccess().getUsageBodyParserRuleCall_2());
 		}
-		this_UsageBody_7=ruleUsageBody[$current]
+		this_UsageBody_8=ruleUsageBody[$current]
 		{
-			$current = $this_UsageBody_7.current;
+			$current = $this_UsageBody_8.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

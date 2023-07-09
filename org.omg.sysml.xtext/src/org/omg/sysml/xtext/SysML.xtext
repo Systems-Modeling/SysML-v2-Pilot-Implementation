@@ -2286,7 +2286,8 @@ ViewRenderingMember returns SysML::ViewRenderingMembership :
 ;
 
 ViewRenderingUsage returns SysML::RenderingUsage :
-	 ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* UsageBody
+	  ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* UsageBody
+	| ( UsageExtensionKeyword* 'rendering' | UsageExtensionKeyword+ ) Usage
 ;
 
 /* View Usages */

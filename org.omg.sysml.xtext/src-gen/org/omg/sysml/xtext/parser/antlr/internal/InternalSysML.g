@@ -22743,47 +22743,98 @@ ruleViewRenderingUsage returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getOwnedRelationshipOwnedReferenceSubsettingParserRuleCall_0_0());
-				}
-				lv_ownedRelationship_0_0=ruleOwnedReferenceSubsetting
+				(
+					{
+						newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getOwnedRelationshipOwnedReferenceSubsettingParserRuleCall_0_0_0());
+					}
+					lv_ownedRelationship_0_0=ruleOwnedReferenceSubsetting
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getViewRenderingUsageRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_0_0,
+							"org.omg.sysml.xtext.SysML.OwnedReferenceSubsetting");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getViewRenderingUsageRule());
+						$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
 					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.OwnedReferenceSubsetting");
+					newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
+				}
+				this_FeatureSpecialization_1=ruleFeatureSpecialization[$current]
+				{
+					$current = $this_FeatureSpecialization_1.current;
 					afterParserOrEnumRuleCall();
 				}
-			)
-		)
-		(
+			)*
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
 				}
-				newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getFeatureSpecializationParserRuleCall_1());
+				newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getUsageBodyParserRuleCall_0_2());
 			}
-			this_FeatureSpecialization_1=ruleFeatureSpecialization[$current]
+			this_UsageBody_2=ruleUsageBody[$current]
 			{
-				$current = $this_FeatureSpecialization_1.current;
+				$current = $this_UsageBody_2.current;
 				afterParserOrEnumRuleCall();
 			}
-		)*
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
+		)
+		    |
+		(
+			(
+				(
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
+							}
+							newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_0_0());
+						}
+						this_UsageExtensionKeyword_3=ruleUsageExtensionKeyword[$current]
+						{
+							$current = $this_UsageExtensionKeyword_3.current;
+							afterParserOrEnumRuleCall();
+						}
+					)*
+					otherlv_4='rendering'
+					{
+						newLeafNode(otherlv_4, grammarAccess.getViewRenderingUsageAccess().getRenderingKeyword_1_0_0_1());
+					}
+				)
+				    |
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
+						}
+						newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
+					}
+					this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
+					{
+						$current = $this_UsageExtensionKeyword_5.current;
+						afterParserOrEnumRuleCall();
+					}
+				)+
+			)
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getViewRenderingUsageRule());
+				}
+				newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getUsageParserRuleCall_1_1());
 			}
-			newCompositeNode(grammarAccess.getViewRenderingUsageAccess().getUsageBodyParserRuleCall_2());
-		}
-		this_UsageBody_2=ruleUsageBody[$current]
-		{
-			$current = $this_UsageBody_2.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_Usage_6=ruleUsage[$current]
+			{
+				$current = $this_Usage_6.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

@@ -1378,6 +1378,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'actor' (ambiguity) (rule start)
 	 *     (rule start) 'event' OccurrenceUsageKeyword (ambiguity) (rule start)
+	 *     (rule start) 'rendering' (ambiguity) (rule start)
 	 *     (rule start) 'stakeholder' (ambiguity) (rule start)
 	 *     (rule start) 'subject' (ambiguity) (rule start)
 	 *     (rule start) AllocationDefKeyword (ambiguity) (rule start)

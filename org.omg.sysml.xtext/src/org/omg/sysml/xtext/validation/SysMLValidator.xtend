@@ -426,11 +426,6 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(ObjectiveMembership, mem, INVALID_OBJECTIVEMEMBERSHIP_MSG, INVALID_OBJECTIVEMEMBERSHIP)
 	}
 	
-	@Check // Must have at most one owned return parameter.
-	def checkReturnMembership(ReturnParameterMembership mem) {
-		checkAtMostOneFeature(ReturnParameterMembership, mem, INVALID_RETURNPARAMETERMEMBERSHIP_MSG, INVALID_RETURNPARAMETERMEMBERSHIP)
-	}
-	
 	@Check // Must be owned by objective of verification case.
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
 		if (!UsageUtil.isLegalVerification(mem)) {

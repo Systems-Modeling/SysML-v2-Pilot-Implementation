@@ -28,7 +28,7 @@ package TypeRelationships {
 	
 	feature f;
 	
-    // XPECT errors ---> "Cannot have only one feature chaining" at "f"
+    // XPECT errors ---> "Cannot have only one chaining feature" at "f"
     feature g chains f;
 
 }

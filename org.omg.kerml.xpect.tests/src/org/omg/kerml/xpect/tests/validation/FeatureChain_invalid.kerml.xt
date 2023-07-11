@@ -62,7 +62,7 @@ package P {
     // XPECT errors ---> "Must be a valid feature" at "V"
     feature v2_V : Integer = V;
     
-    // XPECT errors ---> "Cannot have only one feature chaining" at "v1"
+    // XPECT errors ---> "Cannot have only one chaining feature" at "v1"
     feature v1_ chains v1;
  
     binding v1.n = v2.n;

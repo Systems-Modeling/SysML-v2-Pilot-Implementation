@@ -26,9 +26,20 @@ package TypeRelationships {
 	*/
 	classifier X unions A intersects B differences C;
 	
-	feature f;
+	//* XPECT errors ---
+	   "Type cannot union with itself" at "Y"
+	   "Type cannot intersect with itself" at "Y"
+	   "Type cannot difference with itself" at "Y"
+	   ---
+	*/
+	classifier Y unions A, Y intersects B, Y differences C, Y;
+	
+	feature f {
+   		// XPECT errors ---> "Feature cannot have itself in a feature chain" at "h"
+		feature h chains f.h;
+	}
 	
     // XPECT errors ---> "Cannot have only one chaining feature" at "f"
     feature g chains f;
-
+    
 }

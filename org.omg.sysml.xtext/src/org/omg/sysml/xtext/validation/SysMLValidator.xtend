@@ -53,7 +53,6 @@ import org.omg.sysml.lang.sysml.Function
 import org.omg.sysml.lang.sysml.InterfaceDefinition
 import org.omg.sysml.lang.sysml.InterfaceUsage
 import org.omg.sysml.lang.sysml.ItemUsage
-import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.OccurrenceUsage
@@ -68,7 +67,6 @@ import org.omg.sysml.lang.sysml.RenderingUsage
 import org.omg.sysml.lang.sysml.RequirementDefinition
 import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
-import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.Step
 import org.omg.sysml.lang.sysml.Structure
@@ -102,6 +100,29 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition
+import org.omg.sysml.lang.sysml.AssignmentActionUsage
+import org.omg.sysml.lang.sysml.TriggerInvocationExpression
+import org.omg.sysml.lang.sysml.ControlNode
+import org.omg.sysml.lang.sysml.DecisionNode
+import org.omg.sysml.lang.sysml.ForkNode
+import org.omg.sysml.lang.sysml.JoinNode
+import org.omg.sysml.lang.sysml.MergeNode
+import org.omg.sysml.lang.sysml.PerformActionUsage
+import org.omg.sysml.lang.sysml.ExhibitStateUsage
+import org.omg.sysml.lang.sysml.StateSubactionMembership
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership
+import org.omg.sysml.lang.sysml.AssertConstraintUsage
+import org.omg.sysml.lang.sysml.FramedConcernMembership
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage
+import org.omg.sysml.lang.sysml.StakeholderMembership
+import org.omg.sysml.lang.sysml.AcceptActionUsage
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
+import org.omg.sysml.lang.sysml.Expose
+import org.omg.sysml.lang.sysml.ViewRenderingMembership
+import org.omg.sysml.lang.sysml.AttributeDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -109,141 +130,798 @@ import org.omg.sysml.lang.sysml.Expression
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SysMLValidator extends KerMLValidator {
+
+	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP = "validateDefinitionNonVariationMembership"
+	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
+	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
+	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
+	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
+	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_QUANTITY_EXPRESSION = 'Invalid quantity OperatorExpression - Argument not MeasurementReference'
-	public static val INVALID_QUANTITY_EXPRESSION_MSG = 'Should be a measurement reference (unit).'
+	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP = "validateUsageNonVariationMembership"
+	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
+	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
+	public static val INVALID_USAGE_VARIATION_MSG = "An owned usage of a variation must be a variant."
+	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
+	public static val INVALID_USAGE_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_USAGE_VARIANT = 'Invalid Usage - invalid variant'
-	public static val INVALID_USAGE_VARIANT_MSG = 'A variant must be an owned member of a variation.'
-	public static val INVALID_USAGE_VARIATION = 'Invalid Usage - invalid variation'
-	public static val INVALID_USAGE_VARIATION_MSG = 'A variation must only have variant owned members.'
+	public static val INVALID_VARIATION_MEMBERSHIP_OWNING_NAMESPACE = "validateVariationMembershipOwningNamespace"
+	public static val INVALID_VARIATION_MEMBERSHIP_OWNING_NAMESPACE_MSG = "Variant membership not allowed."
 	
-	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
-	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
-	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE = 'Invalid attribute usage - too many enumeration types'
-	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG = 'An enumeration attribute cannot have more than one type.'
-	public static val INVALID_ENUMERATIONUSAGE = 'Invalid enumeration usage - invalid type'
-	public static val INVALID_ENUMERATIONUSAGE_MSG = 'An enumeration must be typed by one enumeration definition.'
-	public static val INVALID_OCCURRENCEUSAGE = 'Invalid OccurrenceUsage - invalid type'
-	public static val INVALID_OCCURRENCEUSAGE_MSG = 'An occurrence must be typed by occurrence definitions.'
-	public static val INVALID_ITEMUSAGE = 'Invalid Item Usage - invalid type'
-	public static val INVALID_ITEMUSAGE_MSG = 'An item must be typed by item definitions.'
-	public static val INVALID_PARTUSAGE = 'Invalid Part Usage - invalid type'
-	public static val INVALID_PARTUSAGE_MSG = 'A part must be typed by item definitions and at least one part definition.'
-	public static val INVALID_CONSTRAINTUSAGE = 'Invalid Constraint Usage - invalid type'
-	public static val INVALID_CONSTRAINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
-	public static val INVALID_INDIVIDUALUSAGE = 'Invalid IndividualUsage - invalid type'
-	public static val INVALID_INDIVIDUALUSAGE_MSG = 'An individual must be typed by one individual definition.'
-	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
-	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
-	public static val INVALID_FLOWCONNECTIONUSAGE = 'Invalid FlowConnectionUsage - invalid type'
-	public static val INVALID_FLOWCONNECTIONUSAGE_MSG = 'A flow connection must be typed by flow connection definitions.'
-	public static val INVALID_FLOWCONNECTIONDEFINITION_END = 'Invalid FlowConnectionDefinition - invalid end'
-	public static val INVALID_FLOWCONNECTIONDEFINITION_END_MSG = 'A flow connection definition can have only two ends.'
-	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
-	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by interface definitions.'
-	public static val INVALID_INTERFACEDEFINITION_END = 'Invalid InterfaceDefinition - invalid end'
-	public static val INVALID_INTERFACEDEFINITION_END_MSG = 'An interface definition end must be a port.'
-	public static val INVALID_INTERFACEUSAGE_END = 'Invalid InterfaceUsage - invalid end'
-	public static val INVALID_INTERFACEUSAGE_END_MSG = 'An interface end must be a port.'
-	public static val INVALID_ALLOCATIONUSAGE = 'Invalid AllocationUsage - invalid type'
-	public static val INVALID_ALLOCATIONUSAGE_MSG = 'An allocation must be typed by allocation definitions.'
-	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
-	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by port definitions.'
-	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
-	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement must be typed by one requirement definition.'
-	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
-	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
-	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
-	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
-	public static val INVALID_STATEUSAGE_TRANSITIONS = 'Invalid StateUsage - no incoming transition'
-	public static val INVALID_STATEUSAGE_TRANSITIONS_MSG = 'Should have an incoming transition.'
-	public static val INVALID_STATEUSAGE_INITIAL = 'Invalid StateUsage - no initial transition'
-	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Should have an initial transition from entry.'
-	public static val INVALID_STATEDEFINITION_INITIAL = 'Invalid StateDefinition - no initial transition'
-	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Should have an initial transition from entry.'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY = 'Invalid StateSubactionMembership - invalid entry'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG = 'A state may have at most one entry action.'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO = 'Invalid StateSubactionMembership - invalid do'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG = 'A state may have at most one do action.'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT = 'Invalid StateSubactionMembership - invalid exit'
-	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG = 'A state may have at most one exit action.'
-	public static val INVALID_TRANSITIONUSAGE = 'Invalid TransitionUsage - in parallel state'
-	public static val INVALID_TRANSITIONUSAGE_MSG = 'A parallel state cannot have successions or transitions.'
-	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
-	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
-	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
-	public static val INVALID_CASEUSAGE_MSG = 'A case must be typed by one case definition.'
-	public static val INVALID_ANALYSISCASEUSAGE = 'Invalid AnalysisCaseUsage - invalid type'
-	public static val INVALID_ANALYSISCASEUSAGE_MSG = 'An analysis case must be typed by one analysis case definition.'
-	public static val INVALID_VERIFICATIONCASEUSAGE = 'Invalid VerificationCaseUsage - invalid type'
-	public static val INVALID_VERIFICATIONCASEUSAGE_MSG = 'A verification case must be typed by one verification case definition.'
-	public static val INVALID_USECASEUSAGE = 'Invalid UseCaseUsage - invalid type'
-	public static val INVALID_USECASEUSAGE_MSG = 'A use case must be typed by one use case definition.'
-	public static val INVALID_VIEWUSAGE = 'Invalid ViewUsage - invalid type'
-	public static val INVALID_VIEWUSAGE_MSG = 'A view must be typed by one view definition.'
-	public static val INVALID_VIEWPOINTUSAGE = 'Invalid ViewpointUsage - invalid type'
-	public static val INVALID_VIEWPOINTUSAGE_MSG = 'A viewpoint must be typed by one viewpoint definition.'
-	public static val INVALID_RENDERINGUSAGE = 'Invalid RenderingUsage - invalid type'
-	public static val INVALID_RENDERINGUSAGE_MSG = 'A rendering must be typed by one rendering definition.'
-	public static val INVALID_METADATAUSAGE = 'Invalid MetadataUsage - invalid type'
-	public static val INVALID_METADATAUSAGE_MSG = 'A metadata usage must be typed by one metadata definition.'
+	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES = "validateAttributeDefinitionFeatures"
+	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG = "Features of an attribute definition must be referential."
 	
-	public static val INVALID_VIEWDEFINITION_RENDER = 'Invalid ViewDefinition - invalid render';
-	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering.';
-	public static val INVALID_VIEWUSAGE_RENDER = 'Invalid ViewUsage - invalid render';
-	public static val INVALID_VIEWUSAGE_RENDER_MSG = 'A view may have at most one rendering.';
+	public static val INVALID_ATTRIBUTE_USAGE_FEATURES = "validateAttributeUsageFeatures"
+	public static val INVALID_ATTRIBUTE_USAGE_FEATURES_MSG = "Features of an attribute usage must be referential."
+	public static val INVALID_ATTRIBUTE_USAGE_TYPE = "validateAttributeUsageType_"
+	public static val INVALID_ATTRIBUTE_USAGE_MSG = "An attribute must be typed by attribute definitions."
+	public static val INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE = "validateAttributeUsageEnumerationType_"
+	public static val INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE_MSG = "An enumeration attribute cannot have more than one type."
 	
-	public static val INVALID_SUBJECTMEMBERSHIP = 'Invalid SubjectMembership - too many';
-	public static val INVALID_SUBJECTMEMBERSHIP_MSG = 'Only one subject is allowed.';
-	public static val INVALID_OBJECTIVEMEMBERSHIP = 'Invalid ObjectiveMembership - too many';
-	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed.';	
-	public static val INVALID_RETURNPARAMETERMEMBERSHIP = 'Invalid ReturnParameterMembership - too many'
-	public static val INVALID_RETURNPARAMETERMEMBERSHIP_MSG = 'Only one return parameter is allowed.'
-	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP = 'Invalid RequirementVerificationMembership - not allowed.'
-	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG = 'A requirement verification must be in the objective of a verification case.'
+	public static val INVALID_ENUMERATION_USAGE_TYPE = "validateEnumerationUsageType_"
+	public static val INVALID_ENUMERATION_USAGE_TYPE_MSG = "An enumeration must be typed by one enumeration definition."
 	
-	public static val INVALID_SENDACTIONUSAGE_RECEIVER = 'Invalid SendActionUsage - PortUsage receiver'
-	public static val INVALID_SENDACTIONUSAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
-	public static val INVALID_SENDACTIONUSAGE_NO_ARGS = 'Invalid SendActionUsage - No arguments'
-	public static val INVALID_SENDACTIONUSAGE_NO_ARGS_MSG = 'A send action must have at least one of "via" or "to".'
+	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE = "validateEventOccurrenceUsageReferent"
+	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
-	// TODO: Check validateDefinitionVariationMembership
-	// TODO: Check validateDefinitionVariationSpecialization
+	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS = "validateOccurrenceDefinitionLifeClass"
+	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG = "Must have a LifeClass."
 	
-	// validateReferenceUsageIsReferential is satisfied automatically
+	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
+	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
+	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
+	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "Only one individual definition is allowed."
+	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
+	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG = "An individual must be typed by one individual definition."	
 	
-	// TODO: Check validateUsageVariationSpecialization
+	public static val INVALID_ITEM_USAGE_TYPE = "validateItemUsageType_"
+	public static val INVALID_ITEM_USAGE_TYPE_MSG = "An item must be typed by item definitions."
+	
+	public static val INVALID_PART_USAGE_TYPE = "validatePartUsageType_"
+	public static val INVALID_PART_USAGE_TYPE_MSG = "A part must be typed by item definitions and at least one part definition."
+	public static val INVALID_PART_USAGE_PART_DEFINITION = "validatePartUsagePartDefinition"
+	public static val INVALID_PART_USAGE_PART_DEFINITION_MSG = "A part must be typed by at least one part definition."
+	
+	public static val INVALID_CONJUGATED_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION = "validateConjugatedPortDefinitionConjugatedPortDefinition"
+	public static val INVALID_CONJUGATED_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION_MSG = "A conjugated port definition must not have a conjugated port definition."
+	public static val INVALID_CONJUGATED_PORT_DEFINITION_ORIGINAL_PORT_DEFINITION = "validateConjugatedPortDefinitionConjugatedPortDefinition"
+	public static val INVALID_CONJUGATED_PORT_DEFINITION_ORIGINAL_PORT_DEFINITION_MSG = "A conjugated port definition must be owned by its original port definition."
+	
+	public static val INVALID_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION = "validatePortDefinitionConjugatedPortDefinition"
+	public static val INVALID_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION_MSG = "A port definition must have a conjugated port definition."
+	public static val INVALID_PORT_DEFINITION_OWNED_USAGES_NOT_COMPOSITE = "validatePortDefinitionOwnedUsagesNotComposite"
+	public static val INVALID_PORT_DEFINITION_OWNED_USAGES_NOT_COMPOSITE_MSG = "Owned usages of a port definition (other than ports) must be referential."
+	
+	public static val INVALID_PORT_USAGE_TYPE = "validatePortUsageType_"
+	public static val INVALID_PORT_USAGE_TYPE_MSG = "A port must be typed by port definitions."
+	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE = "validatePortUsageNestedUsagesNotComposite"
+	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG = "Nested usages of a port usage (other than ports) must be referential."
+	
+	public static val INVALID_CONNECTION_USAGE_TYPE = "validateConnectionUsageType_"
+	public static val INVALID_CONNECTION_USAGE_TYPE_MSG = "A connection must be typed by connection definitions."
+	
+	public static val INVALID_FLOW_CONNECTION_DEFINITION_END = "validateFlowConnectionEnd_"
+	public static val INVALID_FLOW_CONNECTION_DEFINITION_END_MSG = "A flow connection definition can have only two ends."
+	
+	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE = "validateFlowConnectionUsageType_"
+	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG = "A flow connection must be typed by flow connection definitions."
+
+	public static val INVALID_INTERFACE_DEFINITION_END = "validateInterfaceDefinitionEnd_"
+	public static val INVALID_INTERFACE_DEFINITION_END_MSG = "An interface definition end must be a port."
+	
+	public static val INVALID_INTERFACE_USAGE_TYPE = "validateInterfaceUsageType_"
+	public static val INVALID_INTERFACE_USAGE_TYPE_MSG = "An interface must be typed by interface definitions."	
+	public static val INVALID_INTERFACE_USAGE_END = "validateInterfaceUsageEnd_"
+	public static val INVALID_INTERFACE_USAGE_END_MSG = "An interface end must be a port."
+	
+	public static val INVALID_ALLOCATION_USAGE_TYPE = "validateAllocationUsageType_"
+	public static val INVALID_ALLOCATION_USAGE_TYPE_MSG = "An allocation must be typed by allocation definitions."
+	
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS = "validateAcceptActionUsageParameter"
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG = "An accept action must have two input parameters."
+	
+	public static val INVALID_ACTION_USAGE_TYPE = "validateActionUsageType_"
+	public static val INVALID_ACTION_USAGE_TYPE_MSG = "An action must be typed by action definitions."
+	
+	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS = "validateControlNodeIncomingSuccessions"
+	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS_MSG = "Incoming successions must have target multiplicity 1."
+	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS = "validateControlNodeOutgoingSuccessions"
+	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS_MSG = "Outgoing successions must have source multiplicity 1."
+	
+	public static val INVALID_DECISION_NODE_INCOMING_SUCCESSIONS = "validateDecisionNodeIncomingSuccessions"
+	public static val INVALID_DECISION_NODE_INCOMING_SUCCESSIONS_MSG = "Must have at most one incoming succession."
+	public static val INVALID_DECISION_NODE_OUTGOING_SUCCESSIONS = "validateDecisionNodeOutgoingSuccessions"
+	public static val INVALID_DECISION_NODE_OUTGOING_SUCCESSIONS_MSG = "Outgoing successions must have target multiplicity 0..1."
+	
+	public static val INVALID_FORK_NODE_INCOMING_SUCCESSIONS = "validateForkNodeIncomingSuccessions"
+	public static val INVALID_FORK_NODE_INCOMING_SUCCESSIONS_MSG = "Must have at most one incoming succession."
+
+	public static val INVALID_JOIN_NODE_OUTGOING_SUCCESSIONS = "validateJoinNodeOutgoingSuccessions"
+	public static val INVALID_JOIN_NODE_OUTGOING_SUCCESSIONS_MSG = "Must have at most one outgoing succession."
+
+	public static val INVALID_MERGE_NODE_INCOMING_SUCCESSIONS = "validateMergeNodeIncomingSuccessions"
+	public static val INVALID_MERGE_NODE_INCOMING_SUCCESSIONS_MSG = "Incoming successions must have source multiplicity 0..1."
+	public static val INVALID_MERGE_NODE_OUTGOING_SUCCESSIONS = "validateMergeNodeOutgoingSuccessions"
+	public static val INVALID_MERGE_NODE_OUTGOING_SUCCESSIONS_MSG = "Must have at most one outgoing succession."
+	
+	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE = "validatePerformActionUsageReference"
+	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG = "Must reference an occurrence"
+	
+	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS = "validateSendActionUsageParameter"
+	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG = "A send action usage must have three input parameters."
+	public static val INVALID_SEND_ACTION_USAGE_RECEIVER = "validateSendActionReceiver_"
+	public static val INVALID_SEND_ACTION_USAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
+		
+	public static val INVALID_STATE_SUBACTION_KIND_ENTRY_MSG = "A state may have at most one entry action."
+	public static val INVALID_STATE_SUBACTION_KIND_DO_MSG = "A state may have at most one do action."
+	public static val INVALID_STATE_SUBACTION_KIND_EXIT_MSG = "A state may have at most one exit action."
+	
+	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
+	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state must have parallel state generalizations."
+	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state must not have parallel state generalizations."
+	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS = "validateStateDefinitionParallelSubactions"
+	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
+	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND = "validateStateDefinitionSubactionKind"
+	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_1 = INVALID_STATE_SUBACTION_KIND_ENTRY_MSG
+	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_2 = INVALID_STATE_SUBACTION_KIND_DO_MSG
+	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_3 = INVALID_STATE_SUBACTION_KIND_EXIT_MSG
+	
+	public static val INVALID_STATE_USAGE_TYPE = "validateStateUsageType_"
+	public static val INVALID_STATE_USAGE_TYPE_MSG = "A state must be typed by state definitions."
+	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS = "validateStateUsageParallelSubactions"
+	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
+	public static val INVALID_STATE_USAGE_SUBACTION_KIND = "validateStateUsageSubactionKind"
+	public static val INVALID_STATE_USAGE_SUBACTION_KIND_MSG_1 = INVALID_STATE_SUBACTION_KIND_ENTRY_MSG
+	public static val INVALID_STATE_USAGE_SUBACTION_KIND_MSG_2 = INVALID_STATE_SUBACTION_KIND_DO_MSG
+	public static val INVALID_STATE_USAGE_SUBACTION_KIND_MSG_3 = INVALID_STATE_SUBACTION_KIND_EXIT_MSG
+	
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION = "validateTransitionFeatureMembershipEffectAction"
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION_MSG = "Must be an action."	
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION = "validateTransitionFeatureMembershipGuardExpression"
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION_MSG = "Must be a Boolean expression."	
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE = "validateTransitionFeatureMembershipOwningType"
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE_MSG = "Transition feature membership not allowed."	
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION = "validateTransitionFeatureMembershipTriggerAction"
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION_MSG = "Must be an accept action."
+	
+	public static val INVALID_TRANSITION_USAGE_PARMETERS = "validateTransitionUsageParameters"
+	public static val INVALID_TRANSITION_USAGE_PARMETERS_MSG_1 = "Must have an input parameter."
+	public static val INVALID_TRANSITION_USAGE_PARMETERS_MSG_2 = "Must have two input parameters."
+	public static val INVALID_TRANSITION_USAGE_SUCCESSION = "validateTransitionUsageSuccession"
+	public static val INVALID_TRANSITION_USAGE_SUCCESSION_MSG = "A transition must own a succession to its target."
+	
+	public static val INVALID_CALCULATION_USAGE_TYPE = "validateCalculationUsageType_"
+	public static val INVALID_CALCULATION_USAGE_TYPE_MSG = "A calculation must be typed by one calculation definition."
+	
+	public static val INVALID_CONSTRAINT_USAGE_TYPE = "Invalid Constraint Usage - invalid type"
+	public static val INVALID_CONSTRAINT_USAGE_TYPE_MSG = "A constraint must be typed by one constraint definition."
+	
+	public static val INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE = "validateActorMembershipOwningType"
+	public static val INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements and cases can have actors."
+	
+	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE = "validateRequirementConstraintMembershipIsComposite"
+	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE_MSG = "A requirement constraint must be composite."
+	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_OWNING_TYPE = "validateRequirementConstraintMembershipOwningType"
+	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements can have assumed or required constraints."
+	
+	public static val INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT = "validateRequirementDefinitionOnlyOneSubject"
+	public static val INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT_MSG = "Only one subject is allowed."
+	public static val INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION = "validateRequirementDefinitionSubjectParameterPosition"
+	public static val INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
+
+	public static val INVALID_REQUIREMENT_USAGE_TYPE = "validateRequirementUsageType_"
+	public static val INVALID_REQUIREMENT_USAGE_TYPE_MSG = "A requirement must be typed by one requirement definition."
+	public static val INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT = "validateRequirementUsageOnlyOneSubject"
+	public static val INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG = "Only one subject is allowed."
+	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION = "validateRequirementUsageSubjectParameterPosition"
+	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
+	
+	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE = "validateStakeholderMembershipOwningType"
+	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements can have stakeholders."
+	
+	public static val INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE = "validateSubjectMembershipOwningType"
+	public static val INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements and cases can have subjects."
+	
+	public static val INVALID_CASE_DEFINITION_ONLY_ONE_OBJECTIVE = "validateCaseDefinitionOnlyOneObjective";
+	public static val INVALID_CASE_DEFINITION_ONLY_ONE_OBJECTIVE_MSG = "Only one objective is allowed.";	
+	public static val INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT = "validateCaseDefinitionOnlyOneSubject"
+	public static val INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT_MSG = "Only one subject is allowed."
+	public static val INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION = "validateCaseDefinitionSubjectParameterPosition"
+	public static val INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
+
+	public static val INVALID_CASE_USAGE_TYPE = "validateCaseUsageType_"
+	public static val INVALID_CASE_USAGE_TYPE_MSG = "A case must be typed by one case definition."
+	public static val INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE = "validateCaseUsageOnlyOneObjective";
+	public static val INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE_MSG = "Only one objective is allowed.";	
+	public static val INVALID_CASE_USAGE_ONLY_ONE_SUBJECT = "validateCaseUsageOnlyOneSubject"
+	public static val INVALID_CASE_USAGE_ONLY_ONE_SUBJECT_MSG = "Only one subject is allowed."
+	public static val INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION = "validateCaseUsageSubjectParameterPosition"
+	public static val INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
+	
+	public static val INVALID_OBJECTIVE_MEMBERSHIP_IS_COMPOSITE = "validateObjectiveMembershipIsComposite"
+	public static val INVALID_OBJECTIVE_MEMBERSHIP_IS_COMPOSITE_MSG = "An objective must be composite."
+	public static val INVALID_OBJECTIVE_MEMBERSHIP_OWNING_TYPE = "validateObjectiveMembershipOwningType"
+	public static val INVALID_OBJECTIVE_MEMBERSHIP_OWNING_TYPE_MSG = "Only cases can have objectives."
+	
+	public static val INVALID_ANALYSIS_CASE_USAGE_TYPE = "validateAnalysisCaseUsageType_"
+	public static val INVALID_ANALYSIS_CASE_USAGE_TYPE_MSG = "An analysis case must be typed by one analysis case definition."
+	
+	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_KIND = "validateRequirementVerificationMembershipKind"
+	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_KIND_MSG = "A requirement verification must be a required constraint."
+	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE = "validateRequirementVerificationMembershipOwningType"
+	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE_MSG = "A requirement verification must be in the objective of a verification case."
+	
+	public static val INVALID_VERIFICATIONCASE_USAGE_TYPE = "validateVerificationCaseUsageType_"
+	public static val INVALID_VERIFICATIONCASE_USAGE_TYPE_MSG = "A verification case must be typed by one verification case definition."
+	
+	public static val INVALID_USE_CASE_USAGE_TYPE = "validateUseCaseUsageType_"
+	public static val INVALID_USE_CASE_USAGE_TYPE_MSG = "A use case must be typed by one use case definition."
+	
+	public static val INVALID_EXPOSE_IS_IMPORT_ALL = "validateExposeIsImportAll"
+	public static val INVALID_EXPOSE_IS_IMPORT_ALL_MSG = "An expose must import all."
+	public static val INVALID_EXPOSE_IS_OWNING_NAMESPACE = "validateExposeIsImportAll"
+	public static val INVALID_EXPOSE_IS_OWNING_NAMESPACE_MSG = "Only view usages can expose elements."
+	
+	public static val INVALID_RENDERING_USAGE_TYPE = "validateRenderingUsageType_"
+	public static val INVALID_RENDERING_USAGE_TYPE_MSG = "A rendering must be typed by one rendering definition."
+	
+	public static val INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING = "validateViewDefinitionOnlyOnvViewRendering"
+	public static val INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG = "A view definition may have at most one rendering."
+	
+	public static val INVALID_VIEWPOINT_USAGE_TYPE = "validateViewpointUsageType_"
+	public static val INVALID_VIEWPOINT_USAGE_TYPE_MSG = "A viewpoint must be typed by one viewpoint definition."
+	
+	public static val INVALID_VIEW_RENDERING_MEMBERSHIP_OWNING_TYPE = "validateViewRenderingMembershipOwningType"
+	public static val INVALID_VIEW_RENDERING_MEMBERSHIP_OWNING_TYPE_MSG = "Only views can have view renderings."
+	
+	public static val INVALID_VIEW_USAGE_TYPE = "validateViewUsageType_"
+	public static val INVALID_VIEW_USAGE_TYPE_MSG = "A view must be typed by one view definition."
+	public static val INVALID_VIEW_USAGE_ONLY_ONE_RENDERING = "validateViewUsageOnlyOneRendering"
+	public static val INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG = "A view may have at most one rendering."
+	
+	public static val INVALID_METADATA_USAGE_TYPE = "validateMetadataUsageType_"
+	public static val INVALID_METADATA_USAGE_TYPE_MSG = "A metadata usage must be typed by one metadata definition."
+		
+	public static val INVALID_OPERATOR_EXPRESSION_QUANTITY = "validateOperatorExpressionQuantity"
+	public static val INVALID_OPERATOR_EXPRESSION_QUANTITY_MSG = "Should be a measurement reference (unit)."
+		
+	@Check
+	def checkDefinition(Definition definition) {		
+		if (!definition.isVariation) {
+			// validateDefinitionNonVariationMembership
+			for (mem: definition.variantMembership) {
+				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
+			}
+		} else {
+			// validateDefinitionVariationMembership
+			for (ownedUsage: definition.ownedUsage) {
+				// TODO: Allow parameters and objectives in variations in spec? Or is that just due to implementation here?
+				val mem = ownedUsage.owningFeatureMembership
+				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
+					error(INVALID_USAGE_VARIATION_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
+				}
+			}
+			
+			// TODO: Check validateDefinitionVariationSpecialization
+		}	
+	}
+	
+//	@Check
+//	def checkReferenceUsage(ReferenceUsage usage) {
+//		// validateReferenceUsageIsReferential is satisfied automatically		
+//	}
+	
 	
 	@Check
 	def checkUsage(Usage usage) {
-		val owningMembership = usage.owningMembership;
-		val owningNamespace = owningMembership?.membershipOwningNamespace;
-		
-		if (owningMembership instanceof VariantMembership) {
-			// validateDefinitionNonVariationMembership
+		if (!usage.isVariation) {
 			// validateUsageNonVariationMembership
-			// A variant Usage must be owned by a variation
-			if (!owningNamespace.isVariation) {
-				error(SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIANT)				
+			for (mem: usage.variantMembership) {
+				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
 			}
-		// validateDefniitionVariationMembership
-		// validateUsageVariationMembership
-		// TODO: Allow parameters and objectives in variations? Or is that just due to implementation here?
-		// A variation must not own non-variant Usages (except for parameters)
-		} else if (owningNamespace.isVariation && !(owningMembership instanceof ParameterMembership) && !(owningMembership instanceof ObjectiveMembership)) {
-				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIATION)							
+		} else {
+			// validateUsageVariationMembership
+			for (nestedUsage: usage.nestedUsage) {
+				// TODO: Allow parameters and objectives in variations in spec? Or is that just due to implementation here?
+				val mem = nestedUsage.owningFeatureMembership
+				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
+					error(INVALID_USAGE_VARIATION_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
+				}
+			}
+			
+			// TODO: Check validateUsageVariationSpecialization
+		}
+		
+		// TODO: Check validateUsageOwningType	
+	}
+	
+	@Check
+	def checkVariantMembership(VariantMembership mem) {
+	  // TODO: Check validateVariantMembershipOwningNamespace		
+	}
+
+	@Check
+	def checkAttributeDefinition(AttributeDefinition defn) {
+		// TODO: Check validateAttributeDefinitionFeatures
+	}
+	
+	@Check 
+	def checkAttributeUsage(AttributeUsage usg) {
+		// All types must be DataTypes
+		checkAllTypes(usg, DataType, INVALID_ATTRIBUTE_USAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, INVALID_ATTRIBUTE_USAGE_TYPE)
+		if (!(usg instanceof EnumerationUsage)) {
+			// TODO: Add validateAttributeUsageEnumerationDefinition?
+			val types = FeatureUtil.getAllTypesOf(usg)
+			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
+				error(INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE)
+			}
+		}
+		
+		// validateAttributeUsageIsReference is satisfied automatically			
+		
+		// TODO: Check validateAttributeUsageFeatures
+	}
+	
+//	@Check
+//	def checkEnumerationDefinition(EnumerationDefinition defn) {
+//		// validateEnumerationDefinitionIsVariation is satisfied automatically
+//	}
+	
+	@Check 
+	def checkEnumerationUsage(EnumerationUsage usg) {
+		// Must have exactly one type, which is an EnumerationDefinition
+		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATION_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkEventOccurrenceUsage(EventOccurrenceUsage usg) {
+		// validateEventOccurrenceUsageIsReference is satisfied automatically
+		// TODO: Check validateEventOccurrenceUsageReference
+	}
+	
+//	@Check
+//	def checkLifeClass(LifeClass cls) {}
+//		// validateLifeClassIsSufficient is satisfied automatically
+//		// TODO: Update LifeClass so isSufficient = true
+//	}
+	
+	@Check
+	def checkOccurrenceDefinition(OccurrenceDefinition defn) {
+		// TODO: Check validateOccurrenceDefinitionLifeClass
+	}
+	
+	@Check 
+	def checkOccurrenceUsage(OccurrenceUsage usg) {
+		// All types must be Classes
+		if (!(usg instanceof ItemUsage || usg instanceof PortUsage || usg instanceof Step))	
+			checkAllTypes(usg, org.omg.sysml.lang.sysml.Class, INVALID_OCCURRENCE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_TYPE)
+
+		// TODO: Check validateOccurrenceUsageIndividualDefinition
+
+		// validateOccurrenceUsageIndividualUsage
+		if (usg.isIndividual && usg.occurrenceDefinition.filter[t | t instanceof OccurrenceDefinition && (t as OccurrenceDefinition).isIndividual].size() != 1)
+			error (INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE)	
+	}
+	
+	@Check 
+	def checkItemUsage(ItemUsage iu) {
+		// All types must be Structures
+		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
+			checkAllTypes(iu, Structure, INVALID_ITEM_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_ITEM_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkPartUsage(PartUsage pu){
+		// validatePartUsagePartDefinition
+		if (!(pu instanceof ConnectionUsage))
+			if (checkAllTypes(pu, Structure, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_PART_USAGE_TYPE))
+				checkAtLeastOneType(pu, PartDefinition, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, INVALID_PART_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
+		// TODO: Check validateConjugatedPortDefinitionConjugatedPortDefinition
+		// TODO: Check validateConjugatedPortDefinitionOriginalPortDefinition
+	}
+	
+	@Check
+	def checkPortDefinition(PortDefinition pd) {
+		// TODO: Check validatePortDefinitionConjugatedPortDefinition
+		// TODO: Check validatePortDefinitionOwnedUsagesNotComposite
+	}
+	
+	@Check
+	def checkPortUsage(PortUsage usg) {
+		// All types must be PortDefinitions
+		checkAllTypes(usg, PortDefinition, INVALID_PORT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, INVALID_PORT_USAGE_TYPE)
+
+		// validatePortUsageIsReference is satisfied automatically
+		// TODO: Check validatePortUsageNestedUsagesNotComposite
+	}
+
+	@Check
+	def checkConnectionUsage(ConnectionUsage usg) {
+		// All types must be Associations
+		if (!(usg instanceof FlowConnectionUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
+			checkAllTypes(usg, Association, INVALID_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.connectionUsage_ConnectionDefinition, INVALID_CONNECTION_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkFlowConnectionDefinition(FlowConnectionDefinition cdef) {
+		//At most two owned ends
+		val ends = cdef.ownedEndFeature
+		if (ends.size > 2) {
+			for (var i = 2; i < ends.size; i++) {
+				error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, ends.get(i), null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+			}
+		}
+	}
+
+	@Check 
+	def checkFlowConnectionUsage(FlowConnectionUsage usg) {
+		// All types must be Interactions
+		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowConnectionUsage_FlowConnectionDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
+	}
+
+	@Check
+	def checkInterfaceDefinitionEnds(InterfaceDefinition idef) {
+		// Ends must be ports
+		for (end: idef.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACE_DEFINITION_END_MSG, end, null, INVALID_INTERFACE_DEFINITION_END)
+			}
 		}
 	}
 	
-	def boolean isVariation(Namespace namespace) {
-		if (namespace instanceof Definition) namespace.isVariation
-		else if (namespace instanceof Usage) namespace.isVariation
-		else false
+	@Check
+	def checkInterfaceUsageEnds(InterfaceUsage usg) {
+		// Ends must be ports
+		for (end: usg.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACE_USAGE_END_MSG, end, null, INVALID_INTERFACE_USAGE_END)
+			}
+		}
+	}
+	
+	@Check
+	def checkInterfaceUsage(InterfaceUsage usg) {
+		// All types must be InterfaceDefinitions
+		checkAllTypes(usg, InterfaceDefinition, INVALID_INTERFACE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, INVALID_INTERFACE_USAGE_TYPE)
 	}
 
-	// TODO: Check validateVariantMembershipOwningNamespace
+	@Check
+	def checkAllocationUsage(AllocationUsage usg) {
+		// All types must be AllocationDefinitions
+		checkAllTypes(usg, AllocationDefinition, INVALID_ALLOCATION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.allocationUsage_AllocationDefinition, INVALID_ALLOCATION_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkAcceptActionUsage(AcceptActionUsage usg) {
+		// TODO: Check validateAcceptActionUsageParameters
+	}
+	
+	@Check
+	def checkActionUsage(ActionUsage usg) {
+		// All types must be Behaviors
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowConnectionUsage) )
+			checkAllTypes(usg, Behavior, INVALID_ACTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, INVALID_ACTION_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkAssignmentActionUsage(AssignmentActionUsage usg) {
+		// TODO: Add/check validateAssignmentActionUsageArguments
+		// TODO: Add/check validateAssignmentActionUsageReferent
+	}
+	
+	@Check
+	def checkTriggerInvocationExpression(TriggerInvocationExpression expr) {
+		// TODO: Add/check validate TriggerInvocationExpressionAfterArgument
+		// TODO: Add/check validate TriggerInvocationExpressionAtArgument
+		// TODO: Add/check validate TriggerInvocationExpressionWhenArgument
+	}
+	
+	@Check
+	def checkControlNode(ControlNode node) {
+		// TODO: Check validateControlNodeIncomingSuccessions (?)
+		// TODO: Check validateControlNodeOutgoingSuccessions (?)
+		// TODO: Check validateControlNodeOwningType
+	}
+	
+	@Check
+	def checkDecisionNode(DecisionNode node) {	
+		// TODO: Check validateDecisionNodeIncomingSuccessions (?)
+		// TODO: Check validateDecisionNodeOutgoingSuccessions (?)
+	}
+	
+	@Check
+	def checkForkNodeIncomingSuccessions(ForkNode node) {
+		// TODO: Check validateForkNodeIncomingSuccessions
+	}
+	
+	def checkJoinNodeIncomingSuccessions(JoinNode node) {
+		// TODO: Check validateJoinNodeOutgoingSuccessions
+	}
+	
+	def checkMergeNodeIncomingSuccessions(MergeNode node) {	
+		// TODO: Check validateMergeNodeIncomingSuccessions
+		// TODO: Check validateMergeNodeOutgoingSucessions
+	}
+	
+	def checkPerformActionUsage(PerformActionUsage usg) {
+		// TODO: Check validatePerformActionUsageReference
+	}
+	
+	@Check
+	def checkSendActionUsage(SendActionUsage usg) {
+		val receiverArgument = usg.receiverArgument
+		if (receiverArgument instanceof FeatureReferenceExpression && 
+				(receiverArgument as FeatureReferenceExpression).referent instanceof PortUsage ||
+			receiverArgument instanceof FeatureChainExpression &&
+				FeatureUtil.getBasicFeatureOf((receiverArgument as FeatureChainExpression).targetFeature) instanceof PortUsage) {
+			warning(INVALID_SEND_ACTION_USAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SEND_ACTION_USAGE_RECEIVER)
+		}
+		
+		// payloadArgument has multiplicity 1
+		if (usg.payloadArgument === null) {
+			error(INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG)
+		} 
 
+		// TODO: Check validateSendActionParameters
+	}	
+	
+	def checkExhibitStateUsage(ExhibitStateUsage usg) {
+		// TODO: Add validateExhibitStateUsageReference
+	}
+		
+	@Check
+	def checkStateDefinition(StateDefinition defn) {
+		// TODO: CHeck validateStateDefinitionParallelGeneralization
+		// validateStateDefinitionStateSubactionKind
+		checkStateSubactions(defn);
+	}
+	
+	@Check
+	def checkStateSubactionMembership(StateSubactionMembership defn) {
+		// TODO: Check validateStateSubactionMembershipOwningType
+	}
+		
+	@Check
+	def checkStateUsage(StateUsage usg){
+		// All types must be Behaviors
+		checkAllTypes(usg, Behavior, INVALID_STATE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, INVALID_STATE_USAGE_TYPE)
+
+		// TODO: Check validateStateUsageIsParallelGeneralization
+
+//		val owningType = usg.owningType
+//		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
+//			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
+//		) {
+//			warning(INVALID_STATE_USAGE_TYPE_TRANSITIONS_MSG, usg, null, INVALID_STATE_USAGE_TYPE_TRANSITIONS)
+//		}
+
+		// validateStateUsageStateSubactionKind
+		checkStateSubactions(usg)
+	}
+	
+	protected def checkStateSubactions(Type type) {
+		val errorId = type instanceof Definition? INVALID_STATE_DEFINITION_SUBACTION_KIND: INVALID_STATE_USAGE_SUBACTION_KIND
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
+	}
+	
+	@Check
+	def checkTransitionFeatureMembership(TransitionFeatureMembership mem) {
+		// TODO: Check validateTransitionFeatureMembershipEffectAction
+		// TODO: Check validateTransitionFeatureMembershipGuardAction
+		// TODO: Check validateTransitionFeatureMembershipOwningType
+		// TODO: Check validateTransitionFeatureMembershipTriggerAction
+	}
+	
+	@Check
+	def checkTransitionUsage(TransitionUsage usg) {
+		// validateStateDefinitionParallelSubactions
+		// validateStateUsageParallelSubactions
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG, usg, null, INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG)
+		}
+		
+		// TODO: Check validateTransitionUsageParameters
+		// TODO: Check validateTransitionUsageSuccession	
+	}
+	
+	@Check
+	def checkSuccession(Succession usg) {
+		// validateStateDefinitionParallelSubactions
+		// validateStateUsageParallelSubactions
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG, usg, null, INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG)
+		}
+	}
+	
+	@Check 
+	def checkCalculationUsage(CalculationUsage usg) {
+		// Must have exactly one type, which is a Function
+		if (!(usg instanceof CaseUsage))
+			checkOneType(usg, Function, INVALID_CALCULATION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.calculationUsage_CalculationDefinition, INVALID_CALCULATION_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkAssertConstraintUsage(AssertConstraintUsage usg) {
+		// TODO: Add validateAssertConstraintUsageReference
+	}
+
+	@Check 
+	def checkConstraintUsage(ConstraintUsage usg){
+		// Must have exactly one type, which is a Predicate
+		if (!(usg instanceof RequirementUsage))
+			checkOneType(usg, Predicate, INVALID_CONSTRAINT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, INVALID_CONSTRAINT_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkActorMembership(ConstraintUsage usg) {
+		// TODO: Check validateActorMembershipOwningType
+	}
+	
+	@Check
+	def checkFramedConcernUsage(FramedConcernMembership mem) {
+		// TODO: Check validateFramedConcernMembershipConstraintKind
+	}
+	
+	@Check
+	def checkRequirementConstraintMembership(RequirementConstraintMembership mem) {
+		// TODO: Check validateRequirementConstraintMembershipIsComposite
+		// TODO: Check validateRequirementConstraintMembershipOwningType
+	}
+	
+	@Check
+	def checkRequirementDefinition(RequirementDefinition defn) {
+		// validateRequirementDefinitionOnlyOneSubject
+		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		
+		// TODO: Check validateRequirementDefinitionSubjectParameterPosition
+	}	
+	
+	@Check 
+	def checkRequirementUsage(RequirementUsage usg){
+		// Must have exactly one type, which is a RequirementDefinition
+		checkOneType(usg, RequirementDefinition, INVALID_REQUIREMENT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.requirementUsage_RequirementDefinition, INVALID_REQUIREMENT_USAGE_TYPE)
+
+		// validateRequirementUsageOnlyOneSubject
+		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		
+		// TODO: Check validateRequirementUsageSubjectParameterPosition
+	}
+	
+	@Check
+	def checkSatisfyRequirementUsage(SatisfyRequirementUsage usg) {
+		// TODO: Add validateSatisfyRequirementUsageReference
+	}
+	
+	@Check
+	def checkStakeholderMembership(StakeholderMembership mem) {
+		// TODO: Check validateStakeholderMembershipOwningType
+	}
+	
+	@Check
+	def checkSubjectMembership(SubjectMembership mem) {
+		// TODO: Check validateSubjectMembershipOwningType
+	}
+	
+	
+	@Check
+	def checkCaseDefinition(CaseDefinition defn) {
+		// validateCaseDefinitionOnlyOneObjective is checked in checkObjectiveMembership
+		checkAtMostOneFeature(defn, ObjectiveMembership, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE_MSG, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE)
+		
+		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
+		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		
+		// TODO: Check validateCaseDefinitionSubjectParameterPosition
+	}
+
+	@Check 
+	def checkCaseUsage(CaseUsage usg){
+		// Must have exactly one type, which is a CaseDefinition
+		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage || usg instanceof UseCaseUsage))
+			checkOneType(usg, CaseDefinition, INVALID_CASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, INVALID_CASE_USAGE_TYPE)
+
+		// validateCaseDefinitionOnlyOneObjective is checked in checkObjectiveMembership
+		checkAtMostOneFeature(usg, ObjectiveMembership, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE_MSG, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE)
+		
+		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
+		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		
+		// TODO: Check validateCaseUsageSubjectParameterPosition
+	}
+	
+	@Check
+	def checkObjectiveMembership(ObjectiveMembership mem) {
+		// TODO: Check validateObjectiveMembershipIsComposite
+		// TODO: Check validateObjectiveMembershipOwningType
+	}	
+	
+	@Check 
+	def checkAnalysisCaseUsage(AnalysisCaseUsage usg) {
+		// Must have exactly one type, which is an AnalysisCaseDefinition
+		checkOneType(usg, AnalysisCaseDefinition, INVALID_ANALYSIS_CASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.analysisCaseUsage_AnalysisCaseDefinition, INVALID_ANALYSIS_CASE_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
+		// TODO: Check validateRequirementVerificationMembershipKind
+
+		// validateRequirementVerificationMembershipOwningType
+		if (!UsageUtil.isLegalVerification(mem)) {
+			error(INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE_MSG, null, INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE)
+		}
+	}	
+	
+	@Check
+	def checkVerificationCaseUsage(VerificationCaseUsage usg) {
+		// Must have exactly one type, which is a VerificationCaseDefinition
+		checkOneType(usg, VerificationCaseDefinition, INVALID_VERIFICATIONCASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, INVALID_VERIFICATIONCASE_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkIncludeUseCaseUsage(IncludeUseCaseUsage usg) {
+		// TODO: Add validateIncludeUseCaseUsageReference
+	}
+	
+	@Check 
+	def checkUseCaseUsage(UseCaseUsage usg) {
+		// Must have exactly one type, which is a UseCaseDefinition
+		checkOneType(usg, UseCaseDefinition, INVALID_USE_CASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.useCaseUsage_UseCaseDefinition, INVALID_USE_CASE_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkExpose(Expose exp) {
+		// validateExposeIsImportAll is automatically satisfied
+		// TODO: Check validateExposeOwningNamespace
+	}
+	
+	@Check
+	def checkRenderingUsage(RenderingUsage usg) {
+		// Must have exactly one type, which is a RenderingDefinition
+		checkOneType(usg, RenderingDefinition, INVALID_RENDERING_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.renderingUsage_RenderingDefinition, INVALID_RENDERING_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkViewDefinition(ViewDefinition viewDef) {
+		// validateViewDefinitionOnlyOneRendering
+		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG, INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING)
+	}
+	
+	@Check
+	def checkViewRenderingMembership(ViewRenderingMembership mem) {
+		// TODO: Check validateViewRenderingMembershipOwningType
+	}
+	
+	@Check
+	def checkViewpointUsage(ViewpointUsage usg) {
+		// Must have exactly one type, which is a ViewpointDefinition 
+		checkOneType(usg, ViewpointDefinition, INVALID_VIEWPOINT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.viewpointUsage_ViewpointDefinition, INVALID_VIEWPOINT_USAGE_TYPE)
+	}
+	
+	@Check
+	def checkViewUsage(ViewUsage usg) {
+		// Must have exactly one type, which is a ViewDefinition
+		checkOneType(usg, ViewDefinition, INVALID_VIEW_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.viewUsage_ViewDefinition, INVALID_VIEW_USAGE_TYPE)
+
+		// validateViewUsageOnlyOneRendering	
+		checkAtMostOneElement(usg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG, INVALID_VIEW_USAGE_ONLY_ONE_RENDERING)
+	}
+	
+	@Check
+	def checkMetadataUsage(MetadataUsage usg) {
+		// Must have exactly one type, which is a Metaclass. 
+		checkOneType(usg, Metaclass, INVALID_METADATA_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.metadataUsage_MetadataDefinition, INVALID_METADATA_USAGE_TYPE)
+	}
+	
+	/* Overrides */
+	
 	@Check
 	override checkOperatorExpression(OperatorExpression e) {
 		if (e.operator != '[') {
@@ -254,7 +932,7 @@ class SysMLValidator extends KerMLValidator {
 				val indexArg = arguments.get(1)
 				val mRefType = SysMLLibraryUtil.getLibraryElement(e, "MeasurementReferences::TensorMeasurementReference") as Type
 				if (!indexArg.resultConformsTo(mRefType)) {
-					warning(INVALID_QUANTITY_EXPRESSION_MSG, indexArg, null, SysMLValidator.INVALID_QUANTITY_EXPRESSION)	
+					warning(INVALID_OPERATOR_EXPRESSION_QUANTITY_MSG, indexArg, null, INVALID_OPERATOR_EXPRESSION_QUANTITY)	
 				}
 			}
 		}
@@ -278,374 +956,11 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	
-	// TODO: Check validateAttributeDefinitionFeatures
-	
-	// TODO: Check validateAttributeUsageFeatures
-	// validateAttributeUsageIsReference is satisfied automatically
-	
-	@Check //All types must be DataTypes.
-	def checkAttributeUsageTypes(AttributeUsage usg){
-		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
-		if (!(usg instanceof EnumerationUsage)) {
-		val types = FeatureUtil.getAllTypesOf(usg)
-			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
-				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
-			}
-		}
-	}
-	
-	// validateEnumerationDefinitionIsVariation is satisfied automatically
-	
-	@Check // Must have exactly one type, which is an EnumerationDefinition
-	def checkEnumerationUsageTypes(EnumerationUsage usg){
-		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
-	}
-	
-	// validateOccurrenceUsageIsReference is satisfied automatically
-	// TODO: Check validateEventOccurrenceUsageReference
-	
-	// TODO: Update LifeClass so isSufficient = true
-	
-	// TODO: Check validateOccurrenceDefinitionLifeClass
-	
-	@Check //All types must be Classes. 
-	def checkOccurrenceUsageTypes(OccurrenceUsage ou){
-		if (!(ou instanceof ItemUsage || ou instanceof PortUsage || ou instanceof Step))	
-			checkAllTypes(ou, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_OCCURRENCEUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_OCCURRENCEUSAGE)
-	}
-	
-	// TODO: Check validateOccurrenceUsageIndividualDefinition
-	
-	// validateOccurrenceUsageIndividualUsage
-	@Check //Must have one occurrenceDefinition that is an individual.
-	def checkIndividualUsageTypes(OccurrenceUsage usg){
-		if (usg.isIndividual && usg.occurrenceDefinition.filter[t | t instanceof OccurrenceDefinition && (t as OccurrenceDefinition).isIndividual].size() != 1)
-			error (SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)	
-	}
-	
-	@Check //All types must be Structures. 
-	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
-			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
-	}
-	
-	// validatePartUsagePartDefinition
-	@Check //All types must be Structures, at least one must be a PartDefinition. 
-	def checkPartUsageTypes(PartUsage pu){
-		if (!(pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, Structure, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
-				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
-	}
-	
-	// TODO: Check validateConjugatedPortDefinitionConjugatedPortDefinition
-	// TODO: Check validateConjugatedPortDefinitionOriginalPortDefinition
-	
-	// TODO: Check validatePortDefinitionConjugatedPortDefinition
-	// TODO: Check validatePortDefinitionOwnedUsagesNotComposite
-	
-	// validatePortUsageIsReference is satisfied automatically
-	// TODO: Check validatePortUsageNestedUsagesNotComposite
-	
-	@Check //All types must be PortDefinitions. 
-	def checkPortUsageTypes(PortUsage usg){
-		checkAllTypes(usg, PortDefinition, SysMLValidator.INVALID_PORTUSAGE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, SysMLValidator.INVALID_PORTUSAGE)
-	}
-
-	@Check //All types must be Associations.
-	def checkConnectionUsageTypes(ConnectionUsage usg){
-		if (!(usg instanceof FlowConnectionUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
-			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connectionUsage_ConnectionDefinition, SysMLValidator.INVALID_CONNECTIONUSAGE)
-	}
-	
-	@Check //At most two owned ends
-	def checkFlowConnectionDefinitionEnds(FlowConnectionDefinition cdef) {
-		val ends = cdef.ownedEndFeature
-		if (ends.size > 2) {
-			for (var i = 2; i < ends.size; i++) {
-				error(INVALID_FLOWCONNECTIONDEFINITION_END_MSG, ends.get(i), null, INVALID_FLOWCONNECTIONDEFINITION_END)
-			}
-		}
-	}
-
-	@Check //All types must be Interactions.
-	def checkFlowConnectionUsageTypes(FlowConnectionUsage usg){
-		checkAllTypes(usg, Interaction, SysMLValidator.INVALID_FLOWCONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.flowConnectionUsage_FlowConnectionDefinition, SysMLValidator.INVALID_FLOWCONNECTIONUSAGE)
-	}
-
-	@Check //Ends must be ports
-	def checkInterfaceDefinitionEnds(InterfaceDefinition idef) {
-		for (end: idef.ownedFeature.filter[isEnd]) {
-			if (!(end instanceof PortUsage)) {
-				error(INVALID_INTERFACEDEFINITION_END_MSG, end, null, INVALID_INTERFACEDEFINITION_END)
-			}
-		}
-	}
-	
-	@Check //Ends must be ports
-	def checkInterfaceUsageEnds(InterfaceUsage usg) {
-		for (end: usg.ownedFeature.filter[isEnd]) {
-			if (!(end instanceof PortUsage)) {
-				error(INVALID_INTERFACEUSAGE_END_MSG, end, null, INVALID_INTERFACEUSAGE_END)
-			}
-		}
-	}
-	
-	@Check //All types must be InterfaceDefinitions.
-	def checkInterfaceUsageTypes(InterfaceUsage usg){
-		checkAllTypes(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
-	}
-
-	@Check //All types must be AllocationDefinitions.
-	def checkAllocationUsageTypes(AllocationUsage usg){
-		checkAllTypes(usg, AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE_MSG, SysMLPackage.eINSTANCE.allocationUsage_AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE)
-	}
-	
-	// TODO: Check validateAcceptActionUsageParameters
-	
-	@Check //All types must be Behaviors
-	def checkActionUsageTypes(ActionUsage usg){
-		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowConnectionUsage) )
-			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
-	}
-	
-	// TODO: Add/check validateAssignmentActionUsageArguments
-	// TODO: Add/check validateAssignmentActionUsageReferent
-	
-	// TODO: Add/check validate TriggerInvocationExpressionAfterArgument
-	// TODO: Add/check validate TriggerInvocationExpressionAtArgument
-	// TODO: Add/check validate TriggerInvocationExpressionWhenArgument
-	
-	// TODO: Check validateControlNodeIncomingSuccessions (?)
-	// TODO: Check validateControlNoteOutgoingSuccessions (?)
-	// TODO: Check validateControlNodeOwningType
-	
-	// TODO: Check validateDecisionNodeIncomingSuccessions (?)
-	// TODO: Check validateDecisionNodeOutgoingSuccessions (?)
-	
-	// TODO: Check validateForkNodeIncomingSuccessions
-	
-	// TODO: Check validateJoinNodeOutgoingSuccessions
-	
-	// TODO: Check validateMergeNodeIncomingSuccessions
-	// TODO: Check validateMergeNodeOutgoingSucessions
-	
-	// TODO: Check validatePerformActionUsageReference
-	
-	// TODO: Check validateSendActionParameters
-	@Check
-	def checkSendActionUsage(SendActionUsage usg) {
-		val senderArgument = usg.senderArgument
-		val receiverArgument = usg.receiverArgument
-		// TODO: Change SendActionUsage argument check to payloadArgument === null
-		if (senderArgument === null && receiverArgument === null) {
-			error(INVALID_SENDACTIONUSAGE_NO_ARGS_MSG, usg, null, INVALID_SENDACTIONUSAGE_NO_ARGS_MSG)
-		} else if (receiverArgument instanceof FeatureReferenceExpression && 
-				(receiverArgument as FeatureReferenceExpression).referent instanceof PortUsage ||
-			receiverArgument instanceof FeatureChainExpression &&
-				FeatureUtil.getBasicFeatureOf((receiverArgument as FeatureChainExpression).targetFeature) instanceof PortUsage) {
-			warning(INVALID_SENDACTIONUSAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SENDACTIONUSAGE_RECEIVER)
-		}
-	}	
-	
-	// TODO: Add validateExhibitStateUsageReference
-	
-	// TODO: CHeck validateStateDefinitionParallelGeneralization
-	
-	@Check
-	def checkStateDefinition(StateDefinition defn) {
-		// validateStateDefinitionStateSubactionKind
-		checkStateSubactions(defn);
-	}
-	
-	// TODO: Check validateStateSubactionMembershipOwningType
-	
-	// TODO: Check validateStateUsageIsParallelGeneralization
-	
-	@Check //All types must be Behaviors.
-	def checkStateUsageTypes(StateUsage usg){
-		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
-	}
-
-	@Check
-	def checkStateUsage(StateUsage usg) {
-//		val owningType = usg.owningType
-//		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
-//			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
-//		) {
-//			warning(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
-//		}
-		// validateStateUsageStateSubactionKind
-		checkStateSubactions(usg)
-	}
-	
-	protected def checkStateSubactions(Type type) {
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_DO);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT);
-	}
-	
-	// TODO: Check validateTransitionFeatureMembershipEffectAction
-	// TODO: Check validateTransitionFeatureMembershipGuardAction
-	// TODO: Check validateTransitionFeatureMembershipOwningType
-	// TODO: Check validateTransitionFeatureMembershipTriggerAction
-	
-	// TODO: Check validateTransitionUsageParameters
-	// TODO: Check validateTransitionUsageSuccession
-	
-	// validateStateDefinitionParallelSubactions
-	// validateStateUsageParallelSubactions
-	@Check
-	def checkTransitionUsage(TransitionUsage usg) {
-		if (UsageUtil.isParallelState(usg.owningType)) {
-			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
-		}
-	}
-	
-	// validateStateDefinitionParallelSubactions
-	// validateStateUsageParallelSubactions
-	@Check
-	def checkSuccession(Succession usg) {
-		if (UsageUtil.isParallelState(usg.owningType)) {
-			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
-		}
-	}
-	
-	@Check //Must have exactly one type, which is a Function.
-	def checkCalculationUsageTypes(CalculationUsage usg){
-		if (!(usg instanceof CaseUsage))
-			checkOneType(usg, Function, SysMLValidator.INVALID_CALCULATIONUSAGE_MSG, SysMLPackage.eINSTANCE.calculationUsage_CalculationDefinition, SysMLValidator.INVALID_CALCULATIONUSAGE)
-	}
-	
-	// TODO: Add validateAssertConstraintUsageReference
-
-	@Check //Must have exactly one type, which is a Predicate.
-	def checkConstraintUsageTypes(ConstraintUsage usg){
-		if (!(usg instanceof RequirementUsage))
-			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRAINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRAINTUSAGE)
-	}
-	
-	// TODO: Check validateActorMembershipOwningType
-	
-	// TODO: Check validateFramedConcernUsageConstraintKind
-	
-	// TODO: Check validateRequirementConstraintMembershipIsComposite
-	// TODO: Check validateRequirementConstraintMembershipOwningType
-	
-	// TODO: Check validateRequirementDefinitionOnlyOneSubject
-	// TODO: Check validateRequirementDefinitionSubjectParameterPosition
-	
-	// TODO: Check validateRequirementUsageOnlyOneSubject
-	// TODO: Check validateRequirementUsageSubjectParameterPosition
-	
-	@Check  //Must have exactly one type, which is a RequirementDefinition. 
-	def checkRequirementUsageTypes(RequirementUsage usg){
-		checkOneType(usg, RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE_MSG, SysMLPackage.eINSTANCE.requirementUsage_RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE)
-	}
-	
-	// TODO: Add validateSatisfyRequirementUsageReference
-	
-	// TODO: Check validateStakeholderMembershipOwningType
-	
-	// TODO: Check validateSubjectMembershipOwningType
-	
-	// TODO: Check validateCaseDefinitionOnlyOneObjective
-	// TODO: Check validateCaseDefinitionOnlyOneSubject
-	// TODO: Check validateCaseDefinitionSubjectParameterPosition
-
-	// TODO: Check validateCaseUsageOnlyOneObjective
-	// TODO: Check validateCaseUsageOnlyOneSubject
-	// TODO: Check validateCaseUsageSubjectParameterPosition
-
-	@Check //Must have exactly one type, which is a CaseDefinition.
-	def checkCaseUsageTypes(CaseUsage usg){
-		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage || usg instanceof UseCaseUsage))
-			checkOneType(usg, CaseDefinition, SysMLValidator.INVALID_CASEUSAGE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, SysMLValidator.INVALID_CASEUSAGE)
-	}
-	
-	// TODO: Check validateObjectiveMembershipIsComposite
-	// TODO: Check validateObjectiveMembershipOwningType
-	
-	@Check //Must have exactly one type, which is an AnalysisCaseDefinition.
-	def checkAnalysisCaseUsageTypes(AnalysisCaseUsage usg){
-		checkOneType(usg, AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE_MSG, SysMLPackage.eINSTANCE.analysisCaseUsage_AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE)
-	}
-	
-	// TODO: Check validateRequirementVerificationMembershipKind
-	// TODO: Check validateRequirementVerificationMembershipOwningType
-	
-	@Check //Must have exactly one type, which is a VerificationCaseDefinition.
-	def checkVerificationCaseUsageTypes(VerificationCaseUsage usg){
-		checkOneType(usg, VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE)
-	}
-	
-	// TODO: Add validateIncludeUseCaseUsageReference
-	
-	@Check //Must have exactly one type, which is a UseCaseDefinition.
-	def checkUseCaseUsageTypes(UseCaseUsage usg){
-		checkOneType(usg, UseCaseDefinition, SysMLValidator.INVALID_USECASEUSAGE_MSG, SysMLPackage.eINSTANCE.useCaseUsage_UseCaseDefinition, SysMLValidator.INVALID_USECASEUSAGE)
-	}
-	
-	// validateExposeIsImportAll is automatically satisfied
-	// TODO: Check validateExposeOwningNamespace
-	
-	@Check //Must have exactly one type, which is a RenderingDefinition. 
-	def checkRenderingUsageTypes(RenderingUsage usg){
-		checkOneType(usg, RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE_MSG, SysMLPackage.eINSTANCE.renderingUsage_RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE)
-	}
-	
-	// validateViewDefinitionOnlyOneRendering
-	@Check //Must have at most one rendering.
-	def checkViewDefinitionRender(ViewDefinition viewDef){
-		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
-	}
-	
-	// TODO: Check validateViewRenderingMembershipOwningType
-	
-	@Check //Must have exactly one type, which is a ViewpointDefinition. 
-	def checkViewpointUsageTypes(ViewpointUsage usg){
-		checkOneType(usg, ViewpointDefinition, SysMLValidator.INVALID_VIEWPOINTUSAGE_MSG, SysMLPackage.eINSTANCE.viewpointUsage_ViewpointDefinition, SysMLValidator.INVALID_VIEWPOINTUSAGE)
-	}
-	
-	@Check //Must have exactly one type, which is a ViewDefinition.
-	def checkViewUsageTypes(ViewUsage usg){
-		checkOneType(usg, ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE_MSG, SysMLPackage.eINSTANCE.viewUsage_ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE)
-	}
-	
-	// validateViewUsageOnlyOneRendering	
-	@Check //Must have at most one rendering.
-	def checkViewUsageRender(ViewUsage viewUsg){
-		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
-	}
-	
-	@Check //Must have exactly one type, which is a Metaclass. 
-	def checkMetadataUsageTypes(MetadataUsage usg){
-		checkOneType(usg, Metaclass, SysMLValidator.INVALID_METADATAUSAGE_MSG, SysMLPackage.eINSTANCE.metadataUsage_MetadataDefinition, SysMLValidator.INVALID_METADATAUSAGE)
-	}
-	
-	@Check //Must have at most one subject membership.
-	def checkSubjectMembership(SubjectMembership mem) {
-		checkAtMostOneFeature(SubjectMembership, mem, INVALID_SUBJECTMEMBERSHIP_MSG, INVALID_SUBJECTMEMBERSHIP)
-	}
-	
-	@Check //Must have at most one objective requirement.
-	def checkObjectiveMembership(ObjectiveMembership mem) {
-		checkAtMostOneFeature(ObjectiveMembership, mem, INVALID_OBJECTIVEMEMBERSHIP_MSG, INVALID_OBJECTIVEMEMBERSHIP)
-	}
-	
-	@Check // Must be owned by objective of verification case.
-	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
-		if (!UsageUtil.isLegalVerification(mem)) {
-			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
-		}
-	}
-	
-	protected def boolean checkAtMostOneFeature(Class<?> kind, FeatureMembership mem, String msg, String eId) {
-		val owningType = mem.owningType
-		if (owningType !== null && owningType.ownedFeatureMembership.exists[m | kind.isInstance(m) && m != mem]) {
-			error(msg, mem, SysMLPackage.eINSTANCE.featureMembership_OwnedMemberFeature, eId)
-			return false
-		}
-		return true
+	/* Utility Methods */
+	
+	protected def boolean checkAtMostOneFeature(Type owningType, Class<? extends FeatureMembership> kind, String msg, String eId) {
+		var mems = owningType.ownedFeatureMembership.filter[m | kind.isInstance(m)]
+		checkAtMostOneElement(mems, msg, eId);
 	}
 	
 	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
@@ -673,7 +988,6 @@ class SysMLValidator extends KerMLValidator {
 		return check
 	}
 	
-	//check types but must have exactly one type
 	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
 		val types = FeatureUtil.getAllTypesOf(f)
 		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]

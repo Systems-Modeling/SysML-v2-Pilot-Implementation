@@ -53,7 +53,6 @@ END_SETUP
 package 'Requirement Subjects' {
 	
 	requirement def R {
-		// XPECT errors --> "Only one subject is allowed." at "subject s1;"
 		subject s1;
 		
 		// XPECT errors --> "Only one subject is allowed." at "subject s2;"
@@ -61,7 +60,6 @@ package 'Requirement Subjects' {
 	}
 	
 	requirement r: R {
-		// XPECT errors --> "Only one subject is allowed." at "subject s3;"
 		subject s3;
 		
 		// XPECT errors --> "Only one subject is allowed." at "subject s4;"

@@ -123,6 +123,13 @@ import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
 import org.omg.sysml.lang.sysml.Expose
 import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.AttributeDefinition
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.LifeClass
+import org.omg.sysml.lang.sysml.ActionDefinition
+import org.eclipse.emf.ecore.EObject
+import org.omg.sysml.lang.sysml.TransitionFeatureKind
+import org.omg.sysml.lang.sysml.ActorMembership
+import org.omg.sysml.lang.sysml.RequirementConstraintKind
 
 /**
  * This class contains custom validation rules. 
@@ -140,17 +147,21 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP = "validateUsageNonVariationMembership"
 	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
+	public static val INVALID_USAGE_OWNING_TYPE = "validateUsageOwningType"
+	public static val INVALID_USAGE_OWNING_TYPE_MSG = "A usage can only be featured by a definition or usage."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
-	public static val INVALID_USAGE_VARIATION_MSG = "An owned usage of a variation must be a variant."
+	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_VARIATION_MEMBERSHIP_OWNING_NAMESPACE = "validateVariationMembershipOwningNamespace"
-	public static val INVALID_VARIATION_MEMBERSHIP_OWNING_NAMESPACE_MSG = "Variant membership not allowed."
+	public static val INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE = "validateVariationMembershipOwningNamespace"
+	public static val INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE_MSG = "A variant must be an owned member of a variation."
 	
 	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES = "validateAttributeDefinitionFeatures"
 	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG = "Features of an attribute definition must be referential."
-	
+	public static val INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION = "validateDataTypeSpecialization"
+	public static val INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION_MSG = "Cannot specialize item definition"    
+		
 	public static val INVALID_ATTRIBUTE_USAGE_FEATURES = "validateAttributeUsageFeatures"
 	public static val INVALID_ATTRIBUTE_USAGE_FEATURES_MSG = "Features of an attribute usage must be referential."
 	public static val INVALID_ATTRIBUTE_USAGE_TYPE = "validateAttributeUsageType_"
@@ -165,20 +176,24 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
 	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS = "validateOccurrenceDefinitionLifeClass"
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG = "Must have a LifeClass."
+	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1 = "Must have exactly one LifeClass."
+	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2 = "Must not have a LifeClass."
 	
 	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
 	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
-	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "Only one individual definition is allowed."
+	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "At most one individual definition is allowed."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG = "An individual must be typed by one individual definition."	
 	
+	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION = "validateClassSpecialization"
+	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG = "Cannot specialize attribute definition"    	
+
 	public static val INVALID_ITEM_USAGE_TYPE = "validateItemUsageType_"
 	public static val INVALID_ITEM_USAGE_TYPE_MSG = "An item must be typed by item definitions."
 	
 	public static val INVALID_PART_USAGE_TYPE = "validatePartUsageType_"
-	public static val INVALID_PART_USAGE_TYPE_MSG = "A part must be typed by item definitions and at least one part definition."
+	public static val INVALID_PART_USAGE_TYPE_MSG = "A part must be typed by item definitions."
 	public static val INVALID_PART_USAGE_PART_DEFINITION = "validatePartUsagePartDefinition"
 	public static val INVALID_PART_USAGE_PART_DEFINITION_MSG = "A part must be typed by at least one part definition."
 	
@@ -227,6 +242,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS_MSG = "Incoming successions must have target multiplicity 1."
 	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS = "validateControlNodeOutgoingSuccessions"
 	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS_MSG = "Outgoing successions must have source multiplicity 1."
+	public static val INVALID_CONTROL_NODE_OWNING_TYPE = "validateControlNodeOwningType"
+	public static val INVALID_CONTROL_NODE_OWNING_TYPE_MSG = "A control node must be owned by an action definition or usage."
 	
 	public static val INVALID_DECISION_NODE_INCOMING_SUCCESSIONS = "validateDecisionNodeIncomingSuccessions"
 	public static val INVALID_DECISION_NODE_INCOMING_SUCCESSIONS_MSG = "Must have at most one incoming succession."
@@ -245,7 +262,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_MERGE_NODE_OUTGOING_SUCCESSIONS_MSG = "Must have at most one outgoing succession."
 	
 	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE = "validatePerformActionUsageReference"
-	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG = "Must reference an occurrence"
+	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG = "Must reference an action"
 	
 	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS = "validateSendActionUsageParameter"
 	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG = "A send action usage must have three input parameters."
@@ -253,14 +270,17 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SEND_ACTION_USAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
+	
+	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE = "validateExhibitStateUsageReference"
+	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG = "Must reference a state"
 		
 	public static val INVALID_STATE_SUBACTION_KIND_ENTRY_MSG = "A state may have at most one entry action."
 	public static val INVALID_STATE_SUBACTION_KIND_DO_MSG = "A state may have at most one do action."
 	public static val INVALID_STATE_SUBACTION_KIND_EXIT_MSG = "A state may have at most one exit action."
 	
 	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state must have parallel state generalizations."
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state must not have parallel state generalizations."
+	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state definition must specialize only parallel state definitions."
+	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state definition must not specialize parallel state definitions."
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS = "validateStateDefinitionParallelSubactions"
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND = "validateStateDefinitionSubactionKind"
@@ -268,8 +288,14 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_2 = INVALID_STATE_SUBACTION_KIND_DO_MSG
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_3 = INVALID_STATE_SUBACTION_KIND_EXIT_MSG
 	
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_OWNING_TYPE = "validateStateSubactionMembershioOwningType"
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_OWNING_TYPE_MSG = "Only a state can have an entry, do or exit action."
+	
 	public static val INVALID_STATE_USAGE_TYPE = "validateStateUsageType_"
 	public static val INVALID_STATE_USAGE_TYPE_MSG = "A state must be typed by state definitions."
+	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
+	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state must specialize only parallel states."
+	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state must not specialize parallel states."
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS = "validateStateUsageParallelSubactions"
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_USAGE_SUBACTION_KIND = "validateStateUsageSubactionKind"
@@ -286,9 +312,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION = "validateTransitionFeatureMembershipTriggerAction"
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION_MSG = "Must be an accept action."
 	
-	public static val INVALID_TRANSITION_USAGE_PARMETERS = "validateTransitionUsageParameters"
-	public static val INVALID_TRANSITION_USAGE_PARMETERS_MSG_1 = "Must have an input parameter."
-	public static val INVALID_TRANSITION_USAGE_PARMETERS_MSG_2 = "Must have two input parameters."
+	public static val INVALID_TRANSITION_USAGE_PARAMETERS = "validateTransitionUsageParameters"
+	public static val INVALID_TRANSITION_USAGE_PARAMETERS_MSG_1 = "Must have an input parameter."
+	public static val INVALID_TRANSITION_USAGE_PARAMETERS_MSG_2 = "Must have two input parameters."
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION = "validateTransitionUsageSuccession"
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION_MSG = "A transition must own a succession to its target."
 	
@@ -300,6 +326,9 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE = "validateActorMembershipOwningType"
 	public static val INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements and cases can have actors."
+	
+	public static val INVALID_FRAMED_CONCERN_MEMBERSHIP_CONSTRAINT_KIND = "validateFramedConcernMembershipConstraintKind"
+	public static val INVALID_FRAMED_CONCERN_MEMBERSHIP_CONSTRAINT_KIND_MSG = "A framed concern must be a required constraint."
 	
 	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE = "validateRequirementConstraintMembershipIsComposite"
 	public static val INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE_MSG = "A requirement constraint must be composite."
@@ -353,9 +382,12 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE = "validateRequirementVerificationMembershipOwningType"
 	public static val INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_OWNING_TYPE_MSG = "A requirement verification must be in the objective of a verification case."
 	
-	public static val INVALID_VERIFICATIONCASE_USAGE_TYPE = "validateVerificationCaseUsageType_"
-	public static val INVALID_VERIFICATIONCASE_USAGE_TYPE_MSG = "A verification case must be typed by one verification case definition."
+	public static val INVALID_VERIFICATION_CASE_USAGE_TYPE = "validateVerificationCaseUsageType_"
+	public static val INVALID_VERIFICATION_CASE_USAGE_TYPE_MSG = "A verification case must be typed by one verification case definition."
 	
+	public static val INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE = "validateIncludeUseCaseUsageReference"
+	public static val INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE_MSG = "Must reference a use case"
+		
 	public static val INVALID_USE_CASE_USAGE_TYPE = "validateUseCaseUsageType_"
 	public static val INVALID_USE_CASE_USAGE_TYPE_MSG = "A use case must be typed by one use case definition."
 	
@@ -390,21 +422,28 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkDefinition(Definition definition) {		
 		if (!definition.isVariation) {
+			// validateDefinitionNonVariationMembership is redundant with validateVariantMembershipOwningNamespace
 			// validateDefinitionNonVariationMembership
-			for (mem: definition.variantMembership) {
-				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
-			}
+//			for (mem: definition.variantMembership) {
+//				error(INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP)
+//			}
 		} else {
 			// validateDefinitionVariationMembership
 			for (ownedUsage: definition.ownedUsage) {
-				// TODO: Allow parameters and objectives in variations in spec? Or is that just due to implementation here?
+				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
+				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
 				val mem = ownedUsage.owningFeatureMembership
 				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
-					error(INVALID_USAGE_VARIATION_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
+					error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)							
 				}
 			}
 			
-			// TODO: Check validateDefinitionVariationSpecialization
+			// NEW: validateDefinitionVariationSpecialization
+			for (ownedSpec: definition.ownedSpecialization) {
+				if (ownedSpec.general.isVariation) {
+					error(INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG, ownedSpec, SysMLPackage.eINSTANCE.specialization_Specific, INVALID_DEFINITION_VARIATION_SPECIALIZATION)
+				}
+			}
 		}	
 	}
 	
@@ -417,34 +456,58 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkUsage(Usage usage) {
 		if (!usage.isVariation) {
+			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace
 			// validateUsageNonVariationMembership
-			for (mem: usage.variantMembership) {
-				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
-			}
+//			for (mem: usage.variantMembership) {
+//				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
+//			}
 		} else {
 			// validateUsageVariationMembership
 			for (nestedUsage: usage.nestedUsage) {
-				// TODO: Allow parameters and objectives in variations in spec? Or is that just due to implementation here?
+				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
+				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
 				val mem = nestedUsage.owningFeatureMembership
 				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
-					error(INVALID_USAGE_VARIATION_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
+					error(INVALID_USAGE_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
 				}
 			}
 			
-			// TODO: Check validateUsageVariationSpecialization
+			// NEW: validateUsageVariationSpecialization
+			for (ownedSpec: usage.ownedSpecialization) {
+				if (ownedSpec.general.isVariation) {
+					error(INVALID_USAGE_VARIATION_SPECIALIZATION_MSG, ownedSpec, SysMLPackage.eINSTANCE.specialization_Specific, INVALID_USAGE_VARIATION_SPECIALIZATION)
+				}
+			}
 		}
 		
-		// TODO: Check validateUsageOwningType	
+		// validateUsageOwningType is too restrictive. (See SYSML2-301.)
+		// TODO: Check validateUsageOwningType
+		// val owningType = usage.owningType
+		// if (!(owningType === null || owningType instanceof Definition || owningType instanceof Usage)) {
+		//		error(INVALID_USAGE_OWNING_TYPE_MSG, usage, null, INVALID_USAGE_OWNING_TYPE)
+		// }
+	}
+	
+	protected def boolean isVariation(Namespace namespace) {
+		namespace instanceof Definition && (namespace as Definition).isVariation ||
+		namespace instanceof Usage && (namespace as Usage).isVariation
 	}
 	
 	@Check
 	def checkVariantMembership(VariantMembership mem) {
-	  // TODO: Check validateVariantMembershipOwningNamespace		
+		// validateVariantMembershipOwningNamespace
+		if (!mem.membershipOwningNamespace.isVariation) {
+			error(INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE_MSG, mem, null, INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE)
+		}	
 	}
 
 	@Check
 	def checkAttributeDefinition(AttributeDefinition defn) {
-		// TODO: Check validateAttributeDefinitionFeatures
+		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KERML-4.)
+		// TODO: validateAttributeDefinitionFeatures
+		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
+		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
+		// checkAllNotComposite(defn.ownedFeature, INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG, INVALID_ATTRIBUTE_DEFINITION_FEATURES)
 	}
 	
 	@Check 
@@ -461,7 +524,11 @@ class SysMLValidator extends KerMLValidator {
 		
 		// validateAttributeUsageIsReference is satisfied automatically			
 		
-		// TODO: Check validateAttributeUsageFeatures
+		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KerML-4.)
+		// TODO: validateAttributeUsageFeatures
+		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
+		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
+		// checkAllNotComposite(usg.ownedFeature, INVALID_ATTRIBUTE_USAGE_FEATURES_MSG, INVALID_ATTRIBUTE_USAGE_FEATURES)
 	}
 	
 //	@Check
@@ -478,7 +545,11 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkEventOccurrenceUsage(EventOccurrenceUsage usg) {
 		// validateEventOccurrenceUsageIsReference is satisfied automatically
-		// TODO: Check validateEventOccurrenceUsageReference
+		
+		// NEW: validateEventOccurrenceUsageReference
+		if (!(usg instanceof PerformActionUsage || usg instanceof IncludeUseCaseUsage)) {
+			checkReferenceType(usg, OccurrenceUsage, INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG, INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE)
+		}
 	}
 	
 //	@Check
@@ -489,7 +560,17 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkOccurrenceDefinition(OccurrenceDefinition defn) {
-		// TODO: Check validateOccurrenceDefinitionLifeClass
+		// NEW: validateOccurrenceDefinitionLifeClass
+		val n = defn.ownedMember.filter[m | m instanceof LifeClass].size
+		if (defn.isIndividual) {
+			if (n != 1) {
+				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
+			}
+		} else {
+			if (n > 0) {
+				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
+			}			
+		}
 	}
 	
 	@Check 
@@ -498,11 +579,16 @@ class SysMLValidator extends KerMLValidator {
 		if (!(usg instanceof ItemUsage || usg instanceof PortUsage || usg instanceof Step))	
 			checkAllTypes(usg, org.omg.sysml.lang.sysml.Class, INVALID_OCCURRENCE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_TYPE)
 
-		// TODO: Check validateOccurrenceUsageIndividualDefinition
+		// NEW: validateOccurrenceUsageIndividualDefinition
+		var nIndividualDefs = usg.occurrenceDefinition.filter[d | d instanceof OccurrenceDefinition && (d as OccurrenceDefinition).isIndividual].size
+		if (nIndividualDefs > 1) {
+			error(INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG, usg, null, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG)
 
 		// validateOccurrenceUsageIndividualUsage
-		if (usg.isIndividual && usg.occurrenceDefinition.filter[t | t instanceof OccurrenceDefinition && (t as OccurrenceDefinition).isIndividual].size() != 1)
-			error (INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE)	
+		} else if (usg.isIndividual && nIndividualDefs != 1) {
+			error (INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE)
+		}
+
 	}
 	
 	@Check 
@@ -514,22 +600,39 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkPartUsage(PartUsage pu){
-		// validatePartUsagePartDefinition
 		if (!(pu instanceof ConnectionUsage))
 			if (checkAllTypes(pu, Structure, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_PART_USAGE_TYPE))
-				checkAtLeastOneType(pu, PartDefinition, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, INVALID_PART_USAGE_TYPE)
+				// validatePartUsagePartDefinition
+				checkAtLeastOneType(pu, PartDefinition, INVALID_PART_USAGE_PART_DEFINITION_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, INVALID_PART_USAGE_PART_DEFINITION)
 	}
 	
 	@Check
 	def checkConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
-		// TODO: Check validateConjugatedPortDefinitionConjugatedPortDefinition
-		// TODO: Check validateConjugatedPortDefinitionOriginalPortDefinition
+		// NEW: validateConjugatedPortDefinitionConjugatedPortDefinition
+		if (cpd.conjugatedPortDefinition !== null) {
+			error(INVALID_CONJUGATED_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION_MSG, cpd, null, INVALID_CONJUGATED_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION)
+		}
+		
+		// NEW: validateConjugatedPortDefinitionOriginalPortDefinition
+		val portConjugator = cpd.ownedPortConjugator
+		if (portConjugator !== null && portConjugator.originalPortDefinition !== cpd.originalPortDefinition) {
+			error(INVALID_CONJUGATED_PORT_DEFINITION_ORIGINAL_PORT_DEFINITION_MSG, cpd, null, INVALID_CONJUGATED_PORT_DEFINITION_ORIGINAL_PORT_DEFINITION)
+		}
 	}
 	
 	@Check
 	def checkPortDefinition(PortDefinition pd) {
-		// TODO: Check validatePortDefinitionConjugatedPortDefinition
-		// TODO: Check validatePortDefinitionOwnedUsagesNotComposite
+		// NEW: Check validatePortDefinitionConjugatedPortDefinition
+		if (!(pd instanceof ConjugatedPortDefinition)) {
+			val n = pd.ownedMember.filter[m | m instanceof ConjugatedPortDefinition].size()
+			if (n != 1) {
+				error(INVALID_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION_MSG, pd, null, INVALID_PORT_DEFINITION_CONJUGATED_PORT_DEFINITION)
+			}
+		}
+		
+		// NEW: validatePortDefinitionOwnedUsagesNotComposite
+		val usages = pd.ownedUsage.filter[u | !(u instanceof PortUsage)]
+		checkAllNotComposite(usages, INVALID_PORT_DEFINITION_OWNED_USAGES_NOT_COMPOSITE_MSG, INVALID_PORT_DEFINITION_OWNED_USAGES_NOT_COMPOSITE)
 	}
 	
 	@Check
@@ -538,7 +641,10 @@ class SysMLValidator extends KerMLValidator {
 		checkAllTypes(usg, PortDefinition, INVALID_PORT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, INVALID_PORT_USAGE_TYPE)
 
 		// validatePortUsageIsReference is satisfied automatically
-		// TODO: Check validatePortUsageNestedUsagesNotComposite
+
+		// NEW: validatePortUsageNestedUsagesNotComposite
+		val usages = usg.nestedUsage.filter[u | !(u instanceof PortUsage)]
+		checkAllNotComposite(usages, INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG, INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE)
 	}
 
 	@Check
@@ -599,7 +705,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkAcceptActionUsage(AcceptActionUsage usg) {
-		// TODO: Check validateAcceptActionUsageParameters
+		// NEW: validateAcceptActionUsageParameters
+		if (usg.inputParameters.size < 2) {
+			error(INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_ACCEPT_ACTION_USAGE_PARAMETERS)
+		}
 	}
 	
 	@Check
@@ -626,7 +735,12 @@ class SysMLValidator extends KerMLValidator {
 	def checkControlNode(ControlNode node) {
 		// TODO: Check validateControlNodeIncomingSuccessions (?)
 		// TODO: Check validateControlNodeOutgoingSuccessions (?)
+		
 		// TODO: Check validateControlNodeOwningType
+		val owningType = node.owningType
+		if (!(owningType !== null && (owningType instanceof ActionUsage || owningType instanceof ActionDefinition))) {
+			error(INVALID_CONTROL_NODE_OWNING_TYPE_MSG, node, null, INVALID_CONTROL_NODE_OWNING_TYPE)
+		}
 	}
 	
 	@Check
@@ -636,25 +750,29 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	@Check
-	def checkForkNodeIncomingSuccessions(ForkNode node) {
-		// TODO: Check validateForkNodeIncomingSuccessions
+	def checkForkNode(ForkNode node) {
+		// TODO: Check validateForkNodeIncomingSuccessions (?)
 	}
 	
-	def checkJoinNodeIncomingSuccessions(JoinNode node) {
-		// TODO: Check validateJoinNodeOutgoingSuccessions
+	def checkJoinNode(JoinNode node) {
+		// TODO: Check validateJoinNodeOutgoingSuccessions (?)
 	}
 	
-	def checkMergeNodeIncomingSuccessions(MergeNode node) {	
-		// TODO: Check validateMergeNodeIncomingSuccessions
-		// TODO: Check validateMergeNodeOutgoingSucessions
+	def checkMergeNode(MergeNode node) {	
+		// TODO: Check validateMergeNodeIncomingSuccessions (?)
+		// TODO: Check validateMergeNodeOutgoingSucessions (?)
 	}
 	
 	def checkPerformActionUsage(PerformActionUsage usg) {
-		// TODO: Check validatePerformActionUsageReference
+		// NEW: validatePerformActionUsageReference
+		if (!(usg instanceof ExhibitStateUsage)) {
+			checkReferenceType(usg, ActionUsage, INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG, INVALID_PERFORM_ACTION_USAGE_REFERENCE)
+		}
 	}
 	
 	@Check
 	def checkSendActionUsage(SendActionUsage usg) {
+		// Warn if sending "to" a port, rather than "via"
 		val receiverArgument = usg.receiverArgument
 		if (receiverArgument instanceof FeatureReferenceExpression && 
 				(receiverArgument as FeatureReferenceExpression).referent instanceof PortUsage ||
@@ -668,23 +786,36 @@ class SysMLValidator extends KerMLValidator {
 			error(INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG)
 		} 
 
-		// TODO: Check validateSendActionParameters
+		// NEW: validateSendActionParameters
+		if (usg.inputParameters.size < 3) {
+			error(INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PARAMETERS)
+		}
 	}	
 	
 	def checkExhibitStateUsage(ExhibitStateUsage usg) {
-		// TODO: Add validateExhibitStateUsageReference
+		// NEW: validateExhibitStateUsageReference
+		checkReferenceType(usg, StateUsage, INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG, INVALID_EXHIBIT_STATE_USAGE_REFERENCE)
 	}
 		
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
-		// TODO: CHeck validateStateDefinitionParallelGeneralization
+		// Not implemented pending further review. (See SYSML2-306.)
+		// TODO: validateStateDefinitionParallelGeneralization
+		// checkAllParallelSpecialization(defn, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION)
+		
+		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
+		
 		// validateStateDefinitionStateSubactionKind
 		checkStateSubactions(defn);
 	}
 	
 	@Check
-	def checkStateSubactionMembership(StateSubactionMembership defn) {
-		// TODO: Check validateStateSubactionMembershipOwningType
+	def checkStateSubactionMembership(StateSubactionMembership mem) {
+		// NEW: validateStateSubactionMembershipOwningType
+		val owningType = mem.owningType;
+		if (!(owningType instanceof StateUsage || owningType instanceof StateDefinition)) {
+			error(INVALID_STATE_SUBACTION_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_STATE_SUBACTION_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 		
 	@Check
@@ -692,7 +823,11 @@ class SysMLValidator extends KerMLValidator {
 		// All types must be Behaviors
 		checkAllTypes(usg, Behavior, INVALID_STATE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, INVALID_STATE_USAGE_TYPE)
 
-		// TODO: Check validateStateUsageIsParallelGeneralization
+		// Not implemented pending further review. (See SYSML2-306.)
+		// TODO: validateStateUsageIsParallelGeneralization
+		// checkAllParallelSpecialization(usg, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION)
+		
+		// validateStateUsageParallelSubactions is checked by checkTransitionUsage and checkSuccession
 
 //		val owningType = usg.owningType
 //		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
@@ -714,10 +849,29 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkTransitionFeatureMembership(TransitionFeatureMembership mem) {
-		// TODO: Check validateTransitionFeatureMembershipEffectAction
-		// TODO: Check validateTransitionFeatureMembershipGuardAction
-		// TODO: Check validateTransitionFeatureMembershipOwningType
-		// TODO: Check validateTransitionFeatureMembershipTriggerAction
+		val kind = mem.kind
+		if (kind == TransitionFeatureKind.EFFECT) {
+			// NEW: validateTransitionFeatureMembershipEffectAction
+			if (!(mem.transitionFeature instanceof ActionUsage)) {
+				error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION)
+			}
+		} else if (kind == TransitionFeatureKind.GUARD) {
+			// NEW: Check validateTransitionFeatureMembershipGuardAction
+			val transitionFeature = mem.transitionFeature
+			if (!(transitionFeature instanceof Expression && (transitionFeature as Expression).isBoolean)) {
+				error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION)
+			}
+		} if (kind == TransitionFeatureKind.TRIGGER) {
+			// NEW: validateTransitionFeatureMembershipTriggerAction
+			if (!(mem.transitionFeature instanceof AcceptActionUsage)) {
+				error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION)
+			}
+		}
+		
+		// NEW: validateTransitionFeatureMembershipOwningType
+		if (!(mem.owningType instanceof TransitionUsage)) {
+			error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 	
 	@Check
@@ -725,11 +879,30 @@ class SysMLValidator extends KerMLValidator {
 		// validateStateDefinitionParallelSubactions
 		// validateStateUsageParallelSubactions
 		if (UsageUtil.isParallelState(usg.owningType)) {
-			error(INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG, usg, null, INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG)
+			if (usg.owningType instanceof Definition) {
+				error(INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG, usg, null, INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG)
+			} else {
+				error(INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG, usg, null, INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG)
+			}
 		}
 		
-		// TODO: Check validateTransitionUsageParameters
-		// TODO: Check validateTransitionUsageSuccession	
+		// NEW: validateTransitionUsageParameters
+		val n = usg.inputParameters.size
+		if (usg.triggerAction.isEmpty) {
+			if (n < 1) {
+				error(INVALID_TRANSITION_USAGE_PARAMETERS_MSG_1, usg, null, INVALID_TRANSITION_USAGE_PARAMETERS)
+			}
+		} else {
+			if (n < 2) {
+				error(INVALID_TRANSITION_USAGE_PARAMETERS_MSG_2, usg, null, INVALID_TRANSITION_USAGE_PARAMETERS)
+			}
+		}
+		
+		// NEW: validateTransitionUsageSuccession	
+		val successions = usg.ownedMember.filter[m | m instanceof Succession]
+		if (successions.empty || !(successions.get(0) as Succession).targetFeature.forall[f | FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage]) {
+			error(INVALID_TRANSITION_USAGE_SUCCESSION_MSG, usg, null, INVALID_TRANSITION_USAGE_SUCCESSION)
+		}
 	}
 	
 	@Check
@@ -750,7 +923,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkAssertConstraintUsage(AssertConstraintUsage usg) {
-		// TODO: Add validateAssertConstraintUsageReference
+		// TODO: Add/check validateAssertConstraintUsageReference
 	}
 
 	@Check 
@@ -761,19 +934,36 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	@Check
-	def checkActorMembership(ConstraintUsage usg) {
-		// TODO: Check validateActorMembershipOwningType
+	def checkActorMembership(ActorMembership mem) {
+		// NEW: validateActorMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage ||
+			  owningType instanceof CaseDefinition || owningType instanceof CaseUsage)) {
+			error(INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_ACTOR_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 	
 	@Check
 	def checkFramedConcernUsage(FramedConcernMembership mem) {
-		// TODO: Check validateFramedConcernMembershipConstraintKind
+		// NEW: validateFramedConcernMembershipConstraintKind
+		if (mem.kind != RequirementConstraintKind::REQUIREMENT) {
+			error(INVALID_FRAMED_CONCERN_MEMBERSHIP_CONSTRAINT_KIND_MSG, mem, null, INVALID_FRAMED_CONCERN_MEMBERSHIP_CONSTRAINT_KIND)
+		}
 	}
 	
 	@Check
 	def checkRequirementConstraintMembership(RequirementConstraintMembership mem) {
-		// TODO: Check validateRequirementConstraintMembershipIsComposite
-		// TODO: Check validateRequirementConstraintMembershipOwningType
+		// NEW: validateRequirementConstraintMembershipIsComposite
+		val ownedConstraint = mem.ownedConstraint
+		if (ownedConstraint !== null && !ownedConstraint.isComposite) {
+			error(INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE_MSG, mem, null, INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_IS_COMPOSITE)
+		}
+		
+		// NEW: validateRequirementConstraintMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage)) {
+			error(INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_REQUIREMENT_CONSTRAINT_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 	
 	@Check
@@ -781,7 +971,8 @@ class SysMLValidator extends KerMLValidator {
 		// validateRequirementDefinitionOnlyOneSubject
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
-		// TODO: Check validateRequirementDefinitionSubjectParameterPosition
+		// NEW: validateRequirementDefinitionSubjectParameterPosition
+		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}	
 	
 	@Check 
@@ -792,22 +983,35 @@ class SysMLValidator extends KerMLValidator {
 		// validateRequirementUsageOnlyOneSubject
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
-		// TODO: Check validateRequirementUsageSubjectParameterPosition
+		// NEW: validateRequirementUsageSubjectParameterPosition
+		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
 	def checkSatisfyRequirementUsage(SatisfyRequirementUsage usg) {
-		// TODO: Add validateSatisfyRequirementUsageReference
+		// TODO: Add/check validateSatisfyRequirementUsageReference
 	}
 	
 	@Check
 	def checkStakeholderMembership(StakeholderMembership mem) {
-		// TODO: Check validateStakeholderMembershipOwningType
+		// NEW: validateStakeholderMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage)) {
+			error(INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 	
 	@Check
 	def checkSubjectMembership(SubjectMembership mem) {
-		// TODO: Check validateSubjectMembershipOwningType
+		// NEW: validateSubjectMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage ||
+			  owningType instanceof CaseDefinition || owningType instanceof CaseUsage ||
+			  // NOTE: Temporarily allow requirement constraint features to have subject memberships
+			  // TODO: Remove this once implicit subjects are no longer being physically inserted
+			  owningType !== null && owningType.owningMembership instanceof RequirementConstraintMembership)) {
+			error(INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE)
+		}
 	}
 	
 	
@@ -819,7 +1023,8 @@ class SysMLValidator extends KerMLValidator {
 		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
-		// TODO: Check validateCaseDefinitionSubjectParameterPosition
+		// NEW: validateCaseDefinitionSubjectParameterPosition
+		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}
 
 	@Check 
@@ -834,13 +1039,23 @@ class SysMLValidator extends KerMLValidator {
 		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
-		// TODO: Check validateCaseUsageSubjectParameterPosition
+		// NEW: validateCaseUsageSubjectParameterPosition
+		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
 	def checkObjectiveMembership(ObjectiveMembership mem) {
-		// TODO: Check validateObjectiveMembershipIsComposite
-		// TODO: Check validateObjectiveMembershipOwningType
+		// NEW: validateObjectiveMembershipIsComposite
+		val ownedObjectiveRequirement = mem.ownedObjectiveRequirement
+		if (ownedObjectiveRequirement !== null && !ownedObjectiveRequirement.isComposite) {
+			error(INVALID_OBJECTIVE_MEMBERSHIP_IS_COMPOSITE_MSG, mem, null, INVALID_OBJECTIVE_MEMBERSHIP_IS_COMPOSITE)
+		}
+		
+		// NEW: validateObjectiveMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof CaseDefinition || owningType instanceof CaseUsage)) {
+			error(INVALID_OBJECTIVE_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_OBJECTIVE_MEMBERSHIP_OWNING_TYPE)
+		}
 	}	
 	
 	@Check 
@@ -851,7 +1066,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
-		// TODO: Check validateRequirementVerificationMembershipKind
+		// NEW: validateRequirementVerificationMembershipKind
+		if (mem.kind != RequirementConstraintKind::REQUIREMENT) {
+			error(INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_KIND_MSG, mem, null, INVALID_REQUIREMENT_VERIFICATION_MEMBERSHIP_KIND)
+		}
 
 		// validateRequirementVerificationMembershipOwningType
 		if (!UsageUtil.isLegalVerification(mem)) {
@@ -862,12 +1080,13 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkVerificationCaseUsage(VerificationCaseUsage usg) {
 		// Must have exactly one type, which is a VerificationCaseDefinition
-		checkOneType(usg, VerificationCaseDefinition, INVALID_VERIFICATIONCASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, INVALID_VERIFICATIONCASE_USAGE_TYPE)
+		checkOneType(usg, VerificationCaseDefinition, INVALID_VERIFICATION_CASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, INVALID_VERIFICATION_CASE_USAGE_TYPE)
 	}
 	
 	@Check
 	def checkIncludeUseCaseUsage(IncludeUseCaseUsage usg) {
-		// TODO: Add validateIncludeUseCaseUsageReference
+		// NEW: validateIncludeUseCaseUsageReference
+		checkReferenceType(usg, UseCaseUsage, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE_MSG, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE)
 	}
 	
 	@Check 
@@ -879,7 +1098,11 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkExpose(Expose exp) {
 		// validateExposeIsImportAll is automatically satisfied
-		// TODO: Check validateExposeOwningNamespace
+		
+		// NEW: validateExposeOwningNamespace
+		if (!(exp.importOwningNamespace instanceof ViewUsage)) {
+			error(INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE_MSG, exp, null, INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE)
+		}	
 	}
 	
 	@Check
@@ -890,13 +1113,17 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkViewDefinition(ViewDefinition viewDef) {
-		// validateViewDefinitionOnlyOneRendering
+		// validateViewDefinitionOnlyOneViewRendering
 		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG, INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING)
 	}
 	
 	@Check
 	def checkViewRenderingMembership(ViewRenderingMembership mem) {
-		// TODO: Check validateViewRenderingMembershipOwningType
+		// NEW: validateViewRenderingMembershipOwningType
+		val owningType = mem.owningType
+		if (!(owningType instanceof ViewDefinition || owningType instanceof ViewUsage)) {
+			error(INVALID_VIEW_RENDERING_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_VIEW_RENDERING_MEMBERSHIP_OWNING_TYPE)
+		}		
 	}
 	
 	@Check
@@ -921,6 +1148,28 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	/* Overrides */
+	
+	@Check
+	override checkDataType(DataType d) {
+		// validateDataTypeSpecialization
+		// Overridden to tailor error message for SysML.
+		for (s: d.ownedSpecialization) {
+			if (s.general instanceof org.omg.sysml.lang.sysml.Class || s.general instanceof Association) {
+				error(INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
+	override checkClass(org.omg.sysml.lang.sysml.Class c) {
+		// validateClassSpecialization
+		// Overridden to tailor error message for SysML.
+		for (s: c.ownedSpecialization) {
+			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
+				error(INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ITEM_DEFINITION_SPECIALIZATION)
+			}
+		}
+	}
 	
 	@Check
 	override checkOperatorExpression(OperatorExpression e) {
@@ -958,6 +1207,15 @@ class SysMLValidator extends KerMLValidator {
 	
 	/* Utility Methods */
 	
+	protected def boolean checkNotAny(Iterable<? extends EObject> list, String msg, EStructuralFeature eFeature, String eId) {
+		var check = true
+		for (obj: list) {
+			error(msg, obj, eFeature, eId)
+			check = false
+		}
+		return check
+	}
+	
 	protected def boolean checkAtMostOneFeature(Type owningType, Class<? extends FeatureMembership> kind, String msg, String eId) {
 		var mems = owningType.ownedFeatureMembership.filter[m | kind.isInstance(m)]
 		checkAtMostOneElement(mems, msg, eId);
@@ -994,6 +1252,53 @@ class SysMLValidator extends KerMLValidator {
 		if (!check)
 			error (msg, ref, eId)
 		return check
+	}
+	
+	protected def boolean checkAllNotComposite(Iterable<? extends Feature> list, String msg, String eId) {
+		var check = true
+		for (feature: list) {
+			if (feature.isComposite) {
+				error(msg, feature, null, eId)
+				check = false
+			}
+		}
+		return check
+	}
+	
+	protected def boolean checkReferenceType(Feature feature, Class<?> type, String msg, String eId) {
+		val subsetting = feature.ownedReferenceSubsetting
+		
+		// NOTE: This is implemented using getBasicFeatureOf to account for feature chaining. (See SYSML2-307.)
+		if (subsetting !== null && !type.isInstance(FeatureUtil.getBasicFeatureOf(subsetting.referencedFeature))) {
+			error(msg, subsetting, null, eId)
+			return false
+		}
+		
+		return true
+	}
+	
+	protected def boolean checkSubjectParameter(Type type, Feature subjectParameter, Iterable<Feature> inputs, String msg, String eId) {
+		if (subjectParameter !== null && (inputs.empty || inputs.get(0) !== subjectParameter)) {
+			if (subjectParameter.owningType === type) {
+				error(msg, subjectParameter, null, eId)
+			} else {
+				error(msg, type, null, eId)
+			}
+			return false
+		}
+		return true
+	}
+	
+	protected def boolean checkAllParallelSpecialization(Type type, String msg1, String msg2, String eId) {
+		val isParallel = type.isParallel
+		val badGen = type.ownedSpecialization.filter[s | s.general.isParallel != isParallel]
+		checkNotAny(badGen, isParallel? msg1: msg2, SysMLPackage.eINSTANCE.specialization_General, eId)
+	}
+	
+	protected def boolean isParallel(Type type) {
+		if (type instanceof StateDefinition) type.isParallel
+		else if (type instanceof StateUsage) type.isParallel
+		else false
 	}
 	
 }

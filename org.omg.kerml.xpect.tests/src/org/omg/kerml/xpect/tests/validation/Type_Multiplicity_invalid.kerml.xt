@@ -1,0 +1,23 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+package Type_Multiplicity {
+	classifier C {
+		multiplicity subsets Base::zeroOrOne;
+		
+		// XPECT errors--->"Only one multiplicity is allowed" at "multiplicity subsets Base::zeroToMany;"
+		multiplicity subsets Base::zeroToMany;
+	}
+}

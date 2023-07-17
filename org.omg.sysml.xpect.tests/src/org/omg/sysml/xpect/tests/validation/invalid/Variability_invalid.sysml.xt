@@ -48,6 +48,9 @@ package VariabilityModel {
     	attribute a2;
     }
 
+    // XPECT errors --> "A variation must not specialize another variation." at "AttributeChoices"
+    variation attribute def AttributeChoices1 :> AttributeChoices;
+    
     part def PartChoices :> B {
 		// XPECT errors --> "A variant must be an owned member of a variation." at "variant b1;"
         variant b1;
@@ -70,6 +73,10 @@ package VariabilityModel {
 			// XPECT errors --> "A variant must be an owned member of a variation." at "variant action f1;"
         	variant action f1;
         	action f2;
-        }       
+        }
+        
+        // XPECT errors --> "A variation must not specialize another variation." at "d"
+    	variation part e :> d;
+              
     }
 }

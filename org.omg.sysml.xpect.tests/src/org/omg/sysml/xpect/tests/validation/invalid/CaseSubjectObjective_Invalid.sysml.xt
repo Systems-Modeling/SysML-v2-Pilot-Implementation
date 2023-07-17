@@ -66,9 +66,20 @@ package 'Case Subjects and Objectives' {
 		objective o4;
 	}
 	
-	case c1 : C {
-		subject s5; // Valid implicit redefinition.
+	case def C1 :> C {
+		in x;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s5;"
+		subject s5;
+		
 		objective o5;
+	}
+	
+	case c1 : C1 {
+		in y;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s6;"
+		subject s6;
 	}
 	
 }

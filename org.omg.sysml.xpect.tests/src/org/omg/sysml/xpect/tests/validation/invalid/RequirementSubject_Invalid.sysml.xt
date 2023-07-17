@@ -66,8 +66,18 @@ package 'Requirement Subjects' {
 		subject s4;
 	}
 	
-	requirement r1 : R {
-		subject s5; // Valid implicit redefinition.
+	requirement def R1 :> R {
+		in x;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s5;"
+		subject s5;
+	}
+	
+	requirement r1 : R1 {
+		in y;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s6;"
+		subject s6;		
 	}
 	
 }

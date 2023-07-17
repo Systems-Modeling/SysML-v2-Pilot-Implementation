@@ -555,7 +555,6 @@ class SysMLValidator extends KerMLValidator {
 //	@Check
 //	def checkLifeClass(LifeClass cls) {}
 //		// validateLifeClassIsSufficient is satisfied automatically
-//		// TODO: Update LifeClass so isSufficient = true
 //	}
 	
 	@Check

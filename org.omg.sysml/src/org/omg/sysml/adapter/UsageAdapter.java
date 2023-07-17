@@ -186,7 +186,7 @@ public class UsageAdapter extends FeatureAdapter {
 			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
 			membership.setOwnedSubjectParameter(parameter);
-			type.getOwnedRelationship().add(membership);
+			type.getOwnedRelationship().add(0, membership);
 		}
 	}
 	

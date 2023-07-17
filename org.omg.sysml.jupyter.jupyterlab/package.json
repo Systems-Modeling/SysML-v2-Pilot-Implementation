@@ -12,14 +12,15 @@
   ],
   "dependencies": {
     "@jupyterlab/application": ">=2.0.0"
-  },
+   },
   "devDependencies": {
     "@types/codemirror": "^0.0.98",
+    "@types/json-schema": "*",
     "typescript": "<4.4.0"
   },
   "peerDependencies": {
     "codemirror": "^5.58.1"
-  },
+   },
   "files": [
     "build/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
   ],

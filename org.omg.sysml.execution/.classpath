@@ -7,5 +7,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="output" path="target/java"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

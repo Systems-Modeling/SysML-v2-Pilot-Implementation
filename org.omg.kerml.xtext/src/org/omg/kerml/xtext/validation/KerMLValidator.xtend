@@ -75,8 +75,6 @@ import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.DataType
-import org.omg.sysml.lang.sysml.AssociationStructure
-import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.ParameterMembership
 import org.omg.sysml.lang.sysml.Behavior
 import org.omg.sysml.lang.sysml.Step
@@ -87,6 +85,7 @@ import org.omg.sysml.lang.sysml.ItemFeature
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
+import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * This class contains custom validation rules. 
@@ -907,15 +906,23 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkLibraryPackage(LibraryPackage pkg) {
-		// Note: Can't suppress the warning in Xtend.
-		if (pkg.isStandard && !SysMLLibraryUtil.isModelLibrary(pkg.eResource)) {
+		if (pkg.isStandard && !pkg.eResource.isModelLibrary) {
 			warning(INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE_NOT_STANDARD)
 		}
 	}
 	
 	/* Utility Methods */
 	
-	def boolean isBoolean(Expression condition) {
+	private def static boolean isModelLibrary(Resource resource) {
+		if (resource === null) {
+			return false;
+		} else {
+			val path = resource.URI.devicePath ?: resource.URI.path;
+			return path !== null && path.contains(SysMLLibraryUtil.modelLibraryPath);
+		}
+	}
+	
+	def static boolean isBoolean(Expression condition) {
 		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
 		// LiteralBooleans currently don't have an inferred Boolean result type.
 		condition instanceof LiteralBoolean ||
@@ -926,15 +933,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			(condition as OperatorExpression).argument.forall[isBoolean]
 	}
 	
-	def getBooleanType(Element context) {
+	def static getBooleanType(Element context) {
 		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
 	}
 	
-	def isBooleanOperator(String operator) {
+	def static isBooleanOperator(String operator) {
 		newArrayList("not", "xor", "&", "|").contains(operator)
 	}
 	
-	def boolean isNatural(Expression expr) {
+	def static boolean isNatural(Expression expr) {
 		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
 		expr instanceof LiteralInfinity ||
 		// Allow expressions with Integer result, to allow referenced features not explicitly typed as Natural
@@ -946,15 +953,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			(expr as OperatorExpression).argument.forall[isNatural]
 	}
 	
-	def getIntegerType(Element context) {
+	def static getIntegerType(Element context) {
 		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Integer") as Type
 	}
 	
-	def isIntegerOperator(String operator) {
+	def static isIntegerOperator(String operator) {
 		newArrayList("-", "+", "*", "%", "^", "**").contains(operator)
 	}
 	
-	def checkAtMostOne(Iterable<? extends EObject> list, String msg, EStructuralFeature feature, String code) {
+	protected def checkAtMostOne(Iterable<? extends EObject> list, String msg, EStructuralFeature feature, String code) {
 		if (list.size() > 1) {
 			for (var i = 1; i < list.size(); i++) {
 				error(msg, list.get(i), feature, code)
@@ -962,20 +969,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 
-	def checkNotOne(Iterable<? extends EObject> list, String msg, String code) {
+	protected def checkNotOne(Iterable<? extends EObject> list, String msg, String code) {
 		if (list.size == 1) {
 			error(msg, list.get(0), null, code)
 		}
 	}
 	
-	def checkTargetNotObject(EObject obj, List<? extends Relationship> rels, String msg, String code) {
+	protected def checkTargetNotObject(EObject obj, List<? extends Relationship> rels, String msg, String code) {
 		for (r: rels) {
 			if (r.target.contains(obj))
 				error(msg, r, null, code)
 		}
 	}
 	
-	def typesConform(List<Type> t1, List<Type> t2) {
+	protected def static typesConform(List<Type> t1, List<Type> t2) {
 		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
 		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
 		t1ConformsTot2.filter[!empty].length == t2.length ||
@@ -983,18 +990,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	// Return conforming subtypes
-	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
+	protected static def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{
 		subtypes.filter[subtype|subtype.conformsTo(supertype)]
 	}
 	
 	// Return conformed supertypes
-    protected def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
+    protected static def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
 	{
 		supertypes.filter[supertype|subtype.conformsTo(supertype)]
 	}
 
-	protected def boolean conformsTo(Type subtype, Type supertype) {
+	protected static def boolean conformsTo(Type subtype, Type supertype) {
 		supertype === null || TypeUtil.conforms(subtype, supertype);
 	}
 	

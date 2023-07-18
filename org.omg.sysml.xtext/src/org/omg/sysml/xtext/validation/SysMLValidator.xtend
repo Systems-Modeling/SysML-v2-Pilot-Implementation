@@ -422,11 +422,11 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkDefinition(Definition definition) {		
 		if (!definition.isVariation) {
-			// validateDefinitionNonVariationMembership is redundant with validateVariantMembershipOwningNamespace
-			// validateDefinitionNonVariationMembership
-//			for (mem: definition.variantMembership) {
-//				error(INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP)
-//			}
+			// validateDefinitionNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
+			// TODO: Check validateDefinitionNonVariationMembership
+			// for (mem: definition.variantMembership) {
+			//	error(INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP)
+			// }
 		} else {
 			// validateDefinitionVariationMembership
 			for (ownedUsage: definition.ownedUsage) {
@@ -456,11 +456,11 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkUsage(Usage usage) {
 		if (!usage.isVariation) {
-			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace
-			// validateUsageNonVariationMembership
-//			for (mem: usage.variantMembership) {
-//				error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
-//			}
+			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
+			// TODO: Check validateUsageNonVariationMembership
+			// for (mem: usage.variantMembership) {
+			// 	error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
+			// }
 		} else {
 			// validateUsageVariationMembership
 			for (nestedUsage: usage.nestedUsage) {
@@ -504,7 +504,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkAttributeDefinition(AttributeDefinition defn) {
 		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KERML-4.)
-		// TODO: validateAttributeDefinitionFeatures
+		// TODO: Check validateAttributeDefinitionFeatures
 		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
 		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
 		// checkAllNotComposite(defn.ownedFeature, INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG, INVALID_ATTRIBUTE_DEFINITION_FEATURES)
@@ -525,7 +525,7 @@ class SysMLValidator extends KerMLValidator {
 		// validateAttributeUsageIsReference is satisfied automatically			
 		
 		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KerML-4.)
-		// TODO: validateAttributeUsageFeatures
+		// TODO: Check validateAttributeUsageFeatures
 		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
 		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
 		// checkAllNotComposite(usg.ownedFeature, INVALID_ATTRIBUTE_USAGE_FEATURES_MSG, INVALID_ATTRIBUTE_USAGE_FEATURES)
@@ -735,7 +735,7 @@ class SysMLValidator extends KerMLValidator {
 		// TODO: Check validateControlNodeIncomingSuccessions (?)
 		// TODO: Check validateControlNodeOutgoingSuccessions (?)
 		
-		// TODO: Check validateControlNodeOwningType
+		// validateControlNodeOwningType
 		val owningType = node.owningType
 		if (!(owningType !== null && (owningType instanceof ActionUsage || owningType instanceof ActionDefinition))) {
 			error(INVALID_CONTROL_NODE_OWNING_TYPE_MSG, node, null, INVALID_CONTROL_NODE_OWNING_TYPE)
@@ -796,14 +796,14 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkExhibitStateUsage(ExhibitStateUsage usg) {
-		// validateExhibitStateUsageReference
+		// TODO: Add validateExhibitStateUsageReference
 		checkReferenceType(usg, StateUsage, INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG, INVALID_EXHIBIT_STATE_USAGE_REFERENCE)
 	}
 		
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
 		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: validateStateDefinitionParallelGeneralization
+		// TODO: Check validateStateDefinitionIsParallelGeneralization
 		// checkAllParallelSpecialization(defn, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION)
 		
 		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
@@ -827,7 +827,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAllTypes(usg, Behavior, INVALID_STATE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, INVALID_STATE_USAGE_TYPE)
 
 		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: validateStateUsageIsParallelGeneralization
+		// TODO: Check validateStateUsageIsParallelGeneralization
 		// checkAllParallelSpecialization(usg, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION)
 		
 		// validateStateUsageParallelSubactions is checked by checkTransitionUsage and checkSuccession
@@ -1088,7 +1088,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkIncludeUseCaseUsage(IncludeUseCaseUsage usg) {
-		// validateIncludeUseCaseUsageReference
+		// TODO: Add validateIncludeUseCaseUsageReference
 		checkReferenceType(usg, UseCaseUsage, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE_MSG, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE)
 	}
 	

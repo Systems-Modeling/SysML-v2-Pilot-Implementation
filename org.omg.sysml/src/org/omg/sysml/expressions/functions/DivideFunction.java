@@ -34,7 +34,7 @@ public class DivideFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return y == 0? EvaluationUtil.nullList(): EvaluationUtil.integerResult(x / y);
+		return binaryRealOp(x, y);
 	}
 	
 	@Override

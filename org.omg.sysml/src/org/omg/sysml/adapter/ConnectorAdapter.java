@@ -43,11 +43,12 @@ public class ConnectorAdapter extends FeatureAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		Connector target = getTarget();
+		int numEnds = TypeUtil.getOwnedEndFeaturesOf(target).size();
 		return hasStructureType()?
-				target.getConnectorEnd().size() != 2? 
+				numEnds != 2? 
 					getDefaultSupertype("object"):
 					getDefaultSupertype("binaryObject"):
-				target.getConnectorEnd().size() != 2? 
+				numEnds != 2? 
 					getDefaultSupertype("base"):
 					getDefaultSupertype("binary");
 	}

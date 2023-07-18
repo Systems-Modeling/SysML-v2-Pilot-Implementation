@@ -224,15 +224,18 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testIntegerEvaluation() throws Exception {
-		assertEquals(5, evaluateIntegerValue(null, null, "2 + 3"));
+		assertEquals(2, evaluateIntegerValue(null, null, "+2"));
+		assertEquals(-2, evaluateIntegerValue(null, null, "-2"));
 		assertEquals(-1, evaluateIntegerValue(null, null, "2 - 3"));
 		assertEquals(6, evaluateIntegerValue(null, null, "2 * 3"));
-		assertEquals(0, evaluateIntegerValue(null, null, "2 / 3"));
-		assertEquals(2, evaluateIntegerValue(null, null, "2 % 3"));
+		assertEquals(2, evaluateIntegerValue(null, null, "2 % 3"));		
+		assertEquals(2.0/3.0d, evaluateRealValue(null, null, "2 / 3"), 0);
 	}
 	
 	@Test
 	public void testRealEvaluation() throws Exception {
+		assertEquals(2.0d, evaluateRealValue(null, null, "+2.0"), 0);
+		assertEquals(-2.0d, evaluateRealValue(null, null, "-2.0"), 0);
 		assertEquals(2.0d + 3.0d, evaluateRealValue(null, null, "2.0 + 3"), 0);
 		assertEquals(2.0d - 3.0d, evaluateRealValue(null, null, "2.0 - 3"), 0);
 		assertEquals(2.0d * 3.0d, evaluateRealValue(null, null, "2.0 * 3"), 0);

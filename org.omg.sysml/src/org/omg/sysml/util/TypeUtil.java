@@ -458,16 +458,14 @@ public class TypeUtil {
 	// Associations
 
 	public static Type getSourceTypeOf(Association association) {
-		EList<Type> relatedType = association.getRelatedType();
-		return relatedType.size() == 2? relatedType.get(0): null;
+		EList<Type> relatedTypes = association.getRelatedType();
+		return relatedTypes.isEmpty()? null: relatedTypes.get(0);
 	}
 
 	public static void addTargetTypes(Association association, EList<Type> targetTypes) {
 		EList<Type> relatedTypes = association.getRelatedType();
-		if (relatedTypes.size() == 2) {
-			targetTypes.add(relatedTypes.get(1));
-		} else {
-			targetTypes.addAll(relatedTypes);
+		if (relatedTypes.size() >= 2) {
+			targetTypes.addAll(relatedTypes.subList(1, relatedTypes.size()));
 		}
 	}
 	

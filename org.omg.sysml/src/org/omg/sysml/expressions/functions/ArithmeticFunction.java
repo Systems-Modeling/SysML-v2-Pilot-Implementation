@@ -60,7 +60,7 @@ public abstract class ArithmeticFunction implements LibraryFunction {
 		Object y = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 1, target));
 		return EvaluationUtil.numberOfArgs(invocation) == 1?
 					x instanceof Integer? unaryIntegerOp((Integer)x):
-					x instanceof Double? unaryRealOp((Integer)y):
+					x instanceof Double? unaryRealOp((Double)x):
 					EvaluationUtil.nullList():
 			   x instanceof Integer && y instanceof Integer? binaryIntegerOp((Integer)x, (Integer)y):
 			   x instanceof Double && y instanceof Integer? binaryRealOp((Double)x, (Integer)y):

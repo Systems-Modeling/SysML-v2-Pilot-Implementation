@@ -121,7 +121,7 @@ public class TypeUtil {
 	}
 	
 	// Note: Generalizations are allowed to be cyclic.
-	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
+	public static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
 		} else if (subtype != null) {

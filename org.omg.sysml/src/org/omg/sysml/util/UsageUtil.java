@@ -29,12 +29,16 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ConcernUsage;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.Expression;
@@ -214,6 +218,33 @@ public class UsageUtil {
 				filter(RequirementVerificationMembership.class::isInstance).
 				map(mem->((RequirementVerificationMembership)mem).getVerifiedRequirement()).
 				filter(constraint->constraint != null);
+	}
+	
+	// SuccessionAsUsages
+	
+	public static Feature getPreviousFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		if (!(owner instanceof Type)) {
+			return null;
+		} else {
+			Type type = (Type)owner;
+			EList<Membership> memberships = type.getOwnedMembership();
+			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
+				Membership membership = memberships.get(i);
+				if (!(membership instanceof TransitionFeatureMembership)) {
+					Element previousElement = memberships.get(i).getMemberElement();
+					if (previousElement instanceof Feature &&
+						!FeatureUtil.isParameter((Feature)previousElement) &&
+						!(previousElement instanceof TransitionUsage) &&
+						(!(previousElement instanceof Connector) ||
+						 !(type instanceof ActionDefinition || type instanceof ActionUsage) && 
+						 previousElement instanceof ItemFlow)) {
+						return (Feature)previousElement;
+					}
+				}
+			}
+			return type instanceof Feature? getPreviousFeature((Feature)type): null;
+		}
 	}
 
 	// States

@@ -94,7 +94,7 @@ public class FeatureUtil {
 		} else {
 			return feature.directionFor(owningType);
 		}
-	}
+	}	
 	
 	// Typing
 	

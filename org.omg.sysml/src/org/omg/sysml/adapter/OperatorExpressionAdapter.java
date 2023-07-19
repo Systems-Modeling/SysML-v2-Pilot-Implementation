@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -33,6 +34,7 @@ import org.omg.sysml.util.TypeUtil;
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 	
 	public static final String INDEXING_OPERATOR = "#";
+	public static final String ARRAY_TYPE = "Collections::Array";
 
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);
@@ -51,11 +53,20 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 				Expression seqArgument = arguments.get(0);
 				ElementUtil.transform(seqArgument);
 				Feature seqResult = seqArgument.getResult();
-				Feature resultFeature = target.getResult();
-				if (resultFeature != null && seqResult != null)
-				TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
+				if (!hasArrayType(seqResult)) {
+					Feature resultFeature = target.getResult();
+					if (resultFeature != null && seqResult != null) {
+						TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
+					}
+				}
 			}
 		}		
+	}
+	
+	protected boolean hasArrayType(Feature feature) {
+		Type arrayType = getLibraryType(ARRAY_TYPE);
+		return arrayType != null && 
+			   feature.getType().stream().anyMatch(t->TypeUtil.conforms(t, arrayType));
 	}
 
 	@Override

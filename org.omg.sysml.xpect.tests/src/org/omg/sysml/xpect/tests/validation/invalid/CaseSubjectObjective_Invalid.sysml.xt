@@ -43,13 +43,11 @@ END_SETUP
 package 'Case Subjects and Objectives' {
 	
 	case def C {
-		// XPECT errors --> "Only one subject is allowed." at "subject s1;"
 		subject s1;
 		
 		// XPECT errors --> "Only one subject is allowed." at "subject s2;"
 		subject s2;
 
-		// XPECT errors --> "Only one objective is allowed." at "objective o1;"
 		objective o1;
 		
 		// XPECT errors --> "Only one objective is allowed." at "objective o2;"
@@ -57,22 +55,31 @@ package 'Case Subjects and Objectives' {
 	}
 	
 	case c: C {
-		// XPECT errors --> "Only one subject is allowed." at "subject s3;"
 		subject s3;
 		
 		// XPECT errors --> "Only one subject is allowed." at "subject s4;"
 		subject s4;
 
-		// XPECT errors --> "Only one objective is allowed." at "objective o3;"
 		objective o3;
 		
 		// XPECT errors --> "Only one objective is allowed." at "objective o4;"
 		objective o4;
 	}
 	
-	case c1 : C {
-		subject s5; // Valid implicit redefinition.
+	case def C1 :> C {
+		in x;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s5;"
+		subject s5;
+		
 		objective o5;
+	}
+	
+	case c1 : C1 {
+		in y;
+		
+		// XPECT errors --> "Subject must be first parameter." at "subject s6;"
+		subject s6;
 	}
 	
 }

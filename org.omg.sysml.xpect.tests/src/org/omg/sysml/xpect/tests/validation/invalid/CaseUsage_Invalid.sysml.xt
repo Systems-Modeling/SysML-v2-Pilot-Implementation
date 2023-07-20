@@ -56,27 +56,34 @@ package pkg {
 	
 	part def A;
 	part def B {
-		// XPECT errors --> "A case must be typed by one case definition." at "case c1: C1, C2;"
+		// XPECT errors ---> "A case must be typed by one case definition." at "case c1: C1, C2;"
 	 	case c1: C1, C2;
 	 	// XPECT errors ---> "A case must be typed by one case definition." at "case c2: A;"
     	case c2: A;
     	
- 	 	//* XPECT errors ---
- 	 	    "An analysis case must be typed by one analysis case definition." at "analysis ac1: C1;"
- 	 	--- */
+ 	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis ac1: C1;"
     	analysis ac1: C1;
  	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis ac2: AC1, AC2;"
     	analysis ac2: AC1, AC2;
  	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis ac3: B;"
     	analysis ac3: B;
     	
- 	 	//* XPECT errors ---
- 	 	    "A use case must be typed by one use case definition." at "use case uc1: C1;"
- 	 	--- */
+ 	 	// XPECT errors ---> "A use case must be typed by one use case definition." at "use case uc1: C1;"
     	use case uc1: C1;
  	 	// XPECT errors ---> "A use case must be typed by one use case definition." at "use case uc2: UC1, UC2;"
     	use case uc2: UC1, UC2;
  	 	// XPECT errors ---> "A use case must be typed by one use case definition." at "use case uc3: B;"
     	use case uc3: B;
+   	}
+   	
+   	part b : B;
+   	ref u : UC1;
+   	
+   	use case uc4 {
+   		// XPECT errors ---> "Must reference a use case." at "u"
+   		include u;
+   		
+   		// XPECT errors ---> "A use case must be typed by one use case definition." at "include b.uc1;"
+   		include b.uc1;
    	}
 }

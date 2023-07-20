@@ -47,4 +47,11 @@ package pkg {
 	attribute aValue: Real;
 	part def PartDef;
 	part aPart: PartDef;	
+	ref a : A;
+
+	// XPECT errors --> "Must reference an occurrence." at "a"
+	event a;
+
+	// XPECT errors --> "An occurrence must be typed by occurrence definitions." at "event a.areal;"
+	event a.areal;	
 }

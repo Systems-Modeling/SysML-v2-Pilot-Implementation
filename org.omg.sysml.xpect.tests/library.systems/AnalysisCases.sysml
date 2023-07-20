@@ -20,7 +20,10 @@ standard library package AnalysisCases {
 	
 		ref analysis self : AnalysisCase :>> Case::self;		
 		subject subj :>> Case::subj;
-		objective obj :>> Case::obj;
+		
+		objective obj :>> Case::obj {
+			subject subj = AnalysisCase::result;
+		}
 		
 		abstract analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases {
 			doc

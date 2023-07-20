@@ -23,6 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class ConnectionUsageAdapter extends PartUsageAdapter {
 
@@ -37,7 +38,8 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getConnectorEnd().size() != 2? 
+		int numEnds = TypeUtil.getOwnedEndFeaturesOf(getTarget()).size();
+		return numEnds != 2? 
 				getDefaultSupertype("base"):
 				getDefaultSupertype("binary");
 	}

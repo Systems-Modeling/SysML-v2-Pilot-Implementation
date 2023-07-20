@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,15 +22,12 @@
 
 package org.omg.sysml.delegate;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IfActionUsage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class IfActionUsage_ifArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -39,8 +37,8 @@ public class IfActionUsage_ifArgument_SettingDelegate extends BasicDerivedObject
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf((IfActionUsage)owner);
-		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
+		Feature parameter = ((IfActionUsage)owner).inputParameter(1);
+		return parameter != null && parameter instanceof Expression? (Expression)parameter: null;
 	}
 
 }

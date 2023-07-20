@@ -461,7 +461,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 
 		val relatedFeatures = c.relatedFeature				
-		val connectorEnds = c.connectorEnd
+		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
 		for (var i = 0; i < relatedFeatures.size; i++) {
 			val relatedFeature = relatedFeatures.get(i)
 			if (!(relatedFeature.featuringType.empty || 

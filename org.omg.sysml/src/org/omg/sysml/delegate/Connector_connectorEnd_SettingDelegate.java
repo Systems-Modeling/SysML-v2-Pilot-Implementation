@@ -22,24 +22,12 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Connector_connectorEnd_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Connector_connectorEnd_SettingDelegate extends Type_endFeature_SettingDelegate {
 
 	public Connector_connectorEnd_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		EList<Feature> connectorEnds = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
-		((Connector)owner).getOwnedFeature().stream().filter(Feature::isEnd).forEachOrdered(connectorEnds::add);
-		return connectorEnds;
 	}
 
 }

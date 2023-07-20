@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -40,6 +42,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
+import org.omg.sysml.util.TypeUtil;
 
 public class VComposite extends VMixed {
     private static final SysML2PlantUMLStyle style
@@ -118,7 +121,7 @@ public class VComposite extends VMixed {
             Type t = f.getOwningType();
             if (t instanceof Connector) {
                 Connector c = (Connector) t;
-                List<Feature> fs = c.getConnectorEnd();
+                List<Feature> fs = TypeUtil.getOwnedEndFeaturesOf(c);
                 /* 
                    Currently we regard the first connector end as a source end, but it might be changed.
                    We can check it by extracting the sources of the relationship, but it does not work with ItemFlowEnd

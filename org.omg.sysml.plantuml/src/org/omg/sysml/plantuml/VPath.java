@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 public class VPath extends VTraverser {
     private boolean initialized;
@@ -605,7 +606,7 @@ public class VPath extends VTraverser {
     public String caseConnector(Connector c) {
         /* VTraverser.traverse() do not duplicatedly traverse features already visited.
            Thus VPath visits ends without counting on traverse(). */
-        for (Feature f: c.getConnectorEnd()) {
+        for (Feature f: TypeUtil.getOwnedEndFeaturesOf(c)) {
             visit(f);
         }
         return "";

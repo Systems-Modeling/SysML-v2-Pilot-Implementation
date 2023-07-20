@@ -45,20 +45,6 @@ class SysMLLibraryUtil {
 		modelLibraryPath
 	}
 	
-	@Deprecated
-	/**
-	 * @deprecated Use LibraryPackage::isStandard or ElementUtil::isStandardLibraryElement instead
-	 */
-	def static isModelLibrary(Resource resource) {
-		if (resource === null) {
-			return false;
-		} else {
-			val path = resource.URI.devicePath ?: resource.URI.path;
-			if (path === null) return false;
-			return path.contains(modelLibraryPath);
-		}
-	}
-	
 	def static IModelLibraryProvider getInstance(Resource resource) {
 		try {
 			IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(IModelLibraryProvider)

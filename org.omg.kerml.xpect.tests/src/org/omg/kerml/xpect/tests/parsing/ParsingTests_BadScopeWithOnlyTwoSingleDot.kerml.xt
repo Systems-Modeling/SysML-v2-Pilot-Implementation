@@ -24,7 +24,6 @@ package test{
 	}
 	classifier B{
 		//* XPECT errors ---
-        "Relationships must have at least two related elements" at ""
 		"no viable alternative at input '..'" at "test"
 		"no viable alternative at input '::'" at "::"
 		"no viable alternative at input 'A'" at "A"

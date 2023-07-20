@@ -1,0 +1,45 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+package TypeRelationships {
+	classifier A;
+	classifier B;
+	classifier C;
+	
+	//* XPECT errors ---
+	   "Cannot have only one unioning" at "A"
+	   "Cannot have only one intersecting" at "B"
+	   "Cannot have only one differencing" at "C"
+	   ---
+	*/
+	classifier X unions A intersects B differences C;
+	
+	//* XPECT errors ---
+	   "Type cannot union with itself" at "Y"
+	   "Type cannot intersect with itself" at "Y"
+	   "Type cannot difference with itself" at "Y"
+	   ---
+	*/
+	classifier Y unions A, Y intersects B, Y differences C, Y;
+	
+	feature f {
+   		// XPECT errors ---> "Feature cannot have itself in a feature chain" at "h"
+		feature h chains f.h;
+	}
+	
+    // XPECT errors ---> "Cannot have only one chaining feature" at "f"
+    feature g chains f;
+    
+}

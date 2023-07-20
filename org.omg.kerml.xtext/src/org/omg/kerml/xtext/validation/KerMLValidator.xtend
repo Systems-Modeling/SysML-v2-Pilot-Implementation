@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.InvocationExpression
-import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
@@ -70,6 +69,23 @@ import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.expressions.util.EvaluationUtil
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.ItemFlowEnd
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.Association
+import org.omg.sysml.lang.sysml.Specialization
+import org.omg.sysml.lang.sysml.Conjugation
+import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.DataType
+import org.omg.sysml.lang.sysml.ParameterMembership
+import org.omg.sysml.lang.sysml.Behavior
+import org.omg.sysml.lang.sysml.Step
+import org.omg.sysml.lang.sysml.ReturnParameterMembership
+import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.ResultExpressionMembership
+import org.omg.sysml.lang.sysml.ItemFeature
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.omg.sysml.lang.sysml.FeatureValue
+import org.omg.sysml.lang.sysml.MultiplicityRange
+import org.eclipse.emf.ecore.resource.Resource
 
 /**
  * This class contains custom validation rules. 
@@ -77,470 +93,356 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class KerMLValidator extends AbstractKerMLValidator {
+	
+	// ROOT //
+	
+	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED = "validateElementIsImpliedIncluded"
+	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED_MSG = "Element cannot have implied relationships included"
 
-	public static val INVALID_MULTIPLICITY_ILLEGALLOWERBOUND = 'Invalid Multiplicity - Illegal lower bound'
-	public static val INVALID_SUBSETTING_OWNINGTYPECONFORMANCE = 'Invalid Subsetting - OwningType conformance'
-	public static val INVALID_REDEFINITION_OWNINGTYPECONFORMANCE = 'Invalid Redefinition - OwningType conformance'
-	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
-	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
-	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	public static val INVALID_NAMESPACE_DISTINGUISHABILITY = "validateNamespaceDistinguishablity"
+	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG = "Duplicate of other owned member name"
+	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member name"
+	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
+	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	
-	public static val INVALID_REFERENCESUBSETTING_TOO_MANY = 'Invalid ReferenceSubsetting - Too many'
-	public static val INVALID_REFERENCESUBSETTING_TOO_MANY_MSG = 'At most one reference subsetting is allowed'
+	// CORE //
+	
+	public static val INVALID_SPECIALIZATION_SPECIFIC_NOT_CONJUGATED = "validateSpecializationSpecificNotConjugated"
+	public static val INVALID_SPECIALIZATION_SPECIFIC_NOT_CONJUGATED_MSG = "Conjugated type cannot be a specialized type"	
+	
+	public static val INVALID_TYPE_AT_MOST_ONE_CONJUGATOR = "validateTypeAtMostOneConjugator"
+	public static val INVALID_TYPE_AT_MOST_ONE_CONJUGATOR_MSG = "Cannot have more than one conjugator"
+	public static val INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF = "validateTypeDifferencingTypesNotSelf"
+	public static val INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF_MSG = "Type cannot difference with itself"		
+	public static val INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF = "validateTypeIntersectingTypesNotSelf"
+	public static val INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF_MSG = "Type cannot intersect with itself"
+	public static val INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE = 'validateOwnedDifferencingNotOne'
+	public static val INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE_MSG = 'Cannot have only one differencing'
+	public static val INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE = 'validateOwnedIntersectingNotOne'
+	public static val INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE_MSG = 'Cannot have only one intersecting'
+	public static val INVALID_TYPE_OWNED_MULTIPLICITY = "validateTypeOwnedMultiplicity"
+	public static val INVALID_TYPE_OWNED_MULTIPLICITY_MSG = "Only one multiplicity is allowed"
+	public static val INVALID_TYPE_OWNED_UNIONING_NOT_ONE = 'validateOwnedUnioningNotOne'
+	public static val INVALID_TYPE_OWNED_UNIONING_NOT_ONE_MSG = 'Cannot have only one unioning'
+	public static val INVALID_TYPE_UNIONING_TYPES_NOT_SELF = "validateTypeUnioningTypesNotSelf"
+	public static val INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG = "Type cannot union with itself"	
 
-	public static val INVALID_FEATURECHAINING_TOO_FEW = 'Invalid FeatureChaining - Too few'
-	public static val INVALID_FEATURECHAINING_TOO_FEW_MSG = 'Cannot have only one feature chaining'
-	public static val INVALID_UNIONING_TOO_FEW = 'Invalid Unioning - Too few'
-	public static val INVALID_UNIONING_TOO_FEW_MSG = 'Cannot have only one unioning'
-	public static val INVALID_INTERSECTING_TOO_FEW = 'Invalid Intersecting - Too few'
-	public static val INVALID_INTERSECTING_TOO_FEW_MSG = 'Cannot have only one intersecting'
-	public static val INVALID_DIFFERENCING_TOO_FEW = 'Invalid Differencing - Too few'
-	public static val INVALID_DIFFERENCING_TOO_FEW_MSG = 'Cannot have only one differencing'
+	// Note: validateClassifierDefaultSupertype is not in the spec, but it is implied by semantic constraints on classifiers.
+	public static val INVALID_CLASSIFIER_DEFAULT_SUPERTYPE = 'validateClassifierDefaultSupertype_'
+	public static val INVALID_CLASSIFIER_DEFAULT_SUPERTYPE_MSG = "Must directly or indirectly specialize {supertype}"
+
+	public static val INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN = "validateClassifierMultiplicityDomain"
+	public static val INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must not have a featuring type"
+
+	// Note: validateFeatureHasType is not in the spec, but it is implied by semantic constraints on features.
+	public static val INVALID_FEATURE_HAS_TYPE = 'validateFeatureHasType_'
+	public static val INVALID_FEATURE_HAS_TYPE_MSG = "Features must have at least one type"
+
+	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF = "validateFeatureChainingFeaturesNotSelf"
+	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG = "Feature cannot have itself in a feature chain"
+	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
+	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
+	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
+	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
+	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
+	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"				
+
+	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validatFeatureChainingFeatureConformance"
+	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
+
+	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
+	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature should not be redefined"
+	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Owner of redefining feature should not be the same as owner of redefined feature"
+	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
+	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
+
+	public static val INVALID_SUBSETTING_FEATURING_TYPES = "validateSubsettingFeaturingTypes"
+	public static val INVALID_SUBSETTING_FEATURING_TYPES_MSG = "Must be an accessible feature (use dot notation for nesting)"
+	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE = "validateSubsettingMultiplicityConformance"
+	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG = "Subsetting/redefining feature should not have larger multiplicity upper bound"
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique"
 	
-	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
-	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
-	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
-	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
-	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
-	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
-	public static val INVALID_ITEMFLOW__INVALID_END = 'Invalid ItemFlow end - No subsetting'
-	public static val INVALID_ITEMFLOW__INVALID_END_MSG = "Cannot identify item flow end (use dot notation)"
-	public static val INVALID_ITEMFLOW__IMPLICIT_END = 'Invalid ItemFlow end - Implicit subsetting'
-	public static val INVALID_ITEMFLOW__IMPLICIT_END_MSG = "Flow ends should use dot notation"
-	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE = 'Invalid Classifier - Default supertype conformance'
-	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG = "Must directly or indirectly specialize {supertype}"
-	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
-	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
-	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
-	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG = "Relationships must have at least two related elements"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned element name"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
-	public static val INVALID_ELEMENT__DISTINGUISHABILITY = "Invalid Element - Distinguishability"
-	public static val INVALID_ELEMENT__DISTINGUISHABILITY_MSG = "Duplicate of other element name"
-	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
-	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
-	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ElementFilterMembership - Condition not Boolean"
-	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG = "Must have a Boolean result"
-	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE = "Invalid MetadataFeature - Abstract type"
-	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG = "Must have a concrete type"
-	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT = "Invalid MetadataFeature - Bad annotated element"
-	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG = "Cannot annotate {metaclass}"
-	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION = "Invalid MetadataFeature - Bad redefinition"
-	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG = "Must redefine an owning-type feature"
-	public static val INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL = "Invalid MetadataFeature - FeatureValue not model-level"
-	public static val INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
-	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE = "Invalid FeatureChaining - Invalid feature"
-	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
-	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
-	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
-	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE = "Invalid FeatureChainExpression - Invalid feature"
-	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
-	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION = "Invalid InvocationExpression - Bad redefinition"
-	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG = "Must name an input or undirected feature"
-	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION = "Invalid InvocationExpression - Duplicate redefinition"
-	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
-	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
-	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
-	public static val INVALID_CAST_EXPRESSION__CAST_TYPE = "Invalid cast Expression - Cast type conformance"
-	public static val INVALID_CAST_EXPRESSION__CAST_TYPE_MSG = "Cast argument should have conforming types"
-	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
-	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
+	// KERNEL //
 	
-	public static val INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR = "Invalid index Expression - Bracket operator"
-	public static val INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR_MSG = "Use #(...) for indexing"
+	public static val INVALID_DATA_TYPE_SPECIALIZATION = "validateDataTypeSpecialization"
+	public static val INVALID_DATA_TYPE_SPECIALIZATION_MSG = "Cannot specialize class or association"    
+	
+	public static val INVALID_CLASS_SPECIALIZATION = "validateClassSpecialization"
+	public static val INVALID_CLASS_SPECIALIZATION_MSG = "Cannot specialize data type or association"    
+	
+	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION = "validateAssociationBinarySpecialization"
+	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
+	public static val INVALID_ASSOCIATION_RELATED_TYPES = "validateAssociationRelatedTypes"
+	public static val INVALID_ASSOCIATION_RELATED_TYPES_MSG = "Must have at least two related elements"
+	public static val INVALID_ASSOCIATION_STRUCTURE_INTERSECTION = "validateAssociationStructureIntersection"
+	public static val INVALID_ASSOCIATION_STRUCTURE_INTERSECTION_MSG = "Must be an association structure"
+		
+	public static val INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE = "validateBindingConnectorTypeConformance"
+	public static val INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG = "Bound features should have conforming types"
+	public static val INVALID_BINDING_CONNECTOR_IS_BINARY = "validateBindingConnectorIsBinary"
+	public static val INVALID_BINDING_CONNECTOR_IS_BINARY_MSG = "Binding connector must be binary"
+
+	// Note: This check is not currently implemented.
+	public static val INVALID_BINDING_CONNECTOR_ARGUMENT_TYPE_CONFORMANCE = "validateBindingConnectorArgumentTypeConformance"
+	public static val INVALID_BINDING_CONNECTOR_ARGUMENT_TYPE_CONFORMANCE_MSG = "Output feature must conform to input feature"
+
+	public static val INVALID_CONNECTOR_BINARY_SPECIALIZATION = "validateConnectorBinarySpecialization"
+	public static val INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
+	public static val INVALID_CONNECTOR_RELATED_FEATURES = "validateConnectorRelatedFeatures"
+	public static val INVALID_CONNECTOR_RELATED_FEATURES_MSG = "Must have at least two related elements"
+	public static val INVALID_CONNECTOR_TYPE_FEATURING = "validateConnectorTypeFeaturing"
+	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Should be an accessible feature (use dot notation for nesting)"
+	
+	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
+	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
+		
+	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP = "validateExpressionResultParameterMembership"
+	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
+		
+	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP = "validateFunctionResultParameterMembership"
+	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
+		
+	public static val INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateReturnParameterMembershipOwningType"
+	public static val INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Return parameter membership not allowed"	
+		
+	public static val INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE = "validateResultExpressionMembershipOwningType"
+	public static val INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE_MSG = "Result expression not allowed"	
+		
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE = "validateFeatureChainExpressionFeatureConformance"
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
+
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE = "validateFeatureReferenceExpressionReferentIsFeature"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG = "Must be a valid feature"
+
+	public static val INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION = "validateInvocationExpressionParameterRedefinition"
+	public static val INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG = "Must name an input or undirected feature"
+	public static val INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION = "validateInvocationExpressionNoDuplicateParameterRedefinition"
+	public static val INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG = "Feature already bound"
+
+	public static val INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_TYPE = "validateOperatorExpressionCastConformance"
+	public static val INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_MSG = "Cast argument should have conforming types"
+
+	// Note: This validation is not in the spec.
+	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR = "validateOperatorExpressionBracketOperator_"
+	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR_MSG = "Use #(...) for indexing"
+	
+	public static val INVALID_ITEM_FLOW_ITEM_FEATURE = "validateItemFlowItemFeature"
+	public static val INVALID_ITEM_FLOW_ITEM_FEATURE_MSG = "Only one item feature is allowed"	
+		
+	public static val INVALID_ITEM_FLOW_END_OWNING_TYPE = "validateItemFlowEndOwningType"
+	public static val INVALID_ITEM_FLOW_END_OWNING_TYPE_MSG = "Item flow end not allowed"
+	public static val INVALID_ITEM_FLOW_END_NESTED_FEATURE = "validateItemFlowEndNestedFeature"
+	public static val INVALID_ITEM_FLOW_END_NESTED_FEATURE_MSG = "Item flow end must have a nested input or output feature"
+	public static val INVALID_ITEM_FLOW_END_SUBSETTING = 'validateItemFlowEndSubsetting'
+	public static val INVALID_ITEM_FLOW_END_SUBSETTING_MSG = "Cannot identify item flow end (use dot notation)"
+	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING = "validateItemFlowEndImplicitSubsetting"
+	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
+	
+	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES = "validateMultiplicityRangeResultTypes"
+	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG = "Must have a Natural value"
+
+	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT = "validateMetadataFeatureAnnotatedElement"
+	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG = "Cannot annotate {metaclass}"
+	public static val INVALID_METADATA_FEATURE_BODY = "invalidateMetadataFeatureBody"
+	public static val INVALID_METADATA_FEATURE_BODY_MSG_1 = "Must redefine an owning-type feature"
+	public static val INVALID_METADATA_FEATURE_BODY_MSG_2 = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT = "validateMetadataFeatureMetadataNotAbstract"
+	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG = "Must have a concrete type"
+
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN = "validateElementFilterMembershipIsBoolean"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN_MSG = "Must have a Boolean result"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE = "validateElementFilterMembershipIsModelLevelEvaluable"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE_MSG = "Must be model-level evaluable"
+
+	// Note: This validation is not formalized in the spec.
+	public static val INVALID_LIBRARY_PACKAGE_NOT_STANDARD = "validateLibraryPackageNotStandard_"
+	public static val INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG = "User library packages should not be marked as standard"
+
+	/* ROOT */
 	
 	@Check
 	def checkElement(Element elm) {
-		if (elm.declaredShortName !== null || elm.getName !== null) {
-			val owner = elm.owner;
-			if (owner !== null && 
-				// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
-			    !(owner instanceof InvocationExpression || owner instanceof FeatureReferenceExpression || owner instanceof LiteralExpression || 
-			    	owner instanceof NullExpression || owner instanceof BindingConnector)) {
-				for (e: owner.ownedElement) {
-					if (e != elm) {
-						if (elm.declaredShortName !== null && (elm.declaredShortName == e.declaredShortName || elm.declaredShortName == e.getName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
-							return						
-						} else if (elm.getName !== null && (elm.getName == e.declaredShortName || elm.getName == e.getName)) {
-							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.declaredName !== null) SysMLPackage.eINSTANCE.element_DeclaredName else null, INVALID_ELEMENT__DISTINGUISHABILITY)
-							return														
-						}												
-					}
-				}
+		// validateElementIsImpliedIncluded	
+		if (!elm.isImpliedIncluded) {
+			if (elm.ownedRelationship.exists[isImplied]) {
+				error(INVALID_ELEMENT_IS_IMPLIED_INCLUDED_MSG, elm, null, INVALID_ELEMENT_IS_IMPLIED_INCLUDED)
 			}
 		}
 	}
 	
 	@Check
-	def checkMembership(Membership mem){
-		val namesp = mem.membershipOwningNamespace;	
+	def checkNamespace(Namespace namesp) {
+		// validateNamespaceDistinguishability
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
 		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || 
 				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
-			if (!(mem instanceof OwningMembership)) {
-				for (e: namesp.ownedElement) {
-					if (mem.memberShortName !== null && (mem.memberShortName == e.declaredShortName || mem.memberShortName == e.getName)) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else if (mem.memberName !== null && (mem.memberName == e.declaredShortName || mem.memberName == e.getName)) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					}
-				}
-				for (m: namesp.ownedMembership) {
-					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1)							
-				}
+			// NOTE: Does not check distinguishibility for imported Memberships.
+			val ownedMemberships = namesp.ownedMembership
+			val owningMemberships = ownedMemberships.filter[m | m instanceof OwningMembership]
+			val aliasMemberships = ownedMemberships.filter[m | !(m instanceof OwningMembership)]
+			for (mem: owningMemberships) {
+				checkDistinguishibility(mem, owningMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
 			}
-			if (namesp instanceof Type){
+			for (mem: aliasMemberships) {
+				checkDistinguishibility(mem, owningMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
+				checkDistinguishibility(mem, aliasMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
+			}
+			if (namesp instanceof Type) {
 				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
-				for (m : namesp.inheritedMembership) {
-					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2)
+				val inheritedMemberships = namesp.inheritedMembership
+				for (mem: ownedMemberships) {
+					checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
 			}
-		}
-		
+		}		
 	}
 	
-	def checkDistinguishibility(Membership mem, Membership other, String msg) {
+	def checkDistinguishibility(Membership mem, Iterable<Membership> others, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
-		val otherShortName = other.memberShortName
-		val otherName = other.memberName
 		
-		if (mem.memberElement !== other.memberElement) {
-			if (memShortName !== null && (memShortName == otherShortName || memShortName == otherName)) {
+		val distinctOthers = others.filter[other | mem.memberElement !== other.memberElement]
+		if (memShortName !== null && distinctOthers.exists[other | memShortName == other.memberShortName || memShortName == other.memberName]) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
-			} else if (memName !== null && (memName == otherShortName || memName == otherName)) {
+		}
+		if (memName !== null && distinctOthers.exists[other | memName == other.memberShortName || memName == other.memberName]) {
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
-			}
 		}
 	}
 	
-	@Check
-	def checkElementFilterMembership(ElementFilterMembership efm) {
-		val condition = efm.condition
-		if (condition !== null)
-			if (!condition.isModelLevelEvaluable)
-				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
-			else if (!condition.isBoolean)
-				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN)
-	}
-	
-	def boolean isBoolean(Expression condition) {
-		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
-		// LiteralBooleans currently don't have an inferred Boolean result type.
-		condition instanceof LiteralBoolean ||
-		// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
-		// This infers that they are actually BooleanFunctions if their arguments are Boolean.
-		condition instanceof OperatorExpression && 
-			(condition as OperatorExpression).operator.booleanOperator && 
-			(condition as OperatorExpression).argument.forall[isBoolean]
-	}
-	
-	def getBooleanType(Element context) {
-		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
-	}
-	
-	def isBooleanOperator(String operator) {
-		newArrayList("not", "xor", "&", "|").contains(operator)
-	}
+	/* CORE */
 	
 	@Check
-	def checkLibraryPackage(LibraryPackage pkg) {
-		// Note: Can't suppress the warning in Xtend.
-		if (pkg.isStandard && !SysMLLibraryUtil.isModelLibrary(pkg.eResource)) {
-			warning(INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE__NOT_STANDARD)
+	def checkSpecialization(Specialization s) {
+		// validateSpecializationSpecificNotConjugated
+		if (s.specific.isConjugated) {
+			error(INVALID_SPECIALIZATION_SPECIFIC_NOT_CONJUGATED_MSG, s, SysMLPackage.eINSTANCE.specialization_Specific, INVALID_SPECIALIZATION_SPECIFIC_NOT_CONJUGATED)
 		}
 	}
 	
 	@Check
 	def checkType(Type t) {
-		checkNotOne(t.ownedUnioning, INVALID_UNIONING_TOO_FEW_MSG, INVALID_UNIONING_TOO_FEW)
-		checkNotOne(t.ownedIntersecting, INVALID_INTERSECTING_TOO_FEW_MSG, INVALID_INTERSECTING_TOO_FEW)
-		checkNotOne(t.ownedDifferencing, INVALID_DIFFERENCING_TOO_FEW_MSG, INVALID_DIFFERENCING_TOO_FEW)
-	}
-	
-	def checkNotOne( List<? extends EObject> list, String msg, String code) {
-		if (list.size == 1) {
-			error(msg, list.get(0), null, code)
+		// validateTypeAtMostOneConjugator
+		if (t.ownedRelationship.filter[r | r instanceof Conjugation].size() > 1) {
+			error(INVALID_TYPE_AT_MOST_ONE_CONJUGATOR_MSG, t, null, INVALID_TYPE_AT_MOST_ONE_CONJUGATOR)
 		}
+
+		// TODO: Add validateTypeOwnedDifferencingNotOne
+		checkNotOne(t.ownedDifferencing, INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE_MSG, INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE)
+		// validateDifferencingTypesNotSelf
+		checkTargetNotObject(t, t.ownedDifferencing, INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF_MSG, INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF)
+		
+		// TODO: Add validateTypeOwnedIntersectingNotOne
+		checkNotOne(t.ownedIntersecting, INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE_MSG, INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE)
+		// validateTypeIntersectingTypesNotSelf
+		checkTargetNotObject(t, t.ownedIntersecting, INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF_MSG, INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF)
+		
+		// TODO: Add validateTypeOwnedUnioningNotOne
+		checkNotOne(t.ownedUnioning, INVALID_TYPE_OWNED_UNIONING_NOT_ONE_MSG, INVALID_TYPE_OWNED_UNIONING_NOT_ONE)
+		// validateTypeUnioningTypesNotSelf
+		checkTargetNotObject(t, t.ownedUnioning, INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG, INVALID_TYPE_UNIONING_TYPES_NOT_SELF)
+		
+		// validateTypeOwnedMultiplicity
+		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
+		checkAtMostOne(multiplicityMemberships, INVALID_TYPE_OWNED_MULTIPLICITY_MSG, SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_TYPE_OWNED_MULTIPLICITY)
 	}
 	
+	
+	// Check default supertype (semantic constraint)
+	// Note: This check is not in the spec as a single constraint.
 	@Check
 	def checkClassifier(Classifier c){
 		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
 		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
-			error(INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG.replace("{supertype}", defaultSupertype), c, SysMLPackage.eINSTANCE.classifier_OwnedSubclassification, INVALID_CLASSIFIER__DEFAULT_SUPERTYPE)
+			error(INVALID_CLASSIFIER_DEFAULT_SUPERTYPE_MSG.replace("{supertype}", defaultSupertype), c, SysMLPackage.eINSTANCE.classifier_OwnedSubclassification, INVALID_CLASSIFIER_DEFAULT_SUPERTYPE)
+			
+		// validateClassifierMultiplicityDomain
+		val m = c.multiplicity;
+		if (m !== null && !m.multiplicity.featuringType.empty) {
+			error(INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN_MSG, c, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN)
+		}
 	}
+	
+	// @Check
+	// def checkEndFeatureMembership(EndFeatureMembership m) {
+	//    // validateEndFeatureMembershipIsEnd is automatically satisfied
+	// }
 	
 	@Check
 	def checkFeature(Feature f){
+		// TODO: Remove?
 		val types = f.type;
 		if (types !== null && types.isEmpty)
-			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+			error(INVALID_FEATURE_HAS_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_HAS_TYPE)
+			
+		// validateFeatureChainingFeatureNotOne
+		checkNotOne(f.ownedFeatureChaining, INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG, INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE)
+		// validateFeatureChainingFeaturesNotSelf
+		checkTargetNotObject(f, f.ownedFeatureChaining, INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG, INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF)
+
+		// validateFeatureOwnedReferenceSubsetting
 		val refSubsettings = f.ownedRelationship.filter[r | r instanceof ReferenceSubsetting].toList
 		if (refSubsettings.size > 1) {
 			for (var i = 1; i < refSubsettings.size; i++)
-				error(INVALID_REFERENCESUBSETTING_TOO_MANY_MSG, refSubsettings.get(i), null, INVALID_REFERENCESUBSETTING_TOO_MANY)
-		}
-		checkNotOne(f.ownedFeatureChaining, INVALID_FEATURECHAINING_TOO_FEW_MSG, INVALID_FEATURECHAINING_TOO_FEW)
-	}
-	
-	@Check
-	def checkMetadataFeature(MetadataFeature mf) {
-		checkMetadataType(mf)
-		checkMetadataAnnotatedElements(mf)
-		checkMetadataBody(mf)
-	}
-	
-	def void checkMetadataType(MetadataFeature mf) {
-		if (mf.type.exists[abstract]) {
-			error(INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG, mf, null, INVALID_METADATA_FEATURE__ABSTRACT_TYPE)
-		}
-	}
-	
-	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
-		if (annotatedElementFeatures.exists[!abstract]) {
-			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
-		}
-		if (!annotatedElementFeatures.empty) {
-			for (element: mf.annotatedElement) {
-				val metaclass = ElementUtil.getMetaclassOf(element)
-				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
-					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.declaredName), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
-				}
-			}
-		}
-	}
-	
-	def void checkMetadataBody(Type t) {
-		for (f: t.ownedFeature) {
-			checkMetadataBodyFeature(f)
-		}
-	}
-	
-	def checkMetadataBodyFeature(Feature f) {
-		// Must redefine a feature owned by a supertype of its owner.
-		if (!f.ownedRedefinition.map[redefinedFeature?.owningType].exists[t | t !== null && TypeUtil.conforms(f.owningType, t)]) {
-			error(INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG, f, null, INVALID_METADATA_FEATURE__BAD_REDEFINITION)
+				error(INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG, refSubsettings.get(i), null, INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING)
 		}
 		
-		// Feature value, if any, must be model-level evaluable.
-		val fv = FeatureUtil.getValuationFor(f)
-		val value = fv?.value
-		if (value !== null && !value.isModelLevelEvaluable) {
-			error(INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL_MSG, fv, SysMLPackage.eINSTANCE.featureValue_Value, INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL)
+		// validateFeatureMultiplicityDomain
+		val m = f.multiplicity;
+		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
+			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
-		
-		// Must have a valid metadata body.
-		checkMetadataBody(f)		
 	}
-	
+		
 	@Check
 	def checkFeatureChaining(FeatureChaining fc) {
+		// TODO: Add validateFeatureChainingFeatureConformance
 		val featureChainings = fc.featureChained.ownedFeatureChaining;
 		val i = featureChainings.indexOf(fc);
 		if (i > 0) {
 			val prev = featureChainings.get(i-1).chainingFeature;
 			if (!fc.chainingFeature.featuringType.forall[t2 | prev.conformsTo(t2)]) {
-				error(INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG, fc, SysMLPackage.eINSTANCE.featureChaining_ChainingFeature, INVALID_FEATURE_CHAINING__INVALID_FEATURE)
+				error(INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG, fc, SysMLPackage.eINSTANCE.featureChaining_ChainingFeature, INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE)
 			}
 		}
 	}
 	
 	@Check
-	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
-		val feature = ExpressionUtil.getReferentFor(e)
-		if (feature !== null && !(feature instanceof Feature)) {
-			error(INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE)
-		}
-	}
-	
-	@Check
-	def checkFeatureChainExpression(FeatureChainExpression e) {
-		val feature = ExpressionUtil.getTargetFeatureFor(e)
-		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
-		if (feature !== null &&
-			(!(feature instanceof Feature) || 
-				rel instanceof Type &&
-				!(feature as Feature).featuringType.isEmpty &&
-				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
-			)) {
-			error(INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE)
-		}
-	}
-	
-	@Check
-	def checkInvocationExpression(InvocationExpression e) {
-		val type = ExpressionUtil.getExpressionTypeOf(e)
-		if (type !== null) {
-			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
-			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
-			val usedParams = newHashSet
-			for (p: exprParams) {
-				val redefinitions = p.ownedRedefinition
-				if (!redefinitions.empty) {
-					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
-					if (redefParams.empty) {
-						// Input parameter must redefine a parameter of the expression type
-						error(INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION)
-					} else if (redefParams.exists[f | usedParams.contains(f)]) {
-						// Two parameters cannot redefine the same type parameter 
-						error(INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION)
-					}
-					usedParams.addAll(redefParams)
-				}
-			}
-		}
-	}
-	
-	@Check
-	def checkCastExpression(OperatorExpression e) {
-		if (e.operator == "as") {
-			val params = TypeUtil.getOwnedParametersOf(e)
-			if (params.length >= 2) {
-				val arg = FeatureUtil.getValueExpressionFor(params.get(0))
-				if (arg !== null) {
-					val argTypes = arg.result.type
-					val targetTypes = params.get(1).type
-					if (!typesConform(argTypes, targetTypes))
-						warning(INVALID_CAST_EXPRESSION__CAST_TYPE_MSG, e, null, INVALID_CAST_EXPRESSION__CAST_TYPE)
-					}
-			}
-		}
-	}
-	
-	@Check
-	def checkOperatorExpression(OperatorExpression e) {
-		if (e.operator == '[') {
-			warning(org.omg.kerml.xtext.validation.KerMLValidator.INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR_MSG, e, null, org.omg.kerml.xtext.validation.KerMLValidator.INVALID_INDEX_EXPRESSION__BRACKET_OPERATOR)
-		}
-	}
-	
-	@Check
-	def checkTypeMultiplicity(Type t) {
-		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
-		if (multiplicityMemberships.size > 1) {
-			for (var i = 1; i < multiplicityMemberships.size; i++) {
-				error(INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG, multiplicityMemberships.get(i), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_TYPE_MULTIPLICITY__TOO_MANY);			
-			}
-		}
-	}
-	
-	@Check
-	def checkRelationship(Relationship r){
-		// Allow abstract associations and connectors to have less than two ends.
-		if (!(r instanceof Type && (r as Type).isAbstract)) {
-			val relatedElements = r.getRelatedElement
-			if (relatedElements !== null && relatedElements.size < 2)
-				error(INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP__RELATED_ELEMENTS)	
-		}
-	}
-	 
-	@Check
-	def checkConnector(Connector c){		
-		doCheckConnector(c, c, null)
-	}
-	
-	private def doCheckConnector(Connector c, Type location, EClass kind) {
-		ElementUtil.transform(c)
-		val cFeaturingTypes = c.featuringType
-		
-		if (kind == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
-			cFeaturingTypes.add(location);
-		}
+	def checkRedefinition(Redefinition redef) {
+		val redefiningFeature = redef.redefiningFeature
+		val redefinedFeature = redef.redefinedFeature
 
-		val relatedFeatures = c.relatedFeature				
-		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
-		for (var i = 0; i < relatedFeatures.size; i++) {
-			val relatedFeature = relatedFeatures.get(i)
-			if (!(relatedFeature.featuringType.empty || 
-				cFeaturingTypes.exists[featuringType |
-					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
-				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
-					relatedFeature.getOwningType() == location ||
-				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
-				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
-					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
-					null, INVALID_CONNECTOR_END__CONTEXT)
-			}
-		}
-	}
-	
-	@Check
-	def checkBindingConnector(BindingConnector bc){
-		doCheckBindingConnector(bc, bc)
-	}
-	
-	@Check
-	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
-			if (type instanceof FeatureReferenceExpression) {
-				connector.doCheckConnector(type, kind) 
-			}
-			connector.doCheckBindingConnector(type)
-		])
-	}
-	
-	private def doCheckBindingConnector(BindingConnector bc, Element location) {
-		val rf = bc.relatedFeature
-		if (rf.length !== 2) {
-			return //ignore binding connectors with invalid syntax
-		}
+		// TODO: Add/check validateRedefinitionDirectionConformance
 		
-//		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
-//		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
-//		
-//		if (inFeature !== null && outFeature !== null){
-//			//Argument type conformance
-//			val inTypes = inFeature.type
-//			val outTypes = outFeature.type
-//			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
-//			if (outConformsToIn.filter[!empty].length != inTypes.length)		
-//				error(INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
-//		} else { 
-			//Binding type conformance
-			val f1types = rf.get(0).type
-			val f2types = rf.get(1).type
-						 
-			if (!typesConform(f1types, f2types))
-				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
-//		}
-	}
-	
-	def typesConform(List<Type> t1, List<Type> t2) {
-		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
-		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
-		t1ConformsTot2.filter[!empty].length == t2.length ||
-			t2ConformsTot1.filter[!empty].length == t1.length
-	}
-	
-	@Check 
-	def checkItemFlow(ItemFlow flow) {
-		for (flowEnd: flow.itemFlowEnd) {
-			if (FeatureUtil.getSubsettedNotRedefinedFeaturesOf(flowEnd).isEmpty) {
-				error(INVALID_ITEMFLOW__INVALID_END_MSG, flowEnd, null, INVALID_ITEMFLOW__INVALID_END)
-			} else if (flowEnd.ownedSubsetting.isEmpty) {
-				val features = flowEnd.ownedFeature
-				if (!features.isEmpty && !features.get(0).ownedRedefinition.isEmpty) {
-					warning(INVALID_ITEMFLOW__IMPLICIT_END_MSG, flowEnd, null, INVALID_ITEMFLOW__IMPLICIT_END)
+		// validateRedefinitionFeaturingTypes
+		if (redefiningFeature !== null && redefinedFeature !== null) {
+			val redefiningFeaturingTypes = redefiningFeature.featuringType
+			val redefinedFeaturingTypes = redefinedFeature.featuringType
+						
+			if (redefinedFeature.owningRelationship != redef &&
+				redefinedFeaturingTypes.toSet == redefiningFeaturingTypes.toSet){
+				if (redefiningFeaturingTypes.isEmpty) {
+					warning(INVALID_REDEFINITION_FEATURING_TYPES_MSG_1, redef, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
+				} else {
+					warning(INVALID_REDEFINITION_FEATURING_TYPES_MSG_2, redef, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
 				}
 			}
-		}
+		}		
 	}
 	
 	@Check
-	def checkSubsettingConformance(Subsetting sub) { 
+	def checkSubsetting(Subsetting sub) { 
 		
 		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
 		if ( sub.subsettingFeature.owningType instanceof Connector || sub.subsettedFeature.owningType instanceof Connector ) 
@@ -572,72 +474,534 @@ class KerMLValidator extends AbstractKerMLValidator {
 				setting_m_l = setting_m_u
 			}
 			
+			// TODO: Add validateRedefinitionMultiplicityConformance
+		
 			// Lower bound (only check if the Subsetting is a Redefinition and Features are not ends): setting must be >= setted
 			if (sub instanceof Redefinition && !subsettingFeature.isEnd()) {
 				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue ||
 					setting_m_l instanceof LiteralInfinity && setted_m_l instanceof LiteralInteger && 0 < (setted_m_l as LiteralInteger).getValue) {
-					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
+					warning(INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG, sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE)
 				}
 			}
 			
+			// TODO: Add validateSubsettingMultiplicityConformance
+		
 			// Upper bound: setting must be <= setted
 			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
 				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
-				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
-						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+				warning(INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE)
 			}
 		}
+		
+		// TODO: Add validateSubsettingUniquenessConformance
 
 		// Uniqueness conformance
 		if (subsettedFeature !== null && subsettedFeature.unique && subsettingFeature !== null && !subsettingFeature.unique){
-			warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
-					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
+			warning(INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 		}
 					
 		// Featuring type conformance
 		if (subsettingFeature !== null && subsettedFeature !== null) {
 			val subsettingFeaturingTypes = subsettingFeature.featuringType
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
-			if (sub instanceof Redefinition && subsettedFeature.owningRelationship != sub &&
-				subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
-				subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
-				if (subsettingFeaturingTypes.isEmpty) {
-					warning("A package-level feature should not be redefined", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-				} else {
-					warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-				}
-			}
-			else if (!subsettedFeaturingTypes.isEmpty() && 
-					!subsettedFeaturingTypes.forall[t | 
+						
+			// validateSubsettingFeaturingTypes
+			if (!subsettedFeaturingTypes.isEmpty() && 
+				!subsettedFeaturingTypes.forall[t | 
 						subsettingFeaturingTypes.exists[ f | 
+							// TODO: Remove "isFeaturedWithin" when possible
 							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
 				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
-					error("Must be an accessible feature (use dot notation for nesting)", sub, 
-					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {
-					warning("Must be an accessible feature (use dot notation for nesting)", sub, 
-					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+					warning(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				}
 			}
 		}
 	}
 	
-	//return related subtypes
-	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
+	/* KERNEL */
+	
+	@Check
+	def checkDataType(DataType d) {
+		// validateDataTypeSpecialization
+		for (s: d.ownedSpecialization) {
+			if (s.general instanceof org.omg.sysml.lang.sysml.Class || s.general instanceof Association) {
+				error(INVALID_DATA_TYPE_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_DATA_TYPE_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
+	def checkClass(org.omg.sysml.lang.sysml.Class c) {
+		// validateClassSpecialization
+		// TODO: Update validateClassSpecification to allow Interactions to specialize Associations.
+		for (s: c.ownedSpecialization) {
+			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
+				error(INVALID_CLASS_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_CLASS_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
+	def checkAssociation(Association a){
+		// validateAssociationBinarySpecialization
+		if (a.associationEnd.size() > 2) {
+			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(a, "Links::BinaryLink") as Type
+			if (a.conformsTo(binaryLinkType)) {
+				error(INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG, a.associationEnd.get(2), null, INVALID_ASSOCIATION_BINARY_SPECIALIZATION)	
+			}
+		}
+
+		// validateAssociationRelatedTypes
+		if (!a.isAbstract) {
+			val relatedElements = a.getRelatedElement
+			if (relatedElements !== null && relatedElements.size < 2)
+				error(INVALID_ASSOCIATION_RELATED_TYPES_MSG, a, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_ASSOCIATION_RELATED_TYPES)	
+		}
+		
+		// validateAssociationStructureIntersection is automatically satisfied
+	}
+		
+	@Check
+	def checkBindingConnector(BindingConnector bc){
+		// validateBindingConnectorIsBinary
+		if (bc.relatedFeature.length != 2) {
+			error(INVALID_BINDING_CONNECTOR_IS_BINARY_MSG, bc, null, INVALID_BINDING_CONNECTOR_IS_BINARY)
+		} else {		
+			doCheckBindingConnector(bc, bc)
+		}
+	}
+	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
+			// Ignore ill-formed implicit binding connectors.
+			if (connector.relatedFeature.length >= 2) {
+				connector.doCheckBindingConnector(type)
+			}
+		])
+	}
+	
+	private def doCheckBindingConnector(BindingConnector bc, Element location) {
+		val rf = bc.relatedFeature
+		
+//		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
+//		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
+//		
+//		if (inFeature !== null && outFeature !== null){
+//			//Argument type conformance
+//			val inTypes = inFeature.type
+//			val outTypes = outFeature.type
+//			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
+//			if (outConformsToIn.filter[!empty].length != inTypes.length)		
+//				error(INVALID_BINDING_CONNECTOR_ARGUMENT_TYPE_CONFORMANCE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDING_CONNECTOR_ARGUMENT_TYPE_CONFORMANCE)
+//		} else { 
+			// TODO: Add validateBindingConnectorTypeConformance
+			//Binding type conformance
+			val f1types = rf.get(0).type
+			val f2types = rf.get(1).type
+						 
+			if (!typesConform(f1types, f2types))
+				warning(INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE)
+//		}
+	}
+	
+	
+	@Check
+	def checkConnector(Connector c){		
+		// validateConnectorRelatedFeatures
+		if (!c.isAbstract) {
+			val relatedFeatures = c.getRelatedFeature
+			if (relatedFeatures !== null && relatedFeatures.size < 2) {
+				error(INVALID_CONNECTOR_RELATED_FEATURES_MSG, c, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_CONNECTOR_RELATED_FEATURES)
+			}
+		}		
+		
+		// validateConnectorBinarySpecialization
+		if (c.connectorEnd.size() > 2) {
+			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
+			if (c.conformsTo(binaryLinkType)) {
+				error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c.connectorEnd.get(2), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)	
+			}
+		}
+
+		doCheckConnector(c, c, null)
+	}
+	
+	private def doCheckConnector(Connector c, Type location, EClass kind) {
+		ElementUtil.transform(c)
+		val cFeaturingTypes = c.featuringType
+		
+		if (kind == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
+			cFeaturingTypes.add(location);
+		}
+
+		// checkConnectorTypeFeaturing
+		// TODO: Add validation for type featuring?
+		val relatedFeatures = c.relatedFeature				
+		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+		for (var i = 0; i < relatedFeatures.size; i++) {
+			val relatedFeature = relatedFeatures.get(i)
+			if (!(relatedFeature.featuringType.empty || 
+				cFeaturingTypes.exists[featuringType |
+					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
+				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
+					relatedFeature.getOwningType() == location ||
+				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
+				warning(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
+					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
+					null, INVALID_CONNECTOR_TYPE_FEATURING)
+			}
+		}
+	}
+	
+	@Check
+	def checkParameterMembership(ParameterMembership m) {
+		if (!(m instanceof ReturnParameterMembership)) {
+			// validateParameterMembershipOwningType
+			val owningType = m.owningType
+			if (!(owningType instanceof Behavior || owningType instanceof Step)) {
+				error(INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE)
+			}
+			
+			// validateParameterMembershipParameterHasDirection is automatically satisfied
+		}
+	}
+	
+	@Check
+	def checkExpression(Expression e) {
+		// validateExpressionResultParameterMembership
+		val mems = e.ownedFeatureMembership.filter[m | m instanceof ReturnParameterMembership]
+		checkAtMostOne(mems, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP)
+		
+		// TODO: Add/check validateExpressionResultExpressionMembership
+	}
+		
+	@Check
+	def checkFunction(Function f) {
+		// validateFunctionResultParameterMembership
+		val mems = f.ownedFeatureMembership.filter[m | m instanceof ReturnParameterMembership]
+		checkAtMostOne(mems, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP)
+		
+		// TODO: Add/check validateFunctionResultExpressionMembership
+	}
+		
+	@Check
+	def checkReturnParameterMembership(ReturnParameterMembership m) {
+		// validateReturnParameterMembershipOwningType
+		val owningType = m.owningType
+		if (!(owningType instanceof Function || owningType instanceof Expression)) {
+			error(INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE)
+		}
+		
+		// validateReturnParameterMembershipParameterHasDirectionOut is automatically satisfied
+	}
+	
+	@Check
+	def checkResultExpressionMembership(ResultExpressionMembership m) {
+		// validateResultExpressionMembershipOwningType
+		val owningType = m.owningType
+		if (!(owningType instanceof Function || owningType instanceof Expression)) {
+			error(INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE)
+		}
+		
+		// validateReturnParameterMembershipParameterHasDirectionOut is automatically satisfied
+	}
+	
+	// @Check
+	// def checkReturnParameterMembership(ReturnParameterMembership m) {
+	//     // validateReturnParameterMembershipParameterHasDirection is automatically satisfied
+	// }
+	
+	// @Check
+	// def checkCollectExpression(CollectExpression e) {
+	//     // validateCollectExpressionOperator is automatically satisfied
+	// }
+	
+	@Check
+	def checkFeatureChainExpression(FeatureChainExpression e) {
+		// TODO: Add validateFeatureChainExpressionFeatureConformance
+		val feature = ExpressionUtil.getTargetFeatureFor(e)
+		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
+		if (feature !== null &&
+			(!(feature instanceof Feature) || 
+				rel instanceof Type &&
+				!(feature as Feature).featuringType.isEmpty &&
+				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
+			)) {
+			error(INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE)
+		}
+	}
+	
+	@Check
+	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
+		// TODO: Add validateFeatureReferenceExpressionReferentIsFeature
+		val feature = ExpressionUtil.getReferentFor(e)
+		if (feature !== null && !(feature instanceof Feature)) {
+			error(INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE)
+		}
+	}
+	
+	@Check
+	def checkInvocationExpression(InvocationExpression e) {
+		val type = ExpressionUtil.getExpressionTypeOf(e)
+		if (type !== null) {
+			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val usedParams = newHashSet
+			for (p: exprParams) {
+				val redefinitions = p.ownedRedefinition
+				if (!redefinitions.empty) {
+					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
+					if (redefParams.empty) {
+						// TODO: Add validateInvocationExpressionParameterRedefinition
+						// Input parameter must redefine a parameter of the expression type
+						error(INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION)
+					} else if (redefParams.exists[f | usedParams.contains(f)]) {
+						// TODO: Add validateInvocationExpressionNoDuplicateParameterRedefinition
+						// Two parameters cannot redefine the same type parameter 
+						error(INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION)
+					}
+					usedParams.addAll(redefParams)
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkOperatorExpression(OperatorExpression e) {
+		// TODO: Add validateOperatorExpressionCastConformance
+		if (e.operator == "as") {
+			val params = TypeUtil.getOwnedParametersOf(e)
+			if (params.length >= 2) {
+				val arg = FeatureUtil.getValueExpressionFor(params.get(0))
+				if (arg !== null) {
+					val argTypes = arg.result.type
+					val targetTypes = params.get(1).type
+					if (!typesConform(argTypes, targetTypes))
+						warning(INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_MSG, e, null, INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_TYPE)
+					}
+			}
+		} else if (e.operator == '[') {
+			warning(INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR_MSG, e, null, INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR)
+		}
+	}
+	
+	// TODO: Add validateSelectExpressionOperator	
+	
+	@Check
+	def checkItemFlow(ItemFlow flow) {
+		// validateItemFlowItemFeature
+		val items = flow.ownedFeature.filter[f | f instanceof ItemFeature]
+		checkAtMostOne(items, INVALID_ITEM_FLOW_ITEM_FEATURE_MSG, null, INVALID_ITEM_FLOW_ITEM_FEATURE)
+	}
+	
+	@Check
+	def checkItemFlowEnd(ItemFlowEnd flowEnd) {
+		// validateItemFlowEndIsEnd is automatically satisfied
+		
+		// validateItemFlowEndNestedFeature
+		if (flowEnd.ownedFeature.size != 1) {
+			error(INVALID_ITEM_FLOW_END_NESTED_FEATURE_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_NESTED_FEATURE)
+		}
+		
+		// validateItemFlowEndOwningType
+		if (!(flowEnd.owningType instanceof ItemFlow)) {
+			error(INVALID_ITEM_FLOW_END_OWNING_TYPE_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_OWNING_TYPE)
+		}
+	
+		// TODO: Add validateItemFlowEndSubsetting? validateItemFlowEndImplicitSubsetting?
+		if (FeatureUtil.getSubsettedNotRedefinedFeaturesOf(flowEnd).isEmpty) {
+			error(INVALID_ITEM_FLOW_END_SUBSETTING_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_SUBSETTING)
+		} else if (flowEnd.ownedSubsetting.isEmpty) {
+			val features = flowEnd.ownedFeature
+			if (!features.isEmpty && !features.get(0).ownedRedefinition.isEmpty) {
+				warning(INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING)
+			}
+		}
+	}
+	
+	@Check
+	def checkFeatureValue(FeatureValue fv) {
+		// TODO: Add/check validateFeatureValueOverriding
+	}
+	
+	@Check
+	def checkMultiplicityRange(MultiplicityRange mult) {
+		// validateMultiplicityRangeBoundResultTypes
+		for (b: mult.bound) {
+			if (!b.isNatural) {
+				error(INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG, b, null, INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES)
+			}
+		}
+	}
+	
+	@Check
+	def checkMetadataFeature(MetadataFeature mf) {
+		
+		// TODO: Add validateMetadataFeatureMetaclassNotAbstract
+		if (mf.type.exists[abstract]) {
+			error(INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG, mf, null, INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT)
+		}
+		
+		// TODO: Add validateMetadataFeatureAnnotatedElement
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
+		if (annotatedElementFeatures.exists[!abstract]) {
+			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
+		}
+		if (!annotatedElementFeatures.empty) {
+			for (element: mf.annotatedElement) {
+				val metaclass = ElementUtil.getMetaclassOf(element)
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+					error(INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG.replace("{metaclass}", metaclass.declaredName), mf, null, INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT)
+				}
+			}
+		}
+		
+		// TODO: Add validateMetadataFeatureBody
+		checkMetadataBody(mf)
+	}
+	
+	
+	def void checkMetadataBody(Feature t) {
+		for (f: t.ownedFeature) {
+			checkMetadataBodyFeature(f)
+		}
+	}
+	
+	def checkMetadataBodyFeature(Feature f) {
+		// Must redefine a feature owned by a supertype of its owner.
+		if (!f.ownedRedefinition.map[redefinedFeature?.owningType].exists[t | t !== null && TypeUtil.conforms(f.owningType, t)]) {
+			error(INVALID_METADATA_FEATURE_BODY_MSG_1, f, null, INVALID_METADATA_FEATURE_BODY)
+		}
+		
+		// Feature value, if any, must be model-level evaluable.
+		val fv = FeatureUtil.getValuationFor(f)
+		val value = fv?.value
+		if (value !== null && !value.isModelLevelEvaluable) {
+			error(INVALID_METADATA_FEATURE_BODY_MSG_2, fv, SysMLPackage.eINSTANCE.featureValue_Value, INVALID_METADATA_FEATURE_BODY)
+		}
+		
+		// Must have a valid metadata body.
+		checkMetadataBody(f)		
+	}
+	
+	@Check
+	def checkElementFilterMembership(ElementFilterMembership efm) {
+		val condition = efm.condition
+		if (condition !== null)
+			// validateElementFilterMembershipIsModelLevelEvaluable
+			if (!condition.isModelLevelEvaluable)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE)
+				
+			// validateElementFilterMembershipIsBoolean
+			else if (!condition.isBoolean)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN)
+	}
+	
+	@Check
+	def checkLibraryPackage(LibraryPackage pkg) {
+		if (pkg.isStandard && !pkg.eResource.isModelLibrary) {
+			warning(INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE_NOT_STANDARD)
+		}
+	}
+	
+	/* Utility Methods */
+	
+	private def static boolean isModelLibrary(Resource resource) {
+		if (resource === null) {
+			return false;
+		} else {
+			val path = resource.URI.devicePath ?: resource.URI.path;
+			return path !== null && path.contains(SysMLLibraryUtil.modelLibraryPath);
+		}
+	}
+	
+	def static boolean isBoolean(Expression condition) {
+		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
+		// LiteralBooleans currently don't have an inferred Boolean result type.
+		condition instanceof LiteralBoolean ||
+		// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
+		// This infers that they are actually BooleanFunctions if their arguments are Boolean.
+		condition instanceof OperatorExpression && 
+			(condition as OperatorExpression).operator.booleanOperator && 
+			(condition as OperatorExpression).argument.forall[isBoolean]
+	}
+	
+	def static getBooleanType(Element context) {
+		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
+	}
+	
+	def static isBooleanOperator(String operator) {
+		newArrayList("not", "xor", "&", "|").contains(operator)
+	}
+	
+	def static boolean isNatural(Expression expr) {
+		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
+		expr instanceof LiteralInfinity ||
+		// Allow expressions with Integer result, to allow referenced features not explicitly typed as Natural
+		TypeUtil.conforms(expr.result, getIntegerType(expr)) ||
+		// Arithmetic operations in DataFunctions actually have result DataValue.
+		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Natural.
+		expr instanceof OperatorExpression && 
+			(expr as OperatorExpression).operator.integerOperator && 
+			(expr as OperatorExpression).argument.forall[isNatural]
+	}
+	
+	def static getIntegerType(Element context) {
+		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Integer") as Type
+	}
+	
+	def static isIntegerOperator(String operator) {
+		newArrayList("-", "+", "*", "%", "^", "**").contains(operator)
+	}
+	
+	protected def checkAtMostOne(Iterable<? extends EObject> list, String msg, EStructuralFeature feature, String code) {
+		if (list.size() > 1) {
+			for (var i = 1; i < list.size(); i++) {
+				error(msg, list.get(i), feature, code)
+			}
+		}
+	}
+
+	protected def checkNotOne(Iterable<? extends EObject> list, String msg, String code) {
+		if (list.size == 1) {
+			error(msg, list.get(0), null, code)
+		}
+	}
+	
+	protected def checkTargetNotObject(EObject obj, List<? extends Relationship> rels, String msg, String code) {
+		for (r: rels) {
+			if (r.target.contains(obj))
+				error(msg, r, null, code)
+		}
+	}
+	
+	protected def static typesConform(List<Type> t1, List<Type> t2) {
+		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
+		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
+		t1ConformsTot2.filter[!empty].length == t2.length ||
+			t2ConformsTot1.filter[!empty].length == t1.length
+	}
+	
+	// Return conforming subtypes
+	protected static def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{
 		subtypes.filter[subtype|subtype.conformsTo(supertype)]
 	}
 	
-	//return related supertypes
-    protected def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
+	// Return conformed supertypes
+    protected static def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
 	{
 		supertypes.filter[supertype|subtype.conformsTo(supertype)]
 	}
 
-	protected def boolean conformsTo(Type subtype, Type supertype) {
+	protected static def boolean conformsTo(Type subtype, Type supertype) {
 		supertype === null || TypeUtil.conforms(subtype, supertype);
 	}
 	

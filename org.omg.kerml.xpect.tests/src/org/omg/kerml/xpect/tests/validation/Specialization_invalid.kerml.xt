@@ -1,0 +1,50 @@
+//*
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Objects.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Specialization_invalid {
+	classifier A;
+	classifier B;
+	classifier C conjugates A;
+	
+	// XPECT errors--->"Conjugated type cannot be a specialized type" at "C"
+	subtype C specializes B;
+	
+	datatype D1;
+	//* XPECT errors ---
+	   "Cannot specialize class or association" at "C1"
+	   "Cannot specialize class or association" at "A1"
+	   ---
+	*/
+	datatype D2 specializes D1, C1, A1;
+	
+	class C1;
+	//* XPECT errors ---
+	   "Cannot specialize data type or association" at "D1"
+	   "Cannot specialize data type or association" at "A1"
+	   ---
+	*/
+	class C2 specializes C1, D1, A1;
+	
+	abstract assoc A1;
+	abstract assoc struct A2 specializes C2, A1;
+	abstract interaction A3 specializes C2, A1;
+}

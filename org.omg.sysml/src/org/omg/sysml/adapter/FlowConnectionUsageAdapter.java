@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 
@@ -58,7 +59,7 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getOwnedFeature().stream().noneMatch(Feature::isEnd)?
+		return UsageUtil.isMessageConnection(getTarget())?
 				getDefaultSupertype("message"):
 				getDefaultSupertype("base");
 	}

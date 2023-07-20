@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,11 +29,9 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
-import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -45,6 +43,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
@@ -152,6 +151,36 @@ public class UsageUtil {
 		return parameters.size() < i? null: FeatureUtil.getValueExpressionFor(parameters.get(i - 1));
 	}
 	
+	// SuccessionAsUsages
+	
+	public static Feature getPreviousFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		if (!(owner instanceof Type)) {
+			return null;
+		} else {
+			Type type = (Type)owner;
+			EList<Membership> memberships = type.getOwnedMembership();
+			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
+				Element previousElement = memberships.get(i).getMemberElement();
+				if (previousElement instanceof Feature &&
+					!FeatureUtil.isParameter((Feature)previousElement) &&
+					!(previousElement instanceof TransitionUsage) &&
+					(!(previousElement instanceof Connector) ||
+					 isMessageConnection((Feature)previousElement))) {
+					return (Feature)previousElement;
+				}
+			}
+			return null;
+		}
+	}
+
+	// Flow Connections
+	
+	public static boolean isMessageConnection(Feature feature) {
+		return feature instanceof FlowConnectionUsage &&
+			   feature.getOwnedFeature().stream().noneMatch(Feature::isEnd);
+	}
+	
 	// Constraints
 	
 	public static boolean isAssumptionConstraint(ConstraintUsage constraint) {
@@ -220,33 +249,6 @@ public class UsageUtil {
 				filter(constraint->constraint != null);
 	}
 	
-	// SuccessionAsUsages
-	
-	public static Feature getPreviousFeature(Feature feature) {
-		Namespace owner = feature.getOwningNamespace();
-		if (!(owner instanceof Type)) {
-			return null;
-		} else {
-			Type type = (Type)owner;
-			EList<Membership> memberships = type.getOwnedMembership();
-			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
-				Membership membership = memberships.get(i);
-				if (!(membership instanceof TransitionFeatureMembership)) {
-					Element previousElement = memberships.get(i).getMemberElement();
-					if (previousElement instanceof Feature &&
-						!FeatureUtil.isParameter((Feature)previousElement) &&
-						!(previousElement instanceof TransitionUsage) &&
-						(!(previousElement instanceof Connector) ||
-						 !(type instanceof ActionDefinition || type instanceof ActionUsage) && 
-						 previousElement instanceof ItemFlow)) {
-						return (Feature)previousElement;
-					}
-				}
-			}
-			return type instanceof Feature? getPreviousFeature((Feature)type): null;
-		}
-	}
-
 	// States
 	
 	public static boolean isParallelState(Type type) {

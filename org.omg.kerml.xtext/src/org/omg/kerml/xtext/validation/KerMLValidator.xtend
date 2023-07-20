@@ -623,10 +623,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
-		if (c.connectorEnd.size() > 2) {
+		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
-				error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c.connectorEnd.get(2), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)	
+				for (var i = 2; i < connectorEnds.size(); i++) {
+					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				}
 			}
 		}
 

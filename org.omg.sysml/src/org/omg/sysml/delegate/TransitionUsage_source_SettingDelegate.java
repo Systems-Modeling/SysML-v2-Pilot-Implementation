@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -45,13 +43,8 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 		if (ownedMemberships.isEmpty()) {
 			return null;
 		} else {
-			Membership membership = ownedMemberships.get(0);
-			if (membership instanceof OwningMembership) {
-				return UsageUtil.getPreviousFeature((TransitionUsage)owner);
-			} else {
-				Element member = membership.getMemberElement();
-				return member instanceof ActionUsage? (ActionUsage)member: null;
-			}
+			Element member = ownedMemberships.get(0).getMemberElement();
+			return member instanceof ActionUsage? (ActionUsage)member: null;
 		}
 	}
 

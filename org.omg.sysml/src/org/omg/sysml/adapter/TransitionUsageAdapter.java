@@ -26,6 +26,8 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
@@ -71,6 +73,17 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	// Transformation
 	
+	protected void computeSource() {
+		TransitionUsage target = getTarget();
+		List<Membership> ownedMemberships = target.getOwnedMembership();
+		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof OwningMembership) {
+			Feature source = UsageUtil.getPreviousFeature(target);
+			Membership membership = SysMLFactory.eINSTANCE.createMembership();
+			membership.setMemberElement(source);
+			target.getOwnedRelationship().add(0, membership);
+		}
+	}
+	
 	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
@@ -92,7 +105,9 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	public void doTransform() {
-		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
+		// Note: Needs to come before computeTransitionLinkConnectors.
+		computeSource();
+		// Note: Needs to come before clearing and recomputation of inheritance cache.
 		computeTransitionLinkConnectors();		
 		super.doTransform();
 	}

@@ -224,7 +224,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 		
 		// Disallow adding more implicit general types once unnecessary ones have been removed.
-		isAddImplicitGeneralTypes = false;
+		setIsAddImplicitGeneralTypes(false);
 	}
 	
 	// Implicit Specialization Computation

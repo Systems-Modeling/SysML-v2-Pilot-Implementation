@@ -22,22 +22,15 @@
 package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 
@@ -58,7 +51,7 @@ public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 			if (sourceEnd.getOwnedReferenceSubsetting() == null) {
 				TypeUtil.addImplicitGeneralTypeTo(sourceEnd,
 						SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
-						getPreviousFeature(target));
+						getSourceFeature(target));
 			}
 		}
 	}
@@ -75,32 +68,18 @@ public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 			}
 		}
 	}
-
-	protected static Feature getPreviousFeature(Feature feature) {
-		Namespace owner = feature.getOwningNamespace();
-		if (!(owner instanceof Type)) {
-			return null;
-		} else {
-			Type type = (Type)owner;
-			EList<Membership> memberships = type.getOwnedMembership();
-			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
-				Membership membership = memberships.get(i);
-				if (!(membership instanceof TransitionFeatureMembership)) {
-					Element previousElement = memberships.get(i).getMemberElement();
-					if (previousElement instanceof Feature &&
-						!FeatureUtil.isParameter((Feature)previousElement) &&
-						!(previousElement instanceof TransitionUsage) &&
-						(!(previousElement instanceof Connector) ||
-						 !(type instanceof ActionDefinition || type instanceof ActionUsage) && 
-						 previousElement instanceof ItemFlow)) {
-						return (Feature)previousElement;
-					}
-				}
-			}
-			return type instanceof Feature? getPreviousFeature((Feature)type): null;
-		}
-	}
 	
+	protected static Feature getSourceFeature(Feature feature) {
+		Namespace owningNamespace = feature.getOwningNamespace();
+		if (owningNamespace instanceof TransitionUsage) {
+			TransitionUsage transition = (TransitionUsage)owningNamespace;
+			if (transition.getSuccession() == feature) {
+				return transition.getSource();
+			}
+		}
+		return UsageUtil.getPreviousFeature(feature);
+	}
+
 	private static Feature getTargetFeature(Feature feature) {
 		Type type = feature.getOwningType();
 		if (type == null) {

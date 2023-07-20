@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,13 +26,14 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -72,6 +73,17 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	// Transformation
 	
+	protected void computeSource() {
+		TransitionUsage target = getTarget();
+		List<Membership> ownedMemberships = target.getOwnedMembership();
+		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof OwningMembership) {
+			Feature source = UsageUtil.getPreviousFeature(target);
+			Membership membership = SysMLFactory.eINSTANCE.createMembership();
+			membership.setMemberElement(source);
+			target.getOwnedRelationship().add(0, membership);
+		}
+	}
+	
 	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
@@ -79,11 +91,10 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
 			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
 			Succession succession = transition.getSuccession();
-			ElementUtil.transform(succession);
 			addBindingConnector(succession, transitionLinkFeature);			
 			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
 			if (!parameters.isEmpty()) {
-				Feature source = succession.getSourceFeature();
+				Feature source = transition.getSource();
 				if (source != null) {
 					addBindingConnector(source, parameters.get(0));
 				}
@@ -94,7 +105,9 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	public void doTransform() {
-		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
+		// Note: Needs to come before computeTransitionLinkConnectors.
+		computeSource();
+		// Note: Needs to come before clearing and recomputation of inheritance cache.
 		computeTransitionLinkConnectors();		
 		super.doTransform();
 	}

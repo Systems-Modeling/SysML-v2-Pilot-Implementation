@@ -28,8 +28,11 @@ package test{
 			feature z;
 		}
 		
-		connector from end1 to f.z;
+		connector c from end1 to f.z;
 	}
 	
-	connector c:A from x to y;
+	connector a:A from x to y;
+	
+	// Checks that ends from connector c are redefined.
+	connector :> a.c from a.end1 to a.f.z;
 }

@@ -547,10 +547,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkAssociation(Association a){
 		// validateAssociationBinarySpecialization
-		if (a.associationEnd.size() > 2) {
+		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
+		val associationEnds = TypeUtil.getOwnedEndFeaturesOf(a);
+		if (associationEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(a, "Links::BinaryLink") as Type
 			if (a.conformsTo(binaryLinkType)) {
-				error(INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG, a.associationEnd.get(2), null, INVALID_ASSOCIATION_BINARY_SPECIALIZATION)	
+				for (var i = 2; i < associationEnds.size(); i++) {
+					error(INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG, associationEnds.get(i), null, INVALID_ASSOCIATION_BINARY_SPECIALIZATION)	
+				}
 			}
 		}
 
@@ -623,6 +627,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
+		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
 		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type

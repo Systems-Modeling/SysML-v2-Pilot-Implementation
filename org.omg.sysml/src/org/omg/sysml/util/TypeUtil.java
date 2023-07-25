@@ -157,7 +157,7 @@ public class TypeUtil {
 		visited.add(type);
 		List<Feature> ends = getOwnedEndFeaturesOf(type);
 		int n = ends.size();
-		for (Type general: getSupertypesOf(type)) {
+		for (Type general: getGeneralTypesOf(type)) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedEnds = getAllEndFeaturesOf(general, visited);
 				if (inheritedEnds.size() > n) {

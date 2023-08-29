@@ -25,7 +25,7 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.util.TypeUtil;
 
@@ -37,7 +37,7 @@ public class AnalysisCaseUsage_resultExpression_SettingDelegate extends BasicDer
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return TypeUtil.getFeatureByMembershipIn((AnalysisCaseDefinition)owner, ResultExpressionMembership.class);
+		return TypeUtil.getFeatureByMembershipIn((AnalysisCaseUsage)owner, ResultExpressionMembership.class);
 	}
 
 }

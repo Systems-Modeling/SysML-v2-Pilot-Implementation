@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -240,6 +241,26 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	public boolean isSetReferencedConstraint() {
   		return false;
 	}
+	
+	// Additional Overrides
+	
+	@Override
+	public RequirementConstraintKind getKind() {
+		return RequirementConstraintKind.REQUIREMENT;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Consider the "kind" property to never be explicitly "set". 
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		return featureID != SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND && eIsSetGen(featureID);
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -300,8 +321,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSetGen(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();

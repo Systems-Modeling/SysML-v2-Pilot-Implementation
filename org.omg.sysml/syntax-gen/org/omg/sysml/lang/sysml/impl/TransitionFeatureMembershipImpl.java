@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -50,12 +50,13 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Even though the "kind" property is mandatory, the abstract syntax does not specify a default for it.
 	 * <!-- end-user-doc -->
 	 * @see #getKind()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final TransitionFeatureKind KIND_EDEFAULT = TransitionFeatureKind.TRIGGER;
+	protected static final TransitionFeatureKind KIND_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.

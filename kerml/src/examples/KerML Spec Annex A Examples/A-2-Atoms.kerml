@@ -10,4 +10,5 @@ package Atoms {
 	classifier Atom;
 	 	metaclass <atom> AtomMetadata specializes Metaobject {
 			baseType = Atom meta KerML::Classifier;
+	}
 }

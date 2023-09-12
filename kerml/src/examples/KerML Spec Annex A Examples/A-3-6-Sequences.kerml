@@ -7,9 +7,9 @@ package SequencesModelToBeExecuted {
 	behavior Manufacture {
 		step paint : Paint [1];
 		step dry : Dry [*];
-		succession p_before_d from paint [1] to dry [1];
+		succession p_before_d first paint [1] then dry [1];
 		step ship : Ship [*];
-		succession d_before_s from dry [1] to ship [1];
+		succession d_before_s first dry [1] then ship [1];
 	}
 	behavior Paint;
 	behavior Dry;

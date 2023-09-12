@@ -137,7 +137,7 @@ package ChangingFeatureValuesExecution {
 	#atom
 	behavior MyManufacture specializes Manufacture {
 		feature redefines objectToFinish : MyProduct;
-		feature startShot subsets objectToFinish.beforePaint.startShot.timeCoincidentOccurrences;
+		feature redefines startShot subsets objectToFinish.beforePaint.startShot.timeCoincidentOccurrences;
 		feature obPiP chains objectToFinish.beforePaint.isPainted = false;
 		feature obPiD chains objectToFinish.beforePaint.isDry = true;
 		feature obPiS chains objectToFinish.beforePaint.isShipped = false;

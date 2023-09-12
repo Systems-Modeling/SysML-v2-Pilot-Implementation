@@ -53,7 +53,7 @@ package OneToUnrestrictedConnectorsExecution {
 		end feature redefines fixedTo : MyBikeFork1;
 	}
 
-	classifier MyBikeBasket_Fork_BBF_Link unions MyBikeFork1_Basket1_BBF_Link, MyBikeFork1_Basket2_BBF_Link;
+	classifier MyBikeBasket_Fork_BBF_Link unions MyBikeBasket1_Fork1_BBF_Link, MyBasket2_BikeFork1_BBF_Link;
 
 	#atom
 	classifier MyBike specializes Bicycle {

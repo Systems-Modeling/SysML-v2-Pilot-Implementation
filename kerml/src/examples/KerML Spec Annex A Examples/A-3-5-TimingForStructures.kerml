@@ -59,7 +59,7 @@ package TimingForStructuresExecution2 {
 	 */
 
 	import TimingForStructuresModelToBeExecuted2::*;
-	import Occurrences::Occurrence::HappensDuring;
+	import Occurrences::HappensDuring;
 	import OneToOneConnectorsExecution::MyWheel1;
 	import OneToOneConnectorsExecution::MyWheel2;
 	import OneToOneConnectorsExecution::MyWheel;
@@ -166,29 +166,29 @@ package TimingForStructuresExecution3 {
 
 	  /* HappensWhile atoms */
 	#atom
-	assoc MyBikeEnd_While_Wheel1End_Link specializes HappensDuring {
+	assoc MyBikeEnd_While_Wheel1End_Link specializes HappensWhile {
 		end feature redefines thisOccurrence : MyBikeEnd;
 		end feature redefines thatOccurrence : MyWheel1End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Wheel2End_Link specializes HappensDuring {
+	assoc MyBikeEnd_While_Wheel2End_Link specializes HappensWhile {
 		end feature redefines thisOccurrence : MyBikeEnd;
 		end feature redefines thatOccurrence : MyWheel2End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Fork1End_Link specializes HappensDuring {
+	assoc MyBikeEnd_While_Fork1End_Link specializes HappensWhile {
 		end feature redefines thisOccurrence : MyBikeEnd;
 		end feature redefines thatOccurrence : MyBikeFork1End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Fork2End_Link specializes HappensDuring {
+	assoc MyBikeEnd_While_Fork2End_Link specializes HappensWhile {
 		end feature redefines thisOccurrence : MyBikeEnd;
 		end feature redefines thatOccurrence : MyBikeFork2End;
 	}
 
 	assoc MyBikeEnd_While_PartsEnd_Link  specializes HappensWhile
 		unions MyBikeEnd_While_Wheel1End_Link, MyBikeEnd_While_Fork1End_Link,
-		       MyBikeEnd_While_Wheel2End_Link, MyBike_While_Fork2End_Link;
+		       MyBikeEnd_While_Wheel2End_Link, MyBikeEnd_While_Fork2End_Link;
 
 	#atom
 	struct MyBike specializes Bicycle {

@@ -14,7 +14,7 @@ package ModelingInstancesWithAtoms {
 	/* 
 	 */
 
-	import Atoms::Atom;
+	import Atoms::atom;
 
 	classifier Vehicle;
 	classifier Bicycle specializes Vehicle;

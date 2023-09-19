@@ -112,7 +112,7 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
-    private static Pattern patEqFeatureValue = Pattern.compile("^\\s*=");
+    private static Pattern patEqFeatureValue = Pattern.compile("^\\s*:?=");
 
     protected boolean appendFeatureValue(FeatureValue fv) {
         Expression ex = fv.getValue();

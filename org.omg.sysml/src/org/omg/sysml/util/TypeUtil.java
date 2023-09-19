@@ -121,7 +121,7 @@ public class TypeUtil {
 	}
 	
 	// Note: Generalizations are allowed to be cyclic.
-	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
+	public static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
 		} else if (subtype != null) {
@@ -157,7 +157,7 @@ public class TypeUtil {
 		visited.add(type);
 		List<Feature> ends = getOwnedEndFeaturesOf(type);
 		int n = ends.size();
-		for (Type general: getSupertypesOf(type)) {
+		for (Type general: getGeneralTypesOf(type)) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedEnds = getAllEndFeaturesOf(general, visited);
 				if (inheritedEnds.size() > n) {
@@ -458,16 +458,14 @@ public class TypeUtil {
 	// Associations
 
 	public static Type getSourceTypeOf(Association association) {
-		EList<Type> relatedType = association.getRelatedType();
-		return relatedType.size() == 2? relatedType.get(0): null;
+		EList<Type> relatedTypes = association.getRelatedType();
+		return relatedTypes.isEmpty()? null: relatedTypes.get(0);
 	}
 
 	public static void addTargetTypes(Association association, EList<Type> targetTypes) {
 		EList<Type> relatedTypes = association.getRelatedType();
-		if (relatedTypes.size() == 2) {
-			targetTypes.add(relatedTypes.get(1));
-		} else {
-			targetTypes.addAll(relatedTypes);
+		if (relatedTypes.size() >= 2) {
+			targetTypes.addAll(relatedTypes.subList(1, relatedTypes.size()));
 		}
 	}
 	

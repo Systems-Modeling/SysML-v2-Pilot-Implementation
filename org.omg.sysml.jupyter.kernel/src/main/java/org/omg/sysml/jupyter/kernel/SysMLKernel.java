@@ -76,6 +76,7 @@ public class SysMLKernel extends BaseKernel {
         Optional.ofNullable(System.getenv(ISysML.GRAPHVIZ_PATH_KEY)).ifPresent(interactive::setGraphVizPath);
 
         this.magics = new Magics();
+        this.magics.registerMagics(Help.class);
         this.magics.registerMagics(Eval.class);
         this.magics.registerMagics(Listing.class);
         this.magics.registerMagics(Show.class);

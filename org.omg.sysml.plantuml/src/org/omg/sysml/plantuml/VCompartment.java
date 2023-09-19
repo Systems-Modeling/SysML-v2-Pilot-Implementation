@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2023 Mgnite Inc.
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -68,6 +68,7 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.util.TypeUtil;
 
 public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
@@ -373,7 +374,7 @@ public class VCompartment extends VStructure {
     private void addConnectorText(Connector c, boolean isInherited) {
         boolean hasPrefix = false;
         hasPrefix = addFeatureText(c, isInherited);
-        List<Feature> ends = c.getConnectorEnd();
+        List<Feature> ends = TypeUtil.getOwnedEndFeaturesOf(c);
         if (ends.size() == 2) {
             Feature f1 = ends.get(0);
             Feature f2 = ends.get(1);

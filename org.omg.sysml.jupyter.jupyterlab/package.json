@@ -1,6 +1,6 @@
 {
   "name": "@systems-modeling/jupyterlab-sysml",
-  "version": "0.33.0-SNAPSHOT",
+  "version": "0.35.0-SNAPSHOT",
   "description": "A JupyterLab extension for system modeling using SysML",
   "repository": "github:Systems-Modeling/SysML-v2-Pilot-Implementation",
   "author": "SysML v2 Submission Team",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@types/codemirror": "^0.0.98",
+    "@types/json-schema": "*",
     "typescript": "<4.4.0"
   },
   "peerDependencies": {

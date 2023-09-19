@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.OwningMembership;
 
 public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -38,8 +39,9 @@ public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerived
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
 		return (Feature) ((AssignmentActionUsage)owner).getOwnedMembership().stream().
+				filter(m->!(m instanceof OwningMembership)).
 				map(Membership::getMemberElement).
-				filter(e->e instanceof Feature && !FeatureUtil.isParameter((Feature)e)).
+				filter(Feature.class::isInstance).
 				findFirst().orElse(null);
 	}
 

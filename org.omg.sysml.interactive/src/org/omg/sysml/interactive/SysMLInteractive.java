@@ -223,6 +223,24 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
+	public String help(String command, List<String> help) {
+		this.counter++;
+		if (Strings.isNullOrEmpty(command)) {
+			return help.isEmpty()? SysMLInteractiveHelp.getGeneralHelp(): SysMLInteractiveHelp.getHelpHelp();
+		}
+		if (!command.startsWith("%")) {
+			command = "%" + command;
+		}
+		String helpString = SysMLInteractiveHelp.getHelpString(command);
+		return helpString == null? SysMLInteractiveHelp.getGeneralHelp(): helpString;
+	}
+	
+	public String help(String command) {
+		return "-h".equals(command)? 
+				help(null, Collections.singletonList("true")):
+				help(command, Collections.emptyList());
+	}
+	
 	public String eval(String input, String targetName, List<String> help) {
 		if (Strings.isNullOrEmpty(input)) {
 			this.counter++;
@@ -563,6 +581,8 @@ public class SysMLInteractive extends SysMLUtil {
 							
 							if ("%exit".equals(command)) {
 								break;
+							} else if ("%help".equals(command)) {
+								System.out.print(this.help(argument));
 							} else if ("%list".equals(command)) {
 								System.out.print(this.list(argument));
 							} else if ("%show".equals(command)) {

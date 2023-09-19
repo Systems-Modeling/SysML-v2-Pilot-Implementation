@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -56,6 +56,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 
 public class VDefault extends VTraverser {
     protected Element getEnd(Feature f) {
@@ -78,7 +79,7 @@ public class VDefault extends VTraverser {
     }
 
     private void addConnector(Connector c, String desc) {
-        List<Feature> ends = c.getConnectorEnd();
+        List<Feature> ends = TypeUtil.getOwnedEndFeaturesOf(c);
         int size = ends.size();
         if (size >= 2) {
             Element end1 = getEnd(ends.get(0));

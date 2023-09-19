@@ -43,7 +43,7 @@ standard library package Cases {
 			 * A check of whether the objective RequirementUsage was satisfied for this Case.
 			 */
 		
-			subject = Case::result;
+			subject subj default Case::result;
 		}
 		
 		return ref result[0..*] {

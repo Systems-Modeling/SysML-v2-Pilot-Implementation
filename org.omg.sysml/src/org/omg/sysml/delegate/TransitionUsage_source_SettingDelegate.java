@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,9 +27,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.FeatureUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -38,12 +39,12 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		EList<Feature> relatedFeatures = ((TransitionUsage)owner).getSuccession().getRelatedFeature();
-		if (relatedFeatures.isEmpty()) {
+		EList<Membership> ownedMemberships = ((TransitionUsage)owner).getOwnedMembership();
+		if (ownedMemberships.isEmpty()) {
 			return null;
 		} else {
-			Feature source = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(0));
-			return source instanceof ActionUsage? (ActionUsage)source: null;
+			Element member = ownedMemberships.get(0).getMemberElement();
+			return member instanceof ActionUsage? (ActionUsage)member: null;
 		}
 	}
 

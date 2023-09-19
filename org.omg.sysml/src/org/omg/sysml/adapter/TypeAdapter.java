@@ -25,8 +25,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -201,15 +203,20 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void removeUnnecessaryImplicitGeneralTypes() {
 		Type target = getTarget();
 		List<Type> generals = target.getOwnedSpecialization().stream().
-				filter(spec->spec.getSpecific() == target).
+				filter(spec->spec.getSpecific() == target && spec.getGeneral() != target).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
 		implicitGeneralTypes.values().forEach(generals::addAll);
+		Set<Type> visited = new HashSet<>();
+		visited.add(target);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
 				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
 				implicitGenerals.removeIf(gen->
-					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen)));
+					// NOTE: Treat target as already having been visited when checking conformance,
+					// to allow for the possibility of circular specialization. Otherwise, implicit
+					// specializations get removed from all types in the circle.
+					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen, visited)));
 				if (implicitGenerals.isEmpty()) {
 					implicitGeneralTypes.remove(eClass);
 				}
@@ -217,7 +224,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 		
 		// Disallow adding more implicit general types once unnecessary ones have been removed.
-		isAddImplicitGeneralTypes = false;
+		setIsAddImplicitGeneralTypes(false);
 	}
 	
 	// Implicit Specialization Computation

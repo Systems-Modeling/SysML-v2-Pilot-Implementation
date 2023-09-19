@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2023 Modeldriven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +22,12 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.util.TypeUtil;
 
 public class AnalysisCaseUsage_resultExpression_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -37,14 +37,7 @@ public class AnalysisCaseUsage_resultExpression_SettingDelegate extends BasicDer
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		EList<Feature> ownedFeatures = ((AnalysisCaseUsage)owner).getOwnedFeature();
-		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
-			Feature ownedFeature = ownedFeatures.get(i);
-			if (ownedFeature instanceof Expression) {
-				return (Expression)ownedFeature;
-			}
-		}
-		return null;
+		return TypeUtil.getFeatureByMembershipIn((AnalysisCaseUsage)owner, ResultExpressionMembership.class);
 	}
 
 }

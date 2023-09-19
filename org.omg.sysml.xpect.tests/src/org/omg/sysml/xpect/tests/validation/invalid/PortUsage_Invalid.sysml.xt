@@ -29,7 +29,12 @@ END_SETUP
 package 'Port Example' {
 	attribute def Vt;
 	part def B;
-	port def pd1;
+	port def pd1 {
+		port p1 : pd1;
+		ref b1 : B;
+		// XPECT errors --> "Owned usages of a port definition (other than ports) must be referential." at "part b2 : B;"
+		part b2 : B;		
+	}
 	port def pd2;
 	part def FA {
 		// XPECT errors --> "A port must be typed by port definitions." at "port p1 : B;"
@@ -37,7 +42,12 @@ package 'Port Example' {
 		// XPECT errors --> "A port must be typed by port definitions." at "port p2 : Vt;"
 		port p2 : Vt;
 
-		port two_port_def_types: pd1, pd2;
+		port two_port_def_types: pd1, pd2 {
+			port p2 : pd2;
+			ref b3 : B;		
+			// XPECT errors --> "Nested usages of a port usage (other than ports) must be referential." at "part b4 : B;"
+			part b4 : B;		
+		}
 	}
 	part tank: FA {
 		// XPECT errors --> "A port must be typed by port definitions." at "port pp redefines p1;"

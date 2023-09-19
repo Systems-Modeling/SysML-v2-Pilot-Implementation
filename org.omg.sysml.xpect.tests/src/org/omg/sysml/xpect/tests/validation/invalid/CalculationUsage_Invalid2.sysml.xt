@@ -40,18 +40,16 @@ package Test {
 	calc def C { return T; }
 	
 	calc def C1 {
-		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"
 		return r1 : T;
-		// XPECT errors --> "Only one return parameter is allowed." at "return r2 : T;"
+		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
 		return r2 : T;
 	}
 	
 	calc c : C { return T; }
 	
 	calc c2 : C {
-		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"
 		return r1 : T;
-		// XPECT errors --> "Only one return parameter is allowed." at "return r2 : T;"
+		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
 		return r2 : T;
 	}
 }

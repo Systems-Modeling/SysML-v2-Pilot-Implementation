@@ -122,15 +122,13 @@ public class ConnectorUtil {
 	
 	public static Feature getSourceFeatureOf(Connector connector) {
 		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		return relatedFeatures.size() == 2? relatedFeatures.get(0): null;
+		return relatedFeatures.isEmpty()? null: relatedFeatures.get(0);
 	}
 
 	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
 		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		if (relatedFeatures.size() == 2) {
-			targetFeatures.add(relatedFeatures.get(1));
-		} else {
-			targetFeatures.addAll(relatedFeatures);
+		if (relatedFeatures.size() >= 2) {
+			targetFeatures.addAll(relatedFeatures.subList(1, relatedFeatures.size()));
 		}
 	}
 	

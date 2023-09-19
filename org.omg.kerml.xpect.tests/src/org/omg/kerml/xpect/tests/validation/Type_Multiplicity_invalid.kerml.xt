@@ -13,22 +13,11 @@
         }
 END_SETUP
 */
-package TypeRelationships {
-	classifier A;
-	classifier B;
-	classifier C;
-	
-	//* XPECT errors ---
-	   "Cannot have only one unioning" at "A"
-	   "Cannot have only one intersecting" at "B"
-	   "Cannot have only one differencing" at "C"
-	   ---
-	*/
-	classifier X unions A intersects B differences C;
-	
-	feature f;
-	
-    // XPECT errors ---> "Cannot have only one feature chaining" at "f"
-    feature g chains f;
-
+package Type_Multiplicity {
+	classifier C {
+		multiplicity subsets Base::zeroOrOne;
+		
+		// XPECT errors--->"Only one multiplicity is allowed" at "multiplicity subsets Base::zeroToMany;"
+		multiplicity subsets Base::zeroToMany;
+	}
 }

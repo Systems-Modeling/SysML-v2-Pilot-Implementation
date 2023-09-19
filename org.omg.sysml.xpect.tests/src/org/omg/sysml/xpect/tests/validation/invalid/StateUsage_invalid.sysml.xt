@@ -62,6 +62,17 @@ package StateUsage_invalid {
   		exit action c1;
 		//XPECT errors --> "A state may have at most one exit action." at "exit action c2;"
   		exit action c2;
+  		
+		//XPECT errors --> "A state must be typed by state definitions." at "state sa : A;"
+		state sa : A;
 	}
+	
+	ref s :> s4;
+	
+	//XPECT errors --> "Must reference a state." at "s"
+	exhibit s;
+	
+	//XPECT errors --> "A state must be typed by state definitions." at "exhibit s.sa;"
+	exhibit s.sa;
 	
 }

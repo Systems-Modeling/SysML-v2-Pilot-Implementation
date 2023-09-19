@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -157,6 +158,26 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 		return basicGetReferencedConcern() != null;
 	}
 
+	// Additional Overrides
+	
+	@Override
+	public RequirementConstraintKind getKind() {
+		return RequirementConstraintKind.REQUIREMENT;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Consider the "kind" property to never be explicitly "set". 
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		return featureID != SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND && eIsSetGen(featureID);
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -216,8 +237,7 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSetGen(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();

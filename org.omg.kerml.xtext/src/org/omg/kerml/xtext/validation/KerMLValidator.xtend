@@ -336,17 +336,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_TYPE_AT_MOST_ONE_CONJUGATOR_MSG, t, null, INVALID_TYPE_AT_MOST_ONE_CONJUGATOR)
 		}
 
-		// TODO: Add validateTypeOwnedDifferencingNotOne
+		// validateTypeOwnedDifferencingNotOne
 		checkNotOne(t.ownedDifferencing, INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE_MSG, INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE)
 		// validateDifferencingTypesNotSelf
 		checkTargetNotObject(t, t.ownedDifferencing, INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF_MSG, INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF)
 		
-		// TODO: Add validateTypeOwnedIntersectingNotOne
+		// validateTypeOwnedIntersectingNotOne
 		checkNotOne(t.ownedIntersecting, INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE_MSG, INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE)
 		// validateTypeIntersectingTypesNotSelf
 		checkTargetNotObject(t, t.ownedIntersecting, INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF_MSG, INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF)
 		
-		// TODO: Add validateTypeOwnedUnioningNotOne
+		// validateTypeOwnedUnioningNotOne
 		checkNotOne(t.ownedUnioning, INVALID_TYPE_OWNED_UNIONING_NOT_ONE_MSG, INVALID_TYPE_OWNED_UNIONING_NOT_ONE)
 		// validateTypeUnioningTypesNotSelf
 		checkTargetNotObject(t, t.ownedUnioning, INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG, INVALID_TYPE_UNIONING_TYPES_NOT_SELF)
@@ -405,7 +405,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkFeatureChaining(FeatureChaining fc) {
-		// TODO: Add validateFeatureChainingFeatureConformance
+		// Add validateFeatureChainingFeatureConformance
 		val featureChainings = fc.featureChained.ownedFeatureChaining;
 		val i = featureChainings.indexOf(fc);
 		if (i > 0) {
@@ -494,7 +494,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-		// TODO: Add validateSubsettingUniquenessConformance
+		// validateSubsettingUniquenessConformance
 
 		// Uniqueness conformance
 		if (subsettedFeature !== null && subsettedFeature.unique && subsettingFeature !== null && !subsettingFeature.unique){
@@ -650,7 +650,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 
 		// checkConnectorTypeFeaturing
-		// TODO: Add validation for type featuring?
 		val relatedFeatures = c.relatedFeature				
 		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
 		for (var i = 0; i < relatedFeatures.size; i++) {
@@ -733,7 +732,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeatureChainExpression(FeatureChainExpression e) {
-		// TODO: Add validateFeatureChainExpressionFeatureConformance
+		// validateFeatureChainExpressionConformance
 		val feature = ExpressionUtil.getTargetFeatureFor(e)
 		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
 		if (feature !== null &&
@@ -748,7 +747,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
-		// TODO: Add validateFeatureReferenceExpressionReferentIsFeature
+		// validateFeatureReferenceExpressionReferentIsFeature
 		val feature = ExpressionUtil.getReferentFor(e)
 		if (feature !== null && !(feature instanceof Feature)) {
 			error(INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE)
@@ -767,11 +766,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 				if (!redefinitions.empty) {
 					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
 					if (redefParams.empty) {
-						// TODO: Add validateInvocationExpressionParameterRedefinition
+						// validateInvocationExpressionParameterRedefinition
 						// Input parameter must redefine a parameter of the expression type
 						error(INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION)
 					} else if (redefParams.exists[f | usedParams.contains(f)]) {
-						// TODO: Add validateInvocationExpressionNoDuplicateParameterRedefinition
+						// validateInvocationExpressionNoDuplicateParameterRedefinition
 						// Two parameters cannot redefine the same type parameter 
 						error(INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION)
 					}
@@ -852,12 +851,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
 		
-		// TODO: Add validateMetadataFeatureMetaclassNotAbstract
+		// validateMetadataFeatureMetaclassNotAbstract
 		if (mf.type.exists[abstract]) {
 			error(INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG, mf, null, INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT)
 		}
 		
-		// TODO: Add validateMetadataFeatureAnnotatedElement
+		// validateMetadataFeatureAnnotatedElement
 		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
 		if (annotatedElementFeatures.exists[!abstract]) {
 			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
@@ -871,7 +870,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-		// TODO: Add validateMetadataFeatureBody
+		// validateMetadataFeatureBody
 		checkMetadataBody(mf)
 	}
 	

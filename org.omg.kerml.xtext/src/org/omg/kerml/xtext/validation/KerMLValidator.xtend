@@ -86,6 +86,7 @@ import org.eclipse.emf.ecore.EStructuralFeature
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
+import org.omg.sysml.lang.sysml.FeatureDirectionKind
 
 /**
  * This class contains custom validation rules. 
@@ -147,12 +148,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"				
 
-	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validatFeatureChainingFeatureConformance"
+	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
 
+	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE = "validateRedefinitionDirectionConformance"
+	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG = "Redefining feature must have a compatible direction"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
-	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature should not be redefined"
-	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Owner of redefining feature should not be the same as owner of redefined feature"
+	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature cannot be redefined"
+	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Owner of redefining feature cannot be the same as owner of redefined feature"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
 
@@ -161,7 +164,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE = "validateSubsettingMultiplicityConformance"
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG = "Subsetting/redefining feature should not have larger multiplicity upper bound"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
-	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique"
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
 	
 	// KERNEL //
 	
@@ -197,9 +200,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
 		
+	public static val INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP = "validateExpressionResultExpressionMembership"
+	public static val INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG = "Only one (owned or inherited) result expression is allowed"	
 	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP = "validateExpressionResultParameterMembership"
 	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
 		
+	public static val INVALID_FUNCTION_RESULT_EXPRESSION_MEMBERSHIP = "validateFunctionResultExpressionMembership"
+	public static val INVALID_FUNCTION_RESULT_EXPRESSION_MEMBERSHIP_MSG = "Only one (owned or inherited) result expression is allowed"	
 	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP = "validateFunctionResultParameterMembership"
 	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
 		
@@ -238,6 +245,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ITEM_FLOW_END_SUBSETTING_MSG = "Cannot identify item flow end (use dot notation)"
 	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING = "validateItemFlowEndImplicitSubsetting"
 	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
+	
+	public static val INVALID_FEATURE_VALUE_OVERRIDING = "validateFeatureValueOverriding"
+	public static val INVALID_FEATURE_VALUE_OVERRIDING_MSG = "Cannot override a binding feature value"
 	
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES = "validateMultiplicityRangeResultTypes"
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG = "Must have a Natural value"
@@ -421,20 +431,28 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val redefiningFeature = redef.redefiningFeature
 		val redefinedFeature = redef.redefinedFeature
 
-		// TODO: Add/check validateRedefinitionDirectionConformance
-		
-		// validateRedefinitionFeaturingTypes
 		if (redefiningFeature !== null && redefinedFeature !== null) {
+			// validateRedefinitionDirectionConformance
+			val redefiningDirection = redefiningFeature.direction
+			val redefinedDirection = redefinedFeature.direction
+			if ((redefinedDirection === FeatureDirectionKind.IN ||
+				redefinedDirection === FeatureDirectionKind.OUT) &&
+				redefiningDirection !== redefinedDirection ||
+				redefinedDirection === FeatureDirectionKind.INOUT &&
+				redefiningDirection === null) {
+					error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, redef, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+			}
+			
+			// validateRedefinitionFeaturingTypes
 			val redefiningFeaturingTypes = redefiningFeature.featuringType
-			val redefinedFeaturingTypes = redefinedFeature.featuringType
-						
+			val redefinedFeaturingTypes = redefinedFeature.featuringType						
 			if (redefinedFeature.owningRelationship != redef &&
 				redefinedFeaturingTypes.toSet == redefiningFeaturingTypes.toSet){
 				if (redefiningFeaturingTypes.isEmpty) {
-					warning(INVALID_REDEFINITION_FEATURING_TYPES_MSG_1, redef, 
+					error(INVALID_REDEFINITION_FEATURING_TYPES_MSG_1, redef, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
 				} else {
-					warning(INVALID_REDEFINITION_FEATURING_TYPES_MSG_2, redef, 
+					error(INVALID_REDEFINITION_FEATURING_TYPES_MSG_2, redef, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
 				}
 			}
@@ -495,18 +513,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateSubsettingUniquenessConformance
-
-		// Uniqueness conformance
 		if (subsettedFeature !== null && subsettedFeature.unique && subsettingFeature !== null && !subsettingFeature.unique){
-			warning(INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
+			error(INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 		}
 					
-		// Featuring type conformance
+		// validateSubsettingFeaturingTypes
 		if (subsettingFeature !== null && subsettedFeature !== null) {
 			val subsettingFeaturingTypes = subsettingFeature.featuringType
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
 						
-			// validateSubsettingFeaturingTypes
 			if (!subsettedFeaturingTypes.isEmpty() && 
 				!subsettedFeaturingTypes.forall[t | 
 						subsettingFeaturingTypes.exists[ f | 
@@ -536,7 +551,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkClass(org.omg.sysml.lang.sysml.Class c) {
 		// validateClassSpecialization
-		// TODO: Update validateClassSpecification to allow Interactions to specialize Associations.
 		for (s: c.ownedSpecialization) {
 			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
 				error(INVALID_CLASS_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_CLASS_SPECIALIZATION)
@@ -686,7 +700,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val mems = e.ownedFeatureMembership.filter[m | m instanceof ReturnParameterMembership]
 		checkAtMostOne(mems, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP)
 		
-		// TODO: Add/check validateExpressionResultExpressionMembership
+		// validateExpressionResultExpressionMembership
+		val reMems = e.membership.filter[m | m instanceof ResultExpressionMembership]
+	    if (reMems.size() > 1) {
+	    	val ownedMem = reMems.filter[m | m.membershipOwningNamespace === e]
+	    	if (!ownedMem.isEmpty) {
+	    		error(INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG, ownedMem.get(0), SysMLPackage.eINSTANCE.resultExpressionMembership_OwnedResultExpression, INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP)
+	    	} else {
+	    		error(INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG, e, null, INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP)	    		
+	    	}
+	    }
 	}
 		
 	@Check
@@ -695,7 +718,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val mems = f.ownedFeatureMembership.filter[m | m instanceof ReturnParameterMembership]
 		checkAtMostOne(mems, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP)
 		
-		// TODO: Add/check validateFunctionResultExpressionMembership
+		// validateFunctionResultExpressionMembership
+		val reMems = f.membership.filter[m | m instanceof ResultExpressionMembership]
+	    if (reMems.size() > 1) {
+	    	val ownedMem = reMems.filter[m | m.membershipOwningNamespace === f]
+	    	if (!ownedMem.isEmpty) {
+	    		error(INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG, ownedMem.get(0), SysMLPackage.eINSTANCE.resultExpressionMembership_OwnedResultExpression, INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP)
+	    	} else {
+	    		error(INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG, f, null, INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP)	    		
+	    	}
+	    }
 	}
 		
 	@Check
@@ -799,7 +831,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
-	// TODO: Add validateSelectExpressionOperator	
+	// @Check
+	// def checkSelectExpression(SelectExpression e) {
+	//     // validateSelectExpressionOperator is automatically satisfied
+	// }
+	
 	
 	@Check
 	def checkItemFlow(ItemFlow flow) {
@@ -835,7 +871,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeatureValue(FeatureValue fv) {
-		// TODO: Add/check validateFeatureValueOverriding
+		// validateFeatureValueOverriding
+		val f = fv.featureWithValue;
+		if (f !== null) {
+			val redefs = FeatureUtil.getAllRedefinedFeaturesOf(f);
+			if (redefs.map[r | FeatureUtil.getValuationFor(r)].exists[v | v !== null && v != fv && !v.isDefault]) {
+				error(INVALID_FEATURE_VALUE_OVERRIDING_MSG, fv, null, INVALID_FEATURE_VALUE_OVERRIDING);
+			}
+		}
 	}
 	
 	@Check

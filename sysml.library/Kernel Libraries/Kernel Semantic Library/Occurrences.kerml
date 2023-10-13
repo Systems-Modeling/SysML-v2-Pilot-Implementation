@@ -453,10 +453,10 @@ standard library package Occurrences {
 			 * same as taken by this occurrence (all four dimensional points in the minuend that are
 			 * not in any subtrahend are at the same time and space as those in this occurrence).
 			 */
-			feature redefines elements: Occurrence[0..*];
+			feature redefines elements: Occurrence[0..*] = (minuend, subtrahend);
 			feature difference: Occurrence[0..1];
-			feature minuend: Occurrence [0..1] subsets elements, interdiff.elements = head(elements);
-			feature subtrahend: Occurrence[*] subsets elements = tail(elements);
+			feature minuend: Occurrence [0..1] subsets elements, interdiff.elements;
+			feature subtrahend: Occurrence[*] subsets elements;
 			feature interdiff: Set [0..1] {
 				feature redefines elements: Occurrence[1..*];
 				feature all notSubtrahend: Occurrence [0..*] subsets elements;

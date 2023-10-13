@@ -82,7 +82,7 @@ standard library package Observation {
 			 */
 			 
 	    	feature redefines source {
-	    		out feature redefines sourceOutput = changeSignal;
+	    		feature redefines sourceOutput = changeSignal;
 	    	}
 	    }
 	}

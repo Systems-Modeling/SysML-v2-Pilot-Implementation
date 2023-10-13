@@ -27,7 +27,7 @@ standard library package Transfers {
 			 * The entity whose output is the source of the items to be transferred.
 			 */
 		
-			out feature sourceOutput: Occurrence[0..*];
+			feature sourceOutput: Occurrence[0..*];
 		}
 		
 		end feature target: Occurrence[0..*] redefines BinaryLink::target {
@@ -36,7 +36,7 @@ standard library package Transfers {
 			 * The entity whose input is the target of the items to be transferred.
 			 */
 		
-		    in feature targetInput: Occurrence[0..*];
+		    feature targetInput: Occurrence[0..*];
 		}
 		
 		readonly feature isInstant: Boolean[1] {

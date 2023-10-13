@@ -432,20 +432,25 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val redefinedFeature = redef.redefinedFeature
 
 		if (redefiningFeature !== null && redefinedFeature !== null) {
+			val redefiningFeaturingTypes = redefiningFeature.featuringType
+			val redefinedFeaturingTypes = redefinedFeature.featuringType
+			
 			// validateRedefinitionDirectionConformance
 			val redefiningDirection = redefiningFeature.direction
-			val redefinedDirection = redefinedFeature.direction
-			if ((redefinedDirection === FeatureDirectionKind.IN ||
-				redefinedDirection === FeatureDirectionKind.OUT) &&
-				redefiningDirection !== redefinedDirection ||
-				redefinedDirection === FeatureDirectionKind.INOUT &&
-				redefiningDirection === null) {
-					error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, redef, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+			for (featuringType: redefiningFeaturingTypes) {
+				for (supertype: featuringType.ownedSpecialization.map[general]) {
+					val redefinedDirection = supertype.directionOf(redefinedFeature)
+					if ((redefinedDirection === FeatureDirectionKind.IN ||
+						redefinedDirection === FeatureDirectionKind.OUT) &&
+						redefiningDirection !== redefinedDirection ||
+						redefinedDirection === FeatureDirectionKind.INOUT &&
+						redefiningDirection === null) {
+							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, redef, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+					}
+				}
 			}
 			
 			// validateRedefinitionFeaturingTypes
-			val redefiningFeaturingTypes = redefiningFeature.featuringType
-			val redefinedFeaturingTypes = redefinedFeature.featuringType						
 			if (redefinedFeature.owningRelationship != redef &&
 				redefinedFeaturingTypes.toSet == redefiningFeaturingTypes.toSet){
 				if (redefiningFeaturingTypes.isEmpty) {

@@ -31,14 +31,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	}
 END_SETUP 
 */
-// XPECT noErrors ---> ""
 package '1a-Parts Tree Simplified' {
 	
 	part rearAxleAssembly {			
 		part rearWheel: Wheel[2];
-		// XPECT warnings --> "Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique" at "rearWheel"
+		// XPECT errors --> "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique" at "rearWheel"
 		part rearWheel_1: Wheel[2] nonunique subsets rearWheel;
-		// XPECT warnings --> "Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique" at "rearWheel"
+		// XPECT errors --> "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique" at "rearWheel"
 		part rearWheel_2[0..1] nonunique subsets rearWheel;
 	}
 	part def Wheel;

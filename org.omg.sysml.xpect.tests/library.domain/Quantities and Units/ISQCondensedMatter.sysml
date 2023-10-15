@@ -21,6 +21,7 @@ standard library package ISQCondensedMatter {
     private import ISQElectromagnetism::ElectricPotentialDifferenceValue;
     private import ISQElectromagnetism::MagneticFluxDensityValue;
     private import ISQElectromagnetism::ResistivityValue;
+    private import ISQSpaceTime::CartesianSpatial3dCoordinateFrame;
     private import ISQSpaceTime::AngularFrequencyValue;
     private import ISQSpaceTime::AngularMeasureValue;
     private import ISQSpaceTime::RepetencyValue;
@@ -40,10 +41,9 @@ standard library package ISQCondensedMatter {
          * definition: translation vector that maps the crystal lattice on itself
          * remarks: The non-SI unit ångström (Å) is widely used by x-ray crystallographers and structural chemists.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute latticeVector: Cartesian3dLatticeVector :> vectorQuantities;
@@ -62,10 +62,9 @@ standard library package ISQCondensedMatter {
          * definition: fundamental translation vectors for the crystal lattice
          * remarks: The lattice vector (item 12-1.1) can be given as `vec(R) = n_1 vec(a_1) + n_2 vec(a_2) + n_3 vec(a_3)` where `n_1`, `n_2` and `n_3` are integers.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute fundamentalLatticeVector: Cartesian3dFundamentalLatticeVector :> vectorQuantities;
@@ -108,7 +107,6 @@ standard library package ISQCondensedMatter {
          * definition: vector whose scalar products with all fundamental lattice vectors are integral multiples of  `2π`
          * remarks: In crystallography, however, the quantity `G/(2π)` is sometimes used.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateFrame[1];
@@ -161,7 +159,6 @@ standard library package ISQCondensedMatter {
          * definition: fundamental translation vectors for the reciprocal lattice
          * remarks: `vec(a_i) * vec(b_i) = 2π δ_(ij)`. In crystallography, however, the quantities `vec(b_j)/(2π)` are also often used.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateFrame[1];
@@ -290,10 +287,9 @@ standard library package ISQCondensedMatter {
          * definition: closing vector in a sequence of vectors encircling a dislocation
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute burgersVector: Cartesian3dBurgersVector :> vectorQuantities;
@@ -312,10 +308,9 @@ standard library package ISQCondensedMatter {
          * definition: position vector (ISO 80000-3) of a particle
          * remarks: Often, `r` is used for electrons and `R` is used for atoms and other heavier particles.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute particlePositionVector: Cartesian3dParticlePositionVector :> vectorQuantities;
@@ -334,10 +329,9 @@ standard library package ISQCondensedMatter {
          * definition: position vector (ISO 80000-3) of an ion or atom in equilibrium
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute equilibriumPositionVector: Cartesian3dEquilibriumPositionVector :> vectorQuantities;
@@ -356,10 +350,9 @@ standard library package ISQCondensedMatter {
          * definition: difference between the position vector (ISO 80000-3) of an ion or atom and its position vector in equilibrium
          * remarks: The displacement vector can be expressed by: `vec(u) = vec(R) − vec(R_0)`, where `vec(R)` is particle position vector (item 12-7.1) and `vec(R_0)` is position vector of an ion or atom in equilibrium (item 12-7.2).
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;

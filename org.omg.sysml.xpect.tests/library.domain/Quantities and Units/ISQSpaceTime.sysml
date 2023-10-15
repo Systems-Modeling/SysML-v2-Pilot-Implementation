@@ -177,10 +177,10 @@ standard library package ISQSpaceTime {
          * Note 1: The Cartesian basis vectors `vec(e_x)`, `vec(e_y)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
          * Note 2: The measurement units for the 3 dimensions are typically the same, but may be different.
          */
-        attribute xUnit : LengthUnit;
-        attribute yUnit : LengthUnit;
-        attribute zUnit : LengthUnit;
-        attribute :>> mRefs = (xUnit, yUnit, zUnit);
+        attribute xUnit : LengthUnit = mRefs#(1);
+        attribute yUnit : LengthUnit = mRefs#(2);
+        attribute zUnit : LengthUnit = mRefs#(3);
+        attribute :>> mRefs : LengthUnit[3];
         attribute :>> isOrthogonal = true;
     }
 
@@ -305,33 +305,33 @@ standard library package ISQSpaceTime {
     attribute position3dVector: Position3dVector :> vectorQuantities;
 
     attribute def CartesianPosition3dVector :> Position3dVector {
-        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
-        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute x : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute y : LengthValue = num#(2) [mRef.mRefs#(2)];
+        attribute z : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
     }
     attribute cartesianPosition3dVector : CartesianPosition3dVector :> position3dVector;
 
     attribute def CylindricalPosition3dVector :> Position3dVector {
-        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <'ρ'> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> height : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : CylindricalSpatial3dCoordinateFrame[1];
     }
     attribute cylindricalPosition3dVector : CylindricalPosition3dVector :> position3dVector;
 
     attribute def SphericalPosition3dVector :> Position3dVector {
-        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+        attribute <r> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'θ'> inclination : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : SphericalSpatial3dCoordinateFrame[1];
     }
     attribute sphericalPosition3dVector : SphericalPosition3dVector :> position3dVector;
 
     attribute def PlanetaryPosition3dVector :> Position3dVector {
-        attribute <lat> latitude : AngularMeasureUnit = num[1] [mRef.mRefs[1]];
-        attribute <long> longitude : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> altitude : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <lat> latitude : AngularMeasureUnit = num#(1) [mRef.mRefs#(1)];
+        attribute <long> longitude : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> altitude : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef : PlanetarySpatial3dCoordinateFrame[1];
     }
     attribute planetaryPosition3dVector : PlanetaryPosition3dVector :> position3dVector;
@@ -356,25 +356,25 @@ standard library package ISQSpaceTime {
     attribute displacement3dVector: Displacement3dVector :> vectorQuantities;
 
     attribute def CartesianDisplacement3dVector :> Displacement3dVector {
-        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
-        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute x : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute y : LengthValue = num#(2) [mRef.mRefs#(2)];
+        attribute z : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
     attribute cartesianDisplacement3dVector: CartesianDisplacement3dVector :> displacement3dVector;
 
     attribute def CylindricalDisplacement3dVector :> Displacement3dVector {
-        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <'ρ'> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <h> height : LengthValue = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: CylindricalSpatial3dCoordinateFrame[1];
     }
     attribute cylindricalDisplacement3dVector: CylindricalDisplacement3dVector :> displacement3dVector;
 
     attribute def SphericalDisplacement3dVector :> Displacement3dVector {
-        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+        attribute <r> radialDistance : LengthValue = num#(1) [mRef.mRefs#(1)];
+        attribute <'θ'> inclination : AngularMeasureUnit = num#(2) [mRef.mRefs#(2)];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num#(3) [mRef.mRefs#(3)];
         attribute :>> mRef: SphericalSpatial3dCoordinateFrame[1];
     }
     attribute sphericalDisplacement3dVector: SphericalDisplacement3dVector :> displacement3dVector;
@@ -575,7 +575,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of a position vector (item 3-1.10)
          * remarks: The velocity vector is given by: `vec(v) = (d vec(r)) / (dt)` where `vec(r)` denotes the position vector (item 3-1.10) and `t` the duration (item 3-9). When the general symbol `vec(v)` is not used for the velocity, the symbols `u`, `v`, `w` may be used for the components (ISO 80000-2) of the velocity.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> mRef: CartesianVelocity3dCoordinateFrame[1];
     }
@@ -652,7 +651,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of velocity (item 3-10)
          * remarks: The acceleration vector is given by: `vec(a) = (d vec(v))/(dt)` where `vec(v)` denotes the velocity (item 3-10.1) and `t` the duration (item 3-9). The magnitude (ISO 80000-2) of the acceleration of free fall is usually denoted by `g`.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> mRef: CartesianAcceleration3dCoordinateFrame[1];
     }
@@ -704,7 +702,6 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of the rotational displacement (item 3-6) as its magnitude (ISO 80000-2) and with a direction equal to the direction of the axis of rotation
          * remarks: The angular velocity vector is given by: `vec(ω) = (d φ) / (dt) vec(u)` where `φ` denotes the angular displacement (item 3-6), `t` the duration (item 3-9), and `vec(u)` the unit vector (ISO 80000-2) along the axis of rotation in the direction for which the rotation corresponds to a right-hand spiral.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularVelocityCoordinateFrame[1];
@@ -757,8 +754,7 @@ standard library package ISQSpaceTime {
          * definition: vector (ISO 80000-2) quantity giving the rate of change of angular velocity (item 3-12)
          * remarks: The angular acceleration vector is given by: `vec α = (d vec(ω))/(dt)` Where `vec(ω)` denotes the angular velocity (item 3-12) and `t` the duration (item 3-9).
          */
-        attribute :>> dimensions = 3;
-        attribute :>> isBound = false;
+         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateFrame[1];
     }
@@ -947,7 +943,6 @@ standard library package ISQSpaceTime {
          * definition: vector normal to the surfaces of constant phase angle (item 3-7) of a wave, with the magnitude (ISO 80000-2) of repetency (item 3-20)
          * remarks: None.
          */
-        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dWaveCoordinateFrame[1];

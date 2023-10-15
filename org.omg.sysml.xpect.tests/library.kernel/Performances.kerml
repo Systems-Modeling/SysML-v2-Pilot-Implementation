@@ -212,17 +212,19 @@ standard library package Performances {
 		 * feature of invariants that are not negated. 
 		 */
 	
-		true
+		private feature trueValue = true;
+		binding result = trueValue;
 	}
 	
 	abstract expr falseEvaluations subsets booleanEvaluations {
 		doc
 		/*
-		 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
+		 * falseEvaluations is a subset of booleanEvaluations that result in false. It is the most general
 		 * feature of invariants that are negated.
 		 */
 	
-		false
+        private feature falseValue = false;
+        binding result = falseValue;
 	}
 	
 	abstract expr metadataAccessEvaluations: MetadataAccessEvaluation[0..*] nonunique subsets evaluations {

@@ -109,7 +109,7 @@ standard library package ShapeItems {
 		 * A Circle is an Ellipse with semiaxes equal to its radius.
 		 */
 	
-		attribute :>> radius [1] = semiMajorAxis;
+		attribute :>> radius [1] default semiMajorAxis;
 
 		assert constraint { semiMajorAxis == semiMinorAxis }
 
@@ -150,9 +150,9 @@ standard library package ShapeItems {
 		attribute :>> isClosed = true;
 
 		assert constraint { (1..size(edges))->forAll {in i;
-					(edges#(i) as StructuredSpaceObject).vertices->equals((vertices#((2*i)-1), vertices#(2*i))) and  
-					includes(((edges#(i) as StructuredSpaceObject).vertices#(2) as Item).matingOccurrences,
-						 (edges#(if i==size(edges) ? 1 else i+1)as StructuredSpaceObject).vertices#(1)) } }
+					edges#(i).vertices->equals((vertices#((2*i)-1), vertices#(2*i))) and  
+					includes((edges#(i).vertices#(2) as Item).matingOccurrences,
+						 edges#(if i==size(edges) ? 1 else i+1).vertices#(1)) } }
 	}
 
 	item def Triangle :> Polygon {
@@ -794,10 +794,10 @@ standard library package ShapeItems {
 
 		/* Base to wall and wall to wall edge mating. */
 		assert constraint { (1..wallNumber)->forAll {in i;
-					includes((wall#(i) as Triangle).base.matingOccurrences,
+					includes(wall#(i).base.matingOccurrences,
 							 Pyramid::base.edges#(i)) and
-					includes(((wall#(i) as Triangle).edges#(3) as Item).matingOccurrences,
-							 (wall#(if i==wallNumber ? 1 else i+1) as Triangle).edges#(2)) } }
+					includes((wall#(i).edges#(3) as Item).matingOccurrences,
+							 wall#(if i==wallNumber ? 1 else i+1).edges#(2)) } }
 
 		/* Meeting apices. */
 		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];

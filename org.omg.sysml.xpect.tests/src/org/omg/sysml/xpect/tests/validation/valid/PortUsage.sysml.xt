@@ -41,8 +41,8 @@ package 'Port Example' {
 	}
 	part tank: ABlock1 {
 		port aredefinedport redefines aport {
-			in ref redefines anout;
-			out ref redefines ain;
+			out ref redefines anout;
+			in ref redefines ain;
 		}	
 	}
 }

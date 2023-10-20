@@ -9,7 +9,7 @@ package OneToUnrestrictedConnectorsModelToBeExecuted {
 	classifier Bicycle {
 		feature carrier : BikeBasket [*];
 		feature holdsWheel : BikeFork [*];
-		connector carrierFixed : BikeBasketFixed from carrier [1] to holdsWheel [*];
+		connector carrierFixed : BikeBasketFixed from carrier [*] to holdsWheel [1];
 	}
 	classifier BikeBasket;
 
@@ -24,11 +24,11 @@ package OneToUnrestrictedConnectorsExecution {
 	/* 
 	 */
 
+	import Atoms::*;
 	import OneToUnrestrictedConnectorsModelToBeExecuted::*;
 	import OneToOneConnectorsExecution::MyBikeFork1;
 	import OneToOneConnectorsExecution::MyBikeFork2;
 	import OneToOneConnectorsExecution::MyBikeFork;
-	import Atoms::*;
 
 	#atom
 	classifier MyBikeBasket1 specializes BikeBasket;
@@ -38,26 +38,22 @@ package OneToUnrestrictedConnectorsExecution {
 	classifier MyBikeBasket unions MyBikeBasket1, MyBikeBasket2;
 
 	#atom
-	classifier MyBike specializes Bicycle {
-		feature redefines carrier : MyBikeBasket [2];
-		feature redefines holdsWheel : MyBikeFork [2];
-	}
-	#atom
 	assoc MyBikeBasket1_Fork1_BBF_Link specializes BikeBasketFixed {
 		end feature redefines basket : MyBikeBasket1;
 		end feature redefines fixedTo : MyBikeFork1;
 	}
 	#atom
-	assoc MyBasket2_BikeFork1_BBF_Link specializes BikeBasketFixed {
+	assoc MyBikeBasket2_Fork1_BBF_Link specializes BikeBasketFixed {
 		end feature redefines basket : MyBikeBasket2;
 		end feature redefines fixedTo : MyBikeFork1;
 	}
 
-	classifier MyBikeBasket_Fork_BBF_Link unions MyBikeBasket1_Fork1_BBF_Link, MyBasket2_BikeFork1_BBF_Link;
+	classifier MyBikeBasket_Fork_BBF_Link unions MyBikeBasket1_Fork1_BBF_Link, MyBikeBasket2_Fork1_BBF_Link;
 
 	#atom
 	classifier MyBike specializes Bicycle {
 		feature redefines carrier : MyBikeBasket [2];
+		feature redefines holdsWheel : MyBikeFork [2];
 		connector redefines carrierFixed : MyBikeBasket_Fork_BBF_Link [2] from carrier [*] to holdsWheel [1];
 	}
 }

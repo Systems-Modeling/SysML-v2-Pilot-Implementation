@@ -17,11 +17,9 @@ package WithoutConnectorsExecution {
 	/* 
 	 */
 
-	import WithoutConnectorsModelToBeExecuted::*;
 	import Atoms::*;
+	import WithoutConnectorsModelToBeExecuted::*;
 
-	#atom
-	classifier MyBike specializes Bicycle;
 	#atom
 	classifier MyWheel1 specializes Wheel;
 	#atom

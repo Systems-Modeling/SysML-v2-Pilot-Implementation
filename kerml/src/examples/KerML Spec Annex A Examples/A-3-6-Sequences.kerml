@@ -21,20 +21,13 @@ package SequencesExecution {
 	/* 
 	 */
 
+	import Atoms::*;
 	import SequencesModelToBeExecuted::*;
 	import Occurrences::Occurrence;
 	import Occurrences::HappensBefore;
-	import Atoms::*;
 
 	#atom
-	behavior MyManufacture specializes Manufacture;
-	#atom
 	behavior MyPaint specializes Paint;
-	#atom
-	behavior MyManufacture specializes Manufacture {
-		feature redefines timeEnclosedOccurrences : MyPaint [1];
-		step redefines paint : MyPaint;
-	}
 	#atom
 	behavior MyDry specializes Dry;
 
@@ -46,13 +39,6 @@ package SequencesExecution {
 
 	behavior MyManufactureStepsPD unions MyPaint, MyDry;
 
-	#atom
-	behavior MyManufacture specializes Manufacture {
-		feature redefines timeEnclosedOccurrences : MyManufactureStepsPD [2];
-		step redefines paint : MyPaint;
-		step redefines dry : MyDry [1];
-		succession redefines p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
-	}
 	#atom
 	behavior MyShip specializes Ship;
 
@@ -70,7 +56,7 @@ package SequencesExecution {
 		step redefines paint : MyPaint;
 		step redefines dry : MyDry [1];
 		succession redefines p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
-		step redefines dry : MyShip [1];
+		step redefines ship : MyShip [1];
 		succession redefines d_before_s : MyDry_Before_Ship_Link [1] first dry then ship;
 	}
 }

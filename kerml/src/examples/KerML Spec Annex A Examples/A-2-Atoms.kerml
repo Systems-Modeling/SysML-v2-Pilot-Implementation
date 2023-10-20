@@ -8,7 +8,7 @@ package Atoms {
 	private import Metaobjects::Metaobject;
 	
 	classifier Atom;
-	 	metaclass <atom> AtomMetadata specializes Metaobject {
-			baseType = Atom meta KerML::Classifier;
+	metaclass <atom> AtomMetadata specializes Metaobject {
+		baseType = Atom meta KerML::Classifier;
 	}
 }

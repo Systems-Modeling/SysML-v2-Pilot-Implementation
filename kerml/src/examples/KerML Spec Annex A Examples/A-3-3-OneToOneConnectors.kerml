@@ -13,7 +13,7 @@ package OneToOneConnectorsModelToBeExecuted {
 		connector fixWheel : BikeWheelFixed from rollsOn [1] to holdsWheel [1];
 	}
 	assoc BikeWheelFixed {
-		end feature wheel : Wheel;  //[What do end mults default to? Assume *]
+		end feature wheel : Wheel;
 		end feature fixedTo : BikeFork;
 	}
 }
@@ -23,8 +23,8 @@ package OneToOneConnectorsExecution {
 	/* 
 	 */
 
-	import OneToOneConnectorsModelToBeExecuted::*;
 	import Atoms::*;
+	import OneToOneConnectorsModelToBeExecuted::*;
 	import WithoutConnectorsExecution::MyWheel1;
 	import WithoutConnectorsExecution::MyWheel2;
 	import WithoutConnectorsExecution::MyWheel;
@@ -36,11 +36,6 @@ package OneToOneConnectorsExecution {
 
 	classifier MyBikeFork unions MyBikeFork1, MyBikeFork2;
 
-	#atom
-	classifier MyBike specializes Bicycle {
-		feature redefines rollsOn : MyWheel;
-		feature redefines holdsWheel : MyBikeFork;
-	}
 	#atom
  	assoc MyBikeWheel1_Fork1_BWF_Link specializes BikeWheelFixed {
 		end feature redefines wheel : MyWheel1;

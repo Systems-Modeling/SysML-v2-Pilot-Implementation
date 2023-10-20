@@ -9,14 +9,14 @@ package ChangingFeatureValuesModelToBeExecuted {
 
 	behavior Manufacture {
 		feature objectToFinish : Product [1];
-		step paint : Paint [1]{
+		step paint : Paint [1] {
 			redefines objectToPaint = objectToFinish;
 		}
-		step dry : Dry [*]  {
+		step dry : Dry [*] {
 			redefines objectToDry = objectToFinish;
 		}
 		succession p_before_d first paint [1] then dry [1];
-		step ship : Ship [*]	{
+		step ship : Ship [*] {
 			redefines objectToShip = objectToFinish;
 		}
 		succession d_before_s first dry [1] then ship [1];
@@ -29,7 +29,7 @@ package ChangingFeatureValuesModelToBeExecuted {
 	}
 
 	behavior Paint {
-		feature objectToPaint: Product [1];
+		feature objectToPaint : Product [1];
 
 		step painting : FeatureWritePerformance [1] {
 			redefines onOccurrence : Product = objectToPaint {
@@ -43,7 +43,7 @@ package ChangingFeatureValuesModelToBeExecuted {
 			redefines onOccurrence : Product = objectToPaint {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isPainted; } }
-						redefines replacementValues = true;
+			redefines replacementValues = true;
 		}
 	}
 
@@ -53,17 +53,17 @@ package ChangingFeatureValuesModelToBeExecuted {
 			redefines onOccurrence : Product = objectToDry {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isDry; } }
-						redefines replacementValues = true;
+			redefines replacementValues = true;
 		}
 	}
 
 	behavior Ship {
-		feature objectToShip: Product [1];  
+		feature objectToShip : Product [1];  
 		step shipped : FeatureWritePerformance [1] {
 			redefines onOccurrence : Product = objectToShip {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isShipped; } }
-						redefines replacementValues = true;
+			redefines replacementValues = true;
 		}
 	}
 }
@@ -73,10 +73,10 @@ package ChangingFeatureValuesExecution {
 	/* 
 	 */
 
+	import Atoms::*;
 	import ChangingFeatureValuesModelToBeExecuted::*;
 	import Occurrences::Occurrence;
 	import Occurrences::HappensBefore;
-	import Atoms::*;
 
 	struct ProductTimeSlice specializes Product {
 		readonly feature redefines isPainted;
@@ -111,7 +111,7 @@ package ChangingFeatureValuesExecution {
 		feature redefines objectToPaint : MyProduct;
 		step redefines painting : PaintingMyProductFeatureWrite;
 		step redefines painted : PaintedMyProductFeatureWrite;
-		succession redefines p_before_p : MyPaintingFW_Before_PaintFW_Link [1] first painting then painted;
+		succession redefines p_before_p : MyPaintingFW_Before_PaintFW_Link first painting then painted;
 	}
 
 	#atom
@@ -148,11 +148,11 @@ package ChangingFeatureValuesExecution {
 				objectToFinish.whilePainting.startShot.timeCoincidentOccurrences
 			chains paint.painting.endShot;
 		feature owPiP chains objectToFinish.whilePainting.isPainted = false;
-		feature owPiD chains objectToFinish.whilePainting.isDry = false;  
+		feature owPiD chains objectToFinish.whilePainting.isDry = false;
 		feature owPiS chains objectToFinish.whilePainting.isShipped = false;
 
 
-		feature subsets objectToFinish.whilePainting.immediateSuccessors,		
+		feature subsets objectToFinish.whilePainting.immediateSuccessors,
 				objectToFinish.afterPaint.startShot.timeCoincidentOccurrences
 			chains paint.painted.endShot;
 		feature oaPiP chains objectToFinish.afterPaint.isPainted = true;
@@ -166,8 +166,8 @@ package ChangingFeatureValuesExecution {
 				objectToFinish.afterDry.startShot.timeCoincidentOccurrences
 			chains dry.dried.endShot;
 		feature oaDiP chains objectToFinish.afterDry.isPainted = true;
-		feature oaDiD chains objectToFinish.afterDry.isDry = true;  
-		feature oaDiF chains objectToFinish.afterDry.isShipped = false;
+		feature oaDiD chains objectToFinish.afterDry.isDry = true;
+		feature oaDiS chains objectToFinish.afterDry.isShipped = false;
 
 
 		step redefines ship : MyShip;

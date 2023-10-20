@@ -34,7 +34,7 @@ package DecisionsAndMergesModelToBeExecuted {
 		succession ms_before_s first mShip [1] then ship [1];
 		step ship : Ship [*];
 
-		  /* Decision and merge timing constraints. */  
+		  /* Decision and merge timing constraints. */
 		feature inspectOutgoingHBLinks : HappensBefore [*] unions i_before_f, i_before_r;
 		connector bindIOHBL : SelfLink from inspectOutgoingHBLinks [1] to inspect.outgoingHBLink [1];
 		feature mShipIncomingHBLinks : HappensBefore [*] unions f_before_ms, r_before_ms;
@@ -51,10 +51,10 @@ package DecisionsAndMergesExecution {
 	/* 
 	 */
 
+	import Atoms::*;
 	import DecisionsAndMergesModelToBeExecuted::*;
 	import Occurrences::Occurrence;
 	import Occurrences::HappensBefore;
-	import Atoms::*;
 
 	  /* Before decision. */
 	#atom
@@ -62,7 +62,7 @@ package DecisionsAndMergesExecution {
 
 	  /* Decision. */
 	#atom
-	behavior MyInspect specializes DecisionPerformance; //must use behavior keyword?
+	behavior MyInspect specializes DecisionPerformance;
 	#atom
 	assoc MyAdmit_Before_Inspect_Link specializes HappensBefore {
 		end feature redefines earlierOccurrence : MyAdmit;

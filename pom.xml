@@ -4,13 +4,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.35.0-SNAPSHOT</revision>
+    <revision>0.36.0-SNAPSHOT</revision>
     <tycho-version>2.7.5</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2022-09</eclipse-repository>
     <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
     <xpect-repository>
-      https://ci.eclipse.org/xpect/job/Xpect/job/master/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository
+      https://ci.eclipse.org/xpect/job/Xpect/job/version_0_2_0_maintenance/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository
     </xpect-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>

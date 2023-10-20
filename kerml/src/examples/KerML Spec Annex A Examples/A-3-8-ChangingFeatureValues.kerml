@@ -94,7 +94,7 @@ package ChangingFeatureValuesExecution {
 	}
 
 	behavior MyProductFeatureWrite specializes FeatureWritePerformance {
-		feature redefines onOccurrence : MyProduct;
+		in redefines onOccurrence : MyProduct;
 	}
 
 	#atom

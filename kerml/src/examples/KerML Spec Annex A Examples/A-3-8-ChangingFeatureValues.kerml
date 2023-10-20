@@ -32,38 +32,38 @@ package ChangingFeatureValuesModelToBeExecuted {
 		feature objectToPaint : Product [1];
 
 		step painting : FeatureWritePerformance [1] {
-			redefines onOccurrence : Product = objectToPaint {
+			in onOccurrence : Product = objectToPaint {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isDry; } }
-			redefines replacementValues = false;
+			in replacementValues = false;
 		}
 
 		succession p_before_p first painting [1] then painted [1];
 		step painted : FeatureWritePerformance [*] {
-			redefines onOccurrence : Product = objectToPaint {
+			in onOccurrence : Product = objectToPaint {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isPainted; } }
-			redefines replacementValues = true;
+			in replacementValues = true;
 		}
 	}
 
 	behavior Dry {
 		feature objectToDry : Product [1];
 		step dried : FeatureWritePerformance [1] {
-			redefines onOccurrence : Product = objectToDry {
+			in onOccurrence : Product = objectToDry {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isDry; } }
-			redefines replacementValues = true;
+			in replacementValues = true;
 		}
 	}
 
 	behavior Ship {
 		feature objectToShip : Product [1];  
 		step shipped : FeatureWritePerformance [1] {
-			redefines onOccurrence : Product = objectToShip {
+			in onOccurrence : Product = objectToShip {
 				redefines startingAt : Product {
 					redefines accessedFeature : Boolean [1] subsets isShipped; } }
-			redefines replacementValues = true;
+			in replacementValues = true;
 		}
 	}
 }

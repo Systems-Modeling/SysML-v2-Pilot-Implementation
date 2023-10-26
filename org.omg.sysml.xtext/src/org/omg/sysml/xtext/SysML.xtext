@@ -1440,9 +1440,9 @@ TriggerFeatureValue returns SysML::FeatureValue :
 
 TriggerExpression returns SysML::TriggerInvocationExpression :
 	  kind = TimeTriggerKind
-	  ownedRelationship += OwnedExpressionMember
+	  ownedRelationship += ArgumentMember
 	| kind = ChangeTriggerKind
-	  ownedRelationship += ChangeExpressionMember
+	  ownedRelationship += ArgumentExpressionMember
 ;
 
 TimeTriggerKind returns SysML::TriggerKind :
@@ -1453,18 +1453,17 @@ ChangeTriggerKind returns SysML::TriggerKind :
 	'when'
 ;
 
-ChangeExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ChangeExpression 
+ArgumentExpressionMember returns SysML::ParameterMembership :
+    ownedRelatedElement += ArgumentExpression
 ;
 
-ChangeExpression returns SysML::Expression :
-	ownedRelationship += ChangeResultExpressionMember
+ArgumentExpression returns SysML::Feature :
+    ownedRelationship += ArgumentExpressionValue
 ;
 
-ChangeResultExpressionMember returns SysML::ResultExpressionMembership :
-	ownedRelatedElement += OwnedExpression 
+ArgumentExpressionValue returns SysML::FeatureValue :
+    ownedRelatedElement += OwnedExpressionReference
 ;
-
 
 SendNode returns SysML::SendActionUsage :
 	OccurrenceUsagePrefix SendNodeDeclaration ActionBody

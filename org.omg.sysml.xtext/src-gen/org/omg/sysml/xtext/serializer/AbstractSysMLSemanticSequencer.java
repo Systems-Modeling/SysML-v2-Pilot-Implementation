@@ -589,17 +589,17 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_ActionBodyItem_CalculationBodyItem_CalculationBodyPart(context, (Expression) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getChangeExpressionRule()) {
-					sequence_ChangeExpression(context, (Expression) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getFunctionReferenceRule()) {
 					sequence_FunctionReference(context, (Expression) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.FEATURE:
-				if (rule == grammarAccess.getArgumentRule()) {
+				if (rule == grammarAccess.getArgumentExpressionRule()) {
+					sequence_ArgumentExpression(context, (Feature) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getArgumentRule()) {
 					sequence_Argument(context, (Feature) semanticObject); 
 					return; 
 				}
@@ -701,10 +701,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getBehaviorUsageMemberRule()) {
 					sequence_BehaviorUsageMember_MemberPrefix(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getChangeExpressionMemberRule()) {
-					sequence_ChangeExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getEmptySuccessionMemberRule()) {
@@ -914,7 +910,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.FEATURE_VALUE:
-				if (rule == grammarAccess.getArgumentValueRule()) {
+				if (rule == grammarAccess.getArgumentExpressionValueRule()) {
+					sequence_ArgumentExpressionValue(context, (FeatureValue) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getArgumentValueRule()) {
 					sequence_ArgumentValue(context, (FeatureValue) semanticObject); 
 					return; 
 				}
@@ -1362,6 +1362,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_ActionBodyParameterMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getArgumentExpressionMemberRule()) {
+					sequence_ArgumentExpressionMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getArgumentMemberRule()) {
 					sequence_ArgumentMember(context, (ParameterMembership) semanticObject); 
 					return; 
@@ -1622,15 +1626,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_MemberPrefix_RequirementVerificationMember(context, (RequirementVerificationMembership) semanticObject); 
 				return; 
 			case SysMLPackage.RESULT_EXPRESSION_MEMBERSHIP:
-				if (rule == grammarAccess.getChangeResultExpressionMemberRule()) {
-					sequence_ChangeResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getResultExpressionMemberRule()) {
-					sequence_MemberPrefix_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_MemberPrefix_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
+				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
 				if (rule == grammarAccess.getReturnParameterMemberRule()) {
 					sequence_MemberPrefix_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
@@ -5060,6 +5057,48 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ArgumentExpressionMember returns ParameterMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=ArgumentExpression
+	 * </pre>
+	 */
+	protected void sequence_ArgumentExpressionMember(ISerializationContext context, ParameterMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ArgumentExpressionValue returns FeatureValue
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=OwnedExpressionReference
+	 * </pre>
+	 */
+	protected void sequence_ArgumentExpressionValue(ISerializationContext context, FeatureValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ArgumentExpression returns Feature
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=ArgumentExpressionValue
+	 * </pre>
+	 */
+	protected void sequence_ArgumentExpression(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     PerformedActionUsage returns AssignmentActionUsage
 	 *
 	 * Constraint:
@@ -8028,48 +8067,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ChangeExpressionMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=ChangeExpression
-	 * </pre>
-	 */
-	protected void sequence_ChangeExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     ChangeExpression returns Expression
-	 *
-	 * Constraint:
-	 *     ownedRelationship+=ChangeResultExpressionMember
-	 * </pre>
-	 */
-	protected void sequence_ChangeExpression(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     ChangeResultExpressionMember returns ResultExpressionMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=OwnedExpression
-	 * </pre>
-	 */
-	protected void sequence_ChangeResultExpressionMember(ISerializationContext context, ResultExpressionMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     AnnotatingElement returns Comment
 	 *     Comment returns Comment
 	 *     DefinitionElement returns Comment
@@ -10927,7 +10924,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     TriggerExpression returns TriggerInvocationExpression
 	 *
 	 * Constraint:
-	 *     ((kind=TimeTriggerKind ownedRelationship+=OwnedExpressionMember) | (kind=ChangeTriggerKind ownedRelationship+=ChangeExpressionMember))
+	 *     ((kind=TimeTriggerKind ownedRelationship+=ArgumentMember) | (kind=ChangeTriggerKind ownedRelationship+=ArgumentExpressionMember))
 	 * </pre>
 	 */
 	protected void sequence_TriggerExpression(ISerializationContext context, TriggerInvocationExpression semanticObject) {

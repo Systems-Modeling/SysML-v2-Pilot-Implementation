@@ -130,6 +130,12 @@ import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
 import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.RequirementConstraintKind
+import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.ForLoopActionUsage
+import org.omg.sysml.lang.sysml.ReferenceUsage
+import org.omg.sysml.lang.sysml.IfActionUsage
+import org.omg.sysml.lang.sysml.WhileLoopActionUsage
+import org.omg.sysml.lang.sysml.TriggerKind
 
 /**
  * This class contains custom validation rules. 
@@ -238,6 +244,18 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ACTION_USAGE_TYPE = "validateActionUsageType_"
 	public static val INVALID_ACTION_USAGE_TYPE_MSG = "An action must be typed by action definitions."
 	
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS = "validateAssignmentActionUsageArguments"
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG = "An assignment must have two arguments."
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT = "validateAssignmentActionUsageReferent"
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG = "An assignment must have a referent."
+
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT = "validateTriggerInvocationActionAfterArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG = "An after expression must be a DurationValue."
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT = "validateTriggerInvocationActionAtArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT_MSG = "An at expression must be a TimeInstantValue."
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT = "validateTriggerInvocationActionWhenArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG = "A when expression must be Boolean."
+		
 	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS = "validateControlNodeIncomingSuccessions"
 	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS_MSG = "Incoming successions must have target multiplicity 1."
 	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS = "validateControlNodeOutgoingSuccessions"
@@ -270,6 +288,17 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SEND_ACTION_USAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
+	
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE = "validateForLoopActionUsageLoopVariable"
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG ="A for loop action must have a loop variable."
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS = "validateForLoopActionUsageParameters"
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS_MSG ="A for loop action must have two parameters."
+	
+	public static val INVALID_IF_ACTION_USAGE_PARAMETERS = "validateIfActionUsageParameters"
+	public static val INVALID_IF_ACTION_USAGE_PARAMETERS_MSG ="An if action must have at least two parameters."
+	
+	public static val INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS = "validateWhileLoopActionUsageParameters"
+	public static val INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS_MSG ="A while loop action must have at least two parameters."
 	
 	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE = "validateExhibitStateUsageReference"
 	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG = "Must reference a state."
@@ -347,6 +376,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION = "validateRequirementUsageSubjectParameterPosition"
 	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
 	
+	public static val INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE = "validateSatisfyRequirementUsageReference"
+	public static val INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE_MSG = "Must reference a requirement."
+
 	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE = "validateStakeholderMembershipOwningType"
 	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements can have stakeholders."
 	
@@ -390,6 +422,9 @@ class SysMLValidator extends KerMLValidator {
 		
 	public static val INVALID_USE_CASE_USAGE_TYPE = "validateUseCaseUsageType_"
 	public static val INVALID_USE_CASE_USAGE_TYPE_MSG = "A use case must be typed by one use case definition."
+	public static val INVALID_USE_CASE_USAGE_REFERENCE = "validateUseCaseUsageReference"
+	public static val INVALID_USE_CASE_USAGE_REFERENCE_MSG = "Must reference a use case."
+
 	
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL = "validateExposeIsImportAll"
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL_MSG = "An expose must import all."
@@ -719,15 +754,38 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkAssignmentActionUsage(AssignmentActionUsage usg) {
-		// TODO: Add/check validateAssignmentActionUsageArguments
-		// TODO: Add/check validateAssignmentActionUsageReferent
+		// validateAssignmentActionUsageArguments
+		if (usg.argument(1) === null || usg.argument(2) === null) {
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS)
+		}
+		
+		// validateAssignmentActionUsageReferent
+		if (!usg.ownedMembership.exists[m | !(m instanceof OwningMembership) && m.memberElement instanceof Feature]) {
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
+		}
+		
 	}
 	
 	@Check
 	def checkTriggerInvocationExpression(TriggerInvocationExpression expr) {
-		// TODO: Add/check validate TriggerInvocationExpressionAfterArgument
-		// TODO: Add/check validate TriggerInvocationExpressionAtArgument
-		// TODO: Add/check validate TriggerInvocationExpressionWhenArgument
+		val kind = expr.kind
+		val arguments = expr.argument
+		val result = if (arguments.empty) null else arguments.get(0).result
+		
+		// validateTriggerInvocationExpressionAfterArgument
+		if (kind == TriggerKind.AFTER && (result === null || !specializesFromLibrary(expr, result, "ISQBase::DurationValue"))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT)
+		}
+		
+		// validateTriggerInvocationExpressionAtArgument
+		if (kind == TriggerKind.AT && (result === null || !specializesFromLibrary(expr, result, "Time::TimeInstantValue"))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT)
+		}
+		
+		// validateTriggerInvocationExpressionWhenArgument
+		if (kind == TriggerKind.WHEN && (result === null || !specializesFromLibrary(expr, result, "ScalarValues::Boolean"))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT)
+		}
 	}
 	
 	@Check
@@ -792,11 +850,41 @@ class SysMLValidator extends KerMLValidator {
 		if (usg.inputParameters.size < 3) {
 			error(INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PARAMETERS)
 		}
+	}
+	
+	@Check
+	def checkForLoopActionUsage(ForLoopActionUsage usg) {
+		// validateForLoopActionUsageLoopVariable
+		val ownedFeatures = usg.ownedFeature
+		if (ownedFeatures.empty || !(ownedFeatures.get(0) instanceof ReferenceUsage)) {
+			error(INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG, usg, null, INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE)
+		}
+		
+		// validateForLoopActionUsageParameters
+		if (usg.inputParameters.size != 2) {
+			error(INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS)
+		}
+	}	
+	
+	@Check
+	def checkIfActionUsage(IfActionUsage usg) {
+		// validateIfActionUsageParameters
+		if (usg.inputParameters.size < 2) {
+			error(INVALID_IF_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_IF_ACTION_USAGE_PARAMETERS)
+		}
+	}	
+	
+	@Check
+	def checkWhileLoopActionUsage(WhileLoopActionUsage usg) {
+		// validateWhileLoopActionUsageParameters
+		if (usg.inputParameters.size < 2) {
+			error(INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS)
+		}
 	}	
 	
 	@Check
 	def checkExhibitStateUsage(ExhibitStateUsage usg) {
-		// TODO: Add validateExhibitStateUsageReference
+		// validateExhibitStateUsageReference
 		checkReferenceType(usg, StateUsage, INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG, INVALID_EXHIBIT_STATE_USAGE_REFERENCE)
 	}
 		
@@ -992,7 +1080,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkSatisfyRequirementUsage(SatisfyRequirementUsage usg) {
-		// TODO: Add/check validateSatisfyRequirementUsageReference
+		// validateSatisfyRequirementUsageReference
+		checkReferenceType(usg, RequirementUsage, INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE_MSG, INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE)
 	}
 	
 	@Check

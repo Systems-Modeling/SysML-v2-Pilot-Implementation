@@ -246,10 +246,12 @@ standard library package Transfers {
 		 * AcceptPerformance is a performance that requires an incomingTransferToSelf
 		 * of a desigated receiver Occurrence, providing its item as output.
 		 */
-		inout feature acceptedItem[0..*] default acceptedTransfer.item;
+		inout feature acceptedItem[0..*];
 		in feature receiver: Occurrence[1] default this;
 		feature acceptedTransfer: MessageTransfer[1] subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
+		
+		binding acceptedItem = acceptedTransfer.item;
 	}
 
 	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {

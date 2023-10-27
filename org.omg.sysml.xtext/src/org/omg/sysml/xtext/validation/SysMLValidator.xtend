@@ -770,22 +770,62 @@ class SysMLValidator extends KerMLValidator {
 	def checkTriggerInvocationExpression(TriggerInvocationExpression expr) {
 		val kind = expr.kind
 		val arguments = expr.argument
-		val result = if (arguments.empty) null else arguments.get(0).result
+		val argument = if (arguments.empty) null else arguments.get(0)
 		
 		// validateTriggerInvocationExpressionAfterArgument
-		if (kind == TriggerKind.AFTER && (result === null || !specializesFromLibrary(expr, result, "ISQBase::DurationValue"))) {
+		if (kind == TriggerKind.AFTER && !(argument !== null && isDuration(argument))) {
 			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT)
 		}
 		
 		// validateTriggerInvocationExpressionAtArgument
-		if (kind == TriggerKind.AT && (result === null || !specializesFromLibrary(expr, result, "Time::TimeInstantValue"))) {
+		if (kind == TriggerKind.AT && !(argument !== null && isTime(argument))) {
 			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT)
 		}
 		
 		// validateTriggerInvocationExpressionWhenArgument
-		if (kind == TriggerKind.WHEN && (result === null || !specializesFromLibrary(expr, result, "ScalarValues::Boolean"))) {
+		if (kind == TriggerKind.WHEN && !(argument !== null && isBooleanExpression(argument))) {
 			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT)
 		}
+	}
+	
+	def static boolean isTime(Expression expr) {
+		expr.result !== null && specializesFromLibrary(expr, expr.result, "Time::TimeInstantValue") ||
+		expr instanceof OperatorExpression &&
+			(expr as OperatorExpression).operator.isQuantityOperator &&
+			(expr as OperatorExpression).argument.forall[isDuration || isTime]
+	}
+	
+	def static boolean isDuration(Expression expr) {
+		expr.isDurationLiteral ||
+		expr.result !== null && specializesFromLibrary(expr, expr.result, "ISQBase::DurationValue") ||
+		expr instanceof OperatorExpression &&
+			(expr as OperatorExpression).operator.isQuantityOperator &&
+			(expr as OperatorExpression).argument.forall[isDuration || isTime]
+	}
+	
+	def static boolean isDurationLiteral(Expression expr) {
+		if (expr instanceof OperatorExpression) {
+			if (expr.operator == "[") {
+				val arguments = expr.argument
+				if (arguments.size >= 2) {
+					val result = arguments.get(1).result
+					return result !== null && specializesFromLibrary(expr, result, "ISQBase::DurationUnit")
+				}
+			}
+		}
+		return false
+	}
+	
+	def static boolean isTimeOperation(Expression expr) {
+		if (expr instanceof OperatorExpression) {
+			expr.operator.isQuantityOperator &&
+			expr.argument.forall[isDuration || isTime]
+		}
+		return false
+	}
+	
+	def static isQuantityOperator(String operator) {
+		newArrayList("-", "+", "*", "%", "^", "**").contains(operator)
 	}
 	
 	@Check

@@ -628,9 +628,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
+			val boolType = getLibraryType(location, "Performances::BooleanEvaluation")
 						 
-			if (!typesConform(f1types, f2types))
+			if (!(typesConform(f1types, f2types) ||
+				  // Consider the result of an expression returning a Boolean-valued Expression to conform to BooleanEvaluation.
+				  isBooleanExpression(rf.get(0).getOwningType()) && !conformsFrom(boolType, f2types).isEmpty ||
+				  isBooleanExpression(rf.get(1).getOwningType()) && !conformsFrom(boolType, f1types).isEmpty)
+			) {				
 				warning(INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE)
+			}
 //		}
 	}
 	
@@ -992,6 +998,26 @@ class KerMLValidator extends AbstractKerMLValidator {
 		newArrayList("not", "xor", "&", "|").contains(operator)
 	}
 	
+	def static boolean isBooleanExpression(Type expr) {
+		if (expr instanceof Expression) {
+			val result = expr.result;
+			if (result !== null && specializesFromLibrary(expr, result, "Performances::BooleanEvaluation")) {
+				return true
+			} else if (expr instanceof FeatureReferenceExpression) {
+				val referent = expr.referent
+				if (referent instanceof Expression) {
+					if (referent.isBoolean) {
+						return true
+					} else {
+						val resultExpr = ExpressionUtil.getResultExpressionOf(referent);
+				        return resultExpr !== null && resultExpr.isBoolean 
+					}
+				}			
+			}
+		}
+		return false;
+	}
+	
 	def static boolean isNatural(Expression expr) {
 		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
 		expr instanceof LiteralInfinity ||
@@ -1057,7 +1083,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 
 	protected static def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || TypeUtil.conforms(subtype, supertype);
+		supertype === null || TypeUtil.conforms(subtype, supertype) ||
+			subtype instanceof Expression &&
+			isBooleanExpression(subtype as Expression) && 
+			specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression")
 	}
 	
 }

@@ -56,7 +56,7 @@ standard library package Transfers {
 		feature itemNum: Natural [1] = size(item);
 		
 		private instantNum: Natural[1] = if isInstant? 1 else 0;
-		private binding instant[0..instantNum] of startShot[0..1] = endShot[0..1] {
+		private binding instant[instantNum] of startShot[0..1] = endShot[0..1] {
 			doc
 			/*
 			 * If isInstant is true, then the start and end of the transfer happen at the same time.

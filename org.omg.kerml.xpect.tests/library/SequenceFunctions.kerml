@@ -10,6 +10,10 @@ standard library package SequenceFunctions {
 	private import ScalarValues::*;
 	private import ControlFunctions::*;
 	
+	function '#' specializes BaseFunctions::'#' { in seq: Anything[0..*] ordered nonunique; in index: Positive[1];
+		return : Anything[0..1];
+	}
+	
 	function equals{ in x: Anything[0..*] ordered nonunique; in y: Anything[0..*] ordered nonunique; 
 		return : Boolean[1] =
 			size(x) == size(y) and
@@ -77,10 +81,6 @@ standard library package SequenceFunctions {
 	function last{ in seq: Anything[0..*] ordered nonunique;
 		return : Anything[0..1] = seq#(size(seq));
 	}
-	
-	function '#' specializes BaseFunctions::'#' { in seq: Anything[0..*] ordered nonunique; in index: Natural[1];
-		return : Anything[0..1];
-	}	
 	
 	behavior add { inout seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
 		private feature newSeq = seq->including(values);

@@ -887,12 +887,36 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public FeatureDirectionKind directionOf(Feature feature) {
-		boolean isInput = getInput().contains(feature);
-		boolean isOutput = getOutput().contains(feature);
-		return isInput && isOutput? FeatureDirectionKind.INOUT:
-			   isInput? FeatureDirectionKind.IN:
-			   isOutput? FeatureDirectionKind.OUT:
-			   null;
+		return directionOf(feature, this, new HashSet<Type>());
+	}
+	
+	protected static FeatureDirectionKind directionOf(Feature feature, Type type, Set<Type> visited) {
+		visited.add(type);
+		Conjugation conjugator = type.getOwnedConjugator();
+		if (feature.getOwningType() == type) {
+			return feature.getDirection();
+		} else if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType == null || visited.contains(originalType)) {
+				return null;
+			} else {
+				FeatureDirectionKind originalDirection = directionOf(feature, originalType, visited);
+				return originalDirection == FeatureDirectionKind.IN? FeatureDirectionKind.OUT:
+					   originalDirection == FeatureDirectionKind.OUT? FeatureDirectionKind.IN:
+					   FeatureDirectionKind.INOUT;
+			}
+		} else {
+			for (Specialization specialization: type.getOwnedSpecialization()) {
+				Type general = specialization.getGeneral();
+				if (general != null && !visited.contains(general)) {
+					FeatureDirectionKind direction = directionOf(feature, general, visited);
+					if (direction != null) {
+						return direction;
+					}
+				}
+			}
+			return null;
+		}
 	}
 
 	/**

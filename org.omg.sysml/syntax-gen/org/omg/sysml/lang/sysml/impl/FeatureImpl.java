@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureInverting;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -639,17 +640,30 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- begin-user-doc -->
 	 * Set the direction to OUT if the Feature is owned via a ReturnParameterMembership or
 	 * to IN if the Feature is owned via a (non-return) ParameterMembership.
+	 * If the feature is owned by an ItemFlowEnd, set the direction to that of the
+	 * redefined feature of its owned Redefinition.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
 		if (direction == null) {
-			Membership owningMembership = getOwningMembership();
-			if (owningMembership instanceof ReturnParameterMembership) {
+			FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
+			if (owningFeatureMembership instanceof ReturnParameterMembership) {
 				direction = FeatureDirectionKind.OUT;
-			} else if (owningMembership instanceof ParameterMembership) {
+			} else if (owningFeatureMembership instanceof ParameterMembership) {
 				direction = FeatureDirectionKind.IN;
+			} else if (owningFeatureMembership != null) {
+				Type owningType = owningFeatureMembership.getOwningType();
+				if (owningType instanceof ItemFlowEnd) {
+					EList<Redefinition> redefinitions = getOwnedRedefinition();
+					if (!redefinitions.isEmpty()) {
+						Feature redefinedFeature = redefinitions.get(0).getRedefinedFeature();
+						if (redefinedFeature != null) {
+							direction = owningType.directionOf(redefinedFeature);
+						}
+					}
+				}
 			}
 		}
 		return direction;

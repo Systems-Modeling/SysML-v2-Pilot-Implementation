@@ -49,8 +49,20 @@ package 'Port Example' {
 			part b4 : B;		
 		}
 	}
-	part tank: FA {
+	part f: FA {
 		// XPECT errors --> "A port must be typed by port definitions." at "port pp redefines p1;"
 		port pp redefines p1;
+	}
+	port def OutPort {
+		out ref anout;
+		in ref anin;
+	}
+	part p {
+		port aport : OutPort {
+			// XPECT errors ---> "Redefining feature must have a compatible direction" at "anout"
+			in ref redefines anout;
+			// XPECT errors ---> "Redefining feature must have a compatible direction" at "anin"
+			out ref redefines anin;
+		}	
 	}
 }

@@ -130,7 +130,6 @@ import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
 import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.RequirementConstraintKind
-import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ForLoopActionUsage
 import org.omg.sysml.lang.sysml.ReferenceUsage
 import org.omg.sysml.lang.sysml.IfActionUsage
@@ -761,7 +760,7 @@ class SysMLValidator extends KerMLValidator {
 		}
 		
 		// validateAssignmentActionUsageReferent
-		if (!usg.ownedMembership.exists[m | !(m instanceof OwningMembership) && m.memberElement instanceof Feature]) {
+		if (!usg.ownedMembership.exists[m | !(m instanceof FeatureMembership) && m.memberElement instanceof Feature]) {
 			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
 		}
 		

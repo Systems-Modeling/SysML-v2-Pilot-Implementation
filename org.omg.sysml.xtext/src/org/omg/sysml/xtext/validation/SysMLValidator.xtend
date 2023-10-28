@@ -755,7 +755,8 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkAssignmentActionUsage(AssignmentActionUsage usg) {
 		// validateAssignmentActionUsageArguments
-		if (usg.argument(1) === null || usg.argument(2) === null) {
+		// NOTE: First argument is allowed to be null, pending resolution of SYSML2-499.
+		if (/*usg.argument(1) === null ||*/ usg.argument(2) === null) {
 			error(INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS)
 		}
 		

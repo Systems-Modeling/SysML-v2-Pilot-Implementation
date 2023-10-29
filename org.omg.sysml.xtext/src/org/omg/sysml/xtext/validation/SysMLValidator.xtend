@@ -143,17 +143,11 @@ import org.omg.sysml.lang.sysml.TriggerKind
  */
 class SysMLValidator extends KerMLValidator {
 
-	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP = "validateDefinitionNonVariationMembership"
-	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP = "validateUsageNonVariationMembership"
-	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
-	public static val INVALID_USAGE_OWNING_TYPE = "validateUsageOwningType"
-	public static val INVALID_USAGE_OWNING_TYPE_MSG = "A usage can only be featured by a definition or usage."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
@@ -306,9 +300,6 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATE_SUBACTION_KIND_DO_MSG = "A state may have at most one do action."
 	public static val INVALID_STATE_SUBACTION_KIND_EXIT_MSG = "A state may have at most one exit action."
 	
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state definition must specialize only parallel state definitions."
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state definition must not specialize parallel state definitions."
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS = "validateStateDefinitionParallelSubactions"
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND = "validateStateDefinitionSubactionKind"
@@ -321,9 +312,6 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_STATE_USAGE_TYPE = "validateStateUsageType_"
 	public static val INVALID_STATE_USAGE_TYPE_MSG = "A state must be typed by state definitions."
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state must specialize only parallel states."
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state must not specialize parallel states."
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS = "validateStateUsageParallelSubactions"
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_USAGE_SUBACTION_KIND = "validateStateUsageSubactionKind"
@@ -455,13 +443,7 @@ class SysMLValidator extends KerMLValidator {
 		
 	@Check
 	def checkDefinition(Definition definition) {		
-		if (!definition.isVariation) {
-			// validateDefinitionNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
-			// TODO: Check validateDefinitionNonVariationMembership
-			// for (mem: definition.variantMembership) {
-			//	error(INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP)
-			// }
-		} else {
+		if (definition.isVariation) {
 			// validateDefinitionVariationOwnedFeatureMembership
 			for (mem: definition.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
@@ -490,13 +472,7 @@ class SysMLValidator extends KerMLValidator {
 	def checkUsage(Usage usage) {
 		// validateUsageIsReferential is satisfied automatically
 		
-		if (!usage.isVariation) {
-			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
-			// TODO: Check validateUsageNonVariationMembership
-			// for (mem: usage.variantMembership) {
-			// 	error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
-			// }
-		} else {
+		if (usage.isVariation) {
 			// validateUsageVariationOwnedFeatureMembership
 			for (mem: usage.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
@@ -513,13 +489,6 @@ class SysMLValidator extends KerMLValidator {
 				}
 			}
 		}
-		
-		// validateUsageOwningType is too restrictive. (See SYSML2-301.)
-		// TODO: Check validateUsageOwningType
-		// val owningType = usage.owningType
-		// if (!(owningType === null || owningType instanceof Definition || owningType instanceof Usage)) {
-		//		error(INVALID_USAGE_OWNING_TYPE_MSG, usage, null, INVALID_USAGE_OWNING_TYPE)
-		// }
 	}
 	
 	protected def boolean isVariation(Namespace namespace) {
@@ -624,7 +593,7 @@ class SysMLValidator extends KerMLValidator {
 
 	}
 	
-	@Check 
+	@Check
 	def checkItemUsage(ItemUsage iu) {
 		// All types must be Structures
 		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
@@ -930,10 +899,6 @@ class SysMLValidator extends KerMLValidator {
 		
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
-		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: Check validateStateDefinitionIsParallelGeneralization
-		// checkAllParallelSpecialization(defn, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION)
-		
 		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
 		
 		// validateStateDefinitionStateSubactionKind
@@ -954,18 +919,7 @@ class SysMLValidator extends KerMLValidator {
 		// All types must be Behaviors
 		checkAllTypes(usg, Behavior, INVALID_STATE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, INVALID_STATE_USAGE_TYPE)
 
-		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: Check validateStateUsageIsParallelGeneralization
-		// checkAllParallelSpecialization(usg, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION)
-		
 		// validateStateUsageParallelSubactions is checked by checkTransitionUsage and checkSuccession
-
-//		val owningType = usg.owningType
-//		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
-//			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
-//		) {
-//			warning(INVALID_STATE_USAGE_TYPE_TRANSITIONS_MSG, usg, null, INVALID_STATE_USAGE_TYPE_TRANSITIONS)
-//		}
 
 		// validateStateUsageStateSubactionKind
 		checkStateSubactions(usg)

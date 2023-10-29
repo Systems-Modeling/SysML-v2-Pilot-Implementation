@@ -85,7 +85,7 @@ public class UsageUtil {
 	// References
 	
 	public static boolean isComposite(Usage usage, boolean isComposite) {
-		return isComposite && usage.getOwningFeatureMembership() != null && usage.getDirection() == null && !usage.isEnd();
+		return isComposite && !usage.getFeaturingType().isEmpty() && usage.getDirection() == null && !usage.isEnd();
 	}
 	
 	// Variants

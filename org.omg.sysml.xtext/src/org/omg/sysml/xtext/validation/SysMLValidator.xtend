@@ -489,6 +489,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkUsage(Usage usage) {
+		// validateUsageIsReferential is satisfied automatically
+		
 		if (!usage.isVariation) {
 			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
 			// TODO: Check validateUsageNonVariationMembership

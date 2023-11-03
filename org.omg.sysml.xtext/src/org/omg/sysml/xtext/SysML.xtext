@@ -1993,7 +1993,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
       ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
-      RequirementBody
+      CalculationBody
     | ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
       CalculationUsageDeclaration CalculationBody
 ;

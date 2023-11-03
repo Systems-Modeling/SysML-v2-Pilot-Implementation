@@ -27,8 +27,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.OwningMembership;
 
 public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -39,7 +39,7 @@ public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerived
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
 		return (Feature) ((AssignmentActionUsage)owner).getOwnedMembership().stream().
-				filter(m->!(m instanceof OwningMembership)).
+				filter(m->!(m instanceof FeatureMembership)).
 				map(Membership::getMemberElement).
 				filter(Feature.class::isInstance).
 				findFirst().orElse(null);

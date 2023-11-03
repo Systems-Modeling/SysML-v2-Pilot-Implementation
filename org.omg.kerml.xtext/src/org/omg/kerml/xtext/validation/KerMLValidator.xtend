@@ -628,9 +628,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
+			val boolType = getLibraryType(location, "Performances::BooleanEvaluation")
 						 
-			if (!typesConform(f1types, f2types))
+			if (!(typesConform(f1types, f2types) ||
+				  // Consider the result of an expression returning a Boolean-valued Expression to conform to BooleanEvaluation.
+				  isBooleanExpression(rf.get(0).getOwningType()) && !conformsFrom(boolType, f2types).isEmpty ||
+				  isBooleanExpression(rf.get(1).getOwningType()) && !conformsFrom(boolType, f1types).isEmpty)
+			) {				
 				warning(INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE)
+			}
 //		}
 	}
 	
@@ -978,7 +984,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def static boolean isBoolean(Expression condition) {
-		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
+		specializesFromLibrary(condition, condition.result, "ScalarValues::Boolean") ||
 		// LiteralBooleans currently don't have an inferred Boolean result type.
 		condition instanceof LiteralBoolean ||
 		// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
@@ -988,19 +994,35 @@ class KerMLValidator extends AbstractKerMLValidator {
 			(condition as OperatorExpression).argument.forall[isBoolean]
 	}
 	
-	def static getBooleanType(Element context) {
-		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
-	}
-	
 	def static isBooleanOperator(String operator) {
 		newArrayList("not", "xor", "&", "|").contains(operator)
+	}
+	
+	def static boolean isBooleanExpression(Type expr) {
+		if (expr instanceof Expression) {
+			val result = expr.result;
+			if (result !== null && specializesFromLibrary(expr, result, "Performances::BooleanEvaluation")) {
+				return true
+			} else if (expr instanceof FeatureReferenceExpression) {
+				val referent = expr.referent
+				if (referent instanceof Expression) {
+					if (referent.isBoolean) {
+						return true
+					} else {
+						val resultExpr = ExpressionUtil.getResultExpressionOf(referent);
+				        return resultExpr !== null && resultExpr.isBoolean 
+					}
+				}			
+			}
+		}
+		return false;
 	}
 	
 	def static boolean isNatural(Expression expr) {
 		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
 		expr instanceof LiteralInfinity ||
 		// Allow expressions with Integer result, to allow referenced features not explicitly typed as Natural
-		TypeUtil.conforms(expr.result, getIntegerType(expr)) ||
+		specializesFromLibrary(expr, expr.result, "ScalarValues::Integer") ||
 		// Arithmetic operations in DataFunctions actually have result DataValue.
 		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Natural.
 		expr instanceof OperatorExpression && 
@@ -1008,12 +1030,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			(expr as OperatorExpression).argument.forall[isNatural]
 	}
 	
-	def static getIntegerType(Element context) {
-		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Integer") as Type
-	}
-	
 	def static isIntegerOperator(String operator) {
 		newArrayList("-", "+", "*", "%", "^", "**").contains(operator)
+	}
+	
+	def static specializesFromLibrary(Element context, Type type, String qualifiedName) {
+		TypeUtil.conforms(type, getLibraryType(context, qualifiedName))
+	}
+	
+	def static getLibraryType(Element context, String qualifiedName) {
+		SysMLLibraryUtil.getLibraryElement(context, qualifiedName) as Type
 	}
 	
 	protected def checkAtMostOne(Iterable<? extends EObject> list, String msg, EStructuralFeature feature, String code) {
@@ -1057,7 +1083,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 
 	protected static def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || TypeUtil.conforms(subtype, supertype);
+		supertype === null || TypeUtil.conforms(subtype, supertype) ||
+			subtype instanceof Expression &&
+			isBooleanExpression(subtype as Expression) && 
+			specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression")
 	}
 	
 }

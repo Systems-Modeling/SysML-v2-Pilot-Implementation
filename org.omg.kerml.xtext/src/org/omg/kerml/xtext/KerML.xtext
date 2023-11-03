@@ -705,51 +705,14 @@ FeatureConjugation returns SysML::Conjugation :
 
 fragment ValuePart returns SysML::Feature :
 	  ownedRelationship += FeatureValue
-	| ownedRelationship += FeatureValueExpression
-	  ownedRelationship += EmptyFeatureWriteMember
 ;
 
 FeatureValue returns SysML::FeatureValue :
-	( '=' | isDefault ?= 'default' ( '=' | isInitial ?= ':=' )? )
+	( '=' 
+	| isInitial ?= ':='
+	| isDefault ?= 'default' ( '=' | isInitial ?= ':=' )?
+	)
 	ownedRelatedElement += OwnedExpression
-;
-
-FeatureValueExpression returns SysML::FeatureValue :
-	isInitial ?= ':='
-	ownedRelatedElement += OwnedExpression
-;
-
-EmptyFeatureWriteMember returns SysML::OwningMembership :
-	ownedRelatedElement += EmptyFeatureWrite 
-;
-
-EmptyFeatureWrite returns SysML::Step :
-	ownedRelationship += EmptyTargetMember
-	ownedRelationship += EmptyParameterMember
-;
-
-EmptyTargetMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyTargetParameter
-;
-
-EmptyTargetParameter returns SysML::ReferenceUsage :
-	ownedRelationship += TargetFeatureMember
-;
-
-TargetFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TargetFeature 
-;
-
-TargetFeature returns SysML::Feature :
-	ownedRelationship += EmptyFeatureMember
-;
-
-EmptyFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyFeature 
-;
-
-EmptyParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyFeature
 ;
 
 /* MULTIPLICITIES */

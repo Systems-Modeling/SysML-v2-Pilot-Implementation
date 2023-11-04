@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -40,11 +40,11 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -375,7 +375,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	
 	@Override
 	public Feature namingFeature() {
-		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
+		return getOwningFeatureMembership() instanceof RequirementConstraintMembership? 
 				FeatureUtil.getEffectiveReferencedFeatureOf(this, ConstraintUsage.class):
 			    super.namingFeature();
 	}

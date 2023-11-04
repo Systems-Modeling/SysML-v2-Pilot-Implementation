@@ -130,6 +130,11 @@ import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
 import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.RequirementConstraintKind
+import org.omg.sysml.lang.sysml.ForLoopActionUsage
+import org.omg.sysml.lang.sysml.ReferenceUsage
+import org.omg.sysml.lang.sysml.IfActionUsage
+import org.omg.sysml.lang.sysml.WhileLoopActionUsage
+import org.omg.sysml.lang.sysml.TriggerKind
 
 /**
  * This class contains custom validation rules. 
@@ -138,17 +143,11 @@ import org.omg.sysml.lang.sysml.RequirementConstraintKind
  */
 class SysMLValidator extends KerMLValidator {
 
-	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP = "validateDefinitionNonVariationMembership"
-	public static val INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP = "validateUsageNonVariationMembership"
-	public static val INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG = "A variant must be an owned member of a variation."
-	public static val INVALID_USAGE_OWNING_TYPE = "validateUsageOwningType"
-	public static val INVALID_USAGE_OWNING_TYPE_MSG = "A usage can only be featured by a definition or usage."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
@@ -238,6 +237,18 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ACTION_USAGE_TYPE = "validateActionUsageType_"
 	public static val INVALID_ACTION_USAGE_TYPE_MSG = "An action must be typed by action definitions."
 	
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS = "validateAssignmentActionUsageArguments"
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG = "An assignment must have two arguments."
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT = "validateAssignmentActionUsageReferent"
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG = "An assignment must have a referent."
+
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT = "validateTriggerInvocationActionAfterArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG = "An after expression must be a DurationValue."
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT = "validateTriggerInvocationActionAtArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT_MSG = "An at expression must be a TimeInstantValue."
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT = "validateTriggerInvocationActionWhenArgument"
+	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG = "A when expression must be Boolean."
+		
 	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS = "validateControlNodeIncomingSuccessions"
 	public static val INVALID_CONTROL_NODE_INCOMING_SUCCESSIONS_MSG = "Incoming successions must have target multiplicity 1."
 	public static val INVALID_CONTROL_NODE_OUTGOING_SUCCESSIONS = "validateControlNodeOutgoingSuccessions"
@@ -271,6 +282,17 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
 	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
 	
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE = "validateForLoopActionUsageLoopVariable"
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG ="A for loop action must have a loop variable."
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS = "validateForLoopActionUsageParameters"
+	public static val INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS_MSG ="A for loop action must have two parameters."
+	
+	public static val INVALID_IF_ACTION_USAGE_PARAMETERS = "validateIfActionUsageParameters"
+	public static val INVALID_IF_ACTION_USAGE_PARAMETERS_MSG ="An if action must have at least two parameters."
+	
+	public static val INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS = "validateWhileLoopActionUsageParameters"
+	public static val INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS_MSG ="A while loop action must have at least two parameters."
+	
 	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE = "validateExhibitStateUsageReference"
 	public static val INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG = "Must reference a state."
 		
@@ -278,9 +300,6 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATE_SUBACTION_KIND_DO_MSG = "A state may have at most one do action."
 	public static val INVALID_STATE_SUBACTION_KIND_EXIT_MSG = "A state may have at most one exit action."
 	
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state definition must specialize only parallel state definitions."
-	public static val INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state definition must not specialize parallel state definitions."
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS = "validateStateDefinitionParallelSubactions"
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND = "validateStateDefinitionSubactionKind"
@@ -293,9 +312,6 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_STATE_USAGE_TYPE = "validateStateUsageType_"
 	public static val INVALID_STATE_USAGE_TYPE_MSG = "A state must be typed by state definitions."
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION = "validateStateDefinitionParallelGeneralization"
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1 = "Parallel state must specialize only parallel states."
-	public static val INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2 = "Non-parallel state must not specialize parallel states."
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS = "validateStateUsageParallelSubactions"
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_USAGE_SUBACTION_KIND = "validateStateUsageSubactionKind"
@@ -347,6 +363,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION = "validateRequirementUsageSubjectParameterPosition"
 	public static val INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG = "Subject must be first parameter."
 	
+	public static val INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE = "validateSatisfyRequirementUsageReference"
+	public static val INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE_MSG = "Must reference a requirement."
+
 	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE = "validateStakeholderMembershipOwningType"
 	public static val INVALID_STAKEHOLDER_MEMBERSHIP_OWNING_TYPE_MSG = "Only requirements can have stakeholders."
 	
@@ -390,6 +409,9 @@ class SysMLValidator extends KerMLValidator {
 		
 	public static val INVALID_USE_CASE_USAGE_TYPE = "validateUseCaseUsageType_"
 	public static val INVALID_USE_CASE_USAGE_TYPE_MSG = "A use case must be typed by one use case definition."
+	public static val INVALID_USE_CASE_USAGE_REFERENCE = "validateUseCaseUsageReference"
+	public static val INVALID_USE_CASE_USAGE_REFERENCE_MSG = "Must reference a use case."
+
 	
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL = "validateExposeIsImportAll"
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL_MSG = "An expose must import all."
@@ -421,18 +443,11 @@ class SysMLValidator extends KerMLValidator {
 		
 	@Check
 	def checkDefinition(Definition definition) {		
-		if (!definition.isVariation) {
-			// validateDefinitionNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
-			// TODO: Check validateDefinitionNonVariationMembership
-			// for (mem: definition.variantMembership) {
-			//	error(INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_NON_VARIATION_MEMBERSHIP)
-			// }
-		} else {
-			// validateDefinitionVariationMembership
-			for (ownedUsage: definition.ownedUsage) {
+		if (definition.isVariation) {
+			// validateDefinitionVariationOwnedFeatureMembership
+			for (mem: definition.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
 				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
-				val mem = ownedUsage.owningFeatureMembership
 				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
 					error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)							
 				}
@@ -455,18 +470,13 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkUsage(Usage usage) {
-		if (!usage.isVariation) {
-			// validateUsageNonVariationMembership is redundant with validateVariantMembershipOwningNamespace. (See SYSML2-300.)
-			// TODO: Check validateUsageNonVariationMembership
-			// for (mem: usage.variantMembership) {
-			// 	error(INVALID_USAGE_NON_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_NON_VARIATION_MEMBERSHIP)
-			// }
-		} else {
-			// validateUsageVariationMembership
-			for (nestedUsage: usage.nestedUsage) {
+		// validateUsageIsReferential is satisfied automatically
+		
+		if (usage.isVariation) {
+			// validateUsageVariationOwnedFeatureMembership
+			for (mem: usage.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
 				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
-				val mem = nestedUsage.owningFeatureMembership
 				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
 					error(INVALID_USAGE_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_USAGE_VARIATION_MEMBERSHIP)							
 				}
@@ -479,13 +489,6 @@ class SysMLValidator extends KerMLValidator {
 				}
 			}
 		}
-		
-		// validateUsageOwningType is too restrictive. (See SYSML2-301.)
-		// TODO: Check validateUsageOwningType
-		// val owningType = usage.owningType
-		// if (!(owningType === null || owningType instanceof Definition || owningType instanceof Usage)) {
-		//		error(INVALID_USAGE_OWNING_TYPE_MSG, usage, null, INVALID_USAGE_OWNING_TYPE)
-		// }
 	}
 	
 	protected def boolean isVariation(Namespace namespace) {
@@ -590,7 +593,7 @@ class SysMLValidator extends KerMLValidator {
 
 	}
 	
-	@Check 
+	@Check
 	def checkItemUsage(ItemUsage iu) {
 		// All types must be Structures
 		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
@@ -719,15 +722,79 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkAssignmentActionUsage(AssignmentActionUsage usg) {
-		// TODO: Add/check validateAssignmentActionUsageArguments
-		// TODO: Add/check validateAssignmentActionUsageReferent
+		// validateAssignmentActionUsageArguments
+		// NOTE: First argument is allowed to be null, pending resolution of SYSML2-499.
+		if (/*usg.argument(1) === null ||*/ usg.argument(2) === null) {
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS)
+		}
+		
+		// validateAssignmentActionUsageReferent
+		if (!usg.ownedMembership.exists[m | !(m instanceof FeatureMembership) && m.memberElement instanceof Feature]) {
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
+		}
+		
 	}
 	
 	@Check
 	def checkTriggerInvocationExpression(TriggerInvocationExpression expr) {
-		// TODO: Add/check validate TriggerInvocationExpressionAfterArgument
-		// TODO: Add/check validate TriggerInvocationExpressionAtArgument
-		// TODO: Add/check validate TriggerInvocationExpressionWhenArgument
+		val kind = expr.kind
+		val arguments = expr.argument
+		val argument = if (arguments.empty) null else arguments.get(0)
+		
+		// validateTriggerInvocationExpressionAfterArgument
+		if (kind == TriggerKind.AFTER && !(argument !== null && isDuration(argument))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT)
+		}
+		
+		// validateTriggerInvocationExpressionAtArgument
+		if (kind == TriggerKind.AT && !(argument !== null && isTime(argument))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_AT_ARGUMENT)
+		}
+		
+		// validateTriggerInvocationExpressionWhenArgument
+		if (kind == TriggerKind.WHEN && !(argument !== null && isBooleanExpression(argument))) {
+			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT)
+		}
+	}
+	
+	def static boolean isTime(Expression expr) {
+		expr.result !== null && specializesFromLibrary(expr, expr.result, "Time::TimeInstantValue") ||
+		expr instanceof OperatorExpression &&
+			(expr as OperatorExpression).operator.isQuantityOperator &&
+			(expr as OperatorExpression).argument.forall[isDuration || isTime]
+	}
+	
+	def static boolean isDuration(Expression expr) {
+		expr.isDurationLiteral ||
+		expr.result !== null && specializesFromLibrary(expr, expr.result, "ISQBase::DurationValue") ||
+		expr instanceof OperatorExpression &&
+			(expr as OperatorExpression).operator.isQuantityOperator &&
+			(expr as OperatorExpression).argument.forall[isDuration || isTime]
+	}
+	
+	def static boolean isDurationLiteral(Expression expr) {
+		if (expr instanceof OperatorExpression) {
+			if (expr.operator == "[") {
+				val arguments = expr.argument
+				if (arguments.size >= 2) {
+					val result = arguments.get(1).result
+					return result !== null && specializesFromLibrary(expr, result, "ISQBase::DurationUnit")
+				}
+			}
+		}
+		return false
+	}
+	
+	def static boolean isTimeOperation(Expression expr) {
+		if (expr instanceof OperatorExpression) {
+			expr.operator.isQuantityOperator &&
+			expr.argument.forall[isDuration || isTime]
+		}
+		return false
+	}
+	
+	def static isQuantityOperator(String operator) {
+		newArrayList("-", "+", "*", "%", "^", "**").contains(operator)
 	}
 	
 	@Check
@@ -792,20 +859,46 @@ class SysMLValidator extends KerMLValidator {
 		if (usg.inputParameters.size < 3) {
 			error(INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PARAMETERS)
 		}
+	}
+	
+	@Check
+	def checkForLoopActionUsage(ForLoopActionUsage usg) {
+		// validateForLoopActionUsageLoopVariable
+		val ownedFeatures = usg.ownedFeature
+		if (ownedFeatures.empty || !(ownedFeatures.get(0) instanceof ReferenceUsage)) {
+			error(INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG, usg, null, INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE)
+		}
+		
+		// validateForLoopActionUsageParameters
+		if (usg.inputParameters.size != 2) {
+			error(INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_FOR_LOOP_ACTION_USAGE_PARAMETERS)
+		}
+	}	
+	
+	@Check
+	def checkIfActionUsage(IfActionUsage usg) {
+		// validateIfActionUsageParameters
+		if (usg.inputParameters.size < 2) {
+			error(INVALID_IF_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_IF_ACTION_USAGE_PARAMETERS)
+		}
+	}	
+	
+	@Check
+	def checkWhileLoopActionUsage(WhileLoopActionUsage usg) {
+		// validateWhileLoopActionUsageParameters
+		if (usg.inputParameters.size < 2) {
+			error(INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_WHILE_LOOP_ACTION_USAGE_PARAMETERS)
+		}
 	}	
 	
 	@Check
 	def checkExhibitStateUsage(ExhibitStateUsage usg) {
-		// TODO: Add validateExhibitStateUsageReference
+		// validateExhibitStateUsageReference
 		checkReferenceType(usg, StateUsage, INVALID_EXHIBIT_STATE_USAGE_REFERENCE_MSG, INVALID_EXHIBIT_STATE_USAGE_REFERENCE)
 	}
 		
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
-		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: Check validateStateDefinitionIsParallelGeneralization
-		// checkAllParallelSpecialization(defn, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_DEFINITION_PARALLEL_GENERALIZATION)
-		
 		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
 		
 		// validateStateDefinitionStateSubactionKind
@@ -826,18 +919,7 @@ class SysMLValidator extends KerMLValidator {
 		// All types must be Behaviors
 		checkAllTypes(usg, Behavior, INVALID_STATE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, INVALID_STATE_USAGE_TYPE)
 
-		// Not implemented pending further review. (See SYSML2-306.)
-		// TODO: Check validateStateUsageIsParallelGeneralization
-		// checkAllParallelSpecialization(usg, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_1, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION_MSG_2, INVALID_STATE_USAGE_PARALLEL_GENERALIZATION)
-		
 		// validateStateUsageParallelSubactions is checked by checkTransitionUsage and checkSuccession
-
-//		val owningType = usg.owningType
-//		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
-//			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
-//		) {
-//			warning(INVALID_STATE_USAGE_TYPE_TRANSITIONS_MSG, usg, null, INVALID_STATE_USAGE_TYPE_TRANSITIONS)
-//		}
 
 		// validateStateUsageStateSubactionKind
 		checkStateSubactions(usg)
@@ -992,7 +1074,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkSatisfyRequirementUsage(SatisfyRequirementUsage usg) {
-		// TODO: Add/check validateSatisfyRequirementUsageReference
+		// validateSatisfyRequirementUsageReference
+		checkReferenceType(usg, RequirementUsage, INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE_MSG, INVALID_SATISFY_REQUIREMENT_USAGE_REFERENCE)
 	}
 	
 	@Check

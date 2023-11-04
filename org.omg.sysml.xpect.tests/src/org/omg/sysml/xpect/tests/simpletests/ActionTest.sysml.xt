@@ -11,12 +11,21 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/Clocks.kerml"}
+		File {from ="/library.kernel/Observation.kerml"}
 		File {from ="/library.kernel/Triggers.kerml"}
 		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.systems/Attributes.sysml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+		File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
+		File {from ="/library.domain/Quantities and Units/SI.sysml"}
+		File {from ="/library.domain/Quantities and Units/Time.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -31,12 +40,21 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/Clocks.kerml"}
+				File {from ="/library.kernel/Observation.kerml"}
 				File {from ="/library.kernel/Triggers.kerml"}
 				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.systems/Attributes.sysml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+				File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
+				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/Time.sysml"}
 			}
 		}
 	}
@@ -60,8 +78,8 @@ package ActionTest {
 		first start;		
 		then merge m;
 		then accept S;
-		then accept sig after 10; 
-		then accept at 0;
+	    then accept sig after 10[SI::s]; 
+		then accept at Time::Iso8601DateTime("2022-01-30T01:00:00Z");
 		
 		then send S() to b;
 		then accept when b.f;
@@ -72,6 +90,7 @@ package ActionTest {
 	
 	action b {
 		attribute f : ScalarValues::Boolean;
+		ref action a : A;
 	}
 	
 }

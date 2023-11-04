@@ -568,35 +568,14 @@ fragment UsageBody returns SysML::Usage :
 
 fragment ValuePart returns SysML::Feature :
 	  ownedRelationship += FeatureValue
-	| ownedRelationship += FeatureValueExpression
-	  ownedRelationship += EmptyAssignmentActionMember
 ;
 
 FeatureValue returns SysML::FeatureValue :
-	( '=' | isDefault ?= 'default' ( '=' | isInitial ?= ':=' )? )
-	ownedRelatedElement += OwnedExpression 
-;
-
-FeatureValueExpression returns SysML::FeatureValue :
-	isInitial ?= ':='
-	ownedRelatedElement += OwnedExpression 
-;
-
-EmptyAssignmentActionMember returns SysML::OwningMembership :
-	ownedRelatedElement += EmptyAssignmentAction 
-;
-
-EmptyAssignmentAction returns SysML::AssignmentActionUsage :
-	ownedRelationship += EmptyTargetMember
-	ownedRelationship += EmptyParameterMember
-;
-
-EmptyTargetMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyTargetParameter 
-;
-
-EmptyTargetParameter returns SysML::ReferenceUsage :
-	ownedRelationship += TargetFeatureMember
+	( '=' 
+	| isInitial ?= ':='
+	| isDefault ?= 'default' ( '=' | isInitial ?= ':=' )?
+	)
+	ownedRelatedElement += OwnedExpression
 ;
 
 /* Reference Usages */
@@ -1440,9 +1419,9 @@ TriggerFeatureValue returns SysML::FeatureValue :
 
 TriggerExpression returns SysML::TriggerInvocationExpression :
 	  kind = TimeTriggerKind
-	  ownedRelationship += OwnedExpressionMember
+	  ownedRelationship += ArgumentMember
 	| kind = ChangeTriggerKind
-	  ownedRelationship += ChangeExpressionMember
+	  ownedRelationship += ArgumentExpressionMember
 ;
 
 TimeTriggerKind returns SysML::TriggerKind :
@@ -1453,18 +1432,17 @@ ChangeTriggerKind returns SysML::TriggerKind :
 	'when'
 ;
 
-ChangeExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ChangeExpression 
+ArgumentExpressionMember returns SysML::ParameterMembership :
+    ownedRelatedElement += ArgumentExpression
 ;
 
-ChangeExpression returns SysML::Expression :
-	ownedRelationship += ChangeResultExpressionMember
+ArgumentExpression returns SysML::Feature :
+    ownedRelationship += ArgumentExpressionValue
 ;
 
-ChangeResultExpressionMember returns SysML::ResultExpressionMembership :
-	ownedRelatedElement += OwnedExpression 
+ArgumentExpressionValue returns SysML::FeatureValue :
+    ownedRelatedElement += OwnedExpressionReference
 ;
-
 
 SendNode returns SysML::SendActionUsage :
 	OccurrenceUsagePrefix SendNodeDeclaration ActionBody

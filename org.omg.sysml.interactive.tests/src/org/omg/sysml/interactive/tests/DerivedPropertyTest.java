@@ -54,7 +54,7 @@ public class DerivedPropertyTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testPayloadArgument() throws Exception {
-		List<Element> members = process("action { accept after 5; }");
+		List<Element> members = process("action { accept after 5[SI::s]; }");
 		assertFalse("No members", members.isEmpty());
 		Element member = members.get(0);
 		assertTrue("Not ActionUsage", member instanceof ActionUsage);

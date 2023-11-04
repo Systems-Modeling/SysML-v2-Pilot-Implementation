@@ -337,6 +337,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CALCULATION_USAGE_TYPE = "validateCalculationUsageType_"
 	public static val INVALID_CALCULATION_USAGE_TYPE_MSG = "A calculation must be typed by one calculation definition."
 	
+	public static val INVALID_ASSERT_CONSTRAINT_USAGE_REFERENCE = "validateAssertConstraintUsageReference"
+	public static val INVALID_ASSERT_CONSTRAINT_USAGE_REFERENCE_MSG = "Must reference a constraint."
+		
 	public static val INVALID_CONSTRAINT_USAGE_TYPE = "Invalid Constraint Usage - invalid type"
 	public static val INVALID_CONSTRAINT_USAGE_TYPE_MSG = "A constraint must be typed by one constraint definition."
 	
@@ -1008,7 +1011,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkAssertConstraintUsage(AssertConstraintUsage usg) {
-		// TODO: Add/check validateAssertConstraintUsageReference
+		// validateAssertConstraintUsageReference
+		checkReferenceType(usg, ConstraintUsage, INVALID_ASSERT_CONSTRAINT_USAGE_REFERENCE_MSG, INVALID_ASSERT_CONSTRAINT_USAGE_REFERENCE)
 	}
 
 	@Check 
@@ -1054,7 +1058,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkRequirementDefinition(RequirementDefinition defn) {
 		// validateRequirementDefinitionOnlyOneSubject
-		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateRequirementDefinitionSubjectParameterPosition
 		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
@@ -1103,11 +1107,11 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkCaseDefinition(CaseDefinition defn) {
-		// validateCaseDefinitionOnlyOneObjective is checked in checkObjectiveMembership
-		checkAtMostOneFeature(defn, ObjectiveMembership, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE_MSG, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE)
+		// validateCaseDefinitionOnlyOneObjective
+		checkAtMostOneFeature(defn, ObjectiveMembership, INVALID_CASE_DEFINITION_ONLY_ONE_OBJECTIVE_MSG, INVALID_CASE_DEFINITION_ONLY_ONE_OBJECTIVE)
 		
-		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
-		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		// validateCaseDefinitionOnlyOneSubject
+		checkAtMostOneFeature(defn, SubjectMembership, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateCaseDefinitionSubjectParameterPosition
 		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
@@ -1119,11 +1123,11 @@ class SysMLValidator extends KerMLValidator {
 		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage || usg instanceof UseCaseUsage))
 			checkOneType(usg, CaseDefinition, INVALID_CASE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, INVALID_CASE_USAGE_TYPE)
 
-		// validateCaseDefinitionOnlyOneObjective is checked in checkObjectiveMembership
+		// validateCaseDefinitionOnlyOneObjective
 		checkAtMostOneFeature(usg, ObjectiveMembership, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE_MSG, INVALID_CASE_USAGE_ONLY_ONE_OBJECTIVE)
 		
-		// validateCaseDefinitionOnlyOneSubject is checked in checkSubjectMembership
-		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
+		// validateCaseDefinitionOnlyOneSubject
+		checkAtMostOneFeature(usg, SubjectMembership, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT)
 		
 		// validateCaseUsageSubjectParameterPosition
 		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
@@ -1171,7 +1175,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkIncludeUseCaseUsage(IncludeUseCaseUsage usg) {
-		// TODO: Add validateIncludeUseCaseUsageReference
+		// validateIncludeUseCaseUsageReference
 		checkReferenceType(usg, UseCaseUsage, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE_MSG, INVALID_INCLUDE_USE_CASE_USAGE_REFERENCE)
 	}
 	

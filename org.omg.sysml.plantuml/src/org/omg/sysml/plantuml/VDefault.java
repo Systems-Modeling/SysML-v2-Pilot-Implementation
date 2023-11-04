@@ -55,7 +55,6 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.TypeUtil;
 
 public class VDefault extends VTraverser {
     protected void addConnector(Element rel, Connector c, String desc) {

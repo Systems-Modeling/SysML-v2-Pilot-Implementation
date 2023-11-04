@@ -130,10 +130,7 @@ public abstract class VTraverser extends Visitor {
         Set<Element> covered = new HashSet<Element>();
         traverseInternal(ns, covered);
         if (!noInherit) {
-            // We need to reenter ns because of inheriting() 
-            vpath.leave(ns);
-            inheriting();
-            vpath.enter(ns);
+            inheriting(ns);
             if (showInherited()) {
             	if (ns instanceof Type) {
             		traverseInherited((Type) ns, covered);

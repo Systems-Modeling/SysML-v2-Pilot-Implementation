@@ -610,8 +610,12 @@ public class SysML2PlantUMLText {
         return namespaces.get(size - 1);
     }
 
-    void inheriting() {
+    void inheriting(Namespace ns) {
+        // We need to reenter ns because ns inherits the rest of memberships.
+        VPath vp = getVPath();
+        vp.leave(ns);
         inheritingIdices.add(namespaces.size() - 1);
+        vp.enter(ns);
     }
 
     void popNamespace() {

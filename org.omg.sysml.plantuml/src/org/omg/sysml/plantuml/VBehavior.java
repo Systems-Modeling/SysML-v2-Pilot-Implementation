@@ -104,20 +104,25 @@ public abstract class VBehavior extends VDefault {
         return nullizeDoneOrExitAction((ActionUsage) e);
     }
 
-    @Override
-    public String caseSuccession(Succession su) {
+    private void addSuccession(Element rel, Succession su, String desc) {
         for (Element src: su.getSource()) {
             src = nullizeStartOrEntryAction(src);
             for (Element dest: su.getTarget()) {
                 dest = nullizeDoneOrExitAction(dest);
                 if ((src == null) && (dest == null)) continue;
                 if ((src == null) || (dest == null)) {
-                    addEntryExitTransitions(new PRelation(makeInheritKey(su), src, dest, su, null));
+                    addEntryExitTransitions(new PRelation(makeInheritKey(su), src, dest, su, desc));
                 } else {
-                    addPRelation(src, dest, su);
+                    //addPRelation(src, dest, su);
+                	addConnector(rel, su, desc);
                 }
             }
         }
+    }
+
+    @Override
+    public String caseSuccession(Succession su) {
+        addSuccession(su, su, null); // TODO;
         return "";
     }
 
@@ -128,7 +133,7 @@ public abstract class VBehavior extends VDefault {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 Expression e = fv.getValue();
-                Element r = resolveReference(e);
+                Element r = VPath.getRefTarget(e);
                 if (r != null) {
                     addPRelation(au, r, au, send ? "<<send to>>" : "<<receive for>>");
                     continue;
@@ -280,21 +285,11 @@ public abstract class VBehavior extends VDefault {
 
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
-        String description = convertToDescription(tu);
-        ActionUsage src = tu.getSource();
-        ActionUsage tgt = tu.getTarget();
-        src = nullizeStartOrEntryAction(src);
-        if (tgt == null) {
-            if (src == null) return "";
-        } else {
-            tgt = nullizeDoneOrExitAction(tgt);
-        }
-        if ((src == null) || (tgt == null)) {
-            addEntryExitTransitions(new PRelation(makeInheritKey(tu), src, tgt, tu, description));
-        } else {
-            addPRelation(src, tgt, tu, description);
-        }
+        String description = convertToDescription(tu); //TODO
+        Succession su = tu.getSuccession();
+        addSuccession(tu, su, description);
         return "";
+        
     }
 
     VBehavior(Visitor v) {

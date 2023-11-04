@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -46,11 +46,24 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
-import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public class VPath extends VTraverser {
+    public static Expression getRefTarget(Expression e) {
+        if ((e instanceof FeatureChainExpression)
+            || (e instanceof FeatureReferenceExpression)) return e;
+        return null;
+    }
+
+    static Feature getRelatedFeatureOfEnd(Feature end) {
+        ElementUtil.transform(end);
+        return FeatureUtil.getReferencedFeatureOf(end);
+	}
+    
     private boolean initialized;
 
 	// PC (PathContext) management. 
@@ -188,10 +201,12 @@ public class VPath extends VTraverser {
             }
         }
 
+        /*
         private PCFeatureChainExpression(PCFeatureChainExpression prev, FeatureChainExpression fce) {
             super(prev);
             this.fce = fce;
         }
+        */
 
         public PCFeatureChainExpression(FeatureChainExpression fce) {
             super(fce);
@@ -217,8 +232,8 @@ public class VPath extends VTraverser {
             this.f = f;
         }
         
-        public PCFeature(Subsetting ss, Feature f) {
-        	super(ss);
+        public PCFeature(Feature end, Feature f) {
+        	super(end);
         	this.f = f;
         }
     }
@@ -254,8 +269,8 @@ public class VPath extends VTraverser {
             this.index = prev.index + 1;
         }
 
-        public PCFeatureChain(Feature f) {
-            super(f);
+        public PCFeatureChain(Feature end, Feature f) {
+            super(end);
             this.fcs = f.getOwnedFeatureChaining();
             this.index = 0;
         }
@@ -314,7 +329,7 @@ public class VPath extends VTraverser {
     }
     
     public RefPC makeRefPCItemFlowEnd(ItemFlowEnd ife) {
-        PC pc = makeSubsettedFeaturePC(ife);
+        PC pc = makeFeaturePC(ife);
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
@@ -457,17 +472,15 @@ public class VPath extends VTraverser {
 
     private List<RefPC> current = new ArrayList<RefPC>();
 
-    private PC makeSubsettedFeaturePC(Feature f) {
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            Feature sf = ss.getSubsettedFeature();
-            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
-            if (fcs.isEmpty()) {
-                return new PCFeature(ss, sf);
-            } else {
-                return new PCFeatureChain(sf);
-            }
+    private PC makeFeaturePC(Feature end) {
+        Feature sf = getRelatedFeatureOfEnd(end);
+        if (sf == null) return null;
+        List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
+        if (fcs.isEmpty()) {
+            return new PCFeature(end, sf);
+        } else {
+            return new PCFeatureChain(end, sf);
         }
-        return null;
     }
 
     private RefPC makeRefPC(Feature f, PC pc) {
@@ -481,14 +494,11 @@ public class VPath extends VTraverser {
     }
 
     private String addContext(Feature f) {
-        PC pc;
-        if (f.isEnd()) {
-            pc = makeSubsettedFeaturePC(f);
-        } else {
-            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
-            if (fcs.isEmpty()) return null;
-            pc = new PCFeatureChain(f);
+        if (f instanceof ItemFlowEnd) {
+            return addContext((ItemFlowEnd) f);
         }
+        PC pc = makeFeaturePC(f);
+        if (pc == null) return null;
         RefPC rpc = makeRefPC(f, pc);
         if (rpc == null) {
             return null;
@@ -508,6 +518,16 @@ public class VPath extends VTraverser {
     private String addContext(FeatureChainExpression fce) {
         InheritKey ik = makeInheritKey(fce);
         PC pc = new PCFeatureChainExpression(fce);
+        RefPC rpc = new RefPC(pc, ik);
+        addRefPC(rpc);
+        return "";
+    }
+
+    private String addContext(FeatureReferenceExpression fre) {
+        Feature f = fre.getReferent();
+        if (f == null) return "";
+        InheritKey ik = makeInheritKey(fre);
+        PC pc = new PCFeature(fre, f);
         RefPC rpc = new RefPC(pc, ik);
         addRefPC(rpc);
         return "";
@@ -588,13 +608,13 @@ public class VPath extends VTraverser {
     }
 
     @Override
-    public String caseFeature(Feature f) {
-        return addContext(f);
+    public String caseFeatureChainExpression(FeatureChainExpression fce) {
+        return addContext(fce);
     }
 
     @Override
-    public String caseFeatureChainExpression(FeatureChainExpression fce) {
-        return addContext(fce);
+    public String caseFeatureReferenceExpression(FeatureReferenceExpression fre) {
+        return addContext(fre);
     }
 
     @Override
@@ -606,8 +626,27 @@ public class VPath extends VTraverser {
     public String caseConnector(Connector c) {
         /* VTraverser.traverse() do not duplicatedly traverse features already visited.
            Thus VPath visits ends without counting on traverse(). */
-        for (Feature f: TypeUtil.getOwnedEndFeaturesOf(c)) {
-            visit(f);
+        for (Feature f: c.getConnectorEnd()) {
+            addContext(f);
+            // visit(f);
+        }
+        return "";
+    }
+
+    private String addContextForTransitionUsage(Feature su, Feature end) {
+        PC pc = makeFeaturePC(end);
+        if (pc == null) return null;
+        InheritKey ik = makeInheritKey(su);
+        RefPC rpc = new RefPC(pc, ik);
+        addRefPC(rpc);
+        return "";
+    }
+
+    @Override
+    public String caseTransitionUsage(TransitionUsage tu) {
+        Succession su = tu.getSuccession();
+        for (Feature end: su.getConnectorEnd()) {
+            addContextForTransitionUsage(tu, end);
         }
         return "";
     }

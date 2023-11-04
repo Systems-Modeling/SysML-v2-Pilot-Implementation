@@ -360,7 +360,7 @@ public class VCompartment extends VStructure {
     }
 
     private void addEnd(Feature f) {
-        Element e = getEnd(f);
+        Element e = VPath.getRelatedFeatureOfEnd(f);
         if (e == null) return;
         // We should construct proper text from end but for the time being, we use just the text as it is.
         /*

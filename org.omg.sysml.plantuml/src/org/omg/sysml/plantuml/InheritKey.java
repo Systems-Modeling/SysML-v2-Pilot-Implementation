@@ -41,7 +41,8 @@ import org.omg.sysml.lang.sysml.Type;
  * or "types" owning features referring to others. */
 class InheritKey {
     public final Type[] keys;
-    /* If isDirect, the last key directly owns the target feature. */
+    /* If isDirect, the last key directly owns the target feature.
+       Otherwise, the last key is denoted as ^ow. */
     private final boolean isDirect;
 
     private static boolean containsWithRedefined(List<Feature> fs, Feature ft) {
@@ -149,7 +150,7 @@ class InheritKey {
             sb.append(", ");
             sb.append(keys[i].getDeclaredName());
         }
-        sb.append(']');
+        sb.append(isDirect ? ']' : ')');
         return sb.toString();
     }
     
@@ -161,7 +162,7 @@ class InheritKey {
                 // case of [t0, t1, ..., t_idx2 == ^ow]
                 return new InheritKey(ctx, inheritIdices, i);
             } else if (idx2 < idx) {
-                // case of [t0, t1, ..., t_idx2, ^ow]
+                // case of [t0, t1, ..., t_idx2, ^ow)
                 Type typ = (Type) ctx.get(idx);
                 return new InheritKey(ctx, inheritIdices, i, typ);
             }
@@ -217,15 +218,49 @@ class InheritKey {
             int iSize = inheritIdices.size();
             int kLen = ik.keys.length;
             int diff = kLen - iSize;
+
+            if (!ik.isDirect && diff == 1) {
+                // if (diff > 1) return false;
+                for (int i = 0; i < iSize; i++) {
+                    int idx = inheritIdices.get(i);
+                    Namespace ns = ctx.get(idx);
+                    if (!matchElement(ns, ik.keys[i])) return false;
+                }
+                return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
+            }
+
+            if (diff != 0) return false;
+            // if (diff > 1) return false;
+            for (int i = 0; i < iSize; i++) {
+                int idx = inheritIdices.get(i);
+                Namespace ns = ctx.get(idx);
+                if (!matchElement(ns, ik.keys[i])) return false;
+            }
+            return true;
+
+            /*            
+            int diff = kLen - iSize;
             if (diff < 1) return false;
             for (int i = 0; i < iSize; i++) {
                 int idx = inheritIdices.get(i);
                 Namespace ns = ctx.get(idx);
                 if (!matchElement(ns, ik.keys[i])) return false;
             }
+
+            if (isDirect
             if (diff == 0) return true;
+
+            if (matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1])) {
+                return ik.isDirect;
+            }
+            return false;
+            */
+
+            /*
+            if (!ik.isDirect) return false;
             // In the case that ik is in the form of [..., ^ow]
             return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
+            */
         }
     }
 

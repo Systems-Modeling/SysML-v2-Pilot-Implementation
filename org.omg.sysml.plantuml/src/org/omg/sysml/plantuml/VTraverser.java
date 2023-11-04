@@ -109,7 +109,9 @@ public abstract class VTraverser extends Visitor {
             if (!showLib() && isModelLibrary(e)) continue;
             if (markRedefining(e, covered)) continue;
             setInherited(true);
+            pushVisited();
             visit(ms);
+            popVisited();
         }
     }
 
@@ -128,9 +130,14 @@ public abstract class VTraverser extends Visitor {
         Set<Element> covered = new HashSet<Element>();
         traverseInternal(ns, covered);
         if (!noInherit) {
+            // We need to reenter ns because of inheriting() 
+            vpath.leave(ns);
             inheriting();
-            if (showInherited() && (ns instanceof Type)) {
-                traverseInherited((Type) ns, covered);
+            vpath.enter(ns);
+            if (showInherited()) {
+            	if (ns instanceof Type) {
+            		traverseInherited((Type) ns, covered);
+            	}
             } else {
                 traverseRest(vpath);
             }

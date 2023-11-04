@@ -219,48 +219,18 @@ class InheritKey {
             int kLen = ik.keys.length;
             int diff = kLen - iSize;
 
-            if (!ik.isDirect && diff == 1) {
-                // if (diff > 1) return false;
-                for (int i = 0; i < iSize; i++) {
-                    int idx = inheritIdices.get(i);
-                    Namespace ns = ctx.get(idx);
-                    if (!matchElement(ns, ik.keys[i])) return false;
-                }
-                return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
-            }
-
-            if (diff != 0) return false;
-            // if (diff > 1) return false;
+            if (!(diff == 0 || diff == 1)) return false;
             for (int i = 0; i < iSize; i++) {
                 int idx = inheritIdices.get(i);
                 Namespace ns = ctx.get(idx);
                 if (!matchElement(ns, ik.keys[i])) return false;
             }
-            return true;
-
-            /*            
-            int diff = kLen - iSize;
-            if (diff < 1) return false;
-            for (int i = 0; i < iSize; i++) {
-                int idx = inheritIdices.get(i);
-                Namespace ns = ctx.get(idx);
-                if (!matchElement(ns, ik.keys[i])) return false;
-            }
-
-            if (isDirect
             if (diff == 0) return true;
 
-            if (matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1])) {
-                return ik.isDirect;
-            }
-            return false;
-            */
-
-            /*
-            if (!ik.isDirect) return false;
-            // In the case that ik is in the form of [..., ^ow]
+            // diff must be 1
+            if (ik.isDirect) return false;
+            // case ^ow)
             return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
-            */
         }
     }
 

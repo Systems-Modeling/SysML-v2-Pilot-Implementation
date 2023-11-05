@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -92,13 +93,17 @@ public class ConnectorUtil {
 	}
 
 	// Related Features
+
+    public static Feature getRelatedFeatureOfEnd(Feature end) {
+        ElementUtil.transform(end);
+        return FeatureUtil.getReferencedFeatureOf(end);
+	}
 	
 	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		for (Object end: connector.getConnectorEnd().toArray()) {
+		for (Feature end: connector.getConnectorEnd()) {
 			if (end != null) {
-				ElementUtil.transform((Feature)end);
-				Feature referencedFeature = FeatureUtil.getReferencedFeatureOf((Feature)end);
+				Feature referencedFeature = getRelatedFeatureOfEnd(end);
 				if (referencedFeature != null) {
 					relatedFeatures.add(referencedFeature);
 				}

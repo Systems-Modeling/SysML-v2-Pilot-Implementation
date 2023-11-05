@@ -49,8 +49,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ConnectorUtil;
 
 public class VPath extends VTraverser {
     public static Expression getRefTarget(Expression e) {
@@ -59,11 +58,6 @@ public class VPath extends VTraverser {
         return null;
     }
 
-    static Feature getRelatedFeatureOfEnd(Feature end) {
-        ElementUtil.transform(end);
-        return FeatureUtil.getReferencedFeatureOf(end);
-	}
-    
     private boolean initialized;
 
 	// PC (PathContext) management. 
@@ -457,7 +451,7 @@ public class VPath extends VTraverser {
     private List<RefPC> current = new ArrayList<RefPC>();
 
     private PC makeFeaturePC(Feature end) {
-        Feature sf = getRelatedFeatureOfEnd(end);
+        Feature sf = ConnectorUtil.getRelatedFeatureOfEnd(end);
         if (sf == null) return null;
         List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
         if (fcs.isEmpty()) {

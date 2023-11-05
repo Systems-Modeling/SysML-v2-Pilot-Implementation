@@ -26,6 +26,7 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.ConnectorUtil;
 
 class PRelation {
     public final InheritKey ik;
@@ -73,7 +74,7 @@ class PRelation {
                 if (e instanceof Feature) {
                 	Feature f = (Feature) e;
                 	if (!f.isEnd()) return null;
-                    e = VPath.getRelatedFeatureOfEnd(f);
+                    e = ConnectorUtil.getRelatedFeatureOfEnd(f);
                     if (e == null) return null;
                     if (!s2p.checkId(e)) return null;
                 } else {

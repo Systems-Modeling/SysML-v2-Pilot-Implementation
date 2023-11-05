@@ -68,6 +68,7 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class VCompartment extends VStructure {
@@ -360,7 +361,7 @@ public class VCompartment extends VStructure {
     }
 
     private void addEnd(Feature f) {
-        Element e = VPath.getRelatedFeatureOfEnd(f);
+        Element e = ConnectorUtil.getRelatedFeatureOfEnd(f);
         if (e == null) return;
         // We should construct proper text from end but for the time being, we use just the text as it is.
         /*

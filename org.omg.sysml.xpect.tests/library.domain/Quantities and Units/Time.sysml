@@ -22,7 +22,7 @@ standard library package Time {
     import ISQSpaceTime::time;
     
     readonly part universalClock : Clock[1] = Clocks::universalClock {
-   	 doc
+   	    doc
 	    /*
 	     * universalClock is a single Clock that can be used as a default universal time reference.
 	     */
@@ -236,9 +236,8 @@ standard library package Time {
     	attribute second: Natural;
     	attribute microsecond: Natural;
     	attribute hourOffset: Integer;
-    	attribute minuteOffest: Integer;
-    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
-    	attribute :>> mRef = UTC;
+    	attribute minuteOffset: Integer;
+    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffset);
     	private calc getElapsedUtcTime {
     		in year: Integer; 
     		in month: Natural; 

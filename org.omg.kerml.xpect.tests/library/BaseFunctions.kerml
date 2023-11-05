@@ -32,7 +32,7 @@ standard library package BaseFunctions {
 	abstract function '['{ in x: Anything[0..*] nonunique; in y: Anything[0..*] nonunique; 
 		return : Anything[0..*] nonunique;
 	}
-	abstract function '#'{ in seq: Anything[0..*] ordered nonunique; in index: Anything[0..*] ordered nonunique; 
+	abstract function '#'{ in seq: Anything[0..*] ordered nonunique; in index: Positive[1..*] ordered nonunique; 
 		return : Anything[0..1];
 	}
 	abstract function ','{ in seq1: Anything[0..*] ordered nonunique; seq2: Anything[0..*] ordered nonunique; 

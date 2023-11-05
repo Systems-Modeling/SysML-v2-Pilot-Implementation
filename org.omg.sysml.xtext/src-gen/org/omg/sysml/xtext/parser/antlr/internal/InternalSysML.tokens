@@ -18,7 +18,7 @@
 ':'=51
 '::'=43
 '::>'=55
-':='=66
+':='=65
 ':>'=47
 ':>>'=33
 ';'=15
@@ -66,7 +66,7 @@
 'constraint'=122
 'decide'=110
 'def'=28
-'default'=65
+'default'=66
 'defined'=52
 'dependency'=18
 'derived'=62
@@ -79,7 +79,7 @@
 'event'=71
 'exhibit'=118
 'exit'=117
-'expose'=139
+'expose'=140
 'false'=168
 'filter'=38
 'first'=80
@@ -129,7 +129,7 @@
 'ref'=32
 'references'=56
 'render'=138
-'rendering'=141
+'rendering'=139
 'rep'=25
 'require'=177
 'requirement'=125
@@ -157,7 +157,7 @@
 'verify'=179
 'via'=95
 'view'=137
-'viewpoint'=140
+'viewpoint'=141
 'when'=98
 'while'=105
 'xor'=147

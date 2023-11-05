@@ -170,8 +170,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.getCurrentNamespace();
     }
 
-    protected void inheriting() {
-        s2p.inheriting();
+    protected void inheriting(Namespace ns) {
+        s2p.inheriting(ns);
     }
 
     protected void popNamespace() {

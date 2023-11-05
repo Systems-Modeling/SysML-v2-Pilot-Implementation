@@ -48,7 +48,6 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -58,7 +57,6 @@ import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
@@ -483,28 +481,6 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 
-	protected void addFeatureWritePerformance(Expression value) {
-		// Note: A Membership with an empty Step is assumed to be added in the grammar, 
-		// immediately after the FeatureValue.
-		Feature target = getTarget();
-		List<Element> ownedMembers = target.getOwnedMember();
-		int i = ownedMembers.indexOf(value) + 1;
-		if (i < ownedMembers.size()) {
-			Element featureWrite = ownedMembers.get(i);
-			if (featureWrite instanceof Step) {
-				TypeUtil.addDefaultGeneralTypeTo((Step)featureWrite, SysMLPackage.eINSTANCE.getFeatureTyping(), 
-						ImplicitGeneralizationMap.getDefaultSupertypeFor(featureWrite.getClass(), "featureWrite"));
-				EList<Type> featuringTypes = target.getFeaturingType();
-				FeatureUtil.addFeaturingTypesTo((Step)featureWrite, featuringTypes);
-				List<Feature> parameters = TypeUtil.getOwnedParametersOf((Step)featureWrite);
-				if (parameters.size() > 1) {
-					addBindingConnector(featuringTypes, value.getResult(), parameters.get(1));
-				}
-				addFeatureWriteTypes(parameters, target);
-			}
-		}
-	}
-		
 	protected void computeValueConnector() {
 		Feature target = getTarget();
 		FeatureValue valuation = FeatureUtil.getValuationFor(target);
@@ -516,11 +492,15 @@ public class FeatureAdapter extends TypeAdapter {
 				if (target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
 					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 				}
+				List<Type> featuringTypes;
 				if (valuation.isInitial()) {
-					addFeatureWritePerformance(value);
+					Feature that = (Feature)getLibraryType("Base::things::that");
+					Feature startShot = (Feature)getLibraryType("Occurrences::Occurrence::startShot");
+					featuringTypes = Collections.singletonList(FeatureUtil.chainFeatures(that, startShot));
 				} else {
-					addBindingConnector(target.getFeaturingType(), result, target);
+					featuringTypes = target.getFeaturingType();
 				}
+				addBindingConnector(featuringTypes, result, target);
 			}
 		}
 	}

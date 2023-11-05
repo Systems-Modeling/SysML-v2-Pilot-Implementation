@@ -64,7 +64,7 @@ package CalculationExample {
 	
 	calc def MassSum {
 		in partMasses: Real[0..*];
-		return totalMass : Real = sum(partMasses);
+		return totalMass : Real default sum(partMasses);
 	}
 	
 	calc ms: MassSum {

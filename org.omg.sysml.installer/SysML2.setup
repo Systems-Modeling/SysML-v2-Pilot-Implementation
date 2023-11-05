@@ -44,7 +44,7 @@
     <repository
         url="http://download.eclipse.org/releases/2022-09/"/>
     <repository
-        url="https://ci.eclipse.org/xpect/job/Xpect/job/master/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository"/>
+        url="https://ci.eclipse.org/xpect/job/Xpect/job/version_0_2_0_maintenance/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository"/>
     <repository
         url="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>

@@ -18,7 +18,7 @@
 ':'=71
 '::'=32
 '::>'=74
-':='=85
+':='=84
 ':>'=42
 ':>>'=76
 ';'=15
@@ -57,7 +57,7 @@
 'conjugation'=53
 'connector'=93
 'datatype'=89
-'default'=84
+'default'=85
 'dependency'=18
 'derived'=61
 'differences'=49

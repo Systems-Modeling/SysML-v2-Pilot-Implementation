@@ -101,9 +101,9 @@ public class ConnectorUtil {
 	
 	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		for (Feature end: connector.getConnectorEnd()) {
+        for (Object end: connector.getConnectorEnd().toArray()) {
 			if (end != null) {
-				Feature referencedFeature = getRelatedFeatureOfEnd(end);
+				Feature referencedFeature = getRelatedFeatureOfEnd((Feature) end);
 				if (referencedFeature != null) {
 					relatedFeatures.add(referencedFeature);
 				}

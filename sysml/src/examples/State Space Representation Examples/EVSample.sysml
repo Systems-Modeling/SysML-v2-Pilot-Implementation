@@ -99,8 +99,8 @@ package EVSample {
     }
 
     analysis def RangeAnalysis :> VehicleAnalysis {
-    	return simulatedRange : LengthValue;
-    	
+        return simulatedRange : LengthValue;
+        
         requirement rangeRequirement :>> vehicleRequirement : RangeRequirement;
 
         objective rangeAnalysisObjective {
@@ -122,8 +122,8 @@ package EVSample {
     }
 
     analysis def EfficiencyAnalysis :> VehicleAnalysis {
-    	return simulatedEfficiency;
-    	
+        return simulatedEfficiency;
+        
         requirement efficiencyRequirement :>> vehicleRequirement : EfficiencyRequirement;
 
         objective efficiencyAnalysisObjective {
@@ -140,8 +140,8 @@ package EVSample {
     }
 
     analysis def MaxSpeedAnalysis :> VehicleAnalysis {
-    	return simulatedMaxSpeed;
-    	
+        return simulatedMaxSpeed;
+        
         requirement maxSpeedRequirement :>> vehicleRequirement : MaxSpeedRequirement;
 
         objective maxSpeedAnalysisObjective {
@@ -258,6 +258,7 @@ package EVSample {
 
         analysis maxSpeedAnalysisSmall :> smallEVAnalysis : MaxSpeedAnalysis {
             requirement :>> maxSpeedRequirement = maxSpeedRequirementSmall;
+            subject subj;
             out voltage :> ISQ::electricPotential = vehicle.battery.batteryBehavior.output.voltage;
             return simulatedMaxSpeed = vehicle.vehicleBehavior.output.velocity;
         }
@@ -275,7 +276,7 @@ package EVSample {
         requirement largeEVRequirement : VehicleRequirement {
             doc /* The large EVs must be ligher than 900[kg] */
             in :>> vehicle = vehicle_large;
-            /*  To comform with the regulation and the battery mass will impact it. */
+            /*  To conform with the regulation and the battery mass will impact it. */
             assume constraint { vehicle.mass < 1200[kg] }
         }
 
@@ -312,6 +313,7 @@ package EVSample {
 
         analysis maxSpeedAnalysisLarge :> largeEVAnalysis : MaxSpeedAnalysis {
             requirement :>> maxSpeedRequirement = maxSpeedRequirementLarge;
+            subject subj;
             out voltage = vehicle.battery.batteryBehavior.output.voltage;
             return simulatedMaxSpeed = vehicle.vehicleBehavior.output.velocity;
         }

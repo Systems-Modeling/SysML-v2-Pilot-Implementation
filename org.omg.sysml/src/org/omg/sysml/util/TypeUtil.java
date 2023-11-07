@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -38,8 +38,6 @@ import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -49,11 +47,11 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -443,17 +441,36 @@ public class TypeUtil {
 	}
 
 	public static Usage basicGetSubjectParameterOf(Type type) {
-		ElementUtil.transform(type);
-		return (Usage)getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
+		// Note: Using getAllParametersOf avoids circularity in computing inherited FeatureMemberships.
+		return (Usage)getAllParametersOf(type).stream().
+				filter(UsageUtil::isSubjectParameter).
+				findFirst().orElse(null);
 	}
 	
 	// Objective requirements
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		ElementUtil.transform(type);
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
+		return getObjectiveRequirementOf(type, new HashSet<>());
+	}
+	
+	public static RequirementUsage getObjectiveRequirementOf(Type type, Set<Type> visited) {
+		visited.add(type);
+		RequirementUsage requirementUsage = getOwnedObjectiveRequirementOf(type);
+		if (requirementUsage == null) {
+			for (Type general: TypeUtil.getSupertypesOf(type)) {
+				if (general != null && !visited.contains(general)) {
+					requirementUsage = getObjectiveRequirementOf(general, visited);
+					if (requirementUsage != null) {
+						break;
+					}
+				}
+			}
+		}
+		return requirementUsage;
+	}
+	
+	private static RequirementUsage getOwnedObjectiveRequirementOf(Type type) {
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(type, ObjectiveMembership.class);
 	}
 	
 	// Associations

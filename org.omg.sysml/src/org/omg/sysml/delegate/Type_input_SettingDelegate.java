@@ -31,9 +31,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_input_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -58,8 +58,7 @@ public class Type_input_SettingDelegate extends BasicDerivedListSettingDelegate 
 		if (conjugator != null) {
 			Type_output_SettingDelegate.addOutputsOf(conjugator.getOriginalType(), inputs, visited);
 		} else {
-			type.getOwnedSpecialization().stream().
-				map(Specialization::getGeneral).
+			TypeUtil.getGeneralTypesOf(type).stream().
 				filter(g->!visited.contains(g)).
 				forEachOrdered(supertype->addInputsOf(supertype, inputs, visited));
 		}

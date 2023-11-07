@@ -64,16 +64,4 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 			   (owningType instanceof CaseDefinition || owningType instanceof CaseUsage);
 	}
 	
-	// Transformation
-
-	@Override
-	public void doTransform() {
-		CaseUsage usage = getTarget();
-		super.doTransform();
-		UsageAdapter.computeSubjectParameterOf(usage);
-		if (usage.getObjectiveRequirement() == null) {
-			CaseDefinitionAdapter.addObjectiveRequirementTo(usage);
-		}
-	}
-	
 }

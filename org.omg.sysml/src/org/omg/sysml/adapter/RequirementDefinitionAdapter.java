@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -39,14 +39,6 @@ public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 	@Override
 	public Usage getSubjectParameter() {
 		return getTarget().getSubjectParameter();
-	}
-	
-	// Transformation
-
-	@Override
-	public void doTransform() {
-		super.doTransform();
-		UsageAdapter.computeSubjectParameterOf(getTarget());
 	}
 	
 }

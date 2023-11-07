@@ -84,13 +84,4 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 			    super.getRelevantFeatures(type, skip);
 	}
 	
-	// Transformation
-
-	@Override
-	public void doTransform() {
-		RequirementUsage target = getTarget();
-		super.doTransform();
-		computeSubjectParameterOf(target);
-	}
-	
 }

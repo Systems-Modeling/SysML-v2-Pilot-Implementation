@@ -111,7 +111,7 @@ public class UsageUtil {
 
 	// Subjects
 
-	public static boolean isSubjectParameter(Usage usage) {
+	public static boolean isSubjectParameter(Feature usage) {
 		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
 	}
 
@@ -120,8 +120,12 @@ public class UsageUtil {
 	}
 
 	public static FeatureValue getSatisfyingFeatureValueOf(SatisfyRequirementUsage usage) {
-		Feature subject = usage.getSubjectParameter();
+		Feature subject = getOwnedSubjectParameterOf(usage);
 		return subject == null? null: FeatureUtil.getValuationFor(subject);
+	}
+	
+	public static Usage getOwnedSubjectParameterOf(Type type) {
+		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 	
 	// Actors

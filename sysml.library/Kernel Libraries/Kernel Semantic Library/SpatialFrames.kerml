@@ -10,12 +10,19 @@ standard library package SpatialFrames {
 	private import VectorValues::ThreeVectorValue;
 	private import VectorValues::CartesianThreeVectorValue;
 	private import VectorFunctions::isZeroVector;
+	private import Occurrences::Life;
 	private import Objects::Body;
 	private import Objects::Point;
 	private import ControlFunctions::forAll;
 	private import SequenceFunctions::includes;
 	
-	readonly feature defaultFrame : SpatialFrame[1] {
+	private struct DefaultFrameLife[1] :> SpatialFrame, Life {
+	    doc
+	    /*
+         * DefaultFrameLife is the classifier of the singleton Life of the defaultFrame.
+	     */
+	}
+	feature defaultFrame : DefaultFrameLife[1] {
 		doc
 		/*
 		 * defaultFrame is a fixed SpatialFrame used as a universal default.

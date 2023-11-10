@@ -219,8 +219,8 @@ public class VPath extends VTraverser {
             this.f = f;
         }
         
-        public PCFeature(Feature end, Feature f) {
-        	super(end);
+        public PCFeature(Element tgt, Feature f) {
+        	super(tgt);
         	this.f = f;
         }
     }
@@ -256,8 +256,8 @@ public class VPath extends VTraverser {
             this.index = prev.index + 1;
         }
 
-        public PCFeatureChain(Feature end, Feature f) {
-            super(end);
+        public PCFeatureChain(Element tgt, Feature f) {
+            super(tgt);
             this.fcs = f.getOwnedFeatureChaining();
             this.index = 0;
         }
@@ -450,15 +450,19 @@ public class VPath extends VTraverser {
 
     private List<RefPC> current = new ArrayList<RefPC>();
 
-    private PC makeFeaturePC(Feature end) {
+    private PC makeFeaturePC(Element tgt, Feature f) {
+        List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+        if (fcs.isEmpty()) {
+            return new PCFeature(tgt, f);
+        } else {
+            return new PCFeatureChain(tgt, f);
+        }
+    }
+
+    private PC makeEndFeaturePC(Feature end) {
         Feature sf = ConnectorUtil.getRelatedFeatureOfEnd(end);
         if (sf == null) return null;
-        List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
-        if (fcs.isEmpty()) {
-            return new PCFeature(end, sf);
-        } else {
-            return new PCFeatureChain(end, sf);
-        }
+        return makeFeaturePC(end, sf);
     }
 
     private RefPC createRefPC(InheritKey ik, PC pc) {
@@ -468,25 +472,32 @@ public class VPath extends VTraverser {
         return rpc;
     }
 
+    private String addContextForFeature(Feature f) {
+        PC pc = makeFeaturePC(f, f);
+        InheritKey ik = makeInheritKeyOfOwner(f);
+        if (createRefPC(ik, pc) == null) return null;
+        return "";
+    }
+
     private String addContextForEnd(Feature f) {
         if (f instanceof ItemFlowEnd) {
             return addContextForItemFlowEnd((ItemFlowEnd) f);
         }
-        PC pc = makeFeaturePC(f);
+        PC pc = makeEndFeaturePC(f);
         InheritKey ik = makeInheritKeyOfOwner(f);
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }
 
     private String addContextForTransitionUsageEnd(Feature tu, Feature end) {
-        PC pc = makeFeaturePC(end);
+        PC pc = makeEndFeaturePC(end);
         InheritKey ik = makeInheritKey(tu);
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }
 
     private String addContextForItemFlowEnd(ItemFlowEnd ife) {
-        PC pc = makeFeaturePC(ife);
+        PC pc = makeEndFeaturePC(ife);
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
@@ -578,6 +589,9 @@ public class VPath extends VTraverser {
             // Type s = sp.getSpecific();
             if (g == null) continue;
             if (checkVisited(g)) continue;
+            if (g instanceof Feature) {
+                addContextForFeature((Feature) g);
+            }
             visit(g);
             traverse(g);
             // visit(s); // Typically this will cause double traverse but checkVisit() stops it..

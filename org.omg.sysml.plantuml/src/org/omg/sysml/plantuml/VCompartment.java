@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
+import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -49,6 +50,8 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -68,6 +71,7 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class VCompartment extends VStructure {
@@ -208,6 +212,10 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Connector) {
                     // Do not show it
+                } else if (e instanceof Multiplicity) {
+                    // Do not show it
+                } else if (e instanceof MetadataUsage) {
+                    // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
                     CompartmentEntry fe = addTreeItem(m, parent);
@@ -239,6 +247,11 @@ public class VCompartment extends VStructure {
     @Override
     public String casePortUsage(PortUsage pu) {
         return tree(pu);
+    }
+
+    @Override
+    public String caseAttributeUsage(AttributeUsage au) {
+        return tree(au);
     }
 
     @Override
@@ -360,7 +373,7 @@ public class VCompartment extends VStructure {
     }
 
     private void addEnd(Feature f) {
-        Element e = VPath.getRelatedFeatureOfEnd(f);
+        Element e = ConnectorUtil.getRelatedFeatureOfEnd(f);
         if (e == null) return;
         // We should construct proper text from end but for the time being, we use just the text as it is.
         /*

@@ -183,7 +183,7 @@ public class SysML2PlantUMLStyle {
         add("SHOWLIB", "Show elements of the standard libraries", " ", "showLib", "true");
         add("SHOWINHERITED", "Show inherited members", " ", "showInherited", "true");
         add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
-        add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
+        add("COMPTREE", "Show nested attributes and ports in a compartment", " ", "compartmentTree", "true");
         add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
         add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
         add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");

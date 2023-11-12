@@ -119,51 +119,49 @@ public class VSwimlane extends VBehavior {
             this.id = id == null ? -1 : id;
         }
 
+        private Pair(Pair ancestor, Pair unresolved) {
+            this(ancestor.participant, unresolved.oc, false, unresolved.id);
+        }
     }
 
     private SetMultimap<Integer, Pair> pairMap = MultimapBuilder.hashKeys().hashSetValues().build();
 
-    private Pair createPair(Element e, Feature pin, Integer id) {
-        if (!(e instanceof OccurrenceUsage)) return null;
-        OccurrenceUsage oc = (OccurrenceUsage) e;
-        /*
-        Pair p = pairMap.get(id);
-        if (p != null) return p;
-        */
-
+    private PartUsage findParticipant(OccurrenceUsage oc) {
         for (Namespace ns = oc.getOwningNamespace(); ns != null; ns = ns.getOwningNamespace()) {
             if (ns instanceof PartUsage) {
-                Pair p = new Pair((PartUsage) ns, oc, isInherited(), id);
-                pairMap.put(id, p);
-                return p;
+                return (PartUsage) ns;
             }
             if (ns instanceof org.omg.sysml.lang.sysml.Package) {
             	return null;
             }
         }
-
         return null;
     }
 
     private final List<Pair> pairs = new ArrayList<>();
+    private final List<Pair> unresolvedPairs = new ArrayList<>();
 
-    private void addPair(OccurrenceUsage ou, Integer id) {
-        Pair p = createPair(ou, null, id);
-        if (p != null) {
+    private void addPair(PartUsage participant, OccurrenceUsage ou, boolean isInherited, Integer id) {
+        Pair p = new Pair(participant, ou, isInherited(), id);
+        if (participant != null) {
             pairs.add(p);
+        } else {
+            unresolvedPairs.add(p);
         }
     }
 
     private static class SActionSlot {
         public final ActionUsage au;
         public final Integer id;
+        public final SActionSlot parent;
         public Map<Integer, Feature> params = new HashMap<>();
 
         public void addParam(Feature f, Integer id) {
             params.put(id, f);
         }
 
-        SActionSlot(ActionUsage au, Integer id) {
+        SActionSlot(SActionSlot parent, ActionUsage au, Integer id) {
+            this.parent = parent;
             this.au = au;
             this.id = id;
         }
@@ -192,15 +190,21 @@ public class VSwimlane extends VBehavior {
     public String caseActionUsage(ActionUsage au) {
         if (au instanceof TransitionUsage) return null;
         if (au instanceof FlowConnectionUsage) return null;
+
         Integer id = newId(au);
+
         addSpecializations(id, au);
-        addPair(au, id);
-        SActionSlot sas = new SActionSlot(au, id);
+
+        PartUsage participant = findParticipant(au);
+        addPair(participant, au, isInherited(), id);
+
+        SActionSlot sas = new SActionSlot(this.currentSlot, au, id);
         sActionSlotMap.put(id, sas);
+        SActionSlot save = this.currentSlot;
         this.currentSlot = sas;
         //return null;
         traverse(au);
-        this.currentSlot = null;
+        this.currentSlot = save;
         return "";
     }
 
@@ -268,10 +272,41 @@ public class VSwimlane extends VBehavior {
         }
     }
 
-    private void buildEquiv() {
-        for (Pair p : pairs) {
+    private void buildEquiv(List<Pair> ps) {
+        for (Pair p : ps) {
             buildEquiv(p, p.oc, p.id);
         }
+    }
+
+    private void addUnresolvedPair(SActionSlot sas, Pair p, List<Pair> ret) {
+        if (sas == null) return;
+        int id = sas.id;
+        boolean flag = false;
+        for (PRelation pr: prRevMap.get(id)) {
+            if (!(pr.rel instanceof Specialization)) continue;
+            Integer sid = getDestId(pr);
+            if (sid == null) continue;
+            for (Pair ancestor: pairMap.get(sid)) {
+                Pair p2 = new Pair(ancestor, p);
+                ret.add(p2);
+                flag = true;
+            }
+        }
+        if (!flag) addUnresolvedPair(sas.parent, p, ret);
+    }
+
+    private void addUnresolvedPair(Pair p, List<Pair> ret) {
+        int id = p.id;
+        SActionSlot sas = sActionSlotMap.get(id);
+        addUnresolvedPair(sas.parent, p, ret);
+    }
+
+    private List<Pair> addUnresolvedPairs() {
+        List<Pair> ret = new ArrayList<>();
+        for (Pair p : unresolvedPairs) {
+            addUnresolvedPair(p, ret);
+        }
+        return ret;
     }
 
     private List<Pair> resolveAll() {
@@ -284,6 +319,7 @@ public class VSwimlane extends VBehavior {
             // TODO: It effectively removes loops without incoming edges, another alogrithm is needed.
             if (added.contains(p)) continue;
             ret.add(p);
+            added.add(p);
         }
         return ret;
     }
@@ -310,7 +346,9 @@ public class VSwimlane extends VBehavior {
                     if (did == null) continue;
                     for (Pair p2 : pairMap.get(did)) {
                         ret.add(new SLink(p1, p2, pr));
-                        added.add(p2);
+                        if (!(added.contains(p1))) {
+                        	added.add(p2);
+                        }
                     }
                 }
             }
@@ -406,12 +444,19 @@ public class VSwimlane extends VBehavior {
     }
 
     private SetMultimap<Integer, PRelation> prMap = MultimapBuilder.hashKeys().hashSetValues().build();
+    private SetMultimap<Integer, PRelation> prRevMap = MultimapBuilder.hashKeys().hashSetValues().build();
     
     @Override
     protected boolean outputPRelation(StringBuilder ss, PRelation pr) {
         Integer srcId = getSrcId(pr);
-        if (srcId == null) return false;
+        Integer destId = getDestId(pr);
+        if (srcId == null || destId == null) {
+            return false;
+        }
+
         prMap.put(srcId, pr);
+        prRevMap.put(destId, pr);
+
         return true;
     }
 
@@ -455,7 +500,10 @@ public class VSwimlane extends VBehavior {
     @Override
     protected String getString() {
         flushPRelations(true);
-        buildEquiv();
+        buildEquiv(pairs);
+        List<Pair> added = addUnresolvedPairs();
+        buildEquiv(added);
+        pairs.addAll(added);
         List<Pair> ps = resolveAll();
         StringBuilder sb = output(ps);
         return sb.toString();

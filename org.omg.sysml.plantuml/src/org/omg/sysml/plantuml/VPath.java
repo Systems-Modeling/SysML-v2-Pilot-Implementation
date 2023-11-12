@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 

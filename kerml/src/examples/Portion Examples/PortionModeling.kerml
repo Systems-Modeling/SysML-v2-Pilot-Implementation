@@ -79,13 +79,19 @@ package PortionModeling {
         
         // Note that t is not typed by C4
         portion t :> timeSlices {
-            portion :>> snapshots :> C4::snapshots {
+            
+            feature portionOf : C4 :>> portionOf;
+            
+            portion :>> snapshots :> portionOf.snapshots {
                 feature y;
             }
             portion :>> startShot :> snapshots {
                 :>> x = 1;
                 :>> y = 2;
             }
+            
+            portion :>> timeSlices :> portionOf.timeSlices;
+            
             // Here, t1 does not inherit from t at all, because they are
             // not meant to be alike. Their snapshots, however, are meant
             // to be alike, so t1's snapshots explicitly subset t's snapshots,
@@ -93,10 +99,10 @@ package PortionModeling {
             // another timeslice will contain snapshots that are also snapshots
             // of the other.
             portion t1 :> timeSlices {
-            	// This line could be implicitly added (would be better with 
-            	// "that", but that does not parse for some reason - probably
-            	// need to redefine)
-            	portion :>> snapshots :> t::snapshots;
+                feature portionOf : t :>> portionOf;
+                
+            	// This line could be implicitly added.
+            	portion :>> snapshots :> portionOf.snapshots;
             	// Note that startShot has to subset snapshots again, because
             	// the inherited subsetting refers to the snapshots of Occurrence,
             	// and not the redefined snapshots. Scoping currently does not
@@ -109,8 +115,8 @@ package PortionModeling {
                 
                 portion t2 :> timeSlices {
                 	// Yes, this works
-                	:>> that : t1;
-                	portion :>> snapshots :> that.snapshots;
+                	feature portionOf : t1 :>> portionOf;
+                	portion :>> snapshots :> portionOf.snapshots;
                 	portion :>> startShot :> snapshots {
 	                    :>> x = 3;
 	                    :>> y = 4;

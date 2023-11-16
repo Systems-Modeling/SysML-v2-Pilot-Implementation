@@ -335,6 +335,14 @@ standard library package Actions {
 		/*
 		 * assignmentActions is the base feature for all AssignmentActionsUsages.
 		 */
+		 
+        in :>> target : Occurrence[1] default that as Occurrence {
+            doc
+            /*
+             * The default target for assignmentActions is its featuring instance (if that is 
+             * an Occurrence).
+             */
+        }
 	}
 	
 	action def IfThenAction :> Action, IfThenPerformance {

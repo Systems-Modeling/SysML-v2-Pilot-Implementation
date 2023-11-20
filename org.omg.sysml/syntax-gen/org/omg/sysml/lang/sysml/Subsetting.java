@@ -38,6 +38,7 @@ package org.omg.sysml.lang.sysml;
  * subsettedFeaturingTypes->forAll(t |
  *     subsettingFeaturingTypes->isEmpty() and t = anythingType or
  *     subsettingFeaturingTypes->exists(specializes(t))
+ * subsettedFeature.isUnique implies subsettingFeature.isUnique
  * <!-- end-model-doc -->
  *
  * <p>

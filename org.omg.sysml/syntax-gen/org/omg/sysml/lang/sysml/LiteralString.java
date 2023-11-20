@@ -29,6 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>LiteralString</code> is a <code>LiteralExpression</code> that provides a <code><em>String</em></code> value as a result. Its <code>result</code> <code>parameter</code> must have the type <code><em>String</em></code>.</p>
  * 
+ * specializesFromLibrary('Performances::literalStringEvaluations')
  * <!-- end-model-doc -->
  *
  * <p>

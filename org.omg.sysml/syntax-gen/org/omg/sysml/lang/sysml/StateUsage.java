@@ -32,13 +32,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>StateUsage</code> is an <code>ActionUsage</code> that is nominally the <code>Usage</code> of a <code>StateDefinition</code>. However, other kinds of kernel <code>Behaviors</code> are also allowed as <code>types</code>, to permit use of <code>Behaviors</code from the Kernel Model Libraries.</p>
  * 
- * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by <code>StateSubactionMembership</code> <code>Relationships<code>, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the <code>StateUsage</code>.</p>
+ * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by <code>StateSubactionMembership</code> <code>Relationships</code>, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the <code>StateUsage</code>.</p>
  * 
- * let general : Sequence(Type) = ownedGeneralization.general in
- * general->selectByKind(StateDefinition)->
- *     forAll(g | g.isParallel = isParallel) and
- * general->selectByKind(StateUsage)->
- *     forAll(g | g.parallel = isParallel)
  * doAction =
  *     let doMemberships : Sequence(StateSubactionMembership) =
  *         ownedMembership->
@@ -108,7 +103,7 @@ public interface StateUsage extends ActionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Behaviors<code> that are the <code>types</code> of this <code>StateUsage<code>. Nominally, these would be <code>StateDefinitions</code>, but kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p>
+	 * <p>The <code>Behaviors</code> that are the <code>types</code> of this <code>StateUsage</code>. Nominally, these would be <code>StateDefinitions</code>, but kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateDefinition()

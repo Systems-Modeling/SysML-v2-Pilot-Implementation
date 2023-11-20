@@ -39,6 +39,10 @@ package org.omg.sysml.lang.sysml;
  *     if unownedFeatures->isEmpty() then null
  *     else unownedFeatures->first().oclAsType(Feature)
  *     endif
+ * argument(1) <> null and argument(2) <> null
+ * ownedMembership->exists(
+ *     not oclIsKindOf(OwningMembership) and 
+ *     memberElement.oclIsKindOf(Feature))
  * <!-- end-model-doc -->
  *
  * <p>

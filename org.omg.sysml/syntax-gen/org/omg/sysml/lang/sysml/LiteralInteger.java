@@ -29,6 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>LiteralInteger</code> is a <code>LiteralExpression</code> that provides an <code><em>Integer</em></code> value as a result. Its <code>result</code> <code>parameter</code> must have the type <code><em>Integer</em></code>.</p>
  * 
+ * specializesFromLibrary('Performances::literalIntegerEvaluations')
  * <!-- end-model-doc -->
  *
  * <p>

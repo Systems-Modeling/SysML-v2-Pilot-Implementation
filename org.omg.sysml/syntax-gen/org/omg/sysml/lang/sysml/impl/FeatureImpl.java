@@ -30,6 +30,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -1019,6 +1020,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public EList<Feature> typeFeatures() {
+		EList<Feature> subsettedFeatures = new BasicEList<>();
+		// NOTE: Only considers owned Subsettings.
+		FeatureUtil.getSubsettedNotRedefinedFeaturesOf(this).stream().
+			forEachOrdered(subsettedFeatures::add);
+		EList<Feature> chainingFeatures = getChainingFeature();
+		if (!chainingFeatures.isEmpty()) {
+			Feature lastChainingFeature = chainingFeatures.get(chainingFeatures.size() - 1);
+			if (!subsettedFeatures.contains(lastChainingFeature)) {
+				subsettedFeatures.add(lastChainingFeature);
+			}
+		}
+		return subsettedFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public Feature firstSubsettedFeature() {
 		return FeatureUtil.getSubsettedNotRedefinedFeaturesOf(this).stream().
 				findFirst().orElse(null);
@@ -1381,6 +1402,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return redefinesFromLibrary((String)arguments.get(0));
 			case SysMLPackage.FEATURE___SUBSETS_CHAIN__FEATURE_FEATURE:
 				return subsetsChain((Feature)arguments.get(0), (Feature)arguments.get(1));
+			case SysMLPackage.FEATURE___TYPE_FEATURES:
+				return typeFeatures();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

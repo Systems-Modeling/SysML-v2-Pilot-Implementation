@@ -13,7 +13,7 @@
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.featureName4" value=""/>
     <booleanAttribute key="org.eclipse.m2m.qvt.oml.interpreter.isInrementalUpdate" value="false"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.module" value="platform:/resource/org.omg.sysml/transforms/PrepareMetamodelKerMLSysML.qvto"/>
-    <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel1" value="platform:/resource/org.omg.sysml/model/Export/Track_4_-_Metamodel_Development.uml"/>
+    <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel1" value="platform:/resource/org.omg.sysml/model/Export/SysML_Abstract_Syntax.uml"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel2" value="platform:/plugin/org.eclipse.uml2.uml.resources/libraries/UMLPrimitiveTypes.library.uml"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel3" value="platform:/resource/org.omg.sysml/model/Export/KerML_only.uml"/>
     <stringAttribute key="org.eclipse.m2m.qvt.oml.interpreter.targetModel4" value="platform:/resource/org.omg.sysml/model/Export/SysML_only.uml"/>

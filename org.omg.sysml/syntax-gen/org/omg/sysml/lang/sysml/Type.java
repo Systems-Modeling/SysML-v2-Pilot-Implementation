@@ -42,11 +42,12 @@ import org.eclipse.emf.common.util.EList;
  *     else ownedMultiplicities->first()
  *     endif
  * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
- * let ownedConjugators: Sequence(Conjugator) = 
- *     ownedRelationship->selectByKind(Conjugation) in
- *     ownedConjugator = 
- *         if ownedConjugators->isEmpty() then null 
- *         else ownedConjugators->at(1) endif
+ * ownedConjugator =
+ *     let ownedConjugators: Sequence(Conjugator) = 
+ *         ownedRelationship->selectByKind(Conjugation) in
+ *         ownedConjugator = 
+ *             if ownedConjugators->isEmpty() then null 
+ *             else ownedConjugators->at(1) endif
  * output =
  *     if isConjugated then 
  *         conjugator.originalType.input
@@ -63,7 +64,7 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
- * featureMembership = ownedMembership->union(
+ * featureMembership = ownedFeatureMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
  * ownedFeature = ownedFeatureMembership.ownedMemberFeature
  * differencingType = ownedDifferencing.differencingType
@@ -72,16 +73,22 @@ import org.eclipse.emf.common.util.EList;
  * unioningType = ownedUnioning.unioningType
  * unioningType->excludes(self)
  * intersectingType = ownedIntersecting.intersectingType
- * ownedRelationship->selectByKind(Conjugator)->size() <= 1
+ * ownedRelationship->selectByKind(Conjugation)->size() <= 1
  * ownedMember->selectByKind(Multiplicity)->size() <= 1
  * endFeature = feature->select(isEnd)
- * ownedRelationship->selectByKind(Disjoining)
- * ownedRelationship->selectByKind(Unioning)
+ * ownedDisjoining =
+ *     ownedRelationship->selectByKind(Disjoining)
+ * ownedUnioning =
+ *     ownedRelationship->selectByKind(Unioning)
  * ownedRelationship->selectByKind(Intersecting)
- * ownedRelationship->selectByKind(Differencing)
+ * ownedDifferencing =
+ *     ownedRelationship->selectByKind(Differencing)
  * ownedEndFeature = ownedFeature->select(isEnd)
  * inheritedFeature = inheritedMemberships->
  *     selectByKind(FeatureMembership).memberFeature
+ * ownedUnioning->size() <> 1
+ * ownedUnioning->size() <> 1
+ * ownedDifferencing->size() <> 1
  * <!-- end-model-doc -->
  *
  * <p>

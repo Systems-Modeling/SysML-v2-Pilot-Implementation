@@ -36,12 +36,13 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>However, if a <code>Definition</code> has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> <code>Definition</code>. In this case, all of its <code>members</code> must be <code>variant</code> <code>Usages</code>, related to the <code>Definition</code> by <code>VariantMembership</code> <code>Relationships</code>. Rather than being <code>features</code> of the <code>Definition</code>, <code>variant</code> <code>Usages</code> model different concrete alternatives that can be chosen to fill in for an abstract <code>Usage</code> of the variation point <code>Definition</code>.</p>
  * 
- * isVariation implies variantMembership = ownedMembership
+ * isVariation implies ownedFeatureMembership->isEmpty()
  * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
- * not isVariation implies variantMembership->isEmpty()
  * isVariation implies
- *     not ownedSpecialization.specific->exists(isVariation)
+ *     not ownedSpecialization.specific->exists(
+ *         oclIsKindOf(Definition) and
+ *         oclAsType(Definition).isVariation)
  * usage = feature->selectByKind(Usage)
  * directedUsage = directedFeature->selectByKind(Usage)
  * ownedUsage = ownedFeature->selectByKind(Usage)

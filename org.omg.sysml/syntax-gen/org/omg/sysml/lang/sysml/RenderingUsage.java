@@ -32,7 +32,7 @@ package org.omg.sysml.lang.sysml;
  * <p>A <code>RenderingUsage</code> is the usage of a <code>RenderingDefinition</code> to specify the rendering of a specific model view to produce a physical view artifact.</p>
  * 
  * 
- * specializeFromLibrary('Views::renderings')
+ * specializesFromLibrary('Views::renderings')
  * owningType <> null and
  * (owningType.oclIsKindOf(RenderingDefinition) or
  *  owningType.oclIsKindOf(RenderingUsage)) implies

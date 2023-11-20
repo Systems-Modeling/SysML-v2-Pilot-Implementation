@@ -42,7 +42,8 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('VerificationCases::verificationCases')
  * isComposite and owningType <> null and
  *     (owningType.oclIsKindOf(VerificationCaseDefinition) or
- *      owningType.oclIsKindOf(VerificationCaseUsage))
+ *      owningType.oclIsKindOf(VerificationCaseUsage)) implies 
+ *     specializesFromLibrary('VerificationCases::VerificationCase::subVerificationCases')
  * <!-- end-model-doc -->
  *
  * <p>

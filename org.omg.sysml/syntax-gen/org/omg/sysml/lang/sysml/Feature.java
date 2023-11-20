@@ -43,36 +43,32 @@ import org.eclipse.emf.common.util.EList;
  *     select(tf | tf.featureOfType = self)
  * ownedSubsetting = ownedSpecialization->selectByKind(Subsetting)
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
- * type =
- *     let types : OrderedSet(Type) = typing.type->
- *         union(subsetting.subsettedFeature.type)->
- *         asOrderedSet() in
- *     if chainingFeature->isEmpty() then types
- *     else 
- *         types->union(chainingFeature->last().type)->
- *         asOrderedSet()
- *     endif
+ * type = OrderedSet{self}->
+ * -- Note: The closure operation automatically handles circular relationships.
+ *     closure(typingFeatures()).typing.type->
+ *     asOrderedSet()
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * specializesFromLibrary("Base::things")
- * chainingFeatures->excludes(self)
+ * chainingFeature->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingFeature = ownedFeatureChaining.chainingFeature
- * chainingFeatures->size() <> 1
+ * chainingFeature->size() <> 1
  * isEnd and owningType <> null implies
  *     let i : Integer = 
- *         owningType.ownedFeature->select(isEnd) in
+ *         owningType.ownedEndFeature->indexOf(self) in
  *     owningType.ownedSpecialization.general->
  *         forAll(supertype |
- *             let ownedEndFeatures : Sequence(Feature) = 
- *                 supertype.ownedFeature->select(isEnd) in
- *             ownedEndFeatures->size() >= i implies
- *                 redefines(ownedEndFeatures->at(i))
- * ownedMembership->
- *     selectByKind(FeatureValue)->
- *     forAll(fv | specializes(fv.value.result))
+ *              supertype.endFeature->size() >= i implies
+ *                 redefines(supertype.endFeature->at(i))
+ * direction = null and
+ * ownedSpecializations->forAll(isImplied) implies
+ *     ownedMembership->
+ *         selectByKind(FeatureValue)->
+ *         forAll(fv | specializes(fv.value.result))
  * isEnd and owningType <> null and
- * owningType.oclIsKindOf(Association) implies
- *     specializesFromLibrary("Links::Link::participants")
+ * (owningType.oclIsKindOf(Association) or
+ *  owningType.oclIsKindOf(Connector)) implies
+ *     specializesFromLibrary('Links::Link::participants')
  * isComposite and
  * ownedTyping.type->includes(oclIsKindOf(Structure)) and
  * owningType <> null and
@@ -80,21 +76,9 @@ import org.eclipse.emf.common.util.EList;
  *  owningType.type->includes(oclIsKindOf(Structure))) implies
  *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
  * owningType <> null and
- * (owningType.oclIsKindOf(LiteralExpression) or
- *  owningType.oclIsKindOf(FeatureReferenceExpression)) implies
- *     if owningType.oclIsKindOf(LiteralString) then
- *         specializesFromLibrary("ScalarValues::String")
- *     else if owningType.oclIsKindOf(LiteralBoolean) then
- *         specializesFromLibrary("ScalarValues::Boolean")
- *     else if owningType.oclIsKindOf(LiteralInteger) then
- *         specializesFromLibrary("ScalarValues::Rational")
- *     else if owningType.oclIsKindOf(LiteralBoolean) then
- *         specializesFromLibrary("ScalarValues::Rational")
- *     else if owningType.oclIsKindOf(LiteralBoolean) then
- *         specializesFromLibrary("ScalarValues::Real")
- *     else specializes(
- *         owningType.oclAsType(FeatureReferenceExpression).referent)
- *     endif endif endif endif endif
+ * owningType.oclIsKindOf(FeatureReferenceExpression) and
+ * self = owningType.oclAsType(FeatureReferenceExpression).result implies
+ *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
  * 
  * ownedTyping.type->exists(selectByKind(Class)) implies
  *     specializesFromLibrary("Occurrences::occurrences")
@@ -107,7 +91,7 @@ import org.eclipse.emf.common.util.EList;
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
  * ownedTyping.type->exists(selectByKind(DataType)) implies
- *     specializesFromLibary("Base::dataValues")
+ *     specializesFromLibrary('Base::dataValues')
  * owningType <> null and
  * owningType.oclIsKindOf(ItemFlowEnd) and
  * owningType.ownedFeature->at(1) = self implies
@@ -151,7 +135,7 @@ import org.eclipse.emf.common.util.EList;
  *     select(fi | fi.featureInverted = self)
  * featuringType =
  *     let featuringTypes : OrderedSet(Type) = 
- *         typeFeaturing.featuringType->asOrderedSet() in
+ *         featuring.type->asOrderedSet() in
  *     if chainingFeature->isEmpty() then featuringTypes
  *     else
  *         featuringTypes->
@@ -164,6 +148,10 @@ import org.eclipse.emf.common.util.EList;
  *     if referenceSubsettings->isEmpty() then null
  *     else referenceSubsettings->first() endif
  * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
+ * Sequence{1..chainingFeature->size() - 1}->forAll(i |
+ *     chainingFeature->at(i + 1).featuringType->forAll(t | 
+ *         chainingFeature->at(i).specializes(t)))
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -919,5 +907,21 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	boolean subsetsChain(Feature first, Feature second);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in
+	 * if chainingFeature->isEmpty() or 
+	 *    subsettedFeature->includes(chainingFeature->last()) 
+	 * then subsettedFeatures
+	 * else subsettedFeatures->append(chainingFeature->last())
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Feature> typeFeatures();
 
 } // Feature

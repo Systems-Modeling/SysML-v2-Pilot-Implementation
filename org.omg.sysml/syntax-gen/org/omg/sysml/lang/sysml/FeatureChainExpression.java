@@ -24,6 +24,9 @@ package org.omg.sysml.lang.sysml;
  *     then null
  *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
  *     endif
+ * argument->notEmpty() implies
+ *     targetFeature.featuringType->forAll(t | 
+ *         t.specializes(argument->at(1).result))
  * <!-- end-model-doc -->
  *
  * <p>

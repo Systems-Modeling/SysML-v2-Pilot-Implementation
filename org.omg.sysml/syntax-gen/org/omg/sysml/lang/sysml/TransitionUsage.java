@@ -31,20 +31,20 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>TransitionUsage</code> is an <code>ActionUsage<code> representing a triggered transition between <code>ActionUsages</code> or <code>StateUsages</code>. When triggered by a <code>triggerAction</code>, when its <code>guardExpression</code> is true, the <code>TransitionUsage</code> asserts that its <code>source</code> is exited, then its <code>effectAction</code> (if any) is performed, and then its <code>target</code> is entered.</p>
+ * <p>A <code>TransitionUsage</code> is an <code>ActionUsage</code> representing a triggered transition between <code>ActionUsages</code> or <code>StateUsages</code>. When triggered by a <code>triggerAction</code>, when its <code>guardExpression</code> is true, the <code>TransitionUsage</code> asserts that its <code>source</code> is exited, then its <code>effectAction</code> (if any) is performed, and then its <code>target</code> is entered.</p>
  * 
- * <p>A <code>TransitionUsage<code> can be related to some of its <code>ownedFeatures</code> using <code>TransitionFeatureMembership</code> <code>Relationships</code>, corresponding to the <code>triggerAction</code>, <code>guardExpression</code> and <code>effectAction</code> of the <code>TransitionUsage</code>.</p>
+ * <p>A <code>TransitionUsage</code> can be related to some of its <code>ownedFeatures</code> using <code>TransitionFeatureMembership</code> <code>Relationships</code>, corresponding to the <code>triggerAction</code>, <code>guardExpression</code> and <code>effectAction</code> of the <code>TransitionUsage</code>.</p>
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(ActionDefinition) or 
  *  owningType.oclIsKindOf(ActionUsage)) and
  * not (owningType.oclIsKindOf(StateDefinition) or
  *      owningType.oclIsKindOf(StateUsage)) implies
- *     specializesFromLibrary("Actions::Action::decisionTransitionActions")
+ *     specializesFromLibrary('Actions::Action::decisionTransitions')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(StateDefinition) or
  *  owningType.oclIsKindOf(StateUsage)) implies
  *     specializesFromLibrary("States::State::stateTransitions")
- * specializesFromLibrary("Actions::actions::transitionActions")
+ * specializesFromLibrary('Actions::transitionActions')
  * source =
  *     if ownedMembership->isEmpty() then null
  *     else
@@ -86,7 +86,7 @@ import org.eclipse.emf.common.util.EList;
  * succession.sourceFeature = source
  * ownedMember->selectByKind(BindingConnector)->exists(b |
  *     b.relatedFeatures->includes(source) and
- *     b.relatedFeatures->includes(inputParameter(2)))
+ *     b.relatedFeatures->includes(inputParameter(1)))
  * triggerAction->notEmpty() implies
  *     let payloadParameter : Feature = inputParameter(2) in
  *     payloadParameter <> null and
@@ -236,7 +236,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ActionUsages</code> that define the effects of this <code>TransitionUsage</code>, which are the <code>ownedFeatures</code> of the <code>TransitionUsage</code> related to it by <code>TransitionFeatureMemberships</code> with <code>kind = effect</code>, which must all be <code>Expressions</code>.</p>
+	 * <p>The <code>ActionUsages</code> that define the effects of this <code>TransitionUsage</code>, which are the <code>ownedFeatures</code> of the <code>TransitionUsage</code> related to it by <code>TransitionFeatureMemberships</code> with <code>kind = effect</code>, which must all be <code>ActionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_EffectAction()

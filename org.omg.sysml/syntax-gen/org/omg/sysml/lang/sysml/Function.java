@@ -48,6 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedFeatureMembership->
  *     selectByKind(ReturnParameterMembership)->
  *     size() <= 1
+ * membership->selectByKind(ResultExpressionMembership)->size() <= 1
  * <!-- end-model-doc -->
  *
  * <p>

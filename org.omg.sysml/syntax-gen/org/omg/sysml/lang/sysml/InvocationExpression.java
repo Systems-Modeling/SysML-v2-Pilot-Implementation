@@ -41,6 +41,16 @@ import org.eclipse.emf.common.util.EList;
  * ownedFeature->
  *     select(direction = _'in').valuation->
  *     select(v | v <> null).value
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp | 
+ *     inp.ownedRedefinition.redefinedFeature->
+ *         intersection(features)->size() = 1)
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp1 | input->forAll(inp2 |
+ *     inp1 <> inp2 implies
+ *         inp1.ownedRedefintion.redefinedFeature->
+ *             intersection(inp2.ownedRedefinition.redefinedFeature)->
+ *             intersection(features)->isEmpty()))
  * <!-- end-model-doc -->
  *
  * <p>

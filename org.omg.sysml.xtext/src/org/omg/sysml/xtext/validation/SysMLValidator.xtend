@@ -1096,10 +1096,7 @@ class SysMLValidator extends KerMLValidator {
 		// validateSubjectMembershipOwningType
 		val owningType = mem.owningType
 		if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage ||
-			  owningType instanceof CaseDefinition || owningType instanceof CaseUsage ||
-			  // NOTE: Temporarily allow requirement constraint features to have subject memberships
-			  // TODO: Remove this once implicit subjects are no longer being physically inserted
-			  owningType !== null && owningType.owningMembership instanceof RequirementConstraintMembership)) {
+			  owningType instanceof CaseDefinition || owningType instanceof CaseUsage)) {
 			error(INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE_MSG, mem, null, INVALID_SUBJECT_MEMBERSHIP_OWNING_TYPE)
 		}
 	}

@@ -411,6 +411,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
+		
+		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
+		val direction = f.direction
+		val featuringTypes = f.featuringType
+		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
+			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
+		}
 	}
 		
 	@Check
@@ -436,19 +443,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val redefinedFeaturingTypes = redefinedFeature.featuringType
 			
 			// validateRedefinitionDirectionConformance
-			val redefiningDirection = redefiningFeature.direction
-			for (featuringType: redefiningFeaturingTypes) {
-				for (supertype: featuringType.ownedSpecialization.map[general]) {
-					val redefinedDirection = supertype.directionOf(redefinedFeature)
-					if ((redefinedDirection === FeatureDirectionKind.IN ||
-						redefinedDirection === FeatureDirectionKind.OUT) &&
-						redefiningDirection !== redefinedDirection ||
-						redefinedDirection === FeatureDirectionKind.INOUT &&
-						redefiningDirection === null) {
-							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, redef, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
-					}
-				}
-			}
+			checkRedefinitionDirection(redefiningFeature.direction, redefiningFeaturingTypes, redefinedFeature, redef)
 			
 			// validateRedefinitionFeaturingTypes
 			if (redefinedFeature.owningRelationship != redef &&
@@ -462,6 +457,25 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 		}		
+	}
+	
+	def checkRedefinitionDirection(FeatureDirectionKind redefiningDirection, List<Type> featuringTypes, Feature redefinedFeature, Element source) {
+		for (featuringType: featuringTypes) {
+			for (supertype: featuringType.ownedSpecialization.map[general]) {
+				val redefinedDirection = supertype.directionOf(redefinedFeature)
+				if ((redefinedDirection === FeatureDirectionKind.IN ||
+					redefinedDirection === FeatureDirectionKind.OUT) &&
+					redefiningDirection !== redefinedDirection ||
+					redefinedDirection === FeatureDirectionKind.INOUT &&
+					redefiningDirection === null) {
+						if (source instanceof Redefinition) {
+							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+						} else {
+							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, null, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+						}
+				}
+			}
+		}
 	}
 	
 	@Check

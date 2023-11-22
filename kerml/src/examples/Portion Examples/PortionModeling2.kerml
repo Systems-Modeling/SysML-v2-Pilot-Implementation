@@ -1,5 +1,7 @@
 package PortionModeling2 {
 
+    /* Similar to some T2 examples. */
+
     class CC1 {
         feature x;
         
@@ -22,16 +24,18 @@ package PortionModeling2 {
         }
     }
     
+        /* Intended semantics for above. */
+
     class CC2 {
-        feature x;
+        feature x [*];
         
         portion :>> startShot {
-            that : CC1 :>> that;
-            :>> that.x = 0;
+            that : CC2 :>> that;
+            :>> that.x = 0; //Only thru this navigation.
         }
         
         portion t :> timeSlices {
-            that : CC1 :>> that;
+            that : CC2 :>> that;
             feature y;
             portion :>> startShot {
                 that :> t :>> that;

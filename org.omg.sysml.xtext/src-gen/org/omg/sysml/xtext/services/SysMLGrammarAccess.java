@@ -11453,7 +11453,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cOwnedRelationshipOwnedReferenceSubsettingParserRuleCall_0_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_0.eContents().get(0);
 		private final RuleCall cFeatureSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final RuleCall cRequirementBodyParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
+		private final RuleCall cCalculationBodyParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
 		private final Group cGroup_1_0_0 = (Group)cAlternatives_1_0.eContents().get(0);
@@ -11465,20 +11465,20 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//RequirementConstraintUsage returns SysML::ConstraintUsage :
 		//      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
-		//      RequirementBody
+		//      CalculationBody
 		//    | ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
 		//      CalculationUsageDeclaration CalculationBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
-		//  RequirementBody
+		//  CalculationBody
 		//| ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
 		//  CalculationUsageDeclaration CalculationBody
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
-		//RequirementBody
+		//CalculationBody
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//ownedRelationship += OwnedReferenceSubsetting
@@ -11490,8 +11490,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureSpecialization*
 		public RuleCall getFeatureSpecializationParserRuleCall_0_1() { return cFeatureSpecializationParserRuleCall_0_1; }
 		
-		//RequirementBody
-		public RuleCall getRequirementBodyParserRuleCall_0_2() { return cRequirementBodyParserRuleCall_0_2; }
+		//CalculationBody
+		public RuleCall getCalculationBodyParserRuleCall_0_2() { return cCalculationBodyParserRuleCall_0_2; }
 		
 		//( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
 		//     CalculationUsageDeclaration CalculationBody
@@ -18941,7 +18941,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//RequirementConstraintUsage returns SysML::ConstraintUsage :
 	//      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
-	//      RequirementBody
+	//      CalculationBody
 	//    | ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
 	//      CalculationUsageDeclaration CalculationBody
 	//;

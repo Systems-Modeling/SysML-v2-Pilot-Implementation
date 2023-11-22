@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -207,16 +207,11 @@ public class TypeAdapter extends NamespaceAdapter {
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
 		implicitGeneralTypes.values().forEach(generals::addAll);
-		Set<Type> visited = new HashSet<>();
-		visited.add(target);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
 				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
 				implicitGenerals.removeIf(gen->
-					// NOTE: Treat target as already having been visited when checking conformance,
-					// to allow for the possibility of circular specialization. Otherwise, implicit
-					// specializations get removed from all types in the circle.
-					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen, visited)));
+					generals.stream().anyMatch(type->type != gen && conforms(type, gen)));
 				if (implicitGenerals.isEmpty()) {
 					implicitGeneralTypes.remove(eClass);
 				}
@@ -225,6 +220,15 @@ public class TypeAdapter extends NamespaceAdapter {
 		
 		// Disallow adding more implicit general types once unnecessary ones have been removed.
 		setIsAddImplicitGeneralTypes(false);
+	}
+	
+	protected boolean conforms(Type subtype, Type supertype) {
+		// NOTE: Treat target as already having been visited when checking conformance,
+		// to allow for the possibility of circular specialization. Otherwise, implicit
+		// specializations would get removed from all types in the circle.
+		Set<Type> visited = new HashSet<>();
+		visited.add(getTarget());
+		return TypeUtil.conforms(subtype, supertype, visited);
 	}
 	
 	// Implicit Specialization Computation

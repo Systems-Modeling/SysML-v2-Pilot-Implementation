@@ -1,0 +1,54 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Performances.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Redefinition_DirectionConformance {
+    behavior A {
+        in x;
+        inout y;
+        composite step b : B {
+        	// XPECT errors ---> "Redefining feature must have a compatible direction" at "in x1;"
+            in x1;
+        }
+    }
+    behavior B specializes A {
+    	// XPECT errors ---> "Redefining feature must have a compatible direction" at "out x1;"
+        out x1;
+        out y1;
+    }
+    class C {
+    	in z;
+    }
+    class D specializes C {
+    	// XPECT errors ---> "Redefining feature must have a compatible direction" at "z"
+    	out :>> z;
+    }
+    feature d : D {
+    	// XPECT errors ---> "Redefining feature must have a compatible direction" at "z"
+    	in :>> z;
+    }
+    class C1 conjugates C;
+    class D1 specializes C1 {
+    	// XPECT errors ---> "Redefining feature must have a compatible direction" at "z"
+    	in :>> z;
+    }
+}

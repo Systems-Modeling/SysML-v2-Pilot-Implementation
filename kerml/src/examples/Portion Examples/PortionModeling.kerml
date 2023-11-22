@@ -68,6 +68,37 @@ package PortionModeling {
         }
     }
     
+
+    class C33 {
+        feature x;  //Moved from under snapshots, see C3
+
+        feature : C33 :>> portionOfLife {
+            portion :>> startShot {
+                :>> x = 0;
+            }
+        }
+        
+        portion : C33 :>> timeSlices; // Includes snapshots
+
+        portion t :> timeSlices {
+            feature y;
+
+            portion :>> startShot {
+                :>> x = 1;
+                :>> y = 2;
+            }
+
+            portion t1 :> timeSlices {
+                portion :>> startShot {
+                    :>> x = 2;
+                    :>> y = 3;
+                }
+            }
+        }
+    }
+
+
+
     class C4 {
         portion :>> snapshots {
             feature x;
@@ -125,5 +156,65 @@ package PortionModeling {
             }
         }
     }
-   
+
+
+    class C44 {
+        feature x;   //Moved from under snapshots, see C4
+
+        feature : C3 :>> portionOfLife {
+            portion :>> startShot :> snapshots {
+                :>> x = 0;
+            }
+        }
+
+        portion : C44 :>> timeSlices; // Includes snapshots
+
+        portion t :> timeSlices {
+            
+            feature : C44 :>> timeSliceOf;
+            
+            feature y;
+
+            portion :>> startShot {
+                :>> x = 1;
+                :>> y = 2;
+            }
+            
+            portion :>> timeSlices :> timeSliceOf.timeSlices;
+            
+            // Original comment
+	    // Here, t1 does not inherit from t at all, because they are
+            // not meant to be alike. Their snapshots, however, are meant
+            // to be alike, so t1's snapshots explicitly subset t's snapshots,
+            // which is consistent with the expectation that a timeslice of
+            // another timeslice will contain snapshots that are also snapshots
+            // of the other.
+            portion t1 :> timeSlices {
+                feature timeSliceOf : t :>> timeSliceOf;
+                
+            	// This line could be implicitly added.
+            	portion :>> snapshots :> portionOf.snapshots;
+                // Original comment:
+            	// Note that startShot has to subset snapshots again, because
+            	// the inherited subsetting refers to the snapshots of Occurrence,
+            	// and not the redefined snapshots. Scoping currently does not
+            	// consider the redefinitions in the current context, which is
+            	// probably reasonable.
+                portion :>> startShot {
+                    :>> x = 2;
+                    :>> y = 3;
+                }
+                
+                portion t2 :> timeSlices {
+                	// Yes, this works
+                	feature timeSliceOf : t1 :>> timeSliceOf;
+                	portion :>> snapshots :> timeSliceOf.snapshots;
+                	portion :>> startShot {
+	                    :>> x = 3;
+	                    :>> y = 4;
+	                }
+                }
+            }
+        }
+    }
 }

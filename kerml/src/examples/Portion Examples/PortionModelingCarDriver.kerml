@@ -5,7 +5,35 @@ package PortionModelingCarDriver {
 
         /* Reverse chronological */
 
-        /*   */
+        /* Top classes not lives, typing their snapshots, declare all features,
+			snap classes specializing them.  */
+
+	class Car5 {  
+		feature driver : Person5 [0..1] inverse of Person5::drives;
+		feature : Car5 :>> timeSlices; // Includes snapshots
+		feature operated subsets timeSlices {
+			:>> snapshots : Car5Snap {  //Requires drivers to be licensed only while driving
+				:>> driver : Person5Snap [1] subsets self.timeCoincidentOccurrences {
+					:>> isLicensed = true; } } } }
+
+	class Car5Snap :> Car5 {
+		:>> portionOfLife : Car5 {
+			feature thatCarSnap : Occurrence subsets self.snapshots = that; } }
+
+	class Person5 { 
+		feature isLicensed : Boolean [1];
+		feature drives : Car5 [0..1];
+		feature : Person5 :>> timeSlices; // Includes snapshots
+		:>> snapshots : Person5Snap {
+			:>> drives : Car5Snap [0..1] subsets self.timeCoincidentOccurrences; }}
+
+	class Person5Snap :> Person5 { 
+		:>> portionOfLife : Person5 {
+			feature thatPersonSnap : Occurrence subsets self.snapshots = that; } }
+
+
+
+        /* Adding snapshot classes to resolve isLicensed, "top" classes still lives.    */
 
 	class Car4 {  //implied specialization of Life
 		feature operated subsets timeSlices {
@@ -30,7 +58,7 @@ package PortionModelingCarDriver {
 
 
 
-        /*   */
+        /* "Typing" snapshots via portionOfLife  */
 
 	class Car3 {  //implied specialization of Life
 		feature driver : Occurrence [*];
@@ -41,7 +69,7 @@ package PortionModelingCarDriver {
 						feature thatDriverSnap : Occurrence subsets self.snapshots = that; }
 					feature thatCarSnap : Occurrence = that;
 					:>> self subsets snapshots, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
+						:>> isLicensed = true; } } } } } // Can't find isLicensed
 
 	class Person3 {  //implied specialization of Life
 		feature isLicensed : Boolean [*];
@@ -52,7 +80,8 @@ package PortionModelingCarDriver {
 					feature thatCarSnap : Occurrence subsets self.snapshots = that; } } } }
 
 
-        /*   */
+
+        /* Narrowing when licenses are required.  */
 
 	class Car2 {  //implied specialization of Life
 		feature driver : Person1 [*];
@@ -64,7 +93,8 @@ package PortionModelingCarDriver {
 
 						:>> isLicensed = true; } } } } }
 
-        /*   */
+
+        /* classes = lives bc timeslices/snapshots not specifically typed */
 
 	class Car1 {  //implied specialization of Life
 		feature driver : Person1 [*];

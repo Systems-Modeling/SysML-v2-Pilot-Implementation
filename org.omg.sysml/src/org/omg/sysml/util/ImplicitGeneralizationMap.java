@@ -195,7 +195,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
-		put(ConcernUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::concerns");
+		put(ConcernUsageImpl.class, "concern", "Requirements::RequirementCheck::concerns");
 		
 		put(ConnectionDefinitionImpl.class, "base", "Connections::Connection");
 		put(ConnectionDefinitionImpl.class, "binary", "Connections::BinaryConnection");

@@ -76,9 +76,11 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case SysMLPackage.ATTRIBUTE_USAGE: return createAttributeUsage();
-			case SysMLPackage.USAGE: return createUsage();
-			case SysMLPackage.FEATURE: return createFeature();
+			case SysMLPackage.REQUIREMENT_DEFINITION: return createRequirementDefinition();
+			case SysMLPackage.CONSTRAINT_DEFINITION: return createConstraintDefinition();
+			case SysMLPackage.OCCURRENCE_DEFINITION: return createOccurrenceDefinition();
+			case SysMLPackage.DEFINITION: return createDefinition();
+			case SysMLPackage.CLASSIFIER: return createClassifier();
 			case SysMLPackage.TYPE: return createType();
 			case SysMLPackage.NAMESPACE: return createNamespace();
 			case SysMLPackage.OWNING_MEMBERSHIP: return createOwningMembership();
@@ -90,12 +92,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.TEXTUAL_REPRESENTATION: return createTextualRepresentation();
 			case SysMLPackage.SPECIALIZATION: return createSpecialization();
 			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
-			case SysMLPackage.CONJUGATION: return createConjugation();
-			case SysMLPackage.MULTIPLICITY: return createMultiplicity();
-			case SysMLPackage.INTERSECTING: return createIntersecting();
-			case SysMLPackage.UNIONING: return createUnioning();
-			case SysMLPackage.DISJOINING: return createDisjoining();
-			case SysMLPackage.DIFFERENCING: return createDifferencing();
+			case SysMLPackage.FEATURE: return createFeature();
 			case SysMLPackage.REDEFINITION: return createRedefinition();
 			case SysMLPackage.SUBSETTING: return createSubsetting();
 			case SysMLPackage.FEATURE_TYPING: return createFeatureTyping();
@@ -103,19 +100,23 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.FEATURE_INVERTING: return createFeatureInverting();
 			case SysMLPackage.FEATURE_CHAINING: return createFeatureChaining();
 			case SysMLPackage.REFERENCE_SUBSETTING: return createReferenceSubsetting();
-			case SysMLPackage.VARIANT_MEMBERSHIP: return createVariantMembership();
-			case SysMLPackage.DEFINITION: return createDefinition();
-			case SysMLPackage.CLASSIFIER: return createClassifier();
+			case SysMLPackage.CONJUGATION: return createConjugation();
+			case SysMLPackage.MULTIPLICITY: return createMultiplicity();
+			case SysMLPackage.INTERSECTING: return createIntersecting();
+			case SysMLPackage.UNIONING: return createUnioning();
+			case SysMLPackage.DISJOINING: return createDisjoining();
+			case SysMLPackage.DIFFERENCING: return createDifferencing();
 			case SysMLPackage.SUBCLASSIFICATION: return createSubclassification();
+			case SysMLPackage.USAGE: return createUsage();
+			case SysMLPackage.VARIANT_MEMBERSHIP: return createVariantMembership();
 			case SysMLPackage.REFERENCE_USAGE: return createReferenceUsage();
+			case SysMLPackage.ATTRIBUTE_USAGE: return createAttributeUsage();
+			case SysMLPackage.DATA_TYPE: return createDataType();
 			case SysMLPackage.ENUMERATION_USAGE: return createEnumerationUsage();
 			case SysMLPackage.ENUMERATION_DEFINITION: return createEnumerationDefinition();
 			case SysMLPackage.ATTRIBUTE_DEFINITION: return createAttributeDefinition();
-			case SysMLPackage.DATA_TYPE: return createDataType();
 			case SysMLPackage.OCCURRENCE_USAGE: return createOccurrenceUsage();
 			case SysMLPackage.CLASS: return createClass();
-			case SysMLPackage.OCCURRENCE_DEFINITION: return createOccurrenceDefinition();
-			case SysMLPackage.LIFE_CLASS: return createLifeClass();
 			case SysMLPackage.ITEM_USAGE: return createItemUsage();
 			case SysMLPackage.STRUCTURE: return createStructure();
 			case SysMLPackage.PART_USAGE: return createPartUsage();
@@ -153,8 +154,6 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
 			case SysMLPackage.PREDICATE: return createPredicate();
 			case SysMLPackage.REQUIREMENT_USAGE: return createRequirementUsage();
-			case SysMLPackage.REQUIREMENT_DEFINITION: return createRequirementDefinition();
-			case SysMLPackage.CONSTRAINT_DEFINITION: return createConstraintDefinition();
 			case SysMLPackage.CONCERN_USAGE: return createConcernUsage();
 			case SysMLPackage.CONCERN_DEFINITION: return createConcernDefinition();
 			case SysMLPackage.CASE_USAGE: return createCaseUsage();
@@ -176,70 +175,71 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.METADATA_USAGE: return createMetadataUsage();
 			case SysMLPackage.METADATA_FEATURE: return createMetadataFeature();
 			case SysMLPackage.METACLASS: return createMetaclass();
-			case SysMLPackage.OBJECTIVE_MEMBERSHIP: return createObjectiveMembership();
-			case SysMLPackage.SUCCESSION_AS_USAGE: return createSuccessionAsUsage();
-			case SysMLPackage.SUCCESSION_FLOW_CONNECTION_USAGE: return createSuccessionFlowConnectionUsage();
-			case SysMLPackage.SUCCESSION_ITEM_FLOW: return createSuccessionItemFlow();
-			case SysMLPackage.BINDING_CONNECTOR_AS_USAGE: return createBindingConnectorAsUsage();
-			case SysMLPackage.BINDING_CONNECTOR: return createBindingConnector();
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION: return createFlowConnectionDefinition();
-			case SysMLPackage.INCLUDE_USE_CASE_USAGE: return createIncludeUseCaseUsage();
-			case SysMLPackage.PERFORM_ACTION_USAGE: return createPerformActionUsage();
-			case SysMLPackage.EVENT_OCCURRENCE_USAGE: return createEventOccurrenceUsage();
-			case SysMLPackage.CONJUGATED_PORT_TYPING: return createConjugatedPortTyping();
-			case SysMLPackage.WHILE_LOOP_ACTION_USAGE: return createWhileLoopActionUsage();
-			case SysMLPackage.FORK_NODE: return createForkNode();
-			case SysMLPackage.TRIGGER_INVOCATION_EXPRESSION: return createTriggerInvocationExpression();
-			case SysMLPackage.INVOCATION_EXPRESSION: return createInvocationExpression();
-			case SysMLPackage.MERGE_NODE: return createMergeNode();
-			case SysMLPackage.ASSIGNMENT_ACTION_USAGE: return createAssignmentActionUsage();
-			case SysMLPackage.IF_ACTION_USAGE: return createIfActionUsage();
-			case SysMLPackage.JOIN_NODE: return createJoinNode();
-			case SysMLPackage.FOR_LOOP_ACTION_USAGE: return createForLoopActionUsage();
-			case SysMLPackage.DECISION_NODE: return createDecisionNode();
-			case SysMLPackage.SEND_ACTION_USAGE: return createSendActionUsage();
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP: return createTransitionFeatureMembership();
-			case SysMLPackage.EXHIBIT_STATE_USAGE: return createExhibitStateUsage();
-			case SysMLPackage.STATE_DEFINITION: return createStateDefinition();
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP: return createStateSubactionMembership();
-			case SysMLPackage.MEMBERSHIP_EXPOSE: return createMembershipExpose();
-			case SysMLPackage.MEMBERSHIP_IMPORT: return createMembershipImport();
-			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP: return createViewRenderingMembership();
-			case SysMLPackage.NAMESPACE_EXPOSE: return createNamespaceExpose();
-			case SysMLPackage.NAMESPACE_IMPORT: return createNamespaceImport();
-			case SysMLPackage.METADATA_DEFINITION: return createMetadataDefinition();
-			case SysMLPackage.ASSERT_CONSTRAINT_USAGE: return createAssertConstraintUsage();
-			case SysMLPackage.INVARIANT: return createInvariant();
+			case SysMLPackage.LIFE_CLASS: return createLifeClass();
 			case SysMLPackage.ACTOR_MEMBERSHIP: return createActorMembership();
 			case SysMLPackage.PARAMETER_MEMBERSHIP: return createParameterMembership();
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE: return createSatisfyRequirementUsage();
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE: return createAssertConstraintUsage();
+			case SysMLPackage.INVARIANT: return createInvariant();
+			case SysMLPackage.SUBJECT_MEMBERSHIP: return createSubjectMembership();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP: return createRequirementConstraintMembership();
 			case SysMLPackage.FRAMED_CONCERN_MEMBERSHIP: return createFramedConcernMembership();
 			case SysMLPackage.STAKEHOLDER_MEMBERSHIP: return createStakeholderMembership();
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE: return createSatisfyRequirementUsage();
-			case SysMLPackage.SUBJECT_MEMBERSHIP: return createSubjectMembership();
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE: return createEventOccurrenceUsage();
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION: return createFlowConnectionDefinition();
+			case SysMLPackage.BINDING_CONNECTOR_AS_USAGE: return createBindingConnectorAsUsage();
+			case SysMLPackage.BINDING_CONNECTOR: return createBindingConnector();
+			case SysMLPackage.SUCCESSION_FLOW_CONNECTION_USAGE: return createSuccessionFlowConnectionUsage();
+			case SysMLPackage.SUCCESSION_ITEM_FLOW: return createSuccessionItemFlow();
+			case SysMLPackage.SUCCESSION_AS_USAGE: return createSuccessionAsUsage();
+			case SysMLPackage.STATE_DEFINITION: return createStateDefinition();
+			case SysMLPackage.EXHIBIT_STATE_USAGE: return createExhibitStateUsage();
+			case SysMLPackage.PERFORM_ACTION_USAGE: return createPerformActionUsage();
+			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP: return createStateSubactionMembership();
+			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP: return createTransitionFeatureMembership();
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP: return createRequirementVerificationMembership();
-			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
-			case SysMLPackage.DEPENDENCY: return createDependency();
-			case SysMLPackage.MULTIPLICITY_RANGE: return createMultiplicityRange();
+			case SysMLPackage.JOIN_NODE: return createJoinNode();
+			case SysMLPackage.SEND_ACTION_USAGE: return createSendActionUsage();
+			case SysMLPackage.FORK_NODE: return createForkNode();
+			case SysMLPackage.ASSIGNMENT_ACTION_USAGE: return createAssignmentActionUsage();
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE: return createForLoopActionUsage();
+			case SysMLPackage.IF_ACTION_USAGE: return createIfActionUsage();
+			case SysMLPackage.DECISION_NODE: return createDecisionNode();
+			case SysMLPackage.TRIGGER_INVOCATION_EXPRESSION: return createTriggerInvocationExpression();
+			case SysMLPackage.INVOCATION_EXPRESSION: return createInvocationExpression();
+			case SysMLPackage.MERGE_NODE: return createMergeNode();
+			case SysMLPackage.WHILE_LOOP_ACTION_USAGE: return createWhileLoopActionUsage();
+			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP: return createViewRenderingMembership();
+			case SysMLPackage.MEMBERSHIP_EXPOSE: return createMembershipExpose();
+			case SysMLPackage.MEMBERSHIP_IMPORT: return createMembershipImport();
+			case SysMLPackage.NAMESPACE_EXPOSE: return createNamespaceExpose();
+			case SysMLPackage.NAMESPACE_IMPORT: return createNamespaceImport();
+			case SysMLPackage.CONJUGATED_PORT_TYPING: return createConjugatedPortTyping();
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE: return createIncludeUseCaseUsage();
+			case SysMLPackage.METADATA_DEFINITION: return createMetadataDefinition();
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP: return createObjectiveMembership();
+			case SysMLPackage.FEATURE_VALUE: return createFeatureValue();
 			case SysMLPackage.RESULT_EXPRESSION_MEMBERSHIP: return createResultExpressionMembership();
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP: return createReturnParameterMembership();
-			case SysMLPackage.LITERAL_RATIONAL: return createLiteralRational();
-			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
+			case SysMLPackage.MULTIPLICITY_RANGE: return createMultiplicityRange();
 			case SysMLPackage.FEATURE_CHAIN_EXPRESSION: return createFeatureChainExpression();
 			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
 			case SysMLPackage.SELECT_EXPRESSION: return createSelectExpression();
+			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
 			case SysMLPackage.COLLECT_EXPRESSION: return createCollectExpression();
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION: return createFeatureReferenceExpression();
-			case SysMLPackage.METADATA_ACCESS_EXPRESSION: return createMetadataAccessExpression();
-			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
+			case SysMLPackage.LITERAL_RATIONAL: return createLiteralRational();
 			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
-			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
+			case SysMLPackage.METADATA_ACCESS_EXPRESSION: return createMetadataAccessExpression();
 			case SysMLPackage.LITERAL_INFINITY: return createLiteralInfinity();
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION: return createFeatureReferenceExpression();
+			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
+			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
 			case SysMLPackage.LITERAL_STRING: return createLiteralString();
+			case SysMLPackage.ELEMENT_FILTER_MEMBERSHIP: return createElementFilterMembership();
 			case SysMLPackage.LIBRARY_PACKAGE: return createLibraryPackage();
 			case SysMLPackage.PACKAGE: return createPackage();
-			case SysMLPackage.ELEMENT_FILTER_MEMBERSHIP: return createElementFilterMembership();
-			case SysMLPackage.FEATURE_VALUE: return createFeatureValue();
+			case SysMLPackage.DEPENDENCY: return createDependency();
+			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -259,14 +259,14 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 				return createFeatureDirectionKindFromString(eDataType, initialValue);
 			case SysMLPackage.PORTION_KIND:
 				return createPortionKindFromString(eDataType, initialValue);
-			case SysMLPackage.TRIGGER_KIND:
-				return createTriggerKindFromString(eDataType, initialValue);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
+				return createRequirementConstraintKindFromString(eDataType, initialValue);
 			case SysMLPackage.TRANSITION_FEATURE_KIND:
 				return createTransitionFeatureKindFromString(eDataType, initialValue);
 			case SysMLPackage.STATE_SUBACTION_KIND:
 				return createStateSubactionKindFromString(eDataType, initialValue);
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
-				return createRequirementConstraintKindFromString(eDataType, initialValue);
+			case SysMLPackage.TRIGGER_KIND:
+				return createTriggerKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -286,14 +286,14 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 				return convertFeatureDirectionKindToString(eDataType, instanceValue);
 			case SysMLPackage.PORTION_KIND:
 				return convertPortionKindToString(eDataType, instanceValue);
-			case SysMLPackage.TRIGGER_KIND:
-				return convertTriggerKindToString(eDataType, instanceValue);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
+				return convertRequirementConstraintKindToString(eDataType, instanceValue);
 			case SysMLPackage.TRANSITION_FEATURE_KIND:
 				return convertTransitionFeatureKindToString(eDataType, instanceValue);
 			case SysMLPackage.STATE_SUBACTION_KIND:
 				return convertStateSubactionKindToString(eDataType, instanceValue);
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
-				return convertRequirementConstraintKindToString(eDataType, instanceValue);
+			case SysMLPackage.TRIGGER_KIND:
+				return convertTriggerKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}

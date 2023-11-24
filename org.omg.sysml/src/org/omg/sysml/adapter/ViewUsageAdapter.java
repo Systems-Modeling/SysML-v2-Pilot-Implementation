@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,9 +26,6 @@ import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 
 public class ViewUsageAdapter extends PartUsageAdapter {
-
-	public static final String VIEW_SUBSETTING_BASE_DEFAULT = "Views::views";
-	public static final String VIEW_SUBSETTING_SUBVIEW_DEFAULT = "Views::View::subviews";
 
 	public ViewUsageAdapter(ViewUsage element) {
 		super(element);

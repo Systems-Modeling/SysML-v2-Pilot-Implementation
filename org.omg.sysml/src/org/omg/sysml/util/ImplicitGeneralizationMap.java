@@ -281,6 +281,7 @@ public class ImplicitGeneralizationMap {
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
+		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
 		
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");

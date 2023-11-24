@@ -425,7 +425,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_RENDERING_USAGE_TYPE_MSG = "A rendering must be typed by one rendering definition."
 	
 	public static val INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING = "validateViewDefinitionOnlyOnvViewRendering"
-	public static val INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG = "A view definition may have at most one rendering."
+	public static val INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG = "A view definition may have at most one view rendering."
 	
 	public static val INVALID_VIEWPOINT_USAGE_TYPE = "validateViewpointUsageType_"
 	public static val INVALID_VIEWPOINT_USAGE_TYPE_MSG = "A viewpoint must be typed by one viewpoint definition."
@@ -436,7 +436,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_VIEW_USAGE_TYPE = "validateViewUsageType_"
 	public static val INVALID_VIEW_USAGE_TYPE_MSG = "A view must be typed by one view definition."
 	public static val INVALID_VIEW_USAGE_ONLY_ONE_RENDERING = "validateViewUsageOnlyOneRendering"
-	public static val INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG = "A view may have at most one rendering."
+	public static val INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG = "A view may have at most one view rendering."
 	
 	public static val INVALID_METADATA_USAGE_TYPE = "validateMetadataUsageType_"
 	public static val INVALID_METADATA_USAGE_TYPE_MSG = "A metadata usage must be typed by one metadata definition."
@@ -1201,7 +1201,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkViewDefinition(ViewDefinition viewDef) {
 		// validateViewDefinitionOnlyOneViewRendering
-		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG, INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING)
+		checkAtMostOneFeature(viewDef, ViewRenderingMembership, INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING_MSG, INVALID_VIEW_DEFINITION_ONLY_ONE_VIEW_RENDERING)
 	}
 	
 	@Check
@@ -1225,7 +1225,7 @@ class SysMLValidator extends KerMLValidator {
 		checkOneType(usg, ViewDefinition, INVALID_VIEW_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.viewUsage_ViewDefinition, INVALID_VIEW_USAGE_TYPE)
 
 		// validateViewUsageOnlyOneRendering	
-		checkAtMostOneElement(usg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG, INVALID_VIEW_USAGE_ONLY_ONE_RENDERING)
+		checkAtMostOneFeature(usg, ViewRenderingMembership, INVALID_VIEW_USAGE_ONLY_ONE_RENDERING_MSG, INVALID_VIEW_USAGE_ONLY_ONE_RENDERING)
 	}
 	
 	@Check

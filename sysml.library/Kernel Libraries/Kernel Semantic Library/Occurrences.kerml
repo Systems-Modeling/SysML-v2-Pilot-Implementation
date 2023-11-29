@@ -29,7 +29,7 @@ standard library package Occurrences {
 	 * portions of an occurrence (having the same identity).  Portions include slices and shots
 	 * over time and space.
 	 */
-	abstract class Occurrence specializes Anything {
+	abstract class Occurrence specializes Anything disjoint from DataValue {
 		private import SequenceFunctions::*;
 
 		feature portionOfLife: Life[1] subsets portionOf;

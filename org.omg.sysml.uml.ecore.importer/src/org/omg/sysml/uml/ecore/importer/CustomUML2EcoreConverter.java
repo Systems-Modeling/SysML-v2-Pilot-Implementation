@@ -54,7 +54,7 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 				if ("Feature".equals(name)) {
 					EClassifier booleanType = eClass.getEStructuralFeature("isUnique").getEType();
 					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEAttribute(), "isNonunique", booleanType, 1, 1, "false", false);
-				} else if ("OperatorExpression".equals(name)) {
+				} else if ("InvocationExpression".equals(name)) {
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
 					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEReference(), "operand", expressionClass, 0, -1, null, true);
 				}

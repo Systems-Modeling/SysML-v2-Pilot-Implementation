@@ -22,8 +22,6 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Operator
  * Expression</b></em>'. <!-- end-user-doc -->
@@ -43,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.OperatorExpression#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression()
@@ -77,21 +74,5 @@ public interface OperatorExpression extends InvocationExpression {
 	 * @generated
 	 */
 	void setOperator(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operand</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operand</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
-	 * @model containment="true" transient="true" volatile="true" derived="true"
-	 * @generated
-	 */
-	EList<Expression> getOperand();
 
 } // OperatorExpression

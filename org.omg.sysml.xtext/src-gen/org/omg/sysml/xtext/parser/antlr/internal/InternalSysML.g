@@ -26278,7 +26278,7 @@ rulePrimaryExpression returns [EObject current=null]
 					(
 						{
 							$current = forceCreateModelElementAndAdd(
-								grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0(),
+								grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0(),
 								$current);
 						}
 					)

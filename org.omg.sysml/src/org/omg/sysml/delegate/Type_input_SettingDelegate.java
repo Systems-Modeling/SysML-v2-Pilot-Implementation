@@ -50,14 +50,14 @@ public class Type_input_SettingDelegate extends BasicDerivedListSettingDelegate 
 	
 	public static void addInputsOf(Type type, EList<Feature> inputs, Set<Type> visited) {
 		visited.add(type);
+		type.getOwnedFeature().stream().filter(feature->
+			FeatureDirectionKind.IN.equals(feature.getDirection()) ||
+			FeatureDirectionKind.INOUT.equals(feature.getDirection())).
+				forEachOrdered(inputs::add);
 		Conjugation conjugator = type.getOwnedConjugator();
 		if (conjugator != null) {
 			Type_output_SettingDelegate.addOutputsOf(conjugator.getOriginalType(), inputs, visited);
 		} else {
-			type.getOwnedFeature().stream().filter(feature->
-					FeatureDirectionKind.IN.equals(feature.getDirection()) ||
-					FeatureDirectionKind.INOUT.equals(feature.getDirection())).
-				forEachOrdered(inputs::add);
 			type.getOwnedSpecialization().stream().
 				map(Specialization::getGeneral).
 				filter(g->!visited.contains(g)).

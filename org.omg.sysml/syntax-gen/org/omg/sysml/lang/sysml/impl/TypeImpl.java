@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,7 +18,6 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-
 
 package org.omg.sysml.lang.sysml.impl;
 
@@ -903,7 +902,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				FeatureDirectionKind originalDirection = directionOf(feature, originalType, visited);
 				return originalDirection == FeatureDirectionKind.IN? FeatureDirectionKind.OUT:
 					   originalDirection == FeatureDirectionKind.OUT? FeatureDirectionKind.IN:
-					   FeatureDirectionKind.INOUT;
+					   originalDirection;
 			}
 		} else {
 			for (Specialization specialization: type.getOwnedSpecialization()) {

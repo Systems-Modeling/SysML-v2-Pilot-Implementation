@@ -124,7 +124,7 @@ standard library package Actions {
 			 */
 		}
 		
-		abstract action decisionTransitions : DecisionTransitionAction[0..*] :> transitionActions {
+		abstract action decisionTransitions : DecisionTransitionAction[0..*] :> transitions {
 			doc
 			/*
 			 * The subactions of this Action that are DecisionTransitionActions. 

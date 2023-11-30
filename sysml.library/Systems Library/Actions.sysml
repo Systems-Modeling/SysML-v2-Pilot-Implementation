@@ -68,14 +68,14 @@ standard library package Actions {
 			}
 		}
 	
-		action sendSubactions: SendAction[0..*] :> subactions {
+		action sendSubactions: SendAction[0..*] :> subactions, sendActions {
 			doc
 			/*
 			 * The subactions of this Action that are SendActions. 
 			 */
 		}
 	
-		action acceptSubactions: AcceptAction[0..*] :> subactions {
+		action acceptSubactions: AcceptAction[0..*] :> subactions, acceptActions {
 			doc
 			/*
 			 * The subactions of this Action that are AcceptActions. 

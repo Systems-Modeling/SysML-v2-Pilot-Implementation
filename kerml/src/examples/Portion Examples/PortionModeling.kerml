@@ -121,7 +121,7 @@ package PortionModeling {
                 :>> y = 2;
             }
             
-            portion :>> timeSlices :> portionOf.timeSlices;
+            portion :>> timeSlices :> portionOf.timeSlices;  //CB: portionOf transitivity should be in library.
             
             // Here, t1 does not inherit from t at all, because they are
             // not meant to be alike. Their snapshots, however, are meant
@@ -156,6 +156,70 @@ package PortionModeling {
             }
         }
     }
+
+
+      /* Replaces portionOf with that to address problem in C4. */
+
+    class C4that { //CB: Presumably a life bc timeslices aren't C4thats
+        portion :>> snapshots {
+            feature x;
+        }
+
+        portion :>> startShot :> snapshots {  //CB: the :> is in the library.  Parser can't tell?
+            :>> x = 0;
+        }
+        
+        // Note that t is not typed by C4
+        portion t :> timeSlices {
+            
+            thatC4 : C4 :>> that; //CB: Replaced portionOf with that, renamed to keep them straight
+            
+            portion :>> snapshots :> thatC4.snapshots { //CB: portionOf transitivity should be in library.
+                feature y;
+            }
+            portion :>> startShot :> snapshots {
+                :>> x = 1;
+                :>> y = 2;
+            }
+            
+            portion :>> timeSlices :> thatC4.timeSlices;
+            
+            // Original comment
+            // Here, t1 does not inherit from t at all, because they are
+            // not meant to be alike. Their snapshots, however, are meant
+            // to be alike, so t1's snapshots explicitly subset t's snapshots,
+            // which is consistent with the expectation that a timeslice of
+            // another timeslice will contain snapshots that are also snapshots
+            // of the other.
+            portion t1 :> timeSlices {
+                feature thatt : t :>> that; //CB: Replaced portionOf with that, renamed to keep them straight.
+                
+            	// This line could be implicitly added.
+            	portion :>> snapshots :> thatt.snapshots;  //CB: See above about transitivity.
+            	// Original comment
+            	// Note that startShot has to subset snapshots again, because
+            	// the inherited subsetting refers to the snapshots of Occurrence,
+            	// and not the redefined snapshots. Scoping currently does not
+            	// consider the redefinitions in the current context, which is
+            	// probably reasonable.
+                portion :>> startShot :> snapshots {  //CB: See above :>
+                    :>> x = 2;
+                    :>> y = 3;
+                }
+                
+                portion t2 :> timeSlices {
+                	// Yes, this works
+                	feature thatt1 : t1 :>> that; //CB: Replaced portionOf with that, renamed to keep them straight.
+                	portion :>> snapshots :> thatt1.snapshots;
+                	portion :>> startShot :> snapshots {
+	                    :>> x = 3;
+	                    :>> y = 4;
+	                }
+                }
+            }
+        }
+    }
+
 
 
     class C44 {

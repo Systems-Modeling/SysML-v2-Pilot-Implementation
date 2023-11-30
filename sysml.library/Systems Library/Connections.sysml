@@ -52,8 +52,8 @@ standard library package Connections {
 		 * FlowConnectionDefinitions.
 		 */
 	
-		end source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
-		end target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
+		end occurrence source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
+		end occurrence target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
 		
 		ref payload :>> 'item';
 		
@@ -90,6 +90,9 @@ standard library package Connections {
 		 * It is the base type for FlowConnectionUsages that identify their source output and
 		 * target input.
 		 */
+		
+        end occurrence source: Occurrence[0..*] :>> MessageConnection::source, FlowTransfer::source;
+        end occurrence target: Occurrence[0..*] :>> MessageConnection::target, FlowTransfer::target;
 	}
 	
 	abstract flow def SuccessionFlowConnection :> FlowConnection, FlowTransferBefore {
@@ -99,8 +102,8 @@ standard library package Connections {
 		 * temporally ordered transfers. It is the base type for all SuccessionFlowConnectionUsages.
 		 */
 	
-		end source: Occurrence[0..*] :>> FlowConnection::source, FlowTransferBefore::source;
-		end target: Occurrence[0..*] :>> FlowConnection::target, FlowTransferBefore::target;
+		end occurrence source: Occurrence[0..*] :>> FlowConnection::source, FlowTransferBefore::source;
+		end occurrence target: Occurrence[0..*] :>> FlowConnection::target, FlowTransferBefore::target;
 	}
 	
 	abstract connection connections: Connection[0..*] nonunique :> linkObjects, parts {

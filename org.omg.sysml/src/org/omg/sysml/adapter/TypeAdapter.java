@@ -206,13 +206,15 @@ public class TypeAdapter extends NamespaceAdapter {
 				filter(spec->spec.getSpecific() == target && spec.getGeneral() != target).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
-		implicitGeneralTypes.values().forEach(generals::addAll);
+		List<Type> implicitGenerals = new ArrayList<>();
+		implicitGeneralTypes.values().forEach(implicitGenerals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
-				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
-				implicitGenerals.removeIf(gen->
-					generals.stream().anyMatch(type->type != gen && conforms(type, gen)));
-				if (implicitGenerals.isEmpty()) {
+				List<Type> implicitEClassGenerals = implicitGeneralTypes.get(eClass);
+				implicitEClassGenerals.removeIf(gen->
+					generals.stream().anyMatch(type->conforms(type, gen)) ||
+					implicitGenerals.stream().anyMatch(type->type != gen && conforms(type, gen)));
+				if (implicitEClassGenerals.isEmpty()) {
 					implicitGeneralTypes.remove(eClass);
 				}
 			}

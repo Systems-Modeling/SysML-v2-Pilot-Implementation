@@ -41,7 +41,7 @@ package PortionModeling2 {
             feature y;
             portion :>> startShot {
                 that :> t :>> that;
-                :>> that.that.x = 1; //CB: binds x on CC2 life
+                :>> that.that.x = 1; //CB: binds x on CC2 life. ES: Only for this navigation. "Adds" value to life. Binding only applies during snapshot.
                 :>> that.y = 2;  //CB: binds y on t timeslice
             }
             portion t1 :> timeSlices {

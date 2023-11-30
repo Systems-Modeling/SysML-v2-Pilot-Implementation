@@ -99,21 +99,21 @@ package PortionModeling {
 
 
 
-    class C4 {
+    class C4 { //CB: Presumably a life bc timeslices aren't C4s
         portion :>> snapshots {
             feature x;
         }
 
-        portion :>> startShot :> snapshots {
+        portion :>> startShot :> snapshots {  //CB: the :> is in the library.  Parser can't tell?
             :>> x = 0;
         }
         
         // Note that t is not typed by C4
         portion t :> timeSlices {
             
-            feature portionOf : C4 :>> portionOf;
+            feature portionOf : C4 :>> portionOf; // CB: Some portionOfs will not be lives, ie, not C4s.
             
-            portion :>> snapshots :> portionOf.snapshots {
+            portion :>> snapshots :> portionOf.snapshots { //CB: portionOf transitivity should be in library.
                 feature y;
             }
             portion :>> startShot :> snapshots {
@@ -130,23 +130,23 @@ package PortionModeling {
             // another timeslice will contain snapshots that are also snapshots
             // of the other.
             portion t1 :> timeSlices {
-                feature portionOf : t :>> portionOf;
+                feature portionOf : t :>> portionOf; // CB: Some portionOfs will not be ts.
                 
             	// This line could be implicitly added.
-            	portion :>> snapshots :> portionOf.snapshots;
+            	portion :>> snapshots :> portionOf.snapshots;  //CB: See above about transitivity.
             	// Note that startShot has to subset snapshots again, because
             	// the inherited subsetting refers to the snapshots of Occurrence,
             	// and not the redefined snapshots. Scoping currently does not
             	// consider the redefinitions in the current context, which is
             	// probably reasonable.
-                portion :>> startShot :> snapshots {
+                portion :>> startShot :> snapshots {  //CB: See above :>
                     :>> x = 2;
                     :>> y = 3;
                 }
                 
                 portion t2 :> timeSlices {
                 	// Yes, this works
-                	feature portionOf : t1 :>> portionOf;
+                	feature portionOf : t1 :>> portionOf; // CB: Some portionOfs will not be t1s.
                 	portion :>> snapshots :> portionOf.snapshots;
                 	portion :>> startShot :> snapshots {
 	                    :>> x = 3;
@@ -159,9 +159,9 @@ package PortionModeling {
 
 
     class C44 {
-        feature x;   //Moved from under snapshots, see C4
+        feature x [*];   //Moved from under snapshots, see C4
 
-        feature : C3 :>> portionOfLife {
+        feature : C44 :>> portionOfLife {
             portion :>> startShot :> snapshots {
                 :>> x = 0;
             }
@@ -171,7 +171,7 @@ package PortionModeling {
 
         portion t :> timeSlices {
             
-            feature : C44 :>> timeSliceOf;
+            feature : C44 :>> timeSliceOf; // Some timeSliceOfs will not be C44s
             
             feature y;
 
@@ -180,7 +180,7 @@ package PortionModeling {
                 :>> y = 2;
             }
             
-            portion :>> timeSlices :> timeSliceOf.timeSlices;
+            portion :>> timeSlices :> timeSliceOf.timeSlices; //portionOf transitivity should be in library.
             
             // Original comment
 	    // Here, t1 does not inherit from t at all, because they are
@@ -190,7 +190,7 @@ package PortionModeling {
             // another timeslice will contain snapshots that are also snapshots
             // of the other.
             portion t1 :> timeSlices {
-                feature timeSliceOf : t :>> timeSliceOf;
+                feature timeSliceOf : t :>> timeSliceOf; // Some timeSliceOfs will not be ts
                 
             	// This line could be implicitly added.
             	portion :>> snapshots :> portionOf.snapshots;
@@ -207,7 +207,7 @@ package PortionModeling {
                 
                 portion t2 :> timeSlices {
                 	// Yes, this works
-                	feature timeSliceOf : t1 :>> timeSliceOf;
+                	feature timeSliceOf : t1 :>> timeSliceOf; // Some timeSliceOfs will not be t1s
                 	portion :>> snapshots :> timeSliceOf.snapshots;
                 	portion :>> startShot {
 	                    :>> x = 3;

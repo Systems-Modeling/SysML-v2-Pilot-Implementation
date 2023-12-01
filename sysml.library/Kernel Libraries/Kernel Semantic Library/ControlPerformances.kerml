@@ -95,7 +95,7 @@ standard library package ControlPerformances {
 	behavior IfThenElsePerformance specializes IfThenPerformance {
 		doc
 		/*
-		 * An IfThenElsePerformance is an IfThenPerformance with an additional elseCaluse that
+		 * An IfThenElsePerformance is an IfThenPerformance with an additional elseClause that
 		 * occurs after and only after the ifTest evaluation is false.
 		 */
 		 

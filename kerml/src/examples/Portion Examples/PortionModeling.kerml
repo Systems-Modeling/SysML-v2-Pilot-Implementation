@@ -221,7 +221,8 @@ package PortionModeling {
     }
 
 
-
+       /* Has same problem as C4, but needs more fixes, see PortionModeling2::CC22  */
+ 
     class C44 {
         feature x [*];   //Moved from under snapshots, see C4
 

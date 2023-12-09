@@ -4,33 +4,108 @@ package PortionModelingCarDriver {
 	import Occurrences::Life;
 	import ScalarValues::Boolean;
 
-        /* Reverse chronological */
 
-        /* Snapshot classes to resolve isLicensed, top classes as timeslices,
-            typing their snapshots, declare all features, snap classes specializing them.  */
+       /* classes = lives, timeslices/snapshots not specifically typed */
 
-	class Car5 {  
-		feature driver : Person5 [0..1] inverse of Person5::drives;
-		feature : Car5 :>> timeSlices; // Includes snapshots
+	class Car1 :> Life {
 		feature operated subsets timeSlices {
-			:>> snapshots : Car5Snap {  //Requires drivers to be licensed only while driving
-				:>> driver : Person5Snap [1] subsets self.timeCoincidentOccurrences {
-					:>> isLicensed = true; } } } }
+			:>> snapshots {
+				feature driver : Person1 [1] {  // Requires drivers to be licensed their whole lives
+					:>> isLicensed = true; } } } }  // Can't find isLicensed
+				
+	class Person1 :> Life {
+		:>> snapshots {
+			feature isLicensed : Boolean [1]; } }
 
-	class Car5Snap :> Car5 {
-		:>> portionOfLife : Car5 { // Could startShot subsets endShot to be sure, or add SnapClass
-			feature thatCarSnap : Car5Snap subsets self.snapshots = that; } }
 
-	class Person5 { 
-		feature isLicensed : Boolean [1];
-		feature drives : Car5 [0..1];
-		feature : Person5 :>> timeSlices; // Includes snapshots
-		:>> snapshots : Person5Snap {
-			:>> drives : Car5Snap [0..1] subsets self.timeCoincidentOccurrences; } }
+        /* Narrowing when licenses are required.  */
 
-	class Person5Snap :> Person5 { 
-		:>> portionOfLife : Person5 { // Could startShot subsets endShot to be sure, or add SnapClass
-			feature thatPersonSnap : Person5Snap subsets self.snapshots = that; } }
+	class Car2 :> Life {
+		feature operated subsets timeSlices {
+			:>> snapshots {
+				feature driver [1] : Person1 {  
+					feature thatCarSnap : Occurrence = that; 
+					feature driverSnaps :>> snapshots; // Requires drivers to be licensed while driving
+					feature driverNow [1] subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+						:>> isLicensed = true; } } } } }
+
+
+        /* "Typing" snapshots via portionOfLife  */
+
+	class Car3 :> Life {
+		feature operated subsets timeSlices {
+			:>> snapshots {
+				feature driver : Occurrence [1] {    
+					:>> portionOfLife : Person3 { // "Types" driver
+						feature driverLife : Person3 :>> self;
+						feature thatDriverSnap : Occurrence subsets driverLife.snapshots = that; }
+				    feature driverSnaps :>> snapshots;
+					feature thatCarSnap : Occurrence = that;
+					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+						:>> isLicensed = true; } } } } }  // Can't find isLicensed
+
+	class Person3 :> Life {
+		:>> snapshots {
+			feature isLicensed : Boolean [1];
+			feature drives : Occurrence [0..1] {
+	 			:>> portionOfLife : Car3 {  // "Types" drives
+					feature thatCarSnap : Occurrence subsets self.snapshots = that; } } } }
+
+
+        /* Typing snapshots by features  */
+
+	class Car33 :> Life {
+		feature operated subsets timeSlices {
+			:>> snapshots {
+				feature driver : Occurrence [1] {    
+				    feature driverSnaps : Person33::snapshots :>> snapshots;
+					feature thatCarSnap : Occurrence = that;
+					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+						:>> isLicensed = true; } } } } } 
+
+	class Person33 :> Life {
+		:>> snapshots {
+			feature isLicensed : Boolean [1]; } }
+							
+
+
+        /* Typing snapshots by features, inverses.  */
+
+	class Car333 :> Life {
+		feature operated subsets timeSlices {
+			:>> snapshots {
+				feature driver : Occurrence [1] inverse of Person333::snapshots::drives {    
+				    feature driverSnaps : Person333::snapshots :>> snapshots; //Instead of snap class
+					feature thatCarSnap : Occurrence = that;
+					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+						:>> isLicensed = true; } } } } }
+
+	class Person333 :> Life {
+		:>> snapshots {
+			feature isLicensed : Boolean [1];
+			feature drives : Car333::operated::snapshots::driver [0..1]; } }
+
+
+
+        /* Car333 with top classes as timeslices, no features typed by features.  */
+
+	class Car333TS  {
+		feature driver : Person333TS [*] inverse of drives = operated.snapshots.driver;
+		feature : Car333TS :>> timeSlices; // Includes snapshots
+		feature operated : Car333TS subsets timeSlices {
+			:>> snapshots : Car333TS {
+				:>> driver [1] {    
+				    feature driverSnaps :>> snapshots;
+					feature thatCarSnap : Car333TS = that;
+					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+						:>> isLicensed = true; } } } } }
+
+	class Person333TS {
+		feature drives : Car333TS [*];
+		feature : Person333TS :>> timeSlices; // Includes snapshots
+		:>> snapshots : Person333TS {
+			feature isLicensed : Boolean [1];
+			:>> drives : Car333TS::operated::snapshots::driver [0..1]; } }
 
 
 
@@ -58,107 +133,49 @@ package PortionModelingCarDriver {
 			feature thatPersonSnap : Occurrence subsets self.snapshots = that; } }
 
 
-        /* Car333 with top classes as timeslices, no features typed by features.  */
 
-	class Car333TS  {
-		feature driver : Person333TS [*] inverse of drives = operated.snapshots.driver;
-		feature : Car333TS :>> timeSlices; // Includes snapshots
-		feature operated : Car333TS subsets timeSlices {
-			:>> snapshots : Car333TS {
-				:>> driver [1] {    
-				    feature driverSnaps :>> snapshots;
-					feature thatCarSnap : Car333TS = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
+        /* Snapshot classes to resolve isLicensed, top classes as timeslices,
+            typing their snapshots, declare all features, snap classes specializing them.  */
 
-	class Person333TS {
-		feature drives : Car333TS [*];
-		feature : Person333TS :>> timeSlices; // Includes snapshots
-		:>> snapshots : Person333TS {
-			feature isLicensed : Boolean [1];
-			:>> drives : Car333TS::operated::snapshots::driver [0..1]; } }
-
-
-
-        /* "Typing" snapshots by features, inverses.  */
-
-	class Car333 :> Life {
+	class Car5 {  
+		feature driver : Person5 [0..1] inverse of Person5::drives;
+		feature : Car5 :>> timeSlices; // Includes snapshots
 		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver : Occurrence [1] inverse of Person333::snapshots::drives {    
-				    feature driverSnaps : Person333::snapshots :>> snapshots; //Instead of snap class
-					feature thatCarSnap : Occurrence = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
+			:>> snapshots : Car5Snap {  //Requires drivers to be licensed only while driving
+				:>> driver : Person5Snap [1] subsets self.timeCoincidentOccurrences {
+					:>> isLicensed = true; } } } }
 
-	class Person333 :> Life {
-		:>> snapshots {
-			feature isLicensed : Boolean [1];
-			feature drives : Car333::operated::snapshots::driver [0..1]; } }
+	class Car5Snap :> Car5 {
+		:>> portionOfLife : Car5 { // Could startShot subsets endShot to be sure, or add SnapClass
+			feature thatCarSnap : Car5Snap subsets self.snapshots = that; } }
+
+	class Person5 { 
+		feature isLicensed : Boolean [1];
+		feature drives : Car5 [0..1];
+		feature : Person5 :>> timeSlices; // Includes snapshots
+		:>> snapshots : Person5Snap {
+			:>> drives : Car5Snap [0..1] subsets self.timeCoincidentOccurrences; } }
+
+	class Person5Snap :> Person5 { 
+		:>> portionOfLife : Person5 { // Could startShot subsets endShot to be sure, or add SnapClass
+			feature thatPersonSnap : Person5Snap subsets self.snapshots = that; } }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
-        /* "Typing" snapshots directly  */
-
-	class Car33 :> Life {
-		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver : Occurrence [1] {    
-				    feature driverSnaps : Person33::snapshots :>> snapshots;
-					feature thatCarSnap : Occurrence = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } } 
-
-	class Person33 :> Life {
-		:>> snapshots {
-			feature isLicensed : Boolean [1]; } }
-							
 					
 
-        /* "Typing" snapshots via portionOfLife  */
-
-	class Car3 :> Life {
-		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver : Occurrence [1] {    
-					:>> portionOfLife : Person3 { // "Types" driver
-						feature driverLife : Person3 :>> self;
-						feature thatDriverSnap : Occurrence subsets driverLife.snapshots = that; }
-				    feature driverSnaps :>> snapshots;
-					feature thatCarSnap : Occurrence = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }  // Can't find isLicensed
-
-	class Person3 :> Life {
-		:>> snapshots {
-			feature isLicensed : Boolean [1];
-			feature drives : Occurrence [0..1] {
-	 			:>> portionOfLife : Car3 {  // "Types" drives
-					feature thatCarSnap : Occurrence subsets self.snapshots = that; } } } }
 
 
-
-        /* Narrowing when licenses are required.  */
-
-	class Car2 :> Life {
-		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver [1] : Person1 {  
-					feature thatCarSnap : Occurrence = that; 
-					feature driverSnaps :>> snapshots; // Requires drivers to be licensed while driving
-					feature driverNow [1] subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
-
-
-        /* classes = lives, timeslices/snapshots not specifically typed */
-
-	class Car1 :> Life {
-		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver : Person1 [1] {  // Requires drivers to be licensed their whole lives
-					:>> isLicensed = true; } } } }  // Can't find isLicensed
-				
-	class Person1 :> Life {
-		:>> snapshots {
-			feature isLicensed : Boolean [1]; } }
-}

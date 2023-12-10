@@ -69,39 +69,39 @@ package PortionModelingCarDriver {
 							
 
 
-        /* Typing snapshots by features, inverses.  */
+        /* Typing snapshots by nested features, inverses.  */
 
-	class Car333 :> Life {
+	class Car333 :> Life {   //↓↓ Instead of snap class
+		feature allDrivers : Person333::snapshots = operated.snapshots.driver;
 		feature operated subsets timeSlices {
-			:>> snapshots {
-				feature driver : Occurrence [1] inverse of Person333::snapshots::drives {    
-				    feature driverSnaps : Person333::snapshots :>> snapshots; //Instead of snap class
-					feature thatCarSnap : Occurrence = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+			:>> snapshots {      //↓↓ Instead of snap class
+				feature driver : Person333::snapshots [1] inverse of Person333::snapshots::drives { 
+					feature thatCarSnap : Car333::operated::snapshots = that;
+					:>> self subsets thatCarSnap.timeCoincidentOccurrences {
 						:>> isLicensed = true; } } } } }
 
-	class Person333 :> Life {
+	class Person333 :> Life {  //↓↓ Instead of snap class
+		feature allDrives : Car333::operated::snapshots::driver [*] = snapshots.drives;
 		:>> snapshots {
-			feature isLicensed : Boolean [1];
+			feature isLicensed : Boolean [1];   //↓↓ Instead of snap class
 			feature drives : Car333::operated::snapshots::driver [0..1]; } }
 
 
 
-        /* Car333 with top classes as timeslices, no features typed by features.  */
+        /* Car333 with top classes as timeslices.  */
 
 	class Car333TS  {
 		feature driver : Person333TS [*] inverse of drives = operated.snapshots.driver;
-		feature : Car333TS :>> timeSlices; // Includes snapshots
-		feature operated : Car333TS subsets timeSlices {
-			:>> snapshots : Car333TS {
-				:>> driver [1] {    
-				    feature driverSnaps :>> snapshots;
+		feature : Car333TS :>> timeSlices; // Includes snapshots, should be in library
+		feature operated : Car333TS subsets timeSlices { 
+			:>> snapshots : Car333TS { //←← ↑↑ Redundant typing just to make sure
+				:>> driver : Person333TS::snapshots [1] {
 					feature thatCarSnap : Car333TS = that;
-					:>> self subsets driverSnaps, thatCarSnap.timeCoincidentOccurrences {
+					:>> self subsets thatCarSnap.timeCoincidentOccurrences {
 						:>> isLicensed = true; } } } } }
 
 	class Person333TS {
-		feature drives : Car333TS [*];
+		feature drives : Car333TS [*] = snapshots.drives;
 		feature : Person333TS :>> timeSlices; // Includes snapshots
 		:>> snapshots : Person333TS {
 			feature isLicensed : Boolean [1];

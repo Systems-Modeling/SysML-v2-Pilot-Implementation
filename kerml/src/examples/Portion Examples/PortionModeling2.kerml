@@ -33,17 +33,17 @@ package PortionModeling2 {
         
         portion :>> startShot {
             that : CC2 :>> that;
-            :>> that.x = 0; //ES: Only thru this navigation.
-        }
-        
+            :>> that.x = 0; //CB: binds x on CC2 life. ES: Only thru this navigation.
+        }                   //ES: "Adds" value to life. Binding only applies during snapshot
+                            //CB: Can't change the life in 4D, only on on slices of it.
         portion t :> timeSlices {
             that : CC2 :>> that;
             feature y;
             portion :>> startShot {
                 that :> t :>> that;
-                :>> that.that.x = 1; //CB: binds x on CC2 life. ES: Only for this navigation. "Adds" value to life. Binding only applies during snapshot.
-                :>> that.y = 2;  //CB: binds y on t timeslice
-            }
+                :>> that.that.x = 1; //CB: binds x on CC2 life. See discussion above.
+                :>> that.y = 2; //CB: binds y on t timeslice. See discussion above.
+            }    
             portion t1 :> timeSlices {
                 that :> t :>> that;
                 portion :>> startShot {

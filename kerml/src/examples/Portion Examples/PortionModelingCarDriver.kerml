@@ -69,10 +69,10 @@ package PortionModelingCarDriver {
 							
 
 
-        /* Typing snapshots by nested features, inverses.  */
+        /* Typing snapshots by features, inverses.  */
 
 	class Car333 :> Life {   //↓↓ Instead of snap class
-		feature allDrivers : Person333::snapshots = operated.snapshots.driver;
+		feature allDrivers : Person333::snapshots [*] = operated.snapshots.driver;
 		feature operated subsets timeSlices {
 			:>> snapshots {      //↓↓ Instead of snap class
 				feature driver : Person333::snapshots [1] inverse of Person333::snapshots::drives { 
@@ -81,20 +81,20 @@ package PortionModelingCarDriver {
 						:>> isLicensed = true; } } } } }
 
 	class Person333 :> Life {  //↓↓ Instead of snap class
-		feature allDrives : Car333::operated::snapshots::driver [*] = snapshots.drives;
+		feature allDrives : Car333::operated::snapshots [*] = snapshots.drives;
 		:>> snapshots {
 			feature isLicensed : Boolean [1];   //↓↓ Instead of snap class
-			feature drives : Car333::operated::snapshots::driver [0..1]; } }
+			feature drives : Car333::operated::snapshots [0..1]; } }
 
 
 
         /* Car333 with top classes as timeslices.  */
 
-	class Car333TS  {
+	class Car333TS {
 		feature driver : Person333TS [*] inverse of drives = operated.snapshots.driver;
 		feature : Car333TS :>> timeSlices; // Includes snapshots, should be in library
 		feature operated : Car333TS subsets timeSlices { 
-			:>> snapshots : Car333TS { //←← ↑↑ Redundant typing just to make sure
+			:>> snapshots : Car333TS { //←←↑↑ Redundant typing just to make sure
 				:>> driver : Person333TS::snapshots [1] {
 					feature thatCarSnap : Car333TS = that;
 					:>> self subsets thatCarSnap.timeCoincidentOccurrences {
@@ -105,13 +105,14 @@ package PortionModelingCarDriver {
 		feature : Person333TS :>> timeSlices; // Includes snapshots
 		:>> snapshots : Person333TS {
 			feature isLicensed : Boolean [1];
-			:>> drives : Car333TS::operated::snapshots::driver [0..1]; } }
+			:>> drives : Car333TS::operated::snapshots [0..1]; } }
 
 
 
         /* Adding snapshot classes to resolve isLicensed, "top" classes still lives.    */
 
 	class Car4 :> Life {
+		feature allDriver : Person4Snap = operated.snapshots.driver;
 		feature operated subsets timeSlices {
 			:>> snapshots : Car4Snap {  //Requires drivers to be licensed only while driving
 				:>> driver : Person4Snap [1] subsets self.timeCoincidentOccurrences {
@@ -123,6 +124,7 @@ package PortionModelingCarDriver {
 			feature thatCarSnap : Occurrence subsets self.snapshots = that; } }
 
 	class Person4 :> Life {
+		feature allDrives : Car4Snap [*] = snapshots.drives; 
 		:>> snapshots : Person4Snap {
 			:>> drives : Car4Snap [0..1] subsets self.timeCoincidentOccurrences; } }
 
@@ -138,7 +140,7 @@ package PortionModelingCarDriver {
             typing their snapshots, declare all features, snap classes specializing them.  */
 
 	class Car5 {  
-		feature driver : Person5 [0..1] inverse of Person5::drives;
+		feature driver : Person5 [*] inverse of Person5::drives = operated.snapshots.driver;
 		feature : Car5 :>> timeSlices; // Includes snapshots
 		feature operated subsets timeSlices {
 			:>> snapshots : Car5Snap {  //Requires drivers to be licensed only while driving

@@ -281,27 +281,7 @@ public class FeatureValueItemProvider extends OwningMembershipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createLiteralExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createLiteralInteger()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createNullExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createLiteralRational()));
+				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -311,7 +291,7 @@ public class FeatureValueItemProvider extends OwningMembershipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
+				 SysMLFactory.eINSTANCE.createLiteralExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -321,22 +301,42 @@ public class FeatureValueItemProvider extends OwningMembershipItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
+				 SysMLFactory.eINSTANCE.createLiteralRational()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
+				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
+				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
 				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
+				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
+				 SysMLFactory.eINSTANCE.createNullExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
+				 SysMLFactory.eINSTANCE.createLiteralInteger()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
 				 SysMLFactory.eINSTANCE.createLiteralString()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.FEATURE_VALUE__VALUE,
-				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
 	}
 
 	/**

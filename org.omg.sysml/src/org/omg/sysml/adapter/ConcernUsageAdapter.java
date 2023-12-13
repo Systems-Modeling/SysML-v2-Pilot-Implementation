@@ -36,9 +36,21 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 	}
 	
 	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (UsageUtil.isSubrequirement(getTarget())) {
+			addDefaultGeneralType("subrequirement");
+		}
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	@Override
 	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isFramedConcern(getTarget())) {
-			addSubsetting(getDefaultSupertype("subrequirement"));
+			addSubsetting(getDefaultSupertype("concern"));
 		} else {
 			super.addRequirementConstraintSubsetting();
 		}

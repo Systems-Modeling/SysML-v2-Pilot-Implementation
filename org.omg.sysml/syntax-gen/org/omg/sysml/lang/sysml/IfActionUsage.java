@@ -20,9 +20,9 @@ package org.omg.sysml.lang.sysml;
  * isSubactionUsage() implies
  *     specializesFromLibrary('Actions::Action::ifSubactions')
  * if elseAction = null then
- *     specifiesFromLibrary('Actions::ifThenActions')
+ *     specializesFromLibrary('Actions::ifThenActions')
  * else
- *     specifiesFromLibrary('Actions::ifThenElseActions')
+ *     specializesFromLibrary('Actions::ifThenElseActions')
  * endif
  * ifArgument = 
  *     let parameter : Feature = inputParameter(1) in
@@ -38,6 +38,7 @@ package org.omg.sysml.lang.sysml;
  *     else
  *         null
  *     endif
+ * inputParameters()->size() >= 2
  * <!-- end-model-doc -->
  *
  * <p>

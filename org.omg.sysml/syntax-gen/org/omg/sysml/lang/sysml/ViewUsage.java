@@ -143,7 +143,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <cod>Elements</code> that are exposed by this <code>ViewUsage</code>, which are those <code>memberElements</code> of the imported <code>Memberships</code> from all the <code>Expose</code> <code>Relationships</code> that meet all the owned and inherited <code>viewConditions</code>.</p>
+	 * <p>The <code>Elements</code> that are exposed by this <code>ViewUsage</code>, which are those <code>memberElements</code> of the imported <code>Memberships</code> from all the <code>Expose</code> <code>Relationships</code> that meet all the owned and inherited <code>viewConditions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exposed Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedElement()

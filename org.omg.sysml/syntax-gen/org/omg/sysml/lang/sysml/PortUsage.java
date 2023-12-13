@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>PortUsage</code> is a usage of a <code>PortDefinition</code>. A <code>PortUsage<code> itself as well as all its <code>nestedUsages</code> must be referential (non-composite).</p>
+ * <p>A <code>PortUsage</code> is a usage of a <code>PortDefinition</code>. A <code>PortUsage</code> itself as well as all its <code>nestedUsages</code> must be referential (non-composite).</p>
  * nestedUsage->
  *     reject(oclIsKindOf(PortUsage))->
  *     forAll(not isComposite)

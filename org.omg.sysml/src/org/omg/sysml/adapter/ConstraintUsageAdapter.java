@@ -26,11 +26,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
@@ -44,29 +40,6 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	@Override
 	public ConstraintUsage getTarget() {
 		return (ConstraintUsage)super.getTarget();
-	}
-	
-	// Utility
-	
-	@Override
-	public Usage getSubjectParameter() {
-		return basicGetSubjectParameter();
-	}
-	
-	protected Usage basicGetSubjectParameter() {
-		ConstraintUsage target = getTarget();
-		return isRequirement()? TypeUtil.basicGetSubjectParameterOf(target): null;
-	}	
-	
-	@Override
-	public boolean hasRelevantSubjectParameter() {
-		Type owningType = getTarget().getOwningType();
-		return isRequirement() && 
-			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
-	}
-	
-	public boolean isRequirement() {
-		return getTarget().getType().stream().anyMatch(RequirementDefinition.class::isInstance);
 	}
 	
 	// Implicit Generalization
@@ -109,20 +82,10 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 				
 	}
 	
-	// Transformation
-	
-	protected void computeSubjectParameter() {
-		ConstraintUsage constraint = getTarget();
-		if (isRequirement()) {
-			computeSubjectParameterOf(constraint);
-		}
-	}
-	
 	@Override
 	public void doTransform() {
 		ConstraintUsage constraint = getTarget();
 		super.doTransform();
-		computeSubjectParameter();
 		addResultParameter();
 		createResultConnector(constraint.getResult());
 	}	

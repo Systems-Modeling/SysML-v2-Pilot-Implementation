@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>FeatureMembership</code> is an <code>OwningMembership</code> between a <code>Feature</code> in an <code>owningType</code> that is also a <code>Featuring</code> <code>Relationship<code? between the <code>Feature</code> and the <code>Type</code>, in which the <code>featuringType</code> is the <code>source</code> and the <code>featureOfType</code> is the <code>target</code>. A <code>FeatureMembership</code> is always owned by its <code>owningType</code>, which is the <code>featuringType</code> for the <code>FeatureMembership</code> considered as a <code>Featuring</code>.</p>
+ * <p>A <code>FeatureMembership</code> is an <code>OwningMembership</code> between a <code>Feature</code> in an <code>owningType</code> that is also a <code>Featuring</code> <code>Relationship<code> between the <code>Feature</code> and the <code>Type</code>, in which the <code>featuringType</code> is the <code>source</code> and the <code>featureOfType</code> is the <code>target</code>. A <code>FeatureMembership</code> is always owned by its <code>owningType</code>, which is the <code>featuringType</code> for the <code>FeatureMembership</code> considered as a <code>Featuring</code>.</p>
  * 
  * <!-- end-model-doc -->
  *

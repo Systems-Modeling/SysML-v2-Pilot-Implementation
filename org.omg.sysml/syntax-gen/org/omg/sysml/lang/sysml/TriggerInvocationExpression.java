@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>TriggerInvocationExpression<code> is an <code>InvocationExpression</code> that invokes one of the trigger <code>Functions</code> from the Kernel Semantic Library <code><em>Triggers<em></code> package, as indicated by its <code>kind</code>.</p>
+ * <p>A <code>TriggerInvocationExpression</code> is an <code>InvocationExpression</code> that invokes one of the trigger <code>Functions</code> from the Kernel Semantic Library <code><em>Triggers<em></code> package, as indicated by its <code>kind</code>.</p>
  * specializesFromLibrary(
  *     if kind = TriggerKind::when then
  *         'Triggers::TriggerWhen'
@@ -19,6 +19,15 @@ package org.omg.sysml.lang.sysml;
  *         'Triggers::TriggerAfter'
  *     endif endif
  * )
+ * kind = TriggerKind::after implies
+ *     argument->notEmpty() and
+ *     argument->at(1).result.specializesFromLibrary('ISQ::DurationValue')
+ * kind = TriggerKind::at implies
+ *     argument->notEmpty() and
+ *     argument->at(1).result.specializesFromLibrary('Time::TimeInstantValue')
+ * kind = TriggerKind::when implies
+ *     argument->notEmpty() and
+ *     argument->at(1).result.specializesFromLibrary('ScalarValues::Boolean')
  * <!-- end-model-doc -->
  *
  * <p>

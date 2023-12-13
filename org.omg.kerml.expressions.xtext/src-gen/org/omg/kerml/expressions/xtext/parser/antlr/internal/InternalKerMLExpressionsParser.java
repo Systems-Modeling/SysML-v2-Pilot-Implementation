@@ -7835,7 +7835,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
             	            {
 
             	            							current = forceCreateModelElementAndAdd(
-            	            								grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0(),
+            	            								grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0(),
             	            								current);
             	            						
 

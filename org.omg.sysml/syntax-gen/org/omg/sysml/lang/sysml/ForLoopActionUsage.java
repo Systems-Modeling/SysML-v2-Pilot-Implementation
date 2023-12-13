@@ -9,14 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>ForLoopActionUsage</code> is a <code>LoopActionUsage</code> that specifies that its <code>bodyClause</code> <code>ActionUsage</code> should be performed once for each value, in order, from the sequence of values obtained as the result of the <code>seqArgument</code> <code>Expression</code>, with the <code>loopVariable</code> set to the value for each iteration.</p>
- * seqArgument =
- *     let parameter : Feature = inputParameter(1) in
- *     if parameter <> null and parameter.oclIsKindOf(Expression) then
- *         parameter.oclAsType(Expression)
- *     else
- *         null
- *     endif
+ * <p>A <code>ForLoopActionUsage</code> is a <code>LoopActionUsage</code> that specifies that its <code>bodyAction</code> <code>ActionUsage</code> should be performed once for each value, in order, from the sequence of values obtained as the result of the <code>seqArgument</code> <code>Expression</code>, with the <code>loopVariable</code> set to the value for each iteration.</p>
+ * seqArgument = argument(1)
  * 
  * isSubactionUsage() implies
  *     specializesFromLibrary('Actions::Action::forLoops')
@@ -30,6 +24,10 @@ package org.omg.sysml.lang.sysml;
  *     else 
  *         ownedFeature->first().oclAsType(ReferenceUsage)
  *     endif
+ * ownedFeature->notEmpty() and
+ * ownedFeature->at(1).oclIsKindOf(ReferenceUsage)
+ * 
+ * inputParameters()->size() = 2
  * <!-- end-model-doc -->
  *
  * <p>
@@ -50,7 +48,7 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Expression</code> whose result provides the sequence of values to which the <code>loopVariable</code> is set for each iterative performance of the <code>bodyAction</code>. It is the owned <code>parameter</code> that redefines <em><code>ForLoopAction::body</code></em>.</p>
+	 * <p>The <code>Expression</code> whose result provides the sequence of values to which the <code>loopVariable</code> is set for each iterative performance of the <code>bodyAction</code>. It is the <code>Expression</code> whose <code>result</code> is bound to the <em><code>seq</code></em> <code>input</code> <code>parameter</code> of this <code>ForLoopActionUsage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Seq Argument</em>' reference.

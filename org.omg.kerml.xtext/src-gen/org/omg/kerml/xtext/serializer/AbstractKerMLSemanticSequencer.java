@@ -420,7 +420,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
@@ -514,8 +514,57 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.INVOCATION_EXPRESSION:
-				sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(context, (InvocationExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getInvocationExpressionRule()) {
+					sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(context, (InvocationExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getImpliesExpressionRule()
+						|| action == grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRangeExpressionRule()
+						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getExponentiationExpressionRule()
+						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getExtentExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getSequenceExpressionRule()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
+					sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList_PrimaryExpression(context, (InvocationExpression) semanticObject); 
+					return; 
+				}
+				else if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0()) {
+					sequence_NamedArgumentList_PositionalArgumentList_PrimaryExpression_FeatureChainExpression_2_1_0(context, (InvocationExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.ITEM_FEATURE:
 				sequence_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (ItemFeature) semanticObject); 
 				return; 
@@ -617,7 +666,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
@@ -726,17 +775,17 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getInvocationExpressionOperandAction_2_0_2_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_3_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_4_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
-					sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_ImpliesExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_XorExpression(context, (OperatorExpression) semanticObject); 
+					sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_ImpliesExpression_MultiplicativeExpression_NullCoalescingExpression_OrExpression_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_XorExpression(context, (OperatorExpression) semanticObject); 
 					return; 
 				}
 				else if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0()) {
-					sequence_NamedArgumentList_PositionalArgumentList_PrimaryExpression_FeatureChainExpression_2_1_0(context, (OperatorExpression) semanticObject); 
+					sequence_PrimaryExpression_FeatureChainExpression_2_1_0(context, (OperatorExpression) semanticObject); 
 					return; 
 				}
 				else break;

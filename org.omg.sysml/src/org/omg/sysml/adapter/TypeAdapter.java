@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -206,18 +206,15 @@ public class TypeAdapter extends NamespaceAdapter {
 				filter(spec->spec.getSpecific() == target && spec.getGeneral() != target).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
-		implicitGeneralTypes.values().forEach(generals::addAll);
-		Set<Type> visited = new HashSet<>();
-		visited.add(target);
+		List<Type> implicitGenerals = new ArrayList<>();
+		implicitGeneralTypes.values().forEach(implicitGenerals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
-				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
-				implicitGenerals.removeIf(gen->
-					// NOTE: Treat target as already having been visited when checking conformance,
-					// to allow for the possibility of circular specialization. Otherwise, implicit
-					// specializations get removed from all types in the circle.
-					generals.stream().anyMatch(type->type != gen && TypeUtil.conforms(type, gen, visited)));
-				if (implicitGenerals.isEmpty()) {
+				List<Type> implicitEClassGenerals = implicitGeneralTypes.get(eClass);
+				implicitEClassGenerals.removeIf(gen->
+					generals.stream().anyMatch(type->conforms(type, gen)) ||
+					implicitGenerals.stream().anyMatch(type->type != gen && conforms(type, gen)));
+				if (implicitEClassGenerals.isEmpty()) {
 					implicitGeneralTypes.remove(eClass);
 				}
 			}
@@ -225,6 +222,15 @@ public class TypeAdapter extends NamespaceAdapter {
 		
 		// Disallow adding more implicit general types once unnecessary ones have been removed.
 		setIsAddImplicitGeneralTypes(false);
+	}
+	
+	protected boolean conforms(Type subtype, Type supertype) {
+		// NOTE: Treat target as already having been visited when checking conformance,
+		// to allow for the possibility of circular specialization. Otherwise, implicit
+		// specializations would get removed from all types in the circle.
+		Set<Type> visited = new HashSet<>();
+		visited.add(getTarget());
+		return TypeUtil.conforms(subtype, supertype, visited);
 	}
 	
 	// Implicit Specialization Computation

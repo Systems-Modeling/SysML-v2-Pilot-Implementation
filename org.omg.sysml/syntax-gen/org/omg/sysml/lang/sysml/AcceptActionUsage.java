@@ -74,7 +74,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>Expression<code> whose <code>result</code> is bound to the <em><code>receiver</code></em> input <code>parameter</code> of this <code>AcceptActionUsage</code>.</p> 
+	 * <p>An <code>Expression</code> whose <code>result</code> is bound to the <em><code>receiver</code></em> input <code>parameter</code> of this <code>AcceptActionUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Receiver Argument</em>' reference.
@@ -137,7 +137,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>Expression<code> whose <code>result</code> is bound to the <code><em>payload</em></code> <code>parameter </code> of this <code>AcceptActionUsage</code>. If provided, the <code>AcceptActionUsage</code> will only accept a <code><em>Transfer</em></code> with exactly this <code><em>payload</em></code>.</p> 
+	 * <p>An <code>Expression</code> whose <code>result</code> is bound to the <code><em>payload</em></code> <code>parameter</code> of this <code>AcceptActionUsage</code>. If provided, the <code>AcceptActionUsage</code> will only accept a <code><em>Transfer</em></code> with exactly this <code><em>payload</em></code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Payload Argument</em>' reference.

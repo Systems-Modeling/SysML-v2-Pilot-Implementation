@@ -48,8 +48,10 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -284,6 +286,16 @@ public class VDefault extends VTraverser {
     @Override
     public String caseAssignmentActionUsage(AssignmentActionUsage aau) {
         // TO be ignored.
+        return "";
+    }
+
+    @Override
+    public String caseMembership(Membership m) {
+        // Ignore unnamed alias memberships.
+        if ((m instanceof OwningMembership)
+            || m.getMemberName() != null) {
+            return super.caseMembership(m);
+        }
         return "";
     }
 

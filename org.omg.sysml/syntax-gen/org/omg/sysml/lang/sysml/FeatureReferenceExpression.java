@@ -39,6 +39,10 @@ package org.omg.sysml.lang.sysml;
  * ownedMember->selectByKind(BindingConnector)->exists(b |
  *     b.relatedFeatures->includes(targetFeature) and
  *     b.relatedFeatures->includes(result))
+ * let membership : Membership = 
+ *     ownedMembership->reject(m | m.oclIsKindOf(ParameterMembership)) in
+ * membership->notEmpty() and
+ * membership->at(1).memberElement.oclIsKindOf(Feature)
  * <!-- end-model-doc -->
  *
  * <p>

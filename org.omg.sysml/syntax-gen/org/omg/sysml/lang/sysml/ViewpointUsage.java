@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>ViewpointUsage<code> is a <code>Usage</code> of a <code>ViewpointDefinition</code>.</p>
+ * <p>A <code>ViewpointUsage</code> is a <code>Usage</code> of a <code>ViewpointDefinition</code>.</p>
  * 
  * 
  * viewpointStakeholder = framedConcern.featureMemberhsip->

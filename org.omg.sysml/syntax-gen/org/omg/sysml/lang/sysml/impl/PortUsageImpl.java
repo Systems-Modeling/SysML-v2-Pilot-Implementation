@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,7 +119,11 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	
 	@Override
 	public boolean isComposite() {
-		return false;
+		Type owningType = getOwningType();
+		return owningType != null &&
+			   (owningType instanceof PortDefinition ||
+			    owningType instanceof PortUsage) &&
+			   super.isComposite();
 	}
 	
 	//

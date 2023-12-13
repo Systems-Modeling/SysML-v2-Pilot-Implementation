@@ -142,7 +142,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>objectiveRequirement</code> of this <code>CaseDefinition</code>, that is owned via an <code>ObjectiveMembership</code>, and will redefine, directly or indirectly, the <code>objective</code> <code>RequirementUsage<code> of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p> 
+	 * <p>The <code>objectiveRequirement</code> of this <code>CaseDefinition</code>, that is owned via an <code>ObjectiveMembership</code>, and will redefine, directly or indirectly, the <code>objective</code> <code>RequirementUsage</code> of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Objective Requirement</em>' reference.

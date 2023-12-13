@@ -1601,7 +1601,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cOperandSequenceExpressionParserRuleCall_2_0_1_2_0 = (RuleCall)cOperandAssignment_2_0_1_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2_0_1_3 = (Keyword)cGroup_2_0_1.eContents().get(3);
 		private final Group cGroup_2_0_2 = (Group)cAlternatives_2_0.eContents().get(2);
-		private final Action cOperatorExpressionOperandAction_2_0_2_0 = (Action)cGroup_2_0_2.eContents().get(0);
+		private final Action cInvocationExpressionOperandAction_2_0_2_0 = (Action)cGroup_2_0_2.eContents().get(0);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_2_0_2_1 = (Keyword)cGroup_2_0_2.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_2_0_2_2 = (Assignment)cGroup_2_0_2.eContents().get(2);
 		private final RuleCall cOwnedRelationshipReferenceTypingParserRuleCall_2_0_2_2_0 = (RuleCall)cOwnedRelationshipAssignment_2_0_2_2.eContents().get(0);
@@ -1637,7 +1637,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//        operator = '#' '(' operand += SequenceExpression ')'
 		//      | {SysML::OperatorExpression.operand += current}
 		//        operator = '[' operand += SequenceExpression ']'
-		//      | {SysML::OperatorExpression.operand += current} '->'
+		//      | {SysML::InvocationExpression.operand += current} '->'
 		//        ownedRelationship += ReferenceTyping
 		//        ( operand += BodyExpression
 		//        | operand += FunctionReferenceExpression
@@ -1663,7 +1663,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//    operator = '#' '(' operand += SequenceExpression ')'
 		//  | {SysML::OperatorExpression.operand += current}
 		//    operator = '[' operand += SequenceExpression ']'
-		//  | {SysML::OperatorExpression.operand += current} '->'
+		//  | {SysML::InvocationExpression.operand += current} '->'
 		//    ownedRelationship += ReferenceTyping
 		//    ( operand += BodyExpression
 		//    | operand += FunctionReferenceExpression
@@ -1704,7 +1704,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//    operator = '#' '(' operand += SequenceExpression ')'
 		//  | {SysML::OperatorExpression.operand += current}
 		//    operator = '[' operand += SequenceExpression ']'
-		//  | {SysML::OperatorExpression.operand += current} '->'
+		//  | {SysML::InvocationExpression.operand += current} '->'
 		//    ownedRelationship += ReferenceTyping
 		//    ( operand += BodyExpression
 		//    | operand += FunctionReferenceExpression
@@ -1725,7 +1725,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//       operator = '#' '(' operand += SequenceExpression ')'
 		//     | {SysML::OperatorExpression.operand += current}
 		//       operator = '[' operand += SequenceExpression ']'
-		//     | {SysML::OperatorExpression.operand += current} '->'
+		//     | {SysML::InvocationExpression.operand += current} '->'
 		//       ownedRelationship += ReferenceTyping
 		//       ( operand += BodyExpression
 		//       | operand += FunctionReferenceExpression
@@ -1785,7 +1785,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//']'
 		public Keyword getRightSquareBracketKeyword_2_0_1_3() { return cRightSquareBracketKeyword_2_0_1_3; }
 		
-		//{SysML::OperatorExpression.operand += current} '->'
+		//{SysML::InvocationExpression.operand += current} '->'
 		//       ownedRelationship += ReferenceTyping
 		//       ( operand += BodyExpression
 		//       | operand += FunctionReferenceExpression
@@ -1793,8 +1793,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//       )
 		public Group getGroup_2_0_2() { return cGroup_2_0_2; }
 		
-		//{SysML::OperatorExpression.operand += current}
-		public Action getOperatorExpressionOperandAction_2_0_2_0() { return cOperatorExpressionOperandAction_2_0_2_0; }
+		//{SysML::InvocationExpression.operand += current}
+		public Action getInvocationExpressionOperandAction_2_0_2_0() { return cInvocationExpressionOperandAction_2_0_2_0; }
 		
 		//'->'
 		public Keyword getHyphenMinusGreaterThanSignKeyword_2_0_2_1() { return cHyphenMinusGreaterThanSignKeyword_2_0_2_1; }
@@ -3797,7 +3797,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//        operator = '#' '(' operand += SequenceExpression ')'
 	//      | {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
-	//      | {SysML::OperatorExpression.operand += current} '->'
+	//      | {SysML::InvocationExpression.operand += current} '->'
 	//        ownedRelationship += ReferenceTyping
 	//        ( operand += BodyExpression
 	//        | operand += FunctionReferenceExpression

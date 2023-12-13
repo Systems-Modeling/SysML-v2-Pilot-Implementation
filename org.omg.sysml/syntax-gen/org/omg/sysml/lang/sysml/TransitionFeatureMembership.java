@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>TransitionFeatureMembership</code> is a <code>FeatureMembership<code> for a trigger, guard or effect of a <code>TransitionUsage</code>, whose <code>transitionFeature</code> is a <code>AcceptActionUsage</code>, <em><code>Boolean</code></em>-valued <code>Expression</code> or <code>ActionUsage</code>, depending on its <code>kind</code>. </p>
+ * <p>A <code>TransitionFeatureMembership</code> is a <code>FeatureMembership</code> for a trigger, guard or effect of a <code>TransitionUsage</code>, whose <code>transitionFeature</code> is a <code>AcceptActionUsage</code>, <em><code>Boolean</code></em>-valued <code>Expression</code> or <code>ActionUsage</code>, depending on its <code>kind</code>. </p>
  * kind = TransitionFeatureKind::trigger implies
  *     transitionFeature.oclIsKindOf(AcceptActionUsage)
  * owningType.oclIsKindOf(TransitionUsage)

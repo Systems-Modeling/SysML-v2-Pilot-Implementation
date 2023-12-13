@@ -37,13 +37,16 @@ import org.eclipse.emf.common.util.EList;
  * <p>However, if a <code>Usage</code> has <code>isVariation = true</code>, then it represents a <em>variation point</em> <code>Usage</code>. In this case, all of its <code>members</code> must be <code>variant</code> <code>Usages</code>, related to the <code>Usage</code> by <code>VariantMembership</code> <code>Relationships</code>. Rather than being <code>features</code> of the <code>Usage</code>, <code>variant</code> <code>Usages</code> model different concrete alternatives that can be chosen to fill in for the variation point <code>Usage</code>.</p>
  * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
- * not isVariation implies variantMembership->isEmpty()
- * isVariation implies variantMembership = ownedMembership
+ * isVariation implies ownedFeatureMembership->isEmpty()
  * isReference = not isComposite
  * owningVariationUsage <> null implies
  *     specializes(owningVariationUsage)
  * isVariation implies
- *     not ownedSpecialization.specific->exists(isVariation)
+ *     not ownedSpecialization.specific->exists(
+ *         oclIsKindOf(Definition) and
+ *         oclAsType(Definition).isVariation or
+ *         oclIsKindOf(Usage) and
+ *         oclAsType(Usage).isVariation)
  * owningVariationDefinition <> null implies
  *     specializes(owningVariationDefinition)
  * directedUsage = directedFeature->selectByKind(Usage)
@@ -75,9 +78,8 @@ import org.eclipse.emf.common.util.EList;
  * nestedView = nestedUsage->selectByKind(ViewUsage)
  * nestedViewpoint = nestedUsage->selectByKind(ViewpointUsage)
  * usage = feature->selectByKind(Usage)
- * owningType <> null implies
- *     (owningType.oclIsKindOf(Definition) or
- *      ownigType.oclIsKindOf(Usage))
+ * direction <> null or isEnd or featuringType->isEmpty() implies
+ *     isReferential
  * <!-- end-model-doc -->
  *
  * <p>
@@ -476,7 +478,7 @@ public interface Usage extends Feature {
 	 * @return the value of the '<em>Directed Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_DirectedUsage()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body=' /usageWithDirectedUsage'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='usageWithDirectedUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

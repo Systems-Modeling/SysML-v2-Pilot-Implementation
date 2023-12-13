@@ -48,7 +48,7 @@ import org.eclipse.emf.ecore.EObject;
  *     select(a | a.annotatedElement = self)
  * name = effectiveName()
  * ownedRelationship->exists(isImplied) implies isImpliedIncluded
- * isLibraryElement = libraryNamespace() <>null
+ * isLibraryElement = libraryNamespace() <> null
  * 
  * shortName = effectiveShortName()
  * owningNamespace =

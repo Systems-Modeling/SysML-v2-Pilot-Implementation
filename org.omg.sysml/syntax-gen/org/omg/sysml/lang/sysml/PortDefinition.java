@@ -46,7 +46,7 @@ package org.omg.sysml.lang.sysml;
  *     ownedMember->
  *         selectByKind(ConjugatedPortDefinition)->
  *         size() = 1
- * specializeFromLibrary('Ports::Port')
+ * specializesFromLibrary('Ports::Port')
  * <!-- end-model-doc -->
  *
  * <p>

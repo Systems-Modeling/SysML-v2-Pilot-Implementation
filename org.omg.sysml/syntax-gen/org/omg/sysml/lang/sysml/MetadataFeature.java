@@ -56,6 +56,24 @@ import org.eclipse.emf.common.util.EList;
  *         else
  *             true
  *         endif
+ * not metaclass.isAbstract
+ * let baseAnnotatedElementFeature : Feature =
+ *     resolveGlobal('Metaobjects::Metaobject::annotatedElement').memberElement.
+ *     oclAsType(Feature) in
+ * let annotatedElementFeatures : OrderedSet(Feature) = feature->
+ *     select(specializes(baseAnnotatedElementFeature))->
+ *     excluding(baseAnnotatedElementFeature) in
+ * annotatedElementFeatures->notEmpty() implies
+ *     let annotatedElementTypes : Set(Feature) =
+ *         annotatedElementFeatures.typing.type->asSet() in
+ *     let metaclasses : Set(Metaclass) =
+ *         annotatedElement.oclType().qualifiedName->collect(qn | 
+ *             resolveGlobal(qn).memberElement.oclAsType(Metaclass)) in
+ *    metaclasses->forAll(m | annotatedElementTypes->exists(t | m.specializes(t)))
+ * ownedFeature->closure(ownedFeature)->forAll(f |
+ *     f.declaredName = null and f.declaredShortName = null and
+ *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
+ *     f.redefinition.redefinedFeature->size() = 1)
  * <!-- end-model-doc -->
  *
  * <p>

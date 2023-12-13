@@ -33,7 +33,7 @@ main() {
 }
 
 helper run() {
-	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
+	var syntax := export.objects()[Package]![name = "SysML Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	
 	var model = object Model { 

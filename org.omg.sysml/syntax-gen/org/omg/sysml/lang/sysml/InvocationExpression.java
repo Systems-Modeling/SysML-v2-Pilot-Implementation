@@ -41,6 +41,16 @@ import org.eclipse.emf.common.util.EList;
  * ownedFeature->
  *     select(direction = _'in').valuation->
  *     select(v | v <> null).value
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp | 
+ *     inp.ownedRedefinition.redefinedFeature->
+ *         intersection(features)->size() = 1)
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp1 | input->forAll(inp2 |
+ *     inp1 <> inp2 implies
+ *         inp1.ownedRedefintion.redefinedFeature->
+ *             intersection(inp2.ownedRedefinition.redefinedFeature)->
+ *             intersection(features)->isEmpty()))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -48,6 +58,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.InvocationExpression#getArgument <em>Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.InvocationExpression#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression()
@@ -79,4 +90,20 @@ public interface InvocationExpression extends Expression {
 	 * @generated
 	 */
 	EList<Expression> getArgument();
+
+	/**
+	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operand</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression_Operand()
+	 * @model containment="true" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	EList<Expression> getOperand();
 } // InvocationExpression

@@ -50,6 +50,9 @@ package org.omg.sysml.lang.sysml;
  *                         }
  *                 )
  *             endif)
+ * featureWithValue.redefinition.redefinedFeature->
+ *     closure(redefinition.redefinedFeature).valuation->
+ *     forAll(isDefault)
  * <!-- end-model-doc -->
  *
  * <p>

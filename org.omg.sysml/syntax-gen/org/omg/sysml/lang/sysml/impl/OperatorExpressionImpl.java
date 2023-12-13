@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,30 +22,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.DelegatingEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EContentsEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -55,7 +40,6 @@ import org.omg.sysml.util.TypeUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,22 +72,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		super();
 	}
 	
-	@Override
-	public EList<EObject> eContents() {
-		EClass eClass = eClass();
-		EStructuralFeature[] containmentFeatures = ((EClassImpl.FeatureSubsetSupplier)eClass.getEAllStructuralFeatures()).containments();
-		EStructuralFeature operandFeature = eClass.getEStructuralFeature(SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
-		EStructuralFeature[] nonOperandFeatures = new EStructuralFeature[containmentFeatures.length - 1];
-		int i = 0;
-		for (EStructuralFeature feature: containmentFeatures) {
-			if (feature != operandFeature) {
-				nonOperandFeatures[i] = feature;
-				i++;
-			}
-		}
-		return new EContentsEList<>(this, nonOperandFeatures);
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -134,22 +102,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 	
-	protected EList<Expression> operand = null;
-	
-	/**
-	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
-	 * as owned features.
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Expression> getOperand() {
-		if (operand == null) {
-			operand = new OperandEList();
-		}
-		return operand;
-	}
-	
 	@Override
 	public Function getFunction() {
 		String operator = getOperator();
@@ -167,8 +119,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return getOperator();
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return getOperand();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,16 +127,11 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator((String)newValue);
-				return;
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				getOperand().clear();
-				getOperand().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,9 +147,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator(OPERATOR_EDEFAULT);
 				return;
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				getOperand().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -218,8 +160,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return !getOperand().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -237,108 +177,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		result.append(operator);
 		result.append(')');
 		return result.toString();
-	}
-
-	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		protected List<Expression> delegateList() {
-			return getArgument();
-		}
-
-		@Override
-		protected void delegateAdd(Expression object) {
-			TypeUtil.addOwnedParameterTo(OperatorExpressionImpl.this, object).
-				setVisibility(VisibilityKind.PRIVATE);
-		}
-
-		@Override
-		protected void delegateAdd(int i, Expression object) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public Expression remove(int i) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public boolean remove(Object object) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void clear() {
-
-		}
-
-		@Override
-		public Object[] basicToArray() {
-			return delegateToArray();
-		}
-
-		@Override
-		public <T> T[] basicToArray(T[] array) {
-			return delegateToArray(array);
-		}
-
-		@Override
-		public int basicIndexOf(Object object) {
-			return delegateIndexOf(object);
-		}
-
-		@Override
-		public int basicLastIndexOf(Object object) {
-			return delegateLastIndexOf(object);
-		}
-
-		@Override
-		public boolean basicContains(Object object) {
-			return delegateContains(object);
-		}
-
-		@Override
-		public boolean basicContainsAll(Collection<?> collection) {
-			return delegateContainsAll(collection);
-		}
-
-		@Override
-		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
-			remove(object);
-			return notifications;
-		}
-
-		@Override
-		public NotificationChain basicAdd(Expression object, NotificationChain notifications) {
-			add(object);
-			return notifications;
-		}
-
-		@Override
-		public Expression basicGet(int i) {
-			return super.basicGet(i);
-		}
-
-		@Override
-		public List<Expression> basicList() {
-			return super.basicList();
-		}
-
-		@Override
-		public Iterator<Expression> basicIterator() {
-			return super.basicIterator();
-		}
-
-		@Override
-		public ListIterator<Expression> basicListIterator() {
-			return super.basicListIterator();
-		}
-
-		@Override
-		public ListIterator<Expression> basicListIterator(int i) {
-			return super.basicListIterator(i);
-		}
 	}
 
 } // OperatorExpressionImpl

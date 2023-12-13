@@ -56,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  *     else subjects->first().ownedSubjectParameter
  *     endif
  * input->notEmpty() and input->first() = subjectParameter
- * specializeFromLibrary('Cases::cases')
+ * specializesFromLibrary('Cases::cases')
  * isComposite and owningType <> null and 
  *     (owningType.oclIsKindOf(CaseDefinition) or
  *      owningType.oclIsKindOf(CaseUsage)) implies

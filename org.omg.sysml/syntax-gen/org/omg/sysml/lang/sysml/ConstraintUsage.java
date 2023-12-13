@@ -28,7 +28,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>ConstraintUsage</code> is an <code>OccurrenceUsage</code> that is also a <code>BooleanExpression<code>, and, so, is typed by a <code>Predicate</code>. Nominally, if the type is a <code>ConstraintDefinition<code>, a <code>ConstraintUsage</code> is a <code>Usage</code> of that <code>ConstraintDefinition<code>. However, other kinds of kernel <code>Predicates</code> are also allowed, to permit use of <code>Predicates</code> from the Kernel Model Libraries.</p>
+ * <p>A <code>ConstraintUsage</code> is an <code>OccurrenceUsage</code> that is also a <code>BooleanExpression</code>, and, so, is typed by a <code>Predicate</code>. Nominally, if the type is a <code>ConstraintDefinition</code>, a <code>ConstraintUsage</code> is a <code>Usage</code> of that <code>ConstraintDefinition</code>. However, other kinds of kernel <code>Predicates</code> are also allowed, to permit use of <code>Predicates</code> from the Kernel Model Libraries.</p>
  * owningFeatureMembership <> null and
  * owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
  *     if owningFeatureMembership.oclAsType(RequirementConstraintMembership).kind = 

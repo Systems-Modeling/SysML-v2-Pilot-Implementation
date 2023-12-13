@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -45,9 +45,10 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -56,40 +57,24 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.TypeUtil;
 
 public class VDefault extends VTraverser {
-    protected Element getEnd(Feature f) {
-        if (f == null) return null;
-        if (f instanceof ItemFlowEnd) return f;
-        for (Relationship rel: f.getOwnedRelationship()) {
-        	if (rel instanceof OwningMembership) continue;
-            for (Element tgt: rel.getTarget()) {
-                if (tgt instanceof Feature) {
-                    Element r = resolveReference((Feature) tgt);
-                    if (r != null) return r;
-                    return rel;
-                }
-            }
-        }
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            return ss.getSubsettedFeature();
-        }
-        return null;
-    }
-
-    private void addConnector(Connector c, String desc) {
-        List<Feature> ends = TypeUtil.getOwnedEndFeaturesOf(c);
+    protected void addConnector(Element rel, Connector c, String desc) {
+        List<Feature> ends = c.getConnectorEnd();
         int size = ends.size();
         if (size >= 2) {
-            Element end1 = getEnd(ends.get(0));
+            Feature end1 = ends.get(0);
             if (end1 == null) return;
             for (int i = 1; i < size; i++) {
-                Element end2 = getEnd(ends.get(i));
+                Feature end2 = ends.get(i);
                 if (end2 == null) continue;
-                addPRelation(end1, end2, c, desc);
+                addPRelation(end1, end2, rel, desc);
             }
         }
+    }
+
+    protected void addConnector(Connector c, String desc) {
+        addConnector(c, c, desc);
     }
 
     protected String itemFlowDesc(ItemFlow itf) {
@@ -221,9 +206,9 @@ public class VDefault extends VTraverser {
     }
 
     @Override
-    public String caseItemFlow(ItemFlow itf) {
-        String desc = itemFlowDesc(itf);
-        addConnector(itf, desc);
+    public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+        String desc = itemFlowDesc(fcu);
+        addConnector(fcu, desc);
         return "";
     }
 
@@ -301,6 +286,16 @@ public class VDefault extends VTraverser {
     @Override
     public String caseAssignmentActionUsage(AssignmentActionUsage aau) {
         // TO be ignored.
+        return "";
+    }
+
+    @Override
+    public String caseMembership(Membership m) {
+        // Ignore unnamed alias memberships.
+        if ((m instanceof OwningMembership)
+            || m.getMemberName() != null) {
+            return super.caseMembership(m);
+        }
         return "";
     }
 

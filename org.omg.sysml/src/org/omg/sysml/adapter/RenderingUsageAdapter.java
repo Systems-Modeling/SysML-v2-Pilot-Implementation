@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,17 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewUsage;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 
 public class RenderingUsageAdapter extends PartUsageAdapter {
 
@@ -43,6 +38,14 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	public RenderingUsage getTarget() {
 		return (RenderingUsage)super.getTarget();
 	}
+	
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isViewRendering()) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getLibraryType(getDefaultSupertype("viewRendering")));
+		}
+	}
 
 	@Override
 	protected String getDefaultSupertype() {
@@ -51,26 +54,14 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 					getDefaultSupertype("base");
 	}
 	
+	public boolean isViewRendering() {
+		FeatureMembership membership = getTarget().getOwningFeatureMembership();
+		return membership instanceof ViewRenderingMembership;
+	}
+	
 	public boolean isSubrendering() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof RenderingDefinition | owningType instanceof RenderingUsage;
-	}
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
-		RenderingUsage target = getTarget();
-		return !FeatureUtil.isParameter(target) && !target.isEnd() && isRender(target)? getRenderFeatures(type):
-			   super.getRelevantFeatures(type, skip);
-	}
-	
-	protected List<? extends Feature> getRenderFeatures(Type type) {
-		List<Feature> features = type == getTarget().getOwningType()? type.getOwnedFeature(): type.getFeature();
-		return features.stream().filter(RenderingUsage.class::isInstance).collect(Collectors.toList());
-	}
-	
-	public static boolean isRender(RenderingUsage target) {
-		Type owningType = target.getOwningType();
-		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
 	}
 	
 }

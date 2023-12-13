@@ -29,6 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p><code>LiteralBoolean</code> is a <code>LiteralExpression</code> that provides a <code><em>Boolean</em></code> value as a result. Its <code>result</code> <code>parameter</code> must have type <code><em>Boolean</em></code>.</p>
  * 
+ * specializesFromLibrary('Performances::literalBooleanEvaluations')
  * <!-- end-model-doc -->
  *
  * <p>

@@ -86,7 +86,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Behaviors</code> that are the <code>types</code> of this <code>ActionUsage</code>. Nominally, these would be <code>ActionDefinitions<code>, but other kinds of Kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p> 
+	 * <p>The <code>Behaviors</code> that are the <code>types</code> of this <code>ActionUsage</code>. Nominally, these would be <code>ActionDefinitions</code>, but other kinds of Kernel <code>Behaviors</code> are also allowed, to permit use of <code>Behaviors</code> from the Kernel Model Libraries.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Definition</em>' reference list.
@@ -115,7 +115,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>i<code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i<code> owned input <code>parameters</code>.</p>
+	 * <p>Return the <code>i</code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i</code> owned input <code>parameters</code>.</p>
 	 * if inputParameters()->size() < i then null
 	 * else inputParameters()->at(i)
 	 * endif
@@ -129,7 +129,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>i<code>-th argument <code>Expression</code> of an <code>ActionUsage</code>, defined as the <code>value</code> <code>Expression</code> of the <code>FeatureValue</code> of the <code>i<code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i<code> owned input <code>parameters</code> or the <code>i<code>-th owned input <code>parameter</code> has no <code>FeatureValue</code>.</code>
+	 * <p>Return the <code>i</code>-th argument <code>Expression</code> of an <code>ActionUsage</code>, defined as the <code>value</code> <code>Expression</code> of the <code>FeatureValue</code> of the <code>i</code>-th owned input <code>parameter</code> of the <code>ActionUsage</code>. Return null if the <code>ActionUsage</code> has less than <code>i</code> owned input <code>parameters</code> or the <code>i</code>-th owned input <code>parameter</code> has no <code>FeatureValue</code>.</p>
 	 * if inputParameter(i) = null then null
 	 * else
 	 *     let featureValue : Sequence(FeatureValue) = inputParameter(i).

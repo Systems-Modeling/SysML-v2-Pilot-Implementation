@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,8 @@
 package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.ConnectorUtil;
 
 class PRelation {
     public final InheritKey ik;
@@ -70,9 +71,11 @@ class PRelation {
         Integer ii = s2p.getVPath().getId(ik, e);
         if (ii == null) {
             if (!s2p.checkId(e)) {
-                if (e instanceof Subsetting) {
-                    Subsetting ss = (Subsetting) e;
-                    e = ss.getSubsettedFeature();
+                if (e instanceof Feature) {
+                	Feature f = (Feature) e;
+                	if (!f.isEnd()) return null;
+                    e = ConnectorUtil.getRelatedFeatureOfEnd(f);
+                    if (e == null) return null;
                     if (!s2p.checkId(e)) return null;
                 } else {
                 	return null;

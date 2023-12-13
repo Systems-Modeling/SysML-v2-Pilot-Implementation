@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -48,6 +49,12 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	@Override
 	public Usage getSubjectParameter() {
 		return getTarget().getSubjectParameter();
+	}
+	
+	@Override
+	public boolean hasRelevantSubjectParameter() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage;
 	}
 	
 	// Implicit Generalization
@@ -75,6 +82,15 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 		return UsageUtil.isObjective(getTarget())? 
 				Collections.singletonList(TypeUtil.getObjectiveRequirementOf(type)):
 			    super.getRelevantFeatures(type, skip);
+	}
+	
+	// Transformation
+
+	@Override
+	public void doTransform() {
+		RequirementUsage target = getTarget();
+		super.doTransform();
+		computeSubjectParameterOf(target);
 	}
 	
 }

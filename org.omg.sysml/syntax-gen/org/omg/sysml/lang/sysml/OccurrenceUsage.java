@@ -29,7 +29,9 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKind(Class))) implies
  *     specializesFromLibrary("Occurrences::Occurrence::suboccurrences")
- * occurrenceDefinition->select(isIndividual).size() <= 1
+ * occurrenceDefinition->
+ *     selectByKind(OccurrenceDefinition)->
+ *     select(isIndividual).size() <= 1
  * portionKind <> null implies
  *     occurrenceDefinition->forAll(occ | 
  *         featuringType->exists(specializes(occ)))

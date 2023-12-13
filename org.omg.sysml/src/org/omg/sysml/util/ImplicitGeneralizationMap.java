@@ -195,7 +195,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
-		put(ConcernUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::concerns");
+		put(ConcernUsageImpl.class, "concern", "Requirements::RequirementCheck::concerns");
 		
 		put(ConnectionDefinitionImpl.class, "base", "Connections::Connection");
 		put(ConnectionDefinitionImpl.class, "binary", "Connections::BinaryConnection");
@@ -281,6 +281,7 @@ public class ImplicitGeneralizationMap {
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
+		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
 		
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");

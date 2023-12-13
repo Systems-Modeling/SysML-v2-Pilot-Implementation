@@ -30,14 +30,21 @@ package org.omg.sysml.lang.sysml;
  * <p><code>Redefinition</code> is a kind of <code>Subsetting</code> that requires the <code>redefinedFeature</code> and the <code>redefiningFeature</code> to have the same values (on each instance of the domain of the <code>redefiningFeature</code>). This means any restrictions on the <code>redefiningFeature</code>, such as <code>type</code> or <code>multiplicity</code>, also apply to the <code>redefinedFeature</code> (on each instance of the domain of the <code>redefiningFeature</code>), and vice versa. The <code>redefinedFeature</code> might have values for instances of the domain of the <code>redefiningFeature</code>, but only as instances of the domain of the <code>redefinedFeature</code> that happen to also be instances of the domain of the <code>redefiningFeature</code>. This is supported by the constraints inherited from <code>Subsetting</code> on the domains of the <code>redefiningFeature</code> and <code>redefinedFeature</code>. However, these constraints are narrowed for <code>Redefinition</code> to require the <code>owningTypes</code> of the <code>redefiningFeature</code> and <code>redefinedFeature</code> to be different and the <code>redefinedFeature</code> to not be inherited into the <code>owningNamespace</code> of the <code>redefiningFeature</code>.This enables the <code>redefiningFeature</code> to have the same name as the <code>redefinedFeature</code>, if desired.</p>
  * 
  * let anythingType: Type =
- *     subsettingFeature.resolveGlobal('Base::Anything').oclAsType(Type) in 
+ *     redefiningFeature.resolveGlobal('Base::Anything').modelElement.oclAsType(Type) in 
  * -- Including "Anything" accounts for implicit featuringType of Features
  * -- with no explicit featuringType.
- * let subsettingFeaturingTypes: Set(Type) =
- *     subsettingFeature.featuringTypes->asSet()->including(anythingType) in
- * let subsettedFeaturingTypes: Set(Type) =
- *     subsettedFeature.featuringTypes->asSet()->including(anythingType) in
- * subsettingFeaturingTypes <> subsettedFeaturingType
+ * let redefiningFeaturingTypes: Set(Type) =
+ *     redefiningFeature.featuringTypes->asSet()->including(anythingType) in
+ * let redefinedFeaturingTypes: Set(Type) =
+ *     redefinedFeature.featuringTypes->asSet()->including(anythingType) in
+ * redefiningFeaturingTypes <> redefinedFeaturingType
+ * let direction : FeatureDirectionKind = redefinedFeature.direction in
+ * ((direction = FeatureDirectionKind::_'in' or 
+ *   direction = FeatureDirectionKind::out) implies
+ *     redefiningFeature.direction = direction)
+ * and 
+ * (direction = FeatureDirectionKind::inout implies
+ *     redefiningFeature.direction <> null)
  * <!-- end-model-doc -->
  *
  * <p>

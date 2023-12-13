@@ -158,8 +158,8 @@ public class PortConjugationItemProvider extends ConjugationItemProvider {
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
-			childFeature == SysMLPackage.Literals.CONJUGATION__OWNING_TYPE ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.CONJUGATION__OWNING_TYPE ||
 			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
 
 		if (qualify) {

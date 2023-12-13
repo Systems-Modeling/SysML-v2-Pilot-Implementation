@@ -33,7 +33,7 @@ main() {
 }
 
 helper run() {
-	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
+	var syntax := export.objects()[Package]![name = "SysML Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
 	
 	var sysmlModel = object Model@sysml { 
@@ -46,8 +46,10 @@ helper run() {
 }
 
 helper mapModel(syntax : Package, sysmlModel : Model) {
-	mapPackageNested(syntax, "Root", sysmlModel);
-	mapPackageNested(syntax, "Core", sysmlModel);
-	mapPackageNested(syntax, "Kernel", sysmlModel);
-	mapPackageNested(syntax, "Systems", sysmlModel);
+	var kermlSyntax = syntax.packagedElement[Package]![name = 'KerML'];
+	var sysmlSyntax = syntax.packagedElement[Package]![name = 'SysML'];
+	mapPackageNested(kermlSyntax, "Root", sysmlModel);
+	mapPackageNested(kermlSyntax, "Core", sysmlModel);
+	mapPackageNested(kermlSyntax, "Kernel", sysmlModel);
+	mapPackageNested(sysmlSyntax, "Systems", sysmlModel);
 }

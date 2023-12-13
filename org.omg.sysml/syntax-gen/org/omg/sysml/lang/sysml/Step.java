@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Step</code> is a <code>Feature</code> that is typed by one or more <code>Behaviors</code>. <code>Steps</code> may be used by one <code>Behavior</code> to coordinate the performance of other <code>Behaviors</code>, supporting a steady refinement of behavioral descriptions. <code>Steps</code> can be ordered in time and can be connected using <code>ItemFlows</code> to specify things flowing between their <code>parameters</code>.</p>
  * 
- * allSupertypes()->includes(resolveGlobal("Performances::performances"))
+ * specializesFromLibrary('Performances::performances')
  * owningType <> null and
  *     (owningType.oclIsKindOf(Behavior) or
  *      owningType.oclIsKindOf(Step)) implies

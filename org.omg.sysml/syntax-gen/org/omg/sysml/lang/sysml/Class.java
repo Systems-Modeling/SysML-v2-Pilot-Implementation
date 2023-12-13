@@ -32,7 +32,7 @@ package org.omg.sysml.lang.sysml;
  * specializesFromLibrary('Occurrences::Occurrence')
  * ownedSpecialization.general->
  *     forAll(not oclIsKindOf(DataType)) and
- * not oclIsKindOf(AssociationStructure) implies
+ * not oclIsKindOf(Association) implies
  *     ownedSpecialization.general->
  *         forAll(not oclIsKindOf(Association))
  * <!-- end-model-doc -->

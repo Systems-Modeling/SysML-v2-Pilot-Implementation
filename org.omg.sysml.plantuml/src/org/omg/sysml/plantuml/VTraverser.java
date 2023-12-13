@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2023 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -109,7 +109,9 @@ public abstract class VTraverser extends Visitor {
             if (!showLib() && isModelLibrary(e)) continue;
             if (markRedefining(e, covered)) continue;
             setInherited(true);
+            pushVisited();
             visit(ms);
+            popVisited();
         }
     }
 
@@ -128,9 +130,11 @@ public abstract class VTraverser extends Visitor {
         Set<Element> covered = new HashSet<Element>();
         traverseInternal(ns, covered);
         if (!noInherit) {
-            inheriting();
-            if (showInherited() && (ns instanceof Type)) {
-                traverseInherited((Type) ns, covered);
+            inheriting(ns);
+            if (showInherited()) {
+            	if (ns instanceof Type) {
+            		traverseInherited((Type) ns, covered);
+            	}
             } else {
                 traverseRest(vpath);
             }

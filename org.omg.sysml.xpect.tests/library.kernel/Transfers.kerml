@@ -56,7 +56,7 @@ standard library package Transfers {
 		feature itemNum: Natural [1] = size(item);
 		
 		private instantNum: Natural[1] = if isInstant? 1 else 0;
-		private binding instant[0..instantNum] of startShot[0..1] = endShot[0..1] {
+		private binding instant[instantNum] of startShot[0..1] = endShot[0..1] {
 			doc
 			/*
 			 * If isInstant is true, then the start and end of the transfer happen at the same time.
@@ -177,7 +177,7 @@ standard library package Transfers {
         end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
 	}
 	
-	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		doc
 		/*
 		 * transfers is a specialization of performances and binaryLinks restricted to type 
@@ -188,14 +188,14 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
 	}
 	
-	step messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
+	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
 	}
 	
-	step flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
+	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
 		doc
 		/*
 		 * flowTransfers is a specialization of transfers restricted to type FlowTransfers.
@@ -203,7 +203,7 @@ standard library package Transfers {
 		 */
 	}
 	  
-	step transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
+	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
 		doc
 		/*
 		 * transfersBefore is a specialization of transfers and happensBeforeLinks restricted to
@@ -214,7 +214,7 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines transfers::target, HappensBefore::laterOccurrence;
 	}
 	
-	step flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
+	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
 		doc
 		/*
 		 * flowTransfersBefore is a specialization of flowTransfers and transfersBefore that is restricted
@@ -246,10 +246,12 @@ standard library package Transfers {
 		 * AcceptPerformance is a performance that requires an incomingTransferToSelf
 		 * of a desigated receiver Occurrence, providing its item as output.
 		 */
-		inout feature acceptedItem[0..*] default acceptedTransfer.item;
+		inout feature acceptedItem[0..*];
 		in feature receiver: Occurrence[1] default this;
 		feature acceptedTransfer: MessageTransfer[1] subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
+		
+		binding acceptedItem = acceptedTransfer.item;
 	}
 
 	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {

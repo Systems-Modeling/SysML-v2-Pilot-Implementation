@@ -26,16 +26,22 @@ package PortionModeling2 {
         }
     }
     
-        /* Intended semantics for above. */
+        /* Intended semantics for above.
+         * Trying to introduce x on top class without typing slices by top class.
+         */
 
     class CC2 {   //CB: Presumably a life bc timeslices aren't CC2s
-        feature x [*];
-        
+        feature x [*] = startShot.x; //  ES: Multiple to collect all CB: This x not the same as startShot::x.
+                       //VM/CB: Could try defining on CC2::x as featured by snapshots
         portion :>> startShot {
             that : CC2 :>> that;
-            :>> that.x = 0; //CB: binds x on CC2 life. ES: Only thru this navigation.
-        }                   //ES: "Adds" value to life. Binding only applies during snapshot
-                            //CB: Can't change the life in 4D, only on on slices of it.
+            feature x :> that.x = 0; //ES: chain feature domain is startShot.  Only thru this navigation.
+                                     //CB: Not the same feature as CC2::x, tho the parse lets it be named "x",
+                                     //      and even redefine "x" without startShot specializing CC2.
+            //:>> that.x = 0; //ES: Intending to add to that.x collection. Only thru this navigation.
+                              //CB: binds x on CC2 life.
+        }                     //ES: "Adds" value to life. Binding only applies during snapshot
+                              //CB: Can't change the life in 4D, only on on slices of it.
         portion t :> timeSlices {
             that : CC2 :>> that;
             feature y;

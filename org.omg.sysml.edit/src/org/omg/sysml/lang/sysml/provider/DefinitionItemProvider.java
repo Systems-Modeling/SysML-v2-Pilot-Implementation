@@ -48,7 +48,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 
 			addIsVariationPropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
-			addOwnedUsagePropertyDescriptor(object);
 			addVariantMembershipPropertyDescriptor(object);
 			addUsagePropertyDescriptor(object);
 			addDirectedUsagePropertyDescriptor(object);
@@ -78,6 +77,7 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			addOwnedViewpointPropertyDescriptor(object);
 			addOwnedRenderingPropertyDescriptor(object);
 			addOwnedMetadataPropertyDescriptor(object);
+			addOwnedUsagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -853,14 +853,14 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
+			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP;
 
 		if (qualify) {
 			return getString

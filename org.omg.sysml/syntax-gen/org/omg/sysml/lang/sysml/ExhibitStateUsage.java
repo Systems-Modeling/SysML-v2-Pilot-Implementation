@@ -35,7 +35,7 @@ package org.omg.sysml.lang.sysml;
  *  owningType.oclIsKindOf(PartUsage)) implies
  *     specializesFromLibrary('Parts::Part::exhibitedStates')
  * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateActionUsage)
+ *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateUsage)
  * <!-- end-model-doc -->
  *
  * <p>

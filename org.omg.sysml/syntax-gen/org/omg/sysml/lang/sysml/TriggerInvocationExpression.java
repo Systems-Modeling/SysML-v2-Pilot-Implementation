@@ -21,13 +21,24 @@ package org.omg.sysml.lang.sysml;
  * )
  * kind = TriggerKind::after implies
  *     argument->notEmpty() and
- *     argument->at(1).result.specializesFromLibrary('ISQ::DurationValue')
+ *     argument->at(1).result.specializesFromLibrary('Quantities::ScalarQuantityValue') and
+ *     let mRef : Element = 
+ *         resolveGlobal('Quantities::TensorQuantityValue::mRef').ownedMemberElement in
+ *     argument->at(1).result.feature->
+ *         select(ownedRedefinition.redefinedFeature->
+ *            closure(ownedRedefinition.redefinedFeature)->
+ *            includes(mRef))->
+ *         exists(specializesFromLibrary('ISQBase::DurationUnit'))
  * kind = TriggerKind::at implies
  *     argument->notEmpty() and
  *     argument->at(1).result.specializesFromLibrary('Time::TimeInstantValue')
  * kind = TriggerKind::when implies
  *     argument->notEmpty() and
- *     argument->at(1).result.specializesFromLibrary('ScalarValues::Boolean')
+ *     argument->at(1).oclIsKindOf(FeatureReferenceExpression) and
+ *     let referent : Feature = 
+ *         argument->at(1).oclAsType(FeatureReferenceExpression).referent in
+ *     referent.oclIsKindOf(Expression) and
+ *     referent.oclAsType(Expression).result.specializesFromLibrary('ScalarValues::Boolean')
  * <!-- end-model-doc -->
  *
  * <p>

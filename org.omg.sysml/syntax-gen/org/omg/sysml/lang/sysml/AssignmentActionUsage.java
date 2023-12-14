@@ -34,7 +34,7 @@ package org.omg.sysml.lang.sysml;
  * targetParameter->first().ownedFeature->first().redefines(referent)
  * referent =
  *     let unownedFeatures : Sequence(Feature) = ownedMembership->
- *         reject(oclIsKindOf(OwningMembership)).memberElement->
+ *         reject(oclIsKindOf(FeatureMembership)).memberElement->
  *         selectByKind(Feature) in
  *     if unownedFeatures->isEmpty() then null
  *     else unownedFeatures->first().oclAsType(Feature)

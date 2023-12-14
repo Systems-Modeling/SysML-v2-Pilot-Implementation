@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,7 +33,10 @@ main() {
 }
 
 helper mapModel(syntax : Package, model: Model) {
-	syntax.ownedMember[Package].map Package(model);	
+	var kermlSyntax = syntax.ownedMember[Package]![name = 'KerML'];
+	var sysmlSyntax = syntax.ownedMember[Package]![name = 'SysML'];
+	kermlSyntax.ownedMember[Package].map Package(model);	
+	sysmlSyntax.ownedMember[Package].map Package(model);	
 }
 
 mapping Package::Package(inout model: Model) {

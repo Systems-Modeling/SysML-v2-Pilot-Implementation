@@ -31,7 +31,7 @@ package PortionModeling2 {
          */
 
     class CC2 {   //CB: Presumably a life bc timeslices aren't CC2s
-        feature x [*] = startShot.x; //  ES: Multiple to collect all CB: This x not the same as startShot::x.
+        feature x [*]; // = startShot.x;  ES: Multiple to collect values over life.  CB: This x not the same as startShot::x.
                        //VM/CB: Could try defining on CC2::x as featured by snapshots
         portion :>> startShot {
             that : CC2 :>> that;

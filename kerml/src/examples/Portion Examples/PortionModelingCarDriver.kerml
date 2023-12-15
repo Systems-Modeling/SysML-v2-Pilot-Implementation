@@ -75,10 +75,9 @@ package PortionModelingCarDriver {
 		feature allDrivers : Person333::snapshots [*] = operated.snapshots.driver;
 		feature operated subsets timeSlices {
 			:>> snapshots {      //↓↓ Instead of snap class
-				feature driver : Person333::snapshots [1] inverse of Person333::snapshots::drives { 
-					feature thatCarSnap : Car333::operated::snapshots = that;
-					:>> self subsets thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
+				feature driver : Person333::snapshots [1] subsets timeCoincidentOccurrences
+					inverse of Person333::snapshots::drives { 
+					:>> isLicensed = true; } } } }
 
 	class Person333 :> Life {  //↓↓ Instead of snap class
 		feature allDrives : Car333::operated::snapshots [*] = snapshots.drives;
@@ -87,24 +86,40 @@ package PortionModelingCarDriver {
 			feature drives : Car333::operated::snapshots [0..1]; } }
 
 
+        /* Typing snapshots by features, inverses, with featured by snapshots.  */
+
+	class Car333FB :> Life {   //↓↓ Instead of snap class
+		feature allDrivers : Person333FB::snapshots [*] = operated.snapshots.driver;
+		feature operated subsets timeSlices { //↓↓ Instead of snap class
+			feature driver : Person333FB::snapshots [1] featured by snapshots;
+			:>> snapshots {      
+				feature driver subsets timeCoincidentOccurrences
+					inverse of Person333FB::snapshots::drives { //Can't resolve drives
+					:>> isLicensed = true; } } } } //Can't resolve isLicensed
+
+	class Person333FB :> Life {  //↓↓ Instead of snap class
+		feature allDrives : Car333FB::operated::snapshots [*] = snapshots.drives; //Can't resolve drives
+		feature isLicensed : Boolean [1] featured by snapshots;
+		feature drives : Car333FB::operated::snapshots [0..1] featured by snapshots; }
+								//↑↑ Instead of snap class
+			
 
         /* Car333 with top classes as timeslices.  */
 
 	class Car333TS {
-		feature driver : Person333TS [*] inverse of drives = operated.snapshots.driver;
-		feature : Car333TS :>> timeSlices; // Includes snapshots, should be in library
+		feature driver : Person333TS [*] inverse of Person333TS::drives = operated.snapshots.driver;
+		feature : Car333TS :>> timeSlices; // Includes snapshots, per library
 		feature operated : Car333TS subsets timeSlices { 
 			:>> snapshots : Car333TS { //←←↑↑ Redundant typing just to make sure
-				:>> driver : Person333TS::snapshots [1] {
-					feature thatCarSnap : Car333TS = that;
-					:>> self subsets thatCarSnap.timeCoincidentOccurrences {
-						:>> isLicensed = true; } } } } }
+				:>> driver : Person333TS::snapshots [1] subsets timeCoincidentOccurrences {
+					:>> isLicensed = true; } } } }
 
 	class Person333TS {
 		feature drives : Car333TS [*] = snapshots.drives;
-		feature : Person333TS :>> timeSlices; // Includes snapshots
-		:>> snapshots : Person333TS {
-			feature isLicensed : Boolean [1];
+		feature isLicensed : Boolean [1..2];
+		feature : Person333TS :>> timeSlices; // Includes snapshots, per library
+		:>> snapshots : Person333TS { //←← Redundant typing just to make sure
+			:>> isLicensed : Boolean [1];
 			:>> drives : Car333TS::operated::snapshots [0..1]; } }
 
 

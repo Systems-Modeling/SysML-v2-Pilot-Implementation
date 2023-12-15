@@ -60,6 +60,7 @@ package PortionModeling2 {
             }
         }
     }
+    
 
 
     /* Edit of CC2, with feature timeslices/snaps typed by their domain. */
@@ -67,7 +68,7 @@ package PortionModeling2 {
     class CC22 {
         feature x [*];
 
-        portion : CC22 :>> timeSlices; // Includes snapshots
+        portion : CC22 :>> timeSlices; // Includes snapshots, per library
 
         portion :>> snapshots {  // : CC22
             :>> x [1];
@@ -86,7 +87,7 @@ package PortionModeling2 {
 
             thatCC22 : CC22 :>> that;
 
-            portion : t :>> timeSlices; // Includes snapshots
+            portion : t :>> timeSlices; // Includes snapshots, per library
 
             feature all portionOft : t, Occurrence [1] subsets portionOf {
             	selfPortionOft :>> self : CC22::t, Occurrence;
@@ -101,7 +102,7 @@ package PortionModeling2 {
               //  (no t1 is a timeslice of any other)
             portion t1 : t :> timeSlices {
             	thatt : t :>> that;
-            	portion : t1 :>> timeSlices; // Includes snapshots
+            	portion : t1 :>> timeSlices; // Includes snapshots, per library
                 feature all portionOft1 : t1, Occurrence [1] subsets portionOf {
                 	selfPortionOft1 :>> self : CC22::t::t1, Occurrence;
                     feature [1] intersects thatt.t1, selfPortionOft1.portionOf;
@@ -111,6 +112,57 @@ package PortionModeling2 {
                     }
                 }
             }
+        }
+    }
+    
+    
+        /* Edit of CC2, with featured by snapshots. */
+        
+    class CC2FB {   //CB: Presumably a life bc timeslices aren't CC2FBs
+        feature x [1] featured by snapshots;
+		:>> snapshots; //Otherwise x would be featured by Occurrence::snapshots.
+		feature allx [*] = snapshots.x;  //Can't resolve x
+
+        portion :>> startShot {
+            x = 0; //Parses same as w/o featured by.
+        }
+
+        portion t :> timeSlices {  // includes snapshots, per library
+            feature y featured by snapshots;
+			:>> snapshots; //Otherwise y would be featured by Occurrence::snapshots.
+
+            portion :>> startShot {
+                x = 1; //Parses same as w/o featured by.
+                y = 2; //Parses same as w/o featured by.
+            }    
+            portion t1 :> timeSlices { // includes snapshots, per library
+                //that :> t :>> that;
+                portion :>> startShot {
+                    x = 2; //Parses same as w/o featured by.
+                    y = 3; //Parses same as w/o featured by.
+                }
+            }
+        }
+    }
+    
+    class CC2FBRef {
+    	feature c : CC2FB {
+    		:>> snapshots {
+    			x = 2; //Redefines CC2::x , which I guess is like CC2::snapshots::x
+    		}
+    	}
+    }
+    
+    class CC2FBRefF {
+    	feature c : CC2FB::snapshots {
+    		  :>> x = 2; //Can't resolve x.
+        }
+    }
+ 
+     class CC2FBRefC {
+    	feature c : CC2FB;
+    	feature cs chains c.snapshots {
+    		  :>> x = 2; //Can't resolve x.
         }
     }
 }

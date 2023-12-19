@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -114,9 +114,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 * @generated
 	 */
 	public FeatureDirectionKind parameterDirection() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return FeatureDirectionKind.IN;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -58,7 +58,6 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -639,30 +638,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Set the direction to OUT if the Feature is owned via a ReturnParameterMembership or
-	 * to IN if the Feature is owned via a (non-return) ParameterMembership.
-	 * If the feature is owned by an ItemFlowEnd, set the direction to that of the
+	 * If the Feature is owned via a ParameterMembership, the direction is given by
+	 * the parameterDirection operation of the relationship.
+	 * If the feature is owned by an ItemFlowEnd, the direction is that of the
 	 * redefined feature of its owned Redefinition.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
-		if (direction == null) {
-			FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
-			if (owningFeatureMembership instanceof ReturnParameterMembership) {
-				direction = FeatureDirectionKind.OUT;
-			} else if (owningFeatureMembership instanceof ParameterMembership) {
-				direction = FeatureDirectionKind.IN;
-			} else if (owningFeatureMembership != null) {
-				Type owningType = owningFeatureMembership.getOwningType();
-				if (owningType instanceof ItemFlowEnd) {
-					EList<Redefinition> redefinitions = getOwnedRedefinition();
-					if (!redefinitions.isEmpty()) {
-						Feature redefinedFeature = redefinitions.get(0).getRedefinedFeature();
-						if (redefinedFeature != null) {
-							direction = owningType.directionOf(redefinedFeature);
-						}
+		FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
+		if (owningFeatureMembership instanceof ParameterMembership) {
+			return ((ParameterMembership)owningFeatureMembership).parameterDirection();
+		} else if (owningFeatureMembership != null) {
+			Type owningType = owningFeatureMembership.getOwningType();
+			if (owningType instanceof ItemFlowEnd) {
+				EList<Redefinition> redefinitions = getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					Feature redefinedFeature = redefinitions.get(0).getRedefinedFeature();
+					if (redefinedFeature != null) {
+						return owningType.directionOf(redefinedFeature);
 					}
 				}
 			}

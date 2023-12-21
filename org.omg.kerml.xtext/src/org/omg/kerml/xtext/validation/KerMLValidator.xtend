@@ -461,19 +461,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	def checkRedefinitionDirection(FeatureDirectionKind redefiningDirection, List<Type> featuringTypes, Feature redefinedFeature, Element source) {
 		for (featuringType: featuringTypes) {
-			for (supertype: featuringType.ownedSpecialization.map[general]) {
-				val redefinedDirection = supertype.directionOf(redefinedFeature)
-				if ((redefinedDirection === FeatureDirectionKind.IN ||
-					redefinedDirection === FeatureDirectionKind.OUT) &&
-					redefiningDirection !== redefinedDirection ||
-					redefinedDirection === FeatureDirectionKind.INOUT &&
-					redefiningDirection === null) {
-						if (source instanceof Redefinition) {
-							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
-						} else {
-							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, null, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
-						}
-				}
+			val redefinedDirection = featuringType.directionOf(redefinedFeature)
+			if ((redefinedDirection === FeatureDirectionKind.IN ||
+				redefinedDirection === FeatureDirectionKind.OUT) &&
+				redefiningDirection !== redefinedDirection ||
+				redefinedDirection === FeatureDirectionKind.INOUT &&
+				redefiningDirection === null) {
+					if (source instanceof Redefinition) {
+						error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+					} else {
+						error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, null, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+					}
 			}
 		}
 	}

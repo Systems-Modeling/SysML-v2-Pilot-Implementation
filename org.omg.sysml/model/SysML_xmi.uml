@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HltIIIdWEe6nBtwmlNZ3Ww" name="SysML" URI="https://www.omg.org/spec/SysML/20230201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Cdfx0JrWEe6QMZ7KdLuJfg" name="SysML" URI="https://www.omg.org/spec/SysML/20230201">
   <packagedElement xmi:type="uml:Package" xmi:id="d88c098b-e2c0-4287-8797-203ff1229107" name="Root" visibility="public" URI="">
     <ownedComment xmi:id="3bb1f127-0eb9-41b7-91f9-4478a092010a" annotatedElement="d88c098b-e2c0-4287-8797-203ff1229107">
       <body>The Root layer provides the syntactic foundation for KerML.
@@ -1554,7 +1554,7 @@ and
         </ownedRule>
         <ownedRule xmi:id="a9cbc081-8038-4465-8072-0829e5b07929" name="deriveFeatureType" visibility="public" constrainedElement="56b2e3ab-f2e5-4330-9c25-362cb4af825d">
           <ownedComment xmi:id="04bfa6bb-22e6-4567-b491-9ffaabebccba" annotatedElement="a9cbc081-8038-4465-8072-0829e5b07929">
-            <body>&lt;p>If a &lt;code>Feature&lt;/code> has &lt;code>chainingFeatures&lt;/code>, then its &lt;code>types&lt;/code> are the same as the last &lt;code>chainingFeature&lt;/code>. Otherwise its &lt;code>types&lt;/code> are the union of the &lt;code>types&lt;/code> of its &lt;code>typings&lt;/code> and the &lt;code>types&lt;/code> of the &lt;code>subsettedFeatures&lt;/code> of its &lt;code>subsettings&lt;/code>, with all redundant supertypes removed.&lt;/p></body>
+            <body>&lt;p>The &lt;code>types&lt;/code> of a &lt;code>Feature&lt;/code> are the union of the &lt;code>types&lt;/code> of its &lt;code>typings&lt;/code> and the &lt;code>types&lt;/code> of the &lt;code>Features&lt;/code> it subsets, with all redundant supertypes removed. If the &lt;code>Feature&lt;/code> has &lt;code>chainingFeatures&lt;/code>, then the union also includes the types of the last &lt;code>chainingFeature&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="8612f6a3-1c2e-4ce3-810a-f5d956ef8d40" name="" visibility="public">
             <language>OCL2.0</language>
@@ -1614,7 +1614,7 @@ and
             <body>A &lt;code>Feature&lt;/code> must have either no &lt;code>chainingFeatures&lt;/code> or more than one.</body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="83ffafdb-454f-4be6-932e-0d7ca4723545" name="" visibility="public">
-            <language>English</language>
+            <language>OCL2.0</language>
             <body>chainingFeature->size() &lt;> 1</body>
           </specification>
         </ownedRule>
@@ -2177,7 +2177,10 @@ redefines(mem.memberElement.oclAsType(Feature))</body>
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:id="43a26f3f-ea82-488e-a0bc-904e16ed9c5e" name="typeFeatures" visibility="public" bodyCondition="3baa429e-0255-4f08-8c83-2a14bd084a1b">
+        <ownedOperation xmi:id="43a26f3f-ea82-488e-a0bc-904e16ed9c5e" name="typingFeatures" visibility="public" bodyCondition="3baa429e-0255-4f08-8c83-2a14bd084a1b">
+          <ownedComment xmi:id="44a7b1ba-c0ab-40ce-a72a-4ce4bd05c0b9" annotatedElement="43a26f3f-ea82-488e-a0bc-904e16ed9c5e">
+            <body>&lt;p>Return the &lt;code>Features&lt;/code> used to determine the &lt;code>types&lt;/code> of this &lt;code>Feature&lt;/code> (other than this &lt;code>Feature&lt;/code> itself), consisting of all subsetted &lt;code>Features&lt;/code> and the last &lt;code>chainingFeature&lt;/code> (if any).&lt;/p></body>
+          </ownedComment>
           <ownedRule xmi:id="3baa429e-0255-4f08-8c83-2a14bd084a1b" name="unnamed1" visibility="public">
             <specification xmi:type="uml:OpaqueExpression" xmi:id="3aee8722-65f6-4984-9b1a-538a138479e9" name="" visibility="public">
               <language>OCL2.0</language>
@@ -2248,7 +2251,7 @@ subsettedFeaturingTypes->forAll(t |
         </ownedRule>
         <ownedRule xmi:id="812243ff-9df4-44e3-b669-35781ca08f1d" name="validateSubsettingUniquenessConformance" visibility="public" constrainedElement="a26821f8-6af3-42a0-9043-03c372464172">
           <ownedComment xmi:id="f19182e9-4a57-4060-8115-95ba61e0ca92" annotatedElement="812243ff-9df4-44e3-b669-35781ca08f1d">
-            <body>&lt;p>If the &lt;code>subsettedFeature&lt;/code> of a &lt;code>Subsetting&lt;/code> has &lt;code>isUnique = true&lt;/code>, then the &lt;code>subsettedFeature&lt;/code> must have &lt;code>isUnqiue = true&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If the &lt;code>subsettedFeature&lt;/code> of a &lt;code>Subsetting&lt;/code> has &lt;code>isUnique = true&lt;/code>, then the &lt;code>subsettedFeature&lt;/code> must have &lt;code>isUnique = true&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="6cb3cfd6-8337-4306-a93c-f801e1aa1bd6" name="" visibility="public">
             <language>OCL2.0</language>
@@ -2808,9 +2811,8 @@ subsettedFeaturingTypes->forAll(t |
             <body>ownedConjugator =
     let ownedConjugators: Sequence(Conjugator) = 
         ownedRelationship->selectByKind(Conjugation) in
-        ownedConjugator = 
-            if ownedConjugators->isEmpty() then null 
-            else ownedConjugators->at(1) endif</body>
+    if ownedConjugators->isEmpty() then null 
+    else ownedConjugators->at(1) endif</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="a3d09077-5eca-41d7-b2e0-0aa571c30b89" name="deriveTypeOutput" visibility="public" constrainedElement="a32ae34b-57c2-4f49-832c-00f8741d55e7">
@@ -3050,7 +3052,7 @@ subsettedFeaturingTypes->forAll(t |
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="bd2f0b74-9880-4d7d-8214-a85f77d6bba0" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedUnioning->size() &lt;> 1</body>
+            <body>ownedIntersecting->size() &lt;> 1</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="54f37aee-ee35-430b-b72d-ac50744f1c7a" name="validateTypeOwnedDifferencingNotOne" visibility="public" constrainedElement="a32ae34b-57c2-4f49-832c-00f8741d55e7">
@@ -4003,7 +4005,7 @@ input->forAll(inp |
             <body>let features : Set(Feature) = type.feature->asSet() in
 input->forAll(inp1 | input->forAll(inp2 |
     inp1 &lt;> inp2 implies
-        inp1.ownedRedefintion.redefinedFeature->
+        inp1.ownedRedefinition.redefinedFeature->
             intersection(inp2.ownedRedefinition.redefinedFeature)->
             intersection(features)->isEmpty()))</body>
           </specification>
@@ -4810,6 +4812,15 @@ endif</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="f19f39d5-bb83-4ce0-9842-d64442f263dc" name="" visibility="public">
             <language>OCL2.0</language>
             <body>step = feature->selectByKind(Step)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="a372d888-a848-45cc-a7dd-6509c9785f6f" name="validateBehaviorSpecialization" visibility="public" constrainedElement="f527e941-2809-4d8d-a977-453060c3db74">
+          <ownedComment xmi:id="2f3fb6cd-1e9b-49e1-9a08-aef00c6310f6" annotatedElement="a372d888-a848-45cc-a7dd-6509c9785f6f">
+            <body>&lt;p>A &lt;code>Behavior&lt;/code> must not specialize a &lt;code>Structure&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="258a1c5d-c6df-465b-8e57-96b7dcab9edd" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>ownedSpecialization.general->forAll(not oclIsKindOf(Structure))</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="695139d6-e7cf-4f7a-b25e-5c48b025ae71" general="d956e5c3-9d04-4c1d-9494-2b8d7f33e196"/>
@@ -6374,7 +6385,7 @@ endif</body>
             <body>&lt;p>The &lt;code>metaclass&lt;/code> of a &lt;code>MetadataFeature&lt;/code> must not be abstract.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="6da7cce9-9051-4ea7-afcf-2d81d35e710c" name="" visibility="public">
-            <language>English</language>
+            <language>OCL2.0</language>
             <body>not metaclass.isAbstract</body>
           </specification>
         </ownedRule>
@@ -6526,6 +6537,15 @@ else
           <specification xmi:type="uml:OpaqueExpression" xmi:id="666fb70d-83b0-49e1-8243-a4217968458c" name="" visibility="public">
             <language>OCL2.0</language>
             <body>specializesFromLibrary('Objects::Object')</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="adde5ba9-a7ee-47a0-bd72-43c8c03c605c" name="validateStructureSpecialization" visibility="public" constrainedElement="6da69e09-f5e9-41b7-b976-5666a81d074d">
+          <ownedComment xmi:id="e10de49f-850f-40a1-9d85-b07d846c26c0" annotatedElement="adde5ba9-a7ee-47a0-bd72-43c8c03c605c">
+            <body>&lt;p>A &lt;code>Structure&lt;/code> must not specialize a &lt;code>Behavior&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="2e820c99-bd54-408e-9312-feb72184d7ee" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>ownedSpecialization.general->forAll(not oclIsKindOf(Behavior))</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="c832a176-9a61-4538-a2e6-d7737522d81a" general="d956e5c3-9d04-4c1d-9494-2b8d7f33e196"/>
@@ -8056,13 +8076,13 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="1e4989e8-8d09-4083-9938-4cfad212d40e" name="deriveAssignmentActionUsageReferent" visibility="public" constrainedElement="49ff625c-c71a-4398-9e2d-3655c345f64e">
           <ownedComment xmi:id="b30e1885-cea0-412b-9389-5535efdd68b9" annotatedElement="1e4989e8-8d09-4083-9938-4cfad212d40e">
-            <body>&lt;p>The &lt;code>referent&lt;/code> of an &lt;code>AssignmentActionUsage&lt;/code> is the first &lt;code>Feature&lt;/code> that is the &lt;code>memberElement&lt;/code> of a &lt;code>ownedMembership&lt;/code> that is not an &lt;code>OwningMembership&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>referent&lt;/code> of an &lt;code>AssignmentActionUsage&lt;/code> is the first &lt;code>Feature&lt;/code> that is the &lt;code>memberElement&lt;/code> of a &lt;code>ownedMembership&lt;/code> that is not a &lt;code>FeatureMembership&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="2e2fc1ca-03f2-4bb0-8fbb-8fbb1a49511e" name="" visibility="public">
             <language>OCL2.0</language>
             <body>referent =
     let unownedFeatures : Sequence(Feature) = ownedMembership->
-        reject(oclIsKindOf(OwningMembership)).memberElement->
+        reject(oclIsKindOf(FeatureMembership)).memberElement->
         selectByKind(Feature) in
     if unownedFeatures->isEmpty() then null
     else unownedFeatures->first().oclAsType(Feature)
@@ -8258,13 +8278,20 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="72a7df57-3c47-4c2f-9268-981a49e38f5e" name="validateTriggerInvocationExpressionAfterArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <ownedComment xmi:id="dfbbda61-f62d-462e-b81a-9985bed4aea4" annotatedElement="72a7df57-3c47-4c2f-9268-981a49e38f5e">
-            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = after&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ISQ::DurationValue&lt;/code>&lt;/em>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = after&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>Quantities::ScalarQuantityValue&lt;/code>&lt;/em> and a &lt;code>feature&lt;/code> that directly or indirectly redefines &lt;em>&lt;code>Quantities::TensorQuantityValue::mRef&lt;/code>&lt;/em> and directly or indirectly specializes &lt;em>&lt;code>ISQBase::DurationUnit&lt;/code>&lt;/em>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="46b49270-ad3b-4e63-a3f4-f901f16b6dc5" name="" visibility="public">
             <language>OCL2.0</language>
             <body>kind = TriggerKind::after implies
     argument->notEmpty() and
-    argument->at(1).result.specializesFromLibrary('ISQ::DurationValue')</body>
+    argument->at(1).result.specializesFromLibrary('Quantities::ScalarQuantityValue') and
+    let mRef : Element = 
+        resolveGlobal('Quantities::TensorQuantityValue::mRef').ownedMemberElement in
+    argument->at(1).result.feature->
+        select(ownedRedefinition.redefinedFeature->
+           closure(ownedRedefinition.redefinedFeature)->
+           includes(mRef))->
+        exists(specializesFromLibrary('ISQBase::DurationUnit'))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="1f3d9650-f025-4150-95f8-efb7bd58599b" name="validateTriggerInvocationExpressionAtArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
@@ -8280,13 +8307,17 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="35e9e0c8-c1b6-4e0f-812c-f1a8113f5188" name="validateTriggerInvocationExpressionWhenArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <ownedComment xmi:id="d5288623-9bf1-4eb2-9995-3a764fb53231" annotatedElement="35e9e0c8-c1b6-4e0f-812c-f1a8113f5188">
-            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = when&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ScalarValues::Boolean&lt;/code>&lt;/em>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = when&lt;/code>, then it must have an &lt;code>argument&lt;/code> that is a &lt;code>FeatureReferenceExpression&lt;/code> whose &lt;code>referent&lt;/code> is an &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ScalarValues::Boolean&lt;/code>&lt;/em>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="5e47641a-5d14-4177-9cae-b29df94e21e7" name="" visibility="public">
             <language>OCL2.0</language>
             <body>kind = TriggerKind::when implies
     argument->notEmpty() and
-    argument->at(1).result.specializesFromLibrary('ScalarValues::Boolean')</body>
+    argument->at(1).oclIsKindOf(FeatureReferenceExpression) and
+    let referent : Feature = 
+        argument->at(1).oclAsType(FeatureReferenceExpression).referent in
+    referent.oclIsKindOf(Expression) and
+    referent.oclAsType(Expression).result.specializesFromLibrary('ScalarValues::Boolean')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="a5817073-5d28-4e1d-9cc3-e5fb325f1c00" general="a9c8beb0-0f8c-4b12-a8dd-cdea2899b27c"/>
@@ -8641,6 +8672,15 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="8df815df-a54c-4d49-89c0-e88389ba53ca" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedMetadata = ownedUsage->selectByKind(MetadataUsage)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="c6f96936-2d66-4e82-870a-33da648c0b61" name="validateDefinitionVariationIsAbstract" visibility="public" constrainedElement="f1eb93f0-3ecf-4502-ac36-d7956f796a7f">
+          <ownedComment xmi:id="326660a0-8111-4631-9d96-8df34abdf70d" annotatedElement="c6f96936-2d66-4e82-870a-33da648c0b61">
+            <body>&lt;p>If a &lt;code>Definition&lt;/code> is a variation, then it must be abstract.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="43486d23-375a-4de0-a3ad-9672261afd78" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isVariation implies isAbstract</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="1bf6f637-3c4e-4fdb-893d-88b2f82e0868" general="d0a45a28-7af9-4bb2-9fc9-ac3e79928263"/>
@@ -9245,7 +9285,16 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="0bdffe0d-d719-4eaf-90e6-ba68f67b4c8b" name="" visibility="public">
             <language>OCL2.0</language>
             <body>direction &lt;> null or isEnd or featuringType->isEmpty() implies
-    isReferential</body>
+    isReference</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="48571a97-0f32-4fe6-a31e-00787cd52e64" name="validaeUsageVariationIsAbstract" visibility="public" constrainedElement="de05c06e-0b7a-4f9c-9921-b84416ef917d">
+          <ownedComment xmi:id="a2340ff3-cadf-41ff-a3ae-030a97fe129b" annotatedElement="48571a97-0f32-4fe6-a31e-00787cd52e64">
+            <body>&lt;p>If a &lt;code>Usage&lt;/code> is a variation, then it must be abstract.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="38d1bcfa-8e70-4499-b80c-0c9de834fe00" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isVariation implies isAbstract</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="5a0138d4-1b75-4944-8bb6-94053ea4b126" general="56b2e3ab-f2e5-4330-9c25-362cb4af825d"/>
@@ -11006,12 +11055,12 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="9b85aece-f9c4-47ee-85b9-420fff58610a" name="validateExhibitStateUsageReference" visibility="public" constrainedElement="37cc232b-2f72-4702-9231-6dcdf610247f">
           <ownedComment xmi:id="f51bfb17-2401-4bb7-a4d3-93f4ccededc1" annotatedElement="9b85aece-f9c4-47ee-85b9-420fff58610a">
-            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateActionUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="b33d7ae1-9f73-44c9-b631-4357d5bc4b3e" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateActionUsage)</body>
+    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateUsage)</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="5d254f1a-48b7-4edf-a9c8-e708b1a0b8a8" general="9b7f624e-c51c-45f2-81e0-cdf7606f0641"/>
@@ -11336,7 +11385,7 @@ else
 endif</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="b4197a24-2ec0-4d16-a499-0999d3d5dbee" name="validatAssertConstraintUsageReference" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
+        <ownedRule xmi:id="b4197a24-2ec0-4d16-a499-0999d3d5dbee" name="validateAssertConstraintUsageReference" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
           <ownedComment xmi:id="7ac7e526-8ca8-44c7-a026-08653f669891" annotatedElement="b4197a24-2ec0-4d16-a499-0999d3d5dbee">
             <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;/code>ConstraintUsage&lt;/code>.&lt;/p></body>
           </ownedComment>

@@ -72,6 +72,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedViewpoint = ownedUsage->selectByKind(ViewpointUsage)
  * ownedRendering = ownedUsage->selectByKind(RenderingUsage)
  * ownedMetadata = ownedUsage->selectByKind(MetadataUsage)
+ * isVariation implies isAbstract
  * <!-- end-model-doc -->
  *
  * <p>

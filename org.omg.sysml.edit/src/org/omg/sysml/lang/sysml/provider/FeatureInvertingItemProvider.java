@@ -44,8 +44,8 @@ public class FeatureInvertingItemProvider extends RelationshipItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addFeatureInvertedPropertyDescriptor(object);
-			addInvertingFeaturePropertyDescriptor(object);
 			addOwningFeaturePropertyDescriptor(object);
+			addInvertingFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

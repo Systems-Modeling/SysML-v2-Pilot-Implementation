@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_QtAq4IdWEe6nBtwmlNZ3Ww" name="SysML" URI="https://www.omg.org/spec/SysML/20230201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_HwhxsJrWEe6QMZ7KdLuJfg" name="SysML" URI="https://www.omg.org/spec/SysML/20230201">
   <packagedElement xmi:type="uml:Package" xmi:id="07571cf4-bf41-417e-9940-154e1578d394" name="Systems" visibility="public" URI="">
     <packageImport xmi:id="daeb66d9-cd8d-41ba-8001-cabcb2c8a400">
       <importedPackage href="KerML_only_xmi.uml#be3221b4-bef0-4d55-a9c7-cb7ffed86f6c"/>
@@ -1543,13 +1543,13 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="1e4989e8-8d09-4083-9938-4cfad212d40e" name="deriveAssignmentActionUsageReferent" visibility="public" constrainedElement="49ff625c-c71a-4398-9e2d-3655c345f64e">
           <ownedComment xmi:id="b30e1885-cea0-412b-9389-5535efdd68b9" annotatedElement="1e4989e8-8d09-4083-9938-4cfad212d40e">
-            <body>&lt;p>The &lt;code>referent&lt;/code> of an &lt;code>AssignmentActionUsage&lt;/code> is the first &lt;code>Feature&lt;/code> that is the &lt;code>memberElement&lt;/code> of a &lt;code>ownedMembership&lt;/code> that is not an &lt;code>OwningMembership&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>referent&lt;/code> of an &lt;code>AssignmentActionUsage&lt;/code> is the first &lt;code>Feature&lt;/code> that is the &lt;code>memberElement&lt;/code> of a &lt;code>ownedMembership&lt;/code> that is not a &lt;code>FeatureMembership&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="2e2fc1ca-03f2-4bb0-8fbb-8fbb1a49511e" name="" visibility="public">
             <language>OCL2.0</language>
             <body>referent =
     let unownedFeatures : Sequence(Feature) = ownedMembership->
-        reject(oclIsKindOf(OwningMembership)).memberElement->
+        reject(oclIsKindOf(FeatureMembership)).memberElement->
         selectByKind(Feature) in
     if unownedFeatures->isEmpty() then null
     else unownedFeatures->first().oclAsType(Feature)
@@ -1751,13 +1751,20 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="72a7df57-3c47-4c2f-9268-981a49e38f5e" name="validateTriggerInvocationExpressionAfterArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <ownedComment xmi:id="dfbbda61-f62d-462e-b81a-9985bed4aea4" annotatedElement="72a7df57-3c47-4c2f-9268-981a49e38f5e">
-            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = after&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ISQ::DurationValue&lt;/code>&lt;/em>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = after&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>Quantities::ScalarQuantityValue&lt;/code>&lt;/em> and a &lt;code>feature&lt;/code> that directly or indirectly redefines &lt;em>&lt;code>Quantities::TensorQuantityValue::mRef&lt;/code>&lt;/em> and directly or indirectly specializes &lt;em>&lt;code>ISQBase::DurationUnit&lt;/code>&lt;/em>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="46b49270-ad3b-4e63-a3f4-f901f16b6dc5" name="" visibility="public">
             <language>OCL2.0</language>
             <body>kind = TriggerKind::after implies
     argument->notEmpty() and
-    argument->at(1).result.specializesFromLibrary('ISQ::DurationValue')</body>
+    argument->at(1).result.specializesFromLibrary('Quantities::ScalarQuantityValue') and
+    let mRef : Element = 
+        resolveGlobal('Quantities::TensorQuantityValue::mRef').ownedMemberElement in
+    argument->at(1).result.feature->
+        select(ownedRedefinition.redefinedFeature->
+           closure(ownedRedefinition.redefinedFeature)->
+           includes(mRef))->
+        exists(specializesFromLibrary('ISQBase::DurationUnit'))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="1f3d9650-f025-4150-95f8-efb7bd58599b" name="validateTriggerInvocationExpressionAtArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
@@ -1773,13 +1780,17 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="35e9e0c8-c1b6-4e0f-812c-f1a8113f5188" name="validateTriggerInvocationExpressionWhenArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <ownedComment xmi:id="d5288623-9bf1-4eb2-9995-3a764fb53231" annotatedElement="35e9e0c8-c1b6-4e0f-812c-f1a8113f5188">
-            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = when&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ScalarValues::Boolean&lt;/code>&lt;/em>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = when&lt;/code>, then it must have an &lt;code>argument&lt;/code> that is a &lt;code>FeatureReferenceExpression&lt;/code> whose &lt;code>referent&lt;/code> is an &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>ScalarValues::Boolean&lt;/code>&lt;/em>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="5e47641a-5d14-4177-9cae-b29df94e21e7" name="" visibility="public">
             <language>OCL2.0</language>
             <body>kind = TriggerKind::when implies
     argument->notEmpty() and
-    argument->at(1).result.specializesFromLibrary('ScalarValues::Boolean')</body>
+    argument->at(1).oclIsKindOf(FeatureReferenceExpression) and
+    let referent : Feature = 
+        argument->at(1).oclAsType(FeatureReferenceExpression).referent in
+    referent.oclIsKindOf(Expression) and
+    referent.oclAsType(Expression).result.specializesFromLibrary('ScalarValues::Boolean')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="a5817073-5d28-4e1d-9cc3-e5fb325f1c00">
@@ -2139,6 +2150,15 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="8df815df-a54c-4d49-89c0-e88389ba53ca" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedMetadata = ownedUsage->selectByKind(MetadataUsage)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="c6f96936-2d66-4e82-870a-33da648c0b61" name="validateDefinitionVariationIsAbstract" visibility="public" constrainedElement="f1eb93f0-3ecf-4502-ac36-d7956f796a7f">
+          <ownedComment xmi:id="326660a0-8111-4631-9d96-8df34abdf70d" annotatedElement="c6f96936-2d66-4e82-870a-33da648c0b61">
+            <body>&lt;p>If a &lt;code>Definition&lt;/code> is a variation, then it must be abstract.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="43486d23-375a-4de0-a3ad-9672261afd78" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isVariation implies isAbstract</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="1bf6f637-3c4e-4fdb-893d-88b2f82e0868">
@@ -2752,7 +2772,16 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="0bdffe0d-d719-4eaf-90e6-ba68f67b4c8b" name="" visibility="public">
             <language>OCL2.0</language>
             <body>direction &lt;> null or isEnd or featuringType->isEmpty() implies
-    isReferential</body>
+    isReference</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="48571a97-0f32-4fe6-a31e-00787cd52e64" name="validaeUsageVariationIsAbstract" visibility="public" constrainedElement="de05c06e-0b7a-4f9c-9921-b84416ef917d">
+          <ownedComment xmi:id="a2340ff3-cadf-41ff-a3ae-030a97fe129b" annotatedElement="48571a97-0f32-4fe6-a31e-00787cd52e64">
+            <body>&lt;p>If a &lt;code>Usage&lt;/code> is a variation, then it must be abstract.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="38d1bcfa-8e70-4499-b80c-0c9de834fe00" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isVariation implies isAbstract</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="5a0138d4-1b75-4944-8bb6-94053ea4b126">
@@ -4557,12 +4586,12 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="9b85aece-f9c4-47ee-85b9-420fff58610a" name="validateExhibitStateUsageReference" visibility="public" constrainedElement="37cc232b-2f72-4702-9231-6dcdf610247f">
           <ownedComment xmi:id="f51bfb17-2401-4bb7-a4d3-93f4ccededc1" annotatedElement="9b85aece-f9c4-47ee-85b9-420fff58610a">
-            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateActionUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="b33d7ae1-9f73-44c9-b631-4357d5bc4b3e" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateActionUsage)</body>
+    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateUsage)</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="5d254f1a-48b7-4edf-a9c8-e708b1a0b8a8" general="9b7f624e-c51c-45f2-81e0-cdf7606f0641"/>
@@ -4903,7 +4932,7 @@ else
 endif</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="b4197a24-2ec0-4d16-a499-0999d3d5dbee" name="validatAssertConstraintUsageReference" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
+        <ownedRule xmi:id="b4197a24-2ec0-4d16-a499-0999d3d5dbee" name="validateAssertConstraintUsageReference" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
           <ownedComment xmi:id="7ac7e526-8ca8-44c7-a026-08653f669891" annotatedElement="b4197a24-2ec0-4d16-a499-0999d3d5dbee">
             <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;/code>ConstraintUsage&lt;/code>.&lt;/p></body>
           </ownedComment>

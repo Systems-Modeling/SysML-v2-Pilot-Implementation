@@ -48,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * let features : Set(Feature) = type.feature->asSet() in
  * input->forAll(inp1 | input->forAll(inp2 |
  *     inp1 <> inp2 implies
- *         inp1.ownedRedefintion.redefinedFeature->
+ *         inp1.ownedRedefinition.redefinedFeature->
  *             intersection(inp2.ownedRedefinition.redefinedFeature)->
  *             intersection(features)->isEmpty()))
  * <!-- end-model-doc -->

@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * specializesFromLibrary("Performances::Performance")
  * step = feature->selectByKind(Step)
+ * ownedSpecialization.general->forAll(not oclIsKindOf(Structure))
  * <!-- end-model-doc -->
  *
  * <p>

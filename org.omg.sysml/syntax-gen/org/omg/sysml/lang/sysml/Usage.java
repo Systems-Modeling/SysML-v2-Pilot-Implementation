@@ -79,7 +79,8 @@ import org.eclipse.emf.common.util.EList;
  * nestedViewpoint = nestedUsage->selectByKind(ViewpointUsage)
  * usage = feature->selectByKind(Usage)
  * direction <> null or isEnd or featuringType->isEmpty() implies
- *     isReferential
+ *     isReference
+ * isVariation implies isAbstract
  * <!-- end-model-doc -->
  *
  * <p>

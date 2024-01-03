@@ -119,12 +119,12 @@ package PortionModeling2 {
         /* Edit of CC2, with featured by snapshots. */
         
     class CC2FB {   //CB: Presumably a life bc timeslices aren't CC2FBs
-        feature x [1] featured by snapshots;
+        member feature x [1] featured by snapshots; //Ed: "member" avoids CC2FB being the featuring type.
 		:>> snapshots; //Otherwise x would be featured by Occurrence::snapshots.
-		feature allx [*] = snapshots.x;  //Can't resolve x
-
+		feature allx [*] = snapshots.x;  //Can't resolve x Ed: Chaining check follows namespacing, not type featuring.
+                           // Ed: feature by points into snapshots, so resolution would need to look globally for features.
         portion :>> startShot {
-            x = 0; //Parses same as w/o featured by.
+            x = 0; //Parses as new feature, same as w/o featured by.
         }
 
         portion t :> timeSlices {  // includes snapshots, per library
@@ -146,23 +146,25 @@ package PortionModeling2 {
     }
     
     class CC2FBRef {
+    	feature e = c.snapshots.x; //Ed: Resolves x on snapshots, but it isn't featured by of c.
+    	feature d = c.snapshots.CC2FB::x; //Ed: Might be a way to make this parse.
     	feature c : CC2FB {
     		:>> snapshots {
-    			x = 2; //Redefines CC2::x , which I guess is like CC2::snapshots::x
+    			//x = 2; //Redefines CC2::x , which I guess is like CC2::snapshots::x
     		}
     	}
     }
     
     class CC2FBRefF {
     	feature c : CC2FB::snapshots {
-    		  :>> x = 2; //Can't resolve x.
+    		  :>> x = 2; //Can't resolve x.  Ed: Feature isn't in snapshots namespace.
         }
     }
  
      class CC2FBRefC {
     	feature c : CC2FB;
     	feature cs chains c.snapshots {
-    		  :>> x = 2; //Can't resolve x.
+    		  :>> x = 2; //Can't resolve x. Ed: Feature isn't in snapshots namespace.
         }
     }
 }

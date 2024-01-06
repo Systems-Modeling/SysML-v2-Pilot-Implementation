@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class CaseDefinition_objectiveRequirement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -36,7 +36,7 @@ public class CaseDefinition_objectiveRequirement_SettingDelegate extends BasicDe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return TypeUtil.getObjectiveRequirementOf((CaseDefinition)owner);
+		return UsageUtil.getObjectiveRequirementOf((CaseDefinition)owner);
 	}
 
 }

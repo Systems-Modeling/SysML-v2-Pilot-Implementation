@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class RequirementDefinition_subjectParameter_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -35,7 +35,7 @@ public class RequirementDefinition_subjectParameter_SettingDelegate extends Basi
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return TypeUtil.basicGetSubjectParameterOf((RequirementDefinition)owner);
+		return UsageUtil.basicGetSubjectParameterOf((RequirementDefinition)owner);
 	}
 
 }

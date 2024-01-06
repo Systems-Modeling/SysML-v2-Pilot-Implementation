@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,12 +21,15 @@
 
 package org.omg.sysml.util;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -115,6 +118,19 @@ public class UsageUtil {
 		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
 	}
 
+	public static Usage getSubjectParameterOf(Type type) {
+		return type instanceof Definition? ((DefinitionAdapter)ElementUtil.getElementAdapter((Definition)type)).getSubjectParameter():
+			   type instanceof Usage? getUsageAdapter((Usage)type).getSubjectParameter():
+			   null;
+	}
+
+	public static Usage basicGetSubjectParameterOf(Type type) {
+		// Note: Using getAllParametersOf avoids circularity in computing inherited FeatureMemberships.
+		return (Usage)TypeUtil.getAllParametersOf(type).stream().
+				filter(UsageUtil::isSubjectParameter).
+				findFirst().orElse(null);
+	}
+	
 	public static boolean hasRelevantSubjectParameter(Usage usage) {
 		return getUsageAdapter(usage).hasRelevantSubjectParameter();
 	}
@@ -126,6 +142,36 @@ public class UsageUtil {
 	
 	public static Usage getOwnedSubjectParameterOf(Type type) {
 		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
+	}
+	
+	// Objectives
+	
+	public static boolean isObjectiveRequirement(Usage usage) {
+		return usage.getOwningFeatureMembership() instanceof ObjectiveMembership;
+	}
+	
+	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		return getObjectiveRequirementOf(type, new HashSet<>());
+	}
+	
+	public static RequirementUsage getObjectiveRequirementOf(Type type, Set<Type> visited) {
+		visited.add(type);
+		RequirementUsage requirementUsage = getOwnedObjectiveRequirementOf(type);
+		if (requirementUsage == null) {
+			for (Type general: TypeUtil.getSupertypesOf(type)) {
+				if (general != null && !visited.contains(general)) {
+					requirementUsage = getObjectiveRequirementOf(general, visited);
+					if (requirementUsage != null) {
+						break;
+					}
+				}
+			}
+		}
+		return requirementUsage;
+	}
+	
+	private static RequirementUsage getOwnedObjectiveRequirementOf(Type type) {
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(type, ObjectiveMembership.class);
 	}
 	
 	// Actors
@@ -210,10 +256,6 @@ public class UsageUtil {
 			    owningType instanceof RequirementUsage);
 	}
 
-	public static boolean isObjective(RequirementUsage requirement) {
-		return requirement.getOwningFeatureMembership() instanceof ObjectiveMembership;
-	}	
-
 	public static boolean isVerifiedRequirement(RequirementUsage requirement) {
 		FeatureMembership membership = requirement.getOwningFeatureMembership();
 		return membership instanceof RequirementVerificationMembership &&
@@ -222,7 +264,7 @@ public class UsageUtil {
 	
 	public static boolean isLegalVerification(RequirementVerificationMembership membership) {
 		Type owningType = membership.getOwningType();
-		if (owningType instanceof RequirementUsage && isObjective((RequirementUsage)owningType)) {
+		if (owningType instanceof RequirementUsage && isObjectiveRequirement((RequirementUsage)owningType)) {
 			owningType = ((RequirementUsage)owningType).getOwningType();
 			return owningType instanceof VerificationCaseDefinition || 
 				   owningType instanceof VerificationCaseUsage;

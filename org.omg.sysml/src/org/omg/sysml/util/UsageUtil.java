@@ -29,7 +29,6 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -119,12 +118,6 @@ public class UsageUtil {
 	}
 
 	public static Usage getSubjectParameterOf(Type type) {
-		return type instanceof Definition? ((DefinitionAdapter)ElementUtil.getElementAdapter((Definition)type)).getSubjectParameter():
-			   type instanceof Usage? getUsageAdapter((Usage)type).getSubjectParameter():
-			   null;
-	}
-
-	public static Usage basicGetSubjectParameterOf(Type type) {
 		// Note: Using getAllParametersOf avoids circularity in computing inherited FeatureMemberships.
 		return (Usage)TypeUtil.getAllParametersOf(type).stream().
 				filter(UsageUtil::isSubjectParameter).

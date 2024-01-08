@@ -35,7 +35,7 @@ public class RequirementUsage_subjectParameter_SettingDelegate extends BasicDeri
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return UsageUtil.basicGetSubjectParameterOf((RequirementUsage)owner);
+		return UsageUtil.getSubjectParameterOf((RequirementUsage)owner);
 	}
 
 }

@@ -29,7 +29,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
@@ -44,11 +43,6 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	}
 	
 	// Utility
-	
-	@Override
-	public Usage getSubjectParameter() {
-		return getTarget().getSubjectParameter();
-	}
 	
 	@Override
 	public boolean hasRelevantSubjectParameter() {

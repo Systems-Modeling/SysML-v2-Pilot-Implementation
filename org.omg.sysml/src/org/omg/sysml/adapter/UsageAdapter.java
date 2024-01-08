@@ -55,10 +55,6 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	// Utility
 	
-	public Usage getSubjectParameter() {
-		return null;
-	}
-	
 	public boolean hasRelevantSubjectParameter() {
 		return false;
 	}

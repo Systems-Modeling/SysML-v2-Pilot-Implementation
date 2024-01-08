@@ -11,7 +11,7 @@
     "jupyterlab-extension"
   ],
   "dependencies": {
-    "@jupyterlab/application": ">=2.0.0"
+    "@jupyterlab/application": "2.x"
   },
   "devDependencies": {
     "@types/codemirror": "^0.0.98",

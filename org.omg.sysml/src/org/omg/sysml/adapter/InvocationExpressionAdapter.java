@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -98,20 +97,6 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 			}
 		}
 		return input;
-	}
-	
-	// Computed Redefinition
-
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		Expression target = getTarget();
-		Type type = getExpressionType();
-		int m = type == null ? 0 : 
-			(int)TypeUtil.getAllParametersOf(target, null).stream().
-				filter(FeatureUtil::isInputParameter).count();
-		List<Feature> features = target.getOwnedFeature();
-		int n = features.size();
-		return m >= n ? Collections.emptyList() : features.subList(m, n);
 	}
 	
 	// Transformation

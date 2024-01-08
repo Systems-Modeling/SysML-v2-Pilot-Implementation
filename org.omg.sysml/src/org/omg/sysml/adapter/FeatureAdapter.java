@@ -322,7 +322,10 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	public boolean isComputeRedefinitions() {
-		return isAddImplicitGeneralTypes && isComputeRedefinitions;
+		Feature target = getTarget();
+		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
+				(!FeatureUtil.isParameter(target) ||
+				 target.getOwnedRedefinition().isEmpty());
 	}
 	
 	/**

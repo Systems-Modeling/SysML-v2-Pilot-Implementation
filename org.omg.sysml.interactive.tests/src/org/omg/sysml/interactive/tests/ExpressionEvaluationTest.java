@@ -327,6 +327,25 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 234", instance.eval("arr2#(2,3,4)", "IndexOperatorTest"));
 	}
 	
+	// Test named-argument invocation.
+	public final String invocationTest =
+			"package InvocationTest {\n"
+			+ "	   calc def Test {"
+			+ "        in x;"
+			+ "        in y;"
+			+ "        x"
+			+ "     }"
+			+ "}";
+	
+	@Test
+	public void testInvocationEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, invocationTest);
+//		assertElement("LiteralInteger 1", instance.eval("Test(1, 2)", "InvocationTest"));
+//		assertElement("LiteralInteger 1", instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
+		assertElement("LiteralInteger 1", instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
+	}
+	
 	@Test
 	public void testArithmeticEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();

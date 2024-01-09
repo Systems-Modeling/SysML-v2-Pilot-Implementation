@@ -44,7 +44,6 @@ import org.omg.sysml.lang.sysml.ConnectionUsage
 import org.omg.sysml.lang.sysml.ConstraintUsage
 import org.omg.sysml.lang.sysml.DataType
 import org.omg.sysml.lang.sysml.Definition
-import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
 import org.omg.sysml.lang.sysml.Feature
@@ -135,6 +134,7 @@ import org.omg.sysml.lang.sysml.TriggerKind
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.lang.sysml.FlowDefinition
 import org.omg.sysml.lang.sysml.FlowUsage
+import org.omg.sysml.lang.sysml.Relationship
 
 /**
  * This class contains custom validation rules. 
@@ -932,9 +932,9 @@ class SysMLValidator extends KerMLValidator {
 	
 	protected def checkStateSubactions(Type type) {
 		val errorId = type instanceof Definition? INVALID_STATE_DEFINITION_SUBACTION_KIND: INVALID_STATE_USAGE_SUBACTION_KIND
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
 	}
 	
 	@Check
@@ -1321,17 +1321,26 @@ class SysMLValidator extends KerMLValidator {
 		return check
 	}
 	
-	protected def boolean checkAtMostOneFeature(Type owningType, Class<? extends FeatureMembership> kind, String msg, String eId) {
-		var mems = owningType.ownedFeatureMembership.filter[m | kind.isInstance(m)]
-		checkAtMostOneElement(mems, msg, eId);
+	protected def boolean checkAtMostOneFeature(Type featuringType, Class<? extends FeatureMembership> kind, String msg, String eId) {
+		var mems = featuringType.featureMembership.filter[m | kind.isInstance(m)]
+		checkAtMostOneRelationship(featuringType, mems, msg, eId)
 	}
 	
-	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
-		if (elements.size <= 1) {
+	protected def boolean checkAtMostOneRelationship(Type type, Iterable<? extends Relationship> relationships, String msg, String eId) {
+		if (relationships.size <= 1) {
 			return true;
 		} else {
-			for (var i = 1; i < elements.size; i++) {
-				error(msg, elements.get(i), null, eId);			
+			val ownedRelationships = relationships.filter[owningRelatedElement === type]
+			if (ownedRelationships.empty) {
+				error(msg, type, null, eId);	
+			} else if (ownedRelationships.size == relationships.size) {
+				for (var i = 1; i < ownedRelationships.size; i++) {
+					error(msg, ownedRelationships.get(i), null, eId);
+				}
+			} else {
+				for (mem: ownedRelationships) {
+					error(msg, mem, null, eId);
+				}
 			}
 			return false;
 		}

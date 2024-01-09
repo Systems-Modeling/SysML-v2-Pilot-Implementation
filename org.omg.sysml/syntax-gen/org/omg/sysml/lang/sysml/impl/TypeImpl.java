@@ -841,18 +841,30 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
+		Collection<Feature> redefinedOwnedFeatures = getFeaturesRedefinedBy(getOwnedFeature());
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
 				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
+				   		anyMatch(redefinedOwnedFeatures::contains);
 		});		
+
+		Collection<Feature> features = memberships.stream().
+				filter(FeatureMembership.class::isInstance).
+				map(FeatureMembership.class::cast).
+				map(FeatureMembership::getOwnedMemberFeature).
+				collect(Collectors.toList());
+		Collection<Feature> redefinedFeatures = getFeaturesRedefinedBy(features);
+		memberships.removeIf(membership->{
+			Element memberElement = membership.getMemberElement();
+			return memberElement instanceof Feature &&
+					redefinedFeatures.contains(membership.getMemberElement());
+		});
 	}
 	
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		return getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+	public static Collection<Feature> getFeaturesRedefinedBy(Collection<Feature> features) {
+		return features.stream().
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream().filter(f->f != feature)).
 				collect(Collectors.toSet());
 	}
 	

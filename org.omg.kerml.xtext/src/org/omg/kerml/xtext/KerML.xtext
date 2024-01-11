@@ -322,7 +322,7 @@ Type returns SysML::Type :
 fragment TypeDeclaration returns SysML::Type : 
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
-    ( SpecializationPart | ConjugationPart )+
+    ( SpecializationPart | ConjugationPart )
     TypeRelationshipPart*
 ;
 

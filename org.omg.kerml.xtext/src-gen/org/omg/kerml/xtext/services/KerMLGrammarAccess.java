@@ -1730,14 +1730,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//fragment TypeDeclaration returns SysML::Type :
 		//    ( isSufficient ?= 'all' )? Identification?
 		//    ( ownedRelationship += OwnedMultiplicity )?
-		//    ( SpecializationPart | ConjugationPart )+
+		//    ( SpecializationPart | ConjugationPart )
 		//    TypeRelationshipPart*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( isSufficient ?= 'all' )? Identification?
 		//( ownedRelationship += OwnedMultiplicity )?
-		//( SpecializationPart | ConjugationPart )+
+		//( SpecializationPart | ConjugationPart )
 		//TypeRelationshipPart*
 		public Group getGroup() { return cGroup; }
 		
@@ -1756,7 +1756,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedMultiplicity
 		public RuleCall getOwnedRelationshipOwnedMultiplicityParserRuleCall_2_0() { return cOwnedRelationshipOwnedMultiplicityParserRuleCall_2_0; }
 		
-		//( SpecializationPart | ConjugationPart )+
+		//( SpecializationPart | ConjugationPart )
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//SpecializationPart
@@ -7917,7 +7917,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment TypeDeclaration returns SysML::Type :
 	//    ( isSufficient ?= 'all' )? Identification?
 	//    ( ownedRelationship += OwnedMultiplicity )?
-	//    ( SpecializationPart | ConjugationPart )+
+	//    ( SpecializationPart | ConjugationPart )
 	//    TypeRelationshipPart*
 	//;
 	public TypeDeclarationElements getTypeDeclarationAccess() {

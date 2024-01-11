@@ -2782,7 +2782,7 @@ ruleTypeDeclaration[EObject in_current]  returns [EObject current=in_current]
 				$current = $this_ConjugationPart_4.current;
 				afterParserOrEnumRuleCall();
 			}
-		)+
+		)
 		(
 			{
 				if ($current==null) {

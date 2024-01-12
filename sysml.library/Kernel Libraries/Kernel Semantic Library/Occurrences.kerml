@@ -757,7 +757,7 @@ standard library package Occurrences {
 		 * Occurrence is InsideOf itself and that InsideOf is transitive.
 		 */
 
-		end feature smallerSpace: Occurrence[1..*] redefines source, largerSpace.spaceEnclosedOccurrences;
+		end feature smallerSpace: Occurrence[1..*] redefines source subsets largerSpace.spaceEnclosedOccurrences;
 		end feature largerSpace: Occurrence[1..*] redefines target;
 	}
 

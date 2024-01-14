@@ -46,6 +46,7 @@ public class LibraryFunctionFactory {
 		put(new NotEmptyFunction());
 		put(new IncludesFunction());
 		put(new ListConcatFunction());
+		put(new ListRangeFunction());
 		put(new IndexFunction());
 		
 		put(new IsTypeFunction());

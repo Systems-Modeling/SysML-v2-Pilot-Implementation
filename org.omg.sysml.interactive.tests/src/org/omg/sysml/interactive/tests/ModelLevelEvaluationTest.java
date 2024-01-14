@@ -202,6 +202,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		checkExpressionIsModelLevelEvaluable(instance, "1..3");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::size(null)");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::includes(null, 1)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::excludes(null, 1)");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::isEmpty(null)");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::notEmpty(null)");
 	}
@@ -287,6 +288,9 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "5..3"));
 		assertEquals(3, evaluateIntegerValue(null, null, "SequenceFunctions::size((1, 2, 3))"));
 		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 1)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 5)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::excludes((1, 2, 3), 1)"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::excludes((1, 2, 3), 5)"));
 		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty(null)"));
 		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty(1)"));
 		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty((1,2,3))"));

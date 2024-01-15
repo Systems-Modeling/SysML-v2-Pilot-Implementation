@@ -550,16 +550,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
-		private final RuleCall cMetadataDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final RuleCall cDefinitionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cMetadataDefKeywordParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cDefinitionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//MetadataDefinition returns SysML::MetadataDefinition :
-		//    ( isAbstract ?= 'abstract')? MetadataDefKeyword
+		//    ( isAbstract ?= 'abstract')?
+		//    DefinitionExtensionKeyword* MetadataDefKeyword
 		//    Definition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( isAbstract ?= 'abstract')? MetadataDefKeyword
+		//( isAbstract ?= 'abstract')?
+		//DefinitionExtensionKeyword* MetadataDefKeyword
 		//Definition
 		public Group getGroup() { return cGroup; }
 		
@@ -569,11 +572,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 		
+		//DefinitionExtensionKeyword*
+		public RuleCall getDefinitionExtensionKeywordParserRuleCall_1() { return cDefinitionExtensionKeywordParserRuleCall_1; }
+		
 		//MetadataDefKeyword
-		public RuleCall getMetadataDefKeywordParserRuleCall_1() { return cMetadataDefKeywordParserRuleCall_1; }
+		public RuleCall getMetadataDefKeywordParserRuleCall_2() { return cMetadataDefKeywordParserRuleCall_2; }
 		
 		//Definition
-		public RuleCall getDefinitionParserRuleCall_2() { return cDefinitionParserRuleCall_2; }
+		public RuleCall getDefinitionParserRuleCall_3() { return cDefinitionParserRuleCall_3; }
 	}
 	public class PrefixMetadataAnnotationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PrefixMetadataAnnotation");
@@ -643,19 +649,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class MetadataUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MetadataUsage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cMetadataUsageKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cMetadataUsageDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cAboutKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_2_1.eContents().get(0);
-		private final RuleCall cMetadataBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cUsageExtensionKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cMetadataUsageKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cMetadataUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cAboutKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_3_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_3_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_2_1.eContents().get(0);
+		private final RuleCall cMetadataBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//MetadataUsage returns SysML::MetadataUsage :
+		//    UsageExtensionKeyword*
 		//    MetadataUsageKeyword MetadataUsageDeclaration
 		//    ( 'about' ownedRelationship += Annotation
 		//        ( ',' ownedRelationship += Annotation )*
@@ -664,6 +672,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//UsageExtensionKeyword*
 		//MetadataUsageKeyword MetadataUsageDeclaration
 		//( 'about' ownedRelationship += Annotation
 		//    ( ',' ownedRelationship += Annotation )*
@@ -671,40 +680,43 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//MetadataBody
 		public Group getGroup() { return cGroup; }
 		
+		//UsageExtensionKeyword*
+		public RuleCall getUsageExtensionKeywordParserRuleCall_0() { return cUsageExtensionKeywordParserRuleCall_0; }
+		
 		//MetadataUsageKeyword
-		public RuleCall getMetadataUsageKeywordParserRuleCall_0() { return cMetadataUsageKeywordParserRuleCall_0; }
+		public RuleCall getMetadataUsageKeywordParserRuleCall_1() { return cMetadataUsageKeywordParserRuleCall_1; }
 		
 		//MetadataUsageDeclaration
-		public RuleCall getMetadataUsageDeclarationParserRuleCall_1() { return cMetadataUsageDeclarationParserRuleCall_1; }
+		public RuleCall getMetadataUsageDeclarationParserRuleCall_2() { return cMetadataUsageDeclarationParserRuleCall_2; }
 		
 		//( 'about' ownedRelationship += Annotation
 		//    ( ',' ownedRelationship += Annotation )*
 		//)?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//'about'
-		public Keyword getAboutKeyword_2_0() { return cAboutKeyword_2_0; }
+		public Keyword getAboutKeyword_3_0() { return cAboutKeyword_3_0; }
 		
 		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
+		public Assignment getOwnedRelationshipAssignment_3_1() { return cOwnedRelationshipAssignment_3_1; }
 		
 		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_1_0; }
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_3_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_3_1_0; }
 		
 		//( ',' ownedRelationship += Annotation )*
-		public Group getGroup_2_2() { return cGroup_2_2; }
+		public Group getGroup_3_2() { return cGroup_3_2; }
 		
 		//','
-		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 		
 		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_2_2_1() { return cOwnedRelationshipAssignment_2_2_1; }
+		public Assignment getOwnedRelationshipAssignment_3_2_1() { return cOwnedRelationshipAssignment_3_2_1; }
 		
 		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_2_1_0; }
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_3_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_3_2_1_0; }
 		
 		//MetadataBody
-		public RuleCall getMetadataBodyParserRuleCall_3() { return cMetadataBodyParserRuleCall_3; }
+		public RuleCall getMetadataBodyParserRuleCall_4() { return cMetadataBodyParserRuleCall_4; }
 	}
 	public class MetadataUsageDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MetadataUsageDeclaration");
@@ -14742,7 +14754,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//MetadataDefinition returns SysML::MetadataDefinition :
-	//    ( isAbstract ?= 'abstract')? MetadataDefKeyword
+	//    ( isAbstract ?= 'abstract')?
+	//    DefinitionExtensionKeyword* MetadataDefKeyword
 	//    Definition
 	//;
 	public MetadataDefinitionElements getMetadataDefinitionAccess() {
@@ -14788,6 +14801,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//MetadataUsage returns SysML::MetadataUsage :
+	//    UsageExtensionKeyword*
 	//    MetadataUsageKeyword MetadataUsageDeclaration
 	//    ( 'about' ownedRelationship += Annotation
 	//        ( ',' ownedRelationship += Annotation )*

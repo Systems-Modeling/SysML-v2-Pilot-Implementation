@@ -1,0 +1,77 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
+       	File {from ="/library.kernel/Metaobjects.kerml"}
+       	File {from ="/library.systems/Attributes.sysml"}
+ 		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Metadata.sysml"}
+ 		File {from ="/library.systems/SysML.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
+		       	File {from ="/library.kernel/Metaobjects.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
+		       	File {from ="/library.systems/Attributes.sysml"}
+		 		File {from ="/library.systems/Items.sysml"}
+		 		File {from ="/library.systems/Metadata.sysml"}
+		 		File {from ="/library.systems/SysML.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package MetadataTest {
+	import 'User Defined Extensions'::*;
+	
+	library package 'User Defined Extensions' {
+		
+		enum def ClassificationLevel {
+			uncl;
+			conf;
+			secret;
+		}
+		
+		metadata def Classified {
+			ref :>> annotatedElement : SysML::Usage;
+			ref classificationLevel : ClassificationLevel;
+		}
+		
+		metadata def Security;
+	}
+	
+	ref x {
+		metadata Classified {
+			classificationLevel = ClassificationLevel::conf;
+		}
+	}
+	
+	ref y {
+		@Classified {
+			classificationLevel = ClassificationLevel::conf;
+		}
+		@Security;
+	}
+	
+	private ref #Classified #Security z1;
+	abstract #Classified z2;
+	
+	ref z {
+	    #Security #Classified metadata Classified {
+	        classificationLevel = ClassificationLevel::secret;
+	    }
+	}	
+	
+}

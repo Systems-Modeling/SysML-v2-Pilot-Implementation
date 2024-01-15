@@ -118,7 +118,8 @@ MetadataUsageKeyword :
 ;
 
 MetadataDefinition returns SysML::MetadataDefinition :
-	( isAbstract ?= 'abstract')? MetadataDefKeyword 
+	( isAbstract ?= 'abstract')? 
+	DefinitionExtensionKeyword* MetadataDefKeyword 
 	Definition
 ;
 
@@ -136,6 +137,7 @@ PrefixMetadataUsage returns SysML::MetadataUsage :
 ;
 
 MetadataUsage returns SysML::MetadataUsage :
+	UsageExtensionKeyword*
 	MetadataUsageKeyword MetadataUsageDeclaration 
 	( 'about' ownedRelationship += Annotation 
 		( ',' ownedRelationship += Annotation )*

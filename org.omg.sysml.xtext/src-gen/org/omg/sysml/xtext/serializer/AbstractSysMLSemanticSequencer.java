@@ -1199,13 +1199,13 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.METADATA_DEFINITION:
-				sequence_DefinitionBodyItem_Identification_MetadataDefinition_SubclassificationPart(context, (MetadataDefinition) semanticObject); 
+				sequence_DefinitionBodyItem_DefinitionExtensionKeyword_Identification_MetadataDefinition_SubclassificationPart(context, (MetadataDefinition) semanticObject); 
 				return; 
 			case SysMLPackage.METADATA_USAGE:
 				if (rule == grammarAccess.getAnnotatingElementRule()
 						|| rule == grammarAccess.getMetadataUsageRule()
 						|| rule == grammarAccess.getDefinitionElementRule()) {
-					sequence_Identification_MetadataBody_MetadataUsage_MetadataUsageDeclaration(context, (MetadataUsage) semanticObject); 
+					sequence_Identification_MetadataBody_MetadataUsage_MetadataUsageDeclaration_UsageExtensionKeyword(context, (MetadataUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPrefixMetadataUsageRule()) {
@@ -8220,6 +8220,36 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     MetadataDefinition returns MetadataDefinition
+	 *     DefinitionElement returns MetadataDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         isAbstract?='abstract'? 
+	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
+	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	 *         (
+	 *             (
+	 *                 ownedRelationship+=DefinitionMember | 
+	 *                 ownedRelationship+=VariantUsageMember | 
+	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 ownedRelationship+=AliasMember | 
+	 *                 ownedRelationship+=Import
+	 *             )? 
+	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember)?
+	 *         )+
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_DefinitionBodyItem_DefinitionExtensionKeyword_Identification_MetadataDefinition_SubclassificationPart(ISerializationContext context, MetadataDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     GuardedSuccession returns TransitionUsage
 	 *
 	 * Constraint:
@@ -8259,35 +8289,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_DefinitionBodyItem_GuardedSuccession_Identification_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings(ISerializationContext context, TransitionUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     MetadataDefinition returns MetadataDefinition
-	 *     DefinitionElement returns MetadataDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
-	 *         (
-	 *             (
-	 *                 ownedRelationship+=DefinitionMember | 
-	 *                 ownedRelationship+=VariantUsageMember | 
-	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
-	 *                 ownedRelationship+=AliasMember | 
-	 *                 ownedRelationship+=Import
-	 *             )? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember)?
-	 *         )+
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_DefinitionBodyItem_Identification_MetadataDefinition_SubclassificationPart(ISerializationContext context, MetadataDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9383,6 +9384,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         ownedRelationship+=MetadataTyping 
 	 *         (ownedRelationship+=Annotation ownedRelationship+=Annotation*)? 
@@ -9390,7 +9392,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Identification_MetadataBody_MetadataUsage_MetadataUsageDeclaration(ISerializationContext context, MetadataUsage semanticObject) {
+	protected void sequence_Identification_MetadataBody_MetadataUsage_MetadataUsageDeclaration_UsageExtensionKeyword(ISerializationContext context, MetadataUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

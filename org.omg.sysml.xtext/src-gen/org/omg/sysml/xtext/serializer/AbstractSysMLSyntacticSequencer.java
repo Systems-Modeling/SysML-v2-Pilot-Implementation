@@ -1589,6 +1589,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember ItemDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember MessageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember MetadataDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember OccurrenceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember PartDefKeyword (ambiguity) (rule end)
@@ -1855,6 +1856,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) MetadataUsageKeyword (ambiguity) ownedRelationship+=MetadataTyping
+	 *     ownedRelationship+=PrefixMetadataMember MetadataUsageKeyword (ambiguity) ownedRelationship+=MetadataTyping
 	 
 	 * </pre>
 	 */

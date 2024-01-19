@@ -41,7 +41,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
@@ -910,10 +912,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public boolean isFeaturedWithin(Type type) {
 		List<Type> featuringTypes = getFeaturingType();
-		return featuringTypes.stream().anyMatch(featuringType->
-			   		type != null && TypeUtil.conforms(featuringType, type) ||
-					featuringType instanceof Feature &&
-					((Feature)featuringType).isFeaturedWithin(type));
+		// TODO: Fix OCL for isFeaturedWithin
+		if (featuringTypes.isEmpty()) {
+			return true;
+		} else {
+			Type effectiveType = type == null?
+				SysMLLibraryUtil.getLibraryType(this, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)):
+				type;
+			return featuringTypes.stream().allMatch(featuringType->
+				   		TypeUtil.conforms(effectiveType, featuringType));
+		}
 	}
 
 	protected String effectiveName = null;

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2022-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -87,18 +87,21 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 		// Add implicit generalization.
 		ElementUtil.transform(instantiation);
 		
-		// Add parameters corresponding to parameters in original expression.
+		// Evaluate value Expressions for parameters on original instantiation.
 		for (Feature parameter: TypeUtil.getOwnedParametersOf(expression)) {
-			Feature newParameter = SysMLFactory.eINSTANCE.createFeature();
-			newParameter.setDirection(parameter.getDirection());
-			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter, null)) {
-				Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
-				newRedefinition.setRedefinedFeature(redefinedFeature);
-				newParameter.getOwnedRelationship().add(newRedefinition);
-			}
-			
 			Expression valueExpression = FeatureUtil.getValueExpressionFor(parameter);
 			if (valueExpression != null) {
+				// Add a new parameter to hold the result of the Expression evaluation.
+				Feature newParameter = SysMLFactory.eINSTANCE.createFeature();
+				TypeUtil.addOwnedFeatureTo(instantiation, newParameter);
+				
+				newParameter.setDirection(parameter.getDirection());
+				for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter, null)) {
+					Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
+					newRedefinition.setRedefinedFeature(redefinedFeature);
+					newParameter.getOwnedRelationship().add(newRedefinition);
+				}				
+
 				// Evaluate the value expression for the original parameter with the given target,
 				// NOT including the bindings in the original invocation expression.
 				EList<Element> values = evaluate(valueExpression, target);
@@ -113,9 +116,8 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 					}
 				}
 			}
-			
-			TypeUtil.addOwnedFeatureTo(instantiation, newParameter);
 		}
+		
 		return instantiation;
 	}
 }

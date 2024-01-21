@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
@@ -202,21 +203,29 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void removeUnnecessaryImplicitGeneralTypes() {
 		Type target = getTarget();
-		List<Type> generals = target.getOwnedSpecialization().stream().
+		List<Specialization> specializations = target.getOwnedSpecialization().stream().
 				filter(spec->spec.getSpecific() == target && spec.getGeneral() != target).
+				collect(Collectors.toList());
+		List<Type> generals = specializations.stream().
+				map(Specialization::getGeneral).
+				collect(Collectors.toList());
+		List<Type> redefinedFeatures = specializations.stream().
+				filter(Redefinition.class::isInstance).
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
 		List<Type> implicitGenerals = new ArrayList<>();
 		implicitGeneralTypes.values().forEach(implicitGenerals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
-			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
-				List<Type> implicitEClassGenerals = implicitGeneralTypes.get(eClass);
+			List<Type> implicitEClassGenerals = implicitGeneralTypes.get(eClass);
+			if (eClass == SysMLPackage.eINSTANCE.getRedefinition()) {
+				implicitEClassGenerals.removeAll(redefinedFeatures);
+			} else {
 				implicitEClassGenerals.removeIf(gen->
 					generals.stream().anyMatch(type->conforms(type, gen)) ||
 					implicitGenerals.stream().anyMatch(type->type != gen && conforms(type, gen)));
-				if (implicitEClassGenerals.isEmpty()) {
-					implicitGeneralTypes.remove(eClass);
-				}
+			}
+			if (implicitEClassGenerals.isEmpty()) {
+				implicitGeneralTypes.remove(eClass);
 			}
 		}
 		

@@ -87,6 +87,7 @@ import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
+import org.omg.sysml.lang.sysml.Metaclass
 
 /**
  * This class contains custom validation rules. 
@@ -257,6 +258,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_METADATA_FEATURE_BODY = "invalidateMetadataFeatureBody"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_1 = "Must redefine an owning-type feature"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_2 = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE_METACLASS = "validateMetadataFeatureMetadata"
+	public static val INVALID_METADATA_FEATURE_METACLASS_MSG = "Must have exactly one metaclass"
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT = "validateMetadataFeatureMetadataNotAbstract"
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG = "Must have a concrete type"
 
@@ -916,6 +919,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
+		
+		// validateMetadataFeatureMetaclass
+		if (mf.type.filter(Metaclass).size() != 1) {
+			error(INVALID_METADATA_FEATURE_METACLASS_MSG, mf, null, INVALID_METADATA_FEATURE_METACLASS)
+		}
 		
 		// validateMetadataFeatureMetaclassNotAbstract
 		if (mf.type.exists[abstract]) {

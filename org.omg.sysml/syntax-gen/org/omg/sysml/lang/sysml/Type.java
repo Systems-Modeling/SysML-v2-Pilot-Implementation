@@ -47,18 +47,14 @@ import org.eclipse.emf.common.util.EList;
  *         ownedRelationship->selectByKind(Conjugation) in
  *     if ownedConjugators->isEmpty() then null 
  *     else ownedConjugators->at(1) endif
- * output =
- *     if isConjugated then 
- *         conjugator.originalType.input
- *     else 
- *         feature->select(direction = out or direction = inout)
- *     endif
- * input = 
- *     if isConjugated then 
- *         conjugator.originalType.output
- *     else 
- *         feature->select(direction = _'in' or direction = inout)
- *     endif
+ * output = feature->select(f | 
+ *     let direction: FeatureDirectionKind = directionOf(f) in
+ *     direction = FeatureDirectionKind::out or
+ *     direction = FeatureDirectionKind::inout)
+ * input = feature->select(f | 
+ *     let direction: FeatureDirectionKind = directionOf(f) in
+ *     direction = FeatureDirectionKind::_'in' or
+ *     direction = FeatureDirectionKind::inout)
  * inheritedMembership = inheritedMemberships(Set{})
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
@@ -162,20 +158,45 @@ public interface Type extends Namespace {
 	 * <!-- begin-model-doc -->
 	 * <p>If the given <code>feature</code> is a <code>feature</code> of this <code>Type</code>, then return its direction relative to this <code>Type</code>, taking conjugation into account.</p>
 	 * 
-	 * if input->includes(feature) and output->includes(feature) then 
-	 *     FeatureDirectionKind::inout
-	 * else if input->includes(feature) then 
-	 *     FeatureDirectionKind::_'in'
-	 * else if output->includes(feature) then 
-	 *     FeatureDirectionKind::out
-	 * else 
-	 *     null 
-	 * endif endif endif
+	 * directionOfExcluding(f, Set{})
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false"
 	 * @generated
 	 */
 	FeatureDirectionKind directionOf(Feature feature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the direction of the given <code>feature</code> relative to this <code>Type</code>, excluding a given set of <code>Types</code> from the search of supertypes of this <code>Type</code>.</p>
+	 * let excludedSelf : Set(Type) = excluded->including(self) in
+	 * if feature.owningType = self then feature.direction
+	 * else if ownedConjugator <> null then
+	 *     if excludedSelf->includes(ownedConjugator.originalType) then null
+	 *     else
+	 *         let originalDirection: FeatureDirectionKind = 
+	 *             ownedConjugator.originalType.directionOfExcluding(feature, excludedSelf) in
+	 *         if originalDirection = FeatureDirectionKind::_'in' then FeatureDirectionKind::out
+	 *         else if originalDirection = FeatureDirectionKind::out then FeatureDirectionKind::_'in'
+	 *         else originalDirection
+	 *         endif endif
+	 *     endif
+	 * else
+	 *     let directions: Sequence(FeatureDirectionKind) = 
+	 *         ownedSpecialization.general->
+	 *             excluding(excludedSelf).
+	 *             directionOfExcluding(feature, excludedSelf)->
+	 *             select(d | d <> null) in
+	 *     if directions->isEmpty() then null
+	 *     else directions->at(1)
+	 *     endif
+	 * endif endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" featureRequired="true" featureOrdered="false" excludedMany="true" excludedOrdered="false"
+	 * @generated
+	 */
+	FeatureDirectionKind directionOfExcluding(Feature feature, EList<Type> excluded);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -43,9 +43,10 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAnnotatingElementPropertyDescriptor(object);
 			addAnnotatedElementPropertyDescriptor(object);
 			addOwningAnnotatedElementPropertyDescriptor(object);
-			addAnnotatingElementPropertyDescriptor(object);
+			addOwningAnnotatingElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,6 +109,28 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 				 getString("_UI_Annotation_owningAnnotatedElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_owningAnnotatedElement_feature", "_UI_Annotation_type"),
 				 SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATED_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Annotating Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningAnnotatingElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Annotation_owningAnnotatingElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_owningAnnotatingElement_feature", "_UI_Annotation_type"),
+				 SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATING_ELEMENT,
 				 true,
 				 false,
 				 true,

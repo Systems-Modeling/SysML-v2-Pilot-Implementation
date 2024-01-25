@@ -120,7 +120,7 @@ public interface Expression extends Step {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -184,15 +184,13 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return whether this <code>Expression</code> is model-level evaluable. The <code>visited</code> parameter is used to track possible circular <code>Feature</code> references. Such circular references are not allowed in model-level evaluable expressions.</p>
+	 * <p>Return whether this <code>Expression</code> is model-level evaluable. The <code>visited</code> parameter is used to track possible circular <code>Feature</code> references made from <code>FeatureReferenceExpressions</code> (see the redefinition of this operation for <code>FeatureReferenceExpression</code>). Such circular references are not allowed in model-level evaluable expressions.</p>
 	 * 
-	 * <p>An <code>Expression</code> that is not otherwise specialized is model-level evaluable if all of it has no <code>ownedSpecialziations</code> and all its (non-implicit) <code>features</code> are either <code>in</code> parameters, the <code>result</code> <code>parameter</code> or a result <code>Expression</code> owned via a <code>ResultExpressionMembership</code>. The <code>parameters</code>  must not have any <code>ownedFeatures</code> or a <code>FeatureValue</code>, and the result <code>Expression</code> must be model-level evaluable.</p>
-	 * ownedSpecialization->isEmpty() and
+	 * <p>An <code>Expression</code> that is not otherwise specialized is model-level evaluable if it has no (non-implied) <code>ownedSpecializations</code> and all its <code>ownedFeatures</code> are either <code>in</code> parameters, the <code>result</code> <code>parameter</code> or a result <code>Expression</code> owned via a <code>ResultExpressionMembership</code>. The <code>parameters</code>  must not have any <code>ownedFeatures</code> or a <code>FeatureValue</code>, and the result <code>Expression</code> must be model-level evaluable.</p>
+	 * ownedSpecialization->forAll(isImplied) and 
 	 * ownedFeature->forAll(f |
-	 *     (f.oclIsKindOf(Relationship) and 
-	 *         f.oclAsType(Relationship).isImplicit) or 
-	 *     (directionOf(f) = FeatureDirectionKind::_'in' or f = result) and 
-	 *         f.ownedFeature->isEmpty() f.valuation = null and  or
+	 *     (directionOf(f) = FeatureDirectionKind::_'in' or f = result) and
+	 *         f.ownedFeature->isEmpty() and f.valuation = null or
 	 *     f.owningFeatureMembership.oclIsKindOf(ResultExpressionMembership) and
 	 *         f.oclAsType(Expression).modelLevelEvaluable(visited)
 	 *     

@@ -63,7 +63,7 @@ import org.eclipse.emf.common.util.EList;
  *     if exitMemberships->isEmpty() then null
  *     else exitMemberships->at(1)
  *     endif
- * specializesFromLibrary('States::StateAction')
+ * specializesFromLibrary('States::stateActions')
  * ownedMembership->
  *     selectByKind(StateSubactionMembership)->
  *     isUnique(kind)

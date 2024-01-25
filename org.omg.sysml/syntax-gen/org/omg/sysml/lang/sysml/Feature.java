@@ -43,10 +43,11 @@ import org.eclipse.emf.common.util.EList;
  *     select(tf | tf.featureOfType = self)
  * ownedSubsetting = ownedSpecialization->selectByKind(Subsetting)
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
- * type = OrderedSet{self}->
- * -- Note: The closure operation automatically handles circular relationships.
- *     closure(typingFeatures()).typing.type->
- *     asOrderedSet()
+ * type = 
+ *     let types : OrderedSet(Types) = OrderedSet{self}->
+ *         -- Note: The closure operation automatically handles circular relationships.
+ *         closure(typingFeatures()).typing.type->asOrderedSet() in
+ *     types->reject(t1 | types->exist(t2 | t2 <> t1 and t2.specializes(t1)))
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * specializesFromLibrary("Base::things")
  * chainingFeature->excludes(self)
@@ -68,7 +69,7 @@ import org.eclipse.emf.common.util.EList;
  * isEnd and owningType <> null and
  * (owningType.oclIsKindOf(Association) or
  *  owningType.oclIsKindOf(Connector)) implies
- *     specializesFromLibrary('Links::Link::participants')
+ *     specializesFromLibrary('Links::Link::participant')
  * isComposite and
  * ownedTyping.type->includes(oclIsKindOf(Structure)) and
  * owningType <> null and
@@ -152,6 +153,14 @@ import org.eclipse.emf.common.util.EList;
  *     chainingFeature->at(i + 1).featuringType->forAll(t | 
  *         chainingFeature->at(i).specializes(t)))
  * 
+ * isPortion and
+ * ownedTyping.type->includes(oclIsKindOf(Class)) and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Class) or
+ *  owningType.oclIsKindOf(Feature) and
+ *     owningType.oclAsType(Feature).type->
+ *         exists(oclIsKindOf(Class))) implies
+ *     specializesFromLibrary('Occurrence::Occurrence::portions')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -285,7 +294,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this <code>Feature</code> can always be computed from the values of other <code>Feature</code>.</p>
+	 * <p>Whether the values of this <code>Feature</code> can always be computed from the values of other <code>Features</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Derived</em>' attribute.
@@ -912,13 +921,18 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself), consisting of all subsetted <code>Features</code> and the last <code>chainingFeature</code> (if any).</p>
-	 * let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in
-	 * if chainingFeature->isEmpty() or 
-	 *    subsettedFeature->includes(chainingFeature->last()) 
-	 * then subsettedFeatures
-	 * else subsettedFeatures->append(chainingFeature->last())
-	 * endif
+	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself), consisting of all subsetted <code>Features</code> and the last <code>chainingFeature</code> (if any), if this <code>Feature</code> is not conjugated, or its <code>originalType</code>, if it is conjugated (and the <code>originalType</code> is a <code>Feature</code>).</p>
+	 * if not isConjugated then
+	 *     let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in 
+	 *     if chainingFeature->isEmpty() or
+	 *        subsettedFeature->includes(chainingFeature->last())
+	 *     then subsettedFeatures
+	 *     else subsettedFeatures->append(chainingFeature->last())
+	 *     endif
+	 * else if conjugator.originalType.oclIsKindOf(Feature) then
+	 *     OrderedSet{conjugator.originalType.oclAsType(Feature)}
+	 * else OrderedSet{}
+	 * endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 * @generated

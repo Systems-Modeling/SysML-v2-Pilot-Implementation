@@ -889,6 +889,15 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return directionOf(feature, this, new HashSet<Type>());
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind directionOfExcluding(Feature feature, EList<Type> excluded) {
+		return directionOf(feature, this, new HashSet<>(excluded));
+	}
+
 	protected static FeatureDirectionKind directionOf(Feature feature, Type type, Set<Type> visited) {
 		visited.add(type);
 		Conjugation conjugator = type.getOwnedConjugator();
@@ -1334,6 +1343,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return inheritedMemberships((EList<Type>)arguments.get(0));
 			case SysMLPackage.TYPE___DIRECTION_OF__FEATURE:
 				return directionOf((Feature)arguments.get(0));
+			case SysMLPackage.TYPE___DIRECTION_OF_EXCLUDING__FEATURE_ELIST:
+				return directionOfExcluding((Feature)arguments.get(0), (EList<Type>)arguments.get(1));
 			case SysMLPackage.TYPE___ALL_SUPERTYPES:
 				return allSupertypes();
 			case SysMLPackage.TYPE___SPECIALIZES__TYPE:

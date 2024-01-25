@@ -22,9 +22,12 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -103,6 +106,17 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public boolean isSetOwnedMemberParameter() {
 		return basicGetOwnedMemberParameter() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind parameterDirection() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -198,6 +212,20 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 				return isSetOwnedMemberParameter();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.PARAMETER_MEMBERSHIP___PARAMETER_DIRECTION:
+				return parameterDirection();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } // ParameterMembershipImpl

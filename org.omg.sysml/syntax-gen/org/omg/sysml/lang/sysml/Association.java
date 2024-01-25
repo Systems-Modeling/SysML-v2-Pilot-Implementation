@@ -35,8 +35,8 @@ import org.eclipse.emf.common.util.EList;
  * relatedType = associationEnd.type
  * specializesFromLibrary("Links::Link")
  * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
- * ownedEndFeature->size() = 2 implies
- *     specializesFromLibrary("Links::BinaryLink)
+ * associationEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::BinaryLink')
  * not isAbstract implies relatedType->size() >= 2
  * associationEnds->size() > 2 implies
  *     not specializesFromLibrary("Links::BinaryLink")

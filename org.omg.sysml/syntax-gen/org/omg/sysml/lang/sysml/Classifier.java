@@ -35,12 +35,12 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <ul>
  * 	<li>Things (in the universe) regardless of how <code>Features</code> relate them. (These are interpreted semantically as sequences of exactly one thing.)</li>
- * 	<li>How the above things are related by <code>Features.</code> (These are interpreted semantically as sequences of multiple things, such that the last thing in the sequence is also classified by the <code>Classifier</code>. Note that his means that a <code>Classifier</code> modeled as specializing a <code>Feature</code> cannot classify anything.)</li>
+ * 	<li>How the above things are related by <code>Features.</code> (These are interpreted semantically as sequences of multiple things, such that the last thing in the sequence is also classified by the <code>Classifier</code>. Note that this means that a <code>Classifier</code> modeled as specializing a <code>Feature</code> cannot classify anything.)</li>
  * </ul>
  * 
  * 
  * ownedSubclassification = 
- *     ownedSpecialization->selectByKind(Superclassification)
+ *     ownedSpecialization->selectByKind(Subclassification)
  * multiplicity <> null implies multiplicity.featuringType->isEmpty()
  * <!-- end-model-doc -->
  *

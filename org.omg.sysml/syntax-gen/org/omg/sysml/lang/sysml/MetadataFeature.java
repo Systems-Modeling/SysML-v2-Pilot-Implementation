@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
  *     let baseTypes : Sequence(MetadataFeature) = 
  *         evaluateFeature(resolveGlobal(
  *             'Metaobjects::SemanticMetadata::baseType').
+ *             memberElement.
  *             oclAsType(Feature))->
  *         selectAsKind(MetadataFeature) in
  *     annotatedTypes->notEmpty() and 
@@ -74,6 +75,12 @@ import org.eclipse.emf.common.util.EList;
  *     f.declaredName = null and f.declaredShortName = null and
  *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
  *     f.redefinition.redefinedFeature->size() = 1)
+ * metaclass = 
+ *     let metaclassTypes : Sequence(Type) = type->selectByKind(Metaclass) in
+ *     if metaclassTypes->isEmpty() then null
+ *     else metaClassTypes->first()
+ *     endif
+ * type->selectByKind(Metaclass).size() = 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -91,7 +98,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	/**
 	 * Returns the value of the '<em><b>Metaclass</b></em>' reference.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
@@ -106,7 +113,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_Metaclass()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedMetadata'"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -173,7 +180,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element<code> instance from the MOF abstract syntax representation of the model.</p>
+	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element</code> instance from the MOF abstract syntax representation of the model.</p>
 	 * isSyntactic()
 	 * No OCL
 	 * <!-- end-model-doc -->

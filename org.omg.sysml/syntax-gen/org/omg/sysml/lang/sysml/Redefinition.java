@@ -38,13 +38,14 @@ package org.omg.sysml.lang.sysml;
  * let redefinedFeaturingTypes: Set(Type) =
  *     redefinedFeature.featuringTypes->asSet()->including(anythingType) in
  * redefiningFeaturingTypes <> redefinedFeaturingType
- * let direction : FeatureDirectionKind = redefinedFeature.direction in
- * ((direction = FeatureDirectionKind::_'in' or 
- *   direction = FeatureDirectionKind::out) implies
- *     redefiningFeature.direction = direction)
- * and 
- * (direction = FeatureDirectionKind::inout implies
- *     redefiningFeature.direction <> null)
+ * featuringType->forAll(t |
+ *     let direction : FeatureDirectionKind = t.directionOf(redefinedFeature) in
+ *     ((direction = FeatureDirectionKind::_'in' or 
+ *       direction = FeatureDirectionKind::out) implies
+ *          redefiningFeature.direction = direction)
+ *     and 
+ *     (direction = FeatureDirectionKind::inout implies
+ *         redefiningFeature.direction <> null))
  * <!-- end-model-doc -->
  *
  * <p>

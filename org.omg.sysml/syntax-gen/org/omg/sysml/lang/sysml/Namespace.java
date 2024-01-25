@@ -47,12 +47,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -199,9 +199,14 @@ public interface Namespace extends Element {
 	 * let name : String = unqualifiedNameOf(qualifiedName) in
 	 * if qualification = null then resolveLocal(name)
 	 * else 
-	 *     let namespace : Element = resolve(qualification) in
-	 *     if namespace = null or not namespace.oclIsKindOf(Namespace) then null
-	 *     else namespace.oclAsType(Namespace).resolveVisible(name) endif
+	 *     let namespaceMembership : Membership = resolve(qualification) in
+	 *     if namespaceMembership = null or 
+	 *        not namespaceMembership.memberElement.oclIsKindOf(Namespace) 
+	 *     then null
+	 *     else 
+	 *         namespaceMembership.memberElement.oclAsType(Namespace).
+	 *         resolveVisible(name) 
+	 *     endif
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"

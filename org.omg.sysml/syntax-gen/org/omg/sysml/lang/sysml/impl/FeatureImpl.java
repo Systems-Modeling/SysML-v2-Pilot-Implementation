@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -1016,18 +1017,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Feature> typingFeatures() {
-		EList<Feature> subsettedFeatures = new BasicEList<>();
-		// NOTE: Only considers owned Subsettings.
-		FeatureUtil.getSubsettedFeaturesOf(this).stream().
-			forEachOrdered(subsettedFeatures::add);
-		EList<Feature> chainingFeatures = getChainingFeature();
-		if (!chainingFeatures.isEmpty()) {
-			Feature lastChainingFeature = chainingFeatures.get(chainingFeatures.size() - 1);
-			if (!subsettedFeatures.contains(lastChainingFeature)) {
-				subsettedFeatures.add(lastChainingFeature);
+		EList<Feature> typingFeatures = new BasicEList<>();
+		if (!isConjugated()) {
+			// NOTE: Only considers owned Subsettings.
+			FeatureUtil.getSubsettedFeaturesOf(this).stream().
+				forEachOrdered(typingFeatures::add);
+			EList<Feature> chainingFeatures = getChainingFeature();
+			if (!chainingFeatures.isEmpty()) {
+				Feature lastChainingFeature = chainingFeatures.get(chainingFeatures.size() - 1);
+				if (!typingFeatures.contains(lastChainingFeature)) {
+					typingFeatures.add(lastChainingFeature);
+				}
+			}
+		} else {
+			// NOTE: Only considers owned Conjugation.
+			Conjugation conjugator = getOwnedConjugator();
+			if (conjugator != null) {
+				Type originalType = conjugator.getOriginalType();
+				if (originalType instanceof Feature) {
+					typingFeatures.add((Feature)originalType);
+				}
 			}
 		}
-		return subsettedFeatures;
+		return typingFeatures;
 	}
 
 	/**

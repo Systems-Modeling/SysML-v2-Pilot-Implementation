@@ -909,9 +909,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMultiplicityRange(MultiplicityRange mult) {
+		// TODO: Correct validateMultiplicityBoundResults OCL from KERML-199.
 		// validateMultiplicityRangeBoundResultTypes
 		for (b: mult.bound) {
-			if (!b.isNatural) {
+			if (if (b.isModelLevelEvaluable) mult.valueOf(b) == -2 else !b.isInteger) {
 				error(INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG, b, null, INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES)
 			}
 		}
@@ -920,6 +921,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
 		
+		// TODO: Submit new issue to revise this to actually fix the problem KERML-90 was trying to address.
 		// validateMetadataFeatureMetaclass
 		if (mf.type.filter(Metaclass).size() != 1) {
 			error(INVALID_METADATA_FEATURE_METACLASS_MSG, mf, null, INVALID_METADATA_FEATURE_METACLASS)
@@ -1038,16 +1040,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 		return false;
 	}
 	
-	def static boolean isNatural(Expression expr) {
-		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
-		expr instanceof LiteralInfinity ||
-		// Allow expressions with Integer result, to allow referenced features not explicitly typed as Natural
+	def static boolean isInteger(Expression expr) {
+		expr instanceof LiteralInteger || expr instanceof LiteralInfinity ||
 		specializesFromLibrary(expr, expr.result, "ScalarValues::Integer") ||
 		// Arithmetic operations in DataFunctions actually have result DataValue.
-		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Natural.
+		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Integer.
 		expr instanceof OperatorExpression && 
 			(expr as OperatorExpression).operator.integerOperator && 
-			(expr as OperatorExpression).argument.forall[isNatural]
+			(expr as OperatorExpression).argument.forall[isInteger]
 	}
 	
 	def static isIntegerOperator(String operator) {

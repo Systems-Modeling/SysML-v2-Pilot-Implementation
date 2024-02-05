@@ -23,7 +23,8 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AnnotatingElement;
+import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.Element;
 
 public class Annotation_owningAnnotatingElement_SettingDelegate extends Relationship_owningRelatedElement_SettingDelegate {
 
@@ -32,8 +33,10 @@ public class Annotation_owningAnnotatingElement_SettingDelegate extends Relation
 	}
 	
 	@Override
-	public AnnotatingElement basicGet(InternalEObject membership) {
-		return basicGet(membership, AnnotatingElement.class);
+	public Element basicGet(InternalEObject annotation) {
+		Element owningRelatedElement = basicGet(annotation, Element.class);
+		return owningRelatedElement == ((Annotation)annotation).getAnnotatingElement()?
+				owningRelatedElement: null;
 	}
 
 }

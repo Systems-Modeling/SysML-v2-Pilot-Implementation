@@ -1587,6 +1587,7 @@ fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 	  RefPrefix
 	  ( isIndividual ?= 'individual' )?
 	  ( portionKind = PortionKind )?
+	  UsageExtensionKeyword*
 ;
 
 MergeNode returns SysML::MergeNode :

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,22 +21,28 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Annotation_owningAnnotatedElement_SettingDelegate extends Relationship_owningRelatedElement_SettingDelegate {
+public class AnnotatingElement_ownedAnnotatingRelationship_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Annotation_owningAnnotatedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public AnnotatingElement_ownedAnnotatingRelationship_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
-	
+
 	@Override
-	public Element basicGet(InternalEObject annotation) {
-		Element owningRelatedElement = basicGet(annotation, Element.class);
-		return owningRelatedElement == ((Annotation)annotation).getAnnotatedElement()?
-				owningRelatedElement: null;
+	protected EList<Annotation> basicGet(InternalEObject owner) {
+		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
+		((Element)owner).getOwnedRelationship().stream().
+			filter(Annotation.class::isInstance).
+			map(Annotation.class::cast).
+			filter(ann->ann.getAnnotatingElement() == owner).
+			forEachOrdered(annotations::add);
+		return annotations;
 	}
 
 }

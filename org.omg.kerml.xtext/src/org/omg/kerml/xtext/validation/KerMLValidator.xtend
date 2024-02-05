@@ -87,6 +87,7 @@ import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
+import org.omg.sysml.lang.sysml.Metaclass
 
 /**
  * This class contains custom validation rules. 
@@ -257,6 +258,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_METADATA_FEATURE_BODY = "invalidateMetadataFeatureBody"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_1 = "Must redefine an owning-type feature"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_2 = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE_METACLASS = "validateMetadataFeatureMetadata"
+	public static val INVALID_METADATA_FEATURE_METACLASS_MSG = "Must have exactly one metaclass"
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT = "validateMetadataFeatureMetadataNotAbstract"
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG = "Must have a concrete type"
 
@@ -461,19 +464,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	def checkRedefinitionDirection(FeatureDirectionKind redefiningDirection, List<Type> featuringTypes, Feature redefinedFeature, Element source) {
 		for (featuringType: featuringTypes) {
-			for (supertype: featuringType.ownedSpecialization.map[general]) {
-				val redefinedDirection = supertype.directionOf(redefinedFeature)
-				if ((redefinedDirection === FeatureDirectionKind.IN ||
-					redefinedDirection === FeatureDirectionKind.OUT) &&
-					redefiningDirection !== redefinedDirection ||
-					redefinedDirection === FeatureDirectionKind.INOUT &&
-					redefiningDirection === null) {
-						if (source instanceof Redefinition) {
-							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
-						} else {
-							error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, null, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
-						}
-				}
+			val redefinedDirection = featuringType.directionOf(redefinedFeature)
+			if ((redefinedDirection === FeatureDirectionKind.IN ||
+				redefinedDirection === FeatureDirectionKind.OUT) &&
+				redefiningDirection !== redefinedDirection ||
+				redefinedDirection === FeatureDirectionKind.INOUT &&
+				redefiningDirection === null) {
+					if (source instanceof Redefinition) {
+						error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+					} else {
+						error(INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG, source, null, INVALID_REDEFINITION_DIRECTION_CONFORMANCE)
+					}
 			}
 		}
 	}
@@ -908,9 +909,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMultiplicityRange(MultiplicityRange mult) {
+		// TODO: Correct validateMultiplicityBoundResults OCL from KERML-199.
 		// validateMultiplicityRangeBoundResultTypes
 		for (b: mult.bound) {
-			if (!b.isNatural) {
+			if (if (b.isModelLevelEvaluable) mult.valueOf(b) == -2 else !b.isInteger) {
 				error(INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG, b, null, INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES)
 			}
 		}
@@ -918,6 +920,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
+		
+		// TODO: Submit new issue to revise this to actually fix the problem KERML-90 was trying to address.
+		// validateMetadataFeatureMetaclass
+		if (mf.type.filter(Metaclass).size() != 1) {
+			error(INVALID_METADATA_FEATURE_METACLASS_MSG, mf, null, INVALID_METADATA_FEATURE_METACLASS)
+		}
 		
 		// validateMetadataFeatureMetaclassNotAbstract
 		if (mf.type.exists[abstract]) {
@@ -1032,16 +1040,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 		return false;
 	}
 	
-	def static boolean isNatural(Expression expr) {
-		expr instanceof LiteralInteger && (expr as LiteralInteger).value >= 0 ||
-		expr instanceof LiteralInfinity ||
-		// Allow expressions with Integer result, to allow referenced features not explicitly typed as Natural
+	def static boolean isInteger(Expression expr) {
+		expr instanceof LiteralInteger || expr instanceof LiteralInfinity ||
 		specializesFromLibrary(expr, expr.result, "ScalarValues::Integer") ||
 		// Arithmetic operations in DataFunctions actually have result DataValue.
-		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Natural.
+		// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Integer.
 		expr instanceof OperatorExpression && 
 			(expr as OperatorExpression).operator.integerOperator && 
-			(expr as OperatorExpression).argument.forall[isNatural]
+			(expr as OperatorExpression).argument.forall[isInteger]
 	}
 	
 	def static isIntegerOperator(String operator) {

@@ -33,7 +33,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>MultiplicityRange</code> is a <code>Multiplicity</code> whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> <code>Expression</code> and the result of an <code>upperBound</code> <code>Expression</code>. The result of these <code>Expressions</code> shall be of type <code><em>Natural</em></code>. If the result of the <code>upperBound</code> <code>Expression</code> is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value. If no <code>lowerBound</code> <code>Expression</code>, then the default is that the lower bound has the same value as the upper bound, except if the <code>upperBound</code> evaluates to <code>*</code>, in which case the default for the lower bound is 0.</p>
  * 
  * bound->forAll(b | b.featuringType = self.featuringType)
- * bound.result->forAll(specializesFromLibrary('ScalarValues::Natural'))
+ * bound->forAll(b |
+ *     b.result.specializesFromLibrary('ScalarValues::Integer') and
+ *     let value : UnlimitedNatural = valueOf(b) in
+ *     value <> null implies value >= 0
+ * )
  * lowerBound =
  *     let ownedMembers : Sequence(Element) = 
  *         ownedMembership->selectByKind(OwningMembership).ownedMember in

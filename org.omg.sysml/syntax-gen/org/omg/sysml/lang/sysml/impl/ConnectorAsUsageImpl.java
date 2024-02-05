@@ -62,7 +62,6 @@ import org.omg.sysml.lang.sysml.Type;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getTargetFeature <em>Target Feature</em>}</li>
@@ -120,26 +119,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ASSOCIATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTOR__ASSOCIATION).getSettingDelegate();
-
-	/**
-	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_DIRECTED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
 
 	/**
 	 * The cached setting delegate for the '{@link #getConnectorEnd() <em>Connector End</em>}' reference list.
@@ -307,29 +286,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	 */
 	public boolean isSetAssociation() {
 		return !getAssociation().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isDirected() {
-		return isDirected;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsDirected(boolean newIsDirected) {
-		boolean oldIsDirected = isDirected;
-		isDirected = newIsDirected;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED, oldIsDirected, isDirected));
 	}
 
 	/**
@@ -603,8 +559,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTOR_AS_USAGE__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED:
-				return isDirected();
 			case SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END:
 				return getConnectorEnd();
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE_FEATURE:
@@ -655,9 +609,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED:
-				setIsDirected((Boolean)newValue);
-				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
@@ -705,9 +656,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 			case SysMLPackage.CONNECTOR_AS_USAGE__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED:
-				setIsDirected(IS_DIRECTED_EDEFAULT);
-				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END:
 				getConnectorEnd().clear();
 				return;
@@ -749,8 +697,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR_AS_USAGE__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED:
-				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END:
 				return isSetConnectorEnd();
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE_FEATURE:
@@ -783,7 +729,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_FEATURE: return SysMLPackage.CONNECTOR__RELATED_FEATURE;
 				case SysMLPackage.CONNECTOR_AS_USAGE__ASSOCIATION: return SysMLPackage.CONNECTOR__ASSOCIATION;
-				case SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED: return SysMLPackage.CONNECTOR__IS_DIRECTED;
 				case SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END: return SysMLPackage.CONNECTOR__CONNECTOR_END;
 				case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE_FEATURE: return SysMLPackage.CONNECTOR__SOURCE_FEATURE;
 				case SysMLPackage.CONNECTOR_AS_USAGE__TARGET_FEATURE: return SysMLPackage.CONNECTOR__TARGET_FEATURE;
@@ -815,7 +760,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 			switch (baseFeatureID) {
 				case SysMLPackage.CONNECTOR__RELATED_FEATURE: return SysMLPackage.CONNECTOR_AS_USAGE__RELATED_FEATURE;
 				case SysMLPackage.CONNECTOR__ASSOCIATION: return SysMLPackage.CONNECTOR_AS_USAGE__ASSOCIATION;
-				case SysMLPackage.CONNECTOR__IS_DIRECTED: return SysMLPackage.CONNECTOR_AS_USAGE__IS_DIRECTED;
 				case SysMLPackage.CONNECTOR__CONNECTOR_END: return SysMLPackage.CONNECTOR_AS_USAGE__CONNECTOR_END;
 				case SysMLPackage.CONNECTOR__SOURCE_FEATURE: return SysMLPackage.CONNECTOR_AS_USAGE__SOURCE_FEATURE;
 				case SysMLPackage.CONNECTOR__TARGET_FEATURE: return SysMLPackage.CONNECTOR_AS_USAGE__TARGET_FEATURE;
@@ -837,8 +781,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isImplied: ");
 		result.append(isImplied);
-		result.append(", isDirected: ");
-		result.append(isDirected);
 		result.append(')');
 		return result.toString();
 	}

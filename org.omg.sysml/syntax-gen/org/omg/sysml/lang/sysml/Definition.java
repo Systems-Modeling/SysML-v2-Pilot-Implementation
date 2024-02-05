@@ -54,7 +54,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedPart = ownedUsage->selectByKind(PartUsage)
  * ownedPort = ownedUsage->selectByKind(PortUsage)
  * ownedConnection = ownedUsage->selectByKind(ConnectorAsUsage)
- * ownedFlow = ownedUsage->selectByKind(FlowUsage)
+ * ownedFlow = ownedUsage->selectByKind(FlowConnectionUsage)
  * ownedInterface = ownedUsage->selectByKind(ReferenceUsage)
  * ownedAllocation = ownedUsage->selectByKind(AllocationUsage)
  * ownedAction = ownedUsage->selectByKind(ActionUsage)

@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * satisfiedViewpoint = ownedRequirement->
  *     selectByKind(ViewpointUsage)->
  *     select(isComposite)
- * viewCondition = featureMembership->
+ * viewCondition = ownedMembership->
  *     selectByKind(ElementFilterMembership).
  *     condition
  * viewRendering =

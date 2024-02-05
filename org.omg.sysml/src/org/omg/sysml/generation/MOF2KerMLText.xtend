@@ -53,6 +53,10 @@ class MOF2KerMLText {
 		
 	}
 	
+	static def getPackage(org.eclipse.uml2.uml.Package package_, String memberName) {
+		package_.packagedElements.findFirst[it instanceof org.eclipse.uml2.uml.Package && name == memberName] as org.eclipse.uml2.uml.Package
+	}
+	
 	def generate(String inputPath, String outputPath) {
 		write(outputPath, generate(inputPath))
 	}
@@ -66,36 +70,8 @@ class MOF2KerMLText {
 	
 	def generate(Model model) {
 		'''
-		standard library package KerML {
-			doc 
-			/*
-			 * This package contains a reflective KerML model of the KerML abstract syntax.
-			 */
-			 
-			private import ScalarValues::*;
-			import Kernel::*;
-			
-			package Root {
-				«model.getPackage("Root").toPackageBody»
-			}
-			
-			package Core {
-				import Root::*;
-				
-				«model.getPackage("Core").toPackageBody»
-			}
-			
-			package Kernel {
-				import Core::*;
-				
-				«model.getPackage("Kernel").toPackageBody»
-			}
-		}
+		«model.toPackage»
 		'''
-	}
-	
-	static def getPackage(org.eclipse.uml2.uml.Package package_, String memberName) {
-		package_.packagedElements.findFirst[it instanceof org.eclipse.uml2.uml.Package && name == memberName] as org.eclipse.uml2.uml.Package
 	}
 	
 	def String toPackage(org.eclipse.uml2.uml.Package package_) {

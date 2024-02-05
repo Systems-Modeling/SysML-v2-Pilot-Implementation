@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,31 +23,9 @@ package org.omg.sysml.generation
 
 import org.omg.sysml.generation.MOF2KerMLText
 import org.eclipse.uml2.uml.DataType
-import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.Enumeration
 
 class MOF2SysMLText extends MOF2KerMLText {
-	
-	override generate(Model model) {
-		'''
-		standard library package SysML {
-			doc 
-			/*
-			 * This package contains a reflective KerML model of the KerML abstract syntax.
-			 */
-			 
-			private import ScalarValues::*;
-			import Systems::*;
-			
-			package Systems {
-				import KerML::Kernel::*;
-				
-				«model.getPackage("Systems").toPackageBody»
-			}
-			
-		}
-		'''
-	}
 	
 	override toEnumeration(Enumeration enumeration) {
 		'''

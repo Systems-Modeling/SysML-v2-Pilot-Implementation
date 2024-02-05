@@ -30,7 +30,6 @@ package org.omg.sysml.lang.sysml;
  * <p>A <code>ReturnParameterMembership</code> is a <code>ParameterMembership</code> that indicates that the <code>ownedMemberParameter</code> is the <code>result</code> <code>parameter</code> of a <code>Function</code> or <code>Expression</code>. The <code>direction</code> of the <code>ownedMemberParameter</code> must be <code>out</code>.</p>
  * 
  * owningType.oclIsKindOf(Function) or owningType.oclIsKindOf(Expression)
- * ownedMemberParameter.direction = ParameterDirectionKind::out
  * <!-- end-model-doc -->
  *
  *

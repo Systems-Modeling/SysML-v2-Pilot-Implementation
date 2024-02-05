@@ -39,7 +39,6 @@ package org.omg.sysml.lang.sysml;
  *     if unownedFeatures->isEmpty() then null
  *     else unownedFeatures->first().oclAsType(Feature)
  *     endif
- * argument(1) <> null and argument(2) <> null
  * ownedMembership->exists(
  *     not oclIsKindOf(OwningMembership) and 
  *     memberElement.oclIsKindOf(Feature))
@@ -69,7 +68,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @return the value of the '<em>Target Argument</em>' reference.
 	 * @see #setTargetArgument(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssignmentActionUsage_TargetArgument()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assignmentAction'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -96,7 +95,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @return the value of the '<em>Value Expression</em>' reference.
 	 * @see #setValueExpression(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssignmentActionUsage_ValueExpression()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assigningAction'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

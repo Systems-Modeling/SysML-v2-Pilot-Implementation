@@ -41,7 +41,7 @@ import org.eclipse.emf.common.util.EList;
  *     if renderings->isEmpty() then null
  *     else renderings->first().referencedRendering
  *     endif
- * viewCondition = featureMembership->
+ * viewCondition = ownedMembership->
  *     selectByKind(ElementFilterMembership).
  *     condition
  * featureMembership->

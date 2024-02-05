@@ -37,9 +37,10 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement <em>Owning Annotating Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()
@@ -156,5 +157,41 @@ public interface Annotation extends Relationship {
 	 * @generated
 	 */
 	void setOwningAnnotatedElement(Element value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Annotating Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement() <em>Annotating Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>annotatingElement</code> of this <code>Annotation</code>, when it is also its <code>owningRelatedElement</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Annotating Element</em>' reference.
+	 * @see #setOwningAnnotatingElement(AnnotatingElement)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwningAnnotatingElement()
+	 * @see org.omg.sysml.lang.sysml.AnnotatingElement#getOwnedAnnotatingRelationship
+	 * @model opposite="ownedAnnotatingRelationship" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	AnnotatingElement getOwningAnnotatingElement();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement <em>Owning Annotating Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Annotating Element</em>' reference.
+	 * @see #getOwningAnnotatingElement()
+	 * @generated
+	 */
+	void setOwningAnnotatingElement(AnnotatingElement value);
 
 } // Annotation

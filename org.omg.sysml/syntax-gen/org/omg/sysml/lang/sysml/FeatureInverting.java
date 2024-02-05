@@ -18,8 +18,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureInverting#getFeatureInverted <em>Feature Inverted</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureInverting#getOwningFeature <em>Owning Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureInverting#getInvertingFeature <em>Inverting Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureInverting#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureInverting()

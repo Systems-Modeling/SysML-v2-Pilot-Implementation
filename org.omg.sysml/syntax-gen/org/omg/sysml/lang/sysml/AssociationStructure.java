@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>An <code>AssociationStructure</code> is an <code>Association</code> that is also a <code>Structure</code>, classifying link objects that are both links and objects. As objects, link objects can be created and destroyed, and their non-end <code>Features</code> can change over time. However, the values of the end <code>Features</code> of a link object are fixed and cannot change over its lifetime.</p>
- * specializesFromLibrary("Objects::ObjectLink")
+ * specializesFromLibrary('Objects::LinkObject')
  * endFeature->size() = 2 implies
  *     specializesFromLibrary("Objects::BinaryLinkObject")
  * <!-- end-model-doc -->

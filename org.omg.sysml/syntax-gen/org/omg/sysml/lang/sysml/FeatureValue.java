@@ -45,8 +45,10 @@ package org.omg.sysml.lang.sysml;
  *                     t.oclIsKindOf(Feature) and
  *                     t.oclAsType(Feature).chainingFeature =
  *                         Sequence{
- *                             resolveGlobal("Base::things::that"),
- *                             resolveGlobal("Occurrences::Occurrence::startShot")
+ *                             resolveGlobal('Base::things::that').
+ *                                 memberElement,
+ *                             resolveGlobal('Occurrences::Occurrence::startShot').
+ *                                 memberElement
  *                         }
  *                 )
  *             endif)

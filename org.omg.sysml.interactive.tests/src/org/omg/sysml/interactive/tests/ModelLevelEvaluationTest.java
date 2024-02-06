@@ -21,6 +21,7 @@
 
 package org.omg.sysml.interactive.tests;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -29,6 +30,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Element;
@@ -119,6 +121,11 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		return ((LiteralRational)result).getValue();
 	}
 	
+	protected Object[] evaluateListValue(SysMLInteractive instance, Element target, String text) {
+		List<Element> results = evaluateExpression(instance, target, text);
+		return results.stream().map(EvaluationUtil::valueOf).toArray();
+	}
+	
 	protected MetadataFeature checkAnnotatingFeature(SysMLInteractive instance, String annotationName, String elementName) {
 		Element target = instance.resolve(elementName);
 		assertTrue(target instanceof Namespace);
@@ -189,9 +196,15 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testListOpsModelLevelEvaluability() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
+		checkExpressionIsModelLevelEvaluable(instance, "null");
+		checkExpressionIsModelLevelEvaluable(instance, "()");
 		checkExpressionIsModelLevelEvaluable(instance, "(1, 2, 3)");
+		checkExpressionIsModelLevelEvaluable(instance, "1..3");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::size(null)");
 		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::includes(null, 1)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::excludes(null, 1)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::isEmpty(null)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::notEmpty(null)");
 	}
 
 	@Test
@@ -267,8 +280,23 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testListEvaluation() throws Exception {
+		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "null"));
+		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "()"));
+		assertArrayEquals(new Object[] {1, 2, 3}, evaluateListValue(null, null, "(1, 2, 3)"));
+		assertArrayEquals(new Object[] {1, 2, 3}, evaluateListValue(null, null, "1..3"));
+		assertArrayEquals(new Object[] {-1, 0, 1, 2}, evaluateListValue(null, null, "-1..2"));
+		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "5..3"));
 		assertEquals(3, evaluateIntegerValue(null, null, "SequenceFunctions::size((1, 2, 3))"));
 		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 1)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 5)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::excludes((1, 2, 3), 1)"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::excludes((1, 2, 3), 5)"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty(null)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty(1)"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::isEmpty((1,2,3))"));
+		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty(null)"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty(1)"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty((1,2,3))"));
 	}
 	
 	@Test

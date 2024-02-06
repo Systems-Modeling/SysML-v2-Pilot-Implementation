@@ -21,14 +21,11 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -94,7 +91,7 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 		
-// Implicit Generalization
+	// Implicit Generalization
 	
 	protected void addSubsetting(String subsettedFeatureName) {
 		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
@@ -120,26 +117,6 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return super.getDefaultSupertype();
-	}
-	
-	// Computed Redefinitions
-	
-	/**
-	 * A subject Parameter always redefines a subject Parameter.
-	 */
-	@Override
-	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
-		if (UsageUtil.isSubjectParameter(getTarget())) {
-			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
-			return typeSubject == null? Collections.emptyList(): 
-				Collections.singletonList(typeSubject);
-		}
-		return super.getParameterRelevantFeatures(type, skip);
-	}
-	
-	@Override
-	public boolean isIgnoredParameter() {
-		return super.isIgnoredParameter() || UsageUtil.isSubjectParameter(getTarget());
 	}
 	
 	// Transformation

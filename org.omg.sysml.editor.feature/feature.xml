@@ -2,7 +2,7 @@
 <feature
       id="org.omg.sysml.editor.feature"
       label="SysML v2 XMI Editor Feature"
-      version="0.37.0.qualifier"
+      version="0.38.0.qualifier"
       provider-name="SysML v2 Submission Team">
 
    <description url="http://www.example.com/description">

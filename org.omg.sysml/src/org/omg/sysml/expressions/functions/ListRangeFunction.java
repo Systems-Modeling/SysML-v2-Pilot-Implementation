@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,48 +21,32 @@
 
 package org.omg.sysml.expressions.functions;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public abstract class ArithmeticFunction extends DataFunction {
-	
-	protected EList<Element> unaryIntegerOp(int x) {
-		return null;
-	}
-	
-	protected EList<Element> unaryRealOp(double x) {
-		return null;
+public class ListRangeFunction extends DataFunction {
+
+	@Override
+	public String getOperatorName() {
+		return "'..'";
 	}
 
-	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return null;
-	}
-	
-	protected EList<Element> binaryRealOp(double x, double y) {
-		return null;
-	}
-
-	protected EList<Element> binaryStringOp(String x, String y) {
-		return null;
-	}
-	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		Object x = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 0, target));
 		Object y = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 1, target));
-		return EvaluationUtil.numberOfArgs(invocation) == 1?
-					x instanceof Integer? unaryIntegerOp((Integer)x):
-					x instanceof Double? unaryRealOp((Double)x):
-					EvaluationUtil.nullList():
-			   x instanceof Integer && y instanceof Integer? binaryIntegerOp((Integer)x, (Integer)y):
-			   x instanceof Double && y instanceof Integer? binaryRealOp((Double)x, (Integer)y):
-			   x instanceof Integer && y instanceof Double? binaryRealOp((Integer)x, (Double)y):
-			   x instanceof Double && y instanceof Double? binaryRealOp((Double)x, (Double)y):
-			   x instanceof String && y instanceof String? binaryStringOp((String)x, (String)y):
-			   EvaluationUtil.singletonList(invocation);
+		if (x instanceof Integer && y instanceof Integer) {
+			EList<Element> result = new BasicEList<>();
+			for (int i = (Integer)x; i <= (Integer)y; i++) {
+				result.add(EvaluationUtil.literalInteger(i));
+			}
+			return result;
+		}
+		return EvaluationUtil.singletonList(invocation);
 	}
-
+	
 }

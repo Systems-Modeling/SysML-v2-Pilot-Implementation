@@ -450,6 +450,7 @@ public class TypeUtil {
 	// Objective requirements
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		ElementUtil.transform(type);
 		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
 			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
 			   null;

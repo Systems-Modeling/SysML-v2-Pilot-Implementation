@@ -322,12 +322,14 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	public boolean isComputeRedefinitions() {
-		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
-		return isAddImplicitGeneralTypes && isComputeRedefinitions && ownedRedefinitions.isEmpty();
+		Feature target = getTarget();
+		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
+				(!FeatureUtil.isParameter(target) ||
+				 target.getOwnedRedefinition().isEmpty());
 	}
 	
 	/**
-	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
+	 * Compute relevant implicit Redefinitions, as appropriate.
 	 */
 	public void addComputedRedefinitions(Element skip) {
 		if (isComputeRedefinitions()) {

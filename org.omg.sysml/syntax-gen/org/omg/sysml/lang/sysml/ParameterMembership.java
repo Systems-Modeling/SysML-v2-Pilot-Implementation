@@ -28,7 +28,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>ParameterMembership</code> is a <code>FeatureMembership</code> that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A <code>ParameterMembership</code> must be owned by a <code>Behavior</code> or a <code>Step</code>.</p>
- * ownedMemberParameter.direction <> null
+ * ownedMemberParameter.direction = parameterDirection()
  * owningType.oclIsKindOf(Behavior) or owningType.oclIsKindOf(Step)
  * <!-- end-model-doc -->
  *
@@ -83,4 +83,16 @@ public interface ParameterMembership extends FeatureMembership {
 	 * @generated
 	 */
 	void setOwnedMemberParameter(Feature value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the required value of the <code>direction</code> of the <code>ownedMemberParameter</code>. By default, this is <code>in</code>.</p>
+	 * FeatureDirectionKind::_'in'
+	 * <!-- end-model-doc -->
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	FeatureDirectionKind parameterDirection();
 } // ParameterMembership

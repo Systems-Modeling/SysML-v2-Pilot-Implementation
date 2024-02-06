@@ -60,7 +60,7 @@ import org.eclipse.emf.common.util.EList;
  * nestedConnection = nestedUsage->selectByKind(ConnectorAsUsage)
  * nestedConstraint = nestedUsage->selectByKind(ConstraintUsage)
  * ownedNested = nestedUsage->selectByKind(EnumerationUsage)
- * nestedFlow = nestedUsage->selectByKind(FlowUsage)
+ * nestedFlow = nestedUsage->selectByKind(FlowConnectionUsage)
  * nestedInterface = nestedUsage->selectByKind(ReferenceUsage)
  * nestedItem = nestedUsage->selectByKind(ItemUsage)
  * nestedMetadata = nestedUsage->selectByKind(MetadataUsage)

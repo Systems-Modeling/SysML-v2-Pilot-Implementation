@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -48,6 +49,12 @@ public class ReturnParameterMembershipImpl extends ParameterMembershipImpl imple
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.RETURN_PARAMETER_MEMBERSHIP;
+	}
+	
+	// Other overrides
+	
+	public FeatureDirectionKind parameterDirection() {
+		return FeatureDirectionKind.OUT;
 	}
 
 } // ReturnParameterMembershipImpl

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,9 +22,12 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -103,6 +106,15 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public boolean isSetOwnedMemberParameter() {
 		return basicGetOwnedMemberParameter() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind parameterDirection() {
+		return FeatureDirectionKind.IN;
 	}
 
 	/**
@@ -198,6 +210,20 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 				return isSetOwnedMemberParameter();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.PARAMETER_MEMBERSHIP___PARAMETER_DIRECTION:
+				return parameterDirection();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } // ParameterMembershipImpl

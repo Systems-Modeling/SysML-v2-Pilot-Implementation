@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -132,19 +131,12 @@ public class FeatureUtil {
 	
 	private static void getTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(feature);
-		getFeatureTypesOf(feature, types, visitedFeatures);		
-		Conjugation conjugator = feature.getOwnedConjugator();
-		if (conjugator != null) {
-			Type originalType = conjugator.getOriginalType();
-			if (originalType instanceof Feature && !visitedFeatures.contains(originalType)) {
-				getTypesOf((Feature)originalType, types, visitedFeatures);
+		getFeatureTypesOf(feature, types, visitedFeatures);
+		for (Feature typingFeature : feature.typingFeatures()) {
+			if (!visitedFeatures.contains(typingFeature)) {
+				getTypesOf(typingFeature, types, visitedFeatures);
 			}
 		}
-		for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
-			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				getTypesOf((Feature)subsettedFeature, types, visitedFeatures);
-			}
-		}		
 	}
 	
 	private static void getFeatureTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
@@ -153,10 +145,6 @@ public class FeatureUtil {
 				filter(type->type != null).
 				forEachOrdered(types::add);
 		types.addAll(TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.eINSTANCE.getFeatureTyping()));
-		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(feature);
-		if (lastChainingFeature != null && !visitedFeatures.contains(lastChainingFeature)) {
-			getTypesOf((Feature)lastChainingFeature, types, visitedFeatures);
-		}
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {

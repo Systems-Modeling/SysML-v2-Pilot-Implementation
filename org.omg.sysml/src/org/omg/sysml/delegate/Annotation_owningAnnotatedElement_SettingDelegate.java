@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,7 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 
 public class Annotation_owningAnnotatedElement_SettingDelegate extends Relationship_owningRelatedElement_SettingDelegate {
@@ -32,8 +33,10 @@ public class Annotation_owningAnnotatedElement_SettingDelegate extends Relations
 	}
 	
 	@Override
-	public Element basicGet(InternalEObject membership) {
-		return basicGet(membership, Element.class);
+	public Element basicGet(InternalEObject annotation) {
+		Element owningRelatedElement = basicGet(annotation, Element.class);
+		return owningRelatedElement == ((Annotation)annotation).getAnnotatedElement()?
+				owningRelatedElement: null;
 	}
 
 }

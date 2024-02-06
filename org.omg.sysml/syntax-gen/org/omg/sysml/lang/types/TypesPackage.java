@@ -79,7 +79,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 0;
+	int BOOLEAN = 4;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -88,7 +88,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 1;
+	int INTEGER = 0;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -97,7 +97,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 2;
+	int REAL = 1;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type. <!--
@@ -116,7 +116,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 4;
+	int STRING = 2;
 
 	/**
 	 * Returns the meta object for data type '<em>Boolean</em>'. <!-- begin-user-doc

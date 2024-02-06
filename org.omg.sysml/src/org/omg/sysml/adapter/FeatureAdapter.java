@@ -172,7 +172,10 @@ public class FeatureAdapter extends TypeAdapter {
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
 			hasStructureType()? isSubobject()? "subobject": "object":
-			hasClassType()? isSuboccurrence()? "suboccurrence": "occurrence":
+			hasClassType()? 
+					isSuboccurrence()? "suboccurrence": 
+					isPortion()? "portion":
+					"occurrence":
 			hasDataType()? "dataValue":
 			"base");
 	}
@@ -181,6 +184,14 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() && 
+				(owningType instanceof org.omg.sysml.lang.sysml.Class ||
+				 owningType instanceof Feature && (hasClassType((Feature)owningType)));
+	}
+	
+	protected boolean isPortion() {
+		Feature target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isPortion() && 
 				(owningType instanceof org.omg.sysml.lang.sysml.Class ||
 				 owningType instanceof Feature && (hasClassType((Feature)owningType)));
 	}

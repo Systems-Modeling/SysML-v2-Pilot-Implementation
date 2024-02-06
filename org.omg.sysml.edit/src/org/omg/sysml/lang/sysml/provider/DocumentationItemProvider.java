@@ -134,7 +134,8 @@ public class DocumentationItemProvider extends CommentItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP;
 
 		if (qualify) {
 			return getString

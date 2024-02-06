@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetFeature <em>Target Feature</em>}</li>
@@ -112,26 +111,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ASSOCIATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTOR__ASSOCIATION).getSettingDelegate();
-	/**
-	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_DIRECTED_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
-
 	/**
 	 * The cached setting delegate for the '{@link #getConnectorEnd() <em>Connector End</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -421,29 +400,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isDirected() {
-		return isDirected;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsDirected(boolean newIsDirected) {
-		boolean oldIsDirected = isDirected;
-		isDirected = newIsDirected;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__IS_DIRECTED, oldIsDirected, isDirected));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getConnectorEnd() {
@@ -590,8 +546,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTOR__IS_DIRECTED:
-				return isDirected();
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return getConnectorEnd();
 			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
@@ -642,9 +596,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__IS_DIRECTED:
-				setIsDirected((Boolean)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
@@ -692,9 +643,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTOR__IS_DIRECTED:
-				setIsDirected(IS_DIRECTED_EDEFAULT);
-				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
 				return;
@@ -736,8 +684,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTOR__IS_DIRECTED:
-				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return isSetConnectorEnd();
 			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
@@ -802,8 +748,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isImplied: ");
 		result.append(isImplied);
-		result.append(", isDirected: ");
-		result.append(isDirected);
 		result.append(')');
 		return result.toString();
 	}

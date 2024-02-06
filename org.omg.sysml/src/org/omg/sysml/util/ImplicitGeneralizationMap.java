@@ -74,6 +74,7 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		put(FeatureImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
+		put(FeatureImpl.class, "portion", "Occurrences::Occurrence::portions");
 		put(FeatureImpl.class, "object", "Objects::objects");
 		put(FeatureImpl.class, "subobject", "Objects::Object::subobjects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");

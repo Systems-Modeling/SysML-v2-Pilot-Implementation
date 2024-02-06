@@ -322,7 +322,7 @@ Type returns SysML::Type :
 fragment TypeDeclaration returns SysML::Type : 
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
-    ( SpecializationPart | ConjugationPart )+
+    ( SpecializationPart | ConjugationPart )
     TypeRelationshipPart*
 ;
 
@@ -789,7 +789,10 @@ AssociationStructure returns SysML::AssociationStructure :
 
 Connector returns SysML::Connector :	 
 	FeaturePrefix 'connector' 
-	ConnectorDeclaration TypeBody	  
+	( FeatureDeclaration? ValuePart?
+	| ConnectorDeclaration
+	) 
+	TypeBody	  
 ;
 
 fragment ConnectorDeclaration returns SysML::Connector :
@@ -803,11 +806,11 @@ fragment BinaryConnectorDeclaration returns SysML::Connector :
 ;
 
 fragment NaryConnectorDeclaration returns SysML::Connector :
-	FeatureDeclaration?
-	( '(' ownedRelationship += ConnectorEndMember ',' 
-	      ownedRelationship += ConnectorEndMember
-	      ( ',' ownedRelationship += ConnectorEndMember )* 
-	  ')' )?
+	FeatureDeclaration? 
+	'(' ownedRelationship += ConnectorEndMember ',' 
+	    ownedRelationship += ConnectorEndMember
+	    ( ',' ownedRelationship += ConnectorEndMember )* 
+	')'
 ;
 
 ConnectorEndMember returns SysML::EndFeatureMembership :

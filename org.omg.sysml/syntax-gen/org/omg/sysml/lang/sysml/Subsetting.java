@@ -34,7 +34,7 @@ package org.omg.sysml.lang.sysml;
  * let subsettedFeaturingTypes: OrderedSet(Type) =
  *     subsettedFeature.featuringTypes in
  * let anythingType: Element =
- *     subsettingFeature.resolveGlobal('Base::Anything') in 
+ *     subsettingFeature.resolveGlobal('Base::Anything').memberElement in 
  * subsettedFeaturingTypes->forAll(t |
  *     subsettingFeaturingTypes->isEmpty() and t = anythingType or
  *     subsettingFeaturingTypes->exists(specializes(t))
@@ -160,7 +160,7 @@ public interface Subsetting extends Specialization {
 	 * @see #setOwningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubsetting_OwningFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting
-	 * @model opposite="ownedSubsetting" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="ownedSubsetting" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"

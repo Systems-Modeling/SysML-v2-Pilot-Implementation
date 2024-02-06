@@ -15423,6 +15423,19 @@ ruleControlNodePrefix[EObject in_current]  returns [EObject current=in_current]
 				}
 			)
 		)?
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getControlNodePrefixRule());
+				}
+				newCompositeNode(grammarAccess.getControlNodePrefixAccess().getUsageExtensionKeywordParserRuleCall_3());
+			}
+			this_UsageExtensionKeyword_3=ruleUsageExtensionKeyword[$current]
+			{
+				$current = $this_UsageExtensionKeyword_3.current;
+				afterParserOrEnumRuleCall();
+			}
+		)*
 	)
 ;
 

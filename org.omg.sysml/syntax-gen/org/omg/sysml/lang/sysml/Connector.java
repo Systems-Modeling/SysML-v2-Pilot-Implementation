@@ -67,7 +67,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getTargetFeature <em>Target Feature</em>}</li>
@@ -135,38 +134,6 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	EList<Association> getAssociation();
-
-	/**
-	 * Returns the value of the '<em><b>Is Directed</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Directed</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>For a binary <code>Connector</code>, whether or not the <code>Connector</code> should be considered to have a direction from <code>sourceFeature</code> to <code>targetFeature</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Directed</em>' attribute.
-	 * @see #setIsDirected(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_IsDirected()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isDirected();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#isDirected
-	 * <em>Is Directed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value the new value of the '<em>Is Directed</em>' attribute.
-	 * @see #isDirected()
-	 * @generated
-	 */
-	void setIsDirected(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Connector End</b></em>' reference list.

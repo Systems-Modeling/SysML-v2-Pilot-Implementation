@@ -8983,17 +8983,20 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
 		private final Assignment cPortionKindAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cPortionKindPortionKindEnumRuleCall_2_0 = (RuleCall)cPortionKindAssignment_2.eContents().get(0);
+		private final RuleCall cUsageExtensionKeywordParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 		//      RefPrefix
 		//      ( isIndividual ?= 'individual' )?
 		//      ( portionKind = PortionKind )?
+		//      UsageExtensionKeyword*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//RefPrefix
 		//( isIndividual ?= 'individual' )?
 		//( portionKind = PortionKind )?
+		//UsageExtensionKeyword*
 		public Group getGroup() { return cGroup; }
 		
 		//RefPrefix
@@ -9010,6 +9013,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//PortionKind
 		public RuleCall getPortionKindPortionKindEnumRuleCall_2_0() { return cPortionKindPortionKindEnumRuleCall_2_0; }
+		
+		//UsageExtensionKeyword*
+		public RuleCall getUsageExtensionKeywordParserRuleCall_3() { return cUsageExtensionKeywordParserRuleCall_3; }
 	}
 	public class MergeNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MergeNode");
@@ -18023,6 +18029,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      RefPrefix
 	//      ( isIndividual ?= 'individual' )?
 	//      ( portionKind = PortionKind )?
+	//      UsageExtensionKeyword*
 	//;
 	public ControlNodePrefixElements getControlNodePrefixAccess() {
 		return pControlNodePrefix;

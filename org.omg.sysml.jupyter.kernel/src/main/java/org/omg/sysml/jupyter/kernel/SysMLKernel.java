@@ -52,24 +52,24 @@ public class SysMLKernel extends BaseKernel {
     public SysMLKernel(SysMLInteractive initInteractive) {
         if (initInteractive == null) {
             this.interactive = SysMLInteractive.getInstance();
+            Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));
+            // Replace with Optional#or in Java 9+
+            if (!libraryPath.isPresent()) {
+                libraryPath = Arrays.stream(System.getProperty("java.class.path", "")
+            		    .split(File.pathSeparator))
+            		    .filter(path -> !path.isEmpty())
+            		    .map(path -> Paths.get(path))
+            		    .map(path -> !path.toFile().isDirectory() ? path.getParent() : path)
+            		    .map(path -> path.resolve("sysml.library"))
+            		    .filter(Files::exists)
+            		    .map(Path::normalize)
+            		    .map(Path::toString)
+            		    .findFirst();
+            }
+            libraryPath.ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
         } else {
             this.interactive = initInteractive;
         }
-        Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));
-        // Replace with Optional#or in Java 9+
-        if (!libraryPath.isPresent()) {
-            libraryPath = Arrays.stream(System.getProperty("java.class.path", "")
-            		.split(File.pathSeparator))
-            		.filter(path -> !path.isEmpty())
-            		.map(path -> Paths.get(path))
-            		.map(path -> !path.toFile().isDirectory() ? path.getParent() : path)
-            		.map(path -> path.resolve("sysml.library"))
-            		.filter(Files::exists)
-            		.map(Path::normalize)
-            		.map(Path::toString)
-            		.findFirst();
-        }
-        libraryPath.ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
 
         Optional.ofNullable(System.getenv(ISysML.API_BASE_PATH_KEY)).ifPresent(interactive::setApiBasePath);
 

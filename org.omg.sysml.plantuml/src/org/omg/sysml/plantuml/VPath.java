@@ -60,11 +60,6 @@ public class VPath extends VTraverser {
         return null;
     }
 
-    static Feature getRelatedFeatureOfEnd(Feature end) {
-        ElementUtil.transform(end);
-        return FeatureUtil.getReferencedFeatureOf(end);
-	}
-    
     private boolean initialized;
 
 	// PC (PathContext) management. 

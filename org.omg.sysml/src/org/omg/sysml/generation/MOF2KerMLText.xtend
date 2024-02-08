@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
 import org.eclipse.emf.common.util.URI
-import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.MultiplicityElement
 import java.util.List
 import org.eclipse.uml2.uml.NamedElement
@@ -35,6 +34,7 @@ import org.eclipse.uml2.uml.Enumeration
 import org.eclipse.uml2.uml.EnumerationLiteral
 import java.nio.file.Files
 import java.nio.file.Path
+import org.eclipse.uml2.uml.Type
 
 class MOF2KerMLText {
 	
@@ -64,12 +64,13 @@ class MOF2KerMLText {
 	def generate(String inputPath) {
 		System.out.println("Reading " + inputPath + "...")
 		val mofResource = resourceSet.getResource(URI.createFileURI(inputPath), true)
-		var model = mofResource.contents.get(0) as Model
+		var model = mofResource.contents.get(0) as org.eclipse.uml2.uml.Package
 		generate(model)
 	}
 	
-	def generate(Model model) {
+	def generate(org.eclipse.uml2.uml.Package model) {
 		'''
+		import ScalarValues::*;
 		«model.toPackage»
 		'''
 	}
@@ -86,16 +87,26 @@ class MOF2KerMLText {
 		var List<NamedElement> members = <NamedElement>newArrayList(package_.ownedMembers.filter[!name.empty].toList);
 		Collections.sort(members, new ElementNameComparator)
 		'''
+		«FOR import_: package_.elementImports»
+			import «import_.importedElement.qualifiedName»;
+		«ENDFOR»
+		«FOR import_: package_.packageImports»
+			import «import_.importedPackage.qualifiedName»::*;
+		«ENDFOR»
+		«IF !package_.elementImports.empty || !package_.packageImports.empty»
+		
+		«ENDIF»
 		«FOR member: members»
 			«IF member instanceof Enumeration»
 				«member.toEnumeration»
+				
 			«ELSEIF member instanceof org.eclipse.uml2.uml.Class»
 				«member.toMetaclass»
+				
 			«ELSEIF member instanceof org.eclipse.uml2.uml.Package»
-				import «member.name»::*;
 				«member.toPackage»
-			«ENDIF»	
-					
+				
+			«ENDIF»
 		«ENDFOR»				
 		'''		
 	}
@@ -152,7 +163,7 @@ class MOF2KerMLText {
 	
 	def toFeature(org.eclipse.uml2.uml.Property property, boolean isComposite, String keyword) {
 		'''
-		«IF property.derivedUnion»abstract «ENDIF»«IF isComposite»composite «ENDIF»«IF property.readOnly»readonly «ENDIF»«IF property.derived»derived «ENDIF»«keyword» «nameOf(property)» : «property.type.name»«property.toMultiplicity»«property.toSubsets»«property.toRedefines»;
+		«IF property.derivedUnion»abstract «ENDIF»«IF isComposite»composite «ENDIF»«IF property.readOnly»readonly «ENDIF»«IF property.derived»derived «ENDIF»«keyword» «nameOf(property)» : «property.type.toTypeName»«property.toMultiplicity»«property.toSubsets»«property.toRedefines»;
 		'''
 	}
 	
@@ -166,12 +177,10 @@ class MOF2KerMLText {
 	}
 	
 	def toRedefines(org.eclipse.uml2.uml.Property property) {
-		var redefinedProperties = property.redefinedProperties.toPropertyList
-		if ("annotatedElement".equals(property.name)) {
-			redefinedProperties = 
-				if (redefinedProperties.empty) "annotatedElement"
-				else redefinedProperties + ", annotatedElement"
-		}
+		toRedefines(property.redefinedProperties.toPropertyList);
+	}
+	
+	def toRedefines(String redefinedProperties) {
 		'''«IF !redefinedProperties.empty» redefines «redefinedProperties»«ENDIF»'''
 	}
 	
@@ -195,6 +204,13 @@ class MOF2KerMLText {
 		 protected public readonly references redefines redefinition relationship rep 
 		 return specialization specializes step struct subclassifier subset subsets 
 		 subtype succession then to true type typed typing unions xor "
+	}
+	
+	def toTypeName(Type type) {
+		val name = type.name
+		if (name == "Real") "Rational"
+		else if (name == "UnlimitedNatural") "Natural"
+		else name
 	}
 	
 	def toName(NamedElement element) {

@@ -27,11 +27,11 @@ package TimingForStructuresExecution1 {
 	struct MyBikeTimeCoincident unions MyWheel, MyBikeFork, MyBike;
 
 	#atom
-	struct MyBike specializes Bicycle {
-		feature redefines self : MyBike;
-		feature redefines timeCoincidentOccurrences : MyBikeTimeCoincident [5];
-		feature redefines rollsOn : MyWheel;
-		feature redefines holdsWheel : MyBikeFork;
+	struct MyBike :> Bicycle {
+		:>> self : MyBike;
+		:>> timeCoincidentOccurrences : MyBikeTimeCoincident [4];
+		:>> rollsOn : MyWheel;
+		:>> holdsWheel : MyBikeFork;
 	}
 }
 
@@ -70,39 +70,39 @@ package TimingForStructuresExecution2 {
 	import OneToOneConnectorsExecution::MyBikeFork;
 
 	#atom
-	assoc MyBike_During_Wheel1_Link specializes HappensDuring {
-		end feature redefines shorterOccurrence : MyBike;
-		end feature redefines longerOccurrence : MyWheel1;
+	assoc MyBike_During_Wheel1_Link :> HappensDuring {
+		end :>> shorterOccurrence : MyBike;
+		end :>> longerOccurrence : MyWheel1;
 	}
 	#atom
-	assoc MyBike_During_Wheel2_Link specializes HappensDuring {
-		end feature redefines shorterOccurrence : MyBike;
-		end feature redefines longerOccurrence : MyWheel2;
+	assoc MyBike_During_Wheel2_Link :> HappensDuring {
+		end :>> shorterOccurrence : MyBike;
+		end :>> longerOccurrence : MyWheel2;
 	}
 	#atom
-	assoc MyBike_During_Fork1_Link specializes HappensDuring {
-		end feature redefines shorterOccurrence : MyBike;
-		end feature redefines longerOccurrence : MyBikeFork1;
+	assoc MyBike_During_Fork1_Link :> HappensDuring {
+		end :>> shorterOccurrence : MyBike;
+		end :>> longerOccurrence : MyBikeFork1;
 	}
 	#atom
-	assoc MyBike_During_Fork2_Link specializes HappensDuring {
-		end feature redefines shorterOccurrence : MyBike;
-		end feature redefines longerOccurrence : MyBikeFork2;
+	assoc MyBike_During_Fork2_Link :> HappensDuring {
+		end :>> shorterOccurrence : MyBike;
+		end :>> longerOccurrence : MyBikeFork2;
 	}
 
-	assoc MyBike_During_Parts_Link specializes HappensDuring
+	assoc MyBike_During_Parts_Link :> HappensDuring
 		unions MyBike_During_Wheel1_Link, MyBike_During_Fork1_Link,
 		       MyBike_During_Wheel2_Link, MyBike_During_Fork2_Link;
 
 	struct MyBikeParts unions MyWheel, MyBikeFork;
 
 	#atom
-	struct MyBike specializes Bicycle {
-		feature redefines rollsOn : MyWheel;
-		feature redefines holdsWheel : MyBikeFork;
-		feature redefines allParts : MyBikeParts [4];
+	struct MyBike :> Bicycle {
+		:>> rollsOn : MyWheel;
+		:>> holdsWheel : MyBikeFork;
+		:>> allParts : MyBikeParts [4];
 
-		feature redefines self : MyBike;
+		:>> self : MyBike;
 		connector redefines b_during_ap : MyBike_During_Parts_Link [4]
 			from self [1] to allParts [*];
 	}
@@ -122,7 +122,7 @@ package TimingForStructuresModelToBeExecuted3 {
 		feature rollsOn : Wheel [2];
 		feature holdsWheel : BikeFork [2];
 		feature allParts : Occurrence unions rollsOn, holdsWheel;
-		feature redefines endShot : Bicycle;
+		:>> endShot : Bicycle;
 		connector be_while_pe : HappensWhile from endShot [1] to endShot.allParts.endShot[*];
 	}
 }
@@ -141,60 +141,60 @@ package TimingForStructuresExecution3 {
 
 	  /* End atoms */
 	#atom
-	struct MyWheel1End specializes Wheel;
+	struct MyWheel1End :> Wheel;
 	#atom
-	struct MyWheel1 specializes Wheel {
-		feature redefines endShot : MyWheel1End;
+	struct MyWheel1 :> Wheel {
+		redefines endShot : MyWheel1End;
 	}
 	#atom
-	struct MyWheel2End specializes Wheel;
+	struct MyWheel2End :> Wheel;
 	#atom
-	struct MyWheel2 specializes Wheel {
-		feature redefines endShot : MyWheel2End;
+	struct MyWheel2 :> Wheel {
+		redefines endShot : MyWheel2End;
 	}
-	struct MyBikeFork1End specializes BikeFork;
+	struct MyBikeFork1End :> BikeFork;
 	#atom
-	struct MyBikeFork1 specializes BikeFork {
-		feature redefines endShot : MyBikeFork1End;
+	struct MyBikeFork1 :> BikeFork {
+		redefines endShot : MyBikeFork1End;
 	}
-	struct MyBikeFork2End specializes BikeFork;
+	struct MyBikeFork2End :> BikeFork;
 	#atom
-	struct MyBikeFork2 specializes BikeFork {
-		feature redefines endShot : MyBikeFork2End;
+	struct MyBikeFork2 :> BikeFork {
+		redefines endShot : MyBikeFork2End;
 	}
 	#atom
-	struct MyBikeEnd specializes Bicycle;
+	struct MyBikeEnd :> Bicycle;
 
 	  /* HappensWhile atoms */
 	#atom
-	assoc MyBikeEnd_While_Wheel1End_Link specializes HappensWhile {
-		end feature redefines thisOccurrence : MyBikeEnd;
-		end feature redefines thatOccurrence : MyWheel1End;
+	assoc MyBikeEnd_While_Wheel1End_Link :> HappensWhile {
+		end :>> thisOccurrence : MyBikeEnd;
+		end :>> thatOccurrence : MyWheel1End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Wheel2End_Link specializes HappensWhile {
-		end feature redefines thisOccurrence : MyBikeEnd;
-		end feature redefines thatOccurrence : MyWheel2End;
+	assoc MyBikeEnd_While_Wheel2End_Link :> HappensWhile {
+		end :>> thisOccurrence : MyBikeEnd;
+		end :>> thatOccurrence : MyWheel2End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Fork1End_Link specializes HappensWhile {
-		end feature redefines thisOccurrence : MyBikeEnd;
-		end feature redefines thatOccurrence : MyBikeFork1End;
+	assoc MyBikeEnd_While_Fork1End_Link :> HappensWhile {
+		end :>> thisOccurrence : MyBikeEnd;
+		end :>> thatOccurrence : MyBikeFork1End;
 	}
 	#atom
-	assoc MyBikeEnd_While_Fork2End_Link specializes HappensWhile {
-		end feature redefines thisOccurrence : MyBikeEnd;
-		end feature redefines thatOccurrence : MyBikeFork2End;
+	assoc MyBikeEnd_While_Fork2End_Link :> HappensWhile {
+		end :>> thisOccurrence : MyBikeEnd;
+		end :>> thatOccurrence : MyBikeFork2End;
 	}
 
-	assoc MyBikeEnd_While_PartsEnd_Link specializes HappensWhile
+	assoc MyBikeEnd_While_PartsEnd_Link  :> HappensWhile
 		unions MyBikeEnd_While_Wheel1End_Link, MyBikeEnd_While_Fork1End_Link,
 		       MyBikeEnd_While_Wheel2End_Link, MyBikeEnd_While_Fork2End_Link;
 
 	#atom
-	struct MyBike specializes Bicycle {
-		feature redefines endShot : MyBikeEnd;
-		connector redefines be_while_pe : MyBikeEnd_While_PartsEnd_Link [4]
+	struct MyBike :> Bicycle {
+		redefines endShot : MyBikeEnd;
+		connector :>> be_while_pe : HappensWhile [4]
 			from endShot [1] to endShot.allParts.endShot[*];  
 	}
 }

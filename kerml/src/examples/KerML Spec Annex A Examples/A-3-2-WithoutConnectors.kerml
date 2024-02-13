@@ -21,15 +21,15 @@ package WithoutConnectorsExecution {
 	import WithoutConnectorsModelToBeExecuted::*;
 
 	#atom
-	classifier MyWheel1 specializes Wheel;
+	classifier MyWheel1 :> Wheel;
 	#atom
-	classifier MyWheel2 specializes Wheel;
+	classifier MyWheel2 :> Wheel;
 
 	classifier MyWheel unions MyWheel1, MyWheel2;
 
 	#atom
-	classifier MyBike specializes Bicycle {
-		feature redefines rollsOn : MyWheel;
+	classifier MyBike :> Bicycle {
+		:>> rollsOn : MyWheel;
 	}
 }
 

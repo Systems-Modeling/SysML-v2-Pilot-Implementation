@@ -32,7 +32,7 @@ package ModelingInstancesWithAtoms {
 	classifier OurBicycle unions MyBike, YourBike;
 
 	#atom
-	classifier OurGarage specializes Garage {
-		feature redefines stores : OurBicycle [2];
+	classifier OurGarage :> Garage {
+		:>> stores : OurBicycle [2];
 	}
 }

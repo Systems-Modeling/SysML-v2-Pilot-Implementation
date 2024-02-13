@@ -1,8 +1,7 @@
 
 package SequencesModelToBeExecuted {
-	doc
-	/* 
-	 */
+	
+	import Links::*;
 
 	behavior Manufacture {
 		step paint : Paint [1];
@@ -17,46 +16,43 @@ package SequencesModelToBeExecuted {
 }
 
 package SequencesExecution {
-	doc
-	/* 
-	 */
-
+	
 	import Atoms::*;
 	import SequencesModelToBeExecuted::*;
 	import Occurrences::Occurrence;
 	import Occurrences::HappensBefore;
 
 	#atom
-	behavior MyPaint specializes Paint;
+	behavior MyPaint :> Paint;
 	#atom
-	behavior MyDry specializes Dry;
+	behavior MyDry :> Dry;
 
 	#atom
-	assoc MyPaint_Before_Dry_Link specializes HappensBefore {
-		end feature redefines earlierOccurrence : MyPaint;
-		end feature redefines laterOccurrence : MyDry;
+	assoc MyPaint_Before_Dry_Link :> HappensBefore {
+		end :>> earlierOccurrence : MyPaint;
+		end :>> laterOccurrence : MyDry;
 	}
 
 	behavior MyManufactureStepsPD unions MyPaint, MyDry;
 
 	#atom
-	behavior MyShip specializes Ship;
+	behavior MyShip :> Ship;
 
 	#atom
-	assoc MyDry_Before_Ship_Link specializes HappensBefore {
-		end feature redefines earlierOccurrence : MyDry;
-		end feature redefines laterOccurrence : MyShip;
+	assoc MyDry_Before_Ship_Link :> HappensBefore {
+		end :>> earlierOccurrence : MyDry;
+		end :>> laterOccurrence : MyShip;
 	}
 
 	behavior MyManufactureStepsPDS unions MyManufactureStepsPD, MyShip;
 
 	#atom
-	behavior MyManufacture specializes Manufacture {
-		feature redefines timeEnclosedOccurrences : MyManufactureStepsPDS [3];
-		step redefines paint : MyPaint;
-		step redefines dry : MyDry [1];
-		succession redefines p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
-		step redefines ship : MyShip [1];
-		succession redefines d_before_s : MyDry_Before_Ship_Link [1] first dry then ship;
+	behavior MyManufacture :> Manufacture {
+		:>> timeEnclosedOccurrences : MyManufactureStepsPDS [3];
+		step :>> paint : MyPaint;
+		step :>> dry : MyDry [1];
+		succession :>> p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
+		step :>> ship : MyShip [1];
+		succession :>> d_before_s : MyDry_Before_Ship_Link [1] first dry then ship;
 	}
 }

@@ -37,7 +37,7 @@ package org.omg.sysml.lang.sysml;
  * receiverArgument = argument(3)
  * isSubactionUsage() implies
  *     specializesFromLibrary('Actions::Action::acceptSubactions')
- * specializesFromLibrary("Actions::sendActions")
+ * specializesFromLibrary('Actions::sendActions')
  * <!-- end-model-doc -->
  *
  * <p>

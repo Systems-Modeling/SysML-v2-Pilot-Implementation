@@ -45,6 +45,7 @@ public class FeatureTypingItemProvider extends SpecializationItemProvider {
 
 			addTypedFeaturePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addOwningFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,6 +86,28 @@ public class FeatureTypingItemProvider extends SpecializationItemProvider {
 				 getString("_UI_FeatureTyping_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureTyping_type_feature", "_UI_FeatureTyping_type"),
 				 SysMLPackage.Literals.FEATURE_TYPING__TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FeatureTyping_owningFeature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FeatureTyping_owningFeature_feature", "_UI_FeatureTyping_type"),
+				 SysMLPackage.Literals.FEATURE_TYPING__OWNING_FEATURE,
 				 true,
 				 false,
 				 true,
@@ -158,8 +181,7 @@ public class FeatureTypingItemProvider extends SpecializationItemProvider {
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
 
 		if (qualify) {
 			return getString

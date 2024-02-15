@@ -32,9 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>ConnectionUsage</code> is a <code>ConnectorAsUsage</code> that is also a <code>PartUsage</code>. Nominally, if its type is a <code>ConnectionDefinition</code>, then a <code>ConnectionUsage</code> is a Usage of that <code>ConnectionDefinition</code>, representing a connection between parts of a system. However, other kinds of kernel <code>AssociationStructures</code> are also allowed, to permit use of <code>AssociationStructures</code> from the Kernel Model Libraries.</p>
- * specializesFromLibrary("Connections::connections")
+ * specializesFromLibrary('Connections::connections')
  * ownedEndFeature->size() = 2 implies
- *     specializesFromLibrary("Connections::binaryConnections")
+ *     specializesFromLibrary('Connections::binaryConnections')
  * <!-- end-model-doc -->
  *
  * <p>

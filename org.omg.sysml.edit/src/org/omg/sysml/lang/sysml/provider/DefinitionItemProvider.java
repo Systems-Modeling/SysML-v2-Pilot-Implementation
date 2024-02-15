@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -48,6 +47,7 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 
 			addIsVariationPropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
+			addOwnedUsagePropertyDescriptor(object);
 			addVariantMembershipPropertyDescriptor(object);
 			addUsagePropertyDescriptor(object);
 			addDirectedUsagePropertyDescriptor(object);
@@ -77,7 +77,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			addOwnedViewpointPropertyDescriptor(object);
 			addOwnedRenderingPropertyDescriptor(object);
 			addOwnedMetadataPropertyDescriptor(object);
-			addOwnedUsagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -787,6 +786,17 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 	}
 
 	/**
+	 * This returns Definition.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Definition"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -814,7 +824,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 
 		switch (notification.getFeatureID(Definition.class)) {
 			case SysMLPackage.DEFINITION__IS_VARIATION:
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -831,11 +840,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createVariantMembership()));
 	}
 
 	/**
@@ -859,8 +863,7 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
-			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP;
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

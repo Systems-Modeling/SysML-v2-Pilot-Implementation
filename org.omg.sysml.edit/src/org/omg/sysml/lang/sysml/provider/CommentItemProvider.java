@@ -67,7 +67,7 @@ public class CommentItemProvider extends AnnotatingElementItemProvider {
 				 SysMLPackage.Literals.COMMENT__LOCALE,
 				 true,
 				 false,
-				 true,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -133,6 +133,7 @@ public class CommentItemProvider extends AnnotatingElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Comment.class)) {
+			case SysMLPackage.COMMENT__LOCALE:
 			case SysMLPackage.COMMENT__BODY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

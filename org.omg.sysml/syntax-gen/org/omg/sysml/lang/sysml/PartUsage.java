@@ -36,11 +36,11 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>PartUsage</code> must subset, directly or indirectly, the base <code>PartUsage</code> <em><code>parts</code></em> from the Systems Model Library.</p>
  * itemDefinition->selectByKind(PartDefinition)
  * partDefinition->notEmpty()
- * specializesFromLibrary("Parts::parts")
+ * specializesFromLibrary('Parts::parts')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(ItemDefinition) or
  *  owningType.oclIsKindOf(ItemUsage)) implies
- *     specializesFromLibrary("Items::Item::subparts")
+ *     specializesFromLibrary('Items::Item::subparts')
  * owningFeatureMembership <> null and
  * owningFeatureMembership.oclIsKindOf(ActorMembership) implies
  *     if owningType.oclIsKindOf(RequirementDefinition) or 

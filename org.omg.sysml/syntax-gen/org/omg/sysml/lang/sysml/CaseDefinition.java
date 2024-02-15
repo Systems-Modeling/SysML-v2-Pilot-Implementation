@@ -78,12 +78,12 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this <code>CaseDefinition</code> that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p>
+	 * <p>The <code>parameter</code> of this <code>CaseDefinition</code> that represents its subject.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)
@@ -114,12 +114,12 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this <code>CaseDefinition</code> that are owned via <code>ActorMemberships</code>, which must subset, directly or indirectly, the <code>PartUsage</code> <em><code>actors</code></em> of the base <code>CaseDefinition</code> <em>Case</em> from the Systems Model Library.</p>
+	 * <p>The <code>parameters</code> of this <code>CaseDefinition</code> that represent actors involved in the case.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition_ActorParameter()
@@ -137,12 +137,12 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement() <em>Owned Requirement</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>objectiveRequirement</code> of this <code>CaseDefinition</code>, that is owned via an <code>ObjectiveMembership</code>, and will redefine, directly or indirectly, the <code>objective</code> <code>RequirementUsage</code> of the base <code>CaseDefinition</code> <code><em>Case</em></code> from the Systems Model Library.</p> 
+	 * <p>The <code>RequirementUsage</code> representing the objective of this <code>CaseDefinition</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Objective Requirement</em>' reference.

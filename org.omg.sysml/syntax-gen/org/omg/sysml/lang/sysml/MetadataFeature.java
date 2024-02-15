@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>MetadataFeature</code> is a <code>Feature</code> that is an <code>AnnotatingElement</code> used to annotate another <code>Element</code> with metadata. It is typed by a <code>Metaclass</code>. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
  * 
  * 
- * specializesFromLibrary("Metaobjects::metaobjects")
+ * specializesFromLibrary('Metaobjects::metaobjects')
  * isSemantic() implies
  *     let annotatedTypes : Sequence(Type) = 
  *         annotatedElement->selectAsKind(Type) in

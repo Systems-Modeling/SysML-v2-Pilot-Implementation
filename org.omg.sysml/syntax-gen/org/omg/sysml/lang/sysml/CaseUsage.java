@@ -84,12 +84,12 @@ public interface CaseUsage extends CalculationUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedFeature</code> of this CaseUsage that is owned via an ObjectiveMembership, and that must redefine, directly or indirectly, the <code>objective</code> RequirementUsage of the base CaseDefinition Case from the Systems model library.</p> 
+	 * <p>The <code>RequirementUsage</code> representing the objective of this <code>CaseUsage</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Objective Requirement</em>' reference.
@@ -120,12 +120,12 @@ public interface CaseUsage extends CalculationUsage {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this <code>CaseUsage</code> that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base <code>CaseUsage</code> <code><em>Case</em></code> from the Systems Model Library.</p>
+	 * <p>The <code>parameter</code> of this <code>CaseUsage</code> that represents its subject.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
@@ -156,13 +156,13 @@ public interface CaseUsage extends CalculationUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this <code>CaseUsage</code> that are owned via <code>ActorMemberships</code>, which must subset, directly or indirectly, the <code>PartUsage</code> <em><code>actors</code></em> of the base <code>CaseUsage</code> <em>Case</em> from the Systems Model Library.</p>
+	 * <p>The <code>parameters</code> of this <code>CaseUsage</code> that represent actors involved in the case.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage_ActorParameter()

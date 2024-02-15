@@ -49,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
  *         closure(typingFeatures()).typing.type->asOrderedSet() in
  *     types->reject(t1 | types->exist(t2 | t2 <> t1 and t2.specializes(t1)))
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * specializesFromLibrary("Base::things")
+ * specializesFromLibrary('Base::things')
  * chainingFeature->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingFeature = ownedFeatureChaining.chainingFeature
@@ -75,14 +75,14 @@ import org.eclipse.emf.common.util.EList;
  * owningType <> null and
  * (owningType.oclIsKindOf(Structure) or
  *  owningType.type->includes(oclIsKindOf(Structure))) implies
- *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
+ *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
  * owningType <> null and
  * owningType.oclIsKindOf(FeatureReferenceExpression) and
  * self = owningType.oclAsType(FeatureReferenceExpression).result implies
  *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
  * 
  * ownedTyping.type->exists(selectByKind(Class)) implies
- *     specializesFromLibrary("Occurrences::occurrences")
+ *     specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
  * ownedTyping.type->includes(oclIsKindOf(Class)) and
  * owningType <> null and
@@ -90,7 +90,7 @@ import org.eclipse.emf.common.util.EList;
  *  owningType.oclIsKindOf(Feature) and
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
- *     specializesFromLibrary("Occurrence::Occurrence::suboccurrences")
+ *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
  * ownedTyping.type->exists(selectByKind(DataType)) implies
  *     specializesFromLibrary('Base::dataValues')
  * owningType <> null and
@@ -101,9 +101,9 @@ import org.eclipse.emf.common.util.EList;
  *         let i : Integer = 
  *             flowType.ownedFeature.indexOf(owningType) in
  *         (i = 1 implies 
- *             redefinesFromLibrary("Transfers::Transfer::source::sourceOutput")) and
+ *             redefinesFromLibrary('Transfers::Transfer::source::sourceOutput')) and
  *         (i = 2 implies
- *             redefinesFromLibrary("Transfers::Transfer::source::targetInput"))
+ *             redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
  *                  
  * owningType <> null and
  * (owningType.oclIsKindOf(Behavior) or
@@ -117,7 +117,7 @@ import org.eclipse.emf.common.util.EList;
  *             ownedParameters->size() >= i implies
  *                 redefines(ownedParameters->at(i))
  * ownedTyping.type->exists(selectByKind(Structure)) implies
- *     specializesFromLibary("Objects::objects")
+ *     specializesFromLibary('Objects::objects')
  * owningType <> null and
  * (owningType.oclIsKindOf(Function) and
  *     self = owningType.oclAsType(Function).result or
@@ -167,16 +167,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -847,12 +847,14 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return whether this Feature has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this Feature is implicitly directly or indirectly featured in <em>Base::Anything</em>.</p>
-	 * type = null and feature.featuringType->isEmpty() or
-	 *     type <> null and feature.featuringType->includes(type) or
-	 *     feature.featuringType->exists(t |
-	 *         t.oclIsKindOf(Feature) and
-	 *         t.oclAsType(Feature).isFeaturedWithin(type)) 
+	 * <p>Return whether this <code>Feature</code>> has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>.</p>
+	 * if type = null then 
+	 *     featuringType->isEmpty() or
+	 *     featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}
+	 * else 
+	 *     featuringType->notEmpty() and
+	 *     featuringType->forAll(f | type.specializes(f)))
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
 	 * @generated

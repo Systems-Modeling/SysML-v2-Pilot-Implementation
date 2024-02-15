@@ -32,9 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>ConnectionDefinition</code> is a <code>PartDefinition</code> that is also an <code>AssociationStructure</code>. The end <code>Features</code> of a <code>ConnectionDefinition</code> must be <code>Usages</code>.</p>
- * specializesFromLibrary("Connections::Connection")
+ * specializesFromLibrary('Connections::Connection')
  * ownedEndFeature->size() = 2 implies
- *     specializesFromLibrary("Connections::BinaryConnections")
+ *     specializesFromLibrary('Connections::BinaryConnections')
  * <!-- end-model-doc -->
  *
  * <p>

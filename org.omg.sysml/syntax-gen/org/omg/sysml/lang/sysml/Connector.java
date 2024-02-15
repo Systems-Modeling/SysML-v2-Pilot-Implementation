@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  *     select(s | s <> null).subsettedFeature
  * relatedFeature->forAll(f | 
  *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
- *     else featuringType->exists(t | f.isFeaturedWithin(t))
+ *     else featuringType->forAll(t | f.isFeaturedWithin(t))
  *     endif)
  * sourceFeature = 
  *     if relatedFeature->isEmpty() then null 
@@ -49,16 +49,16 @@ import org.eclipse.emf.common.util.EList;
  *             asOrderedSet()
  *     endif
  * not isAbstract implies relatedFeature->size() >= 2
- * specializesFromLibrary("Links::links")
+ * specializesFromLibrary('Links::links')
  * association->exists(oclIsKindOf(AssociationStructure)) implies
- *     specializesFromLibrary("Objects::linkObjects")
+ *     specializesFromLibrary('Objects::linkObjects')
  * connectorEnds->size() = 2 and
  * association->exists(oclIsKindOf(AssocationStructure)) implies
- *     specializesFromLibrary("Objects::binaryLinkObjects")
+ *     specializesFromLibrary('Objects::binaryLinkObjects')
  * connectorEnd->size() = 2 implies
- *     specializesFromLibrary("Links::binaryLinks")
+ *     specializesFromLibrary('Links::binaryLinks')
  * connectorEnds->size() > 2 implies
- *     not specializesFromLibrary("Links::BinaryLink")
+ *     not specializesFromLibrary('Links::BinaryLink')
  * <!-- end-model-doc -->
  *
  * <p>

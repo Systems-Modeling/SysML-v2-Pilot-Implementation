@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An <code>AllocationUsage</code> is a usage of an <code>AllocationDefinition</code> asserting the allocation of the <code>source</code> feature to the <code>target</code> feature.</p>
- * specializesFromLibrary("Allocations::allocations")
+ * specializesFromLibrary('Allocations::allocations')
  * <!-- end-model-doc -->
  *
  * <p>

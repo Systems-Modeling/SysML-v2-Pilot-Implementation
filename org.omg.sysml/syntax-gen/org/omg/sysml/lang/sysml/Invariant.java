@@ -32,9 +32,9 @@ package org.omg.sysml.lang.sysml;
  * <p>An <code>Invariant</code> is a <code>BooleanExpression</code> that is asserted to have a specific <code><em>Boolean</em></code> result value. If <code>isNegated = false</code>, then the result is asserted to be true. If <code>isNegated = true</code>, then the result is asserted to be false.</p>
  * 
  * if isNegated then
- *     specializesFromLibrary("Performances::falseEvaluations")
+ *     specializesFromLibrary('Performances::falseEvaluations')
  * else
- *     specializesFromLibrary("Performances::trueEvaluations")
+ *     specializesFromLibrary('Performances::trueEvaluations')
  * endif
  * <!-- end-model-doc -->
  *

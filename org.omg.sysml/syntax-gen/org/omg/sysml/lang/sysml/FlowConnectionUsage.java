@@ -13,9 +13,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>FlowConnectionUsage</code> is a <code>ConnectionUsage</code> that is also an <code>ItemFlow</code>.</p>
  * if ownedEndFeatures->isEmpty() then
- *     specializesFromLibrary("Connections::messageConnections")
+ *     specializesFromLibrary('Connections::messageConnections')
  * else
- *     specializesFromLibrary("Connections::flowConnections"
+ *     specializesFromLibrary('Connections::flowConnections')
  * endif
  * <!-- end-model-doc -->
  *

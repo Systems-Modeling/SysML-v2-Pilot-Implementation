@@ -172,7 +172,7 @@ public abstract class VStructure extends VDefault {
     private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
         if (rf == null) return null;
-        return getRefName(rf);
+        return getRefName(rf, f.getOwningNamespace());
     }
 
     private boolean addRedefinedFeatureText(Feature f) {

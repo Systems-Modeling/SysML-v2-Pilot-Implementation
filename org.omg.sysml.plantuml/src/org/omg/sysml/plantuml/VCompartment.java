@@ -363,7 +363,7 @@ public class VCompartment extends VStructure {
     private void addEnd(Feature f) {
         Feature relatedFeature = ConnectorUtil.getRelatedFeatureOfEnd(f);
         if (relatedFeature == null) return;
-        append(getRefName(relatedFeature));
+        append(getRefName(relatedFeature, currentType));
         // Previously, textual notation was used to render ends.
         // appendText(getText(e), true);
     }

@@ -361,15 +361,11 @@ public class VCompartment extends VStructure {
     }
 
     private void addEnd(Feature f) {
-        Element e = ConnectorUtil.getRelatedFeatureOfEnd(f);
-        if (e == null) return;
-        // We should construct proper text from end but for the time being, we use just the text as it is.
-        /*
-        if (e instanceof Subsetting) {
-            Subsetting ss = (Subsetting) e;
-            e = ss.getSubsettedFeature();
-        }*/
-        appendText(getText(e), true);
+        Feature relatedFeature = ConnectorUtil.getRelatedFeatureOfEnd(f);
+        if (relatedFeature == null) return;
+        append(getRefName(relatedFeature));
+        // Previously, textual notation was used to render ends.
+        // appendText(getText(e), true);
     }
 
     private void addConnectorText(Connector c, boolean isInherited) {

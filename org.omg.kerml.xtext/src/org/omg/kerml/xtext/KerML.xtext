@@ -1040,6 +1040,7 @@ PrefixMetadataFeature returns SysML::MetadataFeature :
 ;
 
 MetadataFeature returns SysML::MetadataFeature :
+	( ownedRelationship += PrefixMetadataMember )*
 	( '@' | 'metadata' ) MetadataFeatureDeclaration 
 	( 'about' ownedRelationship += Annotation 
 		( ',' ownedRelationship += Annotation )*

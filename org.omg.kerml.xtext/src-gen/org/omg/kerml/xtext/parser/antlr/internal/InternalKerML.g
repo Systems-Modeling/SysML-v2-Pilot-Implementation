@@ -13284,9 +13284,9 @@ ruleExponentiationExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandExponentiationExpressionParserRuleCall_1_2_0());
 					}
-					lv_operand_3_0=ruleUnaryExpression
+					lv_operand_3_0=ruleExponentiationExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
@@ -13295,12 +13295,12 @@ ruleExponentiationExpression returns [EObject current=null]
 							$current,
 							"operand",
 							lv_operand_3_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.UnaryExpression");
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
+		)?
 	)
 ;
 

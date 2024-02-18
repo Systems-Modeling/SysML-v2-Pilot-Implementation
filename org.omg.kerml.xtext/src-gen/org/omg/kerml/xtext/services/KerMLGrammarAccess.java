@@ -10089,7 +10089,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//ExponentiationExpression returns SysML::Expression :
 	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ExponentiationOperator operand += UnaryExpression )*
+	//        operator = ExponentiationOperator operand += ExponentiationExpression )?
 	//;
 	public KerMLExpressionsGrammarAccess.ExponentiationExpressionElements getExponentiationExpressionAccess() {
 		return gaKerMLExpressions.getExponentiationExpressionAccess();

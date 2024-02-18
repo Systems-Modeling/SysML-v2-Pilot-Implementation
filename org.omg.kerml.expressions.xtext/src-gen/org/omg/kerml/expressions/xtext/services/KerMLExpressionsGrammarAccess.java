@@ -1406,23 +1406,23 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorExponentiationOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandUnaryExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandExponentiationExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
 		//ExponentiationExpression returns SysML::Expression :
 		//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ExponentiationOperator operand += UnaryExpression )*
+		//        operator = ExponentiationOperator operand += ExponentiationExpression )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//UnaryExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ExponentiationOperator operand += UnaryExpression )*
+		//    operator = ExponentiationOperator operand += ExponentiationExpression )?
 		public Group getGroup() { return cGroup; }
 		
 		//UnaryExpression
 		public RuleCall getUnaryExpressionParserRuleCall_0() { return cUnaryExpressionParserRuleCall_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ExponentiationOperator operand += UnaryExpression )*
+		//       operator = ExponentiationOperator operand += ExponentiationExpression )?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
@@ -1434,11 +1434,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//ExponentiationOperator
 		public RuleCall getOperatorExponentiationOperatorParserRuleCall_1_1_0() { return cOperatorExponentiationOperatorParserRuleCall_1_1_0; }
 		
-		//operand += UnaryExpression
+		//operand += ExponentiationExpression
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
-		//UnaryExpression
-		public RuleCall getOperandUnaryExpressionParserRuleCall_1_2_0() { return cOperandUnaryExpressionParserRuleCall_1_2_0; }
+		//ExponentiationExpression
+		public RuleCall getOperandExponentiationExpressionParserRuleCall_1_2_0() { return cOperandExponentiationExpressionParserRuleCall_1_2_0; }
 	}
 	public class ExponentiationOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationOperator");
@@ -3729,7 +3729,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	//ExponentiationExpression returns SysML::Expression :
 	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ExponentiationOperator operand += UnaryExpression )*
+	//        operator = ExponentiationOperator operand += ExponentiationExpression )?
 	//;
 	public ExponentiationExpressionElements getExponentiationExpressionAccess() {
 		return pExponentiationExpression;

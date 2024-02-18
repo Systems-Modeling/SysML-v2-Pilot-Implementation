@@ -271,7 +271,7 @@ MultiplicativeOperator :
 
 ExponentiationExpression returns SysML::Expression :
 	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = ExponentiationOperator operand += UnaryExpression )*		
+		operator = ExponentiationOperator operand += ExponentiationExpression )?		
 ;
 
 ExponentiationOperator :

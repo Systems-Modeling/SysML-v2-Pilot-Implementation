@@ -1294,7 +1294,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     operand+=RangeExpression (ambiguity) ')' (rule end)
 	 *     operand+=SequenceExpression ')' (ambiguity) ')' (rule end)
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
-	 *     operand+=UnaryExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpressionReference (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)

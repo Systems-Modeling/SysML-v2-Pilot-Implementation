@@ -411,6 +411,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     'comment'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'locale' locale=STRING_VALUE
 	 *     (rule start) (ambiguity) body=REGULAR_COMMENT
 	 
 	 * </pre>

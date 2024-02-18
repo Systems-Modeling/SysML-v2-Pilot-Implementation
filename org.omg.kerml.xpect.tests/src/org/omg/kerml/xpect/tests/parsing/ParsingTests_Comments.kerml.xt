@@ -1,3 +1,22 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
 /* AAA */
 //a lexical comment ("note") is not a part of model
 package Comments {
@@ -32,14 +51,14 @@ package Comments {
 	comment cmt /* Named Comment */	
 	comment cmt_cmt about cmt /* Other Comment about Comment */
 	
-	class C {
+	classifier C {
 		doc locale "en_US"/* Documentation on Class C */
 		comment /* Comment in Class C */
 		comment about Comments /* Comment about Package */
 		
 	}
 	/* abc */
-	class A {
+	classifier A {
 		doc <a> /* Documentation comment on A*/
 		comment about a locale "en_US" /* Comment about documenation with ID 'a' */		
 	}

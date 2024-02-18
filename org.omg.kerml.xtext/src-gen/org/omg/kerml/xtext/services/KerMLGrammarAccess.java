@@ -384,8 +384,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cCommaKeyword_0_2_2_0 = (Keyword)cGroup_0_2_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_0_2_2_1 = (Assignment)cGroup_0_2_2.eContents().get(1);
 		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_2_1.eContents().get(0);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLocaleKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cLocaleAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cLocaleSTRING_VALUETerminalRuleCall_1_1_0 = (RuleCall)cLocaleAssignment_1_1.eContents().get(0);
+		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
 		
 		///* Comments */
 		//Comment returns SysML::Comment :
@@ -393,6 +397,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//      ('about' ownedRelationship += Annotation
 		//         ( ',' ownedRelationship += Annotation )* )?
 		//    )?
+		//    ( 'locale' locale = STRING_VALUE )?
 		//    body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -401,6 +406,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ('about' ownedRelationship += Annotation
 		//     ( ',' ownedRelationship += Annotation )* )?
 		//)?
+		//( 'locale' locale = STRING_VALUE )?
 		//body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
@@ -441,26 +447,46 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Annotation
 		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0; }
 		
+		//( 'locale' locale = STRING_VALUE )?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'locale'
+		public Keyword getLocaleKeyword_1_0() { return cLocaleKeyword_1_0; }
+		
+		//locale = STRING_VALUE
+		public Assignment getLocaleAssignment_1_1() { return cLocaleAssignment_1_1; }
+		
+		//STRING_VALUE
+		public RuleCall getLocaleSTRING_VALUETerminalRuleCall_1_1_0() { return cLocaleSTRING_VALUETerminalRuleCall_1_1_0; }
+		
 		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
+		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
 		
 		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
 	}
 	public class DocumentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Documentation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLocaleKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cLocaleAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cLocaleSTRING_VALUETerminalRuleCall_2_1_0 = (RuleCall)cLocaleAssignment_2_1.eContents().get(0);
+		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
 		
 		//Documentation returns SysML::Documentation :
-		//    'doc' Identification? body = REGULAR_COMMENT
+		//    'doc' Identification?
+		//    ( 'locale' locale = STRING_VALUE )?
+		//    body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'doc' Identification? body = REGULAR_COMMENT
+		//'doc' Identification?
+		//( 'locale' locale = STRING_VALUE )?
+		//body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
 		//'doc'
@@ -469,11 +495,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Identification?
 		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
 		
+		//( 'locale' locale = STRING_VALUE )?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'locale'
+		public Keyword getLocaleKeyword_2_0() { return cLocaleKeyword_2_0; }
+		
+		//locale = STRING_VALUE
+		public Assignment getLocaleAssignment_2_1() { return cLocaleAssignment_2_1; }
+		
+		//STRING_VALUE
+		public RuleCall getLocaleSTRING_VALUETerminalRuleCall_2_1_0() { return cLocaleSTRING_VALUETerminalRuleCall_2_1_0; }
+		
 		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
 		
 		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
 	}
 	public class TextualRepresentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TextualRepresentation");
@@ -7454,6 +7492,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ('about' ownedRelationship += Annotation
 	//         ( ',' ownedRelationship += Annotation )* )?
 	//    )?
+	//    ( 'locale' locale = STRING_VALUE )?
 	//    body = REGULAR_COMMENT
 	//;
 	public CommentElements getCommentAccess() {
@@ -7465,7 +7504,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Documentation returns SysML::Documentation :
-	//    'doc' Identification? body = REGULAR_COMMENT
+	//    'doc' Identification?
+	//    ( 'locale' locale = STRING_VALUE )?
+	//    body = REGULAR_COMMENT
 	//;
 	public DocumentationElements getDocumentationAccess() {
 		return pDocumentation;

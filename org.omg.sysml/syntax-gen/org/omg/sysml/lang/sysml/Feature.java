@@ -847,7 +847,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return whether this <code>Feature</code>> has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>.</p>
+	 * <p>Return whether this <code>Feature</code> has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>.</p>
 	 * if type = null then 
 	 *     featuringType->isEmpty() or
 	 *     featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}

@@ -17,8 +17,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Unioning#getUnioningType <em>Unioning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Unioning#getTypeUnioned <em>Type Unioned</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Unioning#getUnioningType <em>Unioning Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUnioning()

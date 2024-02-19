@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(StateDefinition) or
  *  owningType.oclIsKindOf(StateUsage)) implies
- *     specializesFromLibrary("States::State::stateTransitions")
+ *     specializesFromLibrary('States::State::stateTransitions')
  * specializesFromLibrary('Actions::transitionActions')
  * source =
  *     if ownedMembership->isEmpty() then null

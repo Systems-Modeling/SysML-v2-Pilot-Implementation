@@ -12,7 +12,7 @@ package org.omg.sysml.lang.sysml;
  * <p>A <code>FeatureChainExpression</code> is an <code>OperatorExpression</code> whose operator is <code>"."</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::'.'</code></em> from the Kernel Functions Library. It evaluates to the result of chaining the <code>result</code> <code>Feature</code> of its single <code>argument</code> <code>Expression</code> with its <code>targetFeature</code>.</p>
  * let sourceParameter : Feature = sourceTargetFeature() in
  * sourceTargetFeature <> null and
- * sourceTargetFeature.redefinesFromLibrary('ControlFunctions::'.'::source::target')
+ * sourceTargetFeature.redefinesFromLibrary('ControlFunctions::\'.\'::source::target')
  * let sourceParameter : Feature = sourceTargetFeature() in
  * sourceTargetFeature <> null and
  * sourceTargetFeature.redefines(targetFeature)

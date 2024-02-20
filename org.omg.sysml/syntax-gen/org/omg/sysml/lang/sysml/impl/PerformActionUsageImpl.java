@@ -97,7 +97,9 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 
 	@Override
 	public Feature namingFeature() {
-		return getPerformedAction();
+		Feature performedAction = getPerformedAction();
+		return performedAction != this? performedAction:
+			super.namingFeature();
 	}
 
 	/**

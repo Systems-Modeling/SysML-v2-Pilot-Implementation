@@ -8042,6 +8042,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=Annotation ownedRelationship+=Annotation*)? 
+	 *         locale=STRING_VALUE? 
 	 *         body=REGULAR_COMMENT
 	 *     )
 	 * </pre>
@@ -8920,7 +8921,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     DefinitionElement returns Documentation
 	 *
 	 * Constraint:
-	 *     (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? body=REGULAR_COMMENT)
+	 *     (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? locale=STRING_VALUE? body=REGULAR_COMMENT)
 	 * </pre>
 	 */
 	protected void sequence_Documentation_Identification(ISerializationContext context, Documentation semanticObject) {

@@ -88,11 +88,14 @@ Comment returns SysML::Comment :
 	  ('about' ownedRelationship += Annotation
 	     ( ',' ownedRelationship += Annotation )* )? 
 	)?
+	( 'locale' locale = STRING_VALUE )?
 	body = REGULAR_COMMENT
 ;
 
 Documentation returns SysML::Documentation :
-	'doc' Identification? body = REGULAR_COMMENT
+	'doc' Identification? 
+	( 'locale' locale = STRING_VALUE )?
+	body = REGULAR_COMMENT
 ;
 
 /* Textual Representation */

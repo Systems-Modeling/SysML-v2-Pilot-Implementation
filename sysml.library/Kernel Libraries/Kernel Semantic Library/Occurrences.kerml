@@ -174,7 +174,8 @@ standard library package Occurrences {
 			subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 		}
 
-		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences {
+		feature all spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences
+			intersects timeEnclosedOccurrences, spaceEnclosedOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,
@@ -192,7 +193,8 @@ standard library package Occurrences {
 			binding startShot[1] = endShot[1];
 		}
 
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences 
+			intersects timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
 			doc
 			/*
 			 * Occurrences that this one completely includes in both space and time,

@@ -151,7 +151,7 @@ standard library package Transfers {
 		}
 	}
 	
-	interaction TransferBefore specializes Transfer, HappensBefore {
+	interaction TransferBefore specializes Transfer, HappensBefore intersects Transfer, HappensBefore {
 		doc
 		/*
 		 * TransferBefore is a specialization of Transfer in which the source happens before
@@ -167,7 +167,7 @@ standard library package Transfers {
 	  	private succession self then target;
 	}
 	
-	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore {
+	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore intersects FlowTransfer, TransferBefore {
 		doc
 		/*
 		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
@@ -203,7 +203,8 @@ standard library package Transfers {
 		 */
 	}
 	  
-	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
+	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks
+		intersects transfers, happensBeforeLinks {
 		doc
 		/*
 		 * transfersBefore is a specialization of transfers and happensBeforeLinks restricted to
@@ -214,7 +215,8 @@ standard library package Transfers {
 		end feature target: Occurrence[0..*] redefines transfers::target, HappensBefore::laterOccurrence;
 	}
 	
-	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
+	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore
+		intersects flowTransfers, transfersBefore {
 		doc
 		/*
 		 * flowTransfersBefore is a specialization of flowTransfers and transfersBefore that is restricted

@@ -670,13 +670,12 @@ standard library package Occurrences {
 		return t1First = includes(t1.endShot.successors, t2.endShot);
 	}
 
-	assoc all SelfSameLifeLink specializes BinaryLink disjoint from Occurrence {
+	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
 		/*
 		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
-		 * the same Life if they are Occurrences. A SelfSameLifeLink is not an Occurrence
-		 * (and so SelfSameLifeLink is disjoint with LinkObject).
+		 * the same Life if they are Occurrences. 
 		 */
 
 		end feature myselfSameLife: Anything[1..*] redefines source;

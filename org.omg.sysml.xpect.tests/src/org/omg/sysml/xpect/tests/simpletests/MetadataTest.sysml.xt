@@ -38,7 +38,7 @@ package MetadataTest {
 	
 	library package 'User Defined Extensions' {
 		
-		enum def ClassificationLevel {
+		#Security enum def ClassificationLevel {
 			uncl;
 			conf;
 			secret;

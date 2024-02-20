@@ -4013,26 +4013,32 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class EnumerationDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EnumerationDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cEnumerationDefKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cDefinitionDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final RuleCall cEnumerationBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cEnumerationDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cDefinitionDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cEnumerationBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//EnumerationDefinition returns SysML::EnumerationDefinition :
+		//    DefinitionExtensionKeyword*
 		//    EnumerationDefKeyword DefinitionDeclaration EnumerationBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//DefinitionExtensionKeyword*
 		//EnumerationDefKeyword DefinitionDeclaration EnumerationBody
 		public Group getGroup() { return cGroup; }
 		
+		//DefinitionExtensionKeyword*
+		public RuleCall getDefinitionExtensionKeywordParserRuleCall_0() { return cDefinitionExtensionKeywordParserRuleCall_0; }
+		
 		//EnumerationDefKeyword
-		public RuleCall getEnumerationDefKeywordParserRuleCall_0() { return cEnumerationDefKeywordParserRuleCall_0; }
+		public RuleCall getEnumerationDefKeywordParserRuleCall_1() { return cEnumerationDefKeywordParserRuleCall_1; }
 		
 		//DefinitionDeclaration
-		public RuleCall getDefinitionDeclarationParserRuleCall_1() { return cDefinitionDeclarationParserRuleCall_1; }
+		public RuleCall getDefinitionDeclarationParserRuleCall_2() { return cDefinitionDeclarationParserRuleCall_2; }
 		
 		//EnumerationBody
-		public RuleCall getEnumerationBodyParserRuleCall_2() { return cEnumerationBodyParserRuleCall_2; }
+		public RuleCall getEnumerationBodyParserRuleCall_3() { return cEnumerationBodyParserRuleCall_3; }
 	}
 	public class EnumerationBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EnumerationBody");
@@ -16065,6 +16071,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EnumerationDefinition returns SysML::EnumerationDefinition :
+	//    DefinitionExtensionKeyword*
 	//    EnumerationDefKeyword DefinitionDeclaration EnumerationBody
 	//;
 	public EnumerationDefinitionElements getEnumerationDefinitionAccess() {

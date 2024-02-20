@@ -726,6 +726,7 @@ EnumerationUsageKeyword :
 ;
 
 EnumerationDefinition returns SysML::EnumerationDefinition :
+	DefinitionExtensionKeyword*
 	EnumerationDefKeyword DefinitionDeclaration EnumerationBody
 ;
 

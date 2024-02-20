@@ -3,7 +3,7 @@ package MetadataTest {
 	
 	library package 'User Defined Extensions' {
 		
-		enum def ClassificationLevel :> ScalarValues::Natural {
+		#Security enum def ClassificationLevel :> ScalarValues::Natural {
 			uncl : ClassificationLevel = 0;
 			conf : ClassificationLevel = 1;
 			secret : ClassificationLevel = 2;

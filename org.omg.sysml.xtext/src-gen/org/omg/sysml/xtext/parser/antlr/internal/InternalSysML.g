@@ -6590,8 +6590,21 @@ ruleEnumerationDefinition returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getEnumerationDefinitionRule());
+				}
+				newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getDefinitionExtensionKeywordParserRuleCall_0());
+			}
+			this_DefinitionExtensionKeyword_0=ruleDefinitionExtensionKeyword[$current]
+			{
+				$current = $this_DefinitionExtensionKeyword_0.current;
+				afterParserOrEnumRuleCall();
+			}
+		)*
 		{
-			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getEnumerationDefKeywordParserRuleCall_0());
+			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getEnumerationDefKeywordParserRuleCall_1());
 		}
 		ruleEnumerationDefKeyword
 		{
@@ -6601,22 +6614,22 @@ ruleEnumerationDefinition returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getEnumerationDefinitionRule());
 			}
-			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getDefinitionDeclarationParserRuleCall_1());
+			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getDefinitionDeclarationParserRuleCall_2());
 		}
-		this_DefinitionDeclaration_1=ruleDefinitionDeclaration[$current]
+		this_DefinitionDeclaration_2=ruleDefinitionDeclaration[$current]
 		{
-			$current = $this_DefinitionDeclaration_1.current;
+			$current = $this_DefinitionDeclaration_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getEnumerationDefinitionRule());
 			}
-			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getEnumerationBodyParserRuleCall_2());
+			newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getEnumerationBodyParserRuleCall_3());
 		}
-		this_EnumerationBody_2=ruleEnumerationBody[$current]
+		this_EnumerationBody_3=ruleEnumerationBody[$current]
 		{
-			$current = $this_EnumerationBody_2.current;
+			$current = $this_EnumerationBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

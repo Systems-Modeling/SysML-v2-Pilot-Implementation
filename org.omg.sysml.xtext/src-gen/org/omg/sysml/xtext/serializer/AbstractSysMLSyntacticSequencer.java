@@ -1701,6 +1701,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     declaredName=Name (ambiguity) (rule end)
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember EnumerationDefKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

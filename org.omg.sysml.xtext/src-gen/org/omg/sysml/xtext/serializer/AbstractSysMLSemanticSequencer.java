@@ -541,7 +541,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.ENUMERATION_DEFINITION:
-				sequence_EnumerationBody_Identification_SubclassificationPart(context, (EnumerationDefinition) semanticObject); 
+				sequence_DefinitionExtensionKeyword_EnumerationBody_Identification_SubclassificationPart(context, (EnumerationDefinition) semanticObject); 
 				return; 
 			case SysMLPackage.ENUMERATION_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()) {
@@ -8844,6 +8844,26 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     DefinitionElement returns EnumerationDefinition
+	 *     EnumerationDefinition returns EnumerationDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
+	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	 *         (ownedRelationship+=AnnotatingMember | ownedRelationship+=EnumerationUsageMember)*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_DefinitionExtensionKeyword_EnumerationBody_Identification_SubclassificationPart(ISerializationContext context, EnumerationDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     DefinitionMember returns OwningMembership
 	 *
 	 * Constraint:
@@ -9060,25 +9080,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_EntryTransitionMember_MemberPrefix(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     DefinitionElement returns EnumerationDefinition
-	 *     EnumerationDefinition returns EnumerationDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
-	 *         (ownedRelationship+=AnnotatingMember | ownedRelationship+=EnumerationUsageMember)*
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_EnumerationBody_Identification_SubclassificationPart(ISerializationContext context, EnumerationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -140,6 +140,18 @@ class InheritKey {
         this.isDirect = false;
     }
 
+    private InheritKey(InheritKey base, boolean isDirect) {
+        this.keys = base.keys;
+        this.isDirect = isDirect;
+    }
+
+    // Create an indirect InheritKey so that redefined elements can be referred by
+    // inherited connectors
+    public static InheritKey makeIndirect(InheritKey ik) {
+    	if (ik == null) return null;
+        return new InheritKey(ik, false);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

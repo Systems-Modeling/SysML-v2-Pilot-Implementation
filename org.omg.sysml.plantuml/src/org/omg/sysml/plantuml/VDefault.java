@@ -120,9 +120,17 @@ public class VDefault extends VTraverser {
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            if (ik == null && typ instanceof Feature) {
-                if (!(s instanceof Redefinition)) {
-                    ik = makeInheritKey((Feature) typ);
+            if (ik == null && gt instanceof Feature) {
+                if (s instanceof Redefinition) {
+                    // If we just create an inherit key for redefinition target, always create a cyclic reference
+                    // because redefining feature can be a target in this sense.  So we must create an inherit key
+                    // for the membership owning the target since the redefined target always exists.
+                    Membership ms = gt.getOwningMembership();
+                    if (ms != null) {
+                        ik = makeInheritKey(ms);
+                    }
+                } else {
+                    ik = makeInheritKey((Feature) gt);
                 }
             }
             PRelation pr = new PRelation(ik, typId, gt, s, null);

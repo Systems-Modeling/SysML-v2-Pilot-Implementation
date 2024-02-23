@@ -515,7 +515,9 @@ public class SysML2PlantUMLText {
 
         Integer newId(Element e) {
             Integer ii = idCounter++;
-            idMap.put(e, ii);
+            if (!isInherited()) {
+                idMap.put(e, ii);
+            }
             if (vpath != null) {
                 vpath.setId(e, ii);
             }

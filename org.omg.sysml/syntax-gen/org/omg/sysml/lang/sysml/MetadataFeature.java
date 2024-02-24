@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>MetadataFeature</code> is a <code>Feature</code> that is an <code>AnnotatingElement</code> used to annotate another <code>Element</code> with metadata. It is typed by a <code>Metaclass</code>. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
  * 
  * 
- * specializesFromLibrary("Metaobjects::metaobjects")
+ * specializesFromLibrary('Metaobjects::metaobjects')
  * isSemantic() implies
  *     let annotatedTypes : Sequence(Type) = 
  *         annotatedElement->selectAsKind(Type) in
@@ -133,7 +133,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If the given <code>baseFeature</code> is a <code>feature</code> of this <code>MetadataFeature</code>, or is directly or indirectly redefined by a <code>feature</code>, then return the result of evaluating the appropriate (model-level evaluable) <code>value</code> <code>Expression</code> for it (if any), with the MetadataFeature as the target.</p>
+	 * <p>If the given <code>baseFeature</code> is a <code>feature</code> of this <code>MetadataFeature</code>, or is directly or indirectly redefined by a <code>feature</code>, then return the result of evaluating the appropriate (model-level evaluable) <code>value</code> <code>Expression</code> for it (if any), with the <code>MetadataFeature</code> as the target.</p>
 	 * let selectedFeatures : Sequence(Feature) = feature->
 	 *     select(closure(ownedRedefinition.redefinedFeature)->
 	 *            includes(baseFeature)) in
@@ -168,7 +168,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Check if this <code>MetadataFeature</code> has a <code>metaclass</code> that is a kind of <code><em>KerML::Element<em></code> (that is, it is from the reflective abstract syntax model).</p>
+	 * <p>Check if this <code>MetadataFeature</code> has a <code>metaclass</code> that is a kind of <code><em>KerML::Element</em></code> (that is, it is from the reflective abstract syntax model).</p>
 	 * specializesFromLibrary('KerML::Element')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"

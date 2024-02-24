@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>NullExpression</code> is an <code>Expression</code> that results in a null value.</p>
  * 
- * specializesFromLibrary("Performances::nullEvaluations")
+ * specializesFromLibrary('Performances::nullEvaluations')
  * <!-- end-model-doc -->
  *
  *

@@ -23,7 +23,7 @@ package org.omg.sysml.lang.sysml;
  * owningType <> null and
  * (owningType.oclIsKindOf(OccurrenceDefinition) or
  *  owningType.oclIsKindOf(OccurrenceUsage)) implies
- *     specializesFromLibrary("Occurrences::Occurrence::timeEnclosedOccurrences")
+ *     specializesFromLibrary('Occurrences::Occurrence::timeEnclosedOccurrences')
  * isReference
  * <!-- end-model-doc -->
  *

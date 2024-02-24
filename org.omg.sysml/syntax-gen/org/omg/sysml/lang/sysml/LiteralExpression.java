@@ -30,7 +30,7 @@ package org.omg.sysml.lang.sysml;
  * <p>A <code>LiteralExpression</code> is an <code>Expression</code> that provides a basic <code><em>DataValue</em></code> as a result.</p>
  * 
  * isModelLevelEvaluable = true
- * specializesFromLibrary("Performances::literalEvaluations")
+ * specializesFromLibrary('Performances::literalEvaluations')
  * <!-- end-model-doc -->
  *
  *

@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>AllocationDefinition</code> is a <code>ConnectionDefinition</code> that specifies that some or all of the responsibility to realize the intent of the <code>source</code> is allocated to the <code>target</code> instances. Such allocations define mappings across the various structures and hierarchies of a system model, perhaps as a precursor to more rigorous specifications and implementations. An <code>AllocationDefinition</code> can itself be refined using nested <code>allocations</code> that give a finer-grained decomposition of the containing allocation mapping.</p>
  * allocation = usage->selectAsKind(AllocationUsage)
- * specializesFromLibrary("Allocations::Allocation")
+ * specializesFromLibrary('Allocations::Allocation')
  * <!-- end-model-doc -->
  *
  * <p>

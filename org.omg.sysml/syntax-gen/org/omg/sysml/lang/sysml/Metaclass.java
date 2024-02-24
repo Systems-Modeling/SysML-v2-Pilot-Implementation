@@ -10,7 +10,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>Metaclass</code> is a <code>Structure</code> used to type <code>MetadataFeatures</code>.</p>
- * specializesFromLibrary("Metaobjects::Metaobject")
+ * specializesFromLibrary('Metaobjects::Metaobject')
  * <!-- end-model-doc -->
  *
  *

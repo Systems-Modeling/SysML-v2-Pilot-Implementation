@@ -41,7 +41,7 @@ package org.omg.sysml.lang.sysml;
  * else
  *     featuringType->isEmpty()
  * endif
- * specializesFromLibrary("Base::naturals")
+ * specializesFromLibrary('Base::naturals')
  * <!-- end-model-doc -->
  *
  *

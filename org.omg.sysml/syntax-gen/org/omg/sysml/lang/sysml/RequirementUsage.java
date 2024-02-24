@@ -141,12 +141,12 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</code> of this <code>RequirementUsage</code> that is owned via a <code>SubjectMembership</code>.</p>
+	 * <p>The <code>parameter</code> of this <code>RequirementUsage</code> that represents its subject.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)
@@ -200,13 +200,13 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that are owned via <code>ActorMemberships</code>.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that represent actors involved in the requirement.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Actor Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_ActorParameter()
@@ -225,13 +225,13 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that are owned via <code>StakeholderMemberships</code>.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementUsage</code> that represent stakeholders for the requirement.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stakeholder Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_StakeholderParameter()

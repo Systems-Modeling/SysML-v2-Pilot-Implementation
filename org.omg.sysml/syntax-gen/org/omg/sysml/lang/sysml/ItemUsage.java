@@ -32,11 +32,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>ItemUsage</code> is a <code>ItemUsage</code> whose <code>definition</code> is a <code>Structure</code>. Nominally, if the <code>definition</code> is an <code>ItemDefinition</code>, an <code>ItemUsage</code> is a <code>ItemUsage</code> of that <code>ItemDefinition</code> within a system. However, other kinds of Kernel <code>Structures</code> are also allowed, to permit use of <code>Structures</code> from the Kernel Model Libraries.</p>
  * itemDefinition = occurrenceDefinition->selectByKind(ItemDefinition)
- * specializesFromLibrary("Items::items")
+ * specializesFromLibrary('Items::items')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(ItemDefinition) or
  *  owningType.oclIsKindOf(ItemUsage)) implies
- *     specializesFromLibrary("Items::Item::subitem")
+ *     specializesFromLibrary('Items::Item::subitem')
  * <!-- end-model-doc -->
  *
  * <p>

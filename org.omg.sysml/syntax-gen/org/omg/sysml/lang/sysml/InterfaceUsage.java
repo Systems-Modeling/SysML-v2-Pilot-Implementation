@@ -33,8 +33,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>InterfaceUsage</code> is a Usage of an <code>InterfaceDefinition</code> to represent an interface connecting parts of a system through specific ports.</p>
  * ownedEndFeature->size() = 2 implies
- *     specializesFromLibrary("Interfaces::binaryInterfaces")
- * specializesFromLibrary("Interfaces::interfaces")
+ *     specializesFromLibrary('Interfaces::binaryInterfaces')
+ * specializesFromLibrary('Interfaces::interfaces')
  * <!-- end-model-doc -->
  *
  * <p>

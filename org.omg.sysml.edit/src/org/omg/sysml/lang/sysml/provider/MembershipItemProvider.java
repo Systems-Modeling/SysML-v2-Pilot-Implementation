@@ -46,6 +46,7 @@ public class MembershipItemProvider extends RelationshipItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addMemberElementIdPropertyDescriptor(object);
+			addMembershipOwningNamespacePropertyDescriptor(object);
 			addMemberShortNamePropertyDescriptor(object);
 			addMemberElementPropertyDescriptor(object);
 			addMemberNamePropertyDescriptor(object);
@@ -72,6 +73,28 @@ public class MembershipItemProvider extends RelationshipItemProvider {
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Membership Owning Namespace feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMembershipOwningNamespacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Membership_membershipOwningNamespace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Membership_membershipOwningNamespace_feature", "_UI_Membership_type"),
+				 SysMLPackage.Literals.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -238,8 +261,7 @@ public class MembershipItemProvider extends RelationshipItemProvider {
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
 
 		if (qualify) {
 			return getString

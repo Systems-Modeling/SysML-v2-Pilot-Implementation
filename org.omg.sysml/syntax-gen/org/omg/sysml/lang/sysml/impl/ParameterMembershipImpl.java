@@ -111,7 +111,7 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public FeatureDirectionKind parameterDirection() {
 		return FeatureDirectionKind.IN;

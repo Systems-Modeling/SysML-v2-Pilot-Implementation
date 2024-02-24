@@ -1,6 +1,6 @@
 {
   "name": "SysML Systems Library",
-  "version": "1.0.0-beta2",
+  "version": "2.0.0-beta2",
   "description": "Standard semantic library for the Systems Modeling Language (SysML)",
   "usage": [
     {

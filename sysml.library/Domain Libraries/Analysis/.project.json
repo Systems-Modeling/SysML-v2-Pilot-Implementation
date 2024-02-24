@@ -1,6 +1,6 @@
 {
   "name": "SysML Analysis Library",
-  "version": "1.0.0-beta2",
+  "version": "2.0.0-beta2",
   "description": "Standard analysis domain library for the Systems Modeling Language (SysML)",
   "usage": [
     {
@@ -17,11 +17,11 @@
     },
     {
       "resource": "https://www.omg.org/spec/SysML/20240201/Systems-Library.kpar",
-      "versionConstraint": "1.0.0-beta2"
+      "versionConstraint": "2.0.0-beta2"
     },
     {
       "resource": "https://www.omg.org/spec/KerML/20240201/Quantities-and-Units-Library.kpar",
-      "versionConstraint": "1.0.0-beta2"
+      "versionConstraint": "2.0.0-beta2"
     }
   ]
 }

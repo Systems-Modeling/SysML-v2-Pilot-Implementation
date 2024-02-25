@@ -45,7 +45,7 @@ class MOF2KerMLText {
 		UMLResourcesUtil.init(this.resourceSet)
 	}
 	
-	private static class ElementNameComparator implements Comparator<NamedElement> {
+	protected static class ElementNameComparator implements Comparator<NamedElement> {
 		
 		override compare(NamedElement o1, NamedElement o2) {
 			return o1.name.compareTo(o2.name)
@@ -199,7 +199,7 @@ class MOF2KerMLText {
 		 datatype default derived differences disjoining disjoint doc element else end 
 		 expr false feature featured featuring filter first flow for from function 
 		 hastype if intersects implies import in inout interaction inv inverse 
-		 inverting istype language member metaclass metadata multiplicity namespace 
+		 inverting istype language locale member metaclass metadata multiplicity namespace 
 		 nonunique not null of or ordered out package portion predicate private 
 		 protected public readonly references redefines redefinition relationship rep 
 		 return specialization specializes step struct subclassifier subset subsets 

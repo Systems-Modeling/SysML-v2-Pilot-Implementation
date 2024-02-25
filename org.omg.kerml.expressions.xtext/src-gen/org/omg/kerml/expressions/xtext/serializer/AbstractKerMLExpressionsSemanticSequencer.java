@@ -514,7 +514,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *         (operand+=RangeExpression_OperatorExpression_1_0 operator='..' operand+=AdditiveExpression) | 
 	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
 	 *         (operand+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand+=ExponentiationExpression) | 
-	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=UnaryExpression) | 
+	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=ExponentiationExpression) | 
 	 *         (operator=UnaryOperator operand+=ExtentExpression) | 
 	 *         (operator='all' ownedRelationship+=TypeResultMember) | 
 	 *         (operand+=PrimaryExpression_OperatorExpression_2_0_0_0 operator='#' operand+=SequenceExpression) | 

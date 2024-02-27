@@ -674,13 +674,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
-		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
-		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+		val connectorEnds = TypeUtil.getAllEndFeaturesOf(c)
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
-				for (var i = 2; i < connectorEnds.size(); i++) {
-					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				val ownedConnectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+				if (ownedConnectorEnds.size() <= 2) {
+					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c, null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				} else {
+					for (var i = 2; i < connectorEnds.size(); i++) {
+						error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+					}
 				}
 			}
 		}

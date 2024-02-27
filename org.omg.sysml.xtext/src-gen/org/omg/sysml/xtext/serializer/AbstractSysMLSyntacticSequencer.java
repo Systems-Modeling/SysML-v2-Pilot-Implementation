@@ -35,7 +35,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Dependency_FromKeyword_2_1_q;
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
-	protected AbstractElementAlias match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q;
+	protected AbstractElementAlias match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_1_q;
 	protected AbstractElementAlias match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_2_1_0_q;
 	protected AbstractElementAlias match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -73,7 +73,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getSemicolonKeyword_0()));
 		match_Dependency_FromKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getDependencyAccess().getFromKeyword_2_1());
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
-		match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_0());
+		match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_1());
 		match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getSemicolonKeyword_0()));
 		match_FeatureValue_EqualsSignKeyword_0_2_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_2_1_0());
 		match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getSemicolonKeyword_0()));
@@ -926,8 +926,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_Dependency_FromKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q.equals(syntax))
 				emit_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q.equals(syntax))
-				emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_1_q.equals(syntax))
+				emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureValue_EqualsSignKeyword_0_2_1_0_q.equals(syntax))
@@ -1585,6 +1585,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember ConnectionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember EnumerationUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember EnumerationUsageKeyword? (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember FlowConnectionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember FlowConnectionKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemDefKeyword (ambiguity) (rule end)
@@ -1685,10 +1686,28 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '&lt;' declaredShortName=Name
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=AliasMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=DefinitionMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=Import
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=NonOccurrenceUsageMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=OccurrenceUsageMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=VariantUsageMember
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (';' | ('{' '}')) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) declaredName=Name
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isNonunique?='nonunique'
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isOrdered?='ordered'
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=FeatureValue
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 
 	 * </pre>
 	 */
-	protected void emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

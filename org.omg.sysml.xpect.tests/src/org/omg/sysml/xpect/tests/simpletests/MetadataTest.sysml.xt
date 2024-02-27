@@ -41,7 +41,7 @@ package MetadataTest {
 		#Security enum def ClassificationLevel {
 			uncl;
 			conf;
-			secret;
+			#Security enum secret;
 		}
 		
 		metadata def Classified {

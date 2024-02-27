@@ -746,7 +746,7 @@ EnumerationUsageMember returns SysML::VariantMembership :
 ;
 
 EnumeratedValue returns SysML::EnumerationUsage :
-	EnumerationUsageKeyword? Usage
+	UsageExtensionKeyword* EnumerationUsageKeyword? Usage
 ;
 
 EnumerationUsage returns SysML::EnumerationUsage :

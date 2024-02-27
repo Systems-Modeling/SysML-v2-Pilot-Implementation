@@ -4166,22 +4166,26 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class EnumeratedValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EnumeratedValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cEnumerationUsageKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cUsageParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cUsageExtensionKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cEnumerationUsageKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cUsageParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//EnumeratedValue returns SysML::EnumerationUsage :
-		//    EnumerationUsageKeyword? Usage
+		//    UsageExtensionKeyword* EnumerationUsageKeyword? Usage
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//EnumerationUsageKeyword? Usage
+		//UsageExtensionKeyword* EnumerationUsageKeyword? Usage
 		public Group getGroup() { return cGroup; }
 		
+		//UsageExtensionKeyword*
+		public RuleCall getUsageExtensionKeywordParserRuleCall_0() { return cUsageExtensionKeywordParserRuleCall_0; }
+		
 		//EnumerationUsageKeyword?
-		public RuleCall getEnumerationUsageKeywordParserRuleCall_0() { return cEnumerationUsageKeywordParserRuleCall_0; }
+		public RuleCall getEnumerationUsageKeywordParserRuleCall_1() { return cEnumerationUsageKeywordParserRuleCall_1; }
 		
 		//Usage
-		public RuleCall getUsageParserRuleCall_1() { return cUsageParserRuleCall_1; }
+		public RuleCall getUsageParserRuleCall_2() { return cUsageParserRuleCall_2; }
 	}
 	public class EnumerationUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EnumerationUsage");
@@ -16143,7 +16147,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EnumeratedValue returns SysML::EnumerationUsage :
-	//    EnumerationUsageKeyword? Usage
+	//    UsageExtensionKeyword* EnumerationUsageKeyword? Usage
 	//;
 	public EnumeratedValueElements getEnumeratedValueAccess() {
 		return pEnumeratedValue;

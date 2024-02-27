@@ -6823,7 +6823,20 @@ ruleEnumeratedValue returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_0());
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getEnumeratedValueRule());
+				}
+				newCompositeNode(grammarAccess.getEnumeratedValueAccess().getUsageExtensionKeywordParserRuleCall_0());
+			}
+			this_UsageExtensionKeyword_0=ruleUsageExtensionKeyword[$current]
+			{
+				$current = $this_UsageExtensionKeyword_0.current;
+				afterParserOrEnumRuleCall();
+			}
+		)*
+		(
+			{
+				newCompositeNode(grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_1());
 			}
 			ruleEnumerationUsageKeyword
 			{
@@ -6834,11 +6847,11 @@ ruleEnumeratedValue returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getEnumeratedValueRule());
 			}
-			newCompositeNode(grammarAccess.getEnumeratedValueAccess().getUsageParserRuleCall_1());
+			newCompositeNode(grammarAccess.getEnumeratedValueAccess().getUsageParserRuleCall_2());
 		}
-		this_Usage_1=ruleUsage[$current]
+		this_Usage_2=ruleUsage[$current]
 		{
-			$current = $this_Usage_1.current;
+			$current = $this_Usage_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

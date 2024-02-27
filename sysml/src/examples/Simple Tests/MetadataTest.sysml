@@ -6,7 +6,7 @@ package MetadataTest {
 		#Security enum def ClassificationLevel :> ScalarValues::Natural {
 			uncl : ClassificationLevel = 0;
 			conf : ClassificationLevel = 1;
-			secret : ClassificationLevel = 2;
+			#Security enum secret : ClassificationLevel = 2;
 		}
 		
 		metadata def Classified {

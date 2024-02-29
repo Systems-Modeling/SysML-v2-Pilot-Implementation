@@ -1097,10 +1097,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	protected def static typesConform(List<Type> t1, List<Type> t2) {
-		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
-		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
-		t1ConformsTot2.filter[!empty].length == t2.length ||
-			t2ConformsTot1.filter[!empty].length == t1.length
+		t1.exists[tt1 | t2.exists[tt2 | tt2.conformsTo(tt1)]] ||
+		t2.exists[tt2 | t1.exists[tt1 | tt1.conformsTo(tt2)]]
 	}
 	
 	// Return conforming subtypes

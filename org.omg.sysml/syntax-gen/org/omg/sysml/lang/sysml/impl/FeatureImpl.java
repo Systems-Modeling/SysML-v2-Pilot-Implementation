@@ -652,7 +652,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public FeatureDirectionKind getDirection() {
 		FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
 		if (owningFeatureMembership instanceof ParameterMembership) {
-			return ((ParameterMembership)owningFeatureMembership).parameterDirection();
+			direction = ((ParameterMembership)owningFeatureMembership).parameterDirection();
 		} else if (owningFeatureMembership != null) {
 			Type owningType = owningFeatureMembership.getOwningType();
 			if (owningType instanceof ItemFlowEnd) {
@@ -660,7 +660,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				if (!redefinitions.isEmpty()) {
 					Feature redefinedFeature = redefinitions.get(0).getRedefinedFeature();
 					if (redefinedFeature != null) {
-						return owningType.directionOf(redefinedFeature);
+						direction = owningType.directionOf(redefinedFeature);
 					}
 				}
 			}

@@ -32,9 +32,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>An <code>ItemFlow</code> is a <code>Step</code> that represents the transfer of objects or data values from one <code>Feature</code> to another. <code>ItemFlows</code> can take non-zero time to complete.</p>
  * 
  * if itemFlowEnds->isEmpty() then
- *     specializesFromLibrary("Transfers::transfers")
+ *     specializesFromLibrary('Transfers::transfers')
  * else
- *     specializesFromLibrary("Transfers::flowTransfers")
+ *     specializesFromLibrary('Transfers::flowTransfers')
  * endif
  * itemType =
  *     if itemFeature = null then Sequence{}

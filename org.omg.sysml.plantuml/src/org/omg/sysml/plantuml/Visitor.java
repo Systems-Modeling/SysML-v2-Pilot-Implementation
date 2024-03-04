@@ -476,21 +476,21 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return null;
     }
 
-    private static String getNameWithNamespace(Feature f) {
+    private static String getNameWithNamespace(Feature f, org.omg.sysml.lang.sysml.Namespace enclosingNs) {
         String name = getFeatureName(f);
         if (name == null) return null;
 
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
-        if (pkg == null) return name;
+        if ((pkg == null) || pkg.equals(enclosingNs)) return name;
         String pkgName = pkg.getDeclaredName();
         if (pkgName == null) return name;
         return pkgName + "::" + name;
     }
 
 
-    protected static String getRefName(Feature f) {
+    protected static String getRefName(Feature f, org.omg.sysml.lang.sysml.Namespace enclosingNs) {
         List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
-        if (fcs.isEmpty()) return getNameWithNamespace(f);
+        if (fcs.isEmpty()) return getNameWithNamespace(f, enclosingNs);
         return getFeatureChainName(fcs);
     }
 
@@ -499,7 +499,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (rs == null) return false;
         Feature rsf = rs.getSubsettedFeature();
         if (rsf == null) return false;
-        String name = getRefName(rsf);
+        String name = getRefName(rsf, f.getOwningNamespace());
         if (name == null) return false;
         sb.append("::> ");
         sb.append(name);
@@ -517,7 +517,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
             Feature sf = s.getSubsettedFeature();
             if (sf == null) continue;
-            String name = getRefName(sf);
+            String name = getRefName(sf, f.getOwningNamespace());
             if (name == null) continue;
             if (added) {
                 sb.append(", ");

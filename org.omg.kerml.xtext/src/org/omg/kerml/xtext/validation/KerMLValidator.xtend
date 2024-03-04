@@ -539,14 +539,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 					
 		// validateSubsettingFeaturingTypes
 		if (subsettingFeature !== null && subsettedFeature !== null) {
-			val subsettingFeaturingTypes = subsettingFeature.featuringType
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
-				!subsettedFeaturingTypes.forall[t | 
-						subsettingFeaturingTypes.exists[ f | 
-							// TODO: Remove "isFeaturedWithin" when possible
-							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
+				!subsettedFeaturingTypes.forall[t | subsettingFeature.isAccessibleFrom(t)]) {
 				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
 					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {
@@ -554,6 +550,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 		}
+	}
+	
+	def boolean isAccessibleFrom(Feature feature, Type type) {
+		val featuringTypes = feature.featuringType
+		featuringTypes.empty && type == getLibraryType(feature, "Base::Anything") ||
+		feature.featuringType.exists[featuringType | 
+				featuringType.conformsTo(type) ||
+				
+				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
+				featuringType instanceof Feature &&
+				(featuringType as Feature).isAccessibleFrom(type)];
 	}
 	
 	/* KERNEL */
@@ -667,13 +674,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
-		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
-		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+		val connectorEnds = TypeUtil.getAllEndFeaturesOf(c)
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
-				for (var i = 2; i < connectorEnds.size(); i++) {
-					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				val ownedConnectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+				if (ownedConnectorEnds.size() <= 2) {
+					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c, null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				} else {
+					for (var i = 2; i < connectorEnds.size(); i++) {
+						error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+					}
 				}
 			}
 		}
@@ -694,12 +705,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val connectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
 		for (var i = 0; i < relatedFeatures.size; i++) {
 			val relatedFeature = relatedFeatures.get(i)
-			if (!(relatedFeature.featuringType.empty || 
-				cFeaturingTypes.exists[featuringType |
-					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
+			if (!((if (cFeaturingTypes.empty) relatedFeature.isFeaturedWithin(null)
+				  else cFeaturingTypes.forall[t | relatedFeature.isFeaturedWithin(t)]) ||
+				  
+				// TODO: Be able to remove these special cases
 				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
 					relatedFeature.getOwningType() == location ||
 				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
+					
 				warning(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
 					null, INVALID_CONNECTOR_TYPE_FEATURING)
@@ -1084,10 +1097,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	protected def static typesConform(List<Type> t1, List<Type> t2) {
-		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
-		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
-		t1ConformsTot2.filter[!empty].length == t2.length ||
-			t2ConformsTot1.filter[!empty].length == t1.length
+		t1.exists[tt1 | t2.exists[tt2 | tt2.conformsTo(tt1)]] ||
+		t2.exists[tt2 | t1.exists[tt1 | tt1.conformsTo(tt2)]]
 	}
 	
 	// Return conforming subtypes

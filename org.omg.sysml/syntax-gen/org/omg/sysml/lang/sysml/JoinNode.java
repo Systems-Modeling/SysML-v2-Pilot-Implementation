@@ -31,7 +31,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>JoinNode</code> is a <code>ControlNode</code> that waits for the completion of all the predecessor <code>Actions</code> given by incoming <code>Successions</code>.</p>
  * sourceConnector->selectByKind(Succession)->size() <= 1
- * specializesFromLibrary("Actions::Action::join")
+ * specializesFromLibrary('Actions::Action::join')
  * <!-- end-model-doc -->
  *
  *

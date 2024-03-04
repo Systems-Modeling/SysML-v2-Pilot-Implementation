@@ -21,11 +21,9 @@
 
 package org.omg.sysml.generation
 
-import org.eclipse.uml2.uml.Model
-
 class KerMLMOF2KerMLText extends MOF2KerMLText {
 	
-	override generate(Model model) {
+	override generate(org.eclipse.uml2.uml.Package model) {
 		'''
 		standard library package KerML {
 			doc 
@@ -53,6 +51,16 @@ class KerMLMOF2KerMLText extends MOF2KerMLText {
 			}
 		}
 		'''
+	}
+	
+	override toRedefines(org.eclipse.uml2.uml.Property property) {
+		var redefinedProperties = property.redefinedProperties.toPropertyList
+		if ("annotatedElement".equals(property.name)) {
+			redefinedProperties = 
+				if (redefinedProperties.empty) "annotatedElement"
+				else redefinedProperties + ", annotatedElement"
+		}
+		toRedefines(redefinedProperties)
 	}
 	
 	static def void main(String[] args) {

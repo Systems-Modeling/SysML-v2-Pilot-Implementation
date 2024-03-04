@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Succession</code> is a binary <code>Connector</code> that requires its <code>relatedFeatures</code> to happen separately in time.</p>
  * 
- * specializesFromLibrary("Occurences::happensBeforeLinks")
+ * specializesFromLibrary('Occurences::happensBeforeLinks')
  * transitionStep =
  *     if owningNamespace.oclIsKindOf(Step) and 
  *         owningNamespace.oclAsType(Step).

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$defs": {
     "Project": {
-      "$id": "https://www.omg.org/spec/KerML/20230201/Project",
+      "$id": "https://www.omg.org/spec/KerML/20240201/Project",
       "title": "Project",
       "type": "object",
       "properties": {
@@ -59,7 +59,7 @@
       ]
     },
     "Meta": {
-      "$id": "https://www.omg.org/spec/KerML/20230201/Meta",
+      "$id": "https://www.omg.org/spec/KerML/20240201/Meta",
       "title": "Meta",
       "type": "object",
       "properties": {

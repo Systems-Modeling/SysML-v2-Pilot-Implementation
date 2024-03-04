@@ -31,7 +31,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>BooleanExpression</code> is a <em><code>Boolean</code></em>-valued <code>Expression</code> whose type is a <code>Predicate</code>. It represents a logical condition resulting from the evaluation of the <code>Predicate</code>.</p>
  * 
- * specializesFromLibrary("Performances::booleanEvaluations")
+ * specializesFromLibrary('Performances::booleanEvaluations')
  * <!-- end-model-doc -->
  *
  * <p>

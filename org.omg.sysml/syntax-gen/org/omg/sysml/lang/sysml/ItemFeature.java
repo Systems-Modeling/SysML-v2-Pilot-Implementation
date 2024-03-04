@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>ItemFeature</code> is the <code>ownedFeature</code> of an <code>ItemFlow</code> that identifies the things carried by the kinds of transfers that are instances of the <code>ItemFlow</code>.</p>
  * ownedRedefinition.redefinedFeature->
- *     redefinesFromLibrary("Transfers::Transfer::item")
+ *     redefinesFromLibrary('Transfers::Transfer::item')
  * <!-- end-model-doc -->
  *
  *

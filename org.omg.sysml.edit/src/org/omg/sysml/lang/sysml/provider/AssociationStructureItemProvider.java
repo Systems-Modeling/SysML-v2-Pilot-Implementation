@@ -119,8 +119,7 @@ public class AssociationStructureItemProvider extends AssociationItemProvider {
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

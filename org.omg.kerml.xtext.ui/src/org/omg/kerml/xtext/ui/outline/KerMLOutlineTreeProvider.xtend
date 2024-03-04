@@ -301,6 +301,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Comment comment) {
+		if (comment.locale !== null) {
+			createEStructuralFeatureNode(parentNode, comment, 
+				SysMLPackage.eINSTANCE.comment_Locale, 
+				_image(comment.locale), "locale " + comment.locale, true
+			)
+		}
 		if (comment.body !== null) {
 			createEStructuralFeatureNode(parentNode, comment, 
 				SysMLPackage.eINSTANCE.comment_Body, 

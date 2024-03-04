@@ -31,9 +31,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An <code>InterfaceDefinition</code> is a <code>ConnectionDefinition</code> all of whose ends are <code>PortUsages</code>, defining an interface between elements that interact through such ports.</p>
- * specializesFromLibrary("Interfaces::Interface")
+ * specializesFromLibrary('Interfaces::Interface')
  * ownedEndFeature->size() = 2 implies
- *     specializesFromLibrary("Interfaces::BinaryInterface")
+ *     specializesFromLibrary('Interfaces::BinaryInterface')
  * <!-- end-model-doc -->
  *
  * <p>

@@ -21,11 +21,9 @@
 
 package org.omg.sysml.generation
 
-import org.eclipse.uml2.uml.Model
-
 class SysMLMOF2SysMLText extends MOF2SysMLText {
 	
-	override generate(Model model) {
+	override generate(org.eclipse.uml2.uml.Package model) {
 		'''
 		standard library package SysML {
 			doc 

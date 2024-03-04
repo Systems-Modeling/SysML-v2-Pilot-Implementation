@@ -476,7 +476,7 @@ public class VPath extends VTraverser {
 
     private String addContextForFeature(Feature f) {
         PC pc = makeFeaturePC(f, f);
-        InheritKey ik = makeInheritKeyOfOwner(f);
+        InheritKey ik = makeInheritKey(f);
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }
@@ -487,7 +487,8 @@ public class VPath extends VTraverser {
         }
         PC pc = makeEndFeaturePC(f);
         InheritKey ik = makeInheritKeyOfOwner(f);
-        if (createRefPC(ik, pc) == null) return null;
+        // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
+        if (createRefPC(InheritKey.makeIndirect(ik), pc) == null) return null;
         return "";
     }
 
@@ -504,7 +505,8 @@ public class VPath extends VTraverser {
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
         InheritKey ik = makeInheritKeyOfOwner(ife);
-        if (createRefPC(ik, pc) == null) return null;
+        // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
+        if (createRefPC(InheritKey.makeIndirect(ik), pc) == null) return null;
         return "";
     }
 
@@ -590,10 +592,10 @@ public class VPath extends VTraverser {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();
             if (g == null) continue;
-            if (checkVisited(g)) continue;
             if (g instanceof Feature) {
                 addContextForFeature((Feature) g);
             }
+            if (checkVisited(g)) continue;
             visit(g);
             traverse(g);
             // visit(s); // Typically this will cause double traverse but checkVisit() stops it..

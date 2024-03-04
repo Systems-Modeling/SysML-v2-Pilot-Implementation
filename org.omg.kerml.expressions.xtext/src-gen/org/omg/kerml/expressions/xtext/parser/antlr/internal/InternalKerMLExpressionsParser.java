@@ -6652,7 +6652,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
 
 
     // $ANTLR start "ruleExponentiationExpression"
-    // InternalKerMLExpressions.g:2494:1: ruleExponentiationExpression returns [EObject current=null] : (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )* ) ;
+    // InternalKerMLExpressions.g:2494:1: ruleExponentiationExpression returns [EObject current=null] : (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )? ) ;
     public final EObject ruleExponentiationExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6667,11 +6667,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
         	enterRule();
 
         try {
-            // InternalKerMLExpressions.g:2500:2: ( (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )* ) )
-            // InternalKerMLExpressions.g:2501:2: (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )* )
+            // InternalKerMLExpressions.g:2500:2: ( (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )? ) )
+            // InternalKerMLExpressions.g:2501:2: (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )? )
             {
-            // InternalKerMLExpressions.g:2501:2: (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )* )
-            // InternalKerMLExpressions.g:2502:3: this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )*
+            // InternalKerMLExpressions.g:2501:2: (this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )? )
+            // InternalKerMLExpressions.g:2502:3: this_UnaryExpression_0= ruleUnaryExpression ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )?
             {
 
             			newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getUnaryExpressionParserRuleCall_0());
@@ -6685,102 +6685,95 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
             			current = this_UnaryExpression_0;
             			afterParserOrEnumRuleCall();
             		
-            // InternalKerMLExpressions.g:2510:3: ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) ) )*
-            loop21:
-            do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2510:3: ( () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) ) )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-                if ( ((LA21_0>=43 && LA21_0<=44)) ) {
-                    alt21=1;
-                }
+            if ( ((LA21_0>=43 && LA21_0<=44)) ) {
+                alt21=1;
+            }
+            switch (alt21) {
+                case 1 :
+                    // InternalKerMLExpressions.g:2511:4: () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleExponentiationExpression ) )
+                    {
+                    // InternalKerMLExpressions.g:2511:4: ()
+                    // InternalKerMLExpressions.g:2512:5: 
+                    {
 
+                    					current = forceCreateModelElementAndAdd(
+                    						grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0(),
+                    						current);
+                    				
 
-                switch (alt21) {
-            	case 1 :
-            	    // InternalKerMLExpressions.g:2511:4: () ( (lv_operator_2_0= ruleExponentiationOperator ) ) ( (lv_operand_3_0= ruleUnaryExpression ) )
-            	    {
-            	    // InternalKerMLExpressions.g:2511:4: ()
-            	    // InternalKerMLExpressions.g:2512:5: 
-            	    {
+                    }
 
-            	    					current = forceCreateModelElementAndAdd(
-            	    						grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0(),
-            	    						current);
-            	    				
+                    // InternalKerMLExpressions.g:2518:4: ( (lv_operator_2_0= ruleExponentiationOperator ) )
+                    // InternalKerMLExpressions.g:2519:5: (lv_operator_2_0= ruleExponentiationOperator )
+                    {
+                    // InternalKerMLExpressions.g:2519:5: (lv_operator_2_0= ruleExponentiationOperator )
+                    // InternalKerMLExpressions.g:2520:6: lv_operator_2_0= ruleExponentiationOperator
+                    {
 
-            	    }
+                    						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperatorExponentiationOperatorParserRuleCall_1_1_0());
+                    					
+                    pushFollow(FOLLOW_3);
+                    lv_operator_2_0=ruleExponentiationOperator();
 
-            	    // InternalKerMLExpressions.g:2518:4: ( (lv_operator_2_0= ruleExponentiationOperator ) )
-            	    // InternalKerMLExpressions.g:2519:5: (lv_operator_2_0= ruleExponentiationOperator )
-            	    {
-            	    // InternalKerMLExpressions.g:2519:5: (lv_operator_2_0= ruleExponentiationOperator )
-            	    // InternalKerMLExpressions.g:2520:6: lv_operator_2_0= ruleExponentiationOperator
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperatorExponentiationOperatorParserRuleCall_1_1_0());
-            	    					
-            	    pushFollow(FOLLOW_3);
-            	    lv_operator_2_0=ruleExponentiationOperator();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
-            	    						}
-            	    						set(
-            	    							current,
-            	    							"operator",
-            	    							lv_operator_2_0,
-            	    							"org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationOperator");
-            	    						afterParserOrEnumRuleCall();
-            	    					
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
+                    						}
+                    						set(
+                    							current,
+                    							"operator",
+                    							lv_operator_2_0,
+                    							"org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationOperator");
+                    						afterParserOrEnumRuleCall();
+                    					
 
-            	    }
-
-
-            	    }
-
-            	    // InternalKerMLExpressions.g:2537:4: ( (lv_operand_3_0= ruleUnaryExpression ) )
-            	    // InternalKerMLExpressions.g:2538:5: (lv_operand_3_0= ruleUnaryExpression )
-            	    {
-            	    // InternalKerMLExpressions.g:2538:5: (lv_operand_3_0= ruleUnaryExpression )
-            	    // InternalKerMLExpressions.g:2539:6: lv_operand_3_0= ruleUnaryExpression
-            	    {
-
-            	    						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_2_0());
-            	    					
-            	    pushFollow(FOLLOW_23);
-            	    lv_operand_3_0=ruleUnaryExpression();
-
-            	    state._fsp--;
+                    }
 
 
-            	    						if (current==null) {
-            	    							current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
-            	    						}
-            	    						add(
-            	    							current,
-            	    							"operand",
-            	    							lv_operand_3_0,
-            	    							"org.omg.kerml.expressions.xtext.KerMLExpressions.UnaryExpression");
-            	    						afterParserOrEnumRuleCall();
-            	    					
+                    }
 
-            	    }
+                    // InternalKerMLExpressions.g:2537:4: ( (lv_operand_3_0= ruleExponentiationExpression ) )
+                    // InternalKerMLExpressions.g:2538:5: (lv_operand_3_0= ruleExponentiationExpression )
+                    {
+                    // InternalKerMLExpressions.g:2538:5: (lv_operand_3_0= ruleExponentiationExpression )
+                    // InternalKerMLExpressions.g:2539:6: lv_operand_3_0= ruleExponentiationExpression
+                    {
+
+                    						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandExponentiationExpressionParserRuleCall_1_2_0());
+                    					
+                    pushFollow(FOLLOW_2);
+                    lv_operand_3_0=ruleExponentiationExpression();
+
+                    state._fsp--;
 
 
-            	    }
+                    						if (current==null) {
+                    							current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
+                    						}
+                    						add(
+                    							current,
+                    							"operand",
+                    							lv_operand_3_0,
+                    							"org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationExpression");
+                    						afterParserOrEnumRuleCall();
+                    					
+
+                    }
 
 
-            	    }
-            	    break;
+                    }
 
-            	default :
-            	    break loop21;
-                }
-            } while (true);
+
+                    }
+                    break;
+
+            }
 
 
             }
@@ -13364,31 +13357,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
         }
     }
     static final String dfa_15s = "\24\uffff";
-    static final String dfa_16s = "\4\uffff\2\11\6\uffff\2\11\3\uffff\2\11\1\uffff";
+    static final String dfa_16s = "\4\uffff\2\13\6\uffff\2\13\3\uffff\2\13\1\uffff";
     static final String dfa_17s = "\1\4\1\uffff\1\4\1\uffff\2\15\2\uffff\1\7\1\uffff\1\7\1\uffff\2\15\1\uffff\2\7\2\15\1\7";
-    static final String dfa_18s = "\1\101\1\uffff\1\101\1\uffff\2\102\2\uffff\1\75\1\uffff\1\10\1\uffff\2\102\1\uffff\1\70\1\10\2\102\1\10";
-    static final String dfa_19s = "\1\uffff\1\1\1\uffff\1\2\2\uffff\1\6\1\7\1\uffff\1\3\1\uffff\1\5\2\uffff\1\4\5\uffff";
+    static final String dfa_18s = "\1\101\1\uffff\1\101\1\uffff\2\102\2\uffff\1\10\1\uffff\1\75\1\uffff\2\102\1\uffff\1\70\1\10\2\102\1\10";
+    static final String dfa_19s = "\1\uffff\1\1\1\uffff\1\2\2\uffff\1\6\1\7\1\uffff\1\5\1\uffff\1\3\2\uffff\1\4\5\uffff";
     static final String dfa_20s = "\24\uffff}>";
     static final String[] dfa_21s = {
             "\3\3\1\4\1\5\37\uffff\1\3\7\uffff\1\3\1\uffff\1\2\5\uffff\1\6\6\uffff\1\1\2\3",
             "",
             "\5\7\6\uffff\1\7\13\uffff\3\7\1\uffff\1\7\6\uffff\3\7\4\uffff\4\7\1\uffff\1\7\1\1\4\uffff\1\7\6\uffff\3\7",
             "",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\10\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\12",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\10\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\12",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\12\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\10",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\12\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\10",
             "",
-            "",
-            "\1\14\1\15\57\uffff\1\11\4\uffff\1\16",
             "",
             "\1\4\1\5",
             "",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\17\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\20",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\17\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\20",
+            "\1\14\1\15\57\uffff\1\13\4\uffff\1\16",
             "",
-            "\1\21\1\22\57\uffff\1\11",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\17\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\20",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\17\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\20",
+            "",
+            "\1\21\1\22\57\uffff\1\13",
             "\1\14\1\15",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\17\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\23",
-            "\2\11\1\uffff\16\11\1\uffff\1\11\1\uffff\14\11\3\uffff\1\17\1\11\1\13\5\11\2\uffff\1\11\1\uffff\1\11\5\uffff\1\23",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\17\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\23",
+            "\2\13\1\uffff\16\13\1\uffff\1\13\1\uffff\14\13\3\uffff\1\17\1\13\1\11\5\13\2\uffff\1\13\1\uffff\1\13\5\uffff\1\23",
             "\1\21\1\22"
     };
 
@@ -13419,16 +13412,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalAntlrParser 
     }
     static final String dfa_22s = "\6\uffff";
     static final String dfa_23s = "\1\uffff\2\5\3\uffff";
-    static final String dfa_24s = "\1\7\2\60\1\7\2\uffff";
-    static final String dfa_25s = "\1\10\2\102\1\10\2\uffff";
-    static final String dfa_26s = "\4\uffff\1\2\1\1";
+    static final String dfa_24s = "\1\7\2\60\1\uffff\1\7\1\uffff";
+    static final String dfa_25s = "\1\10\2\102\1\uffff\1\10\1\uffff";
+    static final String dfa_26s = "\3\uffff\1\2\1\uffff\1\1";
     static final String dfa_27s = "\6\uffff}>";
     static final String[] dfa_28s = {
             "\1\1\1\2",
-            "\1\4\1\uffff\1\5\17\uffff\1\3",
-            "\1\4\1\uffff\1\5\17\uffff\1\3",
-            "\1\1\1\2",
+            "\1\3\1\uffff\1\5\17\uffff\1\4",
+            "\1\3\1\uffff\1\5\17\uffff\1\4",
             "",
+            "\1\1\1\2",
             ""
     };
 

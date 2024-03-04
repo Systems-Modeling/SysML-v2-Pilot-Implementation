@@ -49,6 +49,7 @@ public class ImportItemProvider extends RelationshipItemProvider {
 			addIsRecursivePropertyDescriptor(object);
 			addIsImportAllPropertyDescriptor(object);
 			addImportedElementPropertyDescriptor(object);
+			addImportOwningNamespacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -142,14 +143,25 @@ public class ImportItemProvider extends RelationshipItemProvider {
 	}
 
 	/**
-	 * This returns Import.gif.
+	 * This adds a property descriptor for the Import Owning Namespace feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Import"));
+	protected void addImportOwningNamespacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Import_importOwningNamespace_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Import_importOwningNamespace_feature", "_UI_Import_type"),
+				 SysMLPackage.Literals.IMPORT__IMPORT_OWNING_NAMESPACE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -214,8 +226,7 @@ public class ImportItemProvider extends RelationshipItemProvider {
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
 
 		if (qualify) {
 			return getString

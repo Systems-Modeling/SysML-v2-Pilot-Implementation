@@ -35,10 +35,10 @@ package org.omg.sysml.lang.sysml;
  *     collect(connectorEnd->at(2))->
  *     forAll(targetMult |
  *         multiplicityHasBounds(targetMult, 0, 1))
- * specializesFromLibrary("Actions::Action::decisions")
+ * specializesFromLibrary('Actions::Action::decisions')
  * sourceConnector->selectByKind(Succession)->
  *     forAll(subsetsChain(self, 
- *         resolveGlobal("ControlPerformances::MergePerformance::outgoingHBLink")))
+ *         resolveGlobal('ControlPerformances::MergePerformance::outgoingHBLink')))
  * <!-- end-model-doc -->
  *
  *

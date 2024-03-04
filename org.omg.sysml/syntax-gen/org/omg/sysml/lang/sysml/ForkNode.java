@@ -31,7 +31,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>ForkNode</code> is a <code>ControlNode</code> that must be followed by successor <code>Actions</code> as given by all its outgoing <code>Successions</code>.</p>
  * targetConnector->selectByKind(Succession)->size() <= 1
- * specializesFromLibrary("Actions::Action::forks")
+ * specializesFromLibrary('Actions::Action::forks')
  * <!-- end-model-doc -->
  *
  *

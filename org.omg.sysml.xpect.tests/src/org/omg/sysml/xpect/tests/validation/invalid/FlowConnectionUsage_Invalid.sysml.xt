@@ -38,25 +38,16 @@ END_SETUP
 */
 package P {
 	part def A;	
-	part def B;	
-	part def C;	
-	part def D;	
-	part def E;
 	
-	flow def DE {
-		end : D[1];
-		end : E[1];
-	}
-	flow def BC {
-		end : B[1];
-		end : C[1];
-	}
+	abstract flow def F;
+	abstract flow def G;
+	
 	part apart : A {
-		part b : B[1];
-		part c : C[1];
+		part b;
+		part c;
 		
-		message bc : BC from b to c;
-		message de : DE, BC from b to c;
+		message : F from b to c;
+		message : F, G from b to c;
 		
 		// XPECT errors --> "A flow connection must be typed by flow connection definitions." at "message :A from b to c;"
 		message :A from b to c;

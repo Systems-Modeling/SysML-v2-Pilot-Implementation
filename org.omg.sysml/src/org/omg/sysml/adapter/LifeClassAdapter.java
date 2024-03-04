@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -40,23 +40,19 @@ public class LifeClassAdapter extends ClassAdapter {
 	
 	// Transformation
 
-	protected void addSuperclassing() {
-		LifeClass lifeClass = getTarget();
-		Namespace owner = lifeClass.getOwningNamespace();
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		Namespace owner = getTarget().getOwningNamespace();
 		if (owner instanceof Classifier) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubclassification(), (Classifier)owner);
 		}
 	}
 	
-	protected void addMultiplicity() {
-		FeatureUtil.addMultiplicityTo(getTarget());
-	}
-	
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		addSuperclassing();
-		addMultiplicity();
+		FeatureUtil.addMultiplicityTo(getTarget());
 	}
 	
 }

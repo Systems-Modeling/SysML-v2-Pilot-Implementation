@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *     if individualDefinitions->isEmpty() then null
  *     else individualDefinitions->first() endif
  * isIndividual implies individualDefinition <> null
- * specializesFromLibrary("Occurrences::occurrences")
+ * specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
  * owningType <> null and
  * (owningType.oclIsKindOf(Class) or
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *  owningType.oclIsKindOf(Feature) and
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKind(Class))) implies
- *     specializesFromLibrary("Occurrences::Occurrence::suboccurrences")
+ *     specializesFromLibrary('Occurrences::Occurrence::suboccurrences')
  * occurrenceDefinition->
  *     selectByKind(OccurrenceDefinition)->
  *     select(isIndividual).size() <= 1

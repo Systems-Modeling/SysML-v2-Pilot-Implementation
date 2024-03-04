@@ -312,8 +312,7 @@ public class RequirementDefinitionItemProvider extends ConstraintDefinitionItemP
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
-			childFeature == SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP;
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {
 			return getString

@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *         exists(binding |
  *             binding.relatedFeature->includes(result) and
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
- * specializesFromLibrary("Performances::Evaluation")
+ * specializesFromLibrary('Performances::Evaluation')
  * result =
  *     let resultParams : Sequence(Feature) =
  *         ownedFeatureMemberships->

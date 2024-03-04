@@ -1,0 +1,57 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+        ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+       	File {from ="/library/Performances.kerml"}
+      	File {from ="/library/Metaobjects.kerml"}
+        File {from ="/library/KerML.kerml"}
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+		        ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+		       	File {from ="/library/Performances.kerml"}
+		      	File {from ="/library/Metaobjects.kerml"}
+		        File {from ="/library/KerML.kerml"}
+            }
+    	}
+	}
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package Metadata {
+	
+	metaclass A {
+		feature f;
+	}
+	
+	metaclass B;
+	metaclass C;
+	
+	feature x {
+		metaclass A {
+			f = null;
+		}
+	}
+	
+	feature y {
+		@A { f = null; }
+		@B;
+	}
+	
+	private #A #B feature z1;
+	abstract #A z2;
+	
+	feature z {
+		#A #B metadata C;
+		#A #B @C;
+	}
+}

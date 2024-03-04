@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated SysML -->
       <factory
-            uri="https://www.omg.org/spec/SysML/20230201"
+            uri="https://www.omg.org/spec/SysML/20240201"
             class="org.omg.sysml.lang.sysml.provider.SysMLItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

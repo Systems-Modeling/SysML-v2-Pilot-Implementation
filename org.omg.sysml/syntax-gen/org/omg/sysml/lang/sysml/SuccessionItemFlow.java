@@ -28,7 +28,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>SuccessionItemFlow</code> is an <code>ItemFlow</code> that also provides temporal ordering. It classifies <code><em>Transfers</em></code> that cannot start until the source <code><em>Occurrence</em></code> has completed and that must complete before the target <code><em>Occurrence</em></code> can start.</p>
- * specializesFromLibrary("Transfers::flowTransfersBefore")
+ * specializesFromLibrary('Transfers::flowTransfersBefore')
  * <!-- end-model-doc -->
  *
  *

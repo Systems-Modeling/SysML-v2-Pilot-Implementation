@@ -37,8 +37,8 @@ package org.omg.sysml.lang.sysml;
  *         multiplicityHasBounds(sourceMult, 0, 1))
  * targetConnector->selectByKind(Succession)->
  *     forAll(subsetsChain(self, 
- *         resolveGlobal("ControlPerformances::MergePerformance::incomingHBLink")))
- * specializesFromLibrary("Actions::Action::merges")
+ *         resolveGlobal('ControlPerformances::MergePerformance::incomingHBLink')))
+ * specializesFromLibrary('Actions::Action::merges')
  * <!-- end-model-doc -->
  *
  *

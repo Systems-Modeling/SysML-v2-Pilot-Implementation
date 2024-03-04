@@ -167,9 +167,7 @@ public class StateSubactionMembershipItemProvider extends FeatureMembershipItemP
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
 			childFeature == SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE ||
-			childFeature == SysMLPackage.Literals.ELEMENT__DOCUMENTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
 
 		if (qualify) {
 			return getString

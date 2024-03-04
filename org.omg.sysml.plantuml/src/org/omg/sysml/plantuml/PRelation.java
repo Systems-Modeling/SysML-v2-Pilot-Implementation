@@ -137,7 +137,7 @@ class PRelation {
     }
 
     public PRelation(InheritKey ik, Object src, Object dest, Element rel, String description) {
-        this.ik = null;
+        this.ik = ik;
         this.src = src;
         this.dest = dest;
         this.rel = rel;

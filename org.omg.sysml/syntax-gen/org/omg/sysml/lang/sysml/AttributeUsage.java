@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>An <code>AttributeUsage</code> must specialize, directly or indirectly, the base <code>Feature</code> <code><em>Base::dataValues</em></code> from the Kernel Semantic Library.</p>
  * isReference
  * feature->forAll(not isComposite)
- * specializesFromLibrary("Base::dataValues")
+ * specializesFromLibrary('Base::dataValues')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +63,7 @@ public interface AttributeUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>DataTypes</code> that are the types of this <code>AttributeUsage</code>. Nominally, these are <code>AttributeDefinitions</code>, but other kinds of kernel <code>DataTypes</code> are also allowed, to permit use of <code>DataTypes,/code> from the Kernel Model Libraries.</p>
+	 * <p>The <code>DataTypes</code> that are the types of this <code>AttributeUsage</code>. Nominally, these are <code>AttributeDefinitions</code>, but other kinds of kernel <code>DataTypes</code> are also allowed, to permit use of <code>DataTypes</code> from the Kernel Model Libraries.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAttributeUsage_AttributeDefinition()

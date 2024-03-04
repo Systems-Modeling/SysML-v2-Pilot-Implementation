@@ -10,7 +10,7 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>FlowConnectionDefinition</code> is a <code>ConnectionDefinition</code> and <code>ActionDefinition</code> that is also an <code>Interaction</code> representing flows between <code>Usages</code>.</p>
- * specializesFromLibrary("Connections::MessageConnection")
+ * specializesFromLibrary('Connections::MessageConnection')
  * <!-- end-model-doc -->
  *
  *

@@ -112,7 +112,7 @@ public class LibraryPackageImpl extends PackageImpl implements LibraryPackage {
 						KERML_LIBRARY_BASE_URI: SYSML_LIBRARY_BASE_URI;
 				String qualifiedName = getQualifiedName();
 				if (qualifiedName != null) {
-					return ElementUtil.constructNameUUID(UUID_NAMESPACE_URL, uri + qualifiedName).toString();
+					elementId = ElementUtil.constructNameUUID(UUID_NAMESPACE_URL, uri + qualifiedName).toString();
 				}
 			}
 		}

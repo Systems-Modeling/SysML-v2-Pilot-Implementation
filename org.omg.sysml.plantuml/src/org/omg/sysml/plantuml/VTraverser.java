@@ -49,13 +49,8 @@ public abstract class VTraverser extends Visitor {
         return currentMembership;
     }
 
-    private static final int MAX_TRAVERSE = 1000;
-    private int traversed = 0;
-
     protected boolean checkVisited(Namespace n) {
     	if (visited.contains(n)) return true;
-        if (traversed > MAX_TRAVERSE) return true;
-        traversed++;
     	visited.add(n);
     	return false;
     }

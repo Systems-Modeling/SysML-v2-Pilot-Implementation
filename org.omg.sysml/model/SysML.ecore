@@ -4515,6 +4515,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>AcceptActionUsage&lt;/code> is the &lt;code>triggerAction&lt;/code> of a &lt;code>TransitionUsage&lt;/code>.&lt;/p>&#xA;owningType &lt;> null and &#xA;owningType.oclIsKindOf(TransitionUsage) and&#xA;owningType.oclAsType(TransitionUsage).triggerAction->includes(self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="receiverArgument" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">

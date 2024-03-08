@@ -2572,23 +2572,27 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the owned input &lt;code>parameters&lt;/code> of this &lt;code>ActionUsage&lt;/code>.&lt;/p>&#xA;input->select(f | f.owner = self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="inputParameter" ordered="false" eType="#//Feature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> of the &lt;code>ActionUsage&lt;/code>. Return null if the &lt;code>ActionUsage&lt;/code> has less than &lt;code>i&lt;/code> owned input &lt;code>parameters&lt;/code>.&lt;/p>&#xA;if inputParameters()->size() &lt; i then null&#xA;else inputParameters()->at(i)&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="i" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
     </eOperations>
     <eOperations name="argument" ordered="false" eType="#//Expression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>i&lt;/code>-th argument &lt;code>Expression&lt;/code> of an &lt;code>ActionUsage&lt;/code>, defined as the &lt;code>value&lt;/code> &lt;code>Expression&lt;/code> of the &lt;code>FeatureValue&lt;/code> of the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> of the &lt;code>ActionUsage&lt;/code>. Return null if the &lt;code>ActionUsage&lt;/code> has less than &lt;code>i&lt;/code> owned input &lt;code>parameters&lt;/code> or the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> has no &lt;code>FeatureValue&lt;/code>.&lt;/p>&#xA;if inputParameter(i) = null then null&#xA;else&#xA;    let featureValue : Sequence(FeatureValue) = inputParameter(i).&#xA;        ownedMembership->select(oclIsKindOf(FeatureValue)) in&#xA;    if featureValue->isEmpty() then null&#xA;    else featureValue->at(1).value&#xA;    endif&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="i" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
     </eOperations>
     <eOperations name="isSubactionUsage" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>ActionUsage&lt;/code> is composite and has an &lt;code>owningType&lt;/code> that is an &lt;code>ActionDefinition&lt;/code> or &lt;code>ActionUsage&lt;/code> but is &lt;em>not&lt;/em> the &lt;code>entryAction&lt;/code> or &lt;code>exitAction&lt;/em>&lt;/code> of a &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code>. If so, then it represents an &lt;code>&lt;em>Action&lt;/em>&lt;/code> that is a &lt;code>&lt;em>subaction&lt;/em>&lt;/code> of another &lt;code>&lt;em>Action&lt;/em>&lt;/code>.&lt;/p>&#xA;isComposite and owningType &lt;> null and&#xA;(owningType.oclIsKindOf(ActionDefinition) or&#xA; owningType.oclIsKindOf(ActionUsage)) and&#xA;(owningFeatureMembership.oclIsKindOf(StateSubactionMembership) implies&#xA; owningFeatureMembership.oclAsType(StateSubactionMembership).kind = &#xA;    StateSubactionKind::do)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionDefinition" upperBound="-1"
         eType="#//Behavior" volatile="true" transient="true" derived="true">

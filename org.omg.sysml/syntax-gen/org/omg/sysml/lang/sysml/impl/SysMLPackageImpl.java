@@ -14712,6 +14712,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getActionUsage__InputParameters(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__InputParameter__int(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__Argument__int(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__IsSubactionUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getActionUsage_ActionDefinition(),
 		   source,
 		   new String[] {

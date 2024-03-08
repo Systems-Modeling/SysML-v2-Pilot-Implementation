@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="https://www.omg.org/spec/SysML/20240201" nsPrefix="sysml">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="settingDelegates" value="http://www.omg.org/spec/SysML"/>
+    <details key="invocationDelegates" value="http://www.omg.org/spec/SysML"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirectionKind">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

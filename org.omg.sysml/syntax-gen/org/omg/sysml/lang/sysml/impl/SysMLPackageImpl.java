@@ -9833,7 +9833,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		  (this,
 		   source,
 		   new String[] {
-			   "settingDelegates", "http://www.omg.org/spec/SysML"
+			   "settingDelegates", "http://www.omg.org/spec/SysML",
+			   "invocationDelegates", "http://www.omg.org/spec/SysML"
 		   });
 	}
 

@@ -28,5 +28,11 @@
       		uri="http://www.omg.org/spec/SysML"
       		class="org.omg.sysml.delegate.setting.DerivedPropertySettingDelegateFactory" />
    </extension>
+   
+   <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+      <factory
+      		uri="http://www.omg.org/spec/SysML"
+      		class="org.omg.sysml.delegate.invocation.OperationInvocationDelegateFactory" />
+   </extension>
 
 </plugin>

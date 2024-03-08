@@ -3,7 +3,7 @@ package org.omg.kerml.xpect;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xpect.xtext.lib.tests.XtextTests;
 import org.junit.BeforeClass;
-import org.omg.sysml.delegate.DerivedPropertySettingDelegateFactory;
+import org.omg.sysml.delegate.setting.DerivedPropertySettingDelegateFactory;
 
 public class KerMLXtextTests extends XtextTests {
 

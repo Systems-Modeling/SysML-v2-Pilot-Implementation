@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -225,14 +226,12 @@ public class TypeUtil {
 	}
 	
 	public static Feature getResultParameterOf(Type type) {
-		// NOTE: This method will fill in an inherited result Parameter if this Type does not
-		// have an owned result Parameter. It is for use when transform may have not yet been
-		// called on this Type.
 		return getResultParameterOf(type, new HashSet<>());
 	}
 	
 	private static Feature getResultParameterOf(Type type, Set<Type> visited) {
 		visited.add(type);
+		getTypeAdapter(type).addResultParameter();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
 			for (Type general: getSupertypesOf(type)) {
@@ -245,6 +244,18 @@ public class TypeUtil {
 			}
 		}
 		return resultParameter;
+	}
+
+	public static void addResultParameterTo(Type type) {
+		addResultParameterTo(type, SysMLFactory.eINSTANCE.createFeature());
+	}
+	
+	public static void addResultParameterTo(Type type, Feature resultParameter) {
+		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			membership.setOwnedMemberParameter(resultParameter);
+			type.getOwnedRelationship().add(membership);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

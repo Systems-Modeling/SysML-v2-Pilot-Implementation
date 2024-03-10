@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,12 +31,12 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.TypeUtil;
 
 public class ExpressionAdapter extends StepAdapter {
 
@@ -129,16 +129,12 @@ public class ExpressionAdapter extends StepAdapter {
 		}
 	}
 	
-	protected void computeOutput() {
+	public void addResultParameter() {
 		Expression expression = getTarget();
-		if (expression.getOutput().isEmpty()) {
-			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
-			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			membership.setOwnedMemberParameter(parameter);
-			expression.getOwnedRelationship().add(membership);
-		}		
+		TypeUtil.addResultParameterTo(expression);
+		createResultConnector(expression.getResult());
 	}
-			
+	
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();
@@ -147,8 +143,6 @@ public class ExpressionAdapter extends StepAdapter {
 				expression.getOwningMembership() instanceof FeatureValue) {
 			addImplicitFeaturingTypesIfNecessary();
 		}
-		computeOutput();
-		createResultConnector(expression.getResult());
 	}
 		
 }

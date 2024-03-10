@@ -22,6 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.util.TypeUtil;
 
 public class FunctionAdapter extends BehaviorAdapter {
 
@@ -35,9 +36,10 @@ public class FunctionAdapter extends BehaviorAdapter {
 	}
 
 	@Override
-	public void doTransform() {
-		super.doTransform();
-		createResultConnector(getTarget().getResult());
+	public void addResultParameter() {
+		Function target = getTarget();
+		TypeUtil.addResultParameterTo(target);
+		createResultConnector(target.getResult());
 	}
 	
 }

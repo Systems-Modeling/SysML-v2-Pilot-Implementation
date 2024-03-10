@@ -35,10 +35,15 @@ public class CalculationDefinitionAdapter extends ActionDefinitionAdapter {
 	}
 	
 	@Override
-	public void addResultParameter() {
+	public void addAdditionalMembers() {
 		CalculationDefinition target = getTarget();
 		UsageUtil.addResultParameterTo(target);
-		createResultConnector(target.getResult());
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());
 	}
 	
 }

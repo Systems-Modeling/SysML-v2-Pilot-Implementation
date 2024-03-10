@@ -357,15 +357,11 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 
-	public void addResultParameter() {
-	}
-	
 	@Override
 	public void doTransform() {
 		super.doTransform();
 		computeImplicitGeneralTypes();
 		removeUnnecessaryImplicitGeneralTypes();
-		addResultParameter();
 	}
 	
 }

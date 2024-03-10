@@ -36,10 +36,14 @@ public class FunctionAdapter extends BehaviorAdapter {
 	}
 
 	@Override
-	public void addResultParameter() {
-		Function target = getTarget();
-		TypeUtil.addResultParameterTo(target);
-		createResultConnector(target.getResult());
+	public void addAdditionalMembers() {
+		TypeUtil.addResultParameterTo(getTarget());
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());		
 	}
 	
 }

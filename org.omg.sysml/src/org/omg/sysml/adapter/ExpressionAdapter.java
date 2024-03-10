@@ -129,10 +129,9 @@ public class ExpressionAdapter extends StepAdapter {
 		}
 	}
 	
-	public void addResultParameter() {
-		Expression expression = getTarget();
-		TypeUtil.addResultParameterTo(expression);
-		createResultConnector(expression.getResult());
+	@Override
+	public void addAdditionalMembers() {
+		TypeUtil.addResultParameterTo(getTarget());
 	}
 	
 	@Override
@@ -143,6 +142,7 @@ public class ExpressionAdapter extends StepAdapter {
 				expression.getOwningMembership() instanceof FeatureValue) {
 			addImplicitFeaturingTypesIfNecessary();
 		}
+		createResultConnector(expression.getResult());
 	}
 		
 }

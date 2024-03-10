@@ -36,10 +36,14 @@ public class ConstraintDefinitionAdapter extends OccurrenceDefinitionAdapter {
 	}
 
 	@Override
-	public void addResultParameter() {
-		ConstraintDefinition definition = getTarget();
-		UsageUtil.addResultParameterTo(definition);
-		createResultConnector(definition.getResult());
+	public void addAdditionalMembers() {
+		UsageUtil.addResultParameterTo(getTarget());
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());		
 	}
 	
 }

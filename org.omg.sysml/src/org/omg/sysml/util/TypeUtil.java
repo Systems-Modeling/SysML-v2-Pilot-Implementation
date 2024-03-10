@@ -231,7 +231,7 @@ public class TypeUtil {
 	
 	private static Feature getResultParameterOf(Type type, Set<Type> visited) {
 		visited.add(type);
-		getTypeAdapter(type).addResultParameter();
+		getTypeAdapter(type).addAdditionalMembers();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
 			for (Type general: getSupertypesOf(type)) {
@@ -251,7 +251,7 @@ public class TypeUtil {
 	}
 	
 	public static void addResultParameterTo(Type type, Feature resultParameter) {
-		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+		if (type.getOwnedRelationship().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
 			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter(resultParameter);
 			type.getOwnedRelationship().add(membership);

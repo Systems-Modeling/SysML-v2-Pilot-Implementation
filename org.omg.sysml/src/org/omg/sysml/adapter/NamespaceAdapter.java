@@ -50,4 +50,13 @@ public class NamespaceAdapter extends ElementAdapter {
 		importedMembership = null;
 	}
 	
+	public void addAdditionalMembers() {
+	}
+	
+	@Override
+	public void doTransform() {
+		addAdditionalMembers();
+		super.doTransform();
+	}
+	
 }

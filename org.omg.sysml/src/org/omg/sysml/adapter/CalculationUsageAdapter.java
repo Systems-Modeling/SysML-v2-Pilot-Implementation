@@ -52,10 +52,14 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	@Override
-	public void addResultParameter() {
-		CalculationUsage target = getTarget();
-		UsageUtil.addResultParameterTo(target);
-		createResultConnector(target.getResult());
+	public void addAdditionalMembers() {
+		UsageUtil.addResultParameterTo(getTarget());
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());		
 	}
 	
 }

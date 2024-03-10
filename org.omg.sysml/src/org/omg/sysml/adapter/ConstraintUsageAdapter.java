@@ -78,15 +78,18 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 		ConstraintUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() &&
-				(owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
-				
+				(owningType instanceof ItemDefinition || owningType instanceof ItemUsage);				
 	}
 	
 	@Override
-	public void addResultParameter() {
-		ConstraintUsage constraint = getTarget();
-		UsageUtil.addResultParameterTo(constraint);
-		createResultConnector(constraint.getResult());
+	public void addAdditionalMembers() {
+		UsageUtil.addResultParameterTo(getTarget());
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());		
 	}
 	
 }

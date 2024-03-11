@@ -35,7 +35,7 @@ public class CaseUsage_subjectParameter_SettingDelegate extends BasicDerivedObje
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return UsageUtil.basicGetSubjectParameterOf((CaseUsage)owner);
+		return UsageUtil.getSubjectParameterOf((CaseUsage)owner);
 	}
 
 }

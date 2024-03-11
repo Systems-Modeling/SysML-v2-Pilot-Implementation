@@ -35,7 +35,7 @@ public class RequirementDefinition_subjectParameter_SettingDelegate extends Basi
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return UsageUtil.basicGetSubjectParameterOf((RequirementDefinition)owner);
+		return UsageUtil.getSubjectParameterOf((RequirementDefinition)owner);
 	}
 
 }

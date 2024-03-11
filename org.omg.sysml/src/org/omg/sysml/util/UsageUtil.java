@@ -27,7 +27,6 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -125,14 +124,8 @@ public class UsageUtil {
 		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
 	}
 
-	public static Feature getSubjectParameterOf(Type type) {
-		return type instanceof Definition? ((DefinitionAdapter)ElementUtil.getElementAdapter((Definition)type)).getSubjectParameter():
-			   type instanceof Usage? getUsageAdapter((Usage)type).getSubjectParameter():
-			   null;
-	}
-
-	public static Usage basicGetSubjectParameterOf(Type type) {
-		ElementUtil.transform(type);
+	public static Usage getSubjectParameterOf(Type type) {
+		NamespaceUtil.addAdditionalMembersTo(type);
 		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
@@ -157,7 +150,7 @@ public class UsageUtil {
 	// Objectives
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		ElementUtil.transform(type);
+		NamespaceUtil.addAdditionalMembersTo(type);
 		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
 			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
 			   null;

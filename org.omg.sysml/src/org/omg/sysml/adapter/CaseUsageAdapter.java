@@ -24,7 +24,6 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.UsageUtil;
 
 public class CaseUsageAdapter extends CalculationUsageAdapter {
@@ -39,11 +38,6 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	}
 	
 	// Utility
-	
-	@Override
-	public Usage getSubjectParameter() {
-		return getTarget().getSubjectParameter();
-	}
 	
 	@Override
 	public boolean hasRelevantSubjectParameter() {
@@ -67,14 +61,12 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	
 	// Transformation
 	
-	@Override
-	public void doTransform() {
+	@Override 
+	public void addAdditionalMembers() {
 		CaseUsage usage = getTarget();
-		super.doTransform();
 		UsageUtil.addSubjectParameterTo(usage);
-		if (usage.getObjectiveRequirement() == null) {
-			UsageUtil.addObjectiveRequirementTo(usage);
-		}
+		UsageUtil.addObjectiveRequirementTo(usage);
+		super.addAdditionalMembers();
 	}
 	
 }

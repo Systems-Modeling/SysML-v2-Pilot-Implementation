@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.UsageUtil;
 
 public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
@@ -36,21 +35,14 @@ public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 		return (CaseDefinition)super.getTarget();
 	}
 
-	// Utility
-	
-	@Override
-	public Usage getSubjectParameter() {
-		return getTarget().getSubjectParameter();
-	}
-	
 	// Transformation
 	
-	@Override
-	public void doTransform() {
-		CaseDefinition definition = getTarget();
-		super.doTransform();
-		UsageUtil.addSubjectParameterTo(definition);
-		UsageUtil.addObjectiveRequirementTo(definition);
+	@Override 
+	public void addAdditionalMembers() {
+		CaseDefinition target = getTarget();
+		UsageUtil.addSubjectParameterTo(target);
+		UsageUtil.addObjectiveRequirementTo(target);
+		super.addAdditionalMembers();
 	}
 	
 }

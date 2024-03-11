@@ -33,14 +33,11 @@ import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
-import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
@@ -140,7 +137,7 @@ public class UsageAdapter extends FeatureAdapter {
 		Type owningType = usage.getOwningType();		
 		return !(owningType instanceof Usage) || owningType.isAbstract() || 
 			   !UsageUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
-			   TypeUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
+			   UsageUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
 	@Override
@@ -154,16 +151,6 @@ public class UsageAdapter extends FeatureAdapter {
 			}
 		} else {
 			super.computeValueConnector();
-		}
-	}
-	
-	protected static void computeSubjectParameterOf(Type type) {
-		if (type != null && 
-			type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
-			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-			membership.setOwnedSubjectParameter(parameter);
-			type.getOwnedRelationship().add(0, membership);
 		}
 	}
 	

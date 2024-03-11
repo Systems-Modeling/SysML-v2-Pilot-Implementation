@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,11 +22,8 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.UsageUtil;
 
 public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 
@@ -48,22 +45,12 @@ public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 	
 	// Transformation
 	
-	public static RequirementUsage addObjectiveRequirementTo(Type type) {
-		RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
-		ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
-		membership.setOwnedObjectiveRequirement(objective);
-		type.getOwnedRelationship().add(membership);
-		return objective;
-	}
-
 	@Override
 	public void doTransform() {
 		CaseDefinition definition = getTarget();
 		super.doTransform();
-		UsageAdapter.computeSubjectParameterOf(definition);
-		if (definition.getObjectiveRequirement() == null) {
-			addObjectiveRequirementTo(definition);
-		}
+		UsageUtil.addSubjectParameterTo(definition);
+		UsageUtil.addObjectiveRequirementTo(definition);
 	}
 	
 }

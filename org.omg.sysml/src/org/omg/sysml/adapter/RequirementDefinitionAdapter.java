@@ -23,6 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.UsageUtil;
 
 public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 
@@ -46,7 +47,7 @@ public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		UsageAdapter.computeSubjectParameterOf(getTarget());
+		UsageUtil.addSubjectParameterTo(getTarget());
 	}
 	
 }

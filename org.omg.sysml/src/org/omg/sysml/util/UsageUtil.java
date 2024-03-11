@@ -27,10 +27,13 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -122,6 +125,17 @@ public class UsageUtil {
 		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
 	}
 
+	public static Feature getSubjectParameterOf(Type type) {
+		return type instanceof Definition? ((DefinitionAdapter)ElementUtil.getElementAdapter((Definition)type)).getSubjectParameter():
+			   type instanceof Usage? getUsageAdapter((Usage)type).getSubjectParameter():
+			   null;
+	}
+
+	public static Usage basicGetSubjectParameterOf(Type type) {
+		ElementUtil.transform(type);
+		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
+	}
+
 	public static boolean hasRelevantSubjectParameter(Usage usage) {
 		return getUsageAdapter(usage).hasRelevantSubjectParameter();
 	}
@@ -131,6 +145,33 @@ public class UsageUtil {
 		return subject == null? null: FeatureUtil.getValuationFor(subject);
 	}
 	
+	public static void addSubjectParameterTo(Type type) {
+		if (type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
+			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter(parameter);
+			type.getOwnedRelationship().add(0, membership);
+		}
+	}
+	
+	// Objectives
+
+	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		ElementUtil.transform(type);
+		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
+			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
+			   null;
+	}
+
+	public static void addObjectiveRequirementTo(Type type) {
+		if (type.getOwnedRelationship().stream().noneMatch(ObjectiveMembership.class::isInstance)) {
+			RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
+			ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
+			membership.setOwnedObjectiveRequirement(objective);
+			type.getOwnedRelationship().add(membership);
+		}
+	}
+
 	// Actors
 	
 	public static boolean isActorParameter(Usage usage) {

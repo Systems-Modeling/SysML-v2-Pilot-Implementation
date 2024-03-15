@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,8 +20,6 @@
  *******************************************************************************/
 
 package org.omg.sysml.adapter;
-
-import java.util.stream.Stream;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -100,23 +98,25 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 
-	public void addVariationSubsetting() {
+	protected void addVariationTyping() {
 		Usage usage = getTarget();
-		Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
-		if (variationUsage != null && UsageUtil.isVariant(usage)) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+		if (UsageUtil.isVariant(usage)) {
+			Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
+			if (variationDefinition != null) {
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+			} else {
+				Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
+				if (variationUsage != null) {
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+				}
+			}
 		}
 	}
 	
 	@Override
-	public Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		addVariationSubsetting();
-		return super.getSubsettedNotRedefinedFeatures();
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return super.getDefaultSupertype();
+	public void addDefaultGeneralType() {
+		addVariationTyping();
+		super.addDefaultGeneralType();
 	}
 	
 	// Transformation
@@ -165,27 +165,6 @@ public class UsageAdapter extends FeatureAdapter {
 			membership.setOwnedSubjectParameter(parameter);
 			type.getOwnedRelationship().add(0, membership);
 		}
-	}
-	
-	protected void addVariationTyping() {
-		Usage usage = getTarget();
-		if (UsageUtil.isVariant(usage)) {
-			Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
-			if (variationDefinition != null) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
-			} else {
-				Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
-				if (variationUsage != null) {
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
-				}
-			}
-		}
-	}
-	
-	@Override
-	public void doTransform() {		
-		addVariationTyping();
-		super.doTransform();
 	}
 	
 }

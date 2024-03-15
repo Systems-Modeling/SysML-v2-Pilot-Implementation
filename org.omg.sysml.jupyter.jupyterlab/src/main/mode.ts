@@ -44,7 +44,7 @@ export function defineSysMLv2Mode(): void {
                 "defined", "dependency", "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit",
                 "exit", "expose", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if", "implies",
                 "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join", "language",
-                "library", "loop", "merge", "message", "meta", "metadata", "nonunique", "not", "objective",
+                "library", "locale", "loop", "merge", "message", "meta", "metadata", "nonunique", "not", "objective",
                 "occurrence", "of", "or", "ordered", "out", "package", "parallel", "part", "perform", "port", "private",
                 "protected", "public", "readonly", "redefines", "ref", "references", "render", "rendering", "rep",
                 "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes", "stakeholder",

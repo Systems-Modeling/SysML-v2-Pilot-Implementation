@@ -54,6 +54,7 @@ import org.omg.sysml.lang.sysml.util.ISysMLScope
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
+import org.omg.sysml.util.NamespaceUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -250,6 +251,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				ownedvisited.add(ns)		
 			}
 			
+			NamespaceUtil.addAdditionalMembersTo(ns)
 			for (mem: ns.ownedMembership.clone) { // Clone to avoid any possible ConcurrentModificationException.
 				if (!scopeProvider.visited.contains(mem)) {
 					if (includeAll || isInsideScope || mem.visibility == VisibilityKind.PUBLIC || 

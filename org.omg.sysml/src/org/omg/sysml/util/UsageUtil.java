@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,6 +31,8 @@ import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -62,6 +64,7 @@ import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -108,11 +111,22 @@ public class UsageUtil {
 		Membership owningMembership = usage.getOwningMembership();
 		return owningMembership instanceof VariantMembership? (VariantMembership)owningMembership: null;
 	}
-
+	
+	// Results
+	
+	public static void addResultParameterTo(Type type) {
+		TypeUtil.addResultParameterTo(type, SysMLFactory.eINSTANCE.createReferenceUsage());
+	}
+	
 	// Subjects
 
 	public static boolean isSubjectParameter(Usage usage) {
 		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
+	}
+
+	public static Usage getSubjectParameterOf(Type type) {
+		NamespaceUtil.addAdditionalMembersTo(type);
+		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
 	public static boolean hasRelevantSubjectParameter(Usage usage) {
@@ -124,6 +138,33 @@ public class UsageUtil {
 		return subject == null? null: FeatureUtil.getValuationFor(subject);
 	}
 	
+	public static void addSubjectParameterTo(Type type) {
+		if (type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
+			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter(parameter);
+			type.getOwnedRelationship().add(0, membership);
+		}
+	}
+	
+	// Objectives
+
+	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		NamespaceUtil.addAdditionalMembersTo(type);
+		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
+			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
+			   null;
+	}
+
+	public static void addObjectiveRequirementTo(Type type) {
+		if (type.getOwnedRelationship().stream().noneMatch(ObjectiveMembership.class::isInstance)) {
+			RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
+			ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
+			membership.setOwnedObjectiveRequirement(objective);
+			type.getOwnedRelationship().add(membership);
+		}
+	}
+
 	// Actors
 	
 	public static boolean isActorParameter(Usage usage) {

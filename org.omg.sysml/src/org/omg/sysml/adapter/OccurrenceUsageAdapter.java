@@ -55,6 +55,14 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	}
 	
 	@Override
+	protected boolean isSuboccurrence() {
+		OccurrenceUsage target = getTarget();
+		return super.isSuboccurrence() ||
+				target.isComposite() && 
+			   	target.getOwningType() instanceof OccurrenceUsage;
+	}
+	
+	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
 	}

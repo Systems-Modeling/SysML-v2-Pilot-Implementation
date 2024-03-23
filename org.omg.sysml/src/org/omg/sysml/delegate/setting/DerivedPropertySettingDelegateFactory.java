@@ -44,6 +44,7 @@ public class DerivedPropertySettingDelegateFactory
 				String delegateName = PACKAGE_NAME + "." + 
 						eStructuralFeature.getEContainingClass().getName() + "_" + 
 						eStructuralFeature.getName() + "_SettingDelegate";
+				System.out.println("Property " + delegateName);
 				constructor = Class.forName(delegateName).getConstructor(EStructuralFeature.class);
 				constructorMap.put(eStructuralFeature, constructor);
 			} catch (ClassNotFoundException e) {

@@ -25,6 +25,7 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
@@ -38,34 +39,79 @@ public class OperationInvocationDelegateFactory implements InvocationDelegate.Fa
 	private final Map<EOperation, Constructor<?>> constructorMap = new HashMap<>();
 	
 	protected Constructor<?> getDelegateConstructor(EOperation eOperation) {
-		Constructor<?> constructor = constructorMap.get(eOperation);
-		if (constructor == null) {		
-			try {
-				String delegateName = PACKAGE_NAME + "." + 
-						eOperation.getEContainingClass().getName() + "_" + 
-						eOperation.getName() + "_InvocationDelegate";
-				constructor = Class.forName(delegateName).getConstructor(EOperation.class);
-				constructorMap.put(eOperation, constructor);
-			} catch (ClassNotFoundException e) {
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
+		if (eOperation.getEAnnotation(SYSML_ANNOTATION) == null) {
+			// This is not our operation, use default invocation delegate
+			return getDefaultDelegateConstructor();
+		}
+		
+		Constructor<?> constructor = getDelegateConstructorRecursive(eOperation.getEContainingClass(), eOperation);
+			
+		if (constructor == null) {
+			throw new RuntimeException("Could not find any applicable invocation delegate implementation for operation: " + eOperation.getName());
 		}
 		
 		return constructor;
 	}
 	
+	private Constructor<?> getDefaultDelegateConstructor() {
+		try {
+			// Return default operation implementation
+			return BasicInvocationDelegate.class.getConstructor(EOperation.class);
+		}  catch (Exception e) {
+			throw new RuntimeException(e);
+		} 
+	}
+	
+	protected Constructor<?> getDelegateConstructorRecursive(EClass eClass, EOperation eOperation) {
+		Constructor<?> constructor = getDelegateConstructor(eClass, eOperation);
+		
+		if (constructor != null) {
+			return constructor;
+		}
+		
+		for (EClass superclass : eClass.getESuperTypes()) {
+			constructor = getDelegateConstructorRecursive(superclass, superclass.getEOperation(eOperation.getOperationID()));
+			
+			if (constructor != null) {
+				return constructor;
+			}
+		}
+		
+		return null;
+	}
+	
+	protected Constructor<?> getDelegateConstructor(EClass eClass, EOperation eOperation) {
+		Constructor<?> constructor = constructorMap.get(eOperation);
+		
+		if (constructor != null) {
+			return constructor;
+		}
+		
+		String delegateName = PACKAGE_NAME + "." + 
+				eClass.getName() + "_" + 
+				eOperation.getName() + "_InvocationDelegate";
+		
+		System.out.println("Trying " + delegateName);
+		
+		try {
+			constructor = Class.forName(delegateName).getConstructor(EOperation.class);
+			constructorMap.put(eOperation, constructor);
+			return constructor;
+		} catch (ClassNotFoundException e) {
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	@Override
 	public InvocationDelegate createInvocationDelegate(EOperation eOperation) {
 		Constructor<?> constructor = getDelegateConstructor(eOperation);
-		if (constructor == null) {
-			return new BasicInvocationDelegate(eOperation);
-		} else {
-			try {
-				return (InvocationDelegate) constructor.newInstance(eOperation);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
+		
+		try {
+			return (InvocationDelegate) constructor.newInstance(eOperation);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

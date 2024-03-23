@@ -161,6 +161,7 @@ public interface Type extends Namespace {
 	 * directionOfExcluding(f, Set{})
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	FeatureDirectionKind directionOf(Feature feature);
@@ -194,6 +195,7 @@ public interface Type extends Namespace {
 	 * endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false" excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	FeatureDirectionKind directionOfExcluding(Feature feature, EList<Type> excluded);
@@ -209,6 +211,7 @@ public interface Type extends Namespace {
 	 *     including(self)
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Type> allSupertypes();
@@ -225,6 +228,7 @@ public interface Type extends Namespace {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" supertypeRequired="true" supertypeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean specializes(Type supertype);
@@ -240,6 +244,7 @@ public interface Type extends Namespace {
 	 * specializes(mem.memberElement.oclAsType(Type))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" libraryTypeNameDataType="org.omg.sysml.lang.types.String" libraryTypeNameRequired="true" libraryTypeNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean specializesFromLibrary(String libraryTypeName);

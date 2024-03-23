@@ -29,23 +29,22 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Differencing;
 import org.omg.sysml.lang.sysml.Disjoining;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Unioning;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -56,6 +55,8 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Unioning;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -88,12 +89,12 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getUnioningType <em>Unioning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedIntersecting <em>Owned Intersecting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getIntersectingType <em>Intersecting Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedUnioning <em>Owned Unioning</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedUnioning <em>Owned Unioning</em>}</li>
  * </ul>
  *
  * @generated
@@ -301,16 +302,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected EStructuralFeature.Internal.SettingDelegate INTERSECTING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__INTERSECTING_TYPE).getSettingDelegate();
 
 	/**
-	 * The cached setting delegate for the '{@link #getOwnedUnioning() <em>Owned Unioning</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedUnioning()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_UNIONING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_UNIONING).getSettingDelegate();
-
-	/**
 	 * The cached setting delegate for the '{@link #getOwnedDisjoining() <em>Owned Disjoining</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,6 +352,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__DIRECTED_FEATURE).getSettingDelegate();
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwnedUnioning() <em>Owned Unioning</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUnioning()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_UNIONING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_UNIONING).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -397,7 +398,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -755,16 +756,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected static final int[] OWNED_INTERSECTING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedUnioning() <em>Owned Unioning</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedUnioning()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_UNIONING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
-
-	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedDisjoining() <em>Owned Disjoining</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -783,6 +774,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_DIFFERENCING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedUnioning() <em>Owned Unioning</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUnioning()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_UNIONING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -816,6 +817,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	public EList<Membership> inheritedMemberships(EList<Type> excluded) {
 		return getInheritedMembership(new HashSet<Namespace>(), new HashSet<>(excluded), true);
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #directionOf(org.omg.sysml.lang.sysml.Feature) <em>Direction Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #directionOf(org.omg.sysml.lang.sysml.Feature)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate DIRECTION_OF_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___DIRECTION_OF__FEATURE).getInvocationDelegate();
 
 	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
@@ -883,20 +894,50 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public FeatureDirectionKind directionOf(Feature feature) {
-		return directionOf(feature, this, new HashSet<Type>());
+		try {
+			return (FeatureDirectionKind)DIRECTION_OF_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{feature}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	/**
+	 * The cached invocation delegate for the '{@link #directionOfExcluding(org.omg.sysml.lang.sysml.Feature, org.eclipse.emf.common.util.EList) <em>Direction Of Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #directionOfExcluding(org.omg.sysml.lang.sysml.Feature, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate DIRECTION_OF_EXCLUDING_FEATURE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___DIRECTION_OF_EXCLUDING__FEATURE_ELIST).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public FeatureDirectionKind directionOfExcluding(Feature feature, EList<Type> excluded) {
-		return directionOf(feature, this, new HashSet<>(excluded));
+		try {
+			return (FeatureDirectionKind)DIRECTION_OF_EXCLUDING_FEATURE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{feature, excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #allSupertypes() <em>All Supertypes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allSupertypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate ALL_SUPERTYPES__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___ALL_SUPERTYPES).getInvocationDelegate();
 
 	protected static FeatureDirectionKind directionOf(Feature feature, Type type, Set<Type> visited) {
 		visited.add(type);
@@ -930,59 +971,64 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Type> allSupertypes() {
-		return getAllSuperTypes(new HashSet<>());
-	}
-	
-	// Note: Generalizations are allowed to be cyclic.
-	protected EList<Type> getAllSuperTypes(Set<Type> visited) {
-		if (isConjugated()) {
-			Type originalType = getOwnedConjugator().getOriginalType();
-			return ((TypeImpl)originalType).getAllSuperTypes(visited);
-		} else {
-			EList<Type> superTypes = new BasicEList<>();
-			TypeUtil.getSupertypesOf(this).stream().
-				forEachOrdered(superType->{
-					if (superType != null && !visited.contains(superType)) {
-						visited.add(superType);
-						superTypes.add(superType);
-						superTypes.addAll(((TypeImpl)superType).getAllSuperTypes(visited));
-					}
-				});
-			return superTypes;
+		try {
+			return (EList<Type>)ALL_SUPERTYPES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
 	}
 	
 	/**
+	 * The cached invocation delegate for the '{@link #specializes(org.omg.sysml.lang.sysml.Type) <em>Specializes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #specializes(org.omg.sysml.lang.sysml.Type)
+	 * @generated
+	 * @ordered
 	 */
-	public boolean specializes(Type supertype) {
-		if (isConjugated()) {
-			Type originalType = getOwnedConjugator().getOriginalType();
-			return originalType != null && originalType.specializes(supertype);
-		} else {
-			return allSupertypes().contains(supertype);
-		}
-	}
+	protected static final EOperation.Internal.InvocationDelegate SPECIALIZES_TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___SPECIALIZES__TYPE).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
+	 */
+	public boolean specializes(Type supertype) {
+		try {
+			return (Boolean)SPECIALIZES_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{supertype}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #specializesFromLibrary(java.lang.String) <em>Specializes From Library</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #specializesFromLibrary(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate SPECIALIZES_FROM_LIBRARY_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___SPECIALIZES_FROM_LIBRARY__STRING).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean specializesFromLibrary(String libraryTypeName) {
-		Membership membership = resolveGlobal(libraryTypeName);
-		if (membership != null) {
-			Element memberElement = membership.getMemberElement();
-			if (memberElement instanceof Type) {
-				return specializes((Type)memberElement);
-			}
+		try {
+			return (Boolean)SPECIALIZES_FROM_LIBRARY_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{libraryTypeName}));
 		}
-		return false;
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	//
@@ -1062,8 +1108,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getOwnedIntersecting();
 			case SysMLPackage.TYPE__INTERSECTING_TYPE:
 				return getIntersectingType();
-			case SysMLPackage.TYPE__OWNED_UNIONING:
-				return getOwnedUnioning();
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				return getOwnedDisjoining();
 			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
@@ -1074,6 +1118,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getOwnedDifferencing();
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				return getDirectedFeature();
+			case SysMLPackage.TYPE__OWNED_UNIONING:
+				return getOwnedUnioning();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1154,10 +1200,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getIntersectingType().clear();
 				getIntersectingType().addAll((Collection<? extends Type>)newValue);
 				return;
-			case SysMLPackage.TYPE__OWNED_UNIONING:
-				getOwnedUnioning().clear();
-				getOwnedUnioning().addAll((Collection<? extends Unioning>)newValue);
-				return;
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				getOwnedDisjoining().clear();
 				getOwnedDisjoining().addAll((Collection<? extends Disjoining>)newValue);
@@ -1177,6 +1219,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				getDirectedFeature().clear();
 				getDirectedFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_UNIONING:
+				getOwnedUnioning().clear();
+				getOwnedUnioning().addAll((Collection<? extends Unioning>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1244,9 +1290,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__INTERSECTING_TYPE:
 				getIntersectingType().clear();
 				return;
-			case SysMLPackage.TYPE__OWNED_UNIONING:
-				getOwnedUnioning().clear();
-				return;
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				getOwnedDisjoining().clear();
 				return;
@@ -1261,6 +1304,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return;
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				getDirectedFeature().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_UNIONING:
+				getOwnedUnioning().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1314,8 +1360,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return OWNED_INTERSECTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__INTERSECTING_TYPE:
 				return INTERSECTING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.TYPE__OWNED_UNIONING:
-				return OWNED_UNIONING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				return OWNED_DISJOINING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
@@ -1326,6 +1370,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return OWNED_DIFFERENCING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				return DIRECTED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.TYPE__OWNED_UNIONING:
+				return OWNED_UNIONING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

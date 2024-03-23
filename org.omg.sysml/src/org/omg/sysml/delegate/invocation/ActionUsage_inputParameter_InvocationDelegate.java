@@ -42,7 +42,7 @@ public class ActionUsage_inputParameter_InvocationDelegate extends BasicInvocati
 		int i = (int) arguments.get(0);
 		
 		EList<Feature> parameters = self.inputParameters();
-		return parameters.size() > i? null: parameters.get(i-1);
+		return parameters.size() > i ? null : parameters.get(i-1);
 	}
 
 }

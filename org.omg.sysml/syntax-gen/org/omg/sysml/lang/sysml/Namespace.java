@@ -126,6 +126,7 @@ public interface Namespace extends Element {
 	 *     asSet()
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<String> namesOf(Element element);
@@ -147,6 +148,7 @@ public interface Namespace extends Element {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false" memRequired="true" memOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	VisibilityKind visibilityOf(Membership mem);
@@ -210,6 +212,7 @@ public interface Namespace extends Element {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Membership resolve(String qualifiedName);
@@ -223,6 +226,7 @@ public interface Namespace extends Element {
 	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Membership resolveGlobal(String qualifiedName);
@@ -243,6 +247,7 @@ public interface Namespace extends Element {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" nameDataType="org.omg.sysml.lang.types.String" nameRequired="true" nameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Membership resolveLocal(String name);
@@ -261,6 +266,7 @@ public interface Namespace extends Element {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" nameDataType="org.omg.sysml.lang.types.String" nameRequired="true" nameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Membership resolveVisible(String name);
@@ -273,6 +279,7 @@ public interface Namespace extends Element {
 	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String qualificationOf(String qualifiedName);
@@ -285,6 +292,7 @@ public interface Namespace extends Element {
 	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String unqualifiedNameOf(String qualifiedName);

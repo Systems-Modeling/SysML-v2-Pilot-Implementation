@@ -839,6 +839,7 @@ public interface Feature extends Type {
 	 * type.directionOf(self)
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" typeRequired="true" typeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	FeatureDirectionKind directionFor(Type type);
@@ -857,6 +858,7 @@ public interface Feature extends Type {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isFeaturedWithin(Type type);
@@ -873,6 +875,7 @@ public interface Feature extends Type {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature namingFeature();
@@ -885,6 +888,7 @@ public interface Feature extends Type {
 	 * ownedRedefinition.redefinedFeature->includes(redefinedFeature)
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" redefinedFeatureRequired="true" redefinedFeatureOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean redefines(Feature redefinedFeature);
@@ -899,6 +903,7 @@ public interface Feature extends Type {
 	 * redefines(mem.memberElement.oclAsType(Feature))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" libraryFeatureNameDataType="org.omg.sysml.lang.types.String" libraryFeatureNameRequired="true" libraryFeatureNameOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean redefinesFromLibrary(String libraryFeatureName);
@@ -915,6 +920,7 @@ public interface Feature extends Type {
 	 *         f.chainingFeature->at(n) = second)
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" firstRequired="true" firstOrdered="false" secondRequired="true" secondOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean subsetsChain(Feature first, Feature second);
@@ -937,6 +943,7 @@ public interface Feature extends Type {
 	 * endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> typingFeatures();

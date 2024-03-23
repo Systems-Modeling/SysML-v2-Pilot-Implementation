@@ -148,6 +148,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 *     endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" baseFeatureRequired="true" baseFeatureOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> evaluateFeature(Feature baseFeature);
@@ -160,6 +161,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * specializesFromLibrary('Metaobjects::SemanticMetadata')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isSemantic();
@@ -172,6 +174,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * specializesFromLibrary('KerML::Element')
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isSyntactic();
@@ -185,6 +188,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * No OCL
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element syntaxElement();

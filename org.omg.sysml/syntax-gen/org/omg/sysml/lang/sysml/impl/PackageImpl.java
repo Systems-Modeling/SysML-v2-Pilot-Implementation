@@ -24,9 +24,12 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -34,7 +37,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,24 +92,30 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return (EList<Expression>)FILTER_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
+	/**
+	 * The cached invocation delegate for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #includeAsMember(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate INCLUDE_AS_MEMBER_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.PACKAGE___INCLUDE_AS_MEMBER__ELEMENT).getInvocationDelegate();
+
 	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean includeAsMember(Element element) {
-		return ExpressionUtil.checkConditionsOn(element, getFilterCondition());
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean checkCondition(Element element, Expression condition) {
-		return ExpressionUtil.checkConditionOn(element, condition);
+		try {
+			return (Boolean)INCLUDE_AS_MEMBER_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{element}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	// Additional

@@ -24,8 +24,11 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -254,16 +257,30 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		SUCCESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSuccession);
 	}
 	
+	/**
+	 * The cached invocation delegate for the '{@link #triggerPayloadParameter() <em>Trigger Payload Parameter</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #triggerPayloadParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate TRIGGER_PAYLOAD_PARAMETER__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TRANSITION_USAGE___TRIGGER_PAYLOAD_PARAMETER).getInvocationDelegate();
+
 	// Operations
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ReferenceUsage triggerPayloadParameter() {
-		EList<AcceptActionUsage> triggerAction = getTriggerAction();
-		return triggerAction.isEmpty()? null: triggerAction.get(0).getPayloadParameter();
+		try {
+			return (ReferenceUsage)TRIGGER_PAYLOAD_PARAMETER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	//

@@ -47,7 +47,15 @@ public class NamespaceUtil {
 	private NamespaceUtil() {
 	}
 	
+	public static NamespaceAdapter getNamespaceAdapter(Namespace namespace) {
+		return (NamespaceAdapter)ElementUtil.getElementAdapter(namespace);
+	}
+	
 	// Membership
+	
+	public static void addAdditionalMembersTo(Namespace namespace) {
+		getNamespaceAdapter(namespace).addAdditionalMembers();
+	}
 	
 	public static Stream<Element> getOwnedMembersOf(Namespace namespace) {
 		return namespace.getOwnedMembership().stream().

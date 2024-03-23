@@ -117,6 +117,7 @@ public abstract class VTraverser extends Visitor {
 
     private void traverseRest(VPath vpath) {
         for (Element e: vpath.rest()) {
+            if (!showLib() && isModelLibrary(e)) continue;
             currentMembership = null;
             setInherited(true);
             visit(e);

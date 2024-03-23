@@ -745,6 +745,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     public String visit(Element e) {
     	if (e == null) return null;
+        s2p.countVisits();
         return doSwitch(e);
     }
 }

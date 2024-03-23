@@ -73,6 +73,8 @@ public class SysML2PlantUMLText {
         MIXED;
     }
 
+    private static final int MAX_VISITS = 1000;
+
     private final List<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private final Map<String, String> styleValueMap = new HashMap<String, String>();
     private StyleSwitch styleSwitch;
@@ -468,6 +470,7 @@ public class SysML2PlantUMLText {
         
         init();
 
+        numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
@@ -475,6 +478,8 @@ public class SysML2PlantUMLText {
             }
         }
         vpath.init();
+
+        numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
@@ -599,8 +604,13 @@ public class SysML2PlantUMLText {
     private List<Namespace> namespaces;
     private List<Integer> inheritingIdices;
 
-    
+    private int numVisits;
+    void countVisits() {
+        numVisits++;
+    }
+
     boolean pushNamespace(Namespace ns) {
+        if (numVisits > MAX_VISITS) return false;
         if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
         return true;

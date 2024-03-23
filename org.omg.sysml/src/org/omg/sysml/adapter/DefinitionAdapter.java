@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.Usage;
 
 public class DefinitionAdapter extends ClassifierAdapter {
 	
@@ -33,12 +32,6 @@ public class DefinitionAdapter extends ClassifierAdapter {
 	@Override
 	public Definition getTarget() {
 		return (Definition)super.getTarget();
-	}
-	
-	// Utility
-
-	public Usage getSubjectParameter() {
-		return null;
 	}
 	
 }

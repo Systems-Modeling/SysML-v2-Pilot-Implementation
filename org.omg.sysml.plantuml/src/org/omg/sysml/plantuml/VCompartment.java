@@ -561,7 +561,7 @@ public class VCompartment extends VStructure {
 
     public void startType(Type typ) {
         this.currentType = typ;
-        traverse(typ, false, true);
+        if (traverse(typ, false, true) == null) return;
         addDocumentations();
         addCompartmentEntries(compartmentEntries, 0);
         popNamespace();

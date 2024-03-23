@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -52,6 +52,14 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 		} else if (portionKind == PortionKind.TIMESLICE) {
 			addDefaultGeneralType("timeslice");
 		}
+	}
+	
+	@Override
+	protected boolean isSuboccurrence() {
+		OccurrenceUsage target = getTarget();
+		return super.isSuboccurrence() ||
+				target.isComposite() && 
+			   	target.getOwningType() instanceof OccurrenceUsage;
 	}
 	
 	@Override

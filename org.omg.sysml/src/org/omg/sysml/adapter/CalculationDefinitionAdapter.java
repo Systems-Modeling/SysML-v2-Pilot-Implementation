@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.CalculationDefinition;
+import org.omg.sysml.util.UsageUtil;
 
 public class CalculationDefinitionAdapter extends ActionDefinitionAdapter {
 
@@ -34,9 +35,15 @@ public class CalculationDefinitionAdapter extends ActionDefinitionAdapter {
 	}
 	
 	@Override
+	public void addAdditionalMembers() {
+		CalculationDefinition target = getTarget();
+		UsageUtil.addResultParameterTo(target);
+	}
+	
+	@Override
 	public void doTransform() {
 		super.doTransform();
-		addResultParameter();
 		createResultConnector(getTarget().getResult());
 	}
+	
 }

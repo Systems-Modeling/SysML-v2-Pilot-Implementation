@@ -27,16 +27,22 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.ExpressionUtil;
 
-public class CalculationUsage_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class ConstraintUsage_checkCondition_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CalculationUsage_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public ConstraintUsage_checkCondition_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		ConstraintUsage self = (ConstraintUsage) target;
+		Element targetElement = (Element) arguments.get(0);
+		
+		return ExpressionUtil.checkConditionOn(targetElement, self);
 	}
 
 }

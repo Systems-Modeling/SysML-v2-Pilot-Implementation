@@ -27,16 +27,22 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.ControlNode;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 
-public class ControlNode_effectiveShortName_InvocationDelegate extends Element_effectiveShortName_InvocationDelegate {
+public class FlowConnectionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
 
-	public ControlNode_effectiveShortName_InvocationDelegate(EOperation operation) {
+	public FlowConnectionUsage_inputParameter_InvocationDelegate(EOperation operation) {
 		super(operation);
+	}
+	
+	@Override
+	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		FlowConnectionUsage self = (FlowConnectionUsage) target;
+		int i = (int) arguments.get(0);
+		
+		EList<Feature> parameters = self.inputParameters();
+		return parameters.size() > i ? null : parameters.get(i-1);
 	}
 
 }

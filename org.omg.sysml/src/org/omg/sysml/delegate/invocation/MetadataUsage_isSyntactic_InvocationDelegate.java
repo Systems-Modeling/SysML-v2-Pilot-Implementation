@@ -27,16 +27,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 
-public class CalculationUsage_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class MetadataUsage_isSyntactic_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CalculationUsage_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public MetadataUsage_isSyntactic_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		MetadataFeature self = (MetadataFeature) target;
+		
+		return self.specializesFromLibrary("KerML::Element");
 	}
 
 }

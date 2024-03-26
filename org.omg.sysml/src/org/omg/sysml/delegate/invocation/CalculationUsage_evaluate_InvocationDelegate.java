@@ -23,20 +23,21 @@ package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 
-public class CalculationUsage_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class CalculationUsage_evaluate_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CalculationUsage_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public CalculationUsage_evaluate_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		return new BasicEList<>();
 	}
 
 }

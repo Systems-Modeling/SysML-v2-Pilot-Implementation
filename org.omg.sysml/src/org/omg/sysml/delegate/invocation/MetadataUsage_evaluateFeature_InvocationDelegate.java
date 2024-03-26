@@ -27,16 +27,22 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 
-public class CaseUsage_setObjectiveRequirement_InvocationDelegate extends BasicInvocationDelegate {
+public class MetadataUsage_evaluateFeature_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CaseUsage_setObjectiveRequirement_InvocationDelegate(EOperation operation) {
+	public MetadataUsage_evaluateFeature_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		throw new UnsupportedOperationException();
+		MetadataUsage self = (MetadataUsage) target;
+		Feature baseFeature = (Feature) arguments.get(0);
+		
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeature(baseFeature, self);
 	}
 
 }

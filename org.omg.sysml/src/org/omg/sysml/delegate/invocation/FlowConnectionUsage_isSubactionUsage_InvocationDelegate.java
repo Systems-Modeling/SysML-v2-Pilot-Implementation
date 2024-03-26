@@ -27,16 +27,30 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.StateSubactionKind;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
+import org.omg.sysml.lang.sysml.Type;
 
-public class CalculationUsage_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class FlowConnectionUsage_isSubactionUsage_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CalculationUsage_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public FlowConnectionUsage_isSubactionUsage_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		FlowConnectionUsage self = (FlowConnectionUsage) target;
+		
+		Type owningType = self.getOwningType();
+		FeatureMembership owningMembership = self.getOwningFeatureMembership();
+		return self.isComposite() && 
+			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage) &&
+			    (!(owningMembership instanceof StateSubactionMembership) ||
+			     ((StateSubactionMembership)owningMembership).getKind() == StateSubactionKind.DO);
 	}
 
 }

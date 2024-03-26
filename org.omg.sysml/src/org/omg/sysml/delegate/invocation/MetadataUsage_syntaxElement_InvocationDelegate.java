@@ -27,24 +27,20 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Package;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 
-public class Package_checkCondition_InvocationDelegate extends BasicInvocationDelegate {
+public class MetadataUsage_syntaxElement_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Package_checkCondition_InvocationDelegate(EOperation operation) {
+	public MetadataUsage_syntaxElement_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Package self = (Package) target;
-		Element element = (Element) arguments.get(0);
-		Expression condition = (Expression) arguments.get(1);
+		MetadataFeature self = (MetadataFeature) target;
 		
-		return ExpressionUtil.checkConditionOn(element, condition);
+		return EvaluationUtil.getMetaclassReferenceOf(self);
 	}
 
 }

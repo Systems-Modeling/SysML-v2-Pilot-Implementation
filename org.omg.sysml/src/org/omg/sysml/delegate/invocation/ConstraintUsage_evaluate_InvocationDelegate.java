@@ -21,12 +21,23 @@
 
 package org.omg.sysml.delegate.invocation;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 
-public class ControlNode_effectiveName_InvocationDelegate extends Element_effectiveName_InvocationDelegate {
+public class ConstraintUsage_evaluate_InvocationDelegate extends BasicInvocationDelegate {
 
-	public ControlNode_effectiveName_InvocationDelegate(EOperation operation) {
+	public ConstraintUsage_evaluate_InvocationDelegate(EOperation operation) {
 		super(operation);
+	}
+	
+	@Override
+	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		return new BasicEList<>();
 	}
 
 }

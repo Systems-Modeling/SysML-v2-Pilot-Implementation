@@ -27,17 +27,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.ControlNode;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 
-public class ControlNode_libraryNamespace_InvocationDelegate extends Element_libraryNamespace_InvocationDelegate {
+public class MetadataUsage_isSemantic_InvocationDelegate extends BasicInvocationDelegate {
 
-	public ControlNode_libraryNamespace_InvocationDelegate(EOperation operation) {
+	public MetadataUsage_isSemantic_InvocationDelegate(EOperation operation) {
 		super(operation);
+	}
+	
+	@Override
+	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		MetadataUsage self = (MetadataUsage) target;
+		
+		return self.specializesFromLibrary("Metaobjects::SemanticMetadata");
 	}
 
 }

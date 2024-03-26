@@ -27,16 +27,21 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.util.UsageUtil;
 
-public class CalculationUsage_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class FlowConnectionUsage_argument_InvocationDelegate extends BasicInvocationDelegate {
 
-	public CalculationUsage_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public FlowConnectionUsage_argument_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		FlowConnectionUsage self = (FlowConnectionUsage) target;
+		int i = (int) arguments.get(0);
+		
+		return UsageUtil.getArgumentOf(self, i);
 	}
 
 }

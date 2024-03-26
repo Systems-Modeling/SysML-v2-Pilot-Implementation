@@ -39,7 +39,7 @@ public class MultiplicityRange_hasBounds_InvocationDelegate extends BasicInvocat
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		MultiplicityRange self = (MultiplicityRange) target;
 		int lower = (int) arguments.get(0);
-		int upper = (int) arguments.get(0);
+		int upper = (int) arguments.get(1);
 		
 		if (self.valueOf(self.getUpperBound()) != upper) {
 			return false;

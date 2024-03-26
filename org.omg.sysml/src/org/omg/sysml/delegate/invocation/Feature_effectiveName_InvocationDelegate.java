@@ -48,12 +48,15 @@ public class Feature_effectiveName_InvocationDelegate extends BasicInvocationDel
 		
 		return computeEffectiveName(self, new HashSet<>());
 	}
+
+	private boolean isNameDefinite(Feature self) {
+		return self.getDeclaredName() != null && self.getDeclaredShortName() != null;
+	}
 	
-	public String computeEffectiveName(Feature self, Set<Feature> visited) {
-		String declaredName = self.getDeclaredName();
-		
-		if (declaredName != null) {
-			return declaredName;
+	
+	public String computeEffectiveName(Feature self, Set<Feature> visited) {		
+		if (isNameDefinite(self)) {
+			return self.getDeclaredName();
 		}
 		
 		String effectiveName = nameCache.get(self);

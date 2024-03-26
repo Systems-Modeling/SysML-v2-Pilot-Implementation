@@ -21,7 +21,6 @@
 
 package org.omg.sysml.delegate.invocation;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -50,11 +49,13 @@ public class Feature_effectiveShortName_InvocationDelegate extends BasicInvocati
 		return computeEffectiveShortName(self, new HashSet<>());
 	}
 	
+	private boolean isNameSet(Feature self) {
+		return self.getDeclaredName() != null || self.getDeclaredShortName() != null;
+	}
+	
 	public String computeEffectiveShortName(Feature self, Set<Feature> visited) {
-		String declaredShortName = self.getDeclaredShortName();
-		
-		if (declaredShortName != null) {
-			return declaredShortName;
+		if (isNameSet(self)) {
+			return self.getDeclaredShortName();
 		}
 		
 		String effectiveShortName = nameCache.get(self);

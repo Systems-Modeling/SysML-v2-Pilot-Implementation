@@ -39,7 +39,7 @@ public class MetadataFeature_isSemantic_InvocationDelegate extends BasicInvocati
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		MetadataFeature self = (MetadataFeature) target;
 		
-		return self.specializesFromLibrary("KerML::Element");
+		return self.specializesFromLibrary("Metaobjects::SemanticMetadata");
 	}
 
 }

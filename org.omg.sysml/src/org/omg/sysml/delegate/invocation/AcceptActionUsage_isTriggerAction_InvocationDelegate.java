@@ -43,7 +43,7 @@ public class AcceptActionUsage_isTriggerAction_InvocationDelegate extends BasicI
 		
 		Type owningType = self.getOwningType();
 		return owningType instanceof TransitionUsage &&
-				((TransitionUsage)owningType).getTriggerAction() == this;
+				((TransitionUsage)owningType).getTriggerAction() == self;
 	}
 
 }

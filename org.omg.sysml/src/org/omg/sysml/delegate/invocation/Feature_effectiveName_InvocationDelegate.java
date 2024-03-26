@@ -50,7 +50,7 @@ public class Feature_effectiveName_InvocationDelegate extends BasicInvocationDel
 	}
 
 	private boolean isNameDefinite(Feature self) {
-		return self.getDeclaredName() != null && self.getDeclaredShortName() != null;
+		return self.getDeclaredName() != null || self.getDeclaredShortName() != null;
 	}
 	
 	

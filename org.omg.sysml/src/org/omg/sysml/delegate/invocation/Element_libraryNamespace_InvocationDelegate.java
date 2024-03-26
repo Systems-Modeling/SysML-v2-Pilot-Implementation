@@ -27,10 +27,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.util.UsageUtil;
 
 public class Element_libraryNamespace_InvocationDelegate extends BasicInvocationDelegate {
 

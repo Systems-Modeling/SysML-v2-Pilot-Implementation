@@ -101,8 +101,6 @@ public class OperationInvocationDelegateSelector extends BasicInvocationDelegate
 				eClass.getName() + "_" + 
 				eOperation.getName() + "_InvocationDelegate";
 		
-		System.out.println("Invocation " + delegateName);
-		
 		try {
 			return Class.forName(delegateName).getConstructor(EOperation.class);
 		} catch (ClassNotFoundException e) {

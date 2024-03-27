@@ -14,7 +14,7 @@ public class KerMLXtextTests extends XtextTests {
 		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.
 			put(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION, new DerivedPropertySettingDelegateFactory());
 		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.
-			put("http://www.omg.org/spec/SysML", new OperationInvocationDelegateFactory());	
+			put(OperationInvocationDelegateFactory.SYSML_ANNOTATION, new OperationInvocationDelegateFactory());	
 	}
 
 }

@@ -20,9 +20,9 @@ class KerMLStandaloneSetup extends KerMLStandaloneSetupGenerated {
 	
 	override Injector createInjectorAndDoEMFRegistration() {
 		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.
-			put("http://www.omg.org/spec/SysML", new DerivedPropertySettingDelegateFactory());	
+			put(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION, new DerivedPropertySettingDelegateFactory());	
 		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.
-			put("http://www.omg.org/spec/SysML", new OperationInvocationDelegateFactory());	
+			put(OperationInvocationDelegateFactory.SYSML_ANNOTATION, new OperationInvocationDelegateFactory());	
 		return super.createInjectorAndDoEMFRegistration();
 	}
 }

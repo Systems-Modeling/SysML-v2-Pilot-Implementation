@@ -24,15 +24,19 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 
 
@@ -53,8 +57,21 @@ class InheritKey {
         return false;
     }
 
+    private static List<Feature> belongingFeatures(Type typ) {
+        List<Feature> fs = new ArrayList<>();
+        for (Relationship rel : typ.getOwnedRelationship()) {
+            if (rel instanceof FeatureMembership
+                || rel instanceof FeatureValue) {
+                for (Element tgt: rel.getTarget()) {
+                    fs.add((Feature) tgt);
+                }
+            }
+        }
+        return fs;
+    }
+
     private static boolean isBelonging(Type typ, Feature f) {
-        if (containsWithRedefined(typ.getOwnedFeature(), f)) return true;
+        if (containsWithRedefined(belongingFeatures(typ), f)) return true;
         // if (typ.getOwnedFeature().contains(f)) return true;
         if (containsWithRedefined(typ.getInheritedFeature(), f)) return true;
         // if (typ.getInheritedFeature().contains(f)) return true;

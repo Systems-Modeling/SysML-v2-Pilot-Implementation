@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -146,7 +146,7 @@ public class VTree extends VStructure {
             int id = addPUMLLine(u, "comp usage ", name, "<<subject>>");
             process(new VCompartment(this), u);
             addSpecializations(id, u);
-            addFeatureValueBindings(u);
+            addFeatureValueBindings(id, u);
             return true;
         }
         return false;

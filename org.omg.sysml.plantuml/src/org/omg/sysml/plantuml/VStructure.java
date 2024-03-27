@@ -284,7 +284,7 @@ public abstract class VStructure extends VDefault {
     protected boolean addType(Type typ, String name, String keyword) {
         int id = addPUMLLine(typ, keyword, name);
         addSpecializations(id, typ);
-        addFeatureValueBindings(typ);
+        addFeatureValueBindings(id, typ);
         return true;
     }
 

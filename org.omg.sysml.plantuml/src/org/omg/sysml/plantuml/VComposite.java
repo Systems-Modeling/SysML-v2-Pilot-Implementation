@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -76,7 +76,7 @@ public class VComposite extends VMixed {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
         int id = addPUMLLine(f, "rec usage ", featureText);
-        addFeatureValueBindings(f);
+        addFeatureValueBindings(id, f);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
@@ -136,7 +136,6 @@ public class VComposite extends VMixed {
 
     @Override
     public String casePortUsage(PortUsage pu) {
-        addFeatureValueBindings(pu);
         String name = extractTitleName(pu);
         if (name == null) return "";
 
@@ -144,9 +143,10 @@ public class VComposite extends VMixed {
         vc.traverse(pu);
         String ret = vc.getString();
 
+        int id;
         if (ret.isEmpty()) {
             int pt = getCurrentLength();
-            int id = addPUMLLine(pu, "", name);
+            id = addPUMLLine(pu, "", name);
             if (isPortOut(id)) {
                 insert(pt, "portout ");
             } else {
@@ -154,9 +154,10 @@ public class VComposite extends VMixed {
             }
             append('\n');
         } else {
-            addPUMLLine(pu, "rec usage ", name);
+            id = addPUMLLine(pu, "rec usage ", name);
             vc.closeBlock();
         }
+        addFeatureValueBindings(id, pu);
 
         return "";
     }
@@ -164,7 +165,6 @@ public class VComposite extends VMixed {
     private void addTypeSimple(Type typ) {
         if (typ instanceof Feature) {
             Feature f = (Feature) typ;
-            addFeatureValueBindings(f);
             FeatureDirectionKind fdk = f.getDirection();
             if (fdk != null) {
                 String name = extractTitleName(f);
@@ -174,19 +174,22 @@ public class VComposite extends VMixed {
                 vc.traverse(f);
                 String ret = vc.getString();
 
+                int id;
                 if (ret.isEmpty() && !isEmpty()) {
                     if (fdk == FeatureDirectionKind.OUT) {
-                        addPUMLLine(f, "portout ", name);
+                        id = addPUMLLine(f, "portout ", name);
                     } else {
-                        addPUMLLine(f, "portin ", name);
+                        id = addPUMLLine(f, "portin ", name);
                     }
                 } else {
-                    addPUMLLine(f, "rec usage ", name);
+                    id = addPUMLLine(f, "rec usage ", name);
                     vc.closeBlock();
                 }
+                addFeatureValueBindings(id, f);
             } else {
                 if (!addType(typ, "usage ")) return;
             }
+
         } else if (typ instanceof Usage) {
             if (!addType(typ, "usage ")) return;
         } else {

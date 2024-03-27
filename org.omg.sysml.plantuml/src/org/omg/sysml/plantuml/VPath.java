@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,9 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -510,8 +512,23 @@ public class VPath extends VTraverser {
         return "";
     }
 
+    private InheritKey makeInheritKeyForExpression(Expression ex) {
+        //Membership ms = getCurrentMembership();
+        //if (ms instanceof FeatureValue) {
+        	// FeatureValue is so special that the target 'ex' is not owned by the current context.
+        	// So we need to use the current namespace instead.
+            Namespace ns = getCurrentNamespace();
+            if (ns instanceof Feature) {
+                InheritKey ik = makeInheritKey((Feature) ns);
+                return InheritKey.makeIndirect(ik);
+            }
+            return null;
+        //}
+        //return InheritKey.makeIndirect(makeInheritKey(ex));
+    }
+
     private String addContextForFeatureChainExpression(FeatureChainExpression fce) {
-        InheritKey ik = makeInheritKey(fce);
+        InheritKey ik = makeInheritKeyForExpression(fce);
         PC pc = new PCFeatureChainExpression(fce);
         createRefPC(ik, pc);
         return "";
@@ -520,7 +537,7 @@ public class VPath extends VTraverser {
     private String addContextForFeatureReferenceExpression(FeatureReferenceExpression fre) {
         Feature f = fre.getReferent();
         if (f == null) return "";
-        InheritKey ik = makeInheritKey(fre);
+        InheritKey ik = makeInheritKeyForExpression(fre);
         PC pc = new PCFeature(fre, f);
         createRefPC(ik, pc);
         return "";

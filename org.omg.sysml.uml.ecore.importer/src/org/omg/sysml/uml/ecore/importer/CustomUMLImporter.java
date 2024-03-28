@@ -60,6 +60,7 @@ public class CustomUMLImporter extends UMLImporter {
 	private static final String BASE_PACKAGE = "org.omg.sysml.lang";
 	private static final String TYPES_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
 	private static final String SETTING_DELEGATES_KEY = "settingDelegates";
+	private static final String INVOCATION_DELEGATES_KEY = "invocationDelegates";
 
 	/*
 	 * MOSTLY FORKED FROM org.eclipse.uml2.uml.ecore.importer.UMLImporter except for
@@ -146,6 +147,7 @@ public class CustomUMLImporter extends UMLImporter {
 				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
 				annotation.setSource(EcorePackage.eNS_URI);
 				annotation.getDetails().put(SETTING_DELEGATES_KEY, CustomUML2EcoreConverter.ANNOTATION_SYSML);
+				annotation.getDetails().put(INVOCATION_DELEGATES_KEY, CustomUML2EcoreConverter.ANNOTATION_SYSML);
 				ePackage.getEAnnotations().add(annotation);
 			}
 

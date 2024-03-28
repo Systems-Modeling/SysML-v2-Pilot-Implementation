@@ -319,6 +319,26 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #visibleMemberships(org.eclipse.emf.common.util.EList, boolean, boolean) <em>Visible Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #visibleMemberships(org.eclipse.emf.common.util.EList, boolean, boolean)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN).getInvocationDelegate();
+
+	/**
+	 * The cached invocation delegate for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___IMPORTED_MEMBERSHIPS__ELIST).getInvocationDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT

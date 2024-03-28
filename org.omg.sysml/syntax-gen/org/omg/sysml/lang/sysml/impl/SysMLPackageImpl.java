@@ -14192,6 +14192,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getNamespace__VisibleMemberships__EList_boolean_boolean(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__ImportedMemberships__EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getNamespace__Resolve__String(),
 		   source,
 		   new String[] {
@@ -14247,6 +14257,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getImport__ImportedMemberships__EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getImport_ImportedElement(),
 		   source,
 		   new String[] {
@@ -14283,6 +14298,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getTextualRepresentation_RepresentedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__InheritedMemberships__EList(),
 		   source,
 		   new String[] {
 		   });

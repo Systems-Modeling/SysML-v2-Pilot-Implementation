@@ -863,6 +863,7 @@ public interface Type extends Namespace {
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> inheritedMemberships(EList<Type> excluded);

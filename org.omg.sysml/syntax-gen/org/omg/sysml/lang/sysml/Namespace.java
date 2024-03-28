@@ -174,6 +174,7 @@ public interface Namespace extends Element {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false" isRecursiveDataType="org.omg.sysml.lang.types.Boolean" isRecursiveRequired="true" isRecursiveOrdered="false" includeAllDataType="org.omg.sysml.lang.types.Boolean" includeAllRequired="true" includeAllOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll);
@@ -187,6 +188,7 @@ public interface Namespace extends Element {
 	 * ownedImport.importedMemberships(excluded->including(self))
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> importedMemberships(EList<Namespace> excluded);

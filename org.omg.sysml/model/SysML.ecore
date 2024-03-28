@@ -312,8 +312,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this &lt;code>Membership&lt;/code> is distinguishable from a given &lt;code>other&lt;/code> &lt;code>Membership&lt;/code>. By default, this is true if this &lt;code>Membership&lt;/code> has no &lt;code>memberShortName&lt;/code> or &lt;code>memberName&lt;/code>; or each of the &lt;code>memberShortName&lt;/code> and &lt;code>memberName&lt;/code> are different than both of those of the &lt;code>other&lt;/code> &lt;code>Membership&lt;/code>; or neither of the metaclasses of the &lt;code>memberElement&lt;/code> of this &lt;code>Membership&lt;/code> and the &lt;code>memberElement&lt;/code> of the &lt;code>other&lt;/code> &lt;code>Membership&lt;/code> conform to the other. But this may be overridden in specializations of &lt;code>Membership&lt;/code>.&lt;/p>&#xA;&#xA;not (memberElement.oclKindOf(other.memberElement.oclType()) or&#xA;     other.memberElement.oclKindOf(memberElement.oclType())) or&#xA;(shortMemberName = null or&#xA;    (shortMemberName &lt;> other.shortMemberName and&#xA;     shortMemberName &lt;> other.memberName)) and&#xA;(memberName = null or&#xA;    (memberName &lt;> other.shortMemberName and&#xA;     memberName &lt;> other.memberName)))&#xA;"/>
       </eAnnotations>
-      <eParameters name="other" ordered="false" lowerBound="1" eType="#//Membership"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
+      <eParameters name="other" ordered="false" lowerBound="1" eType="#//Membership"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberElementId" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//String" volatile="true"
@@ -384,6 +384,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If &lt;code>includeAll = true&lt;/code>, then return all the &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code>. Otherwise, return only the publicly visible &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code> (which includes those &lt;code>ownedMemberships&lt;/code> that have a &lt;code>visibility&lt;/code> of &lt;code>public&lt;/code> and those &lt;code>importedMemberships&lt;/code> imported with a &lt;code>visibility&lt;/code> of &lt;code>public&lt;/code>). If &lt;code>isRecursive = true&lt;/code>, also recursively include all visible &lt;code>Memberships&lt;/code> of any visible owned &lt;code>Namespaces&lt;/code>.&lt;/p>&#xA;&#xA;let visibleMemberships : Sequence(Membership) =&#xA;    if includeAll then memberships&#xA;    else ownedMembership->&#xA;        select(visibility = VisibilityKind::public)->&#xA;        union(ownedImport->&#xA;            select(visibility = VisibilityKind::public).&#xA;            importedMemberships(excluded->including(self)))&#xA;    endif in&#xA;if not isRecursive then visibleMemberships&#xA;else visibleMemberships->union(visibleMemberships->&#xA;        selectAsKind(Namespace).&#xA;        visibleMemberships(excluded->including(self), true, includeAll))&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
       <eParameters name="isRecursive" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
       <eParameters name="includeAll" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
@@ -392,6 +393,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Derive the imported &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code> as the &lt;code>importedMembership&lt;/code> of all &lt;code>ownedImports&lt;/code>, excluding those Imports whose &lt;code>importOwningNamespace&lt;/code> is in the &lt;code>excluded&lt;/code> set, and excluding &lt;code>Memberships&lt;/code> that have distinguisibility collisions with each other or with any &lt;code>ownedMembership&lt;/code>.&lt;/p>&#xA;&#xA;ownedImport.importedMemberships(excluded->including(self))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
     </eOperations>
     <eOperations name="resolve" ordered="false" eType="#//Membership">
@@ -501,6 +503,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Returns Memberships that are to become &lt;code>importedMemberships&lt;/code> of the &lt;code>importOwningNamespace&lt;/code>. (The &lt;code>excluded&lt;/code> parameter is used to handle the possibility of circular Import Relationships.)&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
@@ -699,6 +702,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the inherited &lt;code>Memberships&lt;/code> of this &lt;code>Type&lt;/code>, excluding those supertypes in the &lt;code>excluded&lt;/code> set.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Type"/>
     </eOperations>
     <eOperations name="directionOf" ordered="false" eType="#//FeatureDirectionKind">
@@ -4803,7 +4807,7 @@
     <eOperations name="multiplicityHasBounds" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check that the given &lt;code>Multiplicity&lt;/code> has &lt;code>lowerBound&lt;/code> and &lt;code>upperBound&lt;/code> expressions that are model-level evaluable to the given &lt;code>lower&lt;/code> and &lt;code>upper&lt;/code> values.&lt;/p>&#xA;mult &lt;> null and&#xA;if mult.oclIsKindOf(MultiplicityRange) then&#xA;    mult.oclAsType(MultiplicityRange).hasBounds(lower, upper)&#xA;else&#xA;    mult.allSuperTypes()->exists(&#xA;        oclisKindOf(MultiplicityRange) and&#xA;        oclAsType(MultiplicityRange).hasBounds(lower, upper)&#xA;endif"/>
-      </eAnnotations>      
+      </eAnnotations>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="mult" ordered="false" lowerBound="1" eType="#//Multiplicity"/>
       <eParameters name="lower" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>

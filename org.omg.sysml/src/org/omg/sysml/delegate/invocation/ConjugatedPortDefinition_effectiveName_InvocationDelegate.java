@@ -22,40 +22,31 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.PortDefinition;
 
-public class Expression_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class ConjugatedPortDefinition_effectiveName_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Expression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public ConjugatedPortDefinition_effectiveName_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Expression self = (Expression) target;
-		@SuppressWarnings("unchecked")
-		EList<Feature> visited = (EList<Feature>) arguments.get(0);
-
-		List<Feature> parameters = TypeUtil.getAllParametersOf(self);
-		if (!parameters.stream().allMatch(
-				param->self.directionOf(param) == FeatureDirectionKind.IN && 
-				FeatureUtil.getValuationFor(param) == null)) {
-			return false;
-		} else {
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(self);
-			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
+		ConjugatedPortDefinition self = (ConjugatedPortDefinition) target;
+		PortDefinition originalPortDefinition = self.getOriginalPortDefinition();
+		if (originalPortDefinition != null) {
+			String name = originalPortDefinition.getName();
+			if (name != null) {
+				return "~" + name;
+			}
 		}
+		return null;
 	}
 
 }

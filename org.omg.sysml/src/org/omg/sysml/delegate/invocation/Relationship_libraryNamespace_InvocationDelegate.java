@@ -22,40 +22,26 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
 
-public class Expression_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class Relationship_libraryNamespace_InvocationDelegate extends Element_libraryNamespace_InvocationDelegate {
 
-	public Expression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public Relationship_libraryNamespace_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Expression self = (Expression) target;
-		@SuppressWarnings("unchecked")
-		EList<Feature> visited = (EList<Feature>) arguments.get(0);
-
-		List<Feature> parameters = TypeUtil.getAllParametersOf(self);
-		if (!parameters.stream().allMatch(
-				param->self.directionOf(param) == FeatureDirectionKind.IN && 
-				FeatureUtil.getValuationFor(param) == null)) {
-			return false;
-		} else {
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(self);
-			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
-		}
+		Relationship self = (Relationship)target;
+		Element owningRelatedElement = self.getOwningRelatedElement();
+		return owningRelatedElement != null? 
+				owningRelatedElement.libraryNamespace(): 
+				super.dynamicInvoke(target, arguments);
 	}
 
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -12,43 +12,32 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
-package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.NullExpression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+package org.omg.sysml.delegate.invocation;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Null
- * Expression</b></em>'. <!-- end-user-doc -->
- *
- * @generated
- */
-public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
+import java.lang.reflect.InvocationTargetException;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NullExpressionImpl() {
-		super();
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+
+public class ReturnParameterMembership_parameterDirection_InvocationDelegate extends BasicInvocationDelegate {
+
+	public ReturnParameterMembership_parameterDirection_InvocationDelegate(EOperation operation) {
+		super(operation);
 	}
 	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.NULL_EXPRESSION;
+	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		return FeatureDirectionKind.OUT;
 	}
 
-} // NullExpressionImpl
+}

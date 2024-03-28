@@ -27,9 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.util.UsageUtil;
 
 public class Membership_isDistinguishableFrom_InvocationDelegate extends BasicInvocationDelegate {
 

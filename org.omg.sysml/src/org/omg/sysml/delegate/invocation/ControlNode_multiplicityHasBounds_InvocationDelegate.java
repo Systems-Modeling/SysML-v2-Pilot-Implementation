@@ -27,10 +27,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.util.UsageUtil;
 
 public class ControlNode_multiplicityHasBounds_InvocationDelegate extends BasicInvocationDelegate {
 

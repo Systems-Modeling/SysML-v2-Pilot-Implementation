@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -293,16 +292,6 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 		return source;
 	}
 	
-	// Additional overrides
-	
-	@Override
-	public Namespace libraryNamespace() {
-		Element owningRelatedElement = getOwningRelatedElement();
-		return owningRelatedElement != null? 
-				owningRelatedElement.libraryNamespace(): 
-				super.libraryNamespace();
-	}
-
 	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->

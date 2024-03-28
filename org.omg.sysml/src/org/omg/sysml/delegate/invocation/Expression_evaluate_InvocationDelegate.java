@@ -23,11 +23,13 @@ package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.util.ExpressionUtil;
 
 public class Expression_evaluate_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -37,7 +39,11 @@ public class Expression_evaluate_InvocationDelegate extends BasicInvocationDeleg
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return new BasicEList<>();
+		Expression self = (Expression)target;
+		Element evaluateTarget = (Element)arguments.get(0);
+		
+		Expression resultExpression = ExpressionUtil.getResultExpressionOf(self);
+		return resultExpression == null? null: resultExpression.evaluate(evaluateTarget);
 	}
 
 }

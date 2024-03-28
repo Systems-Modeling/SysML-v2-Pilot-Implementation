@@ -22,39 +22,52 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.Metaclass;
+import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class Expression_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class FeatureReferenceExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
 
-	public Expression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public FeatureReferenceExpression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Expression self = (Expression) target;
+		FeatureReferenceExpression self = (FeatureReferenceExpression) target;
 		@SuppressWarnings("unchecked")
 		EList<Feature> visited = (EList<Feature>) arguments.get(0);
 
-		List<Feature> parameters = TypeUtil.getAllParametersOf(self);
-		if (!parameters.stream().allMatch(
-				param->self.directionOf(param) == FeatureDirectionKind.IN && 
-				FeatureUtil.getValuationFor(param) == null)) {
+		Feature referent = self.getReferent();
+		if (referent == null || TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(referent))) {
+			return true;
+		} else if (visited.contains(referent)) {
 			return false;
 		} else {
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(self);
-			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
+			visited.add(referent);
+			if (referent instanceof Expression && ((Expression) referent).modelLevelEvaluable(visited)) {
+				return true;
+			} else {
+				Type owningType = referent.getOwningType();
+				if (owningType instanceof Metaclass || owningType instanceof MetadataFeature) {
+					return true;
+				} else if (!referent.getFeaturingType().isEmpty()) {
+					return false;
+				} else {
+					Expression valueExpression = FeatureUtil.getValueExpressionFor(referent);
+					return valueExpression == null || valueExpression.modelLevelEvaluable(visited);
+				}
+			}
 		}
 	}
 

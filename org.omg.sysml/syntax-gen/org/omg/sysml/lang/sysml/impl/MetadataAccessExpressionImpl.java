@@ -1,5 +1,24 @@
-/**
- */
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022-2024 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
@@ -11,9 +30,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -124,19 +141,6 @@ public class MetadataAccessExpressionImpl extends ExpressionImpl implements Meta
 			throw new WrappedException(ite);
 		}
 	}
-
-	// Additional overrides
-	
-	@Override
-	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		return true;
-	}
-	
-	@Override
-	public EList<Element> evaluate(Element target) {
-		return ModelLevelExpressionEvaluator.INSTANCE.evaluateMetadataAccess(this, target);
-	}
-	
 
 	/**
 	 * <!-- begin-user-doc -->

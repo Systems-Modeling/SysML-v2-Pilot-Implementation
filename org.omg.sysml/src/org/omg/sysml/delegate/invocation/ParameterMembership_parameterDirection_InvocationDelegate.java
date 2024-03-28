@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 
 public class ParameterMembership_parameterDirection_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -38,8 +37,6 @@ public class ParameterMembership_parameterDirection_InvocationDelegate extends B
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		ParameterMembership self = (ParameterMembership) target;
-		
 		return FeatureDirectionKind.IN;
 	}
 

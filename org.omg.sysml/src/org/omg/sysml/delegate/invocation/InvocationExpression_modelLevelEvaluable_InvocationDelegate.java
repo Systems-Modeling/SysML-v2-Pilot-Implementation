@@ -22,40 +22,46 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
-public class Expression_modelLevelEvaluable_InvocationDelegate extends BasicInvocationDelegate {
+public class InvocationExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
 
-	public Expression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public InvocationExpression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Expression self = (Expression) target;
+		InvocationExpression self = (InvocationExpression) target;
 		@SuppressWarnings("unchecked")
 		EList<Feature> visited = (EList<Feature>) arguments.get(0);
 
-		List<Feature> parameters = TypeUtil.getAllParametersOf(self);
-		if (!parameters.stream().allMatch(
-				param->self.directionOf(param) == FeatureDirectionKind.IN && 
-				FeatureUtil.getValuationFor(param) == null)) {
-			return false;
-		} else {
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(self);
-			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
-		}
+		return functionIsModelLevelEvaluable(self) && argumentsAreModelLevelEvaluable(self, visited);
 	}
 
+	protected static boolean functionIsModelLevelEvaluable(InvocationExpression self) {
+		Type type = ExpressionUtil.getExpressionTypeOf(self);
+		return type instanceof Function? 
+				((Function)type).isModelLevelEvaluable(): 
+				!(type instanceof Expression);
+	}
+	
+	public static boolean argumentsAreModelLevelEvaluable(InvocationExpression self, EList<Feature> visited) {
+		for (Expression argument: self.getArgument()) {
+			if (!argument.modelLevelEvaluable(visited)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }

@@ -40,6 +40,7 @@ public class Type_directionOfExcluding_InvocationDelegate extends Type_direction
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Type self = (Type) target;
 		Feature feature = (Feature) arguments.get(0);
+		@SuppressWarnings("unchecked")
 		EList<Type> excluded = (EList<Type>) arguments.get(1);
 		
 		return directionOf(feature, self, new HashSet<>(excluded));

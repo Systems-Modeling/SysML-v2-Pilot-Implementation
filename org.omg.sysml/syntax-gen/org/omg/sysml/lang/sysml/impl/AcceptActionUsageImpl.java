@@ -24,14 +24,14 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -184,17 +184,30 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 		PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadArgument);
 	}
 	
+	/**
+	 * The cached invocation delegate for the '{@link #isTriggerAction() <em>Is Trigger Action</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTriggerAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_TRIGGER_ACTION__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ACCEPT_ACTION_USAGE___IS_TRIGGER_ACTION).getInvocationDelegate();
+
 	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isTriggerAction() {
-		Type owningType = getOwningType();
-		return owningType instanceof TransitionUsage &&
-				((TransitionUsage)owningType).getTriggerAction() == this;
+		try {
+			return (Boolean)IS_TRIGGER_ACTION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	//

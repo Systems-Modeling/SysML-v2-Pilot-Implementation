@@ -22,11 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -45,20 +41,6 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 	protected NullExpressionImpl() {
 		super();
 	}
-	
-	// Additional overrides
-	
-	@Override
-	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		return true;
-	}
-	
-	@Override
-	public EList<Element> evaluate(Element target) {
-		return new BasicEList<>();
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -58,6 +58,7 @@ public interface MetadataAccessExpression extends Expression {
 	 * <p>Return a <code>MetadataFeature</code> whose <code>annotatedElement</code> is the <code>referencedElement</code>, whose <code>metaclass</code> is the reflective <code>Metaclass</code> corresponding to the MOF class of the <code>referencedElement</code> and whose <code>ownedFeatures</code> are bound to the MOF properties of the <code>referencedElement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	MetadataFeature metaclassFeature();

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -63,7 +62,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -964,17 +962,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 		return UsageUtil.isComposite(this, isComposite);
 	}
 
-	@Override
-	public Feature namingFeature() {
-		if (UsageUtil.getOwningVariantMembershipFor(this) != null) {
-			Feature referencedFeature = FeatureUtil.getReferencedFeatureOf(this);
-			if (referencedFeature != null) {
-				return referencedFeature;
-			}
-		}
-		return super.namingFeature();
-	}
-	
 	//
 	
 	/**

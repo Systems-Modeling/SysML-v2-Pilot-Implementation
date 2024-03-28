@@ -92,6 +92,7 @@ public interface ParameterMembership extends FeatureMembership {
 	 * FeatureDirectionKind::_'in'
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	FeatureDirectionKind parameterDirection();

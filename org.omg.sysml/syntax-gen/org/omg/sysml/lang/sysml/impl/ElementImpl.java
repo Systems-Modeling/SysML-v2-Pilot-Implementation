@@ -26,7 +26,9 @@ import java.util.UUID;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -693,6 +695,16 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #escapedName() <em>Escaped Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #escapedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate ESCAPED_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ELEMENT___ESCAPED_NAME).getInvocationDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * Get the effective name for this element, which by default is just its regular name.
 	 * <!-- end-user-doc -->
@@ -718,44 +730,87 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String escapedName() {
-		String name = getName();
-		String shortName = getShortName();
-		String elementName = 
-				name != null? name:
-				shortName != null? shortName:
-				null;
-		return ElementUtil.escapeName(elementName);
+		try {
+			return (String)ESCAPED_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}	
 
 	/**
+	 * The cached invocation delegate for the '{@link #effectiveShortName() <em>Effective Short Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #effectiveShortName()
+	 * @generated
+	 * @ordered
 	 */
-	public String effectiveShortName() {
-		return getDeclaredShortName();
-	}
+	protected static final EOperation.Internal.InvocationDelegate EFFECTIVE_SHORT_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ELEMENT___EFFECTIVE_SHORT_NAME).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public String effectiveName() {
-		return getDeclaredName();
+	public String effectiveShortName() {
+		try {
+			return (String)EFFECTIVE_SHORT_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
-	
+
+	/**
+	 * The cached invocation delegate for the '{@link #effectiveName() <em>Effective Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #effectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate EFFECTIVE_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ELEMENT___EFFECTIVE_NAME).getInvocationDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
+	 */
+	public String effectiveName() {
+		try {
+			return (String)EFFECTIVE_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+	
+	/**
+	 * The cached invocation delegate for the '{@link #libraryNamespace() <em>Library Namespace</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #libraryNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate LIBRARY_NAMESPACE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ELEMENT___LIBRARY_NAMESPACE).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public Namespace libraryNamespace() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship == null? null: owningRelationship.libraryNamespace();
+		try {
+			return (Namespace)LIBRARY_NAMESPACE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	//

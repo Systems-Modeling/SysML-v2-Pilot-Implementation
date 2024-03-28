@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,22 +21,12 @@
 
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.Metaclass;
-import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -104,41 +94,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public void setReferent(Feature newReferent) {
 		REFERENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferent);
 	}
-	
-	// Additional overrides
-	
-	@Override
-	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		Feature referent = getReferent();
-		if (referent == null || TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(referent))) {
-			return true;
-		} else if (visited.contains(referent)) {
-			return false;
-		} else {
-			visited.add(referent);
-			if (referent instanceof Expression && ((Expression) referent).modelLevelEvaluable(visited)) {
-				return true;
-			} else {
-				Type owningType = referent.getOwningType();
-				if (owningType instanceof Metaclass || owningType instanceof MetadataFeature) {
-					return true;
-				} else if (!referent.getFeaturingType().isEmpty()) {
-					return false;
-				} else {
-					Expression valueExpression = FeatureUtil.getValueExpressionFor(referent);
-					return valueExpression == null || valueExpression.modelLevelEvaluable(visited);
-				}
-			}
-		}
-	}
-	
-	@Override
-	public EList<Element> evaluate(Element target) {
-		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureReference(this, target);
-	}
-	
-	//
-	
+		
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

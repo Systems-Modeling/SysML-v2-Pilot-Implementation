@@ -107,6 +107,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * input->select(f | f.owner = self)
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> inputParameters();
@@ -121,6 +122,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature inputParameter(int i);
@@ -140,6 +142,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression argument(int i);
@@ -157,6 +160,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 *     StateSubactionKind::do)
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isSubactionUsage();

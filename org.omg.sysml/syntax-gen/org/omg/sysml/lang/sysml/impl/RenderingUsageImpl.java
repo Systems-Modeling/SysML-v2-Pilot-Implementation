@@ -120,6 +120,7 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 	
 	// Additional overrides
 	
+	// TODO: Add this override to the SysML abstract syntax.
 	@Override
 	public Feature namingFeature() {
 		FeatureMembership membership = getOwningFeatureMembership();

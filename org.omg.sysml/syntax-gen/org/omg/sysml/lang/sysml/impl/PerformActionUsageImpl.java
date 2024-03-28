@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -93,13 +92,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 */
 	public ActionUsage basicGetPerformedAction() {
 		return (ActionUsage)PERFORMED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
-
-	@Override
-	public Feature namingFeature() {
-		Feature performedAction = getPerformedAction();
-		return performedAction != this? performedAction:
-			super.namingFeature();
 	}
 
 	/**

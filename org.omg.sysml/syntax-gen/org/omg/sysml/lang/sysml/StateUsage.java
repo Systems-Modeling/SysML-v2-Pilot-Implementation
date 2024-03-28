@@ -236,6 +236,7 @@ public interface StateUsage extends ActionUsage {
 	 * not owningFeatureMembership.oclIsKindOf(StateSubactionMembership)
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" isParallelDataType="org.omg.sysml.lang.types.Boolean" isParallelRequired="true" isParallelOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isSubstateUsage(boolean isParallel);

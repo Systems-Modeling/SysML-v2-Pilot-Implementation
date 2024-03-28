@@ -87,16 +87,16 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case TypesPackage.BOOLEAN:
+				return createBooleanFromString(eDataType, initialValue);
 			case TypesPackage.INTEGER:
 				return createIntegerFromString(eDataType, initialValue);
 			case TypesPackage.REAL:
 				return createRealFromString(eDataType, initialValue);
-			case TypesPackage.STRING:
-				return createStringFromString(eDataType, initialValue);
 			case TypesPackage.UNLIMITED_NATURAL:
 				return createUnlimitedNaturalFromString(eDataType, initialValue);
-			case TypesPackage.BOOLEAN:
-				return createBooleanFromString(eDataType, initialValue);
+			case TypesPackage.STRING:
+				return createStringFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,16 +109,16 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case TypesPackage.BOOLEAN:
+				return convertBooleanToString(eDataType, instanceValue);
 			case TypesPackage.INTEGER:
 				return convertIntegerToString(eDataType, instanceValue);
 			case TypesPackage.REAL:
 				return convertRealToString(eDataType, instanceValue);
-			case TypesPackage.STRING:
-				return convertStringToString(eDataType, instanceValue);
 			case TypesPackage.UNLIMITED_NATURAL:
 				return convertUnlimitedNaturalToString(eDataType, instanceValue);
-			case TypesPackage.BOOLEAN:
-				return convertBooleanToString(eDataType, instanceValue);
+			case TypesPackage.STRING:
+				return convertStringToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}

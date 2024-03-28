@@ -85,6 +85,7 @@ public interface Package extends Namespace {
 	 *             cond.checkCondition(elem)))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean includeAsMember(Element element);

@@ -170,6 +170,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * owningType.oclAsType(TransitionUsage).triggerAction->includes(self)
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isTriggerAction();

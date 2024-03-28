@@ -35,10 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -115,32 +112,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
 	}
 
-	@Override
-	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		return functionIsModelLevelEvaluable() && argumentsAreModelLevelEvaluable(visited);
-	}
-	
-	public boolean functionIsModelLevelEvaluable() {
-		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		return type instanceof Function? 
-				((Function)type).isModelLevelEvaluable(): 
-				!(type instanceof Expression);
-	}
-	
-	public boolean argumentsAreModelLevelEvaluable(EList<Feature> visited) {
-		for (Expression argument: getArgument()) {
-			if (!argument.modelLevelEvaluable(visited)) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public EList<Element> evaluate(Element target) {
-		return isModelLevelEvaluable()? ModelLevelExpressionEvaluator.INSTANCE.evaluateInvocation(this, target): null;
-	}
-	
 	// Operand mechanism
 	
 	/**

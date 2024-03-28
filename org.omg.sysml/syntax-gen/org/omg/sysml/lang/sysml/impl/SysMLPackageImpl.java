@@ -9833,7 +9833,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		  (this,
 		   source,
 		   new String[] {
-			   "settingDelegates", "http://www.omg.org/spec/SysML"
+			   "settingDelegates", "http://www.omg.org/spec/SysML",
+			   "invocationDelegates", "http://www.omg.org/spec/SysML"
 		   });
 	}
 
@@ -14071,6 +14072,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getElement__EscapedName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement__EffectiveShortName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement__EffectiveName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement__LibraryNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getElement_OwningMembership(),
 		   source,
 		   new String[] {
@@ -14146,12 +14167,67 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getMembership__IsDistinguishableFrom__Membership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getMembership_MemberElementId(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getMembership_MembershipOwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__NamesOf__Element(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__VisibilityOf__Membership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__VisibleMemberships__EList_boolean_boolean(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__ImportedMemberships__EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__Resolve__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__ResolveGlobal__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__ResolveLocal__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__ResolveVisible__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__QualificationOf__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace__UnqualifiedNameOf__String(),
 		   source,
 		   new String[] {
 		   });
@@ -14177,6 +14253,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getNamespace_OwnedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getImport__ImportedMemberships__EList(),
 		   source,
 		   new String[] {
 		   });
@@ -14217,6 +14298,36 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getTextualRepresentation_RepresentedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__InheritedMemberships__EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__DirectionOf__Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__DirectionOfExcluding__Feature_EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__AllSupertypes(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__Specializes__Type(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType__SpecializesFromLibrary__String(),
 		   source,
 		   new String[] {
 		   });
@@ -14342,6 +14453,41 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getFeatureMembership_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__DirectionFor__Type(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__IsFeaturedWithin__Type(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__NamingFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__Redefines__Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__RedefinesFromLibrary__String(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__SubsetsChain__Feature_Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature__TypingFeatures(),
 		   source,
 		   new String[] {
 		   });
@@ -14556,6 +14702,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getExpression__ModelLevelEvaluable__EList(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression__Evaluate__Element(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression__CheckCondition__Element(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getExpression_Function(),
 		   source,
 		   new String[] {
@@ -14601,7 +14762,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getPackage__IncludeAsMember__Element(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getPackage_FilterCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMultiplicityRange__HasBounds__int_int(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMultiplicityRange__ValueOf__Expression(),
 		   source,
 		   new String[] {
 		   });
@@ -14612,6 +14788,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getMultiplicityRange_UpperBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getParameterMembership__ParameterDirection(),
 		   source,
 		   new String[] {
 		   });
@@ -14627,6 +14808,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature__EvaluateFeature__Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature__IsSemantic(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature__IsSyntactic(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature__SyntaxElement(),
 		   source,
 		   new String[] {
 		   });
@@ -14676,7 +14877,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getMetadataAccessExpression__MetaclassFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureChainExpression__SourceTargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage__TriggerPayloadParameter(),
 		   source,
 		   new String[] {
 		   });
@@ -14707,6 +14923,26 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getTransitionUsage_Succession(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__InputParameters(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__InputParameter__int(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__Argument__int(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage__IsSubactionUsage(),
 		   source,
 		   new String[] {
 		   });
@@ -15151,6 +15387,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getStateUsage__IsSubstateUsage__boolean(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStateUsage_StateDefinition(),
 		   source,
 		   new String[] {
@@ -15361,6 +15602,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewUsage__IncludeAsExposed__Element(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getViewUsage_ViewDefinition(),
 		   source,
 		   new String[] {
@@ -15436,6 +15682,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getAcceptActionUsage__IsTriggerAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAcceptActionUsage_ReceiverArgument(),
 		   source,
 		   new String[] {
@@ -15497,6 +15748,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getControlNode__MultiplicityHasBounds__Multiplicity_int_int(),
 		   source,
 		   new String[] {
 		   });

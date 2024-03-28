@@ -41,10 +41,8 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -414,17 +412,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		}
 	}
 
-	// Additional
-	
-	@Override
-	public Feature namingFeature() {
-		return getOwningFeatureMembership() instanceof RequirementConstraintMembership? 
-				FeatureUtil.getEffectiveReferencedFeatureOf(this, ConstraintUsage.class):
-			    super.namingFeature();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -26,23 +26,29 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.lang.sysml.Type;
 
-public class ActionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
+public class ReferenceUsage_namingFeature_InvocationDelegate extends Usage_namingFeature_InvocationDelegate {
 
-	public ActionUsage_inputParameter_InvocationDelegate(EOperation operation) {
+	public ReferenceUsage_namingFeature_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		ActionUsage self = (ActionUsage) target;
-		int i = (int) arguments.get(0);
+		ReferenceUsage self = (ReferenceUsage) target;
 		
-		EList<Feature> parameters = self.inputParameters();
-		return parameters.size() < i ? null : parameters.get(i-1);
+		Type owningType = self.getOwningType();
+		if (owningType != null && owningType instanceof TransitionUsage) {
+			TransitionUsage transition = (TransitionUsage)owningType;
+			if (transition.inputParameter(2) == self) {
+				return transition.triggerPayloadParameter();
+			}
+		}
+		return super.dynamicInvoke(target, arguments);
+		
 	}
 
 }

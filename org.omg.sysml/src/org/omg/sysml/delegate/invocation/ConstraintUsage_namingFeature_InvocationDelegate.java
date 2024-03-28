@@ -26,23 +26,23 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.util.FeatureUtil;
 
-public class ActionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
+public class ConstraintUsage_namingFeature_InvocationDelegate extends Feature_namingFeature_InvocationDelegate {
 
-	public ActionUsage_inputParameter_InvocationDelegate(EOperation operation) {
+	public ConstraintUsage_namingFeature_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		ActionUsage self = (ActionUsage) target;
-		int i = (int) arguments.get(0);
+		ConstraintUsage self = (ConstraintUsage) target;
 		
-		EList<Feature> parameters = self.inputParameters();
-		return parameters.size() < i ? null : parameters.get(i-1);
+		return self.getOwningFeatureMembership() instanceof RequirementConstraintMembership? 
+				FeatureUtil.getEffectiveReferencedFeatureOf(self, ConstraintUsage.class):
+			    super.dynamicInvoke(target, arguments);
 	}
 
 }

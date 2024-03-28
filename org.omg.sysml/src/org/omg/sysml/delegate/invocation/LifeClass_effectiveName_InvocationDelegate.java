@@ -27,22 +27,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
 
-public class ActionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
+public class LifeClass_effectiveName_InvocationDelegate extends BasicInvocationDelegate {
 
-	public ActionUsage_inputParameter_InvocationDelegate(EOperation operation) {
+	public LifeClass_effectiveName_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		ActionUsage self = (ActionUsage) target;
-		int i = (int) arguments.get(0);
-		
-		EList<Feature> parameters = self.inputParameters();
-		return parameters.size() < i ? null : parameters.get(i-1);
+		return "Life";
 	}
 
 }

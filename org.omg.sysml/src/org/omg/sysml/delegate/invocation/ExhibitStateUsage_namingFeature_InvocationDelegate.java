@@ -26,23 +26,22 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 
-public class ActionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
+public class ExhibitStateUsage_namingFeature_InvocationDelegate extends Feature_namingFeature_InvocationDelegate {
 
-	public ActionUsage_inputParameter_InvocationDelegate(EOperation operation) {
+	public ExhibitStateUsage_namingFeature_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		ActionUsage self = (ActionUsage) target;
-		int i = (int) arguments.get(0);
+		ExhibitStateUsage self = (ExhibitStateUsage) target;
 		
-		EList<Feature> parameters = self.inputParameters();
-		return parameters.size() < i ? null : parameters.get(i-1);
+		Feature exhibitedState = self.getExhibitedState();
+		return exhibitedState != self? exhibitedState:
+			    super.dynamicInvoke(target, arguments);
 	}
 
 }

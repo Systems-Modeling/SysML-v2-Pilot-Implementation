@@ -23,10 +23,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -37,29 +33,23 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Differencing;
 import org.omg.sysml.lang.sysml.Disjoining;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Unioning;
-import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -786,16 +776,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected static final int[] OWNED_UNIONING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
-	 * The cached invocation delegate for the '{@link #inheritedMemberships(org.eclipse.emf.common.util.EList) <em>Inherited Memberships</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #inheritedMemberships(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate INHERITED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___INHERITED_MEMBERSHIPS__ELIST).getInvocationDelegate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -817,15 +797,29 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			|| eIsSet(SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
 	}
 
-	// Operations
+	/**
+	 * The cached invocation delegate for the '{@link #inheritedMemberships(org.eclipse.emf.common.util.EList) <em>Inherited Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #inheritedMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate INHERITED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___INHERITED_MEMBERSHIPS__ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Membership> inheritedMemberships(EList<Type> excluded) {
-		return getInheritedMembership(new HashSet<Namespace>(), new HashSet<>(excluded), true);
+		try {
+			return (EList<Membership>)INHERITED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
@@ -838,69 +832,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	protected static final EOperation.Internal.InvocationDelegate DIRECTION_OF_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___DIRECTION_OF__FEATURE).getInvocationDelegate();
 
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
-		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
-		removeRedefinedFeatures(inheritedMemberships);
-		return inheritedMemberships;
-	}
-	
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		excludedTypes.add(this);
-		Conjugation conjugator = this.getOwnedConjugator();
-		if (conjugator != null) {
-			Type originalType = conjugator.getOriginalType();
-			if (originalType != null && !excludedTypes.contains(originalType)) {
-				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
-			}
-		}
-		for (Type general: TypeUtil.getGeneralTypesOf(this)) {
-			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
-			}
-		}
-	}
-	
-	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
-		memberships.removeIf(membership->{
-			Element memberElement = membership.getMemberElement();
-			return memberElement instanceof Feature &&
-				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
-		});		
-	}
-	
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		return getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
-				collect(Collectors.toSet());
-	}
-	
-	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
-		membership.addAll(getOwnedMembership());
-		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
-		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
-		return membership;
-	}	
-	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
-		if (includeProtected) {
-			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
-		}
-		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
-		return nonPrivateMembership;
-	}
-	
-	@Override
-	public EList<Membership> getVisibleMemberships(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
-		return visibleMembership;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -948,35 +879,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate ALL_SUPERTYPES__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___ALL_SUPERTYPES).getInvocationDelegate();
-
-	protected static FeatureDirectionKind directionOf(Feature feature, Type type, Set<Type> visited) {
-		visited.add(type);
-		Conjugation conjugator = type.getOwnedConjugator();
-		if (feature.getOwningType() == type) {
-			return feature.getDirection();
-		} else if (conjugator != null) {
-			Type originalType = conjugator.getOriginalType();
-			if (originalType == null || visited.contains(originalType)) {
-				return null;
-			} else {
-				FeatureDirectionKind originalDirection = directionOf(feature, originalType, visited);
-				return originalDirection == FeatureDirectionKind.IN? FeatureDirectionKind.OUT:
-					   originalDirection == FeatureDirectionKind.OUT? FeatureDirectionKind.IN:
-					   originalDirection;
-			}
-		} else {
-			for (Specialization specialization: type.getOwnedSpecialization()) {
-				Type general = specialization.getGeneral();
-				if (general != null && !visited.contains(general)) {
-					FeatureDirectionKind direction = directionOf(feature, general, visited);
-					if (direction != null) {
-						return direction;
-					}
-				}
-			}
-			return null;
-		}
-	}
 
 	/**
 	 * <!-- begin-user-doc -->

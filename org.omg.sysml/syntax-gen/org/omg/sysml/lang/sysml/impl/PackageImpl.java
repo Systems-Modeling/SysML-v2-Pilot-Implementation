@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,10 +33,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,8 +99,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 */
 	protected static final EOperation.Internal.InvocationDelegate INCLUDE_AS_MEMBER_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.PACKAGE___INCLUDE_AS_MEMBER__ELEMENT).getInvocationDelegate();
 
-	// Operations
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,18 +113,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		}
 	}
 	
-	// Additional
-	
-	@Override
-	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
-		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
-		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
-		return importedMemberships;
-	}
-	
-	//
-	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

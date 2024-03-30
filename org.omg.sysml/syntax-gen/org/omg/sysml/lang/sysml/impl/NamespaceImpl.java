@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,9 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -35,7 +32,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
@@ -45,9 +41,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -297,16 +291,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll) {
-		return getVisibleMemberships(new HashSet<>(excluded), new HashSet<Type>(), includeAll);
-	}	
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VisibilityKind visibilityOf(Membership mem) {
@@ -329,6 +313,22 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	protected static final EOperation.Internal.InvocationDelegate VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN).getInvocationDelegate();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll) {
+		try {
+			return (EList<Membership>)VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excluded, isRecursive, includeAll}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}	
+
+	/**
 	 * The cached invocation delegate for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,10 +341,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
-		return getImportedMembership(new HashSet<>(excluded), new HashSet<Type>(), true);
+		try {
+			return (EList<Membership>)IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
@@ -491,42 +497,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		}
 	}
 
-	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership;
-		if (includeAll) {
-			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
-			visibleMembership.addAll(getOwnedMembership());
-		} else {
-			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
-		}
-		visibleMembership.addAll(this.getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
-		return visibleMembership;
-	}
-
-	public EList<Membership> getVisibleOwnedMembership(VisibilityKind visibility) {
-		EList<Membership> publicMembership = new BasicInternalEList<Membership>(Membership.class);
-		publicMembership.addAll(getOwnedMembership().stream().
-				filter(membership->visibility.equals(membership.getVisibility())).collect(Collectors.toList()));
-		return publicMembership;
-	}
-
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> importedMembership = new NonNotifyingEObjectEList<>(Membership.class, this, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
-		if (!excludedNamespaces.contains(this)) {
-			for (Import _import: this.getOwnedImport()) {
-				((ImportImpl)_import).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
-			}
-		}
-		if (!includeAll) {
-			importedMembership.removeAll(nonpublicMembership);
-		}
-		return importedMembership;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

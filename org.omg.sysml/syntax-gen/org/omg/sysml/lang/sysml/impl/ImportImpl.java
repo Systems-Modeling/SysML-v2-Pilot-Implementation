@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,14 +23,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -38,12 +37,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
@@ -305,6 +302,22 @@ public abstract class ImportImpl extends RelationshipImpl implements Import {
 	protected static final EOperation.Internal.InvocationDelegate IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.IMPORT___IMPORTED_MEMBERSHIPS__ELIST).getInvocationDelegate();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
+		try {
+			return (EList<Membership>)IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -366,51 +379,6 @@ public abstract class ImportImpl extends RelationshipImpl implements Import {
   		return false;
 	}
 
-	// Operations
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
-		return this.importMemberships(new BasicInternalEList<>(Membership.class), null,
-				excluded, new HashSet<>());
-	}
-
-	// Note: The excludedType parameter is needed in case the imported Namespace
-	// is a Type that has one or more Generalizations.
-	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes);
-	
-	protected void importMembershipsFrom(Namespace importedNamespace, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes, boolean isRecursive) {
-		Collection<Membership> namespaceMembership = 
-				((NamespaceImpl) importedNamespace).getVisibleMemberships(excludedNamespaces, excludedTypes, isImportAll());
-		importedMembership.addAll(namespaceMembership);
-		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
-			nonpublicMembership.addAll(namespaceMembership);
-		}
-		if (isRecursive) {
-			excludedNamespaces.add(importedNamespace);
-			for (Membership membership: namespaceMembership) {
-				if (membership instanceof OwningMembership) {
-					Element member = membership.getMemberElement();
-					if (member instanceof Namespace) {
-						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 
-								excludedNamespaces, excludedTypes, true);
-					}
-				}
-			}
-			excludedNamespaces.remove(importedNamespace);
-		}
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -39,9 +38,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -317,33 +313,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 	}
 
-	// Other
-
-	@Override
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		Collection<Feature> features = super.getFeaturesRedefinedByType();
-		
-		// If inputs and outputs have not been computed, add effectively
-		// redefined features from the Expression type, without actually
-		// computing the inputs and outputs.
-		if (getInput().isEmpty()) {
-			features.addAll(ExpressionUtil.getTypeParametersOf(this));
-		}
-		if (getOutput().isEmpty()) {
-			Type type = ExpressionUtil.getExpressionTypeOf(this);
-			if (type instanceof Function || type instanceof Expression) {
-				Feature result = TypeUtil.getOwnedResultParameterOf(type);
-				if (result != null) {
-					features.add(result);
-				}
-			}
-		}
-		
-		return features;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

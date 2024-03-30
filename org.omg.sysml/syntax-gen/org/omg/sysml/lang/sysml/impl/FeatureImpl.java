@@ -50,8 +50,6 @@ import org.omg.sysml.lang.sysml.FeatureInverting;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -947,8 +945,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate NAMING_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___NAMING_FEATURE).getInvocationDelegate();
-	protected String effectiveName = null;
-	protected String effectiveShortName = null;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -1054,20 +1050,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
-		}
-	}
-
-	// Additional overrides
-	
-	@Override
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
-		EList<FeatureChaining> featureChainings = getOwnedFeatureChaining();
-		if (!featureChainings.isEmpty()) {
-			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
-			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(((TypeImpl)chainingFeature).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
-			}
 		}
 	}
 

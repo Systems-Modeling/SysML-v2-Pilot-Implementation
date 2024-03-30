@@ -21,27 +21,25 @@
 
 package org.omg.sysml.delegate.invocation;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Package;
+import org.omg.sysml.lang.sysml.Type;
 
-public class OperationInvocationDelegateFactory implements InvocationDelegate.Factory {
-	
-	public static final String SYSML_ANNOTATION = "http://www.omg.org/spec/SysML";
-	
-	public static InvocationDelegate getInvocationDelegate(EClass eClass, EOperation eOperation) {
-		return new OperationInvocationDelegateSelector(eOperation).calculateInvocationDelegateRecursive(eClass);
+public class Package_importedMemberships_InvocationDelegate extends Namespace_importedMemberships_InvocationDelegate {
+
+	public Package_importedMemberships_InvocationDelegate(EOperation operation) {
+		super(operation);
 	}
-
+	
 	@Override
-	public InvocationDelegate createInvocationDelegate(EOperation eOperation) {
-		if (eOperation.getEAnnotation(SYSML_ANNOTATION) == null) {
-			// This is not our operation, use default invocation delegate
-			return new BasicInvocationDelegate(eOperation);
-		}
-		
-		return new OperationInvocationDelegateSelector(eOperation);
+	protected EList<Membership> getImportedMembership(Namespace self, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+		EList<Membership> importedMemberships = super.getImportedMembership(self, excludedNamespaces, excludedTypes, isIncludeAll);
+		importedMemberships.removeIf(membership->!((Package)self).includeAsMember(membership.getMemberElement()));
+		return importedMemberships;
 	}
- 
+	
 }

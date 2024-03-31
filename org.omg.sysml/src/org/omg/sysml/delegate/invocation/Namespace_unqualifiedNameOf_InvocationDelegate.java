@@ -22,12 +22,13 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.util.ElementUtil;
 
 public class Namespace_unqualifiedNameOf_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -37,11 +38,11 @@ public class Namespace_unqualifiedNameOf_InvocationDelegate extends BasicInvocat
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Namespace self = (Namespace) target;
 		String qualifiedName = (String) arguments.get(0);
 		
-		// TODO: implement this method
-		throw new UnsupportedOperationException();
+		List<String> segments = ElementUtil.parseQualifiedName(qualifiedName);
+		int n = segments.size();
+		return n < 1? null: segments.get(n - 1);
 	}
 
 }

@@ -42,52 +42,14 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 			
 		Preconditions.checkArgument(!qualifiedNameAsText.empty, "Qualified name cannot be empty")
 
-		val segments = newArrayList		
-		var i = 0
-		var j = 0;
-		var n = qualifiedNameAsText.length()
-		var isDelimitable = true
-		
-		while (j < n) {
-			val c = qualifiedNameAsText.charAt(j)
-			val delim = "\'\\:".indexOf(c)
-			if (isDelimitable && delim > 1) {
-				if (j + 1 < n && ":". indexOf(qualifiedNameAsText.charAt(j + 1)) == 0) {
-					segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
-					i = j + 2;
-					j = i - 1;
-				}
-			} else if (delim == 0) {
-				isDelimitable = !isDelimitable
-			} else if (delim == 1) {
-				j++
-			}
-			j++
-		}
-		if (i < n && j <= n) {
-			segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
-		}
-		
+		val segments = ElementUtil.parseQualifiedName(qualifiedNameAsText)		
 		QualifiedName.create(segments)
 	}
 
 	override toString(QualifiedName name) {
-		if (name === null)
-			throw new IllegalArgumentException("Qualified name cannot be null")
-		val segmentCount = name.getSegmentCount
-		switch (segmentCount) {
-			case 0: return ""
-			case 1: return ElementUtil.escapeName(name.getFirstSegment)
-			default: {
-				val builder = new StringBuilder;
-				builder.append(ElementUtil.escapeName(name.getFirstSegment))
-				for (var i = 1; i < segmentCount; i++) {
-					builder.append("::")
-					builder.append(ElementUtil.escapeName(name.getSegment(i)))
-				}
-				return builder.toString()
-			}
-		}
+		Preconditions.checkArgument(name !== null, "Qualified name cannot be null")
+			
+		ElementUtil.toQualifiedNameString(name.segments)
 	}
 	
 }

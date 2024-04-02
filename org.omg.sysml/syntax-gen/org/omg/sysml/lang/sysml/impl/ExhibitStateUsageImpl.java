@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -94,13 +93,6 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 */
 	public StateUsage basicGetExhibitedState() {
 		return (StateUsage)EXHIBITED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
-
-	@Override
-	public Feature namingFeature() {
-		Feature exhibitedState = getExhibitedState();
-		return exhibitedState != this? exhibitedState:
-			super.namingFeature();
 	}
 
 	/**

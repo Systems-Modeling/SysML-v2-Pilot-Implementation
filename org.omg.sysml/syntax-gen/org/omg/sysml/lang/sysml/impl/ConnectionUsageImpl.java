@@ -29,12 +29,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -43,7 +41,6 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -353,19 +350,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	public boolean isSetDefinition() {
   		return false;
-	}
-	
-	// Operations
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Feature> path(Feature relatedFeature) {
-		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
-		return path;
 	}
 	
 	// Additional overrides

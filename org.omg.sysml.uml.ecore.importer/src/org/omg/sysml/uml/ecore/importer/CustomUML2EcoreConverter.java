@@ -10,10 +10,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
@@ -39,15 +42,13 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 		for (Entry<Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
-			if (element instanceof Property && modelElement instanceof EStructuralFeature) {
-				Property property = (Property)element;
-				if (property.isDerived() && !property.isDerivedUnion()) {
-					String qualifiedName = property.getQualifiedName();
-					System.out.println("Add annotation: " + qualifiedName.substring(qualifiedName.indexOf("::") + 2));
-					EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					annotation.setSource(ANNOTATION_SYSML);
-					modelElement.getEAnnotations().add(annotation);
-				}
+			if (element instanceof Property && ((Property)element).isDerived() && !((Property)element).isDerivedUnion() && modelElement instanceof EStructuralFeature ||
+				element instanceof Operation && modelElement instanceof EOperation) {
+				String qualifiedName = ((NamedElement)element).getQualifiedName();
+				System.out.println("Add annotation: " + qualifiedName.substring(qualifiedName.indexOf("::") + 2));
+				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				annotation.setSource(ANNOTATION_SYSML);
+				modelElement.getEAnnotations().add(annotation);
 			} else if (element instanceof org.eclipse.uml2.uml.Class && modelElement instanceof EClass) {
 				String name = ((org.eclipse.uml2.uml.Class)element).getName();
 				EClass eClass = (EClass)modelElement;

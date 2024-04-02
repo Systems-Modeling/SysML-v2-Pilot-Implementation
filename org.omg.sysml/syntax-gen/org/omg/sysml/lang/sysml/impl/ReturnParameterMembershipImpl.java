@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -51,10 +50,4 @@ public class ReturnParameterMembershipImpl extends ParameterMembershipImpl imple
 		return SysMLPackage.Literals.RETURN_PARAMETER_MEMBERSHIP;
 	}
 	
-	// Other overrides
-	
-	public FeatureDirectionKind parameterDirection() {
-		return FeatureDirectionKind.OUT;
-	}
-
 } // ReturnParameterMembershipImpl

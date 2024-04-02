@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,11 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -46,20 +42,6 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 		super();
 	}
 	
-	// Additional overrides
-
-	@Override
-	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		return true;
-	}
-	
-	@Override
-	public EList<Element> evaluate(Element target) {
-		return ModelLevelExpressionEvaluator.INSTANCE.evaluateLiteral(this, target);
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

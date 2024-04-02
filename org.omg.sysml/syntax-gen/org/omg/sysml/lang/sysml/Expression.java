@@ -196,6 +196,7 @@ public interface Expression extends Step {
 	 *     
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" visitedMany="true" visitedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean modelLevelEvaluable(EList<Feature> visited);
@@ -215,6 +216,7 @@ public interface Expression extends Step {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model unique="false" targetRequired="true" targetOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> evaluate(Element target);
@@ -231,6 +233,7 @@ public interface Expression extends Step {
 	 *     results->first().oclAsType(LiteralBoolean).value
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" targetRequired="true" targetOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean checkCondition(Element target);

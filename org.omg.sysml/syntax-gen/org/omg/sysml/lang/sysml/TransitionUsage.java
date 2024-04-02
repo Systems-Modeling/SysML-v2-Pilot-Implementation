@@ -292,6 +292,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ReferenceUsage triggerPayloadParameter();

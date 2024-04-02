@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,25 +23,18 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
@@ -49,10 +42,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,36 +53,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getImportedMembership <em>Imported Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NamespaceImpl extends ElementImpl implements Namespace {
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedMember() <em>Owned Member</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMember()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__OWNED_MEMBER).getSettingDelegate();
-
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -115,6 +84,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	protected EStructuralFeature.Internal.SettingDelegate MEMBER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__MEMBER).getSettingDelegate();
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwnedMember() <em>Owned Member</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMember()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__OWNED_MEMBER).getSettingDelegate();
+
+	/**
 	 * The cached setting delegate for the '{@link #getImportedMembership() <em>Imported Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,6 +102,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IMPORTED_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__IMPORTED_MEMBERSHIP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +150,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -237,9 +226,19 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	public boolean isSetMembership() {
-		return eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP)
-			|| eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
+		return eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP)
+			|| eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP);
 	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedImport()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 
 	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
@@ -252,174 +251,252 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
+	 * The cached invocation delegate for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedImport()
+	 * @see #namesOf(org.omg.sysml.lang.sysml.Element)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
+	protected static final EOperation.Internal.InvocationDelegate NAMES_OF_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___NAMES_OF__ELEMENT).getInvocationDelegate();
 
 	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> namesOf(Element element) {
-		EList<String> names = new EDataTypeUniqueEList<>(String.class, this, SysMLPackage.NAMESPACE___NAMES_OF__ELEMENT);
-		getMembership().stream().
-			filter(mem->mem.getMemberElement() == element).
-			forEach(mem->{
-				String shortName = mem.getMemberShortName();
-				String name = mem.getMemberName();
-				if (shortName != null) {
-					names.add(shortName);
-				}
-				if (name != null) {
-					names.add(name);
-				}
-			});
-		return names;
+		try {
+			return (EList<String>)NAMES_OF_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{element}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #visibilityOf(org.omg.sysml.lang.sysml.Membership) <em>Visibility Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #visibilityOf(org.omg.sysml.lang.sysml.Membership)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate VISIBILITY_OF_MEMBERSHIP__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___VISIBILITY_OF__MEMBERSHIP).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	public VisibilityKind visibilityOf(Membership mem) {
+		try {
+			return (VisibilityKind)VISIBILITY_OF_MEMBERSHIP__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{mem}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #visibleMemberships(org.eclipse.emf.common.util.EList, boolean, boolean) <em>Visible Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #visibleMemberships(org.eclipse.emf.common.util.EList, boolean, boolean)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll) {
-		return getVisibleMemberships(new HashSet<>(excluded), new HashSet<Type>(), includeAll);
+		try {
+			return (EList<Membership>)VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excluded, isRecursive, includeAll}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}	
 
 	/**
+	 * The cached invocation delegate for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
 	 */
-	public VisibilityKind visibilityOf(Membership mem) {
-		Optional<Import> membershipImport = getOwnedImport().stream().
-				filter(imp->imp.importedMemberships(new BasicEList<>()).contains(mem)).
-				findAny();
-		return membershipImport.isPresent()? membershipImport.get().getVisibility():
-			   getMembership().contains(mem)? mem.getVisibility():
-			   VisibilityKind.PRIVATE;
-	}
+	protected static final EOperation.Internal.InvocationDelegate IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___IMPORTED_MEMBERSHIPS__ELIST).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
-		return getImportedMembership(new HashSet<>(excluded), new HashSet<Type>(), true);
+		try {
+			return (EList<Membership>)IMPORTED_MEMBERSHIPS_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #resolve(java.lang.String) <em>Resolve</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #resolve(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___RESOLVE__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership resolve(String qualifiedName) {
-		return NamespaceUtil.getNamedMembershipFor(this, qualifiedName);
+		try {
+			return (Membership)RESOLVE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{qualifiedName}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #resolveGlobal(java.lang.String) <em>Resolve Global</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #resolveGlobal(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_GLOBAL_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___RESOLVE_GLOBAL__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership resolveGlobal(String qualifiedName) {
-		// TODO: Resolve elements other than to owning membership.
-		Element element = SysMLLibraryUtil.getLibraryElement(this, qualifiedName);
-		return element.getOwningMembership();
+		try {
+			return (Membership)RESOLVE_GLOBAL_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{qualifiedName}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #resolveLocal(java.lang.String) <em>Resolve Local</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #resolveLocal(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_LOCAL_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___RESOLVE_LOCAL__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership resolveLocal(String name) {
-		String escapedName = ElementUtil.escapeName(name);
-		return getOwningNamespace() == null?
-				resolveGlobal(escapedName):
-				NamespaceUtil.getNamedMembershipFor(this, escapedName);
+		try {
+			return (Membership)RESOLVE_LOCAL_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{name}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #resolveVisible(java.lang.String) <em>Resolve Visible</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #resolveVisible(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_VISIBLE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___RESOLVE_VISIBLE__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership resolveVisible(String name) {
-		return visibleMemberships(new BasicEList<>(), false, false).stream().
-				filter(mem->
-						name.equals(mem.getMemberShortName()) || 
-						name.equals(mem.getMemberName())).
-				findFirst().orElse(null);		
+		try {
+			return (Membership)RESOLVE_VISIBLE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{name}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #qualificationOf(java.lang.String) <em>Qualification Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #qualificationOf(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate QUALIFICATION_OF_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___QUALIFICATION_OF__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String qualificationOf(String qualifiedName) {
-		// TODO: implement this method
-		throw new UnsupportedOperationException();
+		try {
+			return (String)QUALIFICATION_OF_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{qualifiedName}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #unqualifiedNameOf(java.lang.String) <em>Unqualified Name Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #unqualifiedNameOf(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate UNQUALIFIED_NAME_OF_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___UNQUALIFIED_NAME_OF__STRING).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String unqualifiedNameOf(String qualifiedName) {
-		// TODO: implement this method
-		throw new UnsupportedOperationException();
+		try {
+			return (String)UNQUALIFIED_NAME_OF_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{qualifiedName}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
-	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership;
-		if (includeAll) {
-			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
-			visibleMembership.addAll(getOwnedMembership());
-		} else {
-			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
-		}
-		visibleMembership.addAll(this.getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
-		return visibleMembership;
-	}
-
-	public EList<Membership> getVisibleOwnedMembership(VisibilityKind visibility) {
-		EList<Membership> publicMembership = new BasicInternalEList<Membership>(Membership.class);
-		publicMembership.addAll(getOwnedMembership().stream().
-				filter(membership->visibility.equals(membership.getVisibility())).collect(Collectors.toList()));
-		return publicMembership;
-	}
-
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> importedMembership = new NonNotifyingEObjectEList<>(Membership.class, this, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
-		if (!excludedNamespaces.contains(this)) {
-			for (Import _import: this.getOwnedImport()) {
-				((ImportImpl)_import).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
-			}
-		}
-		if (!includeAll) {
-			importedMembership.removeAll(nonpublicMembership);
-		}
-		return importedMembership;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,16 +507,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		switch (featureID) {
 			case SysMLPackage.NAMESPACE__MEMBERSHIP:
 				return getMembership();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				return getOwnedMembership();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				return getOwnedMember();
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				return getOwnedImport();
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return getMember();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				return getOwnedMember();
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				return getImportedMembership();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				return getOwnedMembership();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -453,14 +530,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
-				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				getOwnedMember().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				getOwnedImport().addAll((Collection<? extends Import>)newValue);
@@ -469,9 +538,17 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				getMember().clear();
 				getMember().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				getOwnedMember().clear();
+				getOwnedMember().addAll((Collection<? extends Element>)newValue);
+				return;
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
 				getImportedMembership().addAll((Collection<? extends Membership>)newValue);
+				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
+				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -485,20 +562,20 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				return;
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				return;
 			case SysMLPackage.NAMESPACE__MEMBER:
 				getMember().clear();
 				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				getOwnedMember().clear();
+				return;
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
+				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -516,16 +593,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				return isSetMembership();
 			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				return OWNED_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				return OWNED_MEMBER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				return OWNED_IMPORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return MEMBER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				return OWNED_MEMBER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				return IMPORTED_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				return OWNED_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

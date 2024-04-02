@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @see org.omg.sysml.lang.types.TypesFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='primitiveTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://www.omg.org/spec/SysML'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://www.omg.org/spec/SysML' invocationDelegates='http://www.omg.org/spec/SysML'"
  * @generated
  */
 public interface TypesPackage extends EPackage {
@@ -79,7 +79,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 4;
+	int BOOLEAN = 0;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -88,7 +88,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 0;
+	int INTEGER = 1;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -97,7 +97,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 1;
+	int REAL = 2;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type. <!--
@@ -116,7 +116,7 @@ public interface TypesPackage extends EPackage {
 	 * @see org.omg.sysml.lang.types.impl.TypesPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 2;
+	int STRING = 4;
 
 	/**
 	 * Returns the meta object for data type '<em>Boolean</em>'. <!-- begin-user-doc

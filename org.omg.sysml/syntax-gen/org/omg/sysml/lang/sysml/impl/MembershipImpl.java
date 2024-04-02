@@ -25,9 +25,12 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -333,6 +336,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isDistinguishableFrom(org.omg.sysml.lang.sysml.Membership) <em>Is Distinguishable From</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDistinguishableFrom(org.omg.sysml.lang.sysml.Membership)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_DISTINGUISHABLE_FROM_MEMBERSHIP__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP).getInvocationDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -450,27 +463,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isDistinguishableFrom(Membership other) {
-		// TODO: Add member element metaclass check
-		
-		String memberShortName = getMemberShortName();
-		String memberName = getMemberName();
-		String otherShortName = other.getMemberShortName();
-		String otherName = other.getMemberName();
-		if (memberShortName != null) {
-			if (memberShortName == otherShortName || memberShortName == otherName) {
-				return false;
-			}
+		try {
+			return (Boolean)IS_DISTINGUISHABLE_FROM_MEMBERSHIP__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{other}));
 		}
-		if (memberName == null) {
-			if (memberName == otherShortName || memberName == otherName) {
-				return false;
-			}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
-		return true;
 	}
 	
 	//

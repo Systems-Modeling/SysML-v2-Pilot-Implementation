@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,11 +15,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,25 +154,6 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 	public boolean isSetTarget() {
   		return false;
 	}
-
-	// Operation Overrides
-	
-	@Override
-	public EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
-		Namespace importedNamespace = this.getImportedNamespace();
-		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
-			Namespace owningNamespace = this.getImportOwningNamespace();
-			excludedNamespaces.add(owningNamespace);
-			importMembershipsFrom(importedNamespace, importedMembership, nonpublicMembership, 
-					excludedNamespaces, excludedTypes, isRecursive());
-			excludedNamespaces.remove(owningNamespace);
-		}
-		return importedMembership;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

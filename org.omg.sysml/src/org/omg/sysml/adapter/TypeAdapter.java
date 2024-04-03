@@ -36,10 +36,13 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -48,6 +51,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
@@ -57,8 +61,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
 
-	private EList<Membership> inheritedMembership = null;
-	
 	public TypeAdapter(Type element) {
 		super(element);
 	}
@@ -67,7 +69,77 @@ public class TypeAdapter extends NamespaceAdapter {
 		return (Type)super.getTarget();
 	}
 	
+	// Additional operations
+	
+	@Override
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
+		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
+		return visibleMembership;
+	}
+	
+	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
+		if (includeProtected) {
+			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
+		}
+		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
+		return nonPrivateMembership;
+	}
+	
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
+		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+		removeRedefinedFeatures(inheritedMemberships);
+		return inheritedMemberships;
+	}
+	
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		Type target = getTarget();
+		excludedTypes.add(target);
+		Conjugation conjugator = target.getOwnedConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType != null && !excludedTypes.contains(originalType)) {
+				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected));
+			}
+		}
+		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
+			if (general != null && !excludedTypes.contains(general)) {
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected));
+			}
+		}
+	}
+	
+	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		Type target = getTarget();
+		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
+		membership.addAll(target.getOwnedMembership());
+		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
+		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
+		return membership;
+	}	
+	
+	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
+		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
+		memberships.removeIf(membership->{
+			Element memberElement = membership.getMemberElement();
+			return memberElement instanceof Feature &&
+				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
+				   		anyMatch(redefinedFeatures::contains);
+		});		
+	}
+
+	// Overridden in ExpressionAdapter
+	protected Collection<Feature> getFeaturesRedefinedByType() {
+		return getTarget().getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+				collect(Collectors.toSet());
+	}
+	
 	// Caching
+	
+	private EList<Membership> inheritedMembership = null;
 	
 	public EList<Membership> getInheritedMembership() {
 		return inheritedMembership;

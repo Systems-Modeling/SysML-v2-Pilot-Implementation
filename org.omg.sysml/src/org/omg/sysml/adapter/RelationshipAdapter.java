@@ -19,24 +19,19 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.invocation;
+package org.omg.sysml.adapter;
 
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
 
-public class OperationInvocationDelegateFactory implements InvocationDelegate.Factory {
-	
-	public static final String SYSML_ANNOTATION = "http://www.omg.org/spec/SysML";
+public abstract class RelationshipAdapter extends ElementAdapter {
 
-	@Override
-	public InvocationDelegate createInvocationDelegate(EOperation eOperation) {
-		if (eOperation.getEAnnotation(SYSML_ANNOTATION) == null) {
-			// This is not our operation, use default invocation delegate
-			return new BasicInvocationDelegate(eOperation);
-		}
-		
-		return new OperationInvocationDelegateSelector(eOperation);
+	public RelationshipAdapter(Element element) {
+		super(element);
 	}
- 
+	
+	public Relationship getTarget() {
+		return (Relationship)super.getTarget();
+	}
+
 }

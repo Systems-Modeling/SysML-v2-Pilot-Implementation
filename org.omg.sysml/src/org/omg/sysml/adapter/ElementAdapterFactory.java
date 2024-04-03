@@ -25,6 +25,7 @@ import java.util.Optional;
 
 import org.omg.sysml.lang.sysml.*;
 import org.omg.sysml.lang.sysml.Class;
+import org.omg.sysml.lang.sysml.Package;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class ElementAdapterFactory {
@@ -287,6 +288,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseMembershipImport(MembershipImport element) {
+			return new MembershipImportAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseMetadataFeature(MetadataFeature element) {
 			return new MetadataFeatureAdapter(element);
 		}
@@ -307,6 +313,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseNamespaceImport(NamespaceImport element) {
+			return new NamespaceImportAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseOccurrenceDefinition(OccurrenceDefinition element) {
 			return new OccurrenceDefinitionAdapter(element);
 		}
@@ -319,6 +330,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseOperatorExpression(OperatorExpression element) {
 			return new OperatorExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePackage(Package element) {
+			return new PackageAdapter(element);
 		}
 		
 		@Override

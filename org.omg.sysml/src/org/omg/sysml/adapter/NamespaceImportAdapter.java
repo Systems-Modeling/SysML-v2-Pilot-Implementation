@@ -19,42 +19,40 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.invocation;
+package org.omg.sysml.adapter;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EOperation;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MembershipImport;
+import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 
-public class MembershipImport_importedMemberships_InvocationDelegate extends Import_importedMemberships_InvocationDelegate {
+public class NamespaceImportAdapter extends ImportAdapter {
 
-	public MembershipImport_importedMemberships_InvocationDelegate(EOperation operation) {
-		super(operation);
+	public NamespaceImportAdapter(NamespaceImport element) {
+		super(element);
+	}
+	
+	public NamespaceImport getTarget() {
+		return (NamespaceImport)super.getTarget();
 	}
 	
 	@Override
-	public EList<Membership> importMemberships(Import self, EList<Membership> importedMemberships,
-			Collection<Membership> nonpublicMemberships, Collection<Namespace> excludedNamespaces,
+	public EList<Membership> importMemberships(EList<Membership> importedMembership,
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
 			Collection<Type> excludedTypes) {
-		Membership importedMembership = ((MembershipImport)self).getImportedMembership();
-		if (importedMembership != null) {
-			importedMemberships.add(importedMembership);
-			if (self.isRecursive()) {
-				Element importedElement = importedMembership.getMemberElement();
-				if (importedElement instanceof Namespace) {
-					excludedNamespaces.add((Namespace)importedElement);
-					importMembershipsFrom(self, (Namespace)importedElement, importedMemberships, nonpublicMemberships, 
-							excludedNamespaces, excludedTypes, true);
-					excludedNamespaces.remove(importedElement);
-				}
-			}
+		NamespaceImport target = getTarget();
+		Namespace importedNamespace = target.getImportedNamespace();
+		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
+			Namespace owningNamespace = target.getImportOwningNamespace();
+			excludedNamespaces.add(owningNamespace);
+			importMembershipsFrom(importedNamespace, importedMembership, nonpublicMembership, 
+					excludedNamespaces, excludedTypes, target.isRecursive());
+			excludedNamespaces.remove(owningNamespace);
 		}
-		return importedMemberships;
+		return importedMembership;
 	}
 	
 }

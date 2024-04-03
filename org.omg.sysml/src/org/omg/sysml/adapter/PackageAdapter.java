@@ -19,36 +19,32 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.invocation;
+package org.omg.sysml.adapter;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EOperation;
-import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.NamespaceImport;
+import org.omg.sysml.lang.sysml.Package;
 import org.omg.sysml.lang.sysml.Type;
 
-public class NamespaceImport_importedMemberships_InvocationDelegate extends Import_importedMemberships_InvocationDelegate {
+public class PackageAdapter extends NamespaceAdapter {
 
-	public NamespaceImport_importedMemberships_InvocationDelegate(EOperation operation) {
-		super(operation);
+	public PackageAdapter(Package element) {
+		super(element);
 	}
 	
+	public Package getTarget() {
+		return (Package)super.getTarget();
+	}
+
 	@Override
-	public EList<Membership> importMemberships(Import self, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
-		Namespace importedNamespace = ((NamespaceImport)self).getImportedNamespace();
-		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
-			Namespace owningNamespace = self.getImportOwningNamespace();
-			excludedNamespaces.add(owningNamespace);
-			importMembershipsFrom(self, importedNamespace, importedMembership, nonpublicMembership, 
-					excludedNamespaces, excludedTypes, self.isRecursive());
-			excludedNamespaces.remove(owningNamespace);
-		}
-		return importedMembership;
+	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+		Package target = getTarget();
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
+		importedMemberships.removeIf(membership->!target.includeAsMember(membership.getMemberElement()));
+		return importedMemberships;
 	}
 	
 }

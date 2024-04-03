@@ -22,19 +22,15 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.HashSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class Namespace_importedMemberships_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -48,28 +44,7 @@ public class Namespace_importedMemberships_InvocationDelegate extends BasicInvoc
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		
-		return getImportedMembership(self, new HashSet<>(excluded), new HashSet<Type>(), true);
+		return NamespaceUtil.getImportedMembershipFor(self, new HashSet<>(excluded), new HashSet<Type>(), true);
 	}
-	
-	protected EList<Membership> getImportedMembership(Namespace self, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> importedMembership = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject)self, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
-		if (!excludedNamespaces.contains(self)) {
-			for (Import _import: self.getOwnedImport()) {
-				Import_importedMemberships_InvocationDelegate.importMembershipsFor(_import, importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
-			}
-		}
-		if (!includeAll) {
-			importedMembership.removeAll(nonpublicMembership);
-		}
-		return importedMembership;
-	}
-	
-	public static EList<Membership> getImportedMembershipFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		Namespace_importedMemberships_InvocationDelegate importedMembershipsDelegate = (Namespace_importedMemberships_InvocationDelegate) 
-				OperationInvocationDelegateFactory.getInvocationDelegate(namespace.eClass(), SysMLPackage.eINSTANCE.getNamespace__ImportedMemberships__EList());
-		return importedMembershipsDelegate.getImportedMembership(namespace, excludedNamespaces, excludedTypes, includeAll);
-	}
-
 	
 }

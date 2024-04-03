@@ -19,26 +19,45 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.invocation;
+package org.omg.sysml.adapter;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EOperation;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Package;
 import org.omg.sysml.lang.sysml.Type;
 
-public class Package_importedMemberships_InvocationDelegate extends Namespace_importedMemberships_InvocationDelegate {
+public class MembershipImportAdapter extends ImportAdapter {
 
-	public Package_importedMemberships_InvocationDelegate(EOperation operation) {
-		super(operation);
+	public MembershipImportAdapter(MembershipImport element) {
+		super(element);
+	}
+	
+	public MembershipImport getTarget() {
+		return (MembershipImport)super.getTarget();
 	}
 	
 	@Override
-	protected EList<Membership> getImportedMembership(Namespace self, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
-		EList<Membership> importedMemberships = super.getImportedMembership(self, excludedNamespaces, excludedTypes, isIncludeAll);
-		importedMemberships.removeIf(membership->!((Package)self).includeAsMember(membership.getMemberElement()));
+	public EList<Membership> importMemberships(EList<Membership> importedMemberships,
+			Collection<Membership> nonpublicMemberships, Collection<Namespace> excludedNamespaces,
+			Collection<Type> excludedTypes) {
+		MembershipImport target = getTarget();
+		Membership importedMembership = target.getImportedMembership();
+		if (importedMembership != null) {
+			importedMemberships.add(importedMembership);
+			if (target.isRecursive()) {
+				Element importedElement = importedMembership.getMemberElement();
+				if (importedElement instanceof Namespace) {
+					excludedNamespaces.add((Namespace)importedElement);
+					importMembershipsFrom((Namespace)importedElement, importedMemberships, nonpublicMemberships, 
+							excludedNamespaces, excludedTypes, true);
+					excludedNamespaces.remove(importedElement);
+				}
+			}
+		}
 		return importedMemberships;
 	}
 	

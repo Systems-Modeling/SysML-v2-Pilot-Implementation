@@ -21,6 +21,9 @@
 
 package org.omg.sysml.delegate.invocation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
@@ -30,18 +33,37 @@ public class OperationInvocationDelegateFactory implements InvocationDelegate.Fa
 	
 	public static final String SYSML_ANNOTATION = "http://www.omg.org/spec/SysML";
 	
-	public static InvocationDelegate getInvocationDelegate(EClass eClass, EOperation eOperation) {
-		return new OperationInvocationDelegateSelector(eOperation).calculateInvocationDelegateRecursive(eClass);
-	}
+	private static final Map<EOperation, OperationInvocationDelegateSelector> selectorMap = new HashMap<>();
 
 	@Override
 	public InvocationDelegate createInvocationDelegate(EOperation eOperation) {
+		return getInvocationDelegate(eOperation);
+	}
+	
+	public static InvocationDelegate getInvocationDelegate(EClass eClass, EOperation eOperation) {
+		OperationInvocationDelegateSelector selector = (OperationInvocationDelegateSelector) getInvocationDelegate(eOperation);
+		
+		return selector.calculateInvocationDelegateRecursive(eClass);
+	}
+	
+	public static InvocationDelegate getInvocationDelegate(EOperation eOperation) {
 		if (eOperation.getEAnnotation(SYSML_ANNOTATION) == null) {
 			// This is not our operation, use default invocation delegate
 			return new BasicInvocationDelegate(eOperation);
 		}
 		
-		return new OperationInvocationDelegateSelector(eOperation);
+		OperationInvocationDelegateSelector selector = selectorMap.get(eOperation);
+		
+		if (selector != null) {
+			return selector;
+		}
+		
+		if (selector == null) {
+			selector = new OperationInvocationDelegateSelector(eOperation);
+			selectorMap.put(eOperation, selector);
+		}
+		
+		return selector;
 	}
  
 }

@@ -53,7 +53,7 @@ public class OperationInvocationDelegateSelector extends BasicInvocationDelegate
 		return delegate.dynamicInvoke(target, arguments);
 	}
 	
-	protected BasicInvocationDelegate calculateInvocationDelegateRecursive(EClass eClass) {
+	public BasicInvocationDelegate calculateInvocationDelegateRecursive(EClass eClass) {
 		BasicInvocationDelegate delegate = delegateMap.get(eClass);
 		
 		if (delegate != null) {

@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -45,6 +46,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -62,6 +64,20 @@ public class TypeUtil {
 		return (TypeAdapter)ElementUtil.getElementAdapter(target);
 	}
 	
+	// Inheritance
+	
+	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
+	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
 	// Caching
 	
 	public static EList<Membership> cacheInheritedMembershipOf(Type type, Supplier<EList<Membership>> supplier) {	

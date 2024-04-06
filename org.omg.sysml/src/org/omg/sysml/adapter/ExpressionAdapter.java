@@ -21,6 +21,7 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
@@ -67,6 +69,32 @@ public class ExpressionAdapter extends StepAdapter {
 				collect(Collectors.toList());
 	}
 	
+	// Inheritence
+	
+	@Override
+	public Collection<Feature> getFeaturesRedefinedByType() {
+		Collection<Feature> features = super.getFeaturesRedefinedByType();
+		
+		// If inputs and outputs have not been computed, add effectively
+		// redefined features from the Expression type, without actually
+		// computing the inputs and outputs.
+		Expression target = getTarget();
+		if (target.getInput().isEmpty()) {
+			features.addAll(ExpressionUtil.getTypeParametersOf(target));
+		}
+		if (target.getOutput().isEmpty()) {
+			Type exprType = ExpressionUtil.getExpressionTypeOf(target);
+			if (exprType instanceof Function || exprType instanceof Expression) {
+				Feature result = TypeUtil.getOwnedResultParameterOf(exprType);
+				if (result != null) {
+					features.add(result);
+				}
+			}
+		}
+		
+		return features;
+	}
+
 	// Implicit Generalization
 	
 	@Override

@@ -22,21 +22,15 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class Namespace_visibleMemberships_InvocationDelegate extends BasicInvocationDelegate {
 	
@@ -51,34 +45,7 @@ public class Namespace_visibleMemberships_InvocationDelegate extends BasicInvoca
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		boolean includeAll = (boolean) arguments.get(2);
 		
-		return getVisibleMemberships(self, new HashSet<>(excluded), new HashSet<Type>(), includeAll);
+		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), new HashSet<Type>(), includeAll);
 	}
-
-	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
-	protected EList<Membership> getVisibleMemberships(Namespace self, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership;
-		if (includeAll) {
-			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
-			visibleMembership.addAll(self.getOwnedMembership());
-		} else {
-			visibleMembership = getVisibleOwnedMembership(self, VisibilityKind.PUBLIC);
-		}
-		visibleMembership.addAll(Namespace_importedMemberships_InvocationDelegate.getImportedMembershipFor(self, excludedNamespaces, excludedTypes, includeAll));
-		return visibleMembership;
-	}
-
-	protected EList<Membership> getVisibleOwnedMembership(Namespace self, VisibilityKind visibility) {
-		EList<Membership> publicMembership = new BasicInternalEList<Membership>(Membership.class);
-		publicMembership.addAll(self.getOwnedMembership().stream().
-				filter(membership->visibility.equals(membership.getVisibility())).collect(Collectors.toList()));
-		return publicMembership;
-	}
-	
-	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		Namespace_visibleMemberships_InvocationDelegate visibleMembershipsDelegate = (Namespace_visibleMemberships_InvocationDelegate) 
-				OperationInvocationDelegateFactory.getInvocationDelegate(namespace.eClass(), SysMLPackage.eINSTANCE.getNamespace__VisibleMemberships__EList_boolean_boolean());
-		return visibleMembershipsDelegate.getVisibleMemberships(namespace, excludedNamespaces, excludedTypes, includeAll);
-	}
-
 
 }

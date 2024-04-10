@@ -72,7 +72,7 @@ public abstract class VTraverser extends Visitor {
         if (covered.contains(e)) return true;
         if (!(e instanceof Feature)) return false;
         Feature f = (Feature) e;
-        for (Redefinition r: toOwnedRedefinitionArray(f)) {
+        for (Redefinition r: f.getOwnedRedefinition()) {
             Feature rf = r.getRedefinedFeature();
             covered.add(rf);
         }
@@ -104,7 +104,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private void traverseInherited(Type typ, Set<Element> covered) {
-        for (Membership ms: toInheritedMembershipArray(typ)) {
+        for (Membership ms: typ.getInheritedMembership()) {
             Element e = ms.getMemberElement();
             if (!showLib() && isModelLibrary(e)) continue;
             if (markRedefining(e, covered)) continue;

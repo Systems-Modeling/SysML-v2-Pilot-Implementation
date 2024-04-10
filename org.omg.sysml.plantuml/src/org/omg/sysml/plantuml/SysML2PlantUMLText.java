@@ -225,7 +225,7 @@ public class SysML2PlantUMLText {
 
     public static String getMetadataUsageName(Element e) {
         StringBuilder sb = null;
-        for (Element oe: Visitor.toOwnedElementArray(e)) {
+        for (Element oe: e.getOwnedElement()) {
             if (oe instanceof MetadataUsage) {
                 MetadataUsage mu = (MetadataUsage) oe;
                 List<FeatureTyping> tt = mu.getOwnedTyping();
@@ -409,7 +409,7 @@ public class SysML2PlantUMLText {
         MODE mc = MODE.MIXED;
         if (eObj instanceof Element) {
             Element e = (Element) eObj;
-            for (Element ec: Visitor.toOwnedElementArray(e)) {
+            for (Element ec: e.getOwnedElement()) {
                 MODE m = getMode(ec);
                 if (mc == MODE.MIXED) {
                     mc = m;

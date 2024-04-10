@@ -30,7 +30,7 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VSSRMembers extends VStructure {
     private static boolean isRedefining(Feature f, String prefix) {
-        for (Redefinition rd: toOwnedRedefinitionArray(f)) {
+        for (Redefinition rd: f.getOwnedRedefinition()) {
             Feature rf = rd.getRedefinedFeature();
             String qName = rf.getQualifiedName();
             if (qName != null) {

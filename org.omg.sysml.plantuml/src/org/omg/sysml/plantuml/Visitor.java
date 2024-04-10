@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -462,7 +461,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     protected static String getFeatureChainName(Feature f) {
         String name = f.getName();
         if (name != null) return name;
-        for (Subsetting ss: toOwnedSubsettingArray(f)) {
+        for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) continue;
@@ -753,20 +752,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     // Accessing relationships may cause ConcurrentModificationException over iterators
-    // because it may trigger "on-demand" tranfomation.  So we introduce utility methods
+    // because it may trigger "on-demand" transformation.  So we introduce utility methods
     // to copy them into an array.
-    public static Element[] toOwnedElementArray(Element e) {
-        List<Element> es = e.getOwnedElement();
-        Element[] array = new Element[es.size()];
-        return es.toArray(array);
-    }
-
-    public static Feature[] toOwnedFeatureArray(Type typ) {
-        List<Feature> fs = typ.getOwnedFeature();
-        Feature[] array = new Feature[fs.size()];
-        return fs.toArray(array);
-    }
-
     public static Relationship[] toOwnedRelationshipArray(Element e) {
         List<Relationship> rels = e.getOwnedRelationship();
         Relationship[] array = new Relationship[rels.size()];
@@ -779,40 +766,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return ms.toArray(array);
     }
 
-    public static Membership[] toInheritedMembershipArray(Type typ) {
-        List<Membership> ms = typ.getInheritedMembership();
-        Membership[] array = new Membership[ms.size()];
-        return ms.toArray(array);
-    }
-
-    public static Specialization[] toOwnedSpecializationArray(Type typ) {
-        List<Specialization> ss = typ.getOwnedSpecialization();
-        Specialization[] array = new Specialization[ss.size()];
-        return ss.toArray(array);
-    }
-
     public static FeatureMembership[] toOwnedFeatureMembershipArray(Feature f) {
         List<FeatureMembership> fms = f.getOwnedFeatureMembership();
         FeatureMembership[] array = new FeatureMembership[fms.size()];
         return fms.toArray(array);
     }
-
-    public static FeatureTyping[] toOwnedTypingArray(Feature f) {
-        List<FeatureTyping> ts = f.getOwnedTyping();
-        FeatureTyping[] array = new FeatureTyping[ts.size()];
-        return ts.toArray(array);
-    }
-
-    public static Subsetting[] toOwnedSubsettingArray(Feature f) {
-        List<Subsetting> ss = f.getOwnedSubsetting();
-        Subsetting[] array = new Subsetting[ss.size()];
-        return ss.toArray(array);
-    }
-
-    public static Redefinition[] toOwnedRedefinitionArray(Feature f) {
-        List<Redefinition> rs = f.getOwnedRedefinition();
-        Redefinition[] array = new Redefinition[rs.size()];
-        return rs.toArray(array);
-    }
-    
 }

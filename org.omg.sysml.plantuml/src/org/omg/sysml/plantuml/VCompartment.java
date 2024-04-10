@@ -99,7 +99,7 @@ public class VCompartment extends VStructure {
     private Membership getMembership(Element e) {
         Membership ms = getCurrentMembership();
         if (ms != null) return ms;
-        for (Membership m: toInheritedMembershipArray(currentType)) {
+        for (Membership m: currentType.getInheritedMembership()) {
             if (e.equals(m.getMemberElement())) return m;
         }
         return null;

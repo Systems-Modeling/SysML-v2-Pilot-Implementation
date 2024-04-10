@@ -94,7 +94,7 @@ public class VSequence extends VDefault {
 
     private static boolean isOfFeature(Feature f, String qName) {
         if (isThisOfFeature(f, qName)) return true;
-        for (Redefinition rd: toOwnedRedefinitionArray(f)) {
+        for (Redefinition rd: f.getOwnedRedefinition()) {
             Feature rf = rd.getRedefinedFeature();
             if (isOfFeature(rf, qName)) return true;
         }

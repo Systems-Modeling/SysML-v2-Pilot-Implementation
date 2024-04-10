@@ -308,7 +308,7 @@ public class VPath extends VTraverser {
     private static Feature getIOTarget(ItemFlowEnd ife) {
         for (FeatureMembership fm: toOwnedFeatureMembershipArray(ife)) {
             Feature f = fm.getOwnedMemberFeature();
-            for (Redefinition rd: toOwnedRedefinitionArray(f)) {
+            for (Redefinition rd: f.getOwnedRedefinition()) {
                 return rd.getRedefinedFeature();
             }
         }
@@ -586,7 +586,7 @@ public class VPath extends VTraverser {
 
     @Override
     public String caseType(Type typ) {
-        for (Specialization sp: toOwnedSpecializationArray(typ)) {
+        for (Specialization sp: typ.getOwnedSpecialization()) {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();
             if (g == null) continue;

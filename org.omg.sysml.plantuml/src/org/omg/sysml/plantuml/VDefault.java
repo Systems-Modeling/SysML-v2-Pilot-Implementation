@@ -117,7 +117,7 @@ public class VDefault extends VTraverser {
     protected void addSpecializations(int typId, Type typ) {
         if (typId < 0) return;
         InheritKey ik = null;
-        for (Specialization s: toOwnedSpecializationArray(typ)) {
+        for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
             if (ik == null && gt instanceof Feature) {

@@ -99,7 +99,7 @@ public class VCompartment extends VStructure {
     private Membership getMembership(Element e) {
         Membership ms = getCurrentMembership();
         if (ms != null) return ms;
-        for (Membership m: currentType.getInheritedMembership()) {
+        for (Membership m: toInheritedMembershipArray(currentType)) {
             if (e.equals(m.getMemberElement())) return m;
         }
         return null;
@@ -203,7 +203,7 @@ public class VCompartment extends VStructure {
         private final CompartmentEntry parent;
 
         public void process(Feature f) {
-            for (Membership m: f.getOwnedMembership()) {
+            for (Membership m: toOwnedMembershipArray(f)) {
                 Element e = m.getMemberElement();
                 if (e instanceof Expression) {
                     // Do not show it

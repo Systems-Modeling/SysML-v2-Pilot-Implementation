@@ -199,7 +199,7 @@ class InheritKey {
     private static boolean matchRedefined(Feature f, Feature ft, Set<Feature> visited) {
         if (visited.contains(f)) return false;
         visited.add(f);
-        for (Redefinition rd: f.getOwnedRedefinition()) {
+        for (Redefinition rd: Visitor.toOwnedRedefinitionArray(f)) {
             Feature rf = rd.getRedefinedFeature();
             if (ft.equals(rf)) return true;
             return matchRedefined(rf, ft, visited);

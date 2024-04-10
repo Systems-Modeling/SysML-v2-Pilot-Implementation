@@ -72,7 +72,7 @@ public abstract class VTraverser extends Visitor {
         if (covered.contains(e)) return true;
         if (!(e instanceof Feature)) return false;
         Feature f = (Feature) e;
-        for (Redefinition r: f.getOwnedRedefinition()) {
+        for (Redefinition r: toOwnedRedefinitionArray(f)) {
             Feature rf = r.getRedefinedFeature();
             covered.add(rf);
         }
@@ -84,7 +84,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private void traverseInternal(Namespace n, Set<Element> covered) {
-        for (Relationship r: n.getOwnedRelationship()) {
+        for (Relationship r: toOwnedRelationshipArray(n)) {
             if (r instanceof Membership) {
                 Membership ms = (Membership) r;
                 setInherited(false);
@@ -92,7 +92,7 @@ public abstract class VTraverser extends Visitor {
                 markRedefining(e, covered);
                 this.currentMembership = ms;
                 visit(ms);
-                for (Relationship r2: ms.getOwnedRelationship()) {
+                for (Relationship r2: toOwnedRelationshipArray(ms)) {
                     setInherited(false);
                     visit(r2);
                 }
@@ -104,7 +104,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private void traverseInherited(Type typ, Set<Element> covered) {
-        for (Membership ms: typ.getInheritedMembership()) {
+        for (Membership ms: toInheritedMembershipArray(typ)) {
             Element e = ms.getMemberElement();
             if (!showLib() && isModelLibrary(e)) continue;
             if (markRedefining(e, covered)) continue;

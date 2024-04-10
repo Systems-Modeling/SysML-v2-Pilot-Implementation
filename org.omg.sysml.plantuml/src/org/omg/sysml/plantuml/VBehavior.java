@@ -128,7 +128,7 @@ public abstract class VBehavior extends VDefault {
     private boolean resolveReference(Feature f, ActionUsage au, boolean send) {
         if (!(f instanceof ReferenceUsage)) return false;
         boolean flag = true;
-        for (Membership m: f.getOwnedMembership()) {
+        for (Membership m: toOwnedMembershipArray(f)) {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 Expression e = fv.getValue();
@@ -235,7 +235,7 @@ public abstract class VBehavior extends VDefault {
         String guardString = null;
         String effectString = null;
 
-        for (FeatureMembership fm: tu.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: toOwnedFeatureMembershipArray(tu)) {
             if (!(fm instanceof TransitionFeatureMembership)) continue;
             TransitionFeatureMembership tfm = (TransitionFeatureMembership) fm;
             Step s = tfm.getTransitionFeature();

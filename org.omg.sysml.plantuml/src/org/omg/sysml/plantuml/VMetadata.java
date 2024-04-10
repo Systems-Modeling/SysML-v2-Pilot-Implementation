@@ -54,7 +54,7 @@ public class VMetadata extends Visitor {
 
     private int addMetadataText(Feature mf, StringBuilder sb, int indent, int maxWidth) {
         boolean first = true;
-        for (Feature f: mf.getOwnedFeature()) {
+        for (Feature f: toOwnedFeatureArray(mf)) {
             String name = getFeatureChainName(f);
             if (first) {
                 if (indent > 0) {

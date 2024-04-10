@@ -59,7 +59,7 @@ public class VStateMembers extends VBehavior {
             name = au.getDeclaredName();
         }
         if ((name == null) || (name.isEmpty())) {
-            for (Subsetting ss: au.getOwnedSubsetting()) {
+            for (Subsetting ss: toOwnedSubsettingArray(au)) {
                 Feature f = ss.getSubsettedFeature();
                 if (f instanceof ActionUsage) {
                     if (!(ss instanceof Redefinition)) {

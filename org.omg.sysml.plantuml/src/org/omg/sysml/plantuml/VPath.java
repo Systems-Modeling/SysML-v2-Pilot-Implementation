@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -306,7 +306,7 @@ public class VPath extends VTraverser {
       }
     */
     private static Feature getIOTarget(ItemFlowEnd ife) {
-        for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: toOwnedFeatureMembershipArray(ife)) {
             Feature f = fm.getOwnedMemberFeature();
             for (Redefinition rd: f.getOwnedRedefinition()) {
                 return rd.getRedefinedFeature();

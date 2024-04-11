@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -263,7 +263,7 @@ public class VDefault extends VTraverser {
     }
 
     protected static boolean isEmptyFeature(Feature f) {
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: toOwnedFeatureMembershipArray(f)) {
             if (fm.getOwnedMemberFeature() instanceof BindingConnector) continue;
             return false;
         }
@@ -272,7 +272,7 @@ public class VDefault extends VTraverser {
 
     protected Relationship findBindingLikeRel(Feature f) {
         Relationship ret = null;
-        for (Relationship rel : f.getOwnedRelationship()) {
+        for (Relationship rel : toOwnedRelationshipArray(f)) {
             if (rel instanceof FeatureValue) {
                 // first priority
                 return rel;

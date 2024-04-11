@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private void traverseInternal(Namespace n, Set<Element> covered) {
-        for (Relationship r: n.getOwnedRelationship()) {
+        for (Relationship r: toOwnedRelationshipArray(n)) {
             if (r instanceof Membership) {
                 Membership ms = (Membership) r;
                 setInherited(false);
@@ -92,7 +92,7 @@ public abstract class VTraverser extends Visitor {
                 markRedefining(e, covered);
                 this.currentMembership = ms;
                 visit(ms);
-                for (Relationship r2: ms.getOwnedRelationship()) {
+                for (Relationship r2: toOwnedRelationshipArray(ms)) {
                     setInherited(false);
                     visit(r2);
                 }

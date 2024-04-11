@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -43,6 +44,7 @@ import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -747,5 +749,26 @@ public abstract class Visitor extends SysMLSwitch<String> {
     	if (e == null) return null;
         s2p.countVisits();
         return doSwitch(e);
+    }
+
+    // Accessing relationships may cause ConcurrentModificationException over iterators
+    // because it may trigger "on-demand" transformation.  So we introduce utility methods
+    // to copy them into an array.
+    public static Relationship[] toOwnedRelationshipArray(Element e) {
+        List<Relationship> rels = e.getOwnedRelationship();
+        Relationship[] array = new Relationship[rels.size()];
+        return rels.toArray(array);
+    }
+
+    public static Membership[] toOwnedMembershipArray(Namespace ns) {
+        List<Membership> ms = ns.getOwnedMembership();
+        Membership[] array = new Membership[ms.size()];
+        return ms.toArray(array);
+    }
+
+    public static FeatureMembership[] toOwnedFeatureMembershipArray(Feature f) {
+        List<FeatureMembership> fms = f.getOwnedFeatureMembership();
+        FeatureMembership[] array = new FeatureMembership[fms.size()];
+        return fms.toArray(array);
     }
 }

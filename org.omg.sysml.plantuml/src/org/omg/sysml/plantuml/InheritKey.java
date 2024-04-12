@@ -59,7 +59,7 @@ class InheritKey {
 
     private static List<Feature> belongingFeatures(Type typ) {
         List<Feature> fs = new ArrayList<>();
-        for (Relationship rel : typ.getOwnedRelationship()) {
+        for (Relationship rel : Visitor.toOwnedRelationshipArray(typ)) {
             if (rel instanceof FeatureMembership
                 || rel instanceof FeatureValue) {
                 for (Element tgt: rel.getTarget()) {

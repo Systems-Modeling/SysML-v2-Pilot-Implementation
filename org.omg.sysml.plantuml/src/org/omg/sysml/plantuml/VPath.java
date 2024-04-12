@@ -317,6 +317,7 @@ public class VPath extends VTraverser {
     // Make an InheritKey for ref, which is either a connector end or FeatureReferenceExpression or FeatureChainExpression.
     // These are (indirectly) owned by the innermost feature, which effectively determines the target scope.
     private InheritKey makeInheritKeyForReferer(PC pc) {
+    	if (pc == null) return null;
         Element e = pc.getTarget();
         if (!(e instanceof Feature)) return null;
         Feature ref = (Feature) e;

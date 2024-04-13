@@ -23,12 +23,13 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -111,15 +112,27 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #sourceTargetFeature() <em>Source Target Feature</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #sourceTargetFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate SOURCE_TARGET_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION___SOURCE_TARGET_FEATURE).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public Feature sourceTargetFeature() {
-		return getOwnedFeature().stream().
-				filter(f->f.getDirection() == FeatureDirectionKind.IN).
-				flatMap(f->f.getOwnedFeature().stream()).
-				findFirst().orElse(null);
+		try {
+			return (Feature)SOURCE_TARGET_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**

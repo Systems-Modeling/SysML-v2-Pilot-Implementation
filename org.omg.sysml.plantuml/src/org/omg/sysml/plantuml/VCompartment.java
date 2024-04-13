@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -206,7 +206,7 @@ public class VCompartment extends VStructure {
         private final CompartmentEntry parent;
 
         public void process(Feature f) {
-            for (Membership m: f.getOwnedMembership()) {
+            for (Membership m: toOwnedMembershipArray(f)) {
                 Element e = m.getMemberElement();
                 if (e instanceof Expression) {
                     // Do not show it
@@ -573,7 +573,7 @@ public class VCompartment extends VStructure {
 
     public void startType(Type typ) {
         this.currentType = typ;
-        traverse(typ, false, true);
+        if (traverse(typ, false, true) == null) return;
         addDocumentations();
         addCompartmentEntries(compartmentEntries, 0);
         popNamespace();

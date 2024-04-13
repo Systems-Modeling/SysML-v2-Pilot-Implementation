@@ -122,6 +122,53 @@ public class ElementUtil {
 	public static boolean isIdentifier(String name) {
 		return name.matches("[a-zA-Z_]\\w*");
 	}
+	
+	public static List<String> parseQualifiedName(String qualifiedNameText) {
+			List<String> segments = new ArrayList<>();		
+			int i = 0;
+			int j = 0;
+			int n = qualifiedNameText.length();
+			boolean isDelimitable = true;
+			
+			while (j < n) {
+				char c = qualifiedNameText.charAt(j);
+				int delim = "\'\\:".indexOf(c);
+				if (isDelimitable && delim > 1) {
+					if (j + 1 < n && ":". indexOf(qualifiedNameText.charAt(j + 1)) == 0) {
+						segments.add(ElementUtil.unescapeString(qualifiedNameText.substring(i, j)));
+						i = j + 2;
+						j = i - 1;
+					}
+				} else if (delim == 0) {
+					isDelimitable = !isDelimitable;
+				} else if (delim == 1) {
+					j++;
+				}
+				j++;
+			}
+			if (i < n && j <= n) {
+				segments.add(ElementUtil.unescapeString(qualifiedNameText.substring(i, j)));
+			}
+			
+			return segments;
+	}
+	
+	public static String toQualifiedNameString(List<String> segments) {
+		int segmentCount = segments.size();
+		if (segmentCount == 0) {
+			return "";
+		} else if (segmentCount == 1)
+			return escapeName(segments.get(0));
+		else {
+			StringBuilder builder = new StringBuilder();
+			builder.append(ElementUtil.escapeName(segments.get(0)));
+			for (var i = 1; i < segmentCount; i++) {
+				builder.append("::");
+				builder.append(ElementUtil.escapeName(segments.get(i)));
+			}
+			return builder.toString();
+		}
+	}
 
 	/**
 	 * Get documentation text for this element, as given by the body of the first documentation comment

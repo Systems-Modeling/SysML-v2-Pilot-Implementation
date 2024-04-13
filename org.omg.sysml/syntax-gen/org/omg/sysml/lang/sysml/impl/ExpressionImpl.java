@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,18 +18,16 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -40,10 +38,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -245,72 +239,80 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
 	
+	/**
+	 * The cached invocation delegate for the '{@link #modelLevelEvaluable(org.eclipse.emf.common.util.EList) <em>Model Level Evaluable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #modelLevelEvaluable(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST).getInvocationDelegate();
 	// Operations
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean modelLevelEvaluable(EList<Feature> visited) {
-		List<Feature> parameters = TypeUtil.getAllParametersOf(this);
-		if (!parameters.stream().allMatch(
-				param->directionOf(param) == FeatureDirectionKind.IN && 
-				FeatureUtil.getValuationFor(param) == null)) {
-			return false;
-		} else {
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(this);
-			return resultExpression == null || resultExpression.modelLevelEvaluable(visited);
+		try {
+			return (Boolean)MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{visited}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #evaluate(org.omg.sysml.lang.sysml.Element) <em>Evaluate</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #evaluate(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
 	 */
+	protected static final EOperation.Internal.InvocationDelegate EVALUATE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___EVALUATE__ELEMENT).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return new BasicEList<>();
+		try {
+			return (EList<Element>)EVALUATE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{target}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	/**
+	 * The cached invocation delegate for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element) <em>Check Condition</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #checkCondition(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate CHECK_CONDITION_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___CHECK_CONDITION__ELEMENT).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean checkCondition(Element target) {
-		return ExpressionUtil.checkConditionOn(target, this);
+		try {
+			return (Boolean)CHECK_CONDITION_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{target}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
-	// Other
-
-	@Override
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		Collection<Feature> features = super.getFeaturesRedefinedByType();
-		
-		// If inputs and outputs have not been computed, add effectively
-		// redefined features from the Expression type, without actually
-		// computing the inputs and outputs.
-		if (getInput().isEmpty()) {
-			features.addAll(ExpressionUtil.getTypeParametersOf(this));
-		}
-		if (getOutput().isEmpty()) {
-			Type type = ExpressionUtil.getExpressionTypeOf(this);
-			if (type instanceof Function || type instanceof Expression) {
-				Feature result = TypeUtil.getOwnedResultParameterOf(type);
-				if (result != null) {
-					features.add(result);
-				}
-			}
-		}
-		
-		return features;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

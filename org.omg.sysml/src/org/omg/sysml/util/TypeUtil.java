@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -34,13 +35,9 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.adapter.DefinitionAdapter;
 import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -49,15 +46,14 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 public class TypeUtil {
 	
@@ -68,6 +64,20 @@ public class TypeUtil {
 		return (TypeAdapter)ElementUtil.getElementAdapter(target);
 	}
 	
+	// Inheritance
+	
+	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
+	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected);
+	}
+
 	// Caching
 	
 	public static EList<Membership> cacheInheritedMembershipOf(Type type, Supplier<EList<Membership>> supplier) {	
@@ -225,14 +235,12 @@ public class TypeUtil {
 	}
 	
 	public static Feature getResultParameterOf(Type type) {
-		// NOTE: This method will fill in an inherited result Parameter if this Type does not
-		// have an owned result Parameter. It is for use when transform may have not yet been
-		// called on this Type.
 		return getResultParameterOf(type, new HashSet<>());
 	}
 	
 	private static Feature getResultParameterOf(Type type, Set<Type> visited) {
 		visited.add(type);
+		getTypeAdapter(type).addAdditionalMembers();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
 			for (Type general: getSupertypesOf(type)) {
@@ -245,6 +253,18 @@ public class TypeUtil {
 			}
 		}
 		return resultParameter;
+	}
+
+	public static void addResultParameterTo(Type type) {
+		addResultParameterTo(type, SysMLFactory.eINSTANCE.createFeature());
+	}
+	
+	public static void addResultParameterTo(Type type, Feature resultParameter) {
+		if (type.getOwnedRelationship().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			membership.setOwnedMemberParameter(resultParameter);
+			type.getOwnedRelationship().add(membership);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -434,28 +454,6 @@ public class TypeUtil {
 				collect(Collectors.toList());
 	}
 
-	// Subject parameters
-
-	public static Feature getSubjectParameterOf(Type type) {
-		return type instanceof Definition? ((DefinitionAdapter)ElementUtil.getElementAdapter((Definition)type)).getSubjectParameter():
-			   type instanceof Usage? UsageUtil.getUsageAdapter((Usage)type).getSubjectParameter():
-			   null;
-	}
-
-	public static Usage basicGetSubjectParameterOf(Type type) {
-		ElementUtil.transform(type);
-		return (Usage)getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
-	}
-	
-	// Objective requirements
-
-	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		ElementUtil.transform(type);
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
-	}
-	
 	// Associations
 
 	public static Type getSourceTypeOf(Association association) {

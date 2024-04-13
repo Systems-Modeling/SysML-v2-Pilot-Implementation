@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -41,10 +41,12 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -72,6 +74,20 @@ public class FeatureAdapter extends TypeAdapter {
 		return (Feature)super.getTarget();
 	}
 	
+	// Inheritance
+	
+	@Override
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
+		if (!featureChainings.isEmpty()) {
+			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
+			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected));
+			}
+		}
+	}
+
 	// Caching
 	
 	public EList<Type> getTypes() {

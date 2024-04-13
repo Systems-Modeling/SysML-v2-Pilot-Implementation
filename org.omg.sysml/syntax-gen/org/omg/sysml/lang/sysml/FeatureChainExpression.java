@@ -90,6 +90,7 @@ public interface FeatureChainExpression extends OperatorExpression {
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature sourceTargetFeature();

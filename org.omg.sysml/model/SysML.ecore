@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="https://www.omg.org/spec/SysML/20240201" nsPrefix="sysml">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="settingDelegates" value="http://www.omg.org/spec/SysML"/>
+    <details key="invocationDelegates" value="http://www.omg.org/spec/SysML"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureDirectionKind">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -112,21 +113,25 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return &lt;code>name&lt;/code>, if that is not null, otherwise the &lt;code>shortName&lt;/code>, if that is not null, otherwise null. If the returned value is non-null, it is returned as-is if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="effectiveShortName" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return an effective &lt;code>shortName&lt;/code> for this &lt;code>Element&lt;/code>. By default this is the same as its &lt;code>declaredShortName&lt;/code>.&lt;/p>&#xA;declaredShortName"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="effectiveName" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return an effective &lt;code>name&lt;/code> for this &lt;code>Element&lt;/code>. By default this is the same as its &lt;code>declaredName&lt;/code>.&lt;/p>&#xA;declaredName"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="libraryNamespace" ordered="false" eType="#//Namespace">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>By default, return the library Namespace of the &lt;code>owningRelationship&lt;/code> of this Element, if it has one.&lt;/p>&#xA;if owningRelationship &lt;> null then owningRelationship.libraryNamespace()&#xA;else null endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningMembership" ordered="false"
         eType="#//OwningMembership" volatile="true" transient="true" derived="true"
@@ -307,6 +312,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this &lt;code>Membership&lt;/code> is distinguishable from a given &lt;code>other&lt;/code> &lt;code>Membership&lt;/code>. By default, this is true if this &lt;code>Membership&lt;/code> has no &lt;code>memberShortName&lt;/code> or &lt;code>memberName&lt;/code>; or each of the &lt;code>memberShortName&lt;/code> and &lt;code>memberName&lt;/code> are different than both of those of the &lt;code>other&lt;/code> &lt;code>Membership&lt;/code>; or neither of the metaclasses of the &lt;code>memberElement&lt;/code> of this &lt;code>Membership&lt;/code> and the &lt;code>memberElement&lt;/code> of the &lt;code>other&lt;/code> &lt;code>Membership&lt;/code> conform to the other. But this may be overridden in specializations of &lt;code>Membership&lt;/code>.&lt;/p>&#xA;&#xA;not (memberElement.oclKindOf(other.memberElement.oclType()) or&#xA;     other.memberElement.oclKindOf(memberElement.oclType())) or&#xA;(shortMemberName = null or&#xA;    (shortMemberName &lt;> other.shortMemberName and&#xA;     shortMemberName &lt;> other.memberName)) and&#xA;(memberName = null or&#xA;    (memberName &lt;> other.shortMemberName and&#xA;     memberName &lt;> other.memberName)))&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="other" ordered="false" lowerBound="1" eType="#//Membership"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberElementId" ordered="false"
@@ -364,18 +370,21 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the names of the given &lt;code>element&lt;/code> as it is known in this &lt;code>Namespace&lt;/code>.&lt;/p>&#xA;&#xA;let elementMemberships : Sequence(Membership) = &#xA;    memberships->select(memberElement = element) in&#xA;memberships.memberShortName->&#xA;    union(memberships.memberName)->&#xA;    asSet()"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eOperations name="visibilityOf" ordered="false" lowerBound="1" eType="#//VisibilityKind">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Returns this visibility of &lt;code>mem&lt;/code> relative to this &lt;code>Namespace&lt;/code>. If &lt;code>mem&lt;/code> is an &lt;code>importedMembership&lt;/code>, this is the &lt;code>visibility&lt;/code> of its Import. Otherwise it is the &lt;code>visibility&lt;/code> of the &lt;code>Membership&lt;/code> itself.&lt;/p>&#xA;&#xA;if importedMembership->includes(mem) then&#xA;    ownedImport->&#xA;        select(importedMemberships(Set{})->includes(mem)).&#xA;        first().visibility&#xA;else if memberships->includes(mem) then&#xA;    mem.visibility&#xA;else&#xA;    VisibilityKind::private&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="mem" ordered="false" lowerBound="1" eType="#//Membership"/>
     </eOperations>
     <eOperations name="visibleMemberships" upperBound="-1" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If &lt;code>includeAll = true&lt;/code>, then return all the &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code>. Otherwise, return only the publicly visible &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code> (which includes those &lt;code>ownedMemberships&lt;/code> that have a &lt;code>visibility&lt;/code> of &lt;code>public&lt;/code> and those &lt;code>importedMemberships&lt;/code> imported with a &lt;code>visibility&lt;/code> of &lt;code>public&lt;/code>). If &lt;code>isRecursive = true&lt;/code>, also recursively include all visible &lt;code>Memberships&lt;/code> of any visible owned &lt;code>Namespaces&lt;/code>.&lt;/p>&#xA;&#xA;let visibleMemberships : Sequence(Membership) =&#xA;    if includeAll then memberships&#xA;    else ownedMembership->&#xA;        select(visibility = VisibilityKind::public)->&#xA;        union(ownedImport->&#xA;            select(visibility = VisibilityKind::public).&#xA;            importedMemberships(excluded->including(self)))&#xA;    endif in&#xA;if not isRecursive then visibleMemberships&#xA;else visibleMemberships->union(visibleMemberships->&#xA;        selectAsKind(Namespace).&#xA;        visibleMemberships(excluded->including(self), true, includeAll))&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
       <eParameters name="isRecursive" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
       <eParameters name="includeAll" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
@@ -384,42 +393,49 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Derive the imported &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code> as the &lt;code>importedMembership&lt;/code> of all &lt;code>ownedImports&lt;/code>, excluding those Imports whose &lt;code>importOwningNamespace&lt;/code> is in the &lt;code>excluded&lt;/code> set, and excluding &lt;code>Memberships&lt;/code> that have distinguisibility collisions with each other or with any &lt;code>ownedMembership&lt;/code>.&lt;/p>&#xA;&#xA;ownedImport.importedMemberships(excluded->including(self))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
     </eOperations>
     <eOperations name="resolve" ordered="false" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Resolve the given qualified name to the named &lt;code>Membership&lt;/code> (if any), starting with this &lt;code>Namespace&lt;/code> as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rules every qualified name will resolve to either a single &lt;code>Membership&lt;/code>, or to none.&lt;/p>&#xA;&#xA;let qualification : String = qualificationOf(qualifiedName) in&#xA;let name : String = unqualifiedNameOf(qualifiedName) in&#xA;if qualification = null then resolveLocal(name)&#xA;else &#xA;    let namespaceMembership : Membership = resolve(qualification) in&#xA;    if namespaceMembership = null or &#xA;       not namespaceMembership.memberElement.oclIsKindOf(Namespace) &#xA;    then null&#xA;    else &#xA;        namespaceMembership.memberElement.oclAsType(Namespace).&#xA;        resolveVisible(name) &#xA;    endif&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="resolveGlobal" ordered="false" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Resolve the given qualified name to the named &lt;code>Membership&lt;/code> (if any) in the effective global &lt;code>Namespace&lt;/code> that is the outermost naming scope. The qualified name string must conform to the concrete syntax of the KerML textual notation.&lt;/p>&#xA;&#xA;No OCL"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="resolveLocal" ordered="false" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Resolve a simple &lt;code>name&lt;/code> starting with this &lt;code>Namespace&lt;/code> as the local scope, and continuing with containing outer scopes as necessary. However, if this &lt;code>Namespace&lt;/code> is a root &lt;code>Namespace&lt;/code>, then the resolution is done directly in global scope.&lt;/p>&#xA;&#xA;if owningNamespace = null then resolveGlobal(name)&#xA;else&#xA;    let memberships : Membership = membership->&#xA;        select(memberShortName = name or memberName = name) in&#xA;    if memberships->notEmpty() then memberships->first()&#xA;    else owningNamspace.resolveLocal(name)&#xA;    endif&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="resolveVisible" ordered="false" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Resolve a simple name from the visible &lt;code>Memberships&lt;/code> of this &lt;code>Namespace&lt;/code>.&lt;/p>&#xA;&#xA;let memberships : Sequence(Membership) =&#xA;    visibleMemberships(Set{}, false, false)->&#xA;    select(memberShortName = name or memberName = name) in&#xA;if memberships->isEmpty() then null&#xA;else memberships->first()&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="qualificationOf" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return a string with valid KerML syntax representing the qualification part of a given &lt;code>qualifiedName&lt;/code>, that is, a qualified name with all the segment names of the given name except the last. If the given &lt;code>qualifiedName&lt;/code> has only one segment, then return null.&lt;/p>&#xA;No OCL"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="unqualifiedNameOf" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the simple name that is the last segment name of the given &lt;code>qualifiedName&lt;/code>. If this segment name has the form of a KerML unrestricted name, then &quot;unescape&quot; it by removing the surrounding single quotes and replacing all escape sequences with the specified character.&lt;/p>&#xA;No OCL"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="membership" upperBound="-1"
@@ -487,6 +503,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Returns Memberships that are to become &lt;code>importedMemberships&lt;/code> of the &lt;code>importOwningNamespace&lt;/code>. (The &lt;code>excluded&lt;/code> parameter is used to handle the possibility of circular Import Relationships.)&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Namespace"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
@@ -685,18 +702,21 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the inherited &lt;code>Memberships&lt;/code> of this &lt;code>Type&lt;/code>, excluding those supertypes in the &lt;code>excluded&lt;/code> set.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Type"/>
     </eOperations>
     <eOperations name="directionOf" ordered="false" eType="#//FeatureDirectionKind">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If the given &lt;code>feature&lt;/code> is a &lt;code>feature&lt;/code> of this &lt;code>Type&lt;/code>, then return its direction relative to this &lt;code>Type&lt;/code>, taking conjugation into account.&lt;/p>&#xA;&#xA;directionOfExcluding(f, Set{})"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="feature" ordered="false" lowerBound="1" eType="#//Feature"/>
     </eOperations>
     <eOperations name="directionOfExcluding" ordered="false" eType="#//FeatureDirectionKind">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the direction of the given &lt;code>feature&lt;/code> relative to this &lt;code>Type&lt;/code>, excluding a given set of &lt;code>Types&lt;/code> from the search of supertypes of this &lt;code>Type&lt;/code>.&lt;/p>&#xA;let excludedSelf : Set(Type) = excluded->including(self) in&#xA;if feature.owningType = self then feature.direction&#xA;else if ownedConjugator &lt;> null then&#xA;    if excludedSelf->includes(ownedConjugator.originalType) then null&#xA;    else&#xA;        let originalDirection: FeatureDirectionKind = &#xA;            ownedConjugator.originalType.directionOfExcluding(feature, excludedSelf) in&#xA;        if originalDirection = FeatureDirectionKind::_'in' then FeatureDirectionKind::out&#xA;        else if originalDirection = FeatureDirectionKind::out then FeatureDirectionKind::_'in'&#xA;        else originalDirection&#xA;        endif endif&#xA;    endif&#xA;else&#xA;    let directions: Sequence(FeatureDirectionKind) = &#xA;        ownedSpecialization.general->&#xA;            excluding(excludedSelf).&#xA;            directionOfExcluding(feature, excludedSelf)->&#xA;            select(d | d &lt;> null) in&#xA;    if directions->isEmpty() then null&#xA;    else directions->at(1)&#xA;    endif&#xA;endif endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="feature" ordered="false" lowerBound="1" eType="#//Feature"/>
       <eParameters name="excluded" ordered="false" upperBound="-1" eType="#//Type"/>
     </eOperations>
@@ -704,17 +724,20 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return all &lt;code>Types&lt;/code> related to this &lt;code>Type&lt;/code> as supertypes directly or transitively by &lt;code>Specialization&lt;/code> &lt;code>Relationships&lt;/code>.&lt;/p>&#xA;&#xA;ownedSpecialization->&#xA;    closure(general.ownedSpecialization).general->&#xA;    including(self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="specializes" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>Type&lt;/code> is a direct or indirect specialization of the given &lt;code>supertype&lt;code>.&lt;/p>&#xA;if isConjugated then &#xA;    ownedConjugator.originalType.specializes(supertype)&#xA;else&#xA;    allSupertypes()->includes(supertype)&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="supertype" ordered="false" lowerBound="1" eType="#//Type"/>
     </eOperations>
     <eOperations name="specializesFromLibrary" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>Type&lt;/code> is a direct or indirect specialization of the named library &lt;code>Type&lt;/code>. &lt;code>libraryTypeName&lt;/code> must conform to the syntax of a KerML qualified name and must resolve to a &lt;code>Type&lt;/code> in global scope.&lt;/p>&#xA;&#xA;let mem : Membership = resolveGlobal(libraryTypeName) in&#xA;mem &lt;> null and mem.memberElement.oclIsKindOf(Type) and&#xA;specializes(mem.memberElement.oclAsType(Type))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="libraryTypeName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSpecialization" upperBound="-1"
@@ -1030,35 +1053,41 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>directionOf&lt;/code> this &lt;code>Feature&lt;/code> relative to the given &lt;code>type&lt;/code>.&lt;/p>&#xA;type.directionOf(self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="type" ordered="false" lowerBound="1" eType="#//Type"/>
     </eOperations>
     <eOperations name="isFeaturedWithin" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return whether this &lt;code>Feature&lt;/code> has the given &lt;code>type&lt;/code> as a direct or indirect &lt;code>featuringType&lt;/code>. If &lt;code>type&lt;/code> is null, then check if this &lt;code>Feature&lt;/code> is explicitly or implicitly featured by &lt;em>&lt;code>Base::Anything&lt;/code>&lt;/em>.&lt;/p>&#xA;if type = null then &#xA;    featuringType->isEmpty() or&#xA;    featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}&#xA;else &#xA;    featuringType->notEmpty() and&#xA;    featuringType->forAll(f | type.specializes(f)))&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="type" ordered="false" eType="#//Type"/>
     </eOperations>
     <eOperations name="namingFeature" ordered="false" eType="#//Feature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>By default, the naming &lt;code>Feature&lt;/code> of a &lt;code>Feature&lt;/code> is given by its first &lt;code>redefinedFeature&lt;/code> of its first &lt;code>ownedRedefinition&lt;/code>, if any.&lt;/p>&#xA;if ownedRedefinition->isEmpty() then&#xA;    null&#xA;else&#xA;    ownedRedefinition->at(1).redefinedFeature&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="redefines" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>Feature&lt;/code> &lt;em>directly&lt;/em> redefines the given &lt;code>redefinedFeature&lt;/code>.&lt;/p>&#xA;ownedRedefinition.redefinedFeature->includes(redefinedFeature)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="redefinedFeature" ordered="false" lowerBound="1" eType="#//Feature"/>
     </eOperations>
     <eOperations name="redefinesFromLibrary" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>Feature&lt;/code> &lt;em>directly&lt;/em> redefines the named library &lt;code>Feature&lt;/code>. &lt;code>libraryFeatureName&lt;/code> must conform to the syntax of a KerML qualified name and must resolve to a &lt;code>Feature&lt;/code> in global scope.&lt;/p>&#xA;let mem: Membership = resolveGlobal(libraryFeatureName) in&#xA;mem &lt;> null and mem.memberElement.oclIsKindOf(Feature) and&#xA;redefines(mem.memberElement.oclAsType(Feature))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="libraryFeatureName" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     </eOperations>
     <eOperations name="subsetsChain" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>Feature&lt;/code> directly or indirectly specializes a &lt;code>Feature&lt;/code> whose last two &lt;code>chainingFeatures&lt;/code> are the given &lt;code>Features&lt;/code> &lt;code>first&lt;/code> and &lt;code>second&lt;/code>.&lt;/p>&#xA;allSuperTypes()->selectAsKind(Feature)->&#xA;    exists(f | let n: Integer = f.chainingFeature->size() in&#xA;        n >= 2 and&#xA;        f.chainingFeature->at(n-1) = first and&#xA;        f.chainingFeature->at(n) = second)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="first" ordered="false" lowerBound="1" eType="#//Feature"/>
       <eParameters name="second" ordered="false" lowerBound="1" eType="#//Feature"/>
     </eOperations>
@@ -1066,6 +1095,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>Features&lt;/code> used to determine the &lt;code>types&lt;/code> of this &lt;code>Feature&lt;/code> (other than this &lt;code>Feature&lt;/code> itself), consisting of all subsetted &lt;code>Features&lt;/code> and the last &lt;code>chainingFeature&lt;/code> (if any), if this &lt;code>Feature&lt;/code> is not conjugated, or its &lt;code>originalType&lt;/code>, if it is conjugated (and the &lt;code>originalType&lt;/code> is a &lt;code>Feature&lt;/code>).&lt;/p>&#xA;if not isConjugated then&#xA;    let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in &#xA;    if chainingFeature->isEmpty() or&#xA;       subsettedFeature->includes(chainingFeature->last())&#xA;    then subsettedFeatures&#xA;    else subsettedFeatures->append(chainingFeature->last())&#xA;    endif&#xA;else if conjugator.originalType.oclIsKindOf(Feature) then&#xA;    OrderedSet{conjugator.originalType.oclAsType(Feature)}&#xA;else OrderedSet{}&#xA;endif endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
         eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedFeature">
@@ -1843,18 +1873,21 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return whether this &lt;code>Expression&lt;/code> is model-level evaluable. The &lt;code>visited&lt;/code> parameter is used to track possible circular &lt;code>Feature&lt;/code> references made from &lt;code>FeatureReferenceExpressions&lt;/code> (see the redefinition of this operation for &lt;code>FeatureReferenceExpression&lt;/code>). Such circular references are not allowed in model-level evaluable expressions.&lt;/p>&#xA;&#xA;&lt;p>An &lt;code>Expression&lt;/code> that is not otherwise specialized is model-level evaluable if it has no (non-implied) &lt;code>ownedSpecializations&lt;/code> and all its &lt;code>ownedFeatures&lt;/code> are either &lt;code>in&lt;/code> parameters, the &lt;code>result&lt;/code> &lt;code>parameter&lt;/code> or a result &lt;code>Expression&lt;/code> owned via a &lt;code>ResultExpressionMembership&lt;/code>. The &lt;code>parameters&lt;/code>  must not have any &lt;code>ownedFeatures&lt;/code> or a &lt;code>FeatureValue&lt;/code>, and the result &lt;code>Expression&lt;/code> must be model-level evaluable.&lt;/p>&#xA;ownedSpecialization->forAll(isImplied) and &#xA;ownedFeature->forAll(f |&#xA;    (directionOf(f) = FeatureDirectionKind::_'in' or f = result) and&#xA;        f.ownedFeature->isEmpty() and f.valuation = null or&#xA;    f.owningFeatureMembership.oclIsKindOf(ResultExpressionMembership) and&#xA;        f.oclAsType(Expression).modelLevelEvaluable(visited)&#xA;    "/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="visited" ordered="false" upperBound="-1" eType="#//Feature"/>
     </eOperations>
     <eOperations name="evaluate" unique="false" upperBound="-1" eType="#//Element">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If this &lt;code>Expression&lt;/code> &lt;code>isModelLevelEvaluable&lt;/code>, then evaluate it using the &lt;code>target&lt;/code> as the context &lt;code>Element&lt;/code> for resolving &lt;code>Feature&lt;/code> names and testing classification. The result is a collection of &lt;code>Elements&lt;/code>, which, for a fully evaluable &lt;code>Expression&lt;/code>, will be a &lt;code>LiteralExpression&lt;/code> or a &lt;code>Feature&lt;/code> that is not an &lt;code>Expression&lt;/code>.&lt;/p>&#xA;isModelLevelEvaluable&#xA;let resultExprs : Sequence(Expression) =&#xA;    ownedFeatureMembership->&#xA;        selectByKind(ResultExpressionMembership).&#xA;        ownedResultExpression in&#xA;if resultExpr->isEmpty() then Sequence{}&#xA;else resultExprs->first().evaluate(target)&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="target" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eOperations name="checkCondition" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Model-level evaluate this &lt;code>Expression&lt;/code> with the given &lt;code>target&lt;/code>. If the result is a &lt;code>LiteralBoolean&lt;/code>, return its &lt;code>value&lt;/code>. Otherwise return &lt;code>false&lt;/code>.&lt;/p>&#xA;&#xA;let results: Sequence(Element) = evaluate(target) in&#xA;    result->size() = 1 and&#xA;    results->first().oclIsKindOf(LiteralBoolean) and &#xA;    results->first().oclAsType(LiteralBoolean).value"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="target" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" ordered="false"
@@ -1991,6 +2024,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Determine whether the given &lt;code>element&lt;/code> meets all the &lt;code>filterConditions&lt;/code>.&lt;/p>&#xA;let metadataFeatures: Sequence(AnnotatingElement) = &#xA;    element.ownedAnnotation.annotatingElement->&#xA;        selectByKind(MetadataFeature) in&#xA;    self.filterCondition->forAll(cond | &#xA;        metadataFeatures->exists(elem | &#xA;            cond.checkCondition(elem)))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filterCondition" upperBound="-1"
@@ -2024,6 +2058,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check whether this &lt;code>MultiplicityRange&lt;/code> represents the range bounded by the given values &lt;code>lower&lt;/code> and &lt;code>upper&lt;/code>, presuming the &lt;code>lowerBound&lt;/code> and &lt;code>upperBound&lt;/code> &lt;code>Expressions&lt;/code> are model-level evaluable.&lt;/p>&#xA;valueOf(upperBound) = upper and&#xA;let lowerValue: UnlimitedNatural = valueOf(lowerBound) in&#xA;(lowerValue = lower or&#xA; lowerValue = null and &#xA;    (lower = upper or &#xA;     lower = 0 and upper = *))&#xA; "/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="lower" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
       <eParameters name="upper" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//UnlimitedNatural"/>
     </eOperations>
@@ -2031,6 +2066,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Evaluate the given &lt;code>bound&lt;/code> &lt;code>Expression&lt;/code> (at model level) and return the result represented as a MOF &lt;code>UnlimitedNatural&lt;/code> value.&lt;/p>&#xA;if bound = null or not bound.isModelLevelEvaluable then &#xA;    null&#xA;else&#xA;    let boundEval: Sequence(Element) = bound.evaluate(owningType) in&#xA;    if boundEval->size() &lt;> 1 then null else&#xA;        let valueEval: Element = boundEval->at(1) in&#xA;        if valueEval.oclIsKindOf(LiteralInfinity) then *&#xA;        else if valueEval.oclIsKindOf(LiteralInteger) then&#xA;            let value : Integer = &#xA;                valueEval.oclAsKindOf(LiteralInteger).value in&#xA;            if value >= 0 then value else null endif&#xA;        else null&#xA;        endif endif&#xA;    endif&#xA;endif "/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="bound" ordered="false" eType="#//Expression"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" ordered="false"
@@ -2076,6 +2112,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the required value of the &lt;code>direction&lt;/code> of the &lt;code>ownedMemberParameter&lt;/code>. By default, this is &lt;code>in&lt;/code>.&lt;/p>&#xA;FeatureDirectionKind::_'in'"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberParameter" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -2166,22 +2203,26 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If the given &lt;code>baseFeature&lt;/code> is a &lt;code>feature&lt;/code> of this &lt;code>MetadataFeature&lt;/code>, or is directly or indirectly redefined by a &lt;code>feature&lt;/code>, then return the result of evaluating the appropriate (model-level evaluable) &lt;code>value&lt;/code> &lt;code>Expression&lt;/code> for it (if any), with the &lt;code>MetadataFeature&lt;/code> as the target.&lt;/p>&#xA;let selectedFeatures : Sequence(Feature) = feature->&#xA;    select(closure(ownedRedefinition.redefinedFeature)->&#xA;           includes(baseFeature)) in&#xA;if selectedFeatures->isEmpty() then null&#xA;else&#xA;    let selectedFeature : Feature = selectedFeatures->first() in&#xA;    let featureValues : FeatureValue = selectedFeature->&#xA;        closure(ownedRedefinition.redefinedFeature).ownedMember->&#xA;        selectAsKind(FeatureValue) in&#xA;    if featureValues->isEmpty() then null&#xA;    else featureValues->first().value.evaluate(self)&#xA;    endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="baseFeature" ordered="false" lowerBound="1" eType="#//Feature"/>
     </eOperations>
     <eOperations name="isSemantic" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>MetadataFeature&lt;/code> has a &lt;code>metaclass&lt;/code> which is a kind of &lt;code>&lt;em>SemanticMetadata&lt;/code>.&lt;p>&#xA;specializesFromLibrary('Metaobjects::SemanticMetadata')"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="isSyntactic" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>MetadataFeature&lt;/code> has a &lt;code>metaclass&lt;/code> that is a kind of &lt;code>&lt;em>KerML::Element&lt;/em>&lt;/code> (that is, it is from the reflective abstract syntax model).&lt;/p>&#xA;specializesFromLibrary('KerML::Element')"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="syntaxElement" ordered="false" eType="#//Element">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>If this &lt;code>MetadataFeature&lt;/code> reflectively represents a model element, then return the corresponding &lt;code>Element&lt;/code> instance from the MOF abstract syntax representation of the model.&lt;/p>&#xA;isSyntactic()&#xA;No OCL"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaclass" ordered="false"
         eType="#//Metaclass" volatile="true" transient="true" derived="true">
@@ -2385,6 +2426,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return a &lt;code>MetadataFeature&lt;/code> whose &lt;code>annotatedElement&lt;/code> is the &lt;code>referencedElement&lt;/code>, whose &lt;code>metaclass&lt;/code> is the reflective &lt;code>Metaclass&lt;/code> corresponding to the MOF class of the &lt;code>referencedElement&lt;/code> and whose &lt;code>ownedFeatures&lt;/code> are bound to the MOF properties of the &lt;code>referencedElement&lt;/code>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" ordered="false"
         lowerBound="1" eType="#//Element">
@@ -2420,6 +2462,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the first &lt;code>ownedFeature&lt;/code> of the first owned input &lt;code>parameter&lt;/code> of this &lt;code>FeatureChainExpression&lt;/code> (if any).&lt;/p>&#xA;let inputParameters : Feature = ownedFeatures->&#xA;    select(direction = _'in') in&#xA;if inputParameters->isEmpty() or &#xA;   inputParameters->first().ownedFeature->isEmpty()&#xA;then null&#xA;else inputParameters->first().ownedFeature->first()&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetFeature" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -2496,6 +2539,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>payloadParameter&lt;/code> of the &lt;code>triggerAction&lt;/code> of this &lt;code>TransitionUsage&lt;/code>, if it has one.&lt;/p>&#xA;if triggerAction->isEmpty() then null&#xA;else triggerAction->first().payloadParameter&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         lowerBound="1" eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2571,23 +2615,27 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the owned input &lt;code>parameters&lt;/code> of this &lt;code>ActionUsage&lt;/code>.&lt;/p>&#xA;input->select(f | f.owner = self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eOperations name="inputParameter" ordered="false" eType="#//Feature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> of the &lt;code>ActionUsage&lt;/code>. Return null if the &lt;code>ActionUsage&lt;/code> has less than &lt;code>i&lt;/code> owned input &lt;code>parameters&lt;/code>.&lt;/p>&#xA;if inputParameters()->size() &lt; i then null&#xA;else inputParameters()->at(i)&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="i" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
     </eOperations>
     <eOperations name="argument" ordered="false" eType="#//Expression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Return the &lt;code>i&lt;/code>-th argument &lt;code>Expression&lt;/code> of an &lt;code>ActionUsage&lt;/code>, defined as the &lt;code>value&lt;/code> &lt;code>Expression&lt;/code> of the &lt;code>FeatureValue&lt;/code> of the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> of the &lt;code>ActionUsage&lt;/code>. Return null if the &lt;code>ActionUsage&lt;/code> has less than &lt;code>i&lt;/code> owned input &lt;code>parameters&lt;/code> or the &lt;code>i&lt;/code>-th owned input &lt;code>parameter&lt;/code> has no &lt;code>FeatureValue&lt;/code>.&lt;/p>&#xA;if inputParameter(i) = null then null&#xA;else&#xA;    let featureValue : Sequence(FeatureValue) = inputParameter(i).&#xA;        ownedMembership->select(oclIsKindOf(FeatureValue)) in&#xA;    if featureValue->isEmpty() then null&#xA;    else featureValue->at(1).value&#xA;    endif&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="i" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
     </eOperations>
     <eOperations name="isSubactionUsage" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>ActionUsage&lt;/code> is composite and has an &lt;code>owningType&lt;/code> that is an &lt;code>ActionDefinition&lt;/code> or &lt;code>ActionUsage&lt;/code> but is &lt;em>not&lt;/em> the &lt;code>entryAction&lt;/code> or &lt;code>exitAction&lt;/em>&lt;/code> of a &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code>. If so, then it represents an &lt;code>&lt;em>Action&lt;/em>&lt;/code> that is a &lt;code>&lt;em>subaction&lt;/em>&lt;/code> of another &lt;code>&lt;em>Action&lt;/em>&lt;/code>.&lt;/p>&#xA;isComposite and owningType &lt;> null and&#xA;(owningType.oclIsKindOf(ActionDefinition) or&#xA; owningType.oclIsKindOf(ActionUsage)) and&#xA;(owningFeatureMembership.oclIsKindOf(StateSubactionMembership) implies&#xA; owningFeatureMembership.oclAsType(StateSubactionMembership).kind = &#xA;    StateSubactionKind::do)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionDefinition" upperBound="-1"
         eType="#//Behavior" volatile="true" transient="true" derived="true">
@@ -3729,6 +3777,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>StateUsage&lt;/code> is composite and has an &lt;code>owningType&lt;/code> that is an &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code> with the given value of &lt;code>isParallel&lt;/code>, but is &lt;em>not&lt;/em> an &lt;code>entryAction&lt;/code> or &lt;code>exitAction&lt;/code>. If so, then it represents a &lt;code>&lt;em>StateAction&lt;/em>&lt;/code> that is a &lt;code>&lt;em>substate&lt;/em>&lt;/code> or &lt;code>&lt;em>exclusiveState&lt;/em>&lt;/code> (for &lt;code>isParallel = false&lt;/code>) of another &lt;code>&lt;em>StateAction&lt;/em>&lt;/code>.&lt;/p>&#xA;owningType &lt;> null and&#xA;(owningType.oclIsKindOf(StateDefinition) and&#xA;    owningType.oclAsType(StateDefinition).isParallel = isParallel or&#xA; owningType.oclIsKindOf(StateUsage) and&#xA;    owningType.oclAsType(StateUsage).isParallel = isParallel) and&#xA;not owningFeatureMembership.oclIsKindOf(StateSubactionMembership)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="isParallel" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateDefinition" upperBound="-1"
@@ -4297,6 +4346,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Determine whether the given &lt;code>element&lt;/code> meets all the owned and inherited &lt;code>viewConditions&lt;/code>.&lt;/p>&#xA;let metadataFeatures: Sequence(AnnotatingElement) = &#xA;    element.ownedAnnotation.annotatingElement->&#xA;        select(oclIsKindOf(MetadataFeature)) in&#xA;self.membership->selectByKind(ElementFilterMembership).&#xA;    condition->forAll(cond | &#xA;        metadataFeatures->exists(elem | &#xA;            cond.checkCondition(elem)))"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="element" ordered="false" lowerBound="1" eType="#//Element"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewDefinition" ordered="false"
@@ -4514,6 +4564,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check if this &lt;code>AcceptActionUsage&lt;/code> is the &lt;code>triggerAction&lt;/code> of a &lt;code>TransitionUsage&lt;/code>.&lt;/p>&#xA;owningType &lt;> null and &#xA;owningType.oclIsKindOf(TransitionUsage) and&#xA;owningType.oclAsType(TransitionUsage).triggerAction->includes(self)"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="receiverArgument" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -4757,6 +4808,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Check that the given &lt;code>Multiplicity&lt;/code> has &lt;code>lowerBound&lt;/code> and &lt;code>upperBound&lt;/code> expressions that are model-level evaluable to the given &lt;code>lower&lt;/code> and &lt;code>upper&lt;/code> values.&lt;/p>&#xA;mult &lt;> null and&#xA;if mult.oclIsKindOf(MultiplicityRange) then&#xA;    mult.oclAsType(MultiplicityRange).hasBounds(lower, upper)&#xA;else&#xA;    mult.allSuperTypes()->exists(&#xA;        oclisKindOf(MultiplicityRange) and&#xA;        oclAsType(MultiplicityRange).hasBounds(lower, upper)&#xA;endif"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="mult" ordered="false" lowerBound="1" eType="#//Multiplicity"/>
       <eParameters name="lower" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Integer"/>
       <eParameters name="upper" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//UnlimitedNatural"/>

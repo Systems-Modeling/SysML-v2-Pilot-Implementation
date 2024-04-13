@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -195,13 +194,6 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 
 	// Additional overrides
 	
-	@Override
-	public Feature namingFeature() {
-		Feature useCaseIncluded = getUseCaseIncluded();
-		return useCaseIncluded != this? useCaseIncluded:
-			super.namingFeature();
-	}
-
 	@Override
 	public boolean isComposite() {
 		return false;

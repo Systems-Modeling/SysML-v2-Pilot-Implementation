@@ -25,14 +25,15 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -41,10 +42,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -52,11 +50,7 @@ import org.omg.sysml.lang.sysml.FeatureInverting;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Conjugation;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -847,6 +841,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_FEATURE_CHAINING_ESUPERSETS = new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP};
+	/**
+	 * The cached invocation delegate for the '{@link #directionFor(org.omg.sysml.lang.sysml.Type) <em>Direction For</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #directionFor(org.omg.sysml.lang.sysml.Type)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate DIRECTION_FOR_TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___DIRECTION_FOR__TYPE).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -899,188 +902,154 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public FeatureDirectionKind directionFor(Type type) {
-		return type.directionOf(this);
+		try {
+			return (FeatureDirectionKind)DIRECTION_FOR_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isFeaturedWithin(org.omg.sysml.lang.sysml.Type) <em>Is Featured Within</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #isFeaturedWithin(org.omg.sysml.lang.sysml.Type)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_FEATURED_WITHIN_TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___IS_FEATURED_WITHIN__TYPE).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean isFeaturedWithin(Type type) {
-		List<Type> featuringTypes = getFeaturingType();
-		// TODO: Fix OCL for isFeaturedWithin
-		if (featuringTypes.isEmpty()) {
-			return true;
-		} else {
-			Type effectiveType = type == null?
-				SysMLLibraryUtil.getLibraryType(this, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)):
-				type;
-			return featuringTypes.stream().allMatch(featuringType->
-				   		TypeUtil.conforms(effectiveType, featuringType));
+		try {
+			return (Boolean)IS_FEATURED_WITHIN_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
 	}
 
-	protected String effectiveName = null;
-	protected String effectiveShortName = null;
-	
 	/**
+	 * The cached invocation delegate for the '{@link #namingFeature() <em>Naming Feature</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #namingFeature()
+	 * @generated
+	 * @ordered
 	 */
-	@Override
-	public String effectiveName() {
-		computeEffectiveNames(new HashSet<Feature>());
-		return effectiveName;
-	}
+	protected static final EOperation.Internal.InvocationDelegate NAMING_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___NAMING_FEATURE).getInvocationDelegate();
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String effectiveShortName() {
-		computeEffectiveNames(new HashSet<Feature>());
-		return effectiveShortName;
-	}
-	
-	public void computeEffectiveNames(Set<Feature> visited) {
-		String declaredName = getDeclaredName();
-		String declaredShortName = getDeclaredShortName();
-		if (declaredName != null || declaredShortName != null) {
-			effectiveName = declaredName;
-			effectiveShortName = declaredShortName;
-		} else if (effectiveName == null && effectiveShortName == null) {
-			visited.add(this);
-			FeatureImpl namingFeature = (FeatureImpl)namingFeature();
-			if (namingFeature != null && !visited.contains(namingFeature)) {
-				namingFeature.computeEffectiveNames(visited);
-				effectiveName = namingFeature.effectiveName;
-				effectiveShortName = namingFeature.effectiveShortName;
-			}
-		}
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature namingFeature() {
-		return firstRedefinedFeature();
+		try {
+			return (Feature)NAMING_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 	
 	/**
+	 * The cached invocation delegate for the '{@link #redefines(org.omg.sysml.lang.sysml.Feature) <em>Redefines</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #redefines(org.omg.sysml.lang.sysml.Feature)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate REDEFINES_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___REDEFINES__FEATURE).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean redefines(Feature redefinedFeature) {
-		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).
-				contains(redefinedFeature);
+		try {
+			return (Boolean)REDEFINES_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{redefinedFeature}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #redefinesFromLibrary(java.lang.String) <em>Redefines From Library</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #redefinesFromLibrary(java.lang.String)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate REDEFINES_FROM_LIBRARY_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___REDEFINES_FROM_LIBRARY__STRING).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean redefinesFromLibrary(String libraryFeatureName) {
-		Membership membership = resolveGlobal(libraryFeatureName);
-		if (membership != null) {
-			Element memberElement = membership.getMemberElement();
-			if (memberElement instanceof Feature) {
-				return redefines((Feature)memberElement);
-			}
+		try {
+			return (Boolean)REDEFINES_FROM_LIBRARY_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{libraryFeatureName}));
 		}
-		return false;
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #subsetsChain(org.omg.sysml.lang.sysml.Feature, org.omg.sysml.lang.sysml.Feature) <em>Subsets Chain</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #subsetsChain(org.omg.sysml.lang.sysml.Feature, org.omg.sysml.lang.sysml.Feature)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate SUBSETS_CHAIN_FEATURE_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___SUBSETS_CHAIN__FEATURE_FEATURE).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public boolean subsetsChain(Feature first, Feature second) {
-		return allSupertypes().stream().
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				anyMatch(feat->{
-					EList<Feature> chainingFeatures = feat.getChainingFeature();
-					int n = chainingFeatures.size();
-					return n >= 2 && 
-						   chainingFeatures.get(n-2) == first && 
-						   chainingFeatures.get(n-1) == second;
-				});
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Feature> typingFeatures() {
-		EList<Feature> typingFeatures = new BasicEList<>();
-		if (!isConjugated()) {
-			// NOTE: Only considers owned Subsettings.
-			FeatureUtil.getSubsettedFeaturesOf(this).stream().
-				forEachOrdered(typingFeatures::add);
-			EList<Feature> chainingFeatures = getChainingFeature();
-			if (!chainingFeatures.isEmpty()) {
-				Feature lastChainingFeature = chainingFeatures.get(chainingFeatures.size() - 1);
-				if (!typingFeatures.contains(lastChainingFeature)) {
-					typingFeatures.add(lastChainingFeature);
-				}
-			}
-		} else {
-			// NOTE: Only considers owned Conjugation.
-			Conjugation conjugator = getOwnedConjugator();
-			if (conjugator != null) {
-				Type originalType = conjugator.getOriginalType();
-				if (originalType instanceof Feature) {
-					typingFeatures.add((Feature)originalType);
-				}
-			}
+		try {
+			return (Boolean)SUBSETS_CHAIN_FEATURE_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{first, second}));
 		}
-		return typingFeatures;
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #typingFeatures() <em>Typing Features</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #typingFeatures()
+	 * @generated
+	 * @ordered
 	 */
-	public Feature firstSubsettedFeature() {
-		return FeatureUtil.getSubsettedNotRedefinedFeaturesOf(this).stream().
-				findFirst().orElse(null);
-	}
-
+	protected static final EOperation.Internal.InvocationDelegate TYPING_FEATURES__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.FEATURE___TYPING_FEATURES).getInvocationDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public Feature firstRedefinedFeature() {
-		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).stream().
-				findFirst().orElse(null);
-	}
-	
-	// Additional overrides
-	
-	@Override
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
-		EList<FeatureChaining> featureChainings = getOwnedFeatureChaining();
-		if (!featureChainings.isEmpty()) {
-			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
-			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(((TypeImpl)chainingFeature).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
-			}
+	@SuppressWarnings("unchecked")
+	public EList<Feature> typingFeatures() {
+		try {
+			return (EList<Feature>)TYPING_FEATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
 	}
 

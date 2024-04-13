@@ -23,15 +23,16 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.LiteralInfinity;
-import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -167,7 +168,6 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @ordered
 	 */
 	protected static final int[] BOUND_ESUBSETS = new int[] {SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND, SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND};
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,6 +176,16 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	public boolean isSetBound() {
 		return !getBound().isEmpty();
 	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #hasBounds(int, int) <em>Has Bounds</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #hasBounds(int, int)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate HAS_BOUNDS_INT_INT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.MULTIPLICITY_RANGE___HAS_BOUNDS__INT_INT).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,42 +213,39 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean hasBounds(int lower, int upper) {
-		if (valueOf(getUpperBound()) != upper) {
-			return false;
-		} else {
-			int lowerValue = valueOf(getLowerBound());
-			return lowerValue == lower ||
-				   lowerValue < -1 &&
-				   		(lower == upper || lower == 0 && upper == -1);
+		try {
+			return (Boolean)HAS_BOUNDS_INT_INT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{lower, upper}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
 		}
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #valueOf(org.omg.sysml.lang.sysml.Expression) <em>Value Of</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #valueOf(org.omg.sysml.lang.sysml.Expression)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate VALUE_OF_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.MULTIPLICITY_RANGE___VALUE_OF__EXPRESSION).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public int valueOf(Expression bound) {
-		if (bound != null && bound.isModelLevelEvaluable()) {
-			EList<Element> boundEval = bound.evaluate(getOwningNamespace());
-			if (boundEval.size() == 1) {
-				Element valueEval = boundEval.get(0);
-				if (valueEval instanceof LiteralInfinity) {
-					// Return -1 to represent "*".
-					return -1;
-				} else if (valueEval instanceof LiteralInteger) {
-					int value = ((LiteralInteger)valueEval).getValue();
-					if (value >= 0) {
-						return value;
-					}
-				}
-			}
+		try {
+			return (Integer)VALUE_OF_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{bound}));
 		}
-		// Return -2 to represent a "null" result.
-		return -2;
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	//

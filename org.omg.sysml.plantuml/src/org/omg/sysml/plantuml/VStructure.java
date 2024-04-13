@@ -140,7 +140,7 @@ public abstract class VStructure extends VDefault {
 
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
-        for (Membership m: f.getOwnedMembership()) {
+        for (Membership m: toOwnedMembershipArray(f)) {
             if (m instanceof FeatureValue) {
                 return appendFeatureValue((FeatureValue) m);
             } else if (m instanceof ResultExpressionMembership) {

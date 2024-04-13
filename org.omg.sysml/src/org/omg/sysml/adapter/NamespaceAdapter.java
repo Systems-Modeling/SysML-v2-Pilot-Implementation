@@ -21,13 +21,23 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class NamespaceAdapter extends ElementAdapter {
-
-	private EList<Membership> importedMembership = null;
 
 	public NamespaceAdapter(Namespace element) {
 		super(element);
@@ -37,6 +47,49 @@ public class NamespaceAdapter extends ElementAdapter {
 		return (Namespace)super.getTarget();
 	}
 	
+	// Additional operations
+	
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+		Namespace target = getTarget();
+		EList<Membership> importedMembership = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject)target, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
+		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
+		if (!excludedNamespaces.contains(target)) {
+			for (Import _import: target.getOwnedImport()) {
+				NamespaceUtil.importMembershipsFor(_import, importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
+			}
+		}
+		if (!includeAll) {
+			importedMembership.removeAll(nonpublicMembership);
+		}
+		return importedMembership;
+	}
+	
+	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+		Namespace target = getTarget();
+		EList<Membership> visibleMembership;
+		if (includeAll) {
+			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
+			visibleMembership.addAll(target.getOwnedMembership());
+		} else {
+			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
+		}
+		visibleMembership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
+		return visibleMembership;
+	}
+
+	public EList<Membership> getVisibleOwnedMembership(VisibilityKind visibility) {
+		Namespace target = getTarget();
+		EList<Membership> publicMembership = new BasicInternalEList<Membership>(Membership.class);
+		publicMembership.addAll(target.getOwnedMembership().stream().
+				filter(membership->visibility.equals(membership.getVisibility())).collect(Collectors.toList()));
+		return publicMembership;
+	}
+		
+	// Caching
+	
+	private EList<Membership> importedMembership = null;
+
 	public EList<Membership> getImportedMembership() {
 		return importedMembership;
 	}
@@ -46,8 +99,20 @@ public class NamespaceAdapter extends ElementAdapter {
 		return importedMembership;
 	}
 	
+	@Override
 	public void clearCaches() {
 		importedMembership = null;
+	}
+	
+	// Transformation
+	
+	public void addAdditionalMembers() {
+	}
+	
+	@Override
+	public void doTransform() {
+		addAdditionalMembers();
+		super.doTransform();
 	}
 	
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -74,6 +75,8 @@ public class SysML2PlantUMLText {
         Swimlane,
         MIXED;
     }
+
+    private static final int MAX_VISITS = 1000;
 
     private final List<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private final Map<String, String> styleValueMap = new HashMap<String, String>();
@@ -258,11 +261,16 @@ public class SysML2PlantUMLText {
     }
 
     private static void appendVariation(StringBuilder sb, Type typ) {
-        if (!(typ instanceof Usage)) return;
-        Usage u = (Usage) typ;
-        if (u.isVariation()) {
-            sb.append(" <<variation>>\\n");
+        if (typ instanceof Usage) {
+            Usage u = (Usage) typ;
+            if (!u.isVariation()) return;
+        } else if (typ instanceof Definition) {
+            Definition d = (Definition) typ;
+            if (!d.isVariation()) return;
+        } else {
+            return;
         }
+        sb.append(" <<variation>>\\n");
     }
 
     private String addStereotypeStyle(StringBuilder sb, Type typ) {
@@ -472,6 +480,7 @@ public class SysML2PlantUMLText {
         
         init();
 
+        numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
@@ -479,6 +488,8 @@ public class SysML2PlantUMLText {
             }
         }
         vpath.init();
+
+        numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
@@ -603,8 +614,13 @@ public class SysML2PlantUMLText {
     private List<Namespace> namespaces;
     private List<Integer> inheritingIdices;
 
-    
+    private int numVisits;
+    void countVisits() {
+        numVisits++;
+    }
+
     boolean pushNamespace(Namespace ns) {
+        if (numVisits > MAX_VISITS) return false;
         if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
         return true;
@@ -686,12 +702,12 @@ public class SysML2PlantUMLText {
         return evalInternal(ex, evalTarget);
     }
 
-    InheritKey makeInheritKey(Feature ref) {
-        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    InheritKey makeInheritKey(Feature tgt) {
+        return InheritKey.construct(namespaces, inheritingIdices, tgt);
     }
 
-    InheritKey makeInheritKey(Membership ref) {
-        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    InheritKey makeInheritKey(Membership tgt) {
+        return InheritKey.construct(namespaces, inheritingIdices, tgt);
     }
 
     boolean matchCurrentInheritings(InheritKey ik) {

@@ -59,7 +59,7 @@ class InheritKey {
 
     private static List<Feature> belongingFeatures(Type typ) {
         List<Feature> fs = new ArrayList<>();
-        for (Relationship rel : typ.getOwnedRelationship()) {
+        for (Relationship rel : Visitor.toOwnedRelationshipArray(typ)) {
             if (rel instanceof FeatureMembership
                 || rel instanceof FeatureValue) {
                 for (Element tgt: rel.getTarget()) {
@@ -162,11 +162,36 @@ class InheritKey {
         this.isDirect = isDirect;
     }
 
+    private InheritKey(InheritKey base, int len) {
+        this.keys = new Type[len];
+        this.isDirect = base.isDirect;
+        System.arraycopy(base.keys, 0, keys, 0, len);
+    }
+
+    public static InheritKey makeTargetKey(Type tgt, Feature ref) {
+        if (isBelonging(tgt, ref)) {
+            return new InheritKey(tgt);
+        }
+        return null;
+    }
+
     // Create an indirect InheritKey so that redefined elements can be referred by
     // inherited connectors
     public static InheritKey makeIndirect(InheritKey ik) {
     	if (ik == null) return null;
         return new InheritKey(ik, false);
+    }
+
+    public static InheritKey findTop(InheritKey ik, Feature f) {
+    	if (ik == null) return null;
+        int end = ik.keys.length - 1;
+        for (int i = end; i >= 0; i--) {
+            if (isBelonging(ik.keys[i], f)) {
+                if (i == end) return ik;
+                return new InheritKey(ik, i + 1);
+            }
+        }
+        return null;
     }
 
     @Override

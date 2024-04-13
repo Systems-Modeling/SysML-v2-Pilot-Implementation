@@ -243,22 +243,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
   		return false;
 	}
 
-	// Operation overrides
-	
-	@Override
-	public String effectiveName() {
-		PortDefinition originalPortDefinition = getOriginalPortDefinition();
-		if (originalPortDefinition != null) {
-			String name = originalPortDefinition.getName();
-			if (name != null) {
-				return "~" + name;
-			}
-		}
-		return null;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

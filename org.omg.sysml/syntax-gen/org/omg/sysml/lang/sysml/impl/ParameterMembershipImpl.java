@@ -23,8 +23,11 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -109,12 +112,27 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #parameterDirection() <em>Parameter Direction</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @see #parameterDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PARAMETER_DIRECTION__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.PARAMETER_MEMBERSHIP___PARAMETER_DIRECTION).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public FeatureDirectionKind parameterDirection() {
-		return FeatureDirectionKind.IN;
+		try {
+			return (FeatureDirectionKind)PARAMETER_DIRECTION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**

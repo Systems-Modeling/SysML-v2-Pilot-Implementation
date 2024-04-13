@@ -131,11 +131,23 @@ public abstract class VBehavior extends VDefault {
         return true;
     }
 
+    private static boolean appendNameAndType(StringBuilder sb, Feature f, String defaultName) {
+        if (f == null) return false;
+        String name = getName(f);
+
+        boolean flag = false;
+        if (name != null) {
+            if (defaultName == null || !name.equals(defaultName)) {
+                sb.append(name);
+                flag = true;
+            }
+        }
+        return appendFeatureType(sb, ": ", f) || flag;
+    }
+
     private boolean addSendActionUsage(SendActionUsage sau) {
         StringBuilder text = new StringBuilder();
-        String name = getName(sau);
-        if (name != null) {
-            text.append(name);
+        if (appendNameAndType(text, sau, null)) {
             text.append("\\n");
         }
 
@@ -170,9 +182,8 @@ public abstract class VBehavior extends VDefault {
 
     private boolean addAcceptActionUsage(AcceptActionUsage aau) {
         StringBuilder text = new StringBuilder();
-        String name = getName(aau);
-        if (name != null) {
-            text.append(name);
+        if (appendNameAndType(text, aau, null)) {
+            text.append("\\n");
         }
 
         Expression payload = aau.getPayloadArgument();
@@ -180,15 +191,7 @@ public abstract class VBehavior extends VDefault {
             text.append(getText(payload));
         } else {
             ReferenceUsage ru = aau.getPayloadParameter();
-            if (ru != null) {
-                String payloadName = getName(ru);
-                if (payloadName == null || "payload".equals(payloadName)) {
-                    payloadName = ":";
-                } else {
-                    payloadName += ": ";
-                }
-                appendFeatureType(text, payloadName, ru);
-            }
+            appendNameAndType(text, ru, "payload");
         }
 
         Expression receiver = aau.getReceiverArgument();

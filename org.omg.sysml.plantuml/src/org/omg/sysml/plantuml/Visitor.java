@@ -243,6 +243,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     private String quote0Str(String s) {
+        if (s.indexOf('\n') >= 0) {
+            // Replace nonsafe NL to "\n"
+            s = s.replace("\n", "\\n");
+        }
         if (s.indexOf('"') >= 0) {
             // Replace nonsafe " to ''
             return s.replace("\"", "''");

@@ -681,12 +681,12 @@ public class SysML2PlantUMLText {
         return evalInternal(ex, evalTarget);
     }
 
-    InheritKey makeInheritKey(Feature ref) {
-        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    InheritKey makeInheritKey(Feature tgt) {
+        return InheritKey.construct(namespaces, inheritingIdices, tgt);
     }
 
-    InheritKey makeInheritKey(Membership ref) {
-        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    InheritKey makeInheritKey(Membership tgt) {
+        return InheritKey.construct(namespaces, inheritingIdices, tgt);
     }
 
     boolean matchCurrentInheritings(InheritKey ik) {

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,14 +35,15 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VActionMembers extends VBehavior {
 
-    private void addNode(Feature f, String type) {
+    private int addNode(Feature f, String type) {
         String name = getNameAnyway(f);
         append(type);
         append(' ');
-        addNameWithId(f, name, true);
+        int id = addNameWithId(f, name, true);
         append(' ');
         addLink(f);
         append('\n');
+        return id;
     }
 
     public String caseFeature(Feature f) {
@@ -51,22 +52,24 @@ public class VActionMembers extends VBehavior {
             VSSRMembers vs = new VSSRMembers(this);
             return vs.start(f);
         }
-        addFeatureValueBindings(f);
         FeatureDirectionKind fdk = f.getDirection();
         if (fdk == null) return null;
+        String nodeKind;
         switch (fdk) {
         case IN:
-            addNode(f, "portin");
+            nodeKind = "portin";
             break;
         case OUT:
-            addNode(f, "portout");
+            nodeKind = "portout";
             break;
         case INOUT:
-            addNode(f, "port");
+            nodeKind = "port";
             break;
         default:
             return null;
         }
+        int id = addNode(f, nodeKind);
+        addFeatureValueBindings(id, f);
         return "";
     }
 

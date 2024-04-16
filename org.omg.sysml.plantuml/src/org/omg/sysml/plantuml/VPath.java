@@ -223,6 +223,33 @@ public class VPath extends VTraverser {
         	super(tgt);
         	this.f = f;
         }
+
+        protected PCFeature(PCFeature pc) {
+            super(pc);
+            this.f = pc.f;
+        }
+    }
+
+    private class PCFeatureTop extends PCFeature {
+        @Override
+        public PC enter(Namespace ns) {
+            return this;
+        }
+
+        @Override
+        public Element requiredElement() {
+            // no target inherit.
+            return null;
+        }
+
+        @Override
+        public PC leave() {
+            return this;
+        }
+
+        public PCFeatureTop(PCFeature pc) {
+            super(pc);
+        }
     }
 
     private class PCFeatureChain extends PC {
@@ -287,17 +314,32 @@ public class VPath extends VTraverser {
         }
     }
 
-    /* It makes an inherit key of the feature owning feature
-       (such as connector and subsetting feature) */
-    private InheritKey makeInheritKeyOfOwner(Feature f) {
-        Type owningType = f.getOwningType();
-        if (owningType instanceof Feature) {
-            return makeInheritKey((Feature) owningType);
-        } else {
-            /* non-feature types cannot be inherited and it returns null */
-            return null;
+    // Make an InheritKey for ref, which is either a connector end or FeatureReferenceExpression or FeatureChainExpression.
+    // These are (indirectly) owned by the innermost feature, which effectively determines the target scope.
+    private InheritKey makeInheritKeyForReferer(PC pc) {
+    	if (pc == null) return null;
+        Element e = pc.getTarget();
+        if (!(e instanceof Feature)) return null;
+        Feature ref = (Feature) e;
+
+        Namespace ns = getCurrentNamespace();
+        if (ns instanceof Feature) {
+            Feature tgt = (Feature) ns;
+            InheritKey ik = makeInheritKey(tgt);
+            if (ik != null) {
+                // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
+                ik = InheritKey.makeIndirect(ik);
+                return InheritKey.findTop(ik, ref);
+            }
         }
+        if (ns instanceof Type) {
+            // In case that tgt inherits ref, we need to make an InheritKey for tgt.
+            Type tgt = (Type) ns;
+            return InheritKey.makeTargetKey(tgt, ref);
+        }
+        return null;
     }
+
 
     /*
       ife : ItemFlowEnd :> baseTarget (e.g. action) {
@@ -417,7 +459,11 @@ public class VPath extends VTraverser {
 
         RefPC(PC pc, InheritKey ik) {
             if (ik == null) {
-                this.pc = pc;
+                if (pc instanceof PCFeature) {
+                    this.pc = new PCFeatureTop((PCFeature) pc);
+                } else {
+                    this.pc = pc;
+                }
             } else {
                 this.pc = new PCInheritKey(ik, pc);
             }
@@ -484,9 +530,8 @@ public class VPath extends VTraverser {
             return addContextForItemFlowEnd((ItemFlowEnd) f);
         }
         PC pc = makeEndFeaturePC(f);
-        InheritKey ik = makeInheritKeyOfOwner(f);
-        // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
-        if (createRefPC(InheritKey.makeIndirect(ik), pc) == null) return null;
+        InheritKey ik = makeInheritKeyForReferer(pc);
+        if (createRefPC(ik, pc) == null) return null;
         return "";
     }
 
@@ -502,15 +547,14 @@ public class VPath extends VTraverser {
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
-        InheritKey ik = makeInheritKeyOfOwner(ife);
-        // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
-        if (createRefPC(InheritKey.makeIndirect(ik), pc) == null) return null;
+        InheritKey ik = makeInheritKeyForReferer(pc);
+        if (createRefPC(ik, pc) == null) return null;
         return "";
     }
 
     private String addContextForFeatureChainExpression(FeatureChainExpression fce) {
-        InheritKey ik = makeInheritKey(fce);
         PC pc = new PCFeatureChainExpression(fce);
+        InheritKey ik = makeInheritKeyForReferer(pc);
         createRefPC(ik, pc);
         return "";
     }
@@ -518,8 +562,8 @@ public class VPath extends VTraverser {
     private String addContextForFeatureReferenceExpression(FeatureReferenceExpression fre) {
         Feature f = fre.getReferent();
         if (f == null) return "";
-        InheritKey ik = makeInheritKey(fre);
         PC pc = new PCFeature(fre, f);
+        InheritKey ik = makeInheritKeyForReferer(pc);
         createRefPC(ik, pc);
         return "";
     }

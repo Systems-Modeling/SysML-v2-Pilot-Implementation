@@ -94,7 +94,7 @@ public class VDefault extends VTraverser {
         return sb.toString();        
     }
 
-    protected void addFeatureValueBindings(Type typ) {
+    protected void addFeatureValueBindings(int typId, Type typ) {
         // To properly process inheritings, use VTraverser.
         VTraverser vt = new VTraverser(this) {
             @Override
@@ -102,7 +102,9 @@ public class VDefault extends VTraverser {
                 Expression v = fv.getValue();
                 Element tgt = resolveReference(v);
                 if (tgt != null) {
-                    addPRelation(typ, tgt, fv, "=");
+                	InheritKey ik = makeInheritKey((Feature) typ);
+                    PRelation pr = new PRelation(ik, typId, tgt, fv, "=");
+                    addPRelation(pr);
                 }
                 return "";
             }
@@ -176,8 +178,8 @@ public class VDefault extends VTraverser {
             // return resolvePathStepExpression((PathStepExpression) f, null);
             return f;
         } else if (f instanceof FeatureReferenceExpression) {
-            FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
-            return fre.getReferent();
+            //FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
+            return f;
         } else if (!f.getOwnedFeatureChaining().isEmpty()) {
             return f;
         }

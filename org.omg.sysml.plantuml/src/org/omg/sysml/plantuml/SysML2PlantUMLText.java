@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -258,11 +259,16 @@ public class SysML2PlantUMLText {
     }
 
     private static void appendVariation(StringBuilder sb, Type typ) {
-        if (!(typ instanceof Usage)) return;
-        Usage u = (Usage) typ;
-        if (u.isVariation()) {
-            sb.append(" <<variation>>\\n");
+        if (typ instanceof Usage) {
+            Usage u = (Usage) typ;
+            if (!u.isVariation()) return;
+        } else if (typ instanceof Definition) {
+            Definition d = (Definition) typ;
+            if (!d.isVariation()) return;
+        } else {
+            return;
         }
+        sb.append(" <<variation>>\\n");
     }
 
     private String addStereotypeStyle(StringBuilder sb, Type typ) {

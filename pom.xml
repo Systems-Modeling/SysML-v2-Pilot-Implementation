@@ -32,7 +32,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.omg.sysml</groupId>
   <artifactId>org.omg.sysml.parent</artifactId>
-  <version>3.9.0</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
 
   <modules>

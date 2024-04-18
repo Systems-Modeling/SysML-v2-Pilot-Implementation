@@ -5,8 +5,8 @@ Bundle-SymbolicName: org.omg.kerml.xpect.tests;singleton:=true
 Bundle-Vendor: SysML v2 Submission Team
 Bundle-Version: 0.40.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.xpect.xtext.lib;bundle-version="[0.2.0,0.3.0)",
- org.eclipse.xpect.xtext.xbase.lib;bundle-version="[0.2.0,0.3.0)",
+ org.eclipse.xpect.xtext.lib;bundle-version="0.3.0",
+ org.eclipse.xpect.xtext.xbase.lib;bundle-version="0.3.0",
  org.eclipse.emf.codegen;bundle-version="2.6.0",
  org.eclipse.xtext.xbase;bundle-version="2.9.2",
  org.eclipse.xtext.ui.shared;bundle-version="2.14.0",

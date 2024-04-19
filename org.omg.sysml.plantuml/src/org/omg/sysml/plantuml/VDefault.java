@@ -52,7 +52,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;

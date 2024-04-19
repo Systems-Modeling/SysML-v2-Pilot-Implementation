@@ -25,7 +25,6 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,7 +34,6 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;

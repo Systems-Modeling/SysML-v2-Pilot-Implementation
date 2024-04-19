@@ -253,7 +253,7 @@ class InheritKey {
         return matchRedefined(f, ft, new HashSet<Feature>());
     }
 
-    public static boolean matchElement(Element e, Element et) {
+    public static boolean matchElementWithRedefined(Element e, Element et) {
         if (e.equals(et)) return true;
         if ((e instanceof Feature) && (et instanceof Feature)) {
             return matchRedefined((Feature) e, (Feature) et);
@@ -277,14 +277,14 @@ class InheritKey {
             for (int i = 0; i < iSize; i++) {
                 int idx = inheritIdices.get(i);
                 Namespace ns = ctx.get(idx);
-                if (!matchElement(ns, ik.keys[i])) return false;
+                if (!matchElementWithRedefined(ns, ik.keys[i])) return false;
             }
             if (diff == 0) return true;
 
             // diff must be 1
             if (ik.isDirect) return false;
             // case ^ow)
-            return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
+            return matchElementWithRedefined(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
         }
     }
 

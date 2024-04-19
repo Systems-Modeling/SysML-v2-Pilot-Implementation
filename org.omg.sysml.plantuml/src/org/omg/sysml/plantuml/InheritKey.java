@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 
 /* InheritKey identifies a feature or a membership with the context of inheriting.
@@ -238,19 +239,9 @@ class InheritKey {
         return constructInternal(ctx, inheritIdices, idx);
     }
 
-    private static boolean matchRedefined(Feature f, Feature ft, Set<Feature> visited) {
-        if (visited.contains(f)) return false;
-        visited.add(f);
-        for (Redefinition rd: f.getOwnedRedefinition()) {
-            Feature rf = rd.getRedefinedFeature();
-            if (ft.equals(rf)) return true;
-            return matchRedefined(rf, ft, visited);
-        }
-        return false;
-    }
-
     private static boolean matchRedefined(Feature f, Feature ft) {
-        return matchRedefined(f, ft, new HashSet<Feature>());
+        Set<Feature> redefs = FeatureUtil.getAllRedefinedFeaturesOf(f);
+        return redefs.contains(ft);
     }
 
     public static boolean matchElementWithRedefined(Element e, Element et) {

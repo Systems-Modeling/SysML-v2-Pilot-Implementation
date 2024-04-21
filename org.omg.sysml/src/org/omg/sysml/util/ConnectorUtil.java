@@ -95,8 +95,7 @@ public class ConnectorUtil {
 	// Related Features
 
     public static Feature getRelatedFeatureOfEnd(Feature end) {
-        ElementUtil.transform(end);
-        return FeatureUtil.getReferencedFeatureOf(end);
+    	return FeatureUtil.getReferencedFeatureOf(end);
 	}
 	
 	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {

@@ -25,7 +25,6 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,9 +34,9 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 
 /* InheritKey identifies a feature or a membership with the context of inheriting.
@@ -238,22 +237,12 @@ class InheritKey {
         return constructInternal(ctx, inheritIdices, idx);
     }
 
-    private static boolean matchRedefined(Feature f, Feature ft, Set<Feature> visited) {
-        if (visited.contains(f)) return false;
-        visited.add(f);
-        for (Redefinition rd: f.getOwnedRedefinition()) {
-            Feature rf = rd.getRedefinedFeature();
-            if (ft.equals(rf)) return true;
-            return matchRedefined(rf, ft, visited);
-        }
-        return false;
-    }
-
     private static boolean matchRedefined(Feature f, Feature ft) {
-        return matchRedefined(f, ft, new HashSet<Feature>());
+        Set<Feature> redefs = FeatureUtil.getAllRedefinedFeaturesOf(f);
+        return redefs.contains(ft);
     }
 
-    public static boolean matchElement(Element e, Element et) {
+    public static boolean matchElementWithRedefined(Element e, Element et) {
         if (e.equals(et)) return true;
         if ((e instanceof Feature) && (et instanceof Feature)) {
             return matchRedefined((Feature) e, (Feature) et);
@@ -277,14 +266,14 @@ class InheritKey {
             for (int i = 0; i < iSize; i++) {
                 int idx = inheritIdices.get(i);
                 Namespace ns = ctx.get(idx);
-                if (!matchElement(ns, ik.keys[i])) return false;
+                if (!matchElementWithRedefined(ns, ik.keys[i])) return false;
             }
             if (diff == 0) return true;
 
             // diff must be 1
             if (ik.isDirect) return false;
             // case ^ow)
-            return matchElement(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
+            return matchElementWithRedefined(ctx.get(ctxSize - 1), ik.keys[kLen - 1]);
         }
     }
 

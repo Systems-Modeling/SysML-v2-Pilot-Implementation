@@ -15,13 +15,10 @@ import com.google.inject.Binder
 import com.google.inject.name.Names
 import org.eclipse.xtext.validation.CompositeEValidator
 import org.omg.kerml.xtext.scoping.KerMLLinker
-import org.eclipse.xtext.resource.DerivedStateAwareResource
-import org.eclipse.xtext.resource.XtextResource
-import org.eclipse.xtext.resource.IDerivedStateComputer
-import org.eclipse.xtext.resource.IResourceDescription
-import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager
-import org.eclipse.xtext.xbase.annotations.validation.DerivedStateAwareResourceValidator
 import org.eclipse.xtext.validation.IResourceValidator
+import org.omg.kerml.xtext.validation.KerMLResourceValidator
+import org.eclipse.xtext.resource.XtextResource
+import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -52,19 +49,12 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
 	}
 	
-	override Class<? extends XtextResource> bindXtextResource() {
-		DerivedStateAwareResource
-	}
-	
 	def Class<? extends IResourceValidator> bindIResourceValidator() {
-		DerivedStateAwareResourceValidator
+		KerMLResourceValidator
 	}
 	
-	def Class<? extends IResourceDescription.Manager> bindIDefaultResourceDescriptionStrategyManager() {
-		DerivedStateAwareResourceDescriptionManager
+	override Class<? extends XtextResource> bindXtextResource() {
+		KerMLLazyLinkingResource
 	}
-
-	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-		KerMLDerivedStateComputer
-	}
+	
 }

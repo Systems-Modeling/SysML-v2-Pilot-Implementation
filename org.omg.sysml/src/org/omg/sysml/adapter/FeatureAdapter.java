@@ -175,9 +175,30 @@ public class FeatureAdapter extends TypeAdapter {
 		return endOwningType instanceof Association || endOwningType instanceof Connector; 
 	}
 	
+	protected Feature getBoundValueResult() {
+		Feature target = getTarget();
+		FeatureValue valuation = FeatureUtil.getValuationFor(target);
+		if (valuation != null && !valuation.isDefault()) {
+			Expression value = valuation.getValue();
+			if (value != null) {
+				ElementUtil.transform(value);
+				Feature result = value.getResult();
+				return result;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
+		
+		Feature target = getTarget();
+		Feature result = getBoundValueResult();
+		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+		}
+		
 		if (isAssociationEnd() && 
 				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
 			addDefaultGeneralType("participant");
@@ -512,25 +533,17 @@ public class FeatureAdapter extends TypeAdapter {
 
 	protected void computeValueConnector() {
 		Feature target = getTarget();
-		FeatureValue valuation = FeatureUtil.getValuationFor(target);
-		if (valuation != null && !valuation.isDefault()) {
-			Expression value = valuation.getValue();
-			if (value != null) {
-				ElementUtil.transform(value);
-				Feature result = value.getResult();
-				if (target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
-				}
-				List<Type> featuringTypes;
-				if (valuation.isInitial()) {
-					Feature that = (Feature)getLibraryType("Base::things::that");
-					Feature startShot = (Feature)getLibraryType("Occurrences::Occurrence::startShot");
-					featuringTypes = Collections.singletonList(FeatureUtil.chainFeatures(that, startShot));
-				} else {
-					featuringTypes = target.getFeaturingType();
-				}
-				addBindingConnector(featuringTypes, result, target);
+		Feature result = getBoundValueResult();
+		if (result != null) {
+			List<Type> featuringTypes;
+			if (FeatureUtil.getValuationFor(target).isInitial()) {
+				Feature that = (Feature)getLibraryType("Base::things::that");
+				Feature startShot = (Feature)getLibraryType("Occurrences::Occurrence::startShot");
+				featuringTypes = Collections.singletonList(FeatureUtil.chainFeatures(that, startShot));
+			} else {
+				featuringTypes = target.getFeaturingType();
 			}
+			addBindingConnector(featuringTypes, result, target);
 		}
 	}
 	

@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.omg.sysml</groupId>
     <artifactId>org.omg.sysml.parent</artifactId>
-    <version>3.9.0</version>
+     <version>${revision}</version>
   </parent>
   <artifactId>org.omg.sysml.target</artifactId>
   <packaging>eclipse-target-definition</packaging>

@@ -40,8 +40,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberShortName <em>Member Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
@@ -196,7 +196,7 @@ public interface Membership extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Namespace</code> of which the <code>memberElement</code> becomes a <cpde>member due to this <code>Membership</code>.</cpde></p>
+	 * <p>The <code>Namespace</code> of which the <code>memberElement</code> becomes a <code>member</code> due to this <code>Membership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership Owning Namespace</em>' reference.

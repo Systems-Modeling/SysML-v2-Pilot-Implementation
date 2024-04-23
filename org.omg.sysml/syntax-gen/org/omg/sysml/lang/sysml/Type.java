@@ -81,9 +81,9 @@ import org.eclipse.emf.common.util.EList;
  * ownedEndFeature = ownedFeature->select(isEnd)
  * inheritedFeature = inheritedMemberships->
  *     selectByKind(FeatureMembership).memberFeature
+ * ownedDifferencing->size() <> 1
  * ownedUnioning->size() <> 1
  * ownedIntersecting->size() <> 1
- * ownedDifferencing->size() <> 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -92,14 +92,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -108,12 +108,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getUnioningType <em>Unioning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedIntersecting <em>Owned Intersecting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getIntersectingType <em>Intersecting Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedUnioning <em>Owned Unioning</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedUnioning <em>Owned Unioning</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -324,7 +324,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>in<code> or <code>inout<code>.</code></code></code></code></p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>in</code> or <code>inout</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Input</em>' reference list.
@@ -353,7 +353,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>out<code> or <code>inout<code>.</code></code></code></code></p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>out</code> or <code>inout</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Output</em>' reference list.
@@ -665,9 +665,6 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</code>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
-	 * 
-	 * <p>&nbsp;</p>
-	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)

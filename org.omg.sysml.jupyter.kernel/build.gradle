@@ -1,14 +1,20 @@
 plugins {
     id 'java'
-    id 'io.github.spencerpark.jupyter-kernel-installer' version '2.1.0'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
-    id 'com.github.jk1.dependency-license-report' version '1.14'
+    id 'io.github.spencerpark.jupyter-kernel-installer' //version '3.0.0-SNAPSHOT'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.github.jk1.dependency-license-report' version '2.7'
 }
 
-sourceCompatibility = 1.8
+//apply plugin: 'io.github.spencerpark.jupyter-kernel-installer'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 wrapper {
-    gradleVersion = '4.10.3'
+    gradleVersion = '8.0.0'
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -20,8 +26,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
-    compile group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
+    //needed for building the kernel
+    implementation group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
+    implementation group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
 }
 
 licenseReport {
@@ -34,13 +41,7 @@ jupyter {
     kernelLanguage = 'sysml'
     kernelInterruptMode = 'message'
     kernelExecutable = shadowJar.archivePath
-    kernelResources = files(
-            'src/main/resources/kernel/',
-            fileTree('../') {
-                include 'sysml.library/**'
-                exclude '**/.*'
-            }
-    )
+    kernelResources = files('src/main/resources/kernel/', fileTree('../') { include 'sysml.library/**' })
 
     kernelParameters {
         list('library-path', 'ISYSML_LIBRARY_PATH') {
@@ -66,23 +67,21 @@ artifacts {
     archives shadowJar
 }
 
+generateKernelJson.dependsOn shadowJar
 zipKernel.dependsOn shadowJar
 installKernel.dependsOn shadowJar
 
-installKernel {
-    kernelInstallPath = commandLineSpecifiedPath(userInstallPath)
+installKernel{
+    kernelInstallPath = commandLineSpecifiedPathOr(userInstallPath)
 }
+
 
 zipKernel {
     from('src/main/resources/installer/') {
         into '/'
     }
-    from('../') {
-        include "LICENSE*"
-        into '/'
-    }
     from(generateLicenseReport.outputFolder) {
-        into '/dependency-licenses/'
+        into 'dependency-licenses'
     }
 }
 zipKernel.dependsOn 'generateLicenseReport'

@@ -7,13 +7,12 @@
     <revision>0.40.0-SNAPSHOT</revision>
     <tycho-version>4.0.7</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>https://download.eclipse.org/releases/2022-09</eclipse-repository>
-    <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
-    <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
+    <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     <maven-jar-plugin.version>3.4.0</maven-jar-plugin.version>
-    <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+    <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+    <exec-maven-plugin.version>3.2.0</exec-maven-plugin.version>
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <build-helper-maven-plugin.version>3.5.0</build-helper-maven-plugin.version>
     <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
@@ -51,9 +50,9 @@
     <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.interactive.tests</module>
-    <!-- <module>org.omg.sysml.jupyter.kernel</module>
+    <module>org.omg.sysml.jupyter.kernel</module>
     <module>org.omg.sysml.jupyter.jupyterlab</module>
-    <module>org.omg.sysml.jupyter.installer</module>-->
+    <module>org.omg.sysml.jupyter.installer</module>
     <module>org.omg.sysml.feature</module>
     <module>org.omg.sysml.editor.feature</module>
     <module>org.omg.sysml.plantuml</module>
@@ -308,7 +307,22 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-
+		<!-- 
+			From version 3.0 maven install plugin seems to be more strict about subproject outputs.
+			This is a workaround to solve the error:
+			The packaging for this project did not assign a file to the build artifact...
+			in the jupyter-sysml-kernel project.
+			Related topic:
+			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
+		-->
+		<plugin>
+			<artifactId>maven-install-plugin</artifactId>
+			<groupId>org.apache.maven.plugins</groupId>
+			<version>${maven-install-plugin.version}</version>
+			<configuration>
+				<allowIncompleteProjects>true</allowIncompleteProjects>
+			</configuration>
+		</plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>

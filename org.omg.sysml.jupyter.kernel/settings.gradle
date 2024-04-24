@@ -1,2 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        flatDir {
+            dirs 'lib'
+        }
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2'
+        classpath fileTree(include: ['*.jar'], dir: 'lib')
+    }
+}
+
 rootProject.name = 'jupyter-sysml-kernel'
 

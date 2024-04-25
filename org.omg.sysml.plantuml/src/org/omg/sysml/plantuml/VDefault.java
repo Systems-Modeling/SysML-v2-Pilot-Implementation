@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -94,7 +93,7 @@ public class VDefault extends VTraverser {
         return sb.toString();        
     }
 
-    protected void addFeatureValueBindings(Type typ) {
+    protected void addFeatureValueBindings(int typId, Type typ) {
         // To properly process inheritings, use VTraverser.
         VTraverser vt = new VTraverser(this) {
             @Override
@@ -102,7 +101,9 @@ public class VDefault extends VTraverser {
                 Expression v = fv.getValue();
                 Element tgt = resolveReference(v);
                 if (tgt != null) {
-                    addPRelation(typ, tgt, fv, "=");
+                	InheritKey ik = makeInheritKey((Feature) typ);
+                    PRelation pr = new PRelation(ik, typId, tgt, fv, "=");
+                    addPRelation(pr);
                 }
                 return "";
             }
@@ -116,23 +117,15 @@ public class VDefault extends VTraverser {
 
     protected void addSpecializations(int typId, Type typ) {
         if (typId < 0) return;
-        InheritKey ik = null;
+        InheritKey ik;
+        if (typ instanceof Feature) {
+            ik = makeInheritKey((Feature) typ);
+        } else {
+            ik = null;
+        }
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            if (ik == null && gt instanceof Feature) {
-                if (s instanceof Redefinition) {
-                    // If we just create an inherit key for redefinition target, always create a cyclic reference
-                    // because redefining feature can be a target in this sense.  So we must create an inherit key
-                    // for the membership owning the target since the redefined target always exists.
-                    Membership ms = gt.getOwningMembership();
-                    if (ms != null) {
-                        ik = makeInheritKey(ms);
-                    }
-                } else {
-                    ik = makeInheritKey((Feature) gt);
-                }
-            }
             PRelation pr = new PRelation(ik, typId, gt, s, null);
             addPRelation(pr);
         }
@@ -176,8 +169,8 @@ public class VDefault extends VTraverser {
             // return resolvePathStepExpression((PathStepExpression) f, null);
             return f;
         } else if (f instanceof FeatureReferenceExpression) {
-            FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
-            return fre.getReferent();
+            //FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
+            return f;
         } else if (!f.getOwnedFeatureChaining().isEmpty()) {
             return f;
         }
@@ -263,7 +256,7 @@ public class VDefault extends VTraverser {
     }
 
     protected static boolean isEmptyFeature(Feature f) {
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: toOwnedFeatureMembershipArray(f)) {
             if (fm.getOwnedMemberFeature() instanceof BindingConnector) continue;
             return false;
         }
@@ -272,7 +265,7 @@ public class VDefault extends VTraverser {
 
     protected Relationship findBindingLikeRel(Feature f) {
         Relationship ret = null;
-        for (Relationship rel : f.getOwnedRelationship()) {
+        for (Relationship rel : toOwnedRelationshipArray(f)) {
             if (rel instanceof FeatureValue) {
                 // first priority
                 return rel;

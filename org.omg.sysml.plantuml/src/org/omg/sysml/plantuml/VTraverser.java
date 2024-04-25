@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -36,10 +36,10 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
@@ -72,10 +72,7 @@ public abstract class VTraverser extends Visitor {
         if (covered.contains(e)) return true;
         if (!(e instanceof Feature)) return false;
         Feature f = (Feature) e;
-        for (Redefinition r: f.getOwnedRedefinition()) {
-            Feature rf = r.getRedefinedFeature();
-            covered.add(rf);
-        }
+        covered.addAll(FeatureUtil.getAllRedefinedFeaturesOf(f));
         return false;
     }
 
@@ -84,7 +81,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     private void traverseInternal(Namespace n, Set<Element> covered) {
-        for (Relationship r: n.getOwnedRelationship()) {
+        for (Relationship r: toOwnedRelationshipArray(n)) {
             if (r instanceof Membership) {
                 Membership ms = (Membership) r;
                 setInherited(false);
@@ -92,7 +89,7 @@ public abstract class VTraverser extends Visitor {
                 markRedefining(e, covered);
                 this.currentMembership = ms;
                 visit(ms);
-                for (Relationship r2: ms.getOwnedRelationship()) {
+                for (Relationship r2: toOwnedRelationshipArray(ms)) {
                     setInherited(false);
                     visit(r2);
                 }
@@ -115,9 +112,10 @@ public abstract class VTraverser extends Visitor {
         }
     }
 
-    private void traverseRest(VPath vpath) {
+    private void traverseRest(VPath vpath, Set<Element> covered) {
         for (Element e: vpath.rest()) {
             if (!showLib() && isModelLibrary(e)) continue;
+            if (markRedefining(e, covered)) continue;
             currentMembership = null;
             setInherited(true);
             visit(e);
@@ -137,7 +135,7 @@ public abstract class VTraverser extends Visitor {
             		traverseInherited((Type) ns, covered);
             	}
             } else {
-                traverseRest(vpath);
+                traverseRest(vpath, covered);
             }
         }
         vpath.leave(ns);

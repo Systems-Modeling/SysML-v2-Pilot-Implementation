@@ -249,6 +249,12 @@ public class FeatureUtil {
 		while (!features.isEmpty()) {
 			List<Feature> nextFeatures = new ArrayList<>();
 			for (Feature feature: features) {
+				Membership owningMembership = feature.getOwningMembership();
+				if (owningMembership instanceof FeatureValue) {
+					// Handle directly the implicit featuringTypes of a FeatureValue value Expression,
+					// in case this transformation has not been done yet.
+					feature = ((FeatureValue)owningMembership).getFeatureWithValue();
+				}
 				for (Type featuringType: feature.getFeaturingType()) {
 					if (!allFeaturingTypes.contains(featuringType)) {
 						allFeaturingTypes.add(featuringType);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2023 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,7 +33,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
@@ -125,63 +124,108 @@ public abstract class VBehavior extends VDefault {
         return "";
     }
 
-    private boolean resolveReference(Feature f, ActionUsage au, boolean send) {
-        if (!(f instanceof ReferenceUsage)) return false;
-        boolean flag = true;
-        for (Membership m: f.getOwnedMembership()) {
-            if (m instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) m;
-                Expression e = fv.getValue();
-                Element r = VPath.getRefTarget(e);
-                if (r != null) {
-                    addPRelation(au, r, au, send ? "<<send to>>" : "<<receive for>>");
-                    continue;
-                }
-            }
-            flag = false;
-        }
-        return flag;
+    private boolean resolveExpRef(Expression exp, ActionUsage au, String label) {
+        Element r = VPath.getRefTarget(exp);
+        if (r == null) return false;
+        addPRelation(au, r, au, label);
+        return true;
     }
 
-    private boolean addSendAcceptActionUsage(ActionUsage au, boolean send) {
-        StringBuilder text = new StringBuilder();
-        List<Feature> params = au.getParameter();
-        final int size = params.size() - 1;
-        if (size < 0) return false;
-        for (int i = 0; i < size; i++) {
-            Feature f = params.get(i);
-            if (text.length() > 0) {
-                text.append(", ");
+    private static boolean appendNameAndType(StringBuilder sb, Feature f, String defaultName) {
+        if (f == null) return false;
+        String name = getName(f);
+
+        boolean flag = false;
+        if (name != null) {
+            if (defaultName == null || !name.equals(defaultName)) {
+                sb.append(name);
+                flag = true;
             }
-            text.append(getText(f));
+        }
+        return appendFeatureType(sb, ": ", f) || flag;
+    }
+
+    private boolean addSendActionUsage(SendActionUsage sau) {
+        StringBuilder text = new StringBuilder();
+        if (appendNameAndType(text, sau, null)) {
+            text.append("\\n");
         }
 
-        Feature last = params.get(size);
-        if (!resolveReference(last, au, send)) {
-        	String lastStr = getText(last);
-        	if ((lastStr != null) && !lastStr.isEmpty()) {
-                text.append(send ? " to " : " for ");
-                text.append(getText(last));
-        	}
+        Expression payload = sau.getPayloadArgument();
+        if (payload != null) {
+            text.append(getText(payload));
         }
+
+        Expression sender = sau.getSenderArgument();
+        if (sender != null && !resolveExpRef(sender, sau, "<<send via>>")) {
+            text.append(" <b>via</b> ");
+            text.append(getText(sender));
+        }
+
+        Expression receiver = sau.getReceiverArgument();
+        if (receiver != null && !resolveExpRef(receiver, sau, "<<send to>>")) {
+            text.append(" <b>to</b> ");
+            text.append(getText(receiver));
+        }
+
+        String str;
         if (text.length() == 0) {
-            String name = getNameAnyway(au);
-            text.append(name);
+            str = " ";
+        } else {
+            str = text.toString();
         }
-        addPUMLLine(au, send ? "send " : "accept ", text.toString());
+
+        addPUMLLine(sau, "send ", str);
         append('\n');
+        return true;
+    }
+
+    private boolean addAcceptActionUsage(AcceptActionUsage aau) {
+        StringBuilder text = new StringBuilder();
+        if (appendNameAndType(text, aau, null)) {
+            text.append("\\n");
+        }
+
+        Expression payload = aau.getPayloadArgument();
+        if (payload != null) {
+            text.append(getText(payload));
+        } else {
+            ReferenceUsage ru = aau.getPayloadParameter();
+            appendNameAndType(text, ru, "payload");
+        }
+
+        Expression receiver = aau.getReceiverArgument();
+        if (receiver != null && !resolveExpRef(receiver, aau, "<<receive via>>")) {
+            text.append(" <b>via</b> ");
+            text.append(getText(receiver));
+        }
+
+        String str;
+        if (text.length() == 0) {
+            str = " ";
+        } else {
+            str = text.toString();
+        }
+
+        addPUMLLine(aau, "accept ", str);
+        append('\n');
+        /*  For compartment style:
+        VCompartment vc = new VCompartment(this);
+        vc.startType(aau);
+        vc.closeBlock();
+        */
         return true;
     }
 
     @Override
     public String caseSendActionUsage(SendActionUsage sau) {
-        if (addSendAcceptActionUsage(sau, true)) return "";
+        if (addSendActionUsage(sau)) return "";
         return null;
     }
 
     @Override
     public String caseAcceptActionUsage(AcceptActionUsage aau) {
-        if (addSendAcceptActionUsage(aau, false)) return "";
+        if (addAcceptActionUsage(aau)) return "";
         return null;
     }
 
@@ -235,7 +279,7 @@ public abstract class VBehavior extends VDefault {
         String guardString = null;
         String effectString = null;
 
-        for (FeatureMembership fm: tu.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: toOwnedFeatureMembershipArray(tu)) {
             if (!(fm instanceof TransitionFeatureMembership)) continue;
             TransitionFeatureMembership tfm = (TransitionFeatureMembership) fm;
             Step s = tfm.getTransitionFeature();

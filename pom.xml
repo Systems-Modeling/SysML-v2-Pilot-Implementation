@@ -314,6 +314,8 @@
 			in the jupyter-sysml-kernel project.
 			Related topic:
 			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
+			
+			TODO: Get rid of this part once we remove gradle form the project (ST6RI-764)
 		-->
 		<plugin>
 			<artifactId>maven-install-plugin</artifactId>

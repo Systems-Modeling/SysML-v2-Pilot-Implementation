@@ -1,11 +1,12 @@
 plugins {
     id 'java'
-    id 'io.github.spencerpark.jupyter-kernel-installer' //version '3.0.0-SNAPSHOT'
+    //getting the jupyter kernel form local library
+    //this is a temporary workaround until the java 17 compatible version of this plugin is deployed to plugin sites
+    //visit settings.gradle for the local repository config
+    id 'io.github.spencerpark.jupyter-kernel-installer'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'com.github.jk1.dependency-license-report' version '2.7'
 }
-
-//apply plugin: 'io.github.spencerpark.jupyter-kernel-installer'
 
 java {
     toolchain {
@@ -26,7 +27,6 @@ repositories {
 }
 
 dependencies {
-    //needed for building the kernel
     implementation group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
     implementation group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-20234 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -509,22 +509,36 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
-fragment FeaturePrefix returns SysML::Feature :	
+fragment BasicFeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
 	( isReadOnly ?= 'readonly' )?
 	( isDerived ?= 'derived' )?
-	( isEnd ?= 'end' )?
 	( ownedRelationship += PrefixMetadataMember )*
 ;
 
+fragment FeaturePrefix returns SysML::Feature :
+	( isEnd ?= 'end' ( ownedRelationship += OwnedCrossingFeatureMember )? )?
+	BasicFeaturePrefix	
+;
+
+OwnedCrossingFeatureMember returns SysML::OwningMembership :
+	ownedRelatedElement += OwnedCrossingFeature
+;
+
+OwnedCrossingFeature returns SysML::Feature :
+	FeatureDeclaration
+;
+
 Feature returns SysML::Feature :
-	FeaturePrefix
-	( 'feature'? FeatureDeclaration
-	| ownedRelationship += PrefixMetadataMember
-	| 'feature'
-	) 
+	( FeaturePrefix
+	  ( 'feature' FeatureDeclaration?
+	  | ownedRelationship += PrefixMetadataMember
+	  ) 
+	| ( isEnd ?= 'end' )? BasicFeaturePrefix 
+	  FeatureDeclaration
+	)
 	ValuePart? TypeBody
 ;
 
@@ -568,7 +582,7 @@ fragment MultiplicityPart returns SysML::Feature :
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
-	Typings | Subsettings | References | Redefinitions
+	Typings | Subsettings | References | Crossings | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
@@ -593,6 +607,10 @@ fragment References returns SysML::Feature :
 
 ReferencesKeyword :
 	'::>' | 'references'
+;
+
+fragment Crossings returns SysML::Feature :
+	( '=>' | 'crossing' ) ownedRelationship += OwnedCrossSubsetting
 ;
 
 fragment Redefinitions returns SysML::Feature :
@@ -674,6 +692,12 @@ OwnedSubsetting returns SysML::Subsetting:
 OwnedReferenceSubsetting returns SysML::ReferenceSubsetting:
 	  referencedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
+;
+
+OwnedCrossSubsetting returns SysML::CrossSubsetting :
+	( crossedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+	)
 ;
 
 /* Redefinition */

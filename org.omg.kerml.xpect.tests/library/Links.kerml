@@ -25,8 +25,8 @@ standard library package Links {
          
         feature participant: Anything[2] nonunique ordered redefines Link::participant;
         
-        readonly end feature source: Anything[0..*] nonunique subsets participant;
-        readonly end feature target: Anything[0..*] nonunique subsets participant;
+        end readonly feature source: Anything[0..*] nonunique subsets participant;
+        end readonly feature target: Anything[0..*] nonunique subsets participant;
     }
     
     assoc all SelfLink specializes BinaryLink {

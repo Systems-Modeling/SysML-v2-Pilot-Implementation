@@ -58,7 +58,7 @@ standard library package Performances {
 			 * Defaults to the root of the subperformance composition tree.
 			 */
 		}
-		connector :HappensDuring from self[1] to thisPerformance[1]; 
+		connector :HappensDuring from [1] self to [1] thisPerformance; 
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences
 			intersects enclosedPerformances, suboccurrences {

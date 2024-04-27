@@ -56,7 +56,7 @@ standard library package Transfers {
 		feature itemNum: Natural [1] = size(item);
 		
 		private instantNum: Natural[1] = if isInstant? 1 else 0;
-		private binding instant[instantNum] of startShot[0..1] = endShot[0..1] {
+		private binding instant[instantNum] of [0..1] startShot = [0..1] endShot {
 			doc
 			/*
 			 * If isInstant is true, then the start and end of the transfer happen at the same time.
@@ -117,7 +117,7 @@ standard library package Transfers {
 			end transferPayload references item[itemNum] subsets transferTarget.targetInput;
 		}
 		
-		private connector sending: HappensDuring[itemNum] from startShot[1] to sourceOutputLink[itemNum] {
+		private connector sending: HappensDuring[itemNum] from [1] startShot to [itemNum] sourceOutputLink {
 			doc
 			/*
 			 * The start of the transfer happens during the output of each of the items from the
@@ -125,7 +125,7 @@ standard library package Transfers {
 			 */
 		}
 		
-		private connector moving: HappensWhile[0..*] from sourceOutputLink.endShot[0..*] to startShot[0..1] {
+		private connector moving: HappensWhile[0..*] from [0..*] sourceOutputLink.endShot to [0..1] startShot {
 			doc
 			/*
 			 * If isMove is true, then all items leave the source at the start
@@ -134,7 +134,7 @@ standard library package Transfers {
 		}
 		private inv { isMove implies size(moving) == size(sourceOutputLink) }
 		
-		private connector pushing: HappensWhile[0..*] from sourceOutputLink.startShot[0..*] to startShot[0..1] {
+		private connector pushing: HappensWhile[0..*] from [0..*] sourceOutputLink.startShot to [0..1] startShot {
 			doc
 			/*
 			 * If isPush is true, then the transfer begins when the items are available
@@ -143,7 +143,7 @@ standard library package Transfers {
 		}
 		private inv { isPush implies size(pushing) == size(sourceOutputLink) }
 		
-		private connector delivering: HappensWhile[itemNum] from targetInputLink.startShot[itemNum] to endShot[1] {
+		private connector delivering: HappensWhile[itemNum] from [itemNum] targetInputLink.startShot to [1] endShot {
 			doc
 			/*
 			 * The input of each of the items to the target starts at the end of the transfer.
@@ -246,7 +246,7 @@ standard library package Transfers {
 		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf {
             feature redefines item = sentItem;
 		}
-		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
+		binding [0..1] receiver.incomingTransfersToSelf = [1] sentTransfer;
 
 		succession self then sentTransfer;
 	}

@@ -47,7 +47,7 @@ standard library package Occurrences {
 			 * subperformances of Performances.
 			 */
 		}
-		connector :HappensDuring from self[1] to this[1];
+		connector :HappensDuring from [1] self to [1] this;
 		
 		feature localClock : Clock[1] default universalClock  {
 			doc
@@ -157,8 +157,8 @@ standard library package Occurrences {
 			feature thisOccurrence: Occurrence[1] subsets shorterOccurrence;
 
 			connector :HappensDuring
-				from shorterOccurrence references thisOccurrence [1]
-				to longerOccurrence references thatOccurrence [1];
+				from [1] shorterOccurrence references thisOccurrence
+				to [1] longerOccurrence references thatOccurrence;
 		}
 
 		feature spaceEnclosedOccurrences: Occurrence[1..*] subsets occurrences {
@@ -190,7 +190,7 @@ standard library package Occurrences {
 			 */
 
 			redefines innerSpaceDimension = 0;
-			binding startShot[1] = endShot[1];
+			binding [1] startShot = [1] endShot;
 		}
 
 		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences 
@@ -206,8 +206,8 @@ standard library package Occurrences {
 			feature redefines thisOccurrence subsets smallerSpace;
 
 			connector :InsideOf
-				from largerSpace references thatOccurrence [1]
-				to smallerSpace references thisOccurrence [1];
+				from [1] largerSpace references thatOccurrence
+				to [1] smallerSpace references thisOccurrence;
 		}
 
 		feature outsideOfOccurrences: Occurrence[0..*] subsets withoutOccurrences inverse of outsideOfOccurrences {
@@ -227,8 +227,8 @@ standard library package Occurrences {
 			feature separateSpace: Occurrence[1] subsets self;
 
 			connector :MatesWith [1..*]
-				from separateSpaceToo references separateSpaceToo.spaceSlices [0..*]
-				to separateSpace references separateSpace.spaceSlices [0..*];
+				from [0..*] separateSpaceToo references separateSpaceToo.spaceSlices
+				to [0..*] separateSpace references separateSpace.spaceSlices;
 		}
 
 		feature matingOccurrences: Occurrence[1..*] subsets justOutsideOfOccurrences inverse of matingOccurrences {
@@ -286,7 +286,7 @@ standard library package Occurrences {
 
 			feature portionOccurrence: Occurrence[1] subsets that;
 			feature portionedOccurrence: Occurrence[1] subsets self;
-			binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
+			binding [1] portionOccurrence.portionOfLife = [1] portionedOccurrence.portionOfLife;
 		}
 
 		portion feature timeSlices: Occurrence[1..*] subsets portions {
@@ -311,7 +311,7 @@ standard library package Occurrences {
 			 * Time slices of an occurrence that happen at a single instant of time
 			 * (i.e., have no duration).
 			 */
-			binding startShot[1] = endShot[1];
+			binding [1] startShot = [1] endShot;
 		}
 		inv { snapshots == union(startShot, union(middleTimeSlice.snapshots, endShot)) }
 
@@ -339,8 +339,8 @@ standard library package Occurrences {
 		inv { isEmpty((that as Occurrence).middleTimeSlice) == ((that as Occurrence).startShot == (that as Occurrence).endShot) }
 
 		connector :HappensJustBefore
-			from earlierOccurrence references startShot [1]
-			to laterOccurrence references middleTimeSlice [0..1] {
+			from [1] earlierOccurrence references startShot
+			to [0..1] laterOccurrence references middleTimeSlice {
 			doc
 			/*
 			 * The startShot happens immediately before the middle time slice.
@@ -355,8 +355,8 @@ standard library package Occurrences {
 		}
 
 		 connector :HappensJustBefore
-			from earlierOccurrence references middleTimeSlice [0..1]
-			to laterOccurrence references endShot [1] {
+			from [0..1] earlierOccurrence references middleTimeSlice
+			to [1] laterOccurrence references endShot {
 			doc
 			/*
 			 * The endShot happens after the middle time slice.
@@ -415,13 +415,13 @@ standard library package Occurrences {
 			feature union: Occurrence[0..1];
 
 			connector :Within
-				  from smallerOccurrence references elements [0..*]
-				  to largerOccurrence references union [1];
+				  from [0..*] smallerOccurrence references elements
+				  to [1] largerOccurrence references union;
 			connector :Within
-				  from smallerOccurrence references union.spaceTimeEnclosedPoints [0..*]
-				  to largerOccurrence references elements [1..*];
+				  from [0..*] smallerOccurrence references union.spaceTimeEnclosedPoints
+				  to [1..*] largerOccurrence references elements;
 		}
-		binding unionsOf.union[0..1] = self[1];
+		binding  [0..1] unionsOf.union = [1] self;
 
 		feature intersectionsOf: Set[0..*] {
 			doc
@@ -438,16 +438,16 @@ standard library package Occurrences {
 			feature intersection: Occurrence[0..1];
 
 			connector :Within
-				  from smallerOccurrence references intersection [1]
-				  to largerOccurrence references elements [0..*];
+				  from [1] smallerOccurrence references intersection
+				  to [0..*] largerOccurrence references elements;
 			connector :Without
-				  from separateOccurrenceToo references elements.notIntersection [0..*]
-				  to separateOccurrence references intersection [1];
+				  from [0..*] separateOccurrenceToo references elements.notIntersection
+				  to [1] separateOccurrence references intersection;
 			connector :Without
-				  from separateOccurrenceToo references elements.notIntersection [0..*]
-				  to separateOccurrence references elements [1..*];
+				  from [0..*] separateOccurrenceToo references elements.notIntersection
+				  to [1..*] separateOccurrence references elements;
 		}
-		binding intersectionsOf.intersection[0..1] = self[1];
+		binding [0..1] intersectionsOf.intersection = [1] self;
 
 		feature differencesOf: OrderedSet[0..*] {
 			doc
@@ -467,13 +467,13 @@ standard library package Occurrences {
 			}
 
 			connector :Without
-				  from separateOccurrenceToo references interdiff.notSubtrahend [0..*] 
-				  to separateOccurrence references subtrahend [1..*];
+				  from [0..*] separateOccurrenceToo references interdiff.notSubtrahend 
+				  to [1..*] separateOccurrence references subtrahend;
 
 			inv { isEmpty(difference) == isEmpty(interdiff) }
 			inv { notEmpty(difference) implies (difference.intersectionsOf == interdiff) }
 		}
-		binding differencesOf.difference[0..1] = self[1];
+		binding [0..1] differencesOf.difference = [1] self;
 
 		portion feature spaceInterior: Occurrence[0..1] subsets spaceSlices {
 			doc
@@ -536,12 +536,12 @@ standard library package Occurrences {
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy
-			from surroundedSpace references spaceInterior [0..*]
-			to surroundingSpace references spaceBoundary.outer [1];
+			from [0..*] surroundedSpace references spaceInterior
+			to [1] surroundingSpace references spaceBoundary.outer;
 
 		connector :SurroundedBy
-			from surroundedSpace references spaceBoundary.inner [0..*]
-			to surroundingSpace references spaceInterior [1];
+			from [0..*] surroundedSpace references spaceBoundary.inner
+			to [1] surroundingSpace references spaceInterior;
 
 		feature innerSpaceOccurrences: Occurrence [0..*] subsets outsideOfOccurrences {
 			doc
@@ -555,9 +555,9 @@ standard library package Occurrences {
 			feature outerSpace: Occurrence[1] subsets that;
 			feature innerSpace: Occurrence[1] subsets self;
 			feature hOccurrence: Occurrence [1];
-			connector hbi: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace.spaceBoundary.inner [0..1];
-			connector hbo: WithinBoth [0..1] from hOccurrence.spaceBoundary [0..1] to outerSpace [0..1];
-			connector :WithinBoth from hOccurrence.spaceInterior [1] to innerSpace [1];
+			connector hbi: WithinBoth [0..1] from [0..1] hOccurrence.spaceBoundary to [0..1] outerSpace.spaceBoundary.inner;
+			connector hbo: WithinBoth [0..1] from [0..1] hOccurrence.spaceBoundary to [0..1] outerSpace;
+			connector :WithinBoth from [1] hOccurrence.spaceInterior to [1] innerSpace;
 			inv { (isEmpty(hbi) == notEmpty(hbo)) & (notEmpty(hbo) == outerSpace.isClosed) }
 		}
 
@@ -571,8 +571,8 @@ standard library package Occurrences {
 			end feature surroundingSpace: Occurrence[1] subsets self;
 
 			connector :InsideOf
-				from smallerOccurrence references surroundedSpace [0..1]
-				to largerOccurrence references surroundingSpace.innerSpaceOccurrences [1..*];
+				from [0..1] smallerOccurrence references surroundedSpace
+				to [1..*] largerOccurrence references surroundingSpace.innerSpaceOccurrences;
 		}
 
 		feature isClosed : Boolean [1] {
@@ -600,7 +600,7 @@ standard library package Occurrences {
 			 */
 		}
  		feature dispatchScope: Occurrence [1] default self;
- 		connector :HappensDuring from self[1] to dispatchScope[1];
+ 		connector :HappensDuring from [1] self to [1] dispatchScope;
  		
  		feature isRunToCompletion: Boolean [1] default true {
 			doc
@@ -610,7 +610,7 @@ standard library package Occurrences {
 			 */
 		}
 		feature runToCompletionScope: Occurrence [1] default self;
-		connector :HappensDuring from self[1] to runToCompletionScope[1];
+		connector :HappensDuring from [1] self to [1] runToCompletionScope;
  
  		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
 			doc

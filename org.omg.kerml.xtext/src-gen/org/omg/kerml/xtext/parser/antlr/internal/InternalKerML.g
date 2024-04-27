@@ -8234,11 +8234,30 @@ ruleConnectorEnd returns [EObject current=null]
 	(
 		(
 			(
+				{
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedCrossingMultiplicityMemberParserRuleCall_0_0());
+				}
+				lv_ownedRelationship_0_0=ruleOwnedCrossingMultiplicityMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.kerml.xtext.KerML.OwnedCrossingMultiplicityMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConnectorEndAccess().getDeclaredNameNameParserRuleCall_0_0_0());
+						newCompositeNode(grammarAccess.getConnectorEndAccess().getDeclaredNameNameParserRuleCall_1_0_0());
 					}
-					lv_declaredName_0_0=ruleName
+					lv_declaredName_1_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
@@ -8246,14 +8265,14 @@ ruleConnectorEnd returns [EObject current=null]
 						set(
 							$current,
 							"declaredName",
-							lv_declaredName_0_0,
+							lv_declaredName_1_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			{
-				newCompositeNode(grammarAccess.getConnectorEndAccess().getReferencesKeywordParserRuleCall_0_1());
+				newCompositeNode(grammarAccess.getConnectorEndAccess().getReferencesKeywordParserRuleCall_1_1());
 			}
 			ruleReferencesKeyword
 			{
@@ -8263,28 +8282,9 @@ ruleConnectorEnd returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedReferenceSubsettingParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedReferenceSubsettingParserRuleCall_2_0());
 				}
-				lv_ownedRelationship_2_0=ruleOwnedReferenceSubsetting
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_2_0,
-						"org.omg.kerml.xtext.KerML.OwnedReferenceSubsetting");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_2_0());
-				}
-				lv_ownedRelationship_3_0=ruleOwnedMultiplicity
+				lv_ownedRelationship_3_0=ruleOwnedReferenceSubsetting
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
@@ -8293,11 +8293,83 @@ ruleConnectorEnd returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_3_0,
-						"org.omg.kerml.xtext.KerML.OwnedMultiplicity");
+						"org.omg.kerml.xtext.KerML.OwnedReferenceSubsetting");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)
+	)
+;
+
+// Entry rule entryRuleOwnedCrossingMultiplicityMember
+entryRuleOwnedCrossingMultiplicityMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedCrossingMultiplicityMemberRule()); }
+	iv_ruleOwnedCrossingMultiplicityMember=ruleOwnedCrossingMultiplicityMember
+	{ $current=$iv_ruleOwnedCrossingMultiplicityMember.current; }
+	EOF;
+
+// Rule OwnedCrossingMultiplicityMember
+ruleOwnedCrossingMultiplicityMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getOwnedCrossingMultiplicityMemberAccess().getOwnedRelatedElementOwnedCrossingMultiplicityParserRuleCall_0());
+			}
+			lv_ownedRelatedElement_0_0=ruleOwnedCrossingMultiplicity
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getOwnedCrossingMultiplicityMemberRule());
+				}
+				add(
+					$current,
+					"ownedRelatedElement",
+					lv_ownedRelatedElement_0_0,
+					"org.omg.kerml.xtext.KerML.OwnedCrossingMultiplicity");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleOwnedCrossingMultiplicity
+entryRuleOwnedCrossingMultiplicity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedCrossingMultiplicityRule()); }
+	iv_ruleOwnedCrossingMultiplicity=ruleOwnedCrossingMultiplicity
+	{ $current=$iv_ruleOwnedCrossingMultiplicity.current; }
+	EOF;
+
+// Rule OwnedCrossingMultiplicity
+ruleOwnedCrossingMultiplicity returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getOwnedCrossingMultiplicityAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=ruleOwnedMultiplicity
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getOwnedCrossingMultiplicityRule());
+				}
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.kerml.xtext.KerML.OwnedMultiplicity");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

@@ -845,9 +845,17 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
+	( ownedRelationship += OwnedCrossingMultiplicityMember )?
 	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
+;
+
+OwnedCrossingMultiplicityMember returns SysML::OwningMembership :
+	ownedRelatedElement += OwnedCrossingMultiplicity
+;
+
+OwnedCrossingMultiplicity returns SysML::Feature :
+	ownedRelationship += OwnedMultiplicity
 ;
 
 /* Binding Connectors */

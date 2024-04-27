@@ -291,6 +291,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_NamedArgument(context, (Feature) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getOwnedCrossingMultiplicityRule()) {
+					sequence_OwnedCrossingMultiplicity(context, (Feature) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getTypeReferenceRule()) {
 					sequence_TypeReference(context, (Feature) semanticObject); 
 					return; 
@@ -785,6 +789,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getOwnedCrossingFeatureMemberRule()) {
 					sequence_OwnedCrossingFeatureMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedCrossingMultiplicityMemberRule()) {
+					sequence_OwnedCrossingMultiplicityMember(context, (OwningMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedMultiplicityRule()) {
@@ -3025,7 +3033,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     ConnectorEnd returns Feature
 	 *
 	 * Constraint:
-	 *     (declaredName=Name? ownedRelationship+=OwnedReferenceSubsetting ownedRelationship+=OwnedMultiplicity?)
+	 *     (ownedRelationship+=OwnedCrossingMultiplicityMember? declaredName=Name? ownedRelationship+=OwnedReferenceSubsetting)
 	 * </pre>
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
@@ -4070,6 +4078,34 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_OwnedCrossingFeatureMember(ISerializationContext context, OwningMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OwnedCrossingMultiplicityMember returns OwningMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=OwnedCrossingMultiplicity
+	 * </pre>
+	 */
+	protected void sequence_OwnedCrossingMultiplicityMember(ISerializationContext context, OwningMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OwnedCrossingMultiplicity returns Feature
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=OwnedMultiplicity
+	 * </pre>
+	 */
+	protected void sequence_OwnedCrossingMultiplicity(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

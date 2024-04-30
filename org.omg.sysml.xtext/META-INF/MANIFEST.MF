@@ -21,14 +21,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="9.3.0";resolution:=optional,
  org.apache.commons.cli
-Export-Package: org.omg.sysml.xtext,
+Export-Package: org.omg.sysml.sysmlx,
+ org.omg.sysml.xtext,
  org.omg.sysml.xtext.generator,
  org.omg.sysml.xtext.library,
  org.omg.sysml.xtext.parser.antlr,
  org.omg.sysml.xtext.parser.antlr.internal,
  org.omg.sysml.xtext.scoping,
+ org.omg.sysml.xtext.serializer,
  org.omg.sysml.xtext.services,
  org.omg.sysml.xtext.util,
- org.omg.sysml.xtext.validation,
- org.omg.sysml.xtext.serializer
+ org.omg.sysml.xtext.validation
 Import-Package: org.apache.log4j

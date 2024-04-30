@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Unioning;
@@ -124,21 +123,10 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getUnioningType() {
-		return unioningType == null? basicGetUnioningType(): getUnioningTypeGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getUnioningTypeGen() {
+	public Type getUnioningType() {
 		if (unioningType != null && unioningType.eIsProxy()) {
 			InternalEObject oldUnioningType = (InternalEObject)unioningType;
 			unioningType = (Type)eResolveProxy(oldUnioningType);
@@ -152,21 +140,10 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If a Unioning is parsed targeting a Feature chain, then the unioningType will be empty,
-	 * but the Unioning will own the unioningType. So, in this case, the unioningType should
-	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetUnioningType() {
-		if (unioningType == null) {
-			// Handle a intersectingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				unioningType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return unioningType;
 	}
 

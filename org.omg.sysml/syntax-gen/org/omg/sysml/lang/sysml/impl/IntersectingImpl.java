@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -124,21 +123,10 @@ public class IntersectingImpl extends RelationshipImpl implements Intersecting {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getIntersectingType() {
-		return intersectingType == null? basicGetIntersectingType(): getIntersectingTypeGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getIntersectingTypeGen() {
+	public Type getIntersectingType() {
 		if (intersectingType != null && intersectingType.eIsProxy()) {
 			InternalEObject oldIntersectingType = (InternalEObject)intersectingType;
 			intersectingType = (Type)eResolveProxy(oldIntersectingType);
@@ -152,21 +140,10 @@ public class IntersectingImpl extends RelationshipImpl implements Intersecting {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If a Intersecting is parsed targeting a Feature chain, then the intersectingType will be empty,
-	 * but the Intersecting will own the intersectingType. So, in this case, the intersectingType should
-	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetIntersectingType() {
-		if (intersectingType == null) {
-			// Handle a intersectingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				intersectingType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return intersectingType;
 	}
 

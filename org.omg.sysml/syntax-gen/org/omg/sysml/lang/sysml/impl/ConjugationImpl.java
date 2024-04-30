@@ -106,24 +106,13 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONJUGATION;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getConjugatedType() {
-		return conjugatedType == null? basicGetConjugatedType(): getConjugatedTypeGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getConjugatedTypeGen() {
+	public Type getConjugatedType() {
 		if (conjugatedType != null && conjugatedType.eIsProxy()) {
 			InternalEObject oldConjugatedType = (InternalEObject)conjugatedType;
 			conjugatedType = (Type)eResolveProxy(oldConjugatedType);
@@ -137,24 +126,10 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the conjugatedType is not set, then set it to the owningRelatedElement, if this is a Type,
-	 * otherwise set it to the first ownedRelatedElement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetConjugatedType() {
-		if (conjugatedType == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Type) {
-				conjugatedType = (Type)owner;
-			} else {
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					conjugatedType = (Type)ownedRelatedElements.get(0);
-				}
-			}
-		}
 		return conjugatedType;
 	}
 
@@ -222,24 +197,13 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getOriginalType() {
-		return originalType == null? basicGetOriginalType(): getOriginalTypeGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getOriginalTypeGen() {
+	public Type getOriginalType() {
 		if (originalType != null && originalType.eIsProxy()) {
 			InternalEObject oldOriginalType = (InternalEObject)originalType;
 			originalType = (Type)eResolveProxy(oldOriginalType);
@@ -253,18 +217,10 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the originalType is not set, set it to the last ownedRelatedElement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetOriginalType() {
-		if (originalType == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				originalType = (Type)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return originalType;
 	}
 

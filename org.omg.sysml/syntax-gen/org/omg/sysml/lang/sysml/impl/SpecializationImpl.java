@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -107,21 +106,10 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getGeneral() {
-		return general == null? basicGetGeneral(): getGeneralGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getGeneralGen() {
+	public Type getGeneral() {
 		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
 			general = (Type)eResolveProxy(oldGeneral);
@@ -135,18 +123,10 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If general is empty, then set it to the last ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetGeneral() {
-		if (general == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				general = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return general;
 	}
 
@@ -171,24 +151,13 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	public boolean isSetGeneral() {
 		return general != null;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getSpecific() {
-		return specific == null? basicGetSpecific(): getSpecificGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getSpecificGen() {
+	public Type getSpecific() {
 		if (specific != null && specific.eIsProxy()) {
 			InternalEObject oldSpecific = (InternalEObject)specific;
 			specific = (Type)eResolveProxy(oldSpecific);
@@ -202,24 +171,10 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If specific is empty, then set it to the owningRelatedElement, if that is a Type.
-	 * Otherwise set it to the first ownedRelatedElement (which will be a FeatureChain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetSpecific() {
-		if (specific == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Type) {
-				specific = (Type)owner;
-			} else {
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					specific = (Feature)ownedRelatedElements.get(0);
-				}
-			}
-		}
 		return specific;
 	}
 

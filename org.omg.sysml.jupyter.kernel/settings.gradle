@@ -1,18 +1,2 @@
-//config for local repositories. this enables us to use gradle plugins locally
-//this is a temporary workaround until the java 17 compatible version of the jupyter-kernel plugin is deployed to plugin sites
-buildscript {
-    repositories {
-        mavenCentral()
-        flatDir {
-            dirs 'lib'
-        }
-    }
-    dependencies {
-        //this is a dependency of the jupyter-kernel plugin
-        classpath 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2'
-        classpath fileTree(include: ['*.jar'], dir: 'lib')
-    }
-}
-
 rootProject.name = 'jupyter-sysml-kernel'
 

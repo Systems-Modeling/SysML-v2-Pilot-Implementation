@@ -1,12 +1,26 @@
+// config for local repositories to resolve io.github.spencerpark.jupyter-kernel-installer gradle plugin locally put in 'lib'.
+// this is a temporary workaround until the java 17 compatible version of the jupyter-kernel plugin is deployed to plugin sites
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        //this is a dependency of the jupyter-kernel plugin
+        classpath 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2'
+        classpath fileTree(include: ['*.jar'], dir: 'lib')
+    }
+}
+
 plugins {
     id 'java'
-    //getting the jupyter kernel form local library
-    //this is a temporary workaround until the java 17 compatible version of this plugin is deployed to plugin sites
-    //visit settings.gradle for the local repository config
-    id 'io.github.spencerpark.jupyter-kernel-installer'
+    id 'eclipse'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'com.github.jk1.dependency-license-report' version '2.7'
 }
+
+// applying the jupyter-kernel-installer plugin form the local library
+// specified in `buildscript` section
+apply plugin: 'io.github.spencerpark.jupyter-kernel-installer'
 
 java {
     toolchain {

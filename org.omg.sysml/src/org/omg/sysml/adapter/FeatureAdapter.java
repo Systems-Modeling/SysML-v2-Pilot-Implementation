@@ -37,19 +37,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -193,16 +197,89 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		
+		addBoundValueSubsetting();		
+		addParticipantSubsetting();		
+		addCrossSubsetting();		
+		addCrossingFeatureSpecialization();
+	}
+	
+	protected void addBoundValueSubsetting() {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 		}
-		
+	}
+	
+	protected void addParticipantSubsetting() {
 		if (isAssociationEnd() && 
 				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
 			addDefaultGeneralType("participant");
 		}
+	}
+	
+	protected void addCrossSubsetting() {
+		Feature target = getTarget();
+		if (target.isEnd() && target.getOwnedCrossSubsetting() == null) {
+			Type owningType = target.getOwningType();
+			if (owningType != null) {
+				List<Feature> endFeatures = owningType.getOwnedEndFeature();
+				if (endFeatures.size() > 1) {
+					Feature otherEnd = endFeatures.indexOf(target) == 0? 
+							endFeatures.get(1): endFeatures.get(0);
+					Feature crossingFeature = getOwnedCrossingFeatureOf(target);
+					if (crossingFeature != null) {
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getCrossSubsetting(), FeatureUtil.chainFeatures(otherEnd, crossingFeature));
+					}
+				}
+			}
+		}
+	}
+	
+	protected void addCrossingFeatureSpecialization() {
+		Feature target = getTarget();
+		Namespace owner = target.getOwningNamespace();
+		if (isOwnedCrossingFeature()) {
+			for (Specialization specialization: ((Feature)owner).getOwnedSpecialization()) {
+				if (!(specialization instanceof Redefinition || 
+					  specialization instanceof ReferenceSubsetting || 
+					  specialization instanceof CrossSubsetting)) {
+					addImplicitGeneralType(specialization.eClass(), specialization.getGeneral());
+				}
+			}
+			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner, null)) {
+				if (redefinedFeature.isEnd()) {
+					Feature crossFeature = getCrossFeatureOf(redefinedFeature);
+					if (crossFeature != null) {
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), crossFeature);
+					}
+				}
+			}
+		}
+	}
+	
+	public static Feature getCrossFeatureOf(Feature feature) {
+		Feature crossFeature = feature.getCrossFeature();
+		if (crossFeature == null) {
+			crossFeature = FeatureUtil.getBasicFeatureOf(
+					(Feature)TypeUtil.getImplicitGeneralTypesOnly(feature, SysMLPackage.eINSTANCE.getCrossSubsetting()).stream().
+					findFirst().orElse(null));
+		}
+		return crossFeature;
+	}
+	
+	public static Feature getOwnedCrossingFeatureOf(Namespace namespace) {
+		return (Feature)namespace.getOwnedMember().stream().
+				filter(element->element instanceof Feature && 
+						!(element instanceof Multiplicity) && 
+						!(element.getOwningMembership() instanceof FeatureMembership)).
+				findFirst().orElse(null);
+	}
+	
+	public boolean isOwnedCrossingFeature() {
+		Feature target = getTarget();
+		Namespace owner = target.getOwningNamespace();
+		return owner instanceof Feature && ((Feature)owner).isEnd() && target == getOwnedCrossingFeatureOf(owner);
 	}
 	
 	@Override
@@ -547,11 +624,28 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
+	protected void addCrossingFeatureFeaturingType() {
+		Feature target = getTarget();
+		if (isOwnedCrossingFeature() && target.getOwnedTypeFeaturing().isEmpty()) {
+			Feature owningFeature = (Feature)target.getOwner();
+			Type ownerOwningType = owningFeature.getOwningType();
+			if (ownerOwningType != null) {
+				List<Feature> endFeatures = ownerOwningType.getEndFeature();
+				if (endFeatures.size() > 1) {
+					Feature otherEnd = endFeatures.indexOf(owningFeature) == 0?
+							endFeatures.get(1): endFeatures.get(0);
+					addFeaturingTypes(otherEnd.getType());
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void doTransform() {
 		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();
+		addCrossingFeatureFeaturingType();
 	}
 
 }

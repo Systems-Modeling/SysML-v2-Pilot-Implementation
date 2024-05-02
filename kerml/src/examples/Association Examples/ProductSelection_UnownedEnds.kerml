@@ -15,21 +15,33 @@ package ProductSelection_UnownedEnds {
 		end feature selectedProduct: Product[1] crossing cart.selectedProducts;
 	}
 	
-	feature myCart: ShoppingCart;
-	
-	feature product1: Product;
-	feature info1: SelectionInfo;	
-	feature selection1: ProductSelection { 
-		feature :>> info = info1; 
-		feature :>> cart = myCart; 
-		feature :>> selectedProduct = product1;
+	assoc SingleProductSelection :> ProductSelection {
+		end feature cart: ShoppingCart[1];
+		end [0..1] feature selectedProduct: Product[1];
 	}
 	
-	feature product2: Product;
-	feature info2: SelectionInfo;	
-	feature selection2: ProductSelection { 
-		feature :>> info = info2; 
-		feature :>> cart = myCart; 
-		feature :>> selectedProduct = product2;
+	// Equivalent association showing implied relationships explicitly.
+	assoc SingleProductSelection1 :> ProductSelection {
+		end feature cart: ShoppingCart[1] redefines cart {
+			import selectedProduct::selectedProduct1;
+		}
+		end feature selectedProduct: Product[1] redefines selectedProduct crossing cart.selectedProduct1 {
+			member feature selectedProduct1[0..1] subsets ShoppingCart::selectedProducts featured by ShoppingCart;
+		}
 	}
+	
+	class OnlineCustomer {
+		feature info1: SelectionInfo;	
+		feature myCart: ShoppingCart[1];	
+		feature products: Product[0..*];
+		
+		connector ps1 : ProductSelection from myCart to products {
+			:>> info = info1;
+		}
+		
+		connector ps2 : ProductSelection from [1] myCart to [1] products {
+			:>> info = info1;
+		}
+	}
+	
 }

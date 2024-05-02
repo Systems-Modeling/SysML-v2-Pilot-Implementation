@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 
 public class MultiplicityAdapter extends FeatureAdapter {
@@ -54,6 +55,20 @@ public class MultiplicityAdapter extends FeatureAdapter {
 	@Override
 	protected List<Multiplicity> getRelevantFeatures(Type type, Element skip) {
 		return Collections.emptyList();
+	}
+	
+	@Override
+	protected void addImplicitFeaturingTypesIfNecessary() {
+		Feature feature = getTarget();
+		Namespace owner = feature.getOwningNamespace();
+		if (owner instanceof Feature) {
+			Namespace owningEnd = owner.getOwningNamespace();
+			if (owningEnd instanceof Feature && ((Feature)owningEnd).isEnd() && isImplicitFeaturingTypesEmpty()) {
+				addFeaturingTypes(((Feature)owningEnd).getFeaturingType());
+			} else {
+				super.addImplicitFeaturingTypesIfNecessary();
+			}
+		}
 	}
 	
 	@Override

@@ -13,41 +13,82 @@ package ProductSelection_OwnedEnds {
 	}
 	
 	// Equivalent association definition with named end features.
-	assoc ProductSelection_ {
+	assoc ProductSelection1 {
 		feature info: SelectionInfo;
 		
 		end inCart[0..1] feature cart: ShoppingCart[1];
 		end selectedProducts[0..*] feature selectedProduct: Product[1];
 	}
 	
+	// Equivalent association definition with nested crossing features.
+	assoc ProductSelection2 {
+		feature info: SelectionInfo;
+		
+		end feature cart: ShoppingCart[1] {
+			member feature inCart[0..1]; // owned crossing feature
+		}
+		end feature selectedProduct: Product[1] {
+			member feature selectedProducts[0..*]; // owned crossing feature
+		}
+	}
+	
 	// Equivalent association definition showing library model specialization 
 	// and implied cross subsetting.
-	assoc ProductSelection__ specializes Links::BinaryLink {
+	assoc ProductSelection3 specializes Links::BinaryLink {
 		feature info: SelectionInfo;
 		
 		end cart: ShoppingCart[1] redefines source crossing selectedProduct.inCart {
-			member feature selectedProducts: Product[0..*] featured by ShoppingCart;
+			member feature inCart: ShoppingCart[0..1] featured by Product;
+			import selectedProduct::selectedProducts;
 		}
 		end selectedProduct: Product[1] redefines target crossing cart.selectedProducts {
-			member feature inCart: ShoppingCart[0..1] featured by Product;
+			member feature selectedProducts: Product[0..*] featured by ShoppingCart;
+			import cart::inCart;
 		}
 	}
 	
-	feature myCart: ShoppingCart;
-	
-	feature product1: Product;
-	feature info1: SelectionInfo;	
-	feature selection1: ProductSelection { 
-		feature :>> info = info1; 
-		feature :>> cart = myCart; 
-		feature :>> selectedProduct = product1;
+	assoc SingleProductSelection specializes ProductSelection {
+		end [0..1] feature cart: ShoppingCart[1];
+		end [0..1] feature selectedProduct: Product[1];
+	}
+
+	assoc SingleProductSelection1 specializes ProductSelection1 {
+		end inCart1 [0..1] feature cart: ShoppingCart[1];
+		end selectedProduct1 [0..1] feature selectedProduct: Product[1];
 	}
 	
-	feature product2: Product;
-	feature info2: SelectionInfo;	
-	feature selection2: ProductSelection { 
-		feature :>> info = info2; 
-		feature :>> cart = myCart; 
-		feature :>> selectedProduct = product2;
+	assoc SingleProductSelection2 specializes ProductSelection2 {
+		end feature cart: ShoppingCart[1] {
+			member feature inCart1[0..1]; // owned crossing feature
+		}
+		end feature selectedProduct: Product[1] {
+			member feature selectedProducts1[0..*]; // owned crossing feature
+		}
 	}
+	
+	assoc SingleProductSelection3 specializes ProductSelection3 {
+		end cart: ShoppingCart[1] redefines cart crossing selectedProduct.inCart1 {
+			member feature inCart1: ShoppingCart[0..1] subsets inCart featured by Product;
+			import selectedProduct::selectedProduct1;
+		}
+		end selectedProduct: Product[1] redefines selectedProduct crossing cart.selectedProduct1 {
+			member feature selectedProduct1: Product[0..1] subsets selectedProducts featured by ShoppingCart;
+			import cart::inCart1;
+		}
+	}
+	
+	class OnlineCustomer {
+		feature info1: SelectionInfo;	
+		feature myCart: ShoppingCart[1];	
+		feature products: Product[0..*];
+		
+		connector ps1 : ProductSelection from myCart to products {
+			:>> info = info1;
+		}
+		
+		connector ps2 : ProductSelection from [1] myCart to [1] products {
+			:>> info = info1;
+		}
+	}
+	
 }

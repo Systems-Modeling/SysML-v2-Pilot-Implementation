@@ -1,14 +1,35 @@
-plugins {
-    id 'java'
-    id 'io.github.spencerpark.jupyter-kernel-installer' version '2.1.0'
-    id 'com.github.johnrengelman.shadow' version '4.0.4'
-    id 'com.github.jk1.dependency-license-report' version '1.14'
+// config for local repositories to resolve io.github.spencerpark.jupyter-kernel-installer gradle plugin locally put in 'lib'.
+// this is a temporary workaround until the java 17 compatible version of the jupyter-kernel plugin is deployed to plugin sites
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        //this is a dependency of the jupyter-kernel plugin
+        classpath 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2'
+        classpath fileTree(include: ['*.jar'], dir: 'lib')
+    }
 }
 
-sourceCompatibility = 1.8
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.github.jk1.dependency-license-report' version '2.7'
+}
+
+// applying the jupyter-kernel-installer plugin form the local library
+// specified in `buildscript` section
+apply plugin: 'io.github.spencerpark.jupyter-kernel-installer'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 wrapper {
-    gradleVersion = '4.10.3'
+    gradleVersion = '8.0.0'
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -20,8 +41,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
-    compile group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
+    implementation group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
+    implementation group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
 }
 
 licenseReport {
@@ -34,13 +55,7 @@ jupyter {
     kernelLanguage = 'sysml'
     kernelInterruptMode = 'message'
     kernelExecutable = shadowJar.archivePath
-    kernelResources = files(
-            'src/main/resources/kernel/',
-            fileTree('../') {
-                include 'sysml.library/**'
-                exclude '**/.*'
-            }
-    )
+    kernelResources = files('src/main/resources/kernel/', fileTree('../') { include 'sysml.library/**' })
 
     kernelParameters {
         list('library-path', 'ISYSML_LIBRARY_PATH') {
@@ -66,23 +81,21 @@ artifacts {
     archives shadowJar
 }
 
+generateKernelJson.dependsOn shadowJar
 zipKernel.dependsOn shadowJar
 installKernel.dependsOn shadowJar
 
-installKernel {
-    kernelInstallPath = commandLineSpecifiedPath(userInstallPath)
+installKernel{
+    kernelInstallPath = commandLineSpecifiedPathOr(userInstallPath)
 }
+
 
 zipKernel {
     from('src/main/resources/installer/') {
         into '/'
     }
-    from('../') {
-        include "LICENSE*"
-        into '/'
-    }
     from(generateLicenseReport.outputFolder) {
-        into '/dependency-licenses/'
+        into 'dependency-licenses'
     }
 }
 zipKernel.dependsOn 'generateLicenseReport'

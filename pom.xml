@@ -4,29 +4,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.40.0-SNAPSHOT</revision>
-    <tycho-version>2.7.5</tycho-version>
+	<revision>0.41.0-SNAPSHOT</revision>
+    <tycho-version>4.0.7</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>https://download.eclipse.org/releases/2022-09</eclipse-repository>
-    <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
-    <xpect-repository>
-      https://ci.eclipse.org/xpect/job/Xpect/job/version_0_2_0_maintenance/lastSuccessfulBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository
-    </xpect-repository>
-    <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
-    <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
-    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-    <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
-    <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+    <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.4.0</maven-jar-plugin.version>
+    <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+    <exec-maven-plugin.version>3.2.0</exec-maven-plugin.version>
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-    <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
-    <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
-    <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+    <build-helper-maven-plugin.version>3.5.0</build-helper-maven-plugin.version>
+    <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
+    <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
     <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
     <node.version>16.2.0</node.version>
     <yarn.version>1.22.19</yarn.version>
-    <maven.compiler.target>11</maven.compiler.target>
-    <maven.compiler.source>11</maven.compiler.source>
-    <xtext.version>2.28.0</xtext.version>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <xtext.version>2.34.0</xtext.version>
     <junit.version>3.0.0-M7</junit.version>
     <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>
@@ -63,20 +59,8 @@
     <module>org.omg.sysml.plantuml.eclipse</module>
     <module>org.omg.sysml.plantuml.feature</module>
     <module>org.omg.sysml.site</module>
-  </modules>
-
-  <repositories>
-    <repository>
-      <id>eclipse</id>
-      <url>${eclipse-repository}</url>
-      <layout>p2</layout>
-    </repository>
-    <repository>
-      <id>plantuml-eclipse</id>
-      <url>${plantuml-repository}</url>
-      <layout>p2</layout>
-    </repository>
-  </repositories>
+    <module>org.omg.sysml.target</module>
+</modules>
 
   <build>
     <plugins>
@@ -131,19 +115,20 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
+        	<executionEnvironment>JavaSE-17</executionEnvironment>
+        	<target>
+				 <artifact>
+					<groupId>org.omg.sysml</groupId>
+					<artifactId>org.omg.sysml.target</artifactId>
+					<version>${project.version}</version>
+				</artifact>
+    	  </target>
           <environments>
             <environment>
               <os>win32</os>
               <ws>win32</ws>
               <arch>x86_64</arch>
             </environment>
-	    <!--
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86</arch>
-            </environment>
-	    -->
             <environment>
               <os>linux</os>
               <ws>gtk</ws>
@@ -322,7 +307,24 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-
+		<!-- 
+			From version 3.0 maven install plugin seems to be more strict about subproject outputs.
+			This is a workaround to solve the error:
+			The packaging for this project did not assign a file to the build artifact...
+			in the jupyter-sysml-kernel project.
+			Related topic:
+			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
+			
+			TODO: Get rid of this part once we remove gradle form the project (ST6RI-764)
+		-->
+		<plugin>
+			<artifactId>maven-install-plugin</artifactId>
+			<groupId>org.apache.maven.plugins</groupId>
+			<version>${maven-install-plugin.version}</version>
+			<configuration>
+				<allowIncompleteProjects>true</allowIncompleteProjects>
+			</configuration>
+		</plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
@@ -364,13 +366,6 @@
           <name>!xpect.tests.skip</name>
         </property>
       </activation>
-      <repositories>
-        <repository>
-          <id>xpect</id>
-          <url>${xpect-repository}</url>
-          <layout>p2</layout>
-        </repository>
-      </repositories>
       <modules>
         <module>org.omg.kerml.xpect.tests</module>
         <module>org.omg.sysml.xpect.tests</module>

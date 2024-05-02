@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk11
+  - openjdk17
 env:
   global:
     - MAVEN_OPTS=-Dhttps.protocols=TLSv1.2

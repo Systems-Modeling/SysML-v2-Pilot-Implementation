@@ -36,10 +36,10 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
@@ -72,10 +72,7 @@ public abstract class VTraverser extends Visitor {
         if (covered.contains(e)) return true;
         if (!(e instanceof Feature)) return false;
         Feature f = (Feature) e;
-        for (Redefinition r: f.getOwnedRedefinition()) {
-            Feature rf = r.getRedefinedFeature();
-            covered.add(rf);
-        }
+        covered.addAll(FeatureUtil.getAllRedefinedFeaturesOf(f));
         return false;
     }
 
@@ -115,9 +112,10 @@ public abstract class VTraverser extends Visitor {
         }
     }
 
-    private void traverseRest(VPath vpath) {
+    private void traverseRest(VPath vpath, Set<Element> covered) {
         for (Element e: vpath.rest()) {
             if (!showLib() && isModelLibrary(e)) continue;
+            if (markRedefining(e, covered)) continue;
             currentMembership = null;
             setInherited(true);
             visit(e);
@@ -137,7 +135,7 @@ public abstract class VTraverser extends Visitor {
             		traverseInherited((Type) ns, covered);
             	}
             } else {
-                traverseRest(vpath);
+                traverseRest(vpath, covered);
             }
         }
         vpath.leave(ns);

@@ -64,9 +64,14 @@ public class VPath extends VTraverser {
 
     private boolean initialized;
 
-	// PC (PathContext) management. 
+    // PC (PathContext) management. 
     private abstract class PC {
         private final Element idTarget;
+
+        // If it's true, PC does consider Redefinition when it match with idTarget.
+        // This is used for Redefinition.
+        protected final boolean noRedefine;
+
         private PC next;
         private PC prev;
         public void setPrev(PC prev) {
@@ -92,11 +97,13 @@ public class VPath extends VTraverser {
         protected PC(PC prev) {
             this.prev = prev;
             this.idTarget = prev.idTarget;
+            this.noRedefine = prev.noRedefine;
         }
 
-        protected PC(Element idTarget) {
+        protected PC(Element idTarget, boolean noRedefine) {
             this.prev = null;
             this.idTarget = idTarget;
+            this.noRedefine = noRedefine;
         }
 
         private boolean isSet;
@@ -124,7 +131,11 @@ public class VPath extends VTraverser {
         private boolean match(Element e) {
             if (isTerminal()) return false;
             Element et = getTarget();
-            return InheritKey.matchElement(e, et);
+            if (noRedefine) {
+                return e.equals(et);
+            } else {
+                return InheritKey.matchElementWithRedefined(e, et);
+            }
         }
 
         public Element requiredElement() {
@@ -200,7 +211,7 @@ public class VPath extends VTraverser {
         }
 
         public PCFeatureChainExpression(FeatureChainExpression fce) {
-            super(fce);
+            super(fce, false);
             this.fce = fce;
         }
     }
@@ -223,9 +234,9 @@ public class VPath extends VTraverser {
             this.f = f;
         }
         
-        public PCFeature(Element tgt, Feature f) {
-        	super(tgt);
-        	this.f = f;
+        public PCFeature(Element tgt, Feature f, boolean noRedefine) {
+            super(tgt, noRedefine);
+            this.f = f;
         }
 
         protected PCFeature(PCFeature pc) {
@@ -287,8 +298,8 @@ public class VPath extends VTraverser {
             this.index = prev.index + 1;
         }
 
-        public PCFeatureChain(Element tgt, Feature f) {
-            super(tgt);
+        public PCFeatureChain(Element tgt, Feature f, boolean noRedefine) {
+            super(tgt, noRedefine);
             this.fcs = f.getOwnedFeatureChaining();
             this.index = 0;
         }
@@ -366,7 +377,7 @@ public class VPath extends VTraverser {
         private final PC basePC;
 
         public PCItemFlowEnd(ItemFlowEnd ife, PC basePC, Feature ioTarget) {
-            super(ife);
+            super(ife, false);
             this.basePC = basePC;
             this.ioTarget = ioTarget;
         }
@@ -427,7 +438,7 @@ public class VPath extends VTraverser {
         }
 
         public PCInheritKey(InheritKey ik, PC pc) {
-            super((Element) null);
+            super((Element) null, pc.noRedefine);
             this.ik = ik;
             this.pc = pc;
             pc.setPrev(this);
@@ -500,19 +511,19 @@ public class VPath extends VTraverser {
 
     private List<RefPC> current = new ArrayList<RefPC>();
 
-    private PC makeFeaturePC(Element tgt, Feature f) {
+    private PC makeFeaturePC(Element tgt, Feature f, boolean noRedefine) {
         List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
         if (fcs.isEmpty()) {
-            return new PCFeature(tgt, f);
+            return new PCFeature(tgt, f, noRedefine);
         } else {
-            return new PCFeatureChain(tgt, f);
+            return new PCFeatureChain(tgt, f, noRedefine);
         }
     }
 
     private PC makeEndFeaturePC(Feature end) {
         Feature sf = ConnectorUtil.getRelatedFeatureOfEnd(end);
         if (sf == null) return null;
-        return makeFeaturePC(end, sf);
+        return makeFeaturePC(end, sf, false);
     }
 
     private RefPC createRefPC(InheritKey ik, PC pc) {
@@ -522,9 +533,10 @@ public class VPath extends VTraverser {
         return rpc;
     }
 
-    private String addContextForFeature(Feature f) {
-        PC pc = makeFeaturePC(f, f);
-        InheritKey ik = makeInheritKey(f);
+    private String addContextForFeature(Feature f, boolean isRedefinition) {
+        PC pc = makeFeaturePC(f, f, isRedefinition);
+        InheritKey ik = makeInheritKeyForReferer(pc);
+        // InheritKey ik = makeInheritKey(f);
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }
@@ -566,7 +578,7 @@ public class VPath extends VTraverser {
     private String addContextForFeatureReferenceExpression(FeatureReferenceExpression fre) {
         Feature f = fre.getReferent();
         if (f == null) return "";
-        PC pc = new PCFeature(fre, f);
+        PC pc = new PCFeature(fre, f, false);
         InheritKey ik = makeInheritKeyForReferer(pc);
         createRefPC(ik, pc);
         return "";
@@ -639,7 +651,7 @@ public class VPath extends VTraverser {
             // Type s = sp.getSpecific();
             if (g == null) continue;
             if (g instanceof Feature) {
-                addContextForFeature((Feature) g);
+                addContextForFeature((Feature) g, sp instanceof Redefinition);
             }
             if (checkVisited(g)) continue;
             visit(g);

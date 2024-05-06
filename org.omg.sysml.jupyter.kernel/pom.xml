@@ -8,7 +8,6 @@
     <version>${revision}</version>
   </parent>
   <artifactId>jupyter-sysml-kernel</artifactId>
-
   <properties>
     <gradle.executable>./gradlew</gradle.executable>
   </properties>
@@ -87,7 +86,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>${maven-jar-plugin.version}</version>
         <executions>
           <execution>
             <id>default-jar</id>

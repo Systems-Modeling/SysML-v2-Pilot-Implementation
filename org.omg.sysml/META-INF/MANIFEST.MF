@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Version: 0.41.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
@@ -11,12 +11,10 @@ Bundle-SymbolicName: org.omg.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.5.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="2.14.0",
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.common;visibility:=reexport,
@@ -24,7 +22,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",
  org.eclipse.xtext.xtext.generator;bundle-version="2.12.0",
  org.eclipse.m2m.qvt.oml,
- org.eclipse.uml2.uml.resources
+ org.eclipse.uml2.uml.resources,
+ org.eclipse.equinox.common;bundle-version="3.5.0"
 Export-Package: org.omg.sysml,
  org.omg.sysml.adapter,
  org.omg.sysml.api,
@@ -43,7 +42,6 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.util.traversal,
  org.omg.sysml.util.traversal.facade,
  org.omg.sysml.util.traversal.facade.impl
-Import-Package: com.ibm.icu.impl.text;version="58.2.0",
- org.apache.commons.logging,
+Import-Package: org.apache.commons.logging,
  org.apache.log4j
 Automatic-Module-Name: org.omg.sysml

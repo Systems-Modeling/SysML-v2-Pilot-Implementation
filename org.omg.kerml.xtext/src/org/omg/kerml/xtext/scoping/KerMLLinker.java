@@ -27,12 +27,14 @@ package org.omg.kerml.xtext.scoping;
 import java.util.Objects;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.xtext.diagnostics.IDiagnosticProducer;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
-import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.util.OnChangeEvictingCache;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -61,10 +63,13 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.Unioning;
 import org.omg.sysml.util.ElementUtil;
 
-import com.google.common.collect.Multimap;
+import com.google.inject.Inject;
 
 public class KerMLLinker extends LazyLinker {
 
+	@Inject
+	private OnChangeEvictingCache cache;
+	
 	@Override
 	protected void clearReferences(EObject obj) {
 		super.clearReferences(obj);
@@ -106,54 +111,77 @@ public class KerMLLinker extends LazyLinker {
 	}
 	
 	@Override
-	protected void installProxies(EObject obj, IDiagnosticProducer producer, Multimap<Setting, INode> settingsToLink) {
-		super.installProxies(obj, producer, settingsToLink);
-		postProcessCrossReferences(obj);
+	protected void doLinkModel(EObject model, IDiagnosticConsumer consumer) {
+		super.doLinkModel(model, consumer);
+		postProcessAllCrossReferences(model);
+	}
+	
+	protected void postProcessAllCrossReferences(EObject model) {
+		cache.execWithoutCacheClear(model.eResource(), new IUnitOfWork.Void<Resource>() {
+			@Override
+			public void process(Resource state) throws Exception {
+				TreeIterator<EObject> iterator = getAllLinkableContents(model);
+				while (iterator.hasNext()) {
+					EObject obj = iterator.next();
+					postProcessCrossReferences(obj);
+				}
+			}
+		});
 	}
 	
 	protected void postProcessCrossReferences(EObject obj) {
 		if (obj instanceof Annotation) {
 			postProcessCrossReferences((Annotation) obj);
 		}
-		if (obj instanceof Conjugation) {
-			postProcessCrossReferences((Conjugation) obj);
-		}
+		
 		if (obj instanceof Differencing) {
 			postProcessCrossReferences((Differencing) obj);
 		}
+		
 		if (obj instanceof Disjoining) {
 			postProcessCrossReferences((Disjoining) obj);
 		}
+		
 		if (obj instanceof FeatureInverting) {
 			postProcessCrossReferences((FeatureInverting) obj);
 		}
-		if (obj instanceof FeatureTyping) {
-			postProcessCrossReferences((FeatureTyping) obj);
-		}
+		
 		if (obj instanceof Intersecting) {
 			postProcessCrossReferences((Intersecting) obj);
 		}
+		
 		if (obj instanceof NamespaceImport) {
 			postProcessCrossReferences((NamespaceImport) obj);
 		}
+		
+		// We must process Conjugation subclasses in order from the most specific
+		// to the most generic so that we only apply the appropriate post-processing
+		// for overridden features.
 		if (obj instanceof PortConjugation) {
 			postProcessCrossReferences((PortConjugation) obj);
+		} else if (obj instanceof Conjugation) {
+			postProcessCrossReferences((Conjugation) obj);
 		}
+		
+		// We must process Specialization subclasses in order from the most specific
+		// to the most generic so that we only apply the appropriate post-processing
+		// for overridden features.
 		if (obj instanceof Redefinition) {
 			postProcessCrossReferences((Redefinition) obj);
-		}
-		if (obj instanceof Specialization) {
+		} else if (obj instanceof Subsetting) {
+			postProcessCrossReferences((Subsetting) obj);
+		} else if (obj instanceof Subclassification) {
+			postProcessCrossReferences((Subclassification) obj);
+		} else if (obj instanceof FeatureTyping) {
+			postProcessCrossReferences((FeatureTyping) obj);
+		} else if (obj instanceof Specialization) {
 			postProcessCrossReferences((Specialization) obj);
 		}
-		if (obj instanceof Subclassification) {
-			postProcessCrossReferences((Subclassification) obj);
-		}
-		if (obj instanceof Subsetting) {
-			postProcessCrossReferences((Subsetting) obj);
-		}
+		
 		if (obj instanceof TypeFeaturing) {
 			postProcessCrossReferences((TypeFeaturing) obj);
 		}
+		
 		if (obj instanceof Unioning) {
 			postProcessCrossReferences((Unioning) obj);
 		}

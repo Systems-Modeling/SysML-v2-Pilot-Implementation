@@ -54,6 +54,7 @@ import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.PortConjugation;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -168,6 +169,8 @@ public class KerMLLinker extends LazyLinker {
 		// for overridden features.
 		if (obj instanceof Redefinition) {
 			postProcessCrossReferences((Redefinition) obj);
+		} else if (obj instanceof ReferenceSubsetting) {
+			postProcessCrossReferences((ReferenceSubsetting) obj);
 		} else if (obj instanceof Subsetting) {
 			postProcessCrossReferences((Subsetting) obj);
 		} else if (obj instanceof Subclassification) {
@@ -400,6 +403,18 @@ public class KerMLLinker extends LazyLinker {
 			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
 				obj.setRedefinedFeature((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
+			}
+		}
+	}
+	
+	protected void postProcessCrossReferences(ReferenceSubsetting obj) {
+		// If the referencedFeature is empty, then set it to the last ownedRelatedElement
+		// (which will be a Feature chain).
+		Object referencedFeature = obj.eGet(SysMLPackage.Literals.REFERENCE_SUBSETTING__REFERENCED_FEATURE, false);
+		if (referencedFeature == null) {
+			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				obj.setReferencedFeature((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
 			}
 		}
 	}

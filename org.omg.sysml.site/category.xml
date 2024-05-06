@@ -19,6 +19,6 @@
          PlantUML-base graphical visualization for XMI.
       </description>
    </category-def>
-   <repository-reference location="https://download.eclipse.org/releases/2022-09" enabled="true" />
-   <repository-reference location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates" enabled="true" />
+   <repository-reference location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates" name="" enabled="true" />
+   <repository-reference location="https://download.eclipse.org/releases/2024-03" enabled="true" />
 </site>

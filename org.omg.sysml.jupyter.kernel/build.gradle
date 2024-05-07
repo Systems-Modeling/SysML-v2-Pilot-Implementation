@@ -55,7 +55,13 @@ jupyter {
     kernelLanguage = 'sysml'
     kernelInterruptMode = 'message'
     kernelExecutable = shadowJar.archivePath
-    kernelResources = files('src/main/resources/kernel/', fileTree('../') { include 'sysml.library/**' })
+    kernelResources = files(
+            'src/main/resources/kernel/',
+            fileTree('../') {
+                include 'sysml.library/**'
+                exclude '**/.*'
+            }
+    )
 
     kernelParameters {
         list('library-path', 'ISYSML_LIBRARY_PATH') {
@@ -89,13 +95,16 @@ installKernel{
     kernelInstallPath = commandLineSpecifiedPathOr(userInstallPath)
 }
 
-
 zipKernel {
     from('src/main/resources/installer/') {
         into '/'
     }
+    from('../') {
+        include "LICENSE*"
+        into '/'
+    }
     from(generateLicenseReport.outputFolder) {
-        into 'dependency-licenses'
+        into '/dependency-licenses/'
     }
 }
 zipKernel.dependsOn 'generateLicenseReport'

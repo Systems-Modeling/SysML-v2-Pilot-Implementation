@@ -28,6 +28,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
+import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
@@ -35,8 +36,10 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.ViewUsage;
 
 public class DerivedPropertyTest extends SysMLInteractiveTest {
 
@@ -62,6 +65,26 @@ public class DerivedPropertyTest extends SysMLInteractiveTest {
 		assertTrue("Not AcceptActionUsage", action instanceof AcceptActionUsage);
 		Expression arg = ((AcceptActionUsage)action).getPayloadArgument();
 		assertTrue("Not TriggerInvocationExpression", arg instanceof TriggerInvocationExpression);
+	}
+
+	public final String test =
+			  "	package Test {"
+			  + "	package P {\n"
+			+ "			public part p1;\n"
+			+ "		}\n"
+			+ "		\n"
+			+ "		view v {\n"
+			+ "			expose P::*;\n"
+			+ "		}\n"
+			+ "	}";
+	
+	@Test
+	public void testViewExpose() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		List<Element> elements = process(instance, test);
+		ViewUsage view = (ViewUsage)((Namespace)elements.get(0)).getOwnedMember().get(1);
+		List<Element> exposed = view.getExposedElement();
+		assertEquals(1, exposed.size());
 	}
 
 }

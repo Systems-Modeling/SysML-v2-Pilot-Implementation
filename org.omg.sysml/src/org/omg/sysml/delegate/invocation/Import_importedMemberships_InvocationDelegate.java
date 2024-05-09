@@ -34,7 +34,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.util.NamespaceUtil;
 
-public abstract class Import_importedMemberships_InvocationDelegate extends BasicInvocationDelegate {
+public class Import_importedMemberships_InvocationDelegate extends BasicInvocationDelegate {
 
 	public Import_importedMemberships_InvocationDelegate(EOperation operation) {
 		super(operation);

@@ -2298,19 +2298,22 @@ fragment ViewBodyItem returns SysML::ViewUsage :
 	| ownedRelationship += ViewRenderingMember
 ;
 
+fragment ExposePrefix returns SysML::Expose :
+	( visibility = VisibilityIndicator )?
+	'expose'
+;
+
 Expose returns SysML::Expose :
 	( MembershipExpose | NamespaceExpose )
 	RelationshipBody
 ;
 
 MembershipExpose returns SysML::MembershipExpose :
-	( visibility = VisibilityIndicator )?
-	'expose' ImportedMembership
+	ExposePrefix ImportedMembership
 ;
 
 NamespaceExpose returns SysML::NamespaceExpose :
-	( visibility = VisibilityIndicator )?
-	'expose' 
+	ExposePrefix 
 	( ImportedNamespace
 	| ownedRelatedElement += FilterPackage
 	)

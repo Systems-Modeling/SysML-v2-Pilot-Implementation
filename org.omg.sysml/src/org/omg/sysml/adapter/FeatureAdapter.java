@@ -43,13 +43,11 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -227,7 +225,7 @@ public class FeatureAdapter extends TypeAdapter {
 				if (endFeatures.size() > 1) {
 					Feature otherEnd = endFeatures.indexOf(target) == 0? 
 							endFeatures.get(1): endFeatures.get(0);
-					Feature crossingFeature = getOwnedCrossingFeatureOf(target);
+					Feature crossingFeature = FeatureUtil.getOwnedCrossingFeatureOf(target);
 					if (crossingFeature != null) {
 						addImplicitGeneralType(SysMLPackage.eINSTANCE.getCrossSubsetting(), FeatureUtil.chainFeatures(otherEnd, crossingFeature));
 					}
@@ -239,7 +237,7 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void addCrossingFeatureSpecialization() {
 		Feature target = getTarget();
 		Namespace owner = target.getOwningNamespace();
-		if (isOwnedCrossingFeature()) {
+		if (FeatureUtil.isOwnedCrossingFeature(target)) {
 			for (Specialization specialization: ((Feature)owner).getOwnedSpecialization()) {
 				if (!(specialization instanceof Redefinition || 
 					  specialization instanceof ReferenceSubsetting || 
@@ -266,20 +264,6 @@ public class FeatureAdapter extends TypeAdapter {
 					findFirst().orElse(null));
 		}
 		return crossFeature;
-	}
-	
-	public static Feature getOwnedCrossingFeatureOf(Namespace namespace) {
-		return (Feature)namespace.getOwnedMember().stream().
-				filter(element->element instanceof Feature && 
-						!(element instanceof Multiplicity) && 
-						!(element.getOwningMembership() instanceof FeatureMembership)).
-				findFirst().orElse(null);
-	}
-	
-	public boolean isOwnedCrossingFeature() {
-		Feature target = getTarget();
-		Namespace owner = target.getOwningNamespace();
-		return owner instanceof Feature && ((Feature)owner).isEnd() && target == getOwnedCrossingFeatureOf(owner);
 	}
 	
 	@Override
@@ -626,7 +610,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected void addCrossingFeatureFeaturingType() {
 		Feature target = getTarget();
-		if (isOwnedCrossingFeature() && target.getOwnedTypeFeaturing().isEmpty()) {
+		if (FeatureUtil.isOwnedCrossingFeature(target) && target.getOwnedTypeFeaturing().isEmpty()) {
 			Feature owningFeature = (Feature)target.getOwner();
 			Type ownerOwningType = owningFeature.getOwningType();
 			if (ownerOwningType != null) {

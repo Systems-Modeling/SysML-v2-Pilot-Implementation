@@ -23,6 +23,7 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -41,10 +42,13 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -215,6 +219,22 @@ public class FeatureUtil {
 		return type.getFeature().stream().
 				filter(f->TypeUtil.conforms(f, subsettedFeature)).
 				collect(Collectors.toList());
+	}
+	
+	// Owned crossing features
+
+	public static Feature getOwnedCrossingFeatureOf(Namespace namespace) {
+		return (Feature)namespace.getOwnedMember().stream().
+				filter(element->element instanceof Feature && 
+						!(element instanceof Multiplicity) && 
+						!(element instanceof MetadataFeature) &&
+						!(element.getOwningMembership() instanceof FeatureMembership)).
+				findFirst().orElse(null);
+	}
+
+	public static boolean isOwnedCrossingFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		return owner instanceof Feature && ((Feature)owner).isEnd() && feature == getOwnedCrossingFeatureOf(owner);
 	}
 
 	// Feature values
@@ -390,22 +410,28 @@ public class FeatureUtil {
 	}
 	
 	public static Multiplicity getMultiplicityOf(Type type) {
-		return getMultiplicityOf(type, new HashSet<>());
+		List<Multiplicity> multiplicities = getMultiplicitiesOf(type, new HashSet<>());
+		return multiplicities.isEmpty()? null: multiplicities.get(0);
 	}
 	
-	public static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
+	public static List<Multiplicity> getMultiplicitiesOf(Type type) {
+		return getMultiplicitiesOf(type, new HashSet<>());
+	}
+	
+	public static List<Multiplicity> getMultiplicitiesOf(Type type, Set<Type> visited) {
 		Multiplicity multiplicity = type.getMultiplicity();
-		if (multiplicity == null) {
+		if (multiplicity != null) {
+			return Collections.singletonList(multiplicity);
+		} else {
+			List<Multiplicity> multiplicities = new ArrayList<>();
 			visited.add(type);
 			for (Type general: TypeUtil.getGeneralTypesOf(type)){
 				if (general != null && !visited.contains(general)) { 
-					multiplicity = getMultiplicityOf(general, visited);
-					if (multiplicity != null) {
-						break;
-					}
+					multiplicities.addAll(getMultiplicitiesOf(general, visited));
 				}
 			}
+			return multiplicities;
 		}
-		return multiplicity;
 	}
+
 }

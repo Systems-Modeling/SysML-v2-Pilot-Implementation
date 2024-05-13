@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 public class MultiplicityAdapter extends FeatureAdapter {
 
@@ -63,7 +64,8 @@ public class MultiplicityAdapter extends FeatureAdapter {
 		Namespace owner = feature.getOwningNamespace();
 		if (owner instanceof Feature) {
 			Namespace owningEnd = owner.getOwningNamespace();
-			if (owningEnd instanceof Feature && ((Feature)owningEnd).isEnd() && isImplicitFeaturingTypesEmpty()) {
+			if (FeatureUtil.isOwnedCrossingFeature((Feature)owner) && 
+				isImplicitFeaturingTypesEmpty()) {
 				addFeaturingTypes(((Feature)owningEnd).getFeaturingType());
 			} else {
 				super.addImplicitFeaturingTypesIfNecessary();

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -88,6 +88,7 @@ import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.CrossSubsetting
 
 /**
  * This class contains custom validation rules. 
@@ -147,7 +148,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
-	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"				
+	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"
+	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING = "validateFeatureOwnedCrossSubsetting"
+	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
+	public static val INVALID_FEATURE_END_MULTIPLICITY = "validateFeatureEndMultiplicity"
+	public static val INVALID_FEATURE_END_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
 
 	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
@@ -166,6 +173,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG = "Subsetting/redefining feature should not have larger multiplicity upper bound"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
+	
+	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE = "validateCrossSubsettingCrossingFeature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG = "Cross subsetting must be owned by an end feature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE = "validateCrossSubsettingCrossedFeature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG = "Cross subsetting must chain through an opposite end feature"
 	
 	// KERNEL //
 	
@@ -410,16 +422,32 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
+		// TODO: Update OCL
 		val m = f.multiplicity;
-		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
+		var featuringTypes =
+			if (FeatureUtil.isOwnedCrossingFeature(f)) (f.owningNamespace as Feature).featuringType
+			else f.featuringType
+		if (m !== null && featuringTypes.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
 		
 		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
 		val direction = f.direction
-		val featuringTypes = f.featuringType
 		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
-			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
+			checkRedefinitionDirection(direction, f.featuringType, redefinedFeature as Feature, f)
+		}
+		
+		// TODO: Add validateFeatureCrossFeatureType
+		val crossFeature = f.crossFeature
+		if (crossFeature !== null && crossFeature.type.toSet != f.type.toSet) {
+			error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+		}
+		
+		// TODO: Add validateFeatureEndMultiplicity
+		if (f.isEnd && !FeatureUtil.getMultiplicitiesOf(f).
+			map(mult | FeatureUtil.getMultiplicityRangeOf(mult)).
+			exists[hasBounds(1,1)]) {
+			warning(INVALID_FEATURE_END_MULTIPLICITY_MSG, f, null, INVALID_FEATURE_END_MULTIPLICITY)
 		}
 	}
 		
@@ -561,6 +589,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
 				featuringType instanceof Feature &&
 				(featuringType as Feature).isAccessibleFrom(type)];
+	}
+	
+	@Check
+	def void checkCrossSubsetting(CrossSubsetting sub) {
+		// TODO: Add validateCrossSubsettingCrossingFeature
+		if (!sub.crossingFeature.isEnd) {
+			error(INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG, sub, null, INVALID_CROSS_SUBSETTING_CROSSING_FEATURE)
+		}
+		
+		// TODO: Add validateCrossSubsettingCrossedFeature
+		val crossingFeatureOwner = sub.crossingFeature.owningType
+		val chainingFeatures = sub.crossedFeature.chainingFeature
+		if (crossingFeatureOwner === null || chainingFeatures.size != 2 || !crossingFeatureOwner.endFeature.contains(chainingFeatures.get(0))) {
+			error(INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG, sub, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_CROSS_SUBSETTING_CROSSED_FEATURE)
+		}
 	}
 	
 	/* KERNEL */

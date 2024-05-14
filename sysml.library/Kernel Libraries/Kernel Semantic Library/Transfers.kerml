@@ -21,7 +21,7 @@ standard library package Transfers {
 		 * to the target of the interaction.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines BinaryLink::source {
+		end [0..*] feature source: Occurrence redefines BinaryLink::source {
 			doc
 			/*
 			 * The entity whose output is the source of the items to be transferred.
@@ -30,7 +30,7 @@ standard library package Transfers {
 			feature sourceOutput: Occurrence[0..*];
 		}
 		
-		end feature target: Occurrence[0..*] redefines BinaryLink::target {
+		end [0..*] feature target: Occurrence redefines BinaryLink::target {
 			doc
 			/*
 			 * The entity whose input is the target of the items to be transferred.
@@ -103,8 +103,8 @@ standard library package Transfers {
 			 * The output of the items from the sourceOutput.
 			 */
 		
-			end transferSource references source[1];
-			end transferPayload references item[itemNum] subsets transferSource.sourceOutput;
+			end [1] feature transferSource references source;
+			end [itemNum] feature transferPayload references item subsets transferSource.sourceOutput;
 		}
 		
 		connector targetInputLink: BinaryLinkObject[itemNum] {
@@ -113,8 +113,8 @@ standard library package Transfers {
 			 * The input of the items to the targetInput.
 			 */
 		
-			end transferTarget references target[1];
-			end transferPayload references item[itemNum] subsets transferTarget.targetInput;
+			end [1] feature transferTarget references target;
+			end [itemNum] feature transferPayload references item subsets transferTarget.targetInput;
 		}
 		
 		private connector sending: HappensDuring[itemNum] from [1] startShot to [itemNum] sourceOutputLink {
@@ -158,8 +158,8 @@ standard library package Transfers {
 		 * the transfer, which happens before the target.
 		 */
 	
-	 	end feature source: Occurrence[0..*] redefines Transfer::source, HappensBefore::earlierOccurrence;
-	  	end feature target: Occurrence[0..*] redefines Transfer::target, HappensBefore::laterOccurrence;
+	 	end [0..*] feature source: Occurrence redefines Transfer::source, HappensBefore::earlierOccurrence;
+	  	end [0..*] feature target: Occurrence redefines Transfer::target, HappensBefore::laterOccurrence;
 	  	
 	  	feature self: TransferBefore redefines Performance::self;
 	  	
@@ -173,8 +173,8 @@ standard library package Transfers {
 		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
 		 */
 		 
-        end feature source: Occurrence[0..*] redefines Transfer::source, TransferBefore::source;
-        end feature target: Occurrence[0..*] redefines Transfer::target, TransferBefore::target;		 
+        end [0..*] feature source: Occurrence redefines Transfer::source, TransferBefore::source;
+        end [0..*] feature target: Occurrence redefines Transfer::target, TransferBefore::target;		 
 	}
 	
 	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
@@ -184,8 +184,8 @@ standard library package Transfers {
 		 * Transfer.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines Transfer::source, binaryLinks::source;
-		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
+		end [0..*] feature source: Occurrence redefines Transfer::source, binaryLinks::source;
+		end [0..*] feature target: Occurrence redefines Transfer::target, binaryLinks::target;
 	}
 	
 	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
@@ -194,8 +194,8 @@ standard library package Transfers {
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
 		
-		end feature source: Occurrence[0..*] redefines MessageTransfer::source, transfers::source;
-		end feature target: Occurrence[0..*] redefines MessageTransfer::target, transfers::target;		
+		end [0..*] feature source: Occurrence redefines MessageTransfer::source, transfers::source;
+		end [0..*] feature target: Occurrence redefines MessageTransfer::target, transfers::target;		
 	}
 	
 	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
@@ -205,8 +205,8 @@ standard library package Transfers {
 		 * It is the default subsetting for non-succession item flows.
 		 */
 		 
-		end feature source: Occurrence[0..*] redefines FlowTransfer::source, transfers::source;
-		end feature target: Occurrence[0..*] redefines FlowTransfer::target, transfers::target;
+		end [0..*] feature source: Occurrence redefines FlowTransfer::source, transfers::source;
+		end [0..*] feature target: Occurrence redefines FlowTransfer::target, transfers::target;
 	}
 	  
 	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks
@@ -217,8 +217,8 @@ standard library package Transfers {
 		 * type TransferBefore.
 		 */
 	
-		end feature source: Occurrence[0..*] redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
-		end feature target: Occurrence[0..*] redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
+		end [0..*] feature source: Occurrence redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
+		end [0..*] feature target: Occurrence redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
 	}
 	
 	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore
@@ -229,8 +229,8 @@ standard library package Transfers {
 		 * to type FlowTransferBefore. IT is the default subsetting for succession item flows.
 		 */
     
-		end feature source: Occurrence[0..*] redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
-		end feature target: Occurrence[0..*] redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
+		end [0..*] feature source: Occurrence redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
+		end [0..*] feature target: Occurrence redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
 	}
 
 	behavior SendPerformance specializes Performance  {

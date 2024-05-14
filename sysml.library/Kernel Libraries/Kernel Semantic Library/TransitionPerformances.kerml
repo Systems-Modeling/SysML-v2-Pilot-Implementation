@@ -29,7 +29,7 @@ standard library package TransitionPerformances {
 		feature transitionLink: HappensBefore[0..1];
 		
 		private binding [0..1] transitionLink.earlierOccurrence = [1] transitionLinkSource;
-		private succession [1] transitionLinkSource then [*] effect; 
+		private succession [1] transitionLinkSource then [*] effect;
 		private succession [*] effect then [1] transitionLink.laterOccurrence;
 		
 		private connector [0..1] transitionLink to [1..*] trigger;
@@ -58,7 +58,7 @@ standard library package TransitionPerformances {
 	}
 	
 	assoc struct TPCGuardConstraint {
-		end feature constrainedHBLink: HappensBefore[0..1];
+		end [0..1] feature constrainedHBLink: HappensBefore;
 		end bool constrainedGuard;
 		
 		private inv { allTrue(constrainedGuard()) }

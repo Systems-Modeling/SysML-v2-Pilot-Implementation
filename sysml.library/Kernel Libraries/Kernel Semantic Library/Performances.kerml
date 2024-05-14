@@ -166,25 +166,25 @@ standard library package Performances {
 		return : Anything[0..0];
 	}
 
-	assoc all Involves specializes BinaryLinkObject {
+	assoc all InvolvedIn specializes BinaryLinkObject {
 		doc
 		/*
-		 * Involves asserts that the Behavior carried out by the involvingPerformance involves the
-		 * involvedObject.
+		 * InvolvedIn asserts that the involvedObject is involved in the Behavior carried out by the 
+		 * involvingPerformance.
 		 */
 		 
-		end feature involvingPerformance: Performance[0..*] redefines source subsets involvedObject.involvingPerformances;
-		end feature involvedObject: Object[0..*] redefines target subsets involvingPerformance.involvedObjects;
+		end [0..*] feature involvedObject: Object redefines target crossing involvingPerformance.involvedObjects;
+		end [0..*] feature involvingPerformance: Performance redefines source crossing involvedObject.involvingPerformances;
 	}
 	
-	assoc all Performs specializes Involves {
+	assoc all Performs specializes InvolvedIn {
 		doc
 		/*
 		 * Performance asserts that the performer enacts the Behavior carried out by the performance.
 		 */
 	
-	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
-	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
+	 	end [0..*] feature performerObject: Object redefines involvedObject crossing performance.performers;
+	 	end [0..*] feature performance: Performance redefines involvingPerformance crossing performerObject.enactedPerformances;
 	 }
 
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {

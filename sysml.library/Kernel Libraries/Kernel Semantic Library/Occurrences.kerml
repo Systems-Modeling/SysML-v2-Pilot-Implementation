@@ -568,7 +568,7 @@ standard library package Occurrences {
 			 */
 
 			feature surroundedSpace: Occurrence[1] subsets that;
-			end feature surroundingSpace: Occurrence[1] subsets self;
+			end [1] feature surroundingSpace: Occurrence subsets self;
 
 			connector :InsideOf
 				from [0..1] smallerOccurrence references surroundedSpace
@@ -680,8 +680,8 @@ standard library package Occurrences {
 		 * the same Life if they are Occurrences. 
 		 */
 
-		end feature myselfSameLife: Anything[1..*] redefines source;
-		end feature selfSameLife: Anything[1..*] redefines target;
+		end [1..*] feature myselfSameLife: Anything redefines source;
+		end [1..*] feature selfSameLife: Anything redefines target;
 
 		feature all sourceOccurrence : Occurrence [0..1] subsets myselfSameLife;
 		feature all targetOccurrence : Occurrence [0..1] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
@@ -704,8 +704,8 @@ standard library package Occurrences {
 		 * LinkObject.
 		 */
 		
-		end feature sourceOccurrence: Occurrence[0..*] redefines BinaryLink::source;
-		end feature targetOccurrence: Occurrence[0..*] redefines BinaryLink::target;
+		end [0..*] feature sourceOccurrence: Occurrence redefines BinaryLink::source;
+		end [0..*] feature targetOccurrence: Occurrence redefines BinaryLink::target;
 	}
 
 	assoc all HappensDuring specializes HappensLink {
@@ -718,8 +718,8 @@ standard library package Occurrences {
 		 * Occurrence HappensDuring itself and that HappensDuring is transitive.
 		 */
 		
-		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.timeEnclosedOccurrences;
-		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
+		end [1..*] feature shorterOccurrence: Occurrence redefines sourceOccurrence crossing longerOccurrence.timeEnclosedOccurrences;
+		end [1..*] feature longerOccurrence: Occurrence redefines targetOccurrence;
 	}
 
 	assoc all HappensWhile specializes HappensDuring {
@@ -729,10 +729,10 @@ standard library package Occurrences {
 		 * each start at the same time and end at the same time.
 		 */
 
-		end feature thisOccurrence: Occurrence[1..*] redefines shorterOccurrence
-		  subsets thatOccurrence.timeCoincidentOccurrences;
-		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence
-		  subsets thisOccurrence.timeCoincidentOccurrences;
+		end [1..*] feature thisOccurrence: Occurrence redefines shorterOccurrence
+		  crossing thatOccurrence.timeCoincidentOccurrences;
+		end [1..*] feature thatOccurrence: Occurrence redefines longerOccurrence
+		  crossing thisOccurrence.timeCoincidentOccurrences;
 	}
 	
 	assoc SpaceLink specializes BinaryLink disjoint from Occurrence {
@@ -745,8 +745,8 @@ standard library package Occurrences {
          * LinkObject.
          */
       
-        end feature sourceOccurrence: Occurrence[0..*] redefines BinaryLink::source;
-        end feature targetOccurrence: Occurrence[0..*] redefines BinaryLink::target;
+        end [0..*] feature sourceOccurrence: Occurrence redefines BinaryLink::source;
+        end [0..*] feature targetOccurrence: Occurrence redefines BinaryLink::target;
     }
 
 	assoc all InsideOf specializes SpaceLink {
@@ -758,8 +758,8 @@ standard library package Occurrences {
 		 * Occurrence is InsideOf itself and that InsideOf is transitive.
 		 */
 
-		end feature smallerSpace: Occurrence[1..*] redefines source subsets largerSpace.spaceEnclosedOccurrences;
-		end feature largerSpace: Occurrence[1..*] redefines target;
+		end [1..*] feature smallerSpace: Occurrence redefines source crossing largerSpace.spaceEnclosedOccurrences;
+		end [1..*] feature largerSpace: Occurrence redefines target;
 	}
 
 	assoc all Within specializes HappensDuring, InsideOf intersects HappensDuring, InsideOf {
@@ -771,9 +771,9 @@ standard library package Occurrences {
 		 * is Within itself and Within is transitive.
 		 */
 
-		end feature smallerOccurrence: Occurrence[1..*] redefines shorterOccurrence, smallerSpace
-		  subsets largerOccurrence.spaceTimeEnclosedOccurrences;
-		end feature largerOccurrence: Occurrence[1..*] redefines longerOccurrence, largerSpace;
+		end [1..*] feature smallerOccurrence: Occurrence redefines shorterOccurrence, smallerSpace
+		  crossing largerOccurrence.spaceTimeEnclosedOccurrences;
+		end [1..*] feature largerOccurrence: Occurrence redefines longerOccurrence, largerSpace;
 	 }
 
 	assoc all WithinBoth specializes Within, HappensWhile {
@@ -785,9 +785,9 @@ standard library package Occurrences {
 		 */
 
 		end feature thisOccurrence redefines smallerOccurrence redefines HappensWhile::thisOccurrence
-		  subsets thatOccurrence.spaceTimeCoincidentOccurrences;
+		  crossing thatOccurrence.spaceTimeCoincidentOccurrences;
 		end feature thatOccurrence redefines largerOccurrence redefines HappensWhile::thatOccurrence 
-		  subsets thisOccurrence.spaceTimeCoincidentOccurrences;
+		  crossing thisOccurrence.spaceTimeCoincidentOccurrences;
 	}
 
 	assoc all PortionOf specializes Within {
@@ -796,8 +796,8 @@ standard library package Occurrences {
 		 * PortionOf asserts one occurrence is a portion of another, including at least itself.
 		 */
 
-		end feature portionOccurrence: Occurrence[1..*] redefines smallerOccurrence subsets portionedOccurrence.portions;
-		end feature portionedOccurrence: Occurrence[1..*] redefines largerOccurrence subsets portionOccurrence.portionOf;
+		end [1..*] feature portionOccurrence: Occurrence redefines smallerOccurrence subsets portionedOccurrence.portions;
+		end [1..*] feature portionedOccurrence: Occurrence redefines largerOccurrence subsets portionOccurrence.portionOf;
 	}
 
 	assoc all TimeSliceOf specializes PortionOf {
@@ -806,8 +806,8 @@ standard library package Occurrences {
 		 * TimeSliceOf asserts one occurrence is a time slice of another, including at least itself.
 		 */
 
-		end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
-		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
+		end [1..*] feature timeSliceOccurrence: Occurrence redefines portionOccurrence crossing timeSlicedOccurrence.timeSlices;
+		end [1..*] feature timeSlicedOccurrence: Occurrence redefines portionedOccurrence crossing timeSliceOccurrence.timeSliceOf;
 	}
 
 	assoc all SnapshotOf specializes TimeSliceOf {
@@ -816,8 +816,8 @@ standard library package Occurrences {
 		 * SnapshotsOf asserts one occurrence is a snapshot of another.
 		 */
 
-		end feature snapshotOccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
-		end feature snapshottedOccurrence: Occurrence[0..*] redefines timeSlicedOccurrence subsets snapshotOccurrence.snapshotOf;
+		end [1..*] feature snapshotOccurrence: Occurrence redefines timeSliceOccurrence crossing snapshottedOccurrence.snapshots;
+		end [0..*] feature snapshottedOccurrence: Occurrence redefines timeSlicedOccurrence crossing snapshotOccurrence.snapshotOf;
 	}
 
 	assoc all SpaceSliceOf specializes PortionOf {
@@ -829,8 +829,8 @@ standard library package Occurrences {
 		 * means every occurrence is a SpaceSliceOf itself and SpaceSliceOf is transitive.
 		 */
 
-		end feature spaceSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets spaceSlicedOccurrence.spaceSlices;
-		end feature spaceSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets spaceSliceOccurrence.spaceSliceOf;
+		end [1..*] feature spaceSliceOccurrence: Occurrence redefines portionOccurrence crossing spaceSlicedOccurrence.spaceSlices;
+		end [1..*] feature spaceSlicedOccurrence: Occurrence redefines portionedOccurrence crossing spaceSliceOccurrence.spaceSliceOf;
 	}
 
 	assoc all SpaceShotOf specializes SpaceSliceOf {
@@ -840,8 +840,8 @@ standard library package Occurrences {
 		 * it spaceShottedOccurrence.
 		 */
 
-		end feature spaceShotOccurrence: Occurrence[1..*] redefines spaceSliceOccurrence subsets spaceShottedOccurrence.spaceShots;
-		end feature spaceShottedOccurrence: Occurrence[1..*] redefines spaceSlicedOccurrence subsets spaceShotOccurrence.spaceShotOf;
+		end [1..*] feature spaceShotOccurrence: Occurrence redefines spaceSliceOccurrence crossing spaceShottedOccurrence.spaceShots;
+		end [1..*] feature spaceShottedOccurrence: Occurrence redefines spaceSlicedOccurrence crossing spaceShotOccurrence.spaceShotOf;
 	}
 
 	assoc all Without specializes BinaryLink unions HappensBefore, OutsideOf {
@@ -852,10 +852,10 @@ standard library package Occurrences {
 		 * points are in both occurrences. Note that this means no Occurrence is Without itself.
 		 */
 
-		end feature separateOccurrenceToo: Occurrence[0..*] redefines BinaryLink::source
-		  subsets separateOccurrence.withoutOccurrences;
-		end feature separateOccurrence: Occurrence[0..*] redefines BinaryLink::target
-		  subsets separateOccurrence.withoutOccurrences;
+		end [0..*] feature separateOccurrenceToo: Occurrence redefines BinaryLink::source
+		  crossing separateOccurrence.withoutOccurrences;
+		end [0..*] feature separateOccurrence: Occurrence redefines BinaryLink::target
+		  crossing separateOccurrence.withoutOccurrences;
 	}
 
 	assoc all HappensBefore specializes HappensLink, Without {
@@ -870,8 +870,8 @@ standard library package Occurrences {
 		 * itself.
 		 */
 
-		end feature earlierOccurrence: Occurrence[0..*] redefines sourceOccurrence, separateOccurrenceToo subsets laterOccurrence.predecessors;
-		end feature laterOccurrence: Occurrence[0..*] redefines targetOccurrence, separateOccurrence subsets earlierOccurrence.successors;
+		end [0..*] feature earlierOccurrence: Occurrence redefines sourceOccurrence, separateOccurrenceToo crossing laterOccurrence.predecessors;
+		end [0..*] feature laterOccurrence: Occurrence redefines targetOccurrence, separateOccurrence crossing earlierOccurrence.successors;
 	}
 
 	assoc all HappensJustBefore specializes HappensBefore {
@@ -881,8 +881,8 @@ standard library package Occurrences {
 		 * occurrences happening in the time between the earlierOccurrence and laterOccurrence.
 		 */
 
-		end feature redefines earlierOccurrence: Occurrence[0..*] subsets laterOccurrence.immediatePredecessors;
-		end feature redefines laterOccurrence: Occurrence[0..*] subsets earlierOccurrence.immediateSuccessors;
+		end [0..*] feature redefines earlierOccurrence: Occurrence crossing laterOccurrence.immediatePredecessors;
+		end [0..*] feature redefines laterOccurrence: Occurrence crossing earlierOccurrence.immediateSuccessors;
 	}
 
 	feature all happensBeforeLinks: HappensBefore[0..*] nonunique subsets binaryLinks {
@@ -892,8 +892,8 @@ standard library package Occurrences {
 		 * It is the default subsetting for succession connectors.
 		 */
 
-		end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
-		end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
+		end [0..*] feature earlierOccurrence: Occurrence redefines HappensBefore::earlierOccurrence, binaryLinks::source;
+		end [0..*] feature laterOccurrence: Occurrence redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
 
 	assoc all OutsideOf specializes SpaceLink, Without {
@@ -904,10 +904,10 @@ standard library package Occurrences {
 		 * spatial extent of both of them. This means no Occurrence is OutsideOf itself.
 		 */
 
-		end feature separateSpaceToo: Occurrence[0..*] redefines separateOccurrenceToo
-		  subsets separateSpace.outsideOfOccurrences;
-		end feature separateSpace: Occurrence[0..*] redefines separateOccurrence
-		  subsets separateSpaceToo.outsideOfOccurrences;
+		end [0..*] feature separateSpaceToo: Occurrence redefines separateOccurrenceToo
+		  crossing separateSpace.outsideOfOccurrences;
+		end [0..*] feature separateSpace: Occurrence redefines separateOccurrence
+		  crossing separateSpaceToo.outsideOfOccurrences;
 	}
 
 	assoc all JustOutsideOf specializes OutsideOf {
@@ -917,10 +917,10 @@ standard library package Occurrences {
 		 * no space between them.
 		 */
 
-		end feature redefines separateSpaceToo: Occurrence[0..*]
-		  subsets separateSpace.justOutsideOfOccurrences;
-		end feature redefines separateSpace: Occurrence[0..*]
-		  subsets separateSpaceToo.justOutsideOfOccurrences;
+		end [0..*] feature redefines separateSpaceToo: Occurrence
+		  crossing separateSpace.justOutsideOfOccurrences;
+		end [0..*] feature redefines separateSpace: Occurrence
+		  crossing separateSpaceToo.justOutsideOfOccurrences;
 	}
 
 	assoc all MatesWith specializes JustOutsideOf {
@@ -929,10 +929,10 @@ standard library package Occurrences {
 		 * MatesWith is an OutsideOf asserting that two occurrences have no space between them.
 		 */
 
-		end feature matingSpaceToo: Occurrence[0..*] redefines separateSpaceToo
-		  subsets matingSpace.matingOccurrences;
-		end feature matingSpace: Occurrence[0..*] redefines separateSpace
-		  subsets matingSpaceToo.matingOccurrences;
+		end [0..*] feature matingSpaceToo: Occurrence redefines separateSpaceToo
+		  crossing matingSpace.matingOccurrences;
+		end [0..*] feature matingSpace: Occurrence redefines separateSpace
+		  crossing matingSpaceToo.matingOccurrences;
 	}
 
 	assoc all InnerSpaceOf specializes OutsideOf {
@@ -942,8 +942,8 @@ standard library package Occurrences {
 		 * of one occurrence (outer space) is completely occupied by another occurrence (inner space).
 		 */
 
-		end feature outerSpace: Occurrence[0..*] redefines separateSpaceToo;
-		end feature innerSpace: Occurrence[0..*] redefines separateSpace subsets outerSpace.innerSpaceOccurrences;
+		end [0..*] feature outerSpace: Occurrence redefines separateSpaceToo;
+		end [0..*] feature innerSpace: Occurrence redefines separateSpace crossing outerSpace.innerSpaceOccurrences;
 	}
 
 	assoc all SurroundedBy specializes OutsideOf {
@@ -953,7 +953,7 @@ standard library package Occurrences {
 		 * in space by an inner space occurrence of another (surrounding space).
 		 */
 
-		end feature surroundedSpace: Occurrence[0..*] redefines separateSpaceToo;
-		end feature surroundingSpace: Occurrence[0..*] redefines separateSpace subsets surroundedSpace.surroundedByOccurrences;
+		end [0..*] feature surroundedSpace: Occurrence redefines separateSpaceToo;
+		end [0..*] feature surroundingSpace: Occurrence redefines separateSpace crossing surroundedSpace.surroundedByOccurrences;
 	}
 }

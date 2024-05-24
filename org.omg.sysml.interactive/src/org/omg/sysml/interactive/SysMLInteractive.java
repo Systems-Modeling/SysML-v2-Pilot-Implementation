@@ -54,6 +54,8 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
+import org.omg.sysml.interactive.profiler.ProfilingKerMLStandaloneSetup;
+import org.omg.sysml.interactive.profiler.ProfilingSysMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
@@ -125,6 +127,7 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + KERNEL_LIBRARIES_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
+	//		this.readAll("C:\\Users\\GatiL\\Documents\\git\\SysML-v2-Pilot-Implementation\\org.omg.kerml.xpect.tests\\src\\DependencyOuterPackage.kerml", false, ".kerml");
 		}
 	}
 	
@@ -630,8 +633,8 @@ public class SysMLInteractive extends SysMLUtil {
 			// Note: An EPackage must be registered to be sure the correctly configured
 			// CompositeEValidator is used.
 			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
-			KerMLStandaloneSetup.doSetup();
-			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
+			ProfilingKerMLStandaloneSetup.doSetup();
+			injector = new ProfilingSysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
 		return injector.getInstance(SysMLInteractive.class);
 	}

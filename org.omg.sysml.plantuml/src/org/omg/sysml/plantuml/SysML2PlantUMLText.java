@@ -498,7 +498,7 @@ public class SysML2PlantUMLText {
         sb.append(v.getString());
 
         if (exceeds || exceedsTheLimit()) {
-            sb.insert(0, "title EXCEEDS THE LIMIT!!!  Since it exceeds the maximum number of model elements to be processed, the visualization results may be incomplete.\n");
+            sb.insert(0, "title EXCEEDS THE LIMIT!!!\\nSince it exceeds the maximum number of model elements to be processed,\\n the visualization result may be incomplete.\n");
             sb.insert(0, "skinparam titleBorderThickness 2\nskinparam titleBorderColor red\n");
         }
         

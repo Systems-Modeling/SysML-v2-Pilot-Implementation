@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
@@ -78,6 +79,11 @@ public class SysMLInteractiveParsingProfiler {
 
 		
 		initWatch.stop();
+		
+//		var descriptionsProvider = instance.getDescriptionsProvider();
+//		var libraryResourceDescriptions = descriptionsProvider.getResourceDescriptions(instance.getResourceSet());
+//		var libraryObjectDescriptions = libraryResourceDescriptions.getExportedObjects();	
+//		KerMLGlobalScopeProvider.setLibraryDescriptions(libraryObjectDescriptions);
 		
 		Map<String, Long> loadTimes = new HashMap<>();
 		

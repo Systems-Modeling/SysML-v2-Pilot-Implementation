@@ -25,28 +25,38 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
 
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
-import org.eclipse.emf.ecore.EClass
 import com.google.common.base.Predicate
+import com.google.common.base.Predicates
+import com.google.inject.Inject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
-import com.google.inject.Inject
-import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
 import org.omg.sysml.lang.sysml.SysMLPackage
-import com.google.common.base.Predicates
+import java.util.Collections
 
 class KerMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	@Inject
 	KerMLScopeProvider kerMLScopeProvider
 	
+	static Iterable<IEObjectDescription> libraryDescriptions = Collections.emptyList
+	
 	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
 		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
 		return KerMLGlobalScope.createScope(scope, context, filter, rootFilter, type, kerMLScopeProvider)
+		//return KerMLLibraryScope.createScope(kerMLScope, context, type, kerMLScopeProvider, libraryDescriptions);
 	}
+	
+
 	
 	protected def Predicate<IEObjectDescription> getRootFilter() {
 		Predicates.alwaysTrue
 	}
-
+	
+	
+	static def setLibraryDescriptions(Iterable<IEObjectDescription> libraryDescriptions) {
+		KerMLGlobalScopeProvider.libraryDescriptions = libraryDescriptions
+	}
 }

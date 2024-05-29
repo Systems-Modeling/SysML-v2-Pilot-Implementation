@@ -60,6 +60,7 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.interactive.profiler.ProfilingKerMLStandaloneSetup;
 import org.omg.sysml.interactive.profiler.ProfilingSysMLStandaloneSetup;
+import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
@@ -640,6 +641,28 @@ public class SysMLInteractive extends SysMLUtil {
 		
 		getLibraryResources().forEach(library -> {
 			library.getAllContents().forEachRemaining(eObject -> {
+				if (eObject instanceof Namespace) {
+					var namespace = (Namespace) eObject;
+					for (var membership: namespace.getMembership()) {
+						if (membership.getMemberElement() instanceof AttributeUsage) {
+							var attrusage = (AttributeUsage) membership.getMemberElement();
+							if (membership.getMemberName() != null && membership.getMemberName().equals("time"))
+								System.out.println(namespace.getQualifiedName() + "." + membership.getMemberName() + " " + attrusage.getQualifiedName());
+							var nsfqn = qualifiedNameProvider.getFullyQualifiedName(namespace);
+							var ufqn = qualifiedNameProvider.getFullyQualifiedName(attrusage);
+							if (nsfqn != null && ufqn != null && !nsfqn.isEmpty() && !ufqn.isEmpty()) {
+								var segments = new LinkedList<>(nsfqn.getSegments());
+								segments.add(ufqn.getLastSegment());
+								var newQualifiedName = QualifiedName.create(segments);
+								index.addDescription(attrusage, SysMLPackage.eINSTANCE.getAttributeUsage(), EObjectDescription.create(newQualifiedName, attrusage));
+							}
+		
+							
+						}
+					}
+				}
+				
+				
 				if (eObject instanceof Type) {
 					var type = (Type) eObject;
 					var qualifiedNameOfType = qualifiedNameProvider.getFullyQualifiedName(type);
@@ -651,7 +674,7 @@ public class SysMLInteractive extends SysMLUtil {
 								var segment = new LinkedList<>(qualifiedNameOfType.getSegments());
 								segment.add(qualifiedNameOfInherited.getLastSegment());
 								var newQualifiedName = QualifiedName.create(segment);
-								index.addDescription(library, SysMLPackage.eINSTANCE.getFeature(), EObjectDescription.create(newQualifiedName, it));
+								index.addDescription(it, SysMLPackage.eINSTANCE.getFeature(), EObjectDescription.create(newQualifiedName, it));
 							}
 						});
 					}

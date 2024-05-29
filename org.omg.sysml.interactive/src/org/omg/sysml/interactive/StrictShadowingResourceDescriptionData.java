@@ -34,6 +34,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -67,7 +68,7 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	
 	protected final Map<URI, IResourceDescription> resourceDescriptionMap;
 	protected final Map<QualifiedName, Object> lookupMap;
-	protected final Map<IResourceDescription, Map<Pair<EClass, QualifiedName>, List<IEObjectDescription>>> extendedDescriptions = new HashMap<>();
+	protected static final Map<IResourceDescription, Map<Pair<EClass, QualifiedName>, List<IEObjectDescription>>> extendedDescriptions = new HashMap<>();
 	
 	public StrictShadowingResourceDescriptionData() {
 		this(new LinkedHashMap<>(), new LinkedHashMap<>());
@@ -135,8 +136,9 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 		return Collections.emptyList();
 	}
 	
-	public void addDescription(Resource resource, EClass type, IEObjectDescription description)
+	public void addDescription(EObject eObject, EClass type, IEObjectDescription description)
 	{
+		var resource = eObject.eResource();
 		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI());
 		Manager manager = resourceServiceProvider.getResourceDescriptionManager();
 		var resourceDescriptor = manager.getResourceDescription(resource);

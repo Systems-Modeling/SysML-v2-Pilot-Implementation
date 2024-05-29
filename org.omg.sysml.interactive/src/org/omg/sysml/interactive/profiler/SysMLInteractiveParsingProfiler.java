@@ -26,7 +26,6 @@ package org.omg.sysml.interactive.profiler;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,16 +34,11 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilableGlobalScopeWrapper;
 import org.omg.sysml.interactive.profiler.scope.ProfilableScopeWrapper;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 import com.google.common.base.Stopwatch;
 
@@ -54,9 +48,6 @@ import com.google.common.base.Stopwatch;
  */
 public class SysMLInteractiveParsingProfiler {
 
-	public static Map<QualifiedName, List<Duration>> QUALIFIED_NAME_RESOLUTION = new HashMap<>();
-	public static Map<QualifiedName, List<Duration>> QUALIFIED_NAME_RESOLUTION_GLOBAL = new HashMap<>();
-	
 	public static List<LinkStep> LINKING_RESULTS = new LinkedList<>();
 	
 	public static void main(String[] args) throws Exception {
@@ -69,27 +60,26 @@ public class SysMLInteractiveParsingProfiler {
 		instance.loadLibrary(args[0]);
 		
 		initWatch.stop();
-		System.out.println("Libraries loaded in " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
-		System.out.println();
+		var libraryLoadTime = initWatch.elapsed(TimeUnit.MILLISECONDS);
 		initWatch.reset();
 		
 		initWatch.start();
 		
-		//instance.getLibraryResources().forEach(instance::addResourceToIndex);
-		instance.getLibraryResources().forEach(res -> {
-			try {
-				res.unload();
-				res.load(Collections.emptyMap());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
-		//instance.indexInheritedLibraryTypes();
+		instance.indexInheritedLibraryTypes();
+//		instance.getLibraryResources().forEach(res -> {
+//			try {
+//				res.unload();
+//				res.load(Collections.emptyMap());
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		});
+//		//instance.indexInheritedLibraryTypes();
 
 		
 		initWatch.stop();
-		System.out.println("Type inheritence indexing took " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
-		System.out.println();
+		
+		Map<String, Long> loadTimes = new HashMap<>();
 		
 		for (int i = 1; i < args.length; i++) {
 			System.out.println("Loading input " + args[i]);
@@ -103,22 +93,26 @@ public class SysMLInteractiveParsingProfiler {
 			watch.stop();
 			System.out.println(watch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 			System.out.println();
+			
+			loadTimes.put(args[i], watch.elapsed(TimeUnit.MILLISECONDS));
 		}
 		
-
+		LINKING_RESULTS.stream().filter(res -> res.isRoot()).sorted((lr1, lr2) -> lr1.compareTo(lr2)).forEach(res -> res.print(0));
 		
+		System.out.println("---------------");
+		System.out.println("Libraries loaded in " + libraryLoadTime + " ms");
+		System.out.println();
 		
-//		QUALIFIED_NAME_RESOLUTION.forEach((name, loadTime) -> {
-//			System.out.println(name.toString() + ": " + loadTime.stream().map(time -> time.toMillis() + "ms").collect(Collectors.joining(", ")));
+		loadTimes.forEach((k, v) -> {
+			System.out.println("Loading input " + k + " took " + v + " ms");
+		});
 		
-//		});
+		System.out.println("---------------");
 		
-//		LINKING_RESULTS.stream().filter(res -> res.isRoot()).sorted((lr1, lr2) -> lr1.compareTo(lr2)).forEach(res -> res.print(0));
-				
-//		System.out.println("---------------");
-//		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");
-//		System.out.println("Total time in global scope: " + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
-//		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("---------------");
+		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in global scope: " + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
 	}
 
 }

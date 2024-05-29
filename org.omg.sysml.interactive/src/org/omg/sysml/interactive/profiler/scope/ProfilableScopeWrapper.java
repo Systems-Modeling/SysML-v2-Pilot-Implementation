@@ -19,8 +19,6 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
-import java.time.Duration;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -47,22 +45,24 @@ public class ProfilableScopeWrapper implements IScope
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		SCOPE_CALL_COUNT++;
 		
-		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		ProfilingKerMLLinkingService.currentStep = new ScopeResult(false, name, oldValue);
-
 		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
 		
 		SCOPE_TIME.stop();
-		Duration startTime = SCOPE_TIME.elapsed();
+		var localWatch = Stopwatch.createUnstarted();
+		
+		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
+		ProfilingKerMLLinkingService.currentStep = new ScopeResult(false, name, oldValue);
 		SCOPE_TIME.start();
 		
+		localWatch.start();
 		IEObjectDescription singleElement = wrappedScope.getSingleElement(name);
-	
+		localWatch.stop();
+		
+		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
 		SCOPE_TIME.stop();
-		//SysMLInteractiveParsingProfiler.QUALIFIED_NAME_RESOLUTION.computeIfAbsent(name, k -> new LinkedList<>()).add(SCOPE_TIME.elapsed().minus(startTime));
-		ProfilingKerMLLinkingService.currentStep.setDuration(SCOPE_TIME.elapsed().minus(startTime));
+		
+		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;
-		SCOPE_TIME.start();
 		
 		return singleElement;
 	}

@@ -43,25 +43,28 @@ public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 		
 		if (!LINKING_TIME.isRunning()) LINKING_TIME.start();
 		
+		LINKING_TIME.stop();
+		var localWatch = Stopwatch.createUnstarted();
+		
 		var lastLinkingResult = currentStep;
 		var name = getCrossRefNodeAsString(node);
 		var currentLocal = new LinkingResult(name, ref,  node.getStartLine(), 0, lastLinkingResult);
 		currentStep = currentLocal;
-		
-		LINKING_TIME.stop();
-		Duration startTime = LINKING_TIME.elapsed();
 		LINKING_TIME.start();
 		
+		
+		localWatch.start();
 		var linkedObjects = super.getLinkedObjects(context, ref, node);
+		localWatch.stop();
+		
+		if (!LINKING_TIME.isRunning()) LINKING_TIME.start();
 		
 		LINKING_TIME.stop();
-		
 		currentLocal.addResult(linkedObjects);
-		currentLocal.setDuration(LINKING_TIME.elapsed().minus(startTime));
+		currentLocal.setDuration(localWatch.elapsed());
 		SysMLInteractiveParsingProfiler.LINKING_RESULTS.add(currentStep);
 		currentStep = lastLinkingResult;
-		
-		LINKING_TIME.start();
+
 		
 		return linkedObjects;
 	}

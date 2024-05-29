@@ -58,7 +58,7 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 		KerMLLazyLinkingResource
 	}
 	
-	def Class<? extends IDefaultResourceDescriptionStrategy> bindIResourceDescriptionStrategy() {
-		KerMLResourceDescriptionStrategy
-	}		
+//	def Class<? extends IDefaultResourceDescriptionStrategy> bindIResourceDescriptionStrategy() {
+//		KerMLResourceDescriptionStrategy
+//	}		
 }

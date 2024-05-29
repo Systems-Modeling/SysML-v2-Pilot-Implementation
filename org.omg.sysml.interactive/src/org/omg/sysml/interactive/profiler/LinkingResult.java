@@ -57,9 +57,9 @@ public class LinkingResult extends LinkStep
 		
 		String resName = "";
 		
-		if (result != null) {
-			resName = result.eResource().getURI().lastSegment();
-		}
+		/*
+		 * if (result != null) { resName = result.eResource().getURI().lastSegment(); }
+		 */
 		
 		System.out.println("Linking " + text + "(" + reference.getName().trim() + ")" + " took " + getDuration().toMillis() + "ms in line " + line + " --found in--> " + resName);
 		final var incNesting = ++nesting;

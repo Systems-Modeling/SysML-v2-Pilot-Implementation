@@ -59,7 +59,7 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 		KerMLLazyLinkingResource
 	}
 	
-	def Class<? extends IDefaultResourceDescriptionStrategy> bindIResourceDescriptionStrategy() {
-		KerMLResourceDescriptionStrategy
-	}	
+//	def Class<? extends IDefaultResourceDescriptionStrategy> bindIResourceDescriptionStrategy() {
+//		KerMLResourceDescriptionStrategy
+//	}	
 }

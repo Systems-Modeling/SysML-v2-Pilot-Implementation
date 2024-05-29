@@ -194,6 +194,28 @@ public class UsageUtil {
 	
 	// SuccessionAsUsages
 	
+	public static Feature getSourceFeature(Feature feature) {
+		Namespace owningNamespace = feature.getOwningNamespace();
+		if (owningNamespace instanceof TransitionUsage) {
+			TransitionUsage transition = (TransitionUsage)owningNamespace;
+			if (transition.getSuccession() == feature) {
+				return transition.getSource();
+			}
+		}
+		return getPreviousFeature(feature);
+	}
+
+	public static Feature getTargetFeature(Feature feature) {
+		Type type = feature.getOwningType();
+		if (type == null) {
+			return null;
+		} else {
+			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
+			int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
+			return i < memberships.size()? memberships.get(i).getOwnedMemberFeature(): null;
+		}
+	}
+	
 	public static Feature getPreviousFeature(Feature feature) {
 		Namespace owner = feature.getOwningNamespace();
 		if (!(owner instanceof Type)) {

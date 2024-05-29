@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -183,8 +184,14 @@ public class FeatureUtil {
 	}
 	
 	public static <T extends Feature> T getEffectiveReferencedFeatureOf(T feature, Class<T> kind) {
-		Feature referencedFeature = getBasicFeatureOf(getReferencedFeatureOf(feature));
-		return kind.isInstance(referencedFeature)? kind.cast(referencedFeature): feature;
+		ReferenceSubsetting subsetting = feature.getOwnedReferenceSubsetting();
+		if (subsetting != null) {
+			Feature referencedFeature = getBasicFeatureOf(subsetting.getReferencedFeature());
+			if (kind.isInstance(referencedFeature)) {
+				return kind.cast(referencedFeature);
+			}
+		}
+		return feature;
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {

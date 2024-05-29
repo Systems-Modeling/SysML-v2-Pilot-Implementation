@@ -19,6 +19,8 @@ import org.eclipse.xtext.validation.IResourceValidator
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
 import org.eclipse.xtext.resource.XtextResource
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -57,4 +59,7 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 		KerMLLazyLinkingResource
 	}
 	
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIResourceDescriptionStrategy() {
+		KerMLResourceDescriptionStrategy
+	}	
 }

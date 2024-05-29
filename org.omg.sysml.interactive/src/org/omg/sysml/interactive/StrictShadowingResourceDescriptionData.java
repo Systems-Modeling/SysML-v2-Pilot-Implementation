@@ -25,15 +25,28 @@
 package org.omg.sysml.interactive;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
+import org.eclipse.xtext.util.Pair;
+import org.eclipse.xtext.util.Tuples;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import com.google.inject.Inject;
 
 /**
  * A specialized Xtext index implementation for interactive parsing environment
@@ -54,6 +67,7 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	
 	protected final Map<URI, IResourceDescription> resourceDescriptionMap;
 	protected final Map<QualifiedName, Object> lookupMap;
+	protected final Map<IResourceDescription, Map<Pair<EClass, QualifiedName>, List<IEObjectDescription>>> extendedDescriptions = new HashMap<>();
 	
 	public StrictShadowingResourceDescriptionData() {
 		this(new LinkedHashMap<>(), new LinkedHashMap<>());
@@ -103,9 +117,33 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	public Iterable<IEObjectDescription> getExportedObjects(final EClass type, final QualifiedName qualifiedName, final boolean ignoreCase) {
 		Object existing = lookupMap.get(qualifiedName); // Removed "toLowerCase()"
 		if (existing instanceof IResourceDescription) {
-			return ((IResourceDescription) existing).getExportedObjects(type, qualifiedName, ignoreCase);
+
+			Iterable<IEObjectDescription> result = ((IResourceDescription) existing).getExportedObjects(type,
+					qualifiedName, ignoreCase);
+
+			if (extendedDescriptions.containsKey(existing)) {
+
+				var descriptionsInResource = extendedDescriptions.get(existing);
+				var descriptions = descriptionsInResource.getOrDefault(Tuples.pair(type, qualifiedName),
+						Collections.emptyList());
+				result = Iterables.concat(result, descriptions);
+
+			}
+			return result;
 		}
+		
 		return Collections.emptyList();
+	}
+	
+	public void addDescription(Resource resource, EClass type, IEObjectDescription description)
+	{
+		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI());
+		Manager manager = resourceServiceProvider.getResourceDescriptionManager();
+		var resourceDescriptor = manager.getResourceDescription(resource);
+		var qualifiedName = description.getQualifiedName();
+		var descriptions = extendedDescriptions.computeIfAbsent(resourceDescriptor, key -> new HashMap<>());
+		descriptions.computeIfAbsent(Tuples.pair(type, qualifiedName), key -> new LinkedList<>()).add(description);
+		
 	}
 	
 }

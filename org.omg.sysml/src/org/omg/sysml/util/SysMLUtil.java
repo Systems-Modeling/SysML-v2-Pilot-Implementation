@@ -312,4 +312,8 @@ public abstract class SysMLUtil {
 		}
 	}
 	
+	public ResourceDescriptionsData getIndex() {
+		return index;
+	}
+	
 }

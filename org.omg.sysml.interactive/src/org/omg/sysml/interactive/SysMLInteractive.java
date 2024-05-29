@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -40,9 +41,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
@@ -112,6 +116,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private IResourceValidator validator;
+	
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
 	
 	@Inject
 	private SysMLInteractive() {
@@ -628,6 +635,31 @@ public class SysMLInteractive extends SysMLUtil {
         }
     }
 	
+	public void indexInheritedLibraryTypes() {
+		var index = (StrictShadowingResourceDescriptionData) getIndex();
+		
+		getLibraryResources().forEach(library -> {
+			library.getAllContents().forEachRemaining(eObject -> {
+				if (eObject instanceof Type) {
+					var type = (Type) eObject;
+					var qualifiedNameOfType = qualifiedNameProvider.getFullyQualifiedName(type);
+					if (qualifiedNameOfType  != null && !qualifiedNameOfType.isEmpty()) {
+						var inheritedFeatures = type.getInheritedFeature();
+						inheritedFeatures.forEach(it -> {
+							var qualifiedNameOfInherited = qualifiedNameProvider.getFullyQualifiedName(it);
+							if (qualifiedNameOfInherited!= null && !qualifiedNameOfInherited.isEmpty()) {
+								var segment = new LinkedList<>(qualifiedNameOfType.getSegments());
+								segment.add(qualifiedNameOfInherited.getLastSegment());
+								var newQualifiedName = QualifiedName.create(segment);
+								index.addDescription(library, SysMLPackage.eINSTANCE.getFeature(), EObjectDescription.create(newQualifiedName, it));
+							}
+						});
+					}
+				}
+			});
+		});
+	}
+	
 	public static SysMLInteractive createInstance() {
 		if (injector == null) {
 			// Note: An EPackage must be registered to be sure the correctly configured
@@ -657,5 +689,4 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		instance.run();	
 	}
-
 }

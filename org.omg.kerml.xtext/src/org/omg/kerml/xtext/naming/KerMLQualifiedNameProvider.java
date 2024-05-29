@@ -42,5 +42,4 @@ public class KerMLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameP
 			return unescapedName == null ? null : "'" + ElementUtil.escapeString(unescapedName) + "'";
 		};
 	}
-
 }

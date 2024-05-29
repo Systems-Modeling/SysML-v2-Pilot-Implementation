@@ -23,9 +23,11 @@
  *****************************************************************************/
 package org.omg.sysml.interactive.profiler;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,12 +35,16 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilableGlobalScopeWrapper;
 import org.omg.sysml.interactive.profiler.scope.ProfilableScopeWrapper;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 import com.google.common.base.Stopwatch;
 
@@ -65,6 +71,25 @@ public class SysMLInteractiveParsingProfiler {
 		initWatch.stop();
 		System.out.println("Libraries loaded in " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 		System.out.println();
+		initWatch.reset();
+		
+		initWatch.start();
+		
+		//instance.getLibraryResources().forEach(instance::addResourceToIndex);
+		instance.getLibraryResources().forEach(res -> {
+			try {
+				res.unload();
+				res.load(Collections.emptyMap());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+		//instance.indexInheritedLibraryTypes();
+
+		
+		initWatch.stop();
+		System.out.println("Type inheritence indexing took " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
+		System.out.println();
 		
 		for (int i = 1; i < args.length; i++) {
 			System.out.println("Loading input " + args[i]);
@@ -82,12 +107,13 @@ public class SysMLInteractiveParsingProfiler {
 		
 
 		
+		
 //		QUALIFIED_NAME_RESOLUTION.forEach((name, loadTime) -> {
 //			System.out.println(name.toString() + ": " + loadTime.stream().map(time -> time.toMillis() + "ms").collect(Collectors.joining(", ")));
 		
 //		});
 		
-		LINKING_RESULTS.stream().filter(res -> res.isRoot()).sorted((lr1, lr2) -> lr1.compareTo(lr2)).forEach(res -> res.print(0));
+//		LINKING_RESULTS.stream().filter(res -> res.isRoot()).sorted((lr1, lr2) -> lr1.compareTo(lr2)).forEach(res -> res.print(0));
 				
 //		System.out.println("---------------");
 //		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");

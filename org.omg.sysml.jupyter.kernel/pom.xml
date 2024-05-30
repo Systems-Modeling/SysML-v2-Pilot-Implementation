@@ -15,6 +15,25 @@
             <artifactId>org.omg.sysml.interactive</artifactId>
             <version>${project.version}</version>
             <classifier>all</classifier>
+            <!-- Exclude transitive dependencies as they are included in the shaded jar -->
+			<exclusions>
+        		<exclusion>
+            		<groupId>*</groupId>
+            		<artifactId>*</artifactId>
+        		</exclusion>
+    		</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.github.spencerpark</groupId>
+            <artifactId>jupyter-jvm-basekernel</artifactId>
+            <version>2.3.0</version>
+             <!-- Exclude gson as it is included in the shaded jar -->
+            <exclusions>
+        		<exclusion>
+            		<groupId>com.google.code.gson</groupId>
+            		<artifactId>gson</artifactId>
+        		</exclusion>
+    		</exclusions>
         </dependency>
         <!-- 
         Dependencies needed for m2e 
@@ -24,6 +43,12 @@
             <groupId>org.omg.sysml</groupId>
             <artifactId>org.omg.sysml</artifactId>
             <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -37,11 +62,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.14.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.spencerpark</groupId>
-            <artifactId>jupyter-jvm-basekernel</artifactId>
-            <version>2.3.0</version>
         </dependency>
     </dependencies>
 
@@ -133,9 +153,17 @@
                             <exclude>META-INF/*.SF</exclude>
                             <exclude>META-INF/*.DSA</exclude>
                             <exclude>META-INF/*.RSA</exclude>
+                            <exclude>META-INF/*.MF</exclude>
                         </excludes>
                     </filter>
                 </filters>
+		        <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Main-Class>org.omg.sysml.jupyter.kernel.ISysML</Main-Class>
+                  </manifestEntries>
+                  </transformer>
+                </transformers>
             </configuration>
             <executions>
                 <execution>

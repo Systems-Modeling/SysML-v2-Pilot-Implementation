@@ -8,7 +8,7 @@
     <version>${revision}</version>
   </parent>
   <artifactId>jupyter-sysml-kernel</artifactId>
-
+  
     <dependencies>
         <dependency>
             <groupId>org.omg.sysml</groupId>
@@ -51,8 +51,8 @@
         <directory>src/main/resources</directory>
         <excludes>
           <exclude>**/*.py</exclude>
-          <exclude>**/*.json</exclude>
           <exclude>**/*.js</exclude>
+          <exclude>**/*.py</exclude>
         </excludes>
       </resource>
     </resources>
@@ -96,8 +96,8 @@
               <attributes>
                 <source-highlighter>rogue</source-highlighter>
                 <icons>font</icons>
-                <pagenums />
-                <idprefix />
+								<pagenums />
+								<idprefix />
                 <idseparator>-</idseparator>
               </attributes>
             </configuration>
@@ -146,28 +146,82 @@
                 </execution>
             </executions>
         </plugin>
-        
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>${maven-assembly-plugin.version}</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>single</goal>
-                    </goals>
-                    <configuration>
-                        <appendAssemblyId>false</appendAssemblyId>
-                        <descriptors>
-                            <descriptor>assembly.xml</descriptor>
-                        </descriptors>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+		
+		<!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>templating-maven-plugin</artifactId>
+			<version>3.0.0</version>
+			<executions>
+				<execution>
+					<phase>generate-resources</phase>
+					<goals>
+						<goal>filter-sources</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<sourceDirectory>src/main/resources</sourceDirectory>
+				<outputDirectory>target/kernel</outputDirectory>
+			</configuration>
+		</plugin>
+       
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <id>create-kernel</id>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/kernel</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/target</directory>
+                  <targetPath>/sysml</targetPath>
+                  <includes>
+                    <include>${project.artifactId}-${project.version}-all.jar</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>..</directory>
+                  <targetPath>/sysml</targetPath>
+                  <includes>
+                    <include>sysml.library/**/*.kerml</include>
+                    <include>sysml.library/**/*.sysml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+       
+	     <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <version>${maven-assembly-plugin.version}</version>
+	        <executions>
+	            <execution>
+	                <phase>package</phase>
+	                <goals>
+	                    <goal>single</goal>
+	                </goals>
+	                <configuration>
+	                    <appendAssemblyId>false</appendAssemblyId>
+	                    <descriptors>
+	                        <descriptor>assembly.xml</descriptor>
+	                    </descriptors>
+	                </configuration>
+	            </execution>
+	        </executions>
+	    </plugin>
 
-      <!-- attach copied JARs to build -->
+			<!-- attach copied JARs to build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>

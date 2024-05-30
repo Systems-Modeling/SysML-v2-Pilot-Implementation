@@ -15,31 +15,13 @@
                 <include>LICENSE</include>
             </includes>
         </fileSet>
-		<!-- Include resources -->
-		<fileSet>
-			<directory>${project.basedir}/src/main/resources</directory>
-			<outputDirectory>/</outputDirectory>
-			<includes>
-				<include>install.py</include>
-				<include>**/sysml/**</include>
-			</includes>
-		</fileSet>
-        <!--  Include shaded jar -->
+        <!-- zip the kernel -->
         <fileSet>
-            <directory>${project.build.directory}</directory>
-            <outputDirectory>/sysml</outputDirectory>
+            <directory>${project.basedir}/target/kernel</directory>
+            <outputDirectory>/</outputDirectory>
             <includes>
-                <include>${project.artifactId}-${project.version}-all.jar</include>
+                <include>*/**</include>
             </includes>
         </fileSet>
-		<!-- Include libraries in sysml-->
-		<fileSet>
-			<directory>${project.basedir}/..</directory>
-			<outputDirectory>/sysml</outputDirectory>
-			<includes>
-				<include>sysml.library/**/*.kerml</include>
-				<include>sysml.library/**/*.sysml</include>
-			</includes>
-		</fileSet>
     </fileSets>
 </assembly>

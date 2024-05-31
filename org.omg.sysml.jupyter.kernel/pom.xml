@@ -66,13 +66,14 @@
     </dependencies>
 
   <build>
+	<!-- Removing script source files to not be able to part of the compiled jar -->
     <resources>
       <resource>
         <directory>src/main/resources</directory>
         <excludes>
           <exclude>**/*.py</exclude>
           <exclude>**/*.js</exclude>
-          <exclude>**/*.py</exclude>
+          <exclude>**/*.json</exclude>
         </excludes>
       </resource>
     </resources>
@@ -216,14 +217,14 @@
               <resources>
                 <resource>
                   <directory>${basedir}/target</directory>
-                  <targetPath>/sysml</targetPath>
+                  <targetPath>sysml</targetPath>
                   <includes>
                     <include>${project.artifactId}-${project.version}-all.jar</include>
                   </includes>
                 </resource>
                 <resource>
                   <directory>..</directory>
-                  <targetPath>/sysml</targetPath>
+                  <targetPath>sysml</targetPath>
                   <includes>
                     <include>sysml.library/**/*.kerml</include>
                     <include>sysml.library/**/*.sysml</include>

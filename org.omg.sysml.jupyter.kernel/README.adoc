@@ -17,6 +17,10 @@ Built on top of https://github.com/SpencerPark/jupyter-jvm-basekernel[jupyter-jv
 
 After meeting the <<Requirements>>, the kernel can be installed locally. Any time you wish to remove a kernel you may use `jupyter kernelspec remove sysml`. If you have installed the kernel to multiple directories, this command may need to be run multiple times as it might only remove 1 installation at a time.
 
+=== Build and install
+For quick local deployment use the installKernel.sh or installKernel.bat depending on your system. These scripts will build the kernel and install it to your local jupyter installation.
+
+**Note:** Local maven install of the parent project (org.omg.sysml) and all submodules is required to run the scripts. You can go to the root project and call `./mvnw install`
 
 === Install pre-built binary
 

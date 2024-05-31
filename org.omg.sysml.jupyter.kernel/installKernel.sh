@@ -12,7 +12,7 @@ else
     fi
 fi
 
-command PYTHON --version
+command $PYTHON --version
 
 echo "--- Step 2: Testing Java installation ---"
 
@@ -23,8 +23,8 @@ fi
 
 echo "--- Step 3: Building kernel ---"
 
-./../mvnw.cmd prepare-package resources:copy-resources@create-kernel -pl "org.omg.sysml:jupyter-sysml-kernel" -am
+./../mvnw prepare-package resources:copy-resources@create-kernel -pl "org.omg.sysml:jupyter-sysml-kernel" -am
 
 echo "--- Step 4: Installing kernel ---"
 
-PYTHON ./target/kernel/install.py
+$PYTHON ./target/kernel/install.py

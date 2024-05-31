@@ -129,13 +129,19 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>${maven-jar-plugin.version}</version>
-        <configuration>
-          <archive>
-             <manifest>
-               <mainClass>org.omg.sysml.jupyter.kernel.ISysML</mainClass>
-             </manifest>
-          </archive>
-        </configuration>
+        <executions>
+			<execution>
+				<id>build-jar</id>
+				<phase>prepare-package</phase>
+				<goals>
+					<goal>jar</goal>
+				</goals>
+			</execution>
+			<execution>
+            	<id>default-jar</id>
+            	<phase>none</phase>
+           </execution>
+        </executions>
       </plugin>
       
       <plugin>
@@ -167,7 +173,7 @@
             </configuration>
             <executions>
                 <execution>
-                    <phase>package</phase>
+                    <phase>prepare-package</phase>
                     <goals>
                         <goal>shade</goal>
                     </goals>
@@ -182,7 +188,7 @@
 			<version>3.0.0</version>
 			<executions>
 				<execution>
-					<phase>generate-resources</phase>
+					<phase>prepare-package</phase>
 					<goals>
 						<goal>filter-sources</goal>
 					</goals>
@@ -248,35 +254,6 @@
 	            </execution>
 	        </executions>
 	    </plugin>
-
-			<!-- attach copied JARs to build -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>${build-helper-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>target/${project.artifactId}-${project.version}-all.jar</file>
-                  <type>jar</type>
-                  <classifier>all</classifier>
-                </artifact>
-                <artifact>
-                  <file>target/${project.artifactId}-${project.version}.zip</file>
-                  <type>zip</type>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 </project>

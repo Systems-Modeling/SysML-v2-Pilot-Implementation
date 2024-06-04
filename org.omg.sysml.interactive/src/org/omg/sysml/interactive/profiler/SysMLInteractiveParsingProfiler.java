@@ -37,6 +37,7 @@ import java.util.stream.Collectors;
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilableGlobalScopeWrapper;
 import org.omg.sysml.interactive.profiler.scope.ProfilableScopeWrapper;
@@ -66,7 +67,7 @@ public class SysMLInteractiveParsingProfiler {
 		
 		initWatch.start();
 		
-		instance.indexInheritedLibraryTypes();
+//		instance.indexInheritedLibraryTypes();
 //		instance.getLibraryResources().forEach(res -> {
 //			try {
 //				res.unload();
@@ -118,6 +119,7 @@ public class SysMLInteractiveParsingProfiler {
 		System.out.println("---------------");
 		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");
 		System.out.println("Total time in global scope: " + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in library provider: " + ProfilingKerMLLibraryProvider.LIBRARY_PROVIDER_WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLLibraryProvider.callCount + " calls)");
 		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
 	}
 

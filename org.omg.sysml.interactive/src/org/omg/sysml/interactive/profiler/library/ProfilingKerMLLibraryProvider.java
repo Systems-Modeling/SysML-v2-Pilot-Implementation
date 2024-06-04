@@ -22,15 +22,25 @@ package org.omg.sysml.interactive.profiler.library;
 import org.omg.kerml.xtext.library.KerMLLibraryProvider;
 import org.omg.sysml.lang.sysml.Element;
 
+import com.google.common.base.Stopwatch;
+
 public class ProfilingKerMLLibraryProvider extends KerMLLibraryProvider {
+	
+	public static long callCount = 0;
+	public static final Stopwatch LIBRARY_PROVIDER_WATCH = Stopwatch.createUnstarted();
 	
 	@Override
 	public Element getElement(Element context, String name)
 	{
+		callCount++;
+		if (!LIBRARY_PROVIDER_WATCH.isRunning()) LIBRARY_PROVIDER_WATCH.start();
+		
 		var result = super.getElement(context, name);
 		
+		if (!LIBRARY_PROVIDER_WATCH.isRunning()) LIBRARY_PROVIDER_WATCH.start();
+		
+		LIBRARY_PROVIDER_WATCH.stop();
 		
 		return result;
 	}
-
 }

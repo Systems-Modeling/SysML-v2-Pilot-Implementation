@@ -54,6 +54,8 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
+import org.omg.sysml.interactive.profiler.ProfilingKerMLStandaloneSetup;
+import org.omg.sysml.interactive.profiler.ProfilingSysMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
@@ -633,12 +635,32 @@ public class SysMLInteractive extends SysMLUtil {
 			KerMLStandaloneSetup.doSetup();
 			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
+		
+		return injector.getInstance(SysMLInteractive.class);
+	}
+	
+	public static SysMLInteractive createProfilingInstance() {
+		if (injector == null) {
+			// Note: An EPackage must be registered to be sure the correctly configured
+			// CompositeEValidator is used.
+			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
+			ProfilingKerMLStandaloneSetup.doSetup();
+			injector = new ProfilingSysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		}
+		
 		return injector.getInstance(SysMLInteractive.class);
 	}
 	
 	public static SysMLInteractive getInstance() {
 		if (instance == null) {
 			instance = createInstance();
+		}
+		return instance;
+	}
+	
+	public static SysMLInteractive getProfilingInstance() {
+		if (instance == null) {
+			instance = createProfilingInstance();
 		}
 		return instance;
 	}

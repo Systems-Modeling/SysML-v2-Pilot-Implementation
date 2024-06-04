@@ -30,6 +30,9 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
+import org.omg.sysml.interactive.profiler.scope.ProfilableGlobalScopeWrapper;
+import org.omg.sysml.interactive.profiler.scope.ProfilableScopeWrapper;
 
 import com.google.common.base.Stopwatch;
 
@@ -41,7 +44,7 @@ public class SysMLInteractiveParsingProfiler {
 
 	public static void main(String[] args) throws Exception {
 		Stopwatch initWatch = Stopwatch.createStarted();
-		SysMLInteractive instance = SysMLInteractive.getInstance();
+		SysMLInteractive instance = SysMLInteractive.getProfilingInstance();
 		if (args.length <= 1) {
 			System.out.println("Usage: ");
 			System.out.println("SysMLInteractiveParsingProfiler <LIBRARY FOLDER> <FILENAME>");
@@ -65,6 +68,10 @@ public class SysMLInteractiveParsingProfiler {
 			System.out.println(watch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 			System.out.println();
 		}
+		
+		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in global scope: " + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
 	}
 
 }

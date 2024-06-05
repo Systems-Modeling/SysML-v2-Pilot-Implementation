@@ -300,6 +300,12 @@ public class ElementUtil {
 	public static MetadataFeature getMetaclassFeatureFor(Element element) {
 		return element == null? null: getElementAdapter(element).getMetaclassFeature();
 	}
+	
+	// Parse post-processing
+	
+	public static void postProcess(Element element) {
+		getElementAdapter(element).postProcess();
+	}
 
 	// Transformation 
 	

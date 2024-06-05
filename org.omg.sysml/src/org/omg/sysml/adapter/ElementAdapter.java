@@ -71,6 +71,12 @@ public class ElementAdapter extends AdapterImpl {
 		}
 		return metaclassFeature;
 	}
+	
+	// Parse post-processing
+	
+	public void postProcess() {
+		
+	}
 		
 	// Transformation
 

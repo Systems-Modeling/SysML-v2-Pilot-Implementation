@@ -36,8 +36,6 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ElementUtil;
@@ -62,27 +60,9 @@ public class KerMLLinker extends LazyLinker {
 		if (
 			// The Relationship#source and #target features are overridden
 			// in each subtype to provide specific derived implementations that
-			// are regenerated each time they are accessed so there is no need to
-			// delete them; and as of May 2020, generic references are not supported
-			// in concrete syntax, making it a safe to not clear them during linking.
+			// are recomputed when accessed so they should not be cleared.
 			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__SOURCE) || 
-			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__TARGET) ||
-			
-			// The Relationship#relatedElement feature is a derived union in the
-			// abstract syntax model, but it is implemented as a manual derivation,
-			// which is overridden as necessary in subtypes, so there is no need to
-			// delete it.
-			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT) ||
-			
-			// The Annotation#annotatingElement feature, which is not composite, is
-			// redefined by Documentation#documentingComment, which is composite. 
-			// Clearing annotedElement spuriously clears the documentedElement, which
-			// then does not get a proxy because it is composite (containment).
-			// Annotation#annotatingElement has the opposite feature 
-			// AnnotatingElement#Annotation, which also should not be cleared.
-			obj instanceof Documentation && Objects.equals(ref, SysMLPackage.Literals.ANNOTATION__ANNOTATING_ELEMENT) ||
-			obj instanceof Comment && obj.eContainer() instanceof Documentation && 
-				Objects.equals(ref, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATION)
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__TARGET)			
 		 ) {
 			return;
 		}

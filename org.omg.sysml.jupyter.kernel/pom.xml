@@ -40,12 +40,6 @@
         we need to add these manually so the Eclipse IDE can see the classpath
         -->
         <dependency>
-            <groupId>org.omg.sysml</groupId>
-            <artifactId>org.omg.sysml</artifactId>
-            <version>${project.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10</version>

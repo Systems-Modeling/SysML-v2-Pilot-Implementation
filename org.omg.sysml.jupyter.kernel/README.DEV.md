@@ -1,13 +1,13 @@
 # Kernel configuration
-These resources were originally produces by the [Jupyter Installer Gradle plugin](https://github.com/SpencerPark/Jupyter-kernel-installer-gradle/tree/master).
+These resources were originally produced by the [Jupyter Installer Gradle plugin](https://github.com/SpencerPark/Jupyter-kernel-installer-gradle/tree/master).
 
-The kernel.json contains some configuration options for the kernel like the display name, name of the language and the java arguments needed to launch the kernel.
+The `kernel.json` contains some configuration options for the kernel like the display name, name of the language and the java arguments needed to launch the kernel.
 
 [src/main/resources/sysml/kernel.json](src/main/resources/sysml/kernel.json)
 
-## Adding new python argument
+## Adding new python arguments
 
-In order to add python arguments for our application installer we need to modify the install script. This script will be packaged into the final .zip.
+In order to add Python arguments for the application installer, you need to modify the install script. This script will be packaged into the final `.zip`.
 
 In the [src/main/resources/install.py](src/main/resources/install.py) look for the section:
 
@@ -39,10 +39,10 @@ NAME_MAP = {
 Add an alias to the ALIASES map. Leave the object empty.
 Map the new argument name to the alias in the NAME_MAP.
 
-The --user, --sys-prefix, --prefix, --replace arguments are reserved.
+The `--user`, `--sys-prefix`, `--prefix`, `--replace` arguments are reserved.
 
 
-Next we need to add the argument to the parser.
+Next you need to add the argument to the parser.
 
 Look for the section:
 
@@ -77,4 +77,4 @@ Look for the section:
 #SECTION END      
 ```
 
-Copy one of the lines like above. And modify the relevant parts.
+Copy one of the lines like above, and modify the relevant parts.

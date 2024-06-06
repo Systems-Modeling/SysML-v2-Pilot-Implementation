@@ -193,6 +193,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseDependency(Dependency element) {
+			return new DependencyAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseDifferencing(Differencing element) {
 			return new DifferencingAdapter(element);
 		}

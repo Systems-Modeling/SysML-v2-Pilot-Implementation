@@ -103,7 +103,7 @@ public abstract class VTraverser extends Visitor {
     private void traverseInherited(Type typ, Set<Element> covered) {
         for (Membership ms: typ.getInheritedMembership()) {
             Element e = ms.getMemberElement();
-            if (!showLib() && isModelLibrary(e)) continue;
+            if (isHidden(e)) continue;
             if (markRedefining(e, covered)) continue;
             setInherited(true);
             pushVisited();
@@ -114,7 +114,7 @@ public abstract class VTraverser extends Visitor {
 
     private void traverseRest(VPath vpath, Set<Element> covered) {
         for (Element e: vpath.rest()) {
-            if (!showLib() && isModelLibrary(e)) continue;
+            if (isHidden(e)) continue;
             if (markRedefining(e, covered)) continue;
             currentMembership = null;
             setInherited(true);
@@ -186,6 +186,10 @@ public abstract class VTraverser extends Visitor {
     private boolean showLib() {
         init();
         return showLib;
+    }
+
+    protected boolean isHidden(Element e) {
+        return !(showLib() && isModelLibrary(e));
     }
 
     private static Set<Namespace> initVisited(Visitor prev) {

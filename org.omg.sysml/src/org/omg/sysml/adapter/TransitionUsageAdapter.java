@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -104,12 +104,11 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	@Override
-	public void doTransform() {
+	public void addAdditionalMembers() {
 		// Note: Needs to come before computeTransitionLinkConnectors.
 		computeSource();
 		// Note: Needs to come before clearing and recomputation of inheritance cache.
 		computeTransitionLinkConnectors();		
-		super.doTransform();
 	}
 	
 }

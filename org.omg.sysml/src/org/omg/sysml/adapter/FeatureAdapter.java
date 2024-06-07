@@ -303,9 +303,13 @@ public class FeatureAdapter extends TypeAdapter {
 	public Feature getReferencedFeature() {
 		Feature target = getTarget();
 		ReferenceSubsetting ownedReferenceSubsetting = target.getOwnedReferenceSubsetting();
-		return ownedReferenceSubsetting != null? ownedReferenceSubsetting.getReferencedFeature():
-			 getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
-				map(Feature.class::cast).findFirst().orElse(null);
+		if (ownedReferenceSubsetting != null) {
+			return ownedReferenceSubsetting.getReferencedFeature();
+		} else {
+			computeImplicitGeneralTypes();
+			return getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
+					map(Feature.class::cast).findFirst().orElse(null);
+		}
 	}
 	
 	public List<Feature> getRedefinedFeatures() {

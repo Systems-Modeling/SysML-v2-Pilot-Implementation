@@ -76,6 +76,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
@@ -430,6 +431,11 @@ public class SysML2PlantUMLStyle {
 		public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
             return " --> ";
 		}
+
+        @Override
+        public String caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage sfcu) {
+            return " ..> ";
+        }
 
 		@Override
 		public String caseAllocationUsage(AllocationUsage au) {

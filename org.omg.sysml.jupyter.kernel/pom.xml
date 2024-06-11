@@ -8,22 +8,71 @@
     <version>${revision}</version>
   </parent>
   <artifactId>jupyter-sysml-kernel</artifactId>
-  <properties>
-    <gradle.executable>./gradlew</gradle.executable>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.omg.sysml</groupId>
-      <artifactId>org.omg.sysml.interactive</artifactId>
-      <classifier>all</classifier>
-      <version>${project.version}</version>
-    </dependency>
-  </dependencies>
+  
+    <dependencies>
+        <dependency>
+            <groupId>org.omg.sysml</groupId>
+            <artifactId>org.omg.sysml.interactive</artifactId>
+            <version>${project.version}</version>
+            <classifier>all</classifier>
+            <!-- Exclude transitive dependencies as they are included in the shaded jar -->
+			<exclusions>
+        		<exclusion>
+            		<groupId>*</groupId>
+            		<artifactId>*</artifactId>
+        		</exclusion>
+    		</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.github.spencerpark</groupId>
+            <artifactId>jupyter-jvm-basekernel</artifactId>
+            <version>2.3.0</version>
+             <!-- Exclude gson as it is included in the shaded jar -->
+            <exclusions>
+        		<exclusion>
+            		<groupId>com.google.code.gson</groupId>
+            		<artifactId>gson</artifactId>
+        		</exclusion>
+    		</exclusions>
+        </dependency>
+        <!-- 
+        Dependencies needed for m2e 
+        we need to add these manually so the Eclipse IDE can see the classpath
+        -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.xtext</groupId>
+            <artifactId>org.eclipse.xtext</artifactId>
+            <version>${xtext.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
   <build>
+	<!-- Removing script source files to not be able to part of the compiled jar -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>**/*.py</exclude>
+          <exclude>**/*.js</exclude>
+          <exclude>**/*.json</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
-            <plugin>
+      <plugin>
         <groupId>org.asciidoctor</groupId>
         <artifactId>asciidoctor-maven-plugin</artifactId>
         <version>${asciidoctor.maven.plugin.version}</version>
@@ -62,90 +111,117 @@
               <attributes>
                 <source-highlighter>rogue</source-highlighter>
                 <icons>font</icons>
-                <pagenums />
-                <idprefix />
+								<pagenums />
+								<idprefix />
                 <idseparator>-</idseparator>
               </attributes>
             </configuration>
           </execution>
         </executions>
       </plugin>
-      <!-- disable Maven's default-compile -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven-compiler-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>default-compile</id>
-            <phase>none</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- disable Maven's default-jar -->
+      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>${maven-jar-plugin.version}</version>
         <executions>
-          <execution>
-            <id>default-jar</id>
-            <phase>none</phase>
-          </execution>
+			<execution>
+				<id>build-jar</id>
+				<phase>prepare-package</phase>
+				<goals>
+					<goal>jar</goal>
+				</goals>
+			</execution>
+			<execution>
+            	<id>default-jar</id>
+            	<phase>none</phase>
+           </execution>
         </executions>
       </plugin>
-      <!-- execute Gradle command -->
+      
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>${exec-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>gradle-prepare-package</id>
-            <phase>prepare-package</phase>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.5.3</version>
             <configuration>
-              <executable>${gradle.executable}</executable>
-              <arguments>
-                <argument>build</argument>
-                <argument>zipKernel</argument>
-                <argument>-Pgroup=${project.groupId}</argument>
-                <argument>-Pversion=${project.version}</argument>
-                <argument>-S</argument>
-              </arguments>
+                <shadedArtifactAttached>true</shadedArtifactAttached>
+                <shadedClassifierName>all</shadedClassifierName>
+                <!-- These are duplicates from the .jars we merge. We don't need re-packaging them. Also they cause security exceptions if we leave these in. -->
+                <filters>
+                    <filter>
+                        <artifact>*:*</artifact>
+                        <excludes>
+                            <exclude>META-INF/*.SF</exclude>
+                            <exclude>META-INF/*.DSA</exclude>
+                            <exclude>META-INF/*.RSA</exclude>
+                            <exclude>META-INF/*.MF</exclude>
+                        </excludes>
+                    </filter>
+                </filters>
+		        <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Main-Class>org.omg.sysml.jupyter.kernel.ISysML</Main-Class>
+                  </manifestEntries>
+                  </transformer>
+                </transformers>
             </configuration>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- copy generated JARs -->
-      <plugin>
+            <executions>
+                <execution>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+		
+		<!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>templating-maven-plugin</artifactId>
+			<version>3.0.0</version>
+			<executions>
+				<execution>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>filter-sources</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<sourceDirectory>src/main/resources</sourceDirectory>
+				<outputDirectory>target/kernel</outputDirectory>
+			</configuration>
+		</plugin>
+       
+       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <version>${maven-resources-plugin.version}</version>
         <executions>
           <execution>
-            <id>copy-gradle-jars</id>
             <phase>package</phase>
+            <id>create-kernel</id>
             <goals>
               <goal>copy-resources</goal>
             </goals>
-
             <configuration>
-              <outputDirectory>${basedir}/target</outputDirectory>
+              <outputDirectory>${basedir}/target/kernel</outputDirectory>
               <resources>
                 <resource>
-                  <directory>build/libs/</directory>
+                  <directory>${basedir}/target</directory>
+                  <targetPath>sysml</targetPath>
                   <includes>
-                    <include>${project.artifactId}-${project.version}.jar</include>
                     <include>${project.artifactId}-${project.version}-all.jar</include>
                   </includes>
                 </resource>
                 <resource>
-                  <directory>build/distributions/</directory>
+                  <directory>..</directory>
+                  <targetPath>sysml</targetPath>
                   <includes>
-                    <include>${project.artifactId}-${project.version}.zip</include>
+                    <include>sysml.library/**/*.kerml</include>
+                    <include>sysml.library/**/*.sysml</include>
                   </includes>
                 </resource>
               </resources>
@@ -153,62 +229,26 @@
           </execution>
         </executions>
       </plugin>
-      <!-- attach copied JARs to build -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>${build-helper-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>target/${project.artifactId}-${project.version}-all.jar</file>
-                  <type>jar</type>
-                  <classifier>all</classifier>
-                </artifact>
-                <artifact>
-                  <file>target/${project.artifactId}-${project.version}.zip</file>
-                  <type>zip</type>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- clean Gradle build directory -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>${maven-clean-plugin.version}</version>
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>build</directory>
-            </fileset>
-          </filesets>
-        </configuration>
-      </plugin>
+       
+	     <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <version>${maven-assembly-plugin.version}</version>
+	        <executions>
+	            <execution>
+	                <phase>package</phase>
+	                <goals>
+	                    <goal>single</goal>
+	                </goals>
+	                <configuration>
+	                    <appendAssemblyId>false</appendAssemblyId>
+	                    <descriptors>
+	                        <descriptor>assembly.xml</descriptor>
+	                    </descriptors>
+	                </configuration>
+	            </execution>
+	        </executions>
+	    </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <!-- configure Gradle executable on Windows -->
-    <profile>
-      <id>windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <gradle.executable>gradlew.bat</gradle.executable>
-      </properties>
-    </profile>
-  </profiles>
 </project>

@@ -423,11 +423,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
-			return new SuccessionAsUsageAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseTransitionUsage(TransitionUsage element) {
 			return new TransitionUsageAdapter(element);
 		}

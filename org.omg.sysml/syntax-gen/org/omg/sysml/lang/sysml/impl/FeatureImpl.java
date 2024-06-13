@@ -24,9 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -42,7 +39,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -456,24 +452,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public boolean isOrdered() {
-		return checkIsOrdered(this, new HashSet<Feature>());
+		return isOrdered;
 	}
 	
-	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
-		if (feature.isOrdered) {
-			return feature.isOrdered;
-		} else {
-			visited.add(feature);
-			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
-				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
-						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
-					return true;
-				}
-			}
-			return false;
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

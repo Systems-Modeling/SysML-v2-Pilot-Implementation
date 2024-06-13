@@ -23,12 +23,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -83,20 +81,10 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Feature getRedefiningFeature() {
-		return redefiningFeature == null ? basicGetRedefiningFeature() : getRedefiningFeatureGen();
-	}
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getRedefiningFeatureGen() {
+	public Feature getRedefiningFeature() {
 		if (redefiningFeature != null && redefiningFeature.eIsProxy()) {
 			InternalEObject oldRedefiningFeature = (InternalEObject)redefiningFeature;
 			redefiningFeature = (Feature)eResolveProxy(oldRedefiningFeature);
@@ -110,25 +98,10 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the redefiningFeature is empty, then set it to the owningRelatedElement, if that is a Feature.
-	 * Otherwise, set it to the first ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetRedefiningFeature() {
-		if (redefiningFeature == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				redefiningFeature = (Feature) owner;
-			} else {
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					redefiningFeature = (Feature)ownedRelatedElements.get(0);
-				}
-			}
-		}
 		return redefiningFeature;
 	}
 
@@ -152,19 +125,14 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 * @generated NOT
 	 */
 	public boolean isSetRedefiningFeature() {
-		return basicGetRedefiningFeature() != null;
-	}
-
-	@Override
-	public Feature getRedefinedFeature() {
-		return redefinedFeature == null? basicGetRedefinedFeature(): getRedefinedFeatureGen();
+		return redefiningFeature != null;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getRedefinedFeatureGen() {
+	public Feature getRedefinedFeature() {
 		if (redefinedFeature != null && redefinedFeature.eIsProxy()) {
 			InternalEObject oldRedefinedFeature = (InternalEObject)redefinedFeature;
 			redefinedFeature = (Feature)eResolveProxy(oldRedefinedFeature);
@@ -178,15 +146,9 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetRedefinedFeature() {
-		if (redefinedFeature == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				redefinedFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return redefinedFeature;
 	}
 
@@ -204,10 +166,10 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetRedefinedFeature() {
-		return basicGetRedefinedFeature() != null;
+		return redefinedFeature != null;
 	}
 
 	/**

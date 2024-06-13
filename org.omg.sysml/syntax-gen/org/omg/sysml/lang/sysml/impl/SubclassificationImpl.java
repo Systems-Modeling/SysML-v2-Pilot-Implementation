@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -183,21 +182,10 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Classifier getSubclassifier() {
-		return subclassifier == null ? basicGetSubclassifier() : getSubclassifierGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getSubclassifierGen() {
+	public Classifier getSubclassifier() {
 		if (subclassifier != null && subclassifier.eIsProxy()) {
 			InternalEObject oldSubclassifier = (InternalEObject)subclassifier;
 			subclassifier = (Classifier)eResolveProxy(oldSubclassifier);
@@ -210,21 +198,11 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the subclassifier is empty, then set it to the owningRelatedElement,
-	 * if this is a Classifier.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public org.omg.sysml.lang.sysml.Classifier basicGetSubclassifier() {
-		if (subclassifier == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Classifier) {
-				subclassifier = (Classifier) owner;
-			}
-		}
 		return subclassifier;
 	}
 

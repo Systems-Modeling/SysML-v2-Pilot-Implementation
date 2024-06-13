@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,17 +22,34 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class MembershipAdapter extends RelationshipAdapter {
+public class TypeFeaturingAdapter extends RelationshipAdapter {
 
-	public MembershipAdapter(Membership element) {
+	public TypeFeaturingAdapter(TypeFeaturing element) {
 		super(element);
 	}
 	
 	@Override
-	public Membership getTarget() {
-		return (Membership)super.getTarget();
+	public TypeFeaturing getTarget() {
+		return (TypeFeaturing)super.getTarget();
+	}
+	
+	@Override
+	public void postProcess() {
+		TypeFeaturing obj = getTarget();
+		
+		// If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
+		Object featureOfType = obj.eGet(SysMLPackage.Literals.TYPE_FEATURING__FEATURE_OF_TYPE, false);
+		if (featureOfType == null) {
+			Element owner = obj.getOwningRelatedElement();
+			if (owner instanceof Feature) {
+				obj.setFeatureOfType((Feature)owner);
+			}
+		}
 	}
 	
 }

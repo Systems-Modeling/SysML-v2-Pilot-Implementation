@@ -23,6 +23,8 @@
  *****************************************************************************/
 package org.omg.sysml.interactive.profiler;
 
+import java.io.File;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
@@ -31,8 +33,10 @@ import java.util.stream.Collectors;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
-import org.omg.sysml.interactive.profiler.scope.ProfilableGlobalScopeWrapper;
-import org.omg.sysml.interactive.profiler.scope.ProfilableScopeWrapper;
+import org.omg.sysml.interactive.profiler.results.LinkStep;
+import org.omg.sysml.interactive.profiler.results.LinkingResult;
+import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLGlobalScope;
+import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLScope;
 
 import com.google.common.base.Stopwatch;
 
@@ -69,9 +73,22 @@ public class SysMLInteractiveParsingProfiler {
 			System.out.println();
 		}
 		
-		System.out.println("Total time in scope: " + ProfilableScopeWrapper.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableScopeWrapper.SCOPE_CALL_COUNT + " calls)");
-		System.out.println("Total time in global scope: " + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
-		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilableGlobalScopeWrapper.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		var outputfile = new File("test.txt");
+		outputfile.delete();
+		outputfile = null;
+		
+		outputfile = new File("test.txt");
+		outputfile.createNewFile();
+		
+		var out = new PrintStream(outputfile);
+		
+		LinkingResult.RESULTS.stream().sorted((o1, o2) -> o1.compareTo(o2)).forEach(s -> s.print(0, out));
+		
+		out.close();
+		
+		System.out.println("Total time in scope: " + ProfilingKerMLScope.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLScope.SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in global scope: " + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms");
 	}
 
 }

@@ -19,72 +19,53 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.omg.kerml.xtext.scoping.KerMLGlobalScope;
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.results.LinkStep;
-import org.omg.sysml.interactive.profiler.results.ScopeResult;
+import org.omg.sysml.interactive.profiler.results.GlobalScopeResult;
 
+import com.google.common.base.Predicate;
 import com.google.common.base.Stopwatch;
 
-public class ProfilableScopeWrapper implements IScope
-{
-	public static final Stopwatch SCOPE_TIME = Stopwatch.createUnstarted();
-	public static long SCOPE_CALL_COUNT = 0;
+public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
-	
-	protected final IScope wrappedScope;
-	
-	public ProfilableScopeWrapper(IScope wrappedScope) {
-		this.wrappedScope = wrappedScope;
+	public ProfilingKerMLGlobalScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
+			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+		super(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 
+	public static final Stopwatch GLOBAL_SCOPE_TIME = Stopwatch.createUnstarted();
+	public static long GLOBAL_SCOPE_CALL_COUNT = 0;
+	
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
-		SCOPE_CALL_COUNT++;
+		GLOBAL_SCOPE_CALL_COUNT++;
 		
-		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
+		if (!GLOBAL_SCOPE_TIME.isRunning()) GLOBAL_SCOPE_TIME.start();
 		
-		SCOPE_TIME.stop();
+		GLOBAL_SCOPE_TIME.stop();
 		var localWatch = Stopwatch.createUnstarted();
 		
 		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		ProfilingKerMLLinkingService.currentStep = new ScopeResult(false, name, oldValue);
-		SCOPE_TIME.start();
+		ProfilingKerMLLinkingService.currentStep = new GlobalScopeResult(name, oldValue);
+		GLOBAL_SCOPE_TIME.start();
 		
 		localWatch.start();
-		IEObjectDescription singleElement = wrappedScope.getSingleElement(name);
+		IEObjectDescription singleElement = super.getSingleElement(name);
 		localWatch.stop();
 		
-		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
-		SCOPE_TIME.stop();
+		if (!GLOBAL_SCOPE_TIME.isRunning()) GLOBAL_SCOPE_TIME.start();
+		GLOBAL_SCOPE_TIME.stop();
 		
 		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;
 		
 		return singleElement;
-	}
-
-	@Override
-	public Iterable<IEObjectDescription> getElements(QualifiedName name) {
-		return wrappedScope.getElements(name);
-	}
-
-	@Override
-	public IEObjectDescription getSingleElement(EObject object) {
-		return wrappedScope.getSingleElement(object);
-	}
-
-	@Override
-	public Iterable<IEObjectDescription> getElements(EObject object) {
-		return wrappedScope.getElements(object);
-	}
-
-	@Override
-	public Iterable<IEObjectDescription> getAllElements()
-	{
-		return wrappedScope.getAllElements();
 	}
 }

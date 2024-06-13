@@ -20,19 +20,20 @@
 package org.omg.sysml.interactive.profiler.scope;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.xtext.resource.IContainer;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.omg.kerml.xtext.scoping.KerMLGlobalScope;
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider;
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
 
 import com.google.common.base.Predicate;
 
 public class ProfilingKerMLGlobalScopeProvider extends KerMLGlobalScopeProvider
 {
 	@Override
-	protected IScope createContainerScope(IScope parent, IContainer container, Predicate<IEObjectDescription> filter,
-			EClass type, boolean ignoreCase) {
-
-		return new ProfilableGlobalScopeWrapper(super.createContainerScope(parent, container, filter, type, ignoreCase));
+	protected KerMLGlobalScope createScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
+			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+		 return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 }

@@ -19,7 +19,6 @@
  */
 package org.omg.sysml.interactive.profiler.linking;
 
-import java.time.Duration;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +26,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.nodemodel.INode;
-import org.omg.sysml.interactive.profiler.SysMLInteractiveParsingProfiler;
 import org.omg.sysml.interactive.profiler.results.LinkStep;
 import org.omg.sysml.interactive.profiler.results.LinkingResult;
 
@@ -48,7 +46,7 @@ public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 		
 		var lastLinkingResult = currentStep;
 		var name = getCrossRefNodeAsString(node);
-		var currentLocal = new LinkingResult(name, ref,  node.getStartLine(), 0, lastLinkingResult);
+		var currentLocal = new LinkingResult(name, ref,  node.getStartLine(), context.eResource().getURI().lastSegment(), lastLinkingResult);
 		currentStep = currentLocal;
 		LINKING_TIME.start();
 		
@@ -62,9 +60,11 @@ public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 		LINKING_TIME.stop();
 		currentLocal.addResult(linkedObjects);
 		currentLocal.setDuration(localWatch.elapsed());
-		LinkingResult.RESULTS.add(currentStep);
+		
+		if (lastLinkingResult == null)
+			LinkingResult.RESULTS.add(currentStep);
+		
 		currentStep = lastLinkingResult;
-
 		
 		return linkedObjects;
 	}

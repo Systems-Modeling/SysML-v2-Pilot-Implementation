@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
+import org.eclipse.emf.ecore.EClass
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -156,8 +157,16 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				else
 					parent.scopeFor(reference, element, true, false, false, skip)
 		}	
-
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
+		
+		var membershipImport = false//element !== null && SysMLPackage.eINSTANCE.namespaceImport.isSuperTypeOf(element.eClass)
+		
+		
+		createScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip, membershipImport)
+	}
+	
+	protected def createScope(IScope outerscope, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip, boolean membershipImport)
+	{
+		new KerMLScope(outerscope, pack, referenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
 	
 }

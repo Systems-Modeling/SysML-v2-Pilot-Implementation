@@ -19,6 +19,7 @@
  */
 package org.omg.sysml.interactive.profiler.results;
 
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,37 +33,29 @@ public class LinkingResult extends LinkStep
 	private final String text;
 	private final EReference reference;
 	private final int line;
-	private final int column;
-	private EObject result;
+	private String resource;
 	
-	public LinkingResult(String text, EReference reference, int line, int column, LinkStep parent) {
+	public LinkingResult(String text, EReference reference, int line, String resource, LinkStep parent) {
 		super(parent);
 		this.reference = reference;
 		this.text = text;
 		this.line = line;
-		this.column = column;		
+		this.resource = resource;		
 	}
 			
 	@Override
-	public void print(int nesting) {
+	public void print(int nesting, PrintStream out) {
 		if (isRoot()) {
-			System.out.println("----------------------------------");
+			out.println("----------------------------------");
 		}
-		createNesting(nesting);
-		
-		String resName = "";
-		
-		/*
-		 * if (result != null) { resName = result.eResource().getURI().lastSegment(); }
-		 */
-		
-		System.out.println("Linking " + text + "(" + reference.getName().trim() + ")" + " took " + getDuration().toMillis() + "ms in line " + line + " --found in--> " + resName);
+		createNesting(nesting, out);
+		out.println("Linking " + text + "[" + reference.getName().trim() + "] in " + resource + ":" + line +" took " + getDuration().toMillis() + "ms");
 		final var incNesting = ++nesting;
-		getChildren().forEach(res -> res.print(incNesting));
+		getChildren().forEach(res -> res.print(incNesting, out));
 	}
 	
 	public void addResult(List<EObject> linkedObjects) {
-		if (!linkedObjects.isEmpty())
-			this.result = linkedObjects.get(0);
+//		if (!linkedObjects.isEmpty())
+//			this.result = linkedObjects.get(0);
 	}
 }

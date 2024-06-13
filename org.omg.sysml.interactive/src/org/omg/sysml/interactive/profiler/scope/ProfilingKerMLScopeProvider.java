@@ -19,17 +19,21 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.scoping.IScope;
+import org.omg.kerml.xtext.scoping.KerMLScope;
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Namespace;
 
 public class ProfilingKerMLScopeProvider extends KerMLScopeProvider {
 	
 	@Override
-	public IScope getScope(EObject context, EReference reference) {
-
-		return new ProfilableScopeWrapper(super.getScope(context, reference));
+	protected KerMLScope createScope(IScope outerscope, Namespace pack, EClass referenceType,
+			KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition,
+			Element element, Element skip, boolean membershipImport) {
+		
+		return new ProfilingKerMLScope(outerscope, pack, referenceType, scopeProvider, isInsideScope, isFirstScope, isRedefinition, element, skip);
 	}
 
 }

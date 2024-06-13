@@ -19,19 +19,6 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
-import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider;
-
-import com.google.common.base.Predicate;
-
-public class ProfilingSysMLGlobalScopeProvider extends SysMLGlobalScopeProvider
+public class ProfilingSysMLGlobalScopeProvider extends ProfilingKerMLGlobalScopeProvider
 {	
-	@Override
-	public IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter)
-	{
-		return new ProfilableGlobalScopeWrapper(super.getScope(parent, context, ignoreCase, type, filter));
-	}
 }

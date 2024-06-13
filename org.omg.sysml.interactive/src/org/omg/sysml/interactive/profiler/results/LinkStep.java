@@ -19,6 +19,7 @@
  */
 package org.omg.sysml.interactive.profiler.results;
 
+import java.io.PrintStream;
 import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,11 +61,11 @@ public abstract class LinkStep implements Comparable<LinkStep>{
 		return duration.compareTo(o.duration);
 	}
 
-	public abstract void print(int indent);
+	public abstract void print(int indent, PrintStream out);
 	
-	public static void createNesting(int nesting) {
+	public static void createNesting(int nesting, PrintStream out) {
 		for (int i = 0; i < nesting; i++) {
-			System.out.print('\t');
+			out.print(' ');
 		}
 	}
 }

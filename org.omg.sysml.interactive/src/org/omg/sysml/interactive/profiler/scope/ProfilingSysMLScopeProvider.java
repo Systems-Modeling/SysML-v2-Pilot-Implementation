@@ -19,16 +19,5 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtext.scoping.IScope;
-import org.omg.sysml.xtext.scoping.SysMLScopeProvider;
-
-public class ProfilingSysMLScopeProvider extends SysMLScopeProvider {
-
-	@Override
-	public IScope getScope(EObject context, EReference reference) {
-		
-		return new ProfilableScopeWrapper(super.getScope(context, reference));
-	}
+public class ProfilingSysMLScopeProvider extends ProfilingKerMLScopeProvider {
 }

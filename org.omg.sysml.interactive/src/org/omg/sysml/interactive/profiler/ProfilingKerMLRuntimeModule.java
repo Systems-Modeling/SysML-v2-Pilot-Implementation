@@ -23,10 +23,10 @@ import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.omg.kerml.xtext.KerMLRuntimeModule;
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
 import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLGlobalScopeProvider;
-import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLScopeProvider;
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider;
 
 public class ProfilingKerMLRuntimeModule extends KerMLRuntimeModule {
@@ -37,7 +37,8 @@ public class ProfilingKerMLRuntimeModule extends KerMLRuntimeModule {
 	
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider() {
-		return ProfilingKerMLScopeProvider.class;
+		return KerMLScopeProvider.class;
+		//return ProfilingKerMLScopeProvider.class;
 	}
 	
 	@Override

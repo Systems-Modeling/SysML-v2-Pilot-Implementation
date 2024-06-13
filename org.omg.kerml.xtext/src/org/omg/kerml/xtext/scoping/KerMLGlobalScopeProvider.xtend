@@ -42,11 +42,15 @@ class KerMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
 	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
 		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
-		return KerMLGlobalScope.createScope(scope, context, filter, rootFilter, type, kerMLScopeProvider)
+		return createScope(scope, context, filter, rootFilter, type, kerMLScopeProvider)
 	}
 	
 	protected def Predicate<IEObjectDescription> getRootFilter() {
 		Predicates.alwaysTrue
 	}
-
+	
+	protected def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider)
+	{
+		return new KerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
+	}
 }

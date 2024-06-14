@@ -49,11 +49,14 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
 import org.eclipse.emf.ecore.EClass
+import java.util.List
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
+	
+	List<KerMLScope> scopeChain = newArrayList
 
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet
@@ -72,6 +75,18 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	
 	def removeVisited(Element element) {
 		visited.remove(element)
+	}
+	
+	def addToChain(KerMLScope scope){
+		scopeChain.add(scope)
+	}
+	
+	def removeFromChain(KerMLScope scope){
+		scopeChain.remove(scope)
+	}
+	
+	def getScopeChain(){
+		scopeChain
 	}
 	
 	override getScope(EObject context, EReference reference) {

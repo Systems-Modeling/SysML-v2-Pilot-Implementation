@@ -167,45 +167,56 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (obj instanceof Element) obj else null
 	}
 	
-	static Map<Namespace, Map<Object, IEObjectDescription>> cache = newHashMap
+	static Map<Namespace, Map<Object, CachedScopeResult>> cache = newHashMap
 	
-	 boolean unfinishedSearch = false
-	 static boolean unfinishedGlobal = false
+	def notifyUnfinishedSearch(){
+		scopeProvider.scopeChain.forEach[ it.updateUnfinishedSearch ]
+	}
+	
+	boolean unfinishedSearch = false
+	
+	def updateUnfinishedSearch(){
+		unfinishedSearch = true
+	}
 	
 	override getSingleElement(QualifiedName name) {
 		
 		val key = Tuples.create(name, referenceType)
-		var unfinishedSearchOldValue = unfinishedSearch
-		var globalOldValue = unfinishedGlobal
 		
-		if (cache.containsKey(ns)){
-			var namespaceScopeResults = cache.get(ns)
-			if (namespaceScopeResults.containsKey(key)){
-				return namespaceScopeResults.get(key)
+		scopeProvider.addToChain(this)
+		
+		var cachesForNS = cache.get(ns)
+		var cachedScopeResult = if (cachesForNS !== null)
+			cachesForNS.get(key)
+		 else null
+		
+		if (cachedScopeResult !== null){
+			if (cachedScopeResult.hierarchyExlpored || cachedScopeResult.description !== null){
+				return cachedScopeResult.description
 			}
-		}
+		} else {
+			val result = resolveInScope(name, true);
 		
-		val result = resolveInScope(name, true);
-		
-		if (!unfinishedSearch){
+			if (!isRedefinition && !unfinishedSearch){
+				//store result even if it's empty in case the whole scope was explored
+				cache.computeIfAbsent(ns, [ newHashMap ]).computeIfAbsent(key, [ new CachedScopeResult(result.head, false) ])
+			}
 			
-		}
+			if (!result.isEmpty){
+				return result.get(0)
+			}
+		}		
 		
-		val finalResult = if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
+		val resultFromHierarchy = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
 		
 		if (!isRedefinition){
-			if (finalResult !== null || !unfinishedSearch){
-				cache.computeIfAbsent(ns, [ newHashMap ]).put(key, finalResult)
-			}		
+			if (resultFromHierarchy !== null || !unfinishedSearch)
+				cache.computeIfAbsent(ns, [ newHashMap ]).put(key, new CachedScopeResult(resultFromHierarchy, !unfinishedSearch))
 		}
-		
-		
-		unfinishedSearch = unfinishedSearchOldValue
-		unfinishedGlobal = globalOldValue
 			
-		return finalResult
+		scopeProvider.removeFromChain(this)
+			
+		return resultFromHierarchy
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
@@ -320,7 +331,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						scopeProvider.removeVisited(mem)						
 					}					
 				} else {
-					unfinishedSearch = true
+					notifyUnfinishedSearch
 				}
 			}
 			ownedvisited.remove(ns)
@@ -399,7 +410,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
-				} else unfinishedSearch = true
+				} else notifyUnfinishedSearch
 			}
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
@@ -417,7 +428,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						return true
 					}
 				} else {
-					unfinishedSearch = true
+					notifyUnfinishedSearch
 				}
 			}
 			if (includeImplicit) {
@@ -432,7 +443,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						}
 					}
 				} else {
-					unfinishedSearch = true
+					notifyUnfinishedSearch
 				}
 			}
 			
@@ -470,7 +481,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) return true
 				}
 			} else {
-				unfinishedSearch = true
+				notifyUnfinishedSearch
 			}
 		}
 		return false
@@ -523,7 +534,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			}
 			visited.remove(ns)
 		} else {
-			unfinishedSearch = true
+			notifyUnfinishedSearch
 		}
 		found
 	}

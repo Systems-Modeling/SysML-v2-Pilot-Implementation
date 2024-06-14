@@ -28,34 +28,36 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
 
+import com.google.inject.Inject
+import java.util.HashSet
 import java.util.Map
 import java.util.Set
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Type
-import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.VisibilityKind
-import org.eclipse.xtext.resource.IEObjectDescription
-import org.eclipse.emf.ecore.EClass
-import java.util.HashSet
-import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.util.TypeUtil
-import org.omg.sysml.util.FeatureUtil
-import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.OwningMembership
-import org.omg.sysml.lang.sysml.NamespaceImport
-import org.omg.sysml.lang.sysml.MembershipImport
-import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.util.ISysMLScope
-import com.google.inject.Inject
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.omg.sysml.util.NamespaceUtil
+import org.eclipse.xtext.util.Pair
 import org.eclipse.xtext.util.Tuples
+import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.Package
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.util.ISysMLScope
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -110,7 +112,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * The set of Packages traversed in an import chain during a resolution search.
 	 * (Should be empty again at the end of each search.)
 	 */
-	protected val Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
+	protected val Set<Package> importingPackages = new HashSet()
 
 	/* 
 	 * The following fields are reset for each resolution search.
@@ -167,55 +169,35 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (obj instanceof Element) obj else null
 	}
 	
-	static Map<Namespace, Map<Object, CachedScopeResult>> cache = newHashMap
+	static Map<Namespace, Map<Pair<QualifiedName, EClass>, Set<Element>>> cache = newHashMap
 	
-	def notifyUnfinishedSearch(){
-		scopeProvider.scopeChain.forEach[ it.updateUnfinishedSearch ]
-	}
-	
-	boolean unfinishedSearch = false
-	
-	def updateUnfinishedSearch(){
-		unfinishedSearch = true
+	def notifyReachableElement(QualifiedName scopeLocalName, Element element){
+		cache.computeIfAbsent(ns, [ newHashMap ]).computeIfAbsent(Tuples.pair(scopeLocalName, element.eClass), [newHashSet]).add(element)
 	}
 	
 	override getSingleElement(QualifiedName name) {
 		
-		val key = Tuples.create(name, referenceType)
-		
 		scopeProvider.addToChain(this)
 		
-		var cachesForNS = cache.get(ns)
-		var cachedScopeResult = if (cachesForNS !== null)
-			cachesForNS.get(key)
-		 else null
-		
-		if (cachedScopeResult !== null){
-			if (cachedScopeResult.hierarchyExlpored || cachedScopeResult.description !== null){
-				return cachedScopeResult.description
+		val nsCache = cache.get(ns)
+		if (nsCache !== null){
+			var find = nsCache.get(Tuples.create(name, referenceType))
+			if (find !== null && !find.empty){
+				scopeProvider.removeFromChain(this)
+				return EObjectDescription.create(name, find.head)
 			}
-		} else {
-			val result = resolveInScope(name, true);
-		
-			if (!isRedefinition && !unfinishedSearch){
-				//store result even if it's empty in case the whole scope was explored
-				cache.computeIfAbsent(ns, [ newHashMap ]).computeIfAbsent(key, [ new CachedScopeResult(result.head, false) ])
-			}
+		}
 			
-			if (!result.isEmpty){
-				return result.get(0)
-			}
-		}		
+		val result = resolveInScope(name, true);
+		
+		if (!result.isEmpty){
+			scopeProvider.removeFromChain(this)
+			return result.get(0)
+		}
 		
 		val resultFromHierarchy = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
 		
-		if (!isRedefinition){
-			if (resultFromHierarchy !== null || !unfinishedSearch)
-				cache.computeIfAbsent(ns, [ newHashMap ]).put(key, new CachedScopeResult(resultFromHierarchy, !unfinishedSearch))
-		}
-			
 		scopeProvider.removeFromChain(this)
-			
 		return resultFromHierarchy
 	}
 	
@@ -292,7 +274,10 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean owned(Namespace ns, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined, 
-		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {		
+		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
+		
+		var found = false
+		
 		if (!ownedvisited.contains(ns)) {
 			if (targetqn === null) {
 				ownedvisited.add(ns)		
@@ -314,7 +299,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 							else mem.memberName
 					
 						if (checkElementName(memberName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
-							return true
+							found = true
 						}
 						
 						scopeProvider.addVisited(mem) // In case it was removed during the previous checkElementName call.
@@ -325,18 +310,16 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 							else mem.memberShortName
 					
 						if (checkElementName(memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
-							return true
+							found = true
 						}
 					
 						scopeProvider.removeVisited(mem)						
 					}					
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			ownedvisited.remove(ns)
 		}
-		return false
+		return found
 	}
 	
 	protected def checkElementName(String elementName, QualifiedName qn, Membership mem, 
@@ -384,6 +367,9 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (!memberElement.includeAsMember) {
 			return false
 		}
+		
+		notifyReachableElement(elementqn, memberElement)
+		
 		if (addQualifiedName(elementqn, mem, memberElement)) {
 			return true
 		}		
@@ -410,7 +396,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
-				} else notifyUnfinishedSearch
+				}
 			}
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
@@ -427,8 +413,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			if (includeImplicit) {
@@ -442,8 +426,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 							return true
 						}
 					}
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			
@@ -467,7 +449,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		for (e: ns.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
-					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
+					if (ns instanceof Package) {
 						if (!ns.filterCondition.isEmpty) {
 							importingPackages.add(ns)
 						}
@@ -480,9 +462,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					importingPackages.remove(ns)
 					if (found) return true
 				}
-			} else {
-				notifyUnfinishedSearch
-			}
+			} 
 		}
 		return false
 	}
@@ -533,8 +513,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				found = resolveRecursive(ns, qn, visited, includeAll)
 			}
 			visited.remove(ns)
-		} else {
-			notifyUnfinishedSearch
 		}
 		found
 	}

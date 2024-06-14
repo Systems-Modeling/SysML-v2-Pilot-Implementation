@@ -158,13 +158,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 					parent.scopeFor(reference, element, true, false, false, skip)
 		}	
 		
-		var membershipImport = false//element !== null && SysMLPackage.eINSTANCE.namespaceImport.isSuperTypeOf(element.eClass)
 		
-		
-		createScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip, membershipImport)
+		createScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
 	
-	protected def createScope(IScope outerscope, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip, boolean membershipImport)
+	protected def createScope(IScope outerscope, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip)
 	{
 		new KerMLScope(outerscope, pack, referenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}

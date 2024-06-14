@@ -27,6 +27,7 @@ import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
 import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLGlobalScopeProvider;
+import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLScopeProvider;
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider;
 
 public class ProfilingKerMLRuntimeModule extends KerMLRuntimeModule {
@@ -35,11 +36,10 @@ public class ProfilingKerMLRuntimeModule extends KerMLRuntimeModule {
 		return ProfilingKerMLGlobalScopeProvider.class;
 	}
 	
-	@Override
-	public Class<? extends IScopeProvider> bindIScopeProvider() {
-		return KerMLScopeProvider.class;
-		//return ProfilingKerMLScopeProvider.class;
-	}
+//	@Override
+//	public Class<? extends IScopeProvider> bindIScopeProvider() {
+//		return ProfilingKerMLScopeProvider.class;
+//	}
 	
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {

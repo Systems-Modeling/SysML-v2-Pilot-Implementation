@@ -17,23 +17,30 @@
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
-package org.omg.sysml.interactive.profiler.scope;
+package org.omg.sysml.interactive.profiler.results;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.xtext.scoping.IScope;
-import org.omg.kerml.xtext.scoping.KerMLScope;
-import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
+import java.io.PrintStream;
 
-public class ProfilingKerMLScopeProvider extends KerMLScopeProvider {
-	
-	@Override
-	protected KerMLScope createScope(IScope outerscope, Namespace pack, EClass referenceType,
-			KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition,
-			Element element, Element skip) {
-		
-		return new ProfilingKerMLScope(outerscope, pack, referenceType, scopeProvider, isInsideScope, isFirstScope, isRedefinition, element, skip);
+import org.eclipse.xtext.naming.QualifiedName;
+
+public class ScopeResult extends LinkStep {
+
+	private QualifiedName qn;
+	private String namespace;
+	private String refType;
+
+	public ScopeResult(QualifiedName qn, String namespace, String refType, LinkStep parent) {
+		super(parent);
+		this.qn = qn;
+		this.namespace = namespace;
+		this.refType = refType;
 	}
 
+	@Override
+	public void print(int indent, PrintStream out) {
+		createNesting(indent, out);
+		out.println("Local scope [" +  namespace + "]"  + " looking for " + qn.toString() + " [" + refType + "] took " + getDuration().toMillis() + "ms");
+		final var incNesting = ++indent;
+		getChildren().forEach(res -> res.print(incNesting, out));
+	}
 }

@@ -55,6 +55,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.eclipse.xtext.util.Tuples
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -165,12 +166,46 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
-
+	
+	static Map<Namespace, Map<Object, IEObjectDescription>> cache = newHashMap
+	
+	 boolean unfinishedSearch = false
+	 static boolean unfinishedGlobal = false
+	
 	override getSingleElement(QualifiedName name) {
+		
+		val key = Tuples.create(name, referenceType)
+		var unfinishedSearchOldValue = unfinishedSearch
+		var globalOldValue = unfinishedGlobal
+		
+		if (cache.containsKey(ns)){
+			var namespaceScopeResults = cache.get(ns)
+			if (namespaceScopeResults.containsKey(key)){
+				return namespaceScopeResults.get(key)
+			}
+		}
+		
 		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
+		
+		if (!unfinishedSearch){
+			
+		}
+		
+		val finalResult = if (!result.isEmpty) result.get(0)
 		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
 		else null
+		
+		if (!isRedefinition){
+			if (finalResult !== null || !unfinishedSearch){
+				cache.computeIfAbsent(ns, [ newHashMap ]).put(key, finalResult)
+			}		
+		}
+		
+		
+		unfinishedSearch = unfinishedSearchOldValue
+		unfinishedGlobal = globalOldValue
+			
+		return finalResult
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
@@ -284,6 +319,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					
 						scopeProvider.removeVisited(mem)						
 					}					
+				} else {
+					unfinishedSearch = true
 				}
 			}
 			ownedvisited.remove(ns)
@@ -353,13 +390,16 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean isInheriting, boolean includeImplicit) {
 		if (ns instanceof Type) {
 			val conjugator = ns.ownedConjugator
-			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
-				scopeProvider.addVisited(conjugator)
-				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false, includeImplicit, false)
-				scopeProvider.removeVisited(conjugator)
-				if (found) {
-					return true
-				}
+			if (conjugator !== null) {
+				if (!scopeProvider.visited.contains(conjugator)) {
+					scopeProvider.addVisited(conjugator)
+					val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false,
+						includeImplicit, false)
+					scopeProvider.removeVisited(conjugator)
+					if (found) {
+						return true
+					}
+				} else unfinishedSearch = true
 			}
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
@@ -376,19 +416,26 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
+				} else {
+					unfinishedSearch = true
 				}
 			}
-			if (includeImplicit && !scopeProvider.visited.contains(ns)) {
-				scopeProvider.addVisited(ns);
-				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
-				scopeProvider.removeVisited(ns)
-				for (type : implicitTypes) {
-					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
-					if (found) {
-						return true
+			if (includeImplicit) {
+				if (!scopeProvider.visited.contains(ns)){
+					scopeProvider.addVisited(ns);
+					var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
+					scopeProvider.removeVisited(ns)
+					for (type : implicitTypes) {
+						val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
+						if (found) {
+							return true
+						}
 					}
+				} else {
+					unfinishedSearch = true
 				}
 			}
+			
 			if (ns instanceof Feature) {
 				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
 				if (chainingFeature !== null && 
@@ -422,6 +469,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					importingPackages.remove(ns)
 					if (found) return true
 				}
+			} else {
+				unfinishedSearch = true
 			}
 		}
 		return false
@@ -473,6 +522,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				found = resolveRecursive(ns, qn, visited, includeAll)
 			}
 			visited.remove(ns)
+		} else {
+			unfinishedSearch = true
 		}
 		found
 	}

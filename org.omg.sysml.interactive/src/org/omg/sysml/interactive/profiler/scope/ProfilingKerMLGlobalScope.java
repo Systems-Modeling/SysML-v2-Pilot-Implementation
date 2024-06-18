@@ -35,14 +35,14 @@ import com.google.common.base.Stopwatch;
 
 public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
+	public static final Stopwatch GLOBAL_SCOPE_TIME = Stopwatch.createUnstarted();
+	public static long GLOBAL_SCOPE_CALL_COUNT = 0;
+	
 	public ProfilingKerMLGlobalScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
 			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
 		super(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 
-	public static final Stopwatch GLOBAL_SCOPE_TIME = Stopwatch.createUnstarted();
-	public static long GLOBAL_SCOPE_CALL_COUNT = 0;
-	
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		GLOBAL_SCOPE_CALL_COUNT++;

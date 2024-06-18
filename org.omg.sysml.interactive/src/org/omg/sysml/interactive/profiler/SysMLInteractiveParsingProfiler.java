@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.results.LinkStep;
 import org.omg.sysml.interactive.profiler.results.LinkingResult;
@@ -73,11 +74,11 @@ public class SysMLInteractiveParsingProfiler {
 			System.out.println();
 		}
 		
-		var outputfile = new File("test.txt");
+		var outputfile = new File("instrumentation.txt");
 		outputfile.delete();
 		outputfile = null;
 		
-		outputfile = new File("test.txt");
+		outputfile = new File("instrumentation.txt");
 		outputfile.createNewFile();
 		
 		var out = new PrintStream(outputfile);
@@ -86,9 +87,10 @@ public class SysMLInteractiveParsingProfiler {
 		
 		out.close();
 		
-		System.out.println("Total time in scope: " + ProfilingKerMLScope.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLScope.SCOPE_CALL_COUNT + " calls)");
-		System.out.println("Total time in global scope: " + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_CALL_COUNT + " calls)");
 		System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.LINKING_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms");
+		System.out.println("Total time in scopes: " + ProfilingKerMLScope.SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLScope.SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in global scope: " + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_TIME.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLGlobalScope.GLOBAL_SCOPE_CALL_COUNT + " calls)");
+		System.out.println("Total time in linker: " + ProfilingKerMLLibraryProvider.LIBRARY_PROVIDER_WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms");
 	}
 
 }

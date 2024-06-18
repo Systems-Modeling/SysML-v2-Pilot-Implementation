@@ -61,7 +61,9 @@ public class ProfilingKerMLScope extends KerMLScope
 		localWatch.stop();
 		
 		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
-		SCOPE_TIME.stop();
+		
+		if (isFirstScope)
+			SCOPE_TIME.stop();
 		
 		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;

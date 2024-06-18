@@ -40,8 +40,7 @@ public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider()
 	{
-		return SysMLScopeProvider.class;
-		//return ProfilingSysMLScopeProvider.class;
+		return ProfilingSysMLScopeProvider.class;
 	}
 	
 	@Override

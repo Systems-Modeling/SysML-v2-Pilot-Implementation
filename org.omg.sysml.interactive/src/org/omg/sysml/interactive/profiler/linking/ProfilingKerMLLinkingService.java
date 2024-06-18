@@ -57,12 +57,14 @@ public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 		
 		if (!LINKING_TIME.isRunning()) LINKING_TIME.start();
 		
-		LINKING_TIME.stop();
 		currentLocal.addResult(linkedObjects);
 		currentLocal.setDuration(localWatch.elapsed());
 		
-		if (lastLinkingResult == null)
+		if (lastLinkingResult == null) {
 			LinkingResult.RESULTS.add(currentStep);
+			LINKING_TIME.stop();
+		}
+			
 		
 		currentStep = lastLinkingResult;
 		

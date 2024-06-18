@@ -24,23 +24,24 @@ import java.io.PrintStream;
 import org.eclipse.xtext.naming.QualifiedName;
 
 public class ScopeResult extends LinkStep {
-
-	private QualifiedName qn;
+	
+	private QualifiedName qualifiedName;
+	private String referenceType;
 	private String namespace;
-	private String refType;
-
-	public ScopeResult(QualifiedName qn, String namespace, String refType, LinkStep parent) {
+	
+	
+	public ScopeResult(QualifiedName name, String namespace, String referenceType, LinkStep parent) {
 		super(parent);
-		this.qn = qn;
+		this.qualifiedName = name;
 		this.namespace = namespace;
-		this.refType = refType;
+		this.referenceType = referenceType;
 	}
 
 	@Override
-	public void print(int indent, PrintStream out) {
-		createNesting(indent, out);
-		out.println("Local scope [" +  namespace + "]"  + " looking for " + qn.toString() + " [" + refType + "] took " + getDuration().toMillis() + "ms");
-		final var incNesting = ++indent;
+	public void print(int nesting, PrintStream out) {
+		createNesting(nesting, out);
+		out.println("Scope " + namespace + " looking for " + qualifiedName.toString() + "[" + referenceType + "] took " + getDuration().toMillis() + "ms");
+		final var incNesting = ++nesting;
 		getChildren().forEach(res -> res.print(incNesting, out));
 	}
 }

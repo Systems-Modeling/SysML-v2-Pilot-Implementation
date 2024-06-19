@@ -68,6 +68,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAnnotation(Annotation element) {
+			return new AnnotationAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseActionDefinition(ActionDefinition element) {
 			return new ActionDefinitionAdapter(element);
 		}
@@ -148,6 +153,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseConjugation(Conjugation element) {
+			return new ConjugationAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseConnectionDefinition(ConnectionDefinition element) {
 			return new ConnectionDefinitionAdapter(element);
 		}
@@ -183,6 +193,21 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseDependency(Dependency element) {
+			return new DependencyAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseDifferencing(Differencing element) {
+			return new DifferencingAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseDisjoining(Disjoining element) {
+			return new DisjoiningAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseElement(Element element) {
 			return new ElementAdapter(element);
 		}
@@ -213,8 +238,18 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseFeatureInverting(FeatureInverting element) {
+			return new FeatureInvertingAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFeatureReferenceExpression(FeatureReferenceExpression element) {
 			return new FeatureReferenceExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseFeatureTyping(FeatureTyping element) {
+			return new FeatureTypingAdapter(element);
 		}
 		
 		@Override
@@ -240,6 +275,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseIncludeUseCaseUsage(IncludeUseCaseUsage element) {
 			return new IncludeUseCaseUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseIntersecting(Intersecting element) {
+			return new IntersectingAdapter(element);
 		}
 		
 		@Override
@@ -353,6 +393,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter casePortConjugation(PortConjugation element) {
+			return new PortConjugationAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter casePortDefinition(PortDefinition element) {
 			return new PortDefinitionAdapter(element);
 		}
@@ -360,6 +405,16 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter casePortUsage(PortUsage element) {
 			return new PortUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseRedefinition(Redefinition element) {
+			return new RedefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseReferenceSubsetting(ReferenceSubsetting element) {
+			return new ReferenceSubsettingAdapter(element);
 		}
 		
 		@Override
@@ -398,6 +453,21 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseSpecialization(Specialization element) {
+			return new SpecializationAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSubclassification(Subclassification element) {
+			return new SubclassificationAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSubsetting(Subsetting element) {
+			return new SubsettingAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);
 		}
@@ -423,11 +493,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
-			return new SuccessionAsUsageAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseTransitionUsage(TransitionUsage element) {
 			return new TransitionUsageAdapter(element);
 		}
@@ -440,6 +505,16 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseType(Type element) {
 			return new TypeAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseTypeFeaturing(TypeFeaturing element) {
+			return new TypeFeaturingAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseUnioning(Unioning element) {
+			return new UnioningAdapter(element);
 		}
 		
 		@Override

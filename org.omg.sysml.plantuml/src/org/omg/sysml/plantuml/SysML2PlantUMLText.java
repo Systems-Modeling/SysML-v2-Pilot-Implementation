@@ -489,6 +489,8 @@ public class SysML2PlantUMLText {
         }
         vpath.init();
 
+        boolean exceeds = exceedsTheLimit();
+
         numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
@@ -498,6 +500,12 @@ public class SysML2PlantUMLText {
             }
         }
         sb.append(v.getString());
+
+        if (exceeds || exceedsTheLimit()) {
+            sb.insert(0, "title EXCEEDS THE LIMIT!!!\\nSince it exceeds the maximum number of model elements to be processed,\\n the visualization result may be incomplete.\n");
+            sb.insert(0, "skinparam titleBorderThickness 2\nskinparam titleBorderColor red\n");
+        }
+        
         return sb.toString();
     }
 
@@ -619,8 +627,12 @@ public class SysML2PlantUMLText {
         numVisits++;
     }
 
+    private boolean exceedsTheLimit() {
+        return numVisits > MAX_VISITS;
+    }
+
     boolean pushNamespace(Namespace ns) {
-        if (numVisits > MAX_VISITS) return false;
+        if (exceedsTheLimit()) return false;
         if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
         return true;

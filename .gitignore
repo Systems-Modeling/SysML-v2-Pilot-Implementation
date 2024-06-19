@@ -18,6 +18,9 @@ hs_err_pid*
 
 # Tycho build target
 target
+.tycho-consumer-pom.xml
+.polyglot.META-INF
+dependency-reduced-pom.xml
 
 # VS Code settings
 .vscode/

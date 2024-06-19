@@ -20,7 +20,6 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Differencing;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -124,21 +123,10 @@ public class DifferencingImpl extends RelationshipImpl implements Differencing {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getDifferencingType() {
-		return differencingType == null? basicGetDifferencingType(): getDifferencingTypeGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getDifferencingTypeGen() {
+	public Type getDifferencingType() {
 		if (differencingType != null && differencingType.eIsProxy()) {
 			InternalEObject oldDifferencingType = (InternalEObject)differencingType;
 			differencingType = (Type)eResolveProxy(oldDifferencingType);
@@ -152,21 +140,10 @@ public class DifferencingImpl extends RelationshipImpl implements Differencing {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If a Differencing is parsed targeting a Feature chain, then the differencingType will be empty,
-	 * but the Differencing will own the differencingType. So, in this case, the differencingType should
-	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetDifferencingType() {
-		if (differencingType == null) {
-			// Handle a differencingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				differencingType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return differencingType;
 	}
 

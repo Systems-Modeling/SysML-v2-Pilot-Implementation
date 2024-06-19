@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -95,7 +96,22 @@ public class FeatureUtil {
 		}
 	}	
 	
-	// Typing
+	public static boolean checkIsOrdered(Feature feature, Set<Feature> visited) {
+		if (feature.isOrdered()) {
+			return feature.isOrdered();
+		} else {
+			visited.add(feature);
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(subsettedFeature, visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
 		FeatureAdapter adapter = getFeatureAdapter(feature);
@@ -183,8 +199,14 @@ public class FeatureUtil {
 	}
 	
 	public static <T extends Feature> T getEffectiveReferencedFeatureOf(T feature, Class<T> kind) {
-		Feature referencedFeature = getBasicFeatureOf(getReferencedFeatureOf(feature));
-		return kind.isInstance(referencedFeature)? kind.cast(referencedFeature): feature;
+		ReferenceSubsetting subsetting = feature.getOwnedReferenceSubsetting();
+		if (subsetting != null) {
+			Feature referencedFeature = getBasicFeatureOf(subsetting.getReferencedFeature());
+			if (kind.isInstance(referencedFeature)) {
+				return kind.cast(referencedFeature);
+			}
+		}
+		return feature;
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {

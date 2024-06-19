@@ -483,6 +483,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) return true
 				}
 			} else {
+				//it seems that this is where we get the errors. Disabled the notif in the other cyclic preventions for testing
 				notifyUnfinishedSearch
 			}
 		}

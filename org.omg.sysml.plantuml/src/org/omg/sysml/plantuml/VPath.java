@@ -340,7 +340,8 @@ public class VPath extends VTraverser {
             if (ik != null) {
                 // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
                 ik = InheritKey.makeIndirect(ik);
-                return InheritKey.findTop(ik, ref);
+                ik = InheritKey.findTop(ik, ref);
+                if (ik != null) return ik;
             }
         }
         if (ns instanceof Type) {

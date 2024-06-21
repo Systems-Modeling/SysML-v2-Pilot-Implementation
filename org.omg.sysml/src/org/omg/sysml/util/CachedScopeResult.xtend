@@ -17,7 +17,7 @@
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
-package org.omg.kerml.xtext.scoping
+package org.omg.sysml.util
 
 import org.eclipse.xtext.resource.IEObjectDescription
 

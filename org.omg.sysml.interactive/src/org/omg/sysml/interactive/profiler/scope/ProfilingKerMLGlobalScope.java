@@ -35,8 +35,8 @@ import com.google.common.base.Stopwatch;
 
 public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
-	public static final Stopwatch GLOBAL_SCOPE_TIME = Stopwatch.createUnstarted();
-	public static long GLOBAL_SCOPE_CALL_COUNT = 0;
+	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
+	public static long callCount = 0;
 	
 	public ProfilingKerMLGlobalScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
 			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
@@ -45,24 +45,26 @@ public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
-		GLOBAL_SCOPE_CALL_COUNT++;
+		callCount++;
 		
-		if (!GLOBAL_SCOPE_TIME.isRunning()) GLOBAL_SCOPE_TIME.start();
+		if (!WATCH.isRunning()) WATCH.start();
 		
-		GLOBAL_SCOPE_TIME.stop();
+		WATCH.stop();
 		var localWatch = Stopwatch.createUnstarted();
 		
 		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		ProfilingKerMLLinkingService.currentStep = new GlobalScopeResult(name, oldValue);
-		GLOBAL_SCOPE_TIME.start();
+		var result = new GlobalScopeResult(name, oldValue);
+		ProfilingKerMLLinkingService.currentStep = result;
+		WATCH.start();
 		
 		localWatch.start();
 		IEObjectDescription singleElement = super.getSingleElement(name);
 		localWatch.stop();
 		
-		if (!GLOBAL_SCOPE_TIME.isRunning()) GLOBAL_SCOPE_TIME.start();
-		GLOBAL_SCOPE_TIME.stop();
+		if (!WATCH.isRunning()) WATCH.start();
+		WATCH.stop();
 		
+		result.setResult(singleElement);
 		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;
 		

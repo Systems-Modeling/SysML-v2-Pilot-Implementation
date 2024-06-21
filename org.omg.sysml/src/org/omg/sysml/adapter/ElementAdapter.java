@@ -61,6 +61,7 @@ public class ElementAdapter extends AdapterImpl {
 				metaclassFeature = SysMLFactory.eINSTANCE.createMetadataFeature();
 				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
 				typing.setType(metaclass);
+				typing.setTypedFeature(metaclassFeature);
 				Annotation annotation = SysMLFactory.eINSTANCE.createAnnotation();
 				annotation.setAnnotatingElement(metaclassFeature);
 				annotation.setAnnotatedElement(element);
@@ -69,6 +70,12 @@ public class ElementAdapter extends AdapterImpl {
 			}
 		}
 		return metaclassFeature;
+	}
+	
+	// Parse post-processing
+	
+	public void postProcess() {
+		
 	}
 		
 	// Transformation

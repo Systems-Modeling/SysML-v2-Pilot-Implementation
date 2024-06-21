@@ -35,8 +35,8 @@ import com.google.common.base.Stopwatch;
 
 public class ProfilingKerMLScope extends KerMLScope
 {
-	public static final Stopwatch SCOPE_TIME = Stopwatch.createUnstarted();
-	public static long SCOPE_CALL_COUNT = 0;
+	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
+	public static long callCount = 0;
 
 	public ProfilingKerMLScope(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider,
 			boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
@@ -45,26 +45,29 @@ public class ProfilingKerMLScope extends KerMLScope
 
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
-		SCOPE_CALL_COUNT++;
+		callCount++;
 		
-		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
+		if (!WATCH.isRunning()) WATCH.start();
 		
-		SCOPE_TIME.stop();
+		WATCH.stop();
 		var localWatch = Stopwatch.createUnstarted();
 		
 		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		ProfilingKerMLLinkingService.currentStep = new ScopeResult(name, ns.getQualifiedName() != null ? ns.getQualifiedName().toString() : ns.getName(), referenceType.getName(), oldValue);
-		SCOPE_TIME.start();
+		var scopeResult = new ScopeResult(name, ns.getQualifiedName() != null ? ns.getQualifiedName().toString() : ns.getName(), referenceType.getName(), oldValue);
+		ProfilingKerMLLinkingService.currentStep = scopeResult;
+		WATCH.start();
 		
 		localWatch.start();
 		IEObjectDescription singleElement = super.getSingleElement(name);
 		localWatch.stop();
 		
-		if (!SCOPE_TIME.isRunning()) SCOPE_TIME.start();
+		if (!WATCH.isRunning()) WATCH.start();
 		
-		if (isFirstScope)
-			SCOPE_TIME.stop();
+		//Stop time once we are back at the first scope call called by the first linking call
+		if (oldValue.isFirst())
+			WATCH.stop();
 		
+		scopeResult.setResult(singleElement);
 		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;
 		

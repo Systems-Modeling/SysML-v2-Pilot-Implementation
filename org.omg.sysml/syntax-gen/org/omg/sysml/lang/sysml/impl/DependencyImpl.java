@@ -153,12 +153,11 @@ public class DependencyImpl extends RelationshipImpl implements Dependency {
 	/**
 	 * <!-- begin-user-doc -->
 	 * Xtext workaround:
-	 * getTarget() is inherited from Relationship.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public EList<Element> getTargetGen() {
+	public EList<Element> getTarget() {
 		return getSupplier();
 	}
 

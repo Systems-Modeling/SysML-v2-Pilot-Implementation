@@ -238,25 +238,11 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * Add all ownedRelatedElements to target.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> targets = getTargetGen();
-		EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-		ownedRelatedElements.stream().filter(e->!targets.contains(e)).forEachOrdered(targets::add);
-		return targets;
-	}	
-
-	/**
-	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getTargetGen() {
+	@Override
+	public EList<Element> getTarget() {
 		if (target == null) {
 			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__TARGET);
 		}
@@ -265,27 +251,11 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If source is empty, then add all owningRelatedElements to it.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> sources = getSourceGen();
-		Element owningRelatedElement = getOwningRelatedElement();
-		if (sources.isEmpty() && owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
-			sources.add(owningRelatedElement);
-		}
-		return sources;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Element> getSourceGen() {
+	@Override
+	public EList<Element> getSource() {
 		if (source == null) {
 			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__SOURCE);
 		}

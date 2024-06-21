@@ -40,7 +40,7 @@ public class RequirementUsage_actorParameter_SettingDelegate extends BasicDerive
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
-		TypeUtil.addOwnedFeaturesByMembership((RequirementUsage)owner, ActorMembership.class, PartUsage.class, actorParameters);
+		TypeUtil.addFeaturesByMembership((RequirementUsage)owner, ActorMembership.class, PartUsage.class, actorParameters);
 		return actorParameters;
 	}
 

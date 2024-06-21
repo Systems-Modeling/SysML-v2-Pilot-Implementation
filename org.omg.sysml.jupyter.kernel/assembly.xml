@@ -13,6 +13,7 @@
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>LICENSE</include>
+                <include>LICENSE-GPL</include>
             </includes>
         </fileSet>
         <!-- zip the kernel -->

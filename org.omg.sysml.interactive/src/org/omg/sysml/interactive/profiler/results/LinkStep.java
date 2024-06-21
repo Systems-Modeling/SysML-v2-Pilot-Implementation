@@ -28,6 +28,7 @@ public abstract class LinkStep implements Comparable<LinkStep>{
 	private LinkStep parent;
 	private List<LinkStep> children = new LinkedList<>();
 	private Duration duration;
+	private boolean isFirst;
 	
 	public LinkStep(LinkStep parent) {
 		this.parent = parent;
@@ -54,6 +55,14 @@ public abstract class LinkStep implements Comparable<LinkStep>{
 	
 	public Duration getDuration() {
 		return duration;
+	}
+	
+	public void setFirst() {
+		this.isFirst = true;
+	}
+	
+	public boolean isFirst() {
+		return isFirst;
 	}
 	
 	@Override

@@ -96,7 +96,22 @@ public class FeatureUtil {
 		}
 	}	
 	
-	// Typing
+	public static boolean checkIsOrdered(Feature feature, Set<Feature> visited) {
+		if (feature.isOrdered()) {
+			return feature.isOrdered();
+		} else {
+			visited.add(feature);
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(subsettedFeature, visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
 		FeatureAdapter adapter = getFeatureAdapter(feature);

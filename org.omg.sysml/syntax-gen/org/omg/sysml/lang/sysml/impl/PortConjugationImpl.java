@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.PortConjugation;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -89,24 +88,13 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PORT_CONJUGATION;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public PortDefinition getOriginalPortDefinition() {
-		return originalPortDefinition == null? basicGetOriginalPortDefinition(): getOriginalPortDefinitionGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PortDefinition getOriginalPortDefinitionGen() {
+	public PortDefinition getOriginalPortDefinition() {
 		if (originalPortDefinition != null && originalPortDefinition.eIsProxy()) {
 			InternalEObject oldOriginalPortDefinition = (InternalEObject)originalPortDefinition;
 			originalPortDefinition = (PortDefinition)eResolveProxy(oldOriginalPortDefinition);
@@ -120,22 +108,10 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the originalPortDefinition is empty, then set it to the owner of the conjugatedPortDefinition
-	 * (if that is a PortDefinition).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PortDefinition basicGetOriginalPortDefinition() {
-		if (originalPortDefinition == null) {
-			ConjugatedPortDefinition conjugatedPortDefinition = getConjugatedPortDefinition();
-			if (conjugatedPortDefinition != null) {
-				Element conjugatedPortDefinitionOwner = conjugatedPortDefinition.getOwner();
-				if (conjugatedPortDefinitionOwner instanceof PortDefinition) {
-					originalPortDefinition = (PortDefinition)conjugatedPortDefinitionOwner;
-				}
-			}
-		}
 		return originalPortDefinition;
 	}
 

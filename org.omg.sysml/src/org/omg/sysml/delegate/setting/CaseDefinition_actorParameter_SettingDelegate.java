@@ -40,7 +40,7 @@ public class CaseDefinition_actorParameter_SettingDelegate extends BasicDerivedL
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
-		TypeUtil.addOwnedFeaturesByMembership((CaseDefinition)owner, ActorMembership.class, PartUsage.class, actorParameters);
+		TypeUtil.addFeaturesByMembership((CaseDefinition)owner, ActorMembership.class, PartUsage.class, actorParameters);
 		return actorParameters;
 	}
 

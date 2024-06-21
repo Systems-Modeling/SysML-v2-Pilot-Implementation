@@ -65,19 +65,9 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Namespace getImportedNamespace() {
-		return importedNamespace == null? basicGetImportedNamespace(): getImportedNamespaceGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getImportedNamespaceGen() {
+	public Namespace getImportedNamespace() {
 		if (importedNamespace != null && importedNamespace.eIsProxy()) {
 			InternalEObject oldImportedNamespace = (InternalEObject)importedNamespace;
 			importedNamespace = (Namespace)eResolveProxy(oldImportedNamespace);
@@ -91,22 +81,10 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If importedNamespace is empty, then set it to the first ownedRelatedElement, if this is a namespace
-	 * (filling in the implicit import for a filter package). Otherwise, set it to the importOwningNamspace.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetImportedNamespace() {
-		if (importedNamespace == null) {
-			EList<Element> ownedRelatedElement = getOwnedRelatedElement();
-			if (!ownedRelatedElement.isEmpty() && ownedRelatedElement.get(0) instanceof Namespace) {
-				// Fill in the implicit import for a filter package.
-				importedNamespace = (Namespace)ownedRelatedElement.get(0);
-			} else {
-				importedNamespace = getImportOwningNamespace();
-			}
-		}
 		return importedNamespace;
 	}
 

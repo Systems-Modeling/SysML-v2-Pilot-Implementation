@@ -25,13 +25,12 @@
 package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 public class VSSRMembers extends VStructure {
     private static boolean isRedefining(Feature f, String prefix) {
-        for (Redefinition rd: f.getOwnedRedefinition()) {
-            Feature rf = rd.getRedefinedFeature();
+        for (Feature rf: FeatureUtil.getAllRedefinedFeaturesOf(f)) {
             String qName = rf.getQualifiedName();
             if (qName != null) {
                 if (qName.startsWith(prefix)) return true;

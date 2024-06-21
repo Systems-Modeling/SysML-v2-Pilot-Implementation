@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -31,7 +30,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -95,24 +93,13 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SUBSETTING;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getSubsettedFeature() {
-		return subsettedFeature == null? basicGetSubsettedFeature(): getSubsettedFeatureGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getSubsettedFeatureGen() {
+	public Feature getSubsettedFeature() {
 		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
 			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
 			subsettedFeature = (Feature)eResolveProxy(oldSubsettedFeature);
@@ -126,19 +113,10 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the subsettedFeature is empty, then set it to the last ownedRelatedElement
-	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetSubsettedFeature() {
-		if (subsettedFeature == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				subsettedFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return subsettedFeature;
 	}
 
@@ -156,20 +134,10 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetSubsettedFeature() {
-		return basicGetSubsettedFeature() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Feature getSubsettingFeature() {
-		return subsettingFeature == null ? basicGetSubsettingFeature() : getSubsettingFeatureGen();
+		return subsettedFeature != null;
 	}
 
 	/**
@@ -177,7 +145,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getSubsettingFeatureGen() {
+	public Feature getSubsettingFeature() {
 		if (subsettingFeature != null && subsettingFeature.eIsProxy()) {
 			InternalEObject oldSubsettingFeature = (InternalEObject)subsettingFeature;
 			subsettingFeature = (Feature)eResolveProxy(oldSubsettingFeature);
@@ -191,25 +159,10 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the subsettingFeature is empty, then set it to the owningRelatedFeature, if this is a Feature.
-	 * Otherwise set it to the first ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetSubsettingFeature() {
-		if (subsettingFeature == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				subsettingFeature = (Feature) owner;
-			} else {
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					subsettingFeature = (Feature)ownedRelatedElements.get(0);
-				}
-			}
-		}
 		return subsettingFeature;
 	}
 

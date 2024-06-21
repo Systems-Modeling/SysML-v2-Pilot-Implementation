@@ -23,20 +23,20 @@ import org.eclipse.xtext.resource.IEObjectDescription
 
 class CachedScopeResult {
 	IEObjectDescription description
-	boolean hierarchyExplored
+	boolean trusted
 	
-	new(IEObjectDescription description, boolean hierarchyExplored) {
+	new(IEObjectDescription description, boolean trusted) {
 		this.description = description
-		this.hierarchyExplored = hierarchyExplored
+		this.trusted = trusted
 	}
 	
 	def update(IEObjectDescription description, boolean hierarchyExplored){
 		this.description = description
-		this.hierarchyExplored = hierarchyExplored
+		this.trusted = hierarchyExplored
 	}
 	
-	def getHierarchyExlpored(){
-		hierarchyExplored
+	def canBeTrusted(){
+		trusted
 	}
 	
 	def getDescription(){

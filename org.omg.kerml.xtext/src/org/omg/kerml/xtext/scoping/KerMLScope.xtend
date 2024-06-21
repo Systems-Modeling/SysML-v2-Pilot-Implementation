@@ -196,7 +196,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		 else null
 		
 		if (cachedScopeResult !== null){
-			if (cachedScopeResult.hierarchyExlpored || cachedScopeResult.description !== null){
+			if (cachedScopeResult.canBeTrusted || cachedScopeResult.description !== null){
 				scopeProvider.removeFromChain(this)
 				return cachedScopeResult.description
 			}
@@ -218,7 +218,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		
 		if (!isRedefinition){
 			if (resultFromHierarchy !== null || scopeProvider.visited.empty)
-				cachesForNS.put(key, new CachedScopeResult(resultFromHierarchy, !unfinishedSearch))
+				cachesForNS.put(key, new CachedScopeResult(resultFromHierarchy, scopeProvider.visited.empty))
 		}
 			
 		scopeProvider.removeFromChain(this)

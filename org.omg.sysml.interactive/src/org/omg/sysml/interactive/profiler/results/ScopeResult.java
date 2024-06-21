@@ -22,12 +22,14 @@ package org.omg.sysml.interactive.profiler.results;
 import java.io.PrintStream;
 
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.IEObjectDescription;
 
 public class ScopeResult extends LinkStep {
 	
 	private QualifiedName qualifiedName;
 	private String referenceType;
 	private String namespace;
+	private String result;
 	
 	
 	public ScopeResult(QualifiedName name, String namespace, String referenceType, LinkStep parent) {
@@ -36,12 +38,22 @@ public class ScopeResult extends LinkStep {
 		this.namespace = namespace;
 		this.referenceType = referenceType;
 	}
+	
+	public void setResult(IEObjectDescription description) {
+		if (description != null) {
+			result = description.getName().toString() + "[" + description.getEClass().getName() +"]";
+		}
+	}
 
 	@Override
 	public void print(int nesting, PrintStream out) {
 		createNesting(nesting, out);
-		out.println("Scope " + namespace + " looking for " + qualifiedName.toString() + "[" + referenceType + "] took " + getDuration().toMillis() + "ms");
-		final var incNesting = ++nesting;
+		out.println("Scope " + namespace + " looking for " + qualifiedName.toString() + "[" + referenceType + "] took " + getDuration().toMillis() + "ms {");
+		final var incNesting = nesting + 1;
 		getChildren().forEach(res -> res.print(incNesting, out));
+		createNesting(nesting + 1, out);
+		out.println("Found " + result);
+		createNesting(nesting, out);
+		out.println("}");
 	}
 }

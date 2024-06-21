@@ -33,36 +33,40 @@ import com.google.common.base.Stopwatch;
 
 public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 	
-	public static final Stopwatch LINKING_TIME = Stopwatch.createUnstarted();
+	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
 	public static LinkStep currentStep = null;
+	public static int callCount = 0;
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
+		callCount++;
 		
-		if (!LINKING_TIME.isRunning()) LINKING_TIME.start();
+		if (!WATCH.isRunning()) WATCH.start();
 		
-		LINKING_TIME.stop();
+		WATCH.stop();
 		var localWatch = Stopwatch.createUnstarted();
 		
 		var lastLinkingResult = currentStep;
 		var name = getCrossRefNodeAsString(node);
 		var currentLocal = new LinkingResult(name, ref,  node.getStartLine(), context.eResource().getURI().lastSegment(), lastLinkingResult);
+		if (currentStep == null) currentLocal.setFirst();
 		currentStep = currentLocal;
-		LINKING_TIME.start();
+		WATCH.start();
 		
 		
 		localWatch.start();
 		var linkedObjects = super.getLinkedObjects(context, ref, node);
 		localWatch.stop();
 		
-		if (!LINKING_TIME.isRunning()) LINKING_TIME.start();
+		if (!WATCH.isRunning()) WATCH.start();
 		
-		currentLocal.addResult(linkedObjects);
+		currentLocal.setResult(linkedObjects);
 		currentLocal.setDuration(localWatch.elapsed());
 		
+		//Stop time once we are back at the start of the original linking call
 		if (lastLinkingResult == null) {
 			LinkingResult.RESULTS.add(currentStep);
-			LINKING_TIME.stop();
+			WATCH.stop();
 		}
 			
 		

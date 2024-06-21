@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.omg.sysml.lang.sysml.Element;
 
 public class LinkingResult extends LinkStep
 {
@@ -34,6 +35,7 @@ public class LinkingResult extends LinkStep
 	private final EReference reference;
 	private final int line;
 	private String resource;
+	private String result;
 	
 	public LinkingResult(String text, EReference reference, int line, String resource, LinkStep parent) {
 		super(parent);
@@ -49,13 +51,22 @@ public class LinkingResult extends LinkStep
 			out.println("----------------------------------");
 		}
 		createNesting(nesting, out);
-		out.println("Linking " + text + "[" + reference.getName().trim() + "] in " + resource + ":" + line +" took " + getDuration().toMillis() + "ms");
-		final var incNesting = ++nesting;
+		out.println("Linking " + text + "[" + reference.getName().trim() + "] in " + resource + ":" + line +" took " + getDuration().toMillis() + "ms {");
+		final var incNesting = nesting + 1;
 		getChildren().forEach(res -> res.print(incNesting, out));
+		createNesting(nesting + 1, out);
+		out.println(result != null ? "Linked " + result : "Could not link");
+		createNesting(nesting, out);
+		out.println("}");
 	}
 	
-	public void addResult(List<EObject> linkedObjects) {
-//		if (!linkedObjects.isEmpty())
-//			this.result = linkedObjects.get(0);
+	public void setResult(List<EObject> linkedObjects) {
+		if (!linkedObjects.isEmpty()) {
+			var singeResult = linkedObjects.iterator().next();
+			if (singeResult instanceof Element) {
+				var element = (Element) singeResult;
+				result = "QN: " + element.getQualifiedName() + ", eClass: " + element.eClass().getName();
+			}
+		}
 	}
 }

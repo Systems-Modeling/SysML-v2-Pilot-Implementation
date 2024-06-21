@@ -117,23 +117,13 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ANNOTATION;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Element getAnnotatedElement() {
-		return annotatedElement == null? basicGetAnnotatedElement(): getAnnotatedElementGen();
-	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getAnnotatedElementGen() {
+	public Element getAnnotatedElement() {
 		if (annotatedElement != null && annotatedElement.eIsProxy()) {
 			InternalEObject oldAnnotatedElement = (InternalEObject)annotatedElement;
 			annotatedElement = (Element)eResolveProxy(oldAnnotatedElement);
@@ -147,18 +137,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the Annotation is not owned by an AnnotatingElement, then the annotatedElement is the owningRelatedElement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetAnnotatedElement() {
-		if (annotatedElement == null) {
-			Element owningRelatedElement = getOwningRelatedElement();
-			if (!(owningRelatedElement instanceof AnnotatingElement)) {
-				annotatedElement = owningRelatedElement;
-			}
-		}
 		return annotatedElement;
 	}
 
@@ -237,21 +219,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public AnnotatingElement getAnnotatingElement() {
-		return annotatingElement == null? basicGetAnnotatingElement(): getAnnotatingElementGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnnotatingElement getAnnotatingElementGen() {
+	public AnnotatingElement getAnnotatingElement() {
 		if (annotatingElement != null && annotatingElement.eIsProxy()) {
 			InternalEObject oldAnnotatingElement = (InternalEObject)annotatingElement;
 			annotatingElement = (AnnotatingElement)eResolveProxy(oldAnnotatingElement);
@@ -265,22 +236,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If there is no annotatingElement set, then set the AnnotatingElement to the owningRelatedElement,
-	 * if it is an AnnotatingElement, otherwise set it to the first ownedRelatedElement that is an
-	 * AnnotatingElement (if any).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public AnnotatingElement basicGetAnnotatingElement() {
-		if (annotatingElement == null) {
-			Element owner = getOwningRelatedElement();
-			annotatingElement = (AnnotatingElement)
-					(owner instanceof AnnotatingElement? owner: 
-						getOwnedRelatedElement().stream().
-							filter(AnnotatingElement.class::isInstance).
-							findFirst().orElse(null));
-		}
 		return annotatingElement;
 	}
 

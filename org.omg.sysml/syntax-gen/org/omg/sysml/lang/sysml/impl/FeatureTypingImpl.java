@@ -23,14 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -97,22 +95,11 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getType() {
-		return type == null? basicGetType(): getTypeGen();
-	}
-
-	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getTypeGen() {
+	public Type getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (Type)eResolveProxy(oldType);
@@ -126,19 +113,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the type is empty, then set it to the first owned related element
-	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetType() {
-		if (type == null) {
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				type = (Feature)ownedRelatedElements.get(0);
-			}
-		}
 		return type;
 	}
 
@@ -202,21 +180,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getTypedFeature() {
-		return typedFeature == null ? basicGetTypedFeature() : getTypedFeatureGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getTypedFeatureGen() {
+	public Feature getTypedFeature() {
 		if (typedFeature != null && typedFeature.eIsProxy()) {
 			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
 			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
@@ -230,19 +197,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * Xtext workaround:
-	 * If the typedFeature is empty, then set it to the owningRelatedElement (if that is a Feature).
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetTypedFeature() {
-		if (typedFeature == null) {
-			Element owningRelatedElement = getOwningRelatedElement();
-			if (owningRelatedElement instanceof Feature) {
-				typedFeature = (Feature) owningRelatedElement;
-			}
-		}
 		return typedFeature;
 	}
 
@@ -260,10 +218,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetTypedFeature() {
-		return basicGetTypedFeature() != null;
+		return typedFeature != null;
 	}
 
 	/**

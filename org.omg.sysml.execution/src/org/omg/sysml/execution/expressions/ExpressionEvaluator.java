@@ -81,6 +81,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 		for (FeatureTyping typing: expression.getOwnedTyping()) {
 			FeatureTyping newTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
 			newTyping.setType(typing.getType());
+			newTyping.setTypedFeature(instantiation);
 			instantiation.getOwnedRelationship().add(newTyping);
 		}
 		
@@ -99,6 +100,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 				for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter, null)) {
 					Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
 					newRedefinition.setRedefinedFeature(redefinedFeature);
+					newRedefinition.setRedefiningFeature(newParameter);
 					newParameter.getOwnedRelationship().add(newRedefinition);
 				}				
 

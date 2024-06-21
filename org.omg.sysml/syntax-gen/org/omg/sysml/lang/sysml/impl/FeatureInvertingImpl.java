@@ -110,21 +110,10 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getFeatureInverted() {
-		return featureInverted == null? basicGetFeatureInverted(): getFeatureInvertedGen();
-	}	
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeatureInvertedGen() {
+	public Feature getFeatureInverted() {
 		if (featureInverted != null && featureInverted.eIsProxy()) {
 			InternalEObject oldFeatureInverted = (InternalEObject)featureInverted;
 			featureInverted = (Feature)eResolveProxy(oldFeatureInverted);
@@ -138,28 +127,10 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the featureInverted is empty, then set it to the owningRelatedElement of the FeatureInverting,
-	 * if that is a Feature, otherwise set it to the first ownedRelatedElement (which will be a
-	 * Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureInverted() {
-		if (featureInverted == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				// Handle FeatureInverting owned by the featureInverted.
-				featureInverted = (Feature)owner;
-			} else {
-				// Handle featureInverted that is a Feature chain.
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					featureInverted = (Feature)ownedRelatedElements.get(0);
-				}
-			}
-		}
-		
 		return featureInverted;
 	}
 
@@ -230,21 +201,10 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getInvertingFeature() {
-		return invertingFeature == null? basicGetInvertingFeature(): getInvertingFeatureGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getInvertingFeatureGen() {
+	public Feature getInvertingFeature() {
 		if (invertingFeature != null && invertingFeature.eIsProxy()) {
 			InternalEObject oldInvertingFeature = (InternalEObject)invertingFeature;
 			invertingFeature = (Feature)eResolveProxy(oldInvertingFeature);
@@ -258,21 +218,10 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the invertingFeature is empty, then set it to the last ownedRelatedElement
-	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetInvertingFeature() {
-		if (invertingFeature == null) {
-			// Handle invertingFeature that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				invertingFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
-		
 		return invertingFeature;
 	}
 

@@ -173,7 +173,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	
 	def notifyUnfinishedSearch(){
-		scopeProvider.scopeChain.forEach[ it.updateUnfinishedSearch ]
+		//scopeProvider.scopeChain.forEach[ it.updateUnfinishedSearch ]
 	}
 	
 	boolean unfinishedSearch = false
@@ -203,7 +203,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		} else {
 			val result = resolveInScope(name, true);
 		
-			if (!isRedefinition && !unfinishedSearch){
+			if (!isRedefinition && scopeProvider.visited.isEmpty){
 				//store result even if it's empty in case the whole scope was explored
 				cachesForNS.computeIfAbsent(key, [ new CachedScopeResult(result.head, false) ])
 			}
@@ -217,7 +217,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		val resultFromHierarchy = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
 		
 		if (!isRedefinition){
-			if (resultFromHierarchy !== null || !unfinishedSearch)
+			if (resultFromHierarchy !== null || scopeProvider.visited.empty)
 				cachesForNS.put(key, new CachedScopeResult(resultFromHierarchy, !unfinishedSearch))
 		}
 			

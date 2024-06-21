@@ -111,8 +111,8 @@
               <attributes>
                 <source-highlighter>rogue</source-highlighter>
                 <icons>font</icons>
-								<pagenums />
-								<idprefix />
+                                <pagenums />
+                                <idprefix />
                 <idseparator>-</idseparator>
               </attributes>
             </configuration>
@@ -175,8 +175,33 @@
                 </execution>
             </executions>
         </plugin>
-		
-		<!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
+        <!-- Clean old jars in the uzipped kernel. Jars with older version can get stuck in the target/kernel. -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>clean-old-shaded-jar</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>clean</goal>
+                    </goals>
+                    <configuration>
+                        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                        <filesets>
+                            <fileset>
+                                <directory>target/kernel</directory>
+                                <includes>
+                                    <include>*/**.jar</include>
+                                </includes>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>templating-maven-plugin</artifactId>

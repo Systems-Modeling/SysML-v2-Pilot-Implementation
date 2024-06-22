@@ -189,6 +189,9 @@ public class SysML2PlantUMLStyle {
         add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
         add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
         add("EVAL", "Evaluate expressions", " ", "evalExp", "true");
+        add("NODEMULTIPLICITY", "Show multiplicities in nodes", " ", "nodeMultiplicity", "true");
+        add("EDGEMULTIPLICITY", "Show multiplicities on edges", " ", "edgeMultiplicity", "true");
+        add("IMPLICITMULTIPLICITY", "Show implicit multiplicities", " ", "implicitMultiplicity", "true");
     }
 
     public static class StyleSwitch {

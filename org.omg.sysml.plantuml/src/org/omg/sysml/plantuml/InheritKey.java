@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 
@@ -188,6 +189,45 @@ class InheritKey {
             if (isBelonging(ik.keys[i], f)) {
                 if (i == end) return ik;
                 return new InheritKey(ik, i + 1);
+            }
+        }
+        return null;
+    }
+
+
+    // Identify what type owns redefining feature.
+    private static Type identifyRedefiningTargetOwner(Type redefinedOwner, Feature f) {
+        for (Specialization sp: redefinedOwner.getOwnedSpecialization()) {
+            Type g = sp.getGeneral();
+            for (FeatureMembership fm: Visitor.toOwnedFeatureMembershipArray(g)) {
+                Feature f2 = fm.getOwnedMemberFeature();
+                if (f.equals(f2)) return g;
+            }
+        }
+        return null;
+    }
+
+    private InheritKey(InheritKey base, int len, Type tail) {
+        if (len > 0) {
+            this.keys = new Type[len + 1];
+            System.arraycopy(base.keys, 0, keys, 0, len);
+            this.keys[len] = tail;
+        } else {
+            Type[] keys = new Type[1];
+            keys[0] = tail;
+            this.keys = keys;
+        }
+        this.isDirect = false;
+    }
+    // Make an inherit key by identifying what type owns redefining feature.
+    public static InheritKey makeInheritKeyForRedefiningTarget(InheritKey ik, Feature f) {
+        if (ik == null) return null; // It must be invalid model
+        Type[] keys = ik.keys;
+        for (int i = keys.length - 1; i >= 0; i--) {
+            Type typ = keys[i];
+            Type tgt = identifyRedefiningTargetOwner(typ, f);
+            if (tgt != null) {
+                return new InheritKey(ik, i, tgt);
             }
         }
         return null;

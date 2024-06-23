@@ -52,6 +52,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -126,7 +127,13 @@ public class VDefault extends VTraverser {
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            PRelation pr = new PRelation(ik, typId, gt, s, null);
+            InheritKey ik2;
+            if (s instanceof Redefinition && gt instanceof Feature) {
+                ik2 = InheritKey.makeInheritKeyForRedefiningTarget(ik, (Feature) gt);
+            } else {
+                ik2 = ik;
+            }
+            PRelation pr = new PRelation(ik2, typId, gt, s, null);
             addPRelation(pr);
         }
     }

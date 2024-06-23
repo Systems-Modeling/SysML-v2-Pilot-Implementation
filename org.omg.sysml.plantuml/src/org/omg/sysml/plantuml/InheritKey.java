@@ -199,10 +199,7 @@ class InheritKey {
     private static Type identifyRedefiningTargetOwner(Type redefinedOwner, Feature f) {
         for (Specialization sp: redefinedOwner.getOwnedSpecialization()) {
             Type g = sp.getGeneral();
-            for (FeatureMembership fm: Visitor.toOwnedFeatureMembershipArray(g)) {
-                Feature f2 = fm.getOwnedMemberFeature();
-                if (f.equals(f2)) return g;
-            }
+            if (isBelonging(g, f)) return g;
         }
         return null;
     }

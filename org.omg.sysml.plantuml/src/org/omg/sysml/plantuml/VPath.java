@@ -338,6 +338,8 @@ public class VPath extends VTraverser {
         Feature ref = (Feature) e;
 
         Namespace ns = getCurrentNamespace();
+        if (!(ns instanceof Type)) return null;
+
         if (ns instanceof Feature) {
             Feature tgt = (Feature) ns;
             InheritKey ik = makeInheritKey(tgt);
@@ -348,12 +350,10 @@ public class VPath extends VTraverser {
                 if (ik != null) return ik;
             }
         }
-        if (ns instanceof Type) {
-            // In case that tgt inherits ref, we need to make an InheritKey for tgt.
-            Type tgt = (Type) ns;
-            return InheritKey.makeTargetKey(tgt, ref);
-        }
-        return null;
+
+        // In case that tgt inherits ref, we need to make an InheritKey for tgt.
+        Type tgt = (Type) ns;
+        return InheritKey.makeTargetKey(tgt, ref);
     }
 
 
@@ -537,7 +537,9 @@ public class VPath extends VTraverser {
     private String addContextForFeature(Feature f, boolean isRedefinition) {
         PC pc = makeFeaturePC(f, f, isRedefinition);
         InheritKey ik = makeInheritKeyForReferer(pc);
-        // InheritKey ik = makeInheritKey(f);
+        if (isRedefinition) {
+            ik = InheritKey.makeInheritKeyForRedefiningTarget(ik, f);
+        }
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }

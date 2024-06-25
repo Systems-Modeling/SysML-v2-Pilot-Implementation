@@ -187,7 +187,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				return cachedScopeResult.description
 			}
 		} else {
-		    //skip this branch in case we stored a search result for this Namespace
+		    //skip this branch in case any result has been stored for this Namespace
 			val result = resolveInScope(name, true);
 		
 			if (!isRedefinition && scopeProvider.visited.isEmpty){
@@ -207,7 +207,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (!isRedefinition){
 			if (resultFromParentScopes !== null || scopeProvider.visited.empty){
 			    //store non-empty results and empty results from fully searched hierarchies
-			    //set 'parentScopesChecked' to true as we searched the whole scope hierarchy at this point
+			    //set 'parentScopesChecked' to true as the whole scope hierarchy has been checked at this point
                 cachesForNS.put(key, new CachedScopeResult(resultFromParentScopes, true)) 
 			}
 		}

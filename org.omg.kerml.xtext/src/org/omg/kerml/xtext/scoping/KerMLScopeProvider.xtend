@@ -30,14 +30,12 @@ package org.omg.kerml.xtext.scoping
 
 import com.google.common.base.Predicates
 import com.google.inject.Inject
-import java.util.List
 import java.util.Set
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.scoping.IScope
-import org.eclipse.xtext.util.IResourceScopeCache
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Element
@@ -57,46 +55,25 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	@Inject
 	IGlobalScopeProvider globalScope
 	
-	List<KerMLScope> scopeChain = newArrayList
 
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet
 	
-	@Inject
-	IResourceScopeCache resourceCache
-	
-	def getVisited() {
-		visited
-	}
-	
-	def setVisited(Set<Element> visited) {
-		this.visited = visited
-	}
-	
-	def addVisited(Element element) {
-		visited.add(element)
-	}
-	
-	def removeVisited(Element element) {
-		visited.remove(element)
-	}
-	
-	
-	def addToChain(KerMLScope scope){
-		scopeChain.add(scope)
-	}
-	
-	def removeFromChain(KerMLScope scope){
-		scopeChain.remove(scope)
-	}
-	
-	def getScopeChain(){
-		scopeChain
-	}
-	
-	def getResourceCache(){
-		resourceCache
-	}
+    def getVisited() {
+        visited
+    }
+    
+    def setVisited(Set<Element> visited) {
+        this.visited = visited
+    }
+    
+    def addVisited(Element element) {
+        visited.add(element)
+    }
+    
+    def removeVisited(Element element) {
+        visited.remove(element)
+    }
 	
 	override getScope(EObject context, EReference reference) {
 		if (context instanceof Conjugation)

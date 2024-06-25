@@ -171,59 +171,48 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (obj instanceof Element) obj else null
 	}
 	
-	
-	def notifyUnfinishedSearch(){
-		//scopeProvider.scopeChain.forEach[ it.updateUnfinishedSearch ]
-	}
-	
-	boolean unfinishedSearch = false
-	
-	def updateUnfinishedSearch(){
-		unfinishedSearch = true
-	}
-	
 	override getSingleElement(QualifiedName name) {
 		
 		val key = Tuples.create(name, referenceType)
 		
-		scopeProvider.addToChain(this)
-		
 		var adapter = ElementAdapterFactory.getAdapter(ns) as NamespaceAdapter;
 		
 		var cachesForNS = adapter.scopeResultsCache
-		var cachedScopeResult = if (cachesForNS !== null)
-			cachesForNS.get(key)
-		 else null
-		
+		var cachedScopeResult = cachesForNS?.get(key)
+
 		if (cachedScopeResult !== null){
-			if (cachedScopeResult.canBeTrusted || cachedScopeResult.description !== null){
-				scopeProvider.removeFromChain(this)
+		    //if result is non-empty return it
+		    //only return empty results if the parent scopes were also checked 
+			if (cachedScopeResult.parentScopesChecked || cachedScopeResult.description !== null) {
 				return cachedScopeResult.description
 			}
 		} else {
+		    //skip this branch in case we stored a search result for this Namespace
 			val result = resolveInScope(name, true);
 		
 			if (!isRedefinition && scopeProvider.visited.isEmpty){
-				//store result even if it's empty in case the whole scope was explored
+				//when a Namespace (without its parents) is fully searched (visited list is empty) store any results
+				//set 'parentScopesChecked' to false as they need to be searched on case of empty results
 				cachesForNS.computeIfAbsent(key, [ new CachedScopeResult(result.head, false) ])
 			}
 			
 			if (!result.isEmpty){
-				scopeProvider.removeFromChain(this)
-				return result.get(0)
+				return result.head
 			}
 		}		
 		
-		val resultFromHierarchy = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
+		//search in the parent scopes
+		val resultFromParentScopes = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
 		
 		if (!isRedefinition){
-			if (resultFromHierarchy !== null || scopeProvider.visited.empty)
-				cachesForNS.put(key, new CachedScopeResult(resultFromHierarchy, scopeProvider.visited.empty))
+			if (resultFromParentScopes !== null || scopeProvider.visited.empty){
+			    //store non-empty results and empty results from fully searched hierarchies
+			    //set 'parentScopesChecked' to true as we searched the whole scope hierarchy at this point
+                cachesForNS.put(key, new CachedScopeResult(resultFromParentScopes, true)) 
+			}
 		}
 			
-		scopeProvider.removeFromChain(this)
-			
-		return resultFromHierarchy
+		return resultFromParentScopes
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
@@ -337,8 +326,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					
 						scopeProvider.removeVisited(mem)						
 					}					
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			ownedvisited.remove(ns)
@@ -417,7 +404,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
-				} else notifyUnfinishedSearch
+				}
 			}
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
@@ -434,8 +421,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					if (found) {
 						return true
 					}
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			if (includeImplicit) {
@@ -449,8 +434,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 							return true
 						}
 					}
-				} else {
-					notifyUnfinishedSearch
 				}
 			}
 			
@@ -487,9 +470,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					importingPackages.remove(ns)
 					if (found) return true
 				}
-			} else {
-				//it seems that this is where we get the errors. Disabled the notif in the other cyclic preventions for testing
-				notifyUnfinishedSearch
 			}
 		}
 		return false
@@ -541,8 +521,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				found = resolveRecursive(ns, qn, visited, includeAll)
 			}
 			visited.remove(ns)
-		} else {
-			notifyUnfinishedSearch
 		}
 		found
 	}

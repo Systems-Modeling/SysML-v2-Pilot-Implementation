@@ -172,47 +172,37 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
+		val IEObjectDescription localResult = getSingleLocalElement(name)
 		
+		return if (localResult === null) {
+		    if(parent !== null && !isShadowing) {
+		        parent.getSingleElement(name)
+	        } else null
+        } else {
+            localResult
+        }
+	}
+	
+	def IEObjectDescription getSingleLocalElement(QualifiedName name) {
 		val key = Tuples.create(name, referenceType)
-		
-		var adapter = ElementAdapterFactory.getAdapter(ns) as NamespaceAdapter;
-		
-		var cachesForNS = adapter.scopeResultsCache
-		var cachedScopeResult = cachesForNS?.get(key)
+	    var adapter = ElementAdapterFactory.getAdapter(ns) as NamespaceAdapter
+        
+        var cachesForNS = adapter.scopeResultsCache
+        var cachedScopeResult = cachesForNS?.get(key)
 
-		if (cachedScopeResult !== null){
-		    //if result is non-empty return it
-		    //only return empty results if the parent scopes were also checked 
-			if (cachedScopeResult.parentScopesChecked || cachedScopeResult.description !== null) {
-				return cachedScopeResult.description
-			}
-		} else {
-		    //skip this branch in case any result has been stored for this Namespace
-			val result = resolveInScope(name, true);
-		
-			if (!isRedefinition && scopeProvider.visited.isEmpty){
-				//when a Namespace (without its parents) is fully searched (visited list is empty) store any results
-				//set 'parentScopesChecked' to false as they need to be searched on case of empty results
-				cachesForNS.computeIfAbsent(key, [ new CachedScopeResult(result.head, false) ])
-			}
-			
-			if (!result.isEmpty){
-				return result.head
-			}
-		}		
-		
-		//search in the parent scopes
-		val resultFromParentScopes = if(parent !== null && !isShadowing) parent.getSingleElement(name) else null
-		
-		if (!isRedefinition){
-			if (resultFromParentScopes !== null || scopeProvider.visited.empty){
-			    //store non-empty results and empty results from fully searched hierarchies
-			    //set 'parentScopesChecked' to true as the whole scope hierarchy has been checked at this point
-                cachesForNS.put(key, new CachedScopeResult(resultFromParentScopes, true)) 
-			}
-		}
-			
-		return resultFromParentScopes
+        if (cachedScopeResult !== null){
+            if (cachedScopeResult.description !== null) {
+                return cachedScopeResult.description
+            }
+        } else {
+            val result = resolveInScope(name, true);
+        
+            if (!isRedefinition && (scopeProvider.visited.isEmpty || !result.empty)){
+                //when a Namespace (without its parents) is fully searched (visited list is empty) store any results
+                cachesForNS.put(key, new CachedScopeResult(result.head, false))
+            }
+            return result.head
+        }       
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {

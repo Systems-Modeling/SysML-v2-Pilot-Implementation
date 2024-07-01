@@ -22,9 +22,7 @@
 package org.omg.sysml.adapter;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -36,13 +34,13 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.CachedScopeResult;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.ScopeResultCache;
 
 public class NamespaceAdapter extends ElementAdapter {
 
-	private Map<Object, CachedScopeResult> scopeResultsCache;
+	private ScopeResultCache scopeResultsCache;
 	
 	public NamespaceAdapter(Namespace element) {
 		super(element);
@@ -52,9 +50,9 @@ public class NamespaceAdapter extends ElementAdapter {
 		return (Namespace)super.getTarget();
 	}
 	
-	public Map<Object, CachedScopeResult> getScopeResultsCache() {
+	public ScopeResultCache getScopeResultsCache() {
 		if (scopeResultsCache == null) {
-			scopeResultsCache  = new HashMap<>();
+			scopeResultsCache  = new ScopeResultCache(getTarget());
 		}
 		return scopeResultsCache;
 	}

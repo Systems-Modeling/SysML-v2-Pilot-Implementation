@@ -40,9 +40,6 @@ import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.eclipse.xtext.util.Tuples
-import org.omg.sysml.adapter.ElementAdapterFactory
-import org.omg.sysml.adapter.NamespaceAdapter
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Import
@@ -56,9 +53,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.util.ISysMLScope
-import org.omg.sysml.util.CachedScopeResult
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.ScopeResultCache
 import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
@@ -172,7 +169,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
-		val IEObjectDescription localResult = getSingleLocalElement(name)
+	    val scopeResultCache = ScopeResultCache.getInstance(ns)
+	    
+		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
+		    [ resolveInScope(name, true).head ], 
+		    [result | !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+		)
 		
 		return if (localResult === null) {
 		    if(parent !== null && !isShadowing) {
@@ -182,29 +184,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
             localResult
         }
 	}
-	
-	def IEObjectDescription getSingleLocalElement(QualifiedName name) {
-		val key = Tuples.create(name, referenceType)
-	    var adapter = ElementAdapterFactory.getAdapter(ns) as NamespaceAdapter
-        
-        var cachesForNS = adapter.scopeResultsCache
-        var cachedScopeResult = cachesForNS?.get(key)
-
-        if (cachedScopeResult !== null){
-            if (cachedScopeResult.description !== null) {
-                return cachedScopeResult.description
-            }
-        } else {
-            val result = resolveInScope(name, true);
-        
-            if (!isRedefinition && (scopeProvider.visited.isEmpty || !result.empty)){
-                //when a Namespace (without its parents) is fully searched (visited list is empty) store any results
-                cachesForNS.put(key, new CachedScopeResult(result.head, false))
-            }
-            return result.head
-        }       
-	}
-	
+		
 	override getLocalElementsByName(QualifiedName name) {
 		resolveInScope(name, false)
 	}

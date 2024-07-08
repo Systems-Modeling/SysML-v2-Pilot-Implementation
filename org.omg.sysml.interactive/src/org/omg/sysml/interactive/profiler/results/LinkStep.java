@@ -24,6 +24,9 @@ import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.xtext.naming.QualifiedName;
+import org.omg.sysml.lang.sysml.Namespace;
+
 public abstract class LinkStep implements Comparable<LinkStep>{
 	private LinkStep parent;
 	private List<LinkStep> children = new LinkedList<>();
@@ -68,6 +71,10 @@ public abstract class LinkStep implements Comparable<LinkStep>{
 	@Override
 	public int compareTo(LinkStep o) {
 		return duration.compareTo(o.duration);
+	}
+	
+	public void addNamespace(Namespace ns, QualifiedName qn) {
+		//no op
 	}
 
 	public abstract void print(int indent, PrintStream out);

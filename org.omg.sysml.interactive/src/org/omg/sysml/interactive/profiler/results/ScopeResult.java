@@ -20,9 +20,15 @@
 package org.omg.sysml.interactive.profiler.results;
 
 import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.util.Pair;
+import org.eclipse.xtext.util.Tuples;
+import org.omg.sysml.lang.sysml.Namespace;
 
 public class ScopeResult extends LinkStep {
 	
@@ -30,6 +36,8 @@ public class ScopeResult extends LinkStep {
 	private String referenceType;
 	private String namespace;
 	private String result;
+	
+	private List<Pair<String, QualifiedName>> nsSearchStep = new LinkedList<>(); 
 	
 	
 	public ScopeResult(QualifiedName name, String namespace, String referenceType, LinkStep parent) {
@@ -44,6 +52,11 @@ public class ScopeResult extends LinkStep {
 			result = description.getName().toString() + "[" + description.getEClass().getName() +"]";
 		}
 	}
+	
+	@Override
+	public void addNamespace(Namespace ns, QualifiedName qn) {
+		nsSearchStep.add(Tuples.create(ns.getQualifiedName(), qn));
+	}
 
 	@Override
 	public void print(int nesting, PrintStream out) {
@@ -51,7 +64,9 @@ public class ScopeResult extends LinkStep {
 		out.println("Scope " + namespace + " looking for " + qualifiedName.toString() + "[" + referenceType + "] took " + getDuration().toMillis() + "ms {");
 		final var incNesting = nesting + 1;
 		getChildren().forEach(res -> res.print(incNesting, out));
-		createNesting(nesting + 1, out);
+		createNesting(incNesting, out);
+		out.println("Visited namespaces: " + nsSearchStep.stream().map(p -> p.getFirst()).collect(Collectors.joining(", ")));
+		createNesting(incNesting, out);
 		out.println("Found " + result);
 		createNesting(nesting, out);
 		out.println("}");

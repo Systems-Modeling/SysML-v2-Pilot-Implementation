@@ -19,6 +19,8 @@
  */
 package org.omg.sysml.interactive.profiler.scope;
 
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -64,14 +66,26 @@ public class ProfilingKerMLScope extends KerMLScope
 		if (!WATCH.isRunning()) WATCH.start();
 		
 		//Stop time once we are back at the first scope call called by the first linking call
-		if (oldValue.isFirst())
+		if (oldValue.isFirst()) {
 			WATCH.stop();
+		}
 		
 		scopeResult.setResult(singleElement);
 		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
 		ProfilingKerMLLinkingService.currentStep = oldValue;
 		
 		return singleElement;
+	}
+	
+	@Override
+	protected boolean owned(Namespace ns, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited,
+			Set<Element> redefined, boolean checkIfAdded, boolean isInsideScope, boolean isInheriting,
+			boolean includeImplicitGen, boolean includeAll) {
+		
+		ProfilingKerMLLinkingService.currentStep.addNamespace(ns, qn);
+		
+		return super.owned(ns, qn, ownedvisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting,
+				includeImplicitGen, includeAll);
 	}
 	
 }

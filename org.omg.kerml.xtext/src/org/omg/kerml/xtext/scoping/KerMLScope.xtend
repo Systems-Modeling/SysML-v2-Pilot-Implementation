@@ -245,6 +245,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * and the last segment of the targeted qn is not listed as a name used in the library
 	 */
 	protected def boolean continueInNamespace(Namespace ns, QualifiedName target) {
+	    //resource and URI can be null in xpect tests
+	    ns.eResource === null || ns.eResource.URI === null ||
 	    !ns.eResource.URI.segmentsList.contains("sysml.library") ||  LibraryShortNames.contains(target.lastSegment)
 	}
 	

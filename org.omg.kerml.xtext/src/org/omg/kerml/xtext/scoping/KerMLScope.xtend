@@ -55,6 +55,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.kerml.xtext.library.LibraryShortNames
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -218,9 +219,21 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
-		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
-		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
-		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		
+		return if (continueInNamespace(ns, targetqn)) {
+		    ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
+            ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
+            ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		} else false
+	}
+	
+	/**
+	 * Used to prevent unnecessary searching in standard library resources.<br>
+	 * Returns false when the search reaches a standard library namespace
+	 * and the last segment of the targeted qn is not listed as a name used in the library
+	 */
+	protected def boolean continueInNamespace(Namespace ns, QualifiedName target) {
+	    !ns.eResource.URI.segmentsList.contains("sysml.library") ||  LibraryShortNames.contains(target.lastSegment)
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {

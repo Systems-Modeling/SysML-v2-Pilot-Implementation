@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
@@ -109,6 +110,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private KerMLQualifiedNameConverter qualifiedNameConverter;
+	
+	@Inject
+	IQualifiedNameProvider qualifiedNameProvider;
 	
 	@Inject
 	private IResourceValidator validator;
@@ -676,5 +680,8 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		instance.run();	
 	}
-
+	
+	public IQualifiedNameProvider getQualifiedNameProvider() {
+		return qualifiedNameProvider;
+	}
 }

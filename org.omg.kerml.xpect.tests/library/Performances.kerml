@@ -173,8 +173,8 @@ standard library package Performances {
 		 * involvingPerformance.
 		 */
 		 
-		end [0..*] feature involvedObject: Object redefines target crossing involvingPerformance.involvedObjects;
-		end [0..*] feature involvingPerformance: Performance redefines source crossing involvedObject.involvingPerformances;
+		end [0..*] feature involvedObject: Object redefines target crosses involvingPerformance.involvedObjects;
+		end [0..*] feature involvingPerformance: Performance redefines source crosses involvedObject.involvingPerformances;
 	}
 	
 	assoc all Performs specializes InvolvedIn {
@@ -183,8 +183,8 @@ standard library package Performances {
 		 * Performance asserts that the performer enacts the Behavior carried out by the performance.
 		 */
 	
-	 	end [0..*] feature performerObject: Object redefines involvedObject crossing performance.performers;
-	 	end [0..*] feature performance: Performance redefines involvingPerformance crossing performerObject.enactedPerformances;
+	 	end [0..*] feature performerObject: Object redefines involvedObject crosses performance.performers;
+	 	end [0..*] feature performance: Performance redefines involvingPerformance crosses performerObject.enactedPerformances;
 	 }
 
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {

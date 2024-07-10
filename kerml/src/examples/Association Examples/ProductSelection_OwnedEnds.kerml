@@ -9,7 +9,7 @@ package ProductSelection_OwnedEnds {
 		feature info: SelectionInfo;
 		
 		end [0..1] feature cart: ShoppingCart[1];
-		end [0..*] feature selectedProduct: Product[1];
+		end [0..*] nonunique feature selectedProduct: Product[1];
 	}
 	
 	// Equivalent association definition with named end features.
@@ -37,11 +37,11 @@ package ProductSelection_OwnedEnds {
 	assoc ProductSelection3 specializes Links::BinaryLink {
 		feature info: SelectionInfo;
 		
-		end cart: ShoppingCart[1] redefines source crossing selectedProduct.inCart {
+		end cart: ShoppingCart[1] redefines source crosses selectedProduct.inCart {
 			member feature inCart: ShoppingCart[0..1] featured by Product;
 			import selectedProduct::selectedProducts;
 		}
-		end selectedProduct: Product[1] redefines target crossing cart.selectedProducts {
+		end selectedProduct: Product[1] redefines target crosses cart.selectedProducts {
 			member feature selectedProducts: Product[0..*] featured by ShoppingCart;
 			import cart::inCart;
 		}
@@ -62,16 +62,16 @@ package ProductSelection_OwnedEnds {
 			member feature inCart1[0..1]; // owned crossing feature
 		}
 		end feature selectedProduct: Product[1] {
-			member feature selectedProducts1[0..*]; // owned crossing feature
+			member feature selectedProduct1[0..1]; // owned crossing feature
 		}
 	}
 	
 	assoc SingleProductSelection3 specializes ProductSelection3 {
-		end cart: ShoppingCart[1] redefines cart crossing selectedProduct.inCart1 {
+		end cart: ShoppingCart[1] redefines cart crosses selectedProduct.inCart1 {
 			member feature inCart1: ShoppingCart[0..1] subsets inCart featured by Product;
 			import selectedProduct::selectedProduct1;
 		}
-		end selectedProduct: Product[1] redefines selectedProduct crossing cart.selectedProduct1 {
+		end selectedProduct: Product[1] redefines selectedProduct crosses cart.selectedProduct1 {
 			member feature selectedProduct1: Product[0..1] subsets selectedProducts featured by ShoppingCart;
 			import cart::inCart1;
 		}

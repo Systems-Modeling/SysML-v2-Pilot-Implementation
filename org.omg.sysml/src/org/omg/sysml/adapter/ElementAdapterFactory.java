@@ -183,6 +183,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseCrossMultiplying(CrossMultiplying element) {
+			return new CrossMultiplyingAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseDataType(DataType element) {
 			return new DataTypeAdapter(element);
 		}

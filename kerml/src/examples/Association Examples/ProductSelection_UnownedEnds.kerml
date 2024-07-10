@@ -11,8 +11,8 @@ package ProductSelection_UnownedEnds {
 	assoc ProductSelection {
 		feature info: SelectionInfo[1];
 		
-		end feature cart: ShoppingCart[1] crossing selectedProduct.inCart;
-		end feature selectedProduct: Product[1] crossing cart.selectedProducts;
+		end feature cart: ShoppingCart[1] crosses selectedProduct.inCart;
+		end feature selectedProduct: Product[1] crosses cart.selectedProducts;
 	}
 	
 	assoc SingleProductSelection :> ProductSelection {
@@ -25,7 +25,7 @@ package ProductSelection_UnownedEnds {
 		end feature cart: ShoppingCart[1] redefines cart {
 			import selectedProduct::selectedProduct1;
 		}
-		end feature selectedProduct: Product[1] redefines selectedProduct crossing cart.selectedProduct1 {
+		end feature selectedProduct: Product[1] redefines selectedProduct crosses cart.selectedProduct1 {
 			member feature selectedProduct1[0..1] subsets ShoppingCart::selectedProducts featured by ShoppingCart;
 		}
 	}

@@ -25,8 +25,8 @@ standard library package Links {
          
         feature participant: Anything[2] nonunique ordered redefines Link::participant;
         
-        end [0..*] readonly feature source: Anything[1] nonunique subsets participant;
-        end [0..*] readonly feature target: Anything[1] nonunique subsets participant;
+        end [0..*] nonunique readonly feature source: Anything[1] subsets participant;
+        end [0..*] nonunique readonly feature target: Anything[1] subsets participant;
     }
     
     assoc all SelfLink specializes BinaryLink {
@@ -36,7 +36,7 @@ standard library package Links {
          * to be the same.
          */
         
-        end [1] feature thisThing: Anything redefines source subsets sameThing crossing sameThing.self; 
+        end [1] feature thisThing: Anything redefines source subsets sameThing crosses sameThing.self; 
         end [1] feature sameThing: Anything redefines target subsets thisThing;
     }
         

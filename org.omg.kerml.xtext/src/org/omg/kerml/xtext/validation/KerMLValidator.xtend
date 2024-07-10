@@ -601,7 +601,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// TODO: Add validateCrossSubsettingCrossedFeature
 		val crossingFeatureOwner = sub.crossingFeature.owningType
 		val chainingFeatures = sub.crossedFeature.chainingFeature
-		if (crossingFeatureOwner === null || chainingFeatures.size != 2 || !crossingFeatureOwner.endFeature.contains(chainingFeatures.get(0))) {
+		if (crossingFeatureOwner === null || crossingFeatureOwner.endFeature.size == 2 &&
+				// TODO: validateCrossSubsettingCrossedFeature for other than binary case
+				(chainingFeatures.size != 2 || !crossingFeatureOwner.endFeature.contains(chainingFeatures.get(0)))) {
 			error(INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG, sub, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_CROSS_SUBSETTING_CROSSED_FEATURE)
 		}
 	}

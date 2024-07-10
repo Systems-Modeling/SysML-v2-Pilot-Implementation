@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2023, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -39,6 +40,7 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
+		NamespaceUtil.addAdditionalMembersTo((TransitionUsage)owner);
 		EList<Membership> ownedMemberships = ((TransitionUsage)owner).getOwnedMembership();
 		if (ownedMemberships.isEmpty()) {
 			return null;

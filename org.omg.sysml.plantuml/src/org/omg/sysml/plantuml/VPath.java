@@ -646,6 +646,7 @@ public class VPath extends VTraverser {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();
             if (g == null) continue;
+            if (isHidden(g)) continue;
             if (g instanceof Feature) {
                 addContextForFeature((Feature) g, sp instanceof Redefinition);
             }

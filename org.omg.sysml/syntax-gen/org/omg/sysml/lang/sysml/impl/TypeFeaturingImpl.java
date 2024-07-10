@@ -108,24 +108,13 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.TYPE_FEATURING;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getFeatureOfType() {
-		return featureOfType == null? basicGetFeatureOfType(): getFeatureOfTypeGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeatureOfTypeGen() {
+	public Feature getFeatureOfType() {
 		if (featureOfType != null && featureOfType.eIsProxy()) {
 			InternalEObject oldFeatureOfType = (InternalEObject)featureOfType;
 			featureOfType = (Feature)eResolveProxy(oldFeatureOfType);
@@ -139,18 +128,10 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureOfType() {
-		if (featureOfType == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				featureOfType = (Feature)owner;
-			}
-		}
 		return featureOfType;
 	}
 

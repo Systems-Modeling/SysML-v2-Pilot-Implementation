@@ -23,22 +23,16 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Disjoining;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -110,21 +104,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getDisjoiningType() {
-		return disjoiningType == null? basicGetDisjoiningType(): getDisjoiningTypeGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getDisjoiningTypeGen() {
+	public Type getDisjoiningType() {
 		if (disjoiningType != null && disjoiningType.eIsProxy()) {
 			InternalEObject oldDisjoiningType = (InternalEObject)disjoiningType;
 			disjoiningType = (Type)eResolveProxy(oldDisjoiningType);
@@ -138,22 +121,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If a Disjoining is parsed targeting a Feature chain, then the disjoiningType will be empty,
-	 * but the Disjoining will own the disjoiningType. So, in this case, the disjoiningType should
-	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetDisjoiningType() {
-		if (disjoiningType == null) {
-			// Handle a disjoiningType that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				disjoiningType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
-		
 		return disjoiningType;
 	}
 
@@ -255,19 +226,9 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getTypeDisjoined() {
-		return typeDisjoined == null? basicGetTypeDisjoined(): getTypeDisjoinedGen();
-	}	
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getTypeDisjoinedGen() {
+	public Type getTypeDisjoined() {
 		if (typeDisjoined != null && typeDisjoined.eIsProxy()) {
 			InternalEObject oldTypeDisjoined = (InternalEObject)typeDisjoined;
 			typeDisjoined = (Type)eResolveProxy(oldTypeDisjoined);
@@ -281,28 +242,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the typedDisjoined (source) is empty, set it to the owningRelatedElement, if it is a Type.
-	 * Otherwise, set it to the first ownedRelatedElement, to the first ownedRelatedElement,
-	 * which will be a Feature chain.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetTypeDisjoined() {
-		if (typeDisjoined == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Type) {
-				// Handle a Disjoining owned by the typeDisjoined.
-				typeDisjoined = (Type)owner;
-			} else {
-				// Handle a typeDisjoined that is a Feature chain.
-				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-				if (!ownedRelatedElements.isEmpty()) {
-					typeDisjoined = (Feature)ownedRelatedElements.get(0);
-				}
-			}
-		}
-		
 		return typeDisjoined;
 	}
 

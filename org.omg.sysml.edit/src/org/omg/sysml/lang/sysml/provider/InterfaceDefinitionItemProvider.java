@@ -137,13 +137,14 @@ public class InterfaceDefinitionItemProvider extends ConnectionDefinitionItemPro
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING;
 
 		if (qualify) {
 			return getString

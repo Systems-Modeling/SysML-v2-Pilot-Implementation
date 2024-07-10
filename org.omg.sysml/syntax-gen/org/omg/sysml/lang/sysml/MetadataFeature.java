@@ -57,7 +57,17 @@ import org.eclipse.emf.common.util.EList;
  *         else
  *             true
  *         endif
+ * ownedFeature->closure(ownedFeature)->forAll(f |
+ *     f.declaredName = null and f.declaredShortName = null and
+ *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
+ *     f.redefinition.redefinedFeature->size() = 1)
  * not metaclass.isAbstract
+ * metaclass = 
+ *     let metaclassTypes : Sequence(Type) = type->selectByKind(Metaclass) in
+ *     if metaclassTypes->isEmpty() then null
+ *     else metaClassTypes->first()
+ *     endif
+ * type->selectByKind(Metaclass).size() = 1
  * let baseAnnotatedElementFeature : Feature =
  *     resolveGlobal('Metaobjects::Metaobject::annotatedElement').memberElement.
  *     oclAsType(Feature) in
@@ -71,16 +81,6 @@ import org.eclipse.emf.common.util.EList;
  *         annotatedElement.oclType().qualifiedName->collect(qn | 
  *             resolveGlobal(qn).memberElement.oclAsType(Metaclass)) in
  *    metaclasses->forAll(m | annotatedElementTypes->exists(t | m.specializes(t)))
- * ownedFeature->closure(ownedFeature)->forAll(f |
- *     f.declaredName = null and f.declaredShortName = null and
- *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
- *     f.redefinition.redefinedFeature->size() = 1)
- * metaclass = 
- *     let metaclassTypes : Sequence(Type) = type->selectByKind(Metaclass) in
- *     if metaclassTypes->isEmpty() then null
- *     else metaClassTypes->first()
- *     endif
- * type->selectByKind(Metaclass).size() = 1
  * <!-- end-model-doc -->
  *
  * <p>

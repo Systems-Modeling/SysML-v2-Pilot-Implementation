@@ -510,6 +510,15 @@ public interface SysMLFactory extends EFactory {
 	Differencing createDifferencing();
 
 	/**
+	 * Returns a new object of class '<em>Cross Multiplying</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cross Multiplying</em>'.
+	 * @generated
+	 */
+	CrossMultiplying createCrossMultiplying();
+
+	/**
 	 * Returns a new object of class '<em>Feature Typing</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

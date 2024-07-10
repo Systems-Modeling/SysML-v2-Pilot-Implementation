@@ -40,8 +40,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId <em>Member Element Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberShortName <em>Member Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>

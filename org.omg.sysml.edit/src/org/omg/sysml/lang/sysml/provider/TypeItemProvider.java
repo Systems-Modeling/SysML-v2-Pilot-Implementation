@@ -48,9 +48,9 @@ public class TypeItemProvider extends NamespaceItemProvider {
 
 			addOwnedSpecializationPropertyDescriptor(object);
 			addOwnedFeatureMembershipPropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
 			addOwnedFeaturePropertyDescriptor(object);
 			addOwnedEndFeaturePropertyDescriptor(object);
-			addFeaturePropertyDescriptor(object);
 			addInputPropertyDescriptor(object);
 			addOutputPropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
@@ -70,6 +70,8 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			addDifferencingTypePropertyDescriptor(object);
 			addOwnedDifferencingPropertyDescriptor(object);
 			addDirectedFeaturePropertyDescriptor(object);
+			addOwnedCrossMultiplyingPropertyDescriptor(object);
+			addMultiplyingTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -603,6 +605,50 @@ public class TypeItemProvider extends NamespaceItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Owned Cross Multiplying feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnedCrossMultiplyingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Type_ownedCrossMultiplying_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Type_ownedCrossMultiplying_feature", "_UI_Type_type"),
+				 SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Multiplying Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMultiplyingTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Type_multiplyingType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Type_multiplyingType_feature", "_UI_Type_type"),
+				 SysMLPackage.Literals.TYPE__MULTIPLYING_TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Type.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -649,6 +695,7 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			case SysMLPackage.TYPE__OWNED_UNIONING:
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 			case SysMLPackage.TYPE__OWNED_DIFFERENCING:
+			case SysMLPackage.TYPE__OWNED_CROSS_MULTIPLYING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -694,6 +741,11 @@ public class TypeItemProvider extends NamespaceItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createCrossSubsetting()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
 				 SysMLFactory.eINSTANCE.createSubclassification()));
 
 		newChildDescriptors.add
@@ -730,6 +782,11 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING,
 				 SysMLFactory.eINSTANCE.createDifferencing()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING,
+				 SysMLFactory.eINSTANCE.createCrossMultiplying()));
 	}
 
 	/**
@@ -747,13 +804,14 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING;
 
 		if (qualify) {
 			return getString

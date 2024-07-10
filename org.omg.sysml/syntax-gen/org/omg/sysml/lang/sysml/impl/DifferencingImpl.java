@@ -126,6 +126,7 @@ public class DifferencingImpl extends RelationshipImpl implements Differencing {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getDifferencingType() {
 		if (differencingType != null && differencingType.eIsProxy()) {
 			InternalEObject oldDifferencingType = (InternalEObject)differencingType;

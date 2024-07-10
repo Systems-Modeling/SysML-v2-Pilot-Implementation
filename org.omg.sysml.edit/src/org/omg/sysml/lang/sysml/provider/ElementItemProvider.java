@@ -540,12 +540,27 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSpecialization()));
+				 SysMLFactory.eINSTANCE.createMembershipImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createNamespaceImport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createFeatureMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createSpecialization()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -585,6 +600,11 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createCrossSubsetting()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createConjugation()));
 
 		newChildDescriptors.add
@@ -610,7 +630,82 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createCrossMultiplying()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createSubclassification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createEndFeatureMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createResultExpressionMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createParameterMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createReturnParameterMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createItemFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createSuccession()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createInteraction()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createAssociationStructure()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createBindingConnector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createFeatureValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createElementFilterMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -625,37 +720,12 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createConnector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createConnectionUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createFlowConnectionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createAssociationStructure()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createItemFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createInteraction()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -685,102 +755,7 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSuccession()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createConjugatedPortTyping()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSuccessionItemFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createBindingConnector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createFlowConnectionDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createParameterMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createSubjectMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createStakeholderMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createRequirementConstraintMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createActorMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createFramedConcernMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createObjectiveMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createStateSubactionMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createTransitionFeatureMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createRequirementVerificationMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createViewRenderingMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createMembershipImport()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -790,42 +765,77 @@ public class ElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createNamespaceImport()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
 				 SysMLFactory.eINSTANCE.createNamespaceExpose()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createEndFeatureMembership()));
+				 SysMLFactory.eINSTANCE.createSubjectMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createDependency()));
+				 SysMLFactory.eINSTANCE.createActorMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createFeatureValue()));
+				 SysMLFactory.eINSTANCE.createRequirementConstraintMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createReturnParameterMembership()));
+				 SysMLFactory.eINSTANCE.createFramedConcernMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createResultExpressionMembership()));
+				 SysMLFactory.eINSTANCE.createStakeholderMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createElementFilterMembership()));
+				 SysMLFactory.eINSTANCE.createRequirementVerificationMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createObjectiveMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createTransitionFeatureMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createStateSubactionMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createConjugatedPortTyping()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createSuccessionAsUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createFlowConnectionDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				 SysMLFactory.eINSTANCE.createBindingConnectorAsUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -109,6 +109,7 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getGeneral() {
 		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
@@ -157,6 +158,7 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getSpecific() {
 		if (specific != null && specific.eIsProxy()) {
 			InternalEObject oldSpecific = (InternalEObject)specific;

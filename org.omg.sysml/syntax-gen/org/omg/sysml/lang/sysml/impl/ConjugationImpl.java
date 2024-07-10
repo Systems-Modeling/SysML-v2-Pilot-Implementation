@@ -112,6 +112,7 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getConjugatedType() {
 		if (conjugatedType != null && conjugatedType.eIsProxy()) {
 			InternalEObject oldConjugatedType = (InternalEObject)conjugatedType;
@@ -203,6 +204,7 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getOriginalType() {
 		if (originalType != null && originalType.eIsProxy()) {
 			InternalEObject oldOriginalType = (InternalEObject)originalType;

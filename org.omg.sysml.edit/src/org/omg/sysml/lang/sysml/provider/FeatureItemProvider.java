@@ -67,6 +67,8 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addIsPortionPropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
+			addCrossFeaturePropertyDescriptor(object);
+			addOwnedCrossSubsettingPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -535,6 +537,50 @@ public class FeatureItemProvider extends TypeItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Cross Feature feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCrossFeaturePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_crossFeature_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_crossFeature_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__CROSS_FEATURE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owned Cross Subsetting feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnedCrossSubsettingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_ownedCrossSubsetting_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_ownedCrossSubsetting_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__OWNED_CROSS_SUBSETTING,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Is Nonunique feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -654,6 +700,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
@@ -663,7 +710,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING;
 
 		if (qualify) {
 			return getString

@@ -334,6 +334,9 @@ public class FeatureUtil {
 				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
+				if (type.getOwningRelationship() == null) {
+					featuring.getOwnedRelatedElement().add(type);
+				}
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});

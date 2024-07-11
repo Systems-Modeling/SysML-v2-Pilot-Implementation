@@ -401,6 +401,9 @@ public class TypeUtil {
 			newSpecialization.setIsImplied(true);
 			newSpecialization.setGeneral(general);
 			newSpecialization.setSpecific(type);
+			if (general.getOwningRelationship() == null) {
+				newSpecialization.getOwnedRelatedElement().add(general);
+			}
 			type.getOwnedRelationship().add(newSpecialization);			
 		});
 		adapter.cleanImplicitGeneralTypes();

@@ -27,7 +27,7 @@ package ProductSelection_OwnedEnds {
 		end feature cart: ShoppingCart[1] {
 			member feature inCart[0..1]; // owned crossing feature
 		}
-		end feature selectedProduct: Product[1] {
+		end feature selectedProduct: Product[1] { 
 			member feature selectedProducts[0..*]; // owned crossing feature
 		}
 	}
@@ -38,11 +38,11 @@ package ProductSelection_OwnedEnds {
 		feature info: SelectionInfo;
 		
 		end cart: ShoppingCart[1] redefines source crosses selectedProduct.inCart {
-			member feature inCart: ShoppingCart[0..1] featured by Product;
+			member feature inCart: ShoppingCart[0..1] featured by selectedProduct;
 			import selectedProduct::selectedProducts;
 		}
 		end selectedProduct: Product[1] redefines target crosses cart.selectedProducts {
-			member feature selectedProducts: Product[0..*] featured by ShoppingCart;
+			member feature selectedProducts: Product[0..*] featured by cart;
 			import cart::inCart;
 		}
 	}
@@ -68,11 +68,11 @@ package ProductSelection_OwnedEnds {
 	
 	assoc SingleProductSelection3 specializes ProductSelection3 {
 		end cart: ShoppingCart[1] redefines cart crosses selectedProduct.inCart1 {
-			member feature inCart1: ShoppingCart[0..1] subsets inCart featured by Product;
+			member feature inCart1: ShoppingCart[0..1] subsets inCart featured by selectedProduct;
 			import selectedProduct::selectedProduct1;
 		}
 		end selectedProduct: Product[1] redefines selectedProduct crosses cart.selectedProduct1 {
-			member feature selectedProduct1: Product[0..1] subsets selectedProducts featured by ShoppingCart;
+			member feature selectedProduct1: Product[0..1] subsets selectedProducts featured by cart;
 			import cart::inCart1;
 		}
 	}

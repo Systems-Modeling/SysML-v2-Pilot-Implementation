@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.CrossMultiplying;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -54,6 +55,7 @@ import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
@@ -223,11 +225,15 @@ public class FeatureAdapter extends TypeAdapter {
 			if (owningType != null) {
 				List<Feature> endFeatures = owningType.getOwnedEndFeature();
 				if (endFeatures.size() > 1) {
-					Feature otherEnd = endFeatures.indexOf(target) == 0? 
-							endFeatures.get(1): endFeatures.get(0);
 					Feature crossingFeature = FeatureUtil.getOwnedCrossingFeatureOf(target);
 					if (crossingFeature != null) {
-						addImplicitGeneralType(SysMLPackage.eINSTANCE.getCrossSubsetting(), FeatureUtil.chainFeatures(otherEnd, crossingFeature));
+						ElementUtil.transform(crossingFeature);
+						crossingFeature.getFeaturingType().stream().findFirst().ifPresent(featuringType->{
+							if (featuringType instanceof Feature) {
+								addImplicitGeneralType(SysMLPackage.eINSTANCE.getCrossSubsetting(), 
+										FeatureUtil.chainFeatures((Feature)featuringType, crossingFeature));
+							}
+						});
 					}
 				}
 			}
@@ -619,10 +625,21 @@ public class FeatureAdapter extends TypeAdapter {
 			Type ownerOwningType = owningFeature.getOwningType();
 			if (ownerOwningType != null) {
 				List<Feature> endFeatures = ownerOwningType.getEndFeature();
-				if (endFeatures.size() > 1) {
+				int n = endFeatures.size();
+				if (n == 2) {
 					Feature otherEnd = endFeatures.indexOf(owningFeature) == 0?
 							endFeatures.get(1): endFeatures.get(0);
-					addFeaturingTypes(otherEnd.getType());
+					addFeaturingType(otherEnd);
+				} else if (n > 2) {
+					Feature crossProductFeature = SysMLFactory.eINSTANCE.createFeature();
+					for (Feature otherEnd: endFeatures) {
+						if (otherEnd != owningFeature) {
+							CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
+							multiplying.setMultiplyingType(otherEnd);
+							crossProductFeature.getOwnedRelationship().add(multiplying);
+						}
+					}
+					addFeaturingType(crossProductFeature);
 				}
 			}
 		}

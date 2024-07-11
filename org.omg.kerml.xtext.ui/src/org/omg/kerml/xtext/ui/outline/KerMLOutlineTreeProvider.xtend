@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.CrossMultiplying
 
 /**
  * Customization of the default outline structure.
@@ -418,7 +419,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (chaining.chainingFeature !== null) {
 			createNode(parentNode, chaining.chainingFeature, 
 				chaining.chainingFeature._image, chaining.chainingFeature._text, 
-				true
+				chaining.chainingFeature.ownedCrossMultiplying.empty
 			)
 			
 		}
@@ -478,6 +479,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				!(disjoiningType instanceof Feature) || (disjoiningType as Feature).ownedFeatureChaining.empty)
 		}
 	}
+	
+	def boolean _isLeaf(CrossMultiplying multiplying) {
+		multiplying.multiplyingType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, CrossMultiplying multiplying) {
+ 		if (multiplying.multiplyingType !== null) {
+			createNode(parentNode, multiplying.multiplyingType, 
+				multiplying.multiplyingType._image, multiplying.multiplyingType._text, 
+				true
+			)
+			
+		}
+ 	}
 	
 	def boolean _isLeaf(FeatureInverting inverting) {
 		inverting.invertingFeature === null
@@ -549,7 +564,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (featuringType !== null) {
 				createNode(implicitNode, featuringType, 
 					featuringType._image, featuringType._text, 
-					true
+					featuringType.ownedCrossMultiplying.isEmpty
 				)
 			}
 		])
@@ -629,7 +644,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (modelElement instanceof Element) {
 				ElementUtil.transform(modelElement);
 			}
-			createChildrenDispatcher.invoke(node, modelElement)
+			if (!isLeaf) {
+				createChildrenDispatcher.invoke(node, modelElement)
+			}
 			node
 		}
 	}

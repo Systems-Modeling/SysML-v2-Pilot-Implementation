@@ -54,7 +54,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
-
+	
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet
 	

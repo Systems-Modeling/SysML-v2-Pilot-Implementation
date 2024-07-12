@@ -19,76 +19,60 @@
  */
 package org.omg.sysml.interactive
 
-import java.util.Set
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
-import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Membership
+import com.google.gson.GsonBuilder
 import java.nio.file.Files
-import java.io.File
 import java.nio.file.Paths
+import java.util.Map
+import java.util.Set
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.kerml.xtext.library.LibraryIndex
 
 class LibraryNamesExporter {
     
-    static def main(String[] args){
+    static def void main(String[] args){
+        LibraryIndex.disable
         val SysMLInteractive instance = SysMLInteractive.getProfilingInstance()
-        if (args.length <= 1) {
-            System.out.println("Usage: ");
-            System.out.println("SysMLInteractiveParsingProfiler <LIBRARY FOLDER> <FILENAME>")
-        }
         instance.loadLibrary(args.get(0))
         
+        val Map<String, Set<String>> shortNames = newHashMap
         
-        val Set<String> shortNames = newHashSet
-        
-        instance.libraryResources.forEach[
-            it.allContents.forEach[ el |
-                if (el instanceof Namespace){
-                   val nsQn = instance.getQualifiedNameProvider.getFullyQualifiedName(el)
-                   if (nsQn !== null && !nsQn.empty){
-                       shortNames.add(nsQn.lastSegment)
-                       if (el.shortName !== null){
-                           shortNames.add(el.shortName)
-                       } 
-                   }
-                   for (mem: el.ownedMembership){
-                      var memberName = 
-                            if (mem instanceof OwningMembership) 
-                                mem.memberElement?.declaredName // Note: Don't use effective name.
-                            else mem.memberName
-                       shortNames.add(memberName)
-                       
-                      var memberShortName = 
-                            if (mem instanceof OwningMembership) 
-                                mem.memberElement?.declaredShortName // Note: Don't use effective shortName.
-                            else mem.memberShortName
-                       shortNames.add(memberShortName)
-                   }
+        instance.libraryResources.forEach [
+            EcoreUtil.resolveAll(it)
+            it.allContents.forEach [ el |
+                if (el instanceof Namespace) {
+                    val nsQn = el.qualifiedName
+                    if (nsQn !== null && !nsQn.empty) {
+                        for (mem : el.membership) {
+                            val memberName = mem.memberName
+                            val memberShortName = mem.memberShortName
+                            val memberElementDeclaredName = mem.memberElement?.declaredName
+                            val memberElementDeclaredShortName = mem.memberElement?.declaredShortName
+                            
+                            shortNames.addIfNotNull(nsQn, memberName)
+                            shortNames.addIfNotNull(nsQn, memberShortName)
+                            shortNames.addIfNotNull(nsQn, memberElementDeclaredName)
+                            shortNames.addIfNotNull(nsQn, memberElementDeclaredShortName)
+                        }
+                    }
                 }
             ]            
-            
-//            val resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(it.URI)
-//            val resourceDescription = resourceServiceProvider.getResourceDescriptionManager().getResourceDescription(it)
-//            resourceDescription.exportedObjects.forEach[ sn |
-//                shortNames.add(sn.qualifiedName.lastSegment)
-//            ]
         ]
         
-        System.out.println(getLibraryShortNamesClass(shortNames))
+        //prettyPrinting makes the .json readable, but results in a larger file size: ~25% larger in this case.
+        val gson = new GsonBuilder()
+            .disableHtmlEscaping
+            //.setPrettyPrinting
+            .create
+            
+        val json = gson.toJson(shortNames);
+       
+       Files.write(Paths.get("../org.omg.kerml.xtext/src-gen/org/omg/kerml/xtext/library/LibraryIndex.json"), json.bytes)
     }
     
-    static def getLibraryShortNamesClass(Set<String> shortNames){
-     '''
-        import java.util.Set;
-        
-        public class LibraryShortNames {
-            public static final Set<String> LIBRARY_SHORT_NAMES = Set.of(
-                        «FOR name: shortNames SEPARATOR ', '»
-                            "«name»"
-                        «ENDFOR»
-                    );
+    static def addIfNotNull(Map<String, Set<String>> names, String ns, String name){
+        if (name !== null) {
+            names.computeIfAbsent(ns, [newHashSet]).add(name)
         }
-     '''
     }
 }

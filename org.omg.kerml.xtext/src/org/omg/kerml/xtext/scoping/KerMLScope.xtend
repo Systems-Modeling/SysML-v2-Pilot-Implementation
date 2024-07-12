@@ -28,34 +28,35 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
 
+import com.google.inject.Inject
+import java.util.HashSet
 import java.util.Map
 import java.util.Set
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Type
+import org.omg.kerml.xtext.library.LibraryIndex
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.VisibilityKind
-import org.eclipse.xtext.resource.IEObjectDescription
-import org.eclipse.emf.ecore.EClass
-import java.util.HashSet
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.util.TypeUtil
-import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.OwningMembership
-import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.util.ISysMLScope
-import com.google.inject.Inject
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.emf.ecore.util.EcoreUtil
+import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.kerml.xtext.library.LibraryShortNames
+import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -110,7 +111,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * The set of Packages traversed in an import chain during a resolution search.
 	 * (Should be empty again at the end of each search.)
 	 */
-	protected val Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
+	protected val Set<Package> importingPackages = new HashSet()
 
 	/* 
 	 * The following fields are reset for each resolution search.
@@ -220,7 +221,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
 		
-		return if (continueInNamespace(ns, targetqn)) {
+		return if (continueInNamespace(ns, qn, targetqn)) {
 		    ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
             ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
             ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
@@ -229,11 +230,20 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	/**
 	 * Used to prevent unnecessary searching in standard library resources.<br>
-	 * Returns false when the search reaches a standard library namespace
-	 * and the last segment of the targeted qn is not listed as a name used in the library
+	 * Returns false when the search reaches a namespace in sysml.library
+	 * and the target is not a member of the namespace or any of its owned namespaces.
+	 * 
+	 * Library namespaces and their scopes are pre-calculated and stored in org.omg.kerml.xtext/resources/org/omg/kerml/xtext/library/LibraryIndex.json
 	 */
-	protected def boolean continueInNamespace(Namespace ns, QualifiedName target) {
-	    !ns.eResource.URI.segmentsList.contains("sysml.library") ||  LibraryShortNames.contains(target.lastSegment)
+	protected def boolean continueInNamespace(Namespace ns, QualifiedName prefix, QualifiedName target) {
+	    //if the resource is null fall back, continue search
+	    ns.eResource === null ||
+	    //if the current namespace is not in a library resource continue search
+	    !ns.eResource.URI.segmentsList.contains("sysml.library") ||
+	    //always continue search in the namespace of this KerMLScope, without this the library resolution breaks
+	    ns === this.ns ||
+	    //check membership in the pre-calculated index
+	    LibraryIndex.contains(ns, prefix, target)
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {
@@ -422,7 +432,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		for (e: ns.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
-					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
+					if (ns instanceof Package) {
 						if (!ns.filterCondition.isEmpty) {
 							importingPackages.add(ns)
 						}

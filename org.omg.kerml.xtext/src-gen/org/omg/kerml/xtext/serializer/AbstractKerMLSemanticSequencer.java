@@ -119,34 +119,50 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.ASSOCIATION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Association) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Association) semanticObject); 
 				return; 
 			case SysMLPackage.ASSOCIATION_STRUCTURE:
 				if (rule == grammarAccess.getAssociationStructureRule()) {
-					sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
+					sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getMemberElementRule()
 						|| rule == grammarAccess.getNonFeatureElementRule()) {
-					sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
+					sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.BEHAVIOR:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Behavior) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Behavior) semanticObject); 
 				return; 
 			case SysMLPackage.BINDING_CONNECTOR:
-				sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBindingConnectorRule()) {
+					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.BOOLEAN_EXPRESSION:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBooleanExpressionRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.CLASS:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 				return; 
 			case SysMLPackage.CLASSIFIER:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Classifier) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Classifier) semanticObject); 
 				return; 
 			case SysMLPackage.COLLECT_EXPRESSION:
 				sequence_PrimaryExpression(context, (CollectExpression) semanticObject); 
@@ -176,16 +192,16 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.CONNECTOR:
-				sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Connector) semanticObject); 
+				sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Connector) semanticObject); 
 				return; 
 			case SysMLPackage.CROSS_MULTIPLYING:
-				sequence_Multiplying(context, (CrossMultiplying) semanticObject); 
+				sequence_CrossMultiplying(context, (CrossMultiplying) semanticObject); 
 				return; 
 			case SysMLPackage.CROSS_SUBSETTING:
 				sequence_OwnedCrossSubsetting(context, (CrossSubsetting) semanticObject); 
 				return; 
 			case SysMLPackage.DATA_TYPE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (DataType) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (DataType) semanticObject); 
 				return; 
 			case SysMLPackage.DEPENDENCY:
 				sequence_Dependency_Identification_RelationshipOwnedElement(context, (Dependency) semanticObject); 
@@ -231,9 +247,12 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				else break;
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
-						|| rule == grammarAccess.getFeatureElementRule()
-						|| rule == grammarAccess.getExpressionRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getExpressionRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getExpressionBodyRule()) {
@@ -250,21 +269,18 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_Argument(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getOwnedRelatedElementRule()
-						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Feature) semanticObject); 
+				else if (rule == grammarAccess.getOwnedCrossingFeatureRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Feature) semanticObject); 
+				else if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()
+						|| rule == grammarAccess.getFeatureRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getBodyParameterRule()) {
 					sequence_BodyParameter(context, (Feature) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedCrossingFeatureRule()) {
-					sequence_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConnectorEndRule()) {
@@ -486,17 +502,25 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.FUNCTION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
 				return; 
 			case SysMLPackage.INTERACTION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Interaction) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Interaction) semanticObject); 
 				return; 
 			case SysMLPackage.INTERSECTING:
 				sequence_Intersecting(context, (Intersecting) semanticObject); 
 				return; 
 			case SysMLPackage.INVARIANT:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInvariantRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				if (rule == grammarAccess.getInvocationExpressionRule()) {
 					sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(context, (InvocationExpression) semanticObject); 
@@ -553,8 +577,16 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (ItemFeature) semanticObject); 
 				return; 
 			case SysMLPackage.ITEM_FLOW:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getItemFlowRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.ITEM_FLOW_END:
 				sequence_ItemFlowEnd(context, (ItemFlowEnd) semanticObject); 
 				return; 
@@ -606,7 +638,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.METACLASS:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Metaclass) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Metaclass) semanticObject); 
 				return; 
 			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
@@ -836,7 +868,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.PREDICATE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Predicate) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Predicate) semanticObject); 
 				return; 
 			case SysMLPackage.REDEFINITION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
@@ -903,10 +935,18 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.STEP:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getStepRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.STRUCTURE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Structure) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Structure) semanticObject); 
 				return; 
 			case SysMLPackage.SUBCLASSIFICATION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
@@ -935,23 +975,39 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.SUCCESSION:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSuccessionRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW:
-				sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSuccessionItemFlowRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.TEXTUAL_REPRESENTATION:
 				sequence_Identification_TextualRepresentation(context, (TextualRepresentation) semanticObject); 
 				return; 
 			case SysMLPackage.TYPE:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getNonFeatureElementRule()) {
-					sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
+					sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMemberElementRule()
 						|| rule == grammarAccess.getTypeRule()) {
-					sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
+					sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1025,12 +1081,16 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         (
 	 *             (
@@ -1084,7 +1144,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1105,7 +1165,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Connector semanticObject) {
+	protected void sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1115,17 +1175,20 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * Contexts:
 	 *     OwnedRelatedElement returns BindingConnector
 	 *     FeatureElement returns BindingConnector
-	 *     BindingConnector returns BindingConnector
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (
@@ -1178,7 +1241,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1193,27 +1256,119 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) {
+	protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     BindingConnector returns BindingConnector
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (isSufficient?='all'? (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember)? ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns Invariant
 	 *     FeatureElement returns Invariant
-	 *     Invariant returns Invariant
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         isNegated?='false'? 
 	 *         (
 	 *             (
@@ -1266,7 +1421,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1286,27 +1441,124 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     Invariant returns Invariant
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         isNegated?='false'? 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (ownedRelationship+=FeatureValue? ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         (
+	//             (ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
+	//             ownedRelationship+=NonFeatureMember?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns BooleanExpression
 	 *     FeatureElement returns BooleanExpression
-	 *     BooleanExpression returns BooleanExpression
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
@@ -1358,7 +1610,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1378,27 +1630,123 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     BooleanExpression returns BooleanExpression
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (ownedRelationship+=FeatureValue? ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         (
+	//             (ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
+	//             ownedRelationship+=NonFeatureMember?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns Expression
 	 *     FeatureElement returns Expression
-	 *     Expression returns Expression
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
@@ -1450,7 +1798,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1470,27 +1818,123 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     Expression returns Expression
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (ownedRelationship+=FeatureValue? ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         (
+	//             (ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
+	//             ownedRelationship+=NonFeatureMember?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns ItemFlow
 	 *     FeatureElement returns ItemFlow
-	 *     ItemFlow returns ItemFlow
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (
@@ -1543,7 +1987,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1565,27 +2009,127 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ItemFlow returns ItemFlow
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=ItemFeatureMember? 
+	//                 (ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=ItemFeatureMember? 
+	//                 (ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (isSufficient?='all'? ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns SuccessionItemFlow
 	 *     FeatureElement returns SuccessionItemFlow
-	 *     SuccessionItemFlow returns SuccessionItemFlow
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (
@@ -1638,7 +2182,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1660,27 +2204,127 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     SuccessionItemFlow returns SuccessionItemFlow
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=ItemFeatureMember? 
+	//                 (ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (
+	//                 ownedRelationship+=FeatureValue? 
+	//                 ownedRelationship+=ItemFeatureMember? 
+	//                 (ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (isSufficient?='all'? ownedRelationship+=ItemFlowEndMember ownedRelationship+=ItemFlowEndMember ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns Succession
 	 *     FeatureElement returns Succession
-	 *     Succession returns Succession
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (
@@ -1733,7 +2377,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1748,27 +2392,119 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     Succession returns Succession
+	//
+	// Constraint:
+	//     (
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
+	//         ownedRelationship+=PrefixMetadataMember* 
+	//         (
+	//             (
+	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (
+	//                             isSufficient?='all' | 
+	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	//                             (
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                                 (
+	//                                     ownedRelationship+=OwnedMultiplicity | 
+	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                                 )?
+	//                             )
+	//                         ) 
+	//                         (
+	//                             (
+	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	//                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	//                                 ownedRelationship+=OwnedCrossSubsetting | 
+	//                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//                             ) 
+	//                             (
+	//                                 ownedRelationship+=OwnedMultiplicity | 
+	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                             )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     )
+	//                 ) 
+	//                 (
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
+	//                 (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember)? 
+	//                 ownedRelationship+=NonFeatureMember?
+	//             ) | 
+	//             (isSufficient?='all'? (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember)? ownedRelationship+=NonFeatureMember?)
+	//         ) 
+	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
+	//     )
+	//
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
 	 *     OwnedRelatedElement returns Step
 	 *     FeatureElement returns Step
-	 *     Step returns Step
 	 *
 	 * Constraint:
 	 *     (
-	 *         (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)? 
-	 *         direction=FeatureDirection? 
-	 *         isAbstract?='abstract'? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
-	 *         isDerived?='derived'? 
-	 *         ownedRelationship+=PrefixMetadataMember* 
+	 *         (
+	 *             (
+	 *                 direction=FeatureDirection? 
+	 *                 isAbstract?='abstract'? 
+	 *                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                 isReadOnly?='readonly'? 
+	 *                 isDerived?='derived'?
+	 *             ) | 
+	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *         ) 
+	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
 	 *                 (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
@@ -1820,7 +2556,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1833,510 +2569,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     OwnedRelatedElement returns Feature
-	 *     FeatureElement returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         (
-	 *             (
-	 *                 (
-	 *                     (
-	 *                         (
-	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? direction=FeatureDirection?) | 
-	 *                             isEnd?='end' | 
-	 *                             (isEnd?='end' direction=FeatureDirection?)
-	 *                         )? 
-	 *                         isAbstract?='abstract' 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+)?
-	 *                     ) | 
-	 *                     (
-	 *                         isEnd?='end' 
-	 *                         ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+)
-	 *                     ) | 
-	 *                     (
-	 *                         ((isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?) | isEnd?='end') 
-	 *                         direction=FeatureDirection? 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+)
-	 *                     ) | 
-	 *                     (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | 
-	 *                     (isEnd?='end' ownedRelationship+=PrefixMetadataMember+)
-	 *                 )? 
-	 *                 ownedRelationship+=PrefixMetadataMember? 
-	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=NonFeatureMember?
-	 *             ) | 
-	 *             (
-	 *                 isEnd?='end' 
-	 *                 ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                 (
-	 *                     (direction=FeatureDirection? isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                     (direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                     isReadOnly?='readonly'
-	 *                 )? 
-	 *                 isDerived?='derived' 
-	 *                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                 ownedRelationship+=PrefixMetadataMember? 
-	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=NonFeatureMember?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? ((direction=FeatureDirection? isAbstract?='abstract') | isAbstract?='abstract')?) | 
-	 *                     isEnd?='end' | 
-	 *                     (isEnd?='end' isAbstract?='abstract') | 
-	 *                     (isEnd?='end' direction=FeatureDirection? isAbstract?='abstract')
-	 *                 ) 
-	 *                 (
-	 *                     (
-	 *                         (isComposite?='composite' | isPortion?='portion') 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                         ownedRelationship+=PrefixMetadataMember? 
-	 *                         ownedRelationship+=FeatureValue? 
-	 *                         ownedRelationship+=NonFeatureMember?
-	 *                     ) | 
-	 *                     (
-	 *                         (isComposite?='composite' | isPortion?='portion') 
-	 *                         isReadOnly?='readonly' 
-	 *                         isDerived?='derived' 
-	 *                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                         ownedRelationship+=PrefixMetadataMember? 
-	 *                         ownedRelationship+=FeatureValue? 
-	 *                         ownedRelationship+=NonFeatureMember?
-	 *                     )
-	 *                 )
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     (
-	 *                         (
-	 *                             (
-	 *                                 (
-	 *                                     (
-	 *                                         isEnd?='end' 
-	 *                                         ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     ) | 
-	 *                                     (isEnd?='end' isSufficient?='all'?) | 
-	 *                                     (isEnd?='end' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?)
-	 *                                 ) 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             ) | 
-	 *                             (
-	 *                                 ((isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?) | isEnd?='end') 
-	 *                                 direction=FeatureDirection? 
-	 *                                 ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             ) | 
-	 *                             (
-	 *                                 isEnd?='end' 
-	 *                                 ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                                 (
-	 *                                     (direction=FeatureDirection? isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                                     (direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                                     isReadOnly?='readonly'
-	 *                                 )? 
-	 *                                 (
-	 *                                     (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     )
-	 *                                 ) 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             ) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? ((direction=FeatureDirection? isAbstract?='abstract') | isAbstract?='abstract')?) | 
-	 *                                     isEnd?='end' | 
-	 *                                     (isEnd?='end' isAbstract?='abstract') | 
-	 *                                     (isEnd?='end' direction=FeatureDirection? isAbstract?='abstract')
-	 *                                 ) 
-	 *                                 (
-	 *                                     (
-	 *                                         (isComposite?='composite' | isPortion?='portion') 
-	 *                                         isReadOnly?='readonly' 
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'?
-	 *                                     ) | 
-	 *                                     (
-	 *                                         (isComposite?='composite' | isPortion?='portion') 
-	 *                                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     )
-	 *                                 ) 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             ) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                                     isEnd?='end' | 
-	 *                                     ((isEnd?='end' | (isEnd?='end' direction=FeatureDirection?)) isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                                     (isEnd?='end' isReadOnly?='readonly')
-	 *                                 ) 
-	 *                                 (
-	 *                                     (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     )
-	 *                                 ) 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             )
-	 *                         ) 
-	 *                         (
-	 *                             (
-	 *                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                                 ownedRelationship+=OwnedReferenceSubsetting | 
-	 *                                 ownedRelationship+=OwnedCrossSubsetting | 
-	 *                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                             ) 
-	 *                             (
-	 *                                 ownedRelationship+=OwnedMultiplicity | 
-	 *                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                             )?
-	 *                         )*
-	 *                     ) | 
-	 *                     (
-	 *                         (
-	 *                             (
-	 *                                 isEnd?='end' 
-	 *                                 ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                                 ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                             ) | 
-	 *                             (
-	 *                                 ((isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?) | isEnd?='end') 
-	 *                                 direction=FeatureDirection? 
-	 *                                 ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                             ) | 
-	 *                             (
-	 *                                 isEnd?='end' 
-	 *                                 ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                                 (
-	 *                                     (direction=FeatureDirection? isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                                     (direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                                     isReadOnly?='readonly'
-	 *                                 )? 
-	 *                                 (
-	 *                                     (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     )
-	 *                                 )
-	 *                             ) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? direction=FeatureDirection?) | 
-	 *                                     isEnd?='end' | 
-	 *                                     (isEnd?='end' direction=FeatureDirection?)
-	 *                                 ) 
-	 *                                 isAbstract?='abstract' 
-	 *                                 ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                 isSufficient?='all'? 
-	 *                                 (
-	 *                                     (declaredShortName=Name declaredName=Name?) | 
-	 *                                     (
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                         (
-	 *                                             ownedRelationship+=OwnedMultiplicity | 
-	 *                                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                         )?
-	 *                                     ) | 
-	 *                                     declaredName=Name
-	 *                                 )?
-	 *                             ) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? ((direction=FeatureDirection? isAbstract?='abstract') | isAbstract?='abstract')?) | 
-	 *                                     isEnd?='end' | 
-	 *                                     (isEnd?='end' isAbstract?='abstract') | 
-	 *                                     (isEnd?='end' direction=FeatureDirection? isAbstract?='abstract')
-	 *                                 ) 
-	 *                                 (
-	 *                                     (
-	 *                                         (isComposite?='composite' | isPortion?='portion') 
-	 *                                         isReadOnly?='readonly' 
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'?
-	 *                                     ) | 
-	 *                                     (
-	 *                                         (isComposite?='composite' | isPortion?='portion') 
-	 *                                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     ) | 
-	 *                                     (
-	 *                                         (isComposite?='composite' | isPortion?='portion') 
-	 *                                         isReadOnly?='readonly' 
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                         (
-	 *                                             ownedRelationship+=OwnedMultiplicity | 
-	 *                                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                         )?
-	 *                                     )
-	 *                                 )
-	 *                             ) | 
-	 *                             (isEnd?='end' isSufficient?='all'?) | 
-	 *                             (isEnd?='end' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                             (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                                     isEnd?='end' | 
-	 *                                     ((isEnd?='end' | (isEnd?='end' direction=FeatureDirection?)) isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                                     (isEnd?='end' isReadOnly?='readonly')
-	 *                                 ) 
-	 *                                 (
-	 *                                     (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (
-	 *                                         isDerived?='derived' 
-	 *                                         ownedRelationship+=PrefixMetadataMember+ 
-	 *                                         isSufficient?='all'? 
-	 *                                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                                     )
-	 *                                 )
-	 *                             ) | 
-	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' isSufficient?='all'?) | 
-	 *                                     (isEnd?='end' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                                     (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?)
-	 *                                 ) 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             )
-	 *                         ) 
-	 *                         (
-	 *                             (
-	 *                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                                 ownedRelationship+=OwnedReferenceSubsetting | 
-	 *                                 ownedRelationship+=OwnedCrossSubsetting | 
-	 *                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                             ) 
-	 *                             (
-	 *                                 ownedRelationship+=OwnedMultiplicity | 
-	 *                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                             )?
-	 *                         )*
-	 *                     ) | 
-	 *                     (
-	 *                         isEnd?='end' 
-	 *                         ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                         isSufficient?='all'? 
-	 *                         (
-	 *                             (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? ownedRelationship+=FeatureConjugation) | 
-	 *                             ownedRelationship+=FeatureConjugation
-	 *                         )?
-	 *                     ) | 
-	 *                     (
-	 *                         ((isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?) | isEnd?='end') 
-	 *                         direction=FeatureDirection? 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                         isSufficient?='all'? 
-	 *                         (
-	 *                             (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? ownedRelationship+=FeatureConjugation) | 
-	 *                             ownedRelationship+=FeatureConjugation
-	 *                         )
-	 *                     ) | 
-	 *                     (
-	 *                         isEnd?='end' 
-	 *                         ownedRelationship+=OwnedCrossingFeatureMember? 
-	 *                         (
-	 *                             (direction=FeatureDirection? isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                             (direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                             isReadOnly?='readonly'
-	 *                         )? 
-	 *                         (
-	 *                             (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'? ownedRelationship+=FeatureConjugation) | 
-	 *                             (
-	 *                                 isDerived?='derived' 
-	 *                                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 ownedRelationship+=FeatureConjugation
-	 *                             )
-	 *                         )
-	 *                     ) | 
-	 *                     (
-	 *                         (
-	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? direction=FeatureDirection?) | 
-	 *                             isEnd?='end' | 
-	 *                             (isEnd?='end' direction=FeatureDirection?)
-	 *                         ) 
-	 *                         isAbstract?='abstract' 
-	 *                         ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                         isSufficient?='all'? 
-	 *                         (
-	 *                             (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? ownedRelationship+=FeatureConjugation) | 
-	 *                             (
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                                 )?
-	 *                             ) | 
-	 *                             ownedRelationship+=FeatureConjugation
-	 *                         )
-	 *                     ) | 
-	 *                     (
-	 *                         (
-	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember? ((direction=FeatureDirection? isAbstract?='abstract') | isAbstract?='abstract')?) | 
-	 *                             isEnd?='end' | 
-	 *                             (isEnd?='end' isAbstract?='abstract') | 
-	 *                             (isEnd?='end' direction=FeatureDirection? isAbstract?='abstract')
-	 *                         ) 
-	 *                         (
-	 *                             (
-	 *                                 (isComposite?='composite' | isPortion?='portion') 
-	 *                                 isReadOnly?='readonly' 
-	 *                                 isDerived?='derived' 
-	 *                                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                                 isSufficient?='all'? 
-	 *                                 ownedRelationship+=FeatureConjugation
-	 *                             ) | 
-	 *                             (
-	 *                                 (isComposite?='composite' | isPortion?='portion') 
-	 *                                 ((isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+) | ownedRelationship+=PrefixMetadataMember+) 
-	 *                                 isSufficient?='all'? 
-	 *                                 (
-	 *                                     (((declaredShortName=Name declaredName=Name?) | declaredName=Name)? ownedRelationship+=FeatureConjugation) | 
-	 *                                     ownedRelationship+=FeatureConjugation
-	 *                                 )
-	 *                             ) | 
-	 *                             (
-	 *                                 (isComposite?='composite' | isPortion?='portion') 
-	 *                                 isReadOnly?='readonly' 
-	 *                                 isDerived?='derived' 
-	 *                                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 (
-	 *                                     ownedRelationship+=OwnedMultiplicity | 
-	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))) | 
-	 *                                     ownedRelationship+=FeatureConjugation
-	 *                                 )?
-	 *                             )
-	 *                         )
-	 *                     ) | 
-	 *                     (isEnd?='end' isSufficient?='all'? ownedRelationship+=FeatureConjugation) | 
-	 *                     (isEnd?='end' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'? ownedRelationship+=FeatureConjugation) | 
-	 *                     (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'? ownedRelationship+=FeatureConjugation) | 
-	 *                     (
-	 *                         (
-	 *                             (isEnd?='end' direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                             isEnd?='end' | 
-	 *                             ((isEnd?='end' | (isEnd?='end' direction=FeatureDirection?)) isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                             (isEnd?='end' isReadOnly?='readonly')
-	 *                         ) 
-	 *                         (
-	 *                             (isDerived?='derived' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'? ownedRelationship+=FeatureConjugation) | 
-	 *                             (
-	 *                                 isDerived?='derived' 
-	 *                                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                                 isSufficient?='all'? 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                                 ownedRelationship+=FeatureConjugation
-	 *                             )
-	 *                         )
-	 *                     ) | 
-	 *                     (
-	 *                         (
-	 *                             (isEnd?='end' isSufficient?='all'?) | 
-	 *                             (isEnd?='end' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?) | 
-	 *                             (isEnd?='end' isReadOnly?='readonly' ownedRelationship+=PrefixMetadataMember+ isSufficient?='all'?)
-	 *                         ) 
-	 *                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *                         (
-	 *                             ownedRelationship+=OwnedMultiplicity | 
-	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))) | 
-	 *                             ownedRelationship+=FeatureConjugation
-	 *                         )?
-	 *                     )
-	 *                 ) 
-	 *                 (
-	 *                     (ownedRelationship+=OwnedFeatureChaining | ownedRelationship+=OwnedFeatureInverting)? 
-	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
-	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
-	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*)? 
-	 *                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)? 
-	 *                     (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
-	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
-	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)?
-	 *                 )+ 
-	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=NonFeatureMember?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     (isEnd?='end' direction=FeatureDirection? isReadOnly?='readonly') | 
-	 *                     isEnd?='end' | 
-	 *                     ((isEnd?='end' | (isEnd?='end' direction=FeatureDirection?)) isAbstract?='abstract' isReadOnly?='readonly') | 
-	 *                     (isEnd?='end' isReadOnly?='readonly')
-	 *                 ) 
-	 *                 isDerived?='derived' 
-	 *                 ownedRelationship+=PrefixMetadataMember+ 
-	 *                 ownedRelationship+=PrefixMetadataMember? 
-	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=NonFeatureMember?
-	 *             )
-	 *         ) 
-	 *         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Feature semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2346,33 +2579,51 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     Feature returns Feature
+	//     Step returns Step
 	//
 	// Constraint:
 	//     (
-	//         ((isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?) | isEnd?='end')? 
-	//         direction=FeatureDirection? 
-	//         isAbstract?='abstract'? 
-	//         (isComposite?='composite' | isPortion?='portion')? 
-	//         isReadOnly?='readonly'? 
-	//         isDerived?='derived'? 
+	//         (
+	//             (
+	//                 direction=FeatureDirection? 
+	//                 isAbstract?='abstract'? 
+	//                 (isComposite?='composite' | isPortion?='portion')? 
+	//                 isReadOnly?='readonly'? 
+	//                 isDerived?='derived'?
+	//             ) | 
+	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	//         ) 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         (
-	//             (ownedRelationship+=PrefixMetadataMember? ownedRelationship+=FeatureValue? ownedRelationship+=NonFeatureMember?) | 
 	//             (
 	//                 (
+	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	//                     (
+	//                         isSufficient?='all' 
+	//                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	//                         ownedRelationship+=FeatureConjugation? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
+	//                     (
+	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	//                         (
+	//                             ownedRelationship+=OwnedMultiplicity | 
+	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//                         )? 
+	//                         ownedRelationship+=OwnedFeatureChaining?
+	//                     ) | 
 	//                     (
 	//                         (
 	//                             isSufficient?='all' | 
 	//                             (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
 	//                             (
-	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
+	//                                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
 	//                                 (
 	//                                     ownedRelationship+=OwnedMultiplicity | 
 	//                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	//                                 )?
 	//                             )
-	//                         )? 
+	//                         ) 
 	//                         (
 	//                             (
 	//                                 (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
@@ -2385,36 +2636,32 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                                 ownedRelationship+=OwnedMultiplicity | 
 	//                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	//                             )?
-	//                         )+
-	//                     ) | 
-	//                     (isSufficient?='all' ownedRelationship+=FeatureConjugation?) | 
-	//                     (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name) ownedRelationship+=FeatureConjugation?) | 
-	//                     (
-	//                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
-	//                         (
-	//                             ownedRelationship+=OwnedMultiplicity | 
-	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	//                         )?
+	//                         )+ 
+	//                         ownedRelationship+=OwnedFeatureChaining?
 	//                     )
 	//                 ) 
 	//                 (
-	//                     (ownedRelationship+=OwnedFeatureChaining | ownedRelationship+=OwnedFeatureInverting)? 
-	//                     (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
-	//                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
-	//                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
-	//                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*)? 
-	//                     (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)? 
-	//                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
-	//                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)?
-	//                 )+ 
+	//                     (
+	//                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	//                         ownedRelationship+=OwnedFeatureInverting | 
+	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	//                     )? 
+	//                     ownedRelationship+=OwnedFeatureChaining?
+	//                 )* 
 	//                 ownedRelationship+=FeatureValue? 
 	//                 ownedRelationship+=NonFeatureMember?
-	//             )
+	//             ) | 
+	//             (ownedRelationship+=FeatureValue? ownedRelationship+=NonFeatureMember?)
 	//         ) 
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Feature semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2423,6 +2670,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2473,7 +2725,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*) | 
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                 ownedRelationship+=OwnedFeatureInverting | 
 	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                 (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2483,7 +2735,205 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_MultiplyingPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Feature semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OwnedRelatedElement returns Feature
+	 *     FeatureElement returns Feature
+	 *     Feature returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         direction=FeatureDirection? 
+	 *                         isAbstract?='abstract'? 
+	 *                         (isComposite?='composite' | isPortion?='portion')? 
+	 *                         isReadOnly?='readonly'? 
+	 *                         isDerived?='derived'?
+	 *                     ) | 
+	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *                 ) 
+	 *                 ownedRelationship+=PrefixMetadataMember* 
+	 *                 ownedRelationship+=PrefixMetadataMember?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 direction=FeatureDirection? 
+	 *                                 isAbstract?='abstract'? 
+	 *                                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                                 isReadOnly?='readonly'? 
+	 *                                 isDerived?='derived'?
+	 *                             ) | 
+	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *                         ) 
+	 *                         ownedRelationship+=PrefixMetadataMember* 
+	 *                         ownedRelationship+=PrefixMetadataMember? 
+	 *                         (
+	 *                             (isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	 *                             (
+	 *                                 isSufficient?='all' 
+	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	 *                                 ownedRelationship+=FeatureConjugation? 
+	 *                                 ownedRelationship+=OwnedFeatureChaining?
+	 *                             )
+	 *                         )
+	 *                     ) | 
+	 *                     (isEnd?='end'? isSufficient?='all' ownedRelationship+=FeatureConjugation? ownedRelationship+=OwnedFeatureChaining?) | 
+	 *                     (
+	 *                         isEnd?='end'? 
+	 *                         isSufficient?='all' 
+	 *                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
+	 *                         ownedRelationship+=FeatureConjugation? 
+	 *                         ownedRelationship+=OwnedFeatureChaining?
+	 *                     ) | 
+	 *                     (
+	 *                         ((isEnd?='end'? isSufficient?='all') | (isEnd?='end'? isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
+	 *                         (
+	 *                             ownedRelationship+=OwnedMultiplicity | 
+	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                         )? 
+	 *                         ownedRelationship+=OwnedFeatureChaining?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	 *                         ownedRelationship+=OwnedFeatureInverting | 
+	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 *                     )? 
+	 *                     ownedRelationship+=OwnedFeatureChaining?
+	 *                 )*
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         direction=FeatureDirection? 
+	 *                         isAbstract?='abstract'? 
+	 *                         (isComposite?='composite' | isPortion?='portion')? 
+	 *                         isReadOnly?='readonly'? 
+	 *                         isDerived?='derived'?
+	 *                     ) | 
+	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *                 ) 
+	 *                 ownedRelationship+=PrefixMetadataMember* 
+	 *                 ownedRelationship+=PrefixMetadataMember? 
+	 *                 (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	 *                 (
+	 *                     ownedRelationship+=OwnedMultiplicity | 
+	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                 )? 
+	 *                 ownedRelationship+=OwnedFeatureChaining? 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	 *                         ownedRelationship+=OwnedFeatureInverting | 
+	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 *                     )? 
+	 *                     ownedRelationship+=OwnedFeatureChaining?
+	 *                 )*
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 direction=FeatureDirection? 
+	 *                                 isAbstract?='abstract'? 
+	 *                                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                                 isReadOnly?='readonly'? 
+	 *                                 isDerived?='derived'?
+	 *                             ) | 
+	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *                         ) 
+	 *                         ownedRelationship+=PrefixMetadataMember* 
+	 *                         ownedRelationship+=PrefixMetadataMember? 
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))
+	 *                     ) | 
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 direction=FeatureDirection? 
+	 *                                 isAbstract?='abstract'? 
+	 *                                 (isComposite?='composite' | isPortion?='portion')? 
+	 *                                 isReadOnly?='readonly'? 
+	 *                                 isDerived?='derived'?
+	 *                             ) | 
+	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
+	 *                         ) 
+	 *                         ownedRelationship+=PrefixMetadataMember* 
+	 *                         ownedRelationship+=PrefixMetadataMember? 
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)))? 
+	 *                         (
+	 *                             ownedRelationship+=OwnedMultiplicity | 
+	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                         )?
+	 *                     ) | 
+	 *                     (isEnd?='end'? isSufficient?='all') | 
+	 *                     (isEnd?='end'? isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)) | 
+	 *                     (
+	 *                         ((isEnd?='end'? isSufficient?='all') | (isEnd?='end'? isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
+	 *                         (
+	 *                             ownedRelationship+=OwnedMultiplicity | 
+	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                         )?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         ownedRelationship+=OwnedReferenceSubsetting | 
+	 *                         ownedRelationship+=OwnedCrossSubsetting | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (
+	 *                         ownedRelationship+=OwnedMultiplicity | 
+	 *                         (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                     )?
+	 *                 )+ 
+	 *                 ownedRelationship+=OwnedFeatureChaining? 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
+	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	 *                         ownedRelationship+=OwnedFeatureInverting | 
+	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 *                     )? 
+	 *                     ownedRelationship+=OwnedFeatureChaining?
+	 *                 )*
+	 *             )
+	 *         ) 
+	 *         ownedRelationship+=FeatureValue? 
+	 *         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2510,7 +2960,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2525,7 +2975,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Function semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2552,7 +3002,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2567,7 +3017,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Predicate semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Predicate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2594,7 +3044,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2602,7 +3052,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Association semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2626,7 +3076,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2634,7 +3084,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2662,14 +3112,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	//                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	//                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	//             )? 
 	//             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	//         )* 
 	//         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	//     )
 	//
-	// protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) { }
+	// protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2693,7 +3143,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2701,7 +3151,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Behavior semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Behavior semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2728,7 +3178,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2736,7 +3186,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2763,7 +3213,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2771,7 +3221,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Classifier semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Classifier semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2798,7 +3248,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2806,7 +3256,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, DataType semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, DataType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2833,7 +3283,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2841,7 +3291,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Interaction semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Interaction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2868,7 +3318,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2876,7 +3326,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Metaclass semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Metaclass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2903,7 +3353,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2911,7 +3361,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Structure semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Structure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2977,7 +3427,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2985,7 +3435,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) {
+	protected void sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3012,14 +3462,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	//                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                 (ownedRelationship+=Multiplying ownedRelationship+=Multiplying*)
+	//                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
 	//             )? 
 	//             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	//         )* 
 	//         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	//     )
 	//
-	// protected void sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_MultiplyingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) { }
+	// protected void sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -3067,6 +3517,20 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     CrossMultiplying returns CrossMultiplying
+	 *
+	 * Constraint:
+	 *     (multiplyingType=[Type|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
+	 * </pre>
+	 */
+	protected void sequence_CrossMultiplying(ISerializationContext context, CrossMultiplying semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4038,20 +4502,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_MultiplicityExpressionMember(ISerializationContext context, OwningMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Multiplying returns CrossMultiplying
-	 *
-	 * Constraint:
-	 *     (multiplyingType=[Type|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
-	 * </pre>
-	 */
-	protected void sequence_Multiplying(ISerializationContext context, CrossMultiplying semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

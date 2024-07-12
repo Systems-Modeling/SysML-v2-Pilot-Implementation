@@ -339,7 +339,7 @@ fragment ConjugationPart returns SysML::Type :
 ;
 
 fragment TypeRelationshipPart returns SysML::Type :
-	DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | MultiplyingPart
+	DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | CrossMultiplyingPart
 ;
 
 fragment DisjoiningPart returns SysML::Type :
@@ -362,9 +362,9 @@ fragment DifferencingPart returns SysML::Type :
 	( ',' ownedRelationship += Differencing )* 
 ;
 
-fragment MultiplyingPart returns SysML::Type :
-	'multiplies'  ownedRelationship += Multiplying
-	( ',' ownedRelationship += Multiplying )*
+fragment CrossMultiplyingPart returns SysML::Type :
+	'multiplies'  ownedRelationship += CrossMultiplying
+	( ',' ownedRelationship += CrossMultiplying )*
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -464,7 +464,7 @@ Differencing returns SysML::Differencing :
 
 /* Cross Product */
 
-Multiplying returns SysML::CrossMultiplying :
+CrossMultiplying returns SysML::CrossMultiplying :
 	  multiplyingType = [SysML::Type | QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
 ;
@@ -527,12 +527,13 @@ fragment BasicFeaturePrefix returns SysML::Feature :
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
 	( isReadOnly ?= 'readonly' )?
 	( isDerived ?= 'derived' )?
-	( ownedRelationship += PrefixMetadataMember )*
 ;
 
 fragment FeaturePrefix returns SysML::Feature :
-	( isEnd ?= 'end' ( ownedRelationship += OwnedCrossingFeatureMember )? )?
-	BasicFeaturePrefix	
+	( isEnd ?= 'end' ( ownedRelationship += OwnedCrossingFeatureMember )?
+	| BasicFeaturePrefix
+	)
+	( ownedRelationship += PrefixMetadataMember )*
 ;
 
 OwnedCrossingFeatureMember returns SysML::OwningMembership :
@@ -540,15 +541,14 @@ OwnedCrossingFeatureMember returns SysML::OwningMembership :
 ;
 
 OwnedCrossingFeature returns SysML::Feature :
-	FeatureDeclaration
+	BasicFeaturePrefix FeatureDeclaration
 ;
 
 Feature returns SysML::Feature :
 	( FeaturePrefix
-	  ( 'feature' FeatureDeclaration?
-	  | ownedRelationship += PrefixMetadataMember
-	  ) 
-	| ( isEnd ?= 'end' )? BasicFeaturePrefix 
+	  ( 'feature' | ownedRelationship += PrefixMetadataMember ) 
+	  FeatureDeclaration?
+	| ( isEnd ?= 'end' | BasicFeaturePrefix )
 	  FeatureDeclaration
 	)
 	ValuePart? TypeBody

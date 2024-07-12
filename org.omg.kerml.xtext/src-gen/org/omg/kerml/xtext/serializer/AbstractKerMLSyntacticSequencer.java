@@ -578,7 +578,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'step' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     ownedRelationship+=OwnedCrossingFeatureMember (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedCrossSubsetting
@@ -588,6 +587,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
@@ -732,11 +732,11 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'step' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     ownedRelationship+=OwnedCrossingFeatureMember (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -1262,7 +1262,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     ownedRelationship+=OwnedCrossingFeatureMember (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1272,6 +1271,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1565,7 +1565,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     ownedRelationship+=OwnedCrossingFeatureMember (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1575,6 +1574,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1796,6 +1796,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=CrossMultiplying (ambiguity) (rule end)
 	 *     ownedRelationship+=Differencing (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -1803,7 +1804,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=MultiplicityExpressionMember ']' (ambiguity) (rule end)
-	 *     ownedRelationship+=Multiplying (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) (rule end)
@@ -1967,7 +1967,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     ownedRelationship+=OwnedCrossingFeatureMember (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1977,6 +1976,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember 'expr' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping

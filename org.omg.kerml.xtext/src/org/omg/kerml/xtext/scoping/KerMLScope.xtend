@@ -56,6 +56,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.ScopeResultCache
 import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
@@ -143,7 +144,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 */
 	protected boolean isShadowing = false;
 	
-
+	
 	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		super(parent, false)
 		this.ns = ns
@@ -167,14 +168,24 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
-
-	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
-	}
 	
+	override getSingleElement(QualifiedName name) {
+	    val scopeResultCache = ScopeResultCache.getInstance(ns)
+	    
+		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
+		    [ resolveInScope(name, true).head ], 
+		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+		)
+		
+		return if (localResult === null) {
+		    if(parent !== null && !isShadowing) {
+		        parent.getSingleElement(name)
+	        } else null
+        } else {
+            localResult
+        }
+	}
+		
 	override getLocalElementsByName(QualifiedName name) {
 		resolveInScope(name, false)
 	}
@@ -376,12 +387,15 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean isInheriting, boolean includeImplicit) {
 		if (ns instanceof Type) {
 			val conjugator = ns.ownedConjugator
-			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
-				scopeProvider.addVisited(conjugator)
-				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false, includeImplicit, false)
-				scopeProvider.removeVisited(conjugator)
-				if (found) {
-					return true
+			if (conjugator !== null) {
+				if (!scopeProvider.visited.contains(conjugator)) {
+					scopeProvider.addVisited(conjugator)
+					val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false,
+						includeImplicit, false)
+					scopeProvider.removeVisited(conjugator)
+					if (found) {
+						return true
+					}
 				}
 			}
 			val newRedefined = new HashSet()
@@ -401,17 +415,20 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					}
 				}
 			}
-			if (includeImplicit && !scopeProvider.visited.contains(ns)) {
-				scopeProvider.addVisited(ns);
-				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
-				scopeProvider.removeVisited(ns)
-				for (type : implicitTypes) {
-					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
-					if (found) {
-						return true
+			if (includeImplicit) {
+				if (!scopeProvider.visited.contains(ns)){
+					scopeProvider.addVisited(ns);
+					var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
+					scopeProvider.removeVisited(ns)
+					for (type : implicitTypes) {
+						val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
+						if (found) {
+							return true
+						}
 					}
 				}
 			}
+			
 			if (ns instanceof Feature) {
 				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
 				if (chainingFeature !== null && 

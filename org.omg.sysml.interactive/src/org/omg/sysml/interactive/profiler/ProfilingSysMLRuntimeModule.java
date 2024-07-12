@@ -36,7 +36,7 @@ public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return ProfilingSysMLGlobalScopeProvider.class;
 	}
-	
+
 	@Override
 	public Class<? extends IScopeProvider> bindIScopeProvider()
 	{

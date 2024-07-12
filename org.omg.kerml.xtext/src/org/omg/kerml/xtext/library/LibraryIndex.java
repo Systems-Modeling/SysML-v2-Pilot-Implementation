@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 public class LibraryIndex {
 	
 	private static Map<String, Set<String>> LIBRARY_INDEX = null;
-	private static boolean enabled = false;
+	private static boolean enabled = true;
 	
 	
 	static {

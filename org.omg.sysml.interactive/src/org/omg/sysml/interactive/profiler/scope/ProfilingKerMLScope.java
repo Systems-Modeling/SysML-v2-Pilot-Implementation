@@ -55,7 +55,7 @@ public class ProfilingKerMLScope extends KerMLScope
 		var localWatch = Stopwatch.createUnstarted();
 		
 		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		var scopeResult = new ScopeResult(name, ns.getQualifiedName() != null ? ns.getQualifiedName().toString() : ns.getName(), referenceType.getName(), oldValue);
+		var scopeResult = new ScopeResult(name, ns.getDeclaredName(), referenceType.getName(), oldValue);
 		ProfilingKerMLLinkingService.currentStep = scopeResult;
 		WATCH.start();
 		

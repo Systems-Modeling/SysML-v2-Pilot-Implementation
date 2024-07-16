@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
@@ -43,7 +44,20 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 		return (Import)super.getTarget();
 	}
 	
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		
+		// If the target Import is for a filtered import package, set its visibility to PUBLIC.
+		Import target = getTarget();
+		Namespace owningNamespace = target.getImportOwningNamespace();
+		if (owningNamespace != null && owningNamespace.getOwningRelationship() instanceof NamespaceImport) {
+			target.setVisibility(VisibilityKind.PUBLIC);
+		}
+	}
+	
 	// Additional operations
+	
 	// Note: The excludedType parameter is needed in case the imported Namespace
 	// is a Type that has one or more Generalizations.
 	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,

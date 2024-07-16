@@ -88,6 +88,8 @@ import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.impl.ImportImpl
 
 /**
  * This class contains custom validation rules. 
@@ -106,6 +108,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member name"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
+	
+	public static val INVALID_IMPORT_VISIBILITY = "validateImportVisibility_"
+	public static val INVALID_IMPORT_VISIBILITY_MSG = "Default public import is deprecated; make private if possible"
 	
 	// CORE //
 	
@@ -329,6 +334,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+		}
+	}
+	
+	// TODO: Remove this check.
+	// This warning is temporary as a transition to imports being private by default and
+	// explicit visibility indication is required on all import declarations. 
+	@Check
+	def checkImport(Import import_) {
+		if ((import_ as ImportImpl).visibilityGen === null) {
+			warning(INVALID_IMPORT_VISIBILITY_MSG, import_, null, INVALID_IMPORT_VISIBILITY)
 		}
 	}
 	

@@ -66,10 +66,10 @@ public abstract class ImportImpl extends RelationshipImpl implements Import {
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getVisibility()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PRIVATE;
+	protected static final VisibilityKind VISIBILITY_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
@@ -159,10 +159,19 @@ public abstract class ImportImpl extends RelationshipImpl implements Import {
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public VisibilityKind getVisibility() {
+		VisibilityKind visibility = getVisibilityGen();
+		return visibility == null? VisibilityKind.PUBLIC: visibility;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisibilityKind getVisibilityGen() {
 		return visibility;
 	}
 

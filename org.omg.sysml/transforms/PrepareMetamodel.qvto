@@ -46,7 +46,10 @@ helper run() {
 }
 
 helper mapModel(syntax : Package, model: Model) {
-	syntax.map Namespace(model);
+	var kermlSyntax = syntax.ownedMember[Package]![name = 'KerML'];
+	var sysmlSyntax = syntax.ownedMember[Package]![name = 'SysML'];
+	kermlSyntax.map Namespace(model);
+	sysmlSyntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 }
 

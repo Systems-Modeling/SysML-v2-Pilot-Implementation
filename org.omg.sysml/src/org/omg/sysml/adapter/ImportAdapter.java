@@ -55,7 +55,7 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 			Collection<Type> excludedTypes, boolean isRecursive) {
 		Import target = getTarget();
 		Collection<Membership> namespaceMembership = 
-				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, excludedTypes, target.isImportAll());
+				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, excludedTypes, target.isImportAll(), isRecursive);
 		importedMembership.addAll(namespaceMembership);
 		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(target.getVisibility())) {
 			nonpublicMembership.addAll(namespaceMembership);

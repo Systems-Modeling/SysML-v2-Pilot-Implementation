@@ -114,6 +114,7 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeatureOfType() {
 		if (featureOfType != null && featureOfType.eIsProxy()) {
 			InternalEObject oldFeatureOfType = (InternalEObject)featureOfType;

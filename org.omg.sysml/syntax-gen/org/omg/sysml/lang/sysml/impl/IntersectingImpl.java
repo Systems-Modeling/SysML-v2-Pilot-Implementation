@@ -126,6 +126,7 @@ public class IntersectingImpl extends RelationshipImpl implements Intersecting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getIntersectingType() {
 		if (intersectingType != null && intersectingType.eIsProxy()) {
 			InternalEObject oldIntersectingType = (InternalEObject)intersectingType;

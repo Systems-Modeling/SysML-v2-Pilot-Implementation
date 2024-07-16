@@ -67,6 +67,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addIsPortionPropertyDescriptor(object);
 			addDirectionPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
+			addFeatureTargetPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -535,6 +536,28 @@ public class FeatureItemProvider extends TypeItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Feature Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFeatureTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_featureTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_featureTarget_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__FEATURE_TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Is Nonunique feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -652,9 +675,9 @@ public class FeatureItemProvider extends TypeItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||

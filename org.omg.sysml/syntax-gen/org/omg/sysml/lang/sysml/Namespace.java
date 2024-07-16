@@ -168,7 +168,8 @@ public interface Namespace extends Element {
 	 *             importedMemberships(excluded->including(self)))
 	 *     endif in
 	 * if not isRecursive then visibleMemberships
-	 * else visibleMemberships->union(visibleMemberships->
+	 * else visibleMemberships->union(ownedMember->
+	 *         select(owningMembership.visibility = VisibilityKind::public)->
 	 *         selectAsKind(Namespace).
 	 *         visibleMemberships(excluded->including(self), true, includeAll))
 	 * endif
@@ -335,7 +336,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned <code>members</code> of this <code>Namespace</code>, which are the <cpde><code>ownedMemberElements</code> of the <code>ownedMemberships</code> of the .</cpde></p>
+	 * <p>The owned <code>members</code> of this <code>Namespace</code>, which are the <cpde><code>ownedMemberElements</code> of the <code>ownedMemberships</code> of the <code>Namespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member</em>' reference list.

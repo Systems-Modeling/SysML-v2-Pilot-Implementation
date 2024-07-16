@@ -22,8 +22,6 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Analysis Case Definition</b></em>'.
@@ -31,9 +29,6 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An <code>AnalysisCaseDefinition</code> is a <code>CaseDefinition</code> for the case of carrying out an analysis.</p>
- * analysisAction = action->select(
- *     isComposite and 
- *     specializes('AnalysisCases::AnalysisAction'))
  * resultExpression =
  *     let results : OrderedSet(ResultExpressionMembership) =
  *         featureMembersip->
@@ -48,7 +43,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.AnalysisCaseDefinition#getAnalysisAction <em>Analysis Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnalysisCaseDefinition#getResultExpression <em>Result Expression</em>}</li>
  * </ul>
  *
@@ -57,30 +51,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AnalysisCaseDefinition extends CaseDefinition {
-	/**
-	 * Returns the value of the '<em><b>Analysis Action</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.ActionDefinition#getAction() <em>Action</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The composite <code>actions</code> of the <code>AnalysisCaseDefinition</code> that are defined as <code>AnalysisActions</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Analysis Action</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnalysisCaseDefinition_AnalysisAction()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringAnalysisCaseDefinition'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ActionUsage> getAnalysisAction();
-
 	/**
 	 * Returns the value of the '<em><b>Result Expression</b></em>' reference.
 	 * <p>

@@ -43,33 +43,10 @@ public class AnalysisCaseUsageItemProvider extends CaseUsageItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAnalysisActionPropertyDescriptor(object);
 			addAnalysisCaseDefinitionPropertyDescriptor(object);
 			addResultExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Analysis Action feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAnalysisActionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AnalysisCaseUsage_analysisAction_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AnalysisCaseUsage_analysisAction_feature", "_UI_AnalysisCaseUsage_type"),
-				 SysMLPackage.Literals.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -180,9 +157,9 @@ public class AnalysisCaseUsageItemProvider extends CaseUsageItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||

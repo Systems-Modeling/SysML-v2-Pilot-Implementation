@@ -53,8 +53,8 @@ import org.eclipse.emf.common.util.EList;
  * isParallel implies
  *     nestedAction.incomingTransition->isEmpty() and
  *     nestedAction.outgoingTransition->isEmpty()
- * isSubstateUsage(true) implies
- *     specializesFromLibrary('States::State::substates')
+ * isSubstateUsage(false) implies
+ *     specializesFromLibrary('States::StateAction::exclusiveStates')
  * exitAction =
  *     let exitMemberships : Sequence(StateSubactionMembership) =
  *         ownedMembership->
@@ -67,8 +67,8 @@ import org.eclipse.emf.common.util.EList;
  * ownedMembership->
  *     selectByKind(StateSubactionMembership)->
  *     isUnique(kind)
- * isSubstateUsage(false) implies
- *     specializesFromLibrary('States::State::substates')
+ * isSubstateUsage(true) implies
+ *     specializesFromLibrary('States::StateAction::substates')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -227,8 +227,8 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Check if this <code>StateUsage</code> is composite and has an <code>owningType</code> that is an <code>StateDefinition</code> or <code>StateUsage</code> with the given value of <code>isParallel</code>, but is <em>not</em> an <code>entryAction</code> or <code>exitAction</code>. If so, then it represents a <code><em>StateAction</em></code> that is a <code><em>substate</em></code> or <code><em>exclusiveState</em></code> (for <code>isParallel = false</code>) of another <code><em>StateAction</em></code>.</p>
-	 * owningType <> null and
+	 * <p>Check if this <code>StateUsage</code> is composite and has an <code>owningType</code> that is a <code>StateDefinition</code> or <code>StateUsage</code> with the given value of <code>isParallel</code>, but is <em>not</em> an <code>entryAction</code>, <code>doAction</code>, or <code>exitAction</code>. If so, then it represents a <code><em>StateAction</em></code> that is a <code><em>substate</em></code> or <code><em>exclusiveState</em></code> (for <code>isParallel = false</code>) of another <code><em>StateAction</em></code>.</p>
+	 * isComposite and owningType <> null and
 	 * (owningType.oclIsKindOf(StateDefinition) and
 	 *     owningType.oclAsType(StateDefinition).isParallel = isParallel or
 	 *  owningType.oclIsKindOf(StateUsage) and

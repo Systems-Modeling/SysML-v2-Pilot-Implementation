@@ -185,6 +185,7 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Classifier getSubclassifier() {
 		if (subclassifier != null && subclassifier.eIsProxy()) {
 			InternalEObject oldSubclassifier = (InternalEObject)subclassifier;
@@ -202,7 +203,7 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.omg.sysml.lang.sysml.Classifier basicGetSubclassifier() {
+	public Classifier basicGetSubclassifier() {
 		return subclassifier;
 	}
 

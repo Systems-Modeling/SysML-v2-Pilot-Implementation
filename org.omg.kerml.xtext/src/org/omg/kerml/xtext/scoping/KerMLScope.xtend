@@ -174,7 +174,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	    
 		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
 		    [ resolveInScope(name, true).head ], 
-		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null) ]
 		)
 		
 		return if (localResult === null) {

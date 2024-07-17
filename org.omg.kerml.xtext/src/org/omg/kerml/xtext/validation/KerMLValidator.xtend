@@ -90,6 +90,7 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.impl.ImportImpl
+import org.omg.sysml.lang.sysml.VisibilityKind
 
 /**
  * This class contains custom validation rules. 
@@ -111,6 +112,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_IMPORT_VISIBILITY = "validateImportVisibility_"
 	public static val INVALID_IMPORT_VISIBILITY_MSG = "Default public import is deprecated; make private if possible"
+	public static val INVALID_IMPORT_TOP_LEVEL_VISIBILITY = "validateImportTopLevelVisibility"
+	public static val INVALID_IMPORT_TOP_LEVEL_VISIBILITY_MSG = "Top level import must be private"
 	
 	// CORE //
 	
@@ -337,11 +340,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
-	// TODO: Remove this check.
-	// This warning is temporary as a transition to imports being private by default and
-	// explicit visibility indication is required on all import declarations. 
 	@Check
 	def checkImport(Import import_) {
+		// validateImportTopLevelVisibility
+		if (import_.importOwningNamespace !== null && import_.importOwningNamespace.owner === null && 
+			import_.visibility !== VisibilityKind.PRIVATE) {
+			error(INVALID_IMPORT_TOP_LEVEL_VISIBILITY_MSG, import_, null, INVALID_IMPORT_TOP_LEVEL_VISIBILITY)			
+		}
+		
+		// TODO: Remove this check.
+		// This warning is temporary as a transition to imports being private by default and
+		// explicit visibility indication is required on all import declarations. 
 		if ((import_ as ImportImpl).visibilityGen === null) {
 			warning(INVALID_IMPORT_VISIBILITY_MSG, import_, null, INVALID_IMPORT_VISIBILITY)
 		}

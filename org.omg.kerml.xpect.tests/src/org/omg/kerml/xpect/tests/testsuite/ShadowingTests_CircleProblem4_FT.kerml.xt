@@ -39,7 +39,7 @@ package Test1{
 	--- */
 	feature A : A::B {
 		feature B {
-			import A::*;
+			public import A::*;
 			//* XPECT scope at B ---
 			A, A.B, A.B.B, A.B.B.b, A.B.B.b.b, A.B.B.b.self, A.B.B.b.that,
 			A.B.B.b.that.self, A.B.B.self, A.B.B.that, A.B.B.that.self, A.B.b, A.B.b.B, A.B.b.B.b,

@@ -19,9 +19,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 END_SETUP 
 */
 //Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
-//Current implemention import from the first src package(A).
+//Current implemention public import from the first src package(A).
 package test{
-	import SamePackage::container::*;
+	public import SamePackage::container::*;
 	alias something1 for A;
 	// XPECT errors at A --> "Couldn't resolve reference to Element 'B'." at "B"
 	alias something2 for B;

@@ -19,7 +19,7 @@ END_SETUP
 package Test {
 
 	package Test1 {
-		import VP::**;
+		public import VP::**;
 
 		classifier A specializes c_Public_Id;
 		//XPECT linkedName at A --> Test.Test1.A

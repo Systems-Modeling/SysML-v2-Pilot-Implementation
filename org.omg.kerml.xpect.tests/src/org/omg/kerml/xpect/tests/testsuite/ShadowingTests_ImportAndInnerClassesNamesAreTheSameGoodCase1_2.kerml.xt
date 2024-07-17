@@ -19,7 +19,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	import OuterPackage::*;
+	public import OuterPackage::*;
 	classifier A{
 		classifier a2{}
 	}

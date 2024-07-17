@@ -32,5 +32,5 @@ package Test1{
     	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.a_alias, PackageAlias2.B.b,  
  --- */
 	
-	import PackageAlias1::A_alias::*;
+	public import PackageAlias1::A_alias::*;
 }

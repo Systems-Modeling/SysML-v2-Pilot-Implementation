@@ -19,7 +19,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Test3{
-	import VisibilityPackage::*;
+	public import VisibilityPackage::*;
 	classifier A specializes c_clazz{
  		classifier AA specializes c_Protect::c_publicc{}
  		

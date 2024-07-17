@@ -42,7 +42,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package 'Individuals and Roles' {
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	part def Vehicle {
 		attribute mass : Real;
 		attribute status : VehicleStatus;

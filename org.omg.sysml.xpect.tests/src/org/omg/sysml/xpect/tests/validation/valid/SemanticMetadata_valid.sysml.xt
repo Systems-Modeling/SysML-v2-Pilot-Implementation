@@ -52,7 +52,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package SemanticMetadata_valid {
-	import Metaobjects::SemanticMetadata;
+	public import Metaobjects::SemanticMetadata;
 
 	item def C {
 		ref x;

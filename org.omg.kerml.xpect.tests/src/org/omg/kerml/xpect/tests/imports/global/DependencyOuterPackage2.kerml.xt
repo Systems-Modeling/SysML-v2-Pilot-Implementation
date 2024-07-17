@@ -29,7 +29,7 @@ package test{
 	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c
 	--- */
-	import OuterPackage2::C;
+	public import OuterPackage2::C;
 	//* XPECT scope at OuterPackage::A ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
@@ -39,7 +39,7 @@ package test{
 	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c
 	--- */
-	import OuterPackage::A;
+	public import OuterPackage::A;
 	
 	//* XPECT scope at OuterPackage::B ---
 		test,
@@ -50,7 +50,7 @@ package test{
 	   	OuterPackage2, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c
 	--- */
-	import OuterPackage::B;
+	public import OuterPackage::B;
 	
 }
   
@@ -65,7 +65,7 @@ package test{
 	}
    
    package OuterPackage2{
-		import OuterPackage::B;
+		public import OuterPackage::B;
 		class C specializes B{
 			feature c;
 		}

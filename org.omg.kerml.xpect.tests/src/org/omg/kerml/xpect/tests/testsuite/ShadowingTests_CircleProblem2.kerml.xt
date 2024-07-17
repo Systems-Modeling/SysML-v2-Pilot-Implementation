@@ -17,7 +17,7 @@ END_SETUP
 // XPECT noErrors --> ""
 package Test1{
 	classifier A {
-		import B::*;
+		public import B::*;
 		//XPECT linkedName at A --> Test1.A
 		//* XPECT scope at A ---
    		A, A.B, A.B.B, B, B.B, Test1.A, Test1.A.B, Test1.A.B.B

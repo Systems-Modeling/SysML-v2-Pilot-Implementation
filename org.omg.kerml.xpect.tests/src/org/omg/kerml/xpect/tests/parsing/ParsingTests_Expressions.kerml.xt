@@ -39,9 +39,9 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Expressions {
-	import ScalarFunctions::*;
-	import BaseFunctions::ToString;
-	import ControlFunctions::*;
+	public import ScalarFunctions::*;
+	public import BaseFunctions::ToString;
+	public import ControlFunctions::*;
 	
 	a: Integer;
 	aa : Boolean;

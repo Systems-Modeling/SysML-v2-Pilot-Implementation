@@ -19,7 +19,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	import PackageAlias1::*;
+	public import PackageAlias1::*;
 	feature A{}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at A ---

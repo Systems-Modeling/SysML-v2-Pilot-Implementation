@@ -21,7 +21,7 @@ END_SETUP
 //For scope at C ---why OuterPackage.B.b.a1 and OuterPackage2.C.b are not inscope but OuterPackage2.C.b.a1?
 // XPECT noErrors ---> ""
 package test{
-	import OuterPackage2::C;
+	public import OuterPackage2::C;
 	//XPECT linkedName at C --> OuterPackage2.C
 	//* XPECT scope at C ---
 	   	   C.b.a1, D.b.a1, D.try.a1, 

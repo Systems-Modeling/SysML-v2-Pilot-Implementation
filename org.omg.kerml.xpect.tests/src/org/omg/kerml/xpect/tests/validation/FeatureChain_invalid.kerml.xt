@@ -30,7 +30,7 @@
 END_SETUP
 */
 package P {
-    import ScalarValues::*;
+    public import ScalarValues::*;
     
     struct V {
     	feature n : Integer;

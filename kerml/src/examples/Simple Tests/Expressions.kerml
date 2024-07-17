@@ -1,7 +1,7 @@
 package Expressions {
-	import ScalarFunctions::*;
-	import BaseFunctions::ToString;
-	import ControlFunctions::*;
+	private import ScalarFunctions::*;
+	private import BaseFunctions::ToString;
+	private import ControlFunctions::*;
 	
 	a: Integer;
 	aa : Boolean;

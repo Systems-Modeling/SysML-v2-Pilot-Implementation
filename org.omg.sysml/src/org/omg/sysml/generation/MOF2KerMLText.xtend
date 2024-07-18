@@ -168,7 +168,7 @@ class MOF2KerMLText {
 	}
 	
 	def toMultiplicity(MultiplicityElement multiplicity) {
-		'''[«multiplicity.lower»..«multiplicity.upper==-1?"*":multiplicity.upper»]'''
+		'''[«multiplicity.lower»..«multiplicity.upper==-1?"*":multiplicity.upper»]«IF multiplicity.isOrdered» ordered«ENDIF»«IF !multiplicity.isUnique» nonunique«ENDIF»'''
 	}
 	
 	def toSubsets(org.eclipse.uml2.uml.Property property) {

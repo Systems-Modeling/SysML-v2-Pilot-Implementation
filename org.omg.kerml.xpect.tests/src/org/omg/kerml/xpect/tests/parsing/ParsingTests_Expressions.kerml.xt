@@ -109,4 +109,12 @@ package Expressions {
 	
 	test1 = obj1 === obj2;
 	test2 = x !== obj2;
+	
+	class L {
+		feature c : C[*];
+		feature count : ScalarValues::Integer =  c#(1).count;
+	}
+	
+	feature l = L();
+	feature w1 = w(xx);
 }

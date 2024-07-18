@@ -152,35 +152,45 @@ public class ConnectorUtil {
 	
 	public static Type getContextTypeFor(Connector connector) {
 		List<Type> commonFeaturingTypes = null;
-		for (Feature relatedFeature: connector.getRelatedFeature()) {
-			// getAllFeaturingTypesOf returns a breadth-first transitive traversal of all the
-			// the featuring type hierarchy for relatedFeatures. 
-			List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
-			if (commonFeaturingTypes == null) {
-				commonFeaturingTypes = featuringTypes;
-			} else {
-				int i = 0;
-				while (i < commonFeaturingTypes.size()) {
-					Type type = commonFeaturingTypes.get(i);
-					Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.conforms(f, type)).findFirst();
-					if (subtype.isPresent()) {
-						// If the featuringTypes of the next relatedFeature include a subtype of this type,
-						// then replace this type with the subtype in the list of commonFeaturingTypes.
-						commonFeaturingTypes.set(i, subtype.get());
-					} else if (featuringTypes.stream().noneMatch(f->TypeUtil.conforms(type, f))) {
-						// Otherwise, if this type doesn't conform to any of the featuringTypes of the
-						// next relatedFeature, remove it from the list of commonFeaturingTypes.
-						commonFeaturingTypes.remove(i);
-						i--;
+		List<Feature> relatedFeatures = connector.getRelatedFeature();
+		Type relatedFeatureContext = relatedFeatures.stream().
+				filter(f1->relatedFeatures.stream().anyMatch(f2->f2 != f1 && f2.getFeaturingType().contains(f1))).
+				findFirst().orElse(null);
+		if (relatedFeatureContext != null) {
+			// If one of the relatedFeatures is a featuringType of all the other relatedFeatures,
+			// then return that as the context.
+			return relatedFeatureContext;
+		} else {
+			for (Feature relatedFeature: connector.getRelatedFeature()) {
+				// getAllFeaturingTypesOf returns a breadth-first transitive traversal of all the
+				// the featuring type hierarchy for relatedFeatures. 
+				List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
+				if (commonFeaturingTypes == null) {
+					commonFeaturingTypes = featuringTypes;
+				} else {
+					int i = 0;
+					while (i < commonFeaturingTypes.size()) {
+						Type type = commonFeaturingTypes.get(i);
+						Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.conforms(f, type)).findFirst();
+						if (subtype.isPresent()) {
+							// If the featuringTypes of the next relatedFeature include a subtype of this type,
+							// then replace this type with the subtype in the list of commonFeaturingTypes.
+							commonFeaturingTypes.set(i, subtype.get());
+						} else if (featuringTypes.stream().noneMatch(f->TypeUtil.conforms(type, f))) {
+							// Otherwise, if this type doesn't conform to any of the featuringTypes of the
+							// next relatedFeature, remove it from the list of commonFeaturingTypes.
+							commonFeaturingTypes.remove(i);
+							i--;
+						}
+						i++;
 					}
-					i++;
 				}
 			}
+			// If any commonFeaturingTypes have been found across all relatedFeatures, then
+			// return the first (innermost) one.
+			return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
+					null: commonFeaturingTypes.get(0);
 		}
-		// If any commonFeaturingTypes have been found across all relatedFeatures, then
-		// return the first (innermost) one.
-		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
-				null: commonFeaturingTypes.get(0);
 	}
 
 }

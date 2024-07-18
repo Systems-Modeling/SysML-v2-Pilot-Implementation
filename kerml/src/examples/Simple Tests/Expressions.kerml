@@ -70,4 +70,7 @@ package Expressions {
 		feature c : C[*];
 		feature count : ScalarValues::Integer =  c#(1).count;
 	}
+	
+	feature l = L();
+	feature w1 = w(xx);
 }

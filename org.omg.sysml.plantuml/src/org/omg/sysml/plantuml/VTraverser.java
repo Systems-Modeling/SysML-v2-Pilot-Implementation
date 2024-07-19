@@ -178,7 +178,7 @@ public abstract class VTraverser extends Visitor {
         this.inited = true;
     }
     
-    private boolean showInherited() {
+    protected boolean showInherited() {
         init();
         return showInherited;
     }

@@ -828,8 +828,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return ms.toArray(array);
     }
 
-    public static FeatureMembership[] toOwnedFeatureMembershipArray(Feature f) {
-        List<FeatureMembership> fms = f.getOwnedFeatureMembership();
+    public static FeatureMembership[] toOwnedFeatureMembershipArray(Type typ) {
+        List<FeatureMembership> fms = typ.getOwnedFeatureMembership();
         FeatureMembership[] array = new FeatureMembership[fms.size()];
         return fms.toArray(array);
     }

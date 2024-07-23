@@ -1,8 +1,8 @@
 package VehicleGeometryAndCoordinateFrames {
     private import TrigFunctions::*;
     private import ISQ::*;
-	private import SI::*;
-	private import Time::*;
+    private import SI::*;
+    private import Time::*;
 
     private import ShapeItems::*;
     private import SpatialItems::*;

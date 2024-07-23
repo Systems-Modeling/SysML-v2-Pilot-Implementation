@@ -3,9 +3,9 @@ package 'Vehicle Analysis Demo' {
     private import ISQ::*;
     private import USCustomaryUnits::*;
 	    
-	private import VehicleQuantities::*;
-	private import VehicleModel::*;
-	private import FuelEconomyRequirementsModel::*;
+    private import VehicleQuantities::*;
+    private import VehicleModel::*;
+    private import FuelEconomyRequirementsModel::*;
     private import DynamicsModel::*;
     private import FuelEconomyAnalysisModel::*;	
 	

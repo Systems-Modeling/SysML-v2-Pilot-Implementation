@@ -70,7 +70,7 @@ class MOF2KerMLText {
 	
 	def generate(org.eclipse.uml2.uml.Package model) {
 		'''
-		import ScalarValues::*;
+		private import ScalarValues::*;
 		«model.toPackage»
 		'''
 	}
@@ -88,10 +88,10 @@ class MOF2KerMLText {
 		Collections.sort(members, new ElementNameComparator)
 		'''
 		«FOR import_: package_.elementImports»
-			import «import_.importedElement.qualifiedName»;
+			public import «import_.importedElement.qualifiedName»;
 		«ENDFOR»
 		«FOR import_: package_.packageImports»
-			import «import_.importedPackage.qualifiedName»::*;
+			public import «import_.importedPackage.qualifiedName»::*;
 		«ENDFOR»
 		«IF !package_.elementImports.empty || !package_.packageImports.empty»
 		

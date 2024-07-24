@@ -22,7 +22,7 @@ package Import_All {
 	}
 	
 	package B {
-		import A::*;
+		public import A::*;
 		private classifier Y1;
 		public classifier Y2;
 	}
@@ -36,7 +36,7 @@ package Import_All {
 	}
 	
 	package D {
-		import all C::*;
+		public import all C::*;
 
 	    // XPECT errors --> "Couldn't resolve reference to Type 'X'." at "X"		
 		x : X;
@@ -52,8 +52,8 @@ package Import_All {
 	}
 	
 	package E {
-		import all C::**;
-		import all B::Y1;
+		public import all C::**;
+		public import all B::Y1;
 		
 		u : C1::U;
 		y1 : Y1;

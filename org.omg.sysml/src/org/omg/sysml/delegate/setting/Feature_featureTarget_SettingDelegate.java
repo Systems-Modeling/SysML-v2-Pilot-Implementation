@@ -19,35 +19,24 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.generation
+package org.omg.sysml.delegate.setting;
 
-class SysMLMOF2SysMLText extends MOF2SysMLText {
-	
-	override generate(org.eclipse.uml2.uml.Package model) {
-		'''
-		standard library package SysML {
-			doc 
-			/*
-			 * This package contains a reflective KerML model of the KerML abstract syntax.
-			 */
-			 
-			private import ScalarValues::*;
-			public import Systems::*;
-			
-			package Systems {
-				public import KerML::Kernel::*;
-				
-				«model.getPackage("Systems").toPackageBody»
-			}
-			
-		}
-		'''
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Feature;
+
+public class Feature_featureTarget_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+
+	public Feature_featureTarget_SettingDelegate(EStructuralFeature eStructuralFeature) {
+		super(eStructuralFeature);
 	}
-	
-	static def void main(String[] args) {
-		if (args.length >= 2) {
-			new SysMLMOF2SysMLText().generate(args.get(0), args.get(1))
-		}
+
+	@Override
+	protected Feature basicGet(InternalEObject owner) {
+		Feature feature = (Feature)owner;
+		EList<Feature> chainingFeatures = feature.getChainingFeature();
+		return chainingFeatures.isEmpty()? feature: chainingFeatures.get(chainingFeatures.size() - 1);
 	}
-	
+
 }

@@ -22,7 +22,7 @@ package Import_QualifiedName {
 	}
 	package P2 {
 		package P2a {
-			import P1::*;
+			public import P1::*;
 		}
 		//* XPECT scope at P2a::A ---
 			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
@@ -34,7 +34,7 @@ package Import_QualifiedName {
 			   x.self.that, x.that, x.that.self
 		--- */
 		// The following should not fail.
-		// A is a member of P2a because of the import.
+		// A is a member of P2a because of the public import.
 		x: P2a::A;
 	}
 }

@@ -45,7 +45,7 @@ public class Namespace_visibleMemberships_InvocationDelegate extends BasicInvoca
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		boolean includeAll = (boolean) arguments.get(2);
 		
-		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), new HashSet<Type>(), includeAll);
+		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), new HashSet<Type>(), includeAll, false);
 	}
 
 }

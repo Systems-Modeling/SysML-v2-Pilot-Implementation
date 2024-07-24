@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.NamespaceExpose;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +23,8 @@ public class NamespaceExposeImpl extends NamespaceImportImpl implements Namespac
 	 */
 	protected NamespaceExposeImpl() {
 		super();
+		// TODO: Remove this in next release.
+		visibility = VisibilityKind.PROTECTED;
 	}
 
 	/**

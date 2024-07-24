@@ -184,8 +184,6 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>features</code> of the <code>Association</code> that identify the things that can be related by it. A concrete <code>Association</code> must have at least two <code>associationEnds</code>. When it has exactly two, the <code>Association</code> is called a <em>binary</em> <code>Association</code>.</p> 
 	 * 
-	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
-	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()

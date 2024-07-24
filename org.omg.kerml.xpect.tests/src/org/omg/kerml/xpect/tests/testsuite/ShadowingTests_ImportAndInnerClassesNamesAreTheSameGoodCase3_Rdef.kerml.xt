@@ -22,7 +22,7 @@ package test{
 		feature a2{}
 	}
 	feature inner{
-		import OuterPackage::*;
+		public import OuterPackage::*;
 		feature B redefines A {
 			feature b redefines a2{}
 		}

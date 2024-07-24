@@ -5,10 +5,10 @@ standard library package SysML {
 	 */
 	 
 	private import ScalarValues::*;
-	import Systems::*;
+	public import Systems::*;
 	
 	package Systems {
-		import KerML::Kernel::*;
+		public import KerML::Kernel::*;
 		
 		metadata def AcceptActionUsage specializes ActionUsage {
 			derived ref item receiverArgument : Expression[0..1];

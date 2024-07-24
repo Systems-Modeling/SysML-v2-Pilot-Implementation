@@ -282,7 +282,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	// Test index operator functionality.
 	public final String indexOperatorTest =
 			"package IndexOperatorTest {\n"
-			+ "	   import Collections::*;\n"
+			+ "	   private import Collections::*;\n"
 			+ "    attribute seq [*] ordered = (\"a\", \"b\", \"c\");\n"
 			+ "	   attribute list : List {\n"
 			+ "	       :>> elements = (1, 2, 3, 4);\n"

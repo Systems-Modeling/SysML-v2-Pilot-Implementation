@@ -26,8 +26,8 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package P {
-    import ScalarValues::*;
-    import Vehicle::*;
+    public import ScalarValues::*;
+    public import Vehicle::*;
 
     value v_redefining: Integer = ./vehicle_1/cylinders/@redefining;
 

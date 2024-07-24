@@ -19,10 +19,10 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 END_SETUP 
 */
 //Both DepedencySamePackageName_A and DependencySamePackageName_B have the same package names "SamePackage"
-//Current implemention import from the first src package(A).
+//Current implemention public import from the first src package(A).
 //XPECT noErrors --> ""
 package test{
-	import SamePackage::container;
+	public import SamePackage::container;
 	feature something1 subsets container.A{}
 	// XPECT errors --> "Couldn't resolve reference to Feature 'B'." at "B"
 	feature something2 subsets container.B{}

@@ -19,7 +19,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package Test1{
 	classifier A {
-		import B::*;
+		public import B::*;
 		//* XPECT scope at A ---
 		A, A.B, A.B.B, A.B.B.aa, A.B.B.aa.self, A.B.B.aa.that, A.B.B.aa.that.self,
 		A.B.B.bb, A.B.B.bb.aa, A.B.B.bb.aa.self, A.B.B.bb.aa.that, A.B.B.bb.aa.that.self,
@@ -178,7 +178,7 @@ package Test1{
 		feature a: A; //added 
 		feature b: B; //added
 		classifier B {
-			import A::*;
+			public import A::*;
 			feature aa: A; //added 
 			//* XPECT scope at B ---
 				A, A.B, A.B.B, A.B.B.aa, A.B.B.aa.self, A.B.B.aa.that, A.B.B.aa.that.self,

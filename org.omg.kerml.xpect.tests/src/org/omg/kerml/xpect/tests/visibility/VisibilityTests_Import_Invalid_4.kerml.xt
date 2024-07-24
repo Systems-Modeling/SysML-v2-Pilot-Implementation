@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package Classes {
-	import VisibilityPackage;
+	public import VisibilityPackage;
 	// XPECT errors ---> "Couldn't resolve reference to Classifier 'c_Public'." at "c_Public"
 	classifier Try specializes c_Public{
 		// XPECT errors ---> "Couldn't resolve reference to Type 'c_public'." at "c_public"

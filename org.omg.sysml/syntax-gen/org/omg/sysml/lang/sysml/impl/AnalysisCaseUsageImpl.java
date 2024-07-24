@@ -22,13 +22,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
@@ -43,7 +38,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AnalysisCaseUsageImpl#getAnalysisAction <em>Analysis Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnalysisCaseUsageImpl#getAnalysisCaseDefinition <em>Analysis Case Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnalysisCaseUsageImpl#getResultExpression <em>Result Expression</em>}</li>
  * </ul>
@@ -51,16 +45,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCaseUsage {
-
-	/**
-	 * The cached setting delegate for the '{@link #getAnalysisAction() <em>Analysis Action</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnalysisAction()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getAnalysisCaseDefinition() <em>Analysis Case Definition</em>}' reference.
@@ -99,17 +83,6 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ANALYSIS_CASE_USAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<ActionUsage> getAnalysisAction() {
-		return (EList<ActionUsage>)ANALYSIS_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -228,8 +201,6 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION:
-				return getAnalysisAction();
 			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION:
 				if (resolve) return getAnalysisCaseDefinition();
 				return basicGetAnalysisCaseDefinition();
@@ -245,14 +216,9 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION:
-				getAnalysisAction().clear();
-				getAnalysisAction().addAll((Collection<? extends ActionUsage>)newValue);
-				return;
 			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION:
 				setAnalysisCaseDefinition((AnalysisCaseDefinition)newValue);
 				return;
@@ -271,9 +237,6 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION:
-				getAnalysisAction().clear();
-				return;
 			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION:
 				setAnalysisCaseDefinition((AnalysisCaseDefinition)null);
 				return;
@@ -294,8 +257,6 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 		switch (featureID) {
 			case SysMLPackage.ANALYSIS_CASE_USAGE__CASE_DEFINITION:
 				return isSetCaseDefinition();
-			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION:
-				return ANALYSIS_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION:
 				return isSetAnalysisCaseDefinition();
 			case SysMLPackage.ANALYSIS_CASE_USAGE__RESULT_EXPRESSION:

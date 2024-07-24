@@ -107,6 +107,7 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getDisjoiningType() {
 		if (disjoiningType != null && disjoiningType.eIsProxy()) {
 			InternalEObject oldDisjoiningType = (InternalEObject)disjoiningType;
@@ -228,6 +229,7 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getTypeDisjoined() {
 		if (typeDisjoined != null && typeDisjoined.eIsProxy()) {
 			InternalEObject oldTypeDisjoined = (InternalEObject)typeDisjoined;

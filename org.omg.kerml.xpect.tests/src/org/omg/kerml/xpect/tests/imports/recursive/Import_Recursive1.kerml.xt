@@ -17,7 +17,7 @@ END_SETUP
 
 package RecursiveImport {
 	
-	import P::**;
+	public import P::**;
   
 	package P {
 		classifier X;

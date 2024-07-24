@@ -34,7 +34,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package 'Blocks Example' {
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	
 	part def Vehicle {
 		attribute status : VehicleStatus;

@@ -5,7 +5,7 @@ standard library package KerML {
 	 */
 	 
 	private import ScalarValues::*;
-	import Kernel::*;
+	public import Kernel::*;
 	
 	package Root {
 		metaclass AnnotatingElement specializes Element {
@@ -127,7 +127,7 @@ standard library package KerML {
 	}
 	
 	package Core {
-		import Root::*;
+		public import Root::*;
 		
 		metaclass Classifier specializes Type {
 			composite derived feature ownedSubclassification : Subclassification[0..*] subsets ownedSpecialization;
@@ -289,7 +289,7 @@ standard library package KerML {
 	}
 	
 	package Kernel {
-		import Core::*;
+		public import Core::*;
 		
 		metaclass Association specializes Classifier, Relationship {
 			derived feature relatedType : Type[0..*] redefines relatedElement;

@@ -94,6 +94,7 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PortDefinition getOriginalPortDefinition() {
 		if (originalPortDefinition != null && originalPortDefinition.eIsProxy()) {
 			InternalEObject oldOriginalPortDefinition = (InternalEObject)originalPortDefinition;

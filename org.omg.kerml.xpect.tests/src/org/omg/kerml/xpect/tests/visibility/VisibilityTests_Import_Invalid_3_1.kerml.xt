@@ -15,7 +15,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 END_SETUP 
 */
 package Classes {
-	import VisibilityPackage::c_Public::*;
+	public import VisibilityPackage::c_Public::*;
 	//XPECT errors --> "Couldn't resolve reference to Type 'c_private'." at "c_private"
 	feature a : c_private;
 	//XPECT errors --> "Couldn't resolve reference to Type 'c_protected'." at "c_protected"

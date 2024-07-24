@@ -39,7 +39,7 @@ package RecursiveImport {
     }
     
   }
-  import P::S::**;
+  public import P::S::**;
   	
 	//* XPECT scope at T1::X1 ---
 	P.Q.R.Z, P.Q.R.Z.self, P.Q.R.Z.self.that, P.Q.Y, P.Q.Y.self, P.Q.Y.self.that,

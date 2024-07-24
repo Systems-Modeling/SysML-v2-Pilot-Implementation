@@ -113,6 +113,7 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getFeatureInverted() {
 		if (featureInverted != null && featureInverted.eIsProxy()) {
 			InternalEObject oldFeatureInverted = (InternalEObject)featureInverted;
@@ -204,6 +205,7 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getInvertingFeature() {
 		if (invertingFeature != null && invertingFeature.eIsProxy()) {
 			InternalEObject oldInvertingFeature = (InternalEObject)invertingFeature;

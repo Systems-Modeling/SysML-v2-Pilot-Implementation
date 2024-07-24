@@ -19,7 +19,7 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package Test3{
-	import VisibilityPackage::c_clazz::*;
+	public import VisibilityPackage::c_clazz::*;
 	classifier A specializes c_Public{}
 	classifier B specializes c_Public::c_publicc{}
 	classifier C specializes VisibilityPackage::c_clazz::c_Public{}

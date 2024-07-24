@@ -31,7 +31,7 @@ package test{
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
 		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
-	import OuterPackage::A;
+	public import OuterPackage::A;
 	
 	//* XPECT scope at OuterPackage::B ---
 		test,
@@ -44,7 +44,7 @@ package test{
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
 				OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
-	import OuterPackage::B;
+	public import OuterPackage::B;
 	//* XPECT scope at OuterPackage2::C ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
@@ -56,7 +56,7 @@ package test{
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
 		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c
 	--- */
-	import OuterPackage2::C;
+	public import OuterPackage2::C;
 	//* XPECT scope at OuterPackage3::D ---
 		test,
    	   	A, A.a1, test.A, test.A.a1,
@@ -68,7 +68,7 @@ package test{
 	   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
 		OuterPackage3, OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.D, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c	
 		--- */
-	import OuterPackage3::D;
+	public import OuterPackage3::D;
 	
 }
   
@@ -83,13 +83,13 @@ package test{
 	}
    
    package OuterPackage2{
-		import OuterPackage::B;
+		public import OuterPackage::B;
 		class C specializes B{
 			feature c;
 		}
 	}
 	package OuterPackage3{
-		import OuterPackage2::C;
+		public import OuterPackage2::C;
 		class D specializes C{
 			feature f : b;
 		}

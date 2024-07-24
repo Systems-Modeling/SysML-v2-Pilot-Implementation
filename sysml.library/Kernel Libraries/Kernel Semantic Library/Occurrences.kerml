@@ -855,7 +855,7 @@ standard library package Occurrences {
 		end [0..*] feature separateOccurrenceToo: Occurrence redefines BinaryLink::source
 		  crosses separateOccurrence.withoutOccurrences;
 		end [0..*] feature separateOccurrence: Occurrence redefines BinaryLink::target
-		  crosses separateOccurrence.withoutOccurrences;
+		  crosses separateOccurrenceToo.withoutOccurrences;
 	}
 
 	assoc all HappensBefore specializes HappensLink, Without {

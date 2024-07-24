@@ -42,8 +42,8 @@ public class Feature_crossFeature_SettingDelegate extends BasicDerivedObjectSett
 			Feature crossedFeature = subsetting.getCrossedFeature();
 			if (crossedFeature != null) {
 				List<Feature> chainingFeatures = crossedFeature.getChainingFeature();
-				if (!chainingFeatures.isEmpty()) {
-					return chainingFeatures.get(chainingFeatures.size() - 1);
+				if (chainingFeatures.size() >=2) {
+					return chainingFeatures.get(1);
 				}
 			}
 		}

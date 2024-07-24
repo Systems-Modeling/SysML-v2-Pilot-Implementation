@@ -37,6 +37,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -53,6 +54,7 @@ import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -186,6 +188,10 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
 	}
 
+	public static List<Feature> getSubsettedNotCrossedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getSubsettedNotCrossedFeatures();
+	}
+
 	public static Feature getReferencedFeatureOf(Feature feature) {
 		return getFeatureAdapter(feature).getReferencedFeature();
 	}
@@ -260,6 +266,18 @@ public class FeatureUtil {
 		return feature == getOwnedCrossFeatureOf(owner);
 	}
 	
+	public static List<Type> getCrossFeatureTypes(Feature feature) {
+		return feature.getOwnedSpecialization().stream().
+				filter(s->!(s instanceof Redefinition ||
+						s instanceof ReferenceSubsetting || 
+						s instanceof CrossSubsetting)).
+				map(Specialization::getGeneral).toList();
+	}
+	
+	public static void addOwnedCrossFeatureTypeFeaturingTo(Feature feature) {
+		getFeatureAdapter(feature).addOwnedCrossFeatureTypeFeaturing();
+	}
+
 	// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {
@@ -285,7 +303,7 @@ public class FeatureUtil {
 	/**
 	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
 	 */
-	protected static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
+	public static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
 		List<Type> allFeaturingTypes = new ArrayList<>();
 		List<Feature> features = new ArrayList<>();
 		features.add(originalFeature);

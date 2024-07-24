@@ -64,7 +64,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 		Namespace owner = feature.getOwningNamespace();
 		if (owner instanceof Feature) {
 			Namespace owningEnd = owner.getOwningNamespace();
-			if (FeatureUtil.isOwnedCrossingFeature((Feature)owner) && 
+			if (FeatureUtil.isOwnedCrossFeature((Feature)owner) && 
 				isImplicitFeaturingTypesEmpty()) {
 				addFeaturingTypes(((Feature)owningEnd).getFeaturingType());
 			} else {

@@ -225,7 +225,7 @@ public class FeatureAdapter extends TypeAdapter {
 			if (owningType != null) {
 				List<Feature> endFeatures = owningType.getOwnedEndFeature();
 				if (endFeatures.size() > 1) {
-					Feature crossingFeature = FeatureUtil.getOwnedCrossingFeatureOf(target);
+					Feature crossingFeature = FeatureUtil.getOwnedCrossFeatureOf(target);
 					if (crossingFeature != null) {
 						ElementUtil.transform(crossingFeature);
 						crossingFeature.getFeaturingType().stream().findFirst().ifPresent(featuringType->{
@@ -243,7 +243,7 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void addCrossingFeatureSpecialization() {
 		Feature target = getTarget();
 		Namespace owner = target.getOwningNamespace();
-		if (FeatureUtil.isOwnedCrossingFeature(target)) {
+		if (FeatureUtil.isOwnedCrossFeature(target)) {
 			for (Specialization specialization: ((Feature)owner).getOwnedSpecialization()) {
 				if (!(specialization instanceof Redefinition || 
 					  specialization instanceof ReferenceSubsetting || 
@@ -620,7 +620,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected void addCrossingFeatureFeaturingType() {
 		Feature target = getTarget();
-		if (FeatureUtil.isOwnedCrossingFeature(target) && target.getOwnedTypeFeaturing().isEmpty()) {
+		if (FeatureUtil.isOwnedCrossFeature(target) && target.getOwnedTypeFeaturing().isEmpty()) {
 			Feature owningFeature = (Feature)target.getOwner();
 			Type ownerOwningType = owningFeature.getOwningType();
 			if (ownerOwningType != null) {

@@ -245,8 +245,9 @@ public class FeatureUtil {
 	
 	// Owned crossing features
 
-	public static Feature getOwnedCrossingFeatureOf(Namespace namespace) {
-		return (Feature)namespace.getOwnedMember().stream().
+	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
+		return !(namespace instanceof Feature) || !((Feature)namespace).isEnd()? null:
+				(Feature)namespace.getOwnedMember().stream().
 				filter(element->element instanceof Feature && 
 						!(element instanceof Multiplicity) && 
 						!(element instanceof MetadataFeature) &&
@@ -254,11 +255,11 @@ public class FeatureUtil {
 				findFirst().orElse(null);
 	}
 
-	public static boolean isOwnedCrossingFeature(Feature feature) {
+	public static boolean isOwnedCrossFeature(Feature feature) {
 		Namespace owner = feature.getOwningNamespace();
-		return owner instanceof Feature && ((Feature)owner).isEnd() && feature == getOwnedCrossingFeatureOf(owner);
+		return feature == getOwnedCrossFeatureOf(owner);
 	}
-
+	
 	// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {

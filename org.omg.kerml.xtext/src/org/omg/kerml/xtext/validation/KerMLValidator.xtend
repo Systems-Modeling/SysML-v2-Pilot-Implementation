@@ -89,6 +89,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.CrossSubsetting
+import java.util.Set
 
 /**
  * This class contains custom validation rules. 
@@ -153,8 +154,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
-	public static val INVALID_FEATURE_END_MULTIPLICITY = "validateFeatureEndMultiplicity"
-	public static val INVALID_FEATURE_END_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
 
 	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
@@ -175,7 +176,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
 	
 	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE = "validateCrossSubsettingCrossingFeature"
-	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG = "Cross subsetting must be owned by an end feature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG = "Cross subsetting must be owned by one of two or more end features"
 	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE = "validateCrossSubsettingCrossedFeature"
 	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG = "Cross subsetting must chain through an opposite end feature"
 	
@@ -425,7 +426,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// TODO: Update OCL
 		val m = f.multiplicity;
 		var featuringTypes =
-			if (FeatureUtil.isOwnedCrossingFeature(f)) (f.owningNamespace as Feature).featuringType
+			if (FeatureUtil.isOwnedCrossFeature(f)) (f.owningNamespace as Feature).featuringType
 			else f.featuringType
 		if (m !== null && featuringTypes.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
@@ -443,11 +444,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_TYPE)
 		}
 		
-		// TODO: Add validateFeatureEndMultiplicity
+		// TODO: Add validateFeatureOwnedCrossSubsetting
+		val crossSubsettings = f.ownedRelationship.filter[r | r instanceof CrossSubsetting].toList
+		if (crossSubsettings.size > 1) {
+			for (var i = 1; i < crossSubsettings.size; i++)
+				error(INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG, refSubsettings.get(i), null, INVALID_FEATURE_OWNED_CROSS_SUBSETTING)
+		}
+		
+		// TODO: Add validateFeatureEndFeatureMultiplicity
 		if (f.isEnd && !FeatureUtil.getMultiplicitiesOf(f).
 			map(mult | FeatureUtil.getMultiplicityRangeOf(mult)).
 			exists[hasBounds(1,1)]) {
-			warning(INVALID_FEATURE_END_MULTIPLICITY_MSG, f, null, INVALID_FEATURE_END_MULTIPLICITY)
+			warning(INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG, f, null, INVALID_FEATURE_END_FEATURE_MULTIPLICITY)
 		}
 	}
 		
@@ -581,6 +589,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def boolean isAccessibleFrom(Feature feature, Type type) {
+		feature.isAccessibleFrom(type, newHashSet)
+	}	
+	
+	def boolean isAccessibleFrom(Feature feature, Type type, Set<Feature> visited) {
+		visited.add(feature)
 		val featuringTypes = feature.featuringType
 		featuringTypes.empty && type == getLibraryType(feature, "Base::Anything") ||
 		feature.featuringType.exists[featuringType | 
@@ -588,24 +601,30 @@ class KerMLValidator extends AbstractKerMLValidator {
 				
 				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
 				featuringType instanceof Feature &&
-				(featuringType as Feature).isAccessibleFrom(type)];
+				!visited.contains(featuringType) &&
+				(featuringType as Feature).isAccessibleFrom(type, visited)];
 	}
 	
 	@Check
 	def void checkCrossSubsetting(CrossSubsetting sub) {
+		val crossedFeature = sub.crossedFeature;
+		val crossingFeature = sub.crossingFeature;
+		
+		// TODO: Add validateCrossSubsettingCrossedFeature
+		if (crossingFeature.isEnd && crossingFeature.owningType !== null) {
+			val endFeatures = crossingFeature.owningType.endFeature;			
+			val chainingFeatures = crossedFeature.chainingFeature
+			if (chainingFeatures.size != 2 || endFeatures.size == 2 &&
+					chainingFeatures.get(0) !== endFeatures.findFirst(f | f !== crossingFeature)) {
+				error(INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG, sub, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_CROSS_SUBSETTING_CROSSED_FEATURE)
+			}
+		}
+		
 		// TODO: Add validateCrossSubsettingCrossingFeature
-		if (!sub.crossingFeature.isEnd) {
+		if (!crossingFeature.isEnd || crossingFeature.owningType === null || crossingFeature.owningType.endFeature.size < 2) {
 			error(INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG, sub, null, INVALID_CROSS_SUBSETTING_CROSSING_FEATURE)
 		}
 		
-		// TODO: Add validateCrossSubsettingCrossedFeature
-		val crossingFeatureOwner = sub.crossingFeature.owningType
-		val chainingFeatures = sub.crossedFeature.chainingFeature
-		if (crossingFeatureOwner === null || crossingFeatureOwner.endFeature.size == 2 &&
-				// TODO: validateCrossSubsettingCrossedFeature for other than binary case
-				(chainingFeatures.size != 2 || !crossingFeatureOwner.endFeature.contains(chainingFeatures.get(0)))) {
-			error(INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG, sub, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_CROSS_SUBSETTING_CROSSED_FEATURE)
-		}
 	}
 	
 	/* KERNEL */

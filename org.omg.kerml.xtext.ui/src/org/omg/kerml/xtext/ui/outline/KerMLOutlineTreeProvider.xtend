@@ -419,7 +419,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (chaining.chainingFeature !== null) {
 			createNode(parentNode, chaining.chainingFeature, 
 				chaining.chainingFeature._image, chaining.chainingFeature._text, 
-				chaining.chainingFeature.ownedCrossMultiplying.empty
+				chaining.chainingFeature.ownedCrossMultiplying.empty &&
+				chaining.chainingFeature.owningRelationship != chaining
 			)
 			
 		}
@@ -433,12 +434,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		val specific = specialization.specific
 		if (specific !== null && specific !== specialization.eContainer) {
 			createNode(parentNode, specific, specific._image, specific._text,  
-				!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty)		
+				(!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty) &&
+				specific.ownedCrossMultiplying.empty)		
 		}
 		val general = specialization.general
 		if (general !== null) {
 			createNode(parentNode, general, general._image, general._text, 
-				!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty)
+				(!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty) &&
+				general.ownedCrossMultiplying.empty)
 		}
 	}
 	

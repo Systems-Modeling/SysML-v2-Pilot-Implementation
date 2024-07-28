@@ -26,7 +26,6 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.util.ConnectorUtil;
 
 class PRelation {

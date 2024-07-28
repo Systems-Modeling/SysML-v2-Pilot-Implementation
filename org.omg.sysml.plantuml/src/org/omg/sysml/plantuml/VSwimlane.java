@@ -95,9 +95,9 @@ public class VSwimlane extends VBehavior {
         public List<SLink> slinks;
         // public final Feature pin; // Parameter (or Port?)
 
-        public boolean isSame(Pair p) {
+        /*public boolean isSame(Pair p) {
             return oc.equals(p.oc);
-        }
+        }*/
 
         @Override
         public int hashCode() {
@@ -151,7 +151,7 @@ public class VSwimlane extends VBehavior {
     }
 
     private static class SActionSlot {
-        public final ActionUsage au;
+        //public final ActionUsage au;
         public final Integer id;
         public final SActionSlot parent;
         public Map<Integer, Feature> params = new HashMap<>();
@@ -162,7 +162,7 @@ public class VSwimlane extends VBehavior {
 
         SActionSlot(SActionSlot parent, ActionUsage au, Integer id) {
             this.parent = parent;
-            this.au = au;
+            //this.au = au;
             this.id = id;
         }
     }
@@ -325,12 +325,12 @@ public class VSwimlane extends VBehavior {
     }
 
     private static class SLink {
-        public final Pair p1;
+        //public final Pair p1;
         public final Pair p2;
         public final PRelation pr;
 
         public SLink(Pair p1, Pair p2, PRelation pr) {
-            this.p1 = p1;
+            //this.p1 = p1;
             this.p2 = p2;
             this.pr = pr;
         }
@@ -529,6 +529,6 @@ public class VSwimlane extends VBehavior {
     public String caseComment(Comment c) { return ""; }
 
     public VSwimlane() {
-        setShowsMultiplicity(false);
+        setMultiplicityStyle(MultiplicityStyle.NONE);
     }
 }

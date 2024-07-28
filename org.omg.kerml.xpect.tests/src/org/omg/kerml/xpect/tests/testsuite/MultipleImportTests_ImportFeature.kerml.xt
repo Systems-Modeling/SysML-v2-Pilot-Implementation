@@ -29,7 +29,7 @@ package test{
 		test.D.self, test.D.self.that, test.D.try, test.D.try.a1, test.D.try.self, test.D.try.that,
 		test.D.try.that.self, test.b, test.b.a1
 	--- */
-	import OuterPackage2::C::b;
+	public import OuterPackage2::C::b;
 	classifier D{
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---

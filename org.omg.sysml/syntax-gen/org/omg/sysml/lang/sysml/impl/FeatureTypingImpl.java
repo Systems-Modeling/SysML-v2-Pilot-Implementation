@@ -99,6 +99,7 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
@@ -183,6 +184,7 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getTypedFeature() {
 		if (typedFeature != null && typedFeature.eIsProxy()) {
 			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;

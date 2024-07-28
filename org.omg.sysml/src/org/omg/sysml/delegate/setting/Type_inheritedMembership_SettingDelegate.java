@@ -37,7 +37,7 @@ public class Type_inheritedMembership_SettingDelegate extends BasicDerivedListSe
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		return TypeUtil.cacheInheritedMembershipOf((Type)owner, 
-				()->((Type)owner).inheritedMemberships(new BasicEList<>()));
+				()->((Type)owner).inheritedMemberships(new BasicEList<>(), false));
 	}
 
 }

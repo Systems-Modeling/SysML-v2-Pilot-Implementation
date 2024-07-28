@@ -536,9 +536,9 @@ public class VPath extends VTraverser {
 
     private String addContextForFeature(Feature f, boolean isRedefinition) {
         PC pc = makeFeaturePC(f, f, isRedefinition);
-        InheritKey ik = makeInheritKeyForReferer(pc);
+        InheritKey ik = makeInheritKey(f);
         if (isRedefinition) {
-            ik = InheritKey.makeInheritKeyForRedefiningTarget(ik, f);
+            ik = InheritKey.makeInheritKeyForRedefiningTarget(ik, f, showInherited());
         }
         if (createRefPC(ik, pc) == null) return null;
         return "";

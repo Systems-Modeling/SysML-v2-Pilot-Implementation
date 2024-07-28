@@ -161,6 +161,14 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::portions')
+ * featureTarget = if chainingFeature->isEmpty() then self else chainingFeature->last() endif
+ * owningType <> null and
+ * owningType.oclIsKindOf(InvocationExpression) and
+ * let owningInvocation: InvocationExpression = owningType.oclAsType(InvocationExpression) in
+ * self = owningInvocation.result and
+ * not owningInvocation.ownedTyping->exists(oclIsKindOf(Function)) and
+ * not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->exists(oclIsKindOf(Function)) implies
+ *     owningInvocation.ownedTyping->forAll(type | self.specializes(type))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -188,6 +196,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -766,6 +775,33 @@ public interface Feature extends Type {
 	void setOwnedReferenceSubsetting(ReferenceSubsetting value);
 
 	/**
+	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The last of the <code>chainingFeatures</code> of this <code>Feature</code>, if it has any. Otherwise, this <code>Feature</code> itself.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Feature Target</em>' reference.
+	 * @see #setFeatureTarget(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeatureTarget()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='baseFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getFeatureTarget();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Feature Target</em>' reference.
+	 * @see #getFeatureTarget()
+	 * @generated
+	 */
+	void setFeatureTarget(Feature value);
+
+	/**
 	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}'.
 	 * <p>
@@ -853,7 +889,6 @@ public interface Feature extends Type {
 	 *     featuringType->isEmpty() or
 	 *     featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}
 	 * else 
-	 *     featuringType->notEmpty() and
 	 *     featuringType->forAll(f | type.specializes(f)))
 	 * endif
 	 * <!-- end-model-doc -->

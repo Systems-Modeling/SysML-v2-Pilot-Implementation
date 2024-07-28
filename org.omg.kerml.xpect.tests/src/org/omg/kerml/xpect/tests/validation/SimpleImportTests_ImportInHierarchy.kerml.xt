@@ -18,7 +18,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	classifier A{
-		import test::*;
+		public import test::*;
 		classifier a{}
 	}
 }

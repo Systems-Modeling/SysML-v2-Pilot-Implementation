@@ -101,14 +101,11 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CLASSIFIER:
 				notifyClassifierChanged(notification, eClass);
 				break;
-			case SysMLPackage.SUCCESSION:
-				notifySuccessionChanged(notification, eClass);
+			case SysMLPackage.LITERAL_EXPRESSION:
+				notifyLiteralExpressionChanged(notification, eClass);
 				break;
-			case SysMLPackage.CONNECTOR:
-				notifyConnectorChanged(notification, eClass);
-				break;
-			case SysMLPackage.ASSOCIATION:
-				notifyAssociationChanged(notification, eClass);
+			case SysMLPackage.EXPRESSION:
+				notifyExpressionChanged(notification, eClass);
 				break;
 			case SysMLPackage.STEP:
 				notifyStepChanged(notification, eClass);
@@ -119,20 +116,68 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CLASS:
 				notifyClassChanged(notification, eClass);
 				break;
-			case SysMLPackage.EXPRESSION:
-				notifyExpressionChanged(notification, eClass);
-				break;
 			case SysMLPackage.FUNCTION:
 				notifyFunctionChanged(notification, eClass);
 				break;
-			case SysMLPackage.BINDING_CONNECTOR:
-				notifyBindingConnectorChanged(notification, eClass);
+			case SysMLPackage.COLLECT_EXPRESSION:
+				notifyCollectExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.OPERATOR_EXPRESSION:
+				notifyOperatorExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.INVOCATION_EXPRESSION:
+				notifyInvocationExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_INFINITY:
+				notifyLiteralInfinityChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_STRING:
+				notifyLiteralStringChanged(notification, eClass);
+				break;
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
+				notifyFeatureReferenceExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.FEATURE_CHAIN_EXPRESSION:
+				notifyFeatureChainExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_RATIONAL:
+				notifyLiteralRationalChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_INTEGER:
+				notifyLiteralIntegerChanged(notification, eClass);
+				break;
+			case SysMLPackage.NULL_EXPRESSION:
+				notifyNullExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.LITERAL_BOOLEAN:
+				notifyLiteralBooleanChanged(notification, eClass);
+				break;
+			case SysMLPackage.SELECT_EXPRESSION:
+				notifySelectExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
+				notifyMetadataAccessExpressionChanged(notification, eClass);
+				break;
+			case SysMLPackage.METADATA_FEATURE:
+				notifyMetadataFeatureChanged(notification, eClass);
+				break;
+			case SysMLPackage.METACLASS:
+				notifyMetaclassChanged(notification, eClass);
+				break;
+			case SysMLPackage.STRUCTURE:
+				notifyStructureChanged(notification, eClass);
 				break;
 			case SysMLPackage.PACKAGE:
 				notifyPackageChanged(notification, eClass);
 				break;
 			case SysMLPackage.LIBRARY_PACKAGE:
 				notifyLibraryPackageChanged(notification, eClass);
+				break;
+			case SysMLPackage.ASSOCIATION:
+				notifyAssociationChanged(notification, eClass);
+				break;
+			case SysMLPackage.ASSOCIATION_STRUCTURE:
+				notifyAssociationStructureChanged(notification, eClass);
 				break;
 			case SysMLPackage.MULTIPLICITY_RANGE:
 				notifyMultiplicityRangeChanged(notification, eClass);
@@ -149,17 +194,14 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.PREDICATE:
 				notifyPredicateChanged(notification, eClass);
 				break;
-			case SysMLPackage.METACLASS:
-				notifyMetaclassChanged(notification, eClass);
-				break;
-			case SysMLPackage.STRUCTURE:
-				notifyStructureChanged(notification, eClass);
-				break;
-			case SysMLPackage.METADATA_FEATURE:
-				notifyMetadataFeatureChanged(notification, eClass);
+			case SysMLPackage.INTERACTION:
+				notifyInteractionChanged(notification, eClass);
 				break;
 			case SysMLPackage.ITEM_FLOW:
 				notifyItemFlowChanged(notification, eClass);
+				break;
+			case SysMLPackage.CONNECTOR:
+				notifyConnectorChanged(notification, eClass);
 				break;
 			case SysMLPackage.ITEM_FLOW_END:
 				notifyItemFlowEndChanged(notification, eClass);
@@ -167,62 +209,20 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.ITEM_FEATURE:
 				notifyItemFeatureChanged(notification, eClass);
 				break;
-			case SysMLPackage.INTERACTION:
-				notifyInteractionChanged(notification, eClass);
-				break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW:
 				notifySuccessionItemFlowChanged(notification, eClass);
 				break;
-			case SysMLPackage.ASSOCIATION_STRUCTURE:
-				notifyAssociationStructureChanged(notification, eClass);
+			case SysMLPackage.SUCCESSION:
+				notifySuccessionChanged(notification, eClass);
 				break;
-			case SysMLPackage.NULL_EXPRESSION:
-				notifyNullExpressionChanged(notification, eClass);
+			case SysMLPackage.BINDING_CONNECTOR:
+				notifyBindingConnectorChanged(notification, eClass);
 				break;
-			case SysMLPackage.LITERAL_RATIONAL:
-				notifyLiteralRationalChanged(notification, eClass);
+			case SysMLPackage.METADATA_USAGE:
+				notifyMetadataUsageChanged(notification, eClass);
 				break;
-			case SysMLPackage.LITERAL_EXPRESSION:
-				notifyLiteralExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.SELECT_EXPRESSION:
-				notifySelectExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.OPERATOR_EXPRESSION:
-				notifyOperatorExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.INVOCATION_EXPRESSION:
-				notifyInvocationExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.LITERAL_STRING:
-				notifyLiteralStringChanged(notification, eClass);
-				break;
-			case SysMLPackage.COLLECT_EXPRESSION:
-				notifyCollectExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.LITERAL_INTEGER:
-				notifyLiteralIntegerChanged(notification, eClass);
-				break;
-			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				notifyFeatureReferenceExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
-				notifyMetadataAccessExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.LITERAL_BOOLEAN:
-				notifyLiteralBooleanChanged(notification, eClass);
-				break;
-			case SysMLPackage.LITERAL_INFINITY:
-				notifyLiteralInfinityChanged(notification, eClass);
-				break;
-			case SysMLPackage.FEATURE_CHAIN_EXPRESSION:
-				notifyFeatureChainExpressionChanged(notification, eClass);
-				break;
-			case SysMLPackage.TRANSITION_USAGE:
-				notifyTransitionUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.ACTION_USAGE:
-				notifyActionUsageChanged(notification, eClass);
+			case SysMLPackage.ITEM_USAGE:
+				notifyItemUsageChanged(notification, eClass);
 				break;
 			case SysMLPackage.OCCURRENCE_USAGE:
 				notifyOccurrenceUsageChanged(notification, eClass);
@@ -247,9 +247,6 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.ATTRIBUTE_DEFINITION:
 				notifyAttributeDefinitionChanged(notification, eClass);
-				break;
-			case SysMLPackage.ITEM_USAGE:
-				notifyItemUsageChanged(notification, eClass);
 				break;
 			case SysMLPackage.PART_USAGE:
 				notifyPartUsageChanged(notification, eClass);
@@ -281,6 +278,9 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.CONNECTION_USAGE:
 				notifyConnectionUsageChanged(notification, eClass);
 				break;
+			case SysMLPackage.ACTION_USAGE:
+				notifyActionUsageChanged(notification, eClass);
+				break;
 			case SysMLPackage.INTERFACE_USAGE:
 				notifyInterfaceUsageChanged(notification, eClass);
 				break;
@@ -298,6 +298,12 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.STATE_USAGE:
 				notifyStateUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.TRANSITION_USAGE:
+				notifyTransitionUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.ACCEPT_ACTION_USAGE:
+				notifyAcceptActionUsageChanged(notification, eClass);
 				break;
 			case SysMLPackage.CALCULATION_USAGE:
 				notifyCalculationUsageChanged(notification, eClass);
@@ -368,11 +374,8 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.RENDERING_DEFINITION:
 				notifyRenderingDefinitionChanged(notification, eClass);
 				break;
-			case SysMLPackage.METADATA_USAGE:
-				notifyMetadataUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.ACCEPT_ACTION_USAGE:
-				notifyAcceptActionUsageChanged(notification, eClass);
+			case SysMLPackage.METADATA_DEFINITION:
+				notifyMetadataDefinitionChanged(notification, eClass);
 				break;
 			case SysMLPackage.EXHIBIT_STATE_USAGE:
 				notifyExhibitStateUsageChanged(notification, eClass);
@@ -386,9 +389,6 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.STATE_DEFINITION:
 				notifyStateDefinitionChanged(notification, eClass);
 				break;
-			case SysMLPackage.MERGE_NODE:
-				notifyMergeNodeChanged(notification, eClass);
-				break;
 			case SysMLPackage.IF_ACTION_USAGE:
 				notifyIfActionUsageChanged(notification, eClass);
 				break;
@@ -398,14 +398,20 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE:
 				notifyForLoopActionUsageChanged(notification, eClass);
 				break;
-			case SysMLPackage.FORK_NODE:
-				notifyForkNodeChanged(notification, eClass);
-				break;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE:
 				notifyAssignmentActionUsageChanged(notification, eClass);
 				break;
+			case SysMLPackage.MERGE_NODE:
+				notifyMergeNodeChanged(notification, eClass);
+				break;
 			case SysMLPackage.SEND_ACTION_USAGE:
 				notifySendActionUsageChanged(notification, eClass);
+				break;
+			case SysMLPackage.JOIN_NODE:
+				notifyJoinNodeChanged(notification, eClass);
+				break;
+			case SysMLPackage.FORK_NODE:
+				notifyForkNodeChanged(notification, eClass);
 				break;
 			case SysMLPackage.TRIGGER_INVOCATION_EXPRESSION:
 				notifyTriggerInvocationExpressionChanged(notification, eClass);
@@ -413,20 +419,14 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.WHILE_LOOP_ACTION_USAGE:
 				notifyWhileLoopActionUsageChanged(notification, eClass);
 				break;
-			case SysMLPackage.JOIN_NODE:
-				notifyJoinNodeChanged(notification, eClass);
-				break;
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE:
 				notifyIncludeUseCaseUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE:
-				notifySatisfyRequirementUsageChanged(notification, eClass);
 				break;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE:
 				notifyAssertConstraintUsageChanged(notification, eClass);
 				break;
-			case SysMLPackage.SUCCESSION_FLOW_CONNECTION_USAGE:
-				notifySuccessionFlowConnectionUsageChanged(notification, eClass);
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE:
+				notifySatisfyRequirementUsageChanged(notification, eClass);
 				break;
 			case SysMLPackage.SUCCESSION_AS_USAGE:
 				notifySuccessionAsUsageChanged(notification, eClass);
@@ -434,11 +434,11 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION:
 				notifyFlowConnectionDefinitionChanged(notification, eClass);
 				break;
+			case SysMLPackage.SUCCESSION_FLOW_CONNECTION_USAGE:
+				notifySuccessionFlowConnectionUsageChanged(notification, eClass);
+				break;
 			case SysMLPackage.BINDING_CONNECTOR_AS_USAGE:
 				notifyBindingConnectorAsUsageChanged(notification, eClass);
-				break;
-			case SysMLPackage.METADATA_DEFINITION:
-				notifyMetadataDefinitionChanged(notification, eClass);
 				break;
 		}
 	}

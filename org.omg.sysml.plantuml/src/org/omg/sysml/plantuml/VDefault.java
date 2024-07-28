@@ -129,7 +129,7 @@ public class VDefault extends VTraverser {
             if (gt == null) continue;
             InheritKey ik2;
             if (s instanceof Redefinition && gt instanceof Feature) {
-                ik2 = InheritKey.makeInheritKeyForRedefiningTarget(ik, (Feature) gt);
+                ik2 = InheritKey.makeInheritKeyForRedefiningTarget(ik, (Feature) gt, showInherited());
             } else {
                 ik2 = ik;
             }

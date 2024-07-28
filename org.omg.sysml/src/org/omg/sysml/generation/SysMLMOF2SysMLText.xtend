@@ -32,10 +32,10 @@ class SysMLMOF2SysMLText extends MOF2SysMLText {
 			 */
 			 
 			private import ScalarValues::*;
-			import Systems::*;
+			public import Systems::*;
 			
 			package Systems {
-				import KerML::Kernel::*;
+				public import KerML::Kernel::*;
 				
 				«model.getPackage("Systems").toPackageBody»
 			}

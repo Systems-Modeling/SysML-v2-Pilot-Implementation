@@ -70,9 +70,9 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package ConstraintTest {
-	import ISQ::MassValue;
-	import SI::kg;
-	import NumericalFunctions::sum;
+	public import ISQ::MassValue;
+	public import SI::kg;
+	public import NumericalFunctions::sum;
 	
 	constraint def MassAnalysis {
 		attribute totalMass: MassValue;

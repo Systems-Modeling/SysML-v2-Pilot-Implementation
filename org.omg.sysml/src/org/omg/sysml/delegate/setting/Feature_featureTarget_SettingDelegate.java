@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,17 +24,19 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
+import org.omg.sysml.lang.sysml.Feature;
 
-public class AnalysisCaseDefinition_analysisAction_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Feature_featureTarget_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public AnalysisCaseDefinition_analysisAction_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Feature_featureTarget_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		return ((AnalysisCaseDefinition)owner).getAction();
+	protected Feature basicGet(InternalEObject owner) {
+		Feature feature = (Feature)owner;
+		EList<Feature> chainingFeatures = feature.getChainingFeature();
+		return chainingFeatures.isEmpty()? feature: chainingFeatures.get(chainingFeatures.size() - 1);
 	}
 
 }

@@ -67,6 +67,7 @@ public class NamespaceImportImpl extends ImportImpl implements NamespaceImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Namespace getImportedNamespace() {
 		if (importedNamespace != null && importedNamespace.eIsProxy()) {
 			InternalEObject oldImportedNamespace = (InternalEObject)importedNamespace;

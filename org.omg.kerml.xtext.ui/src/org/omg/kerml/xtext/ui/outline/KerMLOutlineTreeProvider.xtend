@@ -537,10 +537,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		FeatureUtil.forEachImplicitFeaturingTypeOf(feature, [featuringType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
-			 * returns that appropriate icon for generalizations, but there
-			 * are no such icons added yet; in the future, the generalType
-			 * reference might return an unexpected icon if at a later point
-			 * type-specific icons are added.
+			 * returns that appropriate icon for type featuring, but there
+			 * are no such icons added yet.
 			 */
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
@@ -559,10 +557,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, eClass |
 			/*
 			 * TODO here image dispatcher should be called with a type that
-			 * returns that appropriate icon for generalizations, but there
-			 * are no such icons added yet; in the future, the generalType
-			 * reference might return an unexpected icon if at a later point
-			 * type-specific icons are added.
+			 * returns that appropriate icon for membership, but there
+			 * are no such icons added yet.
 			 */
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(connector), eClass)

@@ -196,10 +196,14 @@ class InheritKey {
 
 
     // Identify what type owns redefining feature.
-    private static Type identifyRedefiningTargetOwner(Type redefinedOwner, Feature f) {
+    private static Type identifyRedefiningTargetOwner(Type redefinedOwner, Feature f, boolean showInherited) {
         for (Specialization sp: redefinedOwner.getOwnedSpecialization()) {
             Type g = sp.getGeneral();
-            if (isBelonging(g, f)) return g;
+            if (showInherited) {
+                if (isBelonging(g, f)) return g;
+            } else {
+                if (containsWithRedefined(belongingFeatures(g), f)) return g;
+            }
         }
         return null;
     }
@@ -217,12 +221,12 @@ class InheritKey {
         this.isDirect = false;
     }
     // Make an inherit key by identifying what type owns redefining feature.
-    public static InheritKey makeInheritKeyForRedefiningTarget(InheritKey ik, Feature f) {
+    public static InheritKey makeInheritKeyForRedefiningTarget(InheritKey ik, Feature f, boolean showInherited) {
         if (ik == null) return null; // It must be invalid model
         Type[] keys = ik.keys;
         for (int i = keys.length - 1; i >= 0; i--) {
             Type typ = keys[i];
-            Type tgt = identifyRedefiningTargetOwner(typ, f);
+            Type tgt = identifyRedefiningTargetOwner(typ, f, showInherited);
             if (tgt != null) {
                 return new InheritKey(ik, i, tgt);
             }

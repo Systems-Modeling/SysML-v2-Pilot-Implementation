@@ -18,20 +18,20 @@ END_SETUP
 // XPECT noErrors --> ""
 package Import_Circular {
 	package P1 {
-		import P2::*;
+		public import P2::*;
 		classifier A;
 	}
 	package P2 {
-		import P1::*;
+		public import P1::*;
 		classifier B;
 	}
 	package Test1 {
-		import P1::*;
+		public import P1::*;
 		x: A;
 		y: B;
 	}
 	package Test2 {
-		import P2::*;
+		public import P2::*;
 		x: A;
 		y: B;
 	}

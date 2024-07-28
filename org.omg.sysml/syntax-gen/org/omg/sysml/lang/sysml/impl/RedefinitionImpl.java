@@ -84,6 +84,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getRedefiningFeature() {
 		if (redefiningFeature != null && redefiningFeature.eIsProxy()) {
 			InternalEObject oldRedefiningFeature = (InternalEObject)redefiningFeature;
@@ -132,6 +133,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getRedefinedFeature() {
 		if (redefinedFeature != null && redefinedFeature.eIsProxy()) {
 			InternalEObject oldRedefinedFeature = (InternalEObject)redefinedFeature;

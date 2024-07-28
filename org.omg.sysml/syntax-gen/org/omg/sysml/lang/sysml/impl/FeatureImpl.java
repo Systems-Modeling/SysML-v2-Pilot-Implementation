@@ -84,6 +84,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeatureTarget <em>Feature Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -353,6 +354,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_REFERENCE_SUBSETTING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getFeatureTarget() <em>Feature Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FEATURE_TARGET__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__FEATURE_TARGET).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -683,6 +693,35 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void setOwnedReferenceSubsetting(ReferenceSubsetting newOwnedReferenceSubsetting) {
 		OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedReferenceSubsetting);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getFeatureTarget() {
+		return (Feature)FEATURE_TARGET__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetFeatureTarget() {
+		return (Feature)FEATURE_TARGET__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFeatureTarget(Feature newFeatureTarget) {
+		FEATURE_TARGET__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureTarget);
 	}
 
 	/**
@@ -1117,6 +1156,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_REFERENCE_SUBSETTING:
 				if (resolve) return getOwnedReferenceSubsetting();
 				return basicGetOwnedReferenceSubsetting();
+			case SysMLPackage.FEATURE__FEATURE_TARGET:
+				if (resolve) return getFeatureTarget();
+				return basicGetFeatureTarget();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -1204,6 +1246,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_REFERENCE_SUBSETTING:
 				setOwnedReferenceSubsetting((ReferenceSubsetting)newValue);
 				return;
+			case SysMLPackage.FEATURE__FEATURE_TARGET:
+				setFeatureTarget((Feature)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -1282,6 +1327,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_REFERENCE_SUBSETTING:
 				setOwnedReferenceSubsetting((ReferenceSubsetting)null);
 				return;
+			case SysMLPackage.FEATURE__FEATURE_TARGET:
+				setFeatureTarget((Feature)null);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -1341,6 +1389,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_REFERENCE_SUBSETTING:
 				return OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FEATURE__FEATURE_TARGET:
+				return FEATURE_TARGET__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}

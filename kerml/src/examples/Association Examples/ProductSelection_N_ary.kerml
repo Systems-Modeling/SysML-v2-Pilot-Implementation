@@ -1,6 +1,5 @@
 package ProductSelection_N_ary {
 	
-	class SelectionInfo;
 	class ShoppingCart;
 	class Product;
 	class Account;
@@ -37,23 +36,26 @@ package ProductSelection_N_ary {
 	assoc ProductSelection3 specializes Links::Link {
 		end cart: ShoppingCart[1] crosses cart::inCart::product_account.inCart {
 			member feature inCart: ShoppingCart[0..1] featured by product_account {
-				member feature product_account multiplies selectedProduct, account featured by ProductSelection3 {
+				member feature product_account : Product_Account featured by ProductSelection3 {
 					import inCart;
 				}
+				classifier Product_Account multiplies Product, Account;
 			}
 		}
 		end selectedProduct: Product[1] crosses selectedProduct::selectedProducts::cart_account.selectedProducts {
-			member feature selectedProducts: Product[0..*] featured by cart_account {
-				member feature cart_account multiplies cart, account featured by ProductSelection3 {
+			member feature selectedProducts: Product[0..*] featured by Cart_Account {
+				member feature cart_account : Cart_Account featured by ProductSelection3 {
 					import selectedProducts;
-				}				
+				}
+				classifier Cart_Account multiplies ShoppingCart, Account;				
 			}
 		}
 		end feature account : Account[1] crosses account::withAccount::cart_product.withAccount {
-			member feature withAccount[1..1] : Account featured by cart_product {
-				member feature cart_product multiplies cart, selectedProduct featured by ProductSelection3 {
+			member feature withAccount[1..1] : Account featured by Cart_Product {
+				member feature cart_product : Cart_Product featured by ProductSelection3 {
 					import withAccount;
 				}
+				classifier Cart_Product multiplies ShoppingCart, Product;
 			}
 		}
 	}
@@ -61,11 +63,13 @@ package ProductSelection_N_ary {
 	assoc SingleProductSelection specializes ProductSelection {
 		end [0..1] feature cart: ShoppingCart[1];
 		end [0..1] feature selectedProduct: Product[1];
+		end [1..1] feature account : Account[1];
 	}
 
 	assoc SingleProductSelection1 specializes ProductSelection1 {
 		end inCart1 [0..1] feature cart: ShoppingCart[1];
 		end selectedProduct1 [0..1] feature selectedProduct: Product[1];
+		end withAccount1 [1..1] feature account : Account[1];
 	}
 	
 	assoc SingleProductSelection2 specializes ProductSelection2 {
@@ -75,20 +79,35 @@ package ProductSelection_N_ary {
 		end feature selectedProduct: Product[1] {
 			member feature selectedProducts1[0..*]; // owned crossing feature
 		}
+		end feature account : Account[1] {
+			member feature withAccount1[0..*]; // owned crossing feature
+		}
 	}
 	
 	assoc SingleProductSelection3 specializes ProductSelection3 {
-		end cart: ShoppingCart[1] redefines cart crosses cart::product_account1.inCart1 {
-			member feature product_account1 subsets product_account multiplies selectedProduct, account featured by SingleProductSelection3 {
-				import inCart1;
+		end cart: ShoppingCart[1] redefines cart crosses cart::inCart1::product_account1.inCart1 {
+			member feature inCart1: ShoppingCart[0..1] featured by Product_Account1 {
+				member feature product_account1 : Product_Account1 featured by ProductSelection3 {
+					import inCart1;
+				}
+				classifier Product_Account1 specializes Product_Account multiplies Product, Account;
 			}
-			member feature inCart1: ShoppingCart[0..1] subsets inCart featured by product_account1;
 		}
-		end selectedProduct: Product[1] redefines selectedProduct crosses selectedProduct::cart_account1.selectedProduct1 {
-			member feature cart_account1 subsets cart_account multiplies cart, account featured by SingleProductSelection3 {
-				import selectedProduct1;
+		end selectedProduct: Product[1] redefines selectedProduct crosses selectedProduct::selectedProduct1::cart_account1.selectedProduct1 {
+			member feature selectedProduct1: Product[1..1] featured by Cart_Account1 {
+				member feature cart_account1 : Cart_Account1 featured by ProductSelection3 {
+					import selectedProduct1;
+				}
+				classifier Cart_Account1 specializes Cart_Account multiplies ShoppingCart, Account;				
 			}
-			member feature selectedProduct1: Product[0..1] subsets selectedProducts featured by cart_account1;
+		}
+		end feature account : Account[1] crosses account::withAccount1::cart_product1.withAccount1 {
+			member feature withAccount1[1..1] : Account featured by cart_product1 {
+				member feature cart_product1 : Cart_Product1 featured by ProductSelection3 {
+					import withAccount1;
+				}
+				classifier Cart_Product1 specializes Cart_Product multiplies ShoppingCart, Product;
+			}
 		}
 	}
 	

@@ -48,7 +48,6 @@ import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -667,31 +666,36 @@ public class FeatureAdapter extends TypeAdapter {
 				List<Feature> endFeatures = ownerOwningType.getEndFeature();
 				int n = endFeatures.size();
 				if (n == 2) {
-					Feature otherEnd = endFeatures.indexOf(owningFeature) == 0?
-							endFeatures.get(1): endFeatures.get(0);
-					addFeaturingTypes(otherEnd.getType().stream().filter(t->t != target).toList());
+					Feature otherEnd = endFeatures.get(1 - endFeatures.indexOf(owningFeature));
+					addFeaturingTypes(otherEnd.getType());
 				} else if (n > 2) {
 					Classifier crossProductType = SysMLFactory.eINSTANCE.createClassifier();
 					for (Feature otherEnd: endFeatures) {
 						if (otherEnd != owningFeature) {
-							CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
 							List<Type> crossFeatureTypes = otherEnd.getType();
-							Type multiplyingType;
 							if (crossFeatureTypes.isEmpty()) {
-								multiplyingType = getLibraryType("Base::Anything");
-							} else if (crossFeatureTypes.size() == 1) {
-								multiplyingType = crossFeatureTypes.get(0);
+								CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
+								multiplying.setMultiplyingType(getLibraryType("Base::Anything"));
+								crossProductType.getOwnedRelationship().add(multiplying);
 							} else {
-								multiplyingType = SysMLFactory.eINSTANCE.createType();
-								multiplying.getOwnedRelatedElement().add(multiplyingType);
-								for (Type type: crossFeatureTypes) {
-									Intersecting intersecting = SysMLFactory.eINSTANCE.createIntersecting();
-									intersecting.setIntersectingType(type);
-									multiplyingType.getOwnedRelationship().add(intersecting);
+								for (Type multiplyingType: crossFeatureTypes) {
+									CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
+									multiplying.setMultiplyingType(multiplyingType);
+									crossProductType.getOwnedRelationship().add(multiplying);
 								}
 							}
-							multiplying.setMultiplyingType(multiplyingType);
-							crossProductType.getOwnedRelationship().add(multiplying);
+						}
+					}
+					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
+						if (redefinedFeature.isEnd()) {
+							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
+							if (crossFeature != null) {
+								for (Type featuringType: crossFeature.getFeaturingType()) {
+									if (featuringType instanceof Classifier) {
+										TypeUtil.addImplicitGeneralTypeTo(crossProductType, SysMLPackage.eINSTANCE.getSubclassification(), featuringType);
+									}
+								}
+							}
 						}
 					}
 					addFeaturingType(crossProductType);

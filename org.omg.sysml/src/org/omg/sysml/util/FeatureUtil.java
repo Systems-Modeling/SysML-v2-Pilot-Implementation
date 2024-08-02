@@ -117,7 +117,7 @@ public class FeatureUtil {
 		}
 	}
 
-// Typing
+	// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
 		FeatureAdapter adapter = getFeatureAdapter(feature);

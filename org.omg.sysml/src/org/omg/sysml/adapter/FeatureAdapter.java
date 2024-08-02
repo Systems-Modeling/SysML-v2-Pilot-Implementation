@@ -670,6 +670,8 @@ public class FeatureAdapter extends TypeAdapter {
 					addFeaturingTypes(otherEnd.getType());
 				} else if (n > 2) {
 					Classifier crossProductType = SysMLFactory.eINSTANCE.createClassifier();
+					addFeaturingType(crossProductType);
+					
 					for (Feature otherEnd: endFeatures) {
 						if (otherEnd != owningFeature) {
 							List<Type> crossFeatureTypes = otherEnd.getType();
@@ -686,10 +688,12 @@ public class FeatureAdapter extends TypeAdapter {
 							}
 						}
 					}
+					
 					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
 						if (redefinedFeature.isEnd()) {
 							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 							if (crossFeature != null) {
+								FeatureUtil.addOwnedCrossFeatureTypeFeaturingTo(crossFeature);
 								for (Type featuringType: crossFeature.getFeaturingType()) {
 									if (featuringType instanceof Classifier) {
 										TypeUtil.addImplicitGeneralTypeTo(crossProductType, SysMLPackage.eINSTANCE.getSubclassification(), featuringType);
@@ -698,7 +702,6 @@ public class FeatureAdapter extends TypeAdapter {
 							}
 						}
 					}
-					addFeaturingType(crossProductType);
 				}
 			}
 		}

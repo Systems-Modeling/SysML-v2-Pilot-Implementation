@@ -39,6 +39,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -48,6 +49,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.LiveScopeResourceSetInitializer;
 import org.omg.kerml.xtext.library.LibraryIndex;
+import org.omg.kerml.xtext.library.LibraryIndexCache;
 import org.omg.sysml.util.ElementUtil;
 
 import com.google.gson.GsonBuilder;
@@ -62,6 +64,9 @@ public class GenerateLibraryIndex extends AbstractHandler {
 	
 	@Inject
 	private LiveScopeResourceSetInitializer initializer;
+	
+	@Inject
+	private LibraryIndexCache libraryIndexCache;
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -89,6 +94,9 @@ public class GenerateLibraryIndex extends AbstractHandler {
 
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				
+				libraryIndexCache.setDoNotUse(true);
+				
 				ResourceSet rs = provider.get(project);
 				initializer.initialize(rs);
 				
@@ -96,8 +104,10 @@ public class GenerateLibraryIndex extends AbstractHandler {
 				collectFiles(project, files);
 				loadResources(rs, project, files);
 				
-				project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
-				project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+				monitor.beginTask(getName(), 300);
+				
+				project.build(IncrementalProjectBuilder.CLEAN_BUILD, SubMonitor.convert(monitor, 50));
+				project.build(IncrementalProjectBuilder.FULL_BUILD, SubMonitor.convert(monitor, 100));
 				
 				ElementUtil.transformAll(rs, false);
 				
@@ -110,6 +120,10 @@ public class GenerateLibraryIndex extends AbstractHandler {
 				);
 				
 				writeIndex(project, jsonString, monitor);
+				
+				libraryIndexCache.setDoNotUse(false);
+				
+				monitor.done();
 				
 				return Status.OK_STATUS;
 			}

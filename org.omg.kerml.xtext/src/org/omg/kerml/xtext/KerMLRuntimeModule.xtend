@@ -3,22 +3,25 @@
  */
 package org.omg.kerml.xtext
 
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
-import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.kerml.xtext.library.KerMLLibraryProvider
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import com.google.inject.Binder
 import com.google.inject.name.Names
-import org.eclipse.xtext.validation.CompositeEValidator
-import org.omg.kerml.xtext.scoping.KerMLLinker
-import org.eclipse.xtext.validation.IResourceValidator
-import org.omg.kerml.xtext.validation.KerMLResourceValidator
+import org.eclipse.xtext.linking.ILinker
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
+import org.eclipse.xtext.validation.CompositeEValidator
+import org.eclipse.xtext.validation.IResourceValidator
+import org.omg.kerml.xtext.library.KerMLLibraryProvider
+import org.omg.kerml.xtext.library.LibraryIndexCache
+import org.omg.kerml.xtext.library.LibraryNamespaces
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
+import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
+import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
+import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
+import org.omg.kerml.xtext.scoping.KerMLLinker
+import org.omg.kerml.xtext.validation.KerMLResourceValidator
+import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -41,12 +44,13 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 		KerMLQualifiedNameProvider
 	}
 
-	override Class<? extends org.eclipse.xtext.linking.ILinker> bindILinker() {
+	override Class<? extends ILinker> bindILinker() {
 		KerMLLinker
 	}
 	
 	def void configureUseEObjectValidator(Binder binder) {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
+		binder.bind(LibraryIndexCache).toProvider([LibraryIndexCache.instance])
 	}
 	
 	def Class<? extends IResourceValidator> bindIResourceValidator() {
@@ -57,4 +61,7 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 		KerMLLazyLinkingResource
 	}
 	
+	def Class<? extends LibraryNamespaces> bindLibraryNamespaces(){
+	    LibraryNamespaces
+	}
 }

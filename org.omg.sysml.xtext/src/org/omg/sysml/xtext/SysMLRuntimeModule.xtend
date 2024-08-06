@@ -18,6 +18,7 @@ import org.eclipse.xtext.validation.IResourceValidator
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.eclipse.xtext.resource.XtextResource
+import org.omg.kerml.xtext.library.LibraryIndexCache
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -46,6 +47,7 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 
 	def void configureUseEObjectValidator(Binder binder) {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
+		binder.bind(LibraryIndexCache).toProvider([ LibraryIndexCache.instance ])
 	}
 	
 	def Class<? extends IResourceValidator> bindIResourceValidator() {

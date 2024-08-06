@@ -39,7 +39,11 @@ public class LibraryIndex {
 		this.index = index;
 	}
 	
-	public boolean contains(String namespace, String member) {
+	public boolean containsNamespace(String namespace) {
+		return index.containsKey(namespace);
+	}
+	
+	public boolean containsMember(String namespace, String member) {
 		if (index.containsKey(namespace)) {
 			return index.get(namespace).contains(member);
 		}

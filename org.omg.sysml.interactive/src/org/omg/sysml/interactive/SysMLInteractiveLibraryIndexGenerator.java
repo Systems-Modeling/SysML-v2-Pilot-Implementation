@@ -1,15 +1,3 @@
-package org.omg.sysml.interactive;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.EcoreUtil2;
-import org.omg.kerml.xtext.library.LibraryIndex;
-import org.omg.sysml.util.ElementUtil;
-
-import com.google.gson.GsonBuilder;
-
 /**
  * SysML 2 Pilot Implementation
  * Copyright (C) 2020  California Institute of Technology ("Caltech")
@@ -29,34 +17,48 @@ import com.google.gson.GsonBuilder;
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
+package org.omg.sysml.interactive;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.EcoreUtil2;
+import org.omg.kerml.xtext.library.LibraryIndex;
+import org.omg.sysml.util.ElementUtil;
+
+import com.google.gson.GsonBuilder;
 
 public class SysMLInteractiveLibraryIndexGenerator {
-	
+
 	public static void main(String[] args) throws IOException {
 		SysMLInteractive instance = SysMLInteractive.getInstance();
+		instance.getLibraryIndexCache().setDoNotUse(true);
+		
 		instance.loadLibrary(args[0]);
-		
+
 		ResourceSet rs = instance.getResourceSet();
-		
+
 		System.out.println("Resolving references");
 		rs.getResources().forEach(r -> EcoreUtil2.resolveLazyCrossReferences(r, null));
-		
+
 		System.out.println("Tranforming");
 		ElementUtil.transformAll(rs, false);
-		
+
 		LibraryIndex libraryIndex = new LibraryIndex();
-		
+
 		System.out.println("Creating index");
 		libraryIndex.updateIndex(rs.getResources());
-		
+
 		String json = libraryIndex.toJson(new GsonBuilder().disableHtmlEscaping().setPrettyPrinting());
-		File indexFile = new File(args[0] + "/.index.json");
-		
+		File indexFile = new File(args[0] + "/" + LibraryIndex.FILE_NAME);
+
 		System.out.println("Writing index");
-		try (FileOutputStream fileStream = new FileOutputStream(indexFile, false)){
+		try (FileOutputStream fileStream = new FileOutputStream(indexFile, false)) {
 			fileStream.write(json.getBytes());
 		}
-		
+
 		System.out.println("Done.");
 	}
 }

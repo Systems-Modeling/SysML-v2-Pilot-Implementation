@@ -27,6 +27,7 @@ Import-Package: org.apache.log4j
 Export-Package: org.omg.kerml.xtext.ui,
  org.omg.kerml.xtext.ui.internal,
  org.omg.kerml.xtext.ui.labeling,
+ org.omg.kerml.xtext.ui.library,
  org.omg.kerml.xtext.ui.outline,
  org.omg.kerml.xtext.ui.quickfix
 Bundle-Activator: org.omg.kerml.xtext.ui.internal.XtextActivator

@@ -34,7 +34,7 @@ public class SysMLInteractiveLibraryIndexGenerator {
 
 	public static void main(String[] args) throws IOException {
 		SysMLInteractive instance = SysMLInteractive.getInstance();
-		instance.getLibraryIndexCache().setDoNotUse(true);
+		instance.getLibraryIndexCache().setIndexDisabled(true);
 		
 		instance.loadLibrary(args[0]);
 

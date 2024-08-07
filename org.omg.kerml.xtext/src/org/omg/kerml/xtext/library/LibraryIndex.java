@@ -26,6 +26,8 @@ import com.google.gson.reflect.TypeToken;
 public class LibraryIndex {
 	
 	public static final String FILE_NAME = ".index.json";
+	public static final LibraryIndex EMPTY_INDEX = new LibraryIndex();
+	
 	private static final Type JAVA_TYPE = new TypeToken<LibraryIndex>() {}.getType();
 	
 	private final Map<String, Set<String>> index;

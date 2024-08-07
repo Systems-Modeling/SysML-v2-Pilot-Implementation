@@ -48,8 +48,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.LiveScopeResourceSetInitializer;
+import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.library.LibraryIndex;
-import org.omg.kerml.xtext.library.LibraryIndexCache;
 import org.omg.sysml.util.ElementUtil;
 
 import com.google.gson.GsonBuilder;
@@ -60,13 +60,13 @@ public class GenerateLibraryIndex extends AbstractHandler {
 	private static final Set<String> FILE_EXTENSIONS = Set.of("kerml", "sysml");
 	
 	@Inject
-	private IResourceSetProvider provider;
+	private IResourceSetProvider resourceSetProvider;
 	
 	@Inject
 	private LiveScopeResourceSetInitializer initializer;
 	
 	@Inject
-	private LibraryIndexCache libraryIndexCache;
+	private ILibraryIndexProvider libraryIndexProvider;
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -95,14 +95,19 @@ public class GenerateLibraryIndex extends AbstractHandler {
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 				
-				libraryIndexCache.setDoNotUse(true);
+				libraryIndexProvider.setIndexDisabled(true);
 				
-				ResourceSet rs = provider.get(project);
+				ResourceSet rs = resourceSetProvider.get(project);
 				initializer.initialize(rs);
 				
 				Set<IFile> files = new HashSet<>();
 				collectFiles(project, files);
 				loadResources(rs, project, files);
+				
+				if (!rs.getResources().isEmpty()) {
+					libraryIndexProvider.dropIndexOf(rs.getResources().get(0));
+				}
+				
 				
 				monitor.beginTask(getName(), 300);
 				
@@ -121,7 +126,7 @@ public class GenerateLibraryIndex extends AbstractHandler {
 				
 				writeIndex(project, jsonString, monitor);
 				
-				libraryIndexCache.setDoNotUse(false);
+				libraryIndexProvider.setIndexDisabled(false);
 				
 				monitor.done();
 				

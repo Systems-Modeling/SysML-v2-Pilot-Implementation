@@ -30,11 +30,11 @@ import com.google.inject.Inject;
 public class LibraryNamespaces {
 	
 	@Inject
-	private LibraryIndexCache indexCache;
+	private ILibraryIndexProvider indexCache;
 	
 	public boolean canContainMember(Namespace namespace, QualifiedName prefix, QualifiedName member) {
 		
-		if (indexCache == null || indexCache.isDoNotUse()) {
+		if (indexCache == null || indexCache.isIndexDisabled()) {
 			return true;
 		};
 		

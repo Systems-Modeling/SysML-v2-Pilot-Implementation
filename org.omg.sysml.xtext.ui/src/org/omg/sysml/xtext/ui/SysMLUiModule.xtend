@@ -13,6 +13,9 @@ import org.omg.kerml.xtext.ui.KerMLAntlrTokenToAttributeIdMapper
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
 import org.omg.kerml.xtext.ui.KerMLHighlightingConfiguration
+import com.google.inject.Binder
+import org.omg.kerml.xtext.library.ILibraryIndexProvider
+import org.omg.kerml.xtext.ui.library.DynamicLibraryIndexProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -40,4 +43,9 @@ class SysMLUiModule extends AbstractSysMLUiModule {
 		// Replaces the JDT-aware project state implementation with one that handles dependencies via project references
 		Access.workspaceProjectsState
 	}
+	
+    override configure(Binder binder) {
+        super.configure(binder)
+        binder.bind(ILibraryIndexProvider).toProvider([ DynamicLibraryIndexProvider.getInstance ])
+    }
 }

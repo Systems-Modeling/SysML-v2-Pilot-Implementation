@@ -22,6 +22,7 @@ import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.kerml.xtext.library.ILibraryIndexProvider
 import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
+import com.google.inject.Provides
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -50,8 +51,12 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 
 	def void configureUseEObjectValidator(Binder binder) {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
-		binder.bind(ILibraryIndexProvider).toProvider([ PrecalculatedLibraryIndexProvider.getInstance ])
 	}
+	
+	@Provides
+    def ILibraryIndexProvider getILibraryIndexProvider(){
+        PrecalculatedLibraryIndexProvider.getInstance
+    }
 	
 	def Class<? extends IResourceValidator> bindIResourceValidator() {
 		KerMLResourceValidator

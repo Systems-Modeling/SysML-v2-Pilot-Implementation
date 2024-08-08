@@ -32,6 +32,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.ui.resource.ProjectByResourceProvider;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.library.LibraryIndex;
 
@@ -42,6 +43,12 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 	private final Map<IProject, LibraryIndex> cache = new WeakHashMap<>();
 	private boolean disabled = false;
 	
+	private final ProjectByResourceProvider provider;
+	
+	public DynamicLibraryIndexProvider(ProjectByResourceProvider provider) {
+		this.provider = provider;
+	}
+
 	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
@@ -49,8 +56,7 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 			return LibraryIndex.EMPTY_INDEX;
 		}
 
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IProject project = findProjectForResource(workspace, resource);
+		IProject project = provider.getProjectContext(resource);
 
 		if (project == null) {
 			return null;
@@ -77,6 +83,7 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 	}
 	
 	
+	//TODO try to use the built-in utility
 	private IProject findProjectForResource(IWorkspace workspace, Resource resource) {
 		if (resource.getURI().isPlatformResource()) {
 			String projectName = URI.decode(resource.getURI().segment(1));
@@ -98,9 +105,9 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 		return disabled;
 	}
 	
-	public static synchronized DynamicLibraryIndexProvider getInstance() {
+	public static synchronized DynamicLibraryIndexProvider getInstance(ProjectByResourceProvider provider) {
 		if (INSTANCE == null) {
-			INSTANCE = new DynamicLibraryIndexProvider();
+			INSTANCE = new DynamicLibraryIndexProvider(provider);
 		}
 		return INSTANCE;
 	}

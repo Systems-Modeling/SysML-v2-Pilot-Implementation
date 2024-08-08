@@ -30,21 +30,17 @@ import com.google.inject.Inject;
 public class LibraryNamespaces {
 	
 	@Inject
-	private ILibraryIndexProvider indexCache;
+	private ILibraryIndexProvider libraryIndexProvider;
 	
 	public boolean canContainMember(Namespace namespace, QualifiedName prefix, QualifiedName member) {
 		
-		if (indexCache == null || indexCache.isIndexDisabled()) {
+		if (libraryIndexProvider.isIndexDisabled()) {
 			return true;
 		};
 		
 		Resource resourceOfNamespace = namespace.eResource();
 		
-		LibraryIndex index = indexCache.getIndexFor(resourceOfNamespace);
-		
-		if (index == null) {
-			return true;
-		}
+		LibraryIndex index = libraryIndexProvider.getIndexFor(resourceOfNamespace);
 		
 		var nsQn = namespace.getQualifiedName();
 		

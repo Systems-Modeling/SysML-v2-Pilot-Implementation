@@ -69,13 +69,6 @@ public class SysMLInteractiveLibraryIndexGenerator {
 			fileStream.write(json.getBytes());
 		}
 		
-		rs.eSetDeliver(false);
-		rs.eAdapters().clear();
-		rs.getResources().forEach(r -> {
-			r.eSetDeliver(false);
-			r.eAdapters().clear();
-		});
-		
 		System.out.println("Done.");
 	}
 }

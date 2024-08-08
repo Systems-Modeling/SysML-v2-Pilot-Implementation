@@ -53,7 +53,7 @@ public class SysMLInteractiveLibraryIndexGenerator {
 		System.out.println("Resolving references");
 		rs.getResources().forEach(r -> EcoreUtil2.resolveLazyCrossReferences(r, null));
 
-		System.out.println("Tranforming");
+		System.out.println("Transforming");
 		ElementUtil.transformAll(rs, false);
 
 		LibraryIndex libraryIndex = new LibraryIndex();

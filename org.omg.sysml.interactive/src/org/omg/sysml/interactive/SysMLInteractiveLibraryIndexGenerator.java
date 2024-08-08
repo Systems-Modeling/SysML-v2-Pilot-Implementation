@@ -33,6 +33,16 @@ import com.google.gson.GsonBuilder;
 public class SysMLInteractiveLibraryIndexGenerator {
 
 	public static void main(String[] args) throws IOException {
+		
+		if (args.length < 1) {
+			System.out.println("Missing argument. Please supply path to library folder.");
+		}
+		
+		System.out.println("Library index generation started...");
+		
+		//disable EMF reference clearing to prevent InterruptedException on early JVM shutdown
+		System.setProperty("org.eclipse.emf.common.util.ReferenceClearingQueue", "false");
+		
 		SysMLInteractive instance = SysMLInteractive.getInstance();
 		instance.getLibraryIndexCache().setIndexDisabled(true);
 		
@@ -58,7 +68,14 @@ public class SysMLInteractiveLibraryIndexGenerator {
 		try (FileOutputStream fileStream = new FileOutputStream(indexFile, false)) {
 			fileStream.write(json.getBytes());
 		}
-
+		
+		rs.eSetDeliver(false);
+		rs.eAdapters().clear();
+		rs.getResources().forEach(r -> {
+			r.eSetDeliver(false);
+			r.eAdapters().clear();
+		});
+		
 		System.out.println("Done.");
 	}
 }

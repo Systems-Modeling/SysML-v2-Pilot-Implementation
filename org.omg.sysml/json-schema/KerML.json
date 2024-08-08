@@ -2289,6 +2289,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -2855,6 +2859,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "importedMembership",
         "inheritedFeature",
@@ -3050,6 +3055,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -3585,6 +3594,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "function",
             "importedMembership",
@@ -4606,10 +4616,10 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/DataType"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Association"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Class"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Class"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Association"
         }
       ]
     },
@@ -4745,6 +4755,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -5280,6 +5294,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -6009,6 +6024,10 @@
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
             },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
             "featuringType": {
               "type": "array",
               "items": {
@@ -6575,6 +6594,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "importedMembership",
             "inheritedFeature",
@@ -6644,10 +6664,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Succession"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/BindingConnector"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/BindingConnector"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Succession"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFlow"
@@ -8400,13 +8420,13 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Namespace"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Relationship"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/AnnotatingElement"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Relationship"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Namespace"
         }
       ]
     },
@@ -9263,6 +9283,10 @@
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
             },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
             "featuringType": {
               "type": "array",
               "items": {
@@ -9786,6 +9810,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "function",
             "importedMembership",
@@ -9853,7 +9878,7 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/InvocationExpression"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralExpression"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureReferenceExpression"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/NullExpression"
@@ -9862,7 +9887,7 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/MetadataAccessExpression"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureReferenceExpression"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralExpression"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/BooleanExpression"
@@ -9989,6 +10014,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -10480,6 +10509,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "importedMembership",
             "inheritedFeature",
@@ -10546,13 +10576,13 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFeature"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/MetadataFeature"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFlowEnd"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/MetadataFeature"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFeature"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Step"
@@ -10691,6 +10721,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -11230,6 +11264,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -12362,6 +12397,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -12889,6 +12928,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -14734,10 +14774,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/NamespaceImport"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/MembershipImport"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/MembershipImport"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/NamespaceImport"
         }
       ]
     },
@@ -15710,6 +15750,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -16254,6 +16298,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -16453,6 +16498,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -16978,6 +17027,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "function",
             "importedMembership",
@@ -17164,6 +17214,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -17655,6 +17709,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "importedMembership",
         "inheritedFeature",
@@ -17855,6 +17910,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -18485,6 +18544,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "importedMembership",
             "inheritedFeature",
@@ -18683,6 +18743,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -19174,6 +19238,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "importedMembership",
         "inheritedFeature",
@@ -19628,6 +19693,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -20162,6 +20231,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -20353,6 +20423,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -20877,6 +20951,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "function",
             "importedMembership",
@@ -20947,10 +21022,10 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralBoolean"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInfinity"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInteger"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInteger"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInfinity"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralRational"
@@ -21082,6 +21157,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -21606,6 +21685,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -21794,6 +21874,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -22328,6 +22412,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -22517,6 +22602,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -23051,6 +23140,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -23240,6 +23330,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -23774,6 +23868,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -25057,6 +25152,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -25584,6 +25683,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -25781,6 +25881,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -26292,6 +26396,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "importedMembership",
         "inheritedFeature",
@@ -26473,6 +26578,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -26964,6 +27073,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "importedMembership",
             "inheritedFeature",
@@ -27155,6 +27265,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -27662,6 +27776,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "importedMembership",
         "inheritedFeature",
@@ -28416,6 +28531,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -28939,6 +29058,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -29136,6 +29256,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -29671,6 +29795,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "function",
             "importedMembership",
@@ -29736,10 +29861,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChainExpression"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/SelectExpression"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/SelectExpression"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChainExpression"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/CollectExpression"
@@ -32150,43 +32275,43 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Membership"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Import"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Dependency"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Annotation"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Dependency"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Import"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChaining"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Featuring"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Membership"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureInverting"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Unioning"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Featuring"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Differencing"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChaining"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Specialization"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Disjoining"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Intersecting"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Unioning"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Specialization"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Differencing"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Intersecting"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
@@ -33079,6 +33204,10 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
         },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
         "featuringType": {
           "type": "array",
           "items": {
@@ -33613,6 +33742,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "function",
         "importedMembership",
@@ -33963,10 +34093,10 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Subclassification"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Subsetting"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureTyping"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureTyping"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Subsetting"
         }
       ]
     },
@@ -34097,6 +34227,10 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
+            },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
             },
             "featuringType": {
               "type": "array",
@@ -34596,6 +34730,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "importedMembership",
             "inheritedFeature",
@@ -35898,6 +36033,10 @@
                 "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
               }
             },
+            "featureTarget": {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
             "featuringType": {
               "type": "array",
               "items": {
@@ -36490,6 +36629,7 @@
             "endOwningType",
             "feature",
             "featureMembership",
+            "featureTarget",
             "featuringType",
             "guardExpression",
             "importedMembership",
@@ -36712,6 +36852,10 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
           }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         "featuringType": {
           "type": "array",
@@ -37368,6 +37512,7 @@
         "endOwningType",
         "feature",
         "featureMembership",
+        "featureTarget",
         "featuringType",
         "guardExpression",
         "importedMembership",

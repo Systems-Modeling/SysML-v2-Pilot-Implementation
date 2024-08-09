@@ -3,13 +3,17 @@
  */
 package org.omg.kerml.xtext.ui
 
+import com.google.inject.Provides
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.eclipse.xtext.ui.shared.Access
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
-import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
+import org.eclipse.xtext.ui.shared.Access
+import org.omg.kerml.xtext.library.ILibraryIndexProvider
+import org.omg.kerml.xtext.ui.library.DynamicLibraryIndexProvider
+import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
+import org.eclipse.xtext.ui.resource.ProjectByResourceProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -37,4 +41,9 @@ class KerMLUiModule extends AbstractKerMLUiModule {
 		// Replaces the JDT-aware project state implementation with one that handles dependencies via project references
 		Access.workspaceProjectsState
 	}
+	   
+	@Provides
+    def ILibraryIndexProvider getILibraryIndexProvider(ProjectByResourceProvider provider) {
+        DynamicLibraryIndexProvider.getInstance(provider)
+    }   
 }

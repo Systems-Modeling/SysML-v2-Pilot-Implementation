@@ -52,6 +52,17 @@
 				</and>
 			</activeWhen>
 		</handler>
+  <handler
+        class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.omg.sysml.xtext.ui.handlers.GenerateLibraryIndex"
+        commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex">
+     <activeWhen>
+        <iterate>
+           <adapt
+                 type="org.eclipse.core.resources.IProject">
+           </adapt>
+        </iterate>
+     </activeWhen>
+  </handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
 		<definition id="org.omg.sysml.xtext.SysML.Editor.opened">
@@ -137,6 +148,10 @@
 			description="Copy the qualified name for the selected element"
 			name="Copy Qualified Name">
 		</command>
+  <command
+        id="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
+        name="Generate Library Index">
+  </command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution
@@ -329,6 +344,28 @@
 				</visibleWhen>
 			</command>
 		</menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+     <command
+           commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
+           label="Generate Library Index"
+           style="push">
+        <visibleWhen
+              checkEnabled="false">
+           <and>
+              <count
+                    value="1">
+              </count>
+              <iterate>
+                 <adapt
+                       type="org.eclipse.core.resources.IProject">
+                 </adapt>
+              </iterate>
+           </and>
+        </visibleWhen>
+     </command>
+  </menuContribution>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="org.omg.sysml.xtext.SysML.compare.contentViewers"

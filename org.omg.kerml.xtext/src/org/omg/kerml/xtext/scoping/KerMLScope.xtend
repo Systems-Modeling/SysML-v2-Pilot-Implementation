@@ -217,9 +217,11 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
-		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
-		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
-		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		if (this.ns === ns || scopeProvider.libraryNamespaces.canContainMember(ns, qn, targetqn)) {
+    		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
+    		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
+    		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		} else false
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {

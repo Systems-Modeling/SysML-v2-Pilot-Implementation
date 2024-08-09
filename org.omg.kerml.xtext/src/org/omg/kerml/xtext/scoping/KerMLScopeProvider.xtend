@@ -48,17 +48,25 @@ import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
+import org.omg.kerml.xtext.library.LibraryNamespaces
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
+	
+	@Inject
+	LibraryNamespaces libraryNamespaces
 
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet
 	
 	def getVisited() {
 		visited
+	}
+	
+	def getLibraryNamespaces(){
+	    libraryNamespaces
 	}
 	
 	def setVisited(Set<Element> visited) {

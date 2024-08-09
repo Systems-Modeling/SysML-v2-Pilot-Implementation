@@ -3,21 +3,26 @@
  */
 package org.omg.sysml.xtext
 
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.omg.sysml.xtext.library.SysMLLibraryProvider
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
-import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import com.google.inject.Binder
 import com.google.inject.name.Names
-import org.eclipse.xtext.validation.CompositeEValidator
+import org.eclipse.xtext.linking.ILinker
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameProviderimport org.omg.kerml.xtext.scoping.KerMLLinker
-import org.eclipse.xtext.validation.IResourceValidator
-import org.omg.kerml.xtext.validation.KerMLResourceValidator
-import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.scoping.IGlobalScopeProvider
+import org.eclipse.xtext.validation.CompositeEValidator
+import org.eclipse.xtext.validation.IResourceValidator
+import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
+import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
+import org.omg.kerml.xtext.scoping.KerMLLinker
+import org.omg.kerml.xtext.validation.KerMLResourceValidator
+import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.xtext.library.SysMLLibraryProvider
+import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
+import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
+import org.omg.kerml.xtext.library.ILibraryIndexProvider
+import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
+import com.google.inject.Provides
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -40,13 +45,18 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 		KerMLQualifiedNameProvider
 	}
 	
-	override Class<? extends org.eclipse.xtext.linking.ILinker> bindILinker() {
+	override Class<? extends ILinker> bindILinker() {
 		KerMLLinker
 	}
 
 	def void configureUseEObjectValidator(Binder binder) {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
 	}
+	
+	@Provides
+    def ILibraryIndexProvider getILibraryIndexProvider(){
+        PrecalculatedLibraryIndexProvider.getInstance
+    }
 	
 	def Class<? extends IResourceValidator> bindIResourceValidator() {
 		KerMLResourceValidator

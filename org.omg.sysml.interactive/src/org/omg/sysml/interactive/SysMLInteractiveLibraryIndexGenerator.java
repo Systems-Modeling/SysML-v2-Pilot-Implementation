@@ -30,6 +30,11 @@ import org.omg.sysml.util.ElementUtil;
 
 import com.google.gson.GsonBuilder;
 
+/**
+ * Headless application for library index generation.
+ * The first and only argument is the path to the library resources folder.
+ * The index is saved into the supplied folder.
+ */
 public class SysMLInteractiveLibraryIndexGenerator {
 
 	public static void main(String[] args) throws IOException {

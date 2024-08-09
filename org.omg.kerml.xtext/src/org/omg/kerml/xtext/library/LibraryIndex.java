@@ -23,9 +23,20 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * A pre-calulated set of data that lists all {@link Namespace Namespaces} in a
+ * library model and all of their contents by memberName, memberShortName,
+ * elementName, elementShortName. The index is used by the
+ * {@link LibraryNamespaces} during name resolution to determine if a reference
+ * is resolvable from a Namespace or not.
+ */
 public class LibraryIndex {
 	
 	public static final String FILE_NAME = ".index.json";
+	
+	/**
+	 * Library index containing no entries. Use this object when a library index is not available.
+	 */
 	public static final LibraryIndex EMPTY_INDEX = new LibraryIndex();
 	
 	private static final Type JAVA_TYPE = new TypeToken<LibraryIndex>() {}.getType();

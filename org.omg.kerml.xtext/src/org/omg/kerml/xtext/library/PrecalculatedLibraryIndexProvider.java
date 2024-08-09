@@ -29,16 +29,33 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
+/**
+ * Default behavior for finding library indexes. The logic assumes that only the
+ * standard library exists (sysml.library) and the library resources are located
+ * under a folder (or sub-folders of) sysml.library.
+ */
 public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider {
 	
 	private static Logger log = Logger.getLogger(PrecalculatedLibraryIndexProvider.class);
 	private static final String LIBRARY_FOLDER = "sysml.library";
-	
+
+	//Using a singleton to prevent multiple library indexes in a multi-injector environment
+	//Accessing this singleton should be still done through dependency injection and not directly
 	private static PrecalculatedLibraryIndexProvider INSTANCE = null;
 	
 	private LibraryIndex index = null;
 	private boolean disabled = false;
 	
+	/**
+	 * Returns the library index for a resource. If the resource is a library
+	 * resource (located in the sysml.library or any of its sub-folders) the index
+	 * is read from the root folder on the first call and then it is cached. If the index is missing an
+	 * {@link LibraryIndex#EMPTY_INDEX empty index} is returned, empty indexes are also cached. If
+	 * {@link PrecalculatedLibraryIndexProvider#disabled disabled} is true an
+	 * empty index is returned (does not effect the cache) otherwise the cached
+	 * index is returned.
+	 */
+	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
 		if (disabled) {

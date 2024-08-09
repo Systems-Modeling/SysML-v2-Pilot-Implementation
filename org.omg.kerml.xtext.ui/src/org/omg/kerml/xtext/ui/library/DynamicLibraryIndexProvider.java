@@ -27,19 +27,25 @@ import java.util.WeakHashMap;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ui.resource.ProjectByResourceProvider;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.library.LibraryIndex;
+import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider;
 
+/**
+ * Eclipse specific implementation of {@link ILibraryIndexProvider}. The logic
+ * searches for library indexes in the {@link Resource Resource's} enclosing project root.
+ */
 public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 	
 	private static Logger log = Logger.getLogger(DynamicLibraryIndexProvider.class);
+	
+	//Using a singleton to prevent multiple library indexes in a multi-injector environment
+	//Accessing this singleton should be still done through dependency injection and not directly
 	private static DynamicLibraryIndexProvider INSTANCE;
+	
 	private final Map<IProject, LibraryIndex> cache = new WeakHashMap<>();
 	private boolean disabled = false;
 	
@@ -48,7 +54,16 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 	public DynamicLibraryIndexProvider(ProjectByResourceProvider provider) {
 		this.provider = provider;
 	}
-
+	
+	/**
+	 * Returns the library index for a resource. The library index file is expected
+	 * to be located in the Resource's enclosing project, from where it is read on
+	 * the first call and then it is cached. If the index is missing an
+	 * {@link LibraryIndex#EMPTY_INDEX empty index} is returned, empty indexes are
+	 * also cached. If {@link PrecalculatedLibraryIndexProvider#disabled disabled}
+	 * is true an empty index is returned (does not effect the cache) otherwise the
+	 * cached index is returned.
+	 */
 	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
@@ -81,19 +96,6 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 			return indexFromJson;
 		});
 	}
-	
-	
-	//TODO try to use the built-in utility
-	private IProject findProjectForResource(IWorkspace workspace, Resource resource) {
-		if (resource.getURI().isPlatformResource()) {
-			String projectName = URI.decode(resource.getURI().segment(1));
-			IProject project = workspace.getRoot().getProject(projectName);
-			if (project.exists() && project.isAccessible()) {
-				return project;
-			} 
-		}
-		return null;
-	}
 
 	@Override
 	public void setIndexDisabled(boolean doNotUse) {
@@ -112,11 +114,12 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 		return INSTANCE;
 	}
 
-
+	/**
+	 * Calculates the enclosing project for the given Resource and removes its index from the cache
+	 */
 	@Override
 	public void dropIndexOf(Resource resource) {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		IProject project = findProjectForResource(workspace, resource);
+		IProject project = provider.getProjectContext(resource);
 		if (project != null) {
 			cache.remove(project);
 		}

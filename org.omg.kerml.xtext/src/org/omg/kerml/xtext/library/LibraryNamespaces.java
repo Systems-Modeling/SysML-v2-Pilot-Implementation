@@ -23,10 +23,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.omg.kerml.xtext.scoping.KerMLScope;
 import org.omg.sysml.lang.sysml.Namespace;
 
 import com.google.inject.Inject;
 
+/**
+ * Core logic for determining if a reference is resolvable from a {@link Namespace}.
+ * Used by the {@link KerMLScope} to skip unnecessary searches in Namespaces.
+ */
 public class LibraryNamespaces {
 	
 	@Inject

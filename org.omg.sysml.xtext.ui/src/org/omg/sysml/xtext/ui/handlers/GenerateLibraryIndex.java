@@ -55,6 +55,11 @@ import org.omg.sysml.util.ElementUtil;
 import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 
+/**
+ * Utility for {@link LibraryIndex library index} generation. Library indexes
+ * are stored in .json format in the project root. The default name of the index file is {@value LibraryIndex#FILE_NAME}.
+ * While running this handler performs a full clean build on the selected project blocking user input in the process.
+ */
 public class GenerateLibraryIndex extends AbstractHandler {
 	
 	private static final Set<String> FILE_EXTENSIONS = Set.of("kerml", "sysml");

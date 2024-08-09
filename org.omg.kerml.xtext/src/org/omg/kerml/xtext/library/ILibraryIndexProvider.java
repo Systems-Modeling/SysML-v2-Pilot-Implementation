@@ -21,9 +21,28 @@ package org.omg.kerml.xtext.library;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
+/**
+ * Common interface for providing pre-calculated library indexes for library resources.
+ * The indexes are used by the
+ * {@link org.omg.kerml.xtext.library.LibraryNamespaces LibraryNamespaces}
+ * during name resolution.
+ */
 public interface ILibraryIndexProvider {
+	/**
+	 * Use this method to return a library index for a given resource. Return an
+	 * {@link org.omg.kerml.xtext.library.LibraryIndex#EMPTY_INDEX empty index} in case there is no
+	 * index for the given resource. Never return null.
+	 */
 	 public LibraryIndex getIndexFor(Resource resource);
+	 /**
+	  * Use this method to disable the library index.
+	  */
 	 public void setIndexDisabled(boolean doNotUse);
+	 
 	 public boolean isIndexDisabled();
+	 
+	 /**
+	  * Use this method to dispose the library index for a given method. 
+	  */
 	 public void dropIndexOf(Resource resource);
 }

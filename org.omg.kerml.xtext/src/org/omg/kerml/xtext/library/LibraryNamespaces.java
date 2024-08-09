@@ -22,6 +22,8 @@ package org.omg.kerml.xtext.library;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.omg.kerml.xtext.scoping.KerMLScope;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -33,6 +35,12 @@ import com.google.inject.Inject;
  * Used by the {@link KerMLScope} to skip unnecessary searches in Namespaces.
  */
 public class LibraryNamespaces {
+	
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
+	
+	@Inject
+	private IQualifiedNameConverter qualifiedNameConverter;
 	
 	@Inject
 	private ILibraryIndexProvider libraryIndexProvider;
@@ -47,9 +55,9 @@ public class LibraryNamespaces {
 		
 		LibraryIndex index = libraryIndexProvider.getIndexFor(resourceOfNamespace);
 		
-		var nsQn = namespace.getQualifiedName();
+		var nsQn = qualifiedNameProvider.getFullyQualifiedName(namespace);
 		
-		if (nsQn == null || nsQn.isEmpty() || !index.containsNamespace(nsQn)) {
+		if (nsQn == null || nsQn.isEmpty() || !index.containsNamespace(qualifiedNameConverter.toString(nsQn))) {
 			return true;
 		}
 		
@@ -58,20 +66,18 @@ public class LibraryNamespaces {
 		return namespaceContainsQn(index, nsQn, member);
 	}	
 
-	private boolean namespaceContainsQn(LibraryIndex index, String ns, QualifiedName qn)
+	private boolean namespaceContainsQn(LibraryIndex index, QualifiedName ns, QualifiedName qn)
 	{
 		List<String> segments = qn.getSegments();
 		
 		for (String segment: segments) {
-			if (!index.containsMember(ns, segment)) {
+			if (!index.containsMember(qualifiedNameConverter.toString(ns), segment)) {
 				return false;
 			}
 			
-			//TODO use Qualified name interfaces instead, this may require change in the json generator from :: to .
-			ns += "::" + segment;
+			ns = ns.append(segment);
 		}
 		
 		return !segments.isEmpty();
 	}
-	
 }

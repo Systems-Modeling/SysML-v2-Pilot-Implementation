@@ -45,7 +45,7 @@ public class LibraryNamespaces {
 	@Inject
 	private ILibraryIndexProvider libraryIndexProvider;
 	
-	public boolean canContainMember(Namespace namespace, QualifiedName prefix, QualifiedName member) {
+	public boolean canContainMember(Namespace namespace, QualifiedName prefix, QualifiedName memberQn) {
 		
 		if (libraryIndexProvider.isIndexDisabled()) {
 			return true;
@@ -55,29 +55,21 @@ public class LibraryNamespaces {
 		
 		LibraryIndex index = libraryIndexProvider.getIndexFor(resourceOfNamespace);
 		
-		var nsQn = qualifiedNameProvider.getFullyQualifiedName(namespace);
+		var namespaceFQN = qualifiedNameProvider.getFullyQualifiedName(namespace);
 		
-		if (nsQn == null || nsQn.isEmpty() || !index.containsNamespace(qualifiedNameConverter.toString(nsQn))) {
+		if (namespaceFQN == null || namespaceFQN.isEmpty() || !index.containsNamespace(qualifiedNameConverter.toString(namespaceFQN))) {
 			return true;
 		}
 		
-		member = member.startsWith(prefix) ? member.skipFirst(prefix.getSegmentCount()) : member;
+		memberQn = memberQn.startsWith(prefix) ? memberQn.skipFirst(prefix.getSegmentCount()) : memberQn;
 		
-		return namespaceContainsQn(index, nsQn, member);
+		return canNamespaceContainQn(index, namespaceFQN, memberQn);
 	}	
-
-	private boolean namespaceContainsQn(LibraryIndex index, QualifiedName ns, QualifiedName qn)
+	
+	private boolean canNamespaceContainQn(LibraryIndex index, QualifiedName nestingNamespace, QualifiedName member)
 	{
-		List<String> segments = qn.getSegments();
+		List<String> segments = member.getSegments();
 		
-		for (String segment: segments) {
-			if (!index.containsMember(qualifiedNameConverter.toString(ns), segment)) {
-				return false;
-			}
-			
-			ns = ns.append(segment);
-		}
-		
-		return !segments.isEmpty();
+		return segments.isEmpty() || index.containsMember(qualifiedNameConverter.toString(nestingNamespace), segments.get(0));
 	}
 }

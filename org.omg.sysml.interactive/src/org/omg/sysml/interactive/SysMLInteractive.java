@@ -52,7 +52,7 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider;
+import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
@@ -113,7 +113,7 @@ public class SysMLInteractive extends SysMLUtil {
 	private IResourceValidator validator;
 	
 	@Inject
-	private PrecalculatedLibraryIndexProvider libraryIndexCache;
+	private ILibraryIndexProvider libraryIndexCache;
 	
 	@Inject
 	private SysMLInteractive() {
@@ -146,7 +146,7 @@ public class SysMLInteractive extends SysMLUtil {
 		return this.resource;
 	}
 	
-	public PrecalculatedLibraryIndexProvider getLibraryIndexCache() {
+	public ILibraryIndexProvider getLibraryIndexCache() {
 		return libraryIndexCache;
 	}
 	

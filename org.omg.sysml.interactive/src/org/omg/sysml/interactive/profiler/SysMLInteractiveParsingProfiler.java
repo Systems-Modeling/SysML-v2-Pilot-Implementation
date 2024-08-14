@@ -25,9 +25,11 @@ package org.omg.sysml.interactive.profiler;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 
@@ -51,6 +53,14 @@ public class SysMLInteractiveParsingProfiler {
 		initWatch.stop();
 		System.out.println("Libraries loaded in " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 		System.out.println();
+		
+		
+		Set<Resource> libraryResources = instance.getLibraryResources();
+		if (!libraryResources.isEmpty()) {
+			//enforce index loading
+			//this is needed so the index load time doesn't add to the first model's load time
+			instance.getLibraryIndexCache().getIndexFor(libraryResources.iterator().next());
+		}
 		
 		for (int i = 1; i < args.length; i++) {
 			System.out.println("Loading input " + args[i]);

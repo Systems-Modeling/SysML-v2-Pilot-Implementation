@@ -71,6 +71,7 @@ public class ReferenceSubsettingImpl extends SubsettingImpl implements Reference
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getReferencedFeature() {
 		if (referencedFeature != null && referencedFeature.eIsProxy()) {
 			InternalEObject oldReferencedFeature = (InternalEObject)referencedFeature;

@@ -99,6 +99,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getSubsettedFeature() {
 		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
 			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
@@ -145,6 +146,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Feature getSubsettingFeature() {
 		if (subsettingFeature != null && subsettingFeature.eIsProxy()) {
 			InternalEObject oldSubsettingFeature = (InternalEObject)subsettingFeature;

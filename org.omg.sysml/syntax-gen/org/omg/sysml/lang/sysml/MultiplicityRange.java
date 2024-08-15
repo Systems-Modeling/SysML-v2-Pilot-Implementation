@@ -123,7 +123,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The <code>Expression</code> whose result is the upper bound of the <code>MultiplicityRange</code>.
+	 * <p>The <code>Expression</code> whose result is the upper bound of the <code>MultiplicityRange</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper Bound</em>' reference.
 	 * @see #setUpperBound(Expression)

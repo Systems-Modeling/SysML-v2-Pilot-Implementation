@@ -22,7 +22,7 @@ package test{
 		feature a2{}
 	}
 	feature inner{
-		import OuterPackage::*;
+		public import OuterPackage::*;
 	}
 	feature inner1 subsets inner {
 		//XPECT warnings --> "Duplicate of inherited member name" at "B"

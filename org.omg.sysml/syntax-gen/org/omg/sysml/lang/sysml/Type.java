@@ -55,7 +55,7 @@ import org.eclipse.emf.common.util.EList;
  *     let direction: FeatureDirectionKind = directionOf(f) in
  *     direction = FeatureDirectionKind::_'in' or
  *     direction = FeatureDirectionKind::inout)
- * inheritedMembership = inheritedMemberships(Set{})
+ * inheritedMembership = inheritedMemberships(Set{}, false)
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
@@ -90,7 +90,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -108,12 +107,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getUnioningType <em>Unioning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedIntersecting <em>Owned Intersecting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getIntersectingType <em>Intersecting Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedUnioning <em>Owned Unioning</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedUnioning <em>Owned Unioning</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -324,7 +324,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>in<code> or <code>inout<code>.</code></code></code></code></p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>in</code> or <code>inout</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Input</em>' reference list.
@@ -353,7 +353,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>out<code> or <code>inout<code>.</code></code></code></code></p>
+	 * <p>All <code>features</code> related to this <code>Type</code> by <code>FeatureMemberships</code> that have <code>direction</code> <code>out</code> or <code>inout</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Output</em>' reference list.
@@ -665,9 +665,6 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>An <code>ownedMember</code> of this <code>Type</code> that is a <code>Multiplicity</code>, which constraints the cardinality of the <code>Type</code>. If there is no such <code>ownedMember</code>, then the cardinality of this <code>Type</code> is constrained by all the <code>Multiplicity</code> constraints applicable to any direct supertypes.</p>
-	 * 
-	 * <p>&nbsp;</p>
-	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multiplicity</em>' reference.
 	 * @see #setMultiplicity(Multiplicity)
@@ -859,14 +856,14 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set.</p>
+	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set. If <code>excludeImplied = true</code>, then also exclude any <code>Types</code> inherited via <code>Specializations</code> with <code>isImplied = true</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @model excludedMany="true" excludedOrdered="false"
+	 * @model excludedMany="true" excludedOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Membership> inheritedMemberships(EList<Type> excluded);
+	EList<Membership> inheritedMemberships(EList<Type> excluded, boolean excludeImplied);
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

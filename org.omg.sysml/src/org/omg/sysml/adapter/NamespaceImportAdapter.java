@@ -44,8 +44,9 @@ public class NamespaceImportAdapter extends ImportAdapter {
 	
 	@Override
 	public void postProcess() {
-		NamespaceImport obj = getTarget();
+		super.postProcess();
 		
+		NamespaceImport obj = getTarget();		
 		// If importedNamespace is empty, then set it to the first ownedRelatedElement, if this is a namespace
 		// (filling in the implicit import for a filter package). Otherwise, set it to the importOwningNamspace.
 		Object importedNamespace = obj.eGet(SysMLPackage.Literals.NAMESPACE_IMPORT__IMPORTED_NAMESPACE, false);

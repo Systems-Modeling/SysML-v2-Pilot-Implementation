@@ -18,12 +18,12 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	classifier A{
-		import B::*;
+		public import B::*;
 		classifier a{}
 	}
 	
 	classifier B{
-		import A::*;
+		public import A::*;
 		classifier b{}
 	}
 }

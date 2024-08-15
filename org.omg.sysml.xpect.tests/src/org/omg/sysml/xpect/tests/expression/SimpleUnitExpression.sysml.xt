@@ -56,7 +56,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package P {
-    import SI::*;
+    public import SI::*;
     part def Vehicle {
         attribute mass:MassValue = 1200 [kg];
     }

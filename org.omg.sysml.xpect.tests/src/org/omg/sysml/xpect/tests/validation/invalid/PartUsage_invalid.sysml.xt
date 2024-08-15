@@ -35,7 +35,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 END_SETUP 
 */
 package pkg {
-	import ScalarValues::*;
+	public import ScalarValues::*;
 	part def A {
 		// XPECT errors --> "A part must be typed by item definitions." at "part p1: Real;"
 		part p1: Real;

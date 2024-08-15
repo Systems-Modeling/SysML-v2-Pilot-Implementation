@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package test{
-	import OuterPackage::*;
+	public import OuterPackage::*;
 	classifier A{
 		classifier a2{}
 	}

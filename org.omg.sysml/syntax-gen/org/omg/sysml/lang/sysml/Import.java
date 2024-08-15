@@ -32,6 +32,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>An <code>Import</code> is an <code>Relationship</code> between its <code>importOwningNamespace</code> and either a <code>Membership</code> (for a <code>MembershipImport</code>) or another <code>Namespace</code> (for a <code>NamespaceImport</code>), which determines a set of <code>Memberships</code> that become <code>importedMemberships</code> of the <code>importOwningNamespace</code>. If <code>isImportAll = false</code> (the default), then only public <code>Memberships</code> are considered &quot;visible&quot;. If <code>isImportAll = true</code>, then all <code>Memberships</code> are considered &quot;visible&quot;, regardless of their declared <code>visibility</code>. If <code>isRecursive = true</code>, then visible <code>Memberships</code> are also recursively imported from owned sub-<code>Namespaces</code>.</p>
  * 
  * 
+ * importOwningNamespace.owningNamespace = null implies 
+ *     visibility = VisibilityKind::private
  * <!-- end-model-doc -->
  *
  * <p>
@@ -52,7 +54,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Import extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-	 * The default value is <code>"public"</code>.
+	 * The default value is <code>"private"</code>.
 	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.VisibilityKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -61,14 +63,14 @@ public interface Import extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The visibility level of the imported <code>members</code> from this Import relative to the <code>importOwningNamespace</code>.</p>
+	 * <p>The visibility level of the imported <code>members</code> from this Import relative to the <code>importOwningNamespace</code>. The default is <code>private</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.VisibilityKind
 	 * @see #setVisibility(VisibilityKind)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_Visibility()
-	 * @model default="public" required="true" ordered="false"
+	 * @model default="private" required="true" ordered="false"
 	 * @generated
 	 */
 	VisibilityKind getVisibility();

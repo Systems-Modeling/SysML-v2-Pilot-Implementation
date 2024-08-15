@@ -46,7 +46,12 @@ helper run() {
 }
 
 helper mapModel(syntax : Package, model: Model) {
-	syntax.map Namespace(model);
+	var kermlSyntax := syntax.packagedElement[Package]![name = "KerML"];
+	assert fatal (kermlSyntax <> null) with log ("KerML abstract Syntax not found.");
+	var sysmlSyntax := syntax.packagedElement[Package]![name = "SysML"];
+	assert fatal (kermlSyntax <> null) with log ("SysML abstract Syntax not found.");
+	kermlSyntax.map Namespace(model);
+	sysmlSyntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 }
 

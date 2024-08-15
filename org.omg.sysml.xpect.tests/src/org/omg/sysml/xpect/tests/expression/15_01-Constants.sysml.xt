@@ -66,9 +66,9 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package '15_01-Constants' {
-	import MeasurementReferences::*;
-    import SI::*;
-    import RealFunctions::*;
+	public import MeasurementReferences::*;
+    public import SI::*;
+    public import RealFunctions::*;
 
     package 'Mathematical Constants' {
      	

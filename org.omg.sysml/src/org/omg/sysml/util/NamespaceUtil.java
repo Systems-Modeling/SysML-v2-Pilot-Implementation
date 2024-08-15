@@ -112,8 +112,8 @@ public class NamespaceUtil {
 		return getNamespaceAdapter(namespace).getImportedMembership(excludedNamespaces, excludedTypes, includeAll);
 	}
 
-	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
+	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
+		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
 	}
 	
 	// Import

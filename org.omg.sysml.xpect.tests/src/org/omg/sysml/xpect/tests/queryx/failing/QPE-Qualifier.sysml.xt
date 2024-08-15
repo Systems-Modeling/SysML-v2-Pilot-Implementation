@@ -28,8 +28,8 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package P {
-    import ScalarValues::*;
-    import Vehicle::*;
+    public import ScalarValues::*;
+    public import Vehicle::*;
 
     value v1_i: Integer[0..*] = .*/.*[Integer];
 

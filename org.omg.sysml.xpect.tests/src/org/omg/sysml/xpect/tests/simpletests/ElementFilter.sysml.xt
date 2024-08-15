@@ -71,20 +71,20 @@ package ElementFilterTest {
 	}
 	
 	package 'Safety Features' {
-		import vehicle1_c1::**;
+		public import vehicle1_c1::**;
 		filter @Safety;
 	}
 	
 	package 'Security Features' {
-		import vehicle1_c1::interior::*[@Security];
+		public import vehicle1_c1::interior::*[@Security];
 	}
 	
 	package 'Safety & Security Features' {
-		import vehicle1_c1::**;
+		public import vehicle1_c1::**;
 		filter @Safety or @Security;
 	}
 	
 	package 'Mandatory Features' {
-		import vehicle1_c1::**[@Safety and PartInfo::isMandatory];
+		public import vehicle1_c1::**[@Safety and PartInfo::isMandatory];
 	}
 }

@@ -244,12 +244,22 @@ public abstract class VStructure extends VDefault {
         if (e instanceof Feature) {
             Feature f = (Feature) e;
             boolean added = appendFeatureType(sb, ": ", f);
+            if (showsMultiplicity(true)) {
+                String str = getMultiplicityString(e);
+                if (str != null) {
+                    sb.append('[');
+                    sb.append(str);
+                    sb.append(']');
+                    added = true;
+                }
+            }
             sb.append(' ');
             added = appendSubsettings(sb, f) || added;
             if (!hasRefSubsettingWithoutDeclaredName(f)) {
                 sb.append(' ');
                 added = appendReferenceSubsetting(sb, f) || added;
             }
+
             sb.insert(0, name);
             /*
               if (f instanceof Usage) {

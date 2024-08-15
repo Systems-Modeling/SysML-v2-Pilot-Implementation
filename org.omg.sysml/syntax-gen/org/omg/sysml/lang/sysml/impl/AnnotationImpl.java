@@ -123,6 +123,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Element getAnnotatedElement() {
 		if (annotatedElement != null && annotatedElement.eIsProxy()) {
 			InternalEObject oldAnnotatedElement = (InternalEObject)annotatedElement;
@@ -222,6 +223,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AnnotatingElement getAnnotatingElement() {
 		if (annotatingElement != null && annotatingElement.eIsProxy()) {
 			InternalEObject oldAnnotatingElement = (InternalEObject)annotatingElement;

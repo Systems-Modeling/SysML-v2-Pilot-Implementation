@@ -45,12 +45,11 @@ class KerMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		return createScope(scope, context, filter, rootFilter, type, kerMLScopeProvider)
 	}
 	
+	def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+        return KerMLGlobalScope.createScope(outer, resource, filter, rootFilter, type, kerMLScopeProvider)
+    }
+	
 	protected def Predicate<IEObjectDescription> getRootFilter() {
 		Predicates.alwaysTrue
-	}
-	
-	protected def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider)
-	{
-		return new KerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 }

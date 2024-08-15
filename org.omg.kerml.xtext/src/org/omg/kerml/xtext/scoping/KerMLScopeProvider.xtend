@@ -35,20 +35,19 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.scoping.IScope
-import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.sysml.lang.sysml.FeatureTyping
-import org.eclipse.emf.ecore.EClass
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -157,16 +156,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				else
 					parent.scopeFor(reference, element, true, false, false, skip)
 		}	
-		
-		var membershipImport = false//element !== null && SysMLPackage.eINSTANCE.namespaceImport.isSuperTypeOf(element.eClass)
-		
-		
-		createScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip, membershipImport)
+
+		createKerMLScope(outerscope, pack, reference, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
-	
-	protected def createScope(IScope outerscope, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip, boolean membershipImport)
-	{
-		new KerMLScope(outerscope, pack, referenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
-	}
-	
+
+    protected def KerMLScope createKerMLScope(IScope outerscope, Namespace pack, EReference reference, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+        new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
+    }
 }

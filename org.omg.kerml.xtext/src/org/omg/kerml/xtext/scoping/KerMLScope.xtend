@@ -140,7 +140,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * Whether a shadowing name has been found during the current resolution search.
 	 */
 	protected boolean isShadowing = false;
-	
 
 	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		super(parent, false)

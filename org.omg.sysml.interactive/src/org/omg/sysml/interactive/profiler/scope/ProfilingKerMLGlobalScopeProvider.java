@@ -32,8 +32,8 @@ import com.google.common.base.Predicate;
 public class ProfilingKerMLGlobalScopeProvider extends KerMLGlobalScopeProvider
 {
 	@Override
-	protected KerMLGlobalScope createScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
+	public KerMLGlobalScope createScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
 			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
-		 return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
+		return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
 	}
 }

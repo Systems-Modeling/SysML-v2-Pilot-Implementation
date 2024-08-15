@@ -28,7 +28,6 @@ import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLGlobalScopeProvide
 import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLScopeProvider;
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider;
 import org.omg.sysml.xtext.SysMLRuntimeModule;
-import org.omg.sysml.xtext.scoping.SysMLScopeProvider;
 
 public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	

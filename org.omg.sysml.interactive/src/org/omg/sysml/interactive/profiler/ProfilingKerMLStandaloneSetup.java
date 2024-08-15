@@ -28,7 +28,6 @@ public class ProfilingKerMLStandaloneSetup extends KerMLStandaloneSetup {
 	
 	@Override
 	public Injector createInjector() {
-
 		return Guice.createInjector(new ProfilingKerMLRuntimeModule());
 	}
 }

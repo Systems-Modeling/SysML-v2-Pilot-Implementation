@@ -34,28 +34,55 @@ package ProductSelection_N_ary {
 	// Equivalent association definition showing library model specialization 
 	// and implied cross subsetting.
 	assoc ProductSelection3 specializes Links::Link {
-		end cart: ShoppingCart[1] crosses cart::inCart::product_account.inCart {
-			member feature inCart: ShoppingCart[0..1] featured by product_account {
-				member feature product_account : Product_Account featured by ProductSelection3 {
-					import inCart;
-				}
+		end cart: ShoppingCart[1] crosses cart::product_account.inCart {
+			member feature product_account : inCart::Product_Account featured by ProductSelection3 {
+				import inCart;
+			}
+			member feature inCart: ShoppingCart[0..1] featured by Product_Account {
 				classifier Product_Account multiplies Product, Account;
 			}
 		}
-		end selectedProduct: Product[1] crosses selectedProduct::selectedProducts::cart_account.selectedProducts {
+		end selectedProduct: Product[1] crosses selectedProduct::cart_account.selectedProducts {
+			member feature cart_account : selectedProducts::Cart_Account featured by ProductSelection3 {
+				import selectedProducts;
+			}
 			member feature selectedProducts: Product[0..*] featured by Cart_Account {
-				member feature cart_account : Cart_Account featured by ProductSelection3 {
-					import selectedProducts;
-				}
 				classifier Cart_Account multiplies ShoppingCart, Account;				
 			}
 		}
-		end feature account : Account[1] crosses account::withAccount::cart_product.withAccount {
+		end feature account : Account[1] crosses account::cart_product.withAccount {
+			member feature cart_product : withAccount::Cart_Product featured by ProductSelection3 {
+				import withAccount;
+			}
 			member feature withAccount[1..1] : Account featured by Cart_Product {
-				member feature cart_product : Cart_Product featured by ProductSelection3 {
-					import withAccount;
-				}
 				classifier Cart_Product multiplies ShoppingCart, Product;
+			}
+		}
+	}
+	
+	assoc ProductSelection4 specializes Links::Link {
+		end cart: ShoppingCart[1] crosses cart::product_account.inCart {
+			member feature product_account : inCart::Product_Account featured by ProductSelection4 {
+				import inCart;
+			}
+			member feature inCart: ShoppingCart[0..1] featured by Product_Account {
+				member feature Product_Account : Account featured by Product;
+			}
+		}
+		end selectedProduct: Product[1] crosses selectedProduct::cart_account.selectedProducts {
+			member feature cart_account : selectedProducts::Cart_Account featured by ProductSelection4 {
+				import selectedProducts;
+			}
+			member feature selectedProducts: Product[0..*] featured by Cart_Account {
+				member feature Cart_Account : Account featured by ShoppingCart;				
+			}
+		}
+		end feature account : Account[1] crosses account::cart_product.withAccount {
+			member feature cart_product : withAccount::Cart_Product featured by ProductSelection4 {
+				import withAccount;
+			}
+			member feature withAccount[1..1] : Account featured by Cart_Product {
+				member feature Cart_Product : Product featured by ShoppingCart;
 			}
 		}
 	}

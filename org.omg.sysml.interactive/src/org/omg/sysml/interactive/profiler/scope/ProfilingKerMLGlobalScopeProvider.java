@@ -26,14 +26,19 @@ import org.eclipse.xtext.scoping.IScope;
 import org.omg.kerml.xtext.scoping.KerMLGlobalScope;
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider;
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
+import org.omg.sysml.interactive.profiler.Profiler;
 
 import com.google.common.base.Predicate;
+import com.google.inject.Inject;
 
 public class ProfilingKerMLGlobalScopeProvider extends KerMLGlobalScopeProvider
 {
+	@Inject
+	private Profiler timeProfiler;
+	
 	@Override
 	public KerMLGlobalScope createScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
 			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
-		return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
+		return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider, timeProfiler);
 	}
 }

@@ -32,11 +32,6 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
-import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
-import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
-import org.omg.sysml.interactive.profiler.results.LinkingResult;
-import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLGlobalScope;
-import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLScope;
 
 import com.google.common.base.Stopwatch;
 
@@ -47,19 +42,35 @@ import com.google.common.base.Stopwatch;
 public class SysMLInteractiveParsingProfiler {
 
 	public static void main(String[] args) throws Exception {
-		Stopwatch initWatch = Stopwatch.createStarted();
-		SysMLInteractive instance = SysMLInteractive.getProfilingInstance();
 		if (args.length <= 1) {
 			System.out.println("Usage: ");
-			System.out.println("SysMLInteractiveParsingProfiler <LIBRARY FOLDER> <FILENAME>");
+			System.out.println("SysMLInteractiveParsingProfiler -instrumentation <LIBRARY FOLDER> <FILENAME>");
 		}
-		instance.loadLibrary(args[0]);
+		
+		int argIdx = 0;
+		boolean instrumentation = false;
+		
+		if ("-instrumentation".equals(args[0])) {
+			argIdx++;
+			instrumentation = true;
+		}
+		
+		Stopwatch initWatch = Stopwatch.createStarted();
+		
+		SysMLInteractive instance = instrumentation ? SysMLInteractiveProfiler.getInstance() : SysMLInteractive.getInstance();
+		
+		instance.loadLibrary(args[argIdx++]);
 		
 		initWatch.stop();
 		System.out.println("Libraries loaded in " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 		System.out.println();
 		
-		for (int i = 1; i < args.length; i++) {
+		for (int i = argIdx; i < args.length; i++) {
+			
+			if (instrumentation) {
+				((SysMLInteractiveProfiler)instance).getProfiler().reset();
+			}
+			
 			System.out.println();
 			System.out.println("Loading input " + args[i]);
 			Stopwatch watch = Stopwatch.createStarted();
@@ -74,27 +85,28 @@ public class SysMLInteractiveParsingProfiler {
 			System.out.println("Model loaded in " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 			System.out.println();
 			
-			System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLLinkingService.callCount + " calls)");
-			System.out.println("Total time in local scopes: " + ProfilingKerMLScope.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLScope.callCount + " calls)");
-			System.out.println("Total time in global scope: " + ProfilingKerMLGlobalScope.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLGlobalScope.callCount + " calls)");
-			System.out.println("Total time in library provider: " + ProfilingKerMLLibraryProvider.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLLibraryProvider.callCount + " calls)");
 			
-			var outputfile = new File(resourceName + ".inst.txt");
-			outputfile.delete();
-			outputfile = null;
-			
-			outputfile = new File(resourceName + ".inst.txt");
-			outputfile.createNewFile();
-			
-			var out = new PrintStream(outputfile);
-			LinkingResult.RESULTS.stream().forEach(s -> s.print(0, out));
-			out.close();
-			
-			LinkingResult.RESULTS.clear();
-			ProfilingKerMLLinkingService.WATCH.reset();
-			ProfilingKerMLScope.WATCH.reset();
-			ProfilingKerMLGlobalScope.WATCH.reset();
-			ProfilingKerMLLibraryProvider.WATCH.reset();
+			if (instrumentation) {
+				Profiler profiler = ((SysMLInteractiveProfiler)instance).getProfiler();
+				profiler.printOperationTotalTimes(System.out);
+				
+				var outputfile = new File("target/instrumentation/" + resourceName + ".inst.txt");
+				
+				if (outputfile.exists()) {
+					outputfile.delete();
+				}
+				
+				var parentDir = outputfile.getParentFile();
+				if (!parentDir.exists()) {
+					parentDir.mkdirs();
+				}
+				
+				outputfile.createNewFile();
+				
+				var out = new PrintStream(outputfile);
+				profiler.printInstrumentationData(out);
+				out.close();
+			}
 		}
 	}
 

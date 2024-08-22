@@ -21,71 +21,77 @@ package org.omg.sysml.interactive.profiler.scope;
 
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.omg.kerml.xtext.scoping.KerMLScope;
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
-import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
-import org.omg.sysml.interactive.profiler.results.LinkStep;
-import org.omg.sysml.interactive.profiler.results.ScopeResult;
+import org.omg.sysml.interactive.profiler.Profiler;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
 
-import com.google.common.base.Stopwatch;
-
 public class ProfilingKerMLScope extends KerMLScope
 {
-	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
-	public static long callCount = 0;
+	private static final String GET_SINGLE_ELEMENT = "KerMLScope#getSingleElement";
+	private Profiler profiler;
 
 	public ProfilingKerMLScope(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider,
-			boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+			boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip, Profiler timeProfiler) {
 		super(parent, ns, referenceType, scopeProvider, isInsideScope, isFirstScope, isRedefinition, element, skip);
+		this.profiler = timeProfiler;
 	}
 
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
-		callCount++;
 		
-		if (!WATCH.isRunning()) WATCH.start();
+		String nsName = ns.getOwningNamespace() == null ? "ROOT" : ns.getQualifiedName();
+		profiler.operationStarted(this, GET_SINGLE_ELEMENT, "ns = " + nsName, "targetQn = " + name.toString(), "refType = " + referenceType.getName());
 		
-		WATCH.stop();
-		var localWatch = Stopwatch.createUnstarted();
-		
-		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		var scopeResult = new ScopeResult(name, ns.getDeclaredName(), referenceType.getName(), oldValue);
-		ProfilingKerMLLinkingService.currentStep = scopeResult;
-		WATCH.start();
-		
-		localWatch.start();
 		IEObjectDescription singleElement = super.getSingleElement(name);
-		localWatch.stop();
 		
-		if (!WATCH.isRunning()) WATCH.start();
-		
-		//Stop time once we are back at the first scope call called by the first linking call
-		if (oldValue.isFirst()) {
-			WATCH.stop();
-		}
-		
-		scopeResult.setResult(singleElement);
-		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
-		ProfilingKerMLLinkingService.currentStep = oldValue;
+		profiler.operationFinished(this, GET_SINGLE_ELEMENT, createReturnValue(singleElement));
 		
 		return singleElement;
 	}
 	
+	public static String createReturnValue(IEObjectDescription description) {
+		
+		if (description == null) {
+			return "NULL";
+		}
+		
+		String qualifiedName = description.getQualifiedName().toString();
+		URI uri = description.getEObjectOrProxy().eResource().getURI();
+		String resource = uri.lastSegment();
+		String lineNumber = "NaN";
+		
+		ICompositeNode node = NodeModelUtils.getNode(description.getEObjectOrProxy());
+		if (node != null) {
+			lineNumber = Integer.toString(node.getStartLine());
+		}
+		
+		return qualifiedName + " from " + resource + "#" + lineNumber;
+	}
+	
 	@Override
-	protected boolean owned(Namespace ns, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited,
+	protected boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited,
 			Set<Element> redefined, boolean checkIfAdded, boolean isInsideScope, boolean isInheriting,
 			boolean includeImplicitGen, boolean includeAll) {
 		
-		ProfilingKerMLLinkingService.currentStep.addNamespace(ns, qn);
+		String nsQn = ns.getQualifiedName();
+		QualifiedName namespace = qn.append(nsQn == null ? "" : nsQn);
 		
-		return super.owned(ns, qn, ownedvisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting,
+		profiler.operationStarted(this, "KerMLScope#resolve", "ns = " + namespace.toString(), "targetQn = " + targetqn.toString());
+		
+		 var result = super.resolve(ns, qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting,
 				includeImplicitGen, includeAll);
+		 
+		 profiler.operationFinished(this, "KerMLScope#resolve", Boolean.toString(result));
+		 
+		 return result;
 	}
-	
 }

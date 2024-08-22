@@ -26,52 +26,30 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
 import org.eclipse.xtext.nodemodel.INode;
-import org.omg.sysml.interactive.profiler.results.LinkStep;
-import org.omg.sysml.interactive.profiler.results.LinkingResult;
+import org.omg.sysml.interactive.profiler.Profiler;
 
-import com.google.common.base.Stopwatch;
+import com.google.inject.Inject;
 
 public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 	
-	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
-	public static LinkStep currentStep = null;
-	public static int callCount = 0;
+	private static final String OPERATION_NAME = "LinkingService#getLinkedObjects";
+	
+	@Inject
+	Profiler profiler;
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
-		callCount++;
 		
-		if (!WATCH.isRunning()) WATCH.start();
+		int startLine = node.getStartLine();
+		String crossRef = getCrossRefNodeAsString(node);
 		
-		WATCH.stop();
-		var localWatch = Stopwatch.createUnstarted();
+		profiler.operationStarted(this, OPERATION_NAME, "crossRef = " + crossRef,"ref = " + ref.getName(), "line = " + startLine);
 		
-		var lastLinkingResult = currentStep;
-		var name = getCrossRefNodeAsString(node);
-		var currentLocal = new LinkingResult(name, ref,  node.getStartLine(), context.eResource().getURI().lastSegment(), lastLinkingResult);
-		if (currentStep == null) currentLocal.setFirst();
-		currentStep = currentLocal;
-		WATCH.start();
-		
-		
-		localWatch.start();
 		var linkedObjects = super.getLinkedObjects(context, ref, node);
-		localWatch.stop();
 		
-		if (!WATCH.isRunning()) WATCH.start();
+		profiler.operationFinished(this, OPERATION_NAME, "");
 		
-		currentLocal.setResult(linkedObjects);
-		currentLocal.setDuration(localWatch.elapsed());
-		
-		//Stop time once we are back at the start of the original linking call
-		if (lastLinkingResult == null) {
-			LinkingResult.RESULTS.add(currentStep);
-			WATCH.stop();
-		}
 			
-		
-		currentStep = lastLinkingResult;
-		
 		return linkedObjects;
 	}
 }

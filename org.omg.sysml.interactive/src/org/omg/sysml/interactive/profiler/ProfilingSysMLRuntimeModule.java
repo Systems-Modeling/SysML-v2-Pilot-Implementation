@@ -22,11 +22,9 @@ package org.omg.sysml.interactive.profiler;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLGlobalScopeProvider;
 import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLScopeProvider;
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider;
 import org.omg.sysml.xtext.SysMLRuntimeModule;
 
 public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
@@ -37,8 +35,7 @@ public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	}
 	
 	@Override
-	public Class<? extends IScopeProvider> bindIScopeProvider()
-	{
+	public Class<? extends IScopeProvider> bindIScopeProvider() {
 		return ProfilingSysMLScopeProvider.class;
 	}
 	
@@ -47,8 +44,7 @@ public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 		return ProfilingKerMLLinkingService.class;
 	}
 	
-	@Override
-	public Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
-		return ProfilingKerMLLibraryProvider.class;
+	public Class<? extends Profiler> bindTimeProfiler(){
+		return Profiler.class;
 	}
 }

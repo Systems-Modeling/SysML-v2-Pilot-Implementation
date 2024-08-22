@@ -23,16 +23,22 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.scoping.IScope;
 import org.omg.kerml.xtext.scoping.KerMLScope;
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
+import org.omg.sysml.interactive.profiler.Profiler;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
 
+import com.google.inject.Inject;
+
 public class ProfilingKerMLScopeProvider extends KerMLScopeProvider {
+	
+	@Inject
+	private Profiler timeProfiler;
 	
 	@Override
 	protected KerMLScope createKerMLScope(IScope outerscope, Namespace pack, EReference reference,
 			boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		
-		return new ProfilingKerMLScope(outerscope, pack, reference.getEReferenceType(), this, isInsideScope, isFirstScope, isRedefinition, element, skip);
+		return new ProfilingKerMLScope(outerscope, pack, reference.getEReferenceType(), this, isInsideScope, isFirstScope, isRedefinition, element, skip, timeProfiler);
 	}
 
 }

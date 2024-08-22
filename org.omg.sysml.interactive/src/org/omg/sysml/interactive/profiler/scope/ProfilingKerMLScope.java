@@ -36,7 +36,8 @@ import org.omg.sysml.lang.sysml.Namespace;
 
 public class ProfilingKerMLScope extends KerMLScope
 {
-	private static final String GET_SINGLE_ELEMENT = "KerMLScope#getSingleElement";
+	private static final String RESOLVE_OPERATION = "KerMLScope#resolve";
+	private static final String GET_SINGLE_ELEMENT_OPERATION = "KerMLScope#getSingleElement";
 	private Profiler profiler;
 
 	public ProfilingKerMLScope(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider,
@@ -49,11 +50,11 @@ public class ProfilingKerMLScope extends KerMLScope
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		
 		String nsName = ns.getOwningNamespace() == null ? "ROOT" : ns.getQualifiedName();
-		profiler.operationStarted(this, GET_SINGLE_ELEMENT, "ns = " + nsName, "targetQn = " + name.toString(), "refType = " + referenceType.getName());
+		profiler.operationStarted(this, GET_SINGLE_ELEMENT_OPERATION, "ns = " + nsName, "targetQn = " + name.toString(), "refType = " + referenceType.getName());
 		
 		IEObjectDescription singleElement = super.getSingleElement(name);
 		
-		profiler.operationFinished(this, GET_SINGLE_ELEMENT, createReturnValue(singleElement));
+		profiler.operationFinished(this, GET_SINGLE_ELEMENT_OPERATION, createReturnValue(singleElement));
 		
 		return singleElement;
 	}
@@ -85,12 +86,12 @@ public class ProfilingKerMLScope extends KerMLScope
 		String nsQn = ns.getQualifiedName();
 		QualifiedName namespace = qn.append(nsQn == null ? "" : nsQn);
 		
-		profiler.operationStarted(this, "KerMLScope#resolve", "ns = " + namespace.toString(), "targetQn = " + targetqn.toString());
+		profiler.operationStarted(this, RESOLVE_OPERATION, "ns = " + namespace.toString(), "targetQn = " + targetqn.toString());
 		
 		 var result = super.resolve(ns, qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting,
 				includeImplicitGen, includeAll);
 		 
-		 profiler.operationFinished(this, "KerMLScope#resolve", Boolean.toString(result));
+		 profiler.operationFinished(this, RESOLVE_OPERATION, Boolean.toString(result));
 		 
 		 return result;
 	}

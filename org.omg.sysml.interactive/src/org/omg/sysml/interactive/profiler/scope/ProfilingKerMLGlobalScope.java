@@ -32,7 +32,7 @@ import com.google.common.base.Predicate;
 
 public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
-	private static final String OPERATION_NAME = "KerMLGlobalScope#getSingleElement";
+	private static final String GET_SINGLE_ELEMENT_OPERATION = "KerMLGlobalScope#getSingleElement";
 	private Profiler profiler;
 	
 	public ProfilingKerMLGlobalScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
@@ -45,11 +45,11 @@ public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		
-		profiler.operationStarted(this, OPERATION_NAME, "qn = " + name.toString());
+		profiler.operationStarted(this, GET_SINGLE_ELEMENT_OPERATION, "qn = " + name.toString());
 		
 		IEObjectDescription singleElement = super.getSingleElement(name);
 		
-		profiler.operationFinished(this, OPERATION_NAME, ProfilingKerMLScope.createReturnValue(singleElement));
+		profiler.operationFinished(this, GET_SINGLE_ELEMENT_OPERATION, ProfilingKerMLScope.createReturnValue(singleElement));
 		
 		return singleElement;
 	}

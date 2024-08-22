@@ -32,7 +32,7 @@ import com.google.inject.Inject;
 
 public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 	
-	private static final String OPERATION_NAME = "LinkingService#getLinkedObjects";
+	private static final String GET_LINKED_OBJECTS_OPERATION = "LinkingService#getLinkedObjects";
 	
 	@Inject
 	Profiler profiler;
@@ -43,12 +43,11 @@ public class ProfilingKerMLLinkingService extends DefaultLinkingService {
 		int startLine = node.getStartLine();
 		String crossRef = getCrossRefNodeAsString(node);
 		
-		profiler.operationStarted(this, OPERATION_NAME, "crossRef = " + crossRef,"ref = " + ref.getName(), "line = " + startLine);
+		profiler.operationStarted(this, GET_LINKED_OBJECTS_OPERATION, "crossRef = " + crossRef,"ref = " + ref.getName(), "line = " + startLine);
 		
 		var linkedObjects = super.getLinkedObjects(context, ref, node);
 		
-		profiler.operationFinished(this, OPERATION_NAME, "");
-		
+		profiler.operationFinished(this, GET_LINKED_OBJECTS_OPERATION, linkedObjects.isEmpty()  ? "Could not link" : "Succesfully linked");
 			
 		return linkedObjects;
 	}

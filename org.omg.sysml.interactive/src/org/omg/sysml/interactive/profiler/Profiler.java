@@ -54,7 +54,17 @@ public class Profiler {
 		operationStack.clear();
 	}
 	
-	
+	/**
+	 * Marks the start of an operation. Time spent executing the operation is
+	 * measured. In case of nested operations of the same kind only the outermost
+	 * operation's time is measured. Additionally an execution trace is produced of
+	 * the operations. Use {@link Profiler#operationFinished(Object, String, String)} to mark the end of the operation.
+	 * 
+	 * @param caller     object executing the operation, currently unused
+	 * @param operation  name of the operation
+	 * @param parameters additional information regarding the operation like values
+	 *                   of variables when the operation started
+	 */
 	public void operationStarted(Object caller, String operation, String... parameters) {
 		
 		if (!globalTimer.isRunning()) {
@@ -77,6 +87,14 @@ public class Profiler {
 		}
 	}
 	
+	/**
+	 * Marks the end of an operation. {@link Profiler#operationStarted(Object, String, String...)} should be called first.
+	 * 
+	 * @param caller      object executing the operation, currently unused
+	 * @param operation   name of the operation
+	 * @param returnValue additional information at the end of the operation like
+	 *                    return values of methods
+	 */
 	public void operationFinished(Object caller, String operation, String returnValue) {
 		if (operationCallCounters.compute(operation, (k, v) -> --v) == 0) {
 			Duration duration = globalTimer.elapsed().minus(operationStartTimes.get(operation));

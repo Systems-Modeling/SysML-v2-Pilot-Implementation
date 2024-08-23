@@ -26,47 +26,30 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.omg.kerml.xtext.scoping.KerMLGlobalScope;
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider;
-import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
-import org.omg.sysml.interactive.profiler.results.LinkStep;
-import org.omg.sysml.interactive.profiler.results.GlobalScopeResult;
+import org.omg.sysml.interactive.profiler.Profiler;
 
 import com.google.common.base.Predicate;
-import com.google.common.base.Stopwatch;
 
 public class ProfilingKerMLGlobalScope extends KerMLGlobalScope {
 
-	public static final Stopwatch WATCH = Stopwatch.createUnstarted();
-	public static long callCount = 0;
+	private static final String GET_SINGLE_ELEMENT_OPERATION = "KerMLGlobalScope#getSingleElement";
+	private Profiler profiler;
 	
 	public ProfilingKerMLGlobalScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
-			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider, Profiler timeProfiler) {
 		super(outer, resource, filter, rootFilter, type, scopeProvider);
+		
+		this.profiler = timeProfiler;
 	}
 
 	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
-		callCount++;
 		
-		if (!WATCH.isRunning()) WATCH.start();
+		profiler.operationStarted(this, GET_SINGLE_ELEMENT_OPERATION, "qn = " + name.toString());
 		
-		WATCH.stop();
-		var localWatch = Stopwatch.createUnstarted();
-		
-		LinkStep oldValue = ProfilingKerMLLinkingService.currentStep;
-		var result = new GlobalScopeResult(name, oldValue);
-		ProfilingKerMLLinkingService.currentStep = result;
-		WATCH.start();
-		
-		localWatch.start();
 		IEObjectDescription singleElement = super.getSingleElement(name);
-		localWatch.stop();
 		
-		if (!WATCH.isRunning()) WATCH.start();
-		WATCH.stop();
-		
-		result.setResult(singleElement);
-		ProfilingKerMLLinkingService.currentStep.setDuration(localWatch.elapsed());
-		ProfilingKerMLLinkingService.currentStep = oldValue;
+		profiler.operationFinished(this, GET_SINGLE_ELEMENT_OPERATION, ProfilingKerMLScope.createReturnValue(singleElement));
 		
 		return singleElement;
 	}

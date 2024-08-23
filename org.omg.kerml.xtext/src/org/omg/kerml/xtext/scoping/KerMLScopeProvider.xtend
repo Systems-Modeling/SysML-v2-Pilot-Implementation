@@ -52,6 +52,7 @@ import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.kerml.xtext.library.LibraryNamespaces
 
+
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
@@ -166,14 +167,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				else
 					parent.scopeFor(reference, element, true, false, false, skip)
 		}	
-		
-		
-		createScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
+
+		createKerMLScope(outerscope, pack, reference, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
-	
-	protected def createScope(IScope outerscope, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip)
-	{
-		new KerMLScope(outerscope, pack, referenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
-	}
-	
+
+    protected def KerMLScope createKerMLScope(IScope outerscope, Namespace pack, EReference reference, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+        new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
+    }
 }

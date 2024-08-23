@@ -32,13 +32,13 @@ import com.google.inject.Inject;
 public class ProfilingKerMLScopeProvider extends KerMLScopeProvider {
 	
 	@Inject
-	private Profiler timeProfiler;
+	private Profiler profiler;
 	
 	@Override
 	protected KerMLScope createKerMLScope(IScope outerscope, Namespace pack, EReference reference,
 			boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		
-		return new ProfilingKerMLScope(outerscope, pack, reference.getEReferenceType(), this, isInsideScope, isFirstScope, isRedefinition, element, skip, timeProfiler);
+		return new ProfilingKerMLScope(outerscope, pack, reference.getEReferenceType(), this, isInsideScope, isFirstScope, isRedefinition, element, skip, profiler);
 	}
 
 }

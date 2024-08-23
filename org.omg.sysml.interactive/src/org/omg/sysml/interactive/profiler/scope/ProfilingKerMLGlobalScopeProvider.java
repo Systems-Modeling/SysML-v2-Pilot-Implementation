@@ -34,11 +34,11 @@ import com.google.inject.Inject;
 public class ProfilingKerMLGlobalScopeProvider extends KerMLGlobalScopeProvider
 {
 	@Inject
-	private Profiler timeProfiler;
+	private Profiler profiler;
 	
 	@Override
 	public KerMLGlobalScope createScope(IScope outer, Resource resource, Predicate<IEObjectDescription> filter,
 			Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
-		return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider, timeProfiler);
+		return new ProfilingKerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider, profiler);
 	}
 }

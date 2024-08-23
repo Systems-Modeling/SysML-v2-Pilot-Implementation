@@ -23,6 +23,8 @@
  *****************************************************************************/
 package org.omg.sysml.interactive.profiler;
 
+import java.io.File;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Set;
@@ -32,6 +34,11 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.interactive.profiler.library.ProfilingKerMLLibraryProvider;
+import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
+import org.omg.sysml.interactive.profiler.results.LinkingResult;
+import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLGlobalScope;
+import org.omg.sysml.interactive.profiler.scope.ProfilingKerMLScope;
 
 import com.google.common.base.Stopwatch;
 
@@ -43,7 +50,7 @@ public class SysMLInteractiveParsingProfiler {
 
 	public static void main(String[] args) throws Exception {
 		Stopwatch initWatch = Stopwatch.createStarted();
-		SysMLInteractive instance = SysMLInteractive.getInstance();
+		SysMLInteractive instance = SysMLInteractive.getProfilingInstance();
 		if (args.length <= 1) {
 			System.out.println("Usage: ");
 			System.out.println("SysMLInteractiveParsingProfiler <LIBRARY FOLDER> <FILENAME>");
@@ -63,17 +70,41 @@ public class SysMLInteractiveParsingProfiler {
 		}
 		
 		for (int i = 1; i < args.length; i++) {
+			System.out.println();
 			System.out.println("Loading input " + args[i]);
 			Stopwatch watch = Stopwatch.createStarted();
 			SysMLInteractiveResult results = instance.process(Files.lines(Paths.get(args[i])).collect(Collectors.joining("\n")));
+			var resourceName = Paths.get(args[i]).getFileName().toString();
 			if (results.hasErrors()) {
 				System.out.println(results.formatIssues());
 			} else {
 				System.out.println(results.formatRootElement());
 			}
 			watch.stop();
-			System.out.println(watch.elapsed(TimeUnit.MILLISECONDS) + " ms");
+			System.out.println("Model loaded in " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms");
 			System.out.println();
+			
+			System.out.println("Total time in linker: " + ProfilingKerMLLinkingService.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLLinkingService.callCount + " calls)");
+			System.out.println("Total time in local scopes: " + ProfilingKerMLScope.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLScope.callCount + " calls)");
+			System.out.println("Total time in global scope: " + ProfilingKerMLGlobalScope.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLGlobalScope.callCount + " calls)");
+			System.out.println("Total time in library provider: " + ProfilingKerMLLibraryProvider.WATCH.elapsed(TimeUnit.MILLISECONDS) + " ms (" + ProfilingKerMLLibraryProvider.callCount + " calls)");
+			
+			var outputfile = new File(resourceName + ".inst.txt");
+			outputfile.delete();
+			outputfile = null;
+			
+			outputfile = new File(resourceName + ".inst.txt");
+			outputfile.createNewFile();
+			
+			var out = new PrintStream(outputfile);
+			LinkingResult.RESULTS.stream().forEach(s -> s.print(0, out));
+			out.close();
+			
+			LinkingResult.RESULTS.clear();
+			ProfilingKerMLLinkingService.WATCH.reset();
+			ProfilingKerMLScope.WATCH.reset();
+			ProfilingKerMLGlobalScope.WATCH.reset();
+			ProfilingKerMLLibraryProvider.WATCH.reset();
 		}
 	}
 

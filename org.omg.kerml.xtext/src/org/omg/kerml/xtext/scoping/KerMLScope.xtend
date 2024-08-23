@@ -28,33 +28,35 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
 
+import com.google.inject.Inject
+import java.util.HashSet
 import java.util.Map
 import java.util.Set
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.resource.EObjectDescription
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
-import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.VisibilityKind
-import org.eclipse.xtext.resource.IEObjectDescription
-import org.eclipse.emf.ecore.EClass
-import java.util.HashSet
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.util.TypeUtil
-import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.OwningMembership
-import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.MembershipImport
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.util.ISysMLScope
-import com.google.inject.Inject
-import org.eclipse.xtext.naming.IQualifiedNameConverter
-import org.eclipse.emf.ecore.util.EcoreUtil
+import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.ScopeResultCache
+import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -109,7 +111,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * The set of Packages traversed in an import chain during a resolution search.
 	 * (Should be empty again at the end of each search.)
 	 */
-	protected val Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
+	protected val Set<Package> importingPackages = new HashSet()
 
 	/* 
 	 * The following fields are reset for each resolution search.
@@ -140,7 +142,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 * Whether a shadowing name has been found during the current resolution search.
 	 */
 	protected boolean isShadowing = false;
-
+	
+	
 	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		super(parent, false)
 		this.ns = ns
@@ -164,14 +167,24 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
-
-	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
-	}
 	
+	override getSingleElement(QualifiedName name) {
+	    val scopeResultCache = ScopeResultCache.getInstance(ns)
+	    
+		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
+		    [ resolveInScope(name, true).head ], 
+		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+		)
+		
+		return if (localResult === null) {
+		    if(parent !== null && !isShadowing) {
+		        parent.getSingleElement(name)
+	        } else null
+        } else {
+            localResult
+        }
+	}
+		
 	override getLocalElementsByName(QualifiedName name) {
 		resolveInScope(name, false)
 	}
@@ -354,12 +367,15 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean isInheriting, boolean includeImplicit) {
 		if (ns instanceof Type) {
 			val conjugator = ns.ownedConjugator
-			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
-				scopeProvider.addVisited(conjugator)
-				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false, includeImplicit, false)
-				scopeProvider.removeVisited(conjugator)
-				if (found) {
-					return true
+			if (conjugator !== null) {
+				if (!scopeProvider.visited.contains(conjugator)) {
+					scopeProvider.addVisited(conjugator)
+					val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false,
+						includeImplicit, false)
+					scopeProvider.removeVisited(conjugator)
+					if (found) {
+						return true
+					}
 				}
 			}
 			val newRedefined = new HashSet()
@@ -379,17 +395,20 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					}
 				}
 			}
-			if (includeImplicit && !scopeProvider.visited.contains(ns)) {
-				scopeProvider.addVisited(ns);
-				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
-				scopeProvider.removeVisited(ns)
-				for (type : implicitTypes) {
-					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
-					if (found) {
-						return true
+			if (includeImplicit) {
+				if (!scopeProvider.visited.contains(ns)){
+					scopeProvider.addVisited(ns);
+					var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
+					scopeProvider.removeVisited(ns)
+					for (type : implicitTypes) {
+						val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
+						if (found) {
+							return true
+						}
 					}
 				}
 			}
+			
 			if (ns instanceof Feature) {
 				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
 				if (chainingFeature !== null && 
@@ -410,7 +429,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		for (e: ns.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
-					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
+					if (ns instanceof Package) {
 						if (!ns.filterCondition.isEmpty) {
 							importingPackages.add(ns)
 						}

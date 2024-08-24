@@ -493,6 +493,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseTerminateActionUsage(TerminateActionUsage element) {
+			return new TerminateActionUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseTransitionUsage(TransitionUsage element) {
 			return new TransitionUsageAdapter(element);
 		}

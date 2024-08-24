@@ -20,6 +20,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
@@ -49,6 +50,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
@@ -93,4 +95,11 @@ package ActionTest {
 		ref action a : A;
 	}
 	
+	action def c {
+		first start;
+		then action c1 {
+			terminate c1;
+		}
+		then terminate;
+	}
 }

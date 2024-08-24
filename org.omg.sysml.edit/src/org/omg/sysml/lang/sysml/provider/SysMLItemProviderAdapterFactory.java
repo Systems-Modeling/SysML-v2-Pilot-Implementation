@@ -3338,29 +3338,6 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.TerminateWithResultActionUsage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TerminateWithResultActionUsageItemProvider terminateWithResultActionUsageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.omg.sysml.lang.sysml.TerminateWithResultActionUsage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTerminateWithResultActionUsageAdapter() {
-		if (terminateWithResultActionUsageItemProvider == null) {
-			terminateWithResultActionUsageItemProvider = new TerminateWithResultActionUsageItemProvider(this);
-		}
-
-		return terminateWithResultActionUsageItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.TriggerInvocationExpression} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4156,7 +4133,6 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (sendActionUsageItemProvider != null) sendActionUsageItemProvider.dispose();
 		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
 		if (terminateActionUsageItemProvider != null) terminateActionUsageItemProvider.dispose();
-		if (terminateWithResultActionUsageItemProvider != null) terminateWithResultActionUsageItemProvider.dispose();
 		if (forkNodeItemProvider != null) forkNodeItemProvider.dispose();
 		if (whileLoopActionUsageItemProvider != null) whileLoopActionUsageItemProvider.dispose();
 		if (assignmentActionUsageItemProvider != null) assignmentActionUsageItemProvider.dispose();

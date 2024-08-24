@@ -7664,18 +7664,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cIfNodeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cWhileLoopNodeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cForLoopNodeParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cControlNodeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cTerminateNodeParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cControlNodeParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		///* Action Nodes */
 		//ActionNode returns SysML::ActionUsage :
 		//      SendNode | AcceptNode | AssignmentNode
 		//    | IfNode | WhileLoopNode | ForLoopNode
+		//    | TerminateNode
 		//    | ControlNode
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  SendNode | AcceptNode | AssignmentNode
 		//| IfNode | WhileLoopNode | ForLoopNode
+		//| TerminateNode
 		//| ControlNode
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -7697,8 +7700,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ForLoopNode
 		public RuleCall getForLoopNodeParserRuleCall_5() { return cForLoopNodeParserRuleCall_5; }
 		
+		//TerminateNode
+		public RuleCall getTerminateNodeParserRuleCall_6() { return cTerminateNodeParserRuleCall_6; }
+		
 		//ControlNode
-		public RuleCall getControlNodeParserRuleCall_6() { return cControlNodeParserRuleCall_6; }
+		public RuleCall getControlNodeParserRuleCall_7() { return cControlNodeParserRuleCall_7; }
 	}
 	public class ActionNodeUsageDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ActionNodeUsageDeclaration");
@@ -8992,6 +8998,68 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//UsageDeclaration
 		public RuleCall getUsageDeclarationParserRuleCall() { return cUsageDeclarationParserRuleCall; }
+	}
+	public class TerminateNodeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TerminateNode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cOccurrenceUsagePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cActionNodeUsageDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cTerminateKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final RuleCall cActionBodyParserRuleCall_3_0 = (RuleCall)cAlternatives_3.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cActionBodyParserRuleCall_3_1_1 = (RuleCall)cGroup_3_1.eContents().get(1);
+		
+		//TerminateNode returns SysML::TerminateActionUsage :
+		//    OccurrenceUsagePrefix ActionNodeUsageDeclaration?
+		//    'terminate'
+		//    ( ActionBody
+		//    | -> ownedRelationship += NodeParameterMember
+		//      ActionBody
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//OccurrenceUsagePrefix ActionNodeUsageDeclaration?
+		//'terminate'
+		//( ActionBody
+		//| -> ownedRelationship += NodeParameterMember
+		//  ActionBody
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//OccurrenceUsagePrefix
+		public RuleCall getOccurrenceUsagePrefixParserRuleCall_0() { return cOccurrenceUsagePrefixParserRuleCall_0; }
+		
+		//ActionNodeUsageDeclaration?
+		public RuleCall getActionNodeUsageDeclarationParserRuleCall_1() { return cActionNodeUsageDeclarationParserRuleCall_1; }
+		
+		//'terminate'
+		public Keyword getTerminateKeyword_2() { return cTerminateKeyword_2; }
+		
+		//( ActionBody
+		//| -> ownedRelationship += NodeParameterMember
+		//  ActionBody
+		//)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3_0() { return cActionBodyParserRuleCall_3_0; }
+		
+		//-> ownedRelationship += NodeParameterMember
+		//     ActionBody
+		public Group getGroup_3_1() { return cGroup_3_1; }
+		
+		//-> ownedRelationship += NodeParameterMember
+		public Assignment getOwnedRelationshipAssignment_3_1_0() { return cOwnedRelationshipAssignment_3_1_0; }
+		
+		//NodeParameterMember
+		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_0_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_0_0; }
+		
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3_1_1() { return cActionBodyParserRuleCall_3_1_1; }
 	}
 	public class ControlNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ControlNode");
@@ -14014,6 +14082,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ForLoopNodeElements pForLoopNode;
 	private final ForVariableDeclarationMemberElements pForVariableDeclarationMember;
 	private final ForVariableDeclarationElements pForVariableDeclaration;
+	private final TerminateNodeElements pTerminateNode;
 	private final ControlNodeElements pControlNode;
 	private final ControlNodePrefixElements pControlNodePrefix;
 	private final MergeNodeElements pMergeNode;
@@ -14455,6 +14524,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pForLoopNode = new ForLoopNodeElements();
 		this.pForVariableDeclarationMember = new ForVariableDeclarationMemberElements();
 		this.pForVariableDeclaration = new ForVariableDeclarationElements();
+		this.pTerminateNode = new TerminateNodeElements();
 		this.pControlNode = new ControlNodeElements();
 		this.pControlNodePrefix = new ControlNodePrefixElements();
 		this.pMergeNode = new MergeNodeElements();
@@ -17613,6 +17683,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//ActionNode returns SysML::ActionUsage :
 	//      SendNode | AcceptNode | AssignmentNode
 	//    | IfNode | WhileLoopNode | ForLoopNode
+	//    | TerminateNode
 	//    | ControlNode
 	//;
 	public ActionNodeElements getActionNodeAccess() {
@@ -18084,6 +18155,22 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getForVariableDeclarationRule() {
 		return getForVariableDeclarationAccess().getRule();
+	}
+	
+	//TerminateNode returns SysML::TerminateActionUsage :
+	//    OccurrenceUsagePrefix ActionNodeUsageDeclaration?
+	//    'terminate'
+	//    ( ActionBody
+	//    | -> ownedRelationship += NodeParameterMember
+	//      ActionBody
+	//    )
+	//;
+	public TerminateNodeElements getTerminateNodeAccess() {
+		return pTerminateNode;
+	}
+	
+	public ParserRule getTerminateNodeRule() {
+		return getTerminateNodeAccess().getRule();
 	}
 	
 	//ControlNode returns SysML::ControlNode :

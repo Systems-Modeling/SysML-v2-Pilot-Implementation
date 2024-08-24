@@ -1380,6 +1380,7 @@ fragment ActionUsageDeclaration returns SysML::ActionUsage :
 ActionNode returns SysML::ActionUsage :
 	  SendNode | AcceptNode | AssignmentNode 
 	| IfNode | WhileLoopNode | ForLoopNode
+	| TerminateNode
 	| ControlNode
 ;
 
@@ -1580,6 +1581,15 @@ ForVariableDeclarationMember returns SysML::FeatureMembership :
 
 ForVariableDeclaration returns SysML::ReferenceUsage :
 	UsageDeclaration
+;
+
+TerminateNode returns SysML::TerminateActionUsage :
+	OccurrenceUsagePrefix ActionNodeUsageDeclaration? 
+	'terminate' 
+	( ActionBody
+	| -> ownedRelationship += NodeParameterMember
+	  ActionBody
+	)
 ;
 
 ControlNode returns SysML::ControlNode :

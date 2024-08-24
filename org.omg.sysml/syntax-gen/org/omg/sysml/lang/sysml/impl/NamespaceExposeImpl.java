@@ -18,7 +18,7 @@ public class NamespaceExposeImpl extends NamespaceImportImpl implements Namespac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NamespaceExposeImpl() {
 		super();

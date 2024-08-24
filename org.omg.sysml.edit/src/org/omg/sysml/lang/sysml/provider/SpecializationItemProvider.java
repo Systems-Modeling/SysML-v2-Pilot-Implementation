@@ -43,9 +43,9 @@ public class SpecializationItemProvider extends RelationshipItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwningTypePropertyDescriptor(object);
 			addGeneralPropertyDescriptor(object);
 			addSpecificPropertyDescriptor(object);
+			addOwningTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -222,6 +222,15 @@ public interface SysMLFactory extends EFactory {
 	JoinNode createJoinNode();
 
 	/**
+	 * Returns a new object of class '<em>Terminate Action Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Terminate Action Usage</em>'.
+	 * @generated
+	 */
+	TerminateActionUsage createTerminateActionUsage();
+
+	/**
 	 * Returns a new object of class '<em>Merge Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

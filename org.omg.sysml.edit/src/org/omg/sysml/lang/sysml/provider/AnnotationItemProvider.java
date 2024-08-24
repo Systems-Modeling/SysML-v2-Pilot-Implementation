@@ -45,8 +45,8 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 
 			addAnnotatingElementPropertyDescriptor(object);
 			addAnnotatedElementPropertyDescriptor(object);
-			addOwningAnnotatedElementPropertyDescriptor(object);
 			addOwningAnnotatingElementPropertyDescriptor(object);
+			addOwningAnnotatedElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -24,6 +24,7 @@
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
  *  Ivan Gomes, Twingineer
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;

@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2024 Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -34,6 +34,7 @@ public interface ILibraryIndexProvider {
 	 * index for the given resource. Never return null.
 	 */
 	 public LibraryIndex getIndexFor(Resource resource);
+	 
 	 /**
 	  * Use this method to disable the library index.
 	  */

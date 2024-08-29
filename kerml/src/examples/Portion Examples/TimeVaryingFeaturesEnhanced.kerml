@@ -1,10 +1,10 @@
 package TimeVaryingFeatures {
-    import ExtendedOccurrences::*;
+    private import ExtendedOccurrences::*;
 
     class CC1 :> ExtendedOccurrence {
         // var feature x;
         member feature x featured by CC1_snapshots {
-            member feature CC1_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by CC1;
+            member feature CC1_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by CC1;
         }
         
         // portions are not variable
@@ -18,7 +18,7 @@ package TimeVaryingFeatures {
         portion t :> timeSlices {
             // var feature y;
             member feature y featured by CC1_t_snapshots {
-                member feature CC1_t_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by CC1::t;
+                member feature CC1_t_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by CC1::t;
             }
             portion :>> startShot {
                 // var feature :>> x = 0;
@@ -51,17 +51,20 @@ package TimeVaryingFeatures {
     class Car :> ExtendedOccurrence {
         // var feature driver : Person [0..1];
         member feature driver : Person [0..1] featured by Car_snapshots {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car;
         }
         // var feature speed : Real [1];
         member feature speed : Real [1] featured by Car_snapshots {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car;
         }
 
         // bind the current speed to the current speed of the current driver
         // var binding driver.speed = speed;
-        member binding driver.at(Car_snapshots::self.moment).speed = speed featured by Car_snapshots {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car;
+        member connector : Links::SelfLink featured by Car_snapshots {
+        	:>> that : Car_snapshots;
+        	end feature :>> thisThing references that.driver.at(Car_snapshots::self.moment).speed;
+        	end feature :>> sameThing references that.speed;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car;
         }
         
         portion operated [0..*] :> timeSlices {
@@ -82,17 +85,17 @@ package TimeVaryingFeatures {
         
         // var feature engine [1];
         member feature engine [1] featured by Car_snapshots {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car;
         }       
         
         // var feature transmission [1];
         member feature transmission [1] featured by Car_snapshots {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car;
         }       
         
         // var connector drive from engine to transmission;
         member connector drive featured by Car_snapshots from engine to transmission {
-            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots :> engine::Car_snapshots, transmission::Car_snapshots featured by Car;
+            member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots :> engine::Car_snapshots, transmission::Car_snapshots featured by Car;
         }
         
         portion inOperable [0..1] :> timeSlices;
@@ -104,18 +107,18 @@ package TimeVaryingFeatures {
     class Person :> ExtendedOccurrence {
         // var feature isLicensed : Boolean[0..1];
         member feature isLicensed : Boolean[0..1] featured by Person_snapshots {
-            member feature Person_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Person;
+            member feature Person_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Person;
         }
         // var feature speed : Real[1];
         member feature speed : Real[1] featured by Person_snapshots {
-            member feature Person_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Person;
+            member feature Person_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Person;
         }
     }
     
     struct Car1 :> ExtendedOccurrence {  // May or may not be a life
 	    // var feature driver : Person [0..1];
 	    member feature driver : Person [0..1] featured by Car_snapshots {
-	        member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrences::snapshots featured by Car1;
+	        member feature Car_snapshots :>> ExtendedOccurrences::ExtendedOccurrence::snapshots featured by Car1;
 	    }
 	  
 	    // :>> timeSlices : Car;  <-- Don't do this!

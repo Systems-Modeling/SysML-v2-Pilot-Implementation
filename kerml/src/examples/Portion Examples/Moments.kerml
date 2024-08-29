@@ -11,22 +11,29 @@ package Moments {
     }
 
     class UniversalEternity [1] specializes Eternity {
+      redefines timeSlices: Period;  //Includes life.
       redefines snapshots : Moment;
     }
 
     readonly feature universalEternity : UniversalEternity [1];
+
+    class Period {  //Includes life and snapshots.
+      //↓↓ With UE redef, exactly UE timeslices.
+      redefines timeSliceOf : UniversalEternity [1];
+    }
 
     class all InstantOccurrence specializes Occurrence {
         // Probly useful elsewhere, eg, to type snapshots.
         redefines snapshots [1]; // Or startShot subsets endShot;
     }                            // Or middleTimeslice [0];
 
-    class Moment specializes InstantOccurrence {
+    class Moment specializes Period, InstantOccurrence {
+      //↓↓ With UE redef, exactly UE snapshots.
       redefines snapshotOf : UniversalEternity [1]; }
       
     import Occurrence::spaceTimeCoincidentOccurrences;
-
-    feature coincidentMoment : Moment [1] subsets spaceTimeCoincidentOccurrences,
+    //Period "corresponding" to an occurrence.
+    feature coincidentPeriod : Period [1] subsets spaceTimeCoincidentOccurrences,
                                                   universalEternity.portions
                                           featured by Occurrence;
 }

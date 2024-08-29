@@ -32,8 +32,8 @@ package Moments {
       redefines snapshotOf : UniversalEternity [1]; }
       
     import Occurrence::spaceTimeCoincidentOccurrences;
-    //Period "corresponding" to an occurrence.
-    feature coincidentPeriod : Period [1] subsets spaceTimeCoincidentOccurrences,
-                                                  universalEternity.portions
-                                          featured by Occurrence;
+    //UE portion "corresponding" to an occurrence.
+    feature coincidentUEPortion : Occurrence [1] subsets spaceTimeCoincidentOccurrences,
+                                                         universalEternity.portions
+                                                 featured by Occurrence;
 }

@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Consumer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -84,9 +85,14 @@ public class LibraryIndex {
 	}
 	
 	public void updateIndex(Collection<Resource> resources) {
+		this.updateIndex(resources, r -> {});
+	}
+	
+	public void updateIndex(Collection<Resource> resources, Consumer<Resource> reportProgress) {
 		resources.forEach(it -> {
 			it.getAllContents().forEachRemaining(el -> {
 				if (el instanceof Namespace) {
+					reportProgress.accept(it);
 					final String nsQn = ((Namespace) el).getQualifiedName();
 					if ((nsQn != null) && (!nsQn.isEmpty())) {
 						EList<Membership> membership = ((Namespace) el).getMembership();

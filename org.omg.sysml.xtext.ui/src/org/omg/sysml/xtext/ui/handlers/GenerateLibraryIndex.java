@@ -99,6 +99,7 @@ public class GenerateLibraryIndex extends AbstractHandler {
 
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 				
 				libraryIndexProvider.setIndexDisabled(true);
 				
@@ -113,27 +114,26 @@ public class GenerateLibraryIndex extends AbstractHandler {
 					libraryIndexProvider.dropIndexOf(rs.getResources().get(0));
 				}
 				
-				
-				monitor.beginTask(getName(), 300);
-				
-				project.build(IncrementalProjectBuilder.CLEAN_BUILD, SubMonitor.convert(monitor, 50));
-				project.build(IncrementalProjectBuilder.FULL_BUILD, SubMonitor.convert(monitor, 100));
+				project.build(IncrementalProjectBuilder.CLEAN_BUILD, subMonitor.split(5));
+				project.build(IncrementalProjectBuilder.FULL_BUILD, subMonitor.split(45));
 				
 				ElementUtil.transformAll(rs, false);
 				
+				SubMonitor indexMonitor = SubMonitor.convert(SubMonitor.convert(subMonitor.split(40), rs.getResources().size()));
+				
 				LibraryIndex index = new LibraryIndex();
-				index.updateIndex(rs.getResources());
+				index.updateIndex(rs.getResources(), res -> {
+					indexMonitor.split(1).setTaskName("Generating index for " + res.getURI().toFileString());
+				});
 				
 				String jsonString = index.toJson(new GsonBuilder()
 						.disableHtmlEscaping()
 						.setPrettyPrinting()
 				);
 				
-				writeIndex(project, jsonString, monitor);
+				writeIndex(project, jsonString, subMonitor.split(10));
 				
 				libraryIndexProvider.setIndexDisabled(false);
-				
-				monitor.done();
 				
 				return Status.OK_STATUS;
 			}

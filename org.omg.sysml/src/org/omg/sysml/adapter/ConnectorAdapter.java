@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,9 +24,13 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.VariableFeatureMembership;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ConnectorAdapter extends FeatureAdapter {
@@ -51,6 +55,21 @@ public class ConnectorAdapter extends FeatureAdapter {
 				numEnds != 2? 
 					getDefaultSupertype("base"):
 					getDefaultSupertype("binary");
+	}
+	
+	@Override
+	protected Type computeFeaturingType() {
+		Connector target = getTarget();
+		Type featuringType = super.computeFeaturingType();
+		FeatureMembership featureMembership = target.getOwningFeatureMembership();
+		if (featureMembership instanceof VariableFeatureMembership) {
+			target.getRelatedFeature().stream().
+				filter(feature->feature.getOwningFeatureMembership() instanceof VariableFeatureMembership).
+				flatMap(FeatureAdapter::getFeaturingFeaturesOf).
+				forEachOrdered(relatedVariable->
+					FeatureUtil.addSubsettingTo((Feature)featuringType).setSubsettedFeature(relatedVariable));
+		}
+		return featuringType;
 	}
 	
 	public static void addEndSubsetting(Connector target) {

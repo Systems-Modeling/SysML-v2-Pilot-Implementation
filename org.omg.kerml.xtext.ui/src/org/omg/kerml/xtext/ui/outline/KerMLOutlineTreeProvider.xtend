@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.BindingConnector
 
 /**
  * Customization of the default outline structure.
@@ -547,7 +548,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (featuringType !== null) {
 				createNode(implicitNode, featuringType, 
 					featuringType._image, featuringType._text, 
-					true
+					featuringType.owningRelationship !== null || featuringType instanceof BindingConnector
 				)
 			}
 		])
@@ -625,7 +626,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (modelElement instanceof Element) {
 				ElementUtil.transform(modelElement);
 			}
-			createChildrenDispatcher.invoke(node, modelElement)
+			if (!isLeaf) {
+				createChildrenDispatcher.invoke(node, modelElement)
+			}
 			node
 		}
 	}

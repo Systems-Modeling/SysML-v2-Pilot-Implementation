@@ -72,6 +72,10 @@ public class ConnectorAdapter extends FeatureAdapter {
 		return featuringType;
 	}
 	
+	protected void addContextFeaturingType() {
+		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
+	}
+	
 	public static void addEndSubsetting(Connector target) {
 		for (Feature end: target.getConnectorEnd()) {
 			if (end != null) {
@@ -91,7 +95,7 @@ public class ConnectorAdapter extends FeatureAdapter {
 	public void doTransform() {
 		Connector target = getTarget();
 		super.doTransform();
-		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
+		addContextFeaturingType();
 		addEndSubsetting(target);
 	}
 	

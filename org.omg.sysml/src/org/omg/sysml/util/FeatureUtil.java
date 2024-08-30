@@ -111,7 +111,7 @@ public class FeatureUtil {
 		}
 	}
 
-// Typing
+	// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
 		FeatureAdapter adapter = getFeatureAdapter(feature);
@@ -264,7 +264,7 @@ public class FeatureUtil {
 	/**
 	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
 	 */
-	protected static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
+	public static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
 		List<Type> allFeaturingTypes = new ArrayList<>();
 		List<Feature> features = new ArrayList<>();
 		features.add(originalFeature);
@@ -290,6 +290,11 @@ public class FeatureUtil {
 		}
 		return allFeaturingTypes;
 	}
+	
+	public static List<Type> getEffectiveFeaturingTypesOf(Feature feature) {
+		List<Type> featuringTypes = feature.getFeaturingType();
+		return featuringTypes;
+	}
 
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
 		getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
@@ -298,7 +303,7 @@ public class FeatureUtil {
 	public static void forEachImplicitFeaturingTypeOf(Feature feature, Consumer<Type> action) {
 		getFeatureAdapter(feature).forEachImplicitFeaturingType(action);
 	}
-
+	
 	/**
 	 * Physically insert implicit TypeFeaturings into the model.
 	 */

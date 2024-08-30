@@ -914,7 +914,7 @@ not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->e
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="302668e3-af65-47ed-b208-bb4542f80e6b" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3d00ad30-88d8-47d3-b2c8-d001255cfa04" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="b79a7d91-99ab-4372-8103-af57f85ad3a1" name="owningFeatureMembership" visibility="public" type="10189040-993c-4d64-aacf-0d99b558af68" isDerived="true" subsettedProperty="8763ebb8-6a3d-45b3-b628-966dc39fbb40 bffacdf5-2f73-400c-b0d6-0aaacb177f4f" association="2b5fa6a3-5aa7-453a-a026-7934e87e5711">
+    <ownedAttribute xmi:id="b79a7d91-99ab-4372-8103-af57f85ad3a1" name="owningFeatureMembership" visibility="public" type="10189040-993c-4d64-aacf-0d99b558af68" isDerived="true" subsettedProperty="8763ebb8-6a3d-45b3-b628-966dc39fbb40" association="2b5fa6a3-5aa7-453a-a026-7934e87e5711">
       <ownedComment xmi:id="336f92b8-2450-4bc3-8b18-f1b55c5bf461" annotatedElement="b79a7d91-99ab-4372-8103-af57f85ad3a1">
         <body>&lt;p>The &lt;code>FeatureMembership&lt;/code> that owns this &lt;code>Feature&lt;/code> as an &lt;code>ownedMemberFeature&lt;/code>, determining its &lt;code>owningType&lt;/code>.&lt;/p></body>
       </ownedComment>
@@ -1639,8 +1639,7 @@ endif</body>
 </body>
     </ownedComment>
     <generalization xmi:id="6bede445-1ebe-4b41-8a84-798f676e2ac6" general="0ac69c8b-1bab-45e9-82df-d840307444f7"/>
-    <generalization xmi:id="74709159-eef7-4d3f-bd50-d260647f5c42" general="6b39d50b-0fa2-46c4-88e1-14ea53f05f8b"/>
-    <ownedAttribute xmi:id="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a" name="owningType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7" isDerived="true" redefinedProperty="67aded9a-ae8a-4191-8053-2df04cce9c8c 35ddd42a-b8a5-4ea6-b2d1-ab7d0a827a00" subsettedProperty="2ef320b9-d900-484f-ab11-5aa59e441577" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
+    <ownedAttribute xmi:id="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a" name="owningType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7" isDerived="true" redefinedProperty="67aded9a-ae8a-4191-8053-2df04cce9c8c" subsettedProperty="2ef320b9-d900-484f-ab11-5aa59e441577" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
       <ownedComment xmi:id="71090db3-d8a1-4a91-ba78-82b1f92339b7" annotatedElement="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a">
         <body>&lt;p>The &lt;code>Type&lt;/code> that owns this &lt;code>FeatureMembership&lt;/code>.&lt;/p>
 </body>
@@ -1656,6 +1655,12 @@ endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="51bba55b-2ef7-4e07-bd1a-0504efcdc082" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ad06331c-68c8-4f2e-a96c-af728026b9aa" name="" visibility="public" value="1"/>
     </ownedAttribute>
+    <ownedOperation xmi:id="_aussEGWeEe-_7_7cPhszYg" name="isFeaturingType">
+      <ownedParameter xmi:id="_dqFfIGWeEe-_7_7cPhszYg" name="type" type="a32ae34b-57c2-4f49-832c-00f8741d55e7"/>
+      <ownedParameter xmi:id="_jbJe0GWeEe-_7_7cPhszYg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="ba33ccdb-e820-4ea5-a8a9-5bf5eae0b661" name="A_intersectingType_intersectedIntersecting" visibility="public" memberEnd="fd763102-8889-4081-9ac6-9e9598ec557e b5253c69-339c-4f6e-913b-073a562ed886">
     <ownedEnd xmi:id="b5253c69-339c-4f6e-913b-073a562ed886" name="intersectedIntersecting" visibility="public" type="1acbf4dd-1ebb-429f-882c-9b2928bb02d2" subsettedProperty="ba7252a1-ad71-4f1b-9661-e020d460abd2" association="ba33ccdb-e820-4ea5-a8a9-5bf5eae0b661">
@@ -1999,7 +2004,7 @@ endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="187dd0d3-2d01-4938-801e-e058d8807c46" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="bf56c81e-0553-4686-9e43-4d23c801cefa" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="dc592816-92e5-4085-b386-e50a8bbdf926" name="ownedFeatureMembership" visibility="public" type="10189040-993c-4d64-aacf-0d99b558af68" isOrdered="true" aggregation="composite" isDerived="true" subsettedProperty="fad0c25d-2a44-4e7a-9b06-bae16320cb4e c7ddb5de-07c8-4a60-ae17-11b745959f98 50ef422c-01b0-4c96-8fcf-d091fc26655a" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
+    <ownedAttribute xmi:id="dc592816-92e5-4085-b386-e50a8bbdf926" name="ownedFeatureMembership" visibility="public" type="10189040-993c-4d64-aacf-0d99b558af68" isOrdered="true" aggregation="composite" isDerived="true" subsettedProperty="fad0c25d-2a44-4e7a-9b06-bae16320cb4e c7ddb5de-07c8-4a60-ae17-11b745959f98" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
       <ownedComment xmi:id="1c35d077-c986-4f5f-8299-34fb4f4e4e88" annotatedElement="dc592816-92e5-4085-b386-e50a8bbdf926">
         <body>&lt;p>The &lt;code>ownedMemberships&lt;/code> of this &lt;code>Type&lt;/code> that are &lt;code>FeatureMemberships&lt;/code>, for which the &lt;code>Type&lt;/code> is the &lt;code>owningType&lt;/code>. Each such &lt;code>FeatureMembership&lt;/code> identifies an &lt;code>ownedFeature&lt;/code> of the &lt;code>Type&lt;/code>.&lt;/p>
 </body>
@@ -14697,5 +14702,8 @@ endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="8acc1b7c-092a-49b0-9a91-fc4dede4ce01" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ab647297-ec7d-44f7-8cc2-9d08cd268ab0" name="" visibility="public" value="1"/>
     </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LpY50GWeEe-_7_7cPhszYg" name="VariableFeatureMembership">
+    <generalization xmi:id="_O4hvUGWeEe-_7_7cPhszYg" general="10189040-993c-4d64-aacf-0d99b558af68"/>
   </packagedElement>
 </uml:Model>

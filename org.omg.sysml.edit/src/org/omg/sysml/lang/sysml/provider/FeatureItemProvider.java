@@ -52,7 +52,6 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addTypePropertyDescriptor(object);
 			addOwnedRedefinitionPropertyDescriptor(object);
 			addOwnedSubsettingPropertyDescriptor(object);
-			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsCompositePropertyDescriptor(object);
 			addIsEndPropertyDescriptor(object);
 			addEndOwningTypePropertyDescriptor(object);
@@ -68,6 +67,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addDirectionPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
 			addFeatureTargetPropertyDescriptor(object);
+			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;

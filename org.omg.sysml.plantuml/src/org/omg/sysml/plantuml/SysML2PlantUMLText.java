@@ -59,6 +59,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 import com.google.inject.Inject;
 
@@ -224,16 +225,14 @@ public class SysML2PlantUMLText {
         return "";
     }
 
-    public static String getMetadataUsageName(Element e) {
-        StringBuilder sb = null;
-        for (Element oe: e.getOwnedElement()) {
-            if (oe instanceof MetadataUsage) {
-                MetadataUsage mu = (MetadataUsage) oe;
-                List<FeatureTyping> tt = mu.getOwnedTyping();
-                for (FeatureTyping ft: tt) {
-                    if (ft == null) continue;
-                    Type typ = ft.getType();
-                    if (typ == null) continue;
+    private static String getSemanticMetadataName(MetadataUsage mu) {
+        List<FeatureTyping> tt = mu.getOwnedTyping();
+        for (FeatureTyping ft: tt) {
+            if (ft == null) continue;
+            Type typ = ft.getType();
+            if (typ == null) continue;
+            for (Type st: TypeUtil.getGeneralTypesOf(typ)) {
+                if ("Metaobjects::SemanticMetadata".equals(st.getQualifiedName())) {
                     String mName = typ.getDeclaredShortName();
                     if (mName == null || mName.isEmpty()) {
                         mName = typ.getDeclaredName();
@@ -241,15 +240,28 @@ public class SysML2PlantUMLText {
                             continue;
                         }
                     }
-                    if (sb == null) {
-                        sb = new StringBuilder();
-                        sb.append("<<");
-                    } else {
-                        sb.append(' ');
-                    }
-                    sb.append('#');
-                    sb.append(mName);
+                    return mName;
                 }
+            }
+        }
+        return null;
+    }
+
+    public static String getMetadataUsageName(Element e) {
+        StringBuilder sb = null;
+        for (Element oe: e.getOwnedElement()) {
+            if (oe instanceof MetadataUsage) {
+                MetadataUsage mu = (MetadataUsage) oe;
+                String mName = getSemanticMetadataName(mu);
+                if (mName == null) continue;
+                if (sb == null) {
+                    sb = new StringBuilder();
+                    sb.append("<<");
+                } else {
+                    sb.append(' ');
+                }
+                sb.append('#');
+                sb.append(mName);
             }
             if (sb != null) break; // Do not show more than one metadata.
         }

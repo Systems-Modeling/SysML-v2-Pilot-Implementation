@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -282,7 +283,7 @@ public class VCompartment extends VStructure {
     @Override
     public String caseOwningMembership(OwningMembership m) {
         Element e = m.getOwnedMemberElement();
-        if (e instanceof Documentation) {
+        if ((e instanceof Documentation) ||  (e instanceof MetadataUsage)) {
             return visitMembership(m);
         }
         rec(m, e, false);
@@ -425,6 +426,14 @@ public class VCompartment extends VStructure {
         }
     }
 
+    private boolean addMetadataUsage(MetadataUsage mu) {
+        VMetadata vm = getVMetadata();
+        String text = vm.getMetadataFeatureText(mu, 0);
+        if (text == null) return false;
+        append(text);
+        return true;
+    }
+
     private boolean appendFeatureText(Feature f, String toBeRemoved) {
         String text = getText(f);
         if (text == null) return false;
@@ -468,6 +477,8 @@ public class VCompartment extends VStructure {
                 append(" }");
                 addEvaluatedResults(ce.f);
             }
+        } else if (ce.f instanceof MetadataUsage) {
+            return addMetadataUsage((MetadataUsage) ce.f);
         } else if (getFeatureName(ce.f) == null) {
             addAnonymouseFeatureText(ce.f);
         } else {
@@ -626,6 +637,14 @@ public class VCompartment extends VStructure {
     public String caseDocumentation(Documentation doc) {
         if (addDocumentation(doc)) return "";
         return null;
+    }
+
+    @Override
+    public String caseMetadataUsage(MetadataUsage mu) {
+        VMetadata vm = getVMetadata();
+        if (vm.hideMetadata) return "";
+        if (addEntry(mu, true) == null) return null;
+        return "";
     }
     
 }

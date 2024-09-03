@@ -46,6 +46,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -96,9 +97,6 @@ public class GenerateLibraryIndex extends AbstractHandler {
 
 	private void createIndexFor(IProject project) {
 		
-		IWorkspace workspace = project.getWorkspace();
-		ISchedulingRule buildRule = workspace.getRuleFactory().buildRule();
-		
 		WorkspaceJob generateIndexWsJob = new WorkspaceJob("Generate Index") {
 
 			@Override
@@ -120,22 +118,25 @@ public class GenerateLibraryIndex extends AbstractHandler {
 				
 				project.build(IncrementalProjectBuilder.CLEAN_BUILD, subMonitor.split(5));
 				project.build(IncrementalProjectBuilder.FULL_BUILD, subMonitor.split(45));
+
+				SubMonitor transformationMonitor = SubMonitor.convert(subMonitor.split(48), "Running Transformation", rs.getResources().size());
+				for (Resource resource: rs.getResources()) {
+					transformationMonitor.split(1).setTaskName("Transforming " + resource.getURI().toPlatformString(true));;
+					ElementUtil.transformAll(resource, false);
+				}
 				
-				ElementUtil.transformAll(rs, false);
 				
-				SubMonitor indexMonitor = SubMonitor.convert(SubMonitor.convert(subMonitor.split(40), rs.getResources().size()));
+				SubMonitor.convert(subMonitor.split(1), "Generating index file", rs.getResources().size());
 				
 				LibraryIndex index = new LibraryIndex();
-				index.updateIndex(rs.getResources(), res -> {
-					indexMonitor.split(1).setTaskName("Generating index for " + res.getURI().toFileString());
-				});
+				index.updateIndex(rs.getResources());
 				
 				String jsonString = index.toJson(new GsonBuilder()
 						.disableHtmlEscaping()
 						.setPrettyPrinting()
 				);
 				
-				writeIndex(project, jsonString, subMonitor.split(10));
+				writeIndex(project, jsonString, subMonitor.split(1));
 				
 				libraryIndexProvider.setIndexDisabled(false);
 				
@@ -144,7 +145,7 @@ public class GenerateLibraryIndex extends AbstractHandler {
 		};
 		
 		generateIndexWsJob.setUser(true);
-		generateIndexWsJob.setRule(buildRule);
+		generateIndexWsJob.setRule(project.getWorkspace().getRoot());
 		generateIndexWsJob.schedule();
 	}
 	

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022,2024 Model Driven Solutions, Inc.
  * Copyright (c) 2018-2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, JPL
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
@@ -217,9 +218,11 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
-		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
-		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
-		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		if (this.ns === ns || scopeProvider.libraryNamespaces.canContainMember(ns, qn, targetqn)) {
+    		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
+    		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
+    		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		} else false
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {

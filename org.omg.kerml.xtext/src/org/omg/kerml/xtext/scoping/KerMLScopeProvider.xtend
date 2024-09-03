@@ -1,8 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
- * Copyright (c) 2018,2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2018-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,6 +24,7 @@
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, JPL
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
@@ -48,12 +49,20 @@ import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.kerml.xtext.library.LibraryNamespaces
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
+	
+	@Inject
+	LibraryNamespaces libraryNamespaces
 
+	def getLibraryNamespaces(){
+	    libraryNamespaces
+	}
+	
 	// Used to record visited Memberships and Imports.
 	Set<Element> visited = newHashSet
 	

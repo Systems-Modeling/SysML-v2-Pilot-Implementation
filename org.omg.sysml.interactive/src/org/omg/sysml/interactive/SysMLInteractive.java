@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -24,6 +24,7 @@
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
  *  Ivan Gomes, Twingineer
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -52,6 +53,7 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
@@ -112,6 +114,9 @@ public class SysMLInteractive extends SysMLUtil {
 	private IResourceValidator validator;
 	
 	@Inject
+	private ILibraryIndexProvider libraryIndexCache;
+	
+	@Inject
 	private SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
@@ -140,6 +145,10 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public XtextResource getResource() {
 		return this.resource;
+	}
+	
+	public ILibraryIndexProvider getLibraryIndexCache() {
+		return libraryIndexCache;
 	}
 	
 	public void removeResource() {

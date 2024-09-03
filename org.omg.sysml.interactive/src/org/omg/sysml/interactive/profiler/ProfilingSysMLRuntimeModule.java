@@ -22,10 +22,14 @@ package org.omg.sysml.interactive.profiler;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.validation.IResourceValidator;
 import org.omg.sysml.interactive.profiler.linking.ProfilingKerMLLinkingService;
 import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLGlobalScopeProvider;
 import org.omg.sysml.interactive.profiler.scope.ProfilingSysMLScopeProvider;
+import org.omg.sysml.interactive.profiler.validation.ProfilingResourceValidator;
+import org.omg.sysml.interactive.profiler.validation.ProfilingSysMLValidator;
 import org.omg.sysml.xtext.SysMLRuntimeModule;
+import org.omg.sysml.xtext.validation.SysMLValidator;
 
 public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	
@@ -47,4 +51,16 @@ public class ProfilingSysMLRuntimeModule extends SysMLRuntimeModule {
 	public Class<? extends Profiler> bindTimeProfiler(){
 		return Profiler.class;
 	}
+	
+	@Override
+	public Class<? extends IResourceValidator> bindIResourceValidator() {
+		return ProfilingResourceValidator.class;
+	}
+
+	@Override
+	public Class<? extends SysMLValidator> bindSysMLValidator() {
+		return ProfilingSysMLValidator.class;
+	}
+	
+	
 }

@@ -18,7 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Laszlo Gati
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive.profiler;
@@ -26,6 +26,7 @@ package org.omg.sysml.interactive.profiler;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.service.SingletonBinding;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.omg.kerml.xtext.KerMLRuntimeModule;
 import org.omg.kerml.xtext.validation.KerMLValidator;
@@ -61,6 +62,7 @@ public class ProfilingKerMLRuntimeModule extends KerMLRuntimeModule {
 	}
 
 	@Override
+	@SingletonBinding(eager=true)
 	public Class<? extends KerMLValidator> bindKerMLValidator() {
 		return ProfilingKerMLValidator.class;
 	}

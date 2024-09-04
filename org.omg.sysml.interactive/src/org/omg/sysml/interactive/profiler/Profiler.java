@@ -1,7 +1,7 @@
-/**
+/*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
- *
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
+ *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,11 +12,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- */
+ * 
+ * Contributors:
+ *  Laszlo Gati, MDS
+ *  Zoltan Ujhelyi, MDS
+ * 
+ *****************************************************************************/
 package org.omg.sysml.interactive.profiler;
 
 import java.io.PrintStream;
@@ -27,6 +32,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Stopwatch;
@@ -38,9 +44,10 @@ public class Profiler {
 	
 	private final Map<String, Duration> operationStartTimes = new HashMap<>();
 	
-	private final Map<String, Integer> operationCallCounters = new HashMap<>();
+	private final Map<String, Integer> operationCallStack = new HashMap<>();
 	
-	private final Map<String, Duration> totalTimeSpentInOperations = new HashMap<>();
+	private final Map<String, Integer> operationCallCount = new HashMap<>();
+	private final Map<String, Duration> totalTimeSpentInOperations = new TreeMap<>();
 	
 	private final Deque<Operation> operationStack = new LinkedList<>();
 	
@@ -49,7 +56,7 @@ public class Profiler {
 	public void reset() {
 		globalTimer.reset();
 		operationStartTimes.clear();
-		operationCallCounters.clear();
+		operationCallStack.clear();
 		totalTimeSpentInOperations.clear();
 		operationStack.clear();
 	}
@@ -71,11 +78,17 @@ public class Profiler {
 			globalTimer.start();
 		}
 		
-		if (!operationCallCounters.containsKey(operation)) {
+		if (!operationCallStack.containsKey(operation)) {
 			operationStartTimes.put(operation, globalTimer.elapsed());
-			operationCallCounters.put(operation, 1);
+			operationCallStack.put(operation, 1);
 		} else {
-			operationCallCounters.compute(operation, (k, v) -> ++v);
+			operationCallStack.compute(operation, (k, v) -> ++v);
+		}
+		
+		if (!operationCallCount.containsKey(operation)) {
+			operationCallCount.put(operation, 1);
+		} else {
+			operationCallCount.compute(operation, (k, v) -> ++v);
 		}
 		
 		Operation lastOperation = operationStack.peek();
@@ -96,11 +109,11 @@ public class Profiler {
 	 *                    return values of methods
 	 */
 	public void operationFinished(Object caller, String operation, String returnValue) {
-		if (operationCallCounters.compute(operation, (k, v) -> --v) == 0) {
+		if (operationCallStack.compute(operation, (k, v) -> --v) == 0) {
 			Duration duration = globalTimer.elapsed().minus(operationStartTimes.get(operation));
 			Duration totalDuration = totalTimeSpentInOperations.computeIfAbsent(operation, key -> Duration.ZERO).plus(duration);
 			totalTimeSpentInOperations.put(operation, totalDuration);
-			operationCallCounters.remove(operation);
+			operationCallStack.remove(operation);
 		}
 		
 		Operation currentOperation = operationStack.pop();
@@ -110,7 +123,9 @@ public class Profiler {
 	
 	public void printOperationTotalTimes(PrintStream out) {
 		totalTimeSpentInOperations.forEach((operation, duration) -> {
-			out.println(operation + " total time spent: " + duration.toMillis() + " ms");
+			int callCount = operationCallCount.get(operation);
+			long totalDuration = duration.toMillis();
+			out.println(String.format("%s total time spent: %d ms (count: %d, avg: %d ms)", operation, totalDuration, callCount, totalDuration/callCount));
 		});
 	}
 	

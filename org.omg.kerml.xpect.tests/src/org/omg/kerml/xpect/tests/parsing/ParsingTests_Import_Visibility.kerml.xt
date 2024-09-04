@@ -1,0 +1,26 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+       	File {from ="/library/ScalarValues.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+		       	File {from ="/library/ScalarValues.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package ImportVisibility {
+	public import ScalarValues;
+	private import ScalarValues;
+	protected import ScalarValues;
+	// XPECT errors ---> "mismatched input 'import' expecting '}'" at "import"
+	import ScalarValues;
+	// XPECT errors ---> "extraneous input '}' expecting EOF" at "}"
+}

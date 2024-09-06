@@ -1,0 +1,25 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+       	File {from ="/library/ScalarValues.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+		       	File {from ="/library/ScalarValues.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT errors ---> "Top level import must be private" at "public import ScalarValues"
+public import ScalarValues;
+
+private import Import_RootNamespace;
+
+package Import_RootNamespace {
+}

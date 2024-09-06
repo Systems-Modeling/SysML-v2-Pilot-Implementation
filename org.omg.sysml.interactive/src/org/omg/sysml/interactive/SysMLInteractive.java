@@ -267,7 +267,7 @@ public class SysMLInteractive extends SysMLUtil {
 				this.counter++;
 				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
 			}
-			input = "calc{import " + targetName + "::*;\n" + input + "}";
+			input = "calc{private import " + targetName + "::*;\n" + input + "}";
 		}
 		SysMLInteractiveResult result = this.process(input, false);
 		if (result.hasErrors()) {
@@ -307,11 +307,11 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!query.endsWith(";")) {
 			query += ";";
 		}
-		SysMLInteractiveResult result = this.process("import " + query, false);
+		SysMLInteractiveResult result = this.process("private import " + query, false);
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
-			List<Membership> memberships = ((Namespace)result.getRootElement()).visibleMemberships(new BasicEList<>(), false, false);
+			List<Membership> memberships = ((Namespace)result.getRootElement()).getImportedMembership();
 			this.removeResource();
 			return SysMLInteractiveUtil.formatMembershipList(memberships);
 		}

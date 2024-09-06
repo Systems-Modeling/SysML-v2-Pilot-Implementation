@@ -22,15 +22,13 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -40,14 +38,8 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		NamespaceUtil.addAdditionalMembersTo((TransitionUsage)owner);
-		EList<Membership> ownedMemberships = ((TransitionUsage)owner).getOwnedMembership();
-		if (ownedMemberships.isEmpty()) {
-			return null;
-		} else {
-			Element member = ownedMemberships.get(0).getMemberElement();
-			return member instanceof ActionUsage? (ActionUsage)member: null;
-		}
+		Feature source = UsageUtil.getSourceFeatureOf((TransitionUsage)owner);
+		return source == null? null: FeatureUtil.getBasicFeatureOf(source);
 	}
 
 }

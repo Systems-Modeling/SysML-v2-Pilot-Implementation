@@ -78,6 +78,10 @@ public class TypeUtil {
 	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
 		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 	}
+	
+	public static Collection<Feature> getFeaturesRedefinedBy(Type type) {
+		return getTypeAdapter(type).getFeaturesRedefinedByType();
+	}
 
 	// Caching
 	

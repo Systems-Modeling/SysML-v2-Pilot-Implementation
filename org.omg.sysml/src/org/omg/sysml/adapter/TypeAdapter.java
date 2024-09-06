@@ -132,7 +132,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 
 	// Overridden in ExpressionAdapter
-	protected Collection<Feature> getFeaturesRedefinedByType() {
+	public Collection<Feature> getFeaturesRedefinedByType() {
 		return getTarget().getOwnedFeature().stream().
 				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
 				collect(Collectors.toSet());

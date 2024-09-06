@@ -1,8 +1,8 @@
 package PortionModelingCarDriver {
 	
-	import Occurrences::Occurrence;
-	import Occurrences::Life;
-	import ScalarValues::Boolean;
+	private import Occurrences::Occurrence;
+	private import Occurrences::Life;
+	private import ScalarValues::Boolean;
 
 
        /* classes = lives, timeslices/snapshots not specifically typed */

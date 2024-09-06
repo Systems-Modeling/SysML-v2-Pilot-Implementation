@@ -1,6 +1,6 @@
 package PortionModeling2 {
 	
-	import Occurrences::Occurrence;
+	private import Occurrences::Occurrence;
 
     /* Similar to some T2 examples. */
 

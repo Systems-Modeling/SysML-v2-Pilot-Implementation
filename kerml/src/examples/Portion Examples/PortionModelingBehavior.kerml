@@ -1,6 +1,6 @@
 package PortionModelingBehavior {
 	
-	import Occurrences::Occurrence;
+	private import Occurrences::Occurrence;
 	
 	behavior TakePicture {
  		step focus [1];

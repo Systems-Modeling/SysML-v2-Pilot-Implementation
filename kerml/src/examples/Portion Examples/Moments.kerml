@@ -1,6 +1,6 @@
 package Moments {
-    import Occurrences::Life;
-    import Occurrences::Occurrence;
+    private import Occurrences::Life;
+    private import Occurrences::Occurrence;
 
     class Eternity specializes Life {
         // Nothing before/after or outside.
@@ -31,7 +31,7 @@ package Moments {
       //↓↓ With UE redef, exactly UE snapshots.
       redefines snapshotOf : UniversalEternity [1]; }
       
-    import Occurrence::spaceTimeCoincidentOccurrences;
+    private import Occurrence::spaceTimeCoincidentOccurrences;
     //UE portion "corresponding" to an occurrence.
     feature coincidentUEPortion : Occurrence [1] subsets spaceTimeCoincidentOccurrences,
                                                          universalEternity.portions

@@ -1,12 +1,12 @@
 package TimeVaryingAttribute1 {
-    import SI::s;
+    private import SI::s;
     
     item def PwrCmd {
         attribute pwrLevel: ScalarValues::Integer;
     }
     
     part def Transport {
-        import Time::*;
+        private import Time::*;
         attribute startTime = TimeOf(start);
         attribute elapseTime :> ISQ::duration;
         attribute :>> localClock.currentTime = startTime + elapseTime;

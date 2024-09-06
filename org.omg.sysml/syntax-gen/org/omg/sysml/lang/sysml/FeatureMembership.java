@@ -47,39 +47,6 @@ package org.omg.sysml.lang.sysml;
  */
 public interface FeatureMembership extends OwningMembership {
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Feature</code> that is featured by the <code>featuringType</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeaturing_Feature()
-	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuring'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Feature getFeature();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getFeature <em>Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
-	 * @see #getFeature()
-	 * @generated
-	 */
-	void setFeature(Feature value);
-
-	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
 	 * <p>

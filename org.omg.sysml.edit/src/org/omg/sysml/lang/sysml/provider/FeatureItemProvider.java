@@ -67,6 +67,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addDirectionPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
 			addFeatureTargetPropertyDescriptor(object);
+			addIsVariablePropertyDescriptor(object);
 			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
@@ -558,6 +559,28 @@ public class FeatureItemProvider extends TypeItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Is Variable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsVariablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_isVariable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isVariable_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__IS_VARIABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Is Nonunique feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -628,6 +651,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 			case SysMLPackage.FEATURE__IS_PORTION:
 			case SysMLPackage.FEATURE__DIRECTION:
+			case SysMLPackage.FEATURE__IS_VARIABLE:
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

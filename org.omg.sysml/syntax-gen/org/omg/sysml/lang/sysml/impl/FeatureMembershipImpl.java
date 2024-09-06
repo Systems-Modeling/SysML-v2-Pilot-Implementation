@@ -277,33 +277,6 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeature() {
-		return getOwnedMemberFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetFeature() {
-		return basicGetOwnedMemberFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFeature(Feature newFeature) {
-		setOwnedMemberFeature(newFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isSetFeature() {
   		return false;
 	}

@@ -3315,29 +3315,6 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.VariableFeatureMembership} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VariableFeatureMembershipItemProvider variableFeatureMembershipItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.omg.sysml.lang.sysml.VariableFeatureMembership}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVariableFeatureMembershipAdapter() {
-		if (variableFeatureMembershipItemProvider == null) {
-			variableFeatureMembershipItemProvider = new VariableFeatureMembershipItemProvider(this);
-		}
-
-		return variableFeatureMembershipItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.TriggerInvocationExpression} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4135,7 +4112,6 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (ifActionUsageItemProvider != null) ifActionUsageItemProvider.dispose();
 		if (assignmentActionUsageItemProvider != null) assignmentActionUsageItemProvider.dispose();
 		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
-		if (variableFeatureMembershipItemProvider != null) variableFeatureMembershipItemProvider.dispose();
 	}
 
 }

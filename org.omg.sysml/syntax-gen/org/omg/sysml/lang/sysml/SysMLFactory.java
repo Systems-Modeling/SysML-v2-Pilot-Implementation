@@ -222,15 +222,6 @@ public interface SysMLFactory extends EFactory {
 	JoinNode createJoinNode();
 
 	/**
-	 * Returns a new object of class '<em>Variable Feature Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Feature Membership</em>'.
-	 * @generated
-	 */
-	VariableFeatureMembership createVariableFeatureMembership();
-
-	/**
 	 * Returns a new object of class '<em>Merge Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

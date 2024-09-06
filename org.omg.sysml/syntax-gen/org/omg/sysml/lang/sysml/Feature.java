@@ -181,7 +181,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
@@ -197,6 +196,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isVariable <em>Is Variable</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -800,6 +801,32 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setFeatureTarget(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Variable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Variable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Variable</em>' attribute.
+	 * @see #setIsVariable(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsVariable()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isVariable();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isVariable <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Variable</em>' attribute.
+	 * @see #isVariable()
+	 * @generated
+	 */
+	void setIsVariable(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.

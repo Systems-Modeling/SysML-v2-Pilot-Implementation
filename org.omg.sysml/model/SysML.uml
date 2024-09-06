@@ -1034,6 +1034,9 @@ not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->e
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d735031f-0559-463f-8f40-0bf6d16f983e" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="02dc2259-b59e-442d-b9f8-693c4eb598ec" name="" visibility="public" value="1"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_9wLaEGv6Ee-Ovqa_0jneig" name="isVariable">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
     <ownedOperation xmi:id="62627ba2-400d-4ce1-aa00-5510fe5ce0fc" name="directionFor" visibility="public" bodyCondition="40a9a558-173b-4b45-abf0-818148e07abd">
       <ownedComment xmi:id="f2427503-74a6-4dbe-835a-19283c87d172" annotatedElement="62627ba2-400d-4ce1-aa00-5510fe5ce0fc">
         <body>&lt;p>Return the &lt;code>directionOf&lt;/code> this &lt;code>Feature&lt;/code> relative to the given &lt;code>type&lt;/code>.&lt;/p></body>
@@ -14702,8 +14705,5 @@ endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="8acc1b7c-092a-49b0-9a91-fc4dede4ce01" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ab647297-ec7d-44f7-8cc2-9d08cd268ab0" name="" visibility="public" value="1"/>
     </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_LpY50GWeEe-_7_7cPhszYg" name="VariableFeatureMembership">
-    <generalization xmi:id="_O4hvUGWeEe-_7_7cPhszYg" general="10189040-993c-4d64-aacf-0d99b558af68"/>
   </packagedElement>
 </uml:Model>

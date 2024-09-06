@@ -69,7 +69,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
@@ -85,6 +84,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeatureTarget <em>Feature Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isVariable <em>Is Variable</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -164,15 +165,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_SUBSETTING).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getOwningFeatureMembership() <em>Owning Feature Membership</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningFeatureMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_FEATURE_MEMBERSHIP).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -363,6 +355,33 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FEATURE_TARGET__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__FEATURE_TARGET).getSettingDelegate();
+	/**
+	 * The default value of the '{@link #isVariable() <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VARIABLE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isVariable() <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isVariable = IS_VARIABLE_EDEFAULT;
+	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureMembership() <em>Owning Feature Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_FEATURE_MEMBERSHIP).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -722,6 +741,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void setFeatureTarget(Feature newFeatureTarget) {
 		FEATURE_TARGET__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureTarget);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isVariable() {
+		return isVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsVariable(boolean newIsVariable) {
+		boolean oldIsVariable = isVariable;
+		isVariable = newIsVariable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_VARIABLE, oldIsVariable, isVariable));
 	}
 
 	/**
@@ -1123,9 +1165,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				if (resolve) return getOwningFeatureMembership();
-				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
 			case SysMLPackage.FEATURE__IS_END:
@@ -1159,6 +1198,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				if (resolve) return getFeatureTarget();
 				return basicGetFeatureTarget();
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				return isVariable();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				if (resolve) return getOwningFeatureMembership();
+				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -1194,9 +1238,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
-				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
@@ -1249,6 +1290,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				setFeatureTarget((Feature)newValue);
 				return;
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				setIsVariable((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -1281,9 +1328,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return;
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
-				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
 				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
@@ -1330,6 +1374,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				setFeatureTarget((Feature)null);
 				return;
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				setIsVariable(IS_VARIABLE_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -1359,8 +1409,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return OWNED_REDEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return OWNED_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_END:
@@ -1391,6 +1439,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				return FEATURE_TARGET__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				return isVariable != IS_VARIABLE_EDEFAULT;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
@@ -1449,6 +1501,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isPortion);
 		result.append(", direction: ");
 		result.append(direction);
+		result.append(", isVariable: ");
+		result.append(isVariable);
 		result.append(')');
 		return result.toString();
 	}

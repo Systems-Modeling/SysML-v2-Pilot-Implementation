@@ -1020,11 +1020,6 @@ public class OwningMembershipItemProvider extends MembershipItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT,
 				 SysMLFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT,
-				 SysMLFactory.eINSTANCE.createVariableFeatureMembership()));
 	}
 
 	/**

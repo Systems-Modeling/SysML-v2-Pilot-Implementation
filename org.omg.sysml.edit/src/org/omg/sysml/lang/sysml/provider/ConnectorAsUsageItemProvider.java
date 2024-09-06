@@ -1156,11 +1156,6 @@ public class ConnectorAsUsageItemProvider extends UsageItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
 				 SysMLFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
-				 SysMLFactory.eINSTANCE.createVariableFeatureMembership()));
 	}
 
 	/**

@@ -1232,6 +1232,8 @@
       </eAnnotations>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" volatile="true" transient="true"
         derived="true" eOpposite="#//FeatureMembership/ownedMemberFeature">
@@ -5338,5 +5340,4 @@
       <details key="documentation" value="&lt;p>A &lt;code>JoinNode&lt;/code> is a &lt;code>ControlNode&lt;/code> that waits for the completion of all the predecessor &lt;code>Actions&lt;/code> given by incoming &lt;code>Successions&lt;/code>.&lt;/p>&#xA;sourceConnector->selectByKind(Succession)->size() &lt;= 1&#xA;specializesFromLibrary('Actions::Action::join')"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableFeatureMembership" eSuperTypes="#//FeatureMembership"/>
 </ecore:EPackage>

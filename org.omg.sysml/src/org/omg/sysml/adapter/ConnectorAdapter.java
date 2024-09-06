@@ -24,10 +24,8 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.VariableFeatureMembership;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
@@ -61,10 +59,9 @@ public class ConnectorAdapter extends FeatureAdapter {
 	protected Type computeFeaturingType() {
 		Connector target = getTarget();
 		Type featuringType = super.computeFeaturingType();
-		FeatureMembership featureMembership = target.getOwningFeatureMembership();
-		if (featureMembership instanceof VariableFeatureMembership) {
+		if (target.isVariable()) {
 			target.getRelatedFeature().stream().
-				filter(feature->feature.getOwningFeatureMembership() instanceof VariableFeatureMembership).
+				filter(Feature::isVariable).
 				flatMap(FeatureAdapter::getFeaturingFeaturesOf).
 				forEachOrdered(relatedVariable->
 					FeatureUtil.addSubsettingTo((Feature)featuringType).setSubsettedFeature(relatedVariable));

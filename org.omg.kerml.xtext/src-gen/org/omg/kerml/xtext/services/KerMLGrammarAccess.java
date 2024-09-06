@@ -2178,15 +2178,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cTypeFeatureMemberParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cOwnedFeatureMemberParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cVariableFeatureMemberParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		///* Feature Membership */
 		//FeatureMember returns SysML::OwningMembership :
-		//    TypeFeatureMember | OwnedFeatureMember | VariableFeatureMember
+		//    TypeFeatureMember | OwnedFeatureMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeFeatureMember | OwnedFeatureMember | VariableFeatureMember
+		//TypeFeatureMember | OwnedFeatureMember
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//TypeFeatureMember
@@ -2194,9 +2193,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//OwnedFeatureMember
 		public RuleCall getOwnedFeatureMemberParserRuleCall_1() { return cOwnedFeatureMemberParserRuleCall_1; }
-		
-		//VariableFeatureMember
-		public RuleCall getVariableFeatureMemberParserRuleCall_2() { return cVariableFeatureMemberParserRuleCall_2; }
 	}
 	public class TypeFeatureMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TypeFeatureMember");
@@ -2249,34 +2245,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//FeatureElement
 		public RuleCall getOwnedRelatedElementFeatureElementParserRuleCall_1_0() { return cOwnedRelatedElementFeatureElementParserRuleCall_1_0; }
-	}
-	public class VariableFeatureMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.VariableFeatureMember");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cVarKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementFeatureElementParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
-		
-		//VariableFeatureMember returns SysML::VariableFeatureMembership :
-		//    MemberPrefix 'var' ownedRelatedElement += FeatureElement
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//MemberPrefix 'var' ownedRelatedElement += FeatureElement
-		public Group getGroup() { return cGroup; }
-		
-		//MemberPrefix
-		public RuleCall getMemberPrefixParserRuleCall_0() { return cMemberPrefixParserRuleCall_0; }
-		
-		//'var'
-		public Keyword getVarKeyword_1() { return cVarKeyword_1; }
-		
-		//ownedRelatedElement += FeatureElement
-		public Assignment getOwnedRelatedElementAssignment_2() { return cOwnedRelatedElementAssignment_2; }
-		
-		//FeatureElement
-		public RuleCall getOwnedRelatedElementFeatureElementParserRuleCall_2_0() { return cOwnedRelatedElementFeatureElementParserRuleCall_2_0; }
 	}
 	public class SpecializationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Specialization");
@@ -3098,8 +3066,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsCompositeCompositeKeyword_2_0_0 = (Keyword)cIsCompositeAssignment_2_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_2_1_0 = (Keyword)cIsPortionAssignment_2_1.eContents().get(0);
-		private final Assignment cIsReadOnlyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsReadOnlyReadonlyKeyword_3_0 = (Keyword)cIsReadOnlyAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cIsReadOnlyAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final Keyword cIsReadOnlyReadonlyKeyword_3_0_0 = (Keyword)cIsReadOnlyAssignment_3_0.eContents().get(0);
+		private final Assignment cIsVariableAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final Keyword cIsVariableVarKeyword_3_1_0 = (Keyword)cIsVariableAssignment_3_1.eContents().get(0);
 		private final Assignment cIsDerivedAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final Keyword cIsDerivedDerivedKeyword_4_0 = (Keyword)cIsDerivedAssignment_4.eContents().get(0);
 		private final Assignment cIsEndAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -3111,7 +3082,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ( direction = FeatureDirection )?
 		//    ( isAbstract ?= 'abstract' )?
 		//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-		//    ( isReadOnly ?= 'readonly' )?
+		//    ( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 		//    ( isDerived ?= 'derived' )?
 		//    ( isEnd ?= 'end' )?
 		//    ( ownedRelationship += PrefixMetadataMember )*
@@ -3121,7 +3092,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//( direction = FeatureDirection )?
 		//( isAbstract ?= 'abstract' )?
 		//( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-		//( isReadOnly ?= 'readonly' )?
+		//( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 		//( isDerived ?= 'derived' )?
 		//( isEnd ?= 'end' )?
 		//( ownedRelationship += PrefixMetadataMember )*
@@ -3154,11 +3125,20 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'portion'
 		public Keyword getIsPortionPortionKeyword_2_1_0() { return cIsPortionPortionKeyword_2_1_0; }
 		
-		//( isReadOnly ?= 'readonly' )?
-		public Assignment getIsReadOnlyAssignment_3() { return cIsReadOnlyAssignment_3; }
+		//( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//isReadOnly ?= 'readonly'
+		public Assignment getIsReadOnlyAssignment_3_0() { return cIsReadOnlyAssignment_3_0; }
 		
 		//'readonly'
-		public Keyword getIsReadOnlyReadonlyKeyword_3_0() { return cIsReadOnlyReadonlyKeyword_3_0; }
+		public Keyword getIsReadOnlyReadonlyKeyword_3_0_0() { return cIsReadOnlyReadonlyKeyword_3_0_0; }
+		
+		//isVariable ?= 'var'
+		public Assignment getIsVariableAssignment_3_1() { return cIsVariableAssignment_3_1; }
+		
+		//'var'
+		public Keyword getIsVariableVarKeyword_3_1_0() { return cIsVariableVarKeyword_3_1_0; }
 		
 		//( isDerived ?= 'derived' )?
 		public Assignment getIsDerivedAssignment_4() { return cIsDerivedAssignment_4; }
@@ -7097,7 +7077,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final FeatureMemberElements pFeatureMember;
 	private final TypeFeatureMemberElements pTypeFeatureMember;
 	private final OwnedFeatureMemberElements pOwnedFeatureMember;
-	private final VariableFeatureMemberElements pVariableFeatureMember;
 	private final SpecializationElements pSpecialization;
 	private final OwnedSpecializationElements pOwnedSpecialization;
 	private final ConjugationElements pConjugation;
@@ -7275,7 +7254,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pFeatureMember = new FeatureMemberElements();
 		this.pTypeFeatureMember = new TypeFeatureMemberElements();
 		this.pOwnedFeatureMember = new OwnedFeatureMemberElements();
-		this.pVariableFeatureMember = new VariableFeatureMemberElements();
 		this.pSpecialization = new SpecializationElements();
 		this.pOwnedSpecialization = new OwnedSpecializationElements();
 		this.pConjugation = new ConjugationElements();
@@ -8114,7 +8092,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Feature Membership */
 	//FeatureMember returns SysML::OwningMembership :
-	//    TypeFeatureMember | OwnedFeatureMember | VariableFeatureMember
+	//    TypeFeatureMember | OwnedFeatureMember
 	//;
 	public FeatureMemberElements getFeatureMemberAccess() {
 		return pFeatureMember;
@@ -8144,17 +8122,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getOwnedFeatureMemberRule() {
 		return getOwnedFeatureMemberAccess().getRule();
-	}
-	
-	//VariableFeatureMember returns SysML::VariableFeatureMembership :
-	//    MemberPrefix 'var' ownedRelatedElement += FeatureElement
-	//;
-	public VariableFeatureMemberElements getVariableFeatureMemberAccess() {
-		return pVariableFeatureMember;
-	}
-	
-	public ParserRule getVariableFeatureMemberRule() {
-		return getVariableFeatureMemberAccess().getRule();
 	}
 	
 	///* Specialization */
@@ -8393,7 +8360,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ( direction = FeatureDirection )?
 	//    ( isAbstract ?= 'abstract' )?
 	//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-	//    ( isReadOnly ?= 'readonly' )?
+	//    ( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 	//    ( isDerived ?= 'derived' )?
 	//    ( isEnd ?= 'end' )?
 	//    ( ownedRelationship += PrefixMetadataMember )*

@@ -375,7 +375,7 @@ fragment TypeBody returns SysML::Type :
 /* Feature Membership */
 
 FeatureMember returns SysML::OwningMembership :
-	TypeFeatureMember | OwnedFeatureMember | VariableFeatureMember
+	TypeFeatureMember | OwnedFeatureMember
 ;
 
 TypeFeatureMember returns SysML::OwningMembership :
@@ -384,10 +384,6 @@ TypeFeatureMember returns SysML::OwningMembership :
 
 OwnedFeatureMember returns SysML::FeatureMembership :
 	MemberPrefix ownedRelatedElement += FeatureElement 
-;
-
-VariableFeatureMember returns SysML::VariableFeatureMembership :
-	MemberPrefix 'var' ownedRelatedElement += FeatureElement
 ;
 
 /* Specialization */
@@ -517,7 +513,7 @@ fragment FeaturePrefix returns SysML::Feature :
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
-	( isReadOnly ?= 'readonly' )?
+	( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 	( isDerived ?= 'derived' )?
 	( isEnd ?= 'end' )?
 	( ownedRelationship += PrefixMetadataMember )*

@@ -82,7 +82,7 @@ package TimeVaryingFeatures {
             }
         }
         
-        var abstract feature carParts [0..*];
+        abstract var feature carParts [0..*];
         var feature engine [1] :> carParts;
         var feature transmission [1] :> carParts;
         

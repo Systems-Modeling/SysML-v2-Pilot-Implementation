@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.VariableFeatureMembership;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
@@ -498,14 +497,14 @@ public class FeatureAdapter extends TypeAdapter {
 		Type owningType = feature.getOwningType();
 		if (featureMembership == null) {
 			return null;
-		} else if (!(featureMembership instanceof VariableFeatureMembership)) {
+		} else if (!feature.isVariable()) {
 			addFeaturingType(owningType);
 			return owningType;
 		} else {
 			Feature featuringType = SysMLFactory.eINSTANCE.createFeature();		
 			
 			List<Subsetting> variableSubsettings = feature.getOwnedSubsetting().stream().
-					filter(r->r.getSubsettedFeature().getOwningFeatureMembership() instanceof VariableFeatureMembership).toList();
+					filter(r->r.getSubsettedFeature().isVariable()).toList();
 			List<Feature> redefinedFeatures = new ArrayList<>();
 			variableSubsettings.stream().
 					filter(Redefinition.class::isInstance).

@@ -829,11 +829,6 @@ public class ElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
-				 SysMLFactory.eINSTANCE.createVariableFeatureMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION,
 				 SysMLFactory.eINSTANCE.createAnnotation()));
 	}

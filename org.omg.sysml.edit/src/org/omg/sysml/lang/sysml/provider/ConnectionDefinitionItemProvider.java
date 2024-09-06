@@ -1167,11 +1167,6 @@ public class ConnectionDefinitionItemProvider extends PartDefinitionItemProvider
 			(createChildParameter
 				(SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
 				 SysMLFactory.eINSTANCE.createJoinNode()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
-				 SysMLFactory.eINSTANCE.createVariableFeatureMembership()));
 	}
 
 	/**

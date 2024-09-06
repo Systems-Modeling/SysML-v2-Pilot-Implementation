@@ -122,17 +122,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}	
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
+		Collection<Feature> redefinedFeatures = getAllFeaturesRedefinedByType();
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
-				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
+				   FeatureUtil.redefinesAnyOf((Feature)memberElement, redefinedFeatures);
 		});		
 	}
 
 	// Overridden in ExpressionAdapter
-	protected Collection<Feature> getFeaturesRedefinedByType() {
+	public Collection<Feature> getAllFeaturesRedefinedByType() {
 		return getTarget().getOwnedFeature().stream().
 				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
 				collect(Collectors.toSet());

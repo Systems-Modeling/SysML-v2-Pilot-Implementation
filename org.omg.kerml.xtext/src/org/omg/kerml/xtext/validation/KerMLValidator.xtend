@@ -23,6 +23,7 @@
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
+ *  Lazslo Gati, MDS
  *  Miyako Wilson, JPL
  * 
  *****************************************************************************/
@@ -90,6 +91,14 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.eclipse.xtext.naming.QualifiedName
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider
+import com.google.inject.Inject
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.omg.sysml.lang.sysml.SubjectMembership
+import org.omg.sysml.lang.sysml.ObjectiveMembership
+import org.eclipse.xtext.scoping.IScope
+import java.util.Collection
 
 /**
  * This class contains custom validation rules. 
@@ -276,6 +285,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// Note: This validation is not formalized in the spec.
 	public static val INVALID_LIBRARY_PACKAGE_NOT_STANDARD = "validateLibraryPackageNotStandard_"
 	public static val INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG = "User library packages should not be marked as standard"
+	
+	@Inject
+	IScopeProvider scopeProvider
 
 	/* ROOT */
 	
@@ -307,10 +319,39 @@ class KerMLValidator extends AbstractKerMLValidator {
 				checkDistinguishibility(mem, aliasMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
-				val inheritedMemberships = namesp.inheritedMembership
+				// ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
+				// val inheritedMemberships = namesp.inheritedMembership
+				//checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
+				
+				// Get features that are redefined in this namespace, so they can be excluded as conflicts.
+				val redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(namesp, null)
+
 				for (mem: ownedMemberships) {
-					checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
+					val memberName = mem.memberName
+					val memberShortName = mem.memberShortName
+					
+					// Search for another element with the same name, starting with supertypes. Skip "mem" in case it shows up do to cyclic dependencies.
+					val scope = (scopeProvider as KerMLScopeProvider).scopeFor(namesp, SysMLPackage.eINSTANCE.getNamespace_Member, null, false, true, true, mem)
+					
+					if (memberName !== null) {
+						if (mem.checkInheritedNameDistinguishibility(memberName, scope, redefinedFeatures)) {
+							if (mem instanceof OwningMembership) {
+								warning(INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+							} else {
+								warning(INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+							}
+						}
+					}
+					
+					if (memberShortName !== null) {
+						if (mem.checkInheritedNameDistinguishibility(memberShortName, scope, redefinedFeatures)) {
+							if (mem instanceof OwningMembership) {
+								warning(INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+							} else {
+								warning(INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+							}
+						}
+					}
 				}
 			}
 		}		
@@ -334,6 +375,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 				} else {
 					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+		}
+	}
+	
+	def checkInheritedNameDistinguishibility(Membership mem, String name, IScope scope, Collection<Feature> redefinedFeatures) {
+		val description = scope.getSingleElement(QualifiedName.create(name))
+		if (description === null) false
+		else {
+			val inheritedElement = description.EObjectOrProxy as Element
+			return !(mem instanceof SubjectMembership && inheritedElement.owningMembership instanceof SubjectMembership ||
+					 mem instanceof ObjectiveMembership && inheritedElement.owningMembership instanceof ObjectiveMembership ||
+					 inheritedElement instanceof Feature && FeatureUtil.redefinesAnyOf(inheritedElement as Feature, redefinedFeatures))
 		}
 	}
 	

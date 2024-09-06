@@ -754,7 +754,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		checkAtMostOne(mems, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP)
 		
 		// validateExpressionResultExpressionMembership
-		val reMems = e.membership.filter[m | m instanceof ResultExpressionMembership]
+		val reMems = TypeUtil.getResultExpressionMembershipsOf(e)
 	    if (reMems.size() > 1) {
 	    	val ownedMem = reMems.filter[m | m.membershipOwningNamespace === e]
 	    	if (!ownedMem.isEmpty) {
@@ -772,7 +772,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		checkAtMostOne(mems, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP)
 		
 		// validateFunctionResultExpressionMembership
-		val reMems = f.membership.filter[m | m instanceof ResultExpressionMembership]
+		val reMems = TypeUtil.getResultExpressionMembershipsOf(f)
 	    if (reMems.size() > 1) {
 	    	val ownedMem = reMems.filter[m | m.membershipOwningNamespace === f]
 	    	if (!ownedMem.isEmpty) {

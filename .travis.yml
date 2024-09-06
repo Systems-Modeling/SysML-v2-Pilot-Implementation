@@ -17,6 +17,7 @@ install: skip
 script:
   - ./mvnw clean --batch-mode
   - ./mvnw install --batch-mode
+  - echo $(git diff -- sysml.library/.index.json) | grep -e '^$' || (echo "Library index in the git repository is not up to date. Please re-generate it and push changes to the repository."; exit 1)
 deploy:
   - provider: script
     script: .ci/deploy.sh

@@ -1427,7 +1427,7 @@ ruleImportPrefix[EObject in_current]  returns [EObject current=in_current]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)
 		otherlv_1='import'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getImportPrefixAccess().getImportKeyword_1());

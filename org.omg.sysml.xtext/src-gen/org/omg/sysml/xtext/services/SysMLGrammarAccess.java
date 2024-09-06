@@ -1377,16 +1377,16 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsImportAllAllKeyword_2_0 = (Keyword)cIsImportAllAssignment_2.eContents().get(0);
 		
 		//fragment ImportPrefix returns SysML::Import :
-		//    ( visibility = VisibilityIndicator )?
+		//    visibility = VisibilityIndicator
 		//    'import' ( isImportAll ?= 'all' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( visibility = VisibilityIndicator )?
+		//visibility = VisibilityIndicator
 		//'import' ( isImportAll ?= 'all' )?
 		public Group getGroup() { return cGroup; }
 		
-		//( visibility = VisibilityIndicator )?
+		//visibility = VisibilityIndicator
 		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
 		
 		//VisibilityIndicator
@@ -13176,29 +13176,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ExposePrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExposePrefix");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Keyword cExposeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cVisibilityAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cVisibilityExposeVisibilityKindEnumRuleCall_0 = (RuleCall)cVisibilityAssignment.eContents().get(0);
 		
 		//fragment ExposePrefix returns SysML::Expose :
-		//    ( visibility = VisibilityIndicator )?
-		//    'expose'
+		//    visibility = ExposeVisibilityKind
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( visibility = VisibilityIndicator )?
-		//'expose'
-		public Group getGroup() { return cGroup; }
+		//visibility = ExposeVisibilityKind
+		public Assignment getVisibilityAssignment() { return cVisibilityAssignment; }
 		
-		//( visibility = VisibilityIndicator )?
-		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0_0; }
-		
-		//'expose'
-		public Keyword getExposeKeyword_1() { return cExposeKeyword_1; }
+		//ExposeVisibilityKind
+		public RuleCall getVisibilityExposeVisibilityKindEnumRuleCall_0() { return cVisibilityExposeVisibilityKindEnumRuleCall_0; }
 	}
 	public class ExposeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Expose");
@@ -13727,6 +13717,22 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'verify'
 		public Keyword getRequirementVerifyKeyword_0() { return cRequirementVerifyKeyword_0; }
 	}
+	public class ExposeVisibilityKindElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExposeVisibilityKind");
+		private final EnumLiteralDeclaration cProtectedEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
+		private final Keyword cProtectedExposeKeyword_0 = (Keyword)cProtectedEnumLiteralDeclaration.eContents().get(0);
+		
+		//enum ExposeVisibilityKind returns SysML::VisibilityKind :
+		//    protected = 'expose'
+		//;
+		public EnumRule getRule() { return rule; }
+		
+		//protected = 'expose'
+		public EnumLiteralDeclaration getProtectedEnumLiteralDeclaration() { return cProtectedEnumLiteralDeclaration; }
+		
+		//'expose'
+		public Keyword getProtectedExposeKeyword_0() { return cProtectedExposeKeyword_0; }
+	}
 	
 	private final RootNamespaceElements pRootNamespace;
 	private final IdentificationElements pIdentification;
@@ -14144,6 +14150,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ViewBodyElements pViewBody;
 	private final ViewBodyItemElements pViewBodyItem;
 	private final ExposePrefixElements pExposePrefix;
+	private final ExposeVisibilityKindElements eExposeVisibilityKind;
 	private final ExposeElements pExpose;
 	private final MembershipExposeElements pMembershipExpose;
 	private final NamespaceExposeElements pNamespaceExpose;
@@ -14584,6 +14591,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pViewBody = new ViewBodyElements();
 		this.pViewBodyItem = new ViewBodyItemElements();
 		this.pExposePrefix = new ExposePrefixElements();
+		this.eExposeVisibilityKind = new ExposeVisibilityKindElements();
 		this.pExpose = new ExposeElements();
 		this.pMembershipExpose = new MembershipExposeElements();
 		this.pNamespaceExpose = new NamespaceExposeElements();
@@ -15054,7 +15062,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ImportPrefix returns SysML::Import :
-	//    ( visibility = VisibilityIndicator )?
+	//    visibility = VisibilityIndicator
 	//    'import' ( isImportAll ?= 'all' )?
 	//;
 	public ImportPrefixElements getImportPrefixAccess() {
@@ -19713,8 +19721,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ExposePrefix returns SysML::Expose :
-	//    ( visibility = VisibilityIndicator )?
-	//    'expose'
+	//    visibility = ExposeVisibilityKind
 	//;
 	public ExposePrefixElements getExposePrefixAccess() {
 		return pExposePrefix;
@@ -19722,6 +19729,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getExposePrefixRule() {
 		return getExposePrefixAccess().getRule();
+	}
+	
+	//enum ExposeVisibilityKind returns SysML::VisibilityKind :
+	//    protected = 'expose'
+	//;
+	public ExposeVisibilityKindElements getExposeVisibilityKindAccess() {
+		return eExposeVisibilityKind;
+	}
+	
+	public EnumRule getExposeVisibilityKindRule() {
+		return getExposeVisibilityKindAccess().getRule();
 	}
 	
 	//Expose returns SysML::Expose :

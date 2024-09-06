@@ -72,8 +72,8 @@ public class ExpressionAdapter extends StepAdapter {
 	// Inheritence
 	
 	@Override
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		Collection<Feature> features = super.getFeaturesRedefinedByType();
+	public Collection<Feature> getAllFeaturesRedefinedByType() {
+		Collection<Feature> features = super.getAllFeaturesRedefinedByType();
 		
 		// If inputs and outputs have not been computed, add effectively
 		// redefined features from the Expression type, without actually

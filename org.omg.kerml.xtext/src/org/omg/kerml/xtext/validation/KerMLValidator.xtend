@@ -307,7 +307,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 				checkDistinguishibility(mem, aliasMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				val inheritedMemberships = namesp.inheritedMembership
 				for (mem: ownedMemberships) {
 					checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)

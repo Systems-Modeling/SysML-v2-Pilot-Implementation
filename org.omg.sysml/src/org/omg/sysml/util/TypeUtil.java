@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -288,6 +289,30 @@ public class TypeUtil {
 		}		
 	}
 	
+	public static Collection<ResultExpressionMembership> getOwnedResultExpressionMembershipsOf(Type type) {
+		return type.getOwnedMembership().stream().
+				filter(ResultExpressionMembership.class::isInstance).
+				map(ResultExpressionMembership.class::cast).toList();
+	}
+	
+	public static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type) {
+		return getResultExpressionMembershipsOf(type, new HashSet<>());
+	}
+	
+	private static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type, Set<Type> visited) {
+		visited.add(type);
+		getTypeAdapter(type).addAdditionalMembers();
+		Set<ResultExpressionMembership> resultExpressions = new HashSet<>(getOwnedResultExpressionMembershipsOf(type));
+		if (resultExpressions.isEmpty()) {
+			for (Type general: getSupertypesOf(type)) {
+				if (general != null && !visited.contains(general)) {
+					resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
+				}
+			}
+		}
+		return resultExpressions;
+	}
+
 	// Membership
 
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {

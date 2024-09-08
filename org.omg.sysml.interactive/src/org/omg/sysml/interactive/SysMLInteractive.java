@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -24,6 +24,7 @@
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
  *  Ivan Gomes, Twingineer
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -53,6 +54,7 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
@@ -113,7 +115,10 @@ public class SysMLInteractive extends SysMLUtil {
 	private IResourceValidator validator;
 	
 	@Inject
-	protected SysMLInteractive() {
+	private ILibraryIndexProvider libraryIndexCache;
+	
+	@Inject
+	private SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
 	
@@ -141,6 +146,10 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public XtextResource getResource() {
 		return this.resource;
+	}
+	
+	public ILibraryIndexProvider getLibraryIndexCache() {
+		return libraryIndexCache;
 	}
 	
 	public void removeResource() {
@@ -259,7 +268,7 @@ public class SysMLInteractive extends SysMLUtil {
 				this.counter++;
 				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
 			}
-			input = "calc{import " + targetName + "::*;\n" + input + "}";
+			input = "calc{private import " + targetName + "::*;\n" + input + "}";
 		}
 		SysMLInteractiveResult result = this.process(input, false);
 		if (result.hasErrors()) {
@@ -299,11 +308,11 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!query.endsWith(";")) {
 			query += ";";
 		}
-		SysMLInteractiveResult result = this.process("import " + query, false);
+		SysMLInteractiveResult result = this.process("private import " + query, false);
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
-			List<Membership> memberships = ((Namespace)result.getRootElement()).visibleMemberships(new BasicEList<>(), false, false);
+			List<Membership> memberships = ((Namespace)result.getRootElement()).getImportedMembership();
 			this.removeResource();
 			return SysMLInteractiveUtil.formatMembershipList(memberships);
 		}

@@ -36,8 +36,11 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.ScopeResultCache;
 
 public class NamespaceAdapter extends ElementAdapter {
+
+	private ScopeResultCache scopeResultsCache;
 
 	public NamespaceAdapter(Namespace element) {
 		super(element);
@@ -45,6 +48,13 @@ public class NamespaceAdapter extends ElementAdapter {
 	
 	public Namespace getTarget() {
 		return (Namespace)super.getTarget();
+	}
+	
+	public ScopeResultCache getScopeResultsCache() {
+		if (scopeResultsCache == null) {
+			scopeResultsCache  = new ScopeResultCache(getTarget());
+		}
+		return scopeResultsCache;
 	}
 	
 	// Additional operations
@@ -102,6 +112,7 @@ public class NamespaceAdapter extends ElementAdapter {
 	@Override
 	public void clearCaches() {
 		importedMembership = null;
+		scopeResultsCache = null;
 	}
 	
 	// Transformation

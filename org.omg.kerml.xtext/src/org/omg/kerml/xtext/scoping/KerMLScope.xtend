@@ -56,6 +56,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.ScopeResultCache
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -167,10 +168,20 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 
 	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
+	    val scopeResultCache = ScopeResultCache.getInstance(ns)
+	    
+		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
+		    [ resolveInScope(name, true).head ], 
+		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+		)
+		
+		return if (localResult === null) {
+		    if(parent !== null && !isShadowing) {
+		        parent.getSingleElement(name)
+	        } else null
+        } else {
+            localResult
+        }
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {

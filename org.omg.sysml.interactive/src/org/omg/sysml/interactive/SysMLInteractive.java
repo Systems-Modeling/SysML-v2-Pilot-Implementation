@@ -117,7 +117,7 @@ public class SysMLInteractive extends SysMLUtil {
 	private ILibraryIndexProvider libraryIndexCache;
 	
 	@Inject
-	private SysMLInteractive() {
+	protected SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
 	
@@ -642,6 +642,7 @@ public class SysMLInteractive extends SysMLUtil {
 			KerMLStandaloneSetup.doSetup();
 			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
+		
 		return injector.getInstance(SysMLInteractive.class);
 	}
 	

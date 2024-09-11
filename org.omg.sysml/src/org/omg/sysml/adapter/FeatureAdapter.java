@@ -501,7 +501,19 @@ public class FeatureAdapter extends TypeAdapter {
 			addFeaturingType(owningType);
 			return owningType;
 		} else {
-			Feature featuringType = SysMLFactory.eINSTANCE.createFeature();		
+			Feature featuringType = SysMLFactory.eINSTANCE.createFeature();
+			
+			String name = owningType.getQualifiedName();
+			if (name == null) {
+				name = "";
+			} else {
+				int i = name.indexOf("::");
+				if (i >= 0) {
+					name = name.substring(i + 2);
+				}
+				name = name.replace("::", "_");
+			}
+			featuringType.setDeclaredName(name + "_snapshots");
 			
 			List<Subsetting> variableSubsettings = feature.getOwnedSubsetting().stream().
 					filter(r->r.getSubsettedFeature().isVariable()).toList();

@@ -166,14 +166,16 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
-
+	
 	override getSingleElement(QualifiedName name) {
 	    val scopeResultCache = ScopeResultCache.getInstance(ns)
 	    
-		val IEObjectDescription localResult = scopeResultCache.computeEObjectDescription(name, referenceType,
-		    [ resolveInScope(name, true).head ], 
-		    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
-		)
+		val IEObjectDescription localResult = if (skip === null ) {
+			scopeResultCache.computeEObjectDescription(name, referenceType,
+			    [ resolveInScope(name, true).head ], 
+			    [result | !isShadowing && !isRedefinition && (scopeProvider.visited.isEmpty || result !== null)]
+			)
+		} else resolveInScope(name, true).head
 		
 		return if (localResult === null) {
 		    if(parent !== null && !isShadowing) {

@@ -32,20 +32,20 @@ class KerMLMOF2KerMLText extends MOF2KerMLText {
 			 */
 			 
 			private import ScalarValues::*;
-			import Kernel::*;
+			public import Kernel::*;
 			
 			package Root {
 				«model.getPackage("Root").toPackageBody»
 			}
 			
 			package Core {
-				import Root::*;
+				public import Root::*;
 				
 				«model.getPackage("Core").toPackageBody»
 			}
 			
 			package Kernel {
-				import Core::*;
+				public import Core::*;
 				
 				«model.getPackage("Kernel").toPackageBody»
 			}

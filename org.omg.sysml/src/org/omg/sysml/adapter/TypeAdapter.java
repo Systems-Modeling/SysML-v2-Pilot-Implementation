@@ -72,50 +72,51 @@ public class TypeAdapter extends NamespaceAdapter {
 	// Additional operations
 	
 	@Override
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
+		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll, excludeImplied));
 		return visibleMembership;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
+	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false, excludeImplied);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
-		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
+		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 		return nonPrivateMembership;
 	}
 	
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
-		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 		removeRedefinedFeatures(inheritedMemberships);
 		return inheritedMemberships;
 	}
 	
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
+			boolean includeProtected, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
 		Conjugation conjugator = target.getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType != null && !excludedTypes.contains(originalType)) {
-				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected));
+				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
 		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
 			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
 	}
 	
-	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
 		Type target = getTarget();
 		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
 		membership.addAll(target.getOwnedMembership());
-		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
+		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
 		return membership;
 	}	

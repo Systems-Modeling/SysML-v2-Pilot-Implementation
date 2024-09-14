@@ -20,7 +20,7 @@ END_SETUP
 // XPECT noErrors --> ""
 //xpect link and scope tests ommitted because same as SimpleImportTestsFromOtherFile.import2
 package test {
-	import OuterPackage::*;
+	public import OuterPackage::*;
 	classifier Try specializes B{
 		feature try : A::a1 redefines B::b;
 	}

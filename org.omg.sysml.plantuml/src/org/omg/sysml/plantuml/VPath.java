@@ -334,21 +334,22 @@ public class VPath extends VTraverser {
         Feature ref = (Feature) e;
 
         Namespace ns = getCurrentNamespace();
+        if (!(ns instanceof Type)) return null;
+
         if (ns instanceof Feature) {
             Feature tgt = (Feature) ns;
             InheritKey ik = makeInheritKey(tgt);
             if (ik != null) {
                 // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
                 ik = InheritKey.makeIndirect(ik);
-                return InheritKey.findTop(ik, ref);
+                ik = InheritKey.findTop(ik, ref);
+                if (ik != null) return ik;
             }
         }
-        if (ns instanceof Type) {
-            // In case that tgt inherits ref, we need to make an InheritKey for tgt.
-            Type tgt = (Type) ns;
-            return InheritKey.makeTargetKey(tgt, ref);
-        }
-        return null;
+
+        // In case that tgt inherits ref, we need to make an InheritKey for tgt.
+        Type tgt = (Type) ns;
+        return InheritKey.makeTargetKey(tgt, ref);
     }
 
 
@@ -531,8 +532,10 @@ public class VPath extends VTraverser {
 
     private String addContextForFeature(Feature f, boolean isRedefinition) {
         PC pc = makeFeaturePC(f, f, isRedefinition);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        // InheritKey ik = makeInheritKey(f);
+        InheritKey ik = makeInheritKey(f);
+        if (isRedefinition) {
+            ik = InheritKey.makeInheritKeyForRedefiningTarget(ik, f, showInherited());
+        }
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }

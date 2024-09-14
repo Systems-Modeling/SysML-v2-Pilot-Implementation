@@ -23,7 +23,7 @@ package test{
 		classifier a2{}
 	}
 	classifier inner{
-		import OuterPackage::*;
+		public import OuterPackage::*;
 		classifier B specializes A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---

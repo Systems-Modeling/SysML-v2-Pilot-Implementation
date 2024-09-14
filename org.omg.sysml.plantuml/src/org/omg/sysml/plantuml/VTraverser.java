@@ -178,7 +178,7 @@ public abstract class VTraverser extends Visitor {
         this.inited = true;
     }
     
-    private boolean showInherited() {
+    protected boolean showInherited() {
         init();
         return showInherited;
     }
@@ -189,7 +189,7 @@ public abstract class VTraverser extends Visitor {
     }
 
     protected boolean isHidden(Element e) {
-        return !(showLib() && isModelLibrary(e));
+    	return !showLib() && isModelLibrary(e);
     }
 
     private static Set<Namespace> initVisited(Visitor prev) {

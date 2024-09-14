@@ -44,7 +44,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package TextualRepresentationTest {
-	import ScalarValues::Real;
+	public import ScalarValues::Real;
 	
 	item def C {
 	    attribute x: Real;

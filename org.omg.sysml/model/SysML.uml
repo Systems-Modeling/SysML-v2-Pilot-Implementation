@@ -3280,6 +3280,7 @@ owningType &lt;> null and
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="85102642-d377-4c84-852e-84a12a2043c8" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="73ec5718-4365-407b-87a5-8d7020b5f610" name="" visibility="public" value="1"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_0rxmUHLJEe-clNSDmZrfGQ" name="featureTarget" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" isDerived="true"/>
     <ownedOperation xmi:id="62627ba2-400d-4ce1-aa00-5510fe5ce0fc" name="directionFor" visibility="public" bodyCondition="40a9a558-173b-4b45-abf0-818148e07abd">
       <ownedComment xmi:id="f2427503-74a6-4dbe-835a-19283c87d172" annotatedElement="62627ba2-400d-4ce1-aa00-5510fe5ce0fc">
         <body>&lt;p>Return the &lt;code>directionOf&lt;/code> this &lt;code>Feature&lt;/code> relative to the given &lt;code>type&lt;/code>.&lt;/p></body>

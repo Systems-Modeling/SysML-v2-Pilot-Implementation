@@ -40,9 +40,9 @@ package Import_Private {
 	--- */
 	x: P1::A;
 	
-	import P2::*;
+	public import P2::*;
 	// This should fail.
-	// A is not visible, because the import in P2 is private.
+	// A is not visible, because the public import in P2 is private.
 	// XPECT errors --> "Couldn't resolve reference to Type 'A'." at "A"
 	y: A;
 	//XPECT errors --> "Couldn't resolve reference to Type 'P2::A'." at "P2::A"
@@ -55,14 +55,14 @@ package Import_Private {
 	private import P3::*;
 	
 	// This should not fail.
-	// Private import only restricts visibility outside the package.
+	// Private public import only restricts visibility outside the package.
 	// XPECT linkedName at B --> Import_Private.P3.B
 	z: B;
 	
 	package P4 {
-		import all P2::*;
+		public import all P2::*;
 		
-		// This should not fail because "import all" overrides private import.
+		// This should not fail because "public import all" overrides private import.
 		// XPECT linkedName at A --> Import_Private.P1.A
 		z1: A;
 	}

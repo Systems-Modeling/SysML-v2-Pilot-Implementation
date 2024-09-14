@@ -22,7 +22,7 @@ END_SETUP
 */
 
 package test{
-	import OuterPackage3::D;
+	public import OuterPackage3::D;
 	//XPECT linkedName at D --> OuterPackage3.D
 	//* XPECT scope at D ---
 	D, D.b, D.b.a1, D.b.a1.self, D.b.a1.that, D.b.a1.that.self, D.b.self, D.b.that,

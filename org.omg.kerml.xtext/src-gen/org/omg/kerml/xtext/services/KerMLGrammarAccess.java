@@ -901,16 +901,16 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsImportAllAllKeyword_2_0 = (Keyword)cIsImportAllAssignment_2.eContents().get(0);
 		
 		//fragment ImportPrefix returns SysML::Import :
-		//    ( visibility = VisibilityIndicator )?
+		//    visibility = VisibilityIndicator
 		//    'import' ( isImportAll ?= 'all' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( visibility = VisibilityIndicator )?
+		//visibility = VisibilityIndicator
 		//'import' ( isImportAll ?= 'all' )?
 		public Group getGroup() { return cGroup; }
 		
-		//( visibility = VisibilityIndicator )?
+		//visibility = VisibilityIndicator
 		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
 		
 		//VisibilityIndicator
@@ -7960,7 +7960,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ImportPrefix returns SysML::Import :
-	//    ( visibility = VisibilityIndicator )?
+	//    visibility = VisibilityIndicator
 	//    'import' ( isImportAll ?= 'all' )?
 	//;
 	public ImportPrefixElements getImportPrefixAccess() {

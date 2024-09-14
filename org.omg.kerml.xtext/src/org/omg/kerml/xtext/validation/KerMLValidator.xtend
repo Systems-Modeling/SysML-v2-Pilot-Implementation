@@ -88,6 +88,8 @@ import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.CrossSubsetting
 import java.util.Set
 
@@ -108,6 +110,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member name"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
+	
+	public static val INVALID_IMPORT_TOP_LEVEL_VISIBILITY = "validateImportTopLevelVisibility"
+	public static val INVALID_IMPORT_TOP_LEVEL_VISIBILITY_MSG = "Top level import must be private"
 	
 	// CORE //
 	
@@ -345,6 +350,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
+	@Check
+	def checkImport(Import import_) {
+		// validateImportTopLevelVisibility
+		if (import_.importOwningNamespace !== null && import_.importOwningNamespace.owner === null && 
+			import_.visibility !== VisibilityKind.PRIVATE) {
+			error(INVALID_IMPORT_TOP_LEVEL_VISIBILITY_MSG, import_, null, INVALID_IMPORT_TOP_LEVEL_VISIBILITY)			
+		}
+	}
+	
 	/* CORE */
 	
 	@Check
@@ -423,19 +437,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
-		// TODO: Update OCL
 		val m = f.multiplicity;
-		var featuringTypes =
-			if (FeatureUtil.isOwnedCrossFeature(f)) (f.owningNamespace as Feature).featuringType
-			else f.featuringType
-		if (m !== null && featuringTypes.toSet != m.featuringType.toSet) {
+		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
 		
 		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
 		val direction = f.direction
+		val featuringTypes = f.featuringType
 		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
-			checkRedefinitionDirection(direction, f.featuringType, redefinedFeature as Feature, f)
+			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
 		}
 		
 		// TODO: Add validateFeatureCrossFeatureType

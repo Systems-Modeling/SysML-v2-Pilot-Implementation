@@ -35,7 +35,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package P {
     part def Vehicle {
-        import ScalarValues::*;
+        public import ScalarValues::*;
         attribute a: Integer = 5;
         attribute b: Integer = 5 * a;
     }

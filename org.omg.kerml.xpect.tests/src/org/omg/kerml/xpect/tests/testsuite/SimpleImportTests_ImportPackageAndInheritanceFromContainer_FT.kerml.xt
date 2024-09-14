@@ -18,7 +18,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	feature A {
-		import test::*;
+		public import test::*;
 		//XPECT linkedName at A --> test.A
 		//*XPECT scope at A ---
 		A, A.a, A.a.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self,

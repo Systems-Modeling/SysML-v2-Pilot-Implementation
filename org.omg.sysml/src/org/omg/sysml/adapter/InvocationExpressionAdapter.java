@@ -100,7 +100,18 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	}
 	
 	// Transformation
-		
+	
+	protected void createSelfResultConnector() {
+		Type expressionType = getExpressionType();
+		if (expressionType != null && 
+				!(expressionType instanceof Function || expressionType instanceof Expression)) {
+			Feature result = TypeUtil.getResultParameterOf(getTarget());
+			if (result != null) {
+				addBindingConnector(getTarget(), result);
+			}
+		}		
+	}
+	
 	protected void addResultTyping() {
 		Type expressionType = getExpressionType();
 		if (expressionType != null && 
@@ -119,6 +130,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		createSelfResultConnector();
 		addResultTyping();
 	}
 	

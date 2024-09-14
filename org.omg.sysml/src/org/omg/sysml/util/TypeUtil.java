@@ -66,16 +66,16 @@ public class TypeUtil {
 	
 	// Inheritance
 	
-	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected);
+	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 	}
 
-	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected);
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 	}
 
-	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected);
+	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 	}
 
 	// Caching
@@ -89,30 +89,40 @@ public class TypeUtil {
 	// Supertypes
 	
 	public static List<Type> getSupertypesOf(Type type) {
-		return getSupertypesOf(type, null);
+		return getSupertypesOf(type, false);
 	}
 	
-	public static List<Type> getSupertypesOf(Type type, Element skip) {
+	public static List<Type> getSupertypesOf(Type type, boolean excludeImplied) {
+		return getSupertypesOf(type, excludeImplied, null);
+	}
+	
+	public static List<Type> getSupertypesOf(Type type, boolean excludeImplied, Element skip) {
 		List<Type> supertypes = new ArrayList<>();
 		type.getOwnedSpecialization()
 			.stream()
 			.filter(spec -> spec != skip)
 			.map(Specialization::getGeneral)
 			.forEachOrdered(supertypes::add);
-		supertypes.addAll(getImplicitGeneralTypesFor(type));
+		if (!excludeImplied) {
+			supertypes.addAll(getImplicitGeneralTypesFor(type));
+		}
 		return supertypes;
 	}
 	
 	public static List<Type> getGeneralTypesOf(Type type) {
-		return getGeneralTypesOf(type, null);
+		return getGeneralTypesOf(type, false);
+	}
+
+	public static List<Type> getGeneralTypesOf(Type type, boolean excludeImplied) {
+		return getGeneralTypesOf(type, excludeImplied, null);
 	}
 
 	/**
 	 * Get the immediate general types of the given type. If the type is a chained Feature,
 	 * then its last chaining Feature is included, for the purposes of inheritance.
 	 */
-	public static List<Type> getGeneralTypesOf(Type type, Element skip) {
-		List<Type> generalTypes = getSupertypesOf(type);
+	public static List<Type> getGeneralTypesOf(Type type, boolean excludeImplied, Element skip) {
+		List<Type> generalTypes = getSupertypesOf(type, excludeImplied);
 		if (type instanceof Feature) {
 			EList<FeatureChaining> featureChainings = ((Feature)type).getOwnedFeatureChaining();
 			if (!featureChainings.isEmpty() && !featureChainings.contains(skip)) {
@@ -200,7 +210,7 @@ public class TypeUtil {
 		parameters.removeIf(FeatureUtil::isResultParameter);
 		int n = parameters.size();
 		Feature resultParameter = getOwnedResultParameterOf(type);
-		for (Type general: TypeUtil.getGeneralTypesOf(type, skip)) {
+		for (Type general: TypeUtil.getGeneralTypesOf(type, false, skip)) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = getAllParametersOf(general, visited, skip);
 				if (resultParameter == null) {

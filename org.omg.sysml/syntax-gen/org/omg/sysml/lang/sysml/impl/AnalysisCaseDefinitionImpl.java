@@ -23,9 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -58,7 +56,6 @@ public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements An
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION).getSettingDelegate();
-
 	/**
 	 * The cached setting delegate for the '{@link #getResultExpression() <em>Result Expression</em>}' reference.
 	 * <!-- begin-user-doc -->

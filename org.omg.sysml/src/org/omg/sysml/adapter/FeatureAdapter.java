@@ -81,13 +81,14 @@ public class FeatureAdapter extends TypeAdapter {
 	// Inheritance
 	
 	@Override
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
+			boolean includeProtected, boolean excludeImplied) {
+		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
 		if (!featureChainings.isEmpty()) {
 			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
 			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
 	}
@@ -531,7 +532,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: TypeUtil.getGeneralTypesOf(type, skip)) {
+		for (Type generalType: TypeUtil.getGeneralTypesOf(type, false, skip)) {
 			if (!generalTypes.contains(generalType)) {
 				generalTypes.add(generalType);
 			}

@@ -168,7 +168,7 @@ AliasMember returns SysML::Membership :
 ;
 
 fragment ImportPrefix returns SysML::Import :
-	( visibility = VisibilityIndicator )?  
+	visibility = VisibilityIndicator  
 	'import' ( isImportAll ?= 'all' )?
 ;
 

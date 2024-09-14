@@ -4131,7 +4131,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     MembershipImport returns MembershipImport
 	 *
 	 * Constraint:
-	 *     (visibility=VisibilityIndicator? isImportAll?='all'? importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
+	 *     (visibility=VisibilityIndicator isImportAll?='all'? importedMembership=[Membership|QualifiedName] isRecursive?='**'?)
 	 * </pre>
 	 */
 	protected void sequence_ImportPrefix_ImportedMembership(ISerializationContext context, MembershipImport semanticObject) {
@@ -4146,7 +4146,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         visibility=VisibilityIndicator? 
+	 *         visibility=VisibilityIndicator 
 	 *         isImportAll?='all'? 
 	 *         importedMembership=[Membership|QualifiedName] 
 	 *         isRecursive?='**'? 
@@ -4166,7 +4166,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         visibility=VisibilityIndicator? 
+	 *         visibility=VisibilityIndicator 
 	 *         isImportAll?='all'? 
 	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?))
 	 *     )
@@ -4184,7 +4184,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         visibility=VisibilityIndicator? 
+	 *         visibility=VisibilityIndicator 
 	 *         isImportAll?='all'? 
 	 *         (ownedRelatedElement+=FilterPackage | (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)) 
 	 *         (ownedRelatedElement+=OwnedRelatedElement | ownedRelationship+=OwnedAnnotation)*

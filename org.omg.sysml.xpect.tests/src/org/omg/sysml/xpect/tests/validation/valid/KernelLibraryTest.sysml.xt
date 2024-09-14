@@ -72,9 +72,9 @@ END_SETUP
 // XPECT noErrors ---> ""
 package KernelLibraryTest {
 
-	import ScalarValues::**; //import ScalarValues::Real;
-	import NumericalFunctions::**; //import NumericalFunctions::sum;
-	import ISQ::**; //ISQ::MassValue
+	public import ScalarValues::**; //public import ScalarValues::Real;
+	public import NumericalFunctions::**; //public import NumericalFunctions::sum;
+	public import ISQ::**; //ISQ::MassValue
 	
 	part vehicle {
 		attribute m: Real;

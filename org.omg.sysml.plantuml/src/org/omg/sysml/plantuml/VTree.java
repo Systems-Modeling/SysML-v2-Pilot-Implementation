@@ -284,6 +284,11 @@ public class VTree extends VStructure {
     	super(vt);
     }
 
+    @Override
+    protected MultiplicityStyle getDefaultMultiplicityStyle() {
+        return MultiplicityStyle.NODE;
+    }
+
     public VTree() {
         super();
         this.namespace = null;

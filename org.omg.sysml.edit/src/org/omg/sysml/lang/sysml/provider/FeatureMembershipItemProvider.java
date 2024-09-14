@@ -43,8 +43,8 @@ public class FeatureMembershipItemProvider extends OwningMembershipItemProvider 
 
 			addTypePropertyDescriptor(object);
 			addFeaturePropertyDescriptor(object);
-			addOwningTypePropertyDescriptor(object);
 			addOwnedMemberFeaturePropertyDescriptor(object);
+			addOwningTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

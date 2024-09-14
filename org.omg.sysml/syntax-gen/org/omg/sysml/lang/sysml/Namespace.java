@@ -47,11 +47,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
  * </ul>
  *
@@ -168,7 +168,8 @@ public interface Namespace extends Element {
 	 *             importedMemberships(excluded->including(self)))
 	 *     endif in
 	 * if not isRecursive then visibleMemberships
-	 * else visibleMemberships->union(visibleMemberships->
+	 * else visibleMemberships->union(ownedMember->
+	 *         select(owningMembership.visibility = VisibilityKind::public)->
 	 *         selectAsKind(Namespace).
 	 *         visibleMemberships(excluded->including(self), true, includeAll))
 	 * endif

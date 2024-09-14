@@ -26,7 +26,6 @@ import org.omg.sysml.lang.sysml.CollectExpression;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.CrossMultiplying;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Dependency;
@@ -119,50 +118,50 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.ASSOCIATION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Association) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Association) semanticObject); 
 				return; 
 			case SysMLPackage.ASSOCIATION_STRUCTURE:
 				if (rule == grammarAccess.getAssociationStructureRule()) {
-					sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
+					sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getMemberElementRule()
 						|| rule == grammarAccess.getNonFeatureElementRule()) {
-					sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
+					sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (AssociationStructure) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.BEHAVIOR:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Behavior) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Behavior) semanticObject); 
 				return; 
 			case SysMLPackage.BINDING_CONNECTOR:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
+					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getBindingConnectorRule()) {
-					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
+					sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (BindingConnector) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.BOOLEAN_EXPRESSION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getBooleanExpressionRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (BooleanExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.CLASS:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
 				return; 
 			case SysMLPackage.CLASSIFIER:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Classifier) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Classifier) semanticObject); 
 				return; 
 			case SysMLPackage.COLLECT_EXPRESSION:
 				sequence_PrimaryExpression(context, (CollectExpression) semanticObject); 
@@ -192,16 +191,13 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.CONNECTOR:
-				sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Connector) semanticObject); 
-				return; 
-			case SysMLPackage.CROSS_MULTIPLYING:
-				sequence_CrossMultiplying(context, (CrossMultiplying) semanticObject); 
+				sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Connector) semanticObject); 
 				return; 
 			case SysMLPackage.CROSS_SUBSETTING:
 				sequence_OwnedCrossSubsetting(context, (CrossSubsetting) semanticObject); 
 				return; 
 			case SysMLPackage.DATA_TYPE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (DataType) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (DataType) semanticObject); 
 				return; 
 			case SysMLPackage.DEPENDENCY:
 				sequence_Dependency_Identification_RelationshipOwnedElement(context, (Dependency) semanticObject); 
@@ -248,11 +244,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getExpressionRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Expression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getExpressionBodyRule()) {
@@ -270,13 +266,13 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedCrossingFeatureRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Feature) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getFeatureRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Feature) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getBodyParameterRule()) {
@@ -502,10 +498,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.FUNCTION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
 				return; 
 			case SysMLPackage.INTERACTION:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Interaction) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Interaction) semanticObject); 
 				return; 
 			case SysMLPackage.INTERSECTING:
 				sequence_Intersecting(context, (Intersecting) semanticObject); 
@@ -513,11 +509,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.INVARIANT:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getInvariantRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Invariant) semanticObject); 
 					return; 
 				}
 				else break;
@@ -579,11 +575,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.ITEM_FLOW:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getItemFlowRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
 					return; 
 				}
 				else break;
@@ -638,7 +634,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.METACLASS:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Metaclass) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Metaclass) semanticObject); 
 				return; 
 			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
@@ -868,7 +864,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.PREDICATE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Predicate) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Predicate) semanticObject); 
 				return; 
 			case SysMLPackage.REDEFINITION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
@@ -937,16 +933,16 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.STEP:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStepRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Step) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.STRUCTURE:
-				sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Structure) semanticObject); 
+				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(context, (Structure) semanticObject); 
 				return; 
 			case SysMLPackage.SUBCLASSIFICATION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
@@ -977,22 +973,22 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.SUCCESSION:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSuccessionRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(context, (Succession) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.SUCCESSION_ITEM_FLOW:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSuccessionItemFlowRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1002,12 +998,12 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.TYPE:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getNonFeatureElementRule()) {
-					sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
+					sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMemberElementRule()
 						|| rule == grammarAccess.getTypeRule()) {
-					sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
+					sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(context, (Type) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1144,7 +1140,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1165,7 +1160,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Connector semanticObject) {
+	protected void sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1241,7 +1236,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1256,7 +1250,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) {
+	protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1333,7 +1327,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1348,7 +1341,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_BindingConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, BindingConnector semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -1421,7 +1414,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1441,7 +1433,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1519,7 +1511,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1538,7 +1529,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ownedRelationship+=ResultExpressionMember?
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_Invariant_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Invariant semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -1610,7 +1601,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1630,7 +1620,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1707,7 +1697,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1726,7 +1715,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ownedRelationship+=ResultExpressionMember?
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, BooleanExpression semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -1798,7 +1787,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1818,7 +1806,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1895,7 +1883,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -1914,7 +1901,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ownedRelationship+=ResultExpressionMember?
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBodyPart_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Expression semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -1987,7 +1974,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2009,7 +1995,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2086,7 +2072,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2109,7 +2094,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2182,7 +2167,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2204,7 +2188,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2281,7 +2265,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2304,7 +2287,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2377,7 +2360,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2392,7 +2374,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2469,7 +2451,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2484,7 +2465,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Succession semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2556,7 +2537,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                     (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                     ownedRelationship+=OwnedFeatureInverting | 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2569,7 +2549,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2646,7 +2626,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	//                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	//                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	//                         ownedRelationship+=OwnedFeatureInverting | 
 	//                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	//                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2661,7 +2640,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Step semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -2725,7 +2704,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                 ownedRelationship+=OwnedFeatureInverting | 
 	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                 (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2735,7 +2713,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Feature semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_UnioningPart(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2796,14 +2774,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name) 
 	 *                         ownedRelationship+=FeatureConjugation? 
 	 *                         ownedRelationship+=OwnedFeatureChaining?
-	 *                     ) | 
-	 *                     (
-	 *                         ((isEnd?='end'? isSufficient?='all') | (isEnd?='end'? isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
-	 *                         (
-	 *                             ownedRelationship+=OwnedMultiplicity | 
-	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                         )? 
-	 *                         ownedRelationship+=OwnedFeatureChaining?
 	 *                     )
 	 *                 ) 
 	 *                 (
@@ -2812,7 +2782,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2845,7 +2814,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2919,7 +2887,26 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
 	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
 	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                         (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*) | 
+	 *                         ownedRelationship+=OwnedFeatureInverting | 
+	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
+	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 *                     )? 
+	 *                     ownedRelationship+=OwnedFeatureChaining?
+	 *                 )*
+	 *             ) | 
+	 *             (
+	 *                 ((isEnd?='end'? isSufficient?='all') | (isEnd?='end'? isSufficient?='all' ((declaredShortName=Name declaredName=Name?) | declaredName=Name))) 
+	 *                 (
+	 *                     ownedRelationship+=OwnedMultiplicity | 
+	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                 )? 
+	 *                 ownedRelationship+=OwnedFeatureChaining? 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
+	 *                         (ownedRelationship+=Unioning ownedRelationship+=Unioning*) | 
+	 *                         (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
+	 *                         (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
 	 *                         ownedRelationship+=OwnedFeatureInverting | 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*) | 
 	 *                         (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
@@ -2933,7 +2920,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_CrossMultiplyingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Feature semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_Feature_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2959,8 +2946,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -2975,7 +2961,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Function semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3001,8 +2987,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3017,7 +3002,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Predicate semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(ISerializationContext context, Predicate semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3043,8 +3028,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3052,7 +3036,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Association semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3075,8 +3059,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3084,7 +3067,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3111,15 +3094,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//             (
 	//                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	//                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	//             )? 
 	//             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	//         )* 
 	//         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	//     )
 	//
-	// protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) { }
+	// protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, AssociationStructure semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -3142,8 +3124,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3151,7 +3132,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Behavior semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Behavior semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3177,8 +3158,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3186,7 +3166,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3212,8 +3192,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3221,7 +3200,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Classifier semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Classifier semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3247,8 +3226,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3256,7 +3234,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, DataType semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, DataType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3282,8 +3260,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3291,7 +3268,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Interaction semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Interaction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3317,8 +3294,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3326,7 +3302,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Metaclass semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Metaclass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3352,8 +3328,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3361,7 +3336,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Structure semanticObject) {
+	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SuperclassingPart_TypeBody_TypePrefix_UnioningPart(ISerializationContext context, Structure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3426,8 +3401,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	 *                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	 *                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	 *                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	 *             )? 
 	 *             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	 *         )* 
@@ -3435,7 +3409,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) {
+	protected void sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3461,15 +3435,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//             (
 	//                 (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*) | 
 	//                 (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*) | 
-	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*) | 
-	//                 (ownedRelationship+=CrossMultiplying ownedRelationship+=CrossMultiplying*)
+	//                 (ownedRelationship+=Differencing ownedRelationship+=Differencing*)
 	//             )? 
 	//             (ownedRelationship+=Unioning ownedRelationship+=Unioning*)?
 	//         )* 
 	//         (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	//     )
 	//
-	// protected void sequence_ConjugationPart_CrossMultiplyingPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) { }
+	// protected void sequence_ConjugationPart_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_SpecializationPart_TypeBody_TypeDeclaration_TypePrefix_UnioningPart(ISerializationContext context, Type semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -3517,20 +3490,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     CrossMultiplying returns CrossMultiplying
-	 *
-	 * Constraint:
-	 *     (multiplyingType=[Type|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
-	 * </pre>
-	 */
-	protected void sequence_CrossMultiplying(ISerializationContext context, CrossMultiplying semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

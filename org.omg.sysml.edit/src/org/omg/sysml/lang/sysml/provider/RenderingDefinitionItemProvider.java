@@ -142,8 +142,7 @@ public class RenderingDefinitionItemProvider extends PartDefinitionItemProvider 
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_CROSS_MULTIPLYING;
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING;
 
 		if (qualify) {
 			return getString

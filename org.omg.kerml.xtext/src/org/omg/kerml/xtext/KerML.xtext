@@ -339,7 +339,7 @@ fragment ConjugationPart returns SysML::Type :
 ;
 
 fragment TypeRelationshipPart returns SysML::Type :
-	DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | CrossMultiplyingPart
+	DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart
 ;
 
 fragment DisjoiningPart returns SysML::Type :
@@ -360,11 +360,6 @@ fragment IntersectingPart returns SysML::Type :
 fragment DifferencingPart returns SysML::Type :
 	'differences' ownedRelationship += Differencing
 	( ',' ownedRelationship += Differencing )* 
-;
-
-fragment CrossMultiplyingPart returns SysML::Type :
-	'multiplies'  ownedRelationship += CrossMultiplying
-	( ',' ownedRelationship += CrossMultiplying )*
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -459,13 +454,6 @@ Intersecting returns SysML::Intersecting :
 
 Differencing returns SysML::Differencing :
 	  differencingType = [SysML::Type | QualifiedName]
-	| ownedRelatedElement += OwnedFeatureChain
-;
-
-/* Cross Product */
-
-CrossMultiplying returns SysML::CrossMultiplying :
-	  multiplyingType = [SysML::Type | QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
 ;
 

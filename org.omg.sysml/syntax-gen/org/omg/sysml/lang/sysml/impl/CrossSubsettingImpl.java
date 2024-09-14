@@ -238,6 +238,8 @@ public class CrossSubsettingImpl extends SubsettingImpl implements CrossSubsetti
 				return isSetSubsettedFeature();
 			case SysMLPackage.CROSS_SUBSETTING__OWNING_FEATURE:
 				return isSetOwningFeature();
+			case SysMLPackage.CROSS_SUBSETTING__SUBSETTING_FEATURE:
+				return isSetSubsettingFeature();
 			case SysMLPackage.CROSS_SUBSETTING__CROSSED_FEATURE:
 				return isSetCrossedFeature();
 			case SysMLPackage.CROSS_SUBSETTING__CROSSING_FEATURE:
@@ -317,6 +319,43 @@ public class CrossSubsettingImpl extends SubsettingImpl implements CrossSubsetti
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getSubsettingFeature() {
+		return getCrossingFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetSubsettingFeature() {
+		return basicGetCrossingFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSubsettingFeature(Feature newSubsettingFeature) {
+		setCrossingFeature(newSubsettingFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsettingFeature() {
   		return false;
 	}
 

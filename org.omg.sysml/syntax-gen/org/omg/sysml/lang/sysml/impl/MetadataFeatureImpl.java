@@ -57,8 +57,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getAnnotation <em>Annotation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureImpl#getMetaclass <em>Metaclass</em>}</li>
  * </ul>
  *
@@ -76,15 +76,6 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	protected EList<Annotation> annotation;
 
 	/**
-	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
-	/**
 	 * The cached setting delegate for the '{@link #getOwnedAnnotatingRelationship() <em>Owned Annotating Relationship</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,6 +84,16 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getMetaclass() <em>Metaclass</em>}' reference.
@@ -354,10 +355,10 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 		switch (featureID) {
 			case SysMLPackage.METADATA_FEATURE__ANNOTATION:
 				return getAnnotation();
-			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				return getAnnotatedElement();
 			case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP:
 				return getOwnedAnnotatingRelationship();
+			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
+				return getAnnotatedElement();
 			case SysMLPackage.METADATA_FEATURE__METACLASS:
 				if (resolve) return getMetaclass();
 				return basicGetMetaclass();
@@ -378,13 +379,13 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 				getAnnotation().clear();
 				getAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
-			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				getAnnotatedElement().clear();
-				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP:
 				getOwnedAnnotatingRelationship().clear();
 				getOwnedAnnotatingRelationship().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
+				getAnnotatedElement().clear();
+				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.METADATA_FEATURE__METACLASS:
 				setMetaclass((Metaclass)newValue);
@@ -404,11 +405,11 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			case SysMLPackage.METADATA_FEATURE__ANNOTATION:
 				getAnnotation().clear();
 				return;
-			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				getAnnotatedElement().clear();
-				return;
 			case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP:
 				getOwnedAnnotatingRelationship().clear();
+				return;
+			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
+				getAnnotatedElement().clear();
 				return;
 			case SysMLPackage.METADATA_FEATURE__METACLASS:
 				setMetaclass((Metaclass)null);
@@ -429,10 +430,10 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
-			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP:
 				return OWNED_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
+				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_FEATURE__METACLASS:
 				return METACLASS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
@@ -448,9 +449,9 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == AnnotatingElement.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT: return SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT;
-				case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP;
 				case SysMLPackage.METADATA_FEATURE__ANNOTATION: return SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION;
+				case SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP;
+				case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT: return SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT;
 				default: return -1;
 			}
 		}
@@ -466,9 +467,9 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == AnnotatingElement.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT: return SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT;
-				case SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP;
 				case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION: return SysMLPackage.METADATA_FEATURE__ANNOTATION;
+				case SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.METADATA_FEATURE__OWNED_ANNOTATING_RELATIONSHIP;
+				case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT: return SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT;
 				default: return -1;
 			}
 		}

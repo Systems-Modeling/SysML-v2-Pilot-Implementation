@@ -31,8 +31,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>InvocationExpression</code> is an <code>Expression</code> each of whose input <code>parameters</code> are bound to the <code>result</code> of an <code>argument</code> Expression.</p>
  * 
- * not ownedTyping->exists(oclIsKindOf(Behavior)) and
- * not ownedSubsetting.subsettedFeature.type->exists(oclIsKindOf(Behavior)) implies
+ * not ownedTyping->exists(oclIsKindOf(Function)) and
+ * not ownedSubsetting->reject(isImplied).subsettedFeature.type->
+ *     exists(oclIsKindOf(Function)) implies
  *     ownedFeature.selectByKind(BindingConnector)->exists(
  *         relatedFeature->includes(self) and
  *         relatedFeature->includes(result))

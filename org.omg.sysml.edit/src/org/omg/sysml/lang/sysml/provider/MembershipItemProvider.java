@@ -45,8 +45,8 @@ public class MembershipItemProvider extends RelationshipItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMemberElementIdPropertyDescriptor(object);
 			addMembershipOwningNamespacePropertyDescriptor(object);
+			addMemberElementIdPropertyDescriptor(object);
 			addMemberShortNamePropertyDescriptor(object);
 			addMemberElementPropertyDescriptor(object);
 			addMemberNamePropertyDescriptor(object);

@@ -149,6 +149,10 @@ import org.eclipse.emf.common.util.EList;
  *     if referenceSubsettings->isEmpty() then null
  *     else referenceSubsettings->first() endif
  * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
+ * Sequence{1..chainingFeature->size() - 1}->forAll(i |
+ *     chainingFeature->at(i + 1).featuringType->forAll(t | 
+ *         chainingFeature->at(i).specializes(t)))
+ * 
  * isPortion and
  * ownedTyping.type->includes(oclIsKindOf(Class)) and
  * owningType <> null and
@@ -157,26 +161,30 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::portions')
- * Sequence{1..chainingFeature->size() - 1}->forAll(i |
- *     chainingFeature->at(i + 1).featuringType->forAll(t | 
- *         chainingFeature->at(i).specializes(t)))
- * 
+ * targetFeature = if chainingFeature->isEmpty() then self else chainingFeature->last() endif
+ * owningType <> null and
+ * owningType.oclIsKindOf(InvocationExpression) and
+ * let owningInvocation: InvocationExpression = owningType.oclAsType(InvocationExpression) in
+ * self = owningInvocation.result and
+ * not owningInvocation.ownedTyping->exists(oclIsKindOf(Function)) and
+ * not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->exists(oclIsKindOf(Function)) implies
+ *     owningInvocation.ownedTyping->forAll(type | self.specializes(type))
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -776,10 +784,15 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The second <code>chainingFeature</code> of the <code>crossedFeature</code> of the <code>ownedCrossSubsetting</code> of this <code>Feature</code>, if it has one. Semantically, the values of the <code>crossFeature</code> of an end <code>Feature</code> must include all values of the end <code>Feature</code> obtained when navigating from values of the other end <code>Features</code> of the same <code>owningType</code>.
+	 * </p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Cross Feature</em>' reference.
 	 * @see #setCrossFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_CrossFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureCrossing'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -810,6 +823,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The one <code>ownedSubsetting</code> of this <code>Feature</code>, if any, that is a <code>CrossSubsetting}, for which the <code>Feature</code> is the <code>crossingFeature</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Cross Subsetting</em>' reference.
 	 * @see #setOwnedCrossSubsetting(CrossSubsetting)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedCrossSubsetting()
@@ -946,7 +962,6 @@ public interface Feature extends Type {
 	 *     featuringType->isEmpty() or
 	 *     featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}
 	 * else 
-	 *     featuringType->notEmpty() and
 	 *     featuringType->forAll(f | type.specializes(f)))
 	 * endif
 	 * <!-- end-model-doc -->

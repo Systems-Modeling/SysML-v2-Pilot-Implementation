@@ -46,7 +46,6 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.NamespaceImport
-import org.omg.sysml.lang.sysml.CrossMultiplying
 
 /**
  * Customization of the default outline structure.
@@ -419,7 +418,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (chaining.chainingFeature !== null) {
 			createNode(parentNode, chaining.chainingFeature, 
 				chaining.chainingFeature._image, chaining.chainingFeature._text, 
-				chaining.chainingFeature.ownedCrossMultiplying.empty &&
 				chaining.chainingFeature.owningRelationship != chaining
 			)
 			
@@ -434,14 +432,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		val specific = specialization.specific
 		if (specific !== null && specific !== specialization.eContainer) {
 			createNode(parentNode, specific, specific._image, specific._text,  
-				(!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty) &&
-				specific.ownedCrossMultiplying.empty)		
+				(!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty))	
 		}
 		val general = specialization.general
 		if (general !== null) {
 			createNode(parentNode, general, general._image, general._text, 
-				(!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty) &&
-				general.ownedCrossMultiplying.empty)
+				(!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty))
 		}
 	}
 	
@@ -482,20 +478,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				!(disjoiningType instanceof Feature) || (disjoiningType as Feature).ownedFeatureChaining.empty)
 		}
 	}
-	
-	def boolean _isLeaf(CrossMultiplying multiplying) {
-		multiplying.multiplyingType === null
-	}
-	
-	def void _createChildren(IOutlineNode parentNode, CrossMultiplying multiplying) {
- 		if (multiplying.multiplyingType !== null) {
-			createNode(parentNode, multiplying.multiplyingType, 
-				multiplying.multiplyingType._image, multiplying.multiplyingType._text, 
-				true
-			)
-			
-		}
- 	}
 	
 	def boolean _isLeaf(FeatureInverting inverting) {
 		inverting.invertingFeature === null
@@ -565,7 +547,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (featuringType !== null) {
 				createNode(implicitNode, featuringType, 
 					featuringType._image, featuringType._text, 
-					featuringType.ownedCrossMultiplying.isEmpty
+					true
 				)
 			}
 		])

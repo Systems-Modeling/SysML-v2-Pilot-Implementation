@@ -3015,18 +3015,6 @@ ruleTypeRelationshipPart[EObject in_current]  returns [EObject current=in_curren
 			$current = $this_DifferencingPart_3.current;
 			afterParserOrEnumRuleCall();
 		}
-		    |
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getTypeRelationshipPartRule());
-			}
-			newCompositeNode(grammarAccess.getTypeRelationshipPartAccess().getCrossMultiplyingPartParserRuleCall_4());
-		}
-		this_CrossMultiplyingPart_4=ruleCrossMultiplyingPart[$current]
-		{
-			$current = $this_CrossMultiplyingPart_4.current;
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -3270,67 +3258,6 @@ ruleDifferencingPart[EObject in_current]  returns [EObject current=in_current]
 							"ownedRelationship",
 							lv_ownedRelationship_3_0,
 							"org.omg.kerml.xtext.KerML.Differencing");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)*
-	)
-;
-
-
-// Rule CrossMultiplyingPart
-ruleCrossMultiplyingPart[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='multiplies'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getCrossMultiplyingPartAccess().getMultipliesKeyword_0());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getCrossMultiplyingPartAccess().getOwnedRelationshipCrossMultiplyingParserRuleCall_1_0());
-				}
-				lv_ownedRelationship_1_0=ruleCrossMultiplying
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCrossMultiplyingPartRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_1_0,
-						"org.omg.kerml.xtext.KerML.CrossMultiplying");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_2=','
-			{
-				newLeafNode(otherlv_2, grammarAccess.getCrossMultiplyingPartAccess().getCommaKeyword_2_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getCrossMultiplyingPartAccess().getOwnedRelationshipCrossMultiplyingParserRuleCall_2_1_0());
-					}
-					lv_ownedRelationship_3_0=ruleCrossMultiplying
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getCrossMultiplyingPartRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.kerml.xtext.KerML.CrossMultiplying");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -4316,61 +4243,6 @@ ruleDifferencing returns [EObject current=null]
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDifferencingRule());
-					}
-					add(
-						$current,
-						"ownedRelatedElement",
-						lv_ownedRelatedElement_1_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChain");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleCrossMultiplying
-entryRuleCrossMultiplying returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCrossMultiplyingRule()); }
-	iv_ruleCrossMultiplying=ruleCrossMultiplying
-	{ $current=$iv_ruleCrossMultiplying.current; }
-	EOF;
-
-// Rule CrossMultiplying
-ruleCrossMultiplying returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCrossMultiplyingRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getCrossMultiplyingAccess().getMultiplyingTypeTypeCrossReference_0_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getCrossMultiplyingAccess().getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0());
-				}
-				lv_ownedRelatedElement_1_0=ruleOwnedFeatureChain
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCrossMultiplyingRule());
 					}
 					add(
 						$current,

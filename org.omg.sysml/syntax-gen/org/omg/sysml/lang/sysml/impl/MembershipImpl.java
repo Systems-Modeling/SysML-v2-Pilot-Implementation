@@ -53,8 +53,8 @@ import org.omg.sysml.util.ElementUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberShortName <em>Member Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
@@ -65,16 +65,6 @@ import org.omg.sysml.util.ElementUtil;
  */
 public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
-	 * The cached setting delegate for the '{@link #getMemberElementId() <em>Member Element Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMemberElementId()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT_ID).getSettingDelegate();
-
-	/**
 	 * The cached setting delegate for the '{@link #getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,6 +73,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getMemberElementId() <em>Member Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT_ID).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getMemberShortName() <em>Member Short Name</em>}' attribute.
@@ -529,11 +529,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				return getMemberElementId();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				if (resolve) return getMembershipOwningNamespace();
 				return basicGetMembershipOwningNamespace();
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				return getMemberElementId();
 			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
 				return getMemberShortName();
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
@@ -555,11 +555,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				setMemberElementId((String)newValue);
-				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				setMembershipOwningNamespace((Namespace)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				setMemberElementId((String)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
 				setMemberShortName((String)newValue);
@@ -585,11 +585,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
-				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				setMembershipOwningNamespace((Namespace)null);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
 				setMemberShortName(MEMBER_SHORT_NAME_EDEFAULT);
@@ -621,10 +621,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return isSetSource();
 			case SysMLPackage.MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				return MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				return isSetMembershipOwningNamespace();
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				return MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
 				return MEMBER_SHORT_NAME_EDEFAULT == null ? memberShortName != null : !MEMBER_SHORT_NAME_EDEFAULT.equals(memberShortName);
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:

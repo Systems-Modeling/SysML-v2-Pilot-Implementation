@@ -55,7 +55,7 @@ import org.eclipse.emf.common.util.EList;
  *     let direction: FeatureDirectionKind = directionOf(f) in
  *     direction = FeatureDirectionKind::_'in' or
  *     direction = FeatureDirectionKind::inout)
- * inheritedMembership = inheritedMemberships(Set{})
+ * inheritedMembership = inheritedMemberships(Set{}, false)
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
@@ -81,9 +81,9 @@ import org.eclipse.emf.common.util.EList;
  * ownedEndFeature = ownedFeature->select(isEnd)
  * inheritedFeature = inheritedMemberships->
  *     selectByKind(FeatureMembership).memberFeature
- * ownedDifferencing->size() <> 1
  * ownedUnioning->size() <> 1
  * ownedIntersecting->size() <> 1
+ * ownedDifferencing->size() <> 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -94,12 +94,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -114,8 +114,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedCrossMultiplying <em>Owned Cross Multiplying</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplyingType <em>Multiplying Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -803,48 +801,17 @@ public interface Type extends Namespace {
 	EList<Feature> getDirectedFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Cross Multiplying</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CrossMultiplying}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.CrossMultiplying#getTypeMultiplied <em>Type Multiplied</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Cross Multiplying</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Cross Multiplying</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedCrossMultiplying()
-	 * @see org.omg.sysml.lang.sysml.CrossMultiplying#getTypeMultiplied
-	 * @model opposite="typeMultiplied" transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
+	 * <!-- begin-model-doc -->
+	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set. If <code>excludeImplied = true</code>, then also exclude any <code>Types</code> inherited via <code>Specializations</code> with <code>isImplied = true</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model excludedMany="true" excludedOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<CrossMultiplying> getOwnedCrossMultiplying();
-
-	/**
-	 * Returns the value of the '<em><b>Multiplying Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Multiplying Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Multiplying Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_MultiplyingType()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='multipliedType'"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Type> getMultiplyingType();
+	EList<Membership> inheritedMemberships(EList<Type> excluded, boolean excludeImplied);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Disjoining</b></em>' reference list.
@@ -897,19 +864,6 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	EList<Specialization> getOwnedSpecialization();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @model excludedMany="true" excludedOrdered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Membership> inheritedMemberships(EList<Type> excluded);
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

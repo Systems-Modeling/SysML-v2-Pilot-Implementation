@@ -45,9 +45,9 @@ public class AnnotatingElementItemProvider extends ElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAnnotatedElementPropertyDescriptor(object);
-			addOwnedAnnotatingRelationshipPropertyDescriptor(object);
 			addAnnotationPropertyDescriptor(object);
+			addOwnedAnnotatingRelationshipPropertyDescriptor(object);
+			addAnnotatedElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

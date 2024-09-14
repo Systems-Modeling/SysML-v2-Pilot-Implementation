@@ -35,18 +35,13 @@ main() {
 helper run() {
 	var syntax := export.objects()[Package]![name = "SysML Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
-	var kermlSyntax := syntax.packagedElement[Package]![name = "KerML"];
-	assert fatal (kermlSyntax <> null) with log ("KerML abstract Syntax not found.");
-	var sysmlSyntax := syntax.packagedElement[Package]![name = "SysML"];
-	assert fatal (kermlSyntax <> null) with log ("SysML abstract Syntax not found.");
 	
 	var model = object Model { 
 		name := "sysml";
 		URI := "https://www.omg.org/spec/SysML/" + version;
 	};
 	
-	mapModel(kermlSyntax, model);
-	mapModel(sysmlSyntax, model);
+	mapModel(syntax, model);
 	fixLiteralRational();	
 }
 

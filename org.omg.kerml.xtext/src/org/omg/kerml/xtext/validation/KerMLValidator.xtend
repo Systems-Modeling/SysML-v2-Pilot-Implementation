@@ -437,14 +437,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
+		// TODO: Update OCL
 		val m = f.multiplicity;
-		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
+		val featuringTypes = f.featuringType
+		var mFeaturingTypes =
+			if (FeatureUtil.isOwnedCrossFeature(f)) (f.owningNamespace as Feature).featuringType
+			else featuringTypes
+		if (m !== null && mFeaturingTypes.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
 		
 		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
 		val direction = f.direction
-		val featuringTypes = f.featuringType
 		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
 			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
 		}

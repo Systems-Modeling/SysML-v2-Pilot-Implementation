@@ -38,7 +38,6 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.CrossMultiplying;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -673,22 +672,22 @@ public class FeatureAdapter extends TypeAdapter {
 					Classifier crossProductType = SysMLFactory.eINSTANCE.createClassifier();
 					addFeaturingType(crossProductType);
 					
-					for (Feature otherEnd: endFeatures) {
-						if (otherEnd != owningFeature) {
-							List<Type> crossFeatureTypes = otherEnd.getType();
-							if (crossFeatureTypes.isEmpty()) {
-								CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
-								multiplying.setMultiplyingType(getLibraryType("Base::Anything"));
-								crossProductType.getOwnedRelationship().add(multiplying);
-							} else {
-								for (Type multiplyingType: crossFeatureTypes) {
-									CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
-									multiplying.setMultiplyingType(multiplyingType);
-									crossProductType.getOwnedRelationship().add(multiplying);
-								}
-							}
-						}
-					}
+//					for (Feature otherEnd: endFeatures) {
+//						if (otherEnd != owningFeature) {
+//							List<Type> crossFeatureTypes = otherEnd.getType();
+//							if (crossFeatureTypes.isEmpty()) {
+//								CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
+//								multiplying.setMultiplyingType(getLibraryType("Base::Anything"));
+//								crossProductType.getOwnedRelationship().add(multiplying);
+//							} else {
+//								for (Type multiplyingType: crossFeatureTypes) {
+//									CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
+//									multiplying.setMultiplyingType(multiplyingType);
+//									crossProductType.getOwnedRelationship().add(multiplying);
+//								}
+//							}
+//						}
+//					}
 					
 					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
 						if (redefinedFeature.isEnd()) {

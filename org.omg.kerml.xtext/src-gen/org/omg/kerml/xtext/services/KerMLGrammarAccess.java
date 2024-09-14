@@ -1895,14 +1895,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cUnioningPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cIntersectingPartParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cDifferencingPartParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cCrossMultiplyingPartParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//fragment TypeRelationshipPart returns SysML::Type :
-		//    DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | CrossMultiplyingPart
+		//    DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | CrossMultiplyingPart
+		//DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//DisjoiningPart
@@ -1916,9 +1915,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//DifferencingPart
 		public RuleCall getDifferencingPartParserRuleCall_3() { return cDifferencingPartParserRuleCall_3; }
-		
-		//CrossMultiplyingPart
-		public RuleCall getCrossMultiplyingPartParserRuleCall_4() { return cCrossMultiplyingPartParserRuleCall_4; }
 	}
 	public class DisjoiningPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.DisjoiningPart");
@@ -2091,48 +2087,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Differencing
 		public RuleCall getOwnedRelationshipDifferencingParserRuleCall_2_1_0() { return cOwnedRelationshipDifferencingParserRuleCall_2_1_0; }
-	}
-	public class CrossMultiplyingPartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.CrossMultiplyingPart");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cMultipliesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipCrossMultiplyingParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipCrossMultiplyingParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
-		
-		//fragment CrossMultiplyingPart returns SysML::Type :
-		//    'multiplies'  ownedRelationship += CrossMultiplying
-		//    ( ',' ownedRelationship += CrossMultiplying )*
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'multiplies'  ownedRelationship += CrossMultiplying
-		//( ',' ownedRelationship += CrossMultiplying )*
-		public Group getGroup() { return cGroup; }
-		
-		//'multiplies'
-		public Keyword getMultipliesKeyword_0() { return cMultipliesKeyword_0; }
-		
-		//ownedRelationship += CrossMultiplying
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
-		
-		//CrossMultiplying
-		public RuleCall getOwnedRelationshipCrossMultiplyingParserRuleCall_1_0() { return cOwnedRelationshipCrossMultiplyingParserRuleCall_1_0; }
-		
-		//( ',' ownedRelationship += CrossMultiplying )*
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//','
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
-		
-		//ownedRelationship += CrossMultiplying
-		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
-		
-		//CrossMultiplying
-		public RuleCall getOwnedRelationshipCrossMultiplyingParserRuleCall_2_1_0() { return cOwnedRelationshipCrossMultiplyingParserRuleCall_2_1_0; }
 	}
 	public class TypeBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TypeBody");
@@ -2809,41 +2763,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//QualifiedName
 		public RuleCall getDifferencingTypeTypeQualifiedNameParserRuleCall_0_0_1() { return cDifferencingTypeTypeQualifiedNameParserRuleCall_0_0_1; }
-		
-		//ownedRelatedElement += OwnedFeatureChain
-		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
-		
-		//OwnedFeatureChain
-		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0; }
-	}
-	public class CrossMultiplyingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.CrossMultiplying");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cMultiplyingTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final CrossReference cMultiplyingTypeTypeCrossReference_0_0 = (CrossReference)cMultiplyingTypeAssignment_0.eContents().get(0);
-		private final RuleCall cMultiplyingTypeTypeQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cMultiplyingTypeTypeCrossReference_0_0.eContents().get(1);
-		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
-		
-		///* Cross Product */
-		//CrossMultiplying returns SysML::CrossMultiplying :
-		//      multiplyingType = [SysML::Type | QualifiedName]
-		//    | ownedRelatedElement += OwnedFeatureChain
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//  multiplyingType = [SysML::Type | QualifiedName]
-		//| ownedRelatedElement += OwnedFeatureChain
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//multiplyingType = [SysML::Type | QualifiedName]
-		public Assignment getMultiplyingTypeAssignment_0() { return cMultiplyingTypeAssignment_0; }
-		
-		//[SysML::Type | QualifiedName]
-		public CrossReference getMultiplyingTypeTypeCrossReference_0_0() { return cMultiplyingTypeTypeCrossReference_0_0; }
-		
-		//QualifiedName
-		public RuleCall getMultiplyingTypeTypeQualifiedNameParserRuleCall_0_0_1() { return cMultiplyingTypeTypeQualifiedNameParserRuleCall_0_0_1; }
 		
 		//ownedRelatedElement += OwnedFeatureChain
 		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
@@ -7349,7 +7268,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final UnioningPartElements pUnioningPart;
 	private final IntersectingPartElements pIntersectingPart;
 	private final DifferencingPartElements pDifferencingPart;
-	private final CrossMultiplyingPartElements pCrossMultiplyingPart;
 	private final TypeBodyElements pTypeBody;
 	private final FeatureMemberElements pFeatureMember;
 	private final TypeFeatureMemberElements pTypeFeatureMember;
@@ -7363,7 +7281,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final UnioningElements pUnioning;
 	private final IntersectingElements pIntersecting;
 	private final DifferencingElements pDifferencing;
-	private final CrossMultiplyingElements pCrossMultiplying;
 	private final ClassifierElements pClassifier;
 	private final ClassifierDeclarationElements pClassifierDeclaration;
 	private final SuperclassingPartElements pSuperclassingPart;
@@ -7535,7 +7452,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pUnioningPart = new UnioningPartElements();
 		this.pIntersectingPart = new IntersectingPartElements();
 		this.pDifferencingPart = new DifferencingPartElements();
-		this.pCrossMultiplyingPart = new CrossMultiplyingPartElements();
 		this.pTypeBody = new TypeBodyElements();
 		this.pFeatureMember = new FeatureMemberElements();
 		this.pTypeFeatureMember = new TypeFeatureMemberElements();
@@ -7549,7 +7465,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pUnioning = new UnioningElements();
 		this.pIntersecting = new IntersectingElements();
 		this.pDifferencing = new DifferencingElements();
-		this.pCrossMultiplying = new CrossMultiplyingElements();
 		this.pClassifier = new ClassifierElements();
 		this.pClassifierDeclaration = new ClassifierDeclarationElements();
 		this.pSuperclassingPart = new SuperclassingPartElements();
@@ -8309,7 +8224,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment TypeRelationshipPart returns SysML::Type :
-	//    DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart | CrossMultiplyingPart
+	//    DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart
 	//;
 	public TypeRelationshipPartElements getTypeRelationshipPartAccess() {
 		return pTypeRelationshipPart;
@@ -8365,18 +8280,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getDifferencingPartRule() {
 		return getDifferencingPartAccess().getRule();
-	}
-	
-	//fragment CrossMultiplyingPart returns SysML::Type :
-	//    'multiplies'  ownedRelationship += CrossMultiplying
-	//    ( ',' ownedRelationship += CrossMultiplying )*
-	//;
-	public CrossMultiplyingPartElements getCrossMultiplyingPartAccess() {
-		return pCrossMultiplyingPart;
-	}
-	
-	public ParserRule getCrossMultiplyingPartRule() {
-		return getCrossMultiplyingPartAccess().getRule();
 	}
 	
 	//fragment TypeBody returns SysML::Type :
@@ -8558,19 +8461,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getDifferencingRule() {
 		return getDifferencingAccess().getRule();
-	}
-	
-	///* Cross Product */
-	//CrossMultiplying returns SysML::CrossMultiplying :
-	//      multiplyingType = [SysML::Type | QualifiedName]
-	//    | ownedRelatedElement += OwnedFeatureChain
-	//;
-	public CrossMultiplyingElements getCrossMultiplyingAccess() {
-		return pCrossMultiplying;
-	}
-	
-	public ParserRule getCrossMultiplyingRule() {
-		return getCrossMultiplyingAccess().getRule();
 	}
 	
 	///* CLASSIFIERS */

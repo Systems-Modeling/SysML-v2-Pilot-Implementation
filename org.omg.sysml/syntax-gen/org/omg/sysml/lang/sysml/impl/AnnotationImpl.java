@@ -52,8 +52,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatingElement <em>Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningAnnotatingElement <em>Owning Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,16 +80,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	protected Element annotatedElement;
 
 	/**
-	 * The cached setting delegate for the '{@link #getOwningAnnotatedElement() <em>Owning Annotated Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningAnnotatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATED_ELEMENT).getSettingDelegate();
-
-	/**
 	 * The cached setting delegate for the '{@link #getOwningAnnotatingElement() <em>Owning Annotating Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +88,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATING_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATING_ELEMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningAnnotatedElement() <em>Owning Annotated Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -460,12 +460,12 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
 				if (resolve) return getAnnotatedElement();
 				return basicGetAnnotatedElement();
-			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				if (resolve) return getOwningAnnotatedElement();
-				return basicGetOwningAnnotatedElement();
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATING_ELEMENT:
 				if (resolve) return getOwningAnnotatingElement();
 				return basicGetOwningAnnotatingElement();
+			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
+				if (resolve) return getOwningAnnotatedElement();
+				return basicGetOwningAnnotatedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -484,11 +484,11 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
 				setAnnotatedElement((Element)newValue);
 				return;
-			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				setOwningAnnotatedElement((Element)newValue);
-				return;
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATING_ELEMENT:
 				setOwningAnnotatingElement((AnnotatingElement)newValue);
+				return;
+			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
+				setOwningAnnotatedElement((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -508,11 +508,11 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
 				setAnnotatedElement((Element)null);
 				return;
-			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				setOwningAnnotatedElement((Element)null);
-				return;
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATING_ELEMENT:
 				setOwningAnnotatingElement((AnnotatingElement)null);
+				return;
+			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
+				setOwningAnnotatedElement((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -536,10 +536,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 				return isSetSource();
 			case SysMLPackage.ANNOTATION__TARGET:
 				return isSetTarget();
-			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				return OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATING_ELEMENT:
 				return OWNING_ANNOTATING_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
+				return OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

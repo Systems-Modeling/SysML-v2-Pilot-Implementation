@@ -45,7 +45,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureMembership extends OwningMembership, Featuring {
+public interface FeatureMembership extends OwningMembership {
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
@@ -54,7 +54,6 @@ public interface FeatureMembership extends OwningMembership, Featuring {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -95,7 +94,6 @@ public interface FeatureMembership extends OwningMembership, Featuring {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

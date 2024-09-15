@@ -235,18 +235,9 @@ public class SysMLSwitch<T> extends Switch<T> {
 				FeatureMembership featureMembership = (FeatureMembership)theEObject;
 				T result = caseFeatureMembership(featureMembership);
 				if (result == null) result = caseOwningMembership(featureMembership);
-				if (result == null) result = caseFeaturing(featureMembership);
 				if (result == null) result = caseMembership(featureMembership);
 				if (result == null) result = caseRelationship(featureMembership);
 				if (result == null) result = caseElement(featureMembership);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SysMLPackage.FEATURING: {
-				Featuring featuring = (Featuring)theEObject;
-				T result = caseFeaturing(featuring);
-				if (result == null) result = caseRelationship(featuring);
-				if (result == null) result = caseElement(featuring);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -334,6 +325,14 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseFeaturing(typeFeaturing);
 				if (result == null) result = caseRelationship(typeFeaturing);
 				if (result == null) result = caseElement(typeFeaturing);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.FEATURING: {
+				Featuring featuring = (Featuring)theEObject;
+				T result = caseFeaturing(featuring);
+				if (result == null) result = caseRelationship(featuring);
+				if (result == null) result = caseElement(featuring);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -759,7 +758,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseParameterMembership(returnParameterMembership);
 				if (result == null) result = caseFeatureMembership(returnParameterMembership);
 				if (result == null) result = caseOwningMembership(returnParameterMembership);
-				if (result == null) result = caseFeaturing(returnParameterMembership);
 				if (result == null) result = caseMembership(returnParameterMembership);
 				if (result == null) result = caseRelationship(returnParameterMembership);
 				if (result == null) result = caseElement(returnParameterMembership);
@@ -771,7 +769,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseParameterMembership(parameterMembership);
 				if (result == null) result = caseFeatureMembership(parameterMembership);
 				if (result == null) result = caseOwningMembership(parameterMembership);
-				if (result == null) result = caseFeaturing(parameterMembership);
 				if (result == null) result = caseMembership(parameterMembership);
 				if (result == null) result = caseRelationship(parameterMembership);
 				if (result == null) result = caseElement(parameterMembership);
@@ -783,7 +780,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseResultExpressionMembership(resultExpressionMembership);
 				if (result == null) result = caseFeatureMembership(resultExpressionMembership);
 				if (result == null) result = caseOwningMembership(resultExpressionMembership);
-				if (result == null) result = caseFeaturing(resultExpressionMembership);
 				if (result == null) result = caseMembership(resultExpressionMembership);
 				if (result == null) result = caseRelationship(resultExpressionMembership);
 				if (result == null) result = caseElement(resultExpressionMembership);
@@ -909,7 +905,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseEndFeatureMembership(endFeatureMembership);
 				if (result == null) result = caseFeatureMembership(endFeatureMembership);
 				if (result == null) result = caseOwningMembership(endFeatureMembership);
-				if (result == null) result = caseFeaturing(endFeatureMembership);
 				if (result == null) result = caseMembership(endFeatureMembership);
 				if (result == null) result = caseRelationship(endFeatureMembership);
 				if (result == null) result = caseElement(endFeatureMembership);
@@ -921,7 +916,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseObjectiveMembership(objectiveMembership);
 				if (result == null) result = caseFeatureMembership(objectiveMembership);
 				if (result == null) result = caseOwningMembership(objectiveMembership);
-				if (result == null) result = caseFeaturing(objectiveMembership);
 				if (result == null) result = caseMembership(objectiveMembership);
 				if (result == null) result = caseRelationship(objectiveMembership);
 				if (result == null) result = caseElement(objectiveMembership);
@@ -1790,7 +1784,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseParameterMembership(stakeholderMembership);
 				if (result == null) result = caseFeatureMembership(stakeholderMembership);
 				if (result == null) result = caseOwningMembership(stakeholderMembership);
-				if (result == null) result = caseFeaturing(stakeholderMembership);
 				if (result == null) result = caseMembership(stakeholderMembership);
 				if (result == null) result = caseRelationship(stakeholderMembership);
 				if (result == null) result = caseElement(stakeholderMembership);
@@ -1803,7 +1796,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseParameterMembership(subjectMembership);
 				if (result == null) result = caseFeatureMembership(subjectMembership);
 				if (result == null) result = caseOwningMembership(subjectMembership);
-				if (result == null) result = caseFeaturing(subjectMembership);
 				if (result == null) result = caseMembership(subjectMembership);
 				if (result == null) result = caseRelationship(subjectMembership);
 				if (result == null) result = caseElement(subjectMembership);
@@ -1815,7 +1807,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseRequirementConstraintMembership(requirementConstraintMembership);
 				if (result == null) result = caseFeatureMembership(requirementConstraintMembership);
 				if (result == null) result = caseOwningMembership(requirementConstraintMembership);
-				if (result == null) result = caseFeaturing(requirementConstraintMembership);
 				if (result == null) result = caseMembership(requirementConstraintMembership);
 				if (result == null) result = caseRelationship(requirementConstraintMembership);
 				if (result == null) result = caseElement(requirementConstraintMembership);
@@ -1828,7 +1819,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRequirementConstraintMembership(framedConcernMembership);
 				if (result == null) result = caseFeatureMembership(framedConcernMembership);
 				if (result == null) result = caseOwningMembership(framedConcernMembership);
-				if (result == null) result = caseFeaturing(framedConcernMembership);
 				if (result == null) result = caseMembership(framedConcernMembership);
 				if (result == null) result = caseRelationship(framedConcernMembership);
 				if (result == null) result = caseElement(framedConcernMembership);
@@ -1841,7 +1831,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseParameterMembership(actorMembership);
 				if (result == null) result = caseFeatureMembership(actorMembership);
 				if (result == null) result = caseOwningMembership(actorMembership);
-				if (result == null) result = caseFeaturing(actorMembership);
 				if (result == null) result = caseMembership(actorMembership);
 				if (result == null) result = caseRelationship(actorMembership);
 				if (result == null) result = caseElement(actorMembership);
@@ -1870,7 +1859,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseRequirementConstraintMembership(requirementVerificationMembership);
 				if (result == null) result = caseFeatureMembership(requirementVerificationMembership);
 				if (result == null) result = caseOwningMembership(requirementVerificationMembership);
-				if (result == null) result = caseFeaturing(requirementVerificationMembership);
 				if (result == null) result = caseMembership(requirementVerificationMembership);
 				if (result == null) result = caseRelationship(requirementVerificationMembership);
 				if (result == null) result = caseElement(requirementVerificationMembership);
@@ -1929,7 +1917,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseTransitionFeatureMembership(transitionFeatureMembership);
 				if (result == null) result = caseFeatureMembership(transitionFeatureMembership);
 				if (result == null) result = caseOwningMembership(transitionFeatureMembership);
-				if (result == null) result = caseFeaturing(transitionFeatureMembership);
 				if (result == null) result = caseMembership(transitionFeatureMembership);
 				if (result == null) result = caseRelationship(transitionFeatureMembership);
 				if (result == null) result = caseElement(transitionFeatureMembership);
@@ -1941,7 +1928,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseStateSubactionMembership(stateSubactionMembership);
 				if (result == null) result = caseFeatureMembership(stateSubactionMembership);
 				if (result == null) result = caseOwningMembership(stateSubactionMembership);
-				if (result == null) result = caseFeaturing(stateSubactionMembership);
 				if (result == null) result = caseMembership(stateSubactionMembership);
 				if (result == null) result = caseRelationship(stateSubactionMembership);
 				if (result == null) result = caseElement(stateSubactionMembership);
@@ -2188,7 +2174,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = caseViewRenderingMembership(viewRenderingMembership);
 				if (result == null) result = caseFeatureMembership(viewRenderingMembership);
 				if (result == null) result = caseOwningMembership(viewRenderingMembership);
-				if (result == null) result = caseFeaturing(viewRenderingMembership);
 				if (result == null) result = caseMembership(viewRenderingMembership);
 				if (result == null) result = caseRelationship(viewRenderingMembership);
 				if (result == null) result = caseElement(viewRenderingMembership);

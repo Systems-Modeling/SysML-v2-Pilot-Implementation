@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Featuring;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -249,87 +248,9 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getType() {
-		return getOwningType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetType() {
-		return basicGetOwningType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(Type newType) {
-		setOwningType(newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature getFeature() {
-		return getOwnedMemberFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetFeature() {
-		return basicGetOwnedMemberFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFeature(Feature newFeature) {
-		setOwnedMemberFeature(newFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFeature() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				if (resolve) return getOwnedMemberFeature();
 				return basicGetOwnedMemberFeature();
@@ -348,12 +269,6 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__TYPE:
-				setType((Type)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				setFeature((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)newValue);
 				return;
@@ -372,12 +287,6 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__TYPE:
-				setType((Type)null);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				setFeature((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)null);
 				return;
@@ -396,10 +305,6 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_MEMBERSHIP__TYPE:
-				return isSetType();
-			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
-				return isSetFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
@@ -410,40 +315,6 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 				return isSetOwningType();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Featuring.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.FEATURE_MEMBERSHIP__TYPE: return SysMLPackage.FEATURING__TYPE;
-				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE: return SysMLPackage.FEATURING__FEATURE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Featuring.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.FEATURING__TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__TYPE;
-				case SysMLPackage.FEATURING__FEATURE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //FeatureMembershipImpl

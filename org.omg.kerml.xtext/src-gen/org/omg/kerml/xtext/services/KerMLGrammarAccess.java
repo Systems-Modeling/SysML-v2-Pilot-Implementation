@@ -3066,8 +3066,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsCompositeCompositeKeyword_2_0_0 = (Keyword)cIsCompositeAssignment_2_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_2_1_0 = (Keyword)cIsPortionAssignment_2_1.eContents().get(0);
-		private final Assignment cIsReadOnlyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsReadOnlyReadonlyKeyword_3_0 = (Keyword)cIsReadOnlyAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cIsReadOnlyAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final Keyword cIsReadOnlyReadonlyKeyword_3_0_0 = (Keyword)cIsReadOnlyAssignment_3_0.eContents().get(0);
+		private final Assignment cIsVariableAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final Keyword cIsVariableVarKeyword_3_1_0 = (Keyword)cIsVariableAssignment_3_1.eContents().get(0);
 		private final Assignment cIsDerivedAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final Keyword cIsDerivedDerivedKeyword_4_0 = (Keyword)cIsDerivedAssignment_4.eContents().get(0);
 		
@@ -3075,7 +3078,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ( direction = FeatureDirection )?
 		//    ( isAbstract ?= 'abstract' )?
 		//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-		//    ( isReadOnly ?= 'readonly' )?
+		//    ( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 		//    ( isDerived ?= 'derived' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -3083,7 +3086,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//( direction = FeatureDirection )?
 		//( isAbstract ?= 'abstract' )?
 		//( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-		//( isReadOnly ?= 'readonly' )?
+		//( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 		//( isDerived ?= 'derived' )?
 		public Group getGroup() { return cGroup; }
 		
@@ -3114,11 +3117,20 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'portion'
 		public Keyword getIsPortionPortionKeyword_2_1_0() { return cIsPortionPortionKeyword_2_1_0; }
 		
-		//( isReadOnly ?= 'readonly' )?
-		public Assignment getIsReadOnlyAssignment_3() { return cIsReadOnlyAssignment_3; }
+		//( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//isReadOnly ?= 'readonly'
+		public Assignment getIsReadOnlyAssignment_3_0() { return cIsReadOnlyAssignment_3_0; }
 		
 		//'readonly'
-		public Keyword getIsReadOnlyReadonlyKeyword_3_0() { return cIsReadOnlyReadonlyKeyword_3_0; }
+		public Keyword getIsReadOnlyReadonlyKeyword_3_0_0() { return cIsReadOnlyReadonlyKeyword_3_0_0; }
+		
+		//isVariable ?= 'var'
+		public Assignment getIsVariableAssignment_3_1() { return cIsVariableAssignment_3_1; }
+		
+		//'var'
+		public Keyword getIsVariableVarKeyword_3_1_0() { return cIsVariableVarKeyword_3_1_0; }
 		
 		//( isDerived ?= 'derived' )?
 		public Assignment getIsDerivedAssignment_4() { return cIsDerivedAssignment_4; }
@@ -8569,7 +8581,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ( direction = FeatureDirection )?
 	//    ( isAbstract ?= 'abstract' )?
 	//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
-	//    ( isReadOnly ?= 'readonly' )?
+	//    ( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 	//    ( isDerived ?= 'derived' )?
 	//;
 	public BasicFeaturePrefixElements getBasicFeaturePrefixAccess() {

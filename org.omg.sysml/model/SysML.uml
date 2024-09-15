@@ -5103,8 +5103,7 @@ specializes(mem.memberElement.oclAsType(Type))</body>
 </body>
     </ownedComment>
     <generalization xmi:id="6bede445-1ebe-4b41-8a84-798f676e2ac6" general="0ac69c8b-1bab-45e9-82df-d840307444f7"/>
-    <generalization xmi:id="74709159-eef7-4d3f-bd50-d260647f5c42" general="6b39d50b-0fa2-46c4-88e1-14ea53f05f8b"/>
-    <ownedAttribute xmi:id="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a" name="owningType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7" isDerived="true" redefinedProperty="67aded9a-ae8a-4191-8053-2df04cce9c8c 35ddd42a-b8a5-4ea6-b2d1-ab7d0a827a00" subsettedProperty="2ef320b9-d900-484f-ab11-5aa59e441577" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
+    <ownedAttribute xmi:id="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a" name="owningType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7" isDerived="true" redefinedProperty="67aded9a-ae8a-4191-8053-2df04cce9c8c" subsettedProperty="2ef320b9-d900-484f-ab11-5aa59e441577" association="40e74d8d-9b1e-4e29-9918-2f5a02df411a">
       <ownedComment xmi:id="71090db3-d8a1-4a91-ba78-82b1f92339b7" annotatedElement="b698b27c-2d6a-4cc5-a202-ab3d3cb5ec2a">
         <body>&lt;p>The &lt;code>Type&lt;/code> that owns this &lt;code>FeatureMembership&lt;/code>.&lt;/p>
 </body>
@@ -5112,7 +5111,7 @@ specializes(mem.memberElement.oclAsType(Type))</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="6299c2ac-774d-420f-8d02-7a5a0056cab1" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d219f867-905c-44d6-b44a-ab1dff1c77aa" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="6bf83eae-2d89-4ea9-8c7b-92d8ef26bfaa" name="ownedMemberFeature" visibility="public" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" aggregation="composite" isDerived="true" redefinedProperty="c23da327-2bed-4f05-9fa2-9749097c6eca e3585351-105e-4e50-9547-2974f25f09a4" association="2b5fa6a3-5aa7-453a-a026-7934e87e5711">
+    <ownedAttribute xmi:id="6bf83eae-2d89-4ea9-8c7b-92d8ef26bfaa" name="ownedMemberFeature" visibility="public" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" aggregation="composite" isDerived="true" redefinedProperty="c23da327-2bed-4f05-9fa2-9749097c6eca" association="2b5fa6a3-5aa7-453a-a026-7934e87e5711">
       <ownedComment xmi:id="01dc68a5-4620-43a0-8e5b-1a4967d20a08" annotatedElement="6bf83eae-2d89-4ea9-8c7b-92d8ef26bfaa">
         <body>&lt;p>The &lt;code>Feature&lt;/code> that this &lt;code>FeatureMembership&lt;/code> relates to its &lt;code>owningType&lt;/code>, making it an &lt;code>ownedFeature&lt;/code> of the &lt;code>owningType&lt;/code>.&lt;/p>
 </body>
@@ -6332,6 +6331,10 @@ not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->e
     <ownedAttribute xmi:id="02e1acaf-0886-4824-8d60-2331233f5a85" name="featureTarget" visibility="public" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" isDerived="true" association="9768f6b9-3e3e-4080-b1d5-85864e34a4f2">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a82b4efc-2359-45ab-9da3-9d25dd9cfe46" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a1cc0565-7779-443d-9a06-74d138f8d4bf" name="" visibility="public" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_e4HzEHOVEe-clNSDmZrfGQ" name="isVariable">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_kVzjwHOVEe-clNSDmZrfGQ"/>
     </ownedAttribute>
     <ownedOperation xmi:id="62627ba2-400d-4ce1-aa00-5510fe5ce0fc" name="directionFor" visibility="public" bodyCondition="40a9a558-173b-4b45-abf0-818148e07abd">
       <ownedComment xmi:id="f2427503-74a6-4dbe-835a-19283c87d172" annotatedElement="62627ba2-400d-4ce1-aa00-5510fe5ce0fc">

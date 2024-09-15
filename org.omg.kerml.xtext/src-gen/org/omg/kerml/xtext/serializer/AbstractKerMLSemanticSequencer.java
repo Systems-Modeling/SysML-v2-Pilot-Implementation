@@ -1082,7 +1082,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1178,7 +1178,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1269,7 +1269,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1356,7 +1356,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1452,7 +1452,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1544,7 +1544,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1639,7 +1639,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1730,7 +1730,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1825,7 +1825,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -1916,7 +1916,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2014,7 +2014,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2109,7 +2109,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2207,7 +2207,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2302,7 +2302,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2393,7 +2393,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2480,7 +2480,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 direction=FeatureDirection? 
 	 *                 isAbstract?='abstract'? 
 	 *                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                 isReadOnly?='readonly'? 
+	 *                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                 isDerived?='derived'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2568,7 +2568,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//                 direction=FeatureDirection? 
 	//                 isAbstract?='abstract'? 
 	//                 (isComposite?='composite' | isPortion?='portion')? 
-	//                 isReadOnly?='readonly'? 
+	//                 (isReadOnly?='readonly' | isVariable?='var')? 
 	//                 isDerived?='derived'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2652,7 +2652,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isReadOnly?='readonly'? 
+	 *         (isReadOnly?='readonly' | isVariable?='var')? 
 	 *         isDerived?='derived'? 
 	 *         isSufficient?='all'? 
 	 *         (
@@ -2734,7 +2734,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         direction=FeatureDirection? 
 	 *                         isAbstract?='abstract'? 
 	 *                         (isComposite?='composite' | isPortion?='portion')? 
-	 *                         isReadOnly?='readonly'? 
+	 *                         (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                         isDerived?='derived'?
 	 *                     ) | 
 	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2750,7 +2750,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                                 direction=FeatureDirection? 
 	 *                                 isAbstract?='abstract'? 
 	 *                                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                                 isReadOnly?='readonly'? 
+	 *                                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                                 isDerived?='derived'?
 	 *                             ) | 
 	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2795,7 +2795,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         direction=FeatureDirection? 
 	 *                         isAbstract?='abstract'? 
 	 *                         (isComposite?='composite' | isPortion?='portion')? 
-	 *                         isReadOnly?='readonly'? 
+	 *                         (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                         isDerived?='derived'?
 	 *                     ) | 
 	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2829,7 +2829,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                                 direction=FeatureDirection? 
 	 *                                 isAbstract?='abstract'? 
 	 *                                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                                 isReadOnly?='readonly'? 
+	 *                                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                                 isDerived?='derived'?
 	 *                             ) | 
 	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)
@@ -2844,7 +2844,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                                 direction=FeatureDirection? 
 	 *                                 isAbstract?='abstract'? 
 	 *                                 (isComposite?='composite' | isPortion?='portion')? 
-	 *                                 isReadOnly?='readonly'? 
+	 *                                 (isReadOnly?='readonly' | isVariable?='var')? 
 	 *                                 isDerived?='derived'?
 	 *                             ) | 
 	 *                             (isEnd?='end' ownedRelationship+=OwnedCrossingFeatureMember?)

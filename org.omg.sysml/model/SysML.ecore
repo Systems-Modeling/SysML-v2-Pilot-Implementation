@@ -984,6 +984,8 @@
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariable" ordered="false"
+        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
         transient="true" defaultValueLiteral="false" derived="true"/>
@@ -1292,7 +1294,7 @@
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FeatureMembership" eSuperTypes="#//OwningMembership #//Featuring">
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureMembership" eSuperTypes="#//OwningMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A &lt;code>FeatureMembership&lt;/code> is an &lt;code>OwningMembership&lt;/code> between a &lt;code>Feature&lt;/code> in an &lt;code>owningType&lt;/code> that is also a &lt;code>Featuring&lt;/code> &lt;code>Relationship&lt;/code> between the &lt;code>Feature&lt;/code> and the &lt;code>Type&lt;/code>, in which the &lt;code>featuringType&lt;/code> is the &lt;code>source&lt;/code> and the &lt;code>featureOfType&lt;/code> is the &lt;code>target&lt;/code>. A &lt;code>FeatureMembership&lt;/code> is always owned by its &lt;code>owningType&lt;/code>, which is the &lt;code>featuringType&lt;/code> for the &lt;code>FeatureMembership&lt;/code> considered as a &lt;code>Featuring&lt;/code>.&lt;/p>&#xA;"/>
     </eAnnotations>
@@ -1302,7 +1304,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>Feature&lt;/code> that this &lt;code>FeatureMembership&lt;/code> relates to its &lt;code>owningType&lt;/code>, making it an &lt;code>ownedFeature&lt;/code> of the &lt;code>owningType&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//OwningMembership/ownedMemberElement #//Featuring/feature"/>
+      <eAnnotations source="redefines" references="#//OwningMembership/ownedMemberElement"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
@@ -1311,33 +1313,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>Type&lt;/code> that owns this &lt;code>FeatureMembership&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Membership/membershipOwningNamespace #//Featuring/type"/>
+      <eAnnotations source="redefines" references="#//Membership/membershipOwningNamespace"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Featuring" abstract="true" eSuperTypes="#//Relationship">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="&lt;p>&lt;code>Featuring&lt;/code> is a &lt;code>Relationship&lt;/code> between a &lt;code>Type&lt;/code> and a &lt;code>Feature&lt;/code> that is featured by that &lt;code>Type&lt;/code>. It asserts that every instance in the domain of the &lt;code>feature&lt;/code> must be classified by the &lt;code>type&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>&lt;code>Featuring&lt;/code> is abstract and does not commit to which of &lt;code>feature&lt;/code> or &lt;code>type&lt;/code> are the &lt;code>source&lt;/code> or &lt;code>target&lt;/code> of the &lt;code>Relationship&lt;/code>. This commitment is made in the subclasses of &lt;code>Featuring&lt;/code>, &lt;code>TypeFeaturing&lt;/code> and &lt;code>FeatureMembership&lt;/code>, which have opposite directions.&lt;/p>"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
-        eType="#//Type">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="featuringOfType"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The &lt;code>Type&lt;code> that features the &lt;code>featureOfType&lt;/code>.&lt;/p>"/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
-        lowerBound="1" eType="#//Feature">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="featuring"/>
-      </eAnnotations>
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The &lt;code>Feature&lt;/code> that is featured by the &lt;code>featuringType&lt;/code>.&lt;/p>"/>
-      </eAnnotations>
-      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Conjugation" eSuperTypes="#//Relationship">
@@ -1630,6 +1607,31 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//TypeFeaturing/featureOfType #//Relationship/owningRelatedElement"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Featuring" abstract="true" eSuperTypes="#//Relationship">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="&lt;p>&lt;code>Featuring&lt;/code> is a &lt;code>Relationship&lt;/code> between a &lt;code>Type&lt;/code> and a &lt;code>Feature&lt;/code> that is featured by that &lt;code>Type&lt;/code>. It asserts that every instance in the domain of the &lt;code>feature&lt;/code> must be classified by the &lt;code>type&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>&lt;code>Featuring&lt;/code> is abstract and does not commit to which of &lt;code>feature&lt;/code> or &lt;code>type&lt;/code> are the &lt;code>source&lt;/code> or &lt;code>target&lt;/code> of the &lt;code>Relationship&lt;/code>. This commitment is made in the subclasses of &lt;code>Featuring&lt;/code>, &lt;code>TypeFeaturing&lt;/code> and &lt;code>FeatureMembership&lt;/code>, which have opposite directions.&lt;/p>"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
+        eType="#//Type">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="featuringOfType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>The &lt;code>Type&lt;code> that features the &lt;code>featureOfType&lt;/code>.&lt;/p>"/>
+      </eAnnotations>
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+        lowerBound="1" eType="#//Feature">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="featuring"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>The &lt;code>Feature&lt;/code> that is featured by the &lt;code>featuringType&lt;/code>.&lt;/p>"/>
+      </eAnnotations>
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInverting" eSuperTypes="#//Relationship">

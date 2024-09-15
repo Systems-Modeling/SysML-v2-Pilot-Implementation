@@ -163,10 +163,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureMembershipAdapter();
 			}
 			@Override
-			public Adapter caseFeaturing(Featuring object) {
-				return createFeaturingAdapter();
-			}
-			@Override
 			public Adapter caseConjugation(Conjugation object) {
 				return createConjugationAdapter();
 			}
@@ -205,6 +201,10 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTypeFeaturing(TypeFeaturing object) {
 				return createTypeFeaturingAdapter();
+			}
+			@Override
+			public Adapter caseFeaturing(Featuring object) {
+				return createFeaturingAdapter();
 			}
 			@Override
 			public Adapter caseFeatureInverting(FeatureInverting object) {

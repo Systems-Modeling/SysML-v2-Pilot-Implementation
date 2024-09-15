@@ -88,6 +88,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getCrossFeature <em>Cross Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeatureTarget <em>Feature Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isVariable <em>Is Variable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -384,6 +385,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FEATURE_TARGET__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__FEATURE_TARGET).getSettingDelegate();
+	/**
+	 * The default value of the '{@link #isVariable() <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VARIABLE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isVariable() <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isVariable = IS_VARIABLE_EDEFAULT;
 	/**
 	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -801,6 +820,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void setFeatureTarget(Feature newFeatureTarget) {
 		FEATURE_TARGET__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureTarget);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isVariable() {
+		return isVariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsVariable(boolean newIsVariable) {
+		boolean oldIsVariable = isVariable;
+		isVariable = newIsVariable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_VARIABLE, oldIsVariable, isVariable));
 	}
 
 	/**
@@ -1244,6 +1286,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				if (resolve) return getFeatureTarget();
 				return basicGetFeatureTarget();
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				return isVariable();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -1340,6 +1384,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				setFeatureTarget((Feature)newValue);
 				return;
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				setIsVariable((Boolean)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
 				return;
@@ -1427,6 +1474,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				setFeatureTarget((Feature)null);
 				return;
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				setIsVariable(IS_VARIABLE_EDEFAULT);
+				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
@@ -1492,6 +1542,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return OWNED_CROSS_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__FEATURE_TARGET:
 				return FEATURE_TARGET__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FEATURE__IS_VARIABLE:
+				return isVariable != IS_VARIABLE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
@@ -1550,6 +1602,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isPortion);
 		result.append(", direction: ");
 		result.append(direction);
+		result.append(", isVariable: ");
+		result.append(isVariable);
 		result.append(')');
 		return result.toString();
 	}

@@ -4758,29 +4758,46 @@ ruleBasicFeaturePrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
-				lv_isReadOnly_4_0='readonly'
-				{
-					newLeafNode(lv_isReadOnly_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsReadOnlyReadonlyKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+				(
+					lv_isReadOnly_4_0='readonly'
+					{
+						newLeafNode(lv_isReadOnly_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsReadOnlyReadonlyKeyword_3_0_0());
 					}
-					setWithLastConsumed($current, "isReadOnly", lv_isReadOnly_4_0 != null, "readonly");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+						}
+						setWithLastConsumed($current, "isReadOnly", lv_isReadOnly_4_0 != null, "readonly");
+					}
+				)
+			)
+			    |
+			(
+				(
+					lv_isVariable_5_0='var'
+					{
+						newLeafNode(lv_isVariable_5_0, grammarAccess.getBasicFeaturePrefixAccess().getIsVariableVarKeyword_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+						}
+						setWithLastConsumed($current, "isVariable", lv_isVariable_5_0 != null, "var");
+					}
+				)
 			)
 		)?
 		(
 			(
-				lv_isDerived_5_0='derived'
+				lv_isDerived_6_0='derived'
 				{
-					newLeafNode(lv_isDerived_5_0, grammarAccess.getBasicFeaturePrefixAccess().getIsDerivedDerivedKeyword_4_0());
+					newLeafNode(lv_isDerived_6_0, grammarAccess.getBasicFeaturePrefixAccess().getIsDerivedDerivedKeyword_4_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
 					}
-					setWithLastConsumed($current, "isDerived", lv_isDerived_5_0 != null, "derived");
+					setWithLastConsumed($current, "isDerived", lv_isDerived_6_0 != null, "derived");
 				}
 			)
 		)?

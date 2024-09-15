@@ -513,7 +513,7 @@ fragment BasicFeaturePrefix returns SysML::Feature :
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
-	( isReadOnly ?= 'readonly' )?
+	( isReadOnly ?= 'readonly' | isVariable ?= 'var')?
 	( isDerived ?= 'derived' )?
 ;
 

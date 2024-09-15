@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.MembershipExpose;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +22,6 @@ public class MembershipExposeImpl extends MembershipImportImpl implements Member
 	 */
 	protected MembershipExposeImpl() {
 		super();
-		// TODO: Remove this in next release.
-		visibility = VisibilityKind.PROTECTED;
 	}
 
 	/**

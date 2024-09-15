@@ -2203,7 +2203,7 @@ ruleImportPrefix[EObject in_current]  returns [EObject current=in_current]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)
 		otherlv_1='import'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getImportPrefixAccess().getImportKeyword_1());
@@ -22932,28 +22932,22 @@ ruleExposePrefix[EObject in_current]  returns [EObject current=in_current]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getExposePrefixAccess().getVisibilityVisibilityIndicatorEnumRuleCall_0_0());
+			{
+				newCompositeNode(grammarAccess.getExposePrefixAccess().getVisibilityExposeVisibilityKindEnumRuleCall_0());
+			}
+			lv_visibility_0_0=ruleExposeVisibilityKind
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getExposePrefixRule());
 				}
-				lv_visibility_0_0=ruleVisibilityIndicator
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExposePrefixRule());
-					}
-					set(
-						$current,
-						"visibility",
-						lv_visibility_0_0,
-						"org.omg.sysml.xtext.SysML.VisibilityIndicator");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_1='expose'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getExposePrefixAccess().getExposeKeyword_1());
-		}
+				set(
+					$current,
+					"visibility",
+					lv_visibility_0_0,
+					"org.omg.sysml.xtext.SysML.ExposeVisibilityKind");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -28454,6 +28448,23 @@ ruleRequirementVerificationKind returns [Enumerator current=null]
 		{
 			$current = grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration().getEnumLiteral().getInstance();
 			newLeafNode(enumLiteral_0, grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration());
+		}
+	)
+;
+
+// Rule ExposeVisibilityKind
+ruleExposeVisibilityKind returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		enumLiteral_0='expose'
+		{
+			$current = grammarAccess.getExposeVisibilityKindAccess().getProtectedEnumLiteralDeclaration().getEnumLiteral().getInstance();
+			newLeafNode(enumLiteral_0, grammarAccess.getExposeVisibilityKindAccess().getProtectedEnumLiteralDeclaration());
 		}
 	)
 ;

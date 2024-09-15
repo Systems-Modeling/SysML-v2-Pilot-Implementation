@@ -199,7 +199,7 @@ public class UsageUtil {
 		if (owningNamespace instanceof TransitionUsage) {
 			TransitionUsage transition = (TransitionUsage)owningNamespace;
 			if (transition.getSuccession() == feature) {
-				return transition.getSource();
+				return getSourceFeatureOf(transition);
 			}
 		}
 		return getPreviousFeature(feature);
@@ -376,6 +376,17 @@ public class UsageUtil {
 	}
 	
 	// Transitions
+	
+	public static Feature getSourceFeatureOf(TransitionUsage transition) {
+		NamespaceUtil.addAdditionalMembersTo(transition);
+		return transition.getOwnedMembership().stream().
+				filter(mem->!(mem instanceof FeatureMembership)).
+				map(Membership::getMemberElement).
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast).
+				filter(f->FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage).
+				findFirst().orElse(null);
+	}
 	
 	public static Feature getTransitionSourceOf(Feature transition) {
 		Feature source= transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():

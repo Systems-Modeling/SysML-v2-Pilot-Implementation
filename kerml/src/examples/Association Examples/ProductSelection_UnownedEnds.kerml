@@ -23,7 +23,7 @@ package ProductSelection_UnownedEnds {
 	// Equivalent association showing implied relationships explicitly.
 	assoc SingleProductSelection1 :> ProductSelection {
 		end feature cart: ShoppingCart[1] redefines cart {
-			import selectedProduct::selectedProduct1;
+			public import selectedProduct::selectedProduct1;
 		}
 		end feature selectedProduct: Product[1] redefines selectedProduct crosses cart.selectedProduct1 {
 			member feature selectedProduct1[0..1] subsets ShoppingCart::selectedProducts featured by ShoppingCart;

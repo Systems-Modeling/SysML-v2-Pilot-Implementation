@@ -39,11 +39,11 @@ package ProductSelection_OwnedEnds {
 		
 		end cart: ShoppingCart[1] redefines source crosses selectedProduct.inCart {
 			member feature inCart: ShoppingCart[0..1] featured by Product;
-			import selectedProduct::selectedProducts;
+			public import selectedProduct::selectedProducts;
 		}
 		end selectedProduct: Product[1] redefines target crosses cart.selectedProducts {
 			member feature selectedProducts: Product[0..*] featured by ShoppingCart;
-			import cart::inCart;
+			public import cart::inCart;
 		}
 	}
 	
@@ -69,11 +69,11 @@ package ProductSelection_OwnedEnds {
 	assoc SingleProductSelection3 specializes ProductSelection3 {
 		end cart: ShoppingCart[1] redefines cart crosses selectedProduct.inCart1 {
 			member feature inCart1[0..1] subsets inCart featured by Product;
-			import selectedProduct::selectedProduct1;
+			public import selectedProduct::selectedProduct1;
 		}
 		end selectedProduct: Product[1] redefines selectedProduct crosses cart.selectedProduct1 {
 			member feature selectedProduct1[0..1] subsets selectedProducts featured by ShoppingCart;
-			import cart::inCart1;
+			public import cart::inCart1;
 		}
 	}
 	

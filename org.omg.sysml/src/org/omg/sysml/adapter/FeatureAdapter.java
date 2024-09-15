@@ -36,7 +36,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
@@ -57,6 +56,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
@@ -669,34 +669,46 @@ public class FeatureAdapter extends TypeAdapter {
 					Feature otherEnd = endFeatures.get(1 - endFeatures.indexOf(owningFeature));
 					addFeaturingTypes(otherEnd.getType());
 				} else if (n > 2) {
-					Classifier crossProductType = SysMLFactory.eINSTANCE.createClassifier();
-					addFeaturingType(crossProductType);
+					Feature cartesianProductFeature = SysMLFactory.eINSTANCE.createFeature();
 					
-//					for (Feature otherEnd: endFeatures) {
-//						if (otherEnd != owningFeature) {
-//							List<Type> crossFeatureTypes = otherEnd.getType();
-//							if (crossFeatureTypes.isEmpty()) {
-//								CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
-//								multiplying.setMultiplyingType(getLibraryType("Base::Anything"));
-//								crossProductType.getOwnedRelationship().add(multiplying);
-//							} else {
-//								for (Type multiplyingType: crossFeatureTypes) {
-//									CrossMultiplying multiplying = SysMLFactory.eINSTANCE.createCrossMultiplying();
-//									multiplying.setMultiplyingType(multiplyingType);
-//									crossProductType.getOwnedRelationship().add(multiplying);
-//								}
-//							}
-//						}
-//					}
+					for (Feature otherEnd: endFeatures) {
+						if (otherEnd != owningFeature) {
+							List<Type> crossFeatureTypes = otherEnd.getType();
+							if (crossFeatureTypes.isEmpty()) {
+								crossFeatureTypes = Collections.singletonList(getLibraryType("Base::Anything"));
+							}							
+							if (cartesianProductFeature.getOwnedTypeFeaturing().isEmpty()) {
+								for (Type crossFeatureType: crossFeatureTypes) {
+									FeatureUtil.addTypeFeaturingTo(cartesianProductFeature).
+										setFeaturingType(crossFeatureType);
+								}
+							} else {
+								if (!cartesianProductFeature.getOwnedTyping().isEmpty()) {
+									Feature previousCartesianProductFeature = cartesianProductFeature;
+									cartesianProductFeature = SysMLFactory.eINSTANCE.createFeature();
+									TypeFeaturing typeFeaturing = FeatureUtil.addTypeFeaturingTo(cartesianProductFeature);
+									typeFeaturing.setFeaturingType(previousCartesianProductFeature);
+									typeFeaturing.getOwnedRelatedElement().add(previousCartesianProductFeature);
+								}
+								for (Type crossFeatureType: crossFeatureTypes) {
+									FeatureUtil.addFeatureTypingTo(cartesianProductFeature).
+										setType(crossFeatureType);
+								}
+							}
+						}
+					}
 					
+					addFeaturingType(cartesianProductFeature);
+
 					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
 						if (redefinedFeature.isEnd()) {
 							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 							if (crossFeature != null) {
 								FeatureUtil.addOwnedCrossFeatureTypeFeaturingTo(crossFeature);
 								for (Type featuringType: crossFeature.getFeaturingType()) {
-									if (featuringType instanceof Classifier) {
-										TypeUtil.addImplicitGeneralTypeTo(crossProductType, SysMLPackage.eINSTANCE.getSubclassification(), featuringType);
+									if (featuringType instanceof Feature) {
+										FeatureUtil.addSubsettingTo(cartesianProductFeature).
+											setSubsettedFeature((Feature)featuringType);
 									}
 								}
 							}

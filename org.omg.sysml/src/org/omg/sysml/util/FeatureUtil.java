@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -176,6 +177,13 @@ public class FeatureUtil {
 				types.remove(i);
 			}
 		}
+	}
+	
+	public static FeatureTyping addFeatureTypingTo(Feature feature) {
+		FeatureTyping featureTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
+		featureTyping.setTypedFeature(feature);
+		feature.getOwnedRelationship().add(featureTyping);
+		return featureTyping;
 	}
 
 	// Subsetting and redefinition
@@ -336,6 +344,13 @@ public class FeatureUtil {
 
 	public static void forEachImplicitFeaturingTypeOf(Feature feature, Consumer<Type> action) {
 		getFeatureAdapter(feature).forEachImplicitFeaturingType(action);
+	}
+	
+	public static TypeFeaturing addTypeFeaturingTo(Feature feature) {
+		TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+		typeFeaturing.setFeatureOfType(feature);
+		feature.getOwnedRelationship().add(typeFeaturing);
+		return typeFeaturing;
 	}
 
 	/**

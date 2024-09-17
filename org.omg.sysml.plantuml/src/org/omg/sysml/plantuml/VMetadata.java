@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021-2022 Mgnite Inc.
+ * Copyright (c) 2021-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify

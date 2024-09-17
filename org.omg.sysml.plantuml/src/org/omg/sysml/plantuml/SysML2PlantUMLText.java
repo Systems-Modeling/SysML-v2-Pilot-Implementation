@@ -225,45 +225,40 @@ public class SysML2PlantUMLText {
         return "";
     }
 
-    private static String getSemanticMetadataName(MetadataUsage mu) {
-        List<FeatureTyping> tt = mu.getOwnedTyping();
-        for (FeatureTyping ft: tt) {
-            if (ft == null) continue;
-            Type typ = ft.getType();
-            if (typ == null) continue;
-            for (Type st: TypeUtil.getGeneralTypesOf(typ)) {
-                if ("Metaobjects::SemanticMetadata".equals(st.getQualifiedName())) {
-                    String mName = typ.getDeclaredShortName();
-                    if (mName == null || mName.isEmpty()) {
-                        mName = typ.getDeclaredName();
-                        if (mName == null || mName.isEmpty()) {
-                            continue;
-                        }
-                    }
-                    return mName;
-                }
-            }
+    private static StringBuilder addMetadataUsageName(StringBuilder sb, String mName) {
+        if (sb == null) {
+            sb = new StringBuilder();
+            sb.append("<<");
+        } else {
+            sb.append(' ');
         }
-        return null;
+        sb.append('#');
+        sb.append(mName);
+        return sb;
     }
 
     public static String getMetadataUsageName(Element e) {
         StringBuilder sb = null;
         for (Element oe: e.getOwnedElement()) {
-            if (oe instanceof MetadataUsage) {
-                MetadataUsage mu = (MetadataUsage) oe;
-                String mName = getSemanticMetadataName(mu);
-                if (mName == null) continue;
-                if (sb == null) {
-                    sb = new StringBuilder();
-                    sb.append("<<");
-                } else {
-                    sb.append(' ');
+            if (!(oe instanceof MetadataUsage)) continue;
+            MetadataUsage mu = (MetadataUsage) oe;
+
+            if (!VMetadata.isEmptyMetadata(mu)) continue; /// Only empty MetadataUsage is rendered with #-name.
+            List<FeatureTyping> tt = mu.getOwnedTyping();
+            for (FeatureTyping ft: tt) {
+                if (ft == null) continue;
+                Type typ = ft.getType();
+                if (typ == null) continue;
+                String mName = typ.getDeclaredShortName();
+                if (mName == null || mName.isEmpty()) {
+                    mName = typ.getDeclaredName();
+                    if (mName == null || mName.isEmpty()) {
+                        continue;
+                    }
                 }
-                sb.append('#');
-                sb.append(mName);
+                sb = addMetadataUsageName(sb, mName);
             }
-            if (sb != null) break; // Do not show more than one metadata.
+            //if (sb != null) break; // Do not show more than one metadata.
         }
         if (sb == null) return null;
         sb.append(">>");

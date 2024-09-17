@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.util.FeatureUtil;
 
 public class VMetadata extends Visitor {
-    public final boolean hideMetadata;
+    private final boolean hideMetadata;
     
     public VMetadata(Visitor v) {
     	super(v, true);
@@ -46,6 +46,15 @@ public class VMetadata extends Visitor {
     
     private static final String metadataTitle = "«metadata»";
     private static final int INDENT = 2;
+
+
+    public static boolean isEmptyMetadata(MetadataFeature mf) {
+        return mf.getOwnedMembership().isEmpty();
+    }
+
+    public boolean isHidden(MetadataFeature mf) {
+        return hideMetadata || isEmptyMetadata(mf);
+    }
 
     private static void indent(StringBuilder sb, int len) {
         if (len == 0) return;
@@ -110,6 +119,7 @@ public class VMetadata extends Visitor {
     }
 
     public String getMetadataFeatureText(MetadataFeature mf, int indent) {
+        if (isHidden(mf)) return null;
         StringBuilder sb = new StringBuilder();
 
         Metaclass dt = mf.getMetaclass();
@@ -166,20 +176,20 @@ public class VMetadata extends Visitor {
         append("end note\n");
     }
 
-	public void addMetadataFeature(MetadataFeature af) {
-        if (hideMetadata) return;
-        addMetadataFeatureInternal(af);
-        List<Element> es = af.getAnnotatedElement();
+	public void addMetadataFeature(MetadataFeature mf) {
+        if (isHidden(mf)) return;
+        addMetadataFeatureInternal(mf);
+        List<Element> es = mf.getAnnotatedElement();
         for (Element e: es) {
-        	addPRelation(null, af, e, af, null);
+        	addPRelation(null, mf, e, mf, null);
         }
     }
 
-	public void addMetadataFeature(MetadataFeature af, Element annotatedElement) {
-        if (hideMetadata) return;
-        addMetadataFeatureInternal(af);
+	public void addMetadataFeature(MetadataFeature mf, Element annotatedElement) {
+        if (isHidden(mf)) return;
+        addMetadataFeatureInternal(mf);
         if (annotatedElement != null) {
-        	addPRelation(null, af, annotatedElement, af, null);
+        	addPRelation(null, mf, annotatedElement, mf, null);
         }
     }
 }

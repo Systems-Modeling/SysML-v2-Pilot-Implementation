@@ -642,7 +642,7 @@ public class VCompartment extends VStructure {
     @Override
     public String caseMetadataUsage(MetadataUsage mu) {
         VMetadata vm = getVMetadata();
-        if (vm.hideMetadata) return "";
+        if (vm.isHidden(mu)) return "";
         if (addEntry(mu, true) == null) return null;
         return "";
     }

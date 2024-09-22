@@ -25,6 +25,7 @@ package org.omg.sysml.interactive;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
@@ -74,7 +75,7 @@ public class SysMLInteractiveLibraryIndexGenerator {
 
 		System.out.println("Writing index");
 		try (FileOutputStream fileStream = new FileOutputStream(indexFile, false)) {
-			fileStream.write(json.getBytes());
+			fileStream.write(json.getBytes(StandardCharsets.UTF_8));
 		}
 		
 		System.out.println("Done.");

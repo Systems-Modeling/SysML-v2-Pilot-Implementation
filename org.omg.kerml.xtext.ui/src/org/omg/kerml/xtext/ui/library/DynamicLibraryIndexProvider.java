@@ -24,6 +24,7 @@ package org.omg.kerml.xtext.ui.library;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -85,7 +86,7 @@ public class DynamicLibraryIndexProvider implements ILibraryIndexProvider {
 			LibraryIndex indexFromJson = LibraryIndex.EMPTY_INDEX;
 			
 			if (indexFile.exists()) {
-				try (var reader = new InputStreamReader(indexFile.getContents())){
+				try (var reader = new InputStreamReader(indexFile.getContents(), StandardCharsets.UTF_8)) {
 					 indexFromJson = LibraryIndex.fromJson(reader);
 				} catch (IOException e) {
 					//NOOP, return empty index

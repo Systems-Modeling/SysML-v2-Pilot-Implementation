@@ -118,7 +118,7 @@ public class SysMLInteractive extends SysMLUtil {
 	private ILibraryIndexProvider libraryIndexCache;
 	
 	@Inject
-	private SysMLInteractive() {
+	protected SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
 	

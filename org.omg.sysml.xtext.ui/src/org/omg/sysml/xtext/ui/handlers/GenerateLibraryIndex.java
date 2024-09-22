@@ -25,6 +25,7 @@ package org.omg.sysml.xtext.ui.handlers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +37,6 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -44,7 +44,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -152,7 +151,7 @@ public class GenerateLibraryIndex extends AbstractHandler {
 	private void writeIndex(IProject project, String json, IProgressMonitor monitor) throws CoreException {
 		IFile file = project.getFile(LibraryIndex.FILE_NAME);
 		
-		try (var inputStream = new ByteArrayInputStream(json.getBytes())){
+		try (var inputStream = new ByteArrayInputStream(json.getBytes(StandardCharsets.UTF_8))){
 			if (file.exists()) {
 				file.setContents(inputStream, IFile.FORCE, monitor);
 			} else {

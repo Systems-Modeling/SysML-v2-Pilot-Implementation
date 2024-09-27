@@ -10,7 +10,7 @@ standard library package Performances {
 	private import Occurrences::occurrences;
 	private import Occurrences::HappensDuring;
 	private import Objects::Object;
-	private import Objects::BinaryLinkObject;
+	private import Links::BinaryLink;
 	private import Metaobjects::Metaobject;
 	private import Transfers::Transfer;
 	private import Transfers::transfers;
@@ -166,25 +166,25 @@ standard library package Performances {
 		return : Anything[0..0];
 	}
 
-	assoc all InvolvedIn specializes BinaryLinkObject {
+	assoc all InvolvedIn specializes BinaryLink { 
 		doc
 		/*
 		 * InvolvedIn asserts that the involvedObject is involved in the Behavior carried out by the 
 		 * involvingPerformance.
 		 */
 		 
-		end [0..*] feature involvedObject: Object redefines target crosses involvingPerformance.involvedObjects;
-		end [0..*] feature involvingPerformance: Performance redefines source crosses involvedObject.involvingPerformances;
+		end feature involvedObject: Object redefines source crosses involvingPerformance.involvedObjects;
+		end feature involvingPerformance: Performance redefines target crosses involvedObject.involvingPerformances;
 	}
 	
 	assoc all Performs specializes InvolvedIn {
 		doc
 		/*
-		 * Performance asserts that the performer enacts the Behavior carried out by the performance.
+		 * Performs asserts that the performer enacts the Behavior carried out by the performance.
 		 */
 	
-	 	end [0..*] feature performerObject: Object redefines involvedObject crosses performance.performers;
-	 	end [0..*] feature performance: Performance redefines involvingPerformance crosses performerObject.enactedPerformances;
+	 	end feature performerObject: Object redefines involvedObject crosses performance.performers;
+	 	end feature performance: Performance redefines involvingPerformance crosses performerObject.enactedPerformances;
 	 }
 
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {

@@ -21,7 +21,7 @@ standard library package Transfers {
 		 * to the target of the interaction.
 		 */
 	
-		end [0..*] feature source: Occurrence redefines BinaryLink::source {
+		end feature source: Occurrence redefines BinaryLink::source {
 			doc
 			/*
 			 * The entity whose output is the source of the items to be transferred.
@@ -30,7 +30,7 @@ standard library package Transfers {
 			feature sourceOutput: Occurrence[0..*];
 		}
 		
-		end [0..*] feature target: Occurrence redefines BinaryLink::target {
+		end feature target: Occurrence redefines BinaryLink::target {
 			doc
 			/*
 			 * The entity whose input is the target of the items to be transferred.
@@ -158,8 +158,8 @@ standard library package Transfers {
 		 * the transfer, which happens before the target.
 		 */
 	
-	 	end [0..*] feature source: Occurrence redefines Transfer::source, HappensBefore::earlierOccurrence;
-	  	end [0..*] feature target: Occurrence redefines Transfer::target, HappensBefore::laterOccurrence;
+	 	end feature source: Occurrence redefines Transfer::source, HappensBefore::earlierOccurrence;
+	  	end feature target: Occurrence redefines Transfer::target, HappensBefore::laterOccurrence;
 	  	
 	  	feature self: TransferBefore redefines Performance::self;
 	  	
@@ -173,8 +173,8 @@ standard library package Transfers {
 		 * FlowTransferBefore is a FlowTransfer that is also a TransferBefore. 
 		 */
 		 
-        end [0..*] feature source: Occurrence redefines Transfer::source, TransferBefore::source;
-        end [0..*] feature target: Occurrence redefines Transfer::target, TransferBefore::target;		 
+        end feature source: Occurrence redefines Transfer::source, TransferBefore::source;
+        end feature target: Occurrence redefines Transfer::target, TransferBefore::target;		 
 	}
 	
 	abstract flow transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
@@ -184,8 +184,8 @@ standard library package Transfers {
 		 * Transfer.
 		 */
 	
-		end [0..*] feature source: Occurrence redefines Transfer::source, binaryLinks::source;
-		end [0..*] feature target: Occurrence redefines Transfer::target, binaryLinks::target;
+		end feature source: Occurrence redefines Transfer::source, binaryLinks::source;
+		end feature target: Occurrence redefines Transfer::target, binaryLinks::target;
 	}
 	
 	abstract flow messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
@@ -194,8 +194,8 @@ standard library package Transfers {
 		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
 		 */
 		
-		end [0..*] feature source: Occurrence redefines MessageTransfer::source, transfers::source;
-		end [0..*] feature target: Occurrence redefines MessageTransfer::target, transfers::target;		
+		end feature source: Occurrence redefines MessageTransfer::source, transfers::source;
+		end feature target: Occurrence redefines MessageTransfer::target, transfers::target;		
 	}
 	
 	abstract flow flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
@@ -205,8 +205,8 @@ standard library package Transfers {
 		 * It is the default subsetting for non-succession item flows.
 		 */
 		 
-		end [0..*] feature source: Occurrence redefines FlowTransfer::source, transfers::source;
-		end [0..*] feature target: Occurrence redefines FlowTransfer::target, transfers::target;
+		end feature source: Occurrence redefines FlowTransfer::source, transfers::source;
+		end feature target: Occurrence redefines FlowTransfer::target, transfers::target;
 	}
 	  
 	abstract flow transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks
@@ -217,8 +217,8 @@ standard library package Transfers {
 		 * type TransferBefore.
 		 */
 	
-		end [0..*] feature source: Occurrence redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
-		end [0..*] feature target: Occurrence redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
+		end feature source: Occurrence redefines TransferBefore::source, transfers::source, happensBeforeLinks::earlierOccurrence;
+		end feature target: Occurrence redefines TransferBefore::target, transfers::target, happensBeforeLinks::laterOccurrence;
 	}
 	
 	abstract flow flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore
@@ -229,8 +229,8 @@ standard library package Transfers {
 		 * to type FlowTransferBefore. IT is the default subsetting for succession item flows.
 		 */
     
-		end [0..*] feature source: Occurrence redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
-		end [0..*] feature target: Occurrence redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
+		end feature source: Occurrence redefines FlowTransferBefore::source, flowTransfers::source, transfersBefore::source;
+		end feature target: Occurrence redefines FlowTransferBefore::target, flowTransfers::target, transfersBefore::target;
 	}
 
 	behavior SendPerformance specializes Performance  {

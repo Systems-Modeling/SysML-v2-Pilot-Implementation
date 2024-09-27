@@ -121,21 +121,54 @@ public class TypeAdapter extends NamespaceAdapter {
 		return membership;
 	}	
 	
+//	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
+//		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
+//		memberships.removeIf(membership->{
+//			Element memberElement = membership.getMemberElement();
+//			return memberElement instanceof Feature &&
+//				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
+//				   		anyMatch(redefinedFeatures::contains);
+//		});		
+//	}
+	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
+		Collection<Feature> redefinedInType = getFeaturesRedefinedByType();
+				
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
-			return memberElement instanceof Feature &&
-				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
+			return memberElement instanceof Feature && featureRedefinesAnyOf((Feature) memberElement, redefinedInType, new HashSet<>());
 		});		
+	}
+	
+	private boolean featureRedefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {
+		
+		if (feature == null) {
+			return false;
+		}
+		
+		if (redefinedFeatures.contains(feature)) {
+			return true;
+		}
+		
+		visited.add(feature);
+		
+		for (var redefined: FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null)) {
+			if (!visited.contains(feature) && featureRedefinesAnyOf(redefined, redefinedFeatures, visited)) {
+				return true;
+			}
+		}
+		
+		
+		return false;
 	}
 
 	// Overridden in ExpressionAdapter
 	public Collection<Feature> getFeaturesRedefinedByType() {
-		return getTarget().getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
-				collect(Collectors.toSet());
+		return getTarget().getOwnedFeature().stream()
+				//.flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream())
+				.flatMap(feature -> FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null).stream())
+				.collect(Collectors.toSet());
+		
 	}
 	
 	// Caching

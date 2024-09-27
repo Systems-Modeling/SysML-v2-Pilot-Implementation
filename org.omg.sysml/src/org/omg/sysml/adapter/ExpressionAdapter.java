@@ -73,7 +73,10 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	@Override
 	public Collection<Feature> getFeaturesRedefinedByType() {
-		Collection<Feature> features = super.getFeaturesRedefinedByType();
+//		Collection<Feature> features = super.getFeaturesRedefinedByType();
+		Collection<Feature> features = getTarget().getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+				collect(Collectors.toSet());
 		
 		// If inputs and outputs have not been computed, add effectively
 		// redefined features from the Expression type, without actually

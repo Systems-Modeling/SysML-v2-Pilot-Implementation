@@ -136,30 +136,8 @@ public class TypeAdapter extends NamespaceAdapter {
 				
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
-			return memberElement instanceof Feature && featureRedefinesAnyOf((Feature) memberElement, redefinedInType, new HashSet<>());
+			return memberElement instanceof Feature && TypeUtil.featureRedefinesAnyOf((Feature) memberElement, redefinedInType);
 		});		
-	}
-	
-	private boolean featureRedefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {
-		
-		if (feature == null) {
-			return false;
-		}
-		
-		if (redefinedFeatures.contains(feature)) {
-			return true;
-		}
-		
-		visited.add(feature);
-		
-		for (var redefined: FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null)) {
-			if (!visited.contains(feature) && featureRedefinesAnyOf(redefined, redefinedFeatures, visited)) {
-				return true;
-			}
-		}
-		
-		
-		return false;
 	}
 
 	// Overridden in ExpressionAdapter

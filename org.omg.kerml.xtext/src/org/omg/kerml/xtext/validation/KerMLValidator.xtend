@@ -382,7 +382,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (description === null) false
 		else {
 			val inheritedElement = description.EObjectOrProxy as Element
-			return !(redefinedFeatures.contains(inheritedElement) ||
+			return !((inheritedElement instanceof Feature &&  TypeUtil.featureRedefinesAnyOf(inheritedElement as Feature, redefinedFeatures)) ||
 					 mem instanceof SubjectMembership && inheritedElement.owningMembership instanceof SubjectMembership ||
 					 mem instanceof ObjectiveMembership && inheritedElement.owningMembership instanceof ObjectiveMembership)
 		}

@@ -383,6 +383,32 @@ public class TypeUtil {
 		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
 	}
 	
+	public static boolean featureRedefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures) {
+		return featureRedefinesAnyOf(feature, redefinedFeatures, new HashSet<>());
+	}
+	
+	private static boolean featureRedefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {
+		
+		if (feature == null) {
+			return false;
+		}
+		
+		if (redefinedFeatures.contains(feature)) {
+			return true;
+		}
+		
+		visited.add(feature);
+		
+		for (var redefined: FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null)) {
+			if (!visited.contains(redefined) && featureRedefinesAnyOf(redefined, redefinedFeatures, visited)) {
+				return true;
+			}
+		}
+		
+		
+		return false;
+	}
+	
 	// Implicit general types
 	
 	public static void setIsAddImplicitGeneralTypesFor(Type type, boolean isAddImplicitGeneralTypes) {

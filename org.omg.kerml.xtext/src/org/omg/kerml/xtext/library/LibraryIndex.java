@@ -25,6 +25,7 @@ package org.omg.kerml.xtext.library;
 
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -141,8 +142,8 @@ public class LibraryIndex {
 	private String createChecksum(Map<String, Set<String>> index) {
 		 HashCode hashedIndex = Hashing.sha256().hashObject(index, (from, into) -> {
 			from.forEach((libFqn, shortNames) -> {
-				into.putBytes(libFqn.getBytes());
-				shortNames.forEach(shortName -> into.putBytes(shortName.getBytes()));
+				into.putBytes(libFqn.getBytes(StandardCharsets.UTF_8));
+				shortNames.forEach(shortName -> into.putBytes(shortName.getBytes(StandardCharsets.UTF_8)));
 			});
 		});
             

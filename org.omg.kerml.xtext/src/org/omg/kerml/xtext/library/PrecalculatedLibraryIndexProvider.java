@@ -104,13 +104,12 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	}
 	
 	private File getIndexFile(URI uri) {
-		var segments = Arrays.asList(uri.segments());
-		if (segments.contains(LIBRARY_FOLDER)) {
-			String pathString = uri.path();
-			String indexPath = pathString.split(LIBRARY_FOLDER)[0] + LIBRARY_FOLDER + File.separator + LibraryIndex.FILE_NAME;
-			return new File(indexPath);
-		}
-		return null;
+		String pathString = uri.path();
+		if (pathString == null) return null;
+		int idx = pathString.lastIndexOf(LIBRARY_FOLDER);
+		if (idx < 0) return null;
+		String parentPath = pathString.substring(0, idx + LIBRARY_FOLDER.length());
+		return new File(parentPath, LibraryIndex.FILE_NAME);
 	}
 	
 	public static synchronized PrecalculatedLibraryIndexProvider getInstance() {

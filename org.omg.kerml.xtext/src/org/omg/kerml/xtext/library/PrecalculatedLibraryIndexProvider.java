@@ -27,7 +27,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
@@ -104,11 +103,11 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	}
 	
 	private File getIndexFile(URI uri) {
-		String pathString = uri.path();
-		if (pathString == null) return null;
-		int idx = pathString.lastIndexOf(LIBRARY_FOLDER);
-		if (idx < 0) return null;
-		String parentPath = pathString.substring(0, idx + LIBRARY_FOLDER.length());
+		String fileString = uri.toFileString();
+		if (fileString == null) return null;
+		int idx = fileString.lastIndexOf(LIBRARY_FOLDER);
+ 		if (idx < 0) return null;
+		String parentPath = fileString.substring(0, idx + LIBRARY_FOLDER.length());
 		return new File(parentPath, LibraryIndex.FILE_NAME);
 	}
 	

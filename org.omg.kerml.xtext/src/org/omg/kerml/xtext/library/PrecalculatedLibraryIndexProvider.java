@@ -61,7 +61,7 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
-		if (disabled) {
+		if (disabled || resource == null) {
 			//return empty index
 			return LibraryIndex.EMPTY_INDEX;
 		}

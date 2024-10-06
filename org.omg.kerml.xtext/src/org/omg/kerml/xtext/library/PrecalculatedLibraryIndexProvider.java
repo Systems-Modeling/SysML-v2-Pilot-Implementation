@@ -61,7 +61,7 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
-		if (disabled) {
+		if (disabled || resource == null) {
 			//return empty index
 			return LibraryIndex.EMPTY_INDEX;
 		}
@@ -77,11 +77,10 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 			File indexFile = getIndexFile(resourceURI);
 			
 			if (indexFile == null || !indexFile.exists()) return LibraryIndex.EMPTY_INDEX;
-			
-			try {
-				FileInputStream fis = new FileInputStream(indexFile);
-				InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);				
-				index = LibraryIndex.fromJson(isr);
+
+            try (FileInputStream fis = new FileInputStream(indexFile);
+                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8)) {
+                index = LibraryIndex.fromJson(isr);
 			} catch (FileNotFoundException e) {
 				//NOOP, return empty index
 			} catch (Exception e) {

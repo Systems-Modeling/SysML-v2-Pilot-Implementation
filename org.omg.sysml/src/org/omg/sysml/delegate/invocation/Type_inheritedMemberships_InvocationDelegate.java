@@ -22,11 +22,13 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.HashSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
@@ -43,8 +45,9 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 		@SuppressWarnings("unchecked")
 		EList<Type> excluded = (EList<Type>) arguments.get(0);
 		boolean excludeImplied = (boolean) arguments.get(1);
-				
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(), new HashSet<>(excluded), true, excludeImplied);
+		
+		Collection<Feature> redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(self, null);				
+		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(), new HashSet<>(excluded), true, excludeImplied, redefinedFeatures);
 	}
 
 }

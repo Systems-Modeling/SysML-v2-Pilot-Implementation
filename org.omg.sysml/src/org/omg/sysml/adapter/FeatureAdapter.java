@@ -77,16 +77,17 @@ public class FeatureAdapter extends TypeAdapter {
 	// Inheritance
 	
 	@Override
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
-			boolean includeProtected, boolean excludeImplied) {
-		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
+			boolean includeProtected, boolean excludeImplied, Collection<Feature> redefinedFeatures) {
+		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures);
 		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
 		if (!featureChainings.isEmpty()) {
 			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
 			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures));
 			}
 		}
+		return inheritedMemberships;
 	}
 
 	// Caching
@@ -377,7 +378,8 @@ public class FeatureAdapter extends TypeAdapter {
 	public boolean isComputeRedefinitions() {
 		Feature target = getTarget();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!FeatureUtil.isParameter(target) ||
+				(!FeatureUtil.isParameter(target) || 
+				 FeatureUtil.isResultParameter(target) ||
 				 target.getOwnedRedefinition().isEmpty());
 	}
 	

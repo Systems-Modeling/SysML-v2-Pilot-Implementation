@@ -133,20 +133,25 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
 		Collection<Feature> redefinedInType = getFeaturesRedefinedByType();
-				
+
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature && TypeUtil.featureRedefinesAnyOf((Feature) memberElement, redefinedInType);
 		});		
 	}
 
+	
+	//caching
+	private Set<Feature> featuresRedefinedByType = null;
+	
 	// Overridden in ExpressionAdapter
 	public Collection<Feature> getFeaturesRedefinedByType() {
-		return getTarget().getOwnedFeature().stream()
-				//.flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream())
-				.flatMap(feature -> FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null).stream())
-				.collect(Collectors.toSet());
-		
+		if (featuresRedefinedByType == null) {
+			featuresRedefinedByType = getTarget().getOwnedFeature().stream()
+					.flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream())
+					.collect(Collectors.toSet());
+		}
+		return featuresRedefinedByType;
 	}
 	
 	// Caching
@@ -165,6 +170,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;
+		featuresRedefinedByType = null;
 	}
 	
 	// Implicit Elements

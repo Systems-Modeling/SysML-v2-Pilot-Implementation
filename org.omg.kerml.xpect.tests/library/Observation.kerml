@@ -89,7 +89,7 @@ standard library package Observation {
 			 * Then send changeSignal to changeObserver.
 			 */
 			 
-	    	feature redefines source {
+	    	end feature redefines source {
 	    		feature redefines sourceOutput = changeSignal;
 	    	}
 	    }

@@ -517,7 +517,9 @@ standard library package ShapeItems {
 
 		attribute :>> isClosed = true;
 
-		item :>> faces : Polygon [2..*];
+		item :>> faces : Polygon [2..*] {
+			item :>> faces::edges, Polygon::edges;
+		}
 		
 		item :>> edges = faces.edges;
 		

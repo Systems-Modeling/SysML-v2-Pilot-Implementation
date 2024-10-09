@@ -324,7 +324,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				//checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				
 				// Get features that are redefined in this namespace, so they can be excluded as conflicts.
-				val redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(namesp, null)
+				val redefinedFeatures = TypeUtil.getAllFeaturesRedefinedBy(namesp)
 
 				for (mem: ownedMemberships) {
 					val memberName = mem.memberName

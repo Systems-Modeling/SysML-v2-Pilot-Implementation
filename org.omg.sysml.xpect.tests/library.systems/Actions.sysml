@@ -336,7 +336,7 @@ standard library package Actions {
 		 * assignmentActions is the base feature for all AssignmentActionsUsages.
 		 */
 		 
-        in target : Occurrence[1] default that as Occurrence {
+        in :>> target : Occurrence[1] default that as Occurrence {
             doc
             /*
              * The default target for assignmentActions is its featuring instance (if that is 
@@ -352,8 +352,8 @@ standard library package Actions {
 		 * It is the base type for all IfActionUsages.
 		 */
 	
-		in ifTest[1];
-		in action thenClause[0..1];
+		in :>> ifTest[1];
+		in action :>> thenClause[0..1];
 	}
 	
 	action def IfThenElseAction :> IfThenAction, IfThenElsePerformance {
@@ -363,9 +363,9 @@ standard library package Actions {
 		 * It is the base type for all IfActionUsages that have an elseAction.
 		 */
 	
-		in ifTest[1];
-		in action thenClause[0..1];
-		in action elseClause[0..1];
+		in :>> ifTest[1];
+		in action :>> thenClause[0..1];
+		in action :>> elseClause[0..1];
 	}
 	
 	abstract action ifThenActions : IfThenAction[0..*] nonunique :> actions {

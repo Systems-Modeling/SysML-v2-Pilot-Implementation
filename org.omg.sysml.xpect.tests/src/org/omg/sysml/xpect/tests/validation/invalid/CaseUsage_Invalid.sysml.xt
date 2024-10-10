@@ -81,7 +81,6 @@ package pkg {
    	
    	use case uc4 {
    		// XPECT errors ---> "Must reference a use case." at "u"
-   		// XPECT warnings ---> "Duplicate of inherited member name" at "include u;"
    		include u;
    		
    		// XPECT errors ---> "A use case must be typed by one use case definition." at "include b.uc1;"

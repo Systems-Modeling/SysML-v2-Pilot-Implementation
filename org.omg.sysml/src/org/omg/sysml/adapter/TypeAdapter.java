@@ -119,7 +119,8 @@ public class TypeAdapter extends NamespaceAdapter {
 		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
 		return membership;
-	}	
+	}
+	
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
 		Collection<Feature> redefinedFeatures = getAllFeaturesRedefinedByType();
@@ -132,14 +133,18 @@ public class TypeAdapter extends NamespaceAdapter {
 
 	// Overridden in ExpressionAdapter
 	public Collection<Feature> getAllFeaturesRedefinedByType() {
-		return getTarget().getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
-				collect(Collectors.toSet());
+		if (allFeaturesRedefinedByType == null) {
+			allFeaturesRedefinedByType = getTarget().getOwnedFeature().stream().
+					flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+					collect(Collectors.toSet());
+		}
+		return allFeaturesRedefinedByType;
 	}
 	
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;
+	private Collection<Feature> allFeaturesRedefinedByType = null;
 	
 	public EList<Membership> getInheritedMembership() {
 		return inheritedMembership;
@@ -153,6 +158,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;
+		allFeaturesRedefinedByType = null;
 	}
 	
 	// Implicit Elements

@@ -102,7 +102,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			}
 		}
 		Collection<Feature> newRedefinedFeatures = new HashSet<>(redefinedFeatures);
-		newRedefinedFeatures.addAll(TypeUtil.getAllFeaturesRedefinedBy(target));
+		newRedefinedFeatures.addAll(getAllFeaturesRedefinedByType());
 		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, newRedefinedFeatures));
@@ -129,10 +129,18 @@ public class TypeAdapter extends NamespaceAdapter {
 				   FeatureUtil.redefinesAnyOf((Feature)memberElement, redefinedFeatures);
 		});	
 	}
+	
+	protected Collection<Feature> getAllFeaturesRedefinedByType() {
+		if (allRedefinedFeatures == null) {
+			allRedefinedFeatures = TypeUtil.getAllFeaturesRedefinedBy(getTarget());
+		}
+		return allRedefinedFeatures;
+	}
 
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;
+	private Collection<Feature> allRedefinedFeatures = null;
 	
 	public EList<Membership> getInheritedMembership() {
 		return inheritedMembership;
@@ -146,6 +154,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;
+		allRedefinedFeatures = null;
 	}
 	
 	// Implicit Elements

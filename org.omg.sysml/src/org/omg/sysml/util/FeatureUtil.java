@@ -243,20 +243,9 @@ public class FeatureUtil {
 		return redefinesAnyOf(feature, redefinedFeatures, new HashSet<>());
 	}
 	
-	private static boolean redefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {		
-		if (feature == null) {
-			return false;
-		} else if (redefinedFeatures.contains(feature)) {
-			return true;
-		} else {			
-			visited.add(feature);
-			for (var redefined: FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, null)) {
-				if (!visited.contains(redefined) && redefinesAnyOf(redefined, redefinedFeatures, visited)) {
-					return true;
-				}
-			}
-			return false;
-		}
+	public static boolean redefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {		
+		return feature != null && 
+			   getFeatureAdapter(feature).redefinesAnyOf(redefinedFeatures, visited);
 	}
 	
 	// Feature values

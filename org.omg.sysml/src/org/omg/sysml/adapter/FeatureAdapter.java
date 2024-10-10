@@ -63,8 +63,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
 	
-	EList<Type> types = null;
-	
 	public FeatureAdapter(Feature element) {
 		super(element);
 	}
@@ -89,8 +87,26 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 		return inheritedMemberships;
 	}
+	
+	public boolean redefinesAnyOf(Collection<Feature> features, Set<Feature> visited) {
+		Feature feature = getTarget();
+		if (features.contains(feature) || features.stream().anyMatch(redefinedFeatures::contains)) {
+			return true;
+		} else {			
+			visited.add(feature);
+			for (var redefined: getRedefinedFeaturesWithComputed(null)) {
+				if (!visited.contains(redefined) && FeatureUtil.redefinesAnyOf(redefined, features, visited)) {
+					redefinedFeatures.add(redefined);
+					return true;
+				}
+			}
+			return false;
+		}
+	}
 
 	// Caching
+	
+	EList<Type> types = null;
 	
 	public EList<Type> getTypes() {
 		return types;
@@ -100,11 +116,14 @@ public class FeatureAdapter extends TypeAdapter {
 		this.types = types;
 		return types;
 	}
+	
+	Collection<Feature> redefinedFeatures = new HashSet<>();
 		
 	@Override
 	public void clearCaches() {
 		super.clearCaches();
 		types = null;
+		redefinedFeatures.clear();
 	}
 	
 	// Implicit Elements

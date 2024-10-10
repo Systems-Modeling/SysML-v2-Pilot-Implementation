@@ -74,8 +74,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	@Override
 	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
 		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll, excludeImplied, redefinedFeatures));
+		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll, excludeImplied, new HashSet<>()));
 		return visibleMembership;
 	}
 	
@@ -86,9 +85,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
 		removeRedefinedFeatures(nonPrivateMembership, redefinedFeatures);
-		Collection<Feature> newRedefinedFeatures = new HashSet<>(redefinedFeatures);
-		newRedefinedFeatures.addAll(getFeaturesRedefinedByType());
-		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied, newRedefinedFeatures));
+		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures));
 		return nonPrivateMembership;
 	}
 	
@@ -104,9 +101,11 @@ public class TypeAdapter extends NamespaceAdapter {
 				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures));
 			}
 		}
+		Collection<Feature> newRedefinedFeatures = new HashSet<>(redefinedFeatures);
+		newRedefinedFeatures.addAll(TypeUtil.getAllFeaturesRedefinedBy(target));
 		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
 			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, newRedefinedFeatures));
 			}
 		}
 		return inheritedMemberships;
@@ -123,18 +122,14 @@ public class TypeAdapter extends NamespaceAdapter {
 		return membership;
 	}	
 	
-	protected void removeRedefinedFeatures(Collection<Membership> memberships, Collection<Feature> redefinedFeatures) {
+	protected static void removeRedefinedFeatures(Collection<Membership> memberships, Collection<Feature> redefinedFeatures) {
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
 				   FeatureUtil.redefinesAnyOf((Feature)memberElement, redefinedFeatures);
-		});		
+		});	
 	}
 
-	public Collection<Feature> getFeaturesRedefinedByType() {
-		return TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
-	}
-	
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;

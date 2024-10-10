@@ -75,14 +75,14 @@ public class FeatureAdapter extends TypeAdapter {
 	// Inheritance
 	
 	@Override
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
-			boolean includeProtected, boolean excludeImplied, Collection<Feature> redefinedFeatures) {
-		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures);
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, 
+			boolean includeProtected, boolean excludeImplied) {
+		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
 		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
 		if (!featureChainings.isEmpty()) {
 			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
 			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied, redefinedFeatures));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
 			}
 		}
 		return inheritedMemberships;

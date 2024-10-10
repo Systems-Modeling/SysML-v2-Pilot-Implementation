@@ -1,14 +1,14 @@
 package s_friedenthal_SimpleVehicle{
     // this is a simplified version of the vehicle model
-    import Definitions::*;
+    public import Definitions::*;
     package Definitions{
-        import PartDefinitions::*;
-        import PortDefinitions::*;
-        import ItemDefinitions::*;
-        import ActionDefinitions::*;
-        import RequirementDefinitions::*;
-        import VerificationCaseDefinitions::*;
-        import AttributeDefinitions::*;
+        public import PartDefinitions::*;
+        public import PortDefinitions::*;
+        public import ItemDefinitions::*;
+        public import ActionDefinitions::*;
+        public import RequirementDefinitions::*;
+        public import VerificationCaseDefinitions::*;
+        public import AttributeDefinitions::*;
         package PartDefinitions{
             part def Vehicle{
                 attribute mass :> ISQ::mass = dryMass + cargoMass + fuelMass;
@@ -150,12 +150,12 @@ package s_friedenthal_SimpleVehicle{
             verification def ReliabilityTest;
         }    
         package AttributeDefinitions{
-            import ScalarValues::*;
+            public import ScalarValues::*;
             // Scalar Functions provides Sum expression
-            import NumericalFunctions::*;
-            import Quantities::*;
-            import SI::*;
-            //import USCustomaryUnits::*;
+            public import NumericalFunctions::*;
+            public import Quantities::*;
+            public import SI::*;
+            //public import USCustomaryUnits::*;
             alias Torque for ISQ::TorqueValue;
             attribute distancePerVolume :> scalarQuantities = distance / volume;
             attribute timePerDistance :> scalarQuantities = time / distance;
@@ -233,8 +233,8 @@ package s_friedenthal_SimpleVehicle{
         }
     }
     package FuelEconomyAnalysisModel{
-        import Configurations::Configuration_1::**;
-        import SampledFunctions::SampledFunction;
+        public import Configurations::Configuration_1::**;
+        public import SampledFunctions::SampledFunction;
         
         /*
         This analysis model was provided by Hisashi Miyashita on January 27, 2021
@@ -327,9 +327,9 @@ package s_friedenthal_SimpleVehicle{
         }
     }
     package VehicleVerification{
-        import Configurations::Configuration_1::**;
+        public import Configurations::Configuration_1::**;
         // the following is a model library which contains VerfictKind
-        import VerificationCases::*;
+        public import VerificationCases::*;
         package VerificationCases1{
             verification massTests:MassTest {
                 subject = vehicle_1;
@@ -349,7 +349,7 @@ package s_friedenthal_SimpleVehicle{
             }
         }
         package VerificationSystem{
-            import VerificationCases1::*;
+            public import VerificationCases1::*;
             part massVerificationSystem{
                 perform massTests;
                 part scale{
@@ -404,7 +404,7 @@ package s_friedenthal_SimplePartsTree1{
     }
 }
 package s_friedenthal_SimplePartsTree2{
-    //import Definitions::**;
+    //public import Definitions::**;
     package Definitions{
         package PartDefinitions{
             part def A{
@@ -431,7 +431,7 @@ package s_friedenthal_SimplePartsTree2{
         }
     }
     package Configurations{
-        import Definitions::**;
+        public import Definitions::**;
         package Configuration_1{
             package PartsTree{
                 part a:A{

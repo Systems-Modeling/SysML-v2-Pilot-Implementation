@@ -366,7 +366,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
 				newRedefined.addAll(redefined)
-				newRedefined.addAll(ns.redefinedFeatures)
+				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, skip))
 			}
 			for (e: ns.ownedSpecialization) {
 				if (!scopeProvider.visited.contains(e)) {
@@ -400,11 +400,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			}
 		}
 		return false
-	}
-	
-	protected def Set<Feature> redefinedFeatures(Type type) {
-		type.ownedFeature.
-			flatMap[feature|FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip)].toSet
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean isInsideScope, boolean includeImplicitGen, boolean includeAll) {

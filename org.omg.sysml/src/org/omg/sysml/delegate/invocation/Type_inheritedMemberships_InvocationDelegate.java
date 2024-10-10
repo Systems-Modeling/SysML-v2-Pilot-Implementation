@@ -43,8 +43,8 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 		@SuppressWarnings("unchecked")
 		EList<Type> excluded = (EList<Type>) arguments.get(0);
 		boolean excludeImplied = (boolean) arguments.get(1);
-				
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(), new HashSet<>(excluded), true, excludeImplied);
+		
+		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(), new HashSet<>(excluded), new HashSet<>(), true, excludeImplied);
 	}
 
 }

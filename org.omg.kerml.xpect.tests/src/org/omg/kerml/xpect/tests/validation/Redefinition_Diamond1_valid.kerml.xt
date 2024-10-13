@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+       ThisFile {}
+        File {from ="/library/Base.kerml"}
+        File {from ="/library/Occurrences.kerml"}
+        File {from ="/library/Objects.kerml"}
+        File {from ="/library/Performances.kerml"}
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+                ThisFile {}
+		            File {from ="/library/Base.kerml"}
+		            File {from ="/library/Occurrences.kerml"}
+		            File {from ="/library/Objects.kerml"}
+		            File {from ="/library/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package RedefinitionDiamond {
+	feature A {
+		feature p[*];
+	}
+	feature A1 :> A {
+		p1 :>> p;
+	}
+	feature A2 :> A {
+		p :>> p; // 1
+	}
+	
+	feature B :> A1, A2 {
+		p2 :>> p1; // 2
+// XPECT noErrors ---> ""
+		feature p;
+	}
+}

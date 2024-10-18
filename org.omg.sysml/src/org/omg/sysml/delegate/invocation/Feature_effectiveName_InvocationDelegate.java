@@ -22,17 +22,13 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
+import org.omg.sysml.util.FeatureUtil;
 
 public class Feature_effectiveName_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -40,40 +36,9 @@ public class Feature_effectiveName_InvocationDelegate extends BasicInvocationDel
 		super(operation);
 	}
 	
-	private final Map<Feature, String> nameCache = new HashMap<>();
-	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Feature self = (Feature) target;
-		
-		return computeEffectiveName(self, new HashSet<>());
+		return FeatureUtil.computeEffectiveName(self);
 	}
-
-	private boolean isNameDefinite(Feature self) {
-		return self.getDeclaredName() != null || self.getDeclaredShortName() != null;
-	}
-	
-	
-	public String computeEffectiveName(Feature self, Set<Feature> visited) {		
-		if (isNameDefinite(self)) {
-			return self.getDeclaredName();
-		}
-		
-		String effectiveName = nameCache.get(self);
-		
-		if (effectiveName != null) {
-			return effectiveName;
-		}
-
-		visited.add(self);
-		FeatureImpl namingFeature = (FeatureImpl) self.namingFeature();
-		
-		if (namingFeature != null && !visited.contains(namingFeature)) {
-			effectiveName = computeEffectiveName(namingFeature, visited);
-			nameCache.put(self, effectiveName);
-		}
-		
-		return effectiveName;
-	}
-
 }

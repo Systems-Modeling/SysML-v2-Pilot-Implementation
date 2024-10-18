@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -438,5 +439,63 @@ public class FeatureUtil {
 			}
 		}
 		return multiplicity;
+	}
+	
+	//Naming
+	
+	public static String computeEffectiveName(Feature self) {
+		return computeEffectiveName(self, new HashSet<>());
+	}
+	
+	private static String computeEffectiveName(Feature self, Set<Feature> visited) {
+		if (isNameSet(self)) {
+			return self.getDeclaredName();
+		}
+		
+		String effectiveName = getFeatureAdapter(self).getEffectiveName();
+		
+		if (effectiveName != null) {
+			return effectiveName;
+		}
+
+		visited.add(self);
+		FeatureImpl namingFeature = (FeatureImpl) self.namingFeature();
+		
+		if (namingFeature != null && !visited.contains(namingFeature)) {
+			effectiveName = computeEffectiveName(namingFeature, visited);
+			getFeatureAdapter(self).storeEffectiveName(effectiveName);
+		}
+		
+		return effectiveName;
+	}
+	
+	public static String computeEffectiveShortName(Feature self) {
+		return computeEffectiveShortName(self, new HashSet<>());
+	}
+	
+	private static String computeEffectiveShortName(Feature self, Set<Feature> visited) {
+		if (isNameSet(self)) {
+			return self.getDeclaredShortName();
+		}
+		
+		String effectiveShortName = getFeatureAdapter(self).getEffectiveShortName();
+		
+		if (effectiveShortName != null) {
+			return effectiveShortName;
+		}
+
+		visited.add(self);
+		FeatureImpl namingFeature = (FeatureImpl) self.namingFeature();
+		
+		if (namingFeature != null && !visited.contains(namingFeature)) {
+			effectiveShortName = computeEffectiveShortName(namingFeature, visited);
+			getFeatureAdapter(self).storeEffectiveShortName(effectiveShortName);
+		}
+		
+		return effectiveShortName;
+	}
+	
+	private static boolean isNameSet(Feature self) {
+		return self.getDeclaredName() != null || self.getDeclaredShortName() != null;
 	}
 }

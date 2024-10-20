@@ -55,7 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -459,7 +458,7 @@ public class FeatureUtil {
 		}
 
 		visited.add(self);
-		FeatureImpl namingFeature = (FeatureImpl) self.namingFeature();
+		Feature namingFeature = self.namingFeature();
 		
 		if (namingFeature != null && !visited.contains(namingFeature)) {
 			effectiveName = computeEffectiveName(namingFeature, visited);
@@ -485,7 +484,7 @@ public class FeatureUtil {
 		}
 
 		visited.add(self);
-		FeatureImpl namingFeature = (FeatureImpl) self.namingFeature();
+		Feature namingFeature = self.namingFeature();
 		
 		if (namingFeature != null && !visited.contains(namingFeature)) {
 			effectiveShortName = computeEffectiveShortName(namingFeature, visited);

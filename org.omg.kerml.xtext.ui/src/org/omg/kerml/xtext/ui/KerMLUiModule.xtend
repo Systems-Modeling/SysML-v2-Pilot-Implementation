@@ -14,6 +14,8 @@ import org.omg.kerml.xtext.library.ILibraryIndexProvider
 import org.omg.kerml.xtext.ui.library.DynamicLibraryIndexProvider
 import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
 import org.eclipse.xtext.ui.resource.ProjectByResourceProvider
+import org.eclipse.jface.text.reconciler.IReconciler
+import org.omg.kerml.xtext.ui.reconciler.ConfigurableXtextReconciler
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -41,9 +43,13 @@ class KerMLUiModule extends AbstractKerMLUiModule {
 		// Replaces the JDT-aware project state implementation with one that handles dependencies via project references
 		Access.workspaceProjectsState
 	}
+	
+	override Class<? extends IReconciler> bindIReconciler(){
+		ConfigurableXtextReconciler
+	}
 	   
 	@Provides
     def ILibraryIndexProvider getILibraryIndexProvider(ProjectByResourceProvider provider) {
         DynamicLibraryIndexProvider.getInstance(provider)
-    }   
+    }
 }

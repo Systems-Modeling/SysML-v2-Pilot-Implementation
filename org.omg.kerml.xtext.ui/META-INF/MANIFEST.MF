@@ -29,5 +29,6 @@ Export-Package: org.omg.kerml.xtext.ui,
  org.omg.kerml.xtext.ui.labeling,
  org.omg.kerml.xtext.ui.library,
  org.omg.kerml.xtext.ui.outline,
- org.omg.kerml.xtext.ui.quickfix
+ org.omg.kerml.xtext.ui.quickfix,
+ org.omg.kerml.xtext.ui.reconciler
 Bundle-Activator: org.omg.kerml.xtext.ui.internal.XtextActivator

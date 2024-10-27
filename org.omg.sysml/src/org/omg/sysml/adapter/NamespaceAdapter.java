@@ -64,7 +64,7 @@ public class NamespaceAdapter extends ElementAdapter {
 		return importedMembership;
 	}
 	
-	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
+	// Note: The excludedTypes parameter is needed when this operation is overridden in class Type.
 	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
 		Namespace target = getTarget();
 		EList<Membership> visibleMembership;

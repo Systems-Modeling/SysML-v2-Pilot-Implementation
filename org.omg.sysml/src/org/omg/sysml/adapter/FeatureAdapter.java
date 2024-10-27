@@ -75,35 +75,22 @@ public class FeatureAdapter extends TypeAdapter {
 	// Inheritance
 	
 	@Override
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, 
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
 			boolean includeProtected, boolean excludeImplied) {
-		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
+		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
 		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
 		if (!featureChainings.isEmpty()) {
+			Feature target = getTarget();
+			excludedTypes.add(target);
 			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
 			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
+			excludedTypes.remove(target);
 		}
 		return inheritedMemberships;
 	}
 	
-	public boolean redefinesAnyOf(Collection<Feature> features, Set<Feature> visited) {
-		Feature feature = getTarget();
-		if (features.contains(feature) || features.stream().anyMatch(redefinedFeatures::contains)) {
-			return true;
-		} else {			
-			visited.add(feature);
-			for (var redefined: getRedefinedFeaturesWithComputed(null)) {
-				if (!visited.contains(redefined) && FeatureUtil.redefinesAnyOf(redefined, features, visited)) {
-					redefinedFeatures.add(redefined);
-					return true;
-				}
-			}
-			return false;
-		}
-	}
-
 	// Caching
 	
 	EList<Type> types = null;
@@ -135,13 +122,13 @@ public class FeatureAdapter extends TypeAdapter {
 		return types;
 	}
 	
-	Collection<Feature> redefinedFeatures = new HashSet<>();
+	Set<Feature> allRedefinedFeatures = null;
 		
 	@Override
 	public void clearCaches() {
 		super.clearCaches();
 		types = null;
-		redefinedFeatures.clear();
+		allRedefinedFeatures = null;
 		storedEffectiveName = null;
 		storedEffectiveShortName = null;
 	}
@@ -369,13 +356,15 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Return a set including this Feature and all Features that it redefines directly or indirectly.
 	 */
 	public Set<Feature> getAllRedefinedFeatures() {
-		Set<Feature> redefinedFeatures = new HashSet<>();
-		
-		// Ensure that the redefinitions for this feature are recomputed. 
-		forceComputeRedefinitions();
-		
-		addAllRedefinedFeaturesTo(redefinedFeatures);
-		return redefinedFeatures;
+		if (allRedefinedFeatures == null) {
+			allRedefinedFeatures = new HashSet<>();
+			
+			// Ensure that the redefinitions for this feature are recomputed. 
+			forceComputeRedefinitions();
+			
+			addAllRedefinedFeaturesTo(allRedefinedFeatures);
+		}
+		return allRedefinedFeatures;
 	}
 	
 	public void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {

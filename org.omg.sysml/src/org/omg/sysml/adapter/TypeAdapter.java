@@ -36,7 +36,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -57,6 +57,7 @@ import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
@@ -74,62 +75,54 @@ public class TypeAdapter extends NamespaceAdapter {
 	@Override
 	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
 		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, new HashSet<>(), includeAll, excludeImplied));
+		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll, excludeImplied));
 		return visibleMembership;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, 
-			boolean includeProtected, boolean excludeImplied) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false, excludeImplied);
+	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+		EList<Membership> memberships = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false, excludeImplied);
 		if (includeProtected) {
-			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
+			memberships.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
-		removeRedefinedFeatures(nonPrivateMembership, redefinedFeatures);
-		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
-		return nonPrivateMembership;
+		memberships.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+		return memberships;
 	}
 	
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, 
-			boolean includeProtected, boolean excludeImplied) {
-		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
+
+		// Using an EObjectEList ensures that isUnique = true.
+		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) getTarget(), SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
+		
 		Conjugation conjugator = target.getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType != null && !excludedTypes.contains(originalType)) {
-				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
-		Collection<Feature> newRedefinedFeatures = new HashSet<>(redefinedFeatures);
-		newRedefinedFeatures.addAll(getAllFeaturesRedefinedByType());
 		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
 			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, newRedefinedFeatures, includeProtected, excludeImplied));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
+		removeRedefinedFeatures(inheritedMemberships);
+		
+		excludedTypes.remove(target);
 		return inheritedMemberships;
 	}
 	
-	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
-			Collection<Feature> redefinedFeatures, boolean includeProtected, boolean excludeImplied) {
-		Type target = getTarget();
-		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
-		membership.addAll(target.getOwnedMembership());
-		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
-		removeRedefinedFeatures(membership, redefinedFeatures);
-		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
-		return membership;
-	}	
-	
-	protected static void removeRedefinedFeatures(Collection<Membership> memberships, Collection<Feature> redefinedFeatures) {
+	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
+		Collection<Feature> redefinedFeatures = getAllFeaturesRedefinedByType();
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
-				   FeatureUtil.redefinesAnyOf((Feature)memberElement, redefinedFeatures);
-		});	
+				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
+				   		anyMatch(redefinedFeatures::contains);
+		});
 	}
-	
+
 	protected Collection<Feature> getAllFeaturesRedefinedByType() {
 		if (allRedefinedFeatures == null) {
 			allRedefinedFeatures = TypeUtil.getAllFeaturesRedefinedBy(getTarget());

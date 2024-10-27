@@ -94,7 +94,7 @@ public class ElementAdapter extends AdapterImpl {
 		}
 	}
 	
-	public void doTransform() {
+	protected void doTransform() {
 		clearCaches();
 	}
 		

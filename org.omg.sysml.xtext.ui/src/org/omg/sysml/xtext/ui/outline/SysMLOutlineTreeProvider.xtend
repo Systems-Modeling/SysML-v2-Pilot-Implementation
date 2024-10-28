@@ -20,13 +20,14 @@ import org.omg.sysml.lang.sysml.ConjugatedPortTyping
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.OccurrenceUsage
 import org.omg.sysml.lang.sysml.PortionKind
+import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
 
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
-class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
+class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider implements IOutlineTreeProvider.Background {
 	
 	def String _text(StateSubactionMembership membership) {
 		 membership.prefixText + " " + membership.kind + " " + membership.nameText
@@ -118,5 +119,4 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 			)
 		}
 	}
-
 }

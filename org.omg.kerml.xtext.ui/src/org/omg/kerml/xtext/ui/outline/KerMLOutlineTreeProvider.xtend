@@ -46,13 +46,14 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.NamespaceImport
+import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider
 
 /**
  * Customization of the default outline structure.
  *
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
-class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
+class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider implements IOutlineTreeProvider.Background {
 	
 	def String metaclassText(Element element) {
 		ElementUtil.transform(element);

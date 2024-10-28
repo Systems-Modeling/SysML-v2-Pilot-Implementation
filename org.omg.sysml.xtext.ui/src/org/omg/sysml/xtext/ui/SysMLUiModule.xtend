@@ -19,6 +19,8 @@ import com.google.inject.Provides
 import org.eclipse.xtext.ui.resource.ProjectByResourceProvider
 import org.eclipse.jface.text.reconciler.IReconciler
 import org.omg.kerml.xtext.ui.reconciler.ConfigurableXtextReconciler
+import org.eclipse.xtext.ui.editor.outline.impl.OutlineRefreshJob
+import org.omg.kerml.xtext.ui.outline.KerMLOutlineRefreshJob
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -49,6 +51,10 @@ class SysMLUiModule extends AbstractSysMLUiModule {
 	
 	override Class<? extends IReconciler> bindIReconciler(){
 		ConfigurableXtextReconciler
+	}
+	
+	def Class<? extends OutlineRefreshJob> bindOutlineRefreshJob(){
+		KerMLOutlineRefreshJob
 	}
 	
     @Provides

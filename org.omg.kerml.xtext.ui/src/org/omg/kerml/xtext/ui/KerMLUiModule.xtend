@@ -16,6 +16,8 @@ import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
 import org.eclipse.xtext.ui.resource.ProjectByResourceProvider
 import org.eclipse.jface.text.reconciler.IReconciler
 import org.omg.kerml.xtext.ui.reconciler.ConfigurableXtextReconciler
+import org.omg.kerml.xtext.ui.outline.KerMLOutlineRefreshJob
+import org.eclipse.xtext.ui.editor.outline.impl.OutlineRefreshJob
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -46,6 +48,10 @@ class KerMLUiModule extends AbstractKerMLUiModule {
 	
 	override Class<? extends IReconciler> bindIReconciler(){
 		ConfigurableXtextReconciler
+	}
+	
+	def Class<? extends OutlineRefreshJob> bindOutlineRefreshJob(){
+		KerMLOutlineRefreshJob
 	}
 	   
 	@Provides

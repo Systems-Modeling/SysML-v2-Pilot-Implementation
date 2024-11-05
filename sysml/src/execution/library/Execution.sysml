@@ -3,7 +3,7 @@ library package Execution {
 	private import Metaobjects::*;
 	private import Occurrences::*;
 	private import SysML::Systems::*;	
-	import VerificationCases::*;
+	private import VerificationCases::*;
 	
 	doc
 	/* This package defines a keyword (instance) for occurrences with
@@ -22,17 +22,18 @@ library package Execution {
 		/*
 		 * A calculation that compares two actions to determine whether the represent identical executions.
 		 */
-		in action referenceAction [1];
-		in action executedAction [1];
+		in occurrence referenceAction [1];
+		in occurrence executedAction [1];
 		
 		return verdict : VerdictKind [0..1];
 	}
 	
 	occurrence def ValueSlice {
 		:>> startShot = valueStart;
-		:>> endShot = valueEnd;
 		ref snapshot valueStart;
 		ref snapshot valueEnd;
+		
+		connection : HappensJustBefore connect valueEnd to endShot;
 	}
 	
 	occurrence def BehaviorSlice {
@@ -41,5 +42,4 @@ library package Execution {
 		connection 'frame during' : HappensWhile connect self to activeSteps;
 		connection 'not during' : Without connect self to inactiveSteps;
 	}
-	
 }

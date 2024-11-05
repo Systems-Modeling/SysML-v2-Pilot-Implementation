@@ -1,12 +1,12 @@
 package TrialLoopTestCase {
-	import Execution::*;
-	import Occurrences::*;
-	import ScalarValues::Boolean;
-	import ScalarValues::Integer;
-	import VerificationCases::*;
+	private import Execution::*;
+	private import Occurrences::*;
+	private import ScalarValues::Boolean;
+	private import ScalarValues::Integer;
+	private import VerificationCases::*;
 	
 	package LoopToExecute {
-		import LoopTrace::*;
+		private import LoopTrace::*;
 
 		action def L {
 			attribute isFinished : Boolean := false;
@@ -30,7 +30,8 @@ package TrialLoopTestCase {
 	}
 	
 	package LoopVerification {
-		import LoopToExecute::*;
+		private import LoopToExecute::*;
+		private import LoopTrace::*;
 	
 		verification def 'Check Loop Execution' :> 'Loop Master'{
 			subject s : L [1];
@@ -41,7 +42,7 @@ package TrialLoopTestCase {
 	}
 	
 	package LoopTrace {
-		import LoopToExecute::*;
+		private import LoopToExecute::*;
 		
 		case def 'Loop Trace' :> LoopToExecute::'Loop Master' {
 			subject :>> s : L [1];
@@ -49,7 +50,7 @@ package TrialLoopTestCase {
 			occurrence LoopValueSlice : ValueSlice {
 				:>> that : 'Loop Trace';
 			}
-			occurrence LoopTraceSlice : BehaviorSlice {
+			occurrence LoopBehaviorSlice : BehaviorSlice {
 				:>> that : 'Loop Trace';
 			}
 			
@@ -81,43 +82,43 @@ package TrialLoopTestCase {
 			}
 			
 			
-			timeslice 'Loop Frame 0' :> LoopTraceSlice {
-				:>> activeSteps = (s.startShot);
+			timeslice 'Loop Frame 0' :> LoopBehaviorSlice {
+				:>> activeSteps = s.startShot;
 				:>> inactiveSteps = (s.closeloop, s.'Step 1', s.'Step 2', s.'loop done', s.isFinished);
 			}
-			then timeslice 'Loop Frame 1' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 1' :> LoopBehaviorSlice {
 				:>> activeSteps = s.closeloop#(1);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.'loop done', s.closeloop#(2));
 			}
-			then timeslice 'Loop Frame 2' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 2' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'Step 1'#(1);
 				:>> inactiveSteps = (s.'Step 1'#(2), s.'Step 2', s.'loop done', s.closeloop);
 			}
-			then timeslice 'Loop Frame 3' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 3' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'Step 2'#(1);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2'#(2), s.'loop done', s.closeloop);
 			}
-			then timeslice 'Loop Frame 4' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 4' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'loop done'#(1);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.'loop done'#(2), s.closeloop);
 			}
-			then timeslice 'Loop Frame 5' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 5' :> LoopBehaviorSlice {
 				:>> activeSteps = s.closeloop#(2);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.'loop done', s.closeloop#(1));
 			}
-			then timeslice 'Loop Frame 6' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 6' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'Step 1'#(2);
 				:>> inactiveSteps = (s.'Step 1'#(1), s.'Step 2', s.'loop done', s.closeloop);
 			}
-			then timeslice 'Loop Frame 7' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 7' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'Step 2'#(2);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2'#(1), s.'loop done', s.closeloop);
 			}
-			then timeslice 'Loop Frame 8' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 8' :> LoopBehaviorSlice {
 				:>> activeSteps = s.'loop done'#(2);
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.'loop done'#(1), s.closeloop);
 			}
-			then timeslice 'Loop Frame 9' :> LoopTraceSlice {
+			then timeslice 'Loop Frame 9' :> LoopBehaviorSlice {
 				:>> activeSteps = done;
 				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.'loop done', s.closeloop);
 			}

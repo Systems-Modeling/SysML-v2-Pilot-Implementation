@@ -1,5 +1,5 @@
 package execution_unitcase_entry_actions {
-	import Execution::*;
+	private import Execution::*;
 	
 	doc
 	/*
@@ -9,15 +9,17 @@ package execution_unitcase_entry_actions {
 	 */
 	
 	package UnitCaseModel {
-		import ScalarValues::*;
+		private import ScalarValues::*;
 		
 		case def ExecutionContext {
-			subject s : ContextState [1];
+			subject s : Context [1];
 			
-			state def ContextState {
+			state def Context {
 				attribute x : Integer [0..1] = ();
 				state operating {
-					entry action assignX assign x := 1.0;
+					entry action doSomething {
+						assign x := 1.0;
+					}
 				}
 				
 				first start then operating;
@@ -28,24 +30,40 @@ package execution_unitcase_entry_actions {
 		}
 	}
 	
+	package ExpandedModel {
+		private import UnitCaseModel::*;
+		private import Occurrences::*;
+		private import Time::*;
+		private import SysML::*;
+		private import StatePerformances::*;
+		private import States::*;
+		
+		case def ExpandedContext :> ExecutionContext {
+			subject s : Context [1];
+			
+			// Nothing to expand
+		}
+	}
+	
 	package UnitCaseTest {
-		import UnitCaseModel::*;
-		import Occurrences::*;
-		import Time::*;
-		import SequenceFunctions::*;
-		import StatePerformances::*;
-		import States::*;
-		import SysML::*;
-		import VerificationCases::*;
+		private import UnitCaseModel::*;
+		private import Occurrences::*;
+		private import Time::*;
+		private import ScalarValues::*;
+		private import SequenceFunctions::*;
+		private import StatePerformances::*;
+		private import States::*;
+		private import SysML::*;
+		private import VerificationCases::*;
 		
 		verification def Execution :> ExecutionContext {
-			subject s : ContextState [1];
+			subject s : Context [1];
 			
 			objective {
 				verify requirement expectation {
 					doc
 					/*
-					 * The Entry action shall occur immediately after the start of the state and 
+					 * Entry actions occur immediately after the start of the state and 
 					 * before any other actions or transitions.
 					 */
 				}
@@ -58,12 +76,14 @@ package execution_unitcase_entry_actions {
 			action captureInitial assign actualInitialValueX := s.x;
 			action captureAfterEntry assign actualFinalValueX := s.x;
 
+			ref state sMainOperatingEntry = s.operating.doSomething;
+			
 			succession afterInitialization : HappensJustBefore 
 				first s.startShot
 				then captureInitial;
 
 			succession afterOperatingEntry : HappensJustBefore 
-				first s.operating
+				first sMainOperatingEntry
 				then captureAfterEntry;
 				
 			succession first s.endShot then endShot;
@@ -73,5 +93,22 @@ package execution_unitcase_entry_actions {
 				actualFinalValueX == expectedValueX
 			);
 		}
+	}
+	
+	package ExecutedTraces {
+		
+		private import UnitCaseModel::*;
+		
+		// #instance ?
+		case def Trace :> ExecutionContext {
+			// #instance ?			
+			subject s : Context [1];
+			
+			// #instance ?			
+			state operatingInstance :> s.operating [1];
+			
+			// ... etc?
+		}
+		
 	}
 }

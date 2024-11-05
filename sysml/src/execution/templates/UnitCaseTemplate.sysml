@@ -11,7 +11,7 @@ package execution_unitcase_abc_xyz {
 	 */
 	
 	package UnitCaseModel {
-		import ScalarValues::*;
+		private import ScalarValues::*;
 		
 		doc
 		/* The M1 user model as a system architect would create when using the language.
@@ -31,9 +31,9 @@ package execution_unitcase_abc_xyz {
 	}
 	
 	package UnitCaseTest {
-		import Occurrences::*;
-		import UnitCaseModel::*;
-		import VerificationCases::*;
+		private import Occurrences::*;
+		private import UnitCaseModel::*;
+		private import VerificationCases::*;
 		
 		doc
 		/*
@@ -64,7 +64,7 @@ package execution_unitcase_abc_xyz {
 	}
 	
 	package ExpandedModel {
-		import UnitCaseModel::*;
+		private import UnitCaseModel::*;
 
 		doc
 		/*
@@ -85,9 +85,10 @@ package execution_unitcase_abc_xyz {
 	
 	package ExecutedTraces {
 		
-		import Execution::*;
-		import UnitCaseModel::*;
-		import UnitCaseTest::*;
+		private import Execution::*;
+		private import Occurrences::*;
+		private import UnitCaseModel::*;
+		private import UnitCaseTest::*;
 
 		doc
 		/*
@@ -150,11 +151,11 @@ package execution_unitcase_abc_xyz {
 			// which are performed over what intervals.
 			
 			timeslice 'Trace Frame 0' :> TraceBehaviorSlice {
-				:>> activeSteps = s.startShot;
+				:>> activeStep = s.startShot;
 				:>> inactiveSteps = (s.a, s.b);
 			}
 			then timeslice 'Trace Frame 1' :> TraceBehaviorSlice {
-				:>> activeSteps = s.a;
+				:>> activeStep = s.a;
 				:>> inactiveSteps = (s.b);
 			}
 		}

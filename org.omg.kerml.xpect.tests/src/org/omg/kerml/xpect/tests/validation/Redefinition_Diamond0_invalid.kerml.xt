@@ -33,7 +33,7 @@ package RedefinitionDiamond {
 	
 	feature B :> A1, A2 {
 //		p2 :>> p1; // 2
-// XPECT noErrors ---> ""
+// XPECT warnings ---> "Duplicate of inherited member name" at "p"
 		feature p;
 	}
 }

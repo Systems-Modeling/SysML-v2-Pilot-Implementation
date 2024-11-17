@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -49,13 +48,13 @@ public class NamespaceAdapter extends ElementAdapter {
 	
 	// Additional operations
 	
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll) {
 		Namespace target = getTarget();
 		EList<Membership> importedMembership = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject)target, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
 		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
 		if (!excludedNamespaces.contains(target)) {
 			for (Import _import: target.getOwnedImport()) {
-				NamespaceUtil.importMembershipsFor(_import, importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
+				NamespaceUtil.importMembershipsFor(_import, importedMembership, nonpublicMembership, excludedNamespaces);
 			}
 		}
 		if (!includeAll) {
@@ -64,8 +63,7 @@ public class NamespaceAdapter extends ElementAdapter {
 		return importedMembership;
 	}
 	
-	// Note: The excludedTypes parameter is needed when this operation is overridden in class Type.
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll, boolean excludeImplied) {
 		Namespace target = getTarget();
 		EList<Membership> visibleMembership;
 		if (includeAll) {
@@ -74,7 +72,7 @@ public class NamespaceAdapter extends ElementAdapter {
 		} else {
 			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
 		}
-		visibleMembership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
+		visibleMembership.addAll(getImportedMembership(excludedNamespaces, includeAll));
 		return visibleMembership;
 	}
 

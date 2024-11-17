@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NamespaceUtil;
 
 public class Namespace_importedMemberships_InvocationDelegate extends BasicInvocationDelegate {
@@ -44,7 +43,7 @@ public class Namespace_importedMemberships_InvocationDelegate extends BasicInvoc
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		
-		return NamespaceUtil.getImportedMembershipFor(self, new HashSet<>(excluded), new HashSet<Type>(), true);
+		return NamespaceUtil.getImportedMembershipFor(self, new HashSet<>(excluded), true);
 	}
 	
 }

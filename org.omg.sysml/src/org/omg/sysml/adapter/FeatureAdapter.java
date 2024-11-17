@@ -41,12 +41,10 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -70,25 +68,6 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	public Feature getTarget() {
 		return (Feature)super.getTarget();
-	}
-	
-	// Inheritance
-	
-	@Override
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
-			boolean includeProtected, boolean excludeImplied) {
-		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
-		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
-		if (!featureChainings.isEmpty()) {
-			Feature target = getTarget();
-			excludedTypes.add(target);
-			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
-			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
-			}
-			excludedTypes.remove(target);
-		}
-		return inheritedMemberships;
 	}
 	
 	// Caching

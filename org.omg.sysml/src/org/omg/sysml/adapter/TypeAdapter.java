@@ -73,14 +73,14 @@ public class TypeAdapter extends NamespaceAdapter {
 	// Additional operations
 	
 	@Override
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll, excludeImplied));
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll, boolean excludeImplied) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, includeAll, excludeImplied);
+		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, new ArrayList<>(), includeAll, excludeImplied));
 		return visibleMembership;
 	}
 	
 	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		EList<Membership> memberships = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false, excludeImplied);
+		EList<Membership> memberships = super.getVisibleMemberships(excludedNamespaces, false, excludeImplied);
 		if (includeProtected) {
 			memberships.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
@@ -102,7 +102,7 @@ public class TypeAdapter extends NamespaceAdapter {
 				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}
 		}
-		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
+		for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
 			}

@@ -107,19 +107,26 @@ public class TypeAdapter extends NamespaceAdapter {
 		// Using an EObjectEList ensures that isUnique = true.
 		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) getTarget(), SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
 		
-		Conjugation conjugator = target.getOwnedConjugator();
-		if (conjugator != null) {
-			Type originalType = conjugator.getOriginalType();
-			if (originalType != null) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+		if (inheritedMembership != null) {
+			inheritedMemberships.addAll(inheritedMembership);
+			if (!includeProtected) {
+				inheritedMemberships.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
 			}
-		}
-		for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
-			if (general != null) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+		} else {
+			Conjugation conjugator = target.getOwnedConjugator();
+			if (conjugator != null) {
+				Type originalType = conjugator.getOriginalType();
+				if (originalType != null) {
+					inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+				}
 			}
+			for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
+				if (general != null) {
+					inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+				}
+			}
+			removeRedefinedFeatures(inheritedMemberships);
 		}
-		removeRedefinedFeatures(inheritedMemberships);
 		
 		return inheritedMemberships;
 	}

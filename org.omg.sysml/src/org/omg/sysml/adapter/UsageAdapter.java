@@ -90,7 +90,7 @@ public class UsageAdapter extends FeatureAdapter {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
 		}
 	}
-
+	
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
 		if (UsageUtil.isVariant(usage)) {
@@ -108,7 +108,10 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	@Override
 	public void addDefaultGeneralType() {
+		//checkUsageVariationDefinitionSpecialization
+		//checkUsageVariationUsageSpecialization
 		addVariationTyping();
+		
 		super.addDefaultGeneralType();
 	}
 	

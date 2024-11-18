@@ -59,6 +59,7 @@ public class ForLoopActionUsageAdapter extends LoopActionUsageAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkForLoopActionUsageVarRedefinition
 		transformLoopVariable();
 	}
 

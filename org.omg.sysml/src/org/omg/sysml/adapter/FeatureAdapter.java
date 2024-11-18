@@ -567,6 +567,7 @@ public class FeatureAdapter extends TypeAdapter {
 				features = startingAtFeature.getOwnedFeature();
 				if (!features.isEmpty()) {
 					Feature accessedFeature = features.get(0);
+					//checkAssignmentActionUsageAccessedFeatureRedefinition
 					TypeUtil.addDefaultGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
 					if (referent != null) {
 						TypeUtil.addImplicitGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), referent);

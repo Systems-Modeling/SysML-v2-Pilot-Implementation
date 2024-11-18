@@ -39,8 +39,12 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		int numEnds = TypeUtil.getOwnedEndFeaturesOf(getTarget()).size();
-		return numEnds != 2? 
+		return numEnds != 2?
+				//checkConnectionUsageSpecialization
+				//checkAllocationUsageSpecialization
 				getDefaultSupertype("base"):
+				//checkConnectionUsageBinarySpecialization
+				//checkAllocationUsageSpecialization
 				getDefaultSupertype("binary");
 	}
 	

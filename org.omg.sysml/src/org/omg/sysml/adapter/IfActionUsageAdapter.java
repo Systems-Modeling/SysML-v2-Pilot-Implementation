@@ -38,6 +38,7 @@ public class IfActionUsageAdapter extends ActionUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isIfThenElse()) {
+			//checkIfActionUsageSpecialization
 			addDefaultGeneralType("ifThenElse");
 		}
 	}

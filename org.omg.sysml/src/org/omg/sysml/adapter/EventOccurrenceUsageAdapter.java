@@ -48,6 +48,7 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
+		//checkEventOccurrenceUsageSpecialization
 		return isSuboccurrence()? 
 				getDefaultSupertype("suboccurrence"):
 				super.getDefaultSupertype();

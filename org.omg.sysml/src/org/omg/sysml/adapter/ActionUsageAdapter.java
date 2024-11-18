@@ -74,7 +74,18 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	}
 	
 	protected String getSubactionType() {
+		//TODO checkAcceptActionUsageSpecialization?
+		
+		//checkAcceptActionUsageSubactionSpecialization
+		//checkActionUsageSubactionSpecialization
+		//checkDecisionNodeSpecialization
+		//checkForkNodeSpecialization
+		//checkForLoopActionUsageSubactionSpecialization
+		//checkIfActionUsageSubactionSpecialization
+		//checkJoinNodeSpecialization
+		//checkMergeNodeSpecialization
 		return isActionOwnedComposite()? "subaction": 
+			//checkActionUsageOwnedActionSpecialization
 			   isPartOwnedComposite()? "ownedAction":
 			   null;	
 	}
@@ -92,6 +103,7 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	 */
 	@Override
 	public boolean isComputeRedefinitions() {
+		//checkActionUsageStateActionRedefinition
 		String redefinedFeature = getRedefinedFeature(getTarget());
 		return redefinedFeature != null? isComputeRedefinitions:
 				super.isComputeRedefinitions();

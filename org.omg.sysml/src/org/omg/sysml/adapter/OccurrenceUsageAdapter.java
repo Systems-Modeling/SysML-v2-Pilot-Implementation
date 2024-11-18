@@ -42,10 +42,15 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 
 	@Override
 	public void addDefaultGeneralType() {
+		//checkOccurrenceUsageSpecialization
 		super.addDefaultGeneralType();
+		
+		//checkOccurrenceUsageSuboccurrenceSpecialization
 		if (isSuboccurrence()) {
 			addDefaultGeneralType("suboccurrence");
 		}
+		
+		//checkPortioningFeatureRedefinition
 		PortionKind portionKind = getTarget().getPortionKind();
 		if (portionKind  == PortionKind.SNAPSHOT) {
 			addDefaultGeneralType("snapshot");
@@ -96,6 +101,7 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
+		//checkOccurrenceUsageTypeFeaturing
 		addOccurrenceTyping();
 		addOccurrenceFeaturing();
 		super.computeImplicitGeneralTypes();

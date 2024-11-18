@@ -59,6 +59,7 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
+		//checkFlowConnectionUsageSpecialization
 		return UsageUtil.isMessageConnection(getTarget())?
 				getDefaultSupertype("message"):
 				getDefaultSupertype("base");

@@ -42,7 +42,10 @@ public class LifeClassAdapter extends ClassAdapter {
 
 	@Override
 	public void addDefaultGeneralType() {
+		//checkLifeClassLifeSpecialization
 		super.addDefaultGeneralType();
+		
+		//checkLifeClassOccurrenceSpecialization
 		Namespace owner = getTarget().getOwningNamespace();
 		if (owner instanceof Classifier) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubclassification(), (Classifier)owner);
@@ -52,6 +55,7 @@ public class LifeClassAdapter extends ClassAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkLifeClassMultiplicitySpecialization
 		FeatureUtil.addMultiplicityTo(getTarget());
 	}
 	

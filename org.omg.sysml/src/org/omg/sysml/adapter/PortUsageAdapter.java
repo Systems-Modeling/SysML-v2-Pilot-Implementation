@@ -42,7 +42,9 @@ public class PortUsageAdapter extends UsageAdapter {
 		return isOwnedPort()?
 					getDefaultSupertype("ownedPort"):
 			   isSubport()?
+					//checkPortUsageSubportSpecialization
 					getDefaultSupertype("subport"):
+					//checkPortUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

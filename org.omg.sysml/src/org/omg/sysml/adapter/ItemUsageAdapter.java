@@ -39,8 +39,11 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubitem()? 
+		return isSubitem()?
+					//checkItemUsageSubitemSpecialization
+					//checkPartUsageSubpartSpecialization
 					getDefaultSupertype("subitem"):
+					//checkItemUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

@@ -36,8 +36,14 @@ public class ConnectionDefinitionAdapter extends PartDefinitionAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getOwnedEndFeature().size() != 2 ? 
+		return getTarget().getOwnedEndFeature().size() != 2 ?
+				//checkConnectionDefinitionSpecializations
+				//checkInterfaceDefinitionSpecialization
+				//checkAllocationDefinitionSpecialization
 				getDefaultSupertype("base") :
+				//checkConnectionDefinitionBinarySpecialization
+				//checkInterfaceDefinitionBinarySpecialization
+				//checkAllocationDefinitionSpecialization
 				getDefaultSupertype("binary");
 	}
 

@@ -36,6 +36,7 @@ public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
 	
 	protected void addTargetRedefinitions() {
 		AssignmentActionUsage target = getTarget();
+		//checkAssignmentActionUsageAccessedFeatureRedefinition
 		addFeatureWriteTypes(TypeUtil.getOwnedParametersOf(target), target.getReferent());
 	}
 	

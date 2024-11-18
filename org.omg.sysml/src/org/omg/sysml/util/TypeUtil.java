@@ -66,12 +66,16 @@ public class TypeUtil {
 	
 	// Inheritance
 	
-	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
-	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public static void addNonPrivateMembershipFor(Type type, EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		getTypeAdapter(type).addNonPrivateMembership(inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
+	}
+
+	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 	
 	public static Collection<Feature> getAllFeaturesRedefinedBy(Type type) {

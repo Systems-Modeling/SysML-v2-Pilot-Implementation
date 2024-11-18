@@ -63,7 +63,7 @@ public class NamespaceAdapter extends ElementAdapter {
 		return importedMembership;
 	}
 	
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll, boolean excludeImplied) {
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
 		Namespace target = getTarget();
 		EList<Membership> visibleMembership;
 		if (includeAll) {

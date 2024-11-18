@@ -42,9 +42,10 @@ public class Namespace_visibleMemberships_InvocationDelegate extends BasicInvoca
 		NamespaceImpl self = (NamespaceImpl) target;
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
+		boolean isRecursive = (boolean) arguments.get(1);
 		boolean includeAll = (boolean) arguments.get(2);
 		
-		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), includeAll, false);
+		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), isRecursive, includeAll);
 	}
 
 }

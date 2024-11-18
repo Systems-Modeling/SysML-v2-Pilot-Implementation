@@ -34,7 +34,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -74,60 +73,61 @@ public class TypeAdapter extends NamespaceAdapter {
 	// Additional operations
 	
 	@Override
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll, boolean excludeImplied) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, includeAll, excludeImplied);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, new ArrayList<>(), includeAll, excludeImplied));
+	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, isRecursive, includeAll);
+		EList<Membership> inheritedMembership = getInheritedMembership(excludedNamespaces, new ArrayList<>(), isRecursive);
+		if (!includeAll) {
+			inheritedMembership.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
+		}
+		visibleMembership.addAll(inheritedMembership);
 		return visibleMembership;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		if (excludedTypes.contains(getTarget())) {
-			return includeProtected? 
-					nonPrivateMembership == null? new BasicEList<>(): nonPrivateMembership:
-						publicMembership == null? new BasicEList<>(): publicMembership;	
-		} else {
-			EList<Membership> memberships = super.getVisibleMemberships(excludedNamespaces, false, excludeImplied);
-			if (includeProtected) {
-				memberships.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
-			}
-			memberships.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
-			if (includeProtected) {
-				nonPrivateMembership = memberships;
-			} else {
-				publicMembership = memberships;
-			}
-			return memberships;
+	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		EList<Membership> nonPrivateMemberships = super.getVisibleMemberships(excludedNamespaces, false, false);
+		nonPrivateMemberships.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
+		nonPrivateMemberships.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied));
+		return nonPrivateMemberships;
+	}
+	
+	public void addNonPrivateMembership(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		if (!excludedTypes.contains(getTarget())) {
+			nonPrivateMembership = getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
+		}
+		if (nonPrivateMembership != null) {
+			inheritedMemberships.addAll(nonPrivateMembership);
 		}
 	}
 	
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		if (inheritedMembership != null) {
+			return inheritedMembership;
+		} else {
+			EList<Membership> inheritedMemberships = getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+			removeRedefinedFeatures(inheritedMemberships);
+			return inheritedMemberships;
+		}
+	}
+	
+	public EList<Membership> getInheritableMemberships(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
 
 		// Using an EObjectEList ensures that isUnique = true.
 		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) getTarget(), SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
 		
-		if (inheritedMembership != null) {
-			inheritedMemberships.addAll(inheritedMembership);
-			if (!includeProtected) {
-				inheritedMemberships.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
+		Conjugation conjugator = target.getOwnedConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType != null) {
+				TypeUtil.addNonPrivateMembershipFor(originalType, inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 			}
-		} else {
-			Conjugation conjugator = target.getOwnedConjugator();
-			if (conjugator != null) {
-				Type originalType = conjugator.getOriginalType();
-				if (originalType != null) {
-					inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
-				}
-			}
-			for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
-				if (general != null) {
-					inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
-				}
-			}
-			removeRedefinedFeatures(inheritedMemberships);
 		}
-		
+		for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
+			if (general != null) {
+				TypeUtil.addNonPrivateMembershipFor(general, inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
+			}
+		}
 		return inheritedMemberships;
 	}
 	
@@ -152,7 +152,6 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	private EList<Membership> inheritedMembership = null;
 	private EList<Membership> nonPrivateMembership = null;
-	private EList<Membership> publicMembership = null;	
 	private Collection<Feature> allRedefinedFeatures = null;
 	
 	public EList<Membership> getInheritedMembership() {
@@ -168,7 +167,6 @@ public class TypeAdapter extends NamespaceAdapter {
 		super.clearCaches();
 		inheritedMembership = null;
 		nonPrivateMembership = null;
-		publicMembership = null;
 		allRedefinedFeatures = null;
 	}
 	

@@ -340,6 +340,8 @@ public class ImplicitGeneralizationMap {
 		put(PartUsageImpl.class, "subitem", "Items::Item::subparts");
 		//checkPartUsageActorSpecialization
 		put(PartUsageImpl.class, "requirementActor", "Requirements::RequirementCheck::actors");
+		//checkPartUsageStakeholderSpecialization
+		put(PartUsageImpl.class, "requirementStakeholder", "Requirements::RequirementCheck::stakeholders");
 		//checkPartUsageActorSpecialization
 		put(PartUsageImpl.class, "caseActor", "Cases::Case::actors");
 		//checkPartUsageStakeholderSpecialization

@@ -52,8 +52,11 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
+					//checkTransitionUsageStateSpecialization
 		return isStateTransition()? getDefaultSupertype("stateTransition"):
+					//checkTransitionUsageActionSpecialization
 			   isActionTransition()? getDefaultSupertype("actionTransition"):
+				   //checkTransitionUsageSpecialization
 			   getDefaultSupertype("base");
 	}
 	
@@ -106,8 +109,10 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public void addAdditionalMembers() {
 		// Note: Needs to come before computeTransitionLinkConnectors.
+		//checkTransitionUsageSuccessionSourceSpecialization
 		computeSource();
 		// Note: Needs to come before clearing and recomputation of inheritance cache.
+		//checkTransitionUsageSuccessionBindingConnector
 		computeTransitionLinkConnectors();		
 	}
 	

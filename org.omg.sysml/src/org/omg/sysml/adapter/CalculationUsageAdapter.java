@@ -41,6 +41,8 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	protected String getSubactionType() {
+		//checkCalculationUsageSpecialization
+		//checkCalculationUsageSubcalculationSpecialization
 		return isSubcalculation()? "subcalculation": super.getSubactionType();	
 	}		
 		

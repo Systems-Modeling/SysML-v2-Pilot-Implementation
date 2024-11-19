@@ -86,6 +86,7 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		//checkMergeNodeSpecialization
 		return isActionOwnedComposite()? "subaction": 
 			//checkActionUsageOwnedActionSpecialization
+			//checkStateUsageOwnedStateSpecialization
 			   isPartOwnedComposite()? "ownedAction":
 			   null;	
 	}
@@ -124,6 +125,7 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	}
 	
 	protected static String getRedefinedFeature(Feature target) {
+		//checkTransitionUsageTransitionFeatureSpecialization
 		FeatureMembership membership = target.getOwningFeatureMembership();
 		String kind = 
 				membership instanceof StateSubactionMembership?

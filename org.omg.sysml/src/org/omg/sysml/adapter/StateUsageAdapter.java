@@ -36,7 +36,9 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 
 	@Override
 	protected String getSubactionType() {
+		//checkStateUsageExclusiveStateSpecialization
 		return isExclusiveState()? "exclusiveState":
+			//checkStateUsageSubstateSpecialization
 			   isSubstate()? "substate": 
 			   super.getSubactionType();	
 	}

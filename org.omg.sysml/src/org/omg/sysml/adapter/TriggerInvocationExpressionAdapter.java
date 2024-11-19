@@ -67,6 +67,7 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkTransitionUsageSourceBindingConnector
 		addReceiverBinding();
 	}
 

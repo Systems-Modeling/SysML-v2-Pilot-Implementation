@@ -46,9 +46,11 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
+		//checkConstraintUsageRequirementConstraintSpecialization
 		addRequirementConstraintSubsetting();
 		super.computeImplicitGeneralTypes();
 		if (isCheckedConstraint()) {
+			//checkConstraintUsageCheckedConstraintSpecialization
 			addDefaultGeneralType("checkedConstraint");
 		}
 		if (isStructureOwnedComposite()) {

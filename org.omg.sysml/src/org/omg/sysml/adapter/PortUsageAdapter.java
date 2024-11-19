@@ -40,6 +40,7 @@ public class PortUsageAdapter extends UsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isOwnedPort()?
+					//checkPortUsageOwnedPortSpecialization
 					getDefaultSupertype("ownedPort"):
 			   isSubport()?
 					//checkPortUsageSubportSpecialization

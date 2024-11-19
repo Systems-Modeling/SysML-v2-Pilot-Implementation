@@ -50,6 +50,7 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 	@Override
 	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isFramedConcern(getTarget())) {
+			//checkConcernUsageFramedConcernSpecialization
 			addSubsetting(getDefaultSupertype("concern"));
 		} else {
 			super.addRequirementConstraintSubsetting();

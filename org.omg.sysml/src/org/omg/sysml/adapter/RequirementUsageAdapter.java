@@ -55,13 +55,16 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return UsageUtil.isSubrequirement(getTarget())? 
+					//checkRequirementUsageSubrequirementSpecialization
 				getDefaultSupertype("subrequirement"):
+					//checkRequirementUsageSpecialization
 				getDefaultSupertype("base");
 	}
 	
 	@Override
 	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isVerifiedRequirement(getTarget())) {
+			//checkRequirementUsageRequirementVerificationSpecialization
 			addDefaultGeneralType("verification");
 		} else {
 			super.addRequirementConstraintSubsetting();
@@ -72,7 +75,8 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
-		return UsageUtil.isObjective(getTarget())? 
+		return UsageUtil.isObjective(getTarget())?
+				//checkRequirementUsageObjectiveRedefinition
 				Collections.singletonList(UsageUtil.getObjectiveRequirementOf(type)):
 			    super.getRelevantFeatures(type, skip);
 	}
@@ -81,6 +85,7 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	
 	@Override
 	public void addAdditionalMembers() {
+		//checkSatisfyRequirementUsageBindingConnector
 		UsageUtil.addSubjectParameterTo(getTarget());
 		super.addAdditionalMembers();
 	}

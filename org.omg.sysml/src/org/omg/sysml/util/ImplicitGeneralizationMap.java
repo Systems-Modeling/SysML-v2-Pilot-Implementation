@@ -307,6 +307,11 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
 		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
 
+		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
+		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");
+		
+		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateWithResultSubactions");
+
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::decisionTransitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");

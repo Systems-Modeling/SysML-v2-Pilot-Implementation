@@ -464,7 +464,7 @@ if __name__ == "__main__":
     converter.export_jupyter_syntax_highlighting_files(
         working_folder="./jupyter",
         jupyter_lab_target_folder="../../org.omg.sysml.jupyter.jupyterlab/src/main",
-        jupyter_kernel_target_folder="../../org.omg.sysml.jupyter.kernel/src/main/resources/kernel")
+        jupyter_kernel_target_folder="../../org.omg.sysml.jupyter.kernel/src/main/resources/sysml")
 
     end_timestamp = datetime.datetime.now()
     elapsed_time = end_timestamp - start_timestamp

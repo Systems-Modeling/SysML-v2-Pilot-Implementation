@@ -43,6 +43,7 @@ public class FunctionAdapter extends BehaviorAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkFunctionResultBindingConnector
 		createResultConnector(getTarget().getResult());		
 	}
 	

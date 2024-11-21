@@ -67,8 +67,10 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 				TypeUtil.addOwnedFeatureTo(sourceParameter, sourceTarget);
 			}
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
-					SysMLPackage.eINSTANCE.getRedefinition(), 
+					SysMLPackage.eINSTANCE.getRedefinition(),
+					//checkFeatureChainExpressionTargetRedefinition
 					getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(target.getClass(), "target")));
+			//checkFeatureChainExpressionSourceTargetRedefinition
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
 					SysMLPackage.eINSTANCE.getRedefinition(), target.getTargetFeature());
 			TypeUtil.setIsAddImplicitGeneralTypesFor(sourceTarget, false);
@@ -78,6 +80,8 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkFeatureChainExpressionSourceTargetRedefinition
+		//checkFeatureChainExpressionTargetRedefinition
 		addTargetRedefinition();
 	}
 	

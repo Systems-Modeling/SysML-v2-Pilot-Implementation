@@ -39,8 +39,10 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 	
 	@Override
 	public void addDefaultGeneralType() {
+		//checkIncludeUseCaseSpecialization
 		super.addDefaultGeneralType();
 		if (isPerformedAction()) {
+			////checkPerformActionUsageSpecialization
 			addDefaultGeneralType("performedAction");
 		}
 	}

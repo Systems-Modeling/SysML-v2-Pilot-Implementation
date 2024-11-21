@@ -80,6 +80,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkFeatureReferenceExpressionBindingConnector
 		addReferenceConnector();
 		// Add subsetting in order to inherit typing of referent.
 		addResultSubsetting();

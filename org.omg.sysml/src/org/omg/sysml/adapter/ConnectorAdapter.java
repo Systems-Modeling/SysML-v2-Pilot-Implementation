@@ -46,10 +46,13 @@ public class ConnectorAdapter extends FeatureAdapter {
 		int numEnds = TypeUtil.getOwnedEndFeaturesOf(target).size();
 		return hasStructureType()?
 				numEnds != 2? 
+						//checkConnectorObjectSpecialization
 					getDefaultSupertype("object"):
+						//checkConnectorBinaryObjectSpecialization
 					getDefaultSupertype("binaryObject"):
 				numEnds != 2? 
 					getDefaultSupertype("base"):
+						//checkConnectorBinarySpecialization
 					getDefaultSupertype("binary");
 	}
 	
@@ -72,6 +75,7 @@ public class ConnectorAdapter extends FeatureAdapter {
 	public void doTransform() {
 		Connector target = getTarget();
 		super.doTransform();
+		//checkConnectorTypeFeaturing
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
 		addEndSubsetting(target);
 	}

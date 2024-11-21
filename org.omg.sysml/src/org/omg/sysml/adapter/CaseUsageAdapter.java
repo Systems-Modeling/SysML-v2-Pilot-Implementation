@@ -49,6 +49,8 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	
 	@Override
 	protected String getSubactionType() {
+		//checkCaseUsageSpecialization
+		//checkCaseUsageSubcaseSpecialization
 		return isSubcase()? "subcase": super.getSubactionType();	
 	}
 		

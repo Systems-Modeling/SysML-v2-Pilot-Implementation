@@ -55,6 +55,7 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
+		//checkItemFlowSpecialization
 		return getDefaultSupertype("base");
 	}
 	

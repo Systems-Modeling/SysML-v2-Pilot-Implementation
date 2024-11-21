@@ -74,6 +74,7 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		OperatorExpression target = getTarget();
 		String operator = target.getOperator();
 		if (operator != null) {
+			//checkOperatorExpressionSpecialization
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), ExpressionUtil.getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();

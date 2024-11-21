@@ -42,9 +42,11 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 		return numEnds != 2?
 				//checkConnectionUsageSpecialization
 				//checkAllocationUsageSpecialization
+				//checkInterfaceDefinitionSpecialization
 				getDefaultSupertype("base"):
 				//checkConnectionUsageBinarySpecialization
 				//checkAllocationUsageSpecialization
+				//checkInterfaceDefinitionBinarySpecialization
 				getDefaultSupertype("binary");
 	}
 	

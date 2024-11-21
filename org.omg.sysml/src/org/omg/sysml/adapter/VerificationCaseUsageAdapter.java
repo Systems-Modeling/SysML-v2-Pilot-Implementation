@@ -38,6 +38,8 @@ public class VerificationCaseUsageAdapter extends CaseUsageAdapter {
 	
 	@Override
 	protected String getSubactionType() {
+		//checkVerificationCaseUsageSpecialization
+		//checkVerificationCaseUsageSubVerification
 		return isSubVerificationCase()? "subVerificationCase": super.getSubactionType();	
 	}
 		

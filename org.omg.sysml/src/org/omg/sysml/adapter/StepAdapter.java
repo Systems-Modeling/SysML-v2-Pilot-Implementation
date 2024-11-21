@@ -43,13 +43,17 @@ public class StepAdapter extends FeatureAdapter {
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
 			isStructureOwnedComposite()?
+				//checkStepOwnedPerformanceSpecialization
 				"ownedPerformance":
 			isBehaviorOwnedComposite()?
+				//checkStepSubperformanceSpecialization
 				"subperformance":
 			isBehaviorOwned()? 
+				//checkStepEnclosedPerformanceSpecialization
 				"enclosedPerformance":
 			isIncomingTransfer()?
 				"incomingTransfer":
+				//checkStepSpecialization
 				"base");
 	}
 	

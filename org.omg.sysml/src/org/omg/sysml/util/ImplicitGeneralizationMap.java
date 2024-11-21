@@ -44,41 +44,61 @@ public class ImplicitGeneralizationMap {
 		
 		// KerML
 		
+		//checkAssociationSpecialization
 		put(AssociationImpl.class, "base", "Links::Link");
+		//checkAssociationBinarySpecialization
 		put(AssociationImpl.class, "binary", "Links::BinaryLink");
 		
+		//checkAssociationStructureSpecialization
 		put(AssociationStructureImpl.class, "base", "Objects::LinkObject");
+		//checkAssociationStructureBinarySpecialization
 		put(AssociationStructureImpl.class, "binary", "Objects::BinaryLinkObject");
 		
+		//checkBehaviorSpecialization
 		put(BehaviorImpl.class, "base", "Performances::Performance");
 		
+		//checkBindingConnectorSpecialization
 		put(BindingConnectorImpl.class, "binary", "Links::selfLinks");
 		
+		//checkBooleanExpressionSpecialization
 		put(BooleanExpressionImpl.class, "base", "Performances::booleanEvaluations");
 		
+		//checkClassSpecialization
 		put(ClassImpl.class, "base", "Occurrences::Occurrence");
 		
 		put(ClassifierImpl.class, "base", "Base::Anything");
 		
+		//checkConnectorSpecialization
 		put(ConnectorImpl.class, "base", "Links::links");
+		//checkConnectorBinarySpecialization
 		put(ConnectorImpl.class, "binary", "Links::binaryLinks");
+		//checkConnectorObjectSpecialization
 		put(ConnectorImpl.class, "object", "Objects::linkObjects");
+		//checkConnectorBinaryObjectSpecialization
 		put(ConnectorImpl.class, "binaryObject", "Objects::binaryLinkObjects");
 		
+		//checkDataTypeSpecialization
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
+		//checkExpressionSpecialization
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
 		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
+		//checkFeatureSpecialization
 		put(FeatureImpl.class, "base", "Base::things");
+		//checkFeatureDataValueSpecialization
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
+		//checkFeatureOccurrenceSpecialization
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		
-		//checkOccurrenceUsageSuboccurrenceSpecialization
+		//checkFeatureSuboccurrenceSpecialization
 		put(FeatureImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 		
+		//checkFeaturePortionSpecialization
 		put(FeatureImpl.class, "portion", "Occurrences::Occurrence::portions");
+		//checkFeatureObjectSpecialization
 		put(FeatureImpl.class, "object", "Objects::objects");
+		//checkFeatureSubobjectSpecialization
 		put(FeatureImpl.class, "subobject", "Objects::Object::subobjects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		//checkAssignmentActionUsageStartingAtRedefinition
@@ -86,15 +106,21 @@ public class ImplicitGeneralizationMap {
 		//checkAssignmentActionUsageAccessedFeatureRedefinition
 		put(FeatureImpl.class, "accessedFeature", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
 		
+		//checkFeatureChainExpressionTargetRedefinition
 		put(FeatureChainExpressionImpl.class, "target", "ControlFunctions::'.'::source::target");
 		
+		//checkFunctionSpecialization
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
+		//checkInvariantSpecialization
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
+		//checkInvariantSpecialization
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
+		//checkItemFeatureRedefinition
 		put(ItemFeatureImpl.class, "payload", "Transfers::Transfer::item");
 		
+		//checkItemFlowSpecialization
 		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
 		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
@@ -103,25 +129,34 @@ public class ImplicitGeneralizationMap {
 		put(ItemFlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
 		put(ItemFlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
 		
+		//checkLiteralBooleanSpecialization
 		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
 		
+		//checkLiteralExpressionSpecialization
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
+		//checkLiteralInfinitySpecialization
 		put(LiteralInfinityImpl.class, "base", "Performances::literalIntegerEvaluations");
 		
+		//checkLiteralIntegerSpecialization
 		put(LiteralIntegerImpl.class, "base", "Performances::literalIntegerEvaluations");
 		
+		//checkLiteralRationalSpecialization
 		put(LiteralRationalImpl.class, "base", "Performances::literalRationalEvaluations");
 		
+		//checkLiteralStringSpecialization
 		put(LiteralStringImpl.class, "base", "Performances::literalStringEvaluations");
 		
+		//checkMetaclassSpecialization
 		put(MetaclassImpl.class, "base", "Metaobjects::Metaobject");
+		//checkMetadataFeatureSpecialization
 		put(MetadataFeatureImpl.class, "base", "Metaobjects::metaobjects");
 		put(MetadataFeatureImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		put(MetadataFeatureImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
 		put(MetadataAccessExpressionImpl.class, "base", "Performances::metadataAccessEvaluations");
 
+		//checkMultiplicitySpecialization
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
@@ -129,26 +164,36 @@ public class ImplicitGeneralizationMap {
 		put(MultiplicityRangeImpl.class, "feature", "Base::naturals");
 		put(MultiplicityRangeImpl.class, "classifier", "Base::naturals");
 		
+		//checkNullExpressionSpecialization
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		
+		//checkPredicateSpecialization
 		put(PredicateImpl.class, "base", "Performances::BooleanEvaluation");
 		
+		//checkStepSpecialization
 		put(StepImpl.class, "base", "Performances::performances");
+		//checkStepEnclosedPerformanceSpecialization
 		put(StepImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		//checkStepSubperformanceSpecialization
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(StepImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		put(StepImpl.class, "incomingTransfer", "Occurrences::Occurrence::incomingTransfers");
 		put(StepImpl.class, "featureWrite", "FeatureReferencingPerformances::FeatureWritePerformance");
 		
+		//checkStructureSpecialization
 		put(StructureImpl.class, "base", "Objects::Object");
 		
+		//checkSuccessionSpecialization
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
+		//checkSuccessionItemFlowSpecialization
 		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
 		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
 		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-
+		
+		//checkTypeSpecialization
 		put(TypeImpl.class, "base", "Base::Anything");
 
 		// SysML
@@ -191,8 +236,11 @@ public class ImplicitGeneralizationMap {
 		//checkAllocationUsageSpecialization
 		put(AllocationUsageImpl.class, "binary", "Allocations::allocations");
 		
+		//checkAnalysisCaseDefinitionSpecialization
 		put(AnalysisCaseDefinitionImpl.class, "base", "AnalysisCases::AnalysisCase");
+		//checkAnalysisCaseUsageSpecialization
 		put(AnalysisCaseUsageImpl.class, "base", "AnalysisCases::analysisCases");
+		//checkAnalysisCaseUsageSubAnalysisCaseSpecialization
 		put(AnalysisCaseUsageImpl.class, "subAnalysisCase", "AnalysisCases::AnalysisCase::subAnalysisCases");
 		
 		//checkAssertConstraintUsageSpecialization
@@ -218,10 +266,14 @@ public class ImplicitGeneralizationMap {
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
 		//checkCalculationUsageSpecialization
 		put(CalculationUsageImpl.class, "base", "Calculations::calculations");
+		//checkCalculationUsageSubcalculationSpecialization
 		put(CalculationUsageImpl.class, "subcalculation", "Calculations::Calculation::subcalculations");
 		
+		//checkCaseDefinitionSpecialization
 		put(CaseDefinitionImpl.class, "base", "Cases::Case");
+		//checkCaseUsageSpecialization
 		put(CaseUsageImpl.class, "base", "Cases::cases");
+		//checkCaseUsageSubcaseSpecialization
 		put(CaseUsageImpl.class, "subcase", "Cases::Case::subcases");
 		
 		//checkConcernDefinitionSpecialization
@@ -260,7 +312,7 @@ public class ImplicitGeneralizationMap {
 		//checkEventOccurrenceUsageSpecialization
 		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::timeEnclosedOccurrences");
 		
-		//checkStateUsageSpecialization
+		//checkExhibitStateUsageSpecialization
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
 		//checkFlowConnectionDefinitionSpecialization
@@ -276,7 +328,7 @@ public class ImplicitGeneralizationMap {
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
-		//checkForLoopActionUsageSubactionSpecialization
+		//checkForLoopActionUsageSpecialization
 		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
 		//checkForLoopActionUsageSubactionSpecialization
 		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");
@@ -290,15 +342,21 @@ public class ImplicitGeneralizationMap {
 		put(IfActionUsageImpl.class, "base", "Actions::ifThenActions");
 		//checkIfActionUsageSpecialization
 		put(IfActionUsageImpl.class, "ifThenElse", "Actions::ifThenElseActions");
+		//checkIfActionUsageSubactionSpecialization
 		put(IfActionUsageImpl.class, "subaction", "Actions::Action::ifSubactions");
 		
+		//checkIncludeUseCaseSpecialization
 		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
+		//checkPerformActionUsageSpecialization
 		put(IncludeUseCaseUsageImpl.class, "performedAction", "Parts::Part::performedActions");
 		
 		//checkInterfaceDefinitionSpecialization
 		put(InterfaceDefinitionImpl.class, "base", "Interfaces::Interface");
+		//checkInterfaceDefinitionBinarySpecialization
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::BinaryInterface");
+		//checkInterfaceDefinitionSpecialization
 		put(InterfaceUsageImpl.class, "base", "Interfaces::interfaces");
+		//checkInterfaceUsageBinarySpecialization
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::binaryInterfaces");
 		
 		//checkItemDefinitionSpecialization
@@ -315,7 +373,9 @@ public class ImplicitGeneralizationMap {
 		//checkLifeClassLifeSpecialization
 		put(LifeClassImpl.class, "base", "Occurrences::Life");
 		
+		//checkMetadataDefinitionSpecialization
 		put(MetadataDefinitionImpl.class, "base", "Metadata::MetadataItem");
+		//checkMetadataUsageSpecialization
 		put(MetadataUsageImpl.class, "base", "Metadata::metadataItems");
 		put(MetadataUsageImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		put(MetadataUsageImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
@@ -347,6 +407,7 @@ public class ImplicitGeneralizationMap {
 		//checkPartUsageStakeholderSpecialization
 		put(PartUsageImpl.class, "requirementStakeholder", "Requirements::RequirementCheck::stakeholders");
 		
+		//checkPerformActionUsageSpecialization
 		put(PerformActionUsageImpl.class, "performedAction", "Parts::Part::performedActions");
 		
 		//checkPortDefinitionSpecialization
@@ -358,11 +419,15 @@ public class ImplicitGeneralizationMap {
 		//checkPortUsageSubportSpecialization
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
+		//checkRenderingDefinitionSpecialization
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
+		//checkRenderingUsageSpecialization
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
+		//checkRenderingUsageSubrenderingSpecialization
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
 		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
 		
+		//checkRequirementDefinitionSpecialization
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		//checkRequirementUsageSpecialization
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
@@ -374,7 +439,9 @@ public class ImplicitGeneralizationMap {
 		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
 		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");
 		
+		//checkSendActionUsageSpecialization
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
+		//checkSendActionUsageSubactionSpecialization
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		
 		//checkStateDefinitionSpecialization
@@ -410,23 +477,37 @@ public class ImplicitGeneralizationMap {
 		//checkTriggerInvocationExpressionSpecialization
 		put(TriggerInvocationExpressionImpl.class, "after", "Triggers::TriggerAfter");
 		
+		//checkUseCaseDefinitionSpecialization
 		put(UseCaseDefinitionImpl.class, "base", "UseCases::UseCase");
+		//checkUseCaseUsageSpecialization
 		put(UseCaseUsageImpl.class, "base", "UseCases::useCases");
+		//checkUseCaseUsageSubUseCaseSpecialization
 		put(UseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::subUseCases");
 		
+		//checkVerificationCaseSpecialization
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
+		//checkVerificationCaseUsageSpecialization
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");
+		//checkVerificationCaseUsageSubVerification
 		put(VerificationCaseUsageImpl.class, "subVerificationCase", "VerificationCases::VerificationCase::subVerificationCases");
 		
+		//checkViewDefinitionSpecialization
 		put(ViewDefinitionImpl.class, "base", "Views::View");
+		//checkViewpointUsageSpecialization
 		put(ViewUsageImpl.class, "base", "Views::views");
+		//checkViewUsageSubviewSpecialization
 		put(ViewUsageImpl.class, "subview", "Views::View::subviews");
-
+		
+		//checkViewpointDefinitionSpecialization
 		put(ViewpointDefinitionImpl.class, "base", "Views::ViewpointCheck");
+		//checkViewpointUsageSpecialization
 		put(ViewpointUsageImpl.class, "base", "Views::viewpointChecks");
+		//checkViewpointUsageViewpointSatisfactionSpecialization
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
 		
+		//checkWhileLoopActionUsageSpecialization
 		put(WhileLoopActionUsageImpl.class, "base", "Actions::whileLoopActions");
+		//checkWhileLoopActionUsageSubactionSpecialization
 		put(WhileLoopActionUsageImpl.class, "subaction", "Actions::Action::whileLoops");
 		
 	}

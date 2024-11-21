@@ -44,6 +44,7 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
+		//checkTriggerInvocationExpressionSpecialization
 		TriggerInvocationExpression target = getTarget();
 		TriggerKind kind = target.getKind();
 		if (kind != null) {

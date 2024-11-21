@@ -65,6 +65,9 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
+		//checkAcceptActionUsageSpecialization
+		//checkSendActionUsageSpecialization
+		//checkWhileLoopActionUsageSpecialization
 		return getDefaultSupertype("base");
 	}
 	
@@ -74,8 +77,6 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	}
 	
 	protected String getSubactionType() {
-		//TODO checkAcceptActionUsageSpecialization?
-		
 		//checkAcceptActionUsageSubactionSpecialization
 		//checkActionUsageSubactionSpecialization
 		//checkDecisionNodeSpecialization
@@ -84,6 +85,9 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		//checkIfActionUsageSubactionSpecialization
 		//checkJoinNodeSpecialization
 		//checkMergeNodeSpecialization
+		//checkAssignmentActionUsageSubactionSpecialization
+		//checkSendActionUsageSubactionSpecialization
+		//checkWhileLoopActionUsageSubactionSpecialization
 		return isActionOwnedComposite()? "subaction": 
 			//checkActionUsageOwnedActionSpecialization
 			//checkStateUsageOwnedStateSpecialization

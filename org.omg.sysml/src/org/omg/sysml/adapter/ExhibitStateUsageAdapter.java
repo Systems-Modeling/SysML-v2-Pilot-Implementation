@@ -38,6 +38,7 @@ public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isPerformedAction()) {
+			//checkExhibitStateUsageSpecialization
 			addDefaultGeneralType("performedAction");
 		}
 	}

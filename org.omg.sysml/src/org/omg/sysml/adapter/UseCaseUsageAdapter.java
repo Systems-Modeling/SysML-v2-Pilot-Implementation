@@ -33,6 +33,8 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 	
 	@Override
 	protected String getSubactionType() {
+		//checkUseCaseUsageSpecialization
+		//checkUseCaseUsageSubUseCaseSpecialization
 		return isSubUseCase()? "subUseCase": super.getSubactionType();	
 	}
 		

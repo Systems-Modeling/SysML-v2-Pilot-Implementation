@@ -237,11 +237,13 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
+			//checkFeatureValuationSpecialization
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 		}
 		
 		if (isAssociationEnd() && 
 				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+			//checkFeatureEndSpecialization
 			addDefaultGeneralType("participant");
 		}
 	}
@@ -249,12 +251,19 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
+			//checkFeatureObjectSpecialization
+			//checkFeatureSubobjectSpecialization
 			hasStructureType()? isSubobject()? "subobject": "object":
 			hasClassType()? 
+					//checkFeatureSuboccurrenceSpecialization
 					isSuboccurrence()? "suboccurrence": 
+					//checkFeaturePortionSpecialization
 					isPortion()? "portion":
+					//checkFeatureOccurrenceSpecialization
 					"occurrence":
+			//checkFeatureDataValueSpecialization
 			hasDataType()? "dataValue":
+			//checkFeatureSpecialization
 			"base");
 	}
 	
@@ -483,6 +492,7 @@ public class FeatureAdapter extends TypeAdapter {
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
 		return type == null? Collections.emptyList():
+				//checkFeatureEndRedefinition
 			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
 			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
 			   TypeUtil.getRelevantFeaturesOf(type);

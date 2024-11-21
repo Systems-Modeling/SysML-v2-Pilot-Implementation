@@ -43,14 +43,17 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isViewRendering()) {
+			//checkRenderingUsageRedefinition
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getLibraryType(getDefaultSupertype("viewRendering")));
 		}
 	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubrendering()? 
+		return isSubrendering()?
+						//checkRenderingUsageSubrenderingSpecialization
 					getDefaultSupertype("subrendering"):
+						//checkRenderingUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

@@ -48,6 +48,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 					getDefaultSupertype("classifier"):
 			   owner instanceof Feature?
 					getDefaultSupertype("feature"):
+						//checkMultiplicitySpecialization
 					getDefaultSupertype("base");
 	}
 	
@@ -59,6 +60,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkMultiplicityTypeFeaturing
 		addImplicitFeaturingTypesIfNecessary();
 	}
 

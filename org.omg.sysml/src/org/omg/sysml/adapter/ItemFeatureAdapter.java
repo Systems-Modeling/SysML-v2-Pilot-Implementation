@@ -43,6 +43,7 @@ public class ItemFeatureAdapter extends FeatureAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
+		//checkItemFeatureRedefinition
 		return getDefaultSupertype("payload");
 	}
 

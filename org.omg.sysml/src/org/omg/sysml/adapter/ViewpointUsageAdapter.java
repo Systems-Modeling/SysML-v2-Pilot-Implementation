@@ -40,7 +40,9 @@ public class ViewpointUsageAdapter extends RequirementUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isSatisfiedViewpoint()?
+						//checkViewpointUsageViewpointSatisfactionSpecialization
 					getDefaultSupertype("satisfied"):
+						//checkViewpointUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

@@ -130,7 +130,9 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkInvocationExpressionConstructorBindingConnector
 		createSelfResultConnector();
+		//checkInvocationExpressionDefaultValueBindingConnector
 		addResultTyping();
 	}
 	

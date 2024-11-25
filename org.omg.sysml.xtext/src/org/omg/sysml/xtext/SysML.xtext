@@ -1452,17 +1452,27 @@ ArgumentExpressionValue returns SysML::FeatureValue :
 ;
 
 SendNode returns SysML::SendActionUsage :
-	OccurrenceUsagePrefix SendNodeDeclaration ActionBody
+	OccurrenceUsagePrefix ActionNodeUsageDeclaration? 'send' 
+	( ActionBody
+	| ( => 
+		( ownedRelationship += NodeParameterMember SenderReceiverPart?
+	    | ownedRelationship += EmptyParameterMember SenderReceiverPart
+	    )
+	    ActionBody
+	  )
+	)
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
-	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
-	( 'via' ownedRelationship += NodeParameterMember 
+	ActionNodeUsageDeclaration? 'send' 
+	ownedRelationship += NodeParameterMember SenderReceiverPart?
+;
+
+fragment SenderReceiverPart returns SysML::ActionUsage :
+	'via' ownedRelationship += NodeParameterMember 
+	  ( 'to' ownedRelationship += NodeParameterMember )?
 	| ownedRelationship += EmptyParameterMember
-	)
-	( 'to' ownedRelationship += NodeParameterMember
-	| ownedRelationship += EmptyParameterMember	
-	)
+	  'to' ownedRelationship += NodeParameterMember
 ;
 
 NodeParameterMember returns SysML::ParameterMembership :

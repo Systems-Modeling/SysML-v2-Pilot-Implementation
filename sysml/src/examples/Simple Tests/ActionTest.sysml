@@ -25,6 +25,19 @@ package ActionTest {
 			else done;
 	}
 	
+	action a2 {
+		in s : S;
+		action aa {
+			out part target;
+		}
+		flow aa.target to snd.receiver;
+		action snd send { 
+			:>> payload = s;
+		}
+		action snd2 send via this to aa.target;
+		bind s = snd2.payload;
+	}
+	
 	action b {
 		attribute f : ScalarValues::Boolean;
 		ref action a : A;

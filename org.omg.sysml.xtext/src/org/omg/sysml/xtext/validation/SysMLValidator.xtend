@@ -275,12 +275,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE = "validatePerformActionUsageReference"
 	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG = "Must reference an action."
 	
-	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS = "validateSendActionUsageParameter"
-	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG = "A send action usage must have three input parameters."
-	public static val INVALID_SEND_ACTION_USAGE_RECEIVER = "validateSendActionReceiver_"
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT = "validateSendActionUsagePayloadArgument"
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG = 'A send action must have a payload.'
+	public static val INVALID_SEND_ACTION_USAGE_RECEIVER = "validateSendActionUsageReceiver_"
 	public static val INVALID_SEND_ACTION_USAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
-	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
-	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
 	
 	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE = "validateForLoopActionUsageLoopVariable"
 	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG ="A for loop action must have a loop variable."
@@ -847,15 +845,13 @@ class SysMLValidator extends KerMLValidator {
 			warning(INVALID_SEND_ACTION_USAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SEND_ACTION_USAGE_RECEIVER)
 		}
 		
-		// payloadArgument has multiplicity 1
-		if (usg.payloadArgument === null) {
-			error(INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG)
+		// validateSendActionPayloadArgument
+		val featureMembership = usg.featureMembership
+		if ((featureMembership instanceof StateSubactionMembership || 
+			 featureMembership instanceof TransitionFeatureMembership) && 
+			usg.payloadArgument === null) {
+			error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
 		} 
-
-		// validateSendActionParameters
-		if (usg.inputParameters.size < 3) {
-			error(INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PARAMETERS)
-		}
 	}
 	
 	@Check

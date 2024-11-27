@@ -7799,26 +7799,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedRelationshipPayloadParameterMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Keyword cViaKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_1_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cViaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
 		
 		//fragment AcceptParameterPart returns SysML::ActionUsage :
 		//    ownedRelationship += PayloadParameterMember
-		//    ( 'via' ownedRelationship += NodeParameterMember
-		//    | ownedRelationship += EmptyParameterMember
-		//    )
+		//    ( 'via' ownedRelationship += NodeParameterMember )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelationship += PayloadParameterMember
-		//( 'via' ownedRelationship += NodeParameterMember
-		//| ownedRelationship += EmptyParameterMember
-		//)
+		//( 'via' ownedRelationship += NodeParameterMember )?
 		public Group getGroup() { return cGroup; }
 		
 		//ownedRelationship += PayloadParameterMember
@@ -7827,28 +7820,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//PayloadParameterMember
 		public RuleCall getOwnedRelationshipPayloadParameterMemberParserRuleCall_0_0() { return cOwnedRelationshipPayloadParameterMemberParserRuleCall_0_0; }
 		
-		//( 'via' ownedRelationship += NodeParameterMember
-		//| ownedRelationship += EmptyParameterMember
-		//)
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//'via' ownedRelationship += NodeParameterMember
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		//( 'via' ownedRelationship += NodeParameterMember )?
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'via'
-		public Keyword getViaKeyword_1_0_0() { return cViaKeyword_1_0_0; }
+		public Keyword getViaKeyword_1_0() { return cViaKeyword_1_0; }
 		
 		//ownedRelationship += NodeParameterMember
-		public Assignment getOwnedRelationshipAssignment_1_0_1() { return cOwnedRelationshipAssignment_1_0_1; }
-		
-		//NodeParameterMember
-		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_1_0_1_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_1_0_1_0; }
-		
-		//ownedRelationship += EmptyParameterMember
 		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
 		
-		//EmptyParameterMember
-		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0; }
+		//NodeParameterMember
+		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_1_1_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_1_1_0; }
 	}
 	public class PayloadParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PayloadParameterMember");
@@ -17840,9 +17822,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment AcceptParameterPart returns SysML::ActionUsage :
 	//    ownedRelationship += PayloadParameterMember
-	//    ( 'via' ownedRelationship += NodeParameterMember
-	//    | ownedRelationship += EmptyParameterMember
-	//    )
+	//    ( 'via' ownedRelationship += NodeParameterMember )?
 	//;
 	public AcceptParameterPartElements getAcceptParameterPartAccess() {
 		return pAcceptParameterPart;

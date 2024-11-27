@@ -1402,9 +1402,7 @@ fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
 	ownedRelationship += PayloadParameterMember
-	( 'via' ownedRelationship += NodeParameterMember 
-	| ownedRelationship += EmptyParameterMember
-	)
+	( 'via' ownedRelationship += NodeParameterMember )?
 ;
 
 PayloadParameterMember returns SysML::ParameterMembership :

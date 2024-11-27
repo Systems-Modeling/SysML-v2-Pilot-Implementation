@@ -1054,7 +1054,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' 'terminate' (ambiguity) (rule end)
 	 *     isVariation?='variation' ActionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ActionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
@@ -1074,6 +1073,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedSubsetting 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PayloadParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'terminate' (ambiguity) (rule end)
@@ -1687,7 +1687,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
@@ -1695,6 +1694,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PayloadParameterMember (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

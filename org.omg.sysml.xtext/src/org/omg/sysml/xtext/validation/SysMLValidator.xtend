@@ -231,8 +231,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ALLOCATION_USAGE_TYPE = "validateAllocationUsageType_"
 	public static val INVALID_ALLOCATION_USAGE_TYPE_MSG = "An allocation must be typed by allocation definitions."
 	
-	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS = "validateAcceptActionUsageParameter"
-	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG = "An accept action must have two input parameters."
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS = "validateAcceptActionUsageParameters"
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG = "An accept action must have a payload parameter."
 	
 	public static val INVALID_ACTION_USAGE_TYPE = "validateActionUsageType_"
 	public static val INVALID_ACTION_USAGE_TYPE_MSG = "An action must be typed by action definitions."
@@ -709,7 +709,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkAcceptActionUsage(AcceptActionUsage usg) {
 		// validateAcceptActionUsageParameters
-		if (usg.inputParameters.size < 2) {
+		if (usg.inputParameters.empty) {
 			error(INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_ACCEPT_ACTION_USAGE_PARAMETERS)
 		}
 	}

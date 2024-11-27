@@ -13397,38 +13397,16 @@ ruleAcceptParameterPart[EObject in_current]  returns [EObject current=in_current
 			)
 		)
 		(
-			(
-				otherlv_1='via'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getAcceptParameterPartAccess().getViaKeyword_1_0_0());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getAcceptParameterPartAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_1_0_1_0());
-						}
-						lv_ownedRelationship_2_0=ruleNodeParameterMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getAcceptParameterPartRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_2_0,
-								"org.omg.sysml.xtext.SysML.NodeParameterMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-			    |
+			otherlv_1='via'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getAcceptParameterPartAccess().getViaKeyword_1_0());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAcceptParameterPartAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getAcceptParameterPartAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_1_1_0());
 					}
-					lv_ownedRelationship_3_0=ruleEmptyParameterMember
+					lv_ownedRelationship_2_0=ruleNodeParameterMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAcceptParameterPartRule());
@@ -13436,13 +13414,13 @@ ruleAcceptParameterPart[EObject in_current]  returns [EObject current=in_current
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_3_0,
-							"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.xtext.SysML.NodeParameterMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)
+		)?
 	)
 ;
 

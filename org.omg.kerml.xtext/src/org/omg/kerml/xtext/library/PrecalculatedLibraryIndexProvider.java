@@ -23,10 +23,10 @@
 package org.omg.kerml.xtext.library;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
@@ -61,7 +61,7 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	@Override
 	public LibraryIndex getIndexFor(Resource resource) {
 		
-		if (disabled) {
+		if (disabled || resource == null) {
 			//return empty index
 			return LibraryIndex.EMPTY_INDEX;
 		}
@@ -77,14 +77,13 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 			File indexFile = getIndexFile(resourceURI);
 			
 			if (indexFile == null || !indexFile.exists()) return LibraryIndex.EMPTY_INDEX;
-			
-			try (FileReader fileReader = new FileReader(indexFile)){
-				
-				index = LibraryIndex.fromJson(fileReader);
-				
+
+            try (FileInputStream fis = new FileInputStream(indexFile);
+                 InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8)) {
+                index = LibraryIndex.fromJson(isr);
 			} catch (FileNotFoundException e) {
 				//NOOP, return empty index
-			} catch (IOException e) {
+			} catch (Exception e) {
 				if (log.isDebugEnabled()) {
 					log.debug(e.getMessage(), e);
 				}
@@ -103,13 +102,12 @@ public class PrecalculatedLibraryIndexProvider implements ILibraryIndexProvider 
 	}
 	
 	private File getIndexFile(URI uri) {
-		var segments = Arrays.asList(uri.segments());
-		if (segments.contains(LIBRARY_FOLDER)) {
-			String pathString = uri.path();
-			String indexPath = pathString.split(LIBRARY_FOLDER)[0] + LIBRARY_FOLDER + File.separator + LibraryIndex.FILE_NAME;
-			return new File(indexPath);
-		}
-		return null;
+		String fileString = uri.toFileString();
+		if (fileString == null) return null;
+		int idx = fileString.lastIndexOf(LIBRARY_FOLDER);
+ 		if (idx < 0) return null;
+		String parentPath = fileString.substring(0, idx + LIBRARY_FOLDER.length());
+		return new File(parentPath, LibraryIndex.FILE_NAME);
 	}
 	
 	public static synchronized PrecalculatedLibraryIndexProvider getInstance() {

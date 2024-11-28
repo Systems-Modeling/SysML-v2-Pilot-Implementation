@@ -110,6 +110,8 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
         s = SysML2PlantUMLText.getStereotypeName(f);
         if (s.endsWith("s")) {
             return s + "es";
+        } else if (s.endsWith("data")) {
+            return s;
         } else {
             return s + "s";
         }

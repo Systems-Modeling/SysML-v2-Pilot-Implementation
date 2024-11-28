@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021-2022 Mgnite Inc.
+ * Copyright (c) 2021-2024 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -31,64 +31,108 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.util.FeatureUtil;
 
 public class VMetadata extends Visitor {
-    private boolean hideMetadata;
+    private final boolean hideMetadata;
     
     public VMetadata(Visitor v) {
     	super(v, true);
         hideMetadata = styleBooleanValue("hideMetadata");
 	}
     
-    private final String metadataTitle = "«metadata»";
-    private final int INDENT = 2;
+    private static final String metadataTitle = "«metadata»";
+    private static final int INDENT = 2;
 
-    private void indent(StringBuilder sb, int len) {
+
+    public static boolean isEmptyMetadata(MetadataFeature mf) {
+        return mf.getOwnedMembership().isEmpty();
+    }
+
+    public boolean isHidden(MetadataFeature mf) {
+        return hideMetadata || isEmptyMetadata(mf);
+    }
+
+    private static void indent(StringBuilder sb, int len) {
+        if (len == 0) return;
+        sb.append("\"\"");
         for (int i = 0; i < len; i++) {
             sb.append(' ');
         }
+        sb.append("\"\"");
     }
 
-    private int addMetadataText(Feature mf, StringBuilder sb, int indent, int maxWidth) {
-        boolean first = true;
-        for (Feature f: mf.getOwnedFeature()) {
-            String name = getFeatureChainName(f);
-            if (first) {
-                if (indent > 0) {
-                    sb.append(" {\n");
+    private int addMetadataText(Feature mf, StringBuilder sb, int indent, int maxWidth, boolean rec) {
+        boolean brace = false;
+        for (Membership ms: toOwnedMembershipArray(mf)) {
+            Element e = ms.getMemberElement();
+            if (ms instanceof FeatureValue) continue;
+            if (e instanceof MetadataFeature) {
+                String text = getMetadataFeatureText((MetadataFeature) e, indent);
+                if (text != null) {
+                    indent(sb, indent);
+                	sb.append('@');
+                    sb.append(text);
+                	sb.append('\n');
                 }
-                first = false;
-            }
-            int sLen = sb.length();
-            indent(sb, indent);
-            int added = 0;
-            if (name == null) {
-                sb.append(getText(mf));
-            } else {
-                sb.append(name);
-                FeatureValue fv = FeatureUtil.getValuationFor(f);
-                if (fv != null) {
-                    sb.append(" = ");
-                    sb.append(getText(fv.getValue()));
+            } else  if (e instanceof Feature) {
+                Feature f = (Feature) e;
+
+                String name = getFeatureChainName(f);
+                if (rec) {
+                    sb.append(" \"\"{\"\"\n");
+                    brace = true;
+                    rec = false;
                 }
-                int pos = sb.length();
-                maxWidth = addMetadataText(f, sb, indent + INDENT, maxWidth);
-                added = sb.length() - pos;
+                int sLen = sb.length();
+                indent(sb, indent);
+                int added = 0;
+                if (name == null) {
+                    sb.append(getText(mf));
+                } else {
+                    sb.append(name);
+                    FeatureValue fv = FeatureUtil.getValuationFor(f);
+                    if (fv != null) {
+                        sb.append(" = ");
+                        sb.append(getText(fv.getValue()));
+                    }
+                    int pos = sb.length();
+                    maxWidth = addMetadataText(f, sb, indent + INDENT, maxWidth, true);
+                    added = sb.length() - pos;
+                }
+                int eLen = sb.length() - added;
+                int width = eLen - sLen;
+                if (width > maxWidth) {
+                    maxWidth = width;
+                }
+                sb.append('\n');
             }
-            int eLen = sb.length() - added;
-            int width = eLen - sLen;
-            if (width > maxWidth) {
-                maxWidth = width;
-            }
-            sb.append('\n');
         }
-        if (indent > 0 && !first) {
-            sb.append('}');
+        if (brace) {
+        	indent(sb, indent - INDENT);
+            sb.append("\"\"}\"\"");
         }
         return maxWidth;
+    }
+
+    public String getMetadataFeatureText(MetadataFeature mf, int indent) {
+        if (isHidden(mf)) return null;
+        StringBuilder sb = new StringBuilder();
+
+        Metaclass dt = mf.getMetaclass();
+        if (dt != null) {
+            String name = dt.getName();
+            sb.append("\"\"");
+            sb.append(name);
+            sb.append("\"\"\n");
+        }
+        addMetadataText(mf, sb, indent + INDENT, 0, false);
+        int len = sb.length();
+        if (len == 0) return null;
+        return sb.substring(0, len - 1); // Trim the last line terminator.
     }
 
     private void addMetadataFeatureInternal(MetadataFeature mf) {
@@ -99,7 +143,7 @@ public class VMetadata extends Visitor {
 
         int maxWidth = metadataTitle.length() + 1;
         StringBuilder sb = new StringBuilder();
-        maxWidth = addMetadataText(mf, sb, 0, maxWidth);
+        maxWidth = addMetadataText(mf, sb, 0, maxWidth, false);
 
         int hWidth = (maxWidth - 1) / 2;
         // Determined by the wrap width.
@@ -132,20 +176,20 @@ public class VMetadata extends Visitor {
         append("end note\n");
     }
 
-	public void addMetadataFeature(MetadataFeature af) {
-        if (hideMetadata) return;
-        addMetadataFeatureInternal(af);
-        List<Element> es = af.getAnnotatedElement();
+	public void addMetadataFeature(MetadataFeature mf) {
+        if (isHidden(mf)) return;
+        addMetadataFeatureInternal(mf);
+        List<Element> es = mf.getAnnotatedElement();
         for (Element e: es) {
-        	addPRelation(null, af, e, af, null);
+        	addPRelation(null, mf, e, mf, null);
         }
     }
 
-	public void addMetadataFeature(MetadataFeature af, Element annotatedElement) {
-        if (hideMetadata) return;
-        addMetadataFeatureInternal(af);
+	public void addMetadataFeature(MetadataFeature mf, Element annotatedElement) {
+        if (isHidden(mf)) return;
+        addMetadataFeatureInternal(mf);
         if (annotatedElement != null) {
-        	addPRelation(null, af, annotatedElement, af, null);
+        	addPRelation(null, mf, annotatedElement, mf, null);
         }
     }
 }

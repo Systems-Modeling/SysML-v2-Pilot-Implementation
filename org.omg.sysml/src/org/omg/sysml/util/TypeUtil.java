@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -66,16 +67,28 @@ public class TypeUtil {
 	
 	// Inheritance
 	
-	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
 	}
 
-	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
 	}
 
-	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected, boolean excludeImplied) {
-		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, boolean includeProtected, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
+	}
+	
+	public static Collection<Feature> getAllFeaturesRedefinedBy(Type type) {
+		return type.getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+				collect(Collectors.toSet());
+	}
+	
+	public static Collection<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+		return type.getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
+				toList();
 	}
 
 	// Caching
@@ -288,6 +301,30 @@ public class TypeUtil {
 		}		
 	}
 	
+	public static Collection<ResultExpressionMembership> getOwnedResultExpressionMembershipsOf(Type type) {
+		return type.getOwnedMembership().stream().
+				filter(ResultExpressionMembership.class::isInstance).
+				map(ResultExpressionMembership.class::cast).toList();
+	}
+	
+	public static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type) {
+		return getResultExpressionMembershipsOf(type, new HashSet<>());
+	}
+	
+	private static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type, Set<Type> visited) {
+		visited.add(type);
+		getTypeAdapter(type).addAdditionalMembers();
+		Set<ResultExpressionMembership> resultExpressions = new HashSet<>(getOwnedResultExpressionMembershipsOf(type));
+		if (resultExpressions.isEmpty()) {
+			for (Type general: getSupertypesOf(type)) {
+				if (general != null && !visited.contains(general)) {
+					resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
+				}
+			}
+		}
+		return resultExpressions;
+	}
+
 	// Membership
 
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {

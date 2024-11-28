@@ -66,8 +66,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
 	
-	EList<Type> types = null;
-	
 	public FeatureAdapter(Feature element) {
 		super(element);
 	}
@@ -80,19 +78,38 @@ public class FeatureAdapter extends TypeAdapter {
 	// Inheritance
 	
 	@Override
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, 
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, Collection<Feature> redefinedFeatures, 
 			boolean includeProtected, boolean excludeImplied) {
-		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected, excludeImplied);
+		EList<Membership> inheritedMemberships = super.getInheritedMembership(excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied);
 		EList<FeatureChaining> featureChainings = getTarget().getOwnedFeatureChaining();
 		if (!featureChainings.isEmpty()) {
 			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
 			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, includeProtected, excludeImplied));
+				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(chainingFeature, excludedNamespaces, excludedTypes, redefinedFeatures, includeProtected, excludeImplied));
 			}
+		}
+		return inheritedMemberships;
+	}
+	
+	public boolean redefinesAnyOf(Collection<Feature> features, Set<Feature> visited) {
+		Feature feature = getTarget();
+		if (features.contains(feature) || features.stream().anyMatch(redefinedFeatures::contains)) {
+			return true;
+		} else {			
+			visited.add(feature);
+			for (var redefined: getRedefinedFeaturesWithComputed(null)) {
+				if (!visited.contains(redefined) && FeatureUtil.redefinesAnyOf(redefined, features, visited)) {
+					redefinedFeatures.add(redefined);
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 
 	// Caching
+	
+	EList<Type> types = null;
 	
 	public EList<Type> getTypes() {
 		return types;
@@ -102,11 +119,14 @@ public class FeatureAdapter extends TypeAdapter {
 		this.types = types;
 		return types;
 	}
+	
+	Collection<Feature> redefinedFeatures = new HashSet<>();
 		
 	@Override
 	public void clearCaches() {
 		super.clearCaches();
 		types = null;
+		redefinedFeatures.clear();
 	}
 	
 	// Implicit Elements
@@ -380,7 +400,8 @@ public class FeatureAdapter extends TypeAdapter {
 	public boolean isComputeRedefinitions() {
 		Feature target = getTarget();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!FeatureUtil.isParameter(target) ||
+				(!FeatureUtil.isParameter(target) || 
+				 FeatureUtil.isResultParameter(target) ||
 				 target.getOwnedRedefinition().isEmpty());
 	}
 	

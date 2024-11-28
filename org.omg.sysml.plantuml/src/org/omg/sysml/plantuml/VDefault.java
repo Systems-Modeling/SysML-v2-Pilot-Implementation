@@ -223,6 +223,14 @@ public class VDefault extends VTraverser {
         return "";
     }
 
+    private VMetadata vMetadata;
+    protected VMetadata getVMetadata() {
+        if (this.vMetadata == null) {
+            this.vMetadata = new VMetadata(this);
+        }
+        return vMetadata;
+    }
+
     @Override
     public String caseAnnotation(Annotation a) {
         AnnotatingElement ae = a.getAnnotatingElement();
@@ -232,7 +240,7 @@ public class VDefault extends VTraverser {
             v.addComment(c, a.getAnnotatedElement());
         } else if (ae instanceof MetadataFeature) {
             MetadataFeature af = (MetadataFeature) ae;
-            VMetadata v = new VMetadata(this);
+            VMetadata v = getVMetadata();
             v.addMetadataFeature(af, a.getAnnotatedElement());
         }
         return "";
@@ -240,7 +248,7 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseMetadataFeature(MetadataFeature af) {
-        VMetadata v = new VMetadata(this);
+        VMetadata v = getVMetadata();
         v.addMetadataFeature(af);
         return "";
     }

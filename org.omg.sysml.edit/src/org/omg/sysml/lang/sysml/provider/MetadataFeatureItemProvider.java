@@ -216,11 +216,11 @@ public class MetadataFeatureItemProvider extends FeatureItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||

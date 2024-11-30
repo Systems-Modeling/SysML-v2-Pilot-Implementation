@@ -9,8 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>FlowConnectionDefinition</code> is a <code>ConnectionDefinition</code> and <code>ActionDefinition</code> that is also an <code>Interaction</code> representing flows between <code>Usages</code>.</p>
- * specializesFromLibrary('Connections::MessageConnection')
+ * <p>A <code>FlowConnectionDefinition</code> is an <code>ActionDefinition</code> that is also an <code>Interaction</code> (which is both a KerML <code>Behavior</code> and <code>Association</code>), representing flows between <code>Usages</code>.</p>
+ * specializesFromLibrary('FlowConnections::MessageConnection')
  * <!-- end-model-doc -->
  *
  *
@@ -18,5 +18,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FlowConnectionDefinition extends ConnectionDefinition, ActionDefinition, Interaction {
+public interface FlowConnectionDefinition extends ActionDefinition, Interaction {
 } // FlowConnectionDefinition

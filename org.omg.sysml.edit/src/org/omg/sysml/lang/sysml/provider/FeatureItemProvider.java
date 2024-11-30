@@ -52,6 +52,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addTypePropertyDescriptor(object);
 			addOwnedRedefinitionPropertyDescriptor(object);
 			addOwnedSubsettingPropertyDescriptor(object);
+			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsCompositePropertyDescriptor(object);
 			addIsEndPropertyDescriptor(object);
 			addEndOwningTypePropertyDescriptor(object);
@@ -67,7 +68,6 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addDirectionPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
 			addFeatureTargetPropertyDescriptor(object);
-			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -675,10 +675,10 @@ public class FeatureItemProvider extends TypeItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||

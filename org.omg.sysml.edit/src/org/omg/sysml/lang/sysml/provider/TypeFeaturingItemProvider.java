@@ -43,9 +43,9 @@ public class TypeFeaturingItemProvider extends FeaturingItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwningFeatureOfTypePropertyDescriptor(object);
 			addFeatureOfTypePropertyDescriptor(object);
 			addFeaturingTypePropertyDescriptor(object);
+			addOwningFeatureOfTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -226,6 +226,8 @@ public class ImplicitGeneralizationMap {
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowConnectionUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(FlowConnectionUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
 		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
 		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");

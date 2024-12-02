@@ -218,9 +218,10 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");		
-		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
-		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
+		put(FlowConnectionDefinitionImpl.class, "base", "FlowConnections::MessageConnection");		
+		put(FlowConnectionDefinitionImpl.class, "binary", "FlowConnections::MessageTransferConnection");		
+		put(FlowConnectionUsageImpl.class, "base", "FlowConnections::flowConnections");
+		put(FlowConnectionUsageImpl.class, "message", "FlowConnections::messageConnections");
 		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
@@ -306,8 +307,8 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
-		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "FlowConnections::successionFlowConnections");
+		put(SuccessionFlowConnectionUsageImpl.class, "message", "FlowConnections::successionFlowConnections");
 
 		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");

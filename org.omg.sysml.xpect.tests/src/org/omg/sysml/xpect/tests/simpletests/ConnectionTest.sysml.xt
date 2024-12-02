@@ -12,6 +12,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/FlowConnections.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
@@ -28,6 +29,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/FlowConnections.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 			}
 		}

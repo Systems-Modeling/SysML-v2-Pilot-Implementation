@@ -253,6 +253,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseFlowConnectionDefinition(FlowConnectionDefinition element) {
+			return new FlowConnectionDefinitionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFlowConnectionUsage(FlowConnectionUsage element) {
 			return new FlowConnectionUsageAdapter(element);
 		}

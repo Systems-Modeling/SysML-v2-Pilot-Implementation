@@ -103,6 +103,7 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	public void computeImplicitGeneralTypes() {
 		//checkOccurrenceUsageTypeFeaturing
 		addOccurrenceTyping();
+		//checkPortioningFeatureSpecialization
 		addOccurrenceFeaturing();
 		super.computeImplicitGeneralTypes();
 	}

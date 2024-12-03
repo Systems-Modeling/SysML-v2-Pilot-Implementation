@@ -113,6 +113,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	}
 	
 	protected void addResultTyping() {
+		//checkFeatureInvocationExpressionResultSpecialization
 		Type expressionType = getExpressionType();
 		if (expressionType != null && 
 				!(expressionType instanceof Function || expressionType instanceof Expression)) {

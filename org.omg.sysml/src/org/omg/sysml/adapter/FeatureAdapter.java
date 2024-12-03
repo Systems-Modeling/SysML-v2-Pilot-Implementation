@@ -504,6 +504,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Expression.
 	 */
 	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
+		//checkFeatureResultRedefinition
 		if (type != null) {
 			if (FeatureUtil.isResultParameter(getTarget())) {
 				Feature resultParameter = TypeUtil.getResultParameterOf(type);
@@ -571,6 +572,7 @@ public class FeatureAdapter extends TypeAdapter {
 			Feature targetFeature = parameters.get(0);
 			List<Feature> features = targetFeature.getOwnedFeature();
 			if (!features.isEmpty()) {
+				//checkAssignmentActionUsageStartingAtRedefinition
 				Feature startingAtFeature = features.get(0);
 				TypeUtil.addDefaultGeneralTypeTo(startingAtFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("startingAt"));
 				TypeUtil.setIsAddImplicitGeneralTypesFor(startingAtFeature, false);
@@ -579,6 +581,7 @@ public class FeatureAdapter extends TypeAdapter {
 					Feature accessedFeature = features.get(0);
 					//checkAssignmentActionUsageAccessedFeatureRedefinition
 					TypeUtil.addDefaultGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
+					//checkAssignmentActionUsageReferentRedefinition
 					if (referent != null) {
 						TypeUtil.addImplicitGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), referent);
 					}
@@ -589,6 +592,7 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 
 	protected void computeValueConnector() {
+		//checkFeatureValueBindingConnector
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null) {
@@ -606,6 +610,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
+		//checkFeatureValueBindingConnector
 		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();

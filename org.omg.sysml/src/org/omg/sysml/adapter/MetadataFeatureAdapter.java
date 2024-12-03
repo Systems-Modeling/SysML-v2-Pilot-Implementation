@@ -50,6 +50,7 @@ public class MetadataFeatureAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkMetadataFeatureSemanticSpecialization
 		AnnotatingElementAdapter.transformAnnotatingElement(getTarget());
 	}
 

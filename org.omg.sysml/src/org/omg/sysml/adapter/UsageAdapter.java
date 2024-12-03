@@ -145,6 +145,7 @@ public class UsageAdapter extends FeatureAdapter {
 		FeatureValue valuation = FeatureUtil.getValuationFor(usage);
 		if (valuation == null && UsageUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
+			//checkSatisfyRequirementUsageBindingConnector
 			if (subjectParameter != null) {
 				addBindingConnector(subjectParameter, usage);
 			}

@@ -82,6 +82,7 @@ public class ImplicitGeneralizationMap {
 		
 		//checkExpressionSpecialization
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
+		//checkStepSubperformanceSpecialization
 		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
 		//checkFeatureSpecialization
@@ -122,8 +123,11 @@ public class ImplicitGeneralizationMap {
 		
 		//checkItemFlowSpecialization
 		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
+		//checkStepEnclosedPerformanceSpecialization
 		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		//checkStepSubperformanceSpecialization
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
 		put(ItemFlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
@@ -189,8 +193,11 @@ public class ImplicitGeneralizationMap {
 		
 		//checkSuccessionItemFlowSpecialization
 		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
+		//checkStepEnclosedPerformanceSpecialization
 		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
+		//checkStepSubperformanceSpecialization
 		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
 		//checkTypeSpecialization
@@ -212,7 +219,9 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		//checkActionUsageOwnedActionSpecialization
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		//checkStepEnclosedPerformanceSpecialization
 		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		//checkActionUsageStateActionRedefinition
 		put(ActionUsageImpl.class, "entry", "States::StateAction::entryAction");
@@ -259,7 +268,9 @@ public class ImplicitGeneralizationMap {
 		//checkAttributeUsageSpecialization
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		
+		//checkConnectorSpecialization
 		put(BindingConnectorAsUsageImpl.class, "base", "Links::links");
+		//??
 		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
 		
 		//checkCalculationDefinitionSpecialization
@@ -298,8 +309,11 @@ public class ImplicitGeneralizationMap {
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
 		//checkConstraintUsageCheckedConstraintSpecialization
 		put(ConstraintUsageImpl.class, "checkedConstraint", "Items::Item::checkedConstraints");
+		//checkStepEnclosedPerformanceSpecialization
 		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		//checkStepSubperformanceSpecialization
 		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(ConstraintUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		//checkConstraintUsageRequirementConstraintSpecialization
 		put(ConstraintUsageImpl.class, "assumption", "Requirements::RequirementCheck::assumptions");
@@ -322,10 +336,15 @@ public class ImplicitGeneralizationMap {
 		//checkFlowConnectionUsageSpecialization
 		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
 		
+		//checkActionUsageSubactionSpecialization
 		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
+		//checkActionUsageOwnedActionSpecialization
 		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		//checkStepEnclosedPerformanceSpecialization
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		//checkStepSubperformanceSpecialization
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
+		//checkStepOwnedPerformanceSpecialization
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
 		//checkForLoopActionUsageSpecialization
@@ -383,6 +402,7 @@ public class ImplicitGeneralizationMap {
 		//checkMergeNodeSpecialization
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
+		//checkOccurrenceDefinitionSpecialization
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		
 		//checkOccurrenceUsageSpecialization
@@ -425,6 +445,7 @@ public class ImplicitGeneralizationMap {
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
 		//checkRenderingUsageSubrenderingSpecialization
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
+		//checkRenderingUsageRedefinition
 		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
 		
 		//checkRequirementDefinitionSpecialization
@@ -436,7 +457,9 @@ public class ImplicitGeneralizationMap {
 		//checkRequirementUsageRequirementVerificationSpecialization
 		put(RequirementUsageImpl.class, "verification", "Verifications::VerificationCase::obj::requirementVerifications");
 		
+		//Missing from specification
 		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
+		//Missing from specification
 		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");
 		
 		//checkSendActionUsageSpecialization
@@ -455,12 +478,14 @@ public class ImplicitGeneralizationMap {
 		//checkStateUsageOwnedStateSpecialization
 		put(StateUsageImpl.class, "ownedAction", "Parts::Part::ownedStates");
 		
+		//checkConnectorSpecialization
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
+		//checkSuccessionSpecialization
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
 		//checkSuccessionFlowConnectionUsageSpecialization
 		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
-		//TODO: find semantic constraint
+		//checkSuccessionFlowConnectionUsageSpecialization
 		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
 		
 		//checkTransitionUsageSpecialization

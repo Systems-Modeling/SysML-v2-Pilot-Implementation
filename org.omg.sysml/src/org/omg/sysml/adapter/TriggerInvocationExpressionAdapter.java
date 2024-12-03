@@ -55,6 +55,7 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 	}
 	
 	public void addReceiverBinding() {
+		//checkAcceptActionUsageReceiverBindingConnector
 		TriggerInvocationExpression target = getTarget();
 		Feature receiverParameter = TypeUtil.getOwnedParameterOf(target, 1, Feature.class);
 		if (receiverParameter != null) {

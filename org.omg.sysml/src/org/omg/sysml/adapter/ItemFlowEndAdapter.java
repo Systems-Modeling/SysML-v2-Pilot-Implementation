@@ -97,6 +97,7 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		addItemFlowEndSubsetting();
+		//checkFeatureItemFlowFeatureRedefinition
 		addItemFlowFeatureRedefinition();
 		super.doTransform();
 	}

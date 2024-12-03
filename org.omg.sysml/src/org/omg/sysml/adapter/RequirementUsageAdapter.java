@@ -85,9 +85,7 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	
 	@Override
 	public void addAdditionalMembers() {
-		//checkSatisfyRequirementUsageBindingConnector?
 		UsageUtil.addSubjectParameterTo(getTarget());
 		super.addAdditionalMembers();
 	}
-	
 }

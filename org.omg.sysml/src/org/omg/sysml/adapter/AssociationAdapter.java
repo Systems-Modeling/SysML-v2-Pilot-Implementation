@@ -38,8 +38,10 @@ public class AssociationAdapter extends ClassifierAdapter {
 	protected String getDefaultSupertype() {
 		return getTarget().getOwnedEndFeature().size() != 2 ? 
 					//checkAssociationSpecialization
+					//checkAssociationStructureSpecialization
 				getDefaultSupertype("base") :
 					//checkAssociationBinarySpecialization
+					//checkAssociationStructureBinarySpecialization
 				getDefaultSupertype("binary");
 	}
 

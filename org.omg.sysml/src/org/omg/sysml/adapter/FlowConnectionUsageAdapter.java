@@ -44,21 +44,27 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isPartOwnedComposite()) {
+			//checkActionUsageOwnedActionSpecialization
 			addDefaultGeneralType("ownedAction");
 		} else if (isStructureOwnedComposite()) {
+			//checkStepOwnedPerformanceSpecialization
 			addDefaultGeneralType("ownedPerformance");
 		}
 		if (isActionOwnedComposite()) {
+			//checkActionUsageSubactionSpecialization
 			addDefaultGeneralType("subaction");
 		} else if (isBehaviorOwnedComposite()) {
+			//checkStepSubperformanceSpecialization
 			addDefaultGeneralType("subperformance");
 		} else if (isBehaviorOwned()) {
+			//checkStepEnclosedPerformanceSpecialization
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
 	
 	@Override
 	protected String getDefaultSupertype() {
+		//checkSuccessionFlowConnectionUsageSpecialization
 		//checkFlowConnectionUsageSpecialization
 		return UsageUtil.isMessageConnection(getTarget())?
 				getDefaultSupertype("message"):

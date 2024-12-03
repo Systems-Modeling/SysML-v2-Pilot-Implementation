@@ -67,6 +67,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	}
 
 	protected void addResultSubsetting() {
+		//checkFeatureFeatureReferenceResultSpecialization
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
 		// Note: Use getReferentFor here to avoid "self reference" default.

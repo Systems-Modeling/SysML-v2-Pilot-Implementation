@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
@@ -76,7 +76,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	protected void computeSource() {
 		TransitionUsage target = getTarget();
 		List<Membership> ownedMemberships = target.getOwnedMembership();
-		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof OwningMembership) {
+		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof ParameterMembership) {
 			Feature source = UsageUtil.getPreviousFeature(target);
 			Membership membership = SysMLFactory.eINSTANCE.createMembership();
 			membership.setMemberElement(source);

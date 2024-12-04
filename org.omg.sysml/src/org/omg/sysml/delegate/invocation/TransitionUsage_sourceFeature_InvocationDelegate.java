@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2023, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,23 +19,28 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.setting;
+package org.omg.sysml.delegate.invocation;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.UsageUtil;
 
-public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class TransitionUsage_sourceFeature_InvocationDelegate extends BasicInvocationDelegate {
 
-	public TransitionUsage_source_SettingDelegate(EStructuralFeature eStructuralFeature) {
-		super(eStructuralFeature);
+	public TransitionUsage_sourceFeature_InvocationDelegate(EOperation operation) {
+		super(operation);
 	}
-
+	
 	@Override
-	protected Feature basicGet(InternalEObject owner) {
-		Feature source = ((TransitionUsage)owner).sourceFeature();
-		return source == null? null: source.getFeatureTarget();
+	public Feature dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		TransitionUsage self = (TransitionUsage) target;		
+		return UsageUtil.getSourceFeatureOf(self);
 	}
 
 }

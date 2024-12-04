@@ -21,10 +21,10 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.FeatureUtil;
 
 public class Feature_featureTarget_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -35,8 +35,7 @@ public class Feature_featureTarget_SettingDelegate extends BasicDerivedObjectSet
 	@Override
 	protected Feature basicGet(InternalEObject owner) {
 		Feature feature = (Feature)owner;
-		EList<Feature> chainingFeatures = feature.getChainingFeature();
-		return chainingFeatures.isEmpty()? feature: chainingFeatures.get(chainingFeatures.size() - 1);
+		return FeatureUtil.getBasicFeatureOf(feature);
 	}
 
 }

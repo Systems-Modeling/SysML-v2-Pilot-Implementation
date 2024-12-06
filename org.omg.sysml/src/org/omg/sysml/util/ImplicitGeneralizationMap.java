@@ -183,7 +183,7 @@ public class ImplicitGeneralizationMap {
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		
-		put(BindingConnectorAsUsageImpl.class, "base", "Links::links");
+		put(BindingConnectorAsUsageImpl.class, "base", "Links::selfLinks");
 		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
 		
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
@@ -301,7 +301,7 @@ public class ImplicitGeneralizationMap {
 		put(StateUsageImpl.class, "exclusiveState", "States::StateAction::exclusiveStates");
 		put(StateUsageImpl.class, "ownedAction", "Parts::Part::ownedStates");
 		
-		put(SuccessionAsUsageImpl.class, "base", "Links::links");
+		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
 		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");

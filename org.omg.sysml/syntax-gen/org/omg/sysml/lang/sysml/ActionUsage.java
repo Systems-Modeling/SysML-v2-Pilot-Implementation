@@ -51,14 +51,6 @@ import org.eclipse.emf.common.util.EList;
  *     else
  *         redefinesFromLibrary('States::StateAction::exitAction')
  *     endif endif
- * owningType <> null and
- *     (owningType.oclIsKindOf(AnalysisCaseDefinition) and
- *         owningType.oclAsType(AnalysisCaseDefinition).analysisAction->
- *             includes(self) or
- *      owningType.oclIsKindOf(AnalysisCaseUsage) and
- *         owningType.oclAsType(AnalysisCaseUsage).analysisAction->
- *             includes(self)) implies
- *     specializesFromLibrary('AnalysisCases::AnalysisCase::analysisSteps')
  * <!-- end-model-doc -->
  *
  * <p>

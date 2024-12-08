@@ -550,13 +550,6 @@ public class VPath extends VTraverser {
         return "";
     }
 
-    private String addContextForTransitionUsageEnd(Feature tu, Feature end) {
-        PC pc = makeEndFeaturePC(end);
-        InheritKey ik = makeInheritKey(tu);
-        if (createRefPC(ik, pc) == null) return null;
-        return "";
-    }
-
     private String addContextForItemFlowEnd(ItemFlowEnd ife) {
         PC pc = makeEndFeaturePC(ife);
         if (pc == null) return null;
@@ -689,9 +682,6 @@ public class VPath extends VTraverser {
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
         Succession su = tu.getSuccession();
-        for (Feature end: su.getConnectorEnd()) {
-            addContextForTransitionUsageEnd(tu, end);
-        }
-        return "";
+        return caseConnector(su);
     }
 }

@@ -41,6 +41,8 @@ public class PortConjugationAdapter extends ConjugationAdapter {
 	
 	@Override
 	public void postProcess() {
+		super.postProcess();
+		
 		PortConjugation obj = getTarget();
 		
 		// If the originalPortDefinition is empty, then set it to the owner of the conjugatedPortDefinition

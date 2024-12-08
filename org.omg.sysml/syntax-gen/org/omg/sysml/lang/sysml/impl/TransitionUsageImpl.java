@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -283,6 +284,30 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		}
 	}
 	
+	/**
+	 * The cached invocation delegate for the '{@link #sourceFeature() <em>Source Feature</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #sourceFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate SOURCE_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TRANSITION_USAGE___SOURCE_FEATURE).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature sourceFeature() {
+		try {
+			return (Feature)SOURCE_FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
 	//
 
 	/**
@@ -410,6 +435,8 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		switch (operationID) {
 			case SysMLPackage.TRANSITION_USAGE___TRIGGER_PAYLOAD_PARAMETER:
 				return triggerPayloadParameter();
+			case SysMLPackage.TRANSITION_USAGE___SOURCE_FEATURE:
+				return sourceFeature();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

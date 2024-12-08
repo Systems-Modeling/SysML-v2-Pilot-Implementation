@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +29,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.FeatureUtil;
 
 public class TransitionUsage_target_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -42,7 +42,7 @@ public class TransitionUsage_target_SettingDelegate extends BasicDerivedObjectSe
 		if (relatedFeatures.size() < 2) {
 			return null;
 		} else {
-			Feature target = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(1));
+			Feature target = relatedFeatures.get(1).getFeatureTarget();
 			return target instanceof ActionUsage? (ActionUsage)target: null;
 		}
 	}

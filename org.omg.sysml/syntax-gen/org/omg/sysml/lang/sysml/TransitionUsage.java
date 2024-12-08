@@ -46,23 +46,19 @@ import org.eclipse.emf.common.util.EList;
  *     specializesFromLibrary('States::State::stateTransitions')
  * specializesFromLibrary('Actions::transitionActions')
  * source =
- *     if ownedMembership->isEmpty() then null
- *     else
- *         let member : Element = 
- *             ownedMembership->at(1).memberElement in 
- *         if not member.oclIsKindOf(ActionUsage) then null
- *         else member.oclAsKindOf(ActionUsage)
- *         endif
- *     endif
+ *     let sourceFeature : Feature = sourceFeature() in
+ *     if sourceFeature = null then null
+ *     else sourceFeature.featureTarget.oclAsType(ActionUsage)
  * target =
  *     if succession.targetFeature->isEmpty() then null
  *     else
- *         let targetFeature : Feature = 
- *             succession.targetFeature->at(1) in
+ *         let targetFeature : Feature =
+ *             succession.targetFeature->first().featureTarget in
  *         if not targetFeature.oclIsKindOf(ActionUsage) then null
  *         else targetFeature.oclAsType(ActionUsage)
  *         endif
  *     endif
+ * 
  * triggerAction = ownedFeatureMembership->
  *     selectByKind(TransitionFeatureMembership)->
  *     select(kind = TransitionFeatureKind::trigger).transitionFeature->
@@ -296,4 +292,23 @@ public interface TransitionUsage extends ActionUsage {
 	 * @generated
 	 */
 	ReferenceUsage triggerPayloadParameter();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>Feature</code> to be used as the <code>source</code> of the <code>succession</code> of this <code>TransitionUsage</code>, which is the first <code>ownedMember</code> of the <code>TransitionUsage</code> that is a <code>Feature</code> <em>not</em> owned via a <code>FeatureMembership</code> whose <code>featureTarget</code> is an <code>ActionUsage</code>.</p>
+	 * let features : Sequence(Feature) = ownedMembers->
+	 *     reject(owningMembership.oclIsKindOf(FeatureMembership))->
+	 *     selectByKind(Feature)->
+	 *     select(featureTarget.oclIsKindOf(ActionUsage)) in
+	 * if features->isEmpty() then null
+	 * else features->first()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature sourceFeature();
 } // TransitionStep

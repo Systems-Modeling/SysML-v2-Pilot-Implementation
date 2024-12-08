@@ -71,8 +71,8 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 		}
 		if (isRecursive) {
 			excludedNamespaces.add(importedNamespace);
-			for (Membership membership: namespaceMembership) {
-				if (membership instanceof OwningMembership) {
+			for (Membership membership: importedNamespace.getOwnedMembership()) {
+				if (membership instanceof OwningMembership && VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
 					Element member = membership.getMemberElement();
 					if (member instanceof Namespace) {
 						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 

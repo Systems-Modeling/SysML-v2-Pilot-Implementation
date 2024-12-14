@@ -107,6 +107,24 @@ public class FeatureAdapter extends TypeAdapter {
 	// Caching
 	
 	EList<Type> types = null;
+	String storedEffectiveName = null;
+	String storedEffectiveShortName = null;
+	
+	public void storeEffectiveName(String effectiveName) {
+		storedEffectiveName = effectiveName;
+	}
+	
+	public String getEffectiveName() {
+		return storedEffectiveName;
+	}
+	
+	public void storeEffectiveShortName(String effectiveShortName) {
+		storedEffectiveShortName = effectiveShortName;
+	}
+	
+	public String getEffectiveShortName() {
+		return storedEffectiveShortName;
+	}
 	
 	public EList<Type> getTypes() {
 		return types;
@@ -124,6 +142,8 @@ public class FeatureAdapter extends TypeAdapter {
 		super.clearCaches();
 		types = null;
 		redefinedFeatures.clear();
+		storedEffectiveName = null;
+		storedEffectiveShortName = null;
 	}
 	
 	// Implicit Elements

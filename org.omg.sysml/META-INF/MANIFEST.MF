@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Bundle-Version: 0.45.0.qualifier
+Bundle-Version: 0.46.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true

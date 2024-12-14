@@ -48,9 +48,9 @@ export function defineSysMLv2Mode(): void {
                 "occurrence", "of", "or", "ordered", "out", "package", "parallel", "part", "perform", "port", "private",
                 "protected", "public", "readonly", "redefines", "ref", "references", "render", "rendering", "rep",
                 "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes", "stakeholder",
-                "standard", "state", "subject", "subsets", "succession", "then", "timeslice", "to", "transition",
-                "until", "use", "variant", "variation", "verification", "verify", "via", "view", "viewpoint", "when",
-                "while", "xor"
+                "standard", "state", "subject", "subsets", "succession", "terminate", "then", "timeslice", "to",
+                "transition", "until", "use", "variant", "variation", "verification", "verify", "via", "view",
+                "viewpoint", "when", "while", "xor"
             ].reduce(f_wordify, {}),
             defKeywords: [
                 "action", "allocation", "analysis", "attribute", "binding", "calc", "case", "comment", "concern",

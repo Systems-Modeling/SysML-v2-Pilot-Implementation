@@ -52,17 +52,18 @@ class MOF2SysMLText extends MOF2KerMLText {
 	override String getReservedWords() {
 		// Note: Every word must be preceded and followed by a space.
 	   " about abstract accept action actor after alias all allocate allocation 
-		 analysis and as assign assert assoc assume at attribute bind binding block 
-		 by calc case comment concern connect connection constraint decide def 
-		 default defined dependency derived do doc else end entry enum event exhibit 
-		 exit expose filter first flow for fork frame from hastype if implies import 
-		 in include individual inout interface istype item join language loop merge 
-		 message metadata nonunique not objective occurrence of or ordered out 
-		 package parallel part perform port private protected public readonly 
-		 redefines ref references render rendering rep require requirement return 
-		 satisfy send snapshot specializes stakeholder state subject subsets 
-		 succession then timeslice to transition until use variant variation 
-		 verification verify via view viewpoint when while xor "
+		 analysis and as assign assert assume at attribute bind binding by 
+		 calc case comment concern connect connection constraint decide def default
+		 defined dependency derived do doc else end entry enum event exhibit 
+		 exit expose filter first flow for fork frame from hastype if implies 
+		 import in include individual inout interface istype item join language 
+		 library locale loop merge message meta metadata nonunique not objective 
+		 occurrence of or ordered out package parallel part perform port private 
+		 protected public readonly redefines ref references render rendering rep 
+		 require requirement return satisfy send snapshot specializes stakeholder 
+		 standard state subject subsets succession terminate then timeslice to 
+		 transition until use variant variation verification verify via view 
+		 viewpoint when while xor "
 	}
 	
 	static def void main(String[] args) {

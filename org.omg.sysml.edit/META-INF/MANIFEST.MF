@@ -3,12 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.omg.sysml.edit;singleton:=true
 Automatic-Module-Name: org.omg.sysml.edit
-Bundle-Version: 0.45.0.qualifier
+Bundle-Version: 0.46.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.omg.sysml.lang.sysml.provider.SysMLEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.lang.sysml.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.omg.sysml;visibility:=reexport,

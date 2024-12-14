@@ -131,28 +131,40 @@ public class TypeAdapter extends NamespaceAdapter {
 		return inheritedMemberships;
 	}
 	
-	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getAllFeaturesRedefinedByType();
-		memberships.removeIf(membership->{
+	protected void removeRedefinedFeatures(List<Membership> memberships) {
+		Collection<Feature> featuresRedefinedByType = getFeaturesRedefinedByType();
+		Collection<Feature> allFeaturesRedefinedByMemberships = new HashSet<>();
+		int n = memberships.size();
+		for (int i = 0; i < n; i++) {
+			Membership membership = memberships.get(i);
 			Element memberElement = membership.getMemberElement();
-			return memberElement instanceof Feature &&
-				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
-		});
-	}
-
-	protected Collection<Feature> getAllFeaturesRedefinedByType() {
-		if (allRedefinedFeatures == null) {
-			allRedefinedFeatures = TypeUtil.getAllFeaturesRedefinedBy(getTarget());
+			if (memberElement instanceof Feature) {
+				Collection<Feature> membershipRedefinedFeatures = 
+						FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement);
+				if (membershipRedefinedFeatures.stream().anyMatch(featuresRedefinedByType::contains)) {
+					memberships.remove(membership);
+					i--; n--;
+				}
+				membershipRedefinedFeatures.stream().
+					filter(feature->feature != memberElement).
+					forEach(allFeaturesRedefinedByMemberships::add);
+			}
 		}
-		return allRedefinedFeatures;
+		memberships.removeIf(membership->allFeaturesRedefinedByMemberships.contains(membership.getMemberElement()));
+	}
+	
+	protected Collection<Feature> getFeaturesRedefinedByType() {
+		if (redefinedFeatures == null) {
+			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
+		}
+		return redefinedFeatures;		
 	}
 
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;
 	private EList<Membership> nonPrivateMembership = null;
-	private Collection<Feature> allRedefinedFeatures = null;
+	private Collection<Feature> redefinedFeatures = null;	
 	
 	public EList<Membership> getInheritedMembership() {
 		return inheritedMembership;
@@ -167,7 +179,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		super.clearCaches();
 		inheritedMembership = null;
 		nonPrivateMembership = null;
-		allRedefinedFeatures = null;
+		redefinedFeatures = null;
 	}
 	
 	// Implicit Elements

@@ -61,7 +61,8 @@
     <module>org.omg.sysml.plantuml.feature</module>
     <module>org.omg.sysml.site</module>
     <module>org.omg.sysml.target</module>
-</modules>
+    <module>org.omg.sysml.semantics.tests</module>
+  </modules>
 
   <build>
     <plugins>

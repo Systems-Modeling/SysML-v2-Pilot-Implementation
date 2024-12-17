@@ -1,34 +1,47 @@
+/**
+ * SysML 2 Pilot Implementation
+ * Copyright (C) 2024 Model Driven Solutions, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *   Laszlo Gati, MDS
+ */
 package org.omg.sysml.semantics.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -37,8 +50,11 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 
+/**
+ * Semantic constraint tests for Table 31. Implied Usage Subsetting Relationships
+ */
 @RunWith(Parameterized.class)
-public class SysMLSpecializationTest {
+public class SysMLSpecializationTest extends SysMLSemanticTest {
 	/**
 	 * Test cases for the Parameterized tests<br>
 	 * Columns in order: 
@@ -53,27 +69,6 @@ public class SysMLSpecializationTest {
 	 */
 	private static final String TEST_CASES_CSV = "sysml-simple-specializations.csv";
 	
-	/**
-	 * System property for the library path. Required for Maven build.
-	 */
-	private final static String SYSML_LIBRARY_PATH_KEY = "libraryPath";
-	
-	
-	/**
-	 * Library path relative to this eclipse project. Direct JUnit runs.
-	 */
-	private static final String PROJECT_RELATIVE_LIBRARY_PARHT = "../sysml.library";
-	
-	public static String getLibraryPath() {
-		var sysprop = System.getProperty(SYSML_LIBRARY_PATH_KEY);
-		return sysprop == null?  getAbsoluteLibraryPath() : sysprop;
-	}
-	
-	private static String getAbsoluteLibraryPath() {
-		//convert relative path to absolute path
-		return new File(PROJECT_RELATIVE_LIBRARY_PARHT).getAbsolutePath();
-	}
-	
 	//parameters for the parameterized test
 	
 	@Parameter(0)
@@ -83,7 +78,7 @@ public class SysMLSpecializationTest {
 	public String eClassName;
 	
 	@Parameter(2)
-	public String libraryType;
+	public String expectedLibraryType;
 	
 	@Parameter(3)
 	public String owningNamespaceType;
@@ -109,44 +104,16 @@ public class SysMLSpecializationTest {
 		return parametersForTestCases;
 	}
 	
-	//test setup
 	
-	private static SysMLInteractive interactive;
-	private Resource resource;
-	
-	@BeforeClass
-	public static void setupLibrary() {
-		//setup infrastructure and read library
-		if (interactive == null) {
-			interactive = SysMLInteractive.getInstance();
-			interactive.loadLibrary(getLibraryPath());
-		}
-	}
-	
-	@Before
-	public void createResource() {
-		//create empty Resource for each test case
-		resource = interactive.createResource("test.sysml");
-	}
-	
-	@After
-	public void removeResource() throws IOException {
-		//remove Resource after test case
-		try {
-			resource.delete(Collections.EMPTY_MAP);
-		} finally {
-			resource = null;	
-		}
-	}
 	
 	@Test
 	public void checkSpecialization() {
 		//create and add root package
 		org.omg.sysml.lang.sysml.Package root = SysMLFactory.eINSTANCE.createPackage();
-		resource.getContents().add(root);
+		getResource().getContents().add(root);
 		
 		//check if library element exists
-		Element libraryElement = SysMLLibraryUtil.getLibraryElement(root, libraryType);
+		Element libraryElement = SysMLLibraryUtil.getLibraryElement(root, expectedLibraryType);
 		assertNotNull(libraryElement);
 		
 		//create owning namespace
@@ -161,7 +128,6 @@ public class SysMLSpecializationTest {
 		//set usages to non-referential
 		if (element instanceof Usage usage) {
 			usage.setIsReference(false);
-			usage.isComposite();
 		}
 		
 		//use a specific membership to add the element to the owning namespace
@@ -173,28 +139,6 @@ public class SysMLSpecializationTest {
 		//run transformation, add implicit elements
 		ElementUtil.transformAll(root, true);
 		
-		assertTrue("Speacializes instead: " + getSpecifics(element), specializes(element, libraryType));
-	}
-	
-	//utility methods
-	
-	public static boolean specializes(Type element, String general) {
-		assert element != null;
-		assert general != null;
-		
-		return element.getOwnedSpecialization().stream()
-			.map(Specialization::getGeneral)
-			.map(Type::getQualifiedName)
-			.anyMatch(general::equals);
-	}
-	
-	public static String getSpecifics(Type element) {
-		
-		assert element != null;
-		
-		return element.getOwnedSpecialization().stream()
-			.map(Specialization::getGeneral)
-			.map(Type::getQualifiedName)
-			.collect(Collectors.joining(", "));
+		assertTrue("Speacializes instead: " + getSpecifics(element), specializes(element, expectedLibraryType));
 	}
 }

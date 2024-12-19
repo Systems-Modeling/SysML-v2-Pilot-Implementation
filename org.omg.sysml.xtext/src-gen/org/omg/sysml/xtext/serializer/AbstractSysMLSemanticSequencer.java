@@ -6436,8 +6436,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     OccurrenceUsageElement returns SuccessionFlowConnectionUsage
 	 *     StructureUsageElement returns SuccessionFlowConnectionUsage
 	 *     VariantUsageElement returns SuccessionFlowConnectionUsage
-	 *     SuccessionFlowConnectionUsage returns SuccessionFlowConnectionUsage
 	 *     InterfaceOccurrenceUsageElement returns SuccessionFlowConnectionUsage
+	 *     SuccessionFlowConnectionUsage returns SuccessionFlowConnectionUsage
 	 *
 	 * Constraint:
 	 *     (

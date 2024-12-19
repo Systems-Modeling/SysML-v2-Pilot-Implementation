@@ -31,6 +31,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>ItemFlow</code> is a <code>Step</code> that represents the transfer of objects or data values from one <code>Feature</code> to another. <code>ItemFlows</code> can take non-zero time to complete.</p>
  * 
+ * targetInputFeature =
+ *     if connectorEnd->size() < 2 or 
+ *         connectorEnd->at(2).ownedFeature->isEmpty()
+ *     then null
+ *     else connectorEnd->at(2).ownedFeature->first()
+ *     endif
  * if itemFlowEnds->isEmpty() then
  *     specializesFromLibrary('Transfers::transfers')
  * else
@@ -40,26 +46,20 @@ import org.eclipse.emf.common.util.EList;
  *     if itemFeature = null then Sequence{}
  *     else itemFeature.type
  *     endif
+ * ownedFeature->selectByKind(ItemFeature)->size() <= 1
  * sourceOutputFeature =
  *     if connectorEnd->isEmpty() or 
  *         connectorEnd.ownedFeature->isEmpty()
  *     then null
  *     else connectorEnd.ownedFeature->first()
  *     endif
- * targetInputFeature =
- *     if connectorEnd->size() < 2 or 
- *         connectorEnd->at(2).ownedFeature->isEmpty()
- *     then null
- *     else connectorEnd->at(2).ownedFeature->first()
- *     endif
- * itemFlowEnd = connectorEnd->selectByKind(ItemFlowEnd)
  * itemFeature =
  *     let itemFeatures : Sequence(ItemFeature) = 
  *         ownedFeature->selectByKind(ItemFeature) in
  *     if itemFeatures->isEmpty() then null
  *     else itemFeatures->first()
  *     endif
- * ownedFeature->selectByKind(ItemFeature)->size() <= 1
+ * itemFlowEnd = connectorEnd->selectByKind(ItemFlowEnd)
  * <!-- end-model-doc -->
  *
  * <p>

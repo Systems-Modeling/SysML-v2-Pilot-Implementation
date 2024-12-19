@@ -68,8 +68,8 @@ public interface Disjoining extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined() <em>Type Disjoined</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined() <em>Type Disjoined</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

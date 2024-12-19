@@ -31,9 +31,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Behavior </code>coordinates occurrences of other <code>Behaviors</code>, as well as changes in objects. <code>Behaviors</code> can be decomposed into <code>Steps</code> and be characterized by <code>parameters</code>.</p>
  * 
+ * ownedSpecialization.general->forAll(not oclIsKindOf(Structure))
  * specializesFromLibrary('Performances::Performance')
  * step = feature->selectByKind(Step)
- * ownedSpecialization.general->forAll(not oclIsKindOf(Structure))
  * <!-- end-model-doc -->
  *
  * <p>

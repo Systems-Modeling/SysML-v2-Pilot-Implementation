@@ -36,23 +36,23 @@ import org.eclipse.emf.common.util.EList;
  * membership->forAll(m1 | 
  *     membership->forAll(m2 | 
  *         m1 <> m2 implies m1.isDistinguishableFrom(m2)))
- * member = membership.memberElement
  * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
+ * member = membership.memberElement
  * importedMembership = importedMemberships(Set{})
- * ownedImport = ownedRelationship->selectByKind(Import)
  * ownedMembership = ownedRelationship->selectByKind(Membership)
+ * ownedImport = ownedRelationship->selectByKind(Import)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()

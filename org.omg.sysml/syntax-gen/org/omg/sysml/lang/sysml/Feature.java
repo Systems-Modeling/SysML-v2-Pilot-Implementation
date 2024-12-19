@@ -38,51 +38,6 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>The <em>values</em> of a <code>Feature</code> for a given instance of its domain are all the instances of its co-domain that are related to that domain instance by the <code>Feature</code>. The values of a <code>Feature</code> with <code>chainingFeatures</code> are the same as values of the last <code>Feature</code> in the chain, which can be found by starting with values of the first <code>Feature</code>, then using those values as domain instances to obtain valus of the second <code>Feature</code>, and so on, to values of the last <code>Feature</code>.</p>
  * 
- * ownedRedefinition = ownedSubsetting->selectByKind(Redefinition)
- * ownedTypeFeaturing = ownedRelationship->selectByKind(TypeFeaturing)->
- *     select(tf | tf.featureOfType = self)
- * ownedSubsetting = ownedSpecialization->selectByKind(Subsetting)
- * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
- * type = 
- *     let types : OrderedSet(Types) = OrderedSet{self}->
- *         -- Note: The closure operation automatically handles circular relationships.
- *         closure(typingFeatures()).typing.type->asOrderedSet() in
- *     types->reject(t1 | types->exist(t2 | t2 <> t1 and t2.specializes(t1)))
- * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * specializesFromLibrary('Base::things')
- * chainingFeature->excludes(self)
- * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
- * chainingFeature = ownedFeatureChaining.chainingFeature
- * chainingFeature->size() <> 1
- * isEnd and owningType <> null implies
- *     let i : Integer = 
- *         owningType.ownedEndFeature->indexOf(self) in
- *     owningType.ownedSpecialization.general->
- *         forAll(supertype |
- *              supertype.endFeature->size() >= i implies
- *                 redefines(supertype.endFeature->at(i))
- * direction = null and
- * ownedSpecializations->forAll(isImplied) implies
- *     ownedMembership->
- *         selectByKind(FeatureValue)->
- *         forAll(fv | specializes(fv.value.result))
- * isEnd and owningType <> null and
- * (owningType.oclIsKindOf(Association) or
- *  owningType.oclIsKindOf(Connector)) implies
- *     specializesFromLibrary('Links::Link::participant')
- * isComposite and
- * ownedTyping.type->includes(oclIsKindOf(Structure)) and
- * owningType <> null and
- * (owningType.oclIsKindOf(Structure) or
- *  owningType.type->includes(oclIsKindOf(Structure))) implies
- *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
- * owningType <> null and
- * owningType.oclIsKindOf(FeatureReferenceExpression) and
- * self = owningType.oclAsType(FeatureReferenceExpression).result implies
- *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
- * 
- * ownedTyping.type->exists(selectByKind(Class)) implies
- *     specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
  * ownedTyping.type->includes(oclIsKindOf(Class)) and
  * owningType <> null and
@@ -91,33 +46,16 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
- * ownedTyping.type->exists(selectByKind(DataType)) implies
- *     specializesFromLibrary('Base::dataValues')
- * owningType <> null and
- * owningType.oclIsKindOf(ItemFlowEnd) and
- * owningType.ownedFeature->at(1) = self implies
- *     let flowType : Type = owningType.owningType in
- *     flowType <> null implies
- *         let i : Integer = 
- *             flowType.ownedFeature.indexOf(owningType) in
- *         (i = 1 implies 
- *             redefinesFromLibrary('Transfers::Transfer::source::sourceOutput')) and
- *         (i = 2 implies
- *             redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
- *                  
- * owningType <> null and
- * (owningType.oclIsKindOf(Behavior) or
- *  owningType.oclIsKindOf(Step)) implies
- *     let i : Integer = 
- *         owningType.ownedFeature->select(direction <> null) in
- *     owningType.ownedSpecialization.general->
- *         forAll(supertype |
- *             let ownedParameters : Sequence(Feature) = 
- *                 supertype.ownedFeature->select(direction <> null) in
- *             ownedParameters->size() >= i implies
- *                 redefines(ownedParameters->at(i))
- * ownedTyping.type->exists(selectByKind(Structure)) implies
- *     specializesFromLibary('Objects::objects')
+ * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
+ * featuringType =
+ *     let featuringTypes : OrderedSet(Type) = 
+ *         featuring.type->asOrderedSet() in
+ *     if chainingFeature->isEmpty() then featuringTypes
+ *     else
+ *         featuringTypes->
+ *             union(chainingFeature->first().featuringType)->
+ *             asOrderedSet()
+ *     endif
  * owningType <> null and
  * (owningType.oclIsKindOf(Function) and
  *     self = owningType.oclAsType(Function).result or
@@ -132,27 +70,30 @@ import org.eclipse.emf.common.util.EList;
  *                 else
  *                     superType.oclAsType(Expression).result
  *                 endif)
- * ownedFeatureInverting = ownedRelationship->selectByKind(FeatureInverting)->
- *     select(fi | fi.featureInverted = self)
- * featuringType =
- *     let featuringTypes : OrderedSet(Type) = 
- *         featuring.type->asOrderedSet() in
- *     if chainingFeature->isEmpty() then featuringTypes
- *     else
- *         featuringTypes->
- *             union(chainingFeature->first().featuringType)->
- *             asOrderedSet()
- *     endif
- * ownedReferenceSubsetting =
- *     let referenceSubsettings : OrderedSet(ReferenceSubsetting) =
- *         ownedSubsetting->selectByKind(ReferenceSubsetting) in
- *     if referenceSubsettings->isEmpty() then null
- *     else referenceSubsettings->first() endif
- * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
+ * owningType <> null and
+ * owningType.oclIsKindOf(ItemFlowEnd) and
+ * owningType.ownedFeature->at(1) = self implies
+ *     let flowType : Type = owningType.owningType in
+ *     flowType <> null implies
+ *         let i : Integer = 
+ *             flowType.ownedFeature.indexOf(owningType) in
+ *         (i = 1 implies 
+ *             redefinesFromLibrary('Transfers::Transfer::source::sourceOutput')) and
+ *         (i = 2 implies
+ *             redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
+ *                  
+ * ownedTyping.type->exists(selectByKind(DataType)) implies
+ *     specializesFromLibrary('Base::dataValues')
  * Sequence{1..chainingFeature->size() - 1}->forAll(i |
  *     chainingFeature->at(i + 1).featuringType->forAll(t | 
  *         chainingFeature->at(i).specializes(t)))
  * 
+ * owningType <> null and
+ * owningType.oclIsKindOf(FeatureReferenceExpression) and
+ * self = owningType.oclAsType(FeatureReferenceExpression).result implies
+ *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
+ * 
+ * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * isPortion and
  * ownedTyping.type->includes(oclIsKindOf(Class)) and
  * owningType <> null and
@@ -161,7 +102,37 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::portions')
- * featureTarget = if chainingFeature->isEmpty() then self else chainingFeature->last() endif
+ * isComposite and
+ * ownedTyping.type->includes(oclIsKindOf(Structure)) and
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Structure) or
+ *  owningType.type->includes(oclIsKindOf(Structure))) implies
+ *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
+ * owningType <> null and
+ * (owningType.oclIsKindOf(Behavior) or
+ *  owningType.oclIsKindOf(Step)) implies
+ *     let i : Integer = 
+ *         owningType.ownedFeature->select(direction <> null) in
+ *     owningType.ownedSpecialization.general->
+ *         forAll(supertype |
+ *             let ownedParameters : Sequence(Feature) = 
+ *                 supertype.ownedFeature->select(direction <> null) in
+ *             ownedParameters->size() >= i implies
+ *                 redefines(ownedParameters->at(i))
+ * chainingFeature->size() <> 1
+ * specializesFromLibrary('Base::things')
+ * ownedSubsetting = ownedSpecialization->selectByKind(Subsetting)
+ * ownedRedefinition = ownedSubsetting->selectByKind(Redefinition)
+ * ownedFeatureInverting = ownedRelationship->selectByKind(FeatureInverting)->
+ *     select(fi | fi.featureInverted = self)
+ * chainingFeature = ownedFeatureChaining.chainingFeature
+ * isEnd and owningType <> null and
+ * (owningType.oclIsKindOf(Association) or
+ *  owningType.oclIsKindOf(Connector)) implies
+ *     specializesFromLibrary('Links::Link::participant')
+ * ownedTyping.type->exists(selectByKind(Class)) implies
+ *     specializesFromLibrary('Occurrences::occurrences')
+ * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
  * owningType <> null and
  * owningType.oclIsKindOf(InvocationExpression) and
  * let owningInvocation: InvocationExpression = owningType.oclAsType(InvocationExpression) in
@@ -169,22 +140,51 @@ import org.eclipse.emf.common.util.EList;
  * not owningInvocation.ownedTyping->exists(oclIsKindOf(Function)) and
  * not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->exists(oclIsKindOf(Function)) implies
  *     owningInvocation.ownedTyping->forAll(type | self.specializes(type))
+ * direction = null and
+ * ownedSpecializations->forAll(isImplied) implies
+ *     ownedMembership->
+ *         selectByKind(FeatureValue)->
+ *         forAll(fv | specializes(fv.value.result))
+ * ownedReferenceSubsetting =
+ *     let referenceSubsettings : OrderedSet(ReferenceSubsetting) =
+ *         ownedSubsetting->selectByKind(ReferenceSubsetting) in
+ *     if referenceSubsettings->isEmpty() then null
+ *     else referenceSubsettings->first() endif
+ * ownedTyping.type->exists(selectByKind(Structure)) implies
+ *     specializesFromLibary('Objects::objects')
+ * chainingFeature->excludes(self)
+ * type = 
+ *     let types : OrderedSet(Types) = OrderedSet{self}->
+ *         -- Note: The closure operation automatically handles circular relationships.
+ *         closure(typingFeatures()).typing.type->asOrderedSet() in
+ *     types->reject(t1 | types->exist(t2 | t2 <> t1 and t2.specializes(t1)))
+ * ownedTypeFeaturing = ownedRelationship->selectByKind(TypeFeaturing)->
+ *     select(tf | tf.featureOfType = self)
+ * isEnd and owningType <> null implies
+ *     let i : Integer = 
+ *         owningType.ownedEndFeature->indexOf(self) in
+ *     owningType.ownedSpecialization.general->
+ *         forAll(supertype |
+ *              supertype.endFeature->size() >= i implies
+ *                 redefines(supertype.endFeature->at(i))
+ * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
+ * featureTarget = if chainingFeature->isEmpty() then self else chainingFeature->last() endif
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -358,8 +358,8 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType() <em>Featuring Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

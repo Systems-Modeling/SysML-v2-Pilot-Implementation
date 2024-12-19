@@ -11,12 +11,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>FlowConnectionUsage</code> is a <code>ConnectionUsage</code> that is also an <code>ItemFlow</code>.</p>
- * if ownedEndFeatures->isEmpty() then
- *     specializesFromLibrary('Connections::messageConnections')
- * else
- *     specializesFromLibrary('Connections::flowConnections')
- * endif
+ * <p>A <code>FlowConnectionUsage</code> is an <code>ActionUsage</code> that is also a <code>ConnectorAsUsage</code> and an <code>ItemFlow</code>.</p>
+ * specializesFromLibrary('FlowConnections::messageConnections')
+ * ownedEndFeatures->notEmpty() implies
+ *     specializesFromLibrary('FlowConnections::flowConnections')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -30,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemFlow {
+public interface FlowConnectionUsage extends ConnectorAsUsage, ActionUsage, ItemFlow {
 
 	/**
 	 * Returns the value of the '<em><b>Flow Connection Definition</b></em>' reference list.
@@ -40,7 +38,6 @@ public interface FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemF
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ActionUsage#getActionDefinition() <em>Action Definition</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.ConnectionUsage#getConnectionDefinition() <em>Connection Definition</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ItemFlow#getInteraction() <em>Interaction</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->

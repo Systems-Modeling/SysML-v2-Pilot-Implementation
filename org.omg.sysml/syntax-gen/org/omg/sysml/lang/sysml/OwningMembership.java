@@ -10,8 +10,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>OwningMembership</code> is a <code>Membership</code> that owns its <code>memberElement</code> as a <code>ownedRelatedElement</code>. The <code>ownedMemberElement</code> becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>.</p>
  * 
- * ownedMemberName = ownedMemberElement.name
  * ownedMemberShortName = ownedMemberElement.shortName
+ * ownedMemberName = ownedMemberElement.name
  * <!-- end-model-doc -->
  *
  * <p>

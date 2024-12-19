@@ -27,7 +27,7 @@ standard library package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
-	private import Connections::MessageConnection;
+	private import FlowConnections::MessageConnection;
 	private import OccurrenceFunctions::destroy;
 	
 	abstract action def Action :> Performance {

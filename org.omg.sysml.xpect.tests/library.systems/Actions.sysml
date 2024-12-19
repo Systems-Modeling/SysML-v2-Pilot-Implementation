@@ -27,7 +27,7 @@ standard library package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
-	private import Connections::MessageConnection;
+	private import FlowConnections::MessageConnection;
 	private import OccurrenceFunctions::destroy;
 	
 	abstract action def Action :> Performance {
@@ -239,9 +239,14 @@ standard library package Actions {
 		 * is the base type for all TerminateActionUsages.
 		 */
 		 
-		in occurrence terminatedOccurrence[1];
+		in occurrence terminatedOccurrence[1] {
+			doc
+			/*
+			 * The Occurrence to be terminated.
+			 */
+		}
 		
-		action terminateOccurrence : destroy {
+		action terminateOccurrence : destroy[1] {
 			in occ = terminatedOccurrence;
 		}
 	}

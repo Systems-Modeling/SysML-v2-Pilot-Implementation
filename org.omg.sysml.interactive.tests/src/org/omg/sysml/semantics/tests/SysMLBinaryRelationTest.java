@@ -31,7 +31,8 @@ import org.omg.sysml.util.ElementUtil;
 
 
 /**
- * Semantic constraint tests for binary cases from Table 32. Other Implied Relationships
+ * Semantic constraint tests for binary cases for "Implied Definition Subclassification Relationships" and
+ * "Implied Usage Subsetting Relationships" (SysML v2 Specification, Tables 30 and 31)
  */
 public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	

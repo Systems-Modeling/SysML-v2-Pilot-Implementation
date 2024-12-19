@@ -52,7 +52,8 @@ import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 
 /**
- * Semantic constraint tests for Table 31. Implied Usage Subsetting Relationships
+ * Semantic constraint tests for "Implied Definition Subclassification Relationships" and
+ * "Implied Usage Subsetting Relationships" (SysML v2 Specification, Tables 30 and 31)
  */
 @RunWith(Parameterized.class)
 public class SysMLSpecializationTest extends SysMLSemanticTest {

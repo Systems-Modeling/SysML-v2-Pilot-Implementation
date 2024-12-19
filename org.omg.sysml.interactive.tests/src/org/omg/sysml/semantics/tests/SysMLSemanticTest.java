@@ -49,7 +49,7 @@ public abstract class SysMLSemanticTest {
 	/**
 	 * Library path relative to this eclipse project. Direct JUnit runs.
 	 */
-	private static final String PROJECT_RELATIVE_LIBRARY_PARHT = "../sysml.library";
+	private static final String PROJECT_RELATIVE_LIBRARY_PATH = "../sysml.library";
 
 	public static String getLibraryPath() {
 		var sysprop = System.getProperty(SYSML_LIBRARY_PATH_KEY);
@@ -58,7 +58,7 @@ public abstract class SysMLSemanticTest {
 
 	private static String getAbsoluteLibraryPath() {
 		// convert relative path to absolute path
-		return new File(PROJECT_RELATIVE_LIBRARY_PARHT).getAbsolutePath();
+		return new File(PROJECT_RELATIVE_LIBRARY_PATH).getAbsolutePath();
 	}
 
 	// test setup

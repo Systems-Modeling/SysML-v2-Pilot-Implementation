@@ -26,8 +26,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Specification: Table 31. Implied Usage Subsetting Relationships
- * cases that cannot be covered by the parameterized test class {@link SysMLSpecializationTest}
+ * Semantic constraint tests for "Implied Definition Subclassification Relationships" and
+ * "Implied Usage Subsetting Relationships" (SysML v2 Specification, Tables 30 and 31)
+ * 
+ * Cases that cannot be covered by the parameterized test class {@link SysMLSpecializationTest}
  */
 public class SysMLSpecializationSpecialTest extends SysMLSemanticTest {
 	

@@ -35,7 +35,7 @@ import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
 /**
- * Semantic constraint tests for Table 32. Other Implied Relationships
+ * Semantic constraint tests for "Other Implied Relationships" (SysML Specification, Table 32)
  */
 public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		

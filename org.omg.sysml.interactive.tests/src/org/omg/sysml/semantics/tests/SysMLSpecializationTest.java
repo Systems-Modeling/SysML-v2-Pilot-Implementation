@@ -34,6 +34,7 @@ import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.junit.Assume;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -59,6 +60,7 @@ public class SysMLSpecializationTest extends SysMLSemanticTest {
 	 * Test cases for the Parameterized tests<br>
 	 * Columns in order: 
 	 * <ol>
+	 * <li>Enabled status (true/false)
 	 * <li>Semantic constraint name: (for debugging purposes)</li>
 	 * <li>EClass of the element: test creates the element of this type, element is tested for specializations</li>
 	 * <li>Library type: expected specialized library type after the transformation</li>
@@ -72,23 +74,26 @@ public class SysMLSpecializationTest extends SysMLSemanticTest {
 	//parameters for the parameterized test
 	
 	@Parameter(0)
-	public String semanticConstraint;
+	public String isEnabled;
 	
 	@Parameter(1)
-	public String eClassName;
+	public String semanticConstraint;
 	
 	@Parameter(2)
-	public String expectedLibraryType;
+	public String eClassName;
 	
 	@Parameter(3)
-	public String owningNamespaceType;
+	public String expectedLibraryType;
 	
 	@Parameter(4)
+	public String owningNamespaceType;
+	
+	@Parameter(5)
 	public String membershipType;
 	
 	//reading the parameters from the .csv and binding them to Parameter fields
 	
-	@Parameters(name = "Semantic constraint: {0}, Owner: {3}, EClass: {1}, Expected library type: {2}")
+	@Parameters(name = "Semantic constraint: {1}, Owner: {4}, EClass: {2}, Expected library type: {3}")
 	public static Collection<Object[]> getParameters() throws IOException{
 		List<Object[]> parametersForTestCases = new LinkedList<>();
 		
@@ -108,6 +113,8 @@ public class SysMLSpecializationTest extends SysMLSemanticTest {
 	
 	@Test
 	public void checkSpecialization() {
+		Assume.assumeTrue(Boolean.valueOf(isEnabled));
+		
 		//create and add root package
 		org.omg.sysml.lang.sysml.Package root = SysMLFactory.eINSTANCE.createPackage();
 		getResource().getContents().add(root);
@@ -131,14 +138,14 @@ public class SysMLSpecializationTest extends SysMLSemanticTest {
 		}
 		
 		//use a specific membership to add the element to the owning namespace
-		EClassifier memberhipEClass = SysMLPackage.eINSTANCE.getEClassifier(membershipType);
-		Membership membership = (Membership) SysMLFactory.eINSTANCE.create((EClass) memberhipEClass);
+		EClassifier membershipEClass = SysMLPackage.eINSTANCE.getEClassifier(membershipType);
+		Membership membership = (Membership) SysMLFactory.eINSTANCE.create((EClass) membershipEClass);
 		owner.getOwnedRelationship().add(membership);
 		membership.setMemberElement(element);
 		
 		//run transformation, add implicit elements
 		ElementUtil.transformAll(root, true);
 		
-		assertTrue("Speacializes instead: " + getSpecifics(element), specializes(element, expectedLibraryType));
+		assertTrue(String.format("%s specializes %s instead of %s", eClassName, expectedLibraryType, getSpecifics(element)), specializes(element, expectedLibraryType));
 	}
 }

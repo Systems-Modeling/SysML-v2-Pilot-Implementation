@@ -135,6 +135,7 @@ import org.omg.sysml.lang.sysml.ReferenceUsage
 import org.omg.sysml.lang.sysml.IfActionUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
 import org.omg.sysml.lang.sysml.TriggerKind
+import org.omg.sysml.util.TypeUtil
 
 /**
  * This class contains custom validation rules. 
@@ -214,8 +215,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONNECTION_USAGE_TYPE = "validateConnectionUsageType_"
 	public static val INVALID_CONNECTION_USAGE_TYPE_MSG = "A connection must be typed by connection definitions."
 	
-	public static val INVALID_FLOW_CONNECTION_DEFINITION_END = "validateFlowConnectionEnd_"
-	public static val INVALID_FLOW_CONNECTION_DEFINITION_END_MSG = "A flow connection definition can have only two ends."
+	public static val INVALID_FLOW_CONNECTION_DEFINITION_END = "validateFlowConnectionDefinitionConnectionEnds"
+	public static val INVALID_FLOW_CONNECTION_DEFINITION_END_MSG = "A flow connection definition can have at most two ends."
 	
 	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE = "validateFlowConnectionUsageType_"
 	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG = "A flow connection must be typed by flow connection definitions."
@@ -661,11 +662,16 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkFlowConnectionDefinition(FlowConnectionDefinition cdef) {
-		//At most two owned ends
-		val ends = cdef.ownedEndFeature
+		// validateConnectionDefinitionConnectionEnds
+		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
 		if (ends.size > 2) {
-			for (var i = 2; i < ends.size; i++) {
-				error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, ends.get(i), null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+			val ownedEnds = cdef.ownedEndFeature
+			if (ownedEnds.size <= 2) {
+				error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, cdef, null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+			} else {
+				for (var i = 2; i < ends.size; i++) {
+					error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, ends.get(i), null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+				}
 			}
 		}
 	}

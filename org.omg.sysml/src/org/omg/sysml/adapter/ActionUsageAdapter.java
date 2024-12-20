@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -52,12 +52,17 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
+		
 		String subactionType = getSubactionType();
 		if (subactionType != null) {
 			addDefaultGeneralType(subactionType);
-		} 
+		}
+		
+		// From StepAdapter
 		if (isStructureOwnedComposite()) {
 			addDefaultGeneralType("ownedPerformance");
+		} else if (isBehaviorOwnedComposite()) {
+			addDefaultGeneralType("subperformance");
 		} else if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}

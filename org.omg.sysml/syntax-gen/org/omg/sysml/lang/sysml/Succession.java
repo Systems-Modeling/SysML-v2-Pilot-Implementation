@@ -31,6 +31,13 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Succession</code> is a binary <code>Connector</code> that requires its <code>relatedFeatures</code> to happen separately in time.</p>
  * 
+ * effectStep =
+ *     if transitionStep = null or 
+ *        transitionStep.ownedFeature.size() < 4 or
+ *        not transitionStep.ownedFeature->at(4).oclIsKindOf(Step) 
+ *     then Set{}
+ *     else Set{transitionStep.ownedFeature->at(4).oclAsType(Step)}
+ *     endif
  * specializesFromLibrary('Occurences::happensBeforeLinks')
  * transitionStep =
  *     if owningNamespace.oclIsKindOf(Step) and 
@@ -45,13 +52,6 @@ import org.eclipse.emf.common.util.EList;
  *        not transitionStep.ownedFeature->at(2).oclIsKindOf(Step) 
  *     then Set{}
  *     else Set{transitionStep.ownedFeature->at(2).oclAsType(Step)}
- *     endif
- * effectStep =
- *     if transitionStep = null or 
- *        transitionStep.ownedFeature.size() < 4 or
- *        not transitionStep.ownedFeature->at(4).oclIsKindOf(Step) 
- *     then Set{}
- *     else Set{transitionStep.ownedFeature->at(4).oclAsType(Step)}
  *     endif
  * guardExpression =
  *     if transitionStep = null or 

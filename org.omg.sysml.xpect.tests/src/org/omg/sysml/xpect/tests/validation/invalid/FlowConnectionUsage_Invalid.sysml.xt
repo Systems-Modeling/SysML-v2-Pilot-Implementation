@@ -12,7 +12,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
-		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/FlowConnections.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
@@ -29,7 +29,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/FlowConnections.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
@@ -41,6 +41,20 @@ package P {
 	
 	abstract flow def F;
 	abstract flow def G;
+	
+	abstract flow def H {
+		end a;
+	}
+	
+	flow def I :> H {
+		end a;
+		end b;
+		// XPECT errors --> "A flow connection definition can have at most two ends." at "end c;"
+		end c;
+	}
+	
+	// XPECT errors --> "A flow connection definition can have at most two ends." at "flow def J :> I;"
+	flow def J :> I;
 	
 	part apart : A {
 		part b;

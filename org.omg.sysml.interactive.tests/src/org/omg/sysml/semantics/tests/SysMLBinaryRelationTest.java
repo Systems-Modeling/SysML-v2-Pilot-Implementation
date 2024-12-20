@@ -69,31 +69,47 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	@Test
 	public void checkConnectionUsageBinarySpecialization() {
 		var resource = getResource();
-		var interfaceDefinition = SysMLFactory.eINSTANCE.createConnectionUsage();
+		var connectionUsage = SysMLFactory.eINSTANCE.createConnectionUsage();
 		
-		resource.getContents().add(interfaceDefinition);
+		resource.getContents().add(connectionUsage);
 		
-		addEndTo(interfaceDefinition);
-		addEndTo(interfaceDefinition);
+		addEndTo(connectionUsage);
+		addEndTo(connectionUsage);
 		
-		ElementUtil.transformAll(interfaceDefinition, true);
+		ElementUtil.transformAll(connectionUsage, true);
 		
-		assertTrue(specializes(interfaceDefinition, "Connections::binaryConnections"));
+		assertTrue(specializes(connectionUsage, "Connections::binaryConnections"));
 	}
 	
 	@Test
 	public void checkInterfaceUsageBinarySpecialization() {
 		var resource = getResource();
-		var interfaceDefinition = SysMLFactory.eINSTANCE.createInterfaceUsage();
+		var interfaceUsage = SysMLFactory.eINSTANCE.createInterfaceUsage();
 		
-		resource.getContents().add(interfaceDefinition);
+		resource.getContents().add(interfaceUsage);
 		
-		addEndTo(interfaceDefinition);
-		addEndTo(interfaceDefinition);
+		addEndTo(interfaceUsage);
+		addEndTo(interfaceUsage);
 		
-		ElementUtil.transformAll(interfaceDefinition, true);
+		ElementUtil.transformAll(interfaceUsage, true);
 		
-		assertTrue(specializes(interfaceDefinition, "Interfaces::binaryInterfaces"));
+		assertTrue(specializes(interfaceUsage, "Interfaces::binaryInterfaces"));
+	}
+	
+	@Test
+	public void checkFlowConnectionUsageFlowSpecialization() {
+		//Succession flow connection is always binary, no base case
+		var resource = getResource();
+		var flowConnectionUsage = SysMLFactory.eINSTANCE.createFlowConnectionUsage();
+		
+		resource.getContents().add(flowConnectionUsage);
+		
+		addEndTo(flowConnectionUsage);
+		addEndTo(flowConnectionUsage);
+		
+		ElementUtil.transformAll(flowConnectionUsage, true);
+		
+		assertTrue(specializes(flowConnectionUsage, "FlowConnections::flowConnections"));
 	}
 	
 	@Test
@@ -109,7 +125,7 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 		
 		ElementUtil.transformAll(interfaceDefinition, true);
 		
-		assertTrue(specializes(interfaceDefinition, "Connections::successionFlowConnections"));
+		assertTrue(specializes(interfaceDefinition, "FlowConnections::successionFlowConnections"));
 	}
 	
 	//Utility methods

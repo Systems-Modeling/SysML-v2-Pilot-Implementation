@@ -31,18 +31,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>Expression</code> is a <code>Step</code> that is typed by a <code>Function</code>. An <code>Expression</code> that also has a <code>Function</code> as its <code>featuringType</code> is a computational step within that <code>Function</code>. An <code>Expression</code> always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows <code>Expressions</code> to be interconnected in tree structures, in which inputs to each <code>Expression</code> in the tree are determined as the results of other <code>Expression</code> in the tree.</p>
  * 
+ * ownedFeatureMembership->
+ *     selectByKind(ReturnParameterMembership)->
+ *     size() <= 1
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
- * specializesFromLibrary('Performances::evaluations')
  * owningMembership <> null and 
  * owningMembership.oclIsKindOf(FeatureValue) implies
  *     let featureWithValue : Feature = 
  *         owningMembership.oclAsType(FeatureValue).featureWithValue in
  *     featuringType = featureWithValue.featuringType
- * ownedMembership.selectByKind(ResultExpressionMembership)->
- *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
- *         exists(binding |
- *             binding.relatedFeature->includes(result) and
- *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * result =
  *     let resultParams : Sequence(Feature) =
  *         ownedFeatureMemberships->
@@ -52,10 +49,13 @@ import org.eclipse.emf.common.util.EList;
  *     else if function <> null then function.result
  *     else null
  *     endif endif
- * ownedFeatureMembership->
- *     selectByKind(ReturnParameterMembership)->
- *     size() <= 1
+ * ownedMembership.selectByKind(ResultExpressionMembership)->
+ *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
+ *         exists(binding |
+ *             binding.relatedFeature->includes(result) and
+ *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * membership->selectByKind(ResultExpressionMembership)->size() <= 1
+ * specializesFromLibrary('Performances::evaluations')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -120,8 +120,8 @@ public interface Expression extends Step {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

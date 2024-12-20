@@ -34,15 +34,15 @@ import org.eclipse.emf.common.util.EList;
  * 
  * relatedType = associationEnd.type
  * specializesFromLibrary('Links::Link')
- * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
- * associationEnd->size() = 2 implies
- *     specializesFromLibrary('Links::BinaryLink')
- * not isAbstract implies relatedType->size() >= 2
- * associationEnds->size() > 2 implies
- *     not specializesFromLibrary('Links::BinaryLink')
  * sourceType =
  *     if relatedType->isEmpty() then null
  *     else relatedType->first() endif
+ * associationEnds->size() > 2 implies
+ *     not specializesFromLibrary('Links::BinaryLink')
+ * not isAbstract implies relatedType->size() >= 2
+ * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
+ * associationEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::BinaryLink')
  * targetType =
  *     if relatedType->size() < 2 then OrderedSet{}
  *     else 

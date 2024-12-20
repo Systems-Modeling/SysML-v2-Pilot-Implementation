@@ -31,6 +31,20 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>InvocationExpression</code> is an <code>Expression</code> each of whose input <code>parameters</code> are bound to the <code>result</code> of an <code>argument</code> Expression.</p>
  * 
+ * TBD
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp | 
+ *     inp.ownedRedefinition.redefinedFeature->
+ *         intersection(features)->size() = 1)
+ * ownedFeature->
+ *     select(direction = _'in').valuation->
+ *     select(v | v <> null).value
+ * let features : Set(Feature) = type.feature->asSet() in
+ * input->forAll(inp1 | input->forAll(inp2 |
+ *     inp1 <> inp2 implies
+ *         inp1.ownedRedefinition.redefinedFeature->
+ *             intersection(inp2.ownedRedefinition.redefinedFeature)->
+ *             intersection(features)->isEmpty()))
  * not ownedTyping->exists(oclIsKindOf(Function)) and
  * not ownedSubsetting->reject(isImplied).subsettedFeature.type->
  *     exists(oclIsKindOf(Function)) implies
@@ -38,20 +52,6 @@ import org.eclipse.emf.common.util.EList;
  *         relatedFeature->includes(self) and
  *         relatedFeature->includes(result))
  *             
- * TBD
- * ownedFeature->
- *     select(direction = _'in').valuation->
- *     select(v | v <> null).value
- * let features : Set(Feature) = type.feature->asSet() in
- * input->forAll(inp | 
- *     inp.ownedRedefinition.redefinedFeature->
- *         intersection(features)->size() = 1)
- * let features : Set(Feature) = type.feature->asSet() in
- * input->forAll(inp1 | input->forAll(inp2 |
- *     inp1 <> inp2 implies
- *         inp1.ownedRedefinition.redefinedFeature->
- *             intersection(inp2.ownedRedefinition.redefinedFeature)->
- *             intersection(features)->isEmpty()))
  * <!-- end-model-doc -->
  *
  * <p>

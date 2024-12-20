@@ -87,9 +87,9 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>The Expression that provides the value as a result.</p>
 	 * <p>The <code>Expression</code> that provides the value of the <code>featureWithValue</code> as its <code>result</code>.</p>
 	 * 
-	 * <p>The Expression that provides the value as a result.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Expression)
@@ -178,9 +178,9 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>The Feature to be provided a value.</p>
 	 * <p>The <code>Feature</code> to be provided a value.</p>
 	 * 
-	 * <p>The Feature to be provided a value.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature With Value</em>' reference.
 	 * @see #setFeatureWithValue(Feature)

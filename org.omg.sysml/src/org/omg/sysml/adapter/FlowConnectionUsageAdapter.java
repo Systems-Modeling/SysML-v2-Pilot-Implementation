@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,11 +25,13 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
-public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
+public class FlowConnectionUsageAdapter extends ConnectorAsUsageAdapter {
 
 	public FlowConnectionUsageAdapter(FlowConnectionUsage feature) {
 		super(feature);
@@ -43,20 +45,43 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isPartOwnedComposite()) {
-			addDefaultGeneralType("ownedAction");
-		} else if (isStructureOwnedComposite()) {
-			addDefaultGeneralType("ownedPerformance");
+		
+		// From OccurrenceAdapter
+		if (isSuboccurrence()) {
+			addDefaultGeneralType("suboccurrence");
 		}
+		PortionKind portionKind = getTarget().getPortionKind();
+		if (portionKind  == PortionKind.SNAPSHOT) {
+			addDefaultGeneralType("snapshot");
+		} else if (portionKind == PortionKind.TIMESLICE) {
+			addDefaultGeneralType("timeslice");
+		}
+
+		// From ActionUsageAdapter
 		if (isActionOwnedComposite()) {
 			addDefaultGeneralType("subaction");
+		} else if (isPartOwnedComposite()) {
+			addDefaultGeneralType("ownedAction");
+		}
+		
+		// From StepAdapter
+		if (isStructureOwnedComposite()) {
+			addDefaultGeneralType("ownedPerformance");
 		} else if (isBehaviorOwnedComposite()) {
 			addDefaultGeneralType("subperformance");
 		} else if (isBehaviorOwned()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
-	}
+}
 	
+	@Override
+	protected boolean isSuboccurrence() {
+		OccurrenceUsage target = getTarget();
+		return super.isSuboccurrence() ||
+				target.isComposite() && 
+			   	target.getOwningType() instanceof OccurrenceUsage;
+	}
+
 	@Override
 	protected String getDefaultSupertype() {
 		return UsageUtil.isMessageConnection(getTarget())?

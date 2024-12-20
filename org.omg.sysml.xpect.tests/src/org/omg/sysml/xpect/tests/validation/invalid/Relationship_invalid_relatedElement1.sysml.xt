@@ -2,6 +2,7 @@
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
        	File {from ="/library.kernel/Performances.kerml"}
@@ -10,7 +11,7 @@
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
-		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/FlowConnections.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
@@ -18,7 +19,8 @@
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
-        		File {from ="/library.kernel/Occurrences.kerml"}
+        		File {from ="/library.kernel/Links.kerml"}
+       			File {from ="/library.kernel/Occurrences.kerml"}
  		      	File {from ="/library.kernel/Objects.kerml"}
  		      	File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
@@ -26,7 +28,7 @@
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/FlowConnections.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 			}
 		}

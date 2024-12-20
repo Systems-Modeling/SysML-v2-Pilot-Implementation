@@ -11,7 +11,7 @@
 ','=20
 '-'=163
 '->'=102
-'.'=89
+'.'=92
 '..'=59
 '.?'=103
 '/'=164
@@ -44,8 +44,8 @@
 'after'=98
 'alias'=40
 'all'=43
-'allocate'=92
-'allocation'=91
+'allocate'=88
+'allocation'=87
 'analysis'=135
 'and'=150
 'as'=158
@@ -83,7 +83,7 @@
 'false'=169
 'filter'=39
 'first'=81
-'flow'=86
+'flow'=89
 'for'=41
 'fork'=114
 'frame'=179
@@ -96,7 +96,7 @@
 'include'=138
 'individual'=71
 'inout'=174
-'interface'=90
+'interface'=86
 'istype'=156
 'item'=74
 'join'=113
@@ -105,7 +105,7 @@
 'locale'=24
 'loop'=107
 'merge'=111
-'message'=87
+'message'=90
 'meta'=159
 'metadata'=28
 'nonunique'=51
@@ -113,7 +113,7 @@
 'null'=167
 'objective'=134
 'occurrence'=70
-'of'=88
+'of'=91
 'or'=147
 'ordered'=50
 'out'=173

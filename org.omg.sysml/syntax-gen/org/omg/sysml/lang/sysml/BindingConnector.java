@@ -29,8 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>BindingConnector</code> is a binary <code>Connector</code> that requires its <code>relatedFeatures</code> to identify the same things (have the same values).</p>
  * 
- * specializesFromLibrary('Links::selfLinks')
  * relatedFeature->size() = 2
+ * specializesFromLibrary('Links::selfLinks')
  * <!-- end-model-doc -->
  *
  *

@@ -33,8 +33,14 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-model-doc -->
  * <p>An <code>Element</code> is a constituent of a model that is uniquely identified relative to all other <code>Elements</code>. It can have <code>Relationships</code> with other <code>Elements</code>. Some of these <code>Relationships</code> might imply ownership of other <code>Elements</code>, which means that if an <code>Element</code> is deleted from a model, then so are all the <code>Elements</code> that it owns.</p>
  * 
+ * isLibraryElement = libraryNamespace() <> null
+ * 
+ * textualRepresentation = ownedElement->selectByKind(TextualRepresentation)
+ * name = effectiveName()
+ * ownedAnnotation = ownedRelationship->
+ *     selectByKind(Annotation)->
+ *     select(a | a.annotatedElement = self)
  * ownedElement = ownedRelationship.ownedRelatedElement
- * owner = owningRelationship.owningRelatedElement
  * qualifiedName =
  *     if owningNamespace = null then null
  *     else if owningNamespace.owner = null then escapedName()
@@ -42,20 +48,14 @@ import org.eclipse.emf.ecore.EObject;
  *             escapedName() = null then null
  *     else owningNamespace.qualifiedName + '::' + escapedName()
  *     endif endif endif
- * documentation = ownedElement->selectByKind(Documentation)
- * ownedAnnotation = ownedRelationship->
- *     selectByKind(Annotation)->
- *     select(a | a.annotatedElement = self)
- * name = effectiveName()
  * ownedRelationship->exists(isImplied) implies isImpliedIncluded
- * isLibraryElement = libraryNamespace() <> null
- * 
- * shortName = effectiveShortName()
  * owningNamespace =
  *     if owningMembership = null then null
  *     else owningMembership.membershipOwningNamespace
  *     endif
- * textualRepresentation = ownedElement->selectByKind(TextualRepresentation)
+ * owner = owningRelationship.owningRelatedElement
+ * documentation = ownedElement->selectByKind(Documentation)
+ * shortName = effectiveShortName()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,10 +63,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>

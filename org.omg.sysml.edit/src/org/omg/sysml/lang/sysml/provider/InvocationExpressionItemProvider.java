@@ -167,6 +167,26 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createBooleanExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createInvariant()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralInteger()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createInvocationExpression()));
 
 		newChildDescriptors.add
@@ -177,12 +197,7 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createSelectExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
+				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -192,12 +207,7 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createFeatureReferenceExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralExpression()));
+				 SysMLFactory.eINSTANCE.createCollectExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -207,27 +217,7 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createLiteralInteger()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createCollectExpression()));
+				 SysMLFactory.eINSTANCE.createSelectExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -237,12 +227,22 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createBooleanExpression()));
+				 SysMLFactory.eINSTANCE.createMetadataAccessExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createInvariant()));
+				 SysMLFactory.eINSTANCE.createLiteralBoolean()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createFeatureChainExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createLiteralInfinity()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -292,6 +292,11 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
+				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createSatisfyRequirementUsage()));
 
 		newChildDescriptors.add
@@ -303,11 +308,6 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
 				 SysMLFactory.eINSTANCE.createTriggerInvocationExpression()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND,
-				 SysMLFactory.eINSTANCE.createIncludeUseCaseUsage()));
 	}
 
 	/**
@@ -323,17 +323,17 @@ public class InvocationExpressionItemProvider extends ExpressionItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {

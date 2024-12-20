@@ -42,6 +42,20 @@ package P {
 	abstract flow def F;
 	abstract flow def G;
 	
+	abstract flow def H {
+		end a;
+	}
+	
+	flow def I :> H {
+		end a;
+		end b;
+		// XPECT errors --> "A flow connection definition can have at most two ends." at "end c;"
+		end c;
+	}
+	
+	// XPECT errors --> "A flow connection definition can have at most two ends." at "flow def J :> I;"
+	flow def J :> I;
+	
 	part apart : A {
 		part b;
 		part c;

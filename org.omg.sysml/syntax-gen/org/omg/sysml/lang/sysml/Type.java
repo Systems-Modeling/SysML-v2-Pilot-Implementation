@@ -32,58 +32,58 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Type</code> is a <code>Namespace</code> that is the most general kind of <code>Element</code> supporting the semantics of classification. A <code>Type</code> may be a <code>Classifier</code> or a <code>Feature</code>, defining conditions on what is classified by the <code>Type</code> (see also the description of <code>isSufficient</code>).</p>
  * 
- * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
- * specializesFromLibrary('Base::Anything')
- * ownedIntersecting->size() <> 1
- * endFeature = feature->select(isEnd)
- * ownedRelationship->selectByKind(Intersecting)
- * ownedFeature = ownedFeatureMembership.ownedMemberFeature
- * ownedDifferencing->size() <> 1
- * input = feature->select(f | 
- *     let direction: FeatureDirectionKind = directionOf(f) in
- *     direction = FeatureDirectionKind::_'in' or
- *     direction = FeatureDirectionKind::inout)
- * inheritedMembership = inheritedMemberships(Set{}, false)
- * inheritedFeature = inheritedMemberships->
- *     selectByKind(FeatureMembership).memberFeature
+ * ownedSpecialization = ownedRelationship->selectByKind(Specialization)->
+ *     select(s | s.special = self)
+ *     
  * multiplicity = 
  *     let ownedMultiplicities: Sequence(Multiplicity) =
  *         ownedMember->selectByKind(Multiplicity) in
  *     if ownedMultiplicities->isEmpty() then null
  *     else ownedMultiplicities->first()
  *     endif
- * intersectingType = ownedIntersecting.intersectingType
- * intersectingType->excludes(self)
- * ownedUnioning->size() <> 1
- * ownedEndFeature = ownedFeature->select(isEnd)
- * directedFeature = feature->select(f | directionOf(f) <> null)
- * feature = featureMembership.ownedMemberFeature
- * unioningType->excludes(self)
+ * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
  * ownedConjugator =
  *     let ownedConjugators: Sequence(Conjugator) = 
  *         ownedRelationship->selectByKind(Conjugation) in
  *     if ownedConjugators->isEmpty() then null 
  *     else ownedConjugators->at(1) endif
- * ownedUnioning =
- *     ownedRelationship->selectByKind(Unioning)
- * differencingType = ownedDifferencing.differencingType
- * ownedDisjoining =
- *     ownedRelationship->selectByKind(Disjoining)
- * differencingType->excludes(self)
  * output = feature->select(f | 
  *     let direction: FeatureDirectionKind = directionOf(f) in
  *     direction = FeatureDirectionKind::out or
  *     direction = FeatureDirectionKind::inout)
- * ownedSpecialization = ownedRelationship->selectByKind(Specialization)->
- *     select(s | s.special = self)
- *     
- * ownedMember->selectByKind(Multiplicity)->size() <= 1
+ * input = feature->select(f | 
+ *     let direction: FeatureDirectionKind = directionOf(f) in
+ *     direction = FeatureDirectionKind::_'in' or
+ *     direction = FeatureDirectionKind::inout)
+ * inheritedMembership = inheritedMemberships(Set{}, false)
+ * specializesFromLibrary('Base::Anything')
+ * directedFeature = feature->select(f | directionOf(f) <> null)
+ * feature = featureMembership.ownedMemberFeature
  * featureMembership = ownedFeatureMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
+ * ownedFeature = ownedFeatureMembership.ownedMemberFeature
+ * differencingType = ownedDifferencing.differencingType
+ * intersectingType->excludes(self)
+ * differencingType->excludes(self)
+ * unioningType = ownedUnioning.unioningType
+ * unioningType->excludes(self)
+ * intersectingType = ownedIntersecting.intersectingType
  * ownedRelationship->selectByKind(Conjugation)->size() <= 1
+ * ownedMember->selectByKind(Multiplicity)->size() <= 1
+ * endFeature = feature->select(isEnd)
+ * ownedDisjoining =
+ *     ownedRelationship->selectByKind(Disjoining)
+ * ownedUnioning =
+ *     ownedRelationship->selectByKind(Unioning)
+ * ownedRelationship->selectByKind(Intersecting)
  * ownedDifferencing =
  *     ownedRelationship->selectByKind(Differencing)
- * unioningType = ownedUnioning.unioningType
+ * ownedEndFeature = ownedFeature->select(isEnd)
+ * inheritedFeature = inheritedMemberships->
+ *     selectByKind(FeatureMembership).memberFeature
+ * ownedUnioning->size() <> 1
+ * ownedIntersecting->size() <> 1
+ * ownedDifferencing->size() <> 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -94,12 +94,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -248,6 +248,24 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	boolean specializesFromLibrary(String libraryTypeName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the owned or inherited <code>Multiplicities</code> for this <code>Type<./code>.</p>
+	 * if multiplicity <> null then OrderedSet{multiplicity}
+	 * else 
+	 *     ownedSpecialization.general->closure(t |
+	 *         if t.multiplicity <> null then OrderedSet{}
+	 *         else ownedSpecialization.general
+	 *     )->select(multiplicity <> null).multiplicity->asOrderedSet()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Multiplicity> multiplicities();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.

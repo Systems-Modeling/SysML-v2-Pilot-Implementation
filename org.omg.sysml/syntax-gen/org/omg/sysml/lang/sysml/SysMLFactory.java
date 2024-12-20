@@ -555,6 +555,15 @@ public interface SysMLFactory extends EFactory {
 	ReferenceSubsetting createReferenceSubsetting();
 
 	/**
+	 * Returns a new object of class '<em>Cross Subsetting</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cross Subsetting</em>'.
+	 * @generated
+	 */
+	CrossSubsetting createCrossSubsetting();
+
+	/**
 	 * Returns a new object of class '<em>Association</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

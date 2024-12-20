@@ -47,7 +47,6 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 
 			addIsVariationPropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
-			addOwnedUsagePropertyDescriptor(object);
 			addVariantMembershipPropertyDescriptor(object);
 			addUsagePropertyDescriptor(object);
 			addDirectedUsagePropertyDescriptor(object);
@@ -77,6 +76,7 @@ public class DefinitionItemProvider extends ClassifierItemProvider {
 			addOwnedViewpointPropertyDescriptor(object);
 			addOwnedRenderingPropertyDescriptor(object);
 			addOwnedMetadataPropertyDescriptor(object);
+			addOwnedUsagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

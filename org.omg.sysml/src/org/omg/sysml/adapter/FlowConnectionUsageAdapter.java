@@ -42,7 +42,6 @@ public class FlowConnectionUsageAdapter extends ConnectorAsUsageAdapter {
 		return (FlowConnectionUsage)super.getTarget();
 	}
 	
-	// From 
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

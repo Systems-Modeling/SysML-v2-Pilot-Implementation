@@ -163,6 +163,7 @@ public class TypeUtil {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
 				return !visited.contains(originalType) && conforms(originalType, supertype);
 			} else {
+				// TODO: Should this use getSupertypesOf instead of getGeneralTypesOf?
 				return getGeneralTypesOf(subtype).stream().
 						anyMatch(type->!visited.contains(type) && 
 								conforms(type, supertype, visited));
@@ -447,6 +448,9 @@ public class TypeUtil {
 			newSpecialization.setIsImplied(true);
 			newSpecialization.setGeneral(general);
 			newSpecialization.setSpecific(type);
+			if (general.getOwningRelationship() == null) {
+				newSpecialization.getOwnedRelatedElement().add(general);
+			}
 			type.getOwnedRelationship().add(newSpecialization);			
 		});
 		adapter.cleanImplicitGeneralTypes();

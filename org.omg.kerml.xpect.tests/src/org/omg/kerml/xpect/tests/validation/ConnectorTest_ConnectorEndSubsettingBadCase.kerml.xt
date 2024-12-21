@@ -4,6 +4,8 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
 		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Performances.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -11,6 +13,8 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 				ThisFile {}
 				File {from ="/library/Base.kerml"}
 				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Performances.kerml"}
 			}
 		}
 	}
@@ -23,9 +27,9 @@ package test{
 	
 	connector c {
 		feature f;
-		end a ::> x :> f;
+		end a ::> x :> f[1];
 		//XPECT errors --> "Couldn't resolve reference to Feature 'f'." at "f"
-		end b ::> f;
-		end c ::> y;
+		end b ::> f[1];
+		end c ::> y[1];
 	}
 }

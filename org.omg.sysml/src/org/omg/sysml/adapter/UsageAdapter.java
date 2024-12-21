@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
@@ -122,7 +123,7 @@ public class UsageAdapter extends FeatureAdapter {
 				filter(f->f != null).
 				map(FeatureUtil::getBasicFeatureOf).
 				noneMatch(f->f != null && f.getOwningType() != null)) {
-			FeatureUtil.addMultiplicityTo(target);
+			TypeUtil.addMultiplicityTo(target);
 		}
 	}
 	

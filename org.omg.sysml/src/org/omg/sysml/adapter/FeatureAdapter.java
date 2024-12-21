@@ -258,6 +258,7 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
+	// checkFeatureCrossingSpecialization 
 	public void addCrossingSpecialization() {
 		Feature target = getTarget();
 		Feature ownedCrossFeature = FeatureUtil.getOwnedCrossFeatureOf(target);
@@ -290,14 +291,17 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 		}
 	}
-	
+	 
 	protected void addOwnedCrossFeatureSpecialization() {
 		Feature target = getTarget();
 		Namespace owner = target.getOwningNamespace();
 		if (FeatureUtil.isOwnedCrossFeature(target)) {
+			// checkFeatureOwnedCrossFeatureSpecialization
 			for (Type type: ((Feature)owner).getType()) {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 			}
+			
+			// checkFeatureOwnedCrossFeatureRedefinitionSpecialization
 			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner, null)) {
 				if (redefinedFeature.isEnd()) {
 					Feature crossFeature = getCrossFeatureOf(redefinedFeature);
@@ -698,6 +702,7 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
+	// checkFeatureOwnedCrossFeatureTypeFeaturing
 	public void addOwnedCrossFeatureTypeFeaturing() {
 		Feature target = getTarget();
 		if (FeatureUtil.isOwnedCrossFeature(target) && target.getOwnedTypeFeaturing().isEmpty() && isImplicitFeaturingTypesEmpty()) {

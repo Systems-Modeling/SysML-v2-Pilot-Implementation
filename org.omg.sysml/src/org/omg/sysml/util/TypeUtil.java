@@ -46,9 +46,11 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -524,6 +526,45 @@ public class TypeUtil {
 		}
 	}
 	
+	// Multiplicity
+
+	public static void addMultiplicityTo(Type type) {
+		EList<Membership> ownedMemberships = type.getOwnedMembership();
+		if (!ownedMemberships.stream().
+				map(Membership::getMemberElement).
+				anyMatch(Multiplicity.class::isInstance)) {
+			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
+			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
+			membership.setOwnedMemberElement(multiplicity);
+			type.getOwnedRelationship().add(membership);
+		}
+	}
+	
+	public static Multiplicity getMultiplicityOf(Type type) {
+		List<Multiplicity> multiplicities = getMultiplicitiesOf(type, new HashSet<>());
+		return multiplicities.isEmpty()? null: multiplicities.get(0);
+	}
+
+	public static List<Multiplicity> getMultiplicitiesOf(Type type) {
+		return getMultiplicitiesOf(type, new HashSet<>());
+	}
+
+	public static List<Multiplicity> getMultiplicitiesOf(Type type, Set<Type> visited) {
+		Multiplicity multiplicity = type.getMultiplicity();
+		if (multiplicity != null) {
+			return Collections.singletonList(multiplicity);
+		} else {
+			List<Multiplicity> multiplicities = new ArrayList<>();
+			visited.add(type);
+			for (Type general: getGeneralTypesOf(type)){
+				if (general != null && !visited.contains(general)) { 
+					multiplicities.addAll(getMultiplicitiesOf(general, visited));
+				}
+			}
+			return multiplicities;
+		}
+	}
+
 	// Individuals
 	
 	public static boolean isIndividual(Type type) {

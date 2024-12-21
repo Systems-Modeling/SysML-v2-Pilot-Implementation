@@ -23,7 +23,6 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -51,7 +50,6 @@ import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -257,7 +255,18 @@ public class FeatureUtil {
 				collect(Collectors.toList());
 	}
 	
-	// Owned crossing features
+	// Cross features
+	
+	public static Feature getCrossFeatureOf(Feature feature) {
+		Feature crossedFeature = getFeatureAdapter(feature).getCrossedFeature();
+		if (crossedFeature != null) {
+			List<Feature> chainingFeatures = crossedFeature.getChainingFeature();
+			if (chainingFeatures.size() >=2) {
+				return chainingFeatures.get(1);
+			}
+		}
+		return null;
+	}
 
 	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
 		return !(namespace instanceof Feature) || !((Feature)namespace).isEnd()? null:
@@ -265,7 +274,8 @@ public class FeatureUtil {
 				filter(element->element instanceof Feature && 
 						!(element instanceof Multiplicity) && 
 						!(element instanceof MetadataFeature) &&
-						!(element.getOwningMembership() instanceof FeatureMembership)).
+						!(element.getOwningMembership() instanceof FeatureMembership)&&
+						!(element.getOwningMembership() instanceof FeatureValue)).
 				findFirst().orElse(null);
 	}
 
@@ -463,44 +473,7 @@ public class FeatureUtil {
 			}
 		}
 		return null;
-	}
-	
-	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
-			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
-			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
-			membership.setOwnedMemberElement(multiplicity);
-			type.getOwnedRelationship().add(membership);
-		}
-	}
-	
-	public static Multiplicity getMultiplicityOf(Type type) {
-		List<Multiplicity> multiplicities = getMultiplicitiesOf(type, new HashSet<>());
-		return multiplicities.isEmpty()? null: multiplicities.get(0);
-	}
-	
-	public static List<Multiplicity> getMultiplicitiesOf(Type type) {
-		return getMultiplicitiesOf(type, new HashSet<>());
-	}
-	
-	public static List<Multiplicity> getMultiplicitiesOf(Type type, Set<Type> visited) {
-		Multiplicity multiplicity = type.getMultiplicity();
-		if (multiplicity != null) {
-			return Collections.singletonList(multiplicity);
-		} else {
-			List<Multiplicity> multiplicities = new ArrayList<>();
-			visited.add(type);
-			for (Type general: TypeUtil.getGeneralTypesOf(type)){
-				if (general != null && !visited.contains(general)) { 
-					multiplicities.addAll(getMultiplicitiesOf(general, visited));
-				}
-			}
-			return multiplicities;
-		}
-	}
+	}	
 	
 	//Naming
 	

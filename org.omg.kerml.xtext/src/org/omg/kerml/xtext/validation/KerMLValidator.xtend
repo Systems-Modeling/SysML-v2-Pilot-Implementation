@@ -151,16 +151,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG = "Feature cannot have itself in a feature chain"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
+	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION = "validateFeatureCrossFeatureSpecialization"
+	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined cross features"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
+	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION = "checkFeatureCrossingSpecialization"
+	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG = "Must be the cross feature"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING = "validateFeatureOwnedCrossSubsetting"
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
-	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
-	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
-	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
-	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
 
 	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
@@ -452,30 +456,53 @@ class KerMLValidator extends AbstractKerMLValidator {
 			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
 		}
 		
-		// TODO: Add validateFeatureCrossFeatureType
-		val crossFeature = f.crossFeature
-		if (crossFeature !== null && crossFeature.type.toSet != f.type.toSet) {
-			error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+		// validateFeatureCrossFeatureSpecialization
+		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
+		val ownedCrossFeature = f.ownedCrossFeature()
+		if (crossFeature !== null) {
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
+				exists[cf | cf !== null && !TypeUtil.conforms(crossFeature, cf)]) {
+				if (f.ownedCrossSubsetting === null) {
+					error(INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION)
+				} else {
+					error(INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION)
+				}
+			}
 		}
 		
-		// TODO: Add validateFeatureOwnedCrossSubsetting
+		// validateFeatureCrossFeatureType
+		if (crossFeature !== null && crossFeature.type.toSet != f.type.toSet) {
+				if (f.ownedCrossSubsetting === null) {
+					error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+				} else {
+					error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+				}
+		}
+		
+		// validateFeatureOwnedCrossSubsetting
 		val crossSubsettings = f.ownedRelationship.filter[r | r instanceof CrossSubsetting].toList
 		if (crossSubsettings.size > 1) {
 			for (var i = 1; i < crossSubsettings.size; i++)
 				error(INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG, refSubsettings.get(i), null, INVALID_FEATURE_OWNED_CROSS_SUBSETTING)
 		}
 		
-		// TODO: Add validateFeatureEndFeatureMultiplicity
-		if (f.isEnd && !FeatureUtil.getMultiplicitiesOf(f).
+		// validateFeatureEndMultiplicity
+		if (f.isEnd && !f.multiplicities.
 			map(mult | FeatureUtil.getMultiplicityRangeOf(mult)).
 			exists[hasBounds(1,1)]) {
 			warning(INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG, f, null, INVALID_FEATURE_END_FEATURE_MULTIPLICITY)
+		}
+		
+		// checkFeatureCrossingSpecialization
+		if (ownedCrossFeature !== null && ownedCrossFeature !== crossFeature) {
+			error(INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSSING_SPECIALIZATION)
 		}
 	}
 		
 	@Check
 	def checkFeatureChaining(FeatureChaining fc) {
-		// Add validateFeatureChainingFeatureConformance
+		// validateFeatureChainingFeatureConformance
 		val featureChainings = fc.featureChained.ownedFeatureChaining;
 		val i = featureChainings.indexOf(fc);
 		if (i > 0) {
@@ -624,7 +651,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossedFeature = sub.crossedFeature;
 		val crossingFeature = sub.crossingFeature;
 		
-		// TODO: Add validateCrossSubsettingCrossedFeature
+		// Add validateCrossSubsettingCrossedFeature
 		if (crossingFeature.isEnd && crossingFeature.owningType !== null) {
 			val endFeatures = crossingFeature.owningType.endFeature;			
 			val chainingFeatures = crossedFeature.chainingFeature
@@ -634,7 +661,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-		// TODO: Add validateCrossSubsettingCrossingFeature
+		// Add validateCrossSubsettingCrossingFeature
 		if (!crossingFeature.isEnd || crossingFeature.owningType === null || crossingFeature.owningType.endFeature.size < 2) {
 			error(INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG, sub, null, INVALID_CROSS_SUBSETTING_CROSSING_FEATURE)
 		}

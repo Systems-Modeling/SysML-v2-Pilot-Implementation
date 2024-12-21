@@ -25,7 +25,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class LifeClassAdapter extends ClassAdapter {
 
@@ -52,7 +52,7 @@ public class LifeClassAdapter extends ClassAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		FeatureUtil.addMultiplicityTo(getTarget());
+		TypeUtil.addMultiplicityTo(getTarget());
 	}
 	
 }

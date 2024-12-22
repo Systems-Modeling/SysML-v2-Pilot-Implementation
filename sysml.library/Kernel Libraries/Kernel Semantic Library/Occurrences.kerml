@@ -193,7 +193,8 @@ standard library package Occurrences {
 			binding [1] startShot = [1] endShot;
 		}
 
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets timeCoincidentOccurrences, spaceEnclosedOccurrences 
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] 
+			subsets timeCoincidentOccurrences, spaceEnclosedOccurrences, spaceTimeEnclosedOccurrences 
 			intersects timeCoincidentOccurrences, spaceEnclosedOccurrences inverse of spaceTimeCoincidentOccurrences {
 			doc
 			/*
@@ -729,10 +730,8 @@ standard library package Occurrences {
 		 * each start at the same time and end at the same time.
 		 */
 
-		end feature thisOccurrence: Occurrence redefines shorterOccurrence
-		  crosses thatOccurrence.timeCoincidentOccurrences;
-		end feature thatOccurrence: Occurrence redefines longerOccurrence
-		  crosses thisOccurrence.timeCoincidentOccurrences;
+		end feature thisOccurrence: Occurrence redefines shorterOccurrence crosses thatOccurrence.timeCoincidentOccurrences;
+		end happensWhile [1..*] subsets timeCoincidentOccurrences feature thatOccurrence: Occurrence redefines longerOccurrence;
 	}
 	
 	assoc SpaceLink specializes BinaryLink disjoint from Occurrence {
@@ -782,12 +781,11 @@ standard library package Occurrences {
 		 * WithinBoth asserts that two occurrences are Within each other, that is, they occupy the
 		 * same four dimensional region.  Note that this means every Occurrence is WithinBoth with
 		 * itself and transitive.
-		 */
+		 */ 
 
 		end feature thisOccurrence redefines smallerOccurrence, HappensWhile::thisOccurrence
 		  crosses thatOccurrence.spaceTimeCoincidentOccurrences;
-		end feature thatOccurrence redefines largerOccurrence, HappensWhile::thatOccurrence 
-		  crosses thisOccurrence.spaceTimeCoincidentOccurrences;
+		end withinBoth subsets spaceTimeCoincidentOccurrences feature thatOccurrence redefines largerOccurrence, HappensWhile::thatOccurrence;
 	}
 
 	assoc all PortionOf specializes Within {
@@ -797,7 +795,7 @@ standard library package Occurrences {
 		 */
 
 		end feature portionOccurrence: Occurrence redefines smallerOccurrence crosses portionedOccurrence.portions;
-		end feature portionedOccurrence: Occurrence redefines largerOccurrence crosses portionOccurrence.portionOf;
+		end portionWithin subsets portionOf feature portionedOccurrence: Occurrence redefines largerOccurrence;
 	}
 
 	assoc all TimeSliceOf specializes PortionOf {
@@ -807,7 +805,7 @@ standard library package Occurrences {
 		 */
 
 		end feature timeSliceOccurrence: Occurrence redefines portionOccurrence crosses timeSlicedOccurrence.timeSlices;
-		end feature timeSlicedOccurrence: Occurrence redefines portionedOccurrence crosses timeSliceOccurrence.timeSliceOf;
+		end timeSliceWithin subsets timeSliceOf feature timeSlicedOccurrence: Occurrence redefines portionedOccurrence;
 	}
 
 	assoc all SnapshotOf specializes TimeSliceOf {
@@ -817,7 +815,7 @@ standard library package Occurrences {
 		 */
 
 		end feature snapshotOccurrence: Occurrence redefines timeSliceOccurrence crosses snapshottedOccurrence.snapshots;
-		end feature snapshottedOccurrence: Occurrence redefines timeSlicedOccurrence crosses snapshotOccurrence.snapshotOf;
+		end snapshotWithin subsets snapshotOf feature snapshottedOccurrence: Occurrence redefines timeSlicedOccurrence;
 	}
 
 	assoc all SpaceSliceOf specializes PortionOf {
@@ -830,7 +828,7 @@ standard library package Occurrences {
 		 */
 
 		end feature spaceSliceOccurrence: Occurrence redefines portionOccurrence crosses spaceSlicedOccurrence.spaceSlices;
-		end feature spaceSlicedOccurrence: Occurrence redefines portionedOccurrence crosses spaceSliceOccurrence.spaceSliceOf;
+		end spaceSliceWithin subsets spaceSliceOf feature spaceSlicedOccurrence: Occurrence redefines portionedOccurrence;
 	}
 
 	assoc all SpaceShotOf specializes SpaceSliceOf {
@@ -841,7 +839,7 @@ standard library package Occurrences {
 		 */
 
 		end feature spaceShotOccurrence: Occurrence redefines spaceSliceOccurrence crosses spaceShottedOccurrence.spaceShots;
-		end feature spaceShottedOccurrence: Occurrence redefines spaceSlicedOccurrence crosses spaceShotOccurrence.spaceShotOf;
+		end spaceShotWithin subsets spaceSliceOf feature spaceShottedOccurrence: Occurrence redefines spaceSlicedOccurrence;
 	}
 
 	assoc all Without specializes BinaryLink unions HappensBefore, OutsideOf {

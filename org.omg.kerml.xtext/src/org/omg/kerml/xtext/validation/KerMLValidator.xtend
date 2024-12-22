@@ -152,7 +152,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
 	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION = "validateFeatureCrossFeatureSpecialization"
-	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined cross features"
+	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined-end cross features"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
 	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION = "checkFeatureCrossingSpecialization"

@@ -58,7 +58,7 @@ standard library package TransitionPerformances {
 	}
 	
 	assoc struct TPCGuardConstraint {
-		end [0..1] feature constrainedHBLink: HappensBefore;
+		end guardedLink [0..1] feature constrainedHBLink: HappensBefore;
 		end bool constrainedGuard;
 		
 		private inv { allTrue(constrainedGuard()) }

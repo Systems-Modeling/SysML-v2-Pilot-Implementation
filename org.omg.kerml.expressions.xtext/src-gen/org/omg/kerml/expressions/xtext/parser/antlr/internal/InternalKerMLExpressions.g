@@ -2836,24 +2836,14 @@ rulePrimaryExpression returns [EObject current=null]
 					(
 						{
 							$current = forceCreateModelElementAndAdd(
-								grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0(),
+								grammarAccess.getPrimaryExpressionAccess().getIndexExpressionOperandAction_2_0_0_0(),
 								$current);
 						}
 					)
-					(
-						(
-							lv_operator_5_0='#'
-							{
-								newLeafNode(lv_operator_5_0, grammarAccess.getPrimaryExpressionAccess().getOperatorNumberSignKeyword_2_0_0_1_0());
-							}
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getPrimaryExpressionRule());
-								}
-								setWithLastConsumed($current, "operator", lv_operator_5_0, "#");
-							}
-						)
-					)
+					otherlv_5='#'
+					{
+						newLeafNode(otherlv_5, grammarAccess.getPrimaryExpressionAccess().getNumberSignKeyword_2_0_0_1());
+					}
 					otherlv_6='('
 					{
 						newLeafNode(otherlv_6, grammarAccess.getPrimaryExpressionAccess().getLeftParenthesisKeyword_2_0_0_2());

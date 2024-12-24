@@ -308,6 +308,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseIndexExpression(IndexExpression element) {
+			return new IndexExpressionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseIntersecting(Intersecting element) {
 			return new IntersectingAdapter(element);
 		}

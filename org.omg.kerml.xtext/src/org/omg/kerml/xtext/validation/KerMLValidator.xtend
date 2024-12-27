@@ -274,6 +274,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES = "validateMultiplicityRangeResultTypes"
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG = "Must have a Natural value"
+	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS = "validateMultiplicityRangeBounds"
+	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS_MSG = "Bound expressions must be first two owned members"
 
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT = "validateMetadataFeatureAnnotatedElement"
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG = "Cannot annotate {metaclass}"
@@ -1033,6 +1035,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (if (b.isModelLevelEvaluable) mult.valueOf(b) == -2 else !b.isInteger) {
 				error(INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG, b, null, INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES)
 			}
+		}
+		
+		// validateMultiplicityRangeBounds
+		val ownedMembers = mult.ownedMember
+		val lowerBound = mult.lowerBound
+		val upperBound = mult.upperBound
+		if ((lowerBound === null && (ownedMembers.empty || ownedMembers.get(0) !== upperBound)) ||
+			(lowerBound !== null && (ownedMembers.size < 2 || ownedMembers.get(0) !== lowerBound || ownedMembers.get(1) !== upperBound))) {
+				error(INVALID_MULTIPLICITY_RANGE_BOUNDS_MSG, mult, null, INVALID_MULTIPLICITY_RANGE_BOUNDS)
 		}
 	}
 	

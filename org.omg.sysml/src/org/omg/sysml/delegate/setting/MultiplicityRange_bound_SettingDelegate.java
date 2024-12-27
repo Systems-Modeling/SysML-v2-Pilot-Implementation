@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,29 +21,31 @@
 
 package org.omg.sysml.delegate.setting;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class MultiplicityRange_upperBound_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class MultiplicityRange_bound_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public MultiplicityRange_upperBound_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public MultiplicityRange_bound_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 	
 	@Override
-	public Expression basicGet(InternalEObject owner) {
-		List<Expression> bounds = NamespaceUtil.getOwnedMembersOf((MultiplicityRange)owner).
-				filter(Expression.class::isInstance).map(Expression.class::cast).
-				collect(Collectors.toList());
-		return bounds.isEmpty()? null:
-			   bounds.size() == 1? bounds.get(0):
-			   bounds.get(1);
+	public EList<Expression> basicGet(InternalEObject owner) {
+		EList<Expression> bounds = new NonNotifyingEObjectEList<>(Expression.class, owner, eStructuralFeature.getFeatureID());
+		Expression lowerBound = ((MultiplicityRange)owner).getLowerBound();
+		Expression upperBound = ((MultiplicityRange)owner).getUpperBound();
+		if (upperBound != null) {
+			if (lowerBound != null) {
+				bounds.add(lowerBound);
+			}
+			bounds.add(upperBound);
+		}
+		return bounds;
 	}
 
 }

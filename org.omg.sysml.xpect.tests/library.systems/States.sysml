@@ -66,7 +66,7 @@ standard library package States {
 			 */
 		}
 		
-		succession stateSequencing first exclusiveStates[0..1] then exclusiveStates[0..1] {
+		succession stateSequencing first [0..1] exclusiveStates then [0..1] exclusiveStates {
 			doc
 			/*
 			 * Exclusive states cannot overlap, so it must be possible to strictly sequence them in time.

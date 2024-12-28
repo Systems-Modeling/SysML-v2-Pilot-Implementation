@@ -27,8 +27,8 @@ standard library package Interfaces {
 		 * type of all binary InterfaceDefinitions with exactly two ends.
 		 */
 	 
-		end source: Port[0..*] :>> BinaryConnection::source; 
-		end target: Port[0..*] :>> BinaryConnection::target;
+		end source: Port :>> BinaryConnection::source; 
+		end target: Port :>> BinaryConnection::target;
 	}
 	
 	abstract interface interfaces: Interface[0..*] nonunique :> connections {

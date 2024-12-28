@@ -40,8 +40,8 @@ standard library package Connections {
          * ConnectionDefinitions with exactly two ends.
          */
     
-        end source: Anything[0..*] :>> BinaryLinkObject::source;
-        end target: Anything[0..*] :>> BinaryLinkObject::target;
+        end source: Anything :>> BinaryLinkObject::source;
+        end target: Anything :>> BinaryLinkObject::target;
     }
     
     abstract connection connections: Connection[0..*] nonunique :> linkObjects, parts {

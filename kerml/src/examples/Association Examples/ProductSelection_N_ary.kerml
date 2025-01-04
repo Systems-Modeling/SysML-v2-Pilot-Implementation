@@ -32,10 +32,11 @@ package ProductSelection_N_ary {
 	}
 	
 	// Equivalent association definition showing library model specialization 
-	// and implied cross subsetting.
+	// implied cross subsetting, and "Cartesian product" features.
 	assoc ProductSelection3 specializes Links::Link {
 		end cart: ShoppingCart[1] crosses cart::product_account.inCart {
 			member feature inCart: ShoppingCart[0..1] featured by Product_Account {
+                // Represents the "Cartesian product" of Product X Account.
 				member feature Product_Account : Account featured by Product;
 			}
 			member feature product_account : inCart::Product_Account featured by ProductSelection3 {
@@ -44,6 +45,7 @@ package ProductSelection_N_ary {
 		}
 		end selectedProduct: Product[1] crosses selectedProduct::cart_account.selectedProducts {
 			member feature selectedProducts: Product[0..*] featured by Cart_Account {
+                // Represents the "Cartesian product" of ShoppingCart X Account.
 				member feature Cart_Account : Account featured by ShoppingCart;				
 			}
 			member feature cart_account : selectedProducts::Cart_Account featured by ProductSelection3 {
@@ -52,6 +54,7 @@ package ProductSelection_N_ary {
 		}
 		end feature account : Account[1] crosses account::cart_product.withAccount {
 			member feature withAccount[1..1] : Account featured by Cart_Product {
+                // Represents the "Cartesian product" of ShoppingCart X Product.
 				member feature Cart_Product : Product featured by ShoppingCart;
 			}
 			member feature cart_product : withAccount::Cart_Product featured by ProductSelection3 {

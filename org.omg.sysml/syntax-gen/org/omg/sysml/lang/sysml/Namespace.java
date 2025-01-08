@@ -36,11 +36,11 @@ import org.eclipse.emf.common.util.EList;
  * membership->forAll(m1 | 
  *     membership->forAll(m2 | 
  *         m1 <> m2 implies m1.isDistinguishableFrom(m2)))
- * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
  * member = membership.memberElement
+ * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
  * importedMembership = importedMemberships(Set{})
- * ownedMembership = ownedRelationship->selectByKind(Membership)
  * ownedImport = ownedRelationship->selectByKind(Import)
+ * ownedMembership = ownedRelationship->selectByKind(Membership)
  * <!-- end-model-doc -->
  *
  * <p>

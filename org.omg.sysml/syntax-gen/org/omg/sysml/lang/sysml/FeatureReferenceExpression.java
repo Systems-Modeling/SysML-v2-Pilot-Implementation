@@ -28,13 +28,6 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>FeatureReferenceExpression</code> is an <code>Expression</code> whose <code>result</code> is bound to a <code>referent</code> <code>Feature</code>.</p>
- * let membership : Membership = 
- *     ownedMembership->reject(m | m.oclIsKindOf(ParameterMembership)) in
- * membership->notEmpty() and
- * membership->at(1).memberElement.oclIsKindOf(Feature)
- * ownedMember->selectByKind(BindingConnector)->exists(b |
- *     b.relatedFeatures->includes(targetFeature) and
- *     b.relatedFeatures->includes(result))
  * referent =
  *     let nonParameterMemberships : Sequence(Membership) = ownedMembership->
  *         reject(oclIsKindOf(ParameterMembership)) in
@@ -43,6 +36,14 @@ package org.omg.sysml.lang.sysml;
  *     then null
  *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
  *     endif
+ * ownedMember->selectByKind(BindingConnector)->exists(b |
+ *     b.relatedFeatures->includes(targetFeature) and
+ *     b.relatedFeatures->includes(result))
+ * let membership : Membership = 
+ *     ownedMembership->reject(m | m.oclIsKindOf(ParameterMembership)) in
+ * membership->notEmpty() and
+ * membership->at(1).memberElement.oclIsKindOf(Feature)
+ * result.owningType() = self and result.specializes(referent)
  * <!-- end-model-doc -->
  *
  * <p>

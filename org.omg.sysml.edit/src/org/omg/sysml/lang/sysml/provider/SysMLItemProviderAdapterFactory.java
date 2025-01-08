@@ -1360,6 +1360,29 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.IndexExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndexExpressionItemProvider indexExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.omg.sysml.lang.sysml.IndexExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIndexExpressionAdapter() {
+		if (indexExpressionItemProvider == null) {
+			indexExpressionItemProvider = new IndexExpressionItemProvider(this);
+		}
+
+		return indexExpressionItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.omg.sysml.lang.sysml.LiteralInfinity} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3994,7 +4017,8 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 	 */
 	@Override
 	public void dispose() {
-		if (featureMembershipItemProvider != null) featureMembershipItemProvider.dispose();
+		if (subclassificationItemProvider != null) subclassificationItemProvider.dispose();
+		if (specializationItemProvider != null) specializationItemProvider.dispose();
 		if (owningMembershipItemProvider != null) owningMembershipItemProvider.dispose();
 		if (membershipItemProvider != null) membershipItemProvider.dispose();
 		if (namespaceItemProvider != null) namespaceItemProvider.dispose();
@@ -4004,7 +4028,7 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (annotationItemProvider != null) annotationItemProvider.dispose();
 		if (textualRepresentationItemProvider != null) textualRepresentationItemProvider.dispose();
 		if (typeItemProvider != null) typeItemProvider.dispose();
-		if (specializationItemProvider != null) specializationItemProvider.dispose();
+		if (featureMembershipItemProvider != null) featureMembershipItemProvider.dispose();
 		if (featureItemProvider != null) featureItemProvider.dispose();
 		if (redefinitionItemProvider != null) redefinitionItemProvider.dispose();
 		if (subsettingItemProvider != null) subsettingItemProvider.dispose();
@@ -4020,58 +4044,58 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (unioningItemProvider != null) unioningItemProvider.dispose();
 		if (disjoiningItemProvider != null) disjoiningItemProvider.dispose();
 		if (differencingItemProvider != null) differencingItemProvider.dispose();
-		if (endFeatureMembershipItemProvider != null) endFeatureMembershipItemProvider.dispose();
-		if (subclassificationItemProvider != null) subclassificationItemProvider.dispose();
 		if (classifierItemProvider != null) classifierItemProvider.dispose();
-		if (literalExpressionItemProvider != null) literalExpressionItemProvider.dispose();
+		if (endFeatureMembershipItemProvider != null) endFeatureMembershipItemProvider.dispose();
 		if (expressionItemProvider != null) expressionItemProvider.dispose();
 		if (stepItemProvider != null) stepItemProvider.dispose();
 		if (behaviorItemProvider != null) behaviorItemProvider.dispose();
 		if (classItemProvider != null) classItemProvider.dispose();
 		if (functionItemProvider != null) functionItemProvider.dispose();
-		if (operatorExpressionItemProvider != null) operatorExpressionItemProvider.dispose();
-		if (invocationExpressionItemProvider != null) invocationExpressionItemProvider.dispose();
-		if (literalIntegerItemProvider != null) literalIntegerItemProvider.dispose();
-		if (literalBooleanItemProvider != null) literalBooleanItemProvider.dispose();
-		if (featureReferenceExpressionItemProvider != null) featureReferenceExpressionItemProvider.dispose();
-		if (collectExpressionItemProvider != null) collectExpressionItemProvider.dispose();
-		if (selectExpressionItemProvider != null) selectExpressionItemProvider.dispose();
-		if (metadataAccessExpressionItemProvider != null) metadataAccessExpressionItemProvider.dispose();
-		if (metadataFeatureItemProvider != null) metadataFeatureItemProvider.dispose();
-		if (metaclassItemProvider != null) metaclassItemProvider.dispose();
-		if (structureItemProvider != null) structureItemProvider.dispose();
-		if (literalInfinityItemProvider != null) literalInfinityItemProvider.dispose();
-		if (featureChainExpressionItemProvider != null) featureChainExpressionItemProvider.dispose();
-		if (literalRationalItemProvider != null) literalRationalItemProvider.dispose();
-		if (nullExpressionItemProvider != null) nullExpressionItemProvider.dispose();
-		if (literalStringItemProvider != null) literalStringItemProvider.dispose();
-		if (elementFilterMembershipItemProvider != null) elementFilterMembershipItemProvider.dispose();
-		if (packageItemProvider != null) packageItemProvider.dispose();
-		if (libraryPackageItemProvider != null) libraryPackageItemProvider.dispose();
-		if (parameterMembershipItemProvider != null) parameterMembershipItemProvider.dispose();
-		if (dataTypeItemProvider != null) dataTypeItemProvider.dispose();
+		if (resultExpressionMembershipItemProvider != null) resultExpressionMembershipItemProvider.dispose();
 		if (invariantItemProvider != null) invariantItemProvider.dispose();
 		if (booleanExpressionItemProvider != null) booleanExpressionItemProvider.dispose();
 		if (predicateItemProvider != null) predicateItemProvider.dispose();
-		if (resultExpressionMembershipItemProvider != null) resultExpressionMembershipItemProvider.dispose();
 		if (returnParameterMembershipItemProvider != null) returnParameterMembershipItemProvider.dispose();
-		if (associationItemProvider != null) associationItemProvider.dispose();
-		if (associationStructureItemProvider != null) associationStructureItemProvider.dispose();
-		if (featureValueItemProvider != null) featureValueItemProvider.dispose();
+		if (parameterMembershipItemProvider != null) parameterMembershipItemProvider.dispose();
 		if (multiplicityRangeItemProvider != null) multiplicityRangeItemProvider.dispose();
-		if (connectorItemProvider != null) connectorItemProvider.dispose();
-		if (successionItemProvider != null) successionItemProvider.dispose();
-		if (bindingConnectorItemProvider != null) bindingConnectorItemProvider.dispose();
-		if (itemFlowEndItemProvider != null) itemFlowEndItemProvider.dispose();
+		if (structureItemProvider != null) structureItemProvider.dispose();
+		if (featureValueItemProvider != null) featureValueItemProvider.dispose();
+		if (metaclassItemProvider != null) metaclassItemProvider.dispose();
+		if (metadataFeatureItemProvider != null) metadataFeatureItemProvider.dispose();
 		if (itemFlowItemProvider != null) itemFlowItemProvider.dispose();
+		if (connectorItemProvider != null) connectorItemProvider.dispose();
+		if (associationItemProvider != null) associationItemProvider.dispose();
+		if (itemFlowEndItemProvider != null) itemFlowEndItemProvider.dispose();
 		if (itemFeatureItemProvider != null) itemFeatureItemProvider.dispose();
 		if (interactionItemProvider != null) interactionItemProvider.dispose();
 		if (successionItemFlowItemProvider != null) successionItemFlowItemProvider.dispose();
+		if (successionItemProvider != null) successionItemProvider.dispose();
+		if (elementFilterMembershipItemProvider != null) elementFilterMembershipItemProvider.dispose();
+		if (packageItemProvider != null) packageItemProvider.dispose();
+		if (libraryPackageItemProvider != null) libraryPackageItemProvider.dispose();
+		if (dataTypeItemProvider != null) dataTypeItemProvider.dispose();
+		if (featureReferenceExpressionItemProvider != null) featureReferenceExpressionItemProvider.dispose();
+		if (metadataAccessExpressionItemProvider != null) metadataAccessExpressionItemProvider.dispose();
+		if (nullExpressionItemProvider != null) nullExpressionItemProvider.dispose();
+		if (indexExpressionItemProvider != null) indexExpressionItemProvider.dispose();
+		if (operatorExpressionItemProvider != null) operatorExpressionItemProvider.dispose();
+		if (invocationExpressionItemProvider != null) invocationExpressionItemProvider.dispose();
+		if (collectExpressionItemProvider != null) collectExpressionItemProvider.dispose();
+		if (literalInfinityItemProvider != null) literalInfinityItemProvider.dispose();
+		if (literalExpressionItemProvider != null) literalExpressionItemProvider.dispose();
+		if (literalIntegerItemProvider != null) literalIntegerItemProvider.dispose();
+		if (selectExpressionItemProvider != null) selectExpressionItemProvider.dispose();
+		if (literalRationalItemProvider != null) literalRationalItemProvider.dispose();
+		if (literalBooleanItemProvider != null) literalBooleanItemProvider.dispose();
+		if (literalStringItemProvider != null) literalStringItemProvider.dispose();
+		if (featureChainExpressionItemProvider != null) featureChainExpressionItemProvider.dispose();
+		if (bindingConnectorItemProvider != null) bindingConnectorItemProvider.dispose();
+		if (associationStructureItemProvider != null) associationStructureItemProvider.dispose();
+		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
 		if (namespaceImportItemProvider != null) namespaceImportItemProvider.dispose();
 		if (membershipImportItemProvider != null) membershipImportItemProvider.dispose();
-		if (dependencyItemProvider != null) dependencyItemProvider.dispose();
-		if (lifeClassItemProvider != null) lifeClassItemProvider.dispose();
-		if (occurrenceUsageItemProvider != null) occurrenceUsageItemProvider.dispose();
+		if (interfaceUsageItemProvider != null) interfaceUsageItemProvider.dispose();
+		if (connectionUsageItemProvider != null) connectionUsageItemProvider.dispose();
 		if (usageItemProvider != null) usageItemProvider.dispose();
 		if (variantMembershipItemProvider != null) variantMembershipItemProvider.dispose();
 		if (definitionItemProvider != null) definitionItemProvider.dispose();
@@ -4080,23 +4104,22 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (enumerationUsageItemProvider != null) enumerationUsageItemProvider.dispose();
 		if (enumerationDefinitionItemProvider != null) enumerationDefinitionItemProvider.dispose();
 		if (attributeDefinitionItemProvider != null) attributeDefinitionItemProvider.dispose();
+		if (occurrenceUsageItemProvider != null) occurrenceUsageItemProvider.dispose();
+		if (occurrenceDefinitionItemProvider != null) occurrenceDefinitionItemProvider.dispose();
+		if (lifeClassItemProvider != null) lifeClassItemProvider.dispose();
 		if (itemUsageItemProvider != null) itemUsageItemProvider.dispose();
 		if (partUsageItemProvider != null) partUsageItemProvider.dispose();
 		if (partDefinitionItemProvider != null) partDefinitionItemProvider.dispose();
 		if (itemDefinitionItemProvider != null) itemDefinitionItemProvider.dispose();
-		if (occurrenceDefinitionItemProvider != null) occurrenceDefinitionItemProvider.dispose();
 		if (portUsageItemProvider != null) portUsageItemProvider.dispose();
 		if (portDefinitionItemProvider != null) portDefinitionItemProvider.dispose();
 		if (conjugatedPortDefinitionItemProvider != null) conjugatedPortDefinitionItemProvider.dispose();
 		if (portConjugationItemProvider != null) portConjugationItemProvider.dispose();
 		if (flowConnectionUsageItemProvider != null) flowConnectionUsageItemProvider.dispose();
 		if (actionUsageItemProvider != null) actionUsageItemProvider.dispose();
-		if (interfaceUsageItemProvider != null) interfaceUsageItemProvider.dispose();
-		if (connectionUsageItemProvider != null) connectionUsageItemProvider.dispose();
-		if (interfaceDefinitionItemProvider != null) interfaceDefinitionItemProvider.dispose();
-		if (connectionDefinitionItemProvider != null) connectionDefinitionItemProvider.dispose();
 		if (allocationUsageItemProvider != null) allocationUsageItemProvider.dispose();
 		if (allocationDefinitionItemProvider != null) allocationDefinitionItemProvider.dispose();
+		if (connectionDefinitionItemProvider != null) connectionDefinitionItemProvider.dispose();
 		if (stateUsageItemProvider != null) stateUsageItemProvider.dispose();
 		if (transitionUsageItemProvider != null) transitionUsageItemProvider.dispose();
 		if (acceptActionUsageItemProvider != null) acceptActionUsageItemProvider.dispose();
@@ -4124,42 +4147,43 @@ public class SysMLItemProviderAdapterFactory extends SysMLAdapterFactory impleme
 		if (renderingUsageItemProvider != null) renderingUsageItemProvider.dispose();
 		if (renderingDefinitionItemProvider != null) renderingDefinitionItemProvider.dispose();
 		if (metadataUsageItemProvider != null) metadataUsageItemProvider.dispose();
-		if (eventOccurrenceUsageItemProvider != null) eventOccurrenceUsageItemProvider.dispose();
-		if (objectiveMembershipItemProvider != null) objectiveMembershipItemProvider.dispose();
-		if (stateSubactionMembershipItemProvider != null) stateSubactionMembershipItemProvider.dispose();
-		if (stateDefinitionItemProvider != null) stateDefinitionItemProvider.dispose();
+		if (interfaceDefinitionItemProvider != null) interfaceDefinitionItemProvider.dispose();
+		if (conjugatedPortTypingItemProvider != null) conjugatedPortTypingItemProvider.dispose();
 		if (transitionFeatureMembershipItemProvider != null) transitionFeatureMembershipItemProvider.dispose();
 		if (exhibitStateUsageItemProvider != null) exhibitStateUsageItemProvider.dispose();
 		if (performActionUsageItemProvider != null) performActionUsageItemProvider.dispose();
-		if (triggerInvocationExpressionItemProvider != null) triggerInvocationExpressionItemProvider.dispose();
-		if (whileLoopActionUsageItemProvider != null) whileLoopActionUsageItemProvider.dispose();
-		if (forLoopActionUsageItemProvider != null) forLoopActionUsageItemProvider.dispose();
-		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
-		if (ifActionUsageItemProvider != null) ifActionUsageItemProvider.dispose();
-		if (terminateActionUsageItemProvider != null) terminateActionUsageItemProvider.dispose();
-		if (assignmentActionUsageItemProvider != null) assignmentActionUsageItemProvider.dispose();
-		if (decisionNodeItemProvider != null) decisionNodeItemProvider.dispose();
-		if (mergeNodeItemProvider != null) mergeNodeItemProvider.dispose();
-		if (forkNodeItemProvider != null) forkNodeItemProvider.dispose();
-		if (sendActionUsageItemProvider != null) sendActionUsageItemProvider.dispose();
-		if (successionAsUsageItemProvider != null) successionAsUsageItemProvider.dispose();
-		if (bindingConnectorAsUsageItemProvider != null) bindingConnectorAsUsageItemProvider.dispose();
-		if (assertConstraintUsageItemProvider != null) assertConstraintUsageItemProvider.dispose();
-		if (metadataDefinitionItemProvider != null) metadataDefinitionItemProvider.dispose();
+		if (eventOccurrenceUsageItemProvider != null) eventOccurrenceUsageItemProvider.dispose();
+		if (stateSubactionMembershipItemProvider != null) stateSubactionMembershipItemProvider.dispose();
+		if (stateDefinitionItemProvider != null) stateDefinitionItemProvider.dispose();
+		if (successionFlowConnectionUsageItemProvider != null) successionFlowConnectionUsageItemProvider.dispose();
+		if (flowConnectionDefinitionItemProvider != null) flowConnectionDefinitionItemProvider.dispose();
+		if (requirementVerificationMembershipItemProvider != null) requirementVerificationMembershipItemProvider.dispose();
 		if (requirementConstraintMembershipItemProvider != null) requirementConstraintMembershipItemProvider.dispose();
-		if (subjectMembershipItemProvider != null) subjectMembershipItemProvider.dispose();
-		if (actorMembershipItemProvider != null) actorMembershipItemProvider.dispose();
+		if (includeUseCaseUsageItemProvider != null) includeUseCaseUsageItemProvider.dispose();
+		if (objectiveMembershipItemProvider != null) objectiveMembershipItemProvider.dispose();
 		if (satisfyRequirementUsageItemProvider != null) satisfyRequirementUsageItemProvider.dispose();
+		if (assertConstraintUsageItemProvider != null) assertConstraintUsageItemProvider.dispose();
+		if (subjectMembershipItemProvider != null) subjectMembershipItemProvider.dispose();
 		if (stakeholderMembershipItemProvider != null) stakeholderMembershipItemProvider.dispose();
 		if (framedConcernMembershipItemProvider != null) framedConcernMembershipItemProvider.dispose();
-		if (includeUseCaseUsageItemProvider != null) includeUseCaseUsageItemProvider.dispose();
-		if (conjugatedPortTypingItemProvider != null) conjugatedPortTypingItemProvider.dispose();
-		if (flowConnectionDefinitionItemProvider != null) flowConnectionDefinitionItemProvider.dispose();
-		if (successionFlowConnectionUsageItemProvider != null) successionFlowConnectionUsageItemProvider.dispose();
+		if (actorMembershipItemProvider != null) actorMembershipItemProvider.dispose();
+		if (viewRenderingMembershipItemProvider != null) viewRenderingMembershipItemProvider.dispose();
 		if (namespaceExposeItemProvider != null) namespaceExposeItemProvider.dispose();
 		if (membershipExposeItemProvider != null) membershipExposeItemProvider.dispose();
-		if (viewRenderingMembershipItemProvider != null) viewRenderingMembershipItemProvider.dispose();
-		if (requirementVerificationMembershipItemProvider != null) requirementVerificationMembershipItemProvider.dispose();
+		if (bindingConnectorAsUsageItemProvider != null) bindingConnectorAsUsageItemProvider.dispose();
+		if (successionAsUsageItemProvider != null) successionAsUsageItemProvider.dispose();
+		if (forkNodeItemProvider != null) forkNodeItemProvider.dispose();
+		if (joinNodeItemProvider != null) joinNodeItemProvider.dispose();
+		if (sendActionUsageItemProvider != null) sendActionUsageItemProvider.dispose();
+		if (decisionNodeItemProvider != null) decisionNodeItemProvider.dispose();
+		if (mergeNodeItemProvider != null) mergeNodeItemProvider.dispose();
+		if (triggerInvocationExpressionItemProvider != null) triggerInvocationExpressionItemProvider.dispose();
+		if (assignmentActionUsageItemProvider != null) assignmentActionUsageItemProvider.dispose();
+		if (forLoopActionUsageItemProvider != null) forLoopActionUsageItemProvider.dispose();
+		if (ifActionUsageItemProvider != null) ifActionUsageItemProvider.dispose();
+		if (whileLoopActionUsageItemProvider != null) whileLoopActionUsageItemProvider.dispose();
+		if (terminateActionUsageItemProvider != null) terminateActionUsageItemProvider.dispose();
+		if (metadataDefinitionItemProvider != null) metadataDefinitionItemProvider.dispose();
 	}
 
 }

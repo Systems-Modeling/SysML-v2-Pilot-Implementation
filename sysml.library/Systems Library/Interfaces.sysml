@@ -43,11 +43,11 @@ standard library package Interfaces {
          */
          
         ref port :>> participant : Port [2..*] nonunique ordered {
-             doc
-             /*
-              * The participants of an Interface must be Ports. The interfacingPorts of
-              * each participant Port include all the other participants in the Interface.
-              */
+            doc
+            /*
+             * The participants of an Interface must be Ports. The interfacingPorts of
+             * each participant Port include all the other participants in the Interface.
+             */
               
             protected ref thisParticipant :>> self;
             protected ref otherParticipants : Port [1..*] nonunique :> interfacingPorts

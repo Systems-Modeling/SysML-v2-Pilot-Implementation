@@ -13,16 +13,33 @@ standard library package Ports {
 		/*
 		 * Port is the most general class of objects that represent connection points
 		 * for interacting with a Part. Port is the base type of all PortDefinitions.
+		 * 
+		 * Transfers outgoing from a Port are always targeted to a Port connected to
+		 * the original Port by an Interface.
 		 */
 	
 		ref self: Port :>> Object::self;
 		
-		port subports: Port :> timeEnclosedOccurrences {
+		port subports: Port [0..*] :> ports, timeEnclosedOccurrences {
 			doc
 			/*
 			 * The Ports that are subports of this Port.
 			 */
 		}
+		
+        abstract ref port interfacingPorts : Port[0..*] nonunique :> ports {
+            doc
+            /*
+             * Ports that are connected to this Port by an Interface.
+             */
+        }
+        
+        ref :>> outgoingTransfers :> interfacingPorts.incomingTransfersToSelf {
+            doc
+            /* 
+             * The target of each outgoingTransfer of a Port must be an interfacingPort.
+             */
+        }
 	}
 	
 	abstract port ports : Port[0..*] nonunique :> objects {

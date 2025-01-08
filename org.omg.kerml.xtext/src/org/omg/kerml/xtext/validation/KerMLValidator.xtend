@@ -93,6 +93,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.CrossSubsetting
 import java.util.Set
+import org.omg.sysml.lang.sysml.Annotation
 
 /**
  * This class contains custom validation rules. 
@@ -105,6 +106,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED = "validateElementIsImpliedIncluded"
 	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED_MSG = "Element cannot have implied relationships included"
+	
+	public static val INVALID_ANNOTATION_ANNOTATING_ELEMENT = "validateAnnotationAnnotatingElement"
+	public static val INVALID_ANNOTATION_ANNOTATING_ELEMENT_MSG = "Must either own or be owned by its annotating element"
+	
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP = "validateAnnotationAnnotatedElementOwnership"
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_1 = "Must own its annotating element"
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_2 = "Must be owned by its annotated element"
 
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY = "validateNamespaceDistinguishablity"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG = "Duplicate of other owned member name"
@@ -312,6 +320,26 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (elm.ownedRelationship.exists[isImplied]) {
 				error(INVALID_ELEMENT_IS_IMPLIED_INCLUDED_MSG, elm, null, INVALID_ELEMENT_IS_IMPLIED_INCLUDED)
 			}
+		}
+	}
+	
+	@Check
+	def checkAnnotation(Annotation ann) {
+		// validateAnnotationAnnotatingElement
+		val ownedAnnotatingElement = ann.ownedAnnotatingElement
+		val owningAnnotatingElement = ann.owningAnnotatingElement
+		if (ownedAnnotatingElement === null && owningAnnotatingElement === null ||
+			ownedAnnotatingElement !== null && owningAnnotatingElement !== null) {
+			error(INVALID_ANNOTATION_ANNOTATING_ELEMENT_MSG, ann, null, INVALID_ANNOTATION_ANNOTATING_ELEMENT)
+		}
+		
+		// validateAnnotationAnnotatedElementOwnership
+		val owningAnnotatedElement = ann.owningAnnotatedElement
+		if (owningAnnotatedElement !== null && ownedAnnotatingElement === null) {
+			error(INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_1, ann, null, INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP)
+		}
+		if (owningAnnotatedElement === null && ownedAnnotatingElement !== null) {
+			error(INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_2, ann, null, INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP)
 		}
 	}
 	

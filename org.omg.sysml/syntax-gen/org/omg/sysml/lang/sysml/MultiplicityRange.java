@@ -33,26 +33,34 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>MultiplicityRange</code> is a <code>Multiplicity</code> whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> <code>Expression</code> and the result of an <code>upperBound</code> <code>Expression</code>. The result of these <code>Expressions</code> shall be of type <code><em>Natural</em></code>. If the result of the <code>upperBound</code> <code>Expression</code> is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value. If no <code>lowerBound</code> <code>Expression</code>, then the default is that the lower bound has the same value as the upper bound, except if the <code>upperBound</code> evaluates to <code>*</code>, in which case the default for the lower bound is 0.</p>
  * 
  * bound->forAll(b | b.featuringType = self.featuringType)
- * lowerBound =
- *     let ownedMembers : Sequence(Element) = 
- *         ownedMembership->selectByKind(OwningMembership).ownedMember in
- *     if ownedMembers->size() < 2 or 
- *         not ownedMembers->first().oclIsKindOf(Expression) then null
- *     else ownedMembers->first().oclAsType(Expression)
- *     endif
  * bound->forAll(b |
  *     b.result.specializesFromLibrary('ScalarValues::Integer') and
  *     let value : UnlimitedNatural = valueOf(b) in
  *     value <> null implies value >= 0
  * )
+ * lowerBound =
+ *     let ownedExpressions : Sequence(Expression) =
+ *         ownedMember->selectByKind(Expression) in
+ *     if ownedExpressions->size() < 2 then null
+ *     else ownedExpressions->first()
+ *     endif
  * upperBound =
- *     let ownedMembers : Sequence(Element) = 
- *         ownedMembership->selectByKind(OwningMembership).ownedMember in
- *     if ownedMembers->isEmpty() or 
- *        not ownedMembers->last().oclIsKindOf(Expression) 
- *     then null
- *     else ownedMembers->last().oclAsType(Expression)
- *     endif 
+ *     let ownedExpressions : Sequence(Expression) =
+ *         ownedMember->selectByKind(Expression) in
+ *     if ownedExpressions->isEmpty() then null
+ *     else if ownedExpressions->size() = 1 then ownedExpressions->at(1)
+ *     else ownedExpressions->at(2)
+ *     endif endif 
+ * ownedMember->notEmpty() and
+ * ownedMember->at(1) = upperBound or
+ * ownedMember->size() > 1 and
+ * ownedMember->at(1) = lowerBound and
+ * ownedMember->at(2) = upperBound
+ * bound =
+ *     if upperBound = null then Sequence{}
+ *     else if lowerBound = null then Sequence{upperBound}
+ *     else Sequence{lowerBound, upperBound}
+ *     endif endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -150,12 +158,11 @@ public interface MultiplicityRange extends Multiplicity {
 	 * Returns the value of the '<em><b>Bound</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
-	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bound</em>' reference list isn't clear,
@@ -167,10 +174,10 @@ public interface MultiplicityRange extends Multiplicity {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicityRange_Bound()
-	 * @model required="true" upper="2" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model required="true" upper="2" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='multiplicity'"
-	 *        annotation="union"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getBound();

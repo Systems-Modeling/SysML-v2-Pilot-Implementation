@@ -36,19 +36,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -111,7 +116,7 @@ public class FeatureUtil {
 		}
 	}
 
-// Typing
+	// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
 		FeatureAdapter adapter = getFeatureAdapter(feature);
@@ -171,6 +176,13 @@ public class FeatureUtil {
 			}
 		}
 	}
+	
+	public static FeatureTyping addFeatureTypingTo(Feature feature) {
+		FeatureTyping featureTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
+		featureTyping.setTypedFeature(feature);
+		feature.getOwnedRelationship().add(featureTyping);
+		return featureTyping;
+	}
 
 	// Subsetting and redefinition
 	
@@ -180,6 +192,10 @@ public class FeatureUtil {
 
 	public static List<Feature> getSubsettedNotRedefinedFeaturesOf(Feature feature) {
 		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
+	}
+
+	public static List<Feature> getSubsettedNotCrossedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getSubsettedNotCrossedFeatures();
 	}
 
 	public static Feature getReferencedFeatureOf(Feature feature) {
@@ -238,6 +254,47 @@ public class FeatureUtil {
 				filter(f->TypeUtil.conforms(f, subsettedFeature)).
 				collect(Collectors.toList());
 	}
+	
+	// Cross features
+	
+	public static Feature getCrossFeatureOf(Feature feature) {
+		Feature crossedFeature = getFeatureAdapter(feature).getCrossedFeature();
+		if (crossedFeature != null) {
+			List<Feature> chainingFeatures = crossedFeature.getChainingFeature();
+			if (chainingFeatures.size() >=2) {
+				return chainingFeatures.get(1);
+			}
+		}
+		return null;
+	}
+
+	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
+		return !(namespace instanceof Feature) || !((Feature)namespace).isEnd()? null:
+				(Feature)namespace.getOwnedMember().stream().
+				filter(element->element instanceof Feature && 
+						!(element instanceof Multiplicity) && 
+						!(element instanceof MetadataFeature) &&
+						!(element.getOwningMembership() instanceof FeatureMembership)&&
+						!(element.getOwningMembership() instanceof FeatureValue)).
+				findFirst().orElse(null);
+	}
+
+	public static boolean isOwnedCrossFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		return feature == getOwnedCrossFeatureOf(owner);
+	}
+	
+	public static List<Type> getCrossFeatureTypes(Feature feature) {
+		return feature.getOwnedSpecialization().stream().
+				filter(s->!(s instanceof Redefinition ||
+						s instanceof ReferenceSubsetting || 
+						s instanceof CrossSubsetting)).
+				map(Specialization::getGeneral).toList();
+	}
+	
+	public static void addOwnedCrossFeatureTypeFeaturingTo(Feature feature) {
+		getFeatureAdapter(feature).addOwnedCrossFeatureTypeFeaturing();
+	}
 
 	public static boolean redefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures) {
 		return redefinesAnyOf(feature, redefinedFeatures, new HashSet<>());
@@ -273,7 +330,7 @@ public class FeatureUtil {
 	/**
 	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
 	 */
-	protected static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
+	public static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
 		List<Type> allFeaturingTypes = new ArrayList<>();
 		List<Feature> features = new ArrayList<>();
 		features.add(originalFeature);
@@ -307,6 +364,13 @@ public class FeatureUtil {
 	public static void forEachImplicitFeaturingTypeOf(Feature feature, Consumer<Type> action) {
 		getFeatureAdapter(feature).forEachImplicitFeaturingType(action);
 	}
+	
+	public static TypeFeaturing addTypeFeaturingTo(Feature feature) {
+		TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+		typeFeaturing.setFeatureOfType(feature);
+		feature.getOwnedRelationship().add(typeFeaturing);
+		return typeFeaturing;
+	}
 
 	/**
 	 * Physically insert implicit TypeFeaturings into the model.
@@ -323,6 +387,9 @@ public class FeatureUtil {
 				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
+				if (type.getOwningRelationship() == null) {
+					featuring.getOwnedRelatedElement().add(type);
+				}
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});
@@ -406,39 +473,7 @@ public class FeatureUtil {
 			}
 		}
 		return null;
-	}
-	
-	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
-			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
-			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
-			membership.setOwnedMemberElement(multiplicity);
-			type.getOwnedRelationship().add(membership);
-		}
-	}
-	
-	public static Multiplicity getMultiplicityOf(Type type) {
-		return getMultiplicityOf(type, new HashSet<>());
-	}
-	
-	public static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
-		Multiplicity multiplicity = type.getMultiplicity();
-		if (multiplicity == null) {
-			visited.add(type);
-			for (Type general: TypeUtil.getGeneralTypesOf(type)){
-				if (general != null && !visited.contains(general)) { 
-					multiplicity = getMultiplicityOf(general, visited);
-					if (multiplicity != null) {
-						break;
-					}
-				}
-			}
-		}
-		return multiplicity;
-	}
+	}	
 	
 	//Naming
 	

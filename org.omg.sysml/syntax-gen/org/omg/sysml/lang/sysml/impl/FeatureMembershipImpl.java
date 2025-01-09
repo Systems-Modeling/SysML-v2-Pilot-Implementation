@@ -40,23 +40,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureMembershipImpl extends OwningMembershipImpl implements FeatureMembership {
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedMemberFeature() <em>Owned Member Feature</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMemberFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE).getSettingDelegate();
-
 	/**
 	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -66,6 +56,16 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNING_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedMemberFeature() <em>Owned Member Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -330,12 +330,12 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
 				if (resolve) return getFeature();
 				return basicGetFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				if (resolve) return getOwnedMemberFeature();
-				return basicGetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
 				if (resolve) return getOwningType();
 				return basicGetOwningType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				if (resolve) return getOwnedMemberFeature();
+				return basicGetOwnedMemberFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -354,11 +354,11 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
 				setFeature((Feature)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
 				setOwningType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,11 +378,11 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
 				setFeature((Feature)null);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
 				setOwningType((Type)null);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -400,14 +400,14 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 				return isSetType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE:
 				return isSetFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				return isSetMembershipOwningNamespace();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				return isSetOwnedMemberFeature();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE:
 				return isSetOwningType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 		}
 		return super.eIsSet(featureID);
 	}

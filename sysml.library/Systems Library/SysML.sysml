@@ -103,6 +103,8 @@ standard library package SysML {
 		}		
 		
 		metadata def ConnectionDefinition specializes AssociationStructure, PartDefinition {
+			attribute isSufficient : Boolean[1..1] redefines isSufficient;
+			
 			derived ref item connectionEnd : Usage[0..*] ordered redefines associationEnd;
 		}		
 		

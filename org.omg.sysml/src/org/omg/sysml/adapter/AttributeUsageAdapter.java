@@ -34,9 +34,8 @@ public class AttributeUsageAdapter extends UsageAdapter {
 	}
 
 	@Override
-	public void doTransform() {
-		super.doTransform();
-		addDefaultMultiplicity();
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
 	}
 	
 }

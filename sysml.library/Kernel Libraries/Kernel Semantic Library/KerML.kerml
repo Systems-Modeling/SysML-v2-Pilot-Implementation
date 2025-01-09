@@ -139,6 +139,11 @@ standard library package KerML {
 			derived feature owningType : Type[0..1] subsets conjugatedType, owningRelatedElement;
 		}		
 		
+		metaclass CrossSubsetting specializes Subsetting {
+			feature crossedFeature : Feature[1..1] redefines subsettedFeature;
+			derived feature crossingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
+		}		
+		
 		metaclass Differencing specializes Relationship {
 			feature differencingType : Type[1..1] redefines target;
 			derived feature typeDifferenced : Type[1..1] subsets owningRelatedElement redefines source;
@@ -147,7 +152,7 @@ standard library package KerML {
 		metaclass Disjoining specializes Relationship {
 			feature typeDisjoined : Type[1..1] redefines source;
 			feature disjoiningType : Type[1..1] redefines target;
-			derived feature owningType : Type[0..1] subsets typeDisjoined, owningRelatedElement;
+			derived feature owningType : Type[0..1] subsets owningRelatedElement, typeDisjoined;
 		}		
 		
 		metaclass EndFeatureMembership specializes FeatureMembership {
@@ -164,7 +169,7 @@ standard library package KerML {
 			feature isPortion : Boolean[1..1];
 			feature direction : FeatureDirectionKind[0..1];
 			
-			derived feature owningType : Type[0..1] subsets owningNamespace, featuringType;
+			derived feature owningType : Type[0..1] subsets featuringType, owningNamespace;
 			derived feature 'type' : Type[0..*] ordered;
 			composite derived feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
 			composite derived feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
@@ -177,6 +182,8 @@ standard library package KerML {
 			composite derived feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
 			composite derived feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
 			composite derived feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
+			derived feature crossFeature : Feature[0..1];
+			composite derived feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
 			derived feature featureTarget : Feature[1..1];
 		}		
 		
@@ -194,12 +201,12 @@ standard library package KerML {
 		metaclass FeatureInverting specializes Relationship {
 			feature featureInverted : Feature[1..1] redefines source;
 			feature invertingFeature : Feature[1..1] redefines target;
-			derived feature owningFeature : Feature[0..1] subsets owningRelatedElement, featureInverted;
+			derived feature owningFeature : Feature[0..1] subsets featureInverted, owningRelatedElement;
 		}		
 		
-		metaclass FeatureMembership specializes OwningMembership, Featuring {
-			derived feature owningType : Type[1..1] redefines membershipOwningNamespace, 'type';
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines ownedMemberElement, 'feature';
+		metaclass FeatureMembership specializes Featuring, OwningMembership {
+			derived feature owningType : Type[1..1] redefines 'type', membershipOwningNamespace;
+			composite derived feature ownedMemberFeature : Feature[1..1] redefines 'feature', ownedMemberElement;
 		}		
 		
 		metaclass FeatureTyping specializes Specialization {
@@ -227,13 +234,13 @@ standard library package KerML {
 		
 		metaclass ReferenceSubsetting specializes Subsetting {
 			feature referencedFeature : Feature[1..1] redefines subsettedFeature;
-			derived feature referencingFeature : Feature[1..1] redefines subsettingFeature, owningFeature;
+			derived feature referencingFeature : Feature[1..1] redefines owningFeature, subsettingFeature;
 		}		
 		
 		metaclass Specialization specializes Relationship {
 			feature general : Type[1..1] redefines target;
 			feature specific : Type[1..1] redefines source;
-			derived feature owningType : Type[0..1] subsets specific, owningRelatedElement;
+			derived feature owningType : Type[0..1] subsets owningRelatedElement, specific;
 		}		
 		
 		metaclass Subclassification specializes Specialization {
@@ -279,7 +286,7 @@ standard library package KerML {
 		metaclass TypeFeaturing specializes Featuring {
 			feature featureOfType : Feature[1..1] redefines source, 'feature';
 			feature featuringType : Type[1..1] redefines target, 'type';
-			derived feature owningFeatureOfType : Feature[0..1] subsets featureOfType, owningRelatedElement;
+			derived feature owningFeatureOfType : Feature[0..1] subsets owningRelatedElement, featureOfType;
 		}		
 		
 		metaclass Unioning specializes Relationship {
@@ -292,14 +299,14 @@ standard library package KerML {
 	package Kernel {
 		public import Core::*;
 		
-		metaclass Association specializes Classifier, Relationship {
+		metaclass Association specializes Relationship, Classifier {
 			derived feature relatedType : Type[0..*] ordered nonunique redefines relatedElement;
 			derived feature sourceType : Type[0..1] subsets relatedType redefines source;
 			derived feature targetType : Type[0..*] subsets relatedType redefines target;
 			derived feature associationEnd : Feature[0..*] redefines endFeature;
 		}		
 		
-		metaclass AssociationStructure specializes Structure, Association;		
+		metaclass AssociationStructure specializes Association, Structure;		
 		
 		metaclass Behavior specializes Class {
 			derived feature 'step' : Step[0..*] subsets 'feature';
@@ -336,7 +343,7 @@ standard library package KerML {
 			derived feature isModelLevelEvaluable : Boolean[1..1];
 			
 			derived feature 'function' : Function[0..1] redefines 'behavior';
-			derived feature result : Feature[1..1] subsets parameter, output;
+			derived feature result : Feature[1..1] subsets output, parameter;
 		}		
 		
 		metaclass FeatureChainExpression specializes OperatorExpression {
@@ -361,10 +368,10 @@ standard library package KerML {
 			derived feature isModelLevelEvaluable : Boolean[1..1];
 			
 			derived feature expression : Expression[0..*] subsets 'step';
-			derived feature result : Feature[1..1] subsets parameter, output;
+			derived feature result : Feature[1..1] subsets output, parameter;
 		}		
 		
-		metaclass Interaction specializes Behavior, Association;		
+		metaclass Interaction specializes Association, Behavior;		
 		
 		metaclass Invariant specializes BooleanExpression {
 			feature isNegated : Boolean[1..1];
@@ -424,7 +431,7 @@ standard library package KerML {
 		metaclass MultiplicityRange specializes Multiplicity {
 			derived feature lowerBound : Expression[0..1] subsets bound;
 			derived feature upperBound : Expression[1..1] subsets bound;
-			abstract derived feature bound : Expression[1..2] ordered redefines ownedMember;
+			derived feature bound : Expression[1..2] ordered subsets ownedMember;
 		}		
 		
 		metaclass NullExpression specializes Expression;		
@@ -467,7 +474,7 @@ standard library package KerML {
 			derived feature guardExpression : Expression[0..*];
 		}		
 		
-		metaclass SuccessionItemFlow specializes Succession, ItemFlow;		
+		metaclass SuccessionItemFlow specializes ItemFlow, Succession;		
 		
 	}
 }

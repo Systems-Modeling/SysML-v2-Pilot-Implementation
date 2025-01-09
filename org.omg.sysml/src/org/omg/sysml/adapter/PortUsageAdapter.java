@@ -36,6 +36,8 @@ public class PortUsageAdapter extends UsageAdapter {
 	public PortUsage getTarget() {
 		return (PortUsage)super.getTarget();
 	}
+	
+	// Implicit Generalization
 
 	@Override
 	protected String getDefaultSupertype() {
@@ -58,10 +60,11 @@ public class PortUsageAdapter extends UsageAdapter {
 		return target.isComposite() && (owningType instanceof PortDefinition || owningType instanceof PortUsage);
 	}
 	
+	// Transformation
+	
 	@Override
-	public void doTransform() {
-		super.doTransform();
-		addDefaultMultiplicity();
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
 	}
 	
 }

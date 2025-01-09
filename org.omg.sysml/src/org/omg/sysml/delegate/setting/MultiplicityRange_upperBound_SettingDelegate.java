@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.util.NamespaceUtil;
@@ -39,14 +38,12 @@ public class MultiplicityRange_upperBound_SettingDelegate extends BasicDerivedOb
 	
 	@Override
 	public Expression basicGet(InternalEObject owner) {
-		List<Element> bounds = NamespaceUtil.getOwnedMembersOf((MultiplicityRange)owner).collect(Collectors.toList());
-		int size = bounds.size();
-		if (bounds.isEmpty()) {
-			return null;
-		} else {
-			Element bound = bounds.get(size - 1);
-			return bound instanceof Expression? (Expression)bound: null;
-		}
+		List<Expression> bounds = NamespaceUtil.getOwnedMembersOf((MultiplicityRange)owner).
+				filter(Expression.class::isInstance).map(Expression.class::cast).
+				collect(Collectors.toList());
+		return bounds.isEmpty()? null:
+			   bounds.size() == 1? bounds.get(0):
+			   bounds.get(1);
 	}
 
 }

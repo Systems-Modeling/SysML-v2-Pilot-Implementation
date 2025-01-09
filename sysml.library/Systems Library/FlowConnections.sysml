@@ -43,8 +43,8 @@ standard library package FlowConnections {
          * FlowConnectionUsages.
          */
     
-        end occurrence source: Occurrence[0..*] :>> Transfer::source;
-        end occurrence target: Occurrence[0..*] :>> Transfer::target;
+        end occurrence source: Occurrence :>> Transfer::source;
+        end occurrence target: Occurrence :>> Transfer::target;
         
         ref :>> payload :>> 'item';
         
@@ -65,13 +65,13 @@ standard library package FlowConnections {
              */
         }
         
-        connection :HappensDuring connect sourceEvent to source[1];
-        connection :HappensDuring connect targetEvent to target[1];
+        connection :HappensDuring connect sourceEvent to [1] source;
+        connection :HappensDuring connect targetEvent to [1] target;
         
         private attribute seBeforeNum: Natural[1] = if sourceEvent==thisConnection.start ? 0 else 1;
         private attribute teAfterNum: Natural[1] = if targetEvent==thisConnection.done ? 0 else 1;
-        succession [seBeforeNum] first sourceEvent[0..1] then self[0..1];
-        succession [teAfterNum] first self[0..1] then targetEvent[0..1];
+        succession [seBeforeNum] first [0..1] sourceEvent then [0..1] self;
+        succession [teAfterNum] first [0..1] self then [0..1] targetEvent;
     }
     
     abstract flow def FlowConnection :> MessageTransferConnection, FlowTransfer {
@@ -82,8 +82,8 @@ standard library package FlowConnections {
          * target input.
          */
         
-        end occurrence source: Occurrence[0..*] :>> MessageTransferConnection::source, FlowTransfer::source;
-        end occurrence target: Occurrence[0..*] :>> MessageTransferConnection::target, FlowTransfer::target;
+        end occurrence source: Occurrence :>> MessageTransferConnection::source, FlowTransfer::source;
+        end occurrence target: Occurrence :>> MessageTransferConnection::target, FlowTransfer::target;
     }
     
     abstract flow def SuccessionFlowConnection :> FlowConnection, FlowTransferBefore {
@@ -93,8 +93,8 @@ standard library package FlowConnections {
          * temporally ordered transfers. It is the base type for all SuccessionFlowConnectionUsages.
          */
     
-        end occurrence source: Occurrence[0..*] :>> FlowConnection::source, FlowTransferBefore::source;
-        end occurrence target: Occurrence[0..*] :>> FlowConnection::target, FlowTransferBefore::target;
+        end occurrence source: Occurrence :>> FlowConnection::source, FlowTransferBefore::source;
+        end occurrence target: Occurrence :>> FlowConnection::target, FlowTransferBefore::target;
     }
     
     abstract message messageConnections: MessageTransferConnection[0..*] nonunique :> transfers, actions {
@@ -103,8 +103,8 @@ standard library package FlowConnections {
          * messageConnections is the base feature of all FlowConnectionUsages.
          */
     
-        end occurrence source: Occurrence[0..*] :>> MessageTransferConnection::source, transfers::source;
-        end occurrence target: Occurrence[0..*] :>> MessageTransferConnection::target, transfers::target;
+        end occurrence source: Occurrence :>> MessageTransferConnection::source, transfers::source;
+        end occurrence target: Occurrence :>> MessageTransferConnection::target, transfers::target;
     }
     
     abstract message flowConnections: FlowConnection[0..*] nonunique :> messageConnections, flowTransfers {
@@ -114,8 +114,8 @@ standard library package FlowConnections {
          * and target input.
          */
     
-        end occurrence source: Occurrence[0..*] :>> FlowConnection::source, messageConnections::source, flowTransfers::source;
-        end occurrence target: Occurrence[0..*] :>> FlowConnection::target, messageConnections::target, flowTransfers::target;
+        end occurrence source: Occurrence :>> FlowConnection::source, messageConnections::source, flowTransfers::source;
+        end occurrence target: Occurrence :>> FlowConnection::target, messageConnections::target, flowTransfers::target;
     }
     
     abstract message successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, flowTransfersBefore {
@@ -124,7 +124,7 @@ standard library package FlowConnections {
          * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.
          */
     
-        end occurrence source: Occurrence[0..*] :>> SuccessionFlowConnection::source, flowConnections::source, flowTransfersBefore::source;
-        end occurrence target: Occurrence[0..*] :>> SuccessionFlowConnection::target, flowConnections::target, flowTransfersBefore::target;
+        end occurrence source: Occurrence :>> SuccessionFlowConnection::source, flowConnections::source, flowTransfersBefore::source;
+        end occurrence target: Occurrence :>> SuccessionFlowConnection::target, flowConnections::target, flowTransfersBefore::target;
     }
 }

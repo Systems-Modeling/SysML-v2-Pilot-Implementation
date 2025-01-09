@@ -36,8 +36,8 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionDefinitionImpl#getSourceType <em>Source Type</em>}</li>
@@ -323,12 +323,12 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -341,10 +341,10 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				return basicSetOwningRelatedElement(null, msgs);
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
 				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -371,16 +371,16 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT:
 				return getRelatedElement();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET:
 				return getTarget();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE:
 				return getSource();
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED:
 				return isImplied();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_TYPE:
@@ -407,6 +407,13 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				getRelatedElement().addAll((Collection<? extends Element>)newValue);
@@ -418,13 +425,6 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
-				return;
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED:
 				setIsImplied((Boolean)newValue);
@@ -460,6 +460,12 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				return;
@@ -468,12 +474,6 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 				return;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE:
 				getSource().clear();
-				return;
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
-				return;
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED:
 				setIsImplied(IS_IMPLIED_EDEFAULT);
@@ -505,16 +505,16 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT:
 				return isSetRelatedElement();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
-			case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED:
 				return isImplied != IS_IMPLIED_EDEFAULT;
 			case SysMLPackage.FLOW_CONNECTION_DEFINITION__END_FEATURE:
@@ -542,11 +542,11 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
+				case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
-				case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED: return SysMLPackage.RELATIONSHIP__IS_IMPLIED;
 				default: return -1;
 			}
@@ -577,11 +577,11 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.FLOW_CONNECTION_DEFINITION__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__IS_IMPLIED: return SysMLPackage.FLOW_CONNECTION_DEFINITION__IS_IMPLIED;
 				default: return -1;
 			}
@@ -638,7 +638,7 @@ public class FlowConnectionDefinitionImpl extends ActionDefinitionImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET, SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE, SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT, SysMLPackage.FLOW_CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.FLOW_CONNECTION_DEFINITION__TARGET, SysMLPackage.FLOW_CONNECTION_DEFINITION__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc -->

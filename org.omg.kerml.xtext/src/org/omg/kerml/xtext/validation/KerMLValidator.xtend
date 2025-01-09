@@ -90,6 +90,7 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.Structure
 
 /**
  * This class contains custom validation rules. 
@@ -180,6 +181,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CLASS_SPECIALIZATION = "validateClassSpecialization"
 	public static val INVALID_CLASS_SPECIALIZATION_MSG = "Cannot specialize data type or association"    
 	
+	public static val INVALID_STRUCTURE_SPECIALIZATION = "validateStructureSpecialization"
+	public static val INVALID_STRUCTURE_SPECIALIZATION_MSG = "Cannot specialize behavior"    
+	
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION = "validateAssociationBinarySpecialization"
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
 	public static val INVALID_ASSOCIATION_RELATED_TYPES = "validateAssociationRelatedTypes"
@@ -202,6 +206,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_RELATED_FEATURES_MSG = "Must have at least two related elements"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING = "validateConnectorTypeFeaturing"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Should be an accessible feature (use dot notation for nesting)"
+	
+	public static val INVALID_BEHAVIOR_SPECIALIZATION = "validateBehaviorSpecialization"
+	public static val INVALID_BEHAVIOR_SPECIALIZATION_MSG = "Cannot specialize structure"    
 	
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
@@ -599,6 +606,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkStructure(Structure c) {
+		// validateStructureSpecialization
+		for (s: c.ownedSpecialization) {
+			if (s.general instanceof Behavior) {
+				error(INVALID_STRUCTURE_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_STRUCTURE_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
 	def checkAssociation(Association a){
 		// validateAssociationBinarySpecialization
 		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
@@ -729,6 +746,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 				warning(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
 					null, INVALID_CONNECTOR_TYPE_FEATURING)
+			}
+		}
+	}
+	
+	@Check
+	def checkBehavior(Behavior b) {
+		// validateStructureSpecialization
+		for (s: b.ownedSpecialization) {
+			if (s.general instanceof Structure) {
+				error(INVALID_BEHAVIOR_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_BEHAVIOR_SPECIALIZATION)
 			}
 		}
 	}

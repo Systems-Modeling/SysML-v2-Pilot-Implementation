@@ -987,6 +987,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
+	// @Check
+	// def checkIndexExpression(IndexExpression e) {
+	//     // validateIndexExpressionOperator is automatically satisfied
+	// }
+	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
 		val type = ExpressionUtil.getExpressionTypeOf(e)
@@ -1036,7 +1041,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// def checkSelectExpression(SelectExpression e) {
 	//     // validateSelectExpressionOperator is automatically satisfied
 	// }
-	
 	
 	@Check
 	def checkItemFlow(ItemFlow flow) {

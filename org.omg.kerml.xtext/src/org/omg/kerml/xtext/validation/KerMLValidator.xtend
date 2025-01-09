@@ -976,6 +976,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			)) {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE)
 		}
+		
+		// validateFeatureChainExpressionOperator is automatically satisfied
 	}
 	
 	@Check

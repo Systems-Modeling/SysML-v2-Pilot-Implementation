@@ -47,6 +47,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureChainExpressionImpl extends OperatorExpressionImpl implements FeatureChainExpression {
 
+	private static final String FEATURE_CHAIN_FUNCTION = ".";
+
 	/**
 	 * The cached setting delegate for the '{@link #getTargetFeature() <em>Target Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -56,7 +58,6 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION__TARGET_FEATURE).getSettingDelegate();
-	private static final String FEATURE_CHAIN_FUNCTION = ".";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,6 +78,9 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 		return SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION;
 	}
 
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public String getOperator() {
 		return FEATURE_CHAIN_FUNCTION;

@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -188,7 +189,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public Collection<EClass> getImplicitGeneralTypeKinds() {
-		return implicitGeneralTypes.keySet();
+		// Sort keys, to ensure a deterministic ordering of implied specializations 
+		// for implicit general types.
+		List<EClass> keyList = new ArrayList<>(implicitGeneralTypes.keySet());
+		Collections.sort(keyList, new Comparator<EClass>() {
+			@Override
+			public int compare(EClass c1, EClass c2) {
+				return Integer.compare(c1.getClassifierID(), c2.getClassifierID());
+			}			
+		});
+		return keyList;
 	}
 	
 	public void forEachImplicitBindingConnector(Consumer<BindingConnector> consumer) {
@@ -211,13 +221,15 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public List<Type> getImplicitGeneralTypes() {
 		computeImplicitGeneralTypes();
-		return implicitGeneralTypes.values().stream().
+		
+		return getImplicitGeneralTypeKinds().stream().
+				map(implicitGeneralTypes::get).
 				flatMap(Collection::stream).
 				collect(Collectors.toList());
 	}
 	
 	public List<Type> getImplicitGeneralTypes(EClass eClass) {
-		return implicitGeneralTypes.keySet().stream().
+		return getImplicitGeneralTypeKinds().stream().
 				filter(eClass::isSuperTypeOf).
 				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
 				collect(Collectors.toList());
@@ -258,7 +270,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
+		for (EClass eClass : getImplicitGeneralTypeKinds()) {
 			for (Type supertype : implicitGeneralTypes.get(eClass)) {
 				action.accept(eClass, supertype);
 			}

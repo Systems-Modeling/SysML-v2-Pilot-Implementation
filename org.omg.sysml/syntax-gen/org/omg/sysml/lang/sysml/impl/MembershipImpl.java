@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -475,6 +476,31 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		}
 	}
 	
+	/**
+	 * The cached invocation delegate for the '{@link #allRedefinedFeatures() <em>All Redefined Features</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allRedefinedFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate ALL_REDEFINED_FEATURES__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.MEMBERSHIP___ALL_REDEFINED_FEATURES).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Feature> allRedefinedFeatures() {
+		try {
+			return (EList<Feature>)ALL_REDEFINED_FEATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
 	//
 
 	/**
@@ -647,6 +673,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (operationID) {
 			case SysMLPackage.MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP:
 				return isDistinguishableFrom((Membership)arguments.get(0));
+			case SysMLPackage.MEMBERSHIP___ALL_REDEFINED_FEATURES:
+				return allRedefinedFeatures();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

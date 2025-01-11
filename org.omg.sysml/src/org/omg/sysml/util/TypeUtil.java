@@ -95,7 +95,7 @@ public class TypeUtil {
 	// Caching
 	
 	public static EList<Membership> getInheritedMembershipOf(Type type) {	
-		EList<Membership> inheritedMembership = type.inheritedMemberships(new BasicEList<>(), false);
+		EList<Membership> inheritedMembership = type.inheritedMemberships(new BasicEList<>(), new BasicEList<>(), false);
 		getTypeAdapter(type).setInheritedMembership(inheritedMembership);
 		return inheritedMembership;
 	}

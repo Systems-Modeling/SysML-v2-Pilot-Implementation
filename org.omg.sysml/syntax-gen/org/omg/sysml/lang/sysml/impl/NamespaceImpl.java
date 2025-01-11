@@ -354,6 +354,31 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #membershipsOfVisibility(org.omg.sysml.lang.sysml.VisibilityKind, org.eclipse.emf.common.util.EList) <em>Memberships Of Visibility</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #membershipsOfVisibility(org.omg.sysml.lang.sysml.VisibilityKind, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate MEMBERSHIPS_OF_VISIBILITY_VISIBILITY_KIND_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___MEMBERSHIPS_OF_VISIBILITY__VISIBILITYKIND_ELIST).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Membership> membershipsOfVisibility(VisibilityKind visibility, EList<Namespace> excluded) {
+		try {
+			return (EList<Membership>)MEMBERSHIPS_OF_VISIBILITY_VISIBILITY_KIND_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{visibility, excluded}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #resolve(java.lang.String) <em>Resolve</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -624,6 +649,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				return visibleMemberships((EList<Namespace>)arguments.get(0), (Boolean)arguments.get(1), (Boolean)arguments.get(2));
 			case SysMLPackage.NAMESPACE___IMPORTED_MEMBERSHIPS__ELIST:
 				return importedMemberships((EList<Namespace>)arguments.get(0));
+			case SysMLPackage.NAMESPACE___MEMBERSHIPS_OF_VISIBILITY__VISIBILITYKIND_ELIST:
+				return membershipsOfVisibility((VisibilityKind)arguments.get(0), (EList<Namespace>)arguments.get(1));
 			case SysMLPackage.NAMESPACE___RESOLVE__STRING:
 				return resolve((String)arguments.get(0));
 			case SysMLPackage.NAMESPACE___RESOLVE_GLOBAL__STRING:

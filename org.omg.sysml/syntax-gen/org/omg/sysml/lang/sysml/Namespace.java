@@ -157,22 +157,19 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If <code>includeAll = true</code>, then return all the <code>Memberships</code> of this <code>Namespace</code>. Otherwise, return only the publicly visible <code>Memberships</code> of this <code>Namespace</code> (which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>). If <code>isRecursive = true</code>, also recursively include all visible <code>Memberships</code> of any visible owned <code>Namespaces</code>.</p>
+	 * <p>If <code>includeAll = true</code>, then return all the <code>Memberships</code> of this <code>Namespace</code>. Otherwise, return only the publicly visible <code>Memberships</code> of this <code>Namespace</code>, including <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and <code>Memberships</code> imported with a <code>visibility</code> of <code>public</code>. If <code>isRecursive = true</code>, also recursively include all visible <code>Memberships</code> of any <code>public</code> owned <code>Namespaces</code>, or, if <code>IncludeAll = true</code>, all <code>Memberships</code> of all owned <code>Namespaces</code>. When computing imported <code>Memberships</code>, ignore this <code>Namespace</code> and any <code>Namespaces</code> in the given <code>excluded</code> set.</p>
 	 * 
-	 * let visibleMemberships : Sequence(Membership) =
-	 *     if includeAll then memberships
-	 *     else ownedMembership->
-	 *         select(visibility = VisibilityKind::public)->
-	 *         union(ownedImport->
-	 *             select(visibility = VisibilityKind::public).
-	 *             importedMemberships(excluded->including(self)))
+	 * let visibleMemberships : OrderedSet(Membership) = 
+	 *     if includeAll then membershipsOfVisibility(null, excluded)
+	 *     else membershipsOfVisibility(VisibilityKind::public, excluded)
 	 *     endif in
 	 * if not isRecursive then visibleMemberships
 	 * else visibleMemberships->union(ownedMember->
-	 *         select(owningMembership.visibility = VisibilityKind::public)->
-	 *         selectAsKind(Namespace).
-	 *         visibleMemberships(excluded->including(self), true, includeAll))
+	 *     selectAsKind(Namespace).
+	 *     select(includeAll or owningMembership.visibility = VisibilityKind::public)->
+	 *     visibleMemberships(excluded->including(self), true, includeAll))
 	 * endif
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false" isRecursiveDataType="org.omg.sysml.lang.types.Boolean" isRecursiveRequired="true" isRecursiveOrdered="false" includeAllDataType="org.omg.sysml.lang.types.Boolean" includeAllRequired="true" includeAllOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -193,6 +190,23 @@ public interface Namespace extends Element {
 	 * @generated
 	 */
 	EList<Membership> importedMemberships(EList<Namespace> excluded);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>visibility</code> is not null, return the <code>Memberships</code> of this <code>Namespace</code> with the given <code>visibility</code>, including <code>ownedMemberships</code> with the given <code>visibility</code> and <code>Memberships</code> imported with the given <code>visibility</code>. If <code>visibility</code> is null, return all <code>ownedMemberships</code> and imported <code>Memberships</code> regardless of visibility. When computing imported <code>Memberships</code>, ignore this <code>Namespace</code> and any <code>Namespaces</code> in the given <code>excluded</code> set.</p>
+	 * ownedMembership->
+	 *     select(mem | visibility = null or mem.visibility = visibility)->
+	 *     union(ownedImport->
+	 *         select(imp | visibility = null or imp.visibility = visibility).
+	 *         importedMemberships(excluded->including(self)))
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" visibilityOrdered="false" excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> membershipsOfVisibility(VisibilityKind visibility, EList<Namespace> excluded);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Package;
-import org.omg.sysml.lang.sysml.Type;
 
 public class PackageAdapter extends NamespaceAdapter {
 
@@ -40,9 +39,9 @@ public class PackageAdapter extends NamespaceAdapter {
 	}
 
 	@Override
-	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, boolean isIncludeAll) {
 		Package target = getTarget();
-		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, isIncludeAll);
 		importedMemberships.removeIf(membership->!target.includeAsMember(membership.getMemberElement()));
 		return importedMemberships;
 	}

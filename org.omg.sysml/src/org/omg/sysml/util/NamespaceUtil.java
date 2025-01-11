@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
 
 public class NamespaceUtil {
@@ -108,20 +107,19 @@ public class NamespaceUtil {
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
 	
-	public static EList<Membership> getImportedMembershipFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		return getNamespaceAdapter(namespace).getImportedMembership(excludedNamespaces, excludedTypes, includeAll);
+	public static EList<Membership> getImportedMembershipFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll) {
+		return getNamespaceAdapter(namespace).getImportedMembership(excludedNamespaces, includeAll);
 	}
 
-	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
-		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
+	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
+		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, isRecursive, includeAll);
 	}
 	
 	// Import
 
 	public static EList<Membership> importMembershipsFor(Import _import, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
-		return ((ImportAdapter)ElementUtil.getElementAdapter(_import)).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces) {
+		return ((ImportAdapter)ElementUtil.getElementAdapter(_import)).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces);
 	}
 
 	// Related Namespaces

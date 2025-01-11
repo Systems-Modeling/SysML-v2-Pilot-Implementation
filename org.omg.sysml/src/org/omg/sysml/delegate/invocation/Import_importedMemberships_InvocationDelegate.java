@@ -22,7 +22,6 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
@@ -46,8 +45,7 @@ public class Import_importedMemberships_InvocationDelegate extends BasicInvocati
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		
-		return NamespaceUtil.importMembershipsFor(self, new BasicInternalEList<>(Membership.class), null,
-				excluded, new HashSet<>());
+		return NamespaceUtil.importMembershipsFor(self, new BasicInternalEList<>(Membership.class), null, excluded);
 	}
 
 }

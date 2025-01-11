@@ -296,15 +296,6 @@ public class FeatureUtil {
 		getFeatureAdapter(feature).addOwnedCrossFeatureTypeFeaturing();
 	}
 
-	public static boolean redefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures) {
-		return redefinesAnyOf(feature, redefinedFeatures, new HashSet<>());
-	}
-	
-	public static boolean redefinesAnyOf(Feature feature, Collection<Feature> redefinedFeatures, Set<Feature> visited) {		
-		return feature != null && 
-			   getFeatureAdapter(feature).redefinesAnyOf(redefinedFeatures, visited);
-	}
-	
 	// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {

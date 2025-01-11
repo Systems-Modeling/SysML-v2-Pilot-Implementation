@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Type;
 
 public class NamespaceImportAdapter extends ImportAdapter {
 
@@ -63,15 +62,14 @@ public class NamespaceImportAdapter extends ImportAdapter {
 	
 	@Override
 	public EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces) {
 		NamespaceImport target = getTarget();
 		Namespace importedNamespace = target.getImportedNamespace();
 		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
 			Namespace owningNamespace = target.getImportOwningNamespace();
 			excludedNamespaces.add(owningNamespace);
 			importMembershipsFrom(importedNamespace, importedMembership, nonpublicMembership, 
-					excludedNamespaces, excludedTypes, target.isRecursive());
+					excludedNamespaces, target.isRecursive());
 			excludedNamespaces.remove(owningNamespace);
 		}
 		return importedMembership;

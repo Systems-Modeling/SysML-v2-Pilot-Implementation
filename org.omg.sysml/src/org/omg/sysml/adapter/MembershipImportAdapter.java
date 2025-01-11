@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Type;
 
 public class MembershipImportAdapter extends ImportAdapter {
 
@@ -42,8 +41,7 @@ public class MembershipImportAdapter extends ImportAdapter {
 	
 	@Override
 	public EList<Membership> importMemberships(EList<Membership> importedMemberships,
-			Collection<Membership> nonpublicMemberships, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
+			Collection<Membership> nonpublicMemberships, Collection<Namespace> excludedNamespaces) {
 		MembershipImport target = getTarget();
 		Membership importedMembership = target.getImportedMembership();
 		if (importedMembership != null) {
@@ -53,7 +51,7 @@ public class MembershipImportAdapter extends ImportAdapter {
 				if (importedElement instanceof Namespace) {
 					excludedNamespaces.add((Namespace)importedElement);
 					importMembershipsFrom((Namespace)importedElement, importedMemberships, nonpublicMemberships, 
-							excludedNamespaces, excludedTypes, true);
+							excludedNamespaces, true);
 					excludedNamespaces.remove(importedElement);
 				}
 			}

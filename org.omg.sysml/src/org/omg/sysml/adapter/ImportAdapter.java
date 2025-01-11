@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.NamespaceUtil;
 
@@ -58,30 +57,26 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 	
 	// Additional operations
 	
-	// Note: The excludedType parameter is needed in case the imported Namespace
-	// is a Type that has one or more Generalizations.
 	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes);
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces);
 	
 	protected void importMembershipsFrom(Namespace importedNamespace, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes, boolean isRecursive) {
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces, boolean isRecursive) {
 		Import target = getTarget();
 		Collection<Membership> namespaceMembership = 
-				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, excludedTypes, target.isImportAll(), isRecursive);
+				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, isRecursive, target.isImportAll());
 		importedMembership.addAll(namespaceMembership);
 		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(target.getVisibility())) {
 			nonpublicMembership.addAll(namespaceMembership);
 		}
 		if (isRecursive) {
 			excludedNamespaces.add(importedNamespace);
-			for (Membership membership: namespaceMembership) {
-				if (membership instanceof OwningMembership) {
+			for (Membership membership: importedNamespace.getOwnedMembership()) {
+				if (membership instanceof OwningMembership && VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
 					Element member = membership.getMemberElement();
 					if (member instanceof Namespace) {
 						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 
-								excludedNamespaces, excludedTypes, true);
+								excludedNamespaces, true);
 					}
 				}
 			}

@@ -535,8 +535,8 @@ standard library package ShapeItems {
 		item :>> faces [5..6];
 		item tf	 : Quadrilateral [1] :> faces;
 		item bf	 : Quadrilateral [1] :> faces;
-		item ff	 : Polygon [1] :> faces { item :>> edges [3..4]; }
-		item rf	 : Polygon [1] :> faces { item :>> edges [3..4]; }
+		item ff	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
+		item rf	 : Polygon [1] :> faces { item :>> Polygon::edges, faces::edges [3..4]; }
 		item slf : Quadrilateral [1] :> faces;
 		item srf : Quadrilateral [0..1] :> faces;
 

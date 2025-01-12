@@ -76,8 +76,16 @@ public class TypeUtil {
 		getTypeAdapter(type).addNonPrivateMembership(inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
+	public static EList<Membership> getInheritableMembershipsFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+	}
+	
 	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
 		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied);
+	}
+	
+	public static void removeRedefinedFeaturesFor(Type type, List<Membership> memberships) {
+		getTypeAdapter(type).removeRedefinedFeatures(memberships);
 	}
 	
 	public static Collection<Feature> getAllFeaturesRedefinedBy(Type type) {
@@ -94,7 +102,7 @@ public class TypeUtil {
 
 	// Caching
 	
-	public static EList<Membership> getInheritedMembershipOf(Type type) {	
+	public static EList<Membership> getInheritedMembershipOf(Type type) {
 		EList<Membership> inheritedMembership = type.inheritedMemberships(new BasicEList<>(), new BasicEList<>(), false);
 		getTypeAdapter(type).setInheritedMembership(inheritedMembership);
 		return inheritedMembership;

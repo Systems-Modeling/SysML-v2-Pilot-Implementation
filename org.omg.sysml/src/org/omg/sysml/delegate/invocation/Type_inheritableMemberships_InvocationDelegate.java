@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,9 +31,9 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocationDelegate {
+public class Type_inheritableMemberships_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Type_inheritedMemberships_InvocationDelegate(EOperation operation) {
+	public Type_inheritableMemberships_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
@@ -43,9 +43,9 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 		Type self = (Type) target;
 		EList<Namespace> excludedNamespaces = (EList<Namespace>) arguments.get(0);
 		EList<Type> excludedTypes = (EList<Type>) arguments.get(1);
-		boolean excludeImplied = (boolean) arguments.get(2);
+		boolean excludeImplied = (boolean) arguments.get(1);
 		
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
+		return TypeUtil.getInheritableMembershipsFor(self, new HashSet<Namespace>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
 	}
 
 }

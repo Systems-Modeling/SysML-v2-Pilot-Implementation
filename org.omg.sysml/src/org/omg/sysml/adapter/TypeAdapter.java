@@ -76,7 +76,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	@Override
 	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
 		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, isRecursive, includeAll);
-		EList<Membership> inheritedMembership = getInheritedMembership(excludedNamespaces, new ArrayList<>(), isRecursive);
+		EList<Membership> inheritedMembership = getInheritedMembership(excludedNamespaces, new HashSet<>(), isRecursive);
 		if (!includeAll) {
 			inheritedMembership.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
 		}
@@ -115,7 +115,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		excludedTypes.add(target);
 
 		// Using an EObjectEList ensures that isUnique = true.
-		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) getTarget(), SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
+		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) target, SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
 		
 		Conjugation conjugator = target.getOwnedConjugator();
 		if (conjugator != null) {
@@ -132,7 +132,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		return inheritedMemberships;
 	}
 	
-	protected void removeRedefinedFeatures(List<Membership> memberships) {
+	public void removeRedefinedFeatures(List<Membership> memberships) {
 		Collection<Feature> featuresRedefinedByType = getFeaturesRedefinedByType();
 		Collection<Feature> allFeaturesRedefinedByMemberships = new HashSet<>();
 		int n = memberships.size();

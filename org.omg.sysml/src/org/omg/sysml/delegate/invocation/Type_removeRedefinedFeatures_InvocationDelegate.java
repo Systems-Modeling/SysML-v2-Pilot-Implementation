@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,18 +22,18 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocationDelegate {
+public class Type_removeRedefinedFeatures_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Type_inheritedMemberships_InvocationDelegate(EOperation operation) {
+	public Type_removeRedefinedFeatures_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
@@ -41,11 +41,11 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 	@SuppressWarnings("unchecked")
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Type self = (Type) target;
-		EList<Namespace> excludedNamespaces = (EList<Namespace>) arguments.get(0);
-		EList<Type> excludedTypes = (EList<Type>) arguments.get(1);
-		boolean excludeImplied = (boolean) arguments.get(2);
+		EList<Membership> memberships = (EList<Membership>) arguments.get(0);
 		
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
+		EList<Membership> reducedMemberships = new BasicEList<>(memberships);
+		TypeUtil.removeRedefinedFeaturesFor(self, reducedMemberships);
+		return reducedMemberships;
 	}
 
 }

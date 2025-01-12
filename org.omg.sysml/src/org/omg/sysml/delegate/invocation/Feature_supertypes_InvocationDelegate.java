@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,30 +22,30 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
 
-public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocationDelegate {
+public class Feature_supertypes_InvocationDelegate extends Type_supertypes_InvocationDelegate {
 
-	public Type_inheritedMemberships_InvocationDelegate(EOperation operation) {
+	public Feature_supertypes_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Type self = (Type) target;
-		EList<Namespace> excludedNamespaces = (EList<Namespace>) arguments.get(0);
-		EList<Type> excludedTypes = (EList<Type>) arguments.get(1);
-		boolean excludeImplied = (boolean) arguments.get(2);
+		Feature self = (Feature) target;		
+		@SuppressWarnings("unchecked")
+		EList<Type> supertypes = (EList<Type>) super.dynamicInvoke(target, arguments);
 		
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
+		Feature featureTarget = self.getFeatureTarget();
+		if (featureTarget != self) {
+			supertypes.add(featureTarget);
+		}
+		
+		return supertypes;
 	}
-
+	
 }

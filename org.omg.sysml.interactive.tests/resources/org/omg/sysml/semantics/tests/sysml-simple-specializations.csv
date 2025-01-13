@@ -39,8 +39,10 @@ true,checkPartUsageStakeholderSpecialization,PartUsage,Requirements::Requirement
 true,checkPartUsageActorSpecialization,PartUsage,Cases::Case::actors,CaseDefinition,ActorMembership
 true,checkPartUsageActorSpecialization,PartUsage,Cases::Case::actors,CaseUsage,ActorMembership
 true,checkPortUsageSpecialization,PortUsage,Ports::ports,Package,OwningMembership
-true,checkPortSubportSpecialization,PortUsage,Ports::Port::subports,PortUsage,FeatureMembership
-true,checkPortSubportSpecialization,PortUsage,Ports::Port::subports,PortDefinition,FeatureMembership
+true,checkPortUsageSubportSpecialization,PortUsage,Ports::Port::subports,PortUsage,FeatureMembership
+true,checkPortUsageSubportSpecialization,PortUsage,Ports::Port::subports,PortDefinition,FeatureMembership
+true,checkPortUsageOwnedPortSpecialization,PortUsage,Parts::Part::ownedPorts,PartUsage,FeatureMembership
+true,checkPortUsageOwnedPortSpecialization,PortUsage,Parts::Part::ownedPorts,PartDefinition,FeatureMembership
 true,checkConnectionUsageSpecialization,ConnectionUsage,Connections::connections,Package,OwningMembership
 true,checkFlowConnectionUsageSpecialization,FlowConnectionUsage,FlowConnections::messageConnections,Package,OwningMembership
 true,checkSuccessionFlowConnectionUsageSpecialization,SuccessionFlowConnectionUsage,FlowConnections::successionFlowConnections,Package,OwningMembership
@@ -64,6 +66,8 @@ true,checkPerformActionUsageSpecialization,PerformActionUsage,Parts::Part::perfo
 true,checkPerformActionUsageSpecialization,PerformActionUsage,Parts::Part::performedActions,PartDefinition,FeatureMembership
 true,checkStateUsageSpecialization,StateUsage,States::stateActions,Package,OwningMembership
 true,checkStateUsageExclusiveStateSpecialization,StateUsage,States::StateAction::exclusiveStates,StateUsage,FeatureMembership
+true,checkStateUsageOwnedStateSpecialization,StateUsage,Parts::Part::ownedStates,PartUsage,FeatureMembership
+true,checkStateUsageOwnedStateSpecialization,StateUsage,Parts::Part::ownedStates,PartDefinition,FeatureMembership
 true,checkTransitionUsageSpecialization,TransitionUsage,Actions::transitionActions,Package,OwningMembership
 false,checkTransitionUsageStateSpecialization,TransitionUsage,States::StateAction::stateTransitions,StateDefinition,FeatureMembership
 false,checkTransitionUsageStateSpecialization,TransitionUsage,States::StateAction::stateTransitions,StateUsage,FeatureMembership

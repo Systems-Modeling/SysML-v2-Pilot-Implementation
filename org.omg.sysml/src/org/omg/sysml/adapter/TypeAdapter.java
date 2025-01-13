@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -74,9 +74,12 @@ public class TypeAdapter extends NamespaceAdapter {
 	// Additional operations
 	
 	@Override
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, isRecursive, includeAll);
-		EList<Membership> inheritedMembership = getInheritedMembership(excludedNamespaces, new HashSet<>(), isRecursive);
+	public EList<Membership> getVisibleMemberships(Set<org.omg.sysml.lang.sysml.Namespace> excluded, boolean isRecursive, boolean includeAll) {
+		Type target = getTarget();
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excluded, isRecursive, includeAll);
+		excluded.add(target);
+		EList<Membership> inheritedMembership = getInheritedMembership(excluded, new HashSet<>(), isRecursive);
+		excluded.remove(target);
 		if (!includeAll) {
 			inheritedMembership.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
 		}
@@ -84,14 +87,14 @@ public class TypeAdapter extends NamespaceAdapter {
 		return visibleMembership;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
-		EList<Membership> nonPrivateMemberships = super.getVisibleMemberships(excludedNamespaces, false, false);
-		nonPrivateMemberships.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
+	public EList<Membership> getNonPrivateMembership(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		EList<Membership> nonPrivateMemberships = getMembershipsOfVisibility(VisibilityKind.PUBLIC, excludedNamespaces);
+		nonPrivateMemberships.addAll(getMembershipsOfVisibility(VisibilityKind.PROTECTED, excludedNamespaces));
 		nonPrivateMemberships.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied));
 		return nonPrivateMemberships;
 	}
 	
-	public void addNonPrivateMembership(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public void addNonPrivateMembership(EList<Membership> inheritedMemberships, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		if (!excludedTypes.contains(getTarget())) {
 			nonPrivateMembership = getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
 		}
@@ -100,7 +103,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public EList<Membership> getInheritedMembership(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		if (inheritedMembership != null) {
 			return inheritedMembership;
 		} else {
@@ -110,7 +113,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
-	public EList<Membership> getInheritableMemberships(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public EList<Membership> getInheritableMemberships(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
 

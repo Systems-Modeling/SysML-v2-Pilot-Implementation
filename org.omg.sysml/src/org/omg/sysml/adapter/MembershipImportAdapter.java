@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,12 +22,14 @@
 package org.omg.sysml.adapter;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class MembershipImportAdapter extends ImportAdapter {
 
@@ -40,8 +42,7 @@ public class MembershipImportAdapter extends ImportAdapter {
 	}
 	
 	@Override
-	public EList<Membership> importMemberships(EList<Membership> importedMemberships,
-			Collection<Membership> nonpublicMemberships, Collection<Namespace> excludedNamespaces) {
+	public void importMemberships(EList<Membership> importedMemberships, Set<Namespace> excluded) {
 		MembershipImport target = getTarget();
 		Membership importedMembership = target.getImportedMembership();
 		if (importedMembership != null) {
@@ -49,14 +50,12 @@ public class MembershipImportAdapter extends ImportAdapter {
 			if (target.isRecursive()) {
 				Element importedElement = importedMembership.getMemberElement();
 				if (importedElement instanceof Namespace) {
-					excludedNamespaces.add((Namespace)importedElement);
-					importMembershipsFrom((Namespace)importedElement, importedMemberships, nonpublicMemberships, 
-							excludedNamespaces, true);
-					excludedNamespaces.remove(importedElement);
+					Collection<Membership> namespaceMembership = 
+							NamespaceUtil.getVisibleMembershipsFor((Namespace)importedElement, excluded, true, target.isImportAll());
+					importedMemberships.addAll(namespaceMembership);
 				}
 			}
 		}
-		return importedMemberships;
 	}
 	
 }

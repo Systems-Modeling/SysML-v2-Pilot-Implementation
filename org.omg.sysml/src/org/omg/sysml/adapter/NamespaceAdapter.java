@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,14 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -48,32 +49,59 @@ public class NamespaceAdapter extends ElementAdapter {
 	
 	// Additional operations
 	
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll) {
+	public EList<Membership> getMembershipsOfVisibility(VisibilityKind visibility, Set<Namespace> excluded) {
+		Namespace target = getTarget();
+		
+		EList<Membership> memberships = new BasicEList<>(target.getOwnedMembership()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isUnique() {
+				return true;
+			}
+		};
+		EList<Import> ownedImports = new BasicEList<>(target.getOwnedImport());
+		
+		if (visibility != null) {
+			memberships.removeIf(mem->mem.getVisibility() != visibility);
+			ownedImports.removeIf(imp->imp.getVisibility() != visibility);
+		}
+		excluded.add(target);
+		for (Import ownedImport: ownedImports) {
+			NamespaceUtil.importMembershipsFor(ownedImport, memberships, excluded);
+		}
+		excluded.remove(target);
+		
+		return memberships;		
+	}
+	
+	public EList<Membership> getImportedMembership(Set<Namespace> excluded, boolean includeAll) {
 		Namespace target = getTarget();
 		EList<Membership> importedMembership = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject)target, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
-		if (!excludedNamespaces.contains(target)) {
-			for (Import _import: target.getOwnedImport()) {
-				NamespaceUtil.importMembershipsFor(_import, importedMembership, nonpublicMembership, excludedNamespaces);
-			}
+		excluded.add(target);
+		for (Import _import: target.getOwnedImport()) {
+			NamespaceUtil.importMembershipsFor(_import, importedMembership, excluded);
 		}
-		if (!includeAll) {
-			importedMembership.removeAll(nonpublicMembership);
-		}
+		excluded.remove(target);
 		return importedMembership;
 	}
 	
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
+	public EList<Membership> getVisibleMemberships(Set<Namespace> excluded, boolean isRecursive, boolean includeAll) {
 		Namespace target = getTarget();
-		EList<Membership> visibleMembership;
-		if (includeAll) {
-			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
-			visibleMembership.addAll(target.getOwnedMembership());
-		} else {
-			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
+		EList<Membership> visibleMemberships =
+				includeAll? target.membershipsOfVisibility(null, new BasicEList<>(excluded)):
+					target.membershipsOfVisibility(VisibilityKind.PUBLIC, new BasicEList<>(excluded));
+		if (isRecursive) {
+			excluded.add(target);
+			for (Element ownedMember: target.getOwnedMember()) {
+				if (ownedMember instanceof Namespace && 
+				   (includeAll || ownedMember.getOwningMembership().getVisibility() == VisibilityKind.PUBLIC)) {
+					visibleMemberships.addAll(NamespaceUtil.getVisibleMembershipsFor((Namespace)ownedMember, excluded, true, includeAll));
+				}
+			}
+			excluded.remove(target);
 		}
-		visibleMembership.addAll(getImportedMembership(excludedNamespaces, includeAll));
-		return visibleMembership;
+		return visibleMemberships;
 	}
 
 	public EList<Membership> getVisibleOwnedMembership(VisibilityKind visibility) {

@@ -22,16 +22,15 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.BasicEList;
+import java.util.HashSet;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class Namespace_membershipsOfVisibility_InvocationDelegate extends BasicInvocationDelegate {
 	
@@ -42,32 +41,11 @@ public class Namespace_membershipsOfVisibility_InvocationDelegate extends BasicI
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		NamespaceImpl self = (NamespaceImpl) target;
+		Namespace self = (Namespace) target;
 		VisibilityKind visibility = (VisibilityKind) arguments.get(0);
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(1);
 		
-		EList<Membership> memberships = new BasicEList<>(self.getOwnedMembership()) {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public boolean isUnique() {
-				return true;
-			}
-		};
-		EList<Import> ownedImports = new BasicEList<>(self.getOwnedImport());
-		
-		if (visibility != null) {
-			memberships.removeIf(mem->mem.getVisibility() != visibility);
-			ownedImports.removeIf(imp->imp.getVisibility() != visibility);
-		}
-		
-		excluded.add(self);
-		memberships.addAll(ownedImports.stream().
-				flatMap(imp->imp.importedMemberships(excluded).stream()).
-				toList());
-		excluded.remove(self);
-		
-		return memberships;
+		return NamespaceUtil.getMembershipsOfVisibilityFor(self, visibility, new HashSet<>(excluded));
 	}
 
 }

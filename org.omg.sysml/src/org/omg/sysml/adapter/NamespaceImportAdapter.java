@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,14 @@
 package org.omg.sysml.adapter;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.lang.sysml.Namespace;
 
 public class NamespaceImportAdapter extends ImportAdapter {
@@ -61,18 +63,14 @@ public class NamespaceImportAdapter extends ImportAdapter {
 	}
 	
 	@Override
-	public EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces) {
+	public void importMemberships(EList<Membership> importedMemberships, Set<Namespace> excluded) {
 		NamespaceImport target = getTarget();
 		Namespace importedNamespace = target.getImportedNamespace();
-		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
-			Namespace owningNamespace = target.getImportOwningNamespace();
-			excludedNamespaces.add(owningNamespace);
-			importMembershipsFrom(importedNamespace, importedMembership, nonpublicMembership, 
-					excludedNamespaces, target.isRecursive());
-			excludedNamespaces.remove(owningNamespace);
+		if (importedNamespace != null && !excluded.contains(importedNamespace)) {
+			Collection<Membership> namespaceMembership = 
+					NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excluded, target.isRecursive(), target.isImportAll());
+			importedMemberships.addAll(namespaceMembership);
 		}
-		return importedMembership;
 	}
 	
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,17 +21,14 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NamespaceImport;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.NamespaceUtil;
 
 public abstract class ImportAdapter extends RelationshipAdapter {
 
@@ -57,31 +54,6 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 	
 	// Additional operations
 	
-	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces);
+	public abstract void importMemberships(EList<Membership> importedMemberships, Set<Namespace> excluded);
 	
-	protected void importMembershipsFrom(Namespace importedNamespace, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces, boolean isRecursive) {
-		Import target = getTarget();
-		Collection<Membership> namespaceMembership = 
-				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, isRecursive, target.isImportAll());
-		importedMembership.addAll(namespaceMembership);
-		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(target.getVisibility())) {
-			nonpublicMembership.addAll(namespaceMembership);
-		}
-		if (isRecursive) {
-			excludedNamespaces.add(importedNamespace);
-			for (Membership membership: importedNamespace.getOwnedMembership()) {
-				if (membership instanceof OwningMembership && VisibilityKind.PUBLIC.equals(membership.getVisibility())) {
-					Element member = membership.getMemberElement();
-					if (member instanceof Namespace) {
-						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 
-								excludedNamespaces, true);
-					}
-				}
-			}
-			excludedNamespaces.remove(importedNamespace);
-		}
-	}
-
 }

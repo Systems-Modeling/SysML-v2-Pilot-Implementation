@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
@@ -45,7 +46,9 @@ public class Import_importedMemberships_InvocationDelegate extends BasicInvocati
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
 		
-		return NamespaceUtil.importMembershipsFor(self, new BasicInternalEList<>(Membership.class), null, excluded);
+		EList<Membership> importedMemberships = new BasicInternalEList<>(Membership.class);
+		NamespaceUtil.importMembershipsFor(self, importedMemberships, new HashSet<>(excluded));
+		return importedMemberships;
 	}
 
 }

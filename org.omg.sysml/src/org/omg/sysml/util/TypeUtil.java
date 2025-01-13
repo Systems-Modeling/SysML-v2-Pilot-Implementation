@@ -68,19 +68,19 @@ public class TypeUtil {
 	
 	// Inheritance
 	
-	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
-	public static void addNonPrivateMembershipFor(Type type, EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public static void addNonPrivateMembershipFor(Type type, EList<Membership> inheritedMemberships, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		getTypeAdapter(type).addNonPrivateMembership(inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
-	public static EList<Membership> getInheritableMembershipsFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public static EList<Membership> getInheritableMembershipsFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		return getTypeAdapter(type).getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 	
-	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean excludeImplied) {
+	public static EList<Membership> getInheritedMembershipFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 	

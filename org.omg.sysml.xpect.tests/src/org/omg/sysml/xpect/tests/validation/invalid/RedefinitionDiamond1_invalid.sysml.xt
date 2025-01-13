@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
        ThisFile {}
         File {from ="/library.kernel/Base.kerml"}
@@ -32,12 +32,12 @@ package RedefinitionDiamond {
 		p1 :>> p;
 	}
 	part A2 :> A {
-//		p :>> p; // 1
+		p :>> p; // 1
 	}
 	
 	part B :> A1, A2 {
-//		p2 :>> p1; // 2
-// XPECT warnings ---> "Duplicate of inherited member name" at "p"
+		p2 :>> p1; // 2
+// XPECT warnings ---> "Duplicate of inherited member name p from A2" at "p"
 		part p;
 	}
 }

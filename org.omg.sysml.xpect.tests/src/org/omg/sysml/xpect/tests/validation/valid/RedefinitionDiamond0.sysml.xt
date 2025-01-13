@@ -24,25 +24,20 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	}
 END_SETUP 
 */
-package 'Redefinition Example' {
-
-	part def Engine {
-		part cyl : Cylinder[4..6];
+package RedefinitionDiamond {
+	part A {
+		part p[*];
 	}
-	part def SmallEngine :> Engine {
-		// XPECT warnings --> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "cyl"
-		part redefines cyl[7];
-		//* XPECT warnings ---
- 		"Redefining feature should not have smaller multiplicity lower bound" at "cyl"
-		"Subsetting/redefining feature should not have larger multiplicity upper bound" at "cyl"
-		--- */
-		part mycyl: Cylinder[1..8] redefines cyl;
+	part A1 :> A {
+		p1 :>> p;
 	}
-	part def BigEngine :> Engine {
-		// XPECT warnings --> "Redefining feature should not have smaller multiplicity lower bound" at "cyl"
-		part redefines cyl[1..6];
-		part bcyl: Cylinder[*];
+	part A2 :> A {
+//		p :>> p; // 1
 	}
-
-	part def Cylinder;
+	
+	part B :> A1, A2 {
+//		p2 :>> p1; // 2
+// XPECT noErrors ---> ""
+		part p;
+	}
 }

@@ -80,8 +80,12 @@ public class TypeUtil {
 		return getTypeAdapter(type).getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 	
-	public static EList<Membership> getInheritedMembershipFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
-		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied);
+	public static EList<Membership> getInheritedMembershipsFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritedMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+	}
+	
+	public static EList<Membership> getInheritedMembershipOf(Type type) {
+		return getTypeAdapter(type).getInheritedMembership();
 	}
 	
 	public static void removeRedefinedFeaturesFor(Type type, List<Membership> memberships) {
@@ -100,14 +104,6 @@ public class TypeUtil {
 				toList();
 	}
 
-	// Caching
-	
-	public static EList<Membership> getInheritedMembershipOf(Type type) {
-		EList<Membership> inheritedMembership = type.inheritedMemberships(new BasicEList<>(), new BasicEList<>(), false);
-		getTypeAdapter(type).setInheritedMembership(inheritedMembership);
-		return inheritedMembership;
-	}
-	
 	// Supertypes
 	
 	public static List<Type> getSupertypesOf(Type type) {

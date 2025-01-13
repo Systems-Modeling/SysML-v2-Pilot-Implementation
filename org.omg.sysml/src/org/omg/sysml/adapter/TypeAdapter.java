@@ -78,7 +78,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		Type target = getTarget();
 		EList<Membership> visibleMembership = super.getVisibleMemberships(excluded, isRecursive, includeAll);
 		excluded.add(target);
-		EList<Membership> inheritedMembership = getInheritedMembership(excluded, new HashSet<>(), isRecursive);
+		EList<Membership> inheritedMembership = getInheritedMemberships(excluded, new HashSet<>(), isRecursive);
 		excluded.remove(target);
 		if (!includeAll) {
 			inheritedMembership.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
@@ -90,10 +90,22 @@ public class TypeAdapter extends NamespaceAdapter {
 	public EList<Membership> getNonPrivateMembership(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		EList<Membership> nonPrivateMemberships = getMembershipsOfVisibility(VisibilityKind.PUBLIC, excludedNamespaces);
 		nonPrivateMemberships.addAll(getMembershipsOfVisibility(VisibilityKind.PROTECTED, excludedNamespaces));
-		nonPrivateMemberships.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, excludeImplied));
+		nonPrivateMemberships.addAll(getInheritedMemberships(excludedNamespaces, excludedTypes, excludeImplied));
 		return nonPrivateMemberships;
 	}
 	
+	/**
+	 * As defined in the OCL in the specification, excludedTypes only accumulate along the traversal of a single path in the specialization graph, essentially just
+	 * to avoid circular references within that path. This means that a Type may be visited multiple times along different paths (e.g., due to "diamond specialization").
+	 * However, the non-private memberships computed for the Type should not differ from visit to visit.
+	 * 
+	 * Therefore, this method computes the non-private membership of a Type only if the Type is not contained in excludedTypes. If computed, the non-private memberships 
+	 * are cached, and the cached memberships are used if the Type is visited again during traversal of the specialization graph. This allows the set of excludedTypes to 
+	 * "accumulate" as the entire specialization graph is traversed, avoiding recomputation of non-private membership if a Type is revisited and greatly improving
+	 * performance.
+	 * 
+	 * Note that this only affects the handling of excludedTypes for inheritance, with no impact on the handling of excludedNamespaces for imports.
+	 */
 	public void addNonPrivateMembership(EList<Membership> inheritedMemberships, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		if (!excludedTypes.contains(getTarget())) {
 			nonPrivateMembership = getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
@@ -103,16 +115,10 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
-	public EList<Membership> getInheritedMembership(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
-		if (inheritedMembership != null) {
-			return inheritedMembership;
-		} else {
-			EList<Membership> inheritedMemberships = getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
-			removeRedefinedFeatures(inheritedMemberships);
-			return inheritedMemberships;
-		}
-	}
-	
+	/**
+	 * This method uses addNonPrivateMembershipsFor, rather than calling getNonPrivateMemberships directly, in order to take advantage of the caching of
+	 * nonPrivateMemberships.
+	 */
 	public EList<Membership> getInheritableMemberships(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
@@ -135,6 +141,11 @@ public class TypeAdapter extends NamespaceAdapter {
 		return inheritedMemberships;
 	}
 	
+	/**
+	 * Make a first path through the given memberships list, removing Memberships with memberElements redefined by ownedFeatures of
+	 * the target Type and collecting the set of all Features redefined (directly or indirectly) by any of the memberships. Then use
+	 * the allFeatureRedefinedByMemberships set to remove any Membership with a memberElement redefined by another Membership.
+	 */
 	public void removeRedefinedFeatures(List<Membership> memberships) {
 		Collection<Feature> featuresRedefinedByType = getFeaturesRedefinedByType();
 		Collection<Feature> allFeaturesRedefinedByMemberships = new HashSet<>();
@@ -157,6 +168,33 @@ public class TypeAdapter extends NamespaceAdapter {
 		memberships.removeIf(membership->allFeaturesRedefinedByMemberships.contains(membership.getMemberElement()));
 	}
 	
+	/**
+	 * If excludeImplied is false and inheritedMembership has been previously cached, then return the cached collection, rather than recomputing it. Otherwise, compute 
+	 * an inheritedMembership collection, but taking into account the given exclusions. However, do not cache the computed collection. Only the full inheritedMembership 
+	 * collection is cached, without exclusions. 
+	 */
+	public EList<Membership> getInheritedMemberships(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		if (!excludeImplied && inheritedMembership != null) {
+			return inheritedMembership;
+		} else {
+			EList<Membership> inheritedMemberships = getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+			removeRedefinedFeatures(inheritedMemberships);
+			return inheritedMemberships;
+		}
+	}
+	
+	/**
+	 * Compute all inheritedMemberships of the target Type and cache the result.
+	 */
+	public EList<Membership> getInheritedMembership() {
+		inheritedMembership = getInheritedMemberships(new HashSet<>(), new HashSet<>(), false);
+		return inheritedMembership;
+	}
+	
+	/**
+	 * If redefinedFeatures have been cached, then return them. Otherwise, compute all the Features directly redefined by the owned
+	 * Features of the target Type and cache the result.
+	 */
 	protected Collection<Feature> getFeaturesRedefinedByType() {
 		if (redefinedFeatures == null) {
 			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
@@ -170,15 +208,6 @@ public class TypeAdapter extends NamespaceAdapter {
 	private EList<Membership> nonPrivateMembership = null;
 	private Collection<Feature> redefinedFeatures = null;	
 	
-	public EList<Membership> getInheritedMembership() {
-		return inheritedMembership;
-	}
-	
-	public EList<Membership> setInheritedMembership(EList<Membership> inheritedMembership) {
-		this.inheritedMembership = inheritedMembership;
-		return inheritedMembership;
-	}
-		
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;

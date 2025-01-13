@@ -45,7 +45,7 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 		EList<Type> excludedTypes = (EList<Type>) arguments.get(1);
 		boolean excludeImplied = (boolean) arguments.get(2);
 		
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
+		return TypeUtil.getInheritedMembershipsFor(self, new HashSet<>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
 	}
 
 }

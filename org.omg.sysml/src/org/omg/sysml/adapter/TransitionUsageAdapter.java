@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -57,18 +57,23 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 			   getDefaultSupertype("base");
 	}
 	
+	
+	// checkTransitionUsageActionSpecialization
 	protected boolean isActionTransition() {
 		TransitionUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() && 
-			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
+			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage) &&
+			   !(target.getSource() instanceof StateUsage);
 	}	
 	
+	// checkTransitionUsageStateSpecialization
 	protected boolean isStateTransition() {
 		TransitionUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() &&
-			   (owningType instanceof StateDefinition || owningType instanceof StateUsage);
+			   (owningType instanceof StateDefinition || owningType instanceof StateUsage) &&
+			   target.getSource() instanceof StateUsage;
 	}
 	
 	// Transformation
@@ -88,10 +93,13 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		TransitionUsage transition = getTarget();
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
+			// checkTransitionUsageSuccessionBindingConnector
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
 			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
 			Succession succession = transition.getSuccession();
-			addBindingConnector(succession, transitionLinkFeature);			
+			addBindingConnector(succession, transitionLinkFeature);		
+			
+			// checkTransitionUsageSourceBindingConnector
 			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
 			if (!parameters.isEmpty()) {
 				Feature source = transition.getSource();

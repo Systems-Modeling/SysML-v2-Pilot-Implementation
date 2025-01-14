@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -286,7 +286,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPort");
+		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPorts");
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");

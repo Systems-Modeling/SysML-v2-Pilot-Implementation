@@ -334,6 +334,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_TRANSITION_USAGE_PARAMETERS_MSG_2 = "Must have two input parameters."
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION = "validateTransitionUsageSuccession"
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION_MSG = "A transition must own a succession to its target."
+	public static val INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS = "validateTransitionUsageTriggerActions"
+	public static val INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS_MSG = "A transition with an accepter must have a state as its source."
 	
 	public static val INVALID_CALCULATION_USAGE_TYPE = "validateCalculationUsageType_"
 	public static val INVALID_CALCULATION_USAGE_TYPE_MSG = "A calculation must be typed by one calculation definition."
@@ -954,6 +956,14 @@ class SysMLValidator extends KerMLValidator {
 			if (!(mem.transitionFeature instanceof AcceptActionUsage)) {
 				error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION)
 			}
+//			// validateTransitionUsageTriggerActions
+//			val owningType = mem.owningType
+//			if (owningType instanceof TransitionUsage) {
+//				val source = owningType.source
+//				if (source !== null && !(source instanceof StateUsage) && !owningType.triggerAction.empty) {
+//					error(INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS_MSG, mem, null, INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS)
+//				}
+//			}
 		}
 		
 		// validateTransitionFeatureMembershipOwningType
@@ -976,7 +986,8 @@ class SysMLValidator extends KerMLValidator {
 		
 		// validateTransitionUsageParameters
 		val n = usg.inputParameters.size
-		if (usg.triggerAction.isEmpty) {
+		val triggerAction = usg.triggerAction
+		if (triggerAction.isEmpty) {
 			if (n < 1) {
 				error(INVALID_TRANSITION_USAGE_PARAMETERS_MSG_1, usg, null, INVALID_TRANSITION_USAGE_PARAMETERS)
 			}
@@ -990,6 +1001,13 @@ class SysMLValidator extends KerMLValidator {
 		val successions = usg.ownedMember.filter[m | m instanceof Succession]
 		if (successions.empty || !(successions.get(0) as Succession).targetFeature.forall[f | FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage]) {
 			error(INVALID_TRANSITION_USAGE_SUCCESSION_MSG, usg, null, INVALID_TRANSITION_USAGE_SUCCESSION)
+		}
+		
+		// validateTransitionUsageTriggerActions
+		val source = usg.source
+		val mem = usg.ownedMembership.filter(TransitionFeatureMembership).filter[kind == TransitionFeatureKind.TRIGGER].head
+		if (source !== null && !(source instanceof StateUsage) && mem !== null) {
+			error(INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS_MSG, mem, null, INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS)
 		}
 	}
 	

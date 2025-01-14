@@ -63,7 +63,6 @@ public class ElementAdapter extends AdapterImpl {
 				typing.setType(metaclass);
 				typing.setTypedFeature(metaclassFeature);
 				Annotation annotation = SysMLFactory.eINSTANCE.createAnnotation();
-				annotation.setAnnotatingElement(metaclassFeature);
 				annotation.setAnnotatedElement(element);
 				metaclassFeature.getOwnedRelationship().add(typing);
 				metaclassFeature.getOwnedRelationship().add(annotation);

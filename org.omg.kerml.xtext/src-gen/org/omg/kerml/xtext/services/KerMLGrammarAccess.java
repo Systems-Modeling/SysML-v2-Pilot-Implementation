@@ -10466,8 +10466,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ( {SysML::FeatureChainExpression.operand += current} '.'
 	//      ownedRelationship += FeatureChainMember
 	//    )?
-	//    ( ( {SysML::OperatorExpression.operand += current}
-	//        operator = '#' '(' operand += SequenceExpression ')'
+	//    ( ( {SysML::IndexExpression.operand += current}
+	//        '#' '(' operand += SequenceExpression ')'
 	//      | {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
 	//      | {SysML::InvocationExpression.operand += current} '->'

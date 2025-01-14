@@ -12,7 +12,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -46,6 +48,7 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 			addAnnotatingElementPropertyDescriptor(object);
 			addAnnotatedElementPropertyDescriptor(object);
 			addOwningAnnotatedElementPropertyDescriptor(object);
+			addOwnedAnnotatingElementPropertyDescriptor(object);
 			addOwningAnnotatingElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -118,6 +121,28 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Owned Annotating Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnedAnnotatingElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Annotation_ownedAnnotatingElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_ownedAnnotatingElement_feature", "_UI_Annotation_type"),
+				 SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Owning Annotating Element feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +200,12 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Annotation.class)) {
+			case SysMLPackage.ANNOTATION__OWNED_ANNOTATING_ELEMENT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -188,6 +219,36 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createAnnotatingElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createDocumentation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createTextualRepresentation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createMetadataFeature()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT,
+				 SysMLFactory.eINSTANCE.createMetadataUsage()));
 	}
 
 	/**
@@ -204,7 +265,8 @@ public class AnnotationItemProvider extends RelationshipItemProvider {
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
 			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION;
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.ANNOTATION__OWNED_ANNOTATING_ELEMENT;
 
 		if (qualify) {
 			return getString

@@ -11,6 +11,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>SelectExpression</code> is an <code>OperatorExpression</code> whose operator is <code>"select"</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::select</code></em> from the Kernel Functions Library.</p>
  * operator = 'select'
+ * arguments->notEmpty() implies
+ *     result.specializes(arguments->first().result)
  * <!-- end-model-doc -->
  *
  *

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -49,19 +49,6 @@ public class AnnotationAdapter extends RelationshipAdapter {
 			if (!(owningRelatedElement instanceof AnnotatingElement)) {
 				obj.setAnnotatedElement(owningRelatedElement);
 			}
-		}
-		
-		// If there is no annotatingElement set, then set the AnnotatingElement to the owningRelatedElement,
-		// if it is an AnnotatingElement, otherwise set it to the first ownedRelatedElement that is an
-		// AnnotatingElement (if any).
-		Object annotatingElement = obj.eGet(SysMLPackage.Literals.ANNOTATION__ANNOTATING_ELEMENT, false);
-		if (annotatingElement == null) {
-			Element owner = obj.getOwningRelatedElement();
-			obj.setAnnotatingElement((AnnotatingElement)
-					(owner instanceof AnnotatingElement? owner: 
-						obj.getOwnedRelatedElement().stream().
-							filter(AnnotatingElement.class::isInstance).
-							findFirst().orElse(null)));
 		}
 	}
 	

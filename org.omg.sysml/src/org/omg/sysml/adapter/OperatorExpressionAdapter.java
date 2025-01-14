@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,21 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 	
-	public static final String INDEXING_OPERATOR = "#";
-	public static final String ARRAY_TYPE = "Collections::Array";
-
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);
 	}
@@ -45,30 +36,6 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return (OperatorExpression)super.getTarget();
 	}
 	
-	public void addIndexingResultSubsetting() {
-		OperatorExpression target = getTarget();
-		if (INDEXING_OPERATOR.equals(target.getOperator())) {
-			EList<Expression> arguments = target.getArgument();
-			if (!arguments.isEmpty()) {
-				Expression seqArgument = arguments.get(0);
-				ElementUtil.transform(seqArgument);
-				Feature seqResult = seqArgument.getResult();
-				if (!hasArrayType(seqResult)) {
-					Feature resultFeature = target.getResult();
-					if (resultFeature != null && seqResult != null) {
-						TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
-					}
-				}
-			}
-		}		
-	}
-	
-	protected boolean hasArrayType(Feature feature) {
-		Type arrayType = getLibraryType(ARRAY_TYPE);
-		return arrayType != null && 
-			   feature.getType().stream().anyMatch(t->TypeUtil.conforms(t, arrayType));
-	}
-
 	@Override
 	public void computeImplicitGeneralTypes() {
 		OperatorExpression target = getTarget();
@@ -77,7 +44,6 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), ExpressionUtil.getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();
-		addIndexingResultSubsetting();
 	}
 	
 }

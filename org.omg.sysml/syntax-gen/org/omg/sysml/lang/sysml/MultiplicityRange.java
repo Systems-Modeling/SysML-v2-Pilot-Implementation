@@ -51,16 +51,19 @@ import org.eclipse.emf.common.util.EList;
  *     else if ownedExpressions->size() = 1 then ownedExpressions->at(1)
  *     else ownedExpressions->at(2)
  *     endif endif 
- * ownedMember->notEmpty() and
- * ownedMember->at(1) = upperBound or
- * ownedMember->size() > 1 and
- * ownedMember->at(1) = lowerBound and
- * ownedMember->at(2) = upperBound
  * bound =
  *     if upperBound = null then Sequence{}
  *     else if lowerBound = null then Sequence{upperBound}
  *     else Sequence{lowerBound, upperBound}
  *     endif endif
+ * if lowerBound = null then
+ *     ownedMember->notEmpty() and
+ *     ownedMember->at(1) = upperBound
+ * else
+ *     ownedMember->size() > 1 and
+ *     ownedMember->at(1) = lowerBound and
+ *     ownedMember->at(2) = upperBound
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

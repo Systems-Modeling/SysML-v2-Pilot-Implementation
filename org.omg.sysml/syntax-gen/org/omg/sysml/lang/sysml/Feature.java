@@ -76,11 +76,6 @@ import org.eclipse.emf.common.util.EList;
  * (owningType.oclIsKindOf(Structure) or
  *  owningType.type->includes(oclIsKindOf(Structure))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
- * owningType <> null and
- * owningType.oclIsKindOf(FeatureReferenceExpression) and
- * self = owningType.oclAsType(FeatureReferenceExpression).result implies
- *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
- * 
  * ownedTyping.type->exists(selectByKind(Class)) implies
  *     specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
@@ -885,6 +880,9 @@ public interface Feature extends Type {
 	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The last of the <code>chainingFeatures</code> of this <code>Feature</code>, if it has any. Otherwise, this <code>Feature</code> itself.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Target</em>' reference.
 	 * @see #setFeatureTarget(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeatureTarget()

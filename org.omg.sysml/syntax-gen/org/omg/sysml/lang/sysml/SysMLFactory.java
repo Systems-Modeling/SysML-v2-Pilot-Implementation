@@ -1500,6 +1500,15 @@ public interface SysMLFactory extends EFactory {
 	NullExpression createNullExpression();
 
 	/**
+	 * Returns a new object of class '<em>Index Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Index Expression</em>'.
+	 * @generated
+	 */
+	IndexExpression createIndexExpression();
+
+	/**
 	 * Returns a new object of class '<em>Metadata Access Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

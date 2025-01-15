@@ -2763,7 +2763,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getType__InheritableMemberships__EList_EList_Object() {
+	public EOperation getType__InheritableMemberships__EList_EList_boolean() {
 		return typeEClass.getEOperations().get(1);
 	}
 
@@ -2773,7 +2773,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EOperation getType__NonPrivateMemberships__EList_EList_Object() {
+	public EOperation getType__NonPrivateMemberships__EList_EList_boolean() {
 		return typeEClass.getEOperations().get(2);
 	}
 
@@ -8373,8 +8373,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(typeEClass, TYPE__OWNED_DIFFERENCING);
 		createEReference(typeEClass, TYPE__DIRECTED_FEATURE);
 		createEOperation(typeEClass, TYPE___INHERITED_MEMBERSHIPS__ELIST_ELIST_BOOLEAN);
-		createEOperation(typeEClass, TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_OBJECT);
-		createEOperation(typeEClass, TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_OBJECT);
+		createEOperation(typeEClass, TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN);
+		createEOperation(typeEClass, TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN);
 		createEOperation(typeEClass, TYPE___REMOVE_REDEFINED_FEATURES__ELIST);
 		createEOperation(typeEClass, TYPE___DIRECTION_OF__FEATURE);
 		createEOperation(typeEClass, TYPE___DIRECTION_OF_EXCLUDING__FEATURE_ELIST);
@@ -9516,15 +9516,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		addEParameter(op, this.getType(), "excludedTypes", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theTypesPackage.getBoolean(), "excludeImplied", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getType__InheritableMemberships__EList_EList_Object(), this.getMembership(), "inheritableMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getType__InheritableMemberships__EList_EList_boolean(), this.getMembership(), "inheritableMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNamespace(), "excludedNamespaces", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getType(), "excludedTypes", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEJavaObject(), "excludeImplied", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getBoolean(), "excludeImplied", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getType__NonPrivateMemberships__EList_EList_Object(), this.getMembership(), "nonPrivateMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getType__NonPrivateMemberships__EList_EList_boolean(), this.getMembership(), "nonPrivateMemberships", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNamespace(), "excludedNamespaces", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getType(), "excludedTypes", 0, -1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEJavaObject(), "excludeImplied", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theTypesPackage.getBoolean(), "excludeImplied", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = initEOperation(getType__RemoveRedefinedFeatures__EList(), this.getMembership(), "removeRedefinedFeatures", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getMembership(), "memberships", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -11685,12 +11685,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getType__InheritableMemberships__EList_EList_Object(),
+		  (getType__InheritableMemberships__EList_EList_boolean(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getType__NonPrivateMemberships__EList_EList_Object(),
+		  (getType__NonPrivateMemberships__EList_EList_boolean(),
 		   source,
 		   new String[] {
 		   });

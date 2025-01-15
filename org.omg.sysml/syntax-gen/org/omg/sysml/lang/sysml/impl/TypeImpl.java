@@ -736,9 +736,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Membership> inheritableMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, Object excludeImplied) {
+	public EList<Membership> inheritableMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied) {
 		try {
-			return (EList<Membership>)INHERITABLE_MEMBERSHIPS_ELIST_ELIST_OBJECT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excludedNamespaces, excludedTypes, excludeImplied}));
+			return (EList<Membership>)INHERITABLE_MEMBERSHIPS_ELIST_ELIST_BOOLEAN__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excludedNamespaces, excludedTypes, excludeImplied}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -751,9 +751,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<Membership> nonPrivateMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, Object excludeImplied) {
+	public EList<Membership> nonPrivateMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied) {
 		try {
-			return (EList<Membership>)NON_PRIVATE_MEMBERSHIPS_ELIST_ELIST_OBJECT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excludedNamespaces, excludedTypes, excludeImplied}));
+			return (EList<Membership>)NON_PRIVATE_MEMBERSHIPS_ELIST_ELIST_BOOLEAN__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excludedNamespaces, excludedTypes, excludeImplied}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -847,24 +847,24 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected static final EOperation.Internal.InvocationDelegate INHERITED_MEMBERSHIPS_ELIST_ELIST_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___INHERITED_MEMBERSHIPS__ELIST_ELIST_BOOLEAN).getInvocationDelegate();
 
 	/**
-	 * The cached invocation delegate for the '{@link #inheritableMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.lang.Object) <em>Inheritable Memberships</em>}' operation.
+	 * The cached invocation delegate for the '{@link #inheritableMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, boolean) <em>Inheritable Memberships</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #inheritableMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.lang.Object)
+	 * @see #inheritableMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, boolean)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate INHERITABLE_MEMBERSHIPS_ELIST_ELIST_OBJECT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_OBJECT).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate INHERITABLE_MEMBERSHIPS_ELIST_ELIST_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN).getInvocationDelegate();
 
 	/**
-	 * The cached invocation delegate for the '{@link #nonPrivateMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.lang.Object) <em>Non Private Memberships</em>}' operation.
+	 * The cached invocation delegate for the '{@link #nonPrivateMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, boolean) <em>Non Private Memberships</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #nonPrivateMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, java.lang.Object)
+	 * @see #nonPrivateMemberships(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, boolean)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate NON_PRIVATE_MEMBERSHIPS_ELIST_ELIST_OBJECT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_OBJECT).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate NON_PRIVATE_MEMBERSHIPS_ELIST_ELIST_BOOLEAN__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN).getInvocationDelegate();
 
 	/**
 	 * The cached invocation delegate for the '{@link #removeRedefinedFeatures(org.eclipse.emf.common.util.EList) <em>Remove Redefined Features</em>}' operation.
@@ -1425,10 +1425,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		switch (operationID) {
 			case SysMLPackage.TYPE___INHERITED_MEMBERSHIPS__ELIST_ELIST_BOOLEAN:
 				return inheritedMemberships((EList<Namespace>)arguments.get(0), (EList<Type>)arguments.get(1), (Boolean)arguments.get(2));
-			case SysMLPackage.TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_OBJECT:
-				return inheritableMemberships((EList<Namespace>)arguments.get(0), (EList<Type>)arguments.get(1), arguments.get(2));
-			case SysMLPackage.TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_OBJECT:
-				return nonPrivateMemberships((EList<Namespace>)arguments.get(0), (EList<Type>)arguments.get(1), arguments.get(2));
+			case SysMLPackage.TYPE___INHERITABLE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN:
+				return inheritableMemberships((EList<Namespace>)arguments.get(0), (EList<Type>)arguments.get(1), (Boolean)arguments.get(2));
+			case SysMLPackage.TYPE___NON_PRIVATE_MEMBERSHIPS__ELIST_ELIST_BOOLEAN:
+				return nonPrivateMemberships((EList<Namespace>)arguments.get(0), (EList<Type>)arguments.get(1), (Boolean)arguments.get(2));
 			case SysMLPackage.TYPE___REMOVE_REDEFINED_FEATURES__ELIST:
 				return removeRedefinedFeatures((EList<Membership>)arguments.get(0));
 			case SysMLPackage.TYPE___DIRECTION_OF__FEATURE:

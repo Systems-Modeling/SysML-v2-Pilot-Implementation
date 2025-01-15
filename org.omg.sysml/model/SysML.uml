@@ -3802,7 +3802,7 @@ supertypes(excludeImplied)->reject(t | excludingSelf->includes(t)).
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5dd79815-2d89-4f8a-b2ba-47fad980a7bb" name="" visibility="public" value="*"/>
       </ownedParameter>
       <ownedParameter xmi:id="5cd3e7c9-5e22-4fa7-a62c-dc2943523e31" name="excludeImplied" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#5d97d535-ac0e-4d99-86f9-1ed43c72e1b6"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedParameter>
       <ownedParameter xmi:id="de96f983-622e-45d5-80e9-4a3745d04ddb" name="" visibility="public" type="aac28989-9501-4cdb-a0de-5be645062d3c" isOrdered="true" direction="return">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a8ff529a-73f7-4c4c-b5ad-71cd9f86aad4" name="" visibility="public"/>
@@ -3836,7 +3836,7 @@ publicMemberships->
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="f0b96b7e-2b11-4db5-bda7-fdebdc713ff9" name="" visibility="public" value="*"/>
       </ownedParameter>
       <ownedParameter xmi:id="e57bb86b-8116-4d84-aed8-5f5a0ce004d5" name="excludeImplied" visibility="public">
-        <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#5d97d535-ac0e-4d99-86f9-1ed43c72e1b6"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
       </ownedParameter>
       <ownedParameter xmi:id="5cfe9d94-3cda-411a-89a5-9ef39e777723" name="" visibility="public" type="aac28989-9501-4cdb-a0de-5be645062d3c" isOrdered="true" direction="return">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c0724d65-c1df-422c-b427-24c35ae4e8cb" name="" visibility="public"/>

@@ -847,11 +847,11 @@ public interface Type extends Namespace {
 	 *     nonPrivateMemberships(excludedNamespaces, excludingSelf, excludeImplied)
 	 * 
 	 * <!-- end-model-doc -->
-	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Membership> inheritableMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, Object excludeImplied);
+	EList<Membership> inheritableMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -868,11 +868,11 @@ public interface Type extends Namespace {
 	 *     union(protectedMemberships)->
 	 *     union(inheritedMemberships)
 	 * <!-- end-model-doc -->
-	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Membership> nonPrivateMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, Object excludeImplied);
+	EList<Membership> nonPrivateMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied);
 
 	/**
 	 * <!-- begin-user-doc -->

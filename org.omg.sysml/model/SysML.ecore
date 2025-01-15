@@ -886,7 +886,7 @@
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excludedNamespaces" ordered="false" upperBound="-1" eType="#//Namespace"/>
       <eParameters name="excludedTypes" ordered="false" upperBound="-1" eType="#//Type"/>
-      <eParameters name="excludeImplied" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eParameters name="excludeImplied" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
     </eOperations>
     <eOperations name="nonPrivateMemberships" upperBound="-1" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -895,7 +895,7 @@
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
       <eParameters name="excludedNamespaces" ordered="false" upperBound="-1" eType="#//Namespace"/>
       <eParameters name="excludedTypes" ordered="false" upperBound="-1" eType="#//Type"/>
-      <eParameters name="excludeImplied" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      <eParameters name="excludeImplied" ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"/>
     </eOperations>
     <eOperations name="removeRedefinedFeatures" upperBound="-1" eType="#//Membership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

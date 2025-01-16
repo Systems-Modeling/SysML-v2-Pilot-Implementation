@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * not isAbstract implies relatedFeature->size() >= 2
  * connectorEnds->size() = 2 and
- * association->exists(oclIsKindOf(AssocationStructure)) implies
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
  *     specializesFromLibrary('Objects::binaryLinkObjects')
  * sourceFeature = 
  *     if relatedFeature->isEmpty() then null 

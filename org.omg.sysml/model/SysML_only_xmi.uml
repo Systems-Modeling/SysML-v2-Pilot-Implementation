@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_rUPIsNOAEe-aLcdc5tialg" name="SysML" URI="https://www.omg.org/spec/SysML/20240201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_amvVANOeEe-aLcdc5tialg" name="SysML" URI="https://www.omg.org/spec/SysML/20240201">
   <packagedElement xmi:type="uml:Package" xmi:id="07571cf4-bf41-417e-9940-154e1578d394" name="Systems" visibility="public" URI="">
     <packageImport xmi:id="daeb66d9-cd8d-41ba-8001-cabcb2c8a400">
       <importedPackage href="KerML_only_xmi.uml#be3221b4-bef0-4d55-a9c7-cb7ffed86f6c"/>
@@ -51,6 +51,18 @@
 not owningType.oclIsKindOf(PortDefinition) and
 not owningType.oclIsKindOf(PortUsage) implies
     isReference</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="331c79ea-fcba-4395-9238-f569da83926b" name="checkPortUsageOwnedPortSpecialization" visibility="public" constrainedElement="d86d06c6-3b62-4189-8531-21e9d2ff9f23">
+          <ownedComment xmi:id="f3b32823-b12d-4464-9381-12fbeeb00a56" annotatedElement="331c79ea-fcba-4395-9238-f569da83926b">
+            <body>&lt;p>A &lt;code>PortUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>PartDefinition&lt;/code> or &lt;code>PartUsage&lt;/code> must directly or indirectly specialize the &lt;code>PortUsage&lt;/code> &lt;em>&lt;code>Parts::Part::ownedPorts&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="254d62d5-b2d8-41eb-9071-8226eb982292" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>owningType &lt;> null and
+(owningType.oclIsKindOf(PartDefinition) or
+ owningType.oclIsKindOf(PartUsage)) implies
+    specializesFromLibrary('Parts::Part::ownedPorts')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="6af8e9aa-8af5-45ff-b265-251f3cf0ecd3" general="8750f181-cce3-4283-a48b-68d7977c6e0f"/>
@@ -618,7 +630,7 @@ owningType.oclAsType(TransitionUsage).triggerAction->includes(self)</body>
         </ownedComment>
         <ownedRule xmi:id="62793e10-b1b7-4fca-a2ea-4ac61642d3b4" name="validatePerformActionUsageReference" visibility="public" constrainedElement="dbc8f893-bcf6-498b-bf3c-1d65a53dfc8b">
           <ownedComment xmi:id="e6627fec-7a02-4b0a-a2c2-a168ce4833e3" annotatedElement="62793e10-b1b7-4fca-a2ea-4ac61642d3b4">
-            <body>&lt;p>If a &lt;code>PerformActionUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>PerformActionUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be a &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="9f4f46ab-7e40-4d07-9ca4-1af1c8d75598" name="" visibility="public">
             <language>OCL2.0</language>
@@ -3121,6 +3133,22 @@ endif endif</body>
           </ownedParameter>
           <redefinedOperation href="KerML_only_xmi.uml#ba2bb40d-dd37-4d29-872d-349570953c58"/>
         </ownedOperation>
+        <ownedOperation xmi:id="47ffd3df-5ca0-4f59-8409-63fb9fbf15a6" name="referencedFeatureTarget" visibility="public" bodyCondition="c71d224d-bc87-4468-9882-580e3b690859">
+          <ownedComment xmi:id="d083babb-e0ad-4e13-b703-9380d3595b5b" annotatedElement="47ffd3df-5ca0-4f59-8409-63fb9fbf15a6">
+            <body>&lt;p>If &lt;code>ownedReferenceSubsetting&lt;/code> is not null, return the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <ownedRule xmi:id="c71d224d-bc87-4468-9882-580e3b690859" name="unnamed1" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="38f92d14-bd89-4a51-859c-9db8655a8498" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>if ownedReferenceSubsetting = null then null
+else ownedReferenceSubsetting.referencedFeature.featureTarget
+endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="2c644707-bb75-4045-84e8-f61d4e365b60" name="" visibility="public" direction="return">
+            <type xmi:type="uml:Class" href="KerML_only_xmi.uml#56b2e3ab-f2e5-4330-9c25-362cb4af825d"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="3ff0c357-d26e-45b9-9048-d272a7cdab46" name="A_ownedState_stateOwningDefinition" visibility="public" memberEnd="abeca8b9-f30c-4dc6-919b-b0e4c2ba2427 cc4bb4be-7e29-4a69-aef6-f5f25483458b">
         <ownedEnd xmi:id="cc4bb4be-7e29-4a69-aef6-f5f25483458b" name="stateOwningDefinition" visibility="public" type="f1eb93f0-3ecf-4502-ac36-d7956f796a7f" isDerived="true" subsettedProperty="86fe7842-6eb9-4587-b75e-05c78111534d" association="3ff0c357-d26e-45b9-9048-d272a7cdab46">
@@ -4000,6 +4028,18 @@ owningFeatureMembership.oclIsKindOf(StakeholderMembership) implies
     specializesFromLibrary('States::StateAction::substates')</body>
           </specification>
         </ownedRule>
+        <ownedRule xmi:id="5ee51297-4ea6-4663-b81e-1bc3dbd9179c" name="checkStateUsageOwnedStateSpecialization" visibility="public" constrainedElement="9b7f624e-c51c-45f2-81e0-cdf7606f0641">
+          <ownedComment xmi:id="25d5bb44-5af6-45e4-8fc7-4ca419067eb4" annotatedElement="5ee51297-4ea6-4663-b81e-1bc3dbd9179c">
+            <body>&lt;p>A composite &lt;code>StateUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>PartDefinition&lt;/code> or &lt;code>PartUsage&lt;/code> must directly or indirectly specialize the &lt;code>StateUsage&lt;/code> &lt;em>&lt;code>Parts::Part::ownedStates&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="50b25bbd-5042-438e-abe1-fbea03c2527e" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isComposite and owningType &lt;> null and
+(owningType.oclIsKindOf(PartDefinition) or
+ owningType.oclIsKindOf(PartUsage)) implies
+    specializesFromLibrary('Parts::Part::ownedStates')</body>
+          </specification>
+        </ownedRule>
         <generalization xmi:id="b64d8d22-dd36-4ea7-bafa-4176bcf6a5e6" general="cae740a0-764e-4bfd-9247-c54eb6e66f3e"/>
         <ownedAttribute xmi:id="29fc9775-8167-41ae-8747-fbff06b3467a" name="stateDefinition" visibility="public" isOrdered="true" isDerived="true" redefinedProperty="dad0d20a-49b6-442b-a390-22a43c3c1c38" association="16a82260-9471-42b4-9ad7-6dbe88d9b98c">
           <ownedComment xmi:id="87a03d33-10b5-4c75-bf77-5605c0142b85" annotatedElement="29fc9775-8167-41ae-8747-fbff06b3467a">
@@ -4272,28 +4312,29 @@ owningType.oclIsKindOf(StateUsage)</body>
         </ownedComment>
         <ownedRule xmi:id="2d52ae2a-bc5a-4df7-87be-3daff4789f81" name="checkTransitionUsageActionSpecialization" visibility="public" constrainedElement="8ae2918f-c0c6-482e-9276-06eeaee91fa9">
           <ownedComment xmi:id="d3ecf62a-a73b-48ba-9958-c9a3a8af9b9f" annotatedElement="2d52ae2a-bc5a-4df7-87be-3daff4789f81">
-            <body>&lt;p>A composite &lt;code>TransitionUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>ActionDefinition&lt;/code> or &lt;code>ActionUsage&lt;/code>, but &lt;em>not&lt;/em> a &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code>, must directly or indirectly specialize the &lt;code>ActionUsage&lt;/code> &lt;em>&lt;code>Actions::Action::decisionTransitions&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A composite &lt;code>TransitionUsage&lt;/code> whose &lt;code>owningType&lt;/code> is an &lt;code>ActionDefinition&lt;/code> or &lt;code>ActionUsage&lt;/code> and whose &lt;code>source&lt;/code> is &lt;em>not&lt;/em> a &lt;code>StateUsage&lt;/code> must directly or indirectly specialize the &lt;code>ActionUsage&lt;/code> &lt;em>&lt;code>Actions::Action::decisionTransitions&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="ae533486-d8ac-4b81-9f97-9eee217f4d74" name="" visibility="public">
             <language>OCL2.0</language>
             <body>isComposite and owningType &lt;> null and
-(owningType.oclIsKindOf(ActionDefinition) or 
+(owningType.oclIsKindOf(ActionDefinition) or
  owningType.oclIsKindOf(ActionUsage)) and
-not (owningType.oclIsKindOf(StateDefinition) or
-     owningType.oclIsKindOf(StateUsage)) implies
+source &lt;> null and not source.oclIsKindOf(StateUsage) implies
     specializesFromLibrary('Actions::Action::decisionTransitions')</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="76140121-4aa7-450e-bfa4-cb8e222b8cf1" name="checkTransitionUsageStateSpecialization" visibility="public" constrainedElement="8ae2918f-c0c6-482e-9276-06eeaee91fa9">
           <ownedComment xmi:id="f558b6a1-1d23-4e74-93be-2cb4556b31db" annotatedElement="76140121-4aa7-450e-bfa4-cb8e222b8cf1">
-            <body>&lt;p>A composite &lt;code>TransitionUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code> must directly or indirectly specialize the &lt;code>ActionUsage&lt;/code> &lt;em>&lt;code>States::State::stateTransitions&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A composite &lt;code>TransitionUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>StateDefinition&lt;/code> or &lt;code>StateUsage&lt;/code> and whose &lt;code>source&lt;/code> is a &lt;code>StateUsage&lt;/code> must directly or indirectly specialize the &lt;code>ActionUsage&lt;/code> &lt;em>&lt;code>States::StateAction::stateTransitions&lt;/code>&lt;/em> from the Systems Model Library&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="879c95c1-4398-41be-86aa-11e5bb99bc94" name="" visibility="public">
             <language>OCL2.0</language>
             <body>isComposite and owningType &lt;> null and
 (owningType.oclIsKindOf(StateDefinition) or
- owningType.oclIsKindOf(StateUsage)) implies
-    specializesFromLibrary('States::State::stateTransitions')</body>
+ owningType.oclIsKindOf(StateUsage)) and
+source &lt;> null and source.oclIsKindOf(StateUsage) implies
+    specializesFromLibrary('States::StateAction::stateTransitions')
+</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="1aa473d8-036d-4f87-9e57-2f5f99d162ae" name="checkTransitionUsageSpecialization" visibility="public" constrainedElement="8ae2918f-c0c6-482e-9276-06eeaee91fa9">
@@ -4349,14 +4390,14 @@ not (owningType.oclIsKindOf(StateDefinition) or
         </ownedRule>
         <ownedRule xmi:id="4ba17d3c-c925-40fc-87a4-553f67359453" name="validateTransitionUsageSuccession" visibility="public" constrainedElement="8ae2918f-c0c6-482e-9276-06eeaee91fa9">
           <ownedComment xmi:id="38ef719f-b409-4c73-8666-593ee565b974" annotatedElement="4ba17d3c-c925-40fc-87a4-553f67359453">
-            <body>&lt;p>A &lt;code>TransitionUsage&lt;/code> must have an &lt;code>ownedMember&lt;/code> that is a &lt;code>Succession&lt;/code> with a &lt;code>ActionUsage&lt;/code> as its &lt;code>targetFeature&lt;/code>.&lt;/p></body>
+            <body>&lt;p>A &lt;code>TransitionUsage&lt;/code> must have an &lt;code>ownedMember&lt;/code> that is a &lt;code>Succession&lt;/code> with an &lt;code>ActionUsage&lt;/code> as the &lt;code>featureTarget&lt;/code> of its &lt;code>targetFeature&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="f36ebee0-a94c-4e4f-b304-eb7fcb2b6582" name="" visibility="public">
             <language>OCL2.0</language>
             <body>let successions : Sequence(Successions) = 
     ownedMember->selectByKind(Succession) in
 successions->notEmpty() and
-successions->at(1).targetFeature->
+successions->at(1).targetFeature.featureTarget->
     forAll(oclIsKindOf(ActionUsage))</body>
           </specification>
         </ownedRule>
@@ -4460,6 +4501,16 @@ endif
           <specification xmi:type="uml:OpaqueExpression" xmi:id="cde69f19-4fae-4677-95c7-7496f8b4c49e" name="" visibility="public">
             <language>OCL2.0</language>
             <body>succession = ownedMember->selectByKind(Succession)->at(1)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="96005592-dbd4-44df-bc8c-0349cefad1b3" name="validateTransitionUsageTriggerActions" visibility="public" constrainedElement="8ae2918f-c0c6-482e-9276-06eeaee91fa9">
+          <ownedComment xmi:id="bb528188-a37c-45bc-90c8-991fffc2d66f" annotatedElement="96005592-dbd4-44df-bc8c-0349cefad1b3">
+            <body>&lt;p>If the &lt;code>source&lt;/code> of a &lt;code>TransitionUsage&lt;/code> is &lt;em>not&lt;/em> a &lt;code>StateUsage&lt;/code>, then the &lt;code>TransitionUsage&lt;/code> must not have any &lt;code>triggerActions&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="035fbfe2-200c-48f6-8495-c5ddd4e63dfd" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>source &lt;> null and not source.oclIsKindOf(StateUsage) implies
+    triggerAction->isEmpty()</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="11e46c99-bee8-4e1d-b491-74065c2f0d82" general="cae740a0-764e-4bfd-9247-c54eb6e66f3e"/>
@@ -4635,12 +4686,12 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="9b85aece-f9c4-47ee-85b9-420fff58610a" name="validateExhibitStateUsageReference" visibility="public" constrainedElement="37cc232b-2f72-4702-9231-6dcdf610247f">
           <ownedComment xmi:id="f51bfb17-2401-4bb7-a4d3-93f4ccededc1" annotatedElement="9b85aece-f9c4-47ee-85b9-420fff58610a">
-            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>ExhibitStateUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be a &lt;code>StateUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="b33d7ae1-9f73-44c9-b631-4357d5bc4b3e" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(StateUsage)</body>
+            <body>referencedFeatureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(StateUsage)</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="5d254f1a-48b7-4edf-a9c8-e708b1a0b8a8" general="9b7f624e-c51c-45f2-81e0-cdf7606f0641"/>
@@ -4872,7 +4923,7 @@ owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
         </ownedAttribute>
         <ownedOperation xmi:id="6d42c5ad-d061-459e-b7e3-a87f82c79ee0" name="namingFeature" visibility="public" bodyCondition="479056fe-f85f-4300-8a42-b8a3eb021019" redefinedOperation="54ce2459-83a6-459d-b1a0-d80b6402c305">
           <ownedComment xmi:id="9341ad2a-0859-4db2-88fa-cde8ff471f9e" annotatedElement="6d42c5ad-d061-459e-b7e3-a87f82c79ee0">
-            <body>&lt;p>The naming &lt;code>Feature&lt;/code> of a &lt;code>ConstraintUsage&lt;/code> that is owned by a &lt;code>RequirementConstraintMembership&lt;/code> and has an &lt;code>ownedReferenceSubsetting&lt;/code> is the &lt;code>referencedFeature&lt;/code> of that &lt;code>ownedReferenceSubsetting&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The naming &lt;code>Feature&lt;/code> of a &lt;code>ConstraintUsage&lt;/code> that is owned by a &lt;code>RequirementConstraintMembership&lt;/code> and has an &lt;code>ownedReferenceSubsetting&lt;/code> is the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of that &lt;code>ownedReferenceSubsetting&lt;/code>.&lt;/p></body>
           </ownedComment>
           <ownedRule xmi:id="479056fe-f85f-4300-8a42-b8a3eb021019" name="unnamed1" visibility="public">
             <specification xmi:type="uml:OpaqueExpression" xmi:id="6c756f08-decb-47cd-bddf-0c72ce524a71" name="" visibility="public">
@@ -4880,7 +4931,7 @@ owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
               <body>if owningFeatureMembership &lt;> null and
 owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) and
 ownedReferenceSubsetting &lt;> null then
-    ownedReferenceSubsetting.referencedFeature
+    ownedReferenceSubsetting.referencedFeature.featureTarget
 else
     self.oclAsType(OccurrenceUsage).namingFeature()
 endif</body>
@@ -4958,26 +5009,28 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="e9cff376-a9c4-4924-ad27-49ee863d9f8d" name="deriveAssertConstraintUsageAssertedConstraint" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
           <ownedComment xmi:id="d0950e13-ed1e-4b5f-9443-9f253e4a88bb" annotatedElement="e9cff376-a9c4-4924-ad27-49ee863d9f8d">
-            <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has no &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>assertedConstraint&lt;/code> is the &lt;code>AssertConstraintUsage&lt;/code> itself. Otherwise, the &lt;code>assertedConstraint&lt;/code> is the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code>, which must be a &lt;code>ConstraintUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has no &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>assertedConstraint&lt;/code> is the &lt;code>AssertConstraintUsage&lt;/code> itself. Otherwise, the &lt;code>assertedConstraint&lt;/code> is the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code>, which must be a &lt;code>ConstraintUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="4a277018-a9d9-4303-b652-edebce0a2a52" name="" visibility="public">
             <language>OCL2.0</language>
             <body>assertedConstraint =
-    if ownedReferenceSubsetting = null then self
-    else ownedReferenceSubsetting.referencedFeature.oclAsType(ConstraintUsage)
-    endif</body>
+    if referencedFeatureTarget() = null then self
+    else if referencedFeatureTarget().oclIsKindOf(ConstraintUsage) then
+        referencedFeatureTarget().oclAsType(ConstraintUsage)
+    else null
+    endif endif</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="996f5d86-56b9-4dae-9848-03fce0a97c59" name="checkAssertConstraintUsageSpecialization" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
           <ownedComment xmi:id="bb990f50-aa04-48b0-8fbd-38bae4fba13c" annotatedElement="996f5d86-56b9-4dae-9848-03fce0a97c59">
-            <body>&lt;p>If a &lt;code>AssertConstraintUsage&lt;/code> is negated, then it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::negatedConstraints&lt;/em>&lt;/code>. Otherwise, it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::assertedConstraints&lt;/em>&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>AssertConstraintUsage&lt;/code> is negated, then it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::negatedConstraintChecks&lt;/em>&lt;/code>. Otherwise, it must directly or indirectly specialize the &lt;code>ConstraintUsage&lt;/code> &lt;code>&lt;em>Constraints::assertedConstraintChecks&lt;/em>&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="5f7e9686-e39f-473d-86a5-21e1d5b856ef" name="" visibility="public">
             <language>OCL2.0</language>
             <body>if isNegated then
-    specializesFromLibrary('Constraints::negatedConstraints')
+    specializesFromLibrary('Constraints::negatedConstraintChecks')
 else
-    specializesFromLibrary('Constraints::assertedConstraints')
+    specializesFromLibrary('Constraints::assertedConstraintChecks')
 endif</body>
           </specification>
         </ownedRule>
@@ -5289,6 +5342,19 @@ endif</body>
     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(RequirementUsage)</body>
           </specification>
         </ownedRule>
+        <ownedRule xmi:id="619b4bd3-aef7-4896-9847-3dad55baeba0" name="checkSatisfyRequirementUsageSpecialization" visibility="public" constrainedElement="f3eaba18-edf9-46dc-8edf-77e0b0954dec">
+          <ownedComment xmi:id="cc31896d-c4fc-43a4-9c24-452dbd81323e" annotatedElement="619b4bd3-aef7-4896-9847-3dad55baeba0">
+            <body>&lt;p>If a &lt;code>SatisfyRequirementUsage&lt;/code> is negated, then it must directly or indirectly specialize the &lt;code>RequirementUsage&lt;/code> &lt;em>&lt;code>Requirements::notSatisfiedRequirementChecks&lt;/code>&lt;/em>. Otherwise, it must directly or indirectly specialize the &lt;code>RequirementUsage&lt;/code> &lt;em>&lt;code>Requirements::satisfiedRequirementChecks&lt;/code>&lt;/em>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="30822025-6f0d-474e-808b-5fe1c64407c9" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>if isNegated then
+    specializesFromLibrary('Requirements::notSatisfiedRequirementChecks')
+else
+    specializesFromLibrary('Requirements::satisfiedRequirementChecks')
+endif</body>
+          </specification>
+        </ownedRule>
         <generalization xmi:id="578c426d-52ae-43d1-8727-d57dcf46b205" general="671465c6-6be2-41ab-98be-f7828b2ac20f"/>
         <generalization xmi:id="ebb85f2a-0463-407c-98d2-c367eba833f5" general="81b3d651-a8af-47ad-9989-a2bb2b788b8d"/>
         <ownedAttribute xmi:id="a197a15a-82a8-490c-9977-31a151970777" name="satisfiedRequirement" visibility="public" type="671465c6-6be2-41ab-98be-f7828b2ac20f" isDerived="true" redefinedProperty="d0c2b002-a685-4bf0-a040-a18850d2a050" association="91f340ce-88a4-440c-9586-387db4762fa9">
@@ -5560,16 +5626,17 @@ owningFeatureMembership.oclIsKindOf(RequirementVerificationMembership) implies
         </ownedComment>
         <ownedRule xmi:id="8e1bd2be-62ec-4a03-b8dc-f96d47a22bbf" name="deriveRequirementConstraintMembershipReferencedConstraint" visibility="public" constrainedElement="bf4b33a4-df55-4876-8f8e-d819bb107d4b">
           <ownedComment xmi:id="0c4f549e-fde0-4e93-903d-90ae9b6a406f" annotatedElement="8e1bd2be-62ec-4a03-b8dc-f96d47a22bbf">
-            <body>&lt;p>The &lt;code>referencedConstraint&lt;/code> of a &lt;code>RequirementConstraintMembership&lt;/code> is the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> of the &lt;code>ownedConstraint&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedConstraint&lt;/code> itself.&lt;/p></body>
+            <body>&lt;p>The &lt;code>referencedConstraint&lt;/code> of a &lt;code>RequirementConstraintMembership&lt;/code> is the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> of the &lt;code>ownedConstraint&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedConstraint&lt;/code> itself.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="aa5dc792-10f7-467a-8947-06e1ee16cf4f" name="" visibility="public">
             <language>OCL2.0</language>
             <body>referencedConstraint =
-    let reference : ReferenceSubsetting = 
-        ownedConstraint.ownedReferenceSubsetting in
-    if reference = null then ownedConstraint
-    else if not reference.referencedFeature.oclIsKindOf(ConstraintUsage) then null 
-    else reference.referencedFeature.oclAsType(ConstraintUsage)
+    let referencedFeature : Feature = 
+        ownedConstraint.referencedFeatureTarget() in
+    if referencedFeature = null then ownedConstraint
+    else if referencedFeature.oclIsKindOf(ConstraintUsage) then
+        refrencedFeature.oclAsType(ConstraintUsage)
+    else null
     endif endif</body>
           </specification>
         </ownedRule>
@@ -7380,17 +7447,18 @@ owningFeatureMembership.oclIsKindOf(ViewRenderingMembership) implies
         </ownedComment>
         <ownedRule xmi:id="3c1288d9-6a5f-40dc-afbb-d3a12825b0c0" name="deriveVewRenderingMembershipReferencedRendering" visibility="public" constrainedElement="1c9ad0dd-9caa-4ea0-a879-76bb6ef1cebb">
           <ownedComment xmi:id="815f8ea5-f7c1-4673-bc9c-8dcaf4e2dc55" annotatedElement="3c1288d9-6a5f-40dc-afbb-d3a12825b0c0">
-            <body>&lt;p>The &lt;code>referencedRendering&lt;/code> of a &lt;code>ViewRenderingMembership&lt;/code> is the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> (which must be a &lt;code>RenderingUsage&lt;/code>) of the &lt;code>ownedRendering&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedRendering&lt;/code> itself.&lt;/p></body>
+            <body>&lt;p>The &lt;code>referencedRendering&lt;/code> of a &lt;code>ViewRenderingMembership&lt;/code> is the the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> (which must be a &lt;code>RenderingUsage&lt;/code>) of the &lt;code>ownedRendering&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedRendering&lt;/code> itself.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="1eaf662e-637a-40dd-b39d-91e72aafa1cc" name="" visibility="public">
             <language>OCL2.0</language>
             <body>referencedRendering =
-    let reference: ReferenceSubsetting = 
-        ownedRendering.ownedReferenceSubsetting in
-    if reference = null then ownedRendering
-    else if not reference.referencedFeature.oclIsKindOf(RenderingUsage) then null
-    else reference.referencedFeature.oclAsType(RenderingUsage)
-    endif</body>
+    let referencedFeature : Feature = 
+        ownedRendering.referencedFeatureTarget() in
+    if referencedFeature = null then ownedRendering
+    else if referencedFeature.oclIsKindOf(RenderingUsage) then
+        refrencedFeature.oclAsType(RenderingUsage)
+    else null
+    endif endif</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="5f291e65-8c55-48e7-b07e-8bf3712c1a74" name="validateViewRenderingMembershipOwningType" visibility="public" constrainedElement="1c9ad0dd-9caa-4ea0-a879-76bb6ef1cebb">
@@ -8069,26 +8137,26 @@ if isIndividual then n = 1 else n = 0 endif</body>
         </ownedComment>
         <ownedRule xmi:id="a82a7b73-946d-4c8c-865f-a0f97e5cbb86" name="deriveEventOccurrenceUsageEventOccurrence" visibility="public" constrainedElement="c7ef7e80-100c-46a8-a60e-e58c481b6ae7">
           <ownedComment xmi:id="6d06157a-58b6-4ce7-8ec6-feefcff5382c" annotatedElement="a82a7b73-946d-4c8c-865f-a0f97e5cbb86">
-            <body>&lt;p>If an &lt;code>EventOccurrenceUsage&lt;/code> has no &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>eventOccurrence&lt;/code> is the &lt;code>EventOccurrenceUsage&lt;/code> itself. Otherwise, the &lt;code>eventOccurrence&lt;/code> is the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> (which must be an &lt;code>OccurrenceUsage&lt;/code>).&lt;/p></body>
+            <body>&lt;p>If an &lt;code>EventOccurrenceUsage&lt;/code> has no &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>eventOccurrence&lt;/code> is the &lt;code>EventOccurrenceUsage&lt;/code> itself. Otherwise, the &lt;code>eventOccurrence&lt;/code> is the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of the &lt;code>ownedReferenceSubsetting&lt;/code> (which must be an &lt;code>OccurrenceUsage&lt;/code>).&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="e0943e19-0333-48b5-b9aa-350504852e4f" name="" visibility="public">
             <language>OCL2.0</language>
             <body>eventOccurrence =
-    if ownedReferenceSubsetting = null then self
-    else if ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage) then 
-        ownedReferenceSubsetting.referencedFeature.oclAsType(OccurrenceUsage)
+    if referencedFeatureTarget() = null then self
+    else if referencedFeatureTarget().oclIsKindOf(OccurrenceUsage) then
+        referencedFeatureTarget().oclAsType(OccurrenceUsage)
     else null
     endif endif</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="62da223d-37ef-4b64-b1a6-0051a3044a44" name="validateEventOccurrenceUsageReference" visibility="public" constrainedElement="c7ef7e80-100c-46a8-a60e-e58c481b6ae7">
           <ownedComment xmi:id="4b4450c6-f744-4b88-bd6a-704db1882581" annotatedElement="62da223d-37ef-4b64-b1a6-0051a3044a44">
-            <body>&lt;p>If an &lt;code>EventOccurrenceUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be an &lt;code>OccurrenceUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>EventOccurrenceUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be an &lt;code>OccurrenceUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="3babdb48-9c92-49ec-b041-024bf2b73128" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage)</body>
+            <body>referencedFeatureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(OccurrenceUsage)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="d7087093-32e3-4822-957f-2a21d1ac58c7" name="checkEventOccurrenceUsageSpecialization" visibility="public" constrainedElement="c7ef7e80-100c-46a8-a60e-e58c481b6ae7">
@@ -8167,12 +8235,12 @@ if isIndividual then n = 1 else n = 0 endif</body>
         </ownedRule>
         <ownedRule xmi:id="8773faab-85e8-4b6e-918e-790e74553d0e" name="validateIncludeUseCaseUsageReference" visibility="public" constrainedElement="27077c7a-1e81-46dc-a674-26567cc34184">
           <ownedComment xmi:id="eb5503d1-d097-4b82-a058-dd37e6f983fc" annotatedElement="8773faab-85e8-4b6e-918e-790e74553d0e">
-            <body>&lt;p>If an &lt;code>IncludeUseCaseUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>UseCaseUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>IncludeUseCaseUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be a &lt;code>UseCaseUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="ec76d695-00db-49a4-9fb1-49eaa791032d" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(UseCaseUsage)</body>
+            <body>referencedFeatureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(UseCaseUsage)</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="12b42429-3103-4c4a-b8ba-8c87d12b4f42" general="b4eccf1c-f8b0-499d-ad9d-d49aab802a87"/>

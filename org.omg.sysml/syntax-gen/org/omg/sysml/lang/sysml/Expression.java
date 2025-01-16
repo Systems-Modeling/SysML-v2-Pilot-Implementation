@@ -31,9 +31,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An <code>Expression</code> is a <code>Step</code> that is typed by a <code>Function</code>. An <code>Expression</code> that also has a <code>Function</code> as its <code>featuringType</code> is a computational step within that <code>Function</code>. An <code>Expression</code> always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows <code>Expressions</code> to be interconnected in tree structures, in which inputs to each <code>Expression</code> in the tree are determined as the results of other <code>Expression</code> in the tree.</p>
  * 
- * ownedFeatureMembership->
+ * featureMembership->
  *     selectByKind(ReturnParameterMembership)->
- *     size() <= 1
+ *     size() = 1
  * isModelLevelEvaluable = modelLevelEvaluable(Set(Element){})
  * owningMembership <> null and 
  * owningMembership.oclIsKindOf(FeatureValue) implies
@@ -42,13 +42,13 @@ import org.eclipse.emf.common.util.EList;
  *     featuringType = featureWithValue.featuringType
  * result =
  *     let resultParams : Sequence(Feature) =
- *         ownedFeatureMemberships->
+ *         featureMemberships->
  *             selectByKind(ReturnParameterMembership).
  *             ownedParameterMember in
  *     if resultParams->notEmpty() then resultParams->first()
- *     else if function <> null then function.result
  *     else null
- *     endif endif
+ *     endif
+ * 
  * ownedMembership.selectByKind(ResultExpressionMembership)->
  *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
  *         exists(binding |

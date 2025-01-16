@@ -77,7 +77,7 @@ package pkg {
    	}
    	
    	part b : B;
-   	ref u : UC1;
+   	ref u;
    	
    	use case uc4 {
    		// XPECT errors ---> "Must reference a use case." at "u"

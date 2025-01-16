@@ -372,22 +372,48 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkDistinguishibility(Membership mem, Iterable<Membership> others, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
-		
+				
 		val distinctOthers = others.filter[other | mem.memberElement !== other.memberElement]
-		if (memShortName !== null && distinctOthers.exists[other | memShortName == other.memberShortName || memShortName == other.memberName]) {
+		if (memShortName !== null) {
+			val dups = distinctOthers.filter[other | memShortName == other.memberShortName || memShortName == other.memberName]
+			if (!dups.empty) {
+				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memShortName, dups)		
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+			}
 		}
-		if (memName !== null && distinctOthers.exists[other | memName == other.memberShortName || memName == other.memberName]) {
+		if (memName !== null) {
+			val dups = distinctOthers.filter[other | memName == other.memberShortName || memName == other.memberName]
+			if (!dups.empty) {
+				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memName, dups)			
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+			}
 		}
+	}
+	
+	def identifyDuplicates(String msg, Namespace memNs, String name, Iterable<Membership> dups) {
+		var nsNames = ""
+		for (dup: dups) {
+			val ns = dup.membershipOwningNamespace
+			if (ns !== memNs) {
+				val nsName = ns.name
+				if (nsName !== null) {
+					if (!nsNames.empty) {
+						nsNames += ", "
+					}
+					nsNames += nsName
+				}
+			}
+		}
+		if (nsNames.empty) msg
+		else msg + " " + ElementUtil.escapeName(name) + " from " + nsNames;
 	}
 	
 	@Check

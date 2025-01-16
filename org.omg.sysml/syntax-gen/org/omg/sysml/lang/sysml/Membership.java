@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
@@ -266,5 +268,20 @@ public interface Membership extends Relationship {
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(Membership other);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If the <code>memberElement</code> of this <code>Membership</code> is a <code>Feature</code>, then return all <code>Features</code> directly or indirectly redefined by the <code>memberElement</code>.</p>
+	 * if not memberElement.oclIsType(Feature) then Set{} 
+	 * else memberElement.oclAsType(Feature).allRedefinedFeatures()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Feature> allRedefinedFeatures();
 
 } // Membership

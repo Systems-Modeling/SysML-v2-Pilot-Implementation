@@ -13,13 +13,13 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>If the <code>EventOccurrenceUsage</code> is owned by an <code>OccurrenceDefinition</code> or <code>OccurrenceUsage</code>, then it also subsets the <em><code>timeEnclosedOccurrences</code></em> property of the <code>Class</code> <em><code>Occurrence</code></em> from the Kernel Semantic Library model <em><code>Occurrences</code></em>.</p>
  * eventOccurrence =
- *     if ownedReferenceSubsetting = null then self
- *     else if ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage) then 
- *         ownedReferenceSubsetting.referencedFeature.oclAsType(OccurrenceUsage)
+ *     if referencedFeatureTarget() = null then self
+ *     else if referencedFeatureTarget().oclIsKindOf(OccurrenceUsage) then
+ *         referencedFeatureTarget().oclAsType(OccurrenceUsage)
  *     else null
  *     endif endif
- * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(OccurrenceUsage)
+ * referencedFeatureTarget() <> null implies
+ *     referencedFeatureTarget().oclIsKindOf(OccurrenceUsage)
  * owningType <> null and
  * (owningType.oclIsKindOf(OccurrenceDefinition) or
  *  owningType.oclIsKindOf(OccurrenceUsage)) implies

@@ -31,9 +31,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Function</code> is a <code>Behavior</code> that has an <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. A <code>Function</code> represents the performance of a calculation that produces the values of its <code>result</code> <code>parameter</code>. This calculation may be decomposed into <code>Expressions</code> that are <code>steps</code> of the <code>Function</code>.</p>
  * 
- * ownedFeatureMembership->
+ * featureMembership->
  *     selectByKind(ReturnParameterMembership)->
- *     size() <= 1
+ *     size() = 1
  * specializesFromLibrary('Performances::Evaluation')
  * ownedMembership.selectByKind(ResultExpressionMembership)->
  *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
@@ -42,7 +42,7 @@ import org.eclipse.emf.common.util.EList;
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * result =
  *     let resultParams : Sequence(Feature) =
- *         ownedFeatureMemberships->
+ *         featureMemberships->
  *             selectByKind(ReturnParameterMembership).
  *             ownedParameterMember in
  *     if resultParams->notEmpty() then resultParams->first()

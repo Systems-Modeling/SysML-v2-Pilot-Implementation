@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *     then Set{}
  *     else Set{transitionStep.ownedFeature->at(4).oclAsType(Step)}
  *     endif
- * specializesFromLibrary('Occurences::happensBeforeLinks')
+ * specializesFromLibrary('Occurrences::happensBeforeLinks')
  * transitionStep =
  *     if owningNamespace.oclIsKindOf(Step) and 
  *         owningNamespace.oclAsType(Step).

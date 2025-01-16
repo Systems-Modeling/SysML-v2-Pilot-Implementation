@@ -208,11 +208,11 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		isCreated = true;
 
 		// Create data types
-		booleanEDataType = createEDataType(BOOLEAN);
 		integerEDataType = createEDataType(INTEGER);
 		realEDataType = createEDataType(REAL);
-		unlimitedNaturalEDataType = createEDataType(UNLIMITED_NATURAL);
 		stringEDataType = createEDataType(STRING);
+		unlimitedNaturalEDataType = createEDataType(UNLIMITED_NATURAL);
+		booleanEDataType = createEDataType(BOOLEAN);
 	}
 
 	/**
@@ -238,11 +238,11 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		setNsURI(eNS_URI);
 
 		// Initialize data types
-		initEDataType(booleanEDataType, boolean.class, "Boolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(integerEDataType, int.class, "Integer", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(realEDataType, double.class, "Real", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(unlimitedNaturalEDataType, int.class, "UnlimitedNatural", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(stringEDataType, String.class, "String", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(unlimitedNaturalEDataType, int.class, "UnlimitedNatural", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(booleanEDataType, boolean.class, "Boolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

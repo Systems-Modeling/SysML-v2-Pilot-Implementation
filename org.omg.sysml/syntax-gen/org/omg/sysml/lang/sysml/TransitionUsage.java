@@ -35,15 +35,16 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>A <code>TransitionUsage</code> can be related to some of its <code>ownedFeatures</code> using <code>TransitionFeatureMembership</code> <code>Relationships</code>, corresponding to the <code>triggerAction</code>, <code>guardExpression</code> and <code>effectAction</code> of the <code>TransitionUsage</code>.</p>
  * isComposite and owningType <> null and
- * (owningType.oclIsKindOf(ActionDefinition) or 
+ * (owningType.oclIsKindOf(ActionDefinition) or
  *  owningType.oclIsKindOf(ActionUsage)) and
- * not (owningType.oclIsKindOf(StateDefinition) or
- *      owningType.oclIsKindOf(StateUsage)) implies
+ * source <> null and not source.oclIsKindOf(StateUsage) implies
  *     specializesFromLibrary('Actions::Action::decisionTransitions')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(StateDefinition) or
- *  owningType.oclIsKindOf(StateUsage)) implies
- *     specializesFromLibrary('States::State::stateTransitions')
+ *  owningType.oclIsKindOf(StateUsage)) and
+ * source <> null and source.oclIsKindOf(StateUsage) implies
+ *     specializesFromLibrary('States::StateAction::stateTransitions')
+ * 
  * specializesFromLibrary('Actions::transitionActions')
  * source =
  *     let sourceFeature : Feature = sourceFeature() in
@@ -66,7 +67,7 @@ import org.eclipse.emf.common.util.EList;
  * let successions : Sequence(Successions) = 
  *     ownedMember->selectByKind(Succession) in
  * successions->notEmpty() and
- * successions->at(1).targetFeature->
+ * successions->at(1).targetFeature.featureTarget->
  *     forAll(oclIsKindOf(ActionUsage))
  * guardExpression = ownedFeatureMembership->
  *     selectByKind(TransitionFeatureMembership)->
@@ -98,6 +99,8 @@ import org.eclipse.emf.common.util.EList;
  * endif
  *     
  * succession = ownedMember->selectByKind(Succession)->at(1)
+ * source <> null and not source.oclIsKindOf(StateUsage) implies
+ *     triggerAction->isEmpty()
  * <!-- end-model-doc -->
  *
  * <p>

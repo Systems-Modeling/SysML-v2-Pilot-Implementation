@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
        ThisFile {}
         File {from ="/library.kernel/Base.kerml"}

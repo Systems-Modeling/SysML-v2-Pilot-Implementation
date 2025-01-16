@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +21,7 @@
 
 package org.omg.sysml.util;
 
-import java.util.Collection;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -43,7 +43,7 @@ import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
 
 public class NamespaceUtil {
@@ -108,20 +108,22 @@ public class NamespaceUtil {
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
 	
-	public static EList<Membership> getImportedMembershipFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		return getNamespaceAdapter(namespace).getImportedMembership(excludedNamespaces, excludedTypes, includeAll);
+	public static EList<Membership> getMembershipsOfVisibilityFor(Namespace namespace, VisibilityKind visibility, Set<Namespace> excluded) {
+		return getNamespaceAdapter(namespace).getMembershipsOfVisibility(visibility, excluded);
+	}
+	
+	public static EList<Membership> getImportedMembershipFor(Namespace namespace, Set<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean includeAll) {
+		return getNamespaceAdapter(namespace).getImportedMembership(excludedNamespaces, includeAll);
 	}
 
-	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll, boolean excludeImplied) {
-		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll, excludeImplied);
+	public static EList<Membership> getVisibleMembershipsFor(Namespace namespace, Set<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, boolean isRecursive, boolean includeAll) {
+		return getNamespaceAdapter(namespace).getVisibleMemberships(excludedNamespaces, isRecursive, includeAll);
 	}
 	
 	// Import
 
-	public static EList<Membership> importMembershipsFor(Import _import, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes) {
-		return ((ImportAdapter)ElementUtil.getElementAdapter(_import)).importMemberships(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
+	public static void importMembershipsFor(Import _import, EList<Membership> importedMembership, Set<Namespace> excludedNamespaces) {
+		((ImportAdapter)ElementUtil.getElementAdapter(_import)).importMemberships(importedMembership, excludedNamespaces);
 	}
 
 	// Related Namespaces

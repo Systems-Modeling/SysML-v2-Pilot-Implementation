@@ -38,9 +38,9 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Specialization#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Specialization#getGeneral <em>General</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Specialization#getSpecific <em>Specific</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Specialization#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSpecialization()

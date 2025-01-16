@@ -9,16 +9,18 @@ standard library package KerML {
 	
 	package Root {
 		metaclass AnnotatingElement specializes Element {
-			feature annotation : Annotation[0..*] ordered;
 			derived feature annotatedElement : Element[1..*] ordered redefines annotatedElement;
-			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] subsets annotation, ownedRelationship;
+			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
+			derived feature owningAnnotatingRelationship : Annotation[0..1] subsets annotation, owningRelationship;
+			derived feature annotation : Annotation[0..*] ordered;
 		}		
 		
 		metaclass Annotation specializes Relationship {
-			feature annotatingElement : AnnotatingElement[1..1] redefines source;
 			feature annotatedElement : Element[1..1] redefines target, annotatedElement;
+			derived feature annotatingElement : AnnotatingElement[1..1] redefines source;
 			derived feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
 			derived feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
+			composite derived feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets ownedRelatedElement, annotatingElement;
 		}		
 		
 		metaclass Comment specializes AnnotatingElement {
@@ -299,7 +301,7 @@ standard library package KerML {
 	package Kernel {
 		public import Core::*;
 		
-		metaclass Association specializes Relationship, Classifier {
+		metaclass Association specializes Classifier, Relationship {
 			derived feature relatedType : Type[0..*] ordered nonunique redefines relatedElement;
 			derived feature sourceType : Type[0..1] subsets relatedType redefines source;
 			derived feature targetType : Type[0..*] subsets relatedType redefines target;
@@ -369,6 +371,10 @@ standard library package KerML {
 			
 			derived feature expression : Expression[0..*] subsets 'step';
 			derived feature result : Feature[1..1] subsets output, parameter;
+		}		
+		
+		metaclass IndexExpression specializes OperatorExpression {
+			feature operator : String[1..1] redefines operator;
 		}		
 		
 		metaclass Interaction specializes Association, Behavior;		

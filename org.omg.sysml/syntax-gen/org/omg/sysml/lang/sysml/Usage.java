@@ -1055,6 +1055,21 @@ public interface Usage extends Feature {
 	EList<MetadataUsage> getNestedMetadata();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>ownedReferenceSubsetting</code> is not null, return the <code>featureTarget</code> of the <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code>.</p>
+	 * if ownedReferenceSubsetting = null then null
+	 * else ownedReferenceSubsetting.referencedFeature.featureTarget
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature referencedFeatureTarget();
+
+	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
 	 * <p>

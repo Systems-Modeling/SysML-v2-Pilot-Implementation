@@ -1045,6 +1045,30 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isCompatibleWith(org.omg.sysml.lang.sysml.Type) <em>Is Compatible With</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCompatibleWith(org.omg.sysml.lang.sysml.Type)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_COMPATIBLE_WITH_TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TYPE___IS_COMPATIBLE_WITH__TYPE).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void isCompatibleWith(Type otherType) {
+		try {
+			IS_COMPATIBLE_WITH_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{otherType}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #multiplicities() <em>Multiplicities</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1443,6 +1467,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return specializes((Type)arguments.get(0));
 			case SysMLPackage.TYPE___SPECIALIZES_FROM_LIBRARY__STRING:
 				return specializesFromLibrary((String)arguments.get(0));
+			case SysMLPackage.TYPE___IS_COMPATIBLE_WITH__TYPE:
+				isCompatibleWith((Type)arguments.get(0));
+				return null;
 			case SysMLPackage.TYPE___MULTIPLICITIES:
 				return multiplicities();
 		}

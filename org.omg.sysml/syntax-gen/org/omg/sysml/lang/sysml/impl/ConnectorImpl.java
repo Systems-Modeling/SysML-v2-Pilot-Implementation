@@ -60,6 +60,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetFeature <em>Target Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getDefaultFeaturingType <em>Default Featuring Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -140,6 +141,16 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTOR__TARGET_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getDefaultFeaturingType() <em>Default Featuring Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultFeaturingType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DEFAULT_FEATURING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTOR__DEFAULT_FEATURING_TYPE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -478,6 +489,35 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Type getDefaultFeaturingType() {
+		return (Type)DEFAULT_FEATURING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type basicGetDefaultFeaturingType() {
+		return (Type)DEFAULT_FEATURING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDefaultFeaturingType(Type newDefaultFeaturingType) {
+		DEFAULT_FEATURING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newDefaultFeaturingType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -553,6 +593,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return basicGetSourceFeature();
 			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
 				return getTargetFeature();
+			case SysMLPackage.CONNECTOR__DEFAULT_FEATURING_TYPE:
+				if (resolve) return getDefaultFeaturingType();
+				return basicGetDefaultFeaturingType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -607,6 +650,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getTargetFeature().clear();
 				getTargetFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
+			case SysMLPackage.CONNECTOR__DEFAULT_FEATURING_TYPE:
+				setDefaultFeaturingType((Type)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -652,6 +698,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
 				getTargetFeature().clear();
 				return;
+			case SysMLPackage.CONNECTOR__DEFAULT_FEATURING_TYPE:
+				setDefaultFeaturingType((Type)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -690,6 +739,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return isSetSourceFeature();
 			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
 				return isSetTargetFeature();
+			case SysMLPackage.CONNECTOR__DEFAULT_FEATURING_TYPE:
+				return DEFAULT_FEATURING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

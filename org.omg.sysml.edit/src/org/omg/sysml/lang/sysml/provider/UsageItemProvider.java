@@ -44,8 +44,8 @@ public class UsageItemProvider extends FeatureItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIsTimeVaryingPropertyDescriptor(object);
 			addIsReferencePropertyDescriptor(object);
-			addIsVariationPropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
 			addVariantMembershipPropertyDescriptor(object);
 			addOwningDefinitionPropertyDescriptor(object);
@@ -80,8 +80,31 @@ public class UsageItemProvider extends FeatureItemProvider {
 			addNestedViewpointPropertyDescriptor(object);
 			addNestedRenderingPropertyDescriptor(object);
 			addNestedMetadataPropertyDescriptor(object);
+			addIsVariationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Is Time Varying feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsTimeVaryingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Usage_isTimeVarying_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Usage_isTimeVarying_feature", "_UI_Usage_type"),
+				 SysMLPackage.Literals.USAGE__IS_TIME_VARYING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -914,6 +937,7 @@ public class UsageItemProvider extends FeatureItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Usage.class)) {
+			case SysMLPackage.USAGE__IS_TIME_VARYING:
 			case SysMLPackage.USAGE__IS_REFERENCE:
 			case SysMLPackage.USAGE__IS_VARIATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -947,9 +971,8 @@ public class UsageItemProvider extends FeatureItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
+			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
@@ -958,6 +981,7 @@ public class UsageItemProvider extends FeatureItemProvider {
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {

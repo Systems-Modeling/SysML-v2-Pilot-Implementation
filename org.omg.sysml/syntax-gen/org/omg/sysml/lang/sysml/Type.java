@@ -256,6 +256,15 @@ public interface Type extends Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model otherTypeRequired="true" otherTypeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	void isCompatibleWith(Type otherType);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return the owned or inherited <code>Multiplicities</code> for this <code>Type<./code>.</p>
 	 * if multiplicity <> null then OrderedSet{multiplicity}

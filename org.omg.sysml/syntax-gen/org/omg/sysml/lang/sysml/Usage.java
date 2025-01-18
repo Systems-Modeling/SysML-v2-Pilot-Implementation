@@ -81,14 +81,19 @@ import org.eclipse.emf.common.util.EList;
  * direction <> null or isEnd or featuringType->isEmpty() implies
  *     isReference
  * isVariation implies isAbstract
+ * isVariable = 
+ *     owningType <> null and
+ *     owningType.specializes('Occurrences::Occurrence') and
+ *     (isReference or
+ *      not type->exists(specializes('Actions::Action'))
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#isTimeVarying <em>Is Time Varying</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
@@ -123,6 +128,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedMetadata <em>Nested Metadata</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -130,6 +136,40 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Usage extends Feature {
+	/**
+	 * Returns the value of the '<em><b>Is Time Varying</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#isVariable() <em>Is Variable</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>True if the <code>Usage</code> has an <code>owningType</code> that is typed by an <em><code>Occurrence</code></em>, but the <code>Usage</code> is not a composite <em><code>Action</code></em>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Time Varying</em>' attribute.
+	 * @see #setIsTimeVarying(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsTimeVarying()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isTimeVarying();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isTimeVarying <em>Is Time Varying</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Time Varying</em>' attribute.
+	 * @see #isTimeVarying()
+	 * @generated
+	 */
+	void setIsTimeVarying(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Nested Usage</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.

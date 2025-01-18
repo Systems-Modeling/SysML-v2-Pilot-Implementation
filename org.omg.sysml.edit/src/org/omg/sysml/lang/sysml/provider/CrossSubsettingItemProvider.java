@@ -43,8 +43,8 @@ public class CrossSubsettingItemProvider extends SubsettingItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCrossedFeaturePropertyDescriptor(object);
 			addCrossingFeaturePropertyDescriptor(object);
+			addCrossedFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -31,27 +31,16 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Connector</code> is a usage of <code>Associations</code>, with links restricted according to instances of the <code>Type</code> in which they are used (domain of the <code>Connector</code>). The <code>associations</code> of the <code>Connector</code> restrict what kinds of things might be linked. The <code>Connector</code> further restricts these links to be between values of <code>Features</code> on instances of its domain.</p>
  * 
- * not isAbstract implies relatedFeature->size() >= 2
- * connectorEnds->size() = 2 and
- * association->exists(oclIsKindOf(AssociationStructure)) implies
- *     specializesFromLibrary('Objects::binaryLinkObjects')
- * sourceFeature = 
- *     if relatedFeature->isEmpty() then null 
- *     else relatedFeature->first() 
- *     endif
- * connectorEnds->size() > 2 implies
- *     not specializesFromLibrary('Links::BinaryLink')
+ * relatedFeature = connectorEnd.ownedReferenceSubsetting->
+ *     select(s | s <> null).subsettedFeature
  * relatedFeature->forAll(f | 
  *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
  *     else featuringType->forAll(t | f.isFeaturedWithin(t))
  *     endif)
- * relatedFeature = connectorEnd.ownedReferenceSubsetting->
- *     select(s | s <> null).subsettedFeature
- * specializesFromLibrary('Links::links')
- * connectorEnd->size() = 2 implies
- *     specializesFromLibrary('Links::binaryLinks')
- * association->exists(oclIsKindOf(AssociationStructure)) implies
- *     specializesFromLibrary('Objects::linkObjects')
+ * sourceFeature = 
+ *     if relatedFeature->isEmpty() then null 
+ *     else relatedFeature->first() 
+ *     endif
  * targetFeature =
  *     if relatedFeature->size() < 2 then OrderedSet{}
  *     else 
@@ -59,6 +48,17 @@ import org.eclipse.emf.common.util.EList;
  *             subSequence(2, relatedFeature->size())->
  *             asOrderedSet()
  *     endif
+ * not isAbstract implies relatedFeature->size() >= 2
+ * specializesFromLibrary('Links::links')
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary('Objects::linkObjects')
+ * connectorEnds->size() = 2 and
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary('Objects::binaryLinkObjects')
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::binaryLinks')
+ * connectorEnds->size() > 2 implies
+ *     not specializesFromLibrary('Links::BinaryLink')
  * <!-- end-model-doc -->
  *
  * <p>
@@ -70,6 +70,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getTargetFeature <em>Target Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getDefaultFeaturingType <em>Default Featuring Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()
@@ -234,5 +235,32 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	EList<Feature> getTargetFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Default Featuring Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The innermost <code>Type</code> that is a common direct or indirect <code>featuringType</code> of the <code>relatedFeatures</code>, such that, if it exists and was the <code>featuringType</code> of this <code>Connector</code>, the <code>Connector</code> would satisfy the <code>checkConnectorTypeFeaturing</code> constraint.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Default Featuring Type</em>' reference.
+	 * @see #setDefaultFeaturingType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_DefaultFeaturingType()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuredConnector'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Type getDefaultFeaturingType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#getDefaultFeaturingType <em>Default Featuring Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Featuring Type</em>' reference.
+	 * @see #getDefaultFeaturingType()
+	 * @generated
+	 */
+	void setDefaultFeaturingType(Type value);
 
 } // Connector

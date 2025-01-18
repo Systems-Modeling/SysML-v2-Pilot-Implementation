@@ -21,7 +21,7 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeFeaturingItemProvider extends FeaturingItemProvider {
+public class TypeFeaturingItemProvider extends RelationshipItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -64,6 +64,7 @@
 'concern'=134
 'connect'=85
 'connection'=84
+'constant'=65
 'constraint'=126
 'crosses'=59
 'decide'=114
@@ -71,7 +72,7 @@
 'default'=69
 'defined'=53
 'dependency'=18
-'derived'=65
+'derived'=64
 'do'=120
 'doc'=25
 'else'=107
@@ -127,7 +128,6 @@
 'private'=173
 'protected'=174
 'public'=172
-'readonly'=64
 'redefines'=35
 'ref'=33
 'references'=57

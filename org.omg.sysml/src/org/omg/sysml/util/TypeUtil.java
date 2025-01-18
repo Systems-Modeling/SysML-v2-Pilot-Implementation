@@ -168,7 +168,6 @@ public class TypeUtil {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
 				return !visited.contains(originalType) && conforms(originalType, supertype);
 			} else {
-				// TODO: Should this use getSupertypesOf instead of getGeneralTypesOf?
 				return getGeneralTypesOf(subtype).stream().
 						anyMatch(type->!visited.contains(type) && 
 								conforms(type, supertype, visited));

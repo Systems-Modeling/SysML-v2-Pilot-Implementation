@@ -5,7 +5,7 @@ package PartTest {
 	public part def A {
 		part <'1'> b: B;
 		protected port c: C;
-		readonly attribute x[0..2];
+		constant attribute x[0..2];
 		derived ref attribute y :> x;
 		ref z : ScalarValues::Integer;
 	}

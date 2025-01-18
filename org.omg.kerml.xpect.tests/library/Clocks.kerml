@@ -18,7 +18,7 @@ standard library package Clocks {
 	     */
 	}
 	
-	readonly feature universalClock : UniversalClockLife[1] {
+	feature universalClock : UniversalClockLife[1] {
 		doc
 		/*
 		 * universalClock is a single Clock that can be used as a default universal

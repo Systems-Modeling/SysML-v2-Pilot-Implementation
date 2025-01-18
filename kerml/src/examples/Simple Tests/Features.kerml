@@ -49,8 +49,8 @@ package Features {
 		feature guardian[1];
 	}
 	
-	classifier RegisteredAsset {
-		composite readonly feature identifier[0..1];
+	class RegisteredAsset {
+		composite feature identifier[0..1];
 	}
 	
 	classifier Vehicle :> RegisteredAsset {

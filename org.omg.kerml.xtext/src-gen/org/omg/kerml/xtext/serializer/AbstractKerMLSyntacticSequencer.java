@@ -308,10 +308,11 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isComposite?='composite' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 
@@ -345,11 +346,12 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isComposite?='composite' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember 'binding' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 
@@ -524,6 +526,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'expr' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'step' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isDerived?='derived' 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
@@ -558,17 +570,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isPortion?='portion' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'expr' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'step' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'expr' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'step' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'bool' (ambiguity) ownedRelationship+=OwnedCrossSubsetting
@@ -681,6 +693,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'expr' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isDerived?='derived' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -713,17 +735,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'expr' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'expr' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -896,6 +918,26 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'inv' (ambiguity) isSufficient?='all'
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
+	 *     isConstant?='const' 'inv' (ambiguity) ';' (rule end)
+	 *     isConstant?='const' 'inv' (ambiguity) '&lt;' declaredShortName=Name
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=Import
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isConstant?='const' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
+	 *     isConstant?='const' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'inv' (ambiguity) (':&gt;' | 'subsets') ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'inv' (ambiguity) (':&gt;&gt;' | 'redefines') ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'inv' (ambiguity) ('=&gt;' | 'crosses') ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='const' 'inv' (ambiguity) ('~' | 'conjugates') ownedRelationship+=FeatureConjugation
+	 *     isConstant?='const' 'inv' (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     isConstant?='const' 'inv' (ambiguity) declaredName=Name
+	 *     isConstant?='const' 'inv' (ambiguity) isNonunique?='nonunique'
+	 *     isConstant?='const' 'inv' (ambiguity) isOrdered?='ordered'
+	 *     isConstant?='const' 'inv' (ambiguity) isSufficient?='all'
+	 *     isConstant?='const' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isConstant?='const' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isDerived?='derived' 'inv' (ambiguity) ';' (rule end)
 	 *     isDerived?='derived' 'inv' (ambiguity) '&lt;' declaredShortName=Name
 	 *     isDerived?='derived' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
@@ -956,26 +998,26 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'inv' (ambiguity) isSufficient?='all'
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ';' (rule end)
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '&lt;' declaredShortName=Name
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=Import
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':&gt;' | 'subsets') ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':&gt;&gt;' | 'redefines') ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ('=&gt;' | 'crosses') ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ('~' | 'conjugates') ownedRelationship+=FeatureConjugation
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) declaredName=Name
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) isNonunique?='nonunique'
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) isOrdered?='ordered'
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) isSufficient?='all'
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=FeatureValue
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
+	 *     isVariable?='var' 'inv' (ambiguity) ';' (rule end)
+	 *     isVariable?='var' 'inv' (ambiguity) '&lt;' declaredShortName=Name
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=Import
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariable?='var' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
+	 *     isVariable?='var' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'inv' (ambiguity) (':&gt;' | 'subsets') ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'inv' (ambiguity) (':&gt;&gt;' | 'redefines') ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'inv' (ambiguity) ('=&gt;' | 'crosses') ownedRelationship+=OwnedCrossSubsetting
+	 *     isVariable?='var' 'inv' (ambiguity) ('~' | 'conjugates') ownedRelationship+=FeatureConjugation
+	 *     isVariable?='var' 'inv' (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     isVariable?='var' 'inv' (ambiguity) declaredName=Name
+	 *     isVariable?='var' 'inv' (ambiguity) isNonunique?='nonunique'
+	 *     isVariable?='var' 'inv' (ambiguity) isOrdered?='ordered'
+	 *     isVariable?='var' 'inv' (ambiguity) isSufficient?='all'
+	 *     isVariable?='var' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isVariable?='var' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'inv' (ambiguity) ';' (rule end)
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'inv' (ambiguity) '&lt;' declaredShortName=Name
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
@@ -1208,6 +1250,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'expr' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='const' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isDerived?='derived' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1242,17 +1294,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isPortion?='portion' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'expr' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'expr' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isVariable?='var' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1511,6 +1563,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'expr' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='const' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1545,17 +1607,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'expr' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'expr' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isVariable?='var' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1632,11 +1694,12 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 
@@ -1764,6 +1827,13 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'step' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'succession' (ambiguity) (rule end)
+	 *     isConstant?='const' 'binding' (ambiguity) (rule end)
+	 *     isConstant?='const' 'connector' (ambiguity) (rule end)
+	 *     isConstant?='const' 'feature' (ambiguity) (rule end)
+	 *     isConstant?='const' 'flow' (ambiguity) (rule end)
+	 *     isConstant?='const' 'step' (ambiguity) (rule end)
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isConstant?='const' 'succession' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'binding' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'connector' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'feature' (ambiguity) (rule end)
@@ -1787,14 +1857,14 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'step' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'succession' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'feature' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'step' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)
+	 *     isVariable?='var' 'binding' (ambiguity) (rule end)
+	 *     isVariable?='var' 'connector' (ambiguity) (rule end)
+	 *     isVariable?='var' 'feature' (ambiguity) (rule end)
+	 *     isVariable?='var' 'flow' (ambiguity) (rule end)
+	 *     isVariable?='var' 'step' (ambiguity) (rule end)
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) (rule end)
+	 *     isVariable?='var' 'succession' (ambiguity) (rule end)
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
@@ -1912,6 +1982,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'expr' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isConstant?='const' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isDerived?='derived' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isDerived?='derived' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isDerived?='derived' 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1946,17 +2026,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'expr' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'expr' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isVariable?='var' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     ownedRelationship+=OwnedCrossingFeatureMember 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping

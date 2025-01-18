@@ -15600,14 +15600,14 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
 
 
     // $ANTLR start "ruleRefPrefix"
-    // InternalSysML.g:5069:1: ruleRefPrefix[EObject in_current] returns [EObject current=in_current] : ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )? ( (lv_isReadOnly_3_0= 'readonly' ) )? ( (lv_isDerived_4_0= 'derived' ) )? ) ;
+    // InternalSysML.g:5069:1: ruleRefPrefix[EObject in_current] returns [EObject current=in_current] : ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( (lv_isDerived_1_0= 'derived' ) )? ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )? ( (lv_isConstant_4_0= 'constant' ) )? ) ;
     public final EObject ruleRefPrefix(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
-        Token lv_isAbstract_1_0=null;
-        Token lv_isVariation_2_0=null;
-        Token lv_isReadOnly_3_0=null;
-        Token lv_isDerived_4_0=null;
+        Token lv_isDerived_1_0=null;
+        Token lv_isAbstract_2_0=null;
+        Token lv_isVariation_3_0=null;
+        Token lv_isConstant_4_0=null;
         Enumerator lv_direction_0_0 = null;
 
 
@@ -15615,11 +15615,11 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
         	enterRule();
 
         try {
-            // InternalSysML.g:5075:2: ( ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )? ( (lv_isReadOnly_3_0= 'readonly' ) )? ( (lv_isDerived_4_0= 'derived' ) )? ) )
-            // InternalSysML.g:5076:2: ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )? ( (lv_isReadOnly_3_0= 'readonly' ) )? ( (lv_isDerived_4_0= 'derived' ) )? )
+            // InternalSysML.g:5075:2: ( ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( (lv_isDerived_1_0= 'derived' ) )? ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )? ( (lv_isConstant_4_0= 'constant' ) )? ) )
+            // InternalSysML.g:5076:2: ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( (lv_isDerived_1_0= 'derived' ) )? ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )? ( (lv_isConstant_4_0= 'constant' ) )? )
             {
-            // InternalSysML.g:5076:2: ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )? ( (lv_isReadOnly_3_0= 'readonly' ) )? ( (lv_isDerived_4_0= 'derived' ) )? )
-            // InternalSysML.g:5077:3: ( (lv_direction_0_0= ruleFeatureDirection ) )? ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )? ( (lv_isReadOnly_3_0= 'readonly' ) )? ( (lv_isDerived_4_0= 'derived' ) )?
+            // InternalSysML.g:5076:2: ( ( (lv_direction_0_0= ruleFeatureDirection ) )? ( (lv_isDerived_1_0= 'derived' ) )? ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )? ( (lv_isConstant_4_0= 'constant' ) )? )
+            // InternalSysML.g:5077:3: ( (lv_direction_0_0= ruleFeatureDirection ) )? ( (lv_isDerived_1_0= 'derived' ) )? ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )? ( (lv_isConstant_4_0= 'constant' ) )?
             {
             // InternalSysML.g:5077:3: ( (lv_direction_0_0= ruleFeatureDirection ) )?
             int alt94=2;
@@ -15667,30 +15667,67 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
 
             }
 
-            // InternalSysML.g:5096:3: ( ( (lv_isAbstract_1_0= 'abstract' ) ) | ( (lv_isVariation_2_0= 'variation' ) ) )?
-            int alt95=3;
+            // InternalSysML.g:5096:3: ( (lv_isDerived_1_0= 'derived' ) )?
+            int alt95=2;
             int LA95_0 = input.LA(1);
 
-            if ( (LA95_0==31) ) {
+            if ( (LA95_0==64) ) {
                 alt95=1;
-            }
-            else if ( (LA95_0==62) ) {
-                alt95=2;
             }
             switch (alt95) {
                 case 1 :
-                    // InternalSysML.g:5097:4: ( (lv_isAbstract_1_0= 'abstract' ) )
+                    // InternalSysML.g:5097:4: (lv_isDerived_1_0= 'derived' )
                     {
-                    // InternalSysML.g:5097:4: ( (lv_isAbstract_1_0= 'abstract' ) )
-                    // InternalSysML.g:5098:5: (lv_isAbstract_1_0= 'abstract' )
+                    // InternalSysML.g:5097:4: (lv_isDerived_1_0= 'derived' )
+                    // InternalSysML.g:5098:5: lv_isDerived_1_0= 'derived'
                     {
-                    // InternalSysML.g:5098:5: (lv_isAbstract_1_0= 'abstract' )
-                    // InternalSysML.g:5099:6: lv_isAbstract_1_0= 'abstract'
-                    {
-                    lv_isAbstract_1_0=(Token)match(input,31,FOLLOW_74); if (state.failed) return current;
+                    lv_isDerived_1_0=(Token)match(input,64,FOLLOW_74); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_isAbstract_1_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_1_0_0());
+                      					newLeafNode(lv_isDerived_1_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_1_0());
+                      				
+                    }
+                    if ( state.backtracking==0 ) {
+
+                      					if (current==null) {
+                      						current = createModelElement(grammarAccess.getRefPrefixRule());
+                      					}
+                      					setWithLastConsumed(current, "isDerived", lv_isDerived_1_0 != null, "derived");
+                      				
+                    }
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+            // InternalSysML.g:5110:3: ( ( (lv_isAbstract_2_0= 'abstract' ) ) | ( (lv_isVariation_3_0= 'variation' ) ) )?
+            int alt96=3;
+            int LA96_0 = input.LA(1);
+
+            if ( (LA96_0==31) ) {
+                alt96=1;
+            }
+            else if ( (LA96_0==62) ) {
+                alt96=2;
+            }
+            switch (alt96) {
+                case 1 :
+                    // InternalSysML.g:5111:4: ( (lv_isAbstract_2_0= 'abstract' ) )
+                    {
+                    // InternalSysML.g:5111:4: ( (lv_isAbstract_2_0= 'abstract' ) )
+                    // InternalSysML.g:5112:5: (lv_isAbstract_2_0= 'abstract' )
+                    {
+                    // InternalSysML.g:5112:5: (lv_isAbstract_2_0= 'abstract' )
+                    // InternalSysML.g:5113:6: lv_isAbstract_2_0= 'abstract'
+                    {
+                    lv_isAbstract_2_0=(Token)match(input,31,FOLLOW_75); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      						newLeafNode(lv_isAbstract_2_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_2_0_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -15698,7 +15735,7 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
                       						if (current==null) {
                       							current = createModelElement(grammarAccess.getRefPrefixRule());
                       						}
-                      						setWithLastConsumed(current, "isAbstract", lv_isAbstract_1_0 != null, "abstract");
+                      						setWithLastConsumed(current, "isAbstract", lv_isAbstract_2_0 != null, "abstract");
                       					
                     }
 
@@ -15711,18 +15748,18 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
                     }
                     break;
                 case 2 :
-                    // InternalSysML.g:5112:4: ( (lv_isVariation_2_0= 'variation' ) )
+                    // InternalSysML.g:5126:4: ( (lv_isVariation_3_0= 'variation' ) )
                     {
-                    // InternalSysML.g:5112:4: ( (lv_isVariation_2_0= 'variation' ) )
-                    // InternalSysML.g:5113:5: (lv_isVariation_2_0= 'variation' )
+                    // InternalSysML.g:5126:4: ( (lv_isVariation_3_0= 'variation' ) )
+                    // InternalSysML.g:5127:5: (lv_isVariation_3_0= 'variation' )
                     {
-                    // InternalSysML.g:5113:5: (lv_isVariation_2_0= 'variation' )
-                    // InternalSysML.g:5114:6: lv_isVariation_2_0= 'variation'
+                    // InternalSysML.g:5127:5: (lv_isVariation_3_0= 'variation' )
+                    // InternalSysML.g:5128:6: lv_isVariation_3_0= 'variation'
                     {
-                    lv_isVariation_2_0=(Token)match(input,62,FOLLOW_74); if (state.failed) return current;
+                    lv_isVariation_3_0=(Token)match(input,62,FOLLOW_75); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      						newLeafNode(lv_isVariation_2_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_1_1_0());
+                      						newLeafNode(lv_isVariation_3_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_2_1_0());
                       					
                     }
                     if ( state.backtracking==0 ) {
@@ -15730,7 +15767,7 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
                       						if (current==null) {
                       							current = createModelElement(grammarAccess.getRefPrefixRule());
                       						}
-                      						setWithLastConsumed(current, "isVariation", lv_isVariation_2_0 != null, "variation");
+                      						setWithLastConsumed(current, "isVariation", lv_isVariation_3_0 != null, "variation");
                       					
                     }
 
@@ -15745,44 +15782,7 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
 
             }
 
-            // InternalSysML.g:5127:3: ( (lv_isReadOnly_3_0= 'readonly' ) )?
-            int alt96=2;
-            int LA96_0 = input.LA(1);
-
-            if ( (LA96_0==64) ) {
-                alt96=1;
-            }
-            switch (alt96) {
-                case 1 :
-                    // InternalSysML.g:5128:4: (lv_isReadOnly_3_0= 'readonly' )
-                    {
-                    // InternalSysML.g:5128:4: (lv_isReadOnly_3_0= 'readonly' )
-                    // InternalSysML.g:5129:5: lv_isReadOnly_3_0= 'readonly'
-                    {
-                    lv_isReadOnly_3_0=(Token)match(input,64,FOLLOW_75); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      					newLeafNode(lv_isReadOnly_3_0, grammarAccess.getRefPrefixAccess().getIsReadOnlyReadonlyKeyword_2_0());
-                      				
-                    }
-                    if ( state.backtracking==0 ) {
-
-                      					if (current==null) {
-                      						current = createModelElement(grammarAccess.getRefPrefixRule());
-                      					}
-                      					setWithLastConsumed(current, "isReadOnly", lv_isReadOnly_3_0 != null, "readonly");
-                      				
-                    }
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-            // InternalSysML.g:5141:3: ( (lv_isDerived_4_0= 'derived' ) )?
+            // InternalSysML.g:5141:3: ( (lv_isConstant_4_0= 'constant' ) )?
             int alt97=2;
             int LA97_0 = input.LA(1);
 
@@ -15791,15 +15791,15 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
             }
             switch (alt97) {
                 case 1 :
-                    // InternalSysML.g:5142:4: (lv_isDerived_4_0= 'derived' )
+                    // InternalSysML.g:5142:4: (lv_isConstant_4_0= 'constant' )
                     {
-                    // InternalSysML.g:5142:4: (lv_isDerived_4_0= 'derived' )
-                    // InternalSysML.g:5143:5: lv_isDerived_4_0= 'derived'
+                    // InternalSysML.g:5142:4: (lv_isConstant_4_0= 'constant' )
+                    // InternalSysML.g:5143:5: lv_isConstant_4_0= 'constant'
                     {
-                    lv_isDerived_4_0=(Token)match(input,65,FOLLOW_2); if (state.failed) return current;
+                    lv_isConstant_4_0=(Token)match(input,65,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      					newLeafNode(lv_isDerived_4_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_3_0());
+                      					newLeafNode(lv_isConstant_4_0, grammarAccess.getRefPrefixAccess().getIsConstantConstantKeyword_3_0());
                       				
                     }
                     if ( state.backtracking==0 ) {
@@ -15807,7 +15807,7 @@ public class InternalSysMLParser extends InternalSysMLParser8 {
                       					if (current==null) {
                       						current = createModelElement(grammarAccess.getRefPrefixRule());
                       					}
-                      					setWithLastConsumed(current, "isDerived", lv_isDerived_4_0 != null, "derived");
+                      					setWithLastConsumed(current, "isConstant", lv_isConstant_4_0 != null, "constant");
                       				
                     }
 

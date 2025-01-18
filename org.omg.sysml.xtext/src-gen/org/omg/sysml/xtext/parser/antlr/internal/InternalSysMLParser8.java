@@ -346,7 +346,7 @@ public abstract class InternalSysMLParser8 extends InternalSysMLParser7 {
     public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x5FBD000E80002300L,0x0000800000000007L,0x0001800000000000L});
     public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x4000000280000000L,0x0000800000000007L,0x0001800000000000L});
     public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x4000000080000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000003L});
+    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x4000000080000002L,0x0000000000000002L});
     public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000002L});
     public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000200000002L});
     public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x4000000280000002L,0x0000800000000007L,0x0001800000000000L});

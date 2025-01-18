@@ -80,9 +80,9 @@ package ChangingFeatureValuesExecution {
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
 
 	struct ProductTimeSlice specializes Product {
-		readonly feature redefines isPainted;
-		readonly feature redefines isDry;
-		readonly feature redefines isShipped;
+		feature redefines isPainted;
+		feature redefines isDry;
+		feature redefines isShipped;
 	}
 
 	#atom

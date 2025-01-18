@@ -3133,28 +3133,28 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_0_0 = (RuleCall)cDirectionAssignment_0.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Assignment cIsAbstractAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final Keyword cIsAbstractAbstractKeyword_1_0_0 = (Keyword)cIsAbstractAssignment_1_0.eContents().get(0);
-		private final Assignment cIsVariationAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final Keyword cIsVariationVariationKeyword_1_1_0 = (Keyword)cIsVariationAssignment_1_1.eContents().get(0);
-		private final Assignment cIsReadOnlyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cIsReadOnlyReadonlyKeyword_2_0 = (Keyword)cIsReadOnlyAssignment_2.eContents().get(0);
-		private final Assignment cIsDerivedAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsDerivedDerivedKeyword_3_0 = (Keyword)cIsDerivedAssignment_3.eContents().get(0);
+		private final Assignment cIsDerivedAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsDerivedDerivedKeyword_1_0 = (Keyword)cIsDerivedAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cIsAbstractAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_2_0_0 = (Keyword)cIsAbstractAssignment_2_0.eContents().get(0);
+		private final Assignment cIsVariationAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsVariationVariationKeyword_2_1_0 = (Keyword)cIsVariationAssignment_2_1.eContents().get(0);
+		private final Assignment cIsConstantAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cIsConstantConstantKeyword_3_0 = (Keyword)cIsConstantAssignment_3.eContents().get(0);
 		
 		//fragment RefPrefix returns SysML::Usage :
 		//    ( direction = FeatureDirection )?
-		//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		//    ( isReadOnly ?= 'readonly' )?
 		//    ( isDerived ?= 'derived' )?
+		//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//    ( isConstant ?= 'constant' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( direction = FeatureDirection )?
-		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		//( isReadOnly ?= 'readonly' )?
 		//( isDerived ?= 'derived' )?
+		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//( isConstant ?= 'constant' )?
 		public Group getGroup() { return cGroup; }
 		
 		//( direction = FeatureDirection )?
@@ -3163,32 +3163,32 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureDirection
 		public RuleCall getDirectionFeatureDirectionEnumRuleCall_0_0() { return cDirectionFeatureDirectionEnumRuleCall_0_0; }
 		
-		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//isAbstract ?= 'abstract'
-		public Assignment getIsAbstractAssignment_1_0() { return cIsAbstractAssignment_1_0; }
-		
-		//'abstract'
-		public Keyword getIsAbstractAbstractKeyword_1_0_0() { return cIsAbstractAbstractKeyword_1_0_0; }
-		
-		//isVariation ?= 'variation'
-		public Assignment getIsVariationAssignment_1_1() { return cIsVariationAssignment_1_1; }
-		
-		//'variation'
-		public Keyword getIsVariationVariationKeyword_1_1_0() { return cIsVariationVariationKeyword_1_1_0; }
-		
-		//( isReadOnly ?= 'readonly' )?
-		public Assignment getIsReadOnlyAssignment_2() { return cIsReadOnlyAssignment_2; }
-		
-		//'readonly'
-		public Keyword getIsReadOnlyReadonlyKeyword_2_0() { return cIsReadOnlyReadonlyKeyword_2_0; }
-		
 		//( isDerived ?= 'derived' )?
-		public Assignment getIsDerivedAssignment_3() { return cIsDerivedAssignment_3; }
+		public Assignment getIsDerivedAssignment_1() { return cIsDerivedAssignment_1; }
 		
 		//'derived'
-		public Keyword getIsDerivedDerivedKeyword_3_0() { return cIsDerivedDerivedKeyword_3_0; }
+		public Keyword getIsDerivedDerivedKeyword_1_0() { return cIsDerivedDerivedKeyword_1_0; }
+		
+		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//isAbstract ?= 'abstract'
+		public Assignment getIsAbstractAssignment_2_0() { return cIsAbstractAssignment_2_0; }
+		
+		//'abstract'
+		public Keyword getIsAbstractAbstractKeyword_2_0_0() { return cIsAbstractAbstractKeyword_2_0_0; }
+		
+		//isVariation ?= 'variation'
+		public Assignment getIsVariationAssignment_2_1() { return cIsVariationAssignment_2_1; }
+		
+		//'variation'
+		public Keyword getIsVariationVariationKeyword_2_1_0() { return cIsVariationVariationKeyword_2_1_0; }
+		
+		//( isConstant ?= 'constant' )?
+		public Assignment getIsConstantAssignment_3() { return cIsConstantAssignment_3; }
+		
+		//'constant'
+		public Keyword getIsConstantConstantKeyword_3_0() { return cIsConstantConstantKeyword_3_0; }
 	}
 	public class BasicUsagePrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.BasicUsagePrefix");
@@ -16046,9 +16046,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment RefPrefix returns SysML::Usage :
 	//    ( direction = FeatureDirection )?
-	//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	//    ( isReadOnly ?= 'readonly' )?
 	//    ( isDerived ?= 'derived' )?
+	//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+	//    ( isConstant ?= 'constant' )?
 	//;
 	public RefPrefixElements getRefPrefixAccess() {
 		return pRefPrefix;

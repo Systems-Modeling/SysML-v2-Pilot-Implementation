@@ -5095,60 +5095,60 @@ ruleRefPrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
+				lv_isDerived_1_0='derived'
+				{
+					newLeafNode(lv_isDerived_1_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRefPrefixRule());
+					}
+					setWithLastConsumed($current, "isDerived", lv_isDerived_1_0 != null, "derived");
+				}
+			)
+		)?
+		(
+			(
 				(
-					lv_isAbstract_1_0='abstract'
+					lv_isAbstract_2_0='abstract'
 					{
-						newLeafNode(lv_isAbstract_1_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_1_0_0());
+						newLeafNode(lv_isAbstract_2_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_2_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getRefPrefixRule());
 						}
-						setWithLastConsumed($current, "isAbstract", lv_isAbstract_1_0 != null, "abstract");
+						setWithLastConsumed($current, "isAbstract", lv_isAbstract_2_0 != null, "abstract");
 					}
 				)
 			)
 			    |
 			(
 				(
-					lv_isVariation_2_0='variation'
+					lv_isVariation_3_0='variation'
 					{
-						newLeafNode(lv_isVariation_2_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_1_1_0());
+						newLeafNode(lv_isVariation_3_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_2_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getRefPrefixRule());
 						}
-						setWithLastConsumed($current, "isVariation", lv_isVariation_2_0 != null, "variation");
+						setWithLastConsumed($current, "isVariation", lv_isVariation_3_0 != null, "variation");
 					}
 				)
 			)
 		)?
 		(
 			(
-				lv_isReadOnly_3_0='readonly'
+				lv_isConstant_4_0='constant'
 				{
-					newLeafNode(lv_isReadOnly_3_0, grammarAccess.getRefPrefixAccess().getIsReadOnlyReadonlyKeyword_2_0());
+					newLeafNode(lv_isConstant_4_0, grammarAccess.getRefPrefixAccess().getIsConstantConstantKeyword_3_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRefPrefixRule());
 					}
-					setWithLastConsumed($current, "isReadOnly", lv_isReadOnly_3_0 != null, "readonly");
-				}
-			)
-		)?
-		(
-			(
-				lv_isDerived_4_0='derived'
-				{
-					newLeafNode(lv_isDerived_4_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRefPrefixRule());
-					}
-					setWithLastConsumed($current, "isDerived", lv_isDerived_4_0 != null, "derived");
+					setWithLastConsumed($current, "isConstant", lv_isConstant_4_0 != null, "constant");
 				}
 			)
 		)?

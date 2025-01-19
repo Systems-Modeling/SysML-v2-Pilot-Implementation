@@ -1,7 +1,7 @@
 package TimeVaryingCarDriver {
     private import ScalarValues::*;
     
-    // Example model in KerML as currently specified
+    // Example model without variable features.
     
     struct Person0 {
         feature isLicensed : Boolean [0..1];
@@ -29,7 +29,7 @@ package TimeVaryingCarDriver {
         connector drive from engine to transmission;        
     }
     
-    // Proposed KerML model with "variable features" identified
+    // Example model with "variable features" identified
     
     struct Person1 {
         var feature isLicensed : Boolean [1];

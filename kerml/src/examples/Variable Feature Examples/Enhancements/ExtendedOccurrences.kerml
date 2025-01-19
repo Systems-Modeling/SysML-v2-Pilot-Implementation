@@ -28,11 +28,11 @@ package ExtendedOccurrences {
         }
         
         var feature activeOccurrences :> Occurrences::occurrences {
-        	connector : Occurrences::HappensDuring from that [1] to self [1];
+        	connector : Occurrences::HappensDuring from [1] that to [1] self;
         }
         
         var feature activeSuboccurrences :> Occurrences::occurrences {
-        	connector : Occurrences::HappensDuring from that [1] to self [1];
+        	connector : Occurrences::HappensDuring from [1] that to [1] self;
         }
         
         // occurrences and performances are abstract package-level features.
@@ -44,7 +44,7 @@ package ExtendedOccurrences {
         // contain every step in the occurrence, which is the correct domain
         // for the variable.
         var feature activePerformances :> Performances::performances {
-        	connector : Occurrences::HappensDuring from that [1] to self [1];
+        	connector : Occurrences::HappensDuring from [1] that to [1] self;
         }
     }
 }

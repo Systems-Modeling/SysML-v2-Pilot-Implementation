@@ -1,4 +1,4 @@
-package TimeVaryingFeatures {
+package TimeVaryingFeaturesEnhanced {
     private import ExtendedOccurrences::*;
 
     class CC1 :> ExtendedOccurrence {

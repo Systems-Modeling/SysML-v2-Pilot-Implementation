@@ -15,7 +15,7 @@ package Moments {
       redefines snapshots : Moment;
     }
 
-    readonly feature universalEternity : UniversalEternity [1];
+    feature universalEternity : UniversalEternity [1];
 
     class Period {  //Includes life and snapshots.
       //↓↓ With UE redef, exactly UE timeslices.

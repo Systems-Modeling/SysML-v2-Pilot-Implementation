@@ -28,12 +28,12 @@ package TimeVaryingSteps {
  			}
  		}
  		
- 		succession first startShot [0..1] then merge::TakePicture_snapshots.merge [1];
- 		succession first merge::TakePicture_snapshots.merge [1] then focus::TakePicture_snapshots.focus [1];
-  		succession first focus::TakePicture_snapshots.focus [1] then shoot::TakePicture_snapshots.shoot [1];
-  		succession first shoot::TakePicture_snapshots.shoot [1] then decide::TakePicture_snapshots.decide [1];
-  		succession first decide::TakePicture_snapshots.decide [0..1] then merge::TakePicture_snapshots.merge [0..1];
-  		succession first decide::TakePicture_snapshots.decide [1] then endShot [0..1];
+ 		succession first [0..1] startShot then  [1] merge::TakePicture_snapshots.merge;
+ 		succession first [1] merge::TakePicture_snapshots.merge then [1] focus::TakePicture_snapshots.focus;
+  		succession first [1] focus::TakePicture_snapshots.focus then shoot::TakePicture_snapshots.shoot;
+  		succession first [1] shoot::TakePicture_snapshots.shoot then [1] decide::TakePicture_snapshots.decide;
+  		succession first [0..1] decide::TakePicture_snapshots.decide then [0..1] merge::TakePicture_snapshots.merge;
+  		succession first [1] decide::TakePicture_snapshots.decide then[0..1] endShot;
   	}
 	
 	struct Camera {

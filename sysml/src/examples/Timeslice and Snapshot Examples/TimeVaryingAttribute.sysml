@@ -1,4 +1,4 @@
-package TimeVaryingAttribute2 {
+package TimeVaryingAttribute {
     private import SI::s;
     
     item def PwrCmd {
@@ -33,10 +33,10 @@ package TimeVaryingAttribute2 {
  
         timeslice transportPeriod {
             snapshot :>> start{
-                :>> elapseTime = 1 [s]; // violates validateFeatureValueOverriding
+                :>> elapseTime = 1 [s];
             }
             snapshot :>> done {
-                :>> elapseTime = 1.5 [s]; // violates validateFeatureValueOverriding
+                :>> elapseTime = 1.5 [s];
             }
            :>> pwrCmd.pwrLevel = 2*elapseTime.num;
         }

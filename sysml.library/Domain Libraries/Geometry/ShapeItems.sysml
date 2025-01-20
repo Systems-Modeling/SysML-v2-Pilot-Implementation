@@ -110,8 +110,8 @@ standard library package ShapeItems {
 		 */
 	
 		attribute :>> radius [1];
-        attribute :>> semiMajorAxis [1] = radius;
-        attribute :>> semiMinorAxis [1] = radius;
+		attribute :>> semiMajorAxis [1] = radius;
+		attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> edges {
 			attribute length [1] = Circle::radius * TrigFunctions::pi * 2;
@@ -260,7 +260,10 @@ standard library package ShapeItems {
 		 * A CircularDisc is a Disc bound by a Circle.
 		 */
 	
-		attribute :>> radius [1] = semiMajorAxis;
+		attribute :>> radius [1];
+		attribute :>> semiMajorAxis [1] = radius;
+		attribute :>> semiMinorAxis [1] = radius;
+
 		item :>> shape : Circle;
 		item :>> edges : Circle;
 	}
@@ -297,10 +300,10 @@ standard library package ShapeItems {
 		 * A Sphere is an Ellipsoid with all the same semiaxes.
 		 */	
 
-		attribute :>> radius [1] = semiAxis1;
-
-		assert constraint { ( semiAxis1 == semiAxis2 ) &
-						    ( semiAxis2 ==  semiAxis3 ) }
+		attribute :>> radius [1];
+		attribute :>> semiAxis1 [1] = radius;
+		attribute :>> semiAxis2 [1] = radius;
+		attribute :>> semiAxis3 [1] = radius;
 	}
 
 	item def Paraboloid :> ConicSurface {
@@ -444,9 +447,9 @@ standard library package ShapeItems {
 		 * A CircularCone is a Cone with a circular base.
 		 */	
 
-		attribute :>> radius [1] = semiMajorAxis;
-
-		assert constraint { semiMajorAxis == semiMinorAxis }
+		attribute :>> radius [1];
+		attribute :>> semiMajorAxis [1] = radius;
+		attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> base : CircularDisc;
 	}
@@ -491,9 +494,9 @@ standard library package ShapeItems {
 		 * A CircularCylinder is a Cylinder with two circular sides.
 		 */
 	
-		attribute :>> radius [1] = semiMajorAxis;
-
-		assert constraint { semiMajorAxis == semiMinorAxis }
+		attribute :>> radius [1];
+		attribute :>> semiMajorAxis [1] = radius;
+		attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> base : CircularDisc;
 		item :>> af : CircularDisc;

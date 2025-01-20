@@ -50,6 +50,12 @@ public class UsageAdapter extends FeatureAdapter {
 		return (Usage)super.getTarget();
 	}
 	
+	// Post-processing
+	
+	@Override
+	protected void setIsVariableIfConstant() {
+	}
+	
 	// Utility
 	
 	public boolean hasRelevantSubjectParameter() {

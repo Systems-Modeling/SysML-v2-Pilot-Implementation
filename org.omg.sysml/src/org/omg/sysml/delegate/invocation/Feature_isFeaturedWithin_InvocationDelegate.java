@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,7 +47,6 @@ public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocation
 		Type type = (Type) arguments.get(0);
 		
 		List<Type> featuringTypes = self.getFeaturingType();
-		// TODO: Fix OCL for isFeaturedWithin
 		if (featuringTypes.isEmpty()) {
 			return true;
 		} else {
@@ -55,7 +54,7 @@ public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocation
 				SysMLLibraryUtil.getLibraryType(self, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)):
 				type;
 			return featuringTypes.stream().allMatch(featuringType->
-				   		TypeUtil.conforms(effectiveType, featuringType));
+				   		TypeUtil.isCompatible(effectiveType, featuringType));
 		}
 	}
 

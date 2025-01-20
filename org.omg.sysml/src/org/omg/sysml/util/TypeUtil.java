@@ -177,6 +177,21 @@ public class TypeUtil {
 		}
 	}
 	
+	public static boolean isCompatible(Type subtype, Type supertype) {
+		if (conforms(subtype, supertype)) {
+			return true;
+		} else if (subtype instanceof Feature && supertype instanceof Feature) {
+			List<Feature> subtypeRedefined = FeatureUtil.getRedefinedFeaturesOf((Feature)subtype);
+			List<Feature> supertypeRedefined = FeatureUtil.getRedefinedFeaturesOf((Feature)supertype);
+			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
+				 List<Type> subtypeFeaturing = ((Feature)subtype).getFeaturingType();
+				 List<Type> supertypeFeaturing = ((Feature)supertype).getFeaturingType();
+				 return subtypeFeaturing.stream().allMatch(t1->supertypeFeaturing.stream().anyMatch(t2->conforms(t1, t2)));
+			}
+		}
+		return false;
+	}
+
 	// Features
 	
 	public static List<Feature> getPublicFeaturesOf(Type type) {

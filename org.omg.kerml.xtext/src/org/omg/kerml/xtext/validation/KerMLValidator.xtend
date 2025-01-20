@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,14 @@
 package org.omg.kerml.xtext.validation
 
 import java.util.List
+import java.util.Set
+
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.validation.Check
+
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Connector
@@ -43,12 +50,6 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.ItemFlow
-import org.omg.sysml.util.TypeUtil
-import org.omg.sysml.util.ElementUtil
-import org.omg.sysml.util.ExpressionUtil
-import org.omg.sysml.util.FeatureUtil
-import org.omg.sysml.util.NamespaceUtil
-import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Subsetting
@@ -59,14 +60,11 @@ import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
-import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.expressions.util.EvaluationUtil
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.ItemFlowEnd
 import org.omg.sysml.lang.sysml.Namespace
@@ -82,18 +80,24 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.Function
 import org.omg.sysml.lang.sysml.ResultExpressionMembership
 import org.omg.sysml.lang.sysml.ItemFeature
-import org.eclipse.emf.ecore.EStructuralFeature
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
-import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.CrossSubsetting
-import java.util.Set
 import org.omg.sysml.lang.sysml.Annotation
+
+import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.ExpressionUtil
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.ImplicitGeneralizationMap
+
+import org.omg.sysml.expressions.util.EvaluationUtil
 
 /**
  * This class contains custom validation rules. 
@@ -701,7 +705,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val featuringTypes = feature.featuringType
 		featuringTypes.empty && type == getLibraryType(feature, "Base::Anything") ||
 		feature.featuringType.exists[featuringType | 
-				featuringType.conformsTo(type) ||
+				TypeUtil.isCompatible(featuringType, type) ||
 				
 				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
 				featuringType instanceof Feature &&

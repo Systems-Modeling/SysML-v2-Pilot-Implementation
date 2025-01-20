@@ -334,7 +334,8 @@ public class FeatureUtil {
 					// in case this transformation has not been done yet.
 					feature = ((FeatureValue)owningMembership).getFeatureWithValue();
 				}
-				for (Type featuringType: feature.getFeaturingType()) {
+				EList<Type> featuringTypes = feature.getFeaturingType();
+				for (Type featuringType: featuringTypes) {
 					if (!allFeaturingTypes.contains(featuringType)) {
 						allFeaturingTypes.add(featuringType);
 						if (featuringType instanceof Feature) {

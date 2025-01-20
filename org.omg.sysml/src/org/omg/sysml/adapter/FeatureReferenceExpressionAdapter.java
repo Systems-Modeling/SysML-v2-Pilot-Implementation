@@ -62,7 +62,11 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	protected void addReferenceConnector() {
 		if (!isInFilterExpression()) {
 			FeatureReferenceExpression target = getTarget();
-			addBindingConnector(target.getReferent(), target.getResult());
+			Feature referent = target.getReferent();
+			Feature result = target.getResult();
+			if (referent != null && result != null) {
+				addBindingConnector(referent, result);
+			}
 		}
 	}
 

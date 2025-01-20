@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
@@ -220,9 +219,9 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		
-		addBoundValueSubsetting();		
-		addParticipantSubsetting();		
-		addCrossingSpecialization();		
+		addBoundValueSubsetting();
+		addParticipantSubsetting();
+		addCrossingSpecialization();
 		addOwnedCrossFeatureSpecialization();
 	}
 	
@@ -230,7 +229,7 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), FeatureUtil.chainFeatures((Feature)result.getOwningType(), result));
 		}
 	}
 	
@@ -625,9 +624,8 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected Type computeFeaturingType() {
 		Feature feature = getTarget();
-		FeatureMembership featureMembership = feature.getOwningFeatureMembership();
 		Type owningType = feature.getOwningType();
-		if (featureMembership == null) {
+		if (owningType == null) {
 			return null;
 		} else if (!feature.isVariable()) {
 			addFeaturingType(owningType);
@@ -674,6 +672,7 @@ public class FeatureAdapter extends TypeAdapter {
 			
 			TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
 			typeFeaturing.setFeaturingType(owningType);
+			typeFeaturing.setFeatureOfType(featuringType);
 			featuringType.getOwnedRelationship().add(typeFeaturing);
 			
 			addFeaturingType(featuringType);
@@ -681,7 +680,7 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
-	protected static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
+	public static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
 		ElementUtil.transform(feature);
 		return feature.getFeaturingType().stream().
 				filter(Feature.class::isInstance).
@@ -746,7 +745,7 @@ public class FeatureAdapter extends TypeAdapter {
 			} else {
 				featuringTypes = target.getFeaturingType();
 			}
-			addBindingConnector(featuringTypes, result, target);
+			addBindingConnector(featuringTypes, FeatureUtil.chainFeatures((Feature)result.getOwningType(), result), target);
 		}
 	}
 	

@@ -143,6 +143,17 @@
                 }
               ]
             },
+            "owningAnnotatingRelationship": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "owningMembership": {
               "oneOf": [
                 {
@@ -222,6 +233,7 @@
             "ownedElement",
             "ownedRelationship",
             "owner",
+            "owningAnnotatingRelationship",
             "owningMembership",
             "owningNamespace",
             "owningRelationship",
@@ -340,6 +352,17 @@
           "oneOf": [
             {
               "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedAnnotatingElement": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/AnnotatingElement"
             },
             {
               "type": "null"
@@ -514,6 +537,7 @@
         "isImpliedIncluded",
         "isLibraryElement",
         "name",
+        "ownedAnnotatingElement",
         "ownedAnnotation",
         "ownedElement",
         "ownedRelatedElement",
@@ -2196,6 +2220,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -2525,6 +2560,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -2848,6 +2894,7 @@
         "association",
         "chainingFeature",
         "connectorEnd",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -2886,6 +2933,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -2962,6 +3010,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -3303,6 +3362,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -3583,6 +3653,7 @@
             "aliasIds",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -3622,6 +3693,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -4613,13 +4685,13 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/DataType"
-        },
-        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Class"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Association"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/DataType"
         }
       ]
     },
@@ -4662,6 +4734,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -5013,6 +5096,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -5283,6 +5377,7 @@
         "argument",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -5323,6 +5418,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -5514,6 +5610,17 @@
                 }
               ]
             },
+            "owningAnnotatingRelationship": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "owningMembership": {
               "oneOf": [
                 {
@@ -5595,6 +5702,7 @@
             "ownedElement",
             "ownedRelationship",
             "owner",
+            "owningAnnotatingRelationship",
             "owningMembership",
             "owningNamespace",
             "owningRelationship",
@@ -5931,6 +6039,17 @@
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
             },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "declaredName": {
               "oneOf": [
                 {
@@ -6260,6 +6379,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -6583,6 +6713,7 @@
             "association",
             "chainingFeature",
             "connectorEnd",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -6621,6 +6752,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -6664,15 +6796,327 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/BindingConnector"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFlow"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Succession"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFlow"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/BindingConnector"
         }
       ]
+    },
+    "CrossSubsetting": {
+      "$id": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting",
+      "title": "CrossSubsetting",
+      "type": "object",
+      "properties": {
+        "@id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "@type": {
+          "type": "string",
+          "const": "CrossSubsetting"
+        },
+        "aliasIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "crossedFeature": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "crossingFeature": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "declaredName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declaredShortName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "documentation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Documentation"
+          }
+        },
+        "elementId": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "general": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+        },
+        "isImplied": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isImpliedIncluded": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isLibraryElement": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedAnnotation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+          }
+        },
+        "ownedElement": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "ownedRelatedElement": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "ownedRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Relationship"
+          }
+        },
+        "owner": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningMembership": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/OwningMembership"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningNamespace": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Namespace"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningRelatedElement": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningRelationship": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Relationship"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningType": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualifiedName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "relatedElement": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "shortName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "specific": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+        },
+        "subsettedFeature": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "subsettingFeature": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "target": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "textualRepresentation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/TextualRepresentation"
+          }
+        }
+      },
+      "required": [
+        "@id",
+        "@type",
+        "aliasIds",
+        "crossedFeature",
+        "crossingFeature",
+        "declaredName",
+        "declaredShortName",
+        "documentation",
+        "elementId",
+        "general",
+        "isImplied",
+        "isImpliedIncluded",
+        "isLibraryElement",
+        "name",
+        "ownedAnnotation",
+        "ownedElement",
+        "ownedRelatedElement",
+        "ownedRelationship",
+        "owner",
+        "owningFeature",
+        "owningMembership",
+        "owningNamespace",
+        "owningRelatedElement",
+        "owningRelationship",
+        "owningType",
+        "qualifiedName",
+        "relatedElement",
+        "shortName",
+        "source",
+        "specific",
+        "subsettedFeature",
+        "subsettingFeature",
+        "target",
+        "textualRepresentation"
+      ],
+      "additionalProperties": false
     },
     "DataType": {
       "$id": "https://www.omg.org/spec/KerML/20240201/DataType",
@@ -8123,6 +8567,17 @@
             }
           ]
         },
+        "owningAnnotatingRelationship": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "owningMembership": {
           "oneOf": [
             {
@@ -8205,6 +8660,7 @@
         "ownedElement",
         "ownedRelationship",
         "owner",
+        "owningAnnotatingRelationship",
         "owningMembership",
         "owningNamespace",
         "owningRelationship",
@@ -8420,13 +8876,13 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Relationship"
-        },
-        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/AnnotatingElement"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Namespace"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Relationship"
         }
       ]
     },
@@ -9190,6 +9646,17 @@
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
             },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "declaredName": {
               "oneOf": [
                 {
@@ -9530,6 +9997,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -9799,6 +10277,7 @@
             "aliasIds",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -9838,6 +10317,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -9875,6 +10355,9 @@
           "additionalProperties": false
         },
         {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/BooleanExpression"
+        },
+        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/InvocationExpression"
         },
         {
@@ -9888,9 +10371,6 @@
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralExpression"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/BooleanExpression"
         }
       ]
     },
@@ -9921,6 +10401,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -10241,6 +10732,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -10498,6 +11000,7 @@
             "@type",
             "aliasIds",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -10535,6 +11038,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -10573,19 +11077,19 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Multiplicity"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/MetadataFeature"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFeature"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFlowEnd"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/ItemFeature"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Step"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Step"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/MetadataFeature"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
         }
       ]
     },
@@ -10628,6 +11132,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -10979,6 +11494,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -11253,6 +11779,7 @@
         "argument",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -11293,6 +11820,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -12304,6 +12832,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -12644,6 +13183,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -12917,6 +13467,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -12956,6 +13507,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -13948,10 +14500,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/TypeFeaturing"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/TypeFeaturing"
         }
       ]
     },
@@ -14780,6 +15332,766 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/NamespaceImport"
         }
       ]
+    },
+    "IndexExpression": {
+      "$id": "https://www.omg.org/spec/KerML/20240201/IndexExpression",
+      "title": "IndexExpression",
+      "type": "object",
+      "properties": {
+        "@id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "@type": {
+          "type": "string",
+          "const": "IndexExpression"
+        },
+        "aliasIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "argument": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Expression"
+          }
+        },
+        "behavior": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Behavior"
+          }
+        },
+        "chainingFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declaredName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declaredShortName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "differencingType": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+          }
+        },
+        "directedFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "direction": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureDirectionKind"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "documentation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Documentation"
+          }
+        },
+        "elementId": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "endOwningType": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "featureMembership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
+          }
+        },
+        "featureTarget": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "featuringType": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+          }
+        },
+        "function": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Function"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "importedMembership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Membership"
+          }
+        },
+        "inheritedFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "inheritedMembership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Membership"
+          }
+        },
+        "input": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "intersectingType": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+          }
+        },
+        "isAbstract": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isComposite": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isConjugated": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isDerived": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isEnd": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isImpliedIncluded": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isLibraryElement": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isModelLevelEvaluable": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isOrdered": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isPortion": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isReadOnly": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isSufficient": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isUnique": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "member": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "membership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Membership"
+          }
+        },
+        "multiplicity": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Multiplicity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "operator": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "ownedAnnotation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+          }
+        },
+        "ownedConjugator": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedDifferencing": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Differencing"
+          }
+        },
+        "ownedDisjoining": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Disjoining"
+          }
+        },
+        "ownedElement": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "ownedEndFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "ownedFeature": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "ownedFeatureChaining": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureChaining"
+          }
+        },
+        "ownedFeatureInverting": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureInverting"
+          }
+        },
+        "ownedFeatureMembership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
+          }
+        },
+        "ownedImport": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Import"
+          }
+        },
+        "ownedIntersecting": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Intersecting"
+          }
+        },
+        "ownedMember": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+          }
+        },
+        "ownedMembership": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Membership"
+          }
+        },
+        "ownedRedefinition": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Redefinition"
+          }
+        },
+        "ownedReferenceSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/ReferenceSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Relationship"
+          }
+        },
+        "ownedSpecialization": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Specialization"
+          }
+        },
+        "ownedSubsetting": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Subsetting"
+          }
+        },
+        "ownedTypeFeaturing": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/TypeFeaturing"
+          }
+        },
+        "ownedTyping": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureTyping"
+          }
+        },
+        "ownedUnioning": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Unioning"
+          }
+        },
+        "owner": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Element"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningFeatureMembership": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningMembership": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/OwningMembership"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningNamespace": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Namespace"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningRelationship": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Relationship"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owningType": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parameter": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+          }
+        },
+        "qualifiedName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "result": {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+          "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+        },
+        "shortName": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "textualRepresentation": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/TextualRepresentation"
+          }
+        },
+        "type": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+          }
+        },
+        "unioningType": {
+          "type": "array",
+          "items": {
+            "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+            "$comment": "https://www.omg.org/spec/KerML/20240201/Type"
+          }
+        }
+      },
+      "required": [
+        "@id",
+        "@type",
+        "aliasIds",
+        "argument",
+        "behavior",
+        "chainingFeature",
+        "crossFeature",
+        "declaredName",
+        "declaredShortName",
+        "differencingType",
+        "directedFeature",
+        "direction",
+        "documentation",
+        "elementId",
+        "endFeature",
+        "endOwningType",
+        "feature",
+        "featureMembership",
+        "featureTarget",
+        "featuringType",
+        "function",
+        "importedMembership",
+        "inheritedFeature",
+        "inheritedMembership",
+        "input",
+        "intersectingType",
+        "isAbstract",
+        "isComposite",
+        "isConjugated",
+        "isDerived",
+        "isEnd",
+        "isImpliedIncluded",
+        "isLibraryElement",
+        "isModelLevelEvaluable",
+        "isOrdered",
+        "isPortion",
+        "isReadOnly",
+        "isSufficient",
+        "isUnique",
+        "member",
+        "membership",
+        "multiplicity",
+        "name",
+        "operator",
+        "output",
+        "ownedAnnotation",
+        "ownedConjugator",
+        "ownedCrossSubsetting",
+        "ownedDifferencing",
+        "ownedDisjoining",
+        "ownedElement",
+        "ownedEndFeature",
+        "ownedFeature",
+        "ownedFeatureChaining",
+        "ownedFeatureInverting",
+        "ownedFeatureMembership",
+        "ownedImport",
+        "ownedIntersecting",
+        "ownedMember",
+        "ownedMembership",
+        "ownedRedefinition",
+        "ownedReferenceSubsetting",
+        "ownedRelationship",
+        "ownedSpecialization",
+        "ownedSubsetting",
+        "ownedTypeFeaturing",
+        "ownedTyping",
+        "ownedUnioning",
+        "owner",
+        "owningFeatureMembership",
+        "owningMembership",
+        "owningNamespace",
+        "owningRelationship",
+        "owningType",
+        "parameter",
+        "qualifiedName",
+        "result",
+        "shortName",
+        "textualRepresentation",
+        "type",
+        "unioningType"
+      ],
+      "additionalProperties": false
     },
     "Interaction": {
       "$id": "https://www.omg.org/spec/KerML/20240201/Interaction",
@@ -15657,6 +16969,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -16007,6 +17330,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -16287,6 +17621,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -16327,6 +17662,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -16405,6 +17741,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -16746,6 +18093,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -17016,6 +18374,7 @@
             "argument",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -17055,6 +18414,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -17121,6 +18481,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -17441,6 +18812,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -17698,6 +19080,7 @@
         "@type",
         "aliasIds",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -17735,6 +19118,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -17817,6 +19201,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -18180,6 +19575,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -18533,6 +19939,7 @@
             "behavior",
             "chainingFeature",
             "connectorEnd",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -18575,6 +19982,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -18650,6 +20058,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -18970,6 +20389,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -19227,6 +20657,7 @@
         "@type",
         "aliasIds",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -19264,6 +20695,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -19600,6 +21032,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -19941,6 +21384,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -20220,6 +21674,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -20259,6 +21714,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -20330,6 +21786,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -20671,6 +22138,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -20940,6 +22418,7 @@
             "aliasIds",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -20979,6 +22458,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -21016,19 +22496,19 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralString"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInfinity"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralBoolean"
         },
         {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralRational"
+        },
+        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInteger"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralInfinity"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralRational"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/LiteralString"
         }
       ]
     },
@@ -21064,6 +22544,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -21399,6 +22890,17 @@
             {
               "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
               "$comment": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
             },
             {
               "type": "null"
@@ -21674,6 +23176,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -21713,6 +23216,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -21781,6 +23285,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -22116,6 +23631,17 @@
             {
               "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
               "$comment": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
             },
             {
               "type": "null"
@@ -22401,6 +23927,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -22440,6 +23967,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -22509,6 +24037,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -22844,6 +24383,17 @@
             {
               "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
               "$comment": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
             },
             {
               "type": "null"
@@ -23129,6 +24679,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -23168,6 +24719,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -23237,6 +24789,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -23578,6 +25141,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -23857,6 +25431,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -23896,6 +25471,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -25059,6 +26635,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -25399,6 +26986,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -25672,6 +27270,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -25711,6 +27310,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -25788,6 +27388,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -26126,6 +27737,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -26281,6 +27903,17 @@
             }
           ]
         },
+        "owningAnnotatingRelationship": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "owningFeatureMembership": {
           "oneOf": [
             {
@@ -26385,6 +28018,7 @@
         "annotatedElement",
         "annotation",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -26424,6 +28058,7 @@
         "ownedAnnotatingRelationship",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -26445,6 +28080,7 @@
         "ownedTyping",
         "ownedUnioning",
         "owner",
+        "owningAnnotatingRelationship",
         "owningFeatureMembership",
         "owningMembership",
         "owningNamespace",
@@ -26485,6 +28121,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -26805,6 +28452,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -27062,6 +28720,7 @@
             "@type",
             "aliasIds",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -27099,6 +28758,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -27172,6 +28832,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -27503,6 +29174,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -27765,6 +29447,7 @@
         "aliasIds",
         "bound",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -27803,6 +29486,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -28438,6 +30122,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -28778,6 +30473,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -29047,6 +30753,7 @@
         "aliasIds",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -29086,6 +30793,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -29163,6 +30871,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -29514,6 +31233,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -29784,6 +31514,7 @@
             "argument",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -29824,6 +31555,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -29861,13 +31593,16 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/SelectExpression"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/IndexExpression"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChainExpression"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/CollectExpression"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/SelectExpression"
         }
       ]
     },
@@ -30227,10 +31962,10 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureMembership"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/ElementFilterMembership"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureValue"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureValue"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/ElementFilterMembership"
         }
       ]
     },
@@ -32275,9 +34010,6 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Dependency"
-        },
-        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Annotation"
         },
         {
@@ -32287,22 +34019,7 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Membership"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureInverting"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Featuring"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChaining"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Specialization"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Disjoining"
-        },
-        {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Unioning"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Dependency"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Conjugation"
@@ -32311,13 +34028,31 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Differencing"
         },
         {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Disjoining"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Specialization"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Unioning"
+        },
+        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Intersecting"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureInverting"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureChaining"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Featuring"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/Association"
+        },
+        {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Connector"
         }
       ]
     },
@@ -33111,6 +34846,17 @@
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
         },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "declaredName": {
           "oneOf": [
             {
@@ -33461,6 +35207,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -33731,6 +35488,7 @@
         "argument",
         "behavior",
         "chainingFeature",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -33771,6 +35529,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -34090,13 +35849,13 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Subclassification"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Subsetting"
         },
         {
           "$ref": "https://www.omg.org/spec/KerML/20240201/FeatureTyping"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Subsetting"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Subclassification"
         }
       ]
     },
@@ -34134,6 +35893,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -34454,6 +36224,17 @@
                 }
               ]
             },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "ownedDifferencing": {
               "type": "array",
               "items": {
@@ -34719,6 +36500,7 @@
             "aliasIds",
             "behavior",
             "chainingFeature",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -34756,6 +36538,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -35270,10 +37053,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Metaclass"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/AssociationStructure"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/AssociationStructure"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Metaclass"
         }
       ]
     },
@@ -35887,6 +37670,9 @@
           "$ref": "https://www.omg.org/spec/KerML/20240201/Redefinition"
         },
         {
+          "$ref": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+        },
+        {
           "$ref": "https://www.omg.org/spec/KerML/20240201/ReferenceSubsetting"
         }
       ]
@@ -35932,6 +37718,17 @@
                 "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                 "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
               }
+            },
+            "crossFeature": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "declaredName": {
               "oneOf": [
@@ -36270,6 +38067,17 @@
                 {
                   "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
                   "$comment": "https://www.omg.org/spec/KerML/20240201/Conjugation"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ownedCrossSubsetting": {
+              "oneOf": [
+                {
+                  "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+                  "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
                 },
                 {
                   "type": "null"
@@ -36617,6 +38425,7 @@
             "association",
             "chainingFeature",
             "connectorEnd",
+            "crossFeature",
             "declaredName",
             "declaredShortName",
             "differencingType",
@@ -36657,6 +38466,7 @@
             "output",
             "ownedAnnotation",
             "ownedConjugator",
+            "ownedCrossSubsetting",
             "ownedDifferencing",
             "ownedDisjoining",
             "ownedElement",
@@ -36752,6 +38562,17 @@
             "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
             "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
           }
+        },
+        "crossFeature": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Feature"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "declaredName": {
           "oneOf": [
@@ -37129,6 +38950,17 @@
             }
           ]
         },
+        "ownedCrossSubsetting": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/CrossSubsetting"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "ownedDifferencing": {
           "type": "array",
           "items": {
@@ -37500,6 +39332,7 @@
         "behavior",
         "chainingFeature",
         "connectorEnd",
+        "crossFeature",
         "declaredName",
         "declaredShortName",
         "differencingType",
@@ -37544,6 +39377,7 @@
         "output",
         "ownedAnnotation",
         "ownedConjugator",
+        "ownedCrossSubsetting",
         "ownedDifferencing",
         "ownedDisjoining",
         "ownedElement",
@@ -37737,6 +39571,17 @@
             }
           ]
         },
+        "owningAnnotatingRelationship": {
+          "oneOf": [
+            {
+              "$ref": "https://www.omg.org/spec/KerML/20240201/Identified",
+              "$comment": "https://www.omg.org/spec/KerML/20240201/Annotation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "owningMembership": {
           "oneOf": [
             {
@@ -37822,6 +39667,7 @@
         "ownedElement",
         "ownedRelationship",
         "owner",
+        "owningAnnotatingRelationship",
         "owningMembership",
         "owningNamespace",
         "owningRelationship",
@@ -38295,10 +40141,10 @@
           "additionalProperties": false
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Classifier"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Feature"
         },
         {
-          "$ref": "https://www.omg.org/spec/KerML/20240201/Feature"
+          "$ref": "https://www.omg.org/spec/KerML/20240201/Classifier"
         }
       ]
     },

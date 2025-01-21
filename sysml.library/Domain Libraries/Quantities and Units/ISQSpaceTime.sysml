@@ -184,24 +184,33 @@ standard library package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    readonly attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
+    private attribute def UniversalCartesianSpatial3dCoordinateFrame :> CartesianSpatial3dCoordinateFrame {
         doc
         /*
-         * A singleton CartesianSpatial3dCoordinateFrame that can be used as a default universal Cartesian 3D coordinate frame.
+         * Classifier of the single CartesianSpatial3dCoordinateFrame that is the value of universalCartesianSpatial3dCoordinateFrame.
          */
-         
+
+          /* UniversalCartesianSpatial3dCoordinateFrame classifies exactly one thing. */
+        :>> self = universalCartesianSpatial3dCoordinateFrame;
+
         attribute :>> mRefs default (SI::m, SI::m, SI::m) {
             doc /*
-             * By default, the universalCartesianSpatial3dCoordinateFrame uses meters as the units on all three axes.
+             * By default, a UniversalCartesianSpatial3dCoordinateFrame uses meters as the units on all three axes.
              */
         }
         
         attribute :>> transformation[0..0] {
             doc /*
-             * The universalCartesianSpatial3dCoordinateFrame is the "top-level" coordinate frame, not nested in any other frame.
+             * A UniversalCartesianSpatial3dCoordinateFrame is the "top-level" coordinate frame, not nested in any other frame.
              */
         }
-        
+    }
+
+    readonly attribute universalCartesianSpatial3dCoordinateFrame : UniversalCartesianSpatial3dCoordinateFrame[1] {
+        doc
+        /*
+         * A single CartesianSpatial3dCoordinateFrame that can be used as a default universal Cartesian 3D coordinate frame.
+         */        
     }
 
     attribute def CylindricalSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {

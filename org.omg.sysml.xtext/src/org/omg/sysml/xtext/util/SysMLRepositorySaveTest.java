@@ -62,6 +62,7 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 		"17-Sequence Modeling/17b-Sequence-Modeling.sysml",
 		"18-Use Case/18-Use Case.sysml",
 		"../training/19. Terminate Actions/Terminate Actions Example-1.sysml",
+		"../examples/Association Examples/ProductSelection_UnownedEnds.sysml",
 		"../examples/Geometry Examples/SimpleQuadcopter.sysml"
 	};
 	

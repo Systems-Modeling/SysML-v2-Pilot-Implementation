@@ -6,7 +6,8 @@ standard library package ShapeItems {
 
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Positive;
-	private import ISQ::*;
+	private import ISQSpaceTime::*;
+	private import ISQBase::*;
 	private import SI::m;
 	private import Occurrences::MatesWith;
 	private import Objects::*;

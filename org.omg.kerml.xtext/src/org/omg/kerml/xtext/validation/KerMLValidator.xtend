@@ -574,7 +574,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val i = featureChainings.indexOf(fc);
 		if (i > 0) {
 			val prev = featureChainings.get(i-1).chainingFeature;
-			if (!fc.chainingFeature.featuringType.forall[t2 | prev.conformsTo(t2)]) {
+			if (!fc.chainingFeature.isFeaturedWithin(prev)) {
 				error(INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG, fc, SysMLPackage.eINSTANCE.featureChaining_ChainingFeature, INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE)
 			}
 		}
@@ -836,8 +836,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 						 
 			if (!(typesConform(f1types, f2types) ||
 				  // Consider the result of an expression returning a Boolean-valued Expression to conform to BooleanEvaluation.
-				  isBooleanExpression(rf.get(0).getOwningType()) && !conformsFrom(boolType, f2types).isEmpty ||
-				  isBooleanExpression(rf.get(1).getOwningType()) && !conformsFrom(boolType, f1types).isEmpty)
+				  isBooleanExpression(rf.get(0).featureTarget.getOwningType()) && !conformsFrom(boolType, f2types).isEmpty ||
+				  isBooleanExpression(rf.get(1).featureTarget.getOwningType()) && !conformsFrom(boolType, f1types).isEmpty)
 			) {				
 				warning(INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE)
 			}
@@ -1001,8 +1001,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (feature !== null &&
 			(!(feature instanceof Feature) || 
 				rel instanceof Type &&
-				!(feature as Feature).featuringType.isEmpty &&
-				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
+				!(feature as Feature).isFeaturedWithin(rel as Type)
 			)) {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE)
 		}

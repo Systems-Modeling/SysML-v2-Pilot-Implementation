@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -385,6 +386,13 @@ public class FeatureUtil {
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});
+	}
+
+	public static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
+		ElementUtil.transform(feature);
+		return feature.getFeaturingType().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast);
 	}
 	
 	// Feature Chaining

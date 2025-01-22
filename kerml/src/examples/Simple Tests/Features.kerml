@@ -54,9 +54,14 @@ package Features {
     }
     
     classifier Vehicle :> RegisteredAsset {
-        derived const feature vin[1] = identifier;
-        var expr e { return result; }
-        var binding vin = e.result; 
+        derived var feature vin[1] = identifier;
+        
+        var feature v : Vehicle;
+        binding vin = v.vin;
+        var feature w = v.vin;
+        
+        feature x = vin;
+        binding x = vin;
     }
 	feature legalIdentification;
 	

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,15 +30,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.TypeUtil;
 
-public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocationDelegate {
+public class Feature_isFeaturingType_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Feature_isFeaturedWithin_InvocationDelegate(EOperation operation) {
+	public Feature_isFeaturingType_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
@@ -46,20 +42,20 @@ public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocation
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Feature self = (Feature) target;
 		Type type = (Type) arguments.get(0);
-		
-		List<Type> featuringTypes = self.getFeaturingType();
-		if (featuringTypes.isEmpty()) {
-			return true;
-		} else if (type == null) {
-			Type effectiveType = 
-				SysMLLibraryUtil.getLibraryType(self, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class));
-			return featuringTypes.stream().allMatch(featuringType->featuringType == effectiveType);
+		Type owningType = self.getOwningType();
+		if (!self.isVariable()) {
+			return type == owningType;
+		} else if (type instanceof Feature) {
+			Feature feature = (Feature)type;
+			List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(self, null).stream().
+					filter(Feature::isVariable).
+					flatMap(FeatureUtil::getFeaturingFeaturesOf).
+					toList();
+			return feature.getFeaturingType().contains(owningType) &&
+				   redefinedFeatures.isEmpty()? feature.redefinesFromLibrary("Occurrences::Occurrence::snapshots"):
+				   redefinedFeatures.stream().allMatch(r->feature.redefines(r));
 		} else {
-			Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(self);
-			return featuringTypes.stream().allMatch(featuringType->TypeUtil.isCompatible(type, featuringType)) ||
-				   self.isVariable() && TypeUtil.conforms(type, self.getOwningType()) ||
-				   firstChainingFeature != null && firstChainingFeature.isVariable() &&
-				   		TypeUtil.conforms(type, firstChainingFeature.getOwningType());
+			return false;
 		}
 	}
 

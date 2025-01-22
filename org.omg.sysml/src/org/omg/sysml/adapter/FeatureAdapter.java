@@ -645,13 +645,10 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 			featuringType.setDeclaredName(name + "_snapshots");
 			
-			List<Subsetting> variableSubsettings = feature.getOwnedSubsetting().stream().
-					filter(r->r.getSubsettedFeature().isVariable()).toList();
 			List<Feature> redefinedFeatures = new ArrayList<>();
-			variableSubsettings.stream().
-					filter(Redefinition.class::isInstance).
-					map(Subsetting::getSubsettedFeature).
-					flatMap(FeatureAdapter::getFeaturingFeaturesOf).
+			getRedefinedFeaturesWithComputed(null).stream().
+					filter(Feature::isVariable).
+					flatMap(FeatureUtil::getFeaturingFeaturesOf).
 					forEachOrdered(redefinedFeatures::add);
 			if (redefinedFeatures.isEmpty()) {
 				redefinedFeatures.add((Feature)getLibraryType("Occurrences::Occurrence::snapshots"));
@@ -663,13 +660,6 @@ public class FeatureAdapter extends TypeAdapter {
 				featuringType.getOwnedRelationship().add(redefinition);
 			}
 			
-			variableSubsettings.stream().
-					filter(subs -> !(subs instanceof Redefinition)).
-					map(Subsetting::getSubsettedFeature).
-					flatMap(FeatureAdapter::getFeaturingFeaturesOf).
-					forEachOrdered(subsettedFeature->
-						FeatureUtil.addSubsettingTo(featuringType).setSubsettedFeature(subsettedFeature));
-			
 			TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
 			typeFeaturing.setFeaturingType(owningType);
 			typeFeaturing.setFeatureOfType(featuringType);
@@ -678,13 +668,6 @@ public class FeatureAdapter extends TypeAdapter {
 			addFeaturingType(featuringType);
 			return featuringType;
 		}
-	}
-	
-	public static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
-		ElementUtil.transform(feature);
-		return feature.getFeaturingType().stream().
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast);
 	}
 	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {

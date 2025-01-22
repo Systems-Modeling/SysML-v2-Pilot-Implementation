@@ -107,17 +107,17 @@ package TimeVaryingCarDriver {
         
         // var feature engine [1];
         member feature engine [1] :> carParts featured by Car_snapshots1 {
-            member feature Car_snapshots1 :>> Occurrences::Occurrence::snapshots :> carParts::Car_snapshots featured by Car1_;
+            member feature Car_snapshots1 :>> Occurrences::Occurrence::snapshots featured by Car1_;
         }       
         
         // var feature transmission [1];
         member feature transmission [1] :> carParts featured by Car_snapshots1 {
-            member feature Car_snapshots1 :>> Occurrences::Occurrence::snapshots :> carParts::Car_snapshots featured by Car1_;
+            member feature Car_snapshots1 :>> Occurrences::Occurrence::snapshots featured by Car1_;
         }       
         
         // var connector drive from engine to transmission;
         member connector drive featured by Car_snapshots from engine to transmission {
-            member feature Car_snapshots :>> Occurrences::Occurrence::snapshots :> engine::Car_snapshots1, transmission::Car_snapshots1 featured by Car1_;
+            member feature Car_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_;
         }
     }
     

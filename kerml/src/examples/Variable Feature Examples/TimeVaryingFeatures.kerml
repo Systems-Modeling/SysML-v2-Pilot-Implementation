@@ -33,11 +33,7 @@ package TimeVaryingFeatures {
         portion :>> startShot {
             // var feature :>> x = 0;
             member feature :>> CC1::x featured by CC1_startShot_snapshots = 0 {
-                member feature CC1_startShot_snapshots :>> CC1_snapshots featured by CC1::startShot {
-//                    member feature that_CC1 : CC1 :>> that featured by CC1::startShot {
-//                        public import x::CC1_snapshots;
-//                    }
-                }
+                member feature CC1_startShot_snapshots :>> CC1_snapshots featured by CC1::startShot;
             }
         }
         

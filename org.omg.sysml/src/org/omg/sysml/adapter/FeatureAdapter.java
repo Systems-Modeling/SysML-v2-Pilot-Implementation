@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
@@ -622,6 +623,71 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
+	protected Type computeFeaturingType() {
+		Feature feature = getTarget();
+		FeatureMembership featureMembership = feature.getOwningFeatureMembership();
+		Type owningType = feature.getOwningType();
+		if (featureMembership == null) {
+			return null;
+		} else if (!feature.isVariable()) {
+			addFeaturingType(owningType);
+			return owningType;
+		} else {
+			Feature featuringType = SysMLFactory.eINSTANCE.createFeature();
+			
+			String name = owningType.getQualifiedName();
+			if (name == null) {
+				name = "";
+			} else {
+				int i = name.indexOf("::");
+				if (i >= 0) {
+					name = name.substring(i + 2);
+				}
+				name = name.replace("::", "_");
+			}
+			featuringType.setDeclaredName(name + "_snapshots");
+			
+			List<Subsetting> variableSubsettings = feature.getOwnedSubsetting().stream().
+					filter(r->r.getSubsettedFeature().isVariable()).toList();
+			List<Feature> redefinedFeatures = new ArrayList<>();
+			variableSubsettings.stream().
+					filter(Redefinition.class::isInstance).
+					map(Subsetting::getSubsettedFeature).
+					flatMap(FeatureAdapter::getFeaturingFeaturesOf).
+					forEachOrdered(redefinedFeatures::add);
+			if (redefinedFeatures.isEmpty()) {
+				redefinedFeatures.add((Feature)getLibraryType("Occurrences::Occurrence::snapshots"));
+			}
+			for (Feature redefinedFeature: redefinedFeatures) {
+				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				redefinition.setRedefinedFeature(redefinedFeature);
+				redefinition.setRedefiningFeature(featuringType);
+				featuringType.getOwnedRelationship().add(redefinition);
+			}
+			
+			variableSubsettings.stream().
+					filter(subs -> !(subs instanceof Redefinition)).
+					map(Subsetting::getSubsettedFeature).
+					flatMap(FeatureAdapter::getFeaturingFeaturesOf).
+					forEachOrdered(subsettedFeature->
+						FeatureUtil.addSubsettingTo(featuringType).setSubsettedFeature(subsettedFeature));
+			
+			TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+			typeFeaturing.setFeaturingType(owningType);
+			featuringType.getOwnedRelationship().add(typeFeaturing);
+			
+			addFeaturingType(featuringType);
+			return featuringType;
+		}
+	}
+	
+	protected static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
+		ElementUtil.transform(feature);
+		return feature.getFeaturingType().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast);
+	}
+	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {
 		Feature feature = getTarget();
 		if (featuringType != null && feature.getOwningType() == null && 
@@ -633,11 +699,9 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void addImplicitFeaturingTypesIfNecessary() {
 		Feature feature = getTarget();
 		Namespace owner = feature.getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (isImplicitFeaturingTypesEmpty()) {
-				addFeaturingTypes(ownerFeaturingTypes);
-			}
+		if (owner instanceof Feature && isImplicitFeaturingTypesEmpty()) {
+			ElementUtil.transform(owner);
+			addFeaturingTypes(((Feature)owner).getFeaturingType());
 		}
 	}
 	
@@ -751,6 +815,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
+		computeFeaturingType();
 		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();

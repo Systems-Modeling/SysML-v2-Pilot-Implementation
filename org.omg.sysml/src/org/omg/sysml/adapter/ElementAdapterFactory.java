@@ -518,21 +518,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
-			return new SuccessionAsUsageAdapter(element);
-		}
-
-		@Override
-		public ElementAdapter caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage element) {
-			return new SuccessionFlowConnectionUsageAdapter(element);
-		}
-
-		@Override
-		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
-			return new SuccessionItemFlowAdapter(element);
-		}
-
-		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);
 		}
@@ -557,6 +542,21 @@ public class ElementAdapterFactory {
 			return new SuccessionAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
+			return new SuccessionAsUsageAdapter(element);
+		}
+
+		@Override
+		public ElementAdapter caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage element) {
+			return new SuccessionFlowConnectionUsageAdapter(element);
+		}
+
+		@Override
+		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
+			return new SuccessionItemFlowAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseTerminateActionUsage(TerminateActionUsage element) {
 			return new TerminateActionUsageAdapter(element);

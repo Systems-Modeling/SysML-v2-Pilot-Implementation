@@ -347,7 +347,7 @@ public class FeatureUtil {
 		}
 		return allFeaturingTypes;
 	}
-
+	
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
 		getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
 	}

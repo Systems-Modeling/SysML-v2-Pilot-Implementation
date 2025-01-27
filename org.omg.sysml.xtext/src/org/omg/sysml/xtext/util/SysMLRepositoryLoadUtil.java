@@ -22,29 +22,47 @@
  */
 package org.omg.sysml.xtext.util;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.resource.XtextResource;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.RepositoryContentFetcher;
 import org.omg.sysml.util.repository.RepositoryProject;
-import org.omg.sysml.util.repository.RepositoryToLocalProject;
+import org.omg.sysml.util.traversal.Traversal;
+import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 public class SysMLRepositoryLoadUtil extends SysMLUtil {
-		
+	
+	private static final String EXTENSION = "xmi";
+	
 	public static void main(String[] args) throws ParseException {
 		SysMLRepositoryLoadUtil sysMLRepositoryLoadUtil = createUsingArgs(args);
 		sysMLRepositoryLoadUtil.load();
 	}
 	
 	public static SysMLRepositoryLoadUtil createUsingArgs(String... args) throws ParseException {
-		var repositoryOption = new Option("r", "repository", true, "Repository url. E.g: http://localhost:9000");
+		var localLibrary = new Option("l", "library", true, "Path to local library");
+		localLibrary.setRequired(true);
+		
+		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: http://localhost:9000");
 		repositoryOption.setRequired(false);
 		
 		var projectOption = new Option("p", "project", true, "Project name in the repository.");
@@ -53,7 +71,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		var targetOption = new Option("t", "target", true, "Location where the project is loaded");
 		targetOption.setRequired(true);
 		
-		Options options = new Options().addOption(repositoryOption).addOption(projectOption).addOption(targetOption);
+		Options options = new Options().addOption(repositoryOption).addOption(projectOption).addOption(targetOption).addOption(localLibrary);
 		
 		CommandLineParser parser = new DefaultParser();
 		CommandLine cli = parser.parse(options, args);
@@ -61,29 +79,72 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		return new SysMLRepositoryLoadUtil(
 					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
 					cli.getOptionValue(projectOption),
-					cli.getOptionValue(targetOption)
+					cli.getOptionValue(targetOption),
+					cli.getOptionValue(localLibrary)
 				);
 	}
 	
 	private final String repositoryURL;
 	private final String projectName;
 	private final String targetLocation;
+	private final String localLibraryPath;
 	
-	public SysMLRepositoryLoadUtil(String repositoryURL, String projectName, String targetLocation) {
+	public SysMLRepositoryLoadUtil(String repositoryURL, String projectName, String targetLocation, String localLibraryPath) {
 		super();
 		this.repositoryURL = repositoryURL;
 		this.projectName = projectName;
 		this.targetLocation = targetLocation;
+		this.localLibraryPath = localLibraryPath;
 		
 		KerMLStandaloneSetup.doSetup();
 		SysMLStandaloneSetup.doSetup();
+		
+		addExtension(".sysml");
+		addExtension(".kerml");
 	}
 	
 	public void load() {
-		RepositoryProject repositoryProject = new RepositoryProject(repositoryURL, projectName);
-		repositoryProject.loadRemote();
+		System.out.println("Reading library");
 		
-		RepositoryToLocalProject transformer = new RepositoryToLocalProject(repositoryProject, targetLocation);
-		transformer.transform(getResourceSet());
+		readAll(localLibraryPath, false);
+		
+		//avoid concurrent modification exception in the traversal by transforming the library
+		ElementUtil.transformAll(getResourceSet(), false);
+		
+		
+		//collect ids from library
+		ElementIdProcessingFacade idProcessingFacade = new ElementIdProcessingFacade();
+		var traversal = new Traversal(idProcessingFacade, true);
+		
+		getLibraryResources().forEach(res -> {
+			if (!res.getContents().isEmpty()) {
+				traversal.visit((Element) res.getContents().get(0));
+			}
+		});
+		
+		Map<Object, EObject> uuidToElementMap = idProcessingFacade.getUUIDToElementMap();
+		
+		RepositoryProject repositoryProject = new RepositoryProject(repositoryURL, projectName);
+		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, uuidToElementMap);
+		ProjectDelta delta = repositoryFetcher.fetch();
+		
+		var projectRoots = delta.getProjectRoots();
+		
+		try {
+			ResourceSet resourceSet = getResourceSet();
+			
+			for (var root : projectRoots.keySet()) {
+				var dto = projectRoots.get(root);
+				Object object = dto.get("@id");
+				URI fileURI = URI.createFileURI(String.format("%s/%s.%s", targetLocation, object.toString(), EXTENSION));
+				Resource resource = resourceSet.createResource(fileURI);
+				resource.getContents().add(root);
+				System.out.println("Saving resource");
+				resource.save(Collections.EMPTY_MAP);
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

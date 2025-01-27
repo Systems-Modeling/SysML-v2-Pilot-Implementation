@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.model.Element;
@@ -61,6 +63,7 @@ public class RepositoryContentFetcher {
 		
 		Map<EObject, Element> rootNamespaces = new HashMap<>(); 
 		
+		//traverse containment
 		for (var projectRoot: repositoryProject.getProjectRoots()) {
 			if (!Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
 				Object rootId = projectRoot.get("@id");
@@ -70,19 +73,22 @@ public class RepositoryContentFetcher {
 			}
 		}
 		
+		//traverse cross-references
 		uuidToLangElement.forEach((id, langElement) -> {
 			Element element = repositoryProject.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
 				tranformCrossreferences(langElement, element);
+				tranformAttributes(langElement, element);
+				addImportedMembers(langElement, element);
 			}
 		});
 		
-		uuidToLangElement.forEach((id, langElement) -> {
-			Element element = repositoryProject.getElement(id);
-			if (element != null && isNotStandardLibraryElement(langElement)) {
-				tranformAttributes(langElement, element);
-			}
-		});
+//		uuidToLangElement.forEach((id, langElement) -> {
+//			Element element = repositoryProject.getElement(id);
+//			if (element != null && isNotStandardLibraryElement(langElement)) {
+//				tranformAttributes(langElement, element);
+//			}
+//		});
 		
 		return new ProjectDelta(repositoryProject, rootNamespaces);
 	}
@@ -107,6 +113,16 @@ public class RepositoryContentFetcher {
 		return langElement;
 	}
 	
+	private void addImportedMembers(EObject langElement, Element dto) {
+		if (langElement instanceof MembershipImport membershipImport) {
+			Object importedMembers = dto.get("importedElement");
+			EObject resolvedReference = resolveReference(importedMembers, false);
+			if (resolvedReference != null) {
+				membershipImport.setImportedMembership(((org.omg.sysml.lang.sysml.Element) resolvedReference).getOwningMembership());
+			}
+		}
+	}
+
 	private boolean canTransformInternaps(EObject langElement) {
 		return isNotStandardLibraryElement(langElement)
 				//The grammar doesn't allow LilteralInfinity to own relations. The transformation violates this by adding return parameter.
@@ -168,7 +184,7 @@ public class RepositoryContentFetcher {
 				|| ownedFeatures.stream().noneMatch(of -> Objects.equals(of.getName(), f.getName()))).collect(Collectors.toList());
 	}
 	
-	private static Set<String> disabledStructuralFeatures = Set.of("elementId");
+	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
 
 	@SuppressWarnings("unchecked")
 	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
@@ -179,7 +195,7 @@ public class RepositoryContentFetcher {
 					Object value = remoteElement.get(feature.getName());
 					if (value instanceof Collection valueCollection) {
 						for (Object referenceValue: valueCollection) {
-							EObject referencedLangElement = transformReferenceValue(referenceValue, isContainment);
+							EObject referencedLangElement = resolveReference(referenceValue, isContainment);
 							if (referencedLangElement != null) {
 								referenceList.add(referencedLangElement);
 							}
@@ -188,7 +204,7 @@ public class RepositoryContentFetcher {
 				} else {
 					Object value = remoteElement.get(feature.getName());
 					if (value != null) {
-						langElement.eSet(feature, isReference? transformReferenceValue(value, isContainment) : transformAttributeValue(value, feature));
+						langElement.eSet(feature, isReference? resolveReference(value, isContainment) : transformAttributeValue(value, feature));
 					}
 				}
 			}
@@ -199,7 +215,7 @@ public class RepositoryContentFetcher {
 		}
 	}
 	
-	private EObject transformReferenceValue(Object referenceValue, boolean isContainment) {
+	private EObject resolveReference(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
 			Element referencedElement = repositoryProject.getElement(refUUID);

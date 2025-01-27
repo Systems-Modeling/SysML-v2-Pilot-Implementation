@@ -646,7 +646,7 @@ public class FeatureAdapter extends TypeAdapter {
 			featuringType.setDeclaredName(name + "_snapshots");
 			
 			List<Feature> redefinedFeatures = new ArrayList<>();
-			getRedefinedFeaturesWithComputed(null).stream().
+			getSubsettedFeatures().stream().
 					filter(Feature::isVariable).
 					flatMap(FeatureUtil::getFeaturingFeaturesOf).
 					forEachOrdered(redefinedFeatures::add);

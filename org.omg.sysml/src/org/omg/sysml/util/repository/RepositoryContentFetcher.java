@@ -22,73 +22,69 @@
 package org.omg.sysml.util.repository;
 
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.util.ElementUtil;
 
-import com.google.common.primitives.Primitives;
 
-
-public class RepositoryToLocalProject {
+public class RepositoryContentFetcher {
 	
-	private final String localProjectPath;
-	private final Map<Resource, Element> resourceToProjectRoot = new HashMap<>();
-	private final Map<Object, EObject> uuidToLangElement = new HashMap<>();
+	private final Map<Object, EObject> uuidToLangElement;
 	private final RepositoryProject repositoryProject;
 	
-	public RepositoryToLocalProject(RepositoryProject repositoryProject, String localProjectPath) {
-		this.localProjectPath = localProjectPath;
+	public RepositoryContentFetcher(RepositoryProject repositoryProject, Map<Object, EObject> uuidToLangElement) {
 		this.repositoryProject = repositoryProject;
+		this.uuidToLangElement = uuidToLangElement;
 	}
 	
-	public void transform(ResourceSet rs) {
+	public ProjectDelta fetch() {
+		repositoryProject.loadRemote();
+		
+		Map<EObject, Element> rootNamespaces = new HashMap<>(); 
+		
 		for (var projectRoot: repositoryProject.getProjectRoots()) {
-			Object rootId = projectRoot.get("@id");
-			URI uri = URI.createFileURI(localProjectPath + "/" + rootId + ".xmi");
-			Resource resource = rs.createResource(uri);
-			resourceToProjectRoot.put(resource, projectRoot);
-			
-			EObject rootNamespace = transform(projectRoot);
-			resource.getContents().add(rootNamespace);
-			
-			uuidToLangElement.put(rootId, rootNamespace);
-		}
-		
-		uuidToLangElement.forEach((id, langElement) -> {
-			Element element = repositoryProject.getElement(id);
-			tranformCrossreferences(langElement, element);
-		});
-		
-		uuidToLangElement.forEach((id, langElement) -> {
-			Element element = repositoryProject.getElement(id);
-			tranformAttributes(langElement, element);
-		});
-		
-		System.out.println("Saving project");
-		
-		try {
-			for (var r : rs.getResources()) {
-				r.save(Collections.EMPTY_MAP);
+			if (!Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
+				Object rootId = projectRoot.get("@id");
+				EObject rootNamespace = transform(projectRoot);
+				uuidToLangElement.put(rootId, rootNamespace);
+				rootNamespaces.put(rootNamespace, projectRoot);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+		
+		uuidToLangElement.forEach((id, langElement) -> {
+			Element element = repositoryProject.getElement(id);
+			if (element != null && isNotStandardLibraryElement(langElement)) {
+				tranformCrossreferences(langElement, element);
+			}
+		});
+		
+		uuidToLangElement.forEach((id, langElement) -> {
+			Element element = repositoryProject.getElement(id);
+			if (element != null && isNotStandardLibraryElement(langElement)) {
+				tranformAttributes(langElement, element);
+			}
+		});
+		
+		return new ProjectDelta(repositoryProject, rootNamespaces);
 	}
 	
 	private EObject transform(Element dto) {
@@ -104,9 +100,17 @@ public class RepositoryToLocalProject {
 		
 		EObject langElement = uuidToLangElement.computeIfAbsent(uuid, id -> SysMLFactory.eINSTANCE.create(typeClass));
 		
-		transformContainmentReferences(langElement, dto);
+		if (canTransformInternaps(langElement)) {
+			transformContainmentReferences(langElement, dto);
+		}
 		
 		return langElement;
+	}
+	
+	private boolean canTransformInternaps(EObject langElement) {
+		return isNotStandardLibraryElement(langElement)
+				//The grammar doesn't allow LilteralInfinity to own relations. The transformation violates this by adding return parameter.
+				&& !(langElement instanceof LiteralInfinity);
 	}
 	
 	private EClass getTypeClass(Object typeField) {
@@ -115,9 +119,13 @@ public class RepositoryToLocalProject {
 		}
 		return null;
 	}
+	
+	private boolean isNotStandardLibraryElement(EObject langElement) {
+		return !ElementUtil.isStandardLibraryElement((org.omg.sysml.lang.sysml.Element) langElement);
+	}
 
 	private void transformContainmentReferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: langElement.eClass().getEAllStructuralFeatures())
+		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.get(feature.getName()) != null) {
 				if (feature instanceof EReference reference && reference.isContainment()) {
@@ -128,7 +136,7 @@ public class RepositoryToLocalProject {
 	}
 	
 	private void tranformCrossreferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: langElement.eClass().getEAllStructuralFeatures())
+		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EReference reference) {
@@ -136,10 +144,14 @@ public class RepositoryToLocalProject {
 				}
 			}
 		}
+		
+		if (langElement instanceof FeatureTyping ft) {
+			ft.setTypedFeature(null);
+		}
 	}
 	
 	private void tranformAttributes(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: langElement.eClass().getEAllStructuralFeatures())
+		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EAttribute reference) {
@@ -148,28 +160,44 @@ public class RepositoryToLocalProject {
 			}
 		}
 	}
-
-	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
-		try {
-			if (feature.isMany()) {
-				var referenceList = (List<EObject>) langElement.eGet(feature, false);
-				Object value = remoteElement.get(feature.getName());
-				if (value instanceof Collection valueCollection) {
-					for (Object referenceValue: valueCollection) {
-						EObject referencedLangElement = transformReferenceValue(referenceValue, isContainment);
-						referenceList.add(referencedLangElement);
-					}
-				} 
-			} else {
-				Object value = remoteElement.get(feature.getName());
-				langElement.eSet(feature, isReference? transformReferenceValue(value, isContainment) : transformAttributeValue(value, feature));
-			}
-		}
-		catch (Exception e) {
-			System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
-		}
+	
+	private static Collection<EStructuralFeature> getStructuralFeatuers(EObject langElement){
+		EClass eClass = langElement.eClass();
+		EList<EStructuralFeature> ownedFeatures = langElement.eClass().getEStructuralFeatures();
+		return langElement.eClass().getEAllStructuralFeatures().stream().filter(f -> f.getEContainingClass() == eClass
+				|| ownedFeatures.stream().noneMatch(of -> Objects.equals(of.getName(), f.getName()))).collect(Collectors.toList());
 	}
 	
+	private static Set<String> disabledStructuralFeatures = Set.of("elementId");
+
+	@SuppressWarnings("unchecked")
+	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
+		if (!disabledStructuralFeatures.contains(feature.getName())) {
+			try {
+				if (feature.isMany()) {
+					var referenceList = (List<EObject>) langElement.eGet(feature, false);
+					Object value = remoteElement.get(feature.getName());
+					if (value instanceof Collection valueCollection) {
+						for (Object referenceValue: valueCollection) {
+							EObject referencedLangElement = transformReferenceValue(referenceValue, isContainment);
+							if (referencedLangElement != null) {
+								referenceList.add(referencedLangElement);
+							}
+						}
+					} 
+				} else {
+					Object value = remoteElement.get(feature.getName());
+					if (value != null) {
+						langElement.eSet(feature, isReference? transformReferenceValue(value, isContainment) : transformAttributeValue(value, feature));
+					}
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
+			}
+		}
+	}
 	
 	private EObject transformReferenceValue(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
@@ -181,12 +209,22 @@ public class RepositoryToLocalProject {
 		return null;		
 	}
 	
-	private static List<String> disabledAttributes = List.of("elementId");
 	
 	private Object transformAttributeValue(Object attributeValue, EStructuralFeature feature) {
-		
-		if (feature instanceof EAttribute attribute && !disabledAttributes.contains(attribute.getName()) && attributeValue != null) {
-			return EcoreUtil.createFromString(attribute.getEAttributeType(), attributeValue.toString());
+		if (feature instanceof EAttribute attribute && attributeValue != null) {
+				EDataType eAttributeType = attribute.getEAttributeType();
+				
+				final String value;
+				
+				if (eAttributeType.getName().equals("Integer")) {
+					//in some cases the number returned is not in an integer format (e.g 0.0 instead of 0)
+					//cast non-integer values to integer
+					value = Integer.valueOf((int) Double.parseDouble(attributeValue.toString())).toString();
+				} else {
+					value = attributeValue.toString();
+				}
+			
+				return EcoreUtil.createFromString(eAttributeType, value);
 		}
 		
 		return null;		

@@ -33,5 +33,16 @@
             contributorClass="org.omg.sysml.lang.sysml.presentation.SysMLActionBarContributor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
+            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
+            default="false"
+            extensions="sysmlx"
+            id="org.omg.sysml.lang.sysml.presentation.SysMLxEditorID"
+            name="SysMLx Model Editor">
+      </editor>
+   </extension>
 
 </plugin>

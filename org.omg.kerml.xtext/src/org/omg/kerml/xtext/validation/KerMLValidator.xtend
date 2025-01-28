@@ -180,6 +180,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE = "validateRedefinitionDirectionConformance"
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG = "Redefining feature must have a compatible direction"
+	public static val INVALID_REDEFINITION_END_CONFORMANCE = "validateRedefinitionEndConformance"
+	public static val INVALID_REDEFINITION_END_CONFORMANCE_MSG = "Redefining feature must be an end feature"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature cannot be redefined"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Owner of redefining feature cannot be the same as owner of redefined feature"
@@ -600,6 +602,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 					error(INVALID_REDEFINITION_FEATURING_TYPES_MSG_2, redef, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
 				}
+			}
+			
+			// validatRedefinitionEndConformance
+			
+			if (redefinedFeature.isEnd && !redefiningFeature.isEnd) {
+				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
 			}
 		}		
 	}

@@ -49,8 +49,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.repository.ProjectDelta;
 import org.omg.sysml.util.repository.RepositoryContentFetcher;
 import org.omg.sysml.util.repository.RepositoryProject;
@@ -118,6 +120,12 @@ public class PullRepositoryProject extends AbstractHandler {
 				
 				ResourceSet resourceSet = resourceSetProvider.get(project);
 				loadResources(resourceSet, libraryProject.get(), libraryResources);
+				
+				resourceSet.getResources().forEach(res -> {
+					if (res instanceof XtextResource) {
+						ElementUtil.transformAll(res, false);
+					}
+				});
 				
 				//collect ids from library
 				ElementIdProcessingFacade idProcessingFacade = new ElementIdProcessingFacade();

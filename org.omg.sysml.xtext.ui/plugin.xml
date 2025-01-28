@@ -63,6 +63,10 @@
         </iterate>
      </activeWhen>
   </handler>
+  <handler
+        class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.omg.sysml.xtext.ui.handlers.PullRepositoryProject"
+        commandId="org.omg.sysml.xtext.ui.PullRepositoryProject">
+  </handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
 		<definition id="org.omg.sysml.xtext.SysML.Editor.opened">
@@ -151,6 +155,10 @@
   <command
         id="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
         name="Generate Library Index">
+  </command>
+  <command
+        id="org.omg.sysml.xtext.ui.PullRepositoryProject"
+        name="Pull remote">
   </command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -366,6 +374,15 @@
         </visibleWhen>
      </command>
   </menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+     <command
+           commandId="org.omg.sysml.xtext.ui.PullRepositoryProject"
+           label="Pull remote"
+           style="push">
+     </command>
+  </menuContribution>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="org.omg.sysml.xtext.SysML.compare.contentViewers"
@@ -400,7 +417,7 @@
    	<extension
          point="org.eclipse.xtext.extension_resourceServiceProvider">
 	    <resourceServiceProvider
-	          class="org.omg.sysml.xtext.ui.xmi.SysMLXExecutableExtensionFactory:org.eclipse.xtext.ui.resource.generic.EmfResourceUIServiceProvider"
+	          class="org.omg.sysml.xtext.ui.xmi.SysMLxExecutableExtensionFactory:org.eclipse.xtext.ui.resource.generic.EmfResourceUIServiceProvider"
 	          uriExtension="sysmlx">
 	    </resourceServiceProvider>
    	</extension>

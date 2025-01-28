@@ -209,7 +209,7 @@ public class RepositoryContentFetcher {
 				}
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 				System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
 			}
 		}

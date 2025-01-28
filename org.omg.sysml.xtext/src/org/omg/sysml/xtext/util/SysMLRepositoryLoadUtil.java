@@ -22,8 +22,8 @@
  */
 package org.omg.sysml.xtext.util;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
@@ -32,13 +32,9 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.resource.XtextResource;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
@@ -47,14 +43,18 @@ import org.omg.sysml.util.repository.RepositoryContentFetcher;
 import org.omg.sysml.util.repository.RepositoryProject;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
+import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	
-	private static final String EXTENSION = "xmi";
-	
 	public static void main(String[] args) throws ParseException {
 		SysMLRepositoryLoadUtil sysMLRepositoryLoadUtil = createUsingArgs(args);
+		
+		KerMLStandaloneSetup.doSetup();
+		SysMLStandaloneSetup.doSetup();
+		SysMLxStandaloneSetup.doSetup();
+		
 		sysMLRepositoryLoadUtil.load();
 	}
 	
@@ -80,24 +80,21 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
 					cli.getOptionValue(projectOption),
 					cli.getOptionValue(targetOption),
-					cli.getOptionValue(localLibrary)
+					new File(cli.getOptionValue(localLibrary))
 				);
 	}
 	
 	private final String repositoryURL;
 	private final String projectName;
 	private final String targetLocation;
-	private final String localLibraryPath;
+	private final File localLibraryPath;
 	
-	public SysMLRepositoryLoadUtil(String repositoryURL, String projectName, String targetLocation, String localLibraryPath) {
+	public SysMLRepositoryLoadUtil(String repositoryURL, String projectName, String targetLocation, File localLibraryPath) {
 		super();
 		this.repositoryURL = repositoryURL;
 		this.projectName = projectName;
 		this.targetLocation = targetLocation;
 		this.localLibraryPath = localLibraryPath;
-		
-		KerMLStandaloneSetup.doSetup();
-		SysMLStandaloneSetup.doSetup();
 		
 		addExtension(".sysml");
 		addExtension(".kerml");
@@ -128,21 +125,10 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, uuidToElementMap);
 		ProjectDelta delta = repositoryFetcher.fetch();
 		
-		var projectRoots = delta.getProjectRoots();
-		
+		ResourceSet resourceSet = getResourceSet();
+
 		try {
-			ResourceSet resourceSet = getResourceSet();
-			
-			for (var root : projectRoots.keySet()) {
-				var dto = projectRoots.get(root);
-				Object object = dto.get("@id");
-				URI fileURI = URI.createFileURI(String.format("%s/%s.%s", targetLocation, object.toString(), EXTENSION));
-				Resource resource = resourceSet.createResource(fileURI);
-				resource.getContents().add(root);
-				System.out.println("Saving resource");
-				resource.save(Collections.EMPTY_MAP);
-				
-			}
+			delta.save(resourceSet, targetLocation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

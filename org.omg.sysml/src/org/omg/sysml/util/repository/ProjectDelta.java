@@ -21,12 +21,19 @@
 
 package org.omg.sysml.util.repository;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.util.ElementUtil;
 
 public class ProjectDelta {
+	private static final Object EXTENSION = "sysmlx";
 	
 	private final RepositoryProject remoteProject;
 	private final Map<EObject, Element> projectRoots;
@@ -38,5 +45,17 @@ public class ProjectDelta {
 	
 	public Map<EObject, Element> getProjectRoots() {
 		return projectRoots;
+	}
+	
+	public void save(ResourceSet resourceSet, String targetLocation) throws IOException {
+		for (var root : projectRoots.keySet()) {
+			var dto = projectRoots.get(root);
+			Object object = dto.get("@id");
+			URI fileURI = URI.createFileURI(String.format("%s/%s.%s", targetLocation, object.toString(), EXTENSION));
+			Resource resource = resourceSet.createResource(fileURI);
+			resource.getContents().add(root);
+			ElementUtil.transformAll(resource, false);
+			resource.save(Collections.EMPTY_MAP);
+		}
 	}
 }

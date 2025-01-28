@@ -43,6 +43,14 @@
             id="org.omg.sysml.lang.sysml.presentation.SysMLxEditorID"
             name="SysMLx Model Editor">
       </editor>
+      <editor
+            class="org.eclipse.emf.ecore.presentation.EcoreEditor"
+            contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor"
+            default="false"
+            extensions="kermlx"
+            id="org.omg.sysml.lang.sysml.presentation.KerMLxEditorID"
+            name="KerMLx Model Editor">
+      </editor>
    </extension>
 
 </plugin>

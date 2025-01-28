@@ -33,6 +33,8 @@ import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 
 class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 	
+	public static val KERMLX_LANGUAGE_NAME = 'org.omg.kerml.kermlx'
+	
 	override protected getFileExtensions() {
 		'kermlx'
 	}

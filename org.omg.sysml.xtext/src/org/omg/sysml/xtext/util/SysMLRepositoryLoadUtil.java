@@ -32,6 +32,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
@@ -128,7 +129,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		ResourceSet resourceSet = getResourceSet();
 
 		try {
-			delta.save(resourceSet, targetLocation);
+			delta.save(resourceSet, URI.createFileURI(projectName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

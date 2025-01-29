@@ -142,7 +142,7 @@ public class PullRepositoryProject extends AbstractHandler {
 				RepositoryProject repositoryProject = new RepositoryProject(repositoryUrl, projectName);
 				RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, uuidToElementMap);
 				ProjectDelta delta = repositoryFetcher.fetch();
-				delta.save(resourceSet, targetPath);
+				delta.save(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}
 		} catch (IOException | CoreException e) {
 			e.printStackTrace();

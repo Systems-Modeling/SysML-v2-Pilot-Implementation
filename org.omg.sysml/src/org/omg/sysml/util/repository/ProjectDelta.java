@@ -33,7 +33,7 @@ import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
 
 public class ProjectDelta {
-	private static final Object EXTENSION = "sysmlx";
+	private static final String EXTENSION = "sysmlx";
 	
 	private final RepositoryProject remoteProject;
 	private final Map<EObject, Element> projectRoots;
@@ -47,11 +47,13 @@ public class ProjectDelta {
 		return projectRoots;
 	}
 	
-	public void save(ResourceSet resourceSet, String targetLocation) throws IOException {
+	public void save(ResourceSet resourceSet, URI baseUri) throws IOException {
+		
+		
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
 			Object object = dto.get("@id");
-			URI fileURI = URI.createFileURI(String.format("%s/%s.%s", targetLocation, object.toString(), EXTENSION));
+			URI fileURI = baseUri.appendFragment(object.toString()).appendFileExtension(EXTENSION);
 			Resource resource = resourceSet.createResource(fileURI);
 			resource.getContents().add(root);
 			ElementUtil.transformAll(resource, false);

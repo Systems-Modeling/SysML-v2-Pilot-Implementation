@@ -53,7 +53,7 @@ public class ProjectDelta {
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
 			Object object = dto.get("@id");
-			URI fileURI = baseUri.appendFragment(object.toString()).appendFileExtension(EXTENSION);
+			URI fileURI = baseUri.appendSegment(object.toString()).appendFileExtension(EXTENSION);
 			Resource resource = resourceSet.createResource(fileURI);
 			resource.getContents().add(root);
 			ElementUtil.transformAll(resource, false);

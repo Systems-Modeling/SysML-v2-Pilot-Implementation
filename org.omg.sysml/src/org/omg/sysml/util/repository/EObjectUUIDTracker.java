@@ -24,6 +24,7 @@ package org.omg.sysml.util.repository;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -35,19 +36,34 @@ import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
 
+/**
+ * Class to track UUIDs while fetching from the repository. The tracker can be
+ * pre-populated by locally existing UUID. The standard library UUIDs are tracked separately
+ * and they shadow user UUIDs (non-standard library UUIDs).
+ */
 public class EObjectUUIDTracker {
-	private Map<Object, EObject> uuidToLibraryElement = new HashMap<>();
-	private Map<Object, EObject> uuidToUserElement = new HashMap<>();
+	private Map<UUID, EObject> uuidToLibraryElement = new HashMap<>();
+	private Map<UUID, EObject> uuidToUserElement = new HashMap<>();
 	
+	/**
+	 * Collects UUIDs from the given library resources
+	 * 
+	 * @param libraryResources resources containing standard library models
+	 */
 	public void trackLibraryUUIDs(Collection<Resource> libraryResources) {
 		trackUUIDSFromResources(libraryResources, uuidToLibraryElement);
 	}
 	
+	/**
+	 * Collects UUIDs from non-standard library models.
+	 * 
+	 * @param userResources resources containing user models
+	 */
 	public void trackUserUUIDs(Collection<Resource> userResources) {
 		trackUUIDSFromResources(userResources, uuidToUserElement);
 	}
 	
-	private void trackUUIDSFromResources(Collection<Resource> resources,  Map<Object, EObject> uuidToElementMap) {
+	private void trackUUIDSFromResources(Collection<Resource> resources,  Map<UUID, EObject> uuidToElementMap) {
 		//avoid concurrent modification exception in the traversal by transforming the library
 		for (Resource resource: resources) {
 			if (resource instanceof XtextResource) {
@@ -65,19 +81,42 @@ public class EObjectUUIDTracker {
 		});
 	}
 	
+	/**
+	 * Checks if the tracker contains an index for the library
+	 * 
+	 * @return true if the library has been tracked
+	 */
 	public boolean isLibraryTracked() {
 		return !uuidToLibraryElement.isEmpty();
 	}
 	
-	public void trackUserElement(Object uuid, EObject element) {
+	/**
+	 * Used to track a user element by its UUID
+	 *
+	 * @param uuid UUID to track
+	 * @param element element identified by the UUID
+	 */
+	public void trackUserElement(UUID uuid, EObject element) {
 		uuidToUserElement.put(uuid, element);
 	}
 	
-	public EObject createIfMissingAndTrack(Object uuid, Function<? super Object, ? extends EObject> compute) {
+	/**
+	 * Returns the element if it has been tracked by its UUID
+	 * otherwise creates the element using the provided compute and tracks it.
+	 * 
+	 * @param uuid UUID of the element
+	 * @param compute Function to compute the Element in case it's not tracked
+	 */
+	public EObject createIfMissingAndTrack(UUID uuid, Function<? super UUID, ? extends EObject> compute) {
 		return uuidToUserElement.computeIfAbsent(uuid, compute);
 	}
 	
-	public EObject get(Object uuid) {
+	/**
+	 * Returns the element identified by a UUID. Library UUIDs are checked first.
+	 * 
+	 * @return element identified by the provided UUID or null if UUID is not tracked
+	 */
+	public EObject get(UUID uuid) {
 		if (uuidToLibraryElement.containsKey(uuid)) {
 			return uuidToLibraryElement.get(uuid);
 		} else {
@@ -85,10 +124,18 @@ public class EObjectUUIDTracker {
 		}
 	}
 
-	public void forEachTrackedUserElement(BiConsumer<? super Object, ? super EObject> consumer) {
+	/**
+	 * Iterates user elements passing them to the provided consumer
+	 * 
+	 * @param consumer logic to execute on each element
+	 */
+	public void forEachTrackedUserElement(BiConsumer<? super UUID, ? super EObject> consumer) {
 		uuidToUserElement.forEach(consumer);
 	}
 	
+	/**
+	 * Removes all user element from the tracker
+	 */
 	public void clearTrackedUserElements() {
 		uuidToUserElement.clear();
 	}

@@ -48,6 +48,9 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
+/**
+ * Java representation of a model repository that implements the standard API
+ */
 public class ProjectRepository {
 	private final String repositoryURL;
 	
@@ -60,9 +63,9 @@ public class ProjectRepository {
 	
 	private final PagerInterceptor pager;
 	
-	private final Map<Object, Element> projectElements = new HashMap<>();
-	private List<Element> projectRoots = new LinkedList<>();
-	
+	/**
+	 * @param repositoryURL base URL of the model repository
+	 */
 	public ProjectRepository(String repositoryURL) {
 		this.repositoryURL = repositoryURL;
 		
@@ -82,7 +85,11 @@ public class ProjectRepository {
 		return repositoryURL;
 	}
 	
-	//this may lead to concurrency problems, do not use asynchronous calls
+
+	/**
+	 * Interceptor to extract the next cursor for paging.<br>
+	 * <b>NOTE:</b> Use synchronous calls when paging is needed. 
+	 */
 	private class PagerInterceptor implements Interceptor {
 		
 		private String nextCursor = null;
@@ -103,19 +110,33 @@ public class ProjectRepository {
 			return response;
 		}
 		
+		/**
+		 * Unsets the cursor
+		 */
 		public void reset() {
 			nextCursor = null;
 		}
 		
+		/**
+		 * @return returns the cursor provided by the last API call or null if there were no cursor
+		 */
 		public String next() {
 			return nextCursor;
 		}
 		
+		/**
+		 * @return true if the last API call returned with a cursor
+		 */
 		public boolean hasNext() {
 			return nextCursor != null;
 		}
 	}
 	
+	/**
+	 * List of all project saved in the model repository
+	 * 
+	 * @return projects from the repository
+	 */
 	public List<RepositoryProject> getProjects(){
 		try {
 			List<Project> projects = projectApi.getProjects(null, null, null);
@@ -125,10 +146,47 @@ public class ProjectRepository {
 		}
 	}
 	
+	/**
+	 * Returns a {@link RepositoryProject} with the given UUID.
+	 * The project is not loaded, but it exists in the model repository unless null is returned.
+	 * 
+	 * Use {@link RepositoryProject#loadRemote()} to load the project.
+	 * 
+	 * @param projectId UUID of the project as String
+	 * @return wrapper object for the project or null if the no project with the UUID can be found
+	 */
 	public RepositoryProject getProjectById(String projectId) {
-		return new RepositoryProject(UUID.fromString(projectId));
+		UUID projectUUID = UUID.fromString(projectId);
+		return getPRojectById(projectUUID);
 	}
 	
+	/**
+	 * Returns a {@link RepositoryProject} with the given UUID.
+	 * The project is not loaded, but it exists in the model repository unless null is returned.
+	 * 
+	 * Use {@link RepositoryProject#loadRemote()} to load the project.
+	 * 
+	 * @param projectUUID UUID of the project
+	 * @return wrapper object for the project or null if the no project with the UUID can be found
+	 */
+	public RepositoryProject getPRojectById(UUID projectUUID) {
+		try {
+			Project projectById = projectApi.getProjectById(projectUUID);
+			return projectById == null? null: new RepositoryProject(projectUUID, projectById.getName());
+		} catch (ApiException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns a {@link RepositoryProject} with the given UUID.
+	 * The project is not loaded, but it exists in the model repository unless null is returned.
+	 * 
+	 * Use {@link RepositoryProject#loadRemote()} to load the project.
+	 * 
+	 * @param projectName name of the project
+	 * @return wrapper object for the project or null if the no project with such name can be found
+	 */
 	public RepositoryProject getProjectByName(String projectName) {
 		try {
 			List<Project> projects = projectApi.getProjects(null, null, null);
@@ -139,24 +197,48 @@ public class ProjectRepository {
 		}
 	}
 	
+	/**
+	 * Java wrapper class for projects in the repository.
+	 */
 	public class RepositoryProject {
 		
 		private final UUID projectUUID;
 		private String projectName;
 		private boolean isLoaded = false;
 		
+		private final Map<UUID, Element> projectElements = new HashMap<>();
+		private List<Element> projectRoots = new LinkedList<>();
+		
+		/**
+		 * @param projectId UUID of the project
+		 */
 		private RepositoryProject(UUID projectId) {
 			this.projectUUID = projectId;
 		}
 		
+		/**
+		 * @param projectId UUID of the project
+		 * @param projectName name of the project
+		 */
 		private RepositoryProject(UUID projectId, String projectName) {
 			this(projectId);
 			this.projectName = projectName;
 		}
 		
+		/**
+		 * Downloads project contents from the repository. The the downloaded content is the model on the projects default branche's head commit.
+		 * 
+		 * @return true if the project download is successful
+		 */
 		public boolean loadRemote() {
 			try {
 				Project project = projectApi.getProjectById(projectUUID);
+				
+				if (project == null) {
+					return false;
+				}
+				
+				this.projectName = project.getName();
 				
 				ProjectDefaultBranch defaultBranch = project.getDefaultBranch();
 				UUID defaultBranchId = defaultBranch.getAtId();
@@ -168,10 +250,16 @@ public class ProjectRepository {
 				
 				do {
 					List<Element> elements = elementApi.getElementsByProjectCommit(projectUUID, headCommit, pager.next(), null, null);
-					elements.forEach(el -> projectElements.put(el.get("@id"), el));
+					elements.forEach(el -> projectElements.put(UUID.fromString(el.get("@id").toString()), el));
 				} while (pager.hasNext());
 				
-				projectRoots = elementApi.getRootsByProjectCommit(projectUUID, headCommit, null, null, null);
+				pager.reset();
+				
+				do {
+					List<Element> roots = elementApi.getRootsByProjectCommit(projectUUID, headCommit, pager.next(), null, null);
+					projectRoots.addAll(roots);
+				} while (pager.hasNext());
+				
 				isLoaded = true;
 			} catch (ApiException e) {
 				isLoaded = false;
@@ -180,6 +268,9 @@ public class ProjectRepository {
 			return isLoaded;
 		}
 		
+		/**
+		 * @return name of the project or null if the project doesn't exist in the repository
+		 */
 		public String getProjectName() {
 			if (projectName == null) {
 				try {
@@ -192,19 +283,40 @@ public class ProjectRepository {
 			return projectName;
 		}
 		
+		/**
+		 * UUID of the project
+		 */
 		public UUID getProjectId() {
 			return projectUUID;
 		}
 		
+		/**
+		 * Project roots loaded from the repository project. Call {@link RepositoryProject#loadRemote()} first.
+		 * <br>
+		 * <b>NOTE</b>: these are all the elements that are not contained by any other element.
+		 * This means that unresolved proxies show-up as project roots as well as they are not containted by the root Namespaces.
+		 * 
+		 * @return project roots determined by the repository
+		 */
 		public List<Element> getProjectRoots() {
 			return projectRoots;
 		}
 		
-		public Map<Object, Element> getElements() {
+		/**
+		 * All the elements loaded from the repository project. Call {@link RepositoryProject#loadRemote()} first.
+		 * 
+		 * @return Elements and their UUID from the model repository as a map keyed with UUIDs
+		 */
+		public Map<UUID, Element> getElements() {
 			return projectElements;
 		}
 		
-		public Element getElement(Object uuid) {
+		/**
+		 * Query an element with a given UUID
+		 * @param uuid to search for
+		 * @return element with matching UUID or null if UUID is not found 
+		 */
+		public Element getElement(UUID uuid) {
 			return projectElements.get(uuid);
 		}
 	}

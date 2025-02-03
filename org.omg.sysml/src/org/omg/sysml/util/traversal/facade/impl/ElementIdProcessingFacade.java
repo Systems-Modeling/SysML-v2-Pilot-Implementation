@@ -22,27 +22,31 @@
 package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
+/**
+ * Utility to collect UUIDs from models.
+ */
 public class ElementIdProcessingFacade implements ElementProcessingFacade {
 	
-	private final Map<Object, EObject> uuidToEObject;
+	private final Map<UUID, EObject> uuidToEObject;
 	
-	public ElementIdProcessingFacade(Map<Object, EObject> uuidToEObject) {
+	public ElementIdProcessingFacade(Map<UUID, EObject> uuidToEObject) {
 		this.uuidToEObject = uuidToEObject;
 	}
 	
 	@Override
 	public String process(Element element) {
 		String elementId = element.getElementId();
-		uuidToEObject.put(elementId, element);
+		uuidToEObject.put(UUID.fromString(elementId), element);
 		return elementId;
 	}
 	
-	public Map<Object, EObject> getUUIDToElementMap(){
+	public Map<UUID, EObject> getUUIDToElementMap(){
 		return uuidToEObject;
 	}
 }

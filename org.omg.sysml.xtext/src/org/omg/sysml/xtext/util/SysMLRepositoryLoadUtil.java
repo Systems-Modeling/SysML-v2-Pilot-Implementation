@@ -34,7 +34,6 @@ import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.ProjectDelta;
@@ -99,24 +98,33 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	}
 	
 	public void load() {
-		System.out.println("Reading library");
+		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
+		RepositoryProject repositoryProject = projectRepository.getProjectByName(projectName);
+		
+		if (repositoryProject == null) {
+			System.err.println("Project does not exist.");
+			return;
+		}
+		
+		System.out.println("Reading library...");
 		
 		readAll(localLibraryPath, false);
 		
 		//collect ids from library
+		System.out.println("Tracking library UUIDs...");
 		EObjectUUIDTracker tracker = new EObjectUUIDTracker();
 		tracker.trackLibraryUUIDs(getLibraryResources());
 		
-		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
-		//TODO change to name
-		RepositoryProject repositoryProject = projectRepository.getProjectById(projectName);
-		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
-		ProjectDelta delta = repositoryFetcher.fetch();
 		
+		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
+		System.out.println("Fetching project...");
+		ProjectDelta delta = repositoryFetcher.fetch();
 		ResourceSet resourceSet = getResourceSet();
-
+		
 		try {
-			delta.save(resourceSet, URI.createFileURI(projectName));
+			System.out.println("Saving resources...");
+			delta.save(resourceSet, URI.createFileURI(targetLocation));
+			System.out.println("Done.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

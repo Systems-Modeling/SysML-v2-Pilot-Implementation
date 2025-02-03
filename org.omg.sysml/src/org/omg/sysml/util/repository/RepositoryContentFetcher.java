@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -46,21 +46,39 @@ import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 
-
+/**
+ * Class responsible for downloading project contents from the repository
+ * and transforming the otherwise flat data structure to a hierarchical one.
+ * UUID based cross-references are also resolved during this process using
+ * the {@link EObjectUUIDTracker} which serves as an index. The tracker can be
+ * pre-populated with local objects enabling resolution between local and the repository models. 
+ */
 public class RepositoryContentFetcher {
 	
 	private final EObjectUUIDTracker tracker;
 	private final RepositoryProject repositoryProject;
 	
-	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership", "memberName", "memberShortName");
+	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
 	
+	/**
+	 * @param repositoryProject as the input
+	 * @param tracker index based on element UUIDs
+	 */
 	public RepositoryContentFetcher(RepositoryProject repositoryProject, EObjectUUIDTracker tracker) {
 		this.repositoryProject = repositoryProject;
 		this.tracker = tracker;
 	}
 	
+	/**
+	 * Initiates the download of the repository project. Then transforms the project contents
+	 * from a flat data structure to a hierarchical one while also resolving UUID based cross-references.
+	 * 
+	 * @return project diff. (currently just a container for the entire model downloaded from the project)
+	 */
 	public ProjectDelta fetch() {
-		repositoryProject.loadRemote();
+		boolean success = repositoryProject.loadRemote();
+		
+		if (!success) throw new RuntimeException("Couldn't download project: " + repositoryProject.getProjectName());
 		
 		Map<EObject, Element> rootNamespaces = new HashMap<>(); 
 		
@@ -97,7 +115,7 @@ public class RepositoryContentFetcher {
 		
 		assert typeClass != null;
 		
-		EObject langElement = tracker.createIfMissingAndTrack(uuid, id -> SysMLFactory.eINSTANCE.create(typeClass));
+		EObject langElement = tracker.createIfMissingAndTrack(UUID.fromString(uuid.toString()), id -> SysMLFactory.eINSTANCE.create(typeClass));
 		
 		if (canTransformInternals(langElement)) {
 			transformContainmentReferences(langElement, dto);
@@ -173,9 +191,12 @@ public class RepositoryContentFetcher {
 	
 	private static Collection<EStructuralFeature> getStructuralFeatuers(EObject langElement){
 		EClass eClass = langElement.eClass();
-		EList<EStructuralFeature> ownedFeatures = langElement.eClass().getEStructuralFeatures();
-		return langElement.eClass().getEAllStructuralFeatures().stream().filter(f -> f.getEContainingClass() == eClass
-				|| ownedFeatures.stream().noneMatch(of -> Objects.equals(of.getName(), f.getName()))).collect(Collectors.toList());
+		
+		Set<EObject> allRedefined = eClass.getEAllStructuralFeatures().stream()
+				.map(f -> f.getEAnnotation("redefines")).filter(Objects::nonNull)
+				.flatMap(a -> a.getReferences().stream()).collect(Collectors.toSet());
+		
+		return eClass.getEAllStructuralFeatures().stream().filter(f -> !allRedefined.contains(f)).collect(Collectors.toList());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -209,8 +230,8 @@ public class RepositoryContentFetcher {
 	private EObject resolveReference(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
-			Element referencedElement = repositoryProject.getElement(refUUID);
-			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(refUUID);
+			Element referencedElement = repositoryProject.getElement(UUID.fromString(refUUID.toString()));
+			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(UUID.fromString(refUUID.toString()));
 			return referencedLangElement;
 		}
 		return null;		

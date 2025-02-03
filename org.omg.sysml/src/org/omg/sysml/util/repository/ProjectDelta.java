@@ -49,8 +49,6 @@ public class ProjectDelta {
 	}
 	
 	public void save(ResourceSet resourceSet, URI baseUri) throws IOException {
-		
-		
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
 			Object object = dto.get("@id");

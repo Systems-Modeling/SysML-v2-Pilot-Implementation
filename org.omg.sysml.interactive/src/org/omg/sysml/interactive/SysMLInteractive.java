@@ -482,7 +482,7 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Loaded project: " + project.getProjectName();
+		return "Project loaded: " + project.getProjectName() + ", " + project.getProjectId().toString();
 	}
 	
 	protected String download(String name) {

@@ -20,6 +20,7 @@ standard library package Items {
 	private import SequenceFunctions::includes;
 	private import SequenceFunctions::union;
 	private import ControlFunctions::forAll;
+	private import ScalarValues::Boolean;
 	
 	abstract item def Item :> Object {
 		doc
@@ -100,11 +101,12 @@ standard library package Items {
 			 */
 		}
 
-		attribute isSolid = isEmpty(voids) {
+		attribute isSolid: Boolean {
 			doc
 			/*
 			 * An Item is solid if it has no voids.
 			 */
+			attribute :>> self: Boolean = isEmpty((that as Item).voids);
 		}
 		
 		abstract item subitems: Item[0..*] :> items, subobjects {

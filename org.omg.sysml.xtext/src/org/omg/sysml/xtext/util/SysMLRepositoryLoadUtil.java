@@ -24,7 +24,6 @@ package org.omg.sysml.xtext.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -33,17 +32,15 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.ProjectRepository;
+import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 import org.omg.sysml.util.repository.RepositoryContentFetcher;
-import org.omg.sysml.util.repository.RepositoryProject;
-import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
 import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -106,24 +103,14 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		
 		readAll(localLibraryPath, false);
 		
-		//avoid concurrent modification exception in the traversal by transforming the library
-		ElementUtil.transformAll(getResourceSet(), false);
-		
-		
 		//collect ids from library
-		ElementIdProcessingFacade idProcessingFacade = new ElementIdProcessingFacade();
-		var traversal = new Traversal(idProcessingFacade, true);
+		EObjectUUIDTracker tracker = new EObjectUUIDTracker();
+		tracker.trackLibraryUUIDs(getLibraryResources());
 		
-		getLibraryResources().forEach(res -> {
-			if (!res.getContents().isEmpty()) {
-				traversal.visit((Element) res.getContents().get(0));
-			}
-		});
-		
-		Map<Object, EObject> uuidToElementMap = idProcessingFacade.getUUIDToElementMap();
-		
-		RepositoryProject repositoryProject = new RepositoryProject(repositoryURL, projectName);
-		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, uuidToElementMap);
+		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
+		//TODO change to name
+		RepositoryProject repositoryProject = projectRepository.getProjectById(projectName);
+		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
 		ProjectDelta delta = repositoryFetcher.fetch();
 		
 		ResourceSet resourceSet = getResourceSet();

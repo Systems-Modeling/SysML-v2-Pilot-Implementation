@@ -25,7 +25,6 @@ package org.omg.sysml.xtext.ui.handlers;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
@@ -44,20 +43,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.ProjectRepository;
+import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 import org.omg.sysml.util.repository.RepositoryContentFetcher;
-import org.omg.sysml.util.repository.RepositoryProject;
-import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
 
 import com.google.inject.Inject;
 
@@ -121,26 +116,12 @@ public class PullRepositoryProject extends AbstractHandler {
 				ResourceSet resourceSet = resourceSetProvider.get(project);
 				loadResources(resourceSet, libraryProject.get(), libraryResources);
 				
-				resourceSet.getResources().forEach(res -> {
-					if (res instanceof XtextResource) {
-						ElementUtil.transformAll(res, false);
-					}
-				});
+				EObjectUUIDTracker tracker = new EObjectUUIDTracker();
+				tracker.trackLibraryUUIDs(resourceSet.getResources());
 				
-				//collect ids from library
-				ElementIdProcessingFacade idProcessingFacade = new ElementIdProcessingFacade();
-				var traversal = new Traversal(idProcessingFacade, true);
-				
-				resourceSet.getResources().forEach(res -> {
-					if (!res.getContents().isEmpty()) {
-						traversal.visit((Element) res.getContents().get(0));
-					}
-				});
-				
-				Map<Object, EObject> uuidToElementMap = idProcessingFacade.getUUIDToElementMap();
-				
-				RepositoryProject repositoryProject = new RepositoryProject(repositoryUrl, projectName);
-				RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, uuidToElementMap);
+				ProjectRepository projectRepository = new ProjectRepository(repositoryUrl);
+				RepositoryProject repositoryProject = projectRepository.getProjectById(projectName);
+				RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
 				ProjectDelta delta = repositoryFetcher.fetch();
 				delta.save(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}

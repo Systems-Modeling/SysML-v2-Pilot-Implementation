@@ -21,7 +21,6 @@
 
 package org.omg.sysml.util.traversal.facade.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,16 +29,20 @@ import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
 public class ElementIdProcessingFacade implements ElementProcessingFacade {
 	
-	private final Map<Object, EObject> uuidToLang = new HashMap<>(); 
+	private final Map<Object, EObject> uuidToEObject;
+	
+	public ElementIdProcessingFacade(Map<Object, EObject> uuidToEObject) {
+		this.uuidToEObject = uuidToEObject;
+	}
 	
 	@Override
 	public String process(Element element) {
 		String elementId = element.getElementId();
-		uuidToLang.put(elementId, element);
+		uuidToEObject.put(elementId, element);
 		return elementId;
 	}
 	
 	public Map<Object, EObject> getUUIDToElementMap(){
-		return uuidToLang;
+		return uuidToEObject;
 	}
 }

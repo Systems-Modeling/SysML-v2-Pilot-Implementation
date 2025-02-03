@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 
 public class ProjectDelta {
 	private static final String EXTENSION = "sysmlx";

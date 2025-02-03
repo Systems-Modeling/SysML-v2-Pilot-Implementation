@@ -39,23 +39,24 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.LiteralInfinity;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MembershipImport;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 
 
 public class RepositoryContentFetcher {
 	
-	private final Map<Object, EObject> uuidToLangElement;
+	private final EObjectUUIDTracker tracker;
 	private final RepositoryProject repositoryProject;
 	
-	public RepositoryContentFetcher(RepositoryProject repositoryProject, Map<Object, EObject> uuidToLangElement) {
+	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership", "memberName", "memberShortName");
+	
+	public RepositoryContentFetcher(RepositoryProject repositoryProject, EObjectUUIDTracker tracker) {
 		this.repositoryProject = repositoryProject;
-		this.uuidToLangElement = uuidToLangElement;
+		this.tracker = tracker;
 	}
 	
 	public ProjectDelta fetch() {
@@ -66,29 +67,21 @@ public class RepositoryContentFetcher {
 		//traverse containment
 		for (var projectRoot: repositoryProject.getProjectRoots()) {
 			if (!Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
-				Object rootId = projectRoot.get("@id");
 				EObject rootNamespace = transform(projectRoot);
-				uuidToLangElement.put(rootId, rootNamespace);
 				rootNamespaces.put(rootNamespace, projectRoot);
 			}
 		}
 		
-		//traverse cross-references
-		uuidToLangElement.forEach((id, langElement) -> {
+		//traverse cross-references, set attributes
+		tracker.forEachTrackedUserElement((id, langElement) -> {
 			Element element = repositoryProject.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
 				tranformCrossreferences(langElement, element);
 				tranformAttributes(langElement, element);
-				addImportedMembers(langElement, element);
+				//set importedMemberships for MembershipImports
+				setImportedMembership(langElement, element);
 			}
 		});
-		
-//		uuidToLangElement.forEach((id, langElement) -> {
-//			Element element = repositoryProject.getElement(id);
-//			if (element != null && isNotStandardLibraryElement(langElement)) {
-//				tranformAttributes(langElement, element);
-//			}
-//		});
 		
 		return new ProjectDelta(repositoryProject, rootNamespaces);
 	}
@@ -104,17 +97,20 @@ public class RepositoryContentFetcher {
 		
 		assert typeClass != null;
 		
-		EObject langElement = uuidToLangElement.computeIfAbsent(uuid, id -> SysMLFactory.eINSTANCE.create(typeClass));
+		EObject langElement = tracker.createIfMissingAndTrack(uuid, id -> SysMLFactory.eINSTANCE.create(typeClass));
 		
-		if (canTransformInternaps(langElement)) {
+		if (canTransformInternals(langElement)) {
 			transformContainmentReferences(langElement, dto);
 		}
 		
 		return langElement;
 	}
 	
-	private void addImportedMembers(EObject langElement, Element dto) {
+	private void setImportedMembership(EObject langElement, Element dto) {
 		if (langElement instanceof MembershipImport membershipImport) {
+			//use imported elements derived field instead of the importedMember feature reference.
+			//this is a workaround to address library element proxies where UUIDs of referenced Memberships aren't stable,
+			//so the importedElement UUID is used instead.
 			Object importedMembers = dto.get("importedElement");
 			EObject resolvedReference = resolveReference(importedMembers, false);
 			if (resolvedReference != null) {
@@ -123,10 +119,8 @@ public class RepositoryContentFetcher {
 		}
 	}
 
-	private boolean canTransformInternaps(EObject langElement) {
-		return isNotStandardLibraryElement(langElement)
-				//The grammar doesn't allow LilteralInfinity to own relations. The transformation violates this by adding return parameter.
-				&& !(langElement instanceof LiteralInfinity);
+	private boolean canTransformInternals(EObject langElement) {
+		return isNotStandardLibraryElement(langElement);
 	}
 	
 	private EClass getTypeClass(Object typeField) {
@@ -184,8 +178,6 @@ public class RepositoryContentFetcher {
 				|| ownedFeatures.stream().noneMatch(of -> Objects.equals(of.getName(), f.getName()))).collect(Collectors.toList());
 	}
 	
-	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
-
 	@SuppressWarnings("unchecked")
 	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
 		if (!disabledStructuralFeatures.contains(feature.getName())) {
@@ -209,7 +201,6 @@ public class RepositoryContentFetcher {
 				}
 			}
 			catch (Exception e) {
-//				e.printStackTrace();
 				System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
 			}
 		}
@@ -219,7 +210,7 @@ public class RepositoryContentFetcher {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
 			Element referencedElement = repositoryProject.getElement(refUUID);
-			EObject referencedLangElement = isContainment? transform(referencedElement) : uuidToLangElement.get(refUUID);
+			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(refUUID);
 			return referencedLangElement;
 		}
 		return null;		

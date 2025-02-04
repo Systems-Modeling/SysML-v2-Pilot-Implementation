@@ -60,6 +60,10 @@ public class PullRepositoryProject extends AbstractHandler {
 
 	private static final Set<String> FILE_EXTENSIONS = Set.of("sysml", "kerml", "sysmlx", "kermlx");
 	
+	public static final String REPOSITORY_CONFIGURATION_FILE = ".settings/org.omg.sysml.remote.properties";
+	private static final String REPOSITORY_PROJECT_ID_PROPERTY = "remote.projectId";
+	private static final String REPOSITORY_BASE_URL_PROPERTY = "base.url";
+	
 	@Inject
 	private IResourceSetProvider resourceSetProvider;
 	
@@ -102,12 +106,12 @@ public class PullRepositoryProject extends AbstractHandler {
 			
 			if (libraryProject.isPresent()) {
 				Properties properties = new Properties();
-				IFile repositoryPropertiesFile = project.getFile(".settings/org.omg.sysml.remote.properties");
+				IFile repositoryPropertiesFile = project.getFile(REPOSITORY_CONFIGURATION_FILE);
 				
 				properties.load(repositoryPropertiesFile.getContents());
 				
-				String repositoryUrl = properties.getProperty("base.url");
-				String projectName = properties.getProperty("remote.projectId");
+				String repositoryUrl = properties.getProperty(REPOSITORY_BASE_URL_PROPERTY);
+				String projectName = properties.getProperty(REPOSITORY_PROJECT_ID_PROPERTY);
 				String targetPath = project.getFullPath().toString();
 				
 				Set<IFile> libraryResources = new HashSet<>();

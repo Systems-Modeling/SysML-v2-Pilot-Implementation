@@ -23,7 +23,8 @@ Require-Bundle: org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.expressions.xtext.ide,
  org.omg.kerml.expressions.xtext.ui,
  com.google.gson,
- org.eclipse.emf.ecore.editor
+ org.eclipse.emf.ecore.editor,
+ org.eclipse.core.expressions
 Import-Package: org.apache.log4j
 Export-Package: org.omg.sysml.xtext.ui,
  org.omg.sysml.xtext.ui.internal

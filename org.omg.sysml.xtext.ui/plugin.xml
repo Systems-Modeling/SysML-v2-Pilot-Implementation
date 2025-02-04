@@ -358,6 +358,15 @@
      <menu
            label="SysMLv2">
         <command
+              commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
+              label="Generate Library Index"
+              style="push">
+        </command>
+        <separator
+              name="org.omg.sysml.xtext.ui.index.separator"
+              visible="true">
+        </separator>
+        <command
               commandId="org.omg.sysml.xtext.ui.PullRepositoryProject"
               label="Pull Model from API"
               style="push">
@@ -372,11 +381,6 @@
                  </adapt>
               </iterate>
            </visibleWhen>
-        </command>
-        <command
-              commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
-              label="Generate Library Index"
-              style="push">
         </command>
         <visibleWhen
               checkEnabled="false">

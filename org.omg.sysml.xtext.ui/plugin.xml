@@ -387,6 +387,9 @@
               <iterate>
                  <adapt
                        type="org.eclipse.core.resources.IProject">
+                    <test
+                          property="org.eclipse.core.resources.open">
+                    </test>
                  </adapt>
               </iterate>
            </and>

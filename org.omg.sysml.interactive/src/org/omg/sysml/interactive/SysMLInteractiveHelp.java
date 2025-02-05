@@ -38,13 +38,13 @@ public class SysMLInteractiveHelp {
 	private static final String GENERAL_HELP_STRING =
 			  "The following SysML v2 magic commands are available.\n"
 			+ "For help on a specific command, use \"%help <COMMAND>\" or \"%<cmd> -h\".\n\n"
-			+ "%download\tDownloads a publication from the repository and adds them to the Xtext index\n"
 			+ "%eval\t\tEvaluate a given expression.\n"
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
+			+ "%load\tLoads a model from the repository and adds it to the Xtext index\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
-			+ "%publications\tList publications in the repository\n"
+			+ "%projects\tList projects in the repository\n"
 			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
 			+ "%view\t\tRender the view specified by the named view usage\n"
 			+ "%viz\t\tVisualize the name model elements\n"
@@ -119,13 +119,14 @@ public class SysMLInteractiveHelp {
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
 	
-	private static final String DOWNLOAD_HELP_STRING =
-			  "Usage: %download <NAME>\n\n"
-			+ "Downloads previously published models from the repository. <NAME> must be the full name of the publication.\n"
-			+ "Use %publications to view repository contents.\n";
+	private static final String LOAD_HELP_STRING =
+			  "Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [<NAME>]\n\n"
+			+ "Downloads previously published models from the repository. <NAME> must be the full name of the project.\n"
+			+ "Use --id=<PROJECT ID> to load projects by id.\n"		  
+			+ "Use %projects to view repository contents.\n";
 	
-	private static final String PUBLICATIONS_HELP_STRING =
-			  "Usage: %publications\n\n"
+	private static final String PROJECTS_HELP_STRING =
+			  "Usage: %projects\n\n"
 			+ "Returns the name and identifier from the repository for all publications\n";
  
 	public static String getGeneralHelp() {
@@ -164,12 +165,12 @@ public class SysMLInteractiveHelp {
     	return EXPORT_HELP_STRING;
     }
     
-    public static String getPublicationsHelp() {
-    	return PUBLICATIONS_HELP_STRING;
+    public static String getProjectsHelp() {
+    	return PROJECTS_HELP_STRING;
     }
     
-    public static String getDownloadHelp() {
-    	return DOWNLOAD_HELP_STRING;
+    public static String getLoadHelp() {
+    	return LOAD_HELP_STRING;
     }
     
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
@@ -184,8 +185,8 @@ public class SysMLInteractiveHelp {
     	map.put("%viz", VIZ_HELP_STRING);    	
     	map.put("%view", VIEW_HELP_STRING);    	
     	map.put("%export", EXPORT_HELP_STRING);
-    	map.put("%download", DOWNLOAD_HELP_STRING);
-    	map.put("%publications", PUBLICATIONS_HELP_STRING);
+    	map.put("%load", LOAD_HELP_STRING);
+    	map.put("%projects", PROJECTS_HELP_STRING);
     	
     	return map;
     }

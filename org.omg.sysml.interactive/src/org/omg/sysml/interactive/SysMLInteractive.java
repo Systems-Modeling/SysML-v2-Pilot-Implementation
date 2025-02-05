@@ -35,6 +35,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -433,21 +434,42 @@ public class SysMLInteractive extends SysMLUtil {
 				publish(name, Collections.emptyList());
 	}
 	
-	public String download(String publication, List<String> help) {
-		if (Strings.isNullOrEmpty(publication)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getDownloadHelp();
+	public String loadByName(String projectName, List<String> help) {
+		if (Strings.isNullOrEmpty(projectName)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
 		}
 		
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
 		
 		System.out.println("Locating model");
-		RepositoryProject project = repository.getProjectByName(publication);
+		RepositoryProject repositoryProject = repository.getProjectByName(projectName);
 		
-		if (project == null) {
+		if (repositoryProject == null) {
 			return "ERROR:Publication doesn't exist.";
 		}
 		
-		boolean success = project.loadRemote();
+		return load(repositoryProject);
+	}
+	
+	public String loadById(String projectId, List<String> help) {
+		if (Strings.isNullOrEmpty(projectId)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+		}
+		
+		ProjectRepository repository = new ProjectRepository(apiBasePath);
+		
+		System.out.println("Locating model");
+		RepositoryProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
+		
+		if (repositoryProject == null) {
+			return "ERROR:Publication doesn't exist.";
+		}
+		
+		return load(repositoryProject);
+	}
+
+	private String load(RepositoryProject repositoryProject) {
+		boolean success = repositoryProject.loadRemote();
 		
 		if (!success) {
 			return "ERROR:Could not download the publication.";
@@ -463,7 +485,7 @@ public class SysMLInteractive extends SysMLUtil {
 		//UUIDS coming from resources that were added later in time will shadow previous ones
 		tracker.trackUserUUIDs(inputResources);
 		
-		RepositoryContentFetcher fetcher = new RepositoryContentFetcher(project, tracker);
+		RepositoryContentFetcher fetcher = new RepositoryContentFetcher(repositoryProject, tracker);
 		
 		System.out.println("Downloading model...");
 		ProjectDelta delta = fetcher.fetch();
@@ -482,18 +504,18 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Project loaded: " + project.getProjectName() + ", " + project.getProjectId().toString();
+		return "Project loaded: " + repositoryProject.getProjectName() + ", " + repositoryProject.getProjectId().toString();
 	}
 	
 	protected String download(String name) {
 		return "-h".equals(name)?
-				download(null, Collections.singletonList("true")):
-				download(name, Collections.emptyList());
+				loadByName(null, Collections.singletonList("true")):
+				loadByName(name, Collections.emptyList());
 	}
 	
 	public String listPublications(List<String> help) {
 		if (help != null && !help.isEmpty()) {
-			return SysMLInteractiveHelp.getPublicationsHelp();
+			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
 		List<RepositoryProject> repositoryProjects = projectRepository.getProjects();

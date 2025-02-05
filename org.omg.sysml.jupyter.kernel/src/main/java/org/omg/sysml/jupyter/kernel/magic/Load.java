@@ -30,18 +30,27 @@ import org.omg.sysml.jupyter.kernel.ISysML;
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
 
-public class Download {
+public class Load {
     private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
+    		.keyword("id")
+    		.keyword("name")
     		.optional("name")
             .flag("help", 'h', "true")
     		.build();
 
 	@LineMagic
-	public static String download(List<String> args) {
+	public static String load(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> help = vals.get("help");
         List<String> name = vals.get("name");
-        String publication = name.isEmpty()? null: name.get(0);
-		return ISysML.getKernelInstance().getInteractive().download(publication, help);
+        List<String> id = vals.get("id");
+        
+        if (!name.isEmpty()) {
+        	return ISysML.getKernelInstance().getInteractive().loadByName(name.get(0), help);
+        } else if (!id.isEmpty()) {
+        	return ISysML.getKernelInstance().getInteractive().loadById(id.get(0), help);
+        } else {
+        	return ISysML.getKernelInstance().getInteractive().help("%load");
+        }
 	}
 }

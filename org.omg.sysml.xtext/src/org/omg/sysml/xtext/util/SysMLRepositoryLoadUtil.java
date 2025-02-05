@@ -29,6 +29,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.common.util.URI;
@@ -62,34 +63,42 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: http://localhost:9000");
 		repositoryOption.setRequired(false);
 		
-		var projectOption = new Option("p", "project", true, "Project name in the repository.");
+		OptionGroup projectOption = new OptionGroup();
 		projectOption.setRequired(true);
+		var projectNameOption = new Option("n", "name", true, "Project's name in the repository.");
+		var projectIdOption = new Option("id", "id", true, "Project's id in the repository.");
+		
+		projectOption.addOption(projectNameOption);
+		projectOption.addOption(projectIdOption);
 		
 		var targetOption = new Option("t", "target", true, "Location where the project is loaded");
 		targetOption.setRequired(true);
 		
-		Options options = new Options().addOption(repositoryOption).addOption(projectOption).addOption(targetOption).addOption(localLibrary);
+		Options options = new Options().addOption(repositoryOption).addOptionGroup(projectOption).addOption(targetOption).addOption(localLibrary);
+		
 		
 		CommandLineParser parser = new DefaultParser();
+		
 		CommandLine cli = parser.parse(options, args);
 		
 		return new SysMLRepositoryLoadUtil(
 					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
-					cli.getOptionValue(projectOption),
+					cli.hasOption(projectNameOption)? cli.getOptionValue(projectNameOption) : cli.getOptionValue(projectIdOption),
 					cli.getOptionValue(targetOption),
 					new File(cli.getOptionValue(localLibrary))
-				);
+				).setIsReferencedById(cli.hasOption(projectIdOption));
 	}
 	
 	private final String repositoryURL;
-	private final String projectName;
+	private final String project;
 	private final String targetLocation;
 	private final File localLibraryPath;
+	private boolean isReferencedById;
 	
-	public SysMLRepositoryLoadUtil(String repositoryURL, String projectName, String targetLocation, File localLibraryPath) {
+	public SysMLRepositoryLoadUtil(String repositoryURL, String project, String targetLocation, File localLibraryPath) {
 		super();
 		this.repositoryURL = repositoryURL;
-		this.projectName = projectName;
+		this.project = project;
 		this.targetLocation = targetLocation;
 		this.localLibraryPath = localLibraryPath;
 		
@@ -99,7 +108,8 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	
 	public void load() {
 		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
-		RepositoryProject repositoryProject = projectRepository.getProjectByName(projectName);
+		RepositoryProject repositoryProject =  isReferencedById? projectRepository.getProjectById(project):
+			projectRepository.getProjectByName(project);
 		
 		if (repositoryProject == null) {
 			System.err.println("Project does not exist.");
@@ -128,5 +138,10 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public SysMLRepositoryLoadUtil setIsReferencedById(boolean referencedById) {
+		this.isReferencedById = referencedById;
+		return this;
 	}
 }

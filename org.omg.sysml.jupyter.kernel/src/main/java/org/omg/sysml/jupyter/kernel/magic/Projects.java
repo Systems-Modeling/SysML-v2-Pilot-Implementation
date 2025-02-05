@@ -30,12 +30,12 @@ import org.omg.sysml.jupyter.kernel.ISysML;
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
 
-public class Publications {
+public class Projects {
 
 	private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags().flag("help", 'h', "true").build();
 
 	@LineMagic
-	public static String publications(List<String> args) {
+	public static String projects(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> help = vals.get("help");
 		return ISysML.getKernelInstance().getInteractive().listPublications(help);

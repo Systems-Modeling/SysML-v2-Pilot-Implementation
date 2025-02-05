@@ -45,7 +45,9 @@ public class Load {
         List<String> name = vals.get("name");
         List<String> id = vals.get("id");
         
-        if (!name.isEmpty()) {
+        if (!name.isEmpty() && !id.isEmpty()) {
+        	return "Name and id cannot be provided at the same time.";
+        } else if (!name.isEmpty()) {
         	return ISysML.getKernelInstance().getInteractive().loadByName(name.get(0), help);
         } else if (!id.isEmpty()) {
         	return ISysML.getKernelInstance().getInteractive().loadById(id.get(0), help);

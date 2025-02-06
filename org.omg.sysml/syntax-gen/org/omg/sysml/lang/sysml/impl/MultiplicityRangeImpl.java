@@ -24,14 +24,13 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Collection;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -44,9 +43,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityRangeImpl#getBound <em>Bound</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityRangeImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityRangeImpl#getUpperBound <em>Upper Bound</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MultiplicityRangeImpl#getBound <em>Bound</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,6 +70,16 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate UPPER_BOUND__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MULTIPLICITY_RANGE__UPPER_BOUND).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getBound() <em>Bound</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBound()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate BOUND__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MULTIPLICITY_RANGE__BOUND).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,27 +163,10 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getBound() {
-		return new DerivedUnionEObjectEList<Expression>(Expression.class, this, SysMLPackage.MULTIPLICITY_RANGE__BOUND, BOUND_ESUBSETS);
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getBound() <em>Bound</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBound()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] BOUND_ESUBSETS = new int[] {SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND, SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND};
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBound() {
-		return !getBound().isEmpty();
+		return (EList<Expression>)BOUND__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -187,27 +179,6 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 */
 	protected static final EOperation.Internal.InvocationDelegate HAS_BOUNDS_INT_INT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.MULTIPLICITY_RANGE___HAS_BOUNDS__INT_INT).getInvocationDelegate();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedMember() {
-		@SuppressWarnings("unchecked")
-		EList<Element> bound = (EList<Element>)((EList<?>)getBound());
-		return bound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMember() {
-  		return false;
-	}
-	
 	// Operations
 	
 	/**
@@ -258,14 +229,14 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
-				return getBound();
 			case SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND:
 				if (resolve) return getLowerBound();
 				return basicGetLowerBound();
 			case SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND:
 				if (resolve) return getUpperBound();
 				return basicGetUpperBound();
+			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
+				return getBound();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -275,6 +246,7 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -283,6 +255,10 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 				return;
 			case SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND:
 				setUpperBound((Expression)newValue);
+				return;
+			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
+				getBound().clear();
+				getBound().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -302,6 +278,9 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 			case SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND:
 				setUpperBound((Expression)null);
 				return;
+			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
+				getBound().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -314,14 +293,12 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
-				return isSetBound();
-			case SysMLPackage.MULTIPLICITY_RANGE__OWNED_MEMBER:
-				return isSetOwnedMember();
 			case SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND:
 				return LOWER_BOUND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND:
 				return UPPER_BOUND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
+				return BOUND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

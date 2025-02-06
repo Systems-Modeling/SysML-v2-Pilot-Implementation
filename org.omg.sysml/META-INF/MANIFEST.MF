@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-17
-Bundle-Version: 0.46.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Version: 0.48.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="2.14.0",
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2.common;visibility:=reexport,

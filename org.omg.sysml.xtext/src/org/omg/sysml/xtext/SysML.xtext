@@ -378,7 +378,7 @@ fragment MultiplicityPart returns SysML::Feature :
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
-	Typings | Subsettings | References | Redefinitions
+    Typings | Subsettings | References | Crosses | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
@@ -413,8 +413,12 @@ ReferencesKeyword :
 	'::>' | 'references'
 ;
 
-fragment Redefinitions returns SysML::Feature :
-	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
+fragment Crosses returns SysML::Feature :
+    CrossesKeyword ownedRelationship += OwnedCrossSubsetting
+;
+
+CrossesKeyword :
+	'=>' | 'crosses'
 ;
 
 fragment Redefines returns SysML::Feature :
@@ -441,6 +445,15 @@ OwnedSubsetting returns SysML::Subsetting :
 OwnedReferenceSubsetting returns SysML::ReferenceSubsetting :
 	  referencedFeature = [SysML::Feature|QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
+;
+
+OwnedCrossSubsetting returns SysML::CrossSubsetting :
+      crossedFeature = [SysML::Feature|QualifiedName]
+    | ownedRelatedElement += OwnedFeatureChain
+;
+
+fragment Redefinitions returns SysML::Feature :
+	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
@@ -535,11 +548,10 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 ;
 
 fragment RefPrefix returns SysML::Usage :
-	( direction = FeatureDirection )?
-	( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	( isReadOnly ?= 'readonly' )?
-	( isDerived ?= 'derived' )?
-	( isEnd ?= 'end' )?	
+    ( direction = FeatureDirection )?
+    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+    ( isReadOnly ?= 'readonly' )?
+    ( isDerived ?= 'derived' )?
 ;
 
 fragment BasicUsagePrefix returns SysML::Usage :
@@ -547,12 +559,28 @@ fragment BasicUsagePrefix returns SysML::Usage :
 	( isReference ?= 'ref' )?
 ;
 
+fragment EndUsagePrefix returns SysML::Usage :
+	isEnd ?= 'end' ( ownedRelationship += OwnedCrossFeatureMember )?
+;
+
+fragment UnextendedUsagePrefix returns SysML::Usage :
+    EndUsagePrefix | BasicUsagePrefix
+;
+
 fragment UsageExtensionKeyword returns SysML::Usage :
 	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment UsagePrefix returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword*
+	UnextendedUsagePrefix UsageExtensionKeyword*
+;
+
+OwnedCrossFeatureMember returns SysML::OwningMembership :
+    ownedRelatedElement += OwnedCrossFeature
+;
+
+OwnedCrossFeature returns SysML::ReferenceUsage :
+    BasicUsagePrefix UsageDeclaration
 ;
 
 fragment Usage returns SysML::Usage :
@@ -594,11 +622,13 @@ ReferenceUsageKeyword :
 ;
 
 DefaultReferenceUsage returns SysML::ReferenceUsage :
-	RefPrefix UsageDeclaration ValuePart? UsageBody
+	( isEnd ?= 'end' )? RefPrefix 
+	UsageDeclaration ValuePart? UsageBody
 ;
 
 ReferenceUsage returns SysML::ReferenceUsage :
-	RefPrefix ReferenceUsageKeyword Usage
+	( EndUsagePrefix | RefPrefix) 
+	ReferenceUsageKeyword Usage
 ;
 
 VariantReference returns SysML::ReferenceUsage :
@@ -690,7 +720,7 @@ ExtendedDefinition returns SysML::Definition :
 ;
 
 ExtendedUsage returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword+ Usage
+	UnextendedUsagePrefix UsageExtensionKeyword+ Usage
 ;
 
 /* ATTRIBUTES */
@@ -796,10 +826,12 @@ OccurrenceUsageKeyword :
 ;
 
 fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
-	  BasicUsagePrefix
+	( EndUsagePrefix
+	| BasicUsagePrefix
 	  ( isIndividual ?= 'individual' )?
 	  ( portionKind = PortionKind )?
-	  UsageExtensionKeyword*
+	)
+	UsageExtensionKeyword*
 ;
 
 OccurrenceUsage returns SysML::OccurrenceUsage :
@@ -956,9 +988,17 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::ReferenceUsage :
+	( ownedRelationship += OwnedCrossMultiplicityMember )?
 	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
+;
+
+OwnedCrossMultiplicityMember returns SysML::OwningMembership :
+	ownedRelatedElement += OwnedCrossMultiplicity
+;
+
+OwnedCrossMultiplicity returns SysML::Feature :
+	ownedRelationship += OwnedMultiplicity
 ;
 
 /* Binding Connectors */
@@ -1042,8 +1082,135 @@ EmptySourceEnd returns SysML::ReferenceUsage :
 	{SysML::ReferenceUsage}
 ;
 
-/* FLOW CONNECTIONS */
+/* INTERFACES */
 
+/* Interface Definitions */
+
+InterfaceKeyword :
+	'interface'
+;
+
+InterfaceDefKeyword :
+	InterfaceKeyword 'def'
+;
+
+InterfaceDefinition returns SysML::InterfaceDefinition :
+	OccurrenceDefinitionPrefix InterfaceDefKeyword DefinitionDeclaration InterfaceBody
+;
+
+fragment InterfaceBody returns SysML::Type :
+	';' | '{' InterfaceBodyItem* '}'
+;
+
+fragment InterfaceBodyItem returns SysML::Type :
+	  ownedRelationship += DefinitionMember 
+	| ownedRelationship += VariantUsageMember
+	| ownedRelationship += InterfaceNonOccurrenceUsageMember
+	| ( ownedRelationship += EmptySuccessionMember )?
+	  ownedRelationship += InterfaceOccurrenceUsageMember
+	| ownedRelationship += AliasMember
+	| => ownedRelationship += Import
+;
+
+InterfaceNonOccurrenceUsageMember returns SysML::FeatureMembership :
+	MemberPrefix ownedRelatedElement += InterfaceNonOccurrenceUsageElement 
+;
+
+InterfaceNonOccurrenceUsageElement returns SysML::Usage :
+	  ReferenceUsage
+	| AttributeUsage
+	| EnumerationUsage
+	| BindingConnectorAsUsage
+	| SuccessionAsUsage
+;
+
+InterfaceOccurrenceUsageMember returns SysML::FeatureMembership :
+	MemberPrefix ownedRelatedElement += InterfaceOccurrenceUsageElement 
+;
+
+InterfaceOccurrenceUsageElement returns SysML::Usage :
+	DefaultInterfaceEnd | StructureUsageElement | BehaviorUsageElement
+;
+
+DefaultInterfaceEnd returns SysML::PortUsage :
+    isEnd ?= 'end' Usage
+;
+
+/* Interface Usages */
+
+InterfaceUsageKeyword :
+	InterfaceKeyword
+;
+
+InterfaceUsage returns SysML::InterfaceUsage :	 
+	OccurrenceUsagePrefix InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceBody
+;
+
+fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
+	UsageDeclaration? ( ConnectorKeyword InterfacePart )? | InterfacePart
+;
+
+fragment InterfacePart returns SysML::ConnectionUsage :
+	BinaryInterfacePart | NaryInterfacePart
+;
+
+fragment BinaryInterfacePart returns SysML::Connector :
+	ownedRelationship += InterfaceEndMember 'to' 
+	ownedRelationship += InterfaceEndMember
+;
+
+fragment NaryInterfacePart returns SysML::Connector :
+	'(' ownedRelationship += InterfaceEndMember ',' 
+	    ownedRelationship += InterfaceEndMember
+	    ( ',' ownedRelationship += InterfaceEndMember )* ')'
+;
+
+InterfaceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += InterfaceEnd 
+;
+
+InterfaceEnd returns SysML::PortUsage :
+	( ownedRelationship += OwnedCrossMultiplicityMember )?
+	( declaredName = Name ReferencesKeyword )? 
+	ownedRelationship += OwnedReferenceSubsetting
+;
+
+/* ALLOCATIONS */
+
+/* Allocation Definitions */
+
+AllocationKeyword :
+	'allocation'
+;
+
+AllocationDefKeyword :
+	AllocationKeyword 'def'
+;
+
+AllocationDefinition returns SysML::AllocationDefinition :
+	OccurrenceDefinitionPrefix AllocationDefKeyword Definition
+;
+
+/* AllocationUsage Usages */
+
+AllocationUsageKeyword :
+	AllocationKeyword
+;
+
+AllocateKeyword :
+	'allocate'
+;
+
+AllocationUsage returns SysML::AllocationUsage :	 
+	OccurrenceUsagePrefix AllocationUsageDeclaration UsageBody
+;
+
+fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
+	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
+	  | AllocateKeyword ConnectorPart
+;
+
+/* FLOW CONNECTIONS */
 
 /* Flow Connection Definitions */
 
@@ -1163,136 +1330,6 @@ FlowFeature returns SysML::ReferenceUsage :
 
 FlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
-;
-
-/* INTERFACES */
-
-/* Interface Definitions */
-
-InterfaceKeyword :
-	'interface'
-;
-
-InterfaceDefKeyword :
-	InterfaceKeyword 'def'
-;
-
-InterfaceDefinition returns SysML::InterfaceDefinition :
-	OccurrenceDefinitionPrefix InterfaceDefKeyword DefinitionDeclaration InterfaceBody
-;
-
-fragment InterfaceBody returns SysML::Type :
-	';' | '{' InterfaceBodyItem* '}'
-;
-
-fragment InterfaceBodyItem returns SysML::Type :
-	  ownedRelationship += DefinitionMember 
-	| ownedRelationship += VariantUsageMember
-	| ownedRelationship += InterfaceNonOccurrenceUsageMember
-	| ( ownedRelationship += EmptySuccessionMember )?
-	  ownedRelationship += InterfaceOccurrenceUsageMember
-	| ownedRelationship += AliasMember
-	| => ownedRelationship += Import
-;
-
-InterfaceNonOccurrenceUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += InterfaceNonOccurrenceUsageElement 
-;
-
-InterfaceNonOccurrenceUsageElement returns SysML::Usage :
-	  ReferenceUsage
-	| AttributeUsage
-	| EnumerationUsage
-	| BindingConnectorAsUsage
-	| SuccessionAsUsage
-;
-
-InterfaceOccurrenceUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += InterfaceOccurrenceUsageElement 
-;
-
-InterfaceOccurrenceUsageElement returns SysML::Usage :
-	DefaultInterfaceEnd | StructureUsageElement | BehaviorUsageElement
-;
-
-DefaultInterfaceEnd returns SysML::PortUsage :
-	( direction = FeatureDirection )?
-	( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	isEnd ?= 'end' Usage
-;
-
-/* Interface Usages */
-
-InterfaceUsageKeyword :
-	InterfaceKeyword
-;
-
-InterfaceUsage returns SysML::InterfaceUsage :	 
-	OccurrenceUsagePrefix InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceBody
-;
-
-fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
-	UsageDeclaration? ( ConnectorKeyword InterfacePart )? | InterfacePart
-;
-
-fragment InterfacePart returns SysML::ConnectionUsage :
-	BinaryInterfacePart | NaryInterfacePart
-;
-
-fragment BinaryInterfacePart returns SysML::Connector :
-	ownedRelationship += InterfaceEndMember 'to' 
-	ownedRelationship += InterfaceEndMember
-;
-
-fragment NaryInterfacePart returns SysML::Connector :
-	'(' ownedRelationship += InterfaceEndMember ',' 
-	    ownedRelationship += InterfaceEndMember
-	    ( ',' ownedRelationship += InterfaceEndMember )* ')'
-;
-
-InterfaceEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += InterfaceEnd 
-;
-
-InterfaceEnd returns SysML::PortUsage :
-	( declaredName = Name ReferencesKeyword )? 
-	ownedRelationship += OwnedReferenceSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
-;
-
-/* ALLOCATIONS */
-
-/* Allocation Definitions */
-
-AllocationKeyword :
-	'allocation'
-;
-
-AllocationDefKeyword :
-	AllocationKeyword 'def'
-;
-
-AllocationDefinition returns SysML::AllocationDefinition :
-	OccurrenceDefinitionPrefix AllocationDefKeyword Definition
-;
-
-/* AllocationUsage Usages */
-
-AllocationUsageKeyword :
-	AllocationKeyword
-;
-
-AllocateKeyword :
-	'allocate'
-;
-
-AllocationUsage returns SysML::AllocationUsage :	 
-	OccurrenceUsagePrefix AllocationUsageDeclaration UsageBody
-;
-
-fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
-	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
-	  | AllocateKeyword ConnectorPart
 ;
 
 /* ACTION */
@@ -1646,8 +1683,8 @@ ActionTargetSuccession returns SysML::Usage :
 ;
 
 TargetSuccession returns SysML::SuccessionAsUsage :
-	'then' ownedRelationship += MultiplicitySourceEndMember 
-	ownedRelationship += ConnectorEndMember
+	ownedRelationship += MultiplicitySourceEndMember
+	'then' ownedRelationship += ConnectorEndMember
 ;
 
 GuardedTargetSuccession returns SysML::TransitionUsage :

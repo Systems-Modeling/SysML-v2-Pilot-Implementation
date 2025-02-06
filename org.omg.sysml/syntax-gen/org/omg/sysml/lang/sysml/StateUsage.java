@@ -69,6 +69,10 @@ import org.eclipse.emf.common.util.EList;
  *     isUnique(kind)
  * isSubstateUsage(true) implies
  *     specializesFromLibrary('States::StateAction::substates')
+ * isComposite and owningType <> null and
+ * (owningType.oclIsKindOf(PartDefinition) or
+ *  owningType.oclIsKindOf(PartUsage)) implies
+ *     specializesFromLibrary('Parts::Part::ownedStates')
  * <!-- end-model-doc -->
  *
  * <p>

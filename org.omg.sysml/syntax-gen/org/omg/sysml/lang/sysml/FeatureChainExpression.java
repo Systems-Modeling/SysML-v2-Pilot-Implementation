@@ -27,6 +27,14 @@ package org.omg.sysml.lang.sysml;
  * argument->notEmpty() implies
  *     targetFeature.featuringType->forAll(t | 
  *         t.specializes(argument->at(1).result))
+ * operator = '.'
+ * let inputParameters : Sequence(Feature) = 
+ *     ownedFeatures->select(direction = _'in') in
+ * let sourceTargetFeature : Feature = 
+ *     owningExpression.sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * result.subsetsChain(inputParameters->first(), sourceTargetFeature) and
+ * result.owningType = self
  * <!-- end-model-doc -->
  *
  * <p>

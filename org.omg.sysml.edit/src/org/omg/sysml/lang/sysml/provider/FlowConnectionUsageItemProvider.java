@@ -12,6 +12,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -21,7 +23,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FlowConnectionUsageItemProvider extends ConnectionUsageItemProvider {
+public class FlowConnectionUsageItemProvider extends ConnectorAsUsageItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -43,6 +45,10 @@ public class FlowConnectionUsageItemProvider extends ConnectionUsageItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOccurrenceDefinitionPropertyDescriptor(object);
+			addIndividualDefinitionPropertyDescriptor(object);
+			addIsIndividualPropertyDescriptor(object);
+			addPortionKindPropertyDescriptor(object);
 			addBehaviorPropertyDescriptor(object);
 			addParameterPropertyDescriptor(object);
 			addActionDefinitionPropertyDescriptor(object);
@@ -55,6 +61,94 @@ public class FlowConnectionUsageItemProvider extends ConnectionUsageItemProvider
 			addFlowConnectionDefinitionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Occurrence Definition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOccurrenceDefinitionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OccurrenceUsage_occurrenceDefinition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_occurrenceDefinition_feature", "_UI_OccurrenceUsage_type"),
+				 SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Individual Definition feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndividualDefinitionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OccurrenceUsage_individualDefinition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_individualDefinition_feature", "_UI_OccurrenceUsage_type"),
+				 SysMLPackage.Literals.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Is Individual feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsIndividualPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OccurrenceUsage_isIndividual_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_isIndividual_feature", "_UI_OccurrenceUsage_type"),
+				 SysMLPackage.Literals.OCCURRENCE_USAGE__IS_INDIVIDUAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Portion Kind feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPortionKindPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_OccurrenceUsage_portionKind_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_OccurrenceUsage_portionKind_feature", "_UI_OccurrenceUsage_type"),
+				 SysMLPackage.Literals.OCCURRENCE_USAGE__PORTION_KIND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -313,6 +407,13 @@ public class FlowConnectionUsageItemProvider extends ConnectionUsageItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(FlowConnectionUsage.class)) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL:
+			case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -341,18 +442,18 @@ public class FlowConnectionUsageItemProvider extends ConnectionUsageItemProvider
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
-			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
+			childFeature == SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {

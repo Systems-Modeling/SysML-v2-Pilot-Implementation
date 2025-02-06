@@ -23,15 +23,16 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Expression;
@@ -41,6 +42,9 @@ import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -52,6 +56,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getIndividualDefinition <em>Individual Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#isIndividual <em>Is Individual</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getPortionKind <em>Portion Kind</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
@@ -63,7 +70,52 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements FlowConnectionUsage {
+public class FlowConnectionUsageImpl extends ConnectorAsUsageImpl implements FlowConnectionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getIndividualDefinition() <em>Individual Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndividualDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INDIVIDUAL_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION).getSettingDelegate();
+	/**
+	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndividual()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_INDIVIDUAL_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndividual()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isIndividual = IS_INDIVIDUAL_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortionKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PortionKind PORTION_KIND_EDEFAULT = PortionKind.TIMESLICE;
+	/**
+	 * The cached value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortionKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected PortionKind portionKind = PORTION_KIND_EDEFAULT;
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -146,6 +198,81 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FLOW_CONNECTION_USAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OccurrenceDefinition getIndividualDefinition() {
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OccurrenceDefinition basicGetIndividualDefinition() {
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIndividualDefinition(OccurrenceDefinition newIndividualDefinition) {
+		INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIndividualDefinition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isIndividual() {
+		return isIndividual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsIndividual(boolean newIsIndividual) {
+		boolean oldIsIndividual = isIndividual;
+		isIndividual = newIsIndividual;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL, oldIsIndividual, isIndividual));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PortionKind getPortionKind() {
+		return portionKind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPortionKind(PortionKind newPortionKind) {
+		PortionKind oldPortionKind = portionKind;
+		portionKind = newPortionKind == null ? PORTION_KIND_EDEFAULT : newPortionKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND, oldPortionKind, portionKind));
 	}
 
 	/**
@@ -410,8 +537,8 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	public EList<Association> getAssociation() {
 		@SuppressWarnings("unchecked")
-		EList<Association> connectionDefinition = (EList<Association>)((EList<?>)getConnectionDefinition());
-		return connectionDefinition;
+		EList<Association> interaction = (EList<Association>)((EList<?>)getInteraction());
+		return interaction;
 	}
 
 	/**
@@ -420,26 +547,6 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * @generated
 	 */
 	public boolean isSetAssociation() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AssociationStructure> getConnectionDefinition() {
-		@SuppressWarnings("unchecked")
-		EList<AssociationStructure> flowConnectionDefinition = (EList<AssociationStructure>)((EList<?>)getFlowConnectionDefinition());
-		return flowConnectionDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConnectionDefinition() {
   		return false;
 	}
 
@@ -552,6 +659,15 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				return getOccurrenceDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				if (resolve) return getIndividualDefinition();
+				return basicGetIndividualDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL:
+				return isIndividual();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND:
+				return getPortionKind();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR:
 				return getBehavior();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER:
@@ -588,6 +704,19 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				getOccurrenceDefinition().clear();
+				getOccurrenceDefinition().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				setIndividualDefinition((OccurrenceDefinition)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL:
+				setIsIndividual((Boolean)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND:
+				setPortionKind((PortionKind)newValue);
+				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
@@ -637,6 +766,18 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				getOccurrenceDefinition().clear();
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				setIndividualDefinition((OccurrenceDefinition)null);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL:
+				setIsIndividual(IS_INDIVIDUAL_EDEFAULT);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND:
+				setPortionKind(PORTION_KIND_EDEFAULT);
+				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				return;
@@ -679,14 +820,22 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE__DEFINITION:
+				return isSetDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				return isSetOccurrenceDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				return INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL:
+				return isIndividual != IS_INDIVIDUAL_EDEFAULT;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND:
+				return portionKind != PORTION_KIND_EDEFAULT;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR:
 				return isSetBehavior();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER:
 				return isSetParameter();
-			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
-				return isSetOccurrenceDefinition();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION:
 				return isSetActionDefinition();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ASSOCIATION:
@@ -703,8 +852,6 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION:
 				return isSetInteraction();
-			case SysMLPackage.FLOW_CONNECTION_USAGE__CONNECTION_DEFINITION:
-				return isSetConnectionDefinition();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION:
 				return isSetFlowConnectionDefinition();
 		}
@@ -718,6 +865,15 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == OccurrenceUsage.class) {
+			switch (derivedFeatureID) {
+				case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION;
+				case SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION;
+				case SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL: return SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL;
+				case SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND: return SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND;
+				default: return -1;
+			}
+		}
 		if (baseClass == Step.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
@@ -752,6 +908,15 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == OccurrenceUsage.class) {
+			switch (baseFeatureID) {
+				case SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION;
+				case SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.FLOW_CONNECTION_USAGE__INDIVIDUAL_DEFINITION;
+				case SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL: return SysMLPackage.FLOW_CONNECTION_USAGE__IS_INDIVIDUAL;
+				case SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND: return SysMLPackage.FLOW_CONNECTION_USAGE__PORTION_KIND;
+				default: return -1;
+			}
+		}
 		if (baseClass == Step.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR;
@@ -786,6 +951,11 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == OccurrenceUsage.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Step.class) {
 			switch (baseOperationID) {
 				default: return -1;
@@ -826,6 +996,44 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				return isSubactionUsage();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isIndividual: ");
+		result.append(isIndividual);
+		result.append(", portionKind: ");
+		result.append(portionKind);
+		result.append(')');
+		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
+		return occurrenceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinition() {
+  		return false;
 	}
 
 } //FlowConnectionUsageImpl

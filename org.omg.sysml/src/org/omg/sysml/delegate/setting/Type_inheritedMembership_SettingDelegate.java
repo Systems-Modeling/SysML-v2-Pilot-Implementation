@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +21,6 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -36,8 +35,7 @@ public class Type_inheritedMembership_SettingDelegate extends BasicDerivedListSe
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return TypeUtil.cacheInheritedMembershipOf((Type)owner, 
-				()->((Type)owner).inheritedMemberships(new BasicEList<>(), false));
+		return TypeUtil.getInheritedMembershipOf((Type)owner);
 	}
 
 }

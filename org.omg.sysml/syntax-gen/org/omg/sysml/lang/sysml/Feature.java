@@ -76,11 +76,6 @@ import org.eclipse.emf.common.util.EList;
  * (owningType.oclIsKindOf(Structure) or
  *  owningType.type->includes(oclIsKindOf(Structure))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
- * owningType <> null and
- * owningType.oclIsKindOf(FeatureReferenceExpression) and
- * self = owningType.oclAsType(FeatureReferenceExpression).result implies
- *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
- * 
  * ownedTyping.type->exists(selectByKind(Class)) implies
  *     specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
@@ -169,22 +164,66 @@ import org.eclipse.emf.common.util.EList;
  * not owningInvocation.ownedTyping->exists(oclIsKindOf(Function)) and
  * not owningInvocation.ownedSubsetting->reject(isImplied).subsettedFeature.type->exists(oclIsKindOf(Function)) implies
  *     owningInvocation.ownedTyping->forAll(type | self.specializes(type))
+ * ownedCrossSubsetting =
+ *     let crossSubsettings: Sequence(CrossSubsetting) = 
+ *         ownedSubsetting->selectByKind(CrossSubsetting) in
+ *     if crossSubsettings->isEmpty() then null
+ *     else crossSubsettings->first()
+ *     endif
+ * isEnd implies 
+ *     multiplicities().allSuperTypes()->flatten()->
+ *     selectByKind(MultiplicityRange)->exists(hasBounds(1,1))
+ * crossFeature <> null implies
+ *     crossFeature.type->asSet() = type->asSet()
+ * ownedSubsetting->selectByKind(CrossSubsetting)->size() <= 1
+ * crossFeature =
+ *     if ownedCrossSubsetting = null then null
+ *     else 
+ *         let chainingFeatures: Sequence(Feature) = 
+ *             ownedCrossSubsetting.crossedFeature.chainingFeature in
+ *         if chainingFeatures->size() < 2 then null
+ *         else chainingFeatures->at(2)
+ *     endif
+ * isOwnedCrossFeature() implies
+ *     owner.oclAsType(Feature).type->forAll(t | self.specializes(t))
+ * isOwnedCrossFeature() implies
+ *     ownedSubsetting.subsettedFeature->includesAll(
+ *         owner.oclAsType(Feature).ownedRedefinition.redefinedFeature->
+ *             select(crossFeature <> null).crossFeature)
+ * crossFeature <> null implies
+ *     ownedRedefinition.redefinedFeature.crossFeature->
+ *             forAll(f | f <> null implies crossFeature.specializes(f))
+ * ownedCrossFeature() <> null implies
+ *     crossFeature = ownedCrossFeature()
+ * isOwnedCrossFeature() implies
+ *     let otherEnds : OrderedSet(Feature) = 
+ *         owner.oclAsType(Feature).owningType.endFeature->excluding(self) in
+ *     if (otherEnds->size() = 1) then
+ *         featuringType = otherEnds->first().type
+ *     else
+ *         featuringType->size() = 1 and
+ *         featuringType->first().isCartesianProduct() and
+ *         featuringType->first().asCartesianProduct() = otherEnds.type and
+ *         featuringType->first().allSupertypes()->includesAll(
+ *             owner.oclAsType(Feature).ownedRedefinition.redefinedFeature->
+ *                select(crossFeature() <> null).crossFeature().featuringType)      
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -196,6 +235,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getCrossFeature <em>Cross Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
@@ -358,8 +399,8 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType() <em>Featuring Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -687,9 +728,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the this <code>Feature</code> is an end <code>Feature</code>, requiring a different interpretation of the <code>multiplicity</code> of the <code>Feature</code>.</p>
-	 * 
-	 * <p>An end <code>Feature</code> is always considered to map each domain instance to a single co-domain instance, whether or not a <code>Multiplicity</code> is given for it. If a <code>Multiplicity</code> is given for an end <code>Feature</code>, rather than giving the co-domain cardinality for the <code>Feature</code> as usual, it specifies a cardinality constraint for <em>navigating</em> across the <code>endFeatures</code> of the <code>featuringType</code> of the end <code>Feature</code>. That is, if a <code>Type</code> has <em>n</em> <code>endFeatures</code>, then the <code>Multiplicity</code> of any one of those end <code>Features</code> constrains the cardinality of the set of values of that <code>Feature</code> when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
+	 * <p>Whether or not this <code>Feature</code> is an end <code>Feature</code>. An end <code>Feature</code> always has multiplicity 1, mapping each of its domain instances to a single co-domain instance. However, it may have a <code>crossFeature</code>, in which case values of the <code>crossFeature</code> must be the same as those found by navigation across instances of the <code>owningType</code> from values of other end <code>Features</code> to values of this Feature. If the <code>owningType</code> has <em>n</em> end <code>Features</code>, then the multiplicity, ordering, and uniqueness declared for the <code>crossFeature</code> of any one of these end <code>Features</code> constrains the cardinality, ordering, and uniqueness of the collection of values of that <code>Feature</code> reached by navigation when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is End</em>' attribute.
@@ -773,6 +812,69 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setOwnedReferenceSubsetting(ReferenceSubsetting value);
+
+	/**
+	 * Returns the value of the '<em><b>Cross Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The second <code>chainingFeature</code> of the <code>crossedFeature</code> of the <code>ownedCrossSubsetting</code> of this <code>Feature</code>, if it has one. Semantically, the values of the <code>crossFeature</code> of an end <code>Feature</code> must include all values of the end <code>Feature</code> obtained when navigating from values of the other end <code>Features</code> of the same <code>owningType</code>.
+	 * </p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Cross Feature</em>' reference.
+	 * @see #setCrossFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_CrossFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureCrossing'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getCrossFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getCrossFeature <em>Cross Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cross Feature</em>' reference.
+	 * @see #getCrossFeature()
+	 * @generated
+	 */
+	void setCrossFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Cross Subsetting</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.CrossSubsetting#getCrossingFeature <em>Crossing Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The one <code>ownedSubsetting</code> of this <code>Feature</code>, if any, that is a <code>CrossSubsetting}, for which the <code>Feature</code> is the <code>crossingFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Cross Subsetting</em>' reference.
+	 * @see #setOwnedCrossSubsetting(CrossSubsetting)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedCrossSubsetting()
+	 * @see org.omg.sysml.lang.sysml.CrossSubsetting#getCrossingFeature
+	 * @model opposite="crossingFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	CrossSubsetting getOwnedCrossSubsetting();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Cross Subsetting</em>' reference.
+	 * @see #getOwnedCrossSubsetting()
+	 * @generated
+	 */
+	void setOwnedCrossSubsetting(CrossSubsetting value);
 
 	/**
 	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
@@ -964,9 +1066,13 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself), consisting of all subsetted <code>Features</code> and the last <code>chainingFeature</code> (if any), if this <code>Feature</code> is not conjugated, or its <code>originalType</code>, if it is conjugated (and the <code>originalType</code> is a <code>Feature</code>).</p>
+	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself). If this <code>Feature</code> is <em>not</em> conjugated, then the <code>typingFeatures</code> consist of all subsetted <code>Features</code>, <em>except</em> from <code>CrossSubsetting</code>, and the last <code>chainingFeature</code> (if any). If this <code>Feature</code> <em>is</em> conjugated, then the <code>typingFeatures</code> are only its <code>originalType</code> (if the <code>originalType</code> is a <code>Feature</code>).</p>
+	 * 
+	 * <p><strong>Note.</strong> <code>CrossSubsetting</code> is excluded from the determination of the <code>type</code> of a <code>Feature</code> in order to avoid circularity in the construction of implied <code>CrossSubsetting</code> relationships. The <code>validateFeatureCrossFeatureType</code> requires that the <code>crossFeature</code> of a <code>Feature</code> have the same <code>type</code> as the <code>Feature</code>.</p>
+	 * 
 	 * if not isConjugated then
-	 *     let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in 
+	 *     let subsettedFeatures : OrderedSet(Feature) = 
+	 *         subsetting->reject(s | s.oclIsKindOf(CrossSubsetting)).subsettedFeatures in 
 	 *     if chainingFeature->isEmpty() or
 	 *        subsettedFeature->includes(chainingFeature->last())
 	 *     then subsettedFeatures
@@ -982,5 +1088,90 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<Feature> typingFeatures();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>isCartesianProduct</code> is true, then return the list of <code>Types</code> whose Cartesian product can be represented by this <code>Feature</code>. (If <code>isCartesianProduct</code> is not true, the operation will still return a valid value, it will just not represent anything useful.)</p>
+	 * featuringType->select(t | t.owner <> self)->
+	 *     union(featuringType->select(t | t.owner = self)->
+	 *         selectByKind(Feature).asCartesianProduct())->
+	 *     union(type)
+	 * <!-- end-model-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> asCartesianProduct();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Feature</code> can be used to represent a Cartesian product of <code>Types</code>.</p>
+	 * type->size() = 1 and
+	 * featuringType.size() = 1 and
+	 * featuringType.first().owner = self implies
+	 *     featuringType.first().oclIsKindOf(Feature) and
+	 *     featuringType.first().oclAsType(Feature).isCartesianProduct()
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isCartesianProduct();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return whether this <code>Feature</code> is an owned cross <code>Feature</code> of an end <code>Feature</code>.</p>
+	 * owningType <> null and 
+	 * owningType.oclIsKindOf(Feature) and 
+	 * owningType.oclAsType(Feature).ownedCrossFeature() = self
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isOwnedCrossFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but not a <code>Multiplicity</code> or a <code>MetadataFeature</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
+	 * if not isEnd or owningType = null then null
+	 * else
+	 *     let ownedMemberFeatures: Sequence(Feature) =
+	 *         ownedMember->selectByKind(Feature)->
+	 *             reject(oclIsKindOf(Multiplicity) or oclIsKindOf(MetadataFeature))->
+	 *             reject(owningMembership.oclIsKindOf(FeatureMembership)) in
+	 *     if ownedMemberFeatures.isEmpty() then null
+	 *     else ownedMemberFeatures->first()
+	 *     endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature ownedCrossFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return this <code>Feature</code> and all the <code>Features</code> that are directly or indirectly <code>Redefined</code> by this <code>Feature</code>.</p>
+	 * ownedRedefinition.redefinedFeature->
+	 *     closure(ownedRedefinition.redefinedFeature)->
+	 *     asOrderedSet()->prepend(self)
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Feature> allRedefinedFeatures();
 
 } // Feature

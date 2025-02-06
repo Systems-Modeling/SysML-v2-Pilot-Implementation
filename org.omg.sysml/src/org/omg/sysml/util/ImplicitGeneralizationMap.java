@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -155,6 +155,7 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "base", "Actions::actions");
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		put(ActionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		put(ActionUsageImpl.class, "entry", "States::StateAction::entryAction");
@@ -218,14 +219,23 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");		
-		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
-		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
+		put(FlowConnectionDefinitionImpl.class, "base", "FlowConnections::MessageConnection");		
+		put(FlowConnectionDefinitionImpl.class, "binary", "FlowConnections::MessageTransferConnection");		
+		put(FlowConnectionUsageImpl.class, "base", "FlowConnections::flowConnections");
+		put(FlowConnectionUsageImpl.class, "message", "FlowConnections::messageConnections");
 		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowConnectionUsageImpl.class, "entry", "States::StateAction::entryAction");
+		put(FlowConnectionUsageImpl.class, "do", "States::StateAction::doAction");
+		put(FlowConnectionUsageImpl.class, "exit", "States::StateAction::exitAction");
+		put(FlowConnectionUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
+		put(FlowConnectionUsageImpl.class, "guard", "Actions::TransitionAction::guard");
+		put(FlowConnectionUsageImpl.class, "effect", "Actions::TransitionAction::effect");
+		put(FlowConnectionUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(FlowConnectionUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
 		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
 		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");
@@ -276,7 +286,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPort");
+		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPorts");
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
@@ -304,8 +314,8 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
-		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "FlowConnections::successionFlowConnections");
+		put(SuccessionFlowConnectionUsageImpl.class, "message", "FlowConnections::successionFlowConnections");
 
 		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");

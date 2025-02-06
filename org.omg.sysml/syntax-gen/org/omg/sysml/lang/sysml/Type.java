@@ -90,15 +90,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -113,7 +114,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -171,28 +171,17 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return the direction of the given <code>feature</code> relative to this <code>Type</code>, excluding a given set of <code>Types</code> from the search of supertypes of this <code>Type</code>.</p>
-	 * let excludedSelf : Set(Type) = excluded->including(self) in
+	 * let excludedSelf : Set(Type) = excluded->including(self) in 
 	 * if feature.owningType = self then feature.direction
-	 * else if ownedConjugator <> null then
-	 *     if excludedSelf->includes(ownedConjugator.originalType) then null
-	 *     else
-	 *         let originalDirection: FeatureDirectionKind = 
-	 *             ownedConjugator.originalType.directionOfExcluding(feature, excludedSelf) in
-	 *         if originalDirection = FeatureDirectionKind::_'in' then FeatureDirectionKind::out
-	 *         else if originalDirection = FeatureDirectionKind::out then FeatureDirectionKind::_'in'
-	 *         else originalDirection
-	 *         endif endif
-	 *     endif
 	 * else
-	 *     let directions: Sequence(FeatureDirectionKind) = 
-	 *         ownedSpecialization.general->
-	 *             excluding(excludedSelf).
-	 *             directionOfExcluding(feature, excludedSelf)->
-	 *             select(d | d <> null) in
+	 *     let directions : Sequence(FeatureDirectionKind) =
+	 *         supertypes(false)->excluding(excludedSelf).
+	 *         directionOfExcluding(feature, excludedSelf)->
+	 *         select(d | d <> null) in
 	 *     if directions->isEmpty() then null
 	 *     else directions->at(1)
 	 *     endif
-	 * endif endif
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false" excludedMany="true" excludedOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -204,11 +193,26 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return all <code>Types</code> related to this <code>Type</code> as supertypes directly or transitively by <code>Specialization</code> <code>Relationships</code>.</p>
+	 * <p>If this <code>Type</code> is conjugated, then return just the <code>originalType</code> of the <code>Conjugation</code>. Otherwise, return the <code>general</code> <code>Types</code> from all <code>ownedSpecializations</code> of this type, if <code>excludeImplied = false</code>, or all non-implied <code>ownedSpecializations</code>, if <code>excludeImplied = true</code>.</p>
+	 * if isConjugated then Sequence{conjugator.originalType}
+	 * else if not excludeImplied then ownedSpecialization.general
+	 * else ownedSpecialization->reject(isImplied).general
+	 * endif
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> supertypes(boolean excludeImplied);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return this <code>Type</code> and all <code>Types</code> that are directly or transitively supertypes of this <code>Type</code> (as determined by the <code>supertypes</code> operation with <code>excludeImplied = false</code>).</p>
 	 * 
-	 * ownedSpecialization->
-	 *     closure(general.ownedSpecialization).general->
-	 *     including(self)
+	 * OrderedSet{self}->closure(supertypes(false))
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -248,6 +252,24 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	boolean specializesFromLibrary(String libraryTypeName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the owned or inherited <code>Multiplicities</code> for this <code>Type<./code>.</p>
+	 * if multiplicity <> null then OrderedSet{multiplicity}
+	 * else 
+	 *     ownedSpecialization.general->closure(t |
+	 *         if t.multiplicity <> null then OrderedSet{}
+	 *         else ownedSpecialization.general
+	 *     )->select(multiplicity <> null).multiplicity->asOrderedSet()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Multiplicity> multiplicities();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.
@@ -801,6 +823,86 @@ public interface Type extends Namespace {
 	EList<Feature> getDirectedFeature();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>Memberships</code> inheritable from supertypes of this <code>Type</code> with redefined <code>Features</code> removed. When computing inheritable <code>Memberships</code>, exclude <code>Imports</code> of <code>excludedNamespaces</code>, <code>Specializations</code> of <code>excludedTypes</code>, and, if <code>excludeImplied = true</code>, all implied <code>Specializations</code>.</p>
+	 * 
+	 * removeRedefinedFeatures(
+	 *     inheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied))
+	 * <!-- end-model-doc -->
+	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> inheritedMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return all the non-<code>private</code> <code>Memberships</code> of all the supertypes of this <code>Type</code>, excluding any supertypes that are this <code>Type</code> or are in the given set of <code>excludedTypes</code>. If <code>excludeImplied = true</code>, then also transitively exclude any supertypes from implied <code>Specializations</code>.</p>
+	 * let excludingSelf : Set(Type) = excludedType->including(self) in
+	 * supertypes(excludeImplied)->reject(t | excludingSelf->includes(t)).
+	 *     nonPrivateMemberships(excludedNamespaces, excludingSelf, excludeImplied)
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> inheritableMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>public</code>, <code>protected</code> and inherited <code>Memberships</code> of this <code>Type</code>. When computing imported <code>Memberships</code>, exclude the given set of <code>excludedNamespaces</code>. When computing inherited <code>Memberships</code>, exclude <code>Types</code> in the given set of <code>excludedTypes</code>. If <code>excludeImplied = true</code>, then also exclude any supertypes from implied <code>Specializations</code>.</p>
+	 * let publicMemberships : OrderedSet(Membership) = 
+	 *     membershipsOfVisibility(VisibilityKind::public, excludedNamespaces) in
+	 * let protectedMemberships : OrderedSet(Membership) = 
+	 *     membershipsOfVisibility(VisibilityKind::protected, excludedNamespaces) in
+	 * let inheritedMemberships : OrderedSet(Membership) =
+	 *     inheritedMemberships(excludedNamespaces, excludedTypes, excludeImplied) in
+	 * publicMemberships->
+	 *     union(protectedMemberships)->
+	 *     union(inheritedMemberships)
+	 * <!-- end-model-doc -->
+	 * @model excludedNamespacesMany="true" excludedNamespacesOrdered="false" excludedTypesMany="true" excludedTypesOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> nonPrivateMemberships(EList<Namespace> excludedNamespaces, EList<Type> excludedTypes, boolean excludeImplied);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return a subset of <code>memberships</code>, removing those <code>Memberships</code> whose <code>memberElements</code> are <code>Features</code> and for which either of the following two conditions holds:</p>
+	 * 
+	 * <ol>
+	 * 	<li>The <code>memberElement</code> of the <code>Membership</code> is included in redefined <code>Features</code> of another <code>Membership</code> in <code>memberships</code>.</li>
+	 * 	<li>One of the redefined <code>Features</code> of the <code>Membership</code> is a directly <code>redefinedFeature</code> of an <code>ownedFeature</code> of this <code>Type</code>.</li>
+	 * </ol>
+	 * 
+	 * <p>For this purpose, the redefined <code>Features</code> of a <code>Membership</code> whose <code>memberElement</code> is a <code>Feature</code> includes the <code>memberElement</code> and all <code>Features</code> directly or indirectly redefined by the <code>memberElement</code>.</p>
+	 * let reducedMemberships : Sequence(Membership) =
+	 *     memberships->reject(mem1 |
+	 *         memberships->excluding(mem1)->
+	 *             exists(allRedefinedFeatures()->
+	 *                 includes(mem1.memberElement))) in
+	 * let redefinedFeatures : Set(Feature) = 
+	 *     ownedFeature.redefinition.redefinedFeature->asSet() in
+	 * reducedMemberships->reject(allRedefinedFeatures()->
+	 *     exists(feature | redefinedFeatures->includes(feature)))
+	 * <!-- end-model-doc -->
+	 * @model membershipsMany="true"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> removeRedefinedFeatures(EList<Membership> memberships);
+
+	/**
 	 * Returns the value of the '<em><b>Owned Disjoining</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Disjoining}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Disjoining#getOwningType <em>Owning Type</em>}'.
@@ -851,19 +953,6 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	EList<Specialization> getOwnedSpecialization();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Return the inherited <code>Memberships</code> of this <code>Type</code>, excluding those supertypes in the <code>excluded</code> set. If <code>excludeImplied = true</code>, then also exclude any <code>Types</code> inherited via <code>Specializations</code> with <code>isImplied = true</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @model excludedMany="true" excludedOrdered="false" excludeImpliedDataType="org.omg.sysml.lang.types.Boolean" excludeImpliedRequired="true" excludeImpliedOrdered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Membership> inheritedMemberships(EList<Type> excluded, boolean excludeImplied);
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

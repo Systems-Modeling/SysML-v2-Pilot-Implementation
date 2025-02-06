@@ -90,6 +90,10 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.Structure
+import org.omg.sysml.lang.sysml.CrossSubsetting
+import java.util.Set
+import org.omg.sysml.lang.sysml.Annotation
 
 /**
  * This class contains custom validation rules. 
@@ -102,6 +106,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED = "validateElementIsImpliedIncluded"
 	public static val INVALID_ELEMENT_IS_IMPLIED_INCLUDED_MSG = "Element cannot have implied relationships included"
+	
+	public static val INVALID_ANNOTATION_ANNOTATING_ELEMENT = "validateAnnotationAnnotatingElement"
+	public static val INVALID_ANNOTATION_ANNOTATING_ELEMENT_MSG = "Must either own or be owned by its annotating element"
+	
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP = "validateAnnotationAnnotatedElementOwnership"
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_1 = "Must own its annotating element"
+	public static val INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_2 = "Must be owned by its annotated element"
 
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY = "validateNamespaceDistinguishablity"
 	public static val INVALID_NAMESPACE_DISTINGUISHABILITY_MSG = "Duplicate of other owned member name"
@@ -149,10 +160,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG = "Feature cannot have itself in a feature chain"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
+	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION = "validateFeatureCrossFeatureSpecialization"
+	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined-end cross features"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
+	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
+	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION = "checkFeatureCrossingSpecialization"
+	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG = "Must be the cross feature"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
+	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
-	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"				
+	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"
+	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING = "validateFeatureOwnedCrossSubsetting"
+	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
 
 	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
@@ -172,6 +193,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
 	
+	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE = "validateCrossSubsettingCrossingFeature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG = "Cross subsetting must be owned by one of two or more end features"
+	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE = "validateCrossSubsettingCrossedFeature"
+	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG = "Cross subsetting must chain through an opposite end feature"
+	
 	// KERNEL //
 	
 	public static val INVALID_DATA_TYPE_SPECIALIZATION = "validateDataTypeSpecialization"
@@ -179,6 +205,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_CLASS_SPECIALIZATION = "validateClassSpecialization"
 	public static val INVALID_CLASS_SPECIALIZATION_MSG = "Cannot specialize data type or association"    
+	
+	public static val INVALID_STRUCTURE_SPECIALIZATION = "validateStructureSpecialization"
+	public static val INVALID_STRUCTURE_SPECIALIZATION_MSG = "Cannot specialize behavior"    
 	
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION = "validateAssociationBinarySpecialization"
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
@@ -202,6 +231,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_RELATED_FEATURES_MSG = "Must have at least two related elements"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING = "validateConnectorTypeFeaturing"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Should be an accessible feature (use dot notation for nesting)"
+	
+	public static val INVALID_BEHAVIOR_SPECIALIZATION = "validateBehaviorSpecialization"
+	public static val INVALID_BEHAVIOR_SPECIALIZATION_MSG = "Cannot specialize structure"    
 	
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
@@ -257,6 +289,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES = "validateMultiplicityRangeResultTypes"
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG = "Must have a Natural value"
+	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS = "validateMultiplicityRangeBounds"
+	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS_MSG = "Bound expressions must be first two owned members"
 
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT = "validateMetadataFeatureAnnotatedElement"
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG = "Cannot annotate {metaclass}"
@@ -290,6 +324,26 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkAnnotation(Annotation ann) {
+		// validateAnnotationAnnotatingElement
+		val ownedAnnotatingElement = ann.ownedAnnotatingElement
+		val owningAnnotatingElement = ann.owningAnnotatingElement
+		if (ownedAnnotatingElement === null && owningAnnotatingElement === null ||
+			ownedAnnotatingElement !== null && owningAnnotatingElement !== null) {
+			error(INVALID_ANNOTATION_ANNOTATING_ELEMENT_MSG, ann, null, INVALID_ANNOTATION_ANNOTATING_ELEMENT)
+		}
+		
+		// validateAnnotationAnnotatedElementOwnership
+		val owningAnnotatedElement = ann.owningAnnotatedElement
+		if (owningAnnotatedElement !== null && ownedAnnotatingElement === null) {
+			error(INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_1, ann, null, INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP)
+		}
+		if (owningAnnotatedElement === null && ownedAnnotatingElement !== null) {
+			error(INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP_MSG_2, ann, null, INVALID_ANNOTATION_ANNOTATED_ELEMNT_OWNERSHIP)
+		}
+	}
+	
+	@Check
 	def checkNamespace(Namespace namesp) {
 		// validateNamespaceDistinguishability
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
@@ -318,22 +372,48 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkDistinguishibility(Membership mem, Iterable<Membership> others, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
-		
+				
 		val distinctOthers = others.filter[other | mem.memberElement !== other.memberElement]
-		if (memShortName !== null && distinctOthers.exists[other | memShortName == other.memberShortName || memShortName == other.memberName]) {
+		if (memShortName !== null) {
+			val dups = distinctOthers.filter[other | memShortName == other.memberShortName || memShortName == other.memberName]
+			if (!dups.empty) {
+				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memShortName, dups)		
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+			}
 		}
-		if (memName !== null && distinctOthers.exists[other | memName == other.memberShortName || memName == other.memberName]) {
+		if (memName !== null) {
+			val dups = distinctOthers.filter[other | memName == other.memberShortName || memName == other.memberName]
+			if (!dups.empty) {
+				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memName, dups)			
 				if (mem instanceof OwningMembership) {
-					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
-					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
+					warning(msgDups, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				}
+			}
 		}
+	}
+	
+	def identifyDuplicates(String msg, Namespace memNs, String name, Iterable<Membership> dups) {
+		var nsNames = ""
+		for (dup: dups) {
+			val ns = dup.membershipOwningNamespace
+			if (ns !== memNs) {
+				val nsName = ns.name
+				if (nsName !== null) {
+					if (!nsNames.empty) {
+						nsNames += ", "
+					}
+					nsNames += nsName
+				}
+			}
+		}
+		if (nsNames.empty) msg
+		else msg + " " + ElementUtil.escapeName(name) + " from " + nsNames;
 	}
 	
 	@Check
@@ -423,22 +503,69 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
+		// TODO: Update OCL
 		val m = f.multiplicity;
-		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
+		val featuringTypes = f.featuringType
+		var mFeaturingTypes =
+			if (FeatureUtil.isOwnedCrossFeature(f)) (f.owningNamespace as Feature).featuringType
+			else featuringTypes
+		if (m !== null && mFeaturingTypes.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
 		
 		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
 		val direction = f.direction
-		val featuringTypes = f.featuringType
 		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
 			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
+		}
+		
+		// validateFeatureCrossFeatureSpecialization
+		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
+		val ownedCrossFeature = f.ownedCrossFeature()
+		if (crossFeature !== null) {
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
+				exists[cf | cf !== null && !TypeUtil.conforms(crossFeature, cf)]) {
+				if (f.ownedCrossSubsetting === null) {
+					error(INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION)
+				} else {
+					error(INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION)
+				}
+			}
+		}
+		
+		// validateFeatureCrossFeatureType
+		if (crossFeature !== null && crossFeature.type.toSet != f.type.toSet) {
+				if (f.ownedCrossSubsetting === null) {
+					error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+				} else {
+					error(INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG, f.ownedCrossSubsetting, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_FEATURE_CROSS_FEATURE_TYPE)
+				}
+		}
+		
+		// validateFeatureOwnedCrossSubsetting
+		val crossSubsettings = f.ownedRelationship.filter[r | r instanceof CrossSubsetting].toList
+		if (crossSubsettings.size > 1) {
+			for (var i = 1; i < crossSubsettings.size; i++)
+				error(INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG, refSubsettings.get(i), null, INVALID_FEATURE_OWNED_CROSS_SUBSETTING)
+		}
+		
+		// validateFeatureEndMultiplicity
+		if (f.isEnd && !f.multiplicities.
+			map(mult | FeatureUtil.getMultiplicityRangeOf(mult)).
+			exists[hasBounds(1,1)]) {
+			warning(INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG, f, null, INVALID_FEATURE_END_FEATURE_MULTIPLICITY)
+		}
+		
+		// checkFeatureCrossingSpecialization
+		if (ownedCrossFeature !== null && ownedCrossFeature !== crossFeature) {
+			error(INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSSING_SPECIALIZATION)
 		}
 	}
 		
 	@Check
 	def checkFeatureChaining(FeatureChaining fc) {
-		// Add validateFeatureChainingFeatureConformance
+		// validateFeatureChainingFeatureConformance
 		val featureChainings = fc.featureChained.ownedFeatureChaining;
 		val i = featureChainings.indexOf(fc);
 		if (i > 0) {
@@ -566,6 +693,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def boolean isAccessibleFrom(Feature feature, Type type) {
+		feature.isAccessibleFrom(type, newHashSet)
+	}	
+	
+	def boolean isAccessibleFrom(Feature feature, Type type, Set<Feature> visited) {
+		visited.add(feature)
 		val featuringTypes = feature.featuringType
 		featuringTypes.empty && type == getLibraryType(feature, "Base::Anything") ||
 		feature.featuringType.exists[featuringType | 
@@ -573,7 +705,30 @@ class KerMLValidator extends AbstractKerMLValidator {
 				
 				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
 				featuringType instanceof Feature &&
-				(featuringType as Feature).isAccessibleFrom(type)];
+				!visited.contains(featuringType) &&
+				(featuringType as Feature).isAccessibleFrom(type, visited)];
+	}
+	
+	@Check
+	def void checkCrossSubsetting(CrossSubsetting sub) {
+		val crossedFeature = sub.crossedFeature;
+		val crossingFeature = sub.crossingFeature;
+		
+		// Add validateCrossSubsettingCrossedFeature
+		if (crossingFeature.isEnd && crossingFeature.owningType !== null) {
+			val endFeatures = crossingFeature.owningType.endFeature;			
+			val chainingFeatures = crossedFeature.chainingFeature
+			if (chainingFeatures.size != 2 || endFeatures.size == 2 &&
+					chainingFeatures.get(0) !== endFeatures.findFirst(f | f !== crossingFeature)) {
+				error(INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG, sub, SysMLPackage.eINSTANCE.crossSubsetting_CrossedFeature, INVALID_CROSS_SUBSETTING_CROSSED_FEATURE)
+			}
+		}
+		
+		// Add validateCrossSubsettingCrossingFeature
+		if (!crossingFeature.isEnd || crossingFeature.owningType === null || crossingFeature.owningType.endFeature.size < 2) {
+			error(INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG, sub, null, INVALID_CROSS_SUBSETTING_CROSSING_FEATURE)
+		}
+		
 	}
 	
 	/* KERNEL */
@@ -594,6 +749,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		for (s: c.ownedSpecialization) {
 			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
 				error(INVALID_CLASS_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_CLASS_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
+	def checkStructure(Structure c) {
+		// validateStructureSpecialization
+		for (s: c.ownedSpecialization) {
+			if (s.general instanceof Behavior) {
+				error(INVALID_STRUCTURE_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_STRUCTURE_SPECIALIZATION)
 			}
 		}
 	}
@@ -734,6 +899,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkBehavior(Behavior b) {
+		// validateStructureSpecialization
+		for (s: b.ownedSpecialization) {
+			if (s.general instanceof Structure) {
+				error(INVALID_BEHAVIOR_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_BEHAVIOR_SPECIALIZATION)
+			}
+		}
+	}
+	
+	@Check
 	def checkParameterMembership(ParameterMembership m) {
 		if (!(m instanceof ReturnParameterMembership)) {
 			// validateParameterMembershipOwningType
@@ -827,6 +1002,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			)) {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE)
 		}
+		
+		// validateFeatureChainExpressionOperator is automatically satisfied
 	}
 	
 	@Check
@@ -837,6 +1014,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE)
 		}
 	}
+	
+	// @Check
+	// def checkIndexExpression(IndexExpression e) {
+	//     // validateIndexExpressionOperator is automatically satisfied
+	// }
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
@@ -887,7 +1069,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// def checkSelectExpression(SelectExpression e) {
 	//     // validateSelectExpressionOperator is automatically satisfied
 	// }
-	
 	
 	@Check
 	def checkItemFlow(ItemFlow flow) {
@@ -941,6 +1122,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (if (b.isModelLevelEvaluable) mult.valueOf(b) == -2 else !b.isInteger) {
 				error(INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG, b, null, INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES)
 			}
+		}
+		
+		// validateMultiplicityRangeBounds
+		val ownedMembers = mult.ownedMember
+		val lowerBound = mult.lowerBound
+		val upperBound = mult.upperBound
+		if ((lowerBound === null && (ownedMembers.empty || ownedMembers.get(0) !== upperBound)) ||
+			(lowerBound !== null && (ownedMembers.size < 2 || ownedMembers.get(0) !== lowerBound || ownedMembers.get(1) !== upperBound))) {
+				error(INVALID_MULTIPLICITY_RANGE_BOUNDS_MSG, mult, null, INVALID_MULTIPLICITY_RANGE_BOUNDS)
 		}
 	}
 	

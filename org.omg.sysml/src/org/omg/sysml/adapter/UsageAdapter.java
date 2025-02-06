@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
@@ -114,15 +115,27 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	// Transformation
 	
-	protected void addDefaultMultiplicity() {
+	// Used to check for default multiplicity for AttributeUsages, ItemUsages and PortUsages.
+	protected boolean isAddDefaultMultiplicity() {
 		Usage target = getTarget();
-		if (target.getOwningType() != null &&
-			target.getOwnedSubsetting().stream().
-				map(Subsetting::getSubsettedFeature).
-				filter(f->f != null).
-				map(FeatureUtil::getBasicFeatureOf).
-				noneMatch(f->f != null && f.getOwningType() != null)) {
-			FeatureUtil.addMultiplicityTo(target);
+		return target.isEnd() ||
+			   target.getOwningType() != null &&
+			   target.getOwnedSubsetting().stream().
+					map(Subsetting::getSubsettedFeature).
+					filter(f->f != null).
+					map(FeatureUtil::getBasicFeatureOf).
+					noneMatch(f->f != null && f.getOwningType() != null);
+	}
+	
+	// Multiplicity of 1..1 is always the default for an end usage.
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
+	}
+	
+	@Override
+	public void addAdditionalMembers() {
+		if (isAddMultiplicity()) {
+			TypeUtil.addMultiplicityTo(getTarget());
 		}
 	}
 	

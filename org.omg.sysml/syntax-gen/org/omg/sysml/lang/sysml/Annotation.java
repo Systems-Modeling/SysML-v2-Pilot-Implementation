@@ -31,16 +31,29 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>Annotation</code> is a Relationship between an <code>AnnotatingElement</code> and the <code>Element</code> that is annotated by that <code>AnnotatingElement</code>.</p>
  * 
+ * ownedAnnotatingElement =
+ *     let ownedAnnotatingElements : Sequence(AnnotatingElement) = 
+ *         ownedRelatedElement->selectByKind(AnnotatingElement) in
+ *     if ownedAnnotatingElements->isEmpty() then null
+ *     else ownedAnnotatingElements->first()
+ *     endif
+ * annotatingElement =
+ *     if ownedAnnotatingElement <> null then ownedAnnotatingElement
+ *     else owningAnnotatingElement
+ *     endif
+ * ownedAnnotatingElement <> null xor owningAnnotatingElement <> null
+ * (owningAnnotatedElement <> null) = (ownedAnnotatingElement <> null)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement <em>Owning Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement <em>Owned Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()
@@ -60,15 +73,16 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>AnnotatingElement</code> that annotates the <code>annotatedElement</code> of this <code>Annotation</code>.</p>
+	 *  <p>The <code>AnnotatingElement</code> that annotates the <code>annotatedElement</code> of this <code>Annotation</code>. This is always either the <code>ownedAnnotatingElement</code> or the <code>owningAnnotatingElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotating Element</em>' reference.
 	 * @see #setAnnotatingElement(AnnotatingElement)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatingElement()
 	 * @see org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation
-	 * @model opposite="annotation" required="true" ordered="false"
+	 * @model opposite="annotation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	AnnotatingElement getAnnotatingElement();
@@ -134,7 +148,7 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>annotatedElement</code> of this <code>Annotation</code>, when it is also its <code>owningRelatedElement</code>.</p>
+	 * <p>The <code>annotatedElement</code> of this <code>Annotation</code>, when it is also the <code>owningRelatedElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Annotated Element</em>' reference.
@@ -159,6 +173,42 @@ public interface Annotation extends Relationship {
 	void setOwningAnnotatedElement(Element value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Annotating Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement() <em>Annotating Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>annotatingElement</code> of this <code>Annotation</code>, when it is an <code>ownedRelatedElement</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Annotating Element</em>' reference.
+	 * @see #setOwnedAnnotatingElement(AnnotatingElement)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwnedAnnotatingElement()
+	 * @see org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship
+	 * @model opposite="owningAnnotatingRelationship" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	AnnotatingElement getOwnedAnnotatingElement();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement <em>Owned Annotating Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Annotating Element</em>' reference.
+	 * @see #getOwnedAnnotatingElement()
+	 * @generated
+	 */
+	void setOwnedAnnotatingElement(AnnotatingElement value);
+
+	/**
 	 * Returns the value of the '<em><b>Owning Annotating Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}'.
 	 * <p>
@@ -171,7 +221,7 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>annotatingElement</code> of this <code>Annotation</code>, when it is also its <code>owningRelatedElement</code>.</p>
+	 * <p>The <code>annotatingElement</code> of this <code>Annotation</code>, when it is the <code>owningRelatedElement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Annotating Element</em>' reference.
 	 * @see #setOwningAnnotatingElement(AnnotatingElement)

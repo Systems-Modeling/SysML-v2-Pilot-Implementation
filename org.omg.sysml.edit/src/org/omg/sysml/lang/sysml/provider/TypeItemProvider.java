@@ -48,14 +48,14 @@ public class TypeItemProvider extends NamespaceItemProvider {
 
 			addOwnedSpecializationPropertyDescriptor(object);
 			addOwnedFeatureMembershipPropertyDescriptor(object);
-			addOwnedFeaturePropertyDescriptor(object);
-			addOwnedEndFeaturePropertyDescriptor(object);
 			addFeaturePropertyDescriptor(object);
+			addOwnedFeaturePropertyDescriptor(object);
 			addInputPropertyDescriptor(object);
 			addOutputPropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
 			addInheritedMembershipPropertyDescriptor(object);
 			addEndFeaturePropertyDescriptor(object);
+			addOwnedEndFeaturePropertyDescriptor(object);
 			addIsSufficientPropertyDescriptor(object);
 			addOwnedConjugatorPropertyDescriptor(object);
 			addIsConjugatedPropertyDescriptor(object);
@@ -690,6 +690,11 @@ public class TypeItemProvider extends NamespaceItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
 				 SysMLFactory.eINSTANCE.createReferenceSubsetting()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION,
+				 SysMLFactory.eINSTANCE.createCrossSubsetting()));
 
 		newChildDescriptors.add
 			(createChildParameter

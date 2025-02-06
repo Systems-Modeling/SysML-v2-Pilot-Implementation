@@ -46,6 +46,11 @@ package org.omg.sysml.lang.sysml;
  *     size() = 1
  * ownedReferenceSubsetting <> null implies
  *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(RequirementUsage)
+ * if isNegated then
+ *     specializesFromLibrary('Requirements::notSatisfiedRequirementChecks')
+ * else
+ *     specializesFromLibrary('Requirements::satisfiedRequirementChecks')
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

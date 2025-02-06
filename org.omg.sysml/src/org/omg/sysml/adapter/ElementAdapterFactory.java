@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -86,7 +86,7 @@ public class ElementAdapterFactory {
 		public ElementAdapter caseAnnotatingElement(AnnotatingElement element) {
 			return new AnnotatingElementAdapter(element);
 		}
-		
+
 		@Override
 		public ElementAdapter caseAssertConstraintUsage(AssertConstraintUsage element) {
 			return new AssertConstraintUsageAdapter(element);
@@ -103,6 +103,16 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAssociationStructure(AssociationStructure element) {
+			return new AssociationStructureAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAttributeDefinition(AttributeDefinition element) {
+			return new AttributeDefinitionAdapter(element);
+		}
+
+		@Override
 		public ElementAdapter caseAttributeUsage(AttributeUsage element) {
 			return new AttributeUsageAdapter(element);
 		}
@@ -112,6 +122,11 @@ public class ElementAdapterFactory {
 			return new BehaviorAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseBindingConnectorAsUsage(BindingConnectorAsUsage element) {
+			return new BindingConnectorAsUsageAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseBooleanExpression(BooleanExpression element) {
 			return new BooleanExpressionAdapter(element);
@@ -172,6 +187,11 @@ public class ElementAdapterFactory {
 			return new ConnectorAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseConnectorAsUsage(ConnectorAsUsage element) {
+			return new ConnectorAsUsageAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseConstraintDefinition(ConstraintDefinition element) {
 			return new ConstraintDefinitionAdapter(element);
@@ -243,6 +263,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseFeatureMembership(FeatureMembership element) {
+			return new FeatureMembershipAdapter(element);
+		}
+
+		@Override
 		public ElementAdapter caseFeatureReferenceExpression(FeatureReferenceExpression element) {
 			return new FeatureReferenceExpressionAdapter(element);
 		}
@@ -252,6 +277,11 @@ public class ElementAdapterFactory {
 			return new FeatureTypingAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseFlowConnectionDefinition(FlowConnectionDefinition element) {
+			return new FlowConnectionDefinitionAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseFlowConnectionUsage(FlowConnectionUsage element) {
 			return new FlowConnectionUsageAdapter(element);
@@ -275,6 +305,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseIncludeUseCaseUsage(IncludeUseCaseUsage element) {
 			return new IncludeUseCaseUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseIndexExpression(IndexExpression element) {
+			return new IndexExpressionAdapter(element);
 		}
 		
 		@Override
@@ -328,10 +363,20 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseMembershipExpose(MembershipExpose element) {
+			return new MembershipExposeAdapter(element);
+		}
+
+		@Override
 		public ElementAdapter caseMembershipImport(MembershipImport element) {
 			return new MembershipImportAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseMetadataDefinition(MetadataDefinition element) {
+			return new MetadataDefinitionAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseMetadataFeature(MetadataFeature element) {
 			return new MetadataFeatureAdapter(element);
@@ -352,6 +397,11 @@ public class ElementAdapterFactory {
 			return new NamespaceAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseNamespaceExpose(NamespaceExpose element) {
+			return new NamespaceExposeAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseNamespaceImport(NamespaceImport element) {
 			return new NamespaceImportAdapter(element);
@@ -467,6 +517,21 @@ public class ElementAdapterFactory {
 			return new SubsettingAdapter(element);
 		}
 		
+		@Override
+		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
+			return new SuccessionAsUsageAdapter(element);
+		}
+
+		@Override
+		public ElementAdapter caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage element) {
+			return new SuccessionFlowConnectionUsageAdapter(element);
+		}
+
+		@Override
+		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
+			return new SuccessionItemFlowAdapter(element);
+		}
+
 		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);

@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('Connections::Connection')
  * ownedEndFeature->size() = 2 implies
  *     specializesFromLibrary('Connections::BinaryConnections')
+ * isSufficient
  * <!-- end-model-doc -->
  *
  * <p>

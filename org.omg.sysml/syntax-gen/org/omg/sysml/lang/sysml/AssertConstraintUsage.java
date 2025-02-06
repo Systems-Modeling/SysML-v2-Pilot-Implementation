@@ -31,13 +31,15 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>AssertConstraintUsage</code> is a <code>ConstraintUsage</code> that is also an <code>Invariant</code> and, so, is asserted to be true (by default). Unless it is the <code>AssertConstraintUsage</code> itself, the asserted <code>ConstraintUsage</code> is related to the <code>AssertConstraintUsage</code> by a ReferenceSubsetting <code>Relationship</code>.</p>
  * assertedConstraint =
- *     if ownedReferenceSubsetting = null then self
- *     else ownedReferenceSubsetting.referencedFeature.oclAsType(ConstraintUsage)
- *     endif
+ *     if referencedFeatureTarget() = null then self
+ *     else if referencedFeatureTarget().oclIsKindOf(ConstraintUsage) then
+ *         referencedFeatureTarget().oclAsType(ConstraintUsage)
+ *     else null
+ *     endif endif
  * if isNegated then
- *     specializesFromLibrary('Constraints::negatedConstraints')
+ *     specializesFromLibrary('Constraints::negatedConstraintChecks')
  * else
- *     specializesFromLibrary('Constraints::assertedConstraints')
+ *     specializesFromLibrary('Constraints::assertedConstraintChecks')
  * endif
  * ownedReferenceSubsetting <> null implies
  *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ConstraintUsage)

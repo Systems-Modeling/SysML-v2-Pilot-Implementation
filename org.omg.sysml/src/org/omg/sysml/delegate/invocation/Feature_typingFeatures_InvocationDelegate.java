@@ -46,7 +46,7 @@ public class Feature_typingFeatures_InvocationDelegate extends BasicInvocationDe
 		EList<Feature> typingFeatures = new BasicEList<>();
 		if (!self.isConjugated()) {
 			// NOTE: Only considers owned Subsettings.
-			FeatureUtil.getSubsettedFeaturesOf(self).stream().
+			FeatureUtil.getSubsettedNotCrossedFeaturesOf(self).stream().
 				forEachOrdered(typingFeatures::add);
 			EList<Feature> chainingFeatures = self.getChainingFeature();
 			if (!chainingFeatures.isEmpty()) {

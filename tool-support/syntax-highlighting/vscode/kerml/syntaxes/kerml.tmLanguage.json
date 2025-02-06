@@ -18,11 +18,11 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(about|abstract|alias|all|and|as|assoc|behavior|binding|bool|by|chains|class|classifier|comment|composite|conjugate|conjugates|conjugation|connector|datatype|default|dependency|derived|differences|disjoining|disjoint|doc|else|end|expr|false|feature|featured|featuring|filter|first|flow|for|from|function|hastype|if|implies|import|in|inout|interaction|intersects|inv|inverse|inverting|istype|language|library|locale|member|meta|metaclass|metadata|multiplicity|namespace|nonunique|not|null|of|or|ordered|out|package|portion|predicate|private|protected|public|readonly|redefines|redefinition|references|rep|return|specialization|specializes|standard|step|struct|subclassifier|subset|subsets|subtype|succession|then|to|true|type|typed|typing|unions|xor)\\b", "name": "keyword.other.kerml" },
+        { "match": "\\b(about|abstract|alias|all|and|as|assoc|behavior|binding|bool|by|chains|class|classifier|comment|composite|conjugate|conjugates|conjugation|connector|crosses|datatype|default|dependency|derived|differences|disjoining|disjoint|doc|else|end|expr|false|feature|featured|featuring|filter|first|flow|for|from|function|hastype|if|implies|import|in|inout|interaction|intersects|inv|inverse|inverting|istype|language|library|locale|member|meta|metaclass|metadata|multiplicity|namespace|nonunique|not|null|of|or|ordered|out|package|portion|predicate|private|protected|public|readonly|redefines|redefinition|references|rep|return|specialization|specializes|standard|step|struct|subclassifier|subset|subsets|subtype|succession|then|to|true|type|typed|typing|unions|xor)\\b", "name": "keyword.other.kerml" },
         { "match": "(#|%|&|\\?|\\?\\?|@@|\\^|\\|)", "name": "keyword.operator.logical.kerml" },
         { "match": "(!=|!==|\\<|\\<=|=|==|===|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },
-        { "match": "(\\-\\>|\\.\\.|\\.\\?|:|::|::\\>|:=|:\\>|:\\>\\>|@|~)", "name": "keyword.operator.other.kerml" }
+        { "match": "(\\-\\>|\\.\\.|\\.\\?|:|::|::\\>|:=|:\\>|:\\>\\>|=\\>|@|~)", "name": "keyword.operator.other.kerml" }
       ]
     },
     "strings": {

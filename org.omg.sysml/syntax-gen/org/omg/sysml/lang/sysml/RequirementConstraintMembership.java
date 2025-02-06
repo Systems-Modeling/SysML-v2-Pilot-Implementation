@@ -31,11 +31,12 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>RequirementConstraintMembership</code> is a <code>FeatureMembership</code> for an assumed or required <code>ConstraintUsage</code> of a <code>RequirementDefinition</code> or <code>RequirementUsage<code>.</p>
  * referencedConstraint =
- *     let reference : ReferenceSubsetting = 
- *         ownedConstraint.ownedReferenceSubsetting in
- *     if reference = null then ownedConstraint
- *     else if not reference.referencedFeature.oclIsKindOf(ConstraintUsage) then null 
- *     else reference.referencedFeature.oclAsType(ConstraintUsage)
+ *     let referencedFeature : Feature = 
+ *         ownedConstraint.referencedFeatureTarget() in
+ *     if referencedFeature = null then ownedConstraint
+ *     else if referencedFeature.oclIsKindOf(ConstraintUsage) then
+ *         refrencedFeature.oclAsType(ConstraintUsage)
+ *     else null
  *     endif endif
  * owningType.oclIsKindOf(RequirementDefinition) or
  * owningType.oclIsKindOf(RequirementUsage)

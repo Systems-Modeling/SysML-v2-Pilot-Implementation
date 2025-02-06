@@ -39,20 +39,31 @@ import org.eclipse.emf.common.util.EList;
  *     value <> null implies value >= 0
  * )
  * lowerBound =
- *     let ownedMembers : Sequence(Element) = 
- *         ownedMembership->selectByKind(OwningMembership).ownedMember in
- *     if ownedMembers->size() < 2 or 
- *         not ownedMembers->first().oclIsKindOf(Expression) then null
- *     else ownedMembers->first().oclAsType(Expression)
+ *     let ownedExpressions : Sequence(Expression) =
+ *         ownedMember->selectByKind(Expression) in
+ *     if ownedExpressions->size() < 2 then null
+ *     else ownedExpressions->first()
  *     endif
  * upperBound =
- *     let ownedMembers : Sequence(Element) = 
- *         ownedMembership->selectByKind(OwningMembership).ownedMember in
- *     if ownedMembers->isEmpty() or 
- *        not ownedMembers->last().oclIsKindOf(Expression) 
- *     then null
- *     else ownedMembers->last().oclAsType(Expression)
- *     endif 
+ *     let ownedExpressions : Sequence(Expression) =
+ *         ownedMember->selectByKind(Expression) in
+ *     if ownedExpressions->isEmpty() then null
+ *     else if ownedExpressions->size() = 1 then ownedExpressions->at(1)
+ *     else ownedExpressions->at(2)
+ *     endif endif 
+ * bound =
+ *     if upperBound = null then Sequence{}
+ *     else if lowerBound = null then Sequence{upperBound}
+ *     else Sequence{lowerBound, upperBound}
+ *     endif endif
+ * if lowerBound = null then
+ *     ownedMember->notEmpty() and
+ *     ownedMember->at(1) = upperBound
+ * else
+ *     ownedMember->size() > 1 and
+ *     ownedMember->at(1) = lowerBound and
+ *     ownedMember->at(2) = upperBound
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -150,12 +161,11 @@ public interface MultiplicityRange extends Multiplicity {
 	 * Returns the value of the '<em><b>Bound</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
-	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bound</em>' reference list isn't clear,
@@ -167,10 +177,10 @@ public interface MultiplicityRange extends Multiplicity {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicityRange_Bound()
-	 * @model required="true" upper="2" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model required="true" upper="2" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='multiplicity'"
-	 *        annotation="union"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getBound();

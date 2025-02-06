@@ -31,16 +31,27 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Connector</code> is a usage of <code>Associations</code>, with links restricted according to instances of the <code>Type</code> in which they are used (domain of the <code>Connector</code>). The <code>associations</code> of the <code>Connector</code> restrict what kinds of things might be linked. The <code>Connector</code> further restricts these links to be between values of <code>Features</code> on instances of its domain.</p>
  * 
- * relatedFeature = connectorEnd.ownedReferenceSubsetting->
- *     select(s | s <> null).subsettedFeature
- * relatedFeature->forAll(f | 
- *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
- *     else featuringType->forAll(t | f.isFeaturedWithin(t))
- *     endif)
+ * not isAbstract implies relatedFeature->size() >= 2
+ * connectorEnds->size() = 2 and
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary('Objects::binaryLinkObjects')
  * sourceFeature = 
  *     if relatedFeature->isEmpty() then null 
  *     else relatedFeature->first() 
  *     endif
+ * connectorEnds->size() > 2 implies
+ *     not specializesFromLibrary('Links::BinaryLink')
+ * relatedFeature->forAll(f | 
+ *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
+ *     else featuringType->forAll(t | f.isFeaturedWithin(t))
+ *     endif)
+ * relatedFeature = connectorEnd.ownedReferenceSubsetting->
+ *     select(s | s <> null).subsettedFeature
+ * specializesFromLibrary('Links::links')
+ * connectorEnd->size() = 2 implies
+ *     specializesFromLibrary('Links::binaryLinks')
+ * association->exists(oclIsKindOf(AssociationStructure)) implies
+ *     specializesFromLibrary('Objects::linkObjects')
  * targetFeature =
  *     if relatedFeature->size() < 2 then OrderedSet{}
  *     else 
@@ -48,17 +59,6 @@ import org.eclipse.emf.common.util.EList;
  *             subSequence(2, relatedFeature->size())->
  *             asOrderedSet()
  *     endif
- * not isAbstract implies relatedFeature->size() >= 2
- * specializesFromLibrary('Links::links')
- * association->exists(oclIsKindOf(AssociationStructure)) implies
- *     specializesFromLibrary('Objects::linkObjects')
- * connectorEnds->size() = 2 and
- * association->exists(oclIsKindOf(AssocationStructure)) implies
- *     specializesFromLibrary('Objects::binaryLinkObjects')
- * connectorEnd->size() = 2 implies
- *     specializesFromLibrary('Links::binaryLinks')
- * connectorEnds->size() > 2 implies
- *     not specializesFromLibrary('Links::BinaryLink')
  * <!-- end-model-doc -->
  *
  * <p>

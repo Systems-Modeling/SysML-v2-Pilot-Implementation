@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -40,12 +40,7 @@ public class Type_specializes_InvocationDelegate extends BasicInvocationDelegate
 		Type self = (Type) target;
 		Type supertype = (Type) arguments.get(0);
 		
-		if (self.isConjugated()) {
-			Type originalType = self.getOwnedConjugator().getOriginalType();
-			return originalType != null && originalType.specializes(supertype);
-		} else {
-			return self.allSupertypes().contains(supertype);
-		}
+		return self.allSupertypes().contains(supertype);
 	}
 
 }

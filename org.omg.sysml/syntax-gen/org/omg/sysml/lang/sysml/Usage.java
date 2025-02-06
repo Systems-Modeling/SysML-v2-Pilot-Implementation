@@ -467,8 +467,8 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -620,12 +620,12 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code> and <code>SuccessionAsUsages</code>, even though these are <code>ConnectorAsUsages</code> but not <code>ConnectionUsages</code>.</p>
+	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code>, <code>SuccessionAsUsages</code>, and <code>FlowConnectionUsages</code> because these are <code>ConnectorAsUsages</code> even though they are not <code>ConnectionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
@@ -1053,6 +1053,21 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<MetadataUsage> getNestedMetadata();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>ownedReferenceSubsetting</code> is not null, return the <code>featureTarget</code> of the <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code>.</p>
+	 * if ownedReferenceSubsetting = null then null
+	 * else ownedReferenceSubsetting.referencedFeature.featureTarget
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature referencedFeatureTarget();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

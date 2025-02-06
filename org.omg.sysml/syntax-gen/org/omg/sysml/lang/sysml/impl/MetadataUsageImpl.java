@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -36,8 +37,9 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -60,26 +62,18 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getAnnotation <em>Annotation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl#getMetadataDefinition <em>Metadata Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
-	/**
-	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotation()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Annotation> annotation;
-
 	/**
 	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -98,6 +92,26 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAnnotation() <em>Annotation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningAnnotatingRelationship() <em>Owning Annotating Relationship</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningAnnotatingRelationship()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNING_ANNOTATING_RELATIONSHIP).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getMetadataDefinition() <em>Metadata Definition</em>}' reference.
@@ -133,12 +147,39 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Annotation> getAnnotation() {
-		if (annotation == null) {
-			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.METADATA_USAGE__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
-		}
-		return annotation;
+		return (EList<Annotation>)ANNOTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation getOwningAnnotatingRelationship() {
+		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation basicGetOwningAnnotatingRelationship() {
+		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningAnnotatingRelationship(Annotation newOwningAnnotatingRelationship) {
+		OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningAnnotatingRelationship);
 	}
 
 	/**
@@ -152,6 +193,49 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
 		}
 		return ownedRelationship;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Relationship getOwningRelationship() {
+		if (eContainerFeatureID() != SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP) return null;
+		return (Relationship)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelationship(Relationship newOwningRelationship, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelationship, SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRelationship(Relationship newOwningRelationship) {
+		if (newOwningRelationship != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP && newOwningRelationship != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelationship))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelationship != null)
+				msgs = ((InternalEObject)newOwningRelationship).eInverseAdd(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
+			msgs = basicSetOwningRelationship(newOwningRelationship, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP, newOwningRelationship, newOwningRelationship));
 	}
 
 	/**
@@ -184,7 +268,7 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_ANNOTATING_RELATIONSHIP_ESUPERSETS = new int[] {SysMLPackage.METADATA_USAGE__ANNOTATION, SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP};
+	protected static final int[] OWNED_ANNOTATING_RELATIONSHIP_ESUPERSETS = new int[] {SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -393,10 +477,12 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotation()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelationship((Relationship)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -409,10 +495,10 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				return ((InternalEList<?>)getAnnotation()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP:
 				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP:
+				return basicSetOwningRelationship(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -423,14 +509,31 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, Relationship.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				return getAnnotation();
 			case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT:
 				return getAnnotatedElement();
 			case SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP:
 				return getOwnedAnnotatingRelationship();
+			case SysMLPackage.METADATA_USAGE__ANNOTATION:
+				return getAnnotation();
+			case SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP:
+				if (resolve) return getOwningAnnotatingRelationship();
+				return basicGetOwningAnnotatingRelationship();
 			case SysMLPackage.METADATA_USAGE__METACLASS:
 				if (resolve) return getMetaclass();
 				return basicGetMetaclass();
@@ -450,10 +553,6 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				getAnnotation().clear();
-				getAnnotation().addAll((Collection<? extends Annotation>)newValue);
-				return;
 			case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT:
 				getAnnotatedElement().clear();
 				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
@@ -461,6 +560,13 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			case SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP:
 				getOwnedAnnotatingRelationship().clear();
 				getOwnedAnnotatingRelationship().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case SysMLPackage.METADATA_USAGE__ANNOTATION:
+				getAnnotation().clear();
+				getAnnotation().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP:
+				setOwningAnnotatingRelationship((Annotation)newValue);
 				return;
 			case SysMLPackage.METADATA_USAGE__METACLASS:
 				setMetaclass((Metaclass)newValue);
@@ -480,14 +586,17 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				getAnnotation().clear();
-				return;
 			case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT:
 				getAnnotatedElement().clear();
 				return;
 			case SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP:
 				getOwnedAnnotatingRelationship().clear();
+				return;
+			case SysMLPackage.METADATA_USAGE__ANNOTATION:
+				getAnnotation().clear();
+				return;
+			case SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP:
+				setOwningAnnotatingRelationship((Annotation)null);
 				return;
 			case SysMLPackage.METADATA_USAGE__METACLASS:
 				setMetaclass((Metaclass)null);
@@ -507,14 +616,18 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_USAGE__ANNOTATION:
-				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_USAGE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.METADATA_USAGE__OWNING_RELATIONSHIP:
+				return getOwningRelationship() != null;
 			case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT:
 				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP:
 				return OWNED_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.METADATA_USAGE__ANNOTATION:
+				return ANNOTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP:
+				return OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_USAGE__METACLASS:
 				return isSetMetaclass();
 			case SysMLPackage.METADATA_USAGE__ITEM_DEFINITION:
@@ -537,6 +650,7 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 				case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT: return SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT;
 				case SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP;
 				case SysMLPackage.METADATA_USAGE__ANNOTATION: return SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION;
+				case SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP: return SysMLPackage.ANNOTATING_ELEMENT__OWNING_ANNOTATING_RELATIONSHIP;
 				default: return -1;
 			}
 		}
@@ -561,6 +675,7 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 				case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT: return SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT;
 				case SysMLPackage.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP: return SysMLPackage.METADATA_USAGE__OWNED_ANNOTATING_RELATIONSHIP;
 				case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION: return SysMLPackage.METADATA_USAGE__ANNOTATION;
+				case SysMLPackage.ANNOTATING_ELEMENT__OWNING_ANNOTATING_RELATIONSHIP: return SysMLPackage.METADATA_USAGE__OWNING_ANNOTATING_RELATIONSHIP;
 				default: return -1;
 			}
 		}

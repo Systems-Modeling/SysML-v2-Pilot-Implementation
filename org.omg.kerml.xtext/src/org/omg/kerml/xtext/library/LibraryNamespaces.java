@@ -56,6 +56,10 @@ public class LibraryNamespaces {
 		
 		Resource resourceOfNamespace = namespace.eResource();
 		
+		if (resourceOfNamespace == null) {
+			return true;
+		}
+		
 		LibraryIndex index = libraryIndexProvider.getIndexFor(resourceOfNamespace);
 		
 		var namespaceFQN = qualifiedNameProvider.getFullyQualifiedName(namespace);

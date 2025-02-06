@@ -46,8 +46,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SpecializationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SpecializationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SpecializationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SpecializationImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SpecializationImpl#getGeneral <em>General</em>}</li>
  * </ul>
@@ -400,10 +400,10 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.SPECIALIZATION__SPECIFIC:
-				return isSetSpecific();
 			case SysMLPackage.SPECIALIZATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
+			case SysMLPackage.SPECIALIZATION__SPECIFIC:
+				return isSetSpecific();
 			case SysMLPackage.SPECIALIZATION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.SPECIALIZATION__SOURCE:

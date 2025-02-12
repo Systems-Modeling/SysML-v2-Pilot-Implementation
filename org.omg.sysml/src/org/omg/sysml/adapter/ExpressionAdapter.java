@@ -36,7 +36,6 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.TypeUtil;
 
 public class ExpressionAdapter extends StepAdapter {
 
@@ -127,11 +126,6 @@ public class ExpressionAdapter extends StepAdapter {
 			
 			return feature;
 		}
-	}
-	
-	@Override
-	public void addAdditionalMembers() {
-		TypeUtil.addResultParameterTo(getTarget());
 	}
 	
 	@Override

@@ -25,8 +25,6 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -36,10 +34,9 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.model.DataIdentity;
-import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -48,9 +45,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 /**
- * This is an element-processing facade that uses the SysML v2 REST API client to export Elements to JSON.
- * A list of DataVersions is constructed during traversal of the model. Once the traversal is
- * completed, this change set can be exported to JSON.
+ * This is an element-processing facade that uses the SysML v2 REST API client
+ * to export Elements to JSON. A list of Elements is constructed during
+ * traversal of the model. This list of elements is equivalent to the ones that
+ * the API server returns
  * 
  * @author Ed Seidewitz
  * @author Ivan Gomes
@@ -68,7 +66,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	protected int elementCount = 0;
 	protected int dotCount = 0;
 	
-	private final List<DataVersion> versions = new ArrayList<>();
+	private APIModel localModel = APIModel.createEmpty();
+	
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	/**
@@ -124,25 +123,6 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	public boolean isIncludeDerived() {
 		return this.isIncludeDerived;
 	}
-
-	/**
-	 * Return the collection of DataVersions that have been created from
-	 * processed model Elements.
-	 * 
-	 * @return	the collection of DataVersions that have been created 
-	 */
-	List<DataVersion> getVersions() {
-		return Collections.unmodifiableList(this.versions);
-	}
-	
-	/**
-	 * Add a DataVersion to the collection.
-	 * 
-	 * @param 	elementVersion	the DataVersion to be added to the collection
-	 */
-	protected void addVersion(DataVersion elementVersion) {
-		this.versions.add(elementVersion);
-	}
 	
 	/**
 	 * Create an Identified object with the given identifier.
@@ -178,19 +158,20 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Create a DataVersion for the given model Element including the values of all its non-derived  
+	 * Create an (API)Element for the given model (EMF)Element including the values of all its non-derived  
 	 * attributes (unless it is a library model element, in which case only its non-referential attribute values 
 	 * are included). If isIncludeDerived is true, also include derived attributes. The ID for the DataVersion 
 	 * uses the identifier from the model Element.
 	 * 
 	 * @param 	element				the source model Element as it is represented in Ecore
-	 * @return	a DataVersion with the API representation of the given Element as its data
+	 * @return	API representation of the given Element
 	 */
 	@SuppressWarnings("unchecked")
-	protected org.omg.sysml.model.DataVersion createElementVersion(Element element) {
-		org.omg.sysml.model.Data apiElement = new org.omg.sysml.model.Data();
+	protected org.omg.sysml.model.Element createApiModelElement(Element element) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
+		apiElement.put("@id", element.getElementId());
 		boolean isLibraryElement = ElementUtil.isStandardLibraryElement(element);
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String className = eClass.getName();
@@ -220,8 +201,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 				apiElement.put(featureName, value);
 			}
 		}
-		return new DataVersion().payload(apiElement).
-				identity(new DataIdentity().atId(UUID.fromString(element.getElementId())));
+		return apiElement;
 	}
 	
 	/**
@@ -279,14 +259,28 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	@Override
 	public void postProcess(Element element) {
-		this.addVersion(this.createElementVersion(element));
+		org.omg.sysml.model.Element apiModelElement = this.createApiModelElement(element);
+		UUID id = UUID.fromString(apiModelElement.get("@id").toString());
+		
+		if (element.getOwningNamespace() == null || element.isLibraryElement()) {
+			this.getLocalModel().addModelRoot(id, apiModelElement);
+		}
+		this.getLocalModel().addModelElement(id, apiModelElement);;
+	}
+
+	protected APIModel getLocalModel() {
+		return localModel;
+	}
+
+	protected void setLocalModel(APIModel localModel) {
+		this.localModel = localModel;
 	}
 	
 	public String toJson() {
-		return gson.toJson(versions);
+		return getLocalModel().toJson(gson);
 	}
 	
 	public JsonElement toJsonTree() {
-		return gson.toJsonTree(versions);
+		return getLocalModel().toJsonTree(gson);
 	}
 }

@@ -49,10 +49,14 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.ApiException;
+import org.omg.sysml.util.repository.EMFModelRefresh;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
-import org.omg.sysml.util.repository.RepositoryContentFetcher;
+import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.ProjectRevision.APIModel;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefreshCreator;
 
 import com.google.inject.Inject;
 
@@ -124,12 +128,20 @@ public class PullRepositoryProject extends AbstractHandler {
 				tracker.trackLibraryUUIDs(resourceSet.getResources());
 				
 				ProjectRepository projectRepository = new ProjectRepository(repositoryUrl);
-				RepositoryProject repositoryProject = projectRepository.getProjectById(projectName);
-				RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
-				ProjectDelta delta = repositoryFetcher.fetch();
+				RemoteProject repositoryProject = projectRepository.getProjectById(projectName);
+				
+				RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
+				ProjectRevision headRevision = defaultBranch.getHeadRevision();
+				APIModel model = headRevision.fetchRemote();
+				EMFModelRefreshCreator repositoryFetcher = new EMFModelRefreshCreator(model, tracker);
+				EMFModelRefresh delta = repositoryFetcher.fetch();
 				delta.save(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}
 		} catch (IOException | CoreException e) {
+			e.printStackTrace();
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace();
+		} catch (ApiException e) {
 			e.printStackTrace();
 		}
 	}

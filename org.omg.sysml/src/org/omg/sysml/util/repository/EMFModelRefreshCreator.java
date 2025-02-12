@@ -1,7 +1,7 @@
-/*******************************************************************************
+/**
  * SysML 2 Pilot Implementation
- * Copyright (c) 2025 Model Driven Solutions, Inc.
- *    
+ * Copyright (C) 2025 Model Driven Solutions, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -11,14 +11,15 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- *  
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
- *******************************************************************************/
-
+ * 
+ * Contributors:
+ *   Laszlo Gati, MDS
+ */
 package org.omg.sysml.util.repository;
 
 
@@ -44,46 +45,38 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
 
 /**
- * Class responsible for downloading project contents from the repository
- * and transforming the otherwise flat data structure to a hierarchical one.
- * UUID based cross-references are also resolved during this process using
- * the {@link EObjectUUIDTracker} which serves as an index. The tracker can be
- * pre-populated with local objects enabling resolution between local and the repository models. 
- */
-public class RepositoryContentFetcher {
+* This class is responsible for the propagation of {@link APIModel}s into EMF 
+*
+*/
+public class EMFModelRefreshCreator {
 	
 	private final EObjectUUIDTracker tracker;
-	private final RepositoryProject repositoryProject;
+	private final APIModel model;
 	
 	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
 	
 	/**
-	 * @param repositoryProject as the input
+	 * @param model to propagate into EMF
 	 * @param tracker index based on element UUIDs
 	 */
-	public RepositoryContentFetcher(RepositoryProject repositoryProject, EObjectUUIDTracker tracker) {
-		this.repositoryProject = repositoryProject;
+	public EMFModelRefreshCreator(APIModel model, EObjectUUIDTracker tracker) {
+		this.model = model;
 		this.tracker = tracker;
 	}
 	
 	/**
-	 * Initiates the download of the repository project. Then transforms the project contents
-	 * from a flat data structure to a hierarchical one while also resolving UUID based cross-references.
+	 * Creates an EMF model based on the {@link APIModel} and returns it as a
+	 * {@link EMFModelRefresh}
 	 * 
-	 * @return project diff. (currently just a container for the entire model downloaded from the project)
+	 * @return unpropagated EMF model
 	 */
-	public ProjectDelta fetch() {
-		boolean success = repositoryProject.loadRemote();
-		
-		if (!success) throw new RuntimeException("Couldn't download project: " + repositoryProject.getProjectName());
-		
+	public EMFModelRefresh create() {
 		Map<EObject, Element> rootNamespaces = new HashMap<>(); 
 		
 		//traverse containment
-		for (var projectRoot: repositoryProject.getProjectRoots()) {
+		for (var projectRoot: model.getModelRoots().values()) {
 			if (!Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
 				EObject rootNamespace = transform(projectRoot);
 				rootNamespaces.put(rootNamespace, projectRoot);
@@ -91,8 +84,8 @@ public class RepositoryContentFetcher {
 		}
 		
 		//traverse cross-references, set attributes
-		tracker.forEachTrackedUserElement((id, langElement) -> {
-			Element element = repositoryProject.getElement(id);
+		tracker.forEachTrackedLocalElement((id, langElement) -> {
+			Element element = model.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
 				tranformCrossreferences(langElement, element);
 				tranformAttributes(langElement, element);
@@ -101,7 +94,7 @@ public class RepositoryContentFetcher {
 			}
 		});
 		
-		return new ProjectDelta(repositoryProject, rootNamespaces);
+		return new EMFModelRefresh(rootNamespaces);
 	}
 	
 	private EObject transform(Element dto) {
@@ -230,7 +223,7 @@ public class RepositoryContentFetcher {
 	private EObject resolveReference(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
-			Element referencedElement = repositoryProject.getElement(UUID.fromString(refUUID.toString()));
+			Element referencedElement = model.getElement(UUID.fromString(refUUID.toString()));
 			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(UUID.fromString(refUUID.toString()));
 			return referencedLangElement;
 		}

@@ -35,6 +35,9 @@ import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.DataVersion;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.APIModelDelta;
+
 import okhttp3.OkHttpClient;
 
 /**
@@ -123,7 +126,9 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 		try {
 			this.project = projectApi.postProject(this.project);
 			
-			List<DataVersion> changes = this.getVersions();
+			APIModelDelta delta = APIModelDelta.create(getLocalModel(), APIModel.createEmpty());
+			
+			List<DataVersion> changes = delta.toTrasferableDelta();
 			Commit commit = new Commit().change(changes);
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
 			

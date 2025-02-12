@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -58,6 +59,7 @@ import org.omg.kerml.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
+import org.omg.sysml.ApiException;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -76,10 +78,13 @@ import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.EMFModelRefresh;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
-import org.omg.sysml.util.repository.RepositoryContentFetcher;
+import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.ProjectRevision.APIModel;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefreshCreator;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -442,7 +447,7 @@ public class SysMLInteractive extends SysMLUtil {
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
 		
 		System.out.println("Locating model");
-		RepositoryProject repositoryProject = repository.getProjectByName(projectName);
+		RemoteProject repositoryProject = repository.getProjectByName(projectName);
 		
 		if (repositoryProject == null) {
 			return "ERROR:Publication doesn't exist.";
@@ -459,7 +464,7 @@ public class SysMLInteractive extends SysMLUtil {
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
 		
 		System.out.println("Locating model");
-		RepositoryProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
+		RemoteProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
 		
 		if (repositoryProject == null) {
 			return "ERROR:Publication doesn't exist.";
@@ -468,43 +473,49 @@ public class SysMLInteractive extends SysMLUtil {
 		return load(repositoryProject);
 	}
 
-	private String load(RepositoryProject repositoryProject) {
-		boolean success = repositoryProject.loadRemote();
-		
-		if (!success) {
-			return "ERROR:Could not download the publication.";
-		}
-		
-		System.out.println("Collecting UUIDs...");
-		if (!tracker.isLibraryTracked()) {
-			tracker.trackLibraryUUIDs(getLibraryResources());
-		}
-		
-		tracker.clearTrackedUserElements();
-		List<Resource> inputResources = getInputResources();
-		//UUIDS coming from resources that were added later in time will shadow previous ones
-		tracker.trackUserUUIDs(inputResources);
-		
-		RepositoryContentFetcher fetcher = new RepositoryContentFetcher(repositoryProject, tracker);
-		
-		System.out.println("Downloading model...");
-		ProjectDelta delta = fetcher.fetch();
-		
-		System.out.println("Adding model to index");
-		delta.getProjectRoots().forEach((eObject, dto) -> {
-			next(SYSMLX_EXTENSION);
-			Resource xmiResource = getResource();
-			if (eObject instanceof Namespace) {
-				xmiResource.getContents().add(eObject);
-			} else {
-				Namespace root = SysMLFactory.eINSTANCE.createNamespace();
-				NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
-				xmiResource.getContents().add(root);
+	private String load(RemoteProject repositoryProject) {
+		try {
+			RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
+			ProjectRevision headRevision = defaultBranch.getHeadRevision();
+			APIModel model = headRevision.fetchRemote();
+			
+			System.out.println("Collecting UUIDs...");
+			if (!tracker.isLibraryTracked()) {
+				tracker.trackLibraryUUIDs(getLibraryResources());
 			}
-			addResourceToIndex(xmiResource);
-		});
-		
-		return "Project loaded: " + repositoryProject.getProjectName() + ", " + repositoryProject.getProjectId().toString();
+			
+			tracker.clear();
+			List<Resource> inputResources = getInputResources();
+			//UUIDS coming from resources that were added later in time will shadow previous ones
+			tracker.trackLocalUUIDs(inputResources);
+			
+			EMFModelRefreshCreator fetcher = new EMFModelRefreshCreator(model, tracker);
+			
+			System.out.println("Downloading model...");
+			EMFModelRefresh delta = fetcher.fetch();
+			
+			System.out.println("Adding model to index");
+			delta.getProjectRoots().forEach((eObject, dto) -> {
+				next(SYSMLX_EXTENSION);
+				Resource xmiResource = getResource();
+				if (eObject instanceof Namespace) {
+					xmiResource.getContents().add(eObject);
+				} else {
+					Namespace root = SysMLFactory.eINSTANCE.createNamespace();
+					NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
+					xmiResource.getContents().add(root);
+				}
+				addResourceToIndex(xmiResource);
+			});
+			
+			return "Project loaded: " + repositoryProject.getProjectName() + ", " + repositoryProject.getRemoteId().toString();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			return "Requested model doesn't exist.";
+		} catch (ApiException e) {
+			e.printStackTrace();
+			return "Error occured while trying to load model";
+		}
 	}
 	
 	protected String download(String name) {
@@ -518,8 +529,8 @@ public class SysMLInteractive extends SysMLUtil {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
-		List<RepositoryProject> repositoryProjects = projectRepository.getProjects();
-		return repositoryProjects.stream().map(p -> String.format("name=%s, id=%s", p.getProjectName(), p.getProjectId()))
+		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
+		return repositoryProjects.stream().map(p -> String.format("name=%s, id=%s", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
 	}
 	

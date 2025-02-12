@@ -1,0 +1,35 @@
+//*
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Performances.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Occurrences.kerml"}
+       			File {from ="/library/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package ResultExpressionMembersio_invalid {
+	function F {
+		1
+	}
+	function G :> F {
+		//XPECT errors --> "Only one (owned or inherited) result expression is allowed" at "2"
+		2
+	}
+	
+	expr f : F {
+		//XPECT errors --> "Only one (owned or inherited) result expression is allowed" at "1"
+		1
+	}
+	//XPECT errors --> "Only one (owned or inherited) result expression is allowed" at "expr g :> f;"
+	expr g :> f;
+}

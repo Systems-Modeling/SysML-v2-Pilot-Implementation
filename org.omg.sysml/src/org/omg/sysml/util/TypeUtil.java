@@ -335,11 +335,9 @@ public class TypeUtil {
 		visited.add(type);
 		getTypeAdapter(type).addAdditionalMembers();
 		Set<ResultExpressionMembership> resultExpressions = new HashSet<>(getOwnedResultExpressionMembershipsOf(type));
-		if (resultExpressions.isEmpty()) {
-			for (Type general: getSupertypesOf(type)) {
-				if (general != null && !visited.contains(general)) {
-					resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
-				}
+		for (Type general: getSupertypesOf(type)) {
+			if (general != null && !visited.contains(general)) {
+				resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
 			}
 		}
 		return resultExpressions;

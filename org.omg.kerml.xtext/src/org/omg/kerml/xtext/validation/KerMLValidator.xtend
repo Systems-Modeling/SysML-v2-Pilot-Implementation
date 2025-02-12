@@ -215,6 +215,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION = "validateAssociationBinarySpecialization"
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
+	public static val INVALID_ASSOCIATION_END_TYPES = "validateAssociationEndTypes"
+	public static val INVALID_ASSOCIATION_END_TYPES_MSG = "An association end must have exactly one type"
 	public static val INVALID_ASSOCIATION_RELATED_TYPES = "validateAssociationRelatedTypes"
 	public static val INVALID_ASSOCIATION_RELATED_TYPES_MSG = "Must have at least two related elements"
 	public static val INVALID_ASSOCIATION_STRUCTURE_INTERSECTION = "validateAssociationStructureIntersection"
@@ -771,12 +773,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkAssociation(Association a){
 		// validateAssociationBinarySpecialization
 		// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
-		val associationEnds = TypeUtil.getOwnedEndFeaturesOf(a);
-		if (associationEnds.size() > 2) {
+		val ownedEndFeatures = TypeUtil.getOwnedEndFeaturesOf(a);
+		if (ownedEndFeatures.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(a, "Links::BinaryLink") as Type
 			if (a.conformsTo(binaryLinkType)) {
-				for (var i = 2; i < associationEnds.size(); i++) {
-					error(INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG, associationEnds.get(i), null, INVALID_ASSOCIATION_BINARY_SPECIALIZATION)	
+				for (var i = 2; i < ownedEndFeatures.size(); i++) {
+					error(INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG, ownedEndFeatures.get(i), null, INVALID_ASSOCIATION_BINARY_SPECIALIZATION)	
 				}
 			}
 		}
@@ -786,6 +788,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val relatedElements = a.getRelatedElement
 			if (relatedElements !== null && relatedElements.size < 2)
 				error(INVALID_ASSOCIATION_RELATED_TYPES_MSG, a, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_ASSOCIATION_RELATED_TYPES)	
+		}
+		
+		// validateAssociationEndTypes
+		for (end: ownedEndFeatures) {
+			if (end.type.size != 1) {
+				error(INVALID_ASSOCIATION_END_TYPES_MSG, end, null, INVALID_ASSOCIATION_END_TYPES)
+			}
 		}
 		
 		// validateAssociationStructureIntersection is automatically satisfied

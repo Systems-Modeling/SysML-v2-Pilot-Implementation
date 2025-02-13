@@ -29,7 +29,6 @@
 package org.omg.kerml.xtext.validation
 
 import java.util.List
-import java.util.Set
 
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EClass
@@ -186,7 +185,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG = "Redefining feature must have a compatible direction"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature cannot be redefined"
-	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Owner of redefining feature cannot be the same as owner of redefined feature"
+	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Featuring types of redefining feature and redefined feature cannot be the same"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
 
@@ -688,7 +687,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
-				!subsettedFeaturingTypes.forall[t | subsettingFeature.isAccessibleFrom(t)]) {
+				!subsettedFeaturingTypes.forall[t | FeatureUtil.isAccessibleFrom(subsettingFeature, t)]) {
 				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
 					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {
@@ -696,23 +695,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 		}
-	}
-	
-	def boolean isAccessibleFrom(Feature feature, Type type) {
-		feature.isAccessibleFrom(type, newHashSet)
-	}	
-	
-	def boolean isAccessibleFrom(Feature feature, Type type, Set<Feature> visited) {
-		visited.add(feature)
-		val featuringTypes = feature.featuringType
-		featuringTypes.empty && type == getLibraryType(feature, "Base::Anything") ||
-		feature.featuringType.exists[featuringType | 
-				TypeUtil.isCompatible(featuringType, type) ||
-				
-				// TODO: Add this to spec OCL for validateSubsettingFeaturingType?
-				featuringType instanceof Feature &&
-				!visited.contains(featuringType) &&
-				(featuringType as Feature).isAccessibleFrom(type, visited)];
 	}
 	
 	@Check

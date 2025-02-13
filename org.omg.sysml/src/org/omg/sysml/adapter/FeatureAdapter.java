@@ -631,39 +631,37 @@ public class FeatureAdapter extends TypeAdapter {
 			addFeaturingType(owningType);
 			return owningType;
 		} else {
-			Feature featuringType = SysMLFactory.eINSTANCE.createFeature();
-			
-			String name = owningType.getQualifiedName();
-			if (name == null) {
-				name = "";
+			Element occurrenceClass = getLibraryType("Occurrences::Occurrence");
+			Feature snapshotsFeature = (Feature)getLibraryType("Occurrences::Occurrence::snapshots");
+			Feature featuringType;
+
+			if (owningType == occurrenceClass) {
+				featuringType = snapshotsFeature;
 			} else {
-				int i = name.indexOf("::");
-				if (i >= 0) {
-					name = name.substring(i + 2);
+				featuringType = SysMLFactory.eINSTANCE.createFeature();
+				
+				String name = owningType.getQualifiedName();
+				if (name == null) {
+					name = "";
+				} else {
+					int i = name.indexOf("::");
+					if (i >= 0) {
+						name = name.substring(i + 2);
+					}
+					name = name.replace("::", "_");
 				}
-				name = name.replace("::", "_");
-			}
-			featuringType.setDeclaredName(name + "_snapshots");
+				featuringType.setDeclaredName(name + "_snapshots");
 			
-			List<Feature> redefinedFeatures = new ArrayList<>();
-			getSubsettedFeatures().stream().
-					filter(Feature::isVariable).
-					flatMap(FeatureUtil::getFeaturingFeaturesOf).
-					forEachOrdered(redefinedFeatures::add);
-			if (redefinedFeatures.isEmpty()) {
-				redefinedFeatures.add((Feature)getLibraryType("Occurrences::Occurrence::snapshots"));
-			}
-			for (Feature redefinedFeature: redefinedFeatures) {
 				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-				redefinition.setRedefinedFeature(redefinedFeature);
+				redefinition.setRedefinedFeature(snapshotsFeature);
 				redefinition.setRedefiningFeature(featuringType);
 				featuringType.getOwnedRelationship().add(redefinition);
+				
+				TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				typeFeaturing.setFeaturingType(owningType);
+				typeFeaturing.setFeatureOfType(featuringType);
+				featuringType.getOwnedRelationship().add(typeFeaturing);
 			}
-			
-			TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
-			typeFeaturing.setFeaturingType(owningType);
-			typeFeaturing.setFeatureOfType(featuringType);
-			featuringType.getOwnedRelationship().add(typeFeaturing);
 			
 			addFeaturingType(featuringType);
 			return featuringType;

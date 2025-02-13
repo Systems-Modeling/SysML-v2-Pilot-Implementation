@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -181,17 +181,16 @@ public class TypeUtil {
 		if (conforms(subtype, supertype)) {
 			return true;
 		} else if (subtype instanceof Feature && supertype instanceof Feature) {
-			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
-			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
+			List<Feature> subtypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)subtype, null);
+			List<Feature> supertypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)supertype, null);
 			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
-				 List<Type> subtypeFeaturing = ((Feature)subtype).getFeaturingType();
-				 List<Type> supertypeFeaturing = ((Feature)supertype).getFeaturingType();
-				 return subtypeFeaturing.stream().allMatch(t1->supertypeFeaturing.stream().anyMatch(t2->conforms(t1, t2)));
+				 return ((Feature)supertype).getFeaturingType().stream().
+						 anyMatch(t->FeatureUtil.isAccessibleFrom(((Feature)subtype), t));
 			}
 		}
 		return false;
 	}
-
+	
 	// Features
 	
 	public static List<Feature> getPublicFeaturesOf(Type type) {

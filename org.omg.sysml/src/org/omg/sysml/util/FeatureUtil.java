@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -61,6 +61,8 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class FeatureUtil {
 	
@@ -395,6 +397,22 @@ public class FeatureUtil {
 				map(Feature.class::cast);
 	}
 	
+	public static boolean isAccessibleFrom(Feature feature, Type type) {
+		return isAccessibleFrom(feature, type, new HashSet<>());
+	}	
+
+	private static boolean isAccessibleFrom(Feature feature, Type type, Set<Feature> visited) {
+		visited.add(feature);
+		List<Type> featuringTypes = feature.getFeaturingType();
+		return featuringTypes.isEmpty() && type == 
+				SysMLLibraryUtil.getLibraryType(feature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+				featuringTypes.stream().anyMatch(featuringType-> 
+						TypeUtil.isCompatible(featuringType, type) ||				
+						featuringType instanceof Feature &&
+						!visited.contains(featuringType) &&
+						isAccessibleFrom(((Feature)featuringType), type, visited));
+	}
+
 	// Feature Chaining
 	
 	public static Feature getFirstChainingFeatureOf(Feature feature) {

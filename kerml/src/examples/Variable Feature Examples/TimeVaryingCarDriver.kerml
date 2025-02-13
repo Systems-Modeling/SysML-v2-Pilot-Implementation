@@ -26,7 +26,7 @@ package TimeVaryingCarDriver {
         feature engine [1] :> carParts;
         feature transmission [1] :> carParts;
         
-        connector drive from engine to transmission;        
+        connector drive from engine to transmission;      
     }
     
     // Example model with "variable features" identified
@@ -39,7 +39,7 @@ package TimeVaryingCarDriver {
         var feature driver : Person1 [0..1];
         
         portion :>> startShot {
-        	var feature :>> driver [0];
+        	var feature :>> driver [0]; 
         }
         
         succession first startShot then operated; 
@@ -79,7 +79,7 @@ package TimeVaryingCarDriver {
         portion :>> startShot {
         	// var feature :>> driver [0];
            	member feature :>> Car1_::driver [0] featured by Car_startShot_snapshots {
-                member feature Car_startShot_snapshots :>> Car_snapshots featured by Car1_::startShot;
+                member feature Car_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::startShot;
         	}
         }
         
@@ -88,14 +88,10 @@ package TimeVaryingCarDriver {
         portion operated [0..*] :> timeSlices {
             // var feature :>> driver [1]
             member feature :>> Car1_::driver [1] featured by Car_operated_snapshots {
-                member feature Car_operated_snapshots :>> Car_operated_snapshots::that_Car.Car_snapshots featured by Car1_::operated {
-                    member feature that_Car : Car1_ :>> that featured by Car1_::operated {
-                        public import driver::Car_snapshots;
-                    }
-                }                
+                member feature Car_operated_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::operated;
                 // var feature :>> isLicensed = true;
                 member feature isLicensed1 :>> Person1_::isLicensed featured by Car_operated_driver_snapshots = true {
-                    member feature Car_operated_driver_snapshots :>> Person_snapshots featured by Car1_::operated::driver;
+                    member feature Car_operated_driver_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::operated::driver;
                 }
             }
         }

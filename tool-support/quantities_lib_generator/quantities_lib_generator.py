@@ -26,7 +26,7 @@ Purpose:
 Input file (in folder data/iso-iec-80000)
  - Excel workbook holding ISO/IEC 80000 definitions in tabular form (iso_iec_80000_quantities_and_units.xlsx)
 
-Output files (in folder generated_output):
+Output files (in folder libs_generated):
  - standard library package ISQBase.sysml
  - standard library package ISQSpaceTime.sysml reflecting ISO 80000-3
  - standard library package ISQMechanics.sysml reflecting ISO 80000-4
@@ -276,7 +276,7 @@ class Generator:
         self.units_dict: dict[str, SiUnit] = {}
         self.generated_quantities_dict: dict[str, GeneratedQuantity] = {}
         self.generated_coordinate_frames: set[str] = set()
-        self.output_dir_name: str = "generated_output"
+        self.output_dir_name: str = "libs_generated"
 
         # Create output directory if it does not yet exist
         if not os.path.exists(self.output_dir_name):

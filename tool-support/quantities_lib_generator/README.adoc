@@ -56,6 +56,6 @@ Run the generator and update the standard domain libraries
 ....
 $ python quantities_lib_generator.py
 ....
-* The generated output will appear in folder `generated_output`.
+* The generated output will appear in folder `libs_generated`.
 * Inspect the generated `.sysml` standard library packages, and diff them against already existing packages in the `../../sysml.library/Domain Libraries/Quantities and Units` folder.
 * If found correct, then copy them to that target folder and commit to update the standard libraries.

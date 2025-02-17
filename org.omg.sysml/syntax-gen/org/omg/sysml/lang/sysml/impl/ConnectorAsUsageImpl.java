@@ -517,15 +517,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
   		return false;
 	}
 
-	// Additional overrides	
-	
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

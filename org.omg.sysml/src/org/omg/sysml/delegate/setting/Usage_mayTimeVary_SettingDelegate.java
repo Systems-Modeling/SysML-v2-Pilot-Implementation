@@ -23,18 +23,27 @@ package org.omg.sysml.delegate.setting;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.TypeUtil;
 
-public class Usage_isTimeVarying_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class Usage_mayTimeVary_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public Usage_isTimeVarying_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Usage_mayTimeVary_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Boolean basicGet(InternalEObject owner) {
-		// Temporary
-		return ((Usage)owner).isConstant();
+		Usage self = (Usage)owner;
+		Type owningType = self.getOwningType();
+		return owningType != null &&
+			   TypeUtil.conforms(owningType, (Type)SysMLLibraryUtil.getLibraryElement(self, "Occurrences::Occurrence")) &&
+			   !(self.isPortion() ||
+			     TypeUtil.conforms(self, (Type)SysMLLibraryUtil.getLibraryElement(self, "Links::SelfLink")) ||
+			     TypeUtil.conforms(self, (Type)SysMLLibraryUtil.getLibraryElement(self, "Occurrences::HappensLink")) ||
+			     self.isComposite() && TypeUtil.conforms(self, (Type)SysMLLibraryUtil.getLibraryElement(self, "Actions::Action")));
 	}
 
 }

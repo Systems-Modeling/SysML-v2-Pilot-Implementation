@@ -12386,7 +12386,7 @@ endif</body>
       </specification>
     </ownedRule>
     <generalization xmi:id="5a0138d4-1b75-4944-8bb6-94053ea4b126" general="56b2e3ab-f2e5-4330-9c25-362cb4af825d"/>
-    <ownedAttribute xmi:id="7d7533bf-f314-46fa-8f57-cfeae39886fe" name="isTimeVarying" visibility="public" isDerived="true" redefinedProperty="f62ffc00-1c8d-427d-92bd-f7f1e8e46524">
+    <ownedAttribute xmi:id="7d7533bf-f314-46fa-8f57-cfeae39886fe" name="mayTimeVary" visibility="public" isDerived="true" redefinedProperty="f62ffc00-1c8d-427d-92bd-f7f1e8e46524">
       <ownedComment xmi:id="bfc45555-9e06-4d9a-bfa2-676c09f58950" annotatedElement="7d7533bf-f314-46fa-8f57-cfeae39886fe">
         <body>&lt;p>True if the &lt;code>Usage&lt;/code> has an &lt;code>owningType&lt;/code> that is typed by an &lt;em>&lt;code>Occurrence&lt;/code>&lt;/em>, but the &lt;code>Usage&lt;/code> is not a composite &lt;em>&lt;code>Action&lt;/code>&lt;/em>.&lt;/p></body>
       </ownedComment>

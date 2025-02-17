@@ -4893,7 +4893,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUsage_IsTimeVarying() {
+	public EAttribute getUsage_MayTimeVary() {
 		return (EAttribute)usageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -8546,7 +8546,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(definitionEClass, DEFINITION__OWNED_METADATA);
 
 		usageEClass = createEClass(USAGE);
-		createEAttribute(usageEClass, USAGE__IS_TIME_VARYING);
+		createEAttribute(usageEClass, USAGE__MAY_TIME_VARY);
 		createEAttribute(usageEClass, USAGE__IS_REFERENCE);
 		createEReference(usageEClass, USAGE__VARIANT);
 		createEReference(usageEClass, USAGE__VARIANT_MEMBERSHIP);
@@ -9736,7 +9736,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getDefinition_OwnedMetadata(), this.getMetadataUsage(), null, "ownedMetadata", null, 0, -1, Definition.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(usageEClass, Usage.class, "Usage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUsage_IsTimeVarying(), theTypesPackage.getBoolean(), "isTimeVarying", "false", 1, 1, Usage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getUsage_MayTimeVary(), theTypesPackage.getBoolean(), "mayTimeVary", "false", 1, 1, Usage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getUsage_IsReference(), theTypesPackage.getBoolean(), "isReference", null, 1, 1, Usage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getUsage_Variant(), this.getUsage(), null, "variant", null, 0, -1, Usage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getUsage_VariantMembership(), this.getVariantMembership(), null, "variantMembership", null, 0, -1, Usage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -10742,7 +10742,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Element/declaredShortName")
 		   });
 		addAnnotation
-		  (getUsage_IsTimeVarying(),
+		  (getUsage_MayTimeVary(),
 		   source,
 		   new String[] {
 		   },
@@ -12311,7 +12311,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getUsage_IsTimeVarying(),
+		  (getUsage_MayTimeVary(),
 		   source,
 		   new String[] {
 		   });

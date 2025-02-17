@@ -44,7 +44,7 @@ public class UsageItemProvider extends FeatureItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIsTimeVaryingPropertyDescriptor(object);
+			addMayTimeVaryPropertyDescriptor(object);
 			addIsReferencePropertyDescriptor(object);
 			addVariantPropertyDescriptor(object);
 			addVariantMembershipPropertyDescriptor(object);
@@ -86,19 +86,19 @@ public class UsageItemProvider extends FeatureItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Time Varying feature.
+	 * This adds a property descriptor for the May Time Vary feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsTimeVaryingPropertyDescriptor(Object object) {
+	protected void addMayTimeVaryPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Usage_isTimeVarying_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Usage_isTimeVarying_feature", "_UI_Usage_type"),
-				 SysMLPackage.Literals.USAGE__IS_TIME_VARYING,
+				 getString("_UI_Usage_mayTimeVary_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Usage_mayTimeVary_feature", "_UI_Usage_type"),
+				 SysMLPackage.Literals.USAGE__MAY_TIME_VARY,
 				 true,
 				 false,
 				 false,
@@ -937,7 +937,7 @@ public class UsageItemProvider extends FeatureItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Usage.class)) {
-			case SysMLPackage.USAGE__IS_TIME_VARYING:
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
 			case SysMLPackage.USAGE__IS_REFERENCE:
 			case SysMLPackage.USAGE__IS_VARIATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

@@ -92,7 +92,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#isTimeVarying <em>Is Time Varying</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#isMayTimeVary <em>May Time Vary</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
@@ -137,7 +137,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Usage extends Feature {
 	/**
-	 * Returns the value of the '<em><b>Is Time Varying</b></em>' attribute.
+	 * Returns the value of the '<em><b>May Time Vary</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <p>
 	 * This feature redefines the following features:
@@ -150,25 +150,25 @@ public interface Usage extends Feature {
 	 * <!-- begin-model-doc -->
 	 * <p>True if the <code>Usage</code> has an <code>owningType</code> that is typed by an <em><code>Occurrence</code></em>, but the <code>Usage</code> is not a composite <em><code>Action</code></em>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Time Varying</em>' attribute.
-	 * @see #setIsTimeVarying(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsTimeVarying()
+	 * @return the value of the '<em>May Time Vary</em>' attribute.
+	 * @see #setMayTimeVary(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_MayTimeVary()
 	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	boolean isTimeVarying();
+	boolean isMayTimeVary();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isTimeVarying <em>Is Time Varying</em>}' attribute.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isMayTimeVary <em>May Time Vary</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Time Varying</em>' attribute.
-	 * @see #isTimeVarying()
+	 * @param value the new value of the '<em>May Time Vary</em>' attribute.
+	 * @see #isMayTimeVary()
 	 * @generated
 	 */
-	void setIsTimeVarying(boolean value);
+	void setMayTimeVary(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Nested Usage</b></em>' reference list.

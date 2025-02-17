@@ -3186,7 +3186,7 @@
       </eAnnotations>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTimeVarying" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mayTimeVary" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
         transient="true" defaultValueLiteral="false" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

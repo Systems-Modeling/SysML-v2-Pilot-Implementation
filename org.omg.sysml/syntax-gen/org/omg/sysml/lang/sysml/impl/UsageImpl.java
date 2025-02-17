@@ -76,7 +76,7 @@ import org.omg.sysml.util.UsageUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isTimeVarying <em>Is Time Varying</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isMayTimeVary <em>May Time Vary</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
@@ -119,14 +119,14 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class UsageImpl extends FeatureImpl implements Usage {
 	/**
-	 * The cached setting delegate for the '{@link #isTimeVarying() <em>Is Time Varying</em>}' attribute.
+	 * The cached setting delegate for the '{@link #isMayTimeVary() <em>May Time Vary</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTimeVarying()
+	 * @see #isMayTimeVary()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate IS_TIME_VARYING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__IS_TIME_VARYING).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate MAY_TIME_VARY__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__MAY_TIME_VARY).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #isReference() <em>Is Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -488,8 +488,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated
 	 */
 	@Override
-	public boolean isTimeVarying() {
-		return (Boolean)IS_TIME_VARYING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public boolean isMayTimeVary() {
+		return (Boolean)MAY_TIME_VARY__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -498,8 +498,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated
 	 */
 	@Override
-	public void setIsTimeVarying(boolean newIsTimeVarying) {
-		IS_TIME_VARYING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsTimeVarying);
+	public void setMayTimeVary(boolean newMayTimeVary) {
+		MAY_TIME_VARY__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMayTimeVary);
 	}
 
 	/**
@@ -507,8 +507,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isSetIsTimeVarying() {
-		return isTimeVarying() != false;
+	public boolean isSetMayTimeVary() {
+		return isMayTimeVary() != IS_VARIABLE_EDEFAULT;
 	}
 
 	/**
@@ -1039,8 +1039,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__IS_TIME_VARYING:
-				return isTimeVarying();
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				return isMayTimeVary();
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				return isReference();
 			case SysMLPackage.USAGE__VARIANT:
@@ -1128,8 +1128,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__IS_TIME_VARYING:
-				setIsTimeVarying((Boolean)newValue);
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				setMayTimeVary((Boolean)newValue);
 				return;
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				setIsReference((Boolean)newValue);
@@ -1283,8 +1283,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__IS_TIME_VARYING:
-				IS_TIME_VARYING__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				MAY_TIME_VARY__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				IS_REFERENCE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
@@ -1410,8 +1410,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return isSetIsVariable();
 			case SysMLPackage.USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.USAGE__IS_TIME_VARYING:
-				return isSetIsTimeVarying();
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				return isSetMayTimeVary();
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__VARIANT:
@@ -1524,7 +1524,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated
 	 */
 	public boolean isVariable() {
-		return isTimeVarying();
+		return isMayTimeVary();
 	}
 
 	/**
@@ -1533,7 +1533,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated
 	 */
 	public void setIsVariable(boolean newIsVariable) {
-		setIsTimeVarying(newIsVariable);
+		setMayTimeVary(newIsVariable);
 	}
 
 	/**

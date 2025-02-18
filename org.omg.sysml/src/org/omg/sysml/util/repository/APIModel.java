@@ -22,14 +22,21 @@
  */
 package org.omg.sysml.util.repository;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.model.Identified;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -131,6 +138,35 @@ public class APIModel {
 		return modelElements.get(uuid);
 	}
 	
+	public void addOutOfScopeReferencesAsProxies() {
+		Set<LocalReference> localReferences = modelElements.values().stream()
+			.flatMap(el -> el.values().stream())
+			.flatMap(this::flatten)
+			.collect(Collectors.toSet());
+		
+		Set<UUID> added = new HashSet<>();
+		for (LocalReference ref: localReferences) {
+			UUID uuid = ref.getUUID();
+			if (getElement(uuid) == null && !added.contains(uuid)) {
+				Element proxy = new Element();
+				proxy.put(Identified.SERIALIZED_NAME_AT_ID, uuid.toString());
+				proxy.put("@type", ref.getType());
+				addModelRoot(uuid, proxy);
+			}
+		}
+	}
+	
+	private Stream<LocalReference> flatten(Object object) {
+		if (object instanceof LocalReference ref) {
+			return Stream.of(ref);
+		} else if (object instanceof Collection<?> col) {
+			return col.stream().filter(LocalReference.class::isInstance)
+					.map(LocalReference.class::cast);
+		} else {
+			return Stream.empty();
+		}
+	}
+	
 	/**
 	 * Creates a JSON representation of the model.
 	 * 
@@ -147,5 +183,40 @@ public class APIModel {
 	 */
 	public JsonElement toJsonTree(Gson gson) {
 		return gson.toJsonTree(getModelElements().values());
+	}
+	
+	@SuppressWarnings("serial")
+	public static class LocalReference extends HashMap<String, UUID> {
+		
+		private transient String type;
+
+		public LocalReference(UUID identifier, String type) {
+			put(Identified.SERIALIZED_NAME_AT_ID, identifier);
+			this.type = type;
+		}
+		
+		public String getType() {
+			return type;
+		}
+
+		public UUID getUUID() {
+			return get(Identified.SERIALIZED_NAME_AT_ID);
+		}
+		
+		@Override
+		public boolean equals(Object o) {
+			return o == this || (o instanceof Map m && m.containsKey(Identified.SERIALIZED_NAME_AT_ID) && idEquals(m));
+		}
+		
+		private boolean idEquals(Map<?,?> other) {
+			UUID id = this.get(Identified.SERIALIZED_NAME_AT_ID);
+			Object otherid = other.get(Identified.SERIALIZED_NAME_AT_ID);
+			if (otherid instanceof String idAsString) {
+				return UUID.fromString(idAsString).equals(id);
+			} else if (otherid instanceof UUID idAsUUID) {
+				return idAsUUID.equals(id);
+			}
+			return false;
+		}
 	}
 }

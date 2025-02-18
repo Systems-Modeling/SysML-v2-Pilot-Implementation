@@ -29,6 +29,8 @@ import java.util.Map;
 public class Publish {
     private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("element")
+    		.keyword("project")
+    		.keyword("branch")
             .flag("help", 'h', "true")
     		.build();
 
@@ -36,8 +38,10 @@ public class Publish {
     public static String publish(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> elements = vals.get("element");
+        List<String> projects = vals.get("project");
         String element = elements.isEmpty()? null:elements.get(0);
+        String project = projects.isEmpty()? null:projects.get(0);
         List<String> help = vals.get("help");
-        return ISysML.getKernelInstance().getInteractive().publish(element, help);
+        return ISysML.getKernelInstance().getInteractive().publish(element, project, help);
     }
 }

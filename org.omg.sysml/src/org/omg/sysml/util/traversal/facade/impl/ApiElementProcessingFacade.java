@@ -26,19 +26,15 @@
 package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.api.CommitApi;
-import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.util.repository.APIModel;
-import org.omg.sysml.util.repository.APIModelDelta;
-
-import okhttp3.OkHttpClient;
+import org.omg.sysml.util.repository.ProjectRepository;
+import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
@@ -55,11 +51,9 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
-	private final ApiClient apiClient = new ApiClient();
-	private final ProjectApi projectApi = new ProjectApi(apiClient);
-	private final CommitApi commitApi = new CommitApi(apiClient);
-
-	private org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
+	private ProjectRepository projectRepository;
+	private final String projectName;
+	private RemoteProject project;
 
 	/**
 	 * Create a facade for processing the Elements to be saved to the repository with the
@@ -70,16 +64,18 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 * @param	basePath			the base path to be used to access the REST end point.
 	 */
 	public ApiElementProcessingFacade(String projectName, String basePath) {
-		this.apiClient.setBasePath(basePath);		
-		this.apiClient.setHttpClient(
-			new OkHttpClient.Builder().
-				connectTimeout(1, TimeUnit.HOURS).
-				readTimeout(1, TimeUnit.HOURS).
-				writeTimeout(1, TimeUnit.HOURS).
-				build());
-		
-		this.project.setName(projectName);
+		this.projectRepository = new ProjectRepository(basePath);
+		this.projectName = projectName;
 	}
+	
+	public RemoteProject getProject() throws ApiException {
+		project = projectRepository.getProjectByName(projectName);
+		if (project == null) {
+			project = projectRepository.createProject(projectName);
+		}
+		return project;
+	}
+	
 	
 	/**
 	 * Create a facade for processing the Elements of a model with the given name using the default base path.
@@ -89,15 +85,6 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 */
 	public ApiElementProcessingFacade(String projectName) throws ApiException {
 		this(projectName, DEFAULT_BASE_PATH);
-	}
-	
-	/**
-	 * Get a string representation of the UUID of the project as it is saved in the repository.
-	 * 
-	 * @return	the UUID of the project saved in the repository
-	 */
-	public String getProjectId() {
-		return this.project.getAtId().toString();
 	}
 	
 	/**
@@ -124,22 +111,37 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 */
 	public boolean commit() {
 		try {
-			this.project = projectApi.postProject(this.project);
+			RemoteProject project = getProject();
+			RemoteBranch defaultBranch = project.getDefaultBranch();
+			ProjectRevision headRevision = defaultBranch.getHeadRevision();
+			try {
+				headRevision.fetchRemote();
+			} catch (UnsupportedOperationException e) {
+				//NOOP
+			}
+//			System.out.println(toJson());
+			APIModel localState = getLocalModel();
+			localState.addOutOfScopeReferencesAsProxies();
+			headRevision.setLocalState(localState);
+			List<DataVersion> localChanges = headRevision.getLocalChanges().toTrasferableDelta();
+			System.out.println(new org.omg.sysml.JSON().serialize(localChanges));
 			
-			APIModelDelta delta = APIModelDelta.create(getLocalModel(), APIModel.createEmpty());
-			
-			List<DataVersion> changes = delta.toTrasferableDelta();
-			Commit commit = new Commit().change(changes);
-//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
-			
-			int n = changes.size();
+			int n = localChanges.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);
-			System.out.println(commit.getAtId());
+			ProjectRevision nextRevision = headRevision.pushChanges(localChanges);
+			System.out.println(nextRevision.getRemoteId());
 			return true;
 		} catch (ApiException e) {
-			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
+			System.out.println("\nError: " + e.getCode() + " " + e.getMessage() + " : " + e.getResponseBody());
 			return false;
+		}
+	}
+
+	public String getProjectId() {
+		try {
+			return getProject().getRemoteId().toString();
+		} catch (ApiException e) {
+			return null;
 		}
 	}
 }

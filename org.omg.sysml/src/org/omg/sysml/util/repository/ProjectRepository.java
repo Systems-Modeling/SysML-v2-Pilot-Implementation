@@ -25,7 +25,6 @@ package org.omg.sysml.util.repository;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -183,6 +182,13 @@ public class ProjectRepository {
 		} catch (ApiException e) {
 			return null;
 		}
+	}
+	
+	public RemoteProject createProject(String projectName) throws ApiException {
+		Project project = new Project();
+		project.setName(projectName);
+		Project createdProject = getProjectApi().postProject(project);
+		return new RemoteProject(this, createdProject.getAtId(), createdProject.getName());
 	}
 	
 	Map<UUID, Element> getModelRoots(ProjectRevision revision) throws ApiException {

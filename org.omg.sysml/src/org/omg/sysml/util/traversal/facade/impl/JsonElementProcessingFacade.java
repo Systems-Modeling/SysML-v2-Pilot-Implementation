@@ -26,6 +26,7 @@
 package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -130,8 +131,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	identifier			the UUID of the object being identified
 	 * @return	an Identified object with the given identifier
 	 */
-	protected static Identified identified(UUID identifier) {
-		return new Identified().atId(identifier);
+	protected static Map<String, UUID> identified(UUID identifier, String type) {
+		return new APIModel.LocalReference(identifier, type);
 	}
 	
 	/**
@@ -140,8 +141,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	element				the Element to be identified
 	 * @return	an Identified object for the given Element (or null if the input is null).
 	 */
-	protected Identified getIdentified(Element element) {
-		return element == null? null: identified(UUID.fromString(element.getElementId()));
+	protected Map<String, UUID> getIdentified(Element element) {
+		return element == null? null: identified(UUID.fromString(element.getElementId()), element.eClass().getName());
 	}
 	
 	/**
@@ -150,11 +151,11 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	elements			the Elements being identified
 	 * @return	a list of Identified objects with the identifiers of the given elements
 	 */
-	protected List<Identified> getIdentified(List<Element> elements) {
+	protected List<Map<String, UUID>> getIdentified(List<Element> elements) {
 		return elements.stream().
 				map(this::getIdentified).
 				filter(id->id != null).
-				collect(Collectors.toList());
+				toList();
 	}
 
 	/**

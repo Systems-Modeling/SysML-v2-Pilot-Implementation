@@ -36,6 +36,7 @@ import org.omg.sysml.model.Data;
 import org.omg.sysml.model.DataIdentity;
 import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.model.Identified;
 
 import com.google.common.base.Objects;
 
@@ -44,16 +45,17 @@ import com.google.common.base.Objects;
  */
 public class APIModelDelta {
 	
-	private static final String ID_FIELD_NAME = "@id";
-	
 	private final Collection<Element> additions;
 	private final Map<UUID, Data> changes;
 	private final Collection<UUID> deletions;
 
-	private APIModelDelta(Set<Element> additions, Map<UUID, Data> changes, Set<UUID> deletions) {
+	private APIModel thisModel;
+
+	private APIModelDelta(APIModel thisModel, Set<Element> additions, Map<UUID, Data> changes, Set<UUID> deletions) {
 		this.additions = Collections.unmodifiableCollection(additions);
 		this.changes = Collections.unmodifiableMap(changes);
 		this.deletions = Collections.unmodifiableCollection(deletions);
+		this.thisModel = thisModel;
 	}
 	
 	/**
@@ -94,8 +96,11 @@ public class APIModelDelta {
 		
 		for (Element addition: getAdditions()) {
 			Data data = new Data();
-			data.putAll(addition);
-			UUID id = UUID.fromString(addition.get(ID_FIELD_NAME).toString());
+			for (String field: addition.keySet()) {
+				Object value = addition.get(field);
+				data.put(field, value);
+			}
+			UUID id = UUID.fromString(addition.get(Identified.SERIALIZED_NAME_AT_ID).toString());
 			delta.add(new DataVersion().payload(data).identity(new DataIdentity().atId(id)));
 		}
 		
@@ -104,9 +109,8 @@ public class APIModelDelta {
 		}
 		
 		for (UUID deletion: getDeletions()) {
-			//leave empty = remove
-			Data data = new Data();
-			delta.add(new DataVersion().payload(data).identity(new DataIdentity().atId(deletion)));
+			//set to null for deletion
+			delta.add(new DataVersion().payload(null).identity(new DataIdentity().atId(deletion)));
 		}
 		
 		return delta;
@@ -121,6 +125,9 @@ public class APIModelDelta {
 	 * @return {@link APIModelDelta} of the two models
 	 */
 	public static APIModelDelta create(APIModel thisModel, APIModel baseline) {
+		if (thisModel == null) thisModel = APIModel.createEmpty();
+		if (baseline == null) baseline = APIModel.createEmpty();
+		
 		Set<Element> additions = new HashSet<>();
 		Set<UUID> deletions = new HashSet<>();
 		Map<UUID, Data> changes = new HashMap<>();
@@ -135,12 +142,13 @@ public class APIModelDelta {
 				Element thisElement = thisModel.getElement(id);
 				Data change = createElementDelta(thisElement, baselineElement);
 				if (!change.isEmpty()) {
+					change.put("@type", thisElement.get("@type"));
 					changes.put(id, change);
 				}
 			}
 		}
 		
-		Map<UUID, Element> elementsFromBaseline = thisModel.getModelElements();
+		Map<UUID, Element> elementsFromBaseline = baseline.getModelElements();
 		
 		for (UUID id: elementsFromBaseline.keySet()) {
 			Element element = thisModel.getElement(id);
@@ -149,8 +157,7 @@ public class APIModelDelta {
 			}
 		}
 		
-		
-		return new APIModelDelta(additions, changes, deletions);
+		return new APIModelDelta(thisModel, additions, changes, deletions);
 	}
 	
 	/**
@@ -164,19 +171,19 @@ public class APIModelDelta {
 		Data change = new Data();
 		Set<String> fieldsInThis = thisElement.keySet();
 		for (String field: fieldsInThis) {
-			Object thisValue = baselineElement.get(field);
+			Object thisValue = thisElement.get(field);
 			Object baselineValue = baselineElement.get(field);
 			if (!Objects.equal(thisValue, baselineValue)) {
 				change.put(field, thisValue);
 			}
 		}
 		//set removed fields to null
-		Set<String> fieldsInTo = baselineElement.keySet();
-		for (String field: fieldsInTo) {
-			if (!thisElement.containsKey(field)) {
-				change.put(field, null);
-			}
-		}
+//		Set<String> fieldsInTo = baselineElement.keySet();
+//		for (String field: fieldsInTo) {
+//			if (!thisElement.containsKey(field)) {
+//				change.put(field, null);
+//			}
+//		}
 		
 		return change;
 	}

@@ -50,10 +50,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.ApiException;
+import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelRefresh;
 import org.omg.sysml.util.repository.ProjectRepository;
 import org.omg.sysml.util.repository.ProjectRevision;
-import org.omg.sysml.util.repository.ProjectRevision.APIModel;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 import org.omg.sysml.util.repository.EMFModelRefreshCreator;
@@ -134,7 +134,7 @@ public class PullRepositoryProject extends AbstractHandler {
 				ProjectRevision headRevision = defaultBranch.getHeadRevision();
 				APIModel model = headRevision.fetchRemote();
 				EMFModelRefreshCreator repositoryFetcher = new EMFModelRefreshCreator(model, tracker);
-				EMFModelRefresh delta = repositoryFetcher.fetch();
+				EMFModelRefresh delta = repositoryFetcher.create();
 				delta.save(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}
 		} catch (IOException | CoreException e) {

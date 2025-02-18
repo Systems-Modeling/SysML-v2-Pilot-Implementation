@@ -74,14 +74,15 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
+import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelRefresh;
 import org.omg.sysml.util.repository.ProjectRepository;
 import org.omg.sysml.util.repository.ProjectRevision;
-import org.omg.sysml.util.repository.ProjectRevision.APIModel;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 import org.omg.sysml.util.repository.EMFModelRefreshCreator;
@@ -409,24 +410,25 @@ public class SysMLInteractive extends SysMLUtil {
 				show(name, Collections.emptyList(), Collections.emptyList()));
 	}
 	
-	public String publish(String name, List<String> help) {
+	public String publish(String elementName, String projectName, List<String> help) {
 		this.counter++;
-		if (Strings.isNullOrEmpty(name)) {
+		if (Strings.isNullOrEmpty(elementName)) {
 			return help.isEmpty()? "": SysMLInteractiveHelp.getPublishHelp();
 		}
 		try {
-			Element element = this.resolve(name);
+			Element element = this.resolve(elementName);
 			if (element == null) {
-				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+				return "ERROR:Couldn't resolve reference to Element '" + elementName + "'\n";
 			} else if (!this.isInputResource(element.eResource())) {
-				return "ERROR:'" + name + "' is a library element\n";
+				return "ERROR:'" + elementName + "' is a library element\n";
 			} else {
-				String modelName = element.getDeclaredName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(modelName);
+				String remoteProjectName = projectName == null? element.getDeclaredName() + " " + new Date() : projectName;
+				
+				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName);
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit();
 				System.out.println();
-				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
+				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -435,8 +437,8 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected String publish(String name) {
 		return "-h".equals(name)? 
-				publish(null, Collections.singletonList("true")):
-				publish(name, Collections.emptyList());
+				publish(null, null, Collections.singletonList("true")):
+				publish(name, null, Collections.emptyList());
 	}
 	
 	public String loadByName(String projectName, List<String> help) {
@@ -450,7 +452,7 @@ public class SysMLInteractive extends SysMLUtil {
 		RemoteProject repositoryProject = repository.getProjectByName(projectName);
 		
 		if (repositoryProject == null) {
-			return "ERROR:Publication doesn't exist.";
+			return "ERROR:Project doesn't exist.";
 		}
 		
 		return load(repositoryProject);
@@ -467,7 +469,7 @@ public class SysMLInteractive extends SysMLUtil {
 		RemoteProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
 		
 		if (repositoryProject == null) {
-			return "ERROR:Publication doesn't exist.";
+			return "ERROR:Project doesn't exist.";
 		}
 		
 		return load(repositoryProject);
@@ -492,7 +494,7 @@ public class SysMLInteractive extends SysMLUtil {
 			EMFModelRefreshCreator fetcher = new EMFModelRefreshCreator(model, tracker);
 			
 			System.out.println("Downloading model...");
-			EMFModelRefresh delta = fetcher.fetch();
+			EMFModelRefresh delta = fetcher.create();
 			
 			System.out.println("Adding model to index");
 			delta.getProjectRoots().forEach((eObject, dto) -> {

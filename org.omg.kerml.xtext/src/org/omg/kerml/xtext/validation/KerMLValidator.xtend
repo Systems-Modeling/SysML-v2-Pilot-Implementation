@@ -627,6 +627,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkSubsetting(Subsetting sub) { 
 		
+//		if ( sub.subsettingFeature.owningType instanceof Connector || sub.subsettedFeature.owningType instanceof Connector ) 
+//			return;
+
 		val subsettingFeature = sub.subsettingFeature
 		val subsettedFeature = sub.subsettedFeature
 

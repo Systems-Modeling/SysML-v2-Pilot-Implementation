@@ -181,9 +181,9 @@ public class TypeUtil {
 		if (conforms(subtype, supertype)) {
 			return true;
 		} else if (subtype instanceof Feature && supertype instanceof Feature &&
-				   subtype.getOwnedFeature().isEmpty() && supertype.getOwnedFeature().isEmpty()) {
-			List<Feature> subtypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)subtype, null);
-			List<Feature> supertypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)supertype, null);
+				   (subtype.getOwnedFeature().isEmpty() || supertype.getOwnedFeature().isEmpty())) {
+			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
+			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
 			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
 				 return FeatureUtil.isAccessibleFrom((Feature)subtype, (Feature)supertype);
 			}

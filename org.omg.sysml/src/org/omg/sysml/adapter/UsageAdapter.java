@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -54,6 +55,30 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	@Override
 	protected void setIsVariableIfConstant() {
+	}
+	
+	// Caching
+	
+	private Boolean mayTimeVary = null;
+	
+	public boolean mayTimeVary() {
+		if (mayTimeVary == null) {
+			Usage target = getTarget();
+			Type owningType = target.getOwningType();
+			mayTimeVary = owningType != null &&
+					TypeUtil.conforms(owningType, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::Occurrence")) &&
+					!(target.isPortion() ||
+					  TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Links::SelfLink")) ||
+					  TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::HappensLink")) ||
+					  target.isComposite() && TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Actions::Action")));
+		}
+		return mayTimeVary;
+	}
+	
+	@Override
+	public void clearCaches() {
+		super.clearCaches();
+		mayTimeVary = null;
 	}
 	
 	// Utility

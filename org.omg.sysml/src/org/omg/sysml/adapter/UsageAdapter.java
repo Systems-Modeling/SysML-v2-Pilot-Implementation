@@ -168,4 +168,12 @@ public class UsageAdapter extends FeatureAdapter {
 			super.computeValueConnector();
 		}
 	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		if (UsageUtil.isVariant(getTarget())) {
+			addImplicitFeaturingTypesIfNecessary();
+		}
+	}
 }

@@ -36,6 +36,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.ServiceLoader;
 
 public class SysMLKernel extends BaseKernel {
 
@@ -82,6 +83,8 @@ public class SysMLKernel extends BaseKernel {
         this.magics.registerMagics(Export.class);
         this.magics.registerMagics(Projects.class);
         this.magics.registerMagics(Load.class);
+        
+        ServiceLoader.load(IMagicCommandRegistrator.class).forEach(reg -> reg.registerMagicCommand(this.magics));
 
         this.magicParser = new MyMagicParser();
     }

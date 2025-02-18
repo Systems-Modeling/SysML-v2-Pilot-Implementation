@@ -200,25 +200,6 @@
                 </execution>
             </executions>
         </plugin>
-
-        <!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>templating-maven-plugin</artifactId>
-			<version>3.0.0</version>
-			<executions>
-				<execution>
-					<phase>prepare-package</phase>
-					<goals>
-						<goal>filter-sources</goal>
-					</goals>
-				</execution>
-			</executions>
-			<configuration>
-				<sourceDirectory>src/main/resources</sourceDirectory>
-				<outputDirectory>target/kernel</outputDirectory>
-			</configuration>
-		</plugin>
        
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>

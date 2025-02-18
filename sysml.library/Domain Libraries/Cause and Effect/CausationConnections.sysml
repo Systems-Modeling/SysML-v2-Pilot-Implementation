@@ -29,10 +29,10 @@ standard library package CausationConnections {
 		 * There must be at least one cause and at least one effect.
 		 */
 		 
-		ref occurrence causes[1..*] :>> causes :> participant {
+		abstract constant ref occurrence causes[1..*] :>> causes :> participant {
 			doc /* The causing occurrences. */
 		}
-		ref occurrence effects[1..*] :>> effects :> participant {
+		abstract constant ref occurrence effects[1..*] :>> effects :> participant {
 			doc /* The effect occurrences caused by the causing occurrences. */
 		}
 		
@@ -60,10 +60,12 @@ standard library package CausationConnections {
 		 * have multiple effects, and a single effect can have separate Causation
 		 * connections with multiple causes.)
 		 */
-		 
-		end theCauses [*] occurrence theCause :>> causes :>> source;
 		
-		end theEffects [*] occurrence theEffect :>> effects :>> target {
+		end theCauses [*] occurrence theCause :> causes :>> source {
+		    doc /* The single causing occurrence. */
+		}
+		
+		end theEffects [*] occurrence theEffect :> effects :>> target {
 			doc /* The single effect occurrence resulting from the cause. */
 		}
 	}

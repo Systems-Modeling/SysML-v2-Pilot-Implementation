@@ -180,12 +180,12 @@ public class TypeUtil {
 	public static boolean isCompatible(Type subtype, Type supertype) {
 		if (conforms(subtype, supertype)) {
 			return true;
-		} else if (subtype instanceof Feature && supertype instanceof Feature) {
+		} else if (subtype instanceof Feature && supertype instanceof Feature &&
+				   subtype.getOwnedFeature().isEmpty() && supertype.getOwnedFeature().isEmpty()) {
 			List<Feature> subtypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)subtype, null);
 			List<Feature> supertypeRedefined = FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)supertype, null);
 			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
-				 return ((Feature)supertype).getFeaturingType().stream().
-						 anyMatch(t->FeatureUtil.isAccessibleFrom(((Feature)subtype), t));
+				 return FeatureUtil.isAccessibleFrom((Feature)subtype, (Feature)supertype);
 			}
 		}
 		return false;

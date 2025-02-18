@@ -397,20 +397,20 @@ public class FeatureUtil {
 				map(Feature.class::cast);
 	}
 	
-	public static boolean isAccessibleFrom(Feature feature, Type type) {
-		return isAccessibleFrom(feature, type, new HashSet<>());
+	public static boolean isAccessibleFrom(Feature subsettingFeature, Feature subsettedFeature) {
+		return isAccessibleFrom(subsettingFeature, subsettedFeature, new HashSet<>());
 	}	
 
-	private static boolean isAccessibleFrom(Feature feature, Type type, Set<Feature> visited) {
-		visited.add(feature);
-		List<Type> featuringTypes = feature.getFeaturingType();
-		return featuringTypes.isEmpty() && type == 
-				SysMLLibraryUtil.getLibraryType(feature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+	private static boolean isAccessibleFrom(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
+		visited.add(subsettingFeature);
+		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
+		return featuringTypes.isEmpty() && subsettedFeature == 
+				SysMLLibraryUtil.getLibraryType(subsettingFeature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
 				featuringTypes.stream().anyMatch(featuringType-> 
-						TypeUtil.isCompatible(featuringType, type) ||				
+						subsettedFeature.isFeaturedWithin(featuringType) ||				
 						featuringType instanceof Feature &&
 						!visited.contains(featuringType) &&
-						isAccessibleFrom(((Feature)featuringType), type, visited));
+						isAccessibleFrom(((Feature)featuringType), subsettedFeature, visited));
 	}
 
 	// Feature Chaining

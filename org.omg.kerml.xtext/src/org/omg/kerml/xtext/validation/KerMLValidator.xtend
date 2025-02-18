@@ -627,10 +627,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkSubsetting(Subsetting sub) { 
 		
-		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
-		if ( sub.subsettingFeature.owningType instanceof Connector || sub.subsettedFeature.owningType instanceof Connector ) 
-			return;
-
 		val subsettingFeature = sub.subsettingFeature
 		val subsettedFeature = sub.subsettedFeature
 
@@ -687,7 +683,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
-				!subsettedFeaturingTypes.forall[t | FeatureUtil.isAccessibleFrom(subsettingFeature, t)]) {
+				!FeatureUtil.isAccessibleFrom(subsettingFeature, subsettedFeature)) {
 				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
 					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {

@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 
@@ -113,7 +113,7 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 		try {
 			RemoteProject project = getProject();
 			RemoteBranch defaultBranch = project.getDefaultBranch();
-			ProjectRevision headRevision = defaultBranch.getHeadRevision();
+			Revision headRevision = defaultBranch.getHeadRevision();
 			try {
 				headRevision.fetchRemote();
 			} catch (UnsupportedOperationException e) {
@@ -128,7 +128,7 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 			
 			int n = localChanges.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			ProjectRevision nextRevision = headRevision.pushChanges(localChanges);
+			Revision nextRevision = headRevision.pushChanges(localChanges);
 			System.out.println(nextRevision.getRemoteId());
 			return true;
 		} catch (ApiException e) {

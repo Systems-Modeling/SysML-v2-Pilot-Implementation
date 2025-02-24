@@ -191,7 +191,7 @@ public class ProjectRepository {
 		return new RemoteProject(this, createdProject.getAtId(), createdProject.getName());
 	}
 	
-	Map<UUID, Element> getModelRoots(ProjectRevision revision) throws ApiException {
+	Map<UUID, Element> getModelRoots(Revision revision) throws ApiException {
 		pager.reset();
 		Map<UUID, Element> projectRoots = new HashMap<>();
 		do {
@@ -201,7 +201,7 @@ public class ProjectRepository {
 		return projectRoots;
 	}
 	
-	Map<UUID, Element> getModelElements(ProjectRevision revision) throws ApiException {
+	Map<UUID, Element> getModelElements(Revision revision) throws ApiException {
 		Map<UUID, Element> projectElements = new HashMap<>();
 		pager.reset();
 		do {

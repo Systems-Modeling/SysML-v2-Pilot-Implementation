@@ -36,22 +36,22 @@ import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
  * Revision of a {@link RemoteProject}. Can be used to store changes locally or
  * to commit changes to the project repository
  */
-public class ProjectRevision {
+public class Revision {
 	
 	private final RemoteProject project;
 	private UUID remoteId;
-	private ProjectRevision previousRevision;
+	private Revision previousRevision;
 	
 	private APIModel remoteState;
 	private APIModel localState;
 	private RemoteBranch remoteBranch;
 	
-	public ProjectRevision(RemoteProject project, RemoteBranch remoteBranch) {
+	public Revision(RemoteProject project, RemoteBranch remoteBranch) {
 		this.project = project;
 		this.remoteBranch = remoteBranch;
 	}
 	
-	public ProjectRevision(RemoteProject project, RemoteBranch remoteBranch, UUID remoteId) {
+	public Revision(RemoteProject project, RemoteBranch remoteBranch, UUID remoteId) {
 		this(project, remoteBranch);
 		this.remoteId = remoteId;
 	}
@@ -61,8 +61,8 @@ public class ProjectRevision {
 	 * 
 	 * @return empty revision
 	 */
-	public ProjectRevision createNewRevision() {
-		ProjectRevision newRevision = new ProjectRevision(project, remoteBranch);
+	public Revision createNewRevision() {
+		Revision newRevision = new Revision(project, remoteBranch);
 		newRevision.setPreviousRevision(this);
 		return newRevision;
 	}
@@ -100,23 +100,23 @@ public class ProjectRevision {
 		return APIModelDelta.create(getLocalState(), getRemoteState());
 	}
 
-	public ProjectRevision pushLocalChanges() throws ApiException {
+	public Revision pushLocalChanges() throws ApiException {
 		APIModelDelta localChanges = getLocalChanges();
 		return pushChanges(localChanges);
 	}
 	
-	public ProjectRevision pushChanges(APIModelDelta changes) throws ApiException {
+	public Revision pushChanges(APIModelDelta changes) throws ApiException {
 		APIModelDelta localChanges = getLocalChanges();
 		return pushChanges(localChanges.toTrasferableDelta());
 	}
 	
-	public ProjectRevision pushChanges(List<DataVersion> transferableChanges) throws ApiException {
+	public Revision pushChanges(List<DataVersion> transferableChanges) throws ApiException {
 		CommitApi commitApi = getRemoteProject().getProjectRepository().getCommitApi();
 		Commit commit = new Commit();
 		commit.setChange(transferableChanges);
 		commit.setPreviousCommit(new BranchHead().atId(getRemoteId()));
 		Commit newCommit = commitApi.postCommitByProject(getRemoteProject().getRemoteId(), commit, getBranch().getRemoteId());
-		ProjectRevision projectRevision = new ProjectRevision(getRemoteProject(), getBranch(), newCommit.getAtId());
+		Revision projectRevision = new Revision(getRemoteProject(), getBranch(), newCommit.getAtId());
 		projectRevision.setPreviousRevision(this);
 		return projectRevision;
 	}
@@ -167,14 +167,14 @@ public class ProjectRevision {
 	 * @return previous revision
 	 * @throws ApiException 
 	 */
-	public ProjectRevision getPreviousRevision() throws ApiException {
+	public Revision getPreviousRevision() throws ApiException {
 		if (previousRevision == null) {
 			RemoteProject remoteProject = getRemoteProject();
 			ProjectRepository projectRepository = remoteProject.getProjectRepository();
 			Commit commit = projectRepository.getCommitApi().getCommitByProjectAndId(remoteProject.getRemoteId(), getRemoteId());
 			BranchHead previousCommit = commit.getPreviousCommit();
 			if (previousCommit != null) {
-				setPreviousRevision(new ProjectRevision(getRemoteProject(), getBranch(), previousCommit.getAtId()));
+				setPreviousRevision(new Revision(getRemoteProject(), getBranch(), previousCommit.getAtId()));
 			}
 		}
 		
@@ -185,7 +185,7 @@ public class ProjectRevision {
 		return getRemoteProject().createBranch(this, name);
 	}
 	
-	private void setPreviousRevision(ProjectRevision previousRevision) {
+	private void setPreviousRevision(Revision previousRevision) {
 		this.previousRevision = previousRevision;
 	}
 }

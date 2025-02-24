@@ -50,7 +50,7 @@ import org.omg.sysml.util.ElementUtil;
 * This class is responsible for the propagation of {@link APIModel}s into EMF 
 *
 */
-public class EMFModelRefreshCreator {
+public class EMFModelRefresher {
 	
 	private final EObjectUUIDTracker tracker;
 	private final APIModel model;
@@ -61,18 +61,18 @@ public class EMFModelRefreshCreator {
 	 * @param model to propagate into EMF
 	 * @param tracker index based on element UUIDs
 	 */
-	public EMFModelRefreshCreator(APIModel model, EObjectUUIDTracker tracker) {
+	public EMFModelRefresher(APIModel model, EObjectUUIDTracker tracker) {
 		this.model = model;
 		this.tracker = tracker;
 	}
 	
 	/**
 	 * Creates an EMF model based on the {@link APIModel} and returns it as a
-	 * {@link EMFModelRefresh}
+	 * {@link EMFModelDelta}
 	 * 
 	 * @return unpropagated EMF model
 	 */
-	public EMFModelRefresh create() {
+	public EMFModelDelta create() {
 		Map<EObject, Element> rootNamespaces = new HashMap<>(); 
 		
 		//traverse containment
@@ -94,7 +94,7 @@ public class EMFModelRefreshCreator {
 			}
 		});
 		
-		return new EMFModelRefresh(rootNamespaces);
+		return new EMFModelDelta(rootNamespaces);
 	}
 	
 	private EObject transform(Element dto) {

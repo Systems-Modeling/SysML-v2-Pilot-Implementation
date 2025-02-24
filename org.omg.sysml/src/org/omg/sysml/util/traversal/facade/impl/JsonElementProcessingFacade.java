@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.traversal.Traversal;

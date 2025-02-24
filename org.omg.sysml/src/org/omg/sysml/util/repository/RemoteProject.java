@@ -83,7 +83,7 @@ public class RemoteProject {
 	 * @return new branch
 	 * @throws ApiException
 	 */
-	public RemoteBranch createBranch(ProjectRevision revision, String name) throws ApiException {
+	public RemoteBranch createBranch(Revision revision, String name) throws ApiException {
 		ProjectRepository projectRepository = getProjectRepository();
 		BranchHead branchHead = new BranchHead().atId(getRemoteId());
 		Branch branch = new Branch().head(branchHead).referencedCommit(branchHead);
@@ -158,17 +158,17 @@ public class RemoteProject {
 		 * @throws ApiException
 		 * @throws NoSuchElementException if branch has no head revision (commit)
 		 */
-		public ProjectRevision getHeadRevision() throws ApiException, NoSuchElementException {
+		public Revision getHeadRevision() throws ApiException, NoSuchElementException {
 			Branch branch = loadBranch();
 			BranchHead branchHead = branch.getHead();
 			
 			if (branchHead == null) {
-				return new ProjectRevision(RemoteProject.this, this);
+				return new Revision(RemoteProject.this, this);
 			}
 
 			UUID branchHeadId = branchHead.getAtId();
 			
-			return new ProjectRevision(RemoteProject.this, this, branchHeadId);
+			return new Revision(RemoteProject.this, this, branchHeadId);
 		}
 		
 		private Branch loadBranch() throws ApiException {

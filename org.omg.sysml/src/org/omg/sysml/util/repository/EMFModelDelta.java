@@ -33,12 +33,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
 
-public class EMFModelRefresh {
+public class EMFModelDelta {
 	private static final String EXTENSION = "sysmlx";
 	
 	private final Map<EObject, Element> projectRoots;
 	
-	public EMFModelRefresh(Map<EObject, Element> projectRoots) {
+	public EMFModelDelta(Map<EObject, Element> projectRoots) {
 		this.projectRoots = projectRoots;
 	}
 	
@@ -46,7 +46,7 @@ public class EMFModelRefresh {
 		return projectRoots;
 	}
 	
-	public void save(ResourceSet resourceSet, URI baseUri) throws IOException {
+	public void apply(ResourceSet resourceSet, URI baseUri) throws IOException {
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
 			Object object = dto.get("@id");

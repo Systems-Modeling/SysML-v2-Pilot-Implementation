@@ -49,13 +49,10 @@ public class APIModelDelta {
 	private final Map<UUID, Data> changes;
 	private final Collection<UUID> deletions;
 
-	private APIModel thisModel;
-
-	private APIModelDelta(APIModel thisModel, Set<Element> additions, Map<UUID, Data> changes, Set<UUID> deletions) {
+	private APIModelDelta(Set<Element> additions, Map<UUID, Data> changes, Set<UUID> deletions) {
 		this.additions = Collections.unmodifiableCollection(additions);
 		this.changes = Collections.unmodifiableMap(changes);
 		this.deletions = Collections.unmodifiableCollection(deletions);
-		this.thisModel = thisModel;
 	}
 	
 	/**
@@ -157,7 +154,7 @@ public class APIModelDelta {
 			}
 		}
 		
-		return new APIModelDelta(thisModel, additions, changes, deletions);
+		return new APIModelDelta(additions, changes, deletions);
 	}
 	
 	/**

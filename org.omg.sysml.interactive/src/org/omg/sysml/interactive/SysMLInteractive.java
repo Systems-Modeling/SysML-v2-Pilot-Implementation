@@ -74,18 +74,17 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.APIModel;
-import org.omg.sysml.util.repository.EMFModelRefresh;
+import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
-import org.omg.sysml.util.repository.EMFModelRefreshCreator;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -478,7 +477,7 @@ public class SysMLInteractive extends SysMLUtil {
 	private String load(RemoteProject repositoryProject) {
 		try {
 			RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
-			ProjectRevision headRevision = defaultBranch.getHeadRevision();
+			Revision headRevision = defaultBranch.getHeadRevision();
 			APIModel model = headRevision.fetchRemote();
 			
 			System.out.println("Collecting UUIDs...");
@@ -491,10 +490,10 @@ public class SysMLInteractive extends SysMLUtil {
 			//UUIDS coming from resources that were added later in time will shadow previous ones
 			tracker.trackLocalUUIDs(inputResources);
 			
-			EMFModelRefreshCreator fetcher = new EMFModelRefreshCreator(model, tracker);
+			EMFModelRefresher fetcher = new EMFModelRefresher(model, tracker);
 			
 			System.out.println("Downloading model...");
-			EMFModelRefresh delta = fetcher.create();
+			EMFModelDelta delta = fetcher.create();
 			
 			System.out.println("Adding model to index");
 			delta.getProjectRoots().forEach((eObject, dto) -> {

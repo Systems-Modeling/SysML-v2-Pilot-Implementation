@@ -39,12 +39,12 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.APIModel;
-import org.omg.sysml.util.repository.EMFModelRefresh;
+import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRevision;
+import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
-import org.omg.sysml.util.repository.EMFModelRefreshCreator;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -121,7 +121,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		}
 		
 		RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
-		ProjectRevision headRevision = defaultBranch.getHeadRevision();
+		Revision headRevision = defaultBranch.getHeadRevision();
 		APIModel remote = headRevision.fetchRemote();
 		
 		System.out.println("Reading library...");
@@ -134,14 +134,14 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		tracker.trackLibraryUUIDs(getLibraryResources());
 		
 		
-		EMFModelRefreshCreator repositoryFetcher = new EMFModelRefreshCreator(remote, tracker);
+		EMFModelRefresher repositoryFetcher = new EMFModelRefresher(remote, tracker);
 		System.out.println("Fetching project...");
-		EMFModelRefresh delta = repositoryFetcher.create();
+		EMFModelDelta delta = repositoryFetcher.create();
 		ResourceSet resourceSet = getResourceSet();
 		
 		try {
 			System.out.println("Saving resources...");
-			delta.save(resourceSet, URI.createFileURI(targetLocation));
+			delta.apply(resourceSet, URI.createFileURI(targetLocation));
 			System.out.println("Done.");
 		} catch (IOException e) {
 			e.printStackTrace();

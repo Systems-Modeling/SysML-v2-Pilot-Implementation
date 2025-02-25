@@ -21,6 +21,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/FlowConnections.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
@@ -51,6 +53,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/FlowConnections.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
@@ -88,6 +92,19 @@ package ActionTest {
 		then decide;
 			if true then m;
 			else done;
+	}
+	
+	action a2 {
+		in s : S;
+		action aa {
+			out part target;
+		}
+		flow aa.target to snd1.receiver;
+		action snd1 send { 
+			:>> payload = s;
+		}
+		action snd2 send via this to aa.target;
+		bind s = snd2.payload;
 	}
 	
 	action b {

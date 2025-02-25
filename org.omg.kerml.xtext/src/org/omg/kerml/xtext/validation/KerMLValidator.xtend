@@ -1003,7 +1003,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(m instanceof ReturnParameterMembership)) {
 			// validateParameterMembershipOwningType
 			val owningType = m.owningType
-			if (!(owningType instanceof Behavior || owningType instanceof Step)) {
+			if (!(owningType instanceof Behavior || owningType instanceof Step ||
+				  ExpressionUtil.isConstructorResult(owningType))) {
 				error(INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE)
 			}
 			

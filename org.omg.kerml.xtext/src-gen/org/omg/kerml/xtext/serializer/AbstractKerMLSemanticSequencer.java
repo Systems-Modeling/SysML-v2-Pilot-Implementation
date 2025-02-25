@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.CollectExpression;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Dependency;
@@ -194,6 +195,9 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.CONNECTOR:
 				sequence_BasicFeaturePrefix_BinaryConnectorDeclaration_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Connector) semanticObject); 
 				return; 
+			case SysMLPackage.CONSTRUCTOR_EXPRESSION:
+				sequence_ConstructorExpression(context, (ConstructorExpression) semanticObject); 
+				return; 
 			case SysMLPackage.CROSS_SUBSETTING:
 				sequence_OwnedCrossSubsetting(context, (CrossSubsetting) semanticObject); 
 				return; 
@@ -304,6 +308,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_ItemFlowFeature(context, (Feature) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getConstructorResultRule()) {
+					sequence_NamedArgumentList_PositionalArgumentList(context, (Feature) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getNamedArgumentRule()) {
 					sequence_NamedArgument(context, (Feature) semanticObject); 
 					return; 
@@ -376,10 +384,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getOwnedExpressionMemberRule()) {
 					sequence_OwnedExpressionMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
-					sequence_TypeReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getXorExpressionMemberRule()) {
@@ -622,6 +626,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getInstantiatedTypeMemberRule()) {
+					sequence_InstantiatedTypeMember(context, (Membership) semanticObject); 
+					return; 
+				}
 				else break;
 			case SysMLPackage.MEMBERSHIP_IMPORT:
 				if (rule == grammarAccess.getMembershipImportRule()) {
@@ -803,6 +811,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_FeatureChainMember(context, (OwningMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getInstantiatedTypeMemberRule()) {
+					sequence_InstantiatedTypeMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getNamespaceMemberRule()) {
 					sequence_MemberPrefix_NamespaceFeatureMember_NonFeatureMember(context, (OwningMembership) semanticObject); 
 					return; 
@@ -867,6 +879,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_NamedArgumentMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
+					sequence_TypeReferenceMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
 				else break;
 			case SysMLPackage.PAYLOAD_FEATURE:
 				sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (PayloadFeature) semanticObject); 
@@ -909,7 +925,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_MemberPrefix_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
 				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
-				if (rule == grammarAccess.getReturnFeatureMemberRule()) {
+				if (rule == grammarAccess.getConstructorResultMemberRule()) {
+					sequence_ConstructorResultMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getReturnFeatureMemberRule()) {
 					sequence_MemberPrefix_ReturnFeatureMember(context, (ReturnParameterMembership) semanticObject); 
 					return; 
 				}

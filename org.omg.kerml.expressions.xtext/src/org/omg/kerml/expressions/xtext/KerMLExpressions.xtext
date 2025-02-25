@@ -203,7 +203,7 @@ MetadataReference returns SysML::MetadataAccessExpression :
 	ownedRelationship += ElementReferenceMember
 ;
 
-TypeReferenceMember returns SysML::FeatureMembership :
+TypeReferenceMember returns SysML::ParameterMembership :
 	ownedRelatedElement += TypeReference
 ;
 
@@ -308,7 +308,7 @@ PrimaryExpression returns SysML::Expression :
 	  | {SysML::OperatorExpression.operand += current} 
 	    operator = '[' operand += SequenceExpression ']'
 	  | {SysML::InvocationExpression.operand += current} '->' 
-	    ownedRelationship += ReferenceTyping 
+	    ownedRelationship += InstantiatedTypeMember 
 	    ( operand += BodyExpression 
 	    | operand += FunctionReferenceExpression 
 	    | ArgumentList
@@ -341,6 +341,10 @@ FeatureChainMember returns SysML::Membership :
 	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
 ;
 
+OwnedFeatureChain returns SysML::Feature :
+	FeatureChain
+;
+
 /* Base Expressions */
 
 BaseExpression returns SysML::Expression :
@@ -349,6 +353,7 @@ BaseExpression returns SysML::Expression :
 	| FeatureReferenceExpression 
 	| MetadataAccessExpression
 	| InvocationExpression 
+	| ConstructorExpression
 	| BodyExpression
 	| '(' SequenceExpression ')'
 ;
@@ -414,16 +419,25 @@ ElementReferenceMember returns SysML::Membership :
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship += OwnedFeatureTyping ArgumentList
+	ownedRelationship += InstantiatedTypeMember ArgumentList
 ;
 
-OwnedFeatureTyping returns SysML::FeatureTyping :
-	  type = [SysML::Type | QualifiedName]
-	| ownedRelatedElement += OwnedFeatureChain
+ConstructorExpression returns SysML::ConstructorExpression:
+    'new' ownedRelationship += InstantiatedTypeMember
+    ownedRelationship += ConstructorResultMember
 ;
 
-OwnedFeatureChain returns SysML::Feature :
-	FeatureChain
+ConstructorResultMember returns SysML::ReturnParameterMembership :
+    ownedRelatedElement += ConstructorResult
+;
+
+ConstructorResult returns SysML::Feature :
+    ArgumentList
+;
+
+InstantiatedTypeMember returns SysML::Membership :
+	  memberElement = [SysML::Type | QualifiedName]
+	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
 ;
 
 // For use in KerML and SysML grammars
@@ -436,11 +450,11 @@ OwnedFeatureChaining returns SysML::FeatureChaining :
 	chainingFeature = [SysML::Feature | QualifiedName]
 ;
 
-fragment ArgumentList returns SysML::Expression :
+fragment ArgumentList returns SysML::Feature :
 	'(' ( PositionalArgumentList | NamedArgumentList )? ')'
 ;
 
-fragment PositionalArgumentList returns SysML::Expression :
+fragment PositionalArgumentList returns SysML::Feature :
 	ownedRelationship += ArgumentMember 
 	( ',' ownedRelationship += ArgumentMember )*
 ;
@@ -453,7 +467,7 @@ Argument returns SysML::Feature :
 	ownedRelationship += ArgumentValue
 ;
 
-fragment NamedArgumentList returns SysML::Expression :
+fragment NamedArgumentList returns SysML::Feature :
 	ownedRelationship += NamedArgumentMember 
 	( ',' ownedRelationship += NamedArgumentMember )*
 ;

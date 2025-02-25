@@ -74,12 +74,18 @@ public class APIModel {
 	
 	
 	/**
-	 * Adds root level model element to the model.
+	 * Adds root level model element to the model. Adding an element this way will unset the owner
+	 * and owning attributes.
 	 * 
 	 * @param id UUID of the element
 	 * @param rootElement element to add
 	 */
 	 public void addModelRoot(UUID id, Element rootElement) {
+		for (var key: rootElement.keySet()) {
+			if (key.equals("owner") || key.startsWith("owning")) {
+				rootElement.replace(key, null);
+			}
+		}
 		modelRoots.put(id, rootElement);
 		modelElements.put(id, rootElement);
 	}
@@ -137,6 +143,10 @@ public class APIModel {
 		return modelElements.get(uuid);
 	}
 	
+	public Element getElement(String uuid) {
+		return modelElements.get(UUID.fromString(uuid));
+	}
+	
 	public void addOutOfScopeReferencesAsProxies() {
 		Set<LocalReference> localReferences = modelElements.values().stream()
 			.flatMap(el -> el.values().stream())
@@ -150,6 +160,7 @@ public class APIModel {
 				Element proxy = new Element();
 				proxy.put(Identified.SERIALIZED_NAME_AT_ID, uuid.toString());
 				proxy.put("@type", ref.getType());
+				proxy.put("isLibraryElement", ref.isLibraryElement());
 				addModelRoot(uuid, proxy);
 			}
 		}
@@ -188,14 +199,20 @@ public class APIModel {
 	public static class LocalReference extends HashMap<String, UUID> {
 		
 		private transient String type;
+		private boolean isLibraryElement;
 
-		public LocalReference(UUID identifier, String type) {
+		public LocalReference(UUID identifier, String type, boolean isLibraryElement) {
 			put(Identified.SERIALIZED_NAME_AT_ID, identifier);
 			this.type = type;
+			this.isLibraryElement = isLibraryElement;
 		}
 		
 		public String getType() {
 			return type;
+		}
+		
+		public boolean isLibraryElement() {
+			return isLibraryElement;
 		}
 
 		public UUID getUUID() {

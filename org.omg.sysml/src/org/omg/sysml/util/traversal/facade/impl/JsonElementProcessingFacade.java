@@ -128,10 +128,11 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * Create an Identified object with the given identifier.
 	 * 
 	 * @param 	identifier			the UUID of the object being identified
+	 * @param isLibraryElement 
 	 * @return	an Identified object with the given identifier
 	 */
-	protected static Map<String, UUID> identified(UUID identifier, String type) {
-		return new APIModel.LocalReference(identifier, type);
+	protected static Map<String, UUID> identified(UUID identifier, String type, boolean isLibraryElement) {
+		return new APIModel.LocalReference(identifier, type, isLibraryElement);
 	}
 	
 	/**
@@ -141,7 +142,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	an Identified object for the given Element (or null if the input is null).
 	 */
 	protected Map<String, UUID> getIdentified(Element element) {
-		return element == null? null: identified(UUID.fromString(element.getElementId()), element.eClass().getName());
+		return element == null? null: identified(UUID.fromString(element.getElementId()), element.eClass().getName(), element.isLibraryElement());
 	}
 	
 	/**
@@ -178,7 +179,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			String featureName = feature.getName();
 			if ((this.isIncludeDerived() || !feature.isDerived()) && 
 					// Skip implementation-specific features.
-					!("Feature".equals(className) && "isNonunique".equals(featureName) || 
+					!(/*"Feature".equals(className) && */"isNonunique".equals(featureName) || 
 					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 
 					  apiElement.containsKey(featureName))) {
 				Object value = element.eGet(feature);

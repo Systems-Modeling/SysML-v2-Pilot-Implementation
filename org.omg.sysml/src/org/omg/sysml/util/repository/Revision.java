@@ -106,11 +106,17 @@ public class Revision {
 	}
 	
 	public Revision pushChanges(APIModelDelta changes) throws ApiException {
+		if (changes.isEmpty()) {
+			return this;
+		}
 		APIModelDelta localChanges = getLocalChanges();
 		return pushChanges(localChanges.toTrasferableDelta());
 	}
 	
 	public Revision pushChanges(List<DataVersion> transferableChanges) throws ApiException {
+		if (transferableChanges.isEmpty()) {
+			return this;
+		}
 		CommitApi commitApi = getRemoteProject().getProjectRepository().getCommitApi();
 		Commit commit = new Commit();
 		commit.setChange(transferableChanges);

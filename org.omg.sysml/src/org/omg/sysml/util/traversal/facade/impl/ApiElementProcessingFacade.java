@@ -26,6 +26,7 @@
 package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
@@ -104,12 +105,14 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	}
 	
 	/**
-	 * Create a new project in the repository, then create and post a commit to the project to save the 
+	 * Create or update a project in the repository, then create and post a commit to the project to save the 
 	 * ElementVersions constructed from the processed model Elements.
+	 * 
+	 * @param element to use as project root.
 	 * 
 	 * @return	whether the commit succeeded without an ApiException
 	 */
-	public boolean commit() {
+	public boolean commit(Element useAsRoot) {
 		try {
 			RemoteProject project = getProject();
 			RemoteBranch defaultBranch = project.getDefaultBranch();
@@ -121,10 +124,18 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 			}
 //			System.out.println(toJson());
 			APIModel localState = getLocalModel();
+			
+			if (useAsRoot != null) {
+				UUID rootUUID = UUID.fromString(useAsRoot.getElementId());
+				var root = localState.getElement(rootUUID);
+				//reinsert element as root, this will unset its owners turning it into a root element
+				localState.addModelRoot(rootUUID, root);
+			}
+			
 			localState.addOutOfScopeReferencesAsProxies();
 			headRevision.setLocalState(localState);
 			List<DataVersion> localChanges = headRevision.getLocalChanges().toTrasferableDelta();
-			System.out.println(new org.omg.sysml.JSON().serialize(localChanges));
+//			System.out.println(new org.omg.sysml.JSON().serialize(localChanges));
 			
 			int n = localChanges.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));

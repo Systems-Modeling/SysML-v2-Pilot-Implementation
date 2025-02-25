@@ -185,7 +185,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	@Override
 	public void process() {
 		super.process();
-		this.isCommitted = ((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
+		this.isCommitted = ((ApiElementProcessingFacade)this.traversal.getFacade()).commit(null);
 	}
 	
 	/**

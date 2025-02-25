@@ -46,10 +46,10 @@ import com.google.common.base.Objects;
 public class APIModelDelta {
 	
 	private final Collection<Element> additions;
-	private final Map<UUID, Data> changes;
+	private final Map<UUID, ChangedElement> changes;
 	private final Collection<UUID> deletions;
 
-	private APIModelDelta(Set<Element> additions, Map<UUID, Data> changes, Set<UUID> deletions) {
+	private APIModelDelta(Set<Element> additions, Map<UUID, ChangedElement> changes, Set<UUID> deletions) {
 		this.additions = Collections.unmodifiableCollection(additions);
 		this.changes = Collections.unmodifiableMap(changes);
 		this.deletions = Collections.unmodifiableCollection(deletions);
@@ -69,7 +69,7 @@ public class APIModelDelta {
 	 * 
 	 * @return UUID and field changes of elements
 	 */
-	public Map<UUID, Data> getChanges() {
+	public Map<UUID, ChangedElement> getChanges() {
 		return changes;
 	}
 	
@@ -80,6 +80,10 @@ public class APIModelDelta {
 	 */
 	public Collection<UUID> getDeletions() {
 		return deletions;
+	}
+	
+	public boolean isEmpty() {
+		return deletions.isEmpty() && additions.isEmpty() && changes.isEmpty();
 	}
 	
 	/**
@@ -102,7 +106,7 @@ public class APIModelDelta {
 		}
 		
 		for (var change: changes.entrySet()) {
-			delta.add(new DataVersion().payload(change.getValue()).identity(new DataIdentity().atId(change.getKey())));
+			delta.add(new DataVersion().payload(change.getValue().toData()).identity(new DataIdentity().atId(change.getKey())));
 		}
 		
 		for (UUID deletion: getDeletions()) {
@@ -127,7 +131,7 @@ public class APIModelDelta {
 		
 		Set<Element> additions = new HashSet<>();
 		Set<UUID> deletions = new HashSet<>();
-		Map<UUID, Data> changes = new HashMap<>();
+		Map<UUID, ChangedElement> changes = new HashMap<>();
 		
 		Map<UUID, Element> elementsFromThis = thisModel.getModelElements();
 		
@@ -137,9 +141,8 @@ public class APIModelDelta {
 				additions.add(thisModel.getElement(id));
 			} else {
 				Element thisElement = thisModel.getElement(id);
-				Data change = createElementDelta(thisElement, baselineElement);
-				if (!change.isEmpty()) {
-					change.put("@type", thisElement.get("@type"));
+				ChangedElement change = createElementDelta(thisElement, baselineElement);
+				if (change != null) {
 					changes.put(id, change);
 				}
 			}
@@ -164,14 +167,15 @@ public class APIModelDelta {
 	 * @param baselineElement element to use as a baseline
 	 * @return changed fields and their new values wrapped in a {@link Data} object.
 	 */
-	public static Data createElementDelta(Element thisElement, Element baselineElement) {
-		Data change = new Data();
+	public static ChangedElement createElementDelta(Element thisElement, Element baselineElement) {
+		ChangedElement change = null;
 		Set<String> fieldsInThis = thisElement.keySet();
 		for (String field: fieldsInThis) {
 			Object thisValue = thisElement.get(field);
 			Object baselineValue = baselineElement.get(field);
 			if (!Objects.equal(thisValue, baselineValue)) {
-				change.put(field, thisValue);
+				if (change == null) change = new ChangedElement(baselineElement);
+				change.add(field, thisValue);
 			}
 		}
 		//set removed fields to null
@@ -183,5 +187,25 @@ public class APIModelDelta {
 //		}
 		
 		return change;
+	}
+	
+	private static class ChangedElement {
+		private Element originalElement;
+		private Map<String, Object> changes = new HashMap<>();
+		
+		public ChangedElement(Element originalElement) {
+			this.originalElement = originalElement;
+		}
+		
+		public void add(String field, Object thisValue) {
+			changes.put(field, thisValue);
+		}
+		
+		public Data toData() {
+			Data data = new Data();
+			data.putAll(originalElement);
+			data.putAll(changes);
+			return data;
+		}
 	}
 }

@@ -43,7 +43,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
-import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -509,7 +509,7 @@ public class TypeUtil {
 	 */
 	public static List<? extends Feature> getItemFeaturesOf(Type type) {
 		return type.getOwnedFeature().stream().
-				filter(ItemFeature.class::isInstance).
+				filter(PayloadFeature.class::isInstance).
 				collect(Collectors.toList());
 	}
 

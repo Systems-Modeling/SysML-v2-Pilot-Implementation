@@ -93,11 +93,6 @@ public class SysMLSpecializationSpecialTest extends SysMLSemanticTest {
 	
 	@Test
 	@Ignore("TBD")
-	public void checkLifeClassOccurrenceSpecialization() {
-	}
-	
-	@Test
-	@Ignore("TBD")
 	public void checkUsageVariationUsageSpecialization() {
 	}
 	
@@ -108,7 +103,7 @@ public class SysMLSpecializationSpecialTest extends SysMLSemanticTest {
 	
 	@Test
 	@Ignore("TBD")
-	public void checkFlowConnectionUsageSpecialization() {
+	public void checkFlowUsageSpecialization() {
 	}
 	
 	@Test

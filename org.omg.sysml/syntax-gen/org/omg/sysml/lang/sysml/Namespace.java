@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Namespace</code> is an <code>Element</code> that contains other <code>Elements</code>, known as its <code>members</code>, via <code>Membership</code> <code>Relationships</code> with those <code>Elements</code>. The <code>members</code> of a <code>Namespace</code> may be owned by the <code>Namespace</code>, aliased in the <code>Namespace</code>, or imported into the <code>Namespace</code> via <code>Import</code> <code>Relationships</code>.</p>
  * 
- * <p>A <code>Namespace</code> can provide names for its <code>members</code> via the <code>memberNames</code> and <code>memberShortNames</code> specified by the <code>Memberships</code> in the <code>Namespace</code>. If a <code>Membership</code> specifies a <code>memberName</code> and/or <code>memberShortName</code>, then those are names of the corresponding <code>memberElement</code> relative to the <code>Namespace</code>. For an <code>OwningMembership</code>, the <code>owningMemberName</code> and <code>owningMemberShortName</code> are given by the <code>Element</code> <code>name</code> and <code>shortName</code>. Note that the same <code>Element</code> may be the <code>memberElement</code> of multiple <code>Memberships</code> in a <code>Namespace</code> (though it may be owned at most once), each of which may define a separate alias for the <code>Element</code> relative to the <code>Namespace</code>.</p>
+ * <p>A <code>Namespace</code> can provide names for its <code>members</code> via the <code>memberNames</code> and <code>memberShortNames</code> specified by the <code>Memberships</code> in the <code>Namespace</code>. If a <code>Membership</code> specifies a <code>memberName</code> and/or <code>memberShortName</code>, then those are names of the corresponding <code>memberElement</code> relative to the <code>Namespace</code>. For an <code>OwningMembership</code>, the <code>ownedMemberName</code> and <code>ownedMemberShortName</code> are given by the <code>Element</code> <code>name</code> and <code>shortName</code>. Note that the same <code>Element</code> may be the <code>memberElement</code> of multiple <code>Memberships</code> in a <code>Namespace</code> (though it may be owned at most once), each of which may define a separate alias for the <code>Element</code> relative to the <code>Namespace</code>.</p>
  * 
  * membership->forAll(m1 | 
  *     membership->forAll(m2 | 
@@ -47,12 +47,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -217,6 +217,7 @@ public interface Namespace extends Element {
 	 * let qualification : String = qualificationOf(qualifiedName) in
 	 * let name : String = unqualifiedNameOf(qualifiedName) in
 	 * if qualification = null then resolveLocal(name)
+	 * else if qualification = '$' then  resolveGlobal(name)
 	 * else 
 	 *     let namespaceMembership : Membership = resolve(qualification) in
 	 *     if namespaceMembership = null or 
@@ -226,7 +227,7 @@ public interface Namespace extends Element {
 	 *         namespaceMembership.memberElement.oclAsType(Namespace).
 	 *         resolveVisible(name) 
 	 *     endif
-	 * endif
+	 * endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"

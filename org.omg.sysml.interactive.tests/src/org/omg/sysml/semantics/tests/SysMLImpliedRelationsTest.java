@@ -107,7 +107,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
 		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setFeature(targetParam);
+		parameterMembership.setOwnedMemberParameter(targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);
@@ -139,7 +139,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
 		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setFeature(targetParam);
+		parameterMembership.setOwnedMemberParameter(targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);
@@ -166,7 +166,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
 		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setFeature(targetParam);
+		parameterMembership.setOwnedMemberParameter(targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);

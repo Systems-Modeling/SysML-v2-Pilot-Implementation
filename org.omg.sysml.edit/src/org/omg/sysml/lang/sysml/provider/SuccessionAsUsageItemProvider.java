@@ -8,8 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
@@ -43,100 +41,8 @@ public class SuccessionAsUsageItemProvider extends ConnectorAsUsageItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTransitionStepPropertyDescriptor(object);
-			addTriggerStepPropertyDescriptor(object);
-			addEffectStepPropertyDescriptor(object);
-			addGuardExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Transition Step feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTransitionStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Succession_transitionStep_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Succession_transitionStep_feature", "_UI_Succession_type"),
-				 SysMLPackage.Literals.SUCCESSION__TRANSITION_STEP,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Trigger Step feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTriggerStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Succession_triggerStep_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Succession_triggerStep_feature", "_UI_Succession_type"),
-				 SysMLPackage.Literals.SUCCESSION__TRIGGER_STEP,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Effect Step feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEffectStepPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Succession_effectStep_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Succession_effectStep_feature", "_UI_Succession_type"),
-				 SysMLPackage.Literals.SUCCESSION__EFFECT_STEP,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Guard Expression feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addGuardExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Succession_guardExpression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Succession_guardExpression_feature", "_UI_Succession_type"),
-				 SysMLPackage.Literals.SUCCESSION__GUARD_EXPRESSION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

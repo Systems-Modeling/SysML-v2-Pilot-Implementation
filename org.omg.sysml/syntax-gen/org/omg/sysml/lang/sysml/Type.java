@@ -55,7 +55,7 @@ import org.eclipse.emf.common.util.EList;
  *     let direction: FeatureDirectionKind = directionOf(f) in
  *     direction = FeatureDirectionKind::_'in' or
  *     direction = FeatureDirectionKind::inout)
- * inheritedMembership = inheritedMemberships(Set{}, false)
+ * inheritedMembership = inheritedMemberships(Set{}, Set{}, false)
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
@@ -179,8 +179,13 @@ public interface Type extends Namespace {
 	 *         directionOfExcluding(feature, excludedSelf)->
 	 *         select(d | d <> null) in
 	 *     if directions->isEmpty() then null
-	 *     else directions->at(1)
-	 *     endif
+	 *  else
+	 *     let direction : FeatureDirectionKind = directions->first() in
+	 *     if not isConjugated then direction
+	 *     else if direction = FeatureDirectionKind::_'in' then FeatureDirectionKind::out
+	 *     else if direction = FeatureDirectionKind::out then FeatureDirectionKind::_'in'
+	 *     else direction
+	 *     endif endif endif   endif
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false" excludedMany="true" excludedOrdered="false"
@@ -252,6 +257,19 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	boolean specializesFromLibrary(String libraryTypeName);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>By default, this <code>Type</code> is compatible with an <code>otherType</code> if it directly or indirectly specializes the <code>otherType</code>.</p>
+	 * specializes(otherType)
+	 * <!-- end-model-doc -->
+	 * @model otherTypeRequired="true" otherTypeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	void isCompatibleWith(Type otherType);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -889,11 +907,11 @@ public interface Type extends Namespace {
 	 * let reducedMemberships : Sequence(Membership) =
 	 *     memberships->reject(mem1 |
 	 *         memberships->excluding(mem1)->
-	 *             exists(allRedefinedFeatures()->
+	 *             exists(mem2 | allRedefinedFeaturesOf(mem2)->
 	 *                 includes(mem1.memberElement))) in
 	 * let redefinedFeatures : Set(Feature) = 
 	 *     ownedFeature.redefinition.redefinedFeature->asSet() in
-	 * reducedMemberships->reject(allRedefinedFeatures()->
+	 * reducedMemberships->reject(mem | allRedefinedFeaturesOf(mem)->
 	 *     exists(feature | redefinedFeatures->includes(feature)))
 	 * <!-- end-model-doc -->
 	 * @model membershipsMany="true"
@@ -901,6 +919,21 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	EList<Membership> removeRedefinedFeatures(EList<Membership> memberships);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If the <code>memberElement</code> of the given <code>membership</code> is a <code>Feature</code>, then return all <code>Features</code> directly or indirectly redefined by the <code>memberElement</code>.</p>
+	 * if not membership.memberElement.oclIsType(Feature) then Set{} 
+	 * else membership.memberElement.oclAsType(Feature).allRedefinedFeatures()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" membershipRequired="true" membershipOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Feature> allRedefinedFeaturesOf(Membership membership);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Disjoining</b></em>' reference list.

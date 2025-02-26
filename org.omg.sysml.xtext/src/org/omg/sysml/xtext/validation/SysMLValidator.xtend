@@ -91,9 +91,7 @@ import org.omg.sysml.lang.sysml.MetadataUsage
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
-import org.omg.sysml.lang.sysml.FlowConnectionUsage
 import org.omg.sysml.lang.sysml.Interaction
-import org.omg.sysml.lang.sysml.FlowConnectionDefinition
 import org.omg.sysml.lang.sysml.SendActionUsage
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.FeatureChainExpression
@@ -124,7 +122,6 @@ import org.omg.sysml.lang.sysml.Expose
 import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.AttributeDefinition
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.LifeClass
 import org.omg.sysml.lang.sysml.ActionDefinition
 import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
@@ -136,6 +133,8 @@ import org.omg.sysml.lang.sysml.IfActionUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
 import org.omg.sysml.lang.sysml.TriggerKind
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.lang.sysml.FlowDefinition
+import org.omg.sysml.lang.sysml.FlowUsage
 
 /**
  * This class contains custom validation rules. 
@@ -559,24 +558,8 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	
-//	@Check
-//	def checkLifeClass(LifeClass cls) {}
-//		// validateLifeClassIsSufficient is satisfied automatically
-//	}
-	
 	@Check
 	def checkOccurrenceDefinition(OccurrenceDefinition defn) {
-		// validateOccurrenceDefinitionLifeClass
-		val n = defn.ownedMember.filter[m | m instanceof LifeClass].size
-		if (defn.isIndividual) {
-			if (n != 1) {
-				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
-			}
-		} else {
-			if (n > 0) {
-				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
-			}			
-		}
 	}
 	
 	@Check 
@@ -656,12 +639,12 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkConnectionUsage(ConnectionUsage usg) {
 		// All types must be Associations
-		if (!(usg instanceof FlowConnectionUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
+		if (!(usg instanceof FlowUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
 			checkAllTypes(usg, Association, INVALID_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.connectionUsage_ConnectionDefinition, INVALID_CONNECTION_USAGE_TYPE)
 	}
 	
 	@Check
-	def checkFlowConnectionDefinition(FlowConnectionDefinition cdef) {
+	def checkFlowConnectionDefinition(FlowDefinition cdef) {
 		// validateConnectionDefinitionConnectionEnds
 		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
 		if (ends.size > 2) {
@@ -677,9 +660,9 @@ class SysMLValidator extends KerMLValidator {
 	}
 
 	@Check 
-	def checkFlowConnectionUsage(FlowConnectionUsage usg) {
+	def checkFlowConnectionUsage(FlowUsage usg) {
 		// All types must be Interactions
-		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowConnectionUsage_FlowConnectionDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
+		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowUsage_FlowDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
 	}
 
 	@Check
@@ -725,7 +708,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkActionUsage(ActionUsage usg) {
 		// All types must be Behaviors
-		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowConnectionUsage) )
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowUsage) )
 			checkAllTypes(usg, Behavior, INVALID_ACTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, INVALID_ACTION_USAGE_TYPE)
 	}
 	

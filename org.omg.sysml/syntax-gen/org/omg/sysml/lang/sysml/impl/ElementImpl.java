@@ -813,6 +813,30 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 		}
 	}
 
+	/**
+	 * The cached invocation delegate for the '{@link #path() <em>Path</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #path()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PATH__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ELEMENT___PATH).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String path() {
+		try {
+			return (String)PATH__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
 	//
 
 	/**
@@ -1118,6 +1142,8 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 				return effectiveName();
 			case SysMLPackage.ELEMENT___LIBRARY_NAMESPACE:
 				return libraryNamespace();
+			case SysMLPackage.ELEMENT___PATH:
+				return path();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

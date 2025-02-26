@@ -200,7 +200,7 @@ MetaCastOperator :
 ;
 
 MetadataReference returns SysML::MetadataAccessExpression :
-	referencedElement = [SysML::Element | QualifiedName]
+	ownedRelationship += ElementReferenceMember
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
@@ -404,9 +404,13 @@ FeatureReferenceMember returns SysML::Membership :
 // Metadata Access Expressions
 
 MetadataAccessExpression returns SysML::MetadataAccessExpression :
-	referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+	ownedRelationship += ElementReferenceMember '.' 'metadata'
 ;
 
+ElementReferenceMember returns SysML::Membership :
+    memberElement = [SysML::Element | QualifiedName]
+;
+   
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :

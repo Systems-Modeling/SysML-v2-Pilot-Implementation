@@ -24,7 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.util.TypeUtil;
 
@@ -54,7 +54,7 @@ public class StepAdapter extends FeatureAdapter {
 	}
 	
 	public boolean isIncomingTransfer() {
-		return getTarget().getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
+		return getTarget().getOwnedFeature().stream().anyMatch(PayloadFeature.class::isInstance);
 	}
 
 	@Override

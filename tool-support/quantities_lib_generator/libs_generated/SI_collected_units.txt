@@ -1,0 +1,237 @@
+A                        for electric current / ElectricCurrent
+A*m^-2*K^-2              for Richardson constant / RichardsonConstant
+A*m^2                    for magnetic moment / MagneticMoment
+A*m^2*J^-1*s^-1          for gyromagnetic ratio / GyromagneticRatio
+A*s/kg                   for gyromagnetic ratio / GyromagneticRatio
+A/m                      for linear electric current density / LinearElectricCurrentDensity
+A/m^2                    for electric current density / ElectricCurrentDensity
+B                        for storage capacity / StorageCapacity
+b                        for cross section / Area
+B/s                      for transfer rate / TransferRate
+Bd                       for modulation rate / ModulationRate
+bit                      for storage capacity / StorageCapacity
+bit/s                    for binary digit rate / BinaryDigitRate
+Bq                       for nuclear activity / NuclearActivity
+Bq/kg                    for specific activity / SpecificActivity
+Bq/m^2                   for surface-activity density / SurfaceActivityDensity
+Bq/m^3                   for activity density / ActivityDensity
+C                        for electric charge / ElectricCharge
+C*m                      for electric dipole moment / ElectricDipoleMoment
+C/(kg*s)                 for exposure rate / ExposureRate
+C/kg                     for exposure / Exposure
+C/m                      for linear density of electric charge / LinearDensityOfElectricCharge
+C/m^2                    for surface density of electric charge / SurfaceDensityOfElectricCharge
+C/m^3                    for electric charge density / ElectricChargeDensity
+cd                       for luminous intensity / LuminousIntensity
+cd*m^-2                  for luminance / Luminance
+cd*sr                    for luminous flux / LuminousFlux
+cd*sr*kg^-1*m^-2*s^3     for luminous efficacy of radiation / LuminousEfficacyOfRadiation
+cd*sr*m^-2               for illuminance / Illuminance
+cd*sr*m^-2*s             for luminous exposure / LuminousExposure
+cd*sr*s                  for luminous energy / LuminousEnergy
+Da                       for rest mass / Mass
+dB                       for sound pressure level / SoundPressureLevel
+dec                      for logarithmic frequency range / LogarithmicFrequencyRange
+E                        for traffic intensity / TrafficIntensity
+eV                       for level width / Energy
+eV*J*kg*m^2*s^-2         for Hartree energy / HartreeEnergy
+eV*m^-2/kg               for total mass stopping power / TotalMassStoppingPower
+eV/m                     for total linear stopping power / TotalLinearStoppingPower
+eV/m^2                   for energy fluence / EnergyFluence
+F                        for capacitance / Capacitance
+F/m                      for electric constant / ElectricConstant
+g/l                      for mass concentration / MassConcentration
+g/mol                    for molar mass / MolarMass
+Gy                       for absorbed dose / AbsorbedDose
+Gy/s                     for absorbed-dose rate / AbsorbedDoseRate
+H                        for permeance / Permeance
+H/m                      for magnetic constant / MagneticConstant
+H^-1                     for reluctance / Reluctance
+Hart                     for information content / InformationContent
+Hart/s                   for average information rate / AverageInformationRate
+Hz                       for frequency / Frequency
+J                        for potential energy / Energy
+J*m^2/kg                 for total mass stopping power / TotalMassStoppingPower
+J*s                      for action quantity / ActionQuantity
+J*s*eV*s                 for total angular momentum / TotalAngularMomentum
+J*s^-1                   for power / Power
+J/(kg*K)                 for specific heat capacity / SpecificHeatCapacity
+J/(m^2*nm)               for spectral radiant exposure / SpectralRadiantExposure
+J/(m^3*nm)               for spectral radiant energy density in terms of wavelength / SpectralRadiantEnergyDensityInTermsOfWavelength
+J/(mol*K)                for molar heat capacity / MolarHeatCapacity
+J/K                      for heat capacity / HeatCapacity
+J/kg                     for specific energy / SpecificEnergy
+J/m                      for total linear stopping power / TotalLinearStoppingPower
+J/m^2                    for spectral radiant energy density in terms of wavenumber / SpectralRadiantEnergyDensityInTermsOfWavenumber
+J/m^3                    for electromagnetic energy density / ElectromagneticEnergyDensity
+J/mol                    for molar internal energy / MolarInternalEnergy
+J/nm                     for spectral radiant energy / SpectralRadiantEnergy
+J/s                      for heat flow rate / HeatFlowRate
+J^-1*m^-3*eV^-1*m^-3     for energy density of states / EnergyDensityOfStates
+K                        for thermodynamic temperature / ThermodynamicTemperature
+K/Pa                     for Joule-Thomson coefficient / JouleThomsonCoefficient
+K/W                      for thermal resistance / ThermalResistance
+K^-1                     for linear expansion coefficient / LinearExpansionCoefficient
+kg                       for mass / Mass
+kg*m*s^-1                for momentum / Momentum
+kg*m*s^-2                for force / Force
+kg*m*s^-3                for spectral radiant flux / SpectralRadiantFlux
+kg*m*s^-3*K^-1           for thermal conductivity / ThermalConductivity
+kg*m*s^-3*sr^-1          for spectral radiant intensity / SpectralRadiantIntensity
+kg*m^-1                  for linear mass density / LinearMassDensity
+kg*m^-1*s^-1             for dynamic viscosity / DynamicViscosity
+kg*m^-1*s^-2             for pressure / Pressure
+kg*m^-1*s^-2*K^-1        for pressure coefficient / PressureCoefficient
+kg*m^-1*s^-3             for spectral irradiance / SpectralIrradiance
+kg*m^-1*s^-3*sr^-1       for spectral radiance / SpectralRadiance
+kg*m^-2                  for surface mass density / SurfaceMassDensity
+kg*m^-2*s^-1             for mass flow / MassFlow
+kg*m^-2*s^-2             for spectral radiant energy density in terms of wavelength / SpectralRadiantEnergyDensityInTermsOfWavelength
+kg*m^-3                  for mass density / MassDensity
+kg*m^-4*s^-1             for acoustic impedance / AcousticImpedance
+kg*m^2                   for moment of inertia / MomentOfInertia
+kg*m^2*s^-1              for angular momentum / AngularMomentum
+kg*m^2*s^-2              for moment of force / MomentOfForce
+kg*m^2*s^-2*K^-1         for heat capacity / HeatCapacity
+kg*m^2*s^-2*K^-1*mol^-1  for molar heat capacity / MolarHeatCapacity
+kg*m^2*s^-2*mol^-1       for molar internal energy / MolarInternalEnergy
+kg*m^2*s^-3              for power / Power
+kg*m^2*s^-3*A^-1         for thermoelectric voltage (between substances a and b) / ElectricPotentialDifference
+kg*m^2*s^-3*A^-1*K^-1    for Seebeck coefficient (for substances a and b) / SeebeckCoefficientForSubstancesAAndB
+kg*m^2*s^-3*K^-1         for thermal conductance / ThermalConductance
+kg*m^2*s^-3*sr^-1        for radiant intensity / RadiantIntensity
+kg*m^3*s^-3*A^-2         for residual resistivity / Resistivity
+kg*mol^-1                for molar mass / MolarMass
+kg*s^-1                  for mass flow rate / MassFlowRate
+kg*s^-2                  for surface tension / SurfaceTension
+kg*s^-2*A^-1             for thermodynamic critical magnetic flux density / MagneticFluxDensity
+kg*s^-3                  for density of heat flow rate / DensityOfHeatFlowRate
+kg*s^-3*K^-1             for coefficient of heat transfer / CoefficientOfHeatTransfer
+kg*s^-3*sr^-1            for radiance / Radiance
+kg^-1*A                  for exposure rate / ExposureRate
+kg^-1*m*s^2              for compressibility / Compressibility
+kg^-1*m*s^2*K            for Joule-Thomson coefficient / JouleThomsonCoefficient
+kg^-1*m^-2*s^3*K         for thermal resistance / ThermalResistance
+kg^-1*m^-3*s^3*A^2       for electrolytic conductivity / ElectrolyticConductivity
+kg^-1*m^-5*s^2           for energy density of states / EnergyDensityOfStates
+kg^-1*m^2                for mass attenuation coefficient / MassAttenuationCoefficient
+kg^-1*m^3                for specific volume / SpecificVolume
+kg^-1*s*A                for gyromagnetic ratio / GyromagneticRatio
+kg^-1*s^-1               for specific activity / SpecificActivity
+kg^-1*s^2                for energy distribution of cross section / EnergyDistributionOfCrossSection
+kg^-1*s^2*A              for mobility / Mobility
+kg^-1*s^3*A^2*mol^-1     for molar conductivity / MolarConductivity
+kg^-1*s^3*K              for thermal insulance / ThermalInsulance
+kg^2*m^-2*s^-3           for sound exposure / SoundExposure
+kg^2*m^4*s^-6*A^-2*K^-2  for Lorenz coefficient / LorenzCoefficient
+lm                       for luminous flux / LuminousFlux
+lm*s                     for luminous energy / LuminousEnergy
+lm/m^2                   for luminous exitance / LuminousExitance
+lm/W                     for luminous efficacy of radiation / LuminousEfficacyOfRadiation
+lx                       for illuminance / Illuminance
+lx*s                     for luminous exposure / LuminousExposure
+m                        for length / Length
+m*s^-1                   for velocity / Velocity
+m*s^-2                   for acceleration / Acceleration
+m/s                      for velocity / Velocity
+m^-1                     for curvature / Curvature
+m^-2                     for photon exposure / PhotonExposure
+m^-2*s^-1                for photon irradiance / PhotonIrradiance
+m^-2*s^-1*sr^-1          for photon radiance / PhotonRadiance
+m^-3                     for particle concentration / ParticleConcentration
+m^-3*s                   for density of vibrational states / DensityOfVibrationalStates
+m^-3*s^-1                for activity density / ActivityDensity
+m^2                      for area / Area
+m^2*A                    for magnetic dipole moment / MagneticDipoleMoment
+m^2*K/W                  for thermal insulance / ThermalInsulance
+m^2*mol^-1               for molar absorption coefficient / MolarAbsorptionCoefficient
+m^2*s^-1                 for kinematic viscosity / KinematicViscosity
+m^2*s^-2                 for specific energy / SpecificEnergy
+m^2*s^-2*K^-1            for specific heat capacity / SpecificHeatCapacity
+m^2*s^-3                 for dose equivalent rate / DoseEquivalent
+m^2*sr^-1                for direction distribution of cross section / DirectionDistributionOfCrossSection
+m^2/(J*sr)               for direction and energy distribution of cross section / DirectionAndEnergyDistributionOfCrossSection
+m^2/(V*s)                for mobility / Mobility
+m^2/J                    for energy distribution of cross section / EnergyDistributionOfCrossSection
+m^3                      for volume / Volume
+m^3*mol^-1               for molar volume / MolarVolume
+m^3*s^-1                 for volume flow rate / VolumeFlowRate
+m^3*s^-1*A^-1            for Hall coefficient / HallCoefficient
+m^3/C                    for Hall coefficient / HallCoefficient
+m^4                      for second axial moment of area / SecondAxialMomentOfArea
+m^4*s^-2                 for total mass stopping power / TotalMassStoppingPower
+ml/l                     for volume fraction / VolumeFraction
+mol                      for amount of substance / AmountOfSubstance
+mol*kg^-1                for ionic strength / IonicStrength
+mol*m^-3                 for amount-of-substance concentration / AmountOfSubstanceConcentration
+mol/kg                   for molality / Molality
+mol/l                    for amount-of-substance concentration / AmountOfSubstanceConcentration
+mol/m^3                  for equilibrium constant on concentration basis / EquilibriumConstantOnConcentrationBasis
+N                        for force / Force
+N*m                      for moment of force / MomentOfForce
+N*m*s                    for angular impulse / AngularImpulse
+N*m*s^-1                 for mechanical power / Power
+N*m^-1                   for surface tension / SurfaceTension
+N*m^-2                   for pressure / Pressure
+N*s                      for impulse / Impulse
+nat                      for information content / InformationContent
+nat/s                    for average information rate / AverageInformationRate
+o                        for storage capacity / StorageCapacity
+o/s                      for transfer rate / TransferRate
+oct                      for logarithmic frequency range / LogarithmicFrequencyRange
+Pa                       for pressure / Pressure
+Pa*s                     for dynamic viscosity / DynamicViscosity
+Pa*s/m                   for characteristic impedance of a medium for longitudinal waves / CharacteristicImpedanceOfAMediumForLongitudinalWaves
+Pa*s/m^3                 for acoustic impedance / AcousticImpedance
+Pa/K                     for pressure coefficient / PressureCoefficient
+Pa^-1                    for compressibility / Compressibility
+Pa^2*s                   for sound exposure / SoundExposure
+rad                      for angular measure / AngularMeasure
+rad*m^2/kg               for specific optical rotatory power / SpecificOpticalRotatoryPower
+rad*m^2/mol              for molar optical rotatory power / MolarOpticalRotatoryPower
+rad*s^-1                 for angular velocity / AngularVelocity
+rad*s^-2                 for angular acceleration / AngularAcceleration
+rad/m                    for phase coefficient / PhaseCoefficient
+S                        for conductance / Conductance
+s                        for duration / Duration
+s*A                      for elementary charge / ElectricCharge
+S*m^2/mol                for molar conductivity / MolarConductivity
+S/m                      for conductivity / Conductivity
+s^-1                     for angular velocity / AngularVelocity
+s^-1*sr^-1               for photon intensity / PhotonIntensity
+s^-2                     for angular acceleration / AngularAcceleration
+Sh                       for information content / InformationContent
+Sh/s                     for average information rate / AverageInformationRate
+sr                       for solid angular measure / SolidAngularMeasure
+Sv                       for dose equivalent / DoseEquivalent
+Sv/s                     for dose equivalent rate / DoseEquivalent
+T                        for magnetic flux density / MagneticFluxDensity
+u                        for rest mass / Mass
+ua                       for UNKNOWN_QUANTITY / UNKNOWN_QUANTITY
+V                        for electric potential / ElectricPotential
+V*A                      for apparent power / Power
+V/K                      for Seebeck coefficient (for substances a and b) / SeebeckCoefficientForSubstancesAAndB
+V/m                      for electric field strength / ElectricFieldStrength
+V^2/K^2                  for Lorenz coefficient / LorenzCoefficient
+var                      for reactive power / Power
+W                        for power / Power
+W*h                      for active energy / Energy
+W/(m*K)                  for thermal conductivity / ThermalConductivity
+W/(m^2*K)                for coefficient of heat transfer / CoefficientOfHeatTransfer
+W/(m^2*nm)               for spectral irradiance / SpectralIrradiance
+W/(sr*m^2)               for radiance / Radiance
+W/(sr*m^2*nm)            for spectral radiance / SpectralRadiance
+W/(sr*nm)                for spectral radiant intensity / SpectralRadiantIntensity
+W/K                      for thermal conductance / ThermalConductance
+W/kg                     for dose equivalent rate / DoseEquivalent
+W/m^2                    for density of heat flow rate / DensityOfHeatFlowRate
+W/nm                     for spectral radiant flux / SpectralRadiantFlux
+W/sr                     for radiant intensity / RadiantIntensity
+Wb                       for magnetic flux / MagneticFlux
+Wb*m                     for magnetic dipole moment / MagneticDipoleMoment
+Wb/m                     for magnetic vector potential / MagneticVectorPotential
+°                        for Bragg angle / AngularMeasure
+°C                       for Celsius temperature / CelsiusTemperature
+Å                        for Bohr radius / Length
+Ω                        for resistance / Resistance
+Ω*m                      for resistivity / Resistivity

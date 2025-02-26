@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_amvVANOeEe-aLcdc5tialg" name="SysML" URI="https://www.omg.org/spec/SysML/20240201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_fFOzUPQ8Ee-jUNjEymwBOA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="07571cf4-bf41-417e-9940-154e1578d394" name="Systems" visibility="public" URI="">
     <packageImport xmi:id="daeb66d9-cd8d-41ba-8001-cabcb2c8a400">
       <importedPackage href="KerML_only_xmi.uml#be3221b4-bef0-4d55-a9c7-cb7ffed86f6c"/>
@@ -630,12 +630,12 @@ owningType.oclAsType(TransitionUsage).triggerAction->includes(self)</body>
         </ownedComment>
         <ownedRule xmi:id="62793e10-b1b7-4fca-a2ea-4ac61642d3b4" name="validatePerformActionUsageReference" visibility="public" constrainedElement="dbc8f893-bcf6-498b-bf3c-1d65a53dfc8b">
           <ownedComment xmi:id="e6627fec-7a02-4b0a-a2c2-a168ce4833e3" annotatedElement="62793e10-b1b7-4fca-a2ea-4ac61642d3b4">
-            <body>&lt;p>If a &lt;code>PerformActionUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be a &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>PerformActionUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> must be an &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="9f4f46ab-7e40-4d07-9ca4-1af1c8d75598" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ActionUsage)</body>
+            <body>referencedFeatureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(ActionUsage)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="2aab27e8-3085-45c1-a5cf-5bf2b0203f9d" name="checkPerformActionUsageSpecialization" visibility="public" constrainedElement="dbc8f893-bcf6-498b-bf3c-1d65a53dfc8b">
@@ -774,6 +774,15 @@ endif</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="c5b9d984-1ec7-4c55-b81f-74d3ee421e49" name="" visibility="public">
             <language>OCL2.0</language>
             <body>specializesFromLibrary('Action::Action::controls')</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="6f76ec53-315e-4efc-8b7a-bf77a90cc3ad" name="validateControlNodeIsComposite" visibility="public" constrainedElement="d81096c8-a2e7-436f-a215-d2ec36509480">
+          <ownedComment xmi:id="5543d107-f0c6-4005-98d8-2dea19ce3419" annotatedElement="6f76ec53-315e-4efc-8b7a-bf77a90cc3ad">
+            <body>&lt;p>A &lt;code>ControlNode&lt;/code> must be composite.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="145381f0-6759-44f3-92c4-8b0afb3266d4" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isComposite</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="de544c48-aa05-49da-8afe-9dfad3e0e954" general="cae740a0-764e-4bfd-9247-c54eb6e66f3e"/>
@@ -1565,6 +1574,15 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
     memberElement.oclIsKindOf(Feature))</body>
           </specification>
         </ownedRule>
+        <ownedRule xmi:id="d7626bd4-1463-44c4-8a5c-db5db50754b3" name="validateAssignmentActionUsage" visibility="public" constrainedElement="49ff625c-c71a-4398-9e2d-3655c345f64e">
+          <ownedComment xmi:id="fe6e38f4-d864-4b1d-889b-b1c1bd30d533" annotatedElement="d7626bd4-1463-44c4-8a5c-db5db50754b3">
+            <body>&lt;p>The &lt;code>featureTarget&lt;/code> of the &lt;code>referent&lt;/code> of an &lt;code>AssignmentActionUsage&lt;/code> must be able to have time-varying values.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="5efbce0d-de14-4cc9-ac7e-753be03ac5a2" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>referent &lt;> null implies referent.featureTarget.mayTimeVary</body>
+          </specification>
+        </ownedRule>
         <generalization xmi:id="44cb80fc-cbf4-4e22-99df-c579a9e10469" general="cae740a0-764e-4bfd-9247-c54eb6e66f3e"/>
         <ownedAttribute xmi:id="e0586475-cb2b-4a2f-a998-17e044bab518" name="targetArgument" visibility="public" isDerived="true" association="7eeefb53-7d72-4387-850e-3af2c8ca20f7">
           <ownedComment xmi:id="3e918899-5da6-471f-a3aa-38c7465a1faf" annotatedElement="e0586475-cb2b-4a2f-a998-17e044bab518">
@@ -1724,23 +1742,6 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         <ownedComment xmi:id="72ada388-0f3b-41b4-b532-0a2e06c1cf6a" annotatedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <body>&lt;p>A &lt;code>TriggerInvocationExpression&lt;/code> is an &lt;code>InvocationExpression&lt;/code> that invokes one of the trigger &lt;code>Functions&lt;/code> from the Kernel Semantic Library &lt;code>&lt;em>Triggers&lt;em>&lt;/code> package, as indicated by its &lt;code>kind&lt;/code>.&lt;/p></body>
         </ownedComment>
-        <ownedRule xmi:id="6bcf6eb5-52ca-4675-adf4-a2ff6accd538" name="checkTriggerInvocationExpressionSpecialization" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
-          <ownedComment xmi:id="b3bea1d3-4d48-4219-97df-2c2f76126ae9" annotatedElement="6bcf6eb5-52ca-4675-adf4-a2ff6accd538">
-            <body>&lt;p>A &lt;code>TriggerInvocationExpression&lt;/code> must directly or indirectly specialize one of the &lt;code>Functions&lt;/code> &lt;em>&lt;code>TriggerWhen&lt;/code>&lt;/em>, &lt;em>&lt;code>TriggerAt&lt;/code>&lt;/em> or &lt;em>&lt;code>TriggerAfter&lt;/code>&lt;/em>, from the Kernel Semantic Library Triggers package, depending on whether its &lt;code>kind&lt;/code> is &lt;code>when&lt;/code>, &lt;code>at&lt;/code> or &lt;code>after&lt;/code>, respectively.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="c1547d8e-6a87-456c-9eb7-0caaae43a71c" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>specializesFromLibrary(
-    if kind = TriggerKind::when then
-        'Triggers::TriggerWhen'
-    else if kind = TriggerKind::at then
-        'Triggers::TriggerAt'
-    else 
-        'Triggers::TriggerAfter'
-    endif endif
-)</body>
-          </specification>
-        </ownedRule>
         <ownedRule xmi:id="72a7df57-3c47-4c2f-9268-981a49e38f5e" name="validateTriggerInvocationExpressionAfterArgument" visibility="public" constrainedElement="3b553f96-5d50-422a-a689-78c928daa1d5">
           <ownedComment xmi:id="dfbbda61-f62d-462e-b81a-9985bed4aea4" annotatedElement="72a7df57-3c47-4c2f-9268-981a49e38f5e">
             <body>&lt;p>If a &lt;code>TriggerInvocationExpression&lt;/code> has &lt;code>kind = after&lt;/code>, then it must have an argument &lt;code>Expression&lt;/code> with a &lt;code>result&lt;/code> that conforms to the type &lt;em>&lt;code>Quantities::ScalarQuantityValue&lt;/code>&lt;/em> and a &lt;code>feature&lt;/code> that directly or indirectly redefines &lt;em>&lt;code>Quantities::TensorQuantityValue::mRef&lt;/code>&lt;/em> and directly or indirectly specializes &lt;em>&lt;code>ISQBase::DurationUnit&lt;/code>&lt;/em>.&lt;/p></body>
@@ -1793,6 +1794,29 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
             <body>&lt;p>Indicates which of the &lt;code>Functions&lt;/code> from the &lt;code>&lt;em>Triggers&lt;/em>&lt;/code> model in the Kernel Semantic Library is to be invoked by this &lt;code>TriggerInvocationExpression&lt;/code>.&lt;/p></body>
           </ownedComment>
         </ownedAttribute>
+        <ownedOperation xmi:id="1af95497-98c7-44a8-a024-76f15751bf74" name="instantiatedType" visibility="public" bodyCondition="94beccd8-270c-4d26-9a4b-afa5f10e52f7">
+          <ownedComment xmi:id="d8e810bd-9526-4c5d-81dd-32881da6d393" annotatedElement="1af95497-98c7-44a8-a024-76f15751bf74">
+            <body>&lt;p>Return one of the &lt;code>Functions&lt;/code> &lt;em>&lt;code>TriggerWhen&lt;/code>&lt;/em>, &lt;em>&lt;code>TriggerAt&lt;/code>&lt;/em> or &lt;em>&lt;code>TriggerAfter&lt;/code>&lt;/em>, from the Kernel Semantic Library &lt;em>&lt;code>Triggers&lt;/code>&lt;/em> package, depending on whether the &lt;code>kind&lt;/code> of this &lt;code>TriggerInvocationExpression&lt;/code> is &lt;code>when&lt;/code>, &lt;code>at&lt;/code> or &lt;code>after&lt;/code>, respectively.&lt;/p></body>
+          </ownedComment>
+          <ownedRule xmi:id="94beccd8-270c-4d26-9a4b-afa5f10e52f7" name="unnamed1" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="a7fd3314-b37f-47e8-826a-5d304ffcdbc6" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>resolveGlobal(
+    if kind = TriggerKind::when then
+        'Triggers::TriggerWhen'
+    else if kind = TriggerKind::at then
+        'Triggers::TriggerAt'
+    else
+        'Triggers::TriggerAfter'
+    endif endif
+).memberElement.oclAsType(Type)</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="d76eeaa9-a364-4b2b-aa00-1e45780ae24b" name="" visibility="public" direction="return">
+            <type xmi:type="uml:Class" href="KerML_only_xmi.uml#a32ae34b-57c2-4f49-832c-00f8741d55e7"/>
+          </ownedParameter>
+          <redefinedOperation href="KerML_only_xmi.uml#44fc5d7b-cdee-480a-a7b8-14d7d1896f34"/>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="ca9436c2-a84e-407e-9fe3-c686d9eceb76" name="A_senderArgument_senderActionUsage" visibility="public" memberEnd="9f4d7510-a190-4d8d-a8d4-122640a38c50 bf2863fa-821f-4475-922c-485916af4097">
         <ownedEnd xmi:id="bf2863fa-821f-4475-922c-485916af4097" name="senderActionUsage" visibility="public" type="76ae7a9c-b187-488a-8712-4515001ebe10" isDerived="true" association="ca9436c2-a84e-407e-9fe3-c686d9eceb76">
@@ -1825,7 +1849,7 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
             <body>terminatedOccurrenceArgument = argument(1)</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="a7928bd6-321b-49fd-a3ae-931dd9beb45e" name="checkTerminateActionUsageSubactionSpecialization " visibility="public" constrainedElement="5e0e5ac2-20eb-4c9c-bb91-7d554d0dbcf6">
+        <ownedRule xmi:id="a7928bd6-321b-49fd-a3ae-931dd9beb45e" name="checkTerminateActionUsageSubactionSpecialization" visibility="public" constrainedElement="5e0e5ac2-20eb-4c9c-bb91-7d554d0dbcf6">
           <ownedComment xmi:id="0c2d8505-db08-47cb-a288-df6dee0ce3e0" annotatedElement="a7928bd6-321b-49fd-a3ae-931dd9beb45e">
             <body>&lt;p>A composite &lt;code>TerminateActionUsage&lt;/code> that is a subaction must must directly or indirectly specialize the &lt;code>ActionUsage&lt;/code> &lt;em>&lt;code>Actions::Action::terminateSubactions&lt;/code>&lt;/em> from the Systems Modeling Library.&lt;/p></body>
           </ownedComment>
@@ -2035,7 +2059,7 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedRule>
         <ownedRule xmi:id="e90d8dad-d283-4292-894c-c8d186b31d05" name="deriveDefinitionOwnedFlow" visibility="public" constrainedElement="f1eb93f0-3ecf-4502-ac36-d7956f796a7f">
           <ownedComment xmi:id="dfa89edb-f184-4aa2-a1e7-d7e5d3af2884" annotatedElement="e90d8dad-d283-4292-894c-c8d186b31d05">
-            <body>&lt;p>The &lt;code>ownedFlows&lt;/code> of a &lt;code>Definition&lt;/code> are all its &lt;code>ownedUsages&lt;/code> that are &lt;code>FlowConnectionUsages&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>ownedFlows&lt;/code> of a &lt;code>Definition&lt;/code> are all its &lt;code>ownedUsages&lt;/code> that are &lt;code>FlowUsages&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="e9e48d69-6612-4e51-8bcd-eafcffecc279" name="" visibility="public">
             <language>OCL2.0</language>
@@ -2307,14 +2331,14 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="8b835721-93f3-45a3-a37d-2b01b881731c" name="ownedConnection" visibility="public" type="fa6f6025-c2ea-481f-9f30-c5f8af69b388" isOrdered="true" isDerived="true" subsettedProperty="42bbedc9-771d-4962-a2f8-237f2a623968" association="4e2c788e-879e-4535-b32b-5dfcf841f32f">
           <ownedComment xmi:id="3348a171-20d4-4853-9271-f726837d6cec" annotatedElement="8b835721-93f3-45a3-a37d-2b01b881731c">
-            <body>&lt;p>The &lt;code>ConnectorAsUsages&lt;/code> that are &lt;code>ownedUsages&lt;/code> of this &lt;code>Definition&lt;/code>. Note that this list includes &lt;code>BindingConnectorAsUsages&lt;/code>, &lt;code>SuccessionAsUsages&lt;/code>, and &lt;code>FlowConnectionUsages&lt;/code> because these are &lt;code>ConnectorAsUsages&lt;/code> even though they are not &lt;code>ConnectionUsages&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>ConnectorAsUsages&lt;/code> that are &lt;code>ownedUsages&lt;/code> of this &lt;code>Definition&lt;/code>. Note that this list includes &lt;code>BindingConnectorAsUsages&lt;/code>, &lt;code>SuccessionAsUsages&lt;/code>, and &lt;code>FlowUsages&lt;/code> because these are &lt;code>ConnectorAsUsages&lt;/code> even though they are not &lt;code>ConnectionUsages&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="30388159-0208-4788-96c3-ddd5ceff4c1c" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="38c1c1f4-5d1b-4abc-93d7-4a7a33ee5cda" name="" visibility="public" value="*"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="40889b85-ba5a-4af6-b325-470258b783ee" name="ownedFlow" visibility="public" type="440a1876-4689-4594-82a0-57caf88cbbe1" isDerived="true" subsettedProperty="8b835721-93f3-45a3-a37d-2b01b881731c" association="fd84047f-5292-4e7d-a09e-152306f56817">
           <ownedComment xmi:id="624b0213-32b3-4ebd-b0b1-fb70b3dec6fa" annotatedElement="40889b85-ba5a-4af6-b325-470258b783ee">
-            <body>&lt;p>The &lt;code>FlowConnectionUsages&lt;/code> that are &lt;code>ownedUsages&lt;/code> of this &lt;code>Definition&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>FlowUsages&lt;/code> that are &lt;code>ownedUsages&lt;/code> of this &lt;code>Definition&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="39ac50ad-4a05-4fb3-96cd-639c449adedf" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="22906496-0dd7-499c-ac86-dd469d4c18ad" name="" visibility="public" value="*"/>
@@ -2827,18 +2851,53 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
             <body>isVariation implies isAbstract</body>
           </specification>
         </ownedRule>
+        <ownedRule xmi:id="1805c3b0-3d6c-4d8f-8e9b-6450772db4f2" name="deriveUsageMayTimeVary" visibility="public" constrainedElement="de05c06e-0b7a-4f9c-9921-b84416ef917d">
+          <ownedComment xmi:id="bbda12fd-e786-41ce-9190-ecb68b661d56" annotatedElement="1805c3b0-3d6c-4d8f-8e9b-6450772db4f2">
+            <body>&lt;p>A &lt;code>Usage&lt;/code> &lt;code>mayTimeVary&lt;/code> if and only if all of the following are true&lt;/p>
+&lt;ul>
+	&lt;li>It has an &lt;code>owningType&lt;/code> that specializes &lt;em>&lt;code>Occurrences::Occurrence&lt;/code>&lt;/em> (from the Kernel Semantic Library).&lt;/li>
+	&lt;li>It is not a portion.&lt;/li>
+	&lt;li>It does not specialize &lt;em>&lt;code>Links::SelfLink&lt;/code>&lt;/em>  or &lt;em>&lt;code>Occurrences::HappensLink&lt;/code>&lt;/em> (from the Kernel Semantic Library).&lt;/li>
+	&lt;li>If &lt;code>isComposite = true&lt;/code>, it does not specialize &lt;em>&lt;code>Actions::Action&lt;/code>&lt;/em> (from the Systems Model Library).
+&lt;/li>&lt;/ul></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="2663a71f-6844-4e06-b4b4-09dade5e76d0" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>mayTimeVary =
+    owningType &lt;> null and
+    owningType.specializesFromLibrary('Occurrences::Occurrence') and
+    not (
+        isPortion or
+        specializesFromLibrary('Links::SelfLink') or
+        specializesFromLibrary('Occurrences::HappensLink') or
+        isComposite and specializesFromLibrary('Actions::Action')
+    )</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="482f216d-7f8c-4a03-97c6-72a2294d6ae9" name="checkUsageVariationUsageTypeFeaturing" visibility="public" constrainedElement="de05c06e-0b7a-4f9c-9921-b84416ef917d">
+          <ownedComment xmi:id="0a4069b0-476f-47bd-b035-ee08902303a7" annotatedElement="482f216d-7f8c-4a03-97c6-72a2294d6ae9">
+            <body>&lt;p>If a &lt;code>Usage&lt;/code> has an &lt;code>owningVariationUsage&lt;/code>, then it must have the same &lt;code>featuringTypes&lt;/code> as that &lt;code>Usage&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="a027ace5-20e8-493a-af69-d0f50ccf4f97" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>owningVariationUsage &lt;> null implies
+    featuringType->asSet() = owningVariationUsage.featuringType->asSet()</body>
+          </specification>
+        </ownedRule>
         <generalization xmi:id="5a0138d4-1b75-4944-8bb6-94053ea4b126">
           <general xmi:type="uml:Class" href="KerML_only_xmi.uml#56b2e3ab-f2e5-4330-9c25-362cb4af825d"/>
         </generalization>
-        <ownedAttribute xmi:id="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2" name="isReference" visibility="public" isDerived="true">
-          <ownedComment xmi:id="f6f0dedc-1dc6-4f5e-ae8b-3e618e9f42e4" annotatedElement="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2">
-            <body>&lt;p>Whether this &lt;code>Usage&lt;/code> is a referential &lt;code>Usage&lt;/code>, that is, it has &lt;code>isComposite = false&lt;/code>.&lt;p></body>
+        <ownedAttribute xmi:id="7d7533bf-f314-46fa-8f57-cfeae39886fe" name="mayTimeVary" visibility="public" isDerived="true">
+          <ownedComment xmi:id="bfc45555-9e06-4d9a-bfa2-676c09f58950" annotatedElement="7d7533bf-f314-46fa-8f57-cfeae39886fe">
+            <body>&lt;p>Whether this &lt;code>Usage&lt;/code> may be time varying (that is, whether it is featured by the snapshots of its &lt;code>owningType&lt;/code>, rather than being featured by the &lt;code>owningType&lt;/code> itself). However, if &lt;code>isConstant&lt;/code> is also true, then the value of the &lt;code>Usage&lt;/code> is nevertheless constant over the entire duration of an instance of its &lt;code>owningType&lt;/code> (that is, it has the same value on all snapshots).&lt;/p>
+
+&lt;p>The property &lt;code>mayTimeVary&lt;/code> redefines the KerML property &lt;code>Feature::isVariable&lt;/code>, making it derived. The property &lt;code>isConstant&lt;/code> is inherited from &lt;code>Feature&lt;/code>.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="6a177a20-3de2-4048-847a-79341f7e5fa4" name="isVariation" visibility="public">
-          <ownedComment xmi:id="d4eee687-9ec7-4b4b-a9cd-357b076cfe20" annotatedElement="6a177a20-3de2-4048-847a-79341f7e5fa4">
-            <body>&lt;p>Whether this &lt;code>Usage&lt;/code> is for a variation point or not. If true, then all the &lt;code>memberships&lt;/code> of the &lt;code>Usage&lt;/code> must be &lt;code>VariantMemberships&lt;/code>.&lt;/p></body>
+        <ownedAttribute xmi:id="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2" name="isReference" visibility="public" isDerived="true">
+          <ownedComment xmi:id="f6f0dedc-1dc6-4f5e-ae8b-3e618e9f42e4" annotatedElement="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2">
+            <body>&lt;p>Whether this &lt;code>Usage&lt;/code> is a referential &lt;code>Usage&lt;/code>, that is, it has &lt;code>isComposite = false&lt;/code>.&lt;p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
@@ -2974,7 +3033,7 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="0d078019-9fe4-49e2-8ae2-8bfe6778c019" name="nestedFlow" visibility="public" type="440a1876-4689-4594-82a0-57caf88cbbe1" isDerived="true" subsettedProperty="1833f6c6-677f-45ff-b533-63cea1ac1bd4" association="c3dc8fe9-66e8-4900-ad66-3edaa55b5ebe">
           <ownedComment xmi:id="edac4f8f-3786-484b-a6ca-ae66c62d1169" annotatedElement="0d078019-9fe4-49e2-8ae2-8bfe6778c019">
-            <body>&lt;p>The code>FlowConnectionUsages&lt;/code> that are &lt;code>nestedUsages&lt;/code> of this &lt;code>Usage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The code>FlowUsages&lt;/code> that are &lt;code>nestedUsages&lt;/code> of this &lt;code>Usage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d3c10f9d-969f-41b6-9a60-b2870297aa9c" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="682a816b-ceaf-4d01-8b47-9916d3662d15" name="" visibility="public" value="*"/>
@@ -3111,6 +3170,12 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a872016c-221a-41b5-aaf9-409a639d7d06" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="198f56f0-9c8e-4b90-a259-406866b1cc9c" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="6a177a20-3de2-4048-847a-79341f7e5fa4" name="isVariation" visibility="public">
+          <ownedComment xmi:id="d4eee687-9ec7-4b4b-a9cd-357b076cfe20" annotatedElement="6a177a20-3de2-4048-847a-79341f7e5fa4">
+            <body>&lt;p>Whether this &lt;code>Usage&lt;/code> is for a variation point or not. If true, then all the &lt;code>memberships&lt;/code> of the &lt;code>Usage&lt;/code> must be &lt;code>VariantMemberships&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedAttribute>
         <ownedOperation xmi:id="54ce2459-83a6-459d-b1a0-d80b6402c305" name="namingFeature" visibility="public" bodyCondition="05113eef-b5a8-403d-bc58-305cc7e7e978">
           <ownedComment xmi:id="f9649b93-34a5-42fb-8a5f-5e60578edd1d" annotatedElement="54ce2459-83a6-459d-b1a0-d80b6402c305">
@@ -3671,7 +3736,7 @@ membershipOwningNamespace.oclIsKindOf(Usage) and
       <packagedElement xmi:type="uml:Association" xmi:id="c3dc8fe9-66e8-4900-ad66-3edaa55b5ebe" name="A_nestedFlow_flowOwningUsage" visibility="public" memberEnd="0d078019-9fe4-49e2-8ae2-8bfe6778c019 5bd30179-afe1-4f78-9fb1-985cf9c34ad5">
         <ownedEnd xmi:id="5bd30179-afe1-4f78-9fb1-985cf9c34ad5" name="flowOwningUsage" visibility="public" type="de05c06e-0b7a-4f9c-9921-b84416ef917d" isDerived="true" subsettedProperty="19f4f870-2879-4dae-9e3a-4895edd31118" association="c3dc8fe9-66e8-4900-ad66-3edaa55b5ebe">
           <ownedComment xmi:id="ff76739e-d6cb-485b-8725-b02ff19f110f" annotatedElement="5bd30179-afe1-4f78-9fb1-985cf9c34ad5">
-            <body>&lt;p>The Usage that owns the &lt;code>nestedFlow&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>Usage&lt;/code> that owns the &lt;code>nestedFlow&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f0a008e0-d1d0-4372-b025-137cf9dc3ee3" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4b450fb3-1f5e-4432-8ad5-975863c854f4" name="" visibility="public" value="1"/>
@@ -4581,13 +4646,13 @@ endif</body>
         </ownedOperation>
         <ownedOperation xmi:id="e5223798-9370-4525-9e85-904e5714847f" name="sourceFeature" visibility="public" bodyCondition="deb54a2c-c97e-472e-8693-4785abac772f">
           <ownedComment xmi:id="85035ebe-b907-4673-8648-4da1b06b15ac" annotatedElement="e5223798-9370-4525-9e85-904e5714847f">
-            <body>&lt;p>Return the &lt;code>Feature&lt;/code> to be used as the &lt;code>source&lt;/code> of the &lt;code>succession&lt;/code> of this &lt;code>TransitionUsage&lt;/code>, which is the first &lt;code>ownedMember&lt;/code> of the &lt;code>TransitionUsage&lt;/code> that is a &lt;code>Feature&lt;/code> &lt;em>not&lt;/em> owned via a &lt;code>FeatureMembership&lt;/code> whose &lt;code>featureTarget&lt;/code> is an &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>Return the &lt;code>Feature&lt;/code> to be used as the &lt;code>source&lt;/code> of the &lt;code>succession&lt;/code> of this &lt;code>TransitionUsage&lt;/code>, which is the first &lt;code>member&lt;/code> of the &lt;code>TransitionUsage&lt;/code> that is a &lt;code>Feature&lt;/code>, that is owned by the &lt;code>TransitionUsage&lt;/code> via a &lt;code>Membership&lt;/code> that is &lt;em>not&lt;/em> a &lt;code>FeatureMembership&lt;/code>, and whose &lt;code>featureTarget&lt;/code> is an &lt;code>ActionUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <ownedRule xmi:id="deb54a2c-c97e-472e-8693-4785abac772f" name="unnamed1" visibility="public">
             <specification xmi:type="uml:OpaqueExpression" xmi:id="2ca5ad17-2d3b-4d8c-ae7e-76aecba8ecb9" name="" visibility="public">
               <language>OCL2.0</language>
-              <body>let features : Sequence(Feature) = ownedMembers->
-    reject(owningMembership.oclIsKindOf(FeatureMembership))->
+              <body>let features : Sequence(Feature) = ownedMembership->
+    reject(oclIsKindOf(FeatureMembership)).memberElement->
     selectByKind(Feature)->
     select(featureTarget.oclIsKindOf(ActionUsage)) in
 if features->isEmpty() then null
@@ -5036,12 +5101,12 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="b4197a24-2ec0-4d16-a499-0999d3d5dbee" name="validateAssertConstraintUsageReference" visibility="public" constrainedElement="81b3d651-a8af-47ad-9989-a2bb2b788b8d">
           <ownedComment xmi:id="7ac7e526-8ca8-44c7-a026-08653f669891" annotatedElement="b4197a24-2ec0-4d16-a499-0999d3d5dbee">
-            <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;/code>ConstraintUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If an &lt;code>AssertConstraintUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of its &lt;code>referencedFeature&lt;/code> must be a &lt;/code>ConstraintUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="b1826f86-637d-468e-bcda-96f6b7dd4b49" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ConstraintUsage)</body>
+            <body>referencedFeaureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(ConstraintUsage)</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="011c35db-627e-4f4b-a352-25df4865e6ee" general="f1bbc902-b569-4c28-88f5-6f3a15f3d747"/>
@@ -5334,12 +5399,12 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="e8e056c7-9995-4299-8da2-1a5682edfb9e" name="validateSatisfyRequirementUsageReference" visibility="public" constrainedElement="f3eaba18-edf9-46dc-8edf-77e0b0954dec">
           <ownedComment xmi:id="50ee148d-b425-41e4-bf85-46d170bd1415" annotatedElement="e8e056c7-9995-4299-8da2-1a5682edfb9e">
-            <body>&lt;p>If a &lt;code>SatisfyRequirementUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then its &lt;code>referencedFeature&lt;/code> must be a &lt;code>RequirementUsage&lt;/code>.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>SatisfyRequirementUsage&lt;/code> has an &lt;code>ownedReferenceSubsetting&lt;/code>, then the &lt;code>featureTarget&lt;/code> of its &lt;code>referencedFeature&lt;/code> must be a &lt;code>RequirementUsage&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="48e83b32-d03d-4c38-83a6-69c1e3e3d0a6" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>ownedReferenceSubsetting &lt;> null implies
-    ownedReferenceSubsetting.referencedFeature.oclIsKindOf(RequirementUsage)</body>
+            <body>referencedFeatureTarget() &lt;> null implies
+    referencedFeatureTarget().oclIsKindOf(RequirementUsage)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="619b4bd3-aef7-4896-9847-3dad55baeba0" name="checkSatisfyRequirementUsageSpecialization" visibility="public" constrainedElement="f3eaba18-edf9-46dc-8edf-77e0b0954dec">
@@ -6795,11 +6860,11 @@ owningType.oclIsType(CaseUsage)
         </ownedComment>
         <ownedRule xmi:id="6ca31b57-a437-4b25-b231-1f3c66ce8a49" name="deriveItemUsageItemDefinition" visibility="public" constrainedElement="955aff48-147b-41ab-bb4c-bc097d53c860">
           <ownedComment xmi:id="002689dc-e226-4286-9ccf-287e7d7b3894" annotatedElement="6ca31b57-a437-4b25-b231-1f3c66ce8a49">
-            <body>&lt;p>The &lt;code>itemDefinitions&lt;/code> of an &lt;code>ItemUsage&lt;/code> are those &lt;code>occurrenceDefinitions&lt;/code> that are &lt;code>ItemDefinitions&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>itemDefinitions&lt;/code> of an &lt;code>ItemUsage&lt;/code> are those &lt;code>occurrenceDefinitions&lt;/code> that are &lt;code>Structures&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="5a234c15-edd2-4cb7-b415-95a084b6f6a6" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>itemDefinition = occurrenceDefinition->selectByKind(ItemDefinition)</body>
+            <body>itemDefinition = occurrenceDefinition->selectByKind(Structure)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="c34d6869-6394-4d1f-951f-2f8092437b27" name="checkItemUsageSpecialization" visibility="public" constrainedElement="955aff48-147b-41ab-bb4c-bc097d53c860">
@@ -7846,77 +7911,6 @@ owningType.owningFeatureMembership.oclIsKindOf(ObjectiveMembership)</body>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="b3fb74c2-a55d-43cc-bd85-5292beecf4fb" name="Occurrences" visibility="public" URI="">
-      <packagedElement xmi:type="uml:Class" xmi:id="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4" name="LifeClass" visibility="public">
-        <ownedComment xmi:id="de874192-4a35-4619-9a86-6a29db0414d9" annotatedElement="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4">
-          <body>&lt;p>A &lt;code>LifeClass&lt;/code> is a &lt;code>Class&lt;/code> that specializes both the &lt;code>Class&lt;/code> &lt;code>&lt;em>Occurrences::Life&lt;/em>&lt;/code> from the Kernel Semantic Library and a single &lt;code>OccurrenceDefinition&lt;/code>, and has a multiplicity of 0..1. This constrains the &lt;code>OccurrenceDefinition&lt;/code> being specialized to have at most one instance that is a complete &lt;code>Life&lt;/code>.&lt;/p>
-</body>
-        </ownedComment>
-        <ownedRule xmi:id="b46c3a88-dc4d-43f3-9196-9d8fcd964428" name="checkLifeClassLifeSpecialization" visibility="public" constrainedElement="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4">
-          <ownedComment xmi:id="84fe0c75-8143-4daf-bcb8-dad1354e16b7" annotatedElement="b46c3a88-dc4d-43f3-9196-9d8fcd964428">
-            <body>&lt;p>A &lt;code>LifeClass&lt;/code> must specialize the &lt;code>Class&lt;/code> &lt;code>&lt;em>Occurrences::Life&lt;/em>&lt;/code> from the Kernel Semantic Model Library.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="7ec0c76a-a962-405b-a3d4-26db6875e006" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>specializesFromLibrary('Occurrences::Life')</body>
-          </specification>
-        </ownedRule>
-        <ownedRule xmi:id="4105c29d-2357-40ef-b3af-7589342e185b" name="checkLifeClassMultiplicitySpecialization" visibility="public" constrainedElement="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4">
-          <ownedComment xmi:id="bb020621-60be-48f6-a6be-3509afcdffda" annotatedElement="4105c29d-2357-40ef-b3af-7589342e185b">
-            <body>&lt;p>The &lt;code>multiplicity&lt;/code> of a &lt;code>LifeClass&lt;/code> is &lt;em>&lt;code>zeroOrOne&lt;/code>&lt;/em>.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="d170b516-e1b1-46fe-b192-ce30f8ff32c4" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>multiplicity &lt;> null and
-multiplicity.specializesFromLibrary('Base::zeroOrOne')</body>
-          </specification>
-        </ownedRule>
-        <ownedRule xmi:id="81c31d3f-74d8-4961-88e9-6ff3178e334d" name="checkLifeClassOccurrenceSpecialization" visibility="public" constrainedElement="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4">
-          <ownedComment xmi:id="3ef2fbae-d12e-4edc-aa9c-bf0a47934f23" annotatedElement="81c31d3f-74d8-4961-88e9-6ff3178e334d">
-            <body>&lt;p>A &lt;code>LifeClass&lt;/code> must specialize its &lt;code>individualDefinition&lt;/code>.&lt;/code></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="ec6fc8fb-983b-411c-a3e2-6bd6135882c4" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>specializes(individualDefinition)</body>
-          </specification>
-        </ownedRule>
-        <ownedRule xmi:id="fb4d5c2c-6a72-4422-aef7-5bfd8aa881f9" name="validateLifeClassIsSufficient" visibility="public" constrainedElement="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4">
-          <ownedComment xmi:id="031a4ba5-df94-49f3-b315-c5b4e860fac4" annotatedElement="fb4d5c2c-6a72-4422-aef7-5bfd8aa881f9">
-            <body>&lt;p>A &lt;code>LifeClass&lt;/code> always has &lt;code>isSufficient = true&lt;/code>.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="1865d270-0d02-4aec-bfa2-3553b4f5567e" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>isSufficient</body>
-          </specification>
-        </ownedRule>
-        <generalization xmi:id="683c42e9-6913-483e-83fe-63efe034dd1a">
-          <general xmi:type="uml:Class" href="KerML_only_xmi.uml#d956e5c3-9d04-4c1d-9494-2b8d7f33e196"/>
-        </generalization>
-        <ownedAttribute xmi:id="885145d4-e05f-4f76-aab7-0dc75c130e2b" name="isSufficient" visibility="public">
-          <ownedComment xmi:id="3a2660b7-c173-4f0d-ad42-eeedede14f71" annotatedElement="885145d4-e05f-4f76-aab7-0dc75c130e2b">
-            <body>&lt;p>Always true for a &lt;code>LifeClass&lt;/code>.&lt;/p></body>
-          </ownedComment>
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
-          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="7254e116-cd8b-41c4-9025-13098196d2cf" name="" visibility="public" value="true"/>
-          <redefinedProperty href="KerML_only_xmi.uml#d77a343b-bf72-4b55-9419-c4973d9398d5"/>
-        </ownedAttribute>
-        <ownedOperation xmi:id="0d166ff8-3d95-4b60-8d4c-2aef7bc3d2bc" name="effectiveName" visibility="public" bodyCondition="c2e7a4a7-91c6-450f-b709-69f34518c901">
-          <ownedComment xmi:id="7303da0a-5f01-4757-963e-78c40ebd1aec" annotatedElement="0d166ff8-3d95-4b60-8d4c-2aef7bc3d2bc">
-            <body>&lt;p>The name of a &lt;code>LifeClass&lt;/code> is &lt;em>&lt;code>Life&lt;/code>&lt;em>.&lt;/p></body>
-          </ownedComment>
-          <ownedRule xmi:id="c2e7a4a7-91c6-450f-b709-69f34518c901" name="unnamed1" visibility="public">
-            <specification xmi:type="uml:OpaqueExpression" xmi:id="d5ae8bd6-9dc0-4dbc-a1a9-9440f726c19e" name="" visibility="public">
-              <language>OCL2.0</language>
-              <body>&quot;Life&quot;</body>
-            </specification>
-          </ownedRule>
-          <ownedParameter xmi:id="5334afc3-a2c2-4dcc-b4ff-2cacefd8cec1" name="" visibility="public" direction="return">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e6b8f138-be99-430d-a66f-ee43ccc508d0" name="" visibility="public"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b458319f-ae3c-4f67-8140-e14e263d5d88" name="" visibility="public" value="1"/>
-          </ownedParameter>
-          <redefinedOperation href="KerML_only_xmi.uml#c6dbe7ea-4c15-4609-bcb9-f18d6e970b79"/>
-        </ownedOperation>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="a264a87e-1c60-493c-955f-105559086097" name="A_individualDefinition_individualUsage" visibility="public" memberEnd="8117f45e-8c9a-45f3-9dc5-50001369906e 475e9159-1c39-4bf3-82d1-48c7a45b7e36">
         <ownedEnd xmi:id="475e9159-1c39-4bf3-82d1-48c7a45b7e36" name="individualUsage" visibility="public" type="8750f181-cce3-4283-a48b-68d7977c6e0f" isDerived="true" association="a264a87e-1c60-493c-955f-105559086097">
           <ownedComment xmi:id="44f54334-0ffd-4edd-8be7-afc01d10bea4" annotatedElement="475e9159-1c39-4bf3-82d1-48c7a45b7e36">
@@ -8006,15 +8000,45 @@ owningType &lt;> null and
     select(isIndividual).size() &lt;= 1</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="230d5284-619c-4c66-af94-de30a15599ce" name="checkOccurrenceUsageTypeFeaturing" visibility="public" constrainedElement="8750f181-cce3-4283-a48b-68d7977c6e0f">
-          <ownedComment xmi:id="09e0b131-0493-41ad-a626-898a4b6a702e" annotatedElement="230d5284-619c-4c66-af94-de30a15599ce">
-            <body>&lt;p>If the &lt;code>portionKind&lt;/code> of an &lt;code>OccurrenceUsage&lt;/code> is not empty, then, for each &lt;code>occurrenceDefinition&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code>, there must be a &lt;code>featuringType&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code> which either is the &lt;code>occurrenceDefinition&lt;/code> or directly or indirectly specializes it.&lt;/p></body>
+        <ownedRule xmi:id="c43a6d59-3611-40f0-963a-29bb7b23c9e2" name="checkOccurrenceUsageSnapshotSpecialization" visibility="public" constrainedElement="8750f181-cce3-4283-a48b-68d7977c6e0f">
+          <ownedComment xmi:id="a1ab54a9-bf8c-4795-a398-fec405c4dd6c" annotatedElement="c43a6d59-3611-40f0-963a-29bb7b23c9e2">
+            <body>&lt;p>If an &lt;code>OccurrenceUsage&lt;/code> has &lt;code>portionKind = snapshot&lt;/code>, then it must directly or indirectly specialize &lt;em>&lt;code>Occurrences::Occurrence::snapshots&lt;/code>&lt;/em> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="526172f5-d53a-41e8-a13c-ee90faec1054" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="ab8ec2e2-beca-4fd4-86c4-56572fef274d" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>portionKind = PortionKind::snapshot implies
+    specializesFromLibrary('Occurrences::Occurrence::snapshots')</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="c9f41f5a-6f08-46d1-ba7d-b3968f34aed4" name="checkOccurrenceUsageTimeSliceSpecialization" visibility="public" constrainedElement="8750f181-cce3-4283-a48b-68d7977c6e0f">
+          <ownedComment xmi:id="c053f630-6975-4f10-89c5-5aa5243a6838" annotatedElement="c9f41f5a-6f08-46d1-ba7d-b3968f34aed4">
+            <body>&lt;p>If an &lt;code>OccurrenceUsage&lt;/code> has &lt;code>portionKind = timeslice&lt;/code>, then it must directly or indirectly specialize &lt;em>&lt;code>Occurrences::Occurrence::timeSlices&lt;/code>&lt;/em> from the Kernel Semantic Library.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="125ebed7-827a-4d89-94f4-8a68c75b4724" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>portionKind = PortionKind::timeslice implies 
+    specializesFromLibrary('Occurrences::Occurrence::timeSlices')</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="3973b1b2-a5ea-4e5c-836e-19e1609bcd7c" name="validateOccurrenceUsagePortionKind" visibility="public" constrainedElement="8750f181-cce3-4283-a48b-68d7977c6e0f">
+          <ownedComment xmi:id="06d809b7-1d00-47e3-b633-6b482226c61b" annotatedElement="3973b1b2-a5ea-4e5c-836e-19e1609bcd7c">
+            <body>&lt;p>If an &lt;code>OccurrenceUsage&lt;/code> has a non-null &lt;code>portionKind&lt;/code>, then its &lt;code>owningType&lt;/code> must be an &lt;code>OccurrenceDefinition&lt;/code> or an &lt;code>OccurrenceUsage&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="6e3369ec-3aed-429a-ad90-080390677b82" name="" visibility="public">
             <language>OCL2.0</language>
             <body>portionKind &lt;> null implies
-    occurrenceDefinition->forAll(occ | 
-        featuringType->exists(specializes(occ)))</body>
+    owningType &lt;> null and
+    (owningType.oclIsKindOf(OccurrenceDefinition) or
+     owningType.oclIsKindOf(OccurrenceUsage))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="d6c43d34-6de0-4671-934e-4e8d18af779c" name="validateOccurrenceUsageIsPortion" visibility="public" constrainedElement="8750f181-cce3-4283-a48b-68d7977c6e0f">
+          <ownedComment xmi:id="91b92e10-580f-4d15-b7aa-7a2dfd8a9e43" annotatedElement="d6c43d34-6de0-4671-934e-4e8d18af779c">
+            <body>&lt;p>If an &lt;code>OccurrenceUsage&lt;/code> has a non-null &lt;code>portionKind&lt;/code>, then it must have &lt;code>isPortion = true&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="480db72a-fa4e-4efa-95be-f537f8c78094" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>portionKind &lt;> null implies isPortion</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="08673c36-2963-43e8-8a90-4c35c3626266" general="de05c06e-0b7a-4f9c-9921-b84416ef917d"/>
@@ -8035,14 +8059,14 @@ owningType &lt;> null and
         </ownedAttribute>
         <ownedAttribute xmi:id="0f897ee4-b203-4462-9de0-40c98757e393" name="isIndividual" visibility="public">
           <ownedComment xmi:id="8fc9f92c-450d-41b3-89af-632288dbf5bc" annotatedElement="0f897ee4-b203-4462-9de0-40c98757e393">
-            <body>&lt;p>Whether this &lt;code>OccurrenceUsage&lt;/code> represents the usage of the specific individual (or portion of it) represented by its &lt;code>individualDefinition&lt;/code>.&lt;/p></body>
+            <body>&lt;p>Whether this &lt;code>OccurrenceUsage&lt;/code> represents the usage of the specific individual represented by its &lt;code>individualDefinition&lt;/code>.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="4101094e-cd4c-4fcc-bcb4-d0c1f4367b46" name="" visibility="public"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="029bd582-5516-4798-b26a-319c7f9cf7d4" name="portionKind" visibility="public" type="3111cae7-323f-4bdf-90dc-76cdae847d69">
           <ownedComment xmi:id="8214defe-fcb0-453b-aa5f-42ef0db8afa6" annotatedElement="029bd582-5516-4798-b26a-319c7f9cf7d4">
-            <body>&lt;p>The kind of (temporal) portion of the life of the &lt;code>occurrenceDefinition&lt;/code> represented by this &lt;code>OccurrenceUsage&lt;/code>, if it is so restricted.&lt;/p></body>
+            <body>&lt;p>The kind of temporal portion (time slice or snapshot) is represented by this &lt;code>OccurrenceUsage&lt;/code>. If &lt;code>portionKind&lt;/code> is not null, then the &lt;code>owningType&lt;/code> of the &lt;code>OccurrenceUsage&lt;/code> must be non-null, and the &lt;code>OccurrenceUsage&lt;/code> represents portions of the featuring instance of the &lt;code>owningType&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a9da9a4b-6617-4c70-a4be-b90623b2a8f9" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c6c6f4fc-3a70-44bd-83e5-30fc0d0b75ed" name="" visibility="public" value="1"/>
@@ -8059,66 +8083,39 @@ owningType &lt;> null and
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83" name="OccurrenceDefinition" visibility="public">
         <ownedComment xmi:id="9fe65990-e3a3-4e05-8295-adaf56d6364b" annotatedElement="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83">
-          <body>&lt;p>An &lt;code>OccurrenceDefinition&lt;/code> is a &lt;code>Definition&lt;/code> of a &lt;code>Class&lt;/code> of individuals that have an independent life over time and potentially an extent over space. This includes both structural things and behaviors that act on such structures.&lt;/p>
-
-&lt;p>If &lt;code>isIndividual&lt;/code> is true, then the &lt;code>OccurrenceDefinition&lt;/code> is constrained to represent an individual thing. The instances of such an &lt;code>OccurrenceDefinition&lt;/code> include all spatial and temporal portions of the individual being represented, but only one of these can be the complete &lt;code>Life&lt;/code> of the individual. All other instances must be portions of the &amp;quot;maximal portion&amp;quot; that is single &lt;code>Life&lt;/code> instance, capturing the conception that all of the instances represent one individual with a single &amp;quot;identity&amp;quot;.&lt;/p>
-
-&lt;p>An &lt;code>OccurrenceDefinition&lt;/code> must specialize, directly or indirectly, the base &lt;code>Class&lt;/code> &lt;code>&lt;em>Occurrence&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p>
-</body>
+          <body>&lt;p>An &lt;code>OccurrenceDefinition&lt;/code> is a &lt;code>Definition&lt;/code> of a &lt;code>Class&lt;/code> of individuals that have an independent life over time and potentially an extent over space. This includes both structural things and behaviors that act on such structures. If &lt;code>isIndividual&lt;/code> is true, then the &lt;code>OccurrenceDefinition&lt;/code> is constrained to have (at most) a single instance that is the entire life of a single individual.&lt;/p></body>
         </ownedComment>
-        <ownedRule xmi:id="2809df60-7d98-49ba-90a0-b0f22a00a6ee" name="validateOccurrenceDefinitionLifeClass" visibility="public" constrainedElement="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83">
-          <ownedComment xmi:id="422b2096-ca6f-4d54-9350-95b78b212a37" annotatedElement="2809df60-7d98-49ba-90a0-b0f22a00a6ee">
-            <body>&lt;p>If an &lt;code>OccurrenceDefinition&lt;/code> has &lt;code>isIndividual = true&lt;/code>, then it has exactly one &lt;code>ownedMember&lt;/code> that is a &lt;code>LifeClass&lt;/code>. Otherwise it has none.&lt;/p></body>
+        <ownedRule xmi:id="ccfecf2b-0695-4bc6-a739-52b0600a8737" name="checkOccurrenceDefinitionIndividualSpecialization" visibility="public" constrainedElement="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83">
+          <ownedComment xmi:id="cc5713ce-e892-48ce-b351-10104763c27d" annotatedElement="ccfecf2b-0695-4bc6-a739-52b0600a8737">
+            <body>&lt;p>An &lt;code>OccurrenceDefinition&lt;/code> with &lt;code>isIndividual = true&lt;/code> must directly or indirectly specialize &lt;em>&lt;code>Occurrences::Life&lt;/code>&lt;/em> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="732ec76c-af84-4395-a245-51bdd9d7d051" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="18c23e9f-12cc-43a7-ada7-582b85ebe511" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>let n : Integer = ownedMember->selectByKind(LifeClass) in
-if isIndividual then n = 1 else n = 0 endif</body>
+            <body>isIndividual implies specializesFromLibrary('Occurrences::Life')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="d00c2845-b852-4e03-a5cd-941ea228cdba" name="deriveOccurrenceDefinitionLifeClass" visibility="public" constrainedElement="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83">
-          <ownedComment xmi:id="61a83ab0-58d6-41bc-b994-dbea4ab44fff" annotatedElement="d00c2845-b852-4e03-a5cd-941ea228cdba">
-            <body>&lt;p>The &lt;code>lifeClass&lt;/code> of an &lt;code>OccurrenceDefinition&lt;/code> is its single &lt;code>ownedMember&lt;/code> that is a &lt;code>LifeClass&lt;/code> (if any).&lt;/p></body>
+        <ownedRule xmi:id="4105c29d-2357-40ef-b3af-7589342e185b" name="checkOccurrenceDefinitionMultiplicitySpecialization" visibility="public" constrainedElement="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83">
+          <ownedComment xmi:id="bb020621-60be-48f6-a6be-3509afcdffda" annotatedElement="4105c29d-2357-40ef-b3af-7589342e185b">
+            <body>&lt;p>An &lt;code>OccurrenceDefinition&lt;/code> with &lt;code>isIndividual = true&lt;/code> must have a &lt;code>multiplicity&lt;/code> that specializes &lt;em>&lt;code>Base::zeroOrOne&lt;/code>&lt;/em> from the Kernel Semantic Library.&lt;/p></body>
           </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="494b6776-387f-43a5-ac64-ef5721da5808" name="" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="d170b516-e1b1-46fe-b192-ce30f8ff32c4" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>lifeClass =
-    let lifeClasses: OrderedSet(LifeClass) = 
-        ownedMember->selectByKind(LifeClass) in
-    if lifeClasses->isEmpty() then null
-    else lifeClasses->first()
-    endif</body>
+            <body>isIndividual implies
+    multiplicity &lt;> null and
+    multiplicity.specializesFromLibrary('Base::zeroOrOne')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="ade48a25-b49f-49c3-88db-1b28827742f3" general="f1eb93f0-3ecf-4502-ac36-d7956f796a7f"/>
         <generalization xmi:id="613a55d4-bbb1-446b-9c5d-3b6c72a2da6b">
           <general xmi:type="uml:Class" href="KerML_only_xmi.uml#d956e5c3-9d04-4c1d-9494-2b8d7f33e196"/>
         </generalization>
-        <ownedAttribute xmi:id="a0a787c4-d8a6-4418-8c5c-330e25f19b53" name="lifeClass" visibility="public" type="f9a6d5d3-2be6-404c-8112-a4abfc4ee7b4" isDerived="true" association="45208c66-3df7-43d3-b12f-665cd0456511">
-          <ownedComment xmi:id="ecc60035-817f-4ebc-9f0c-605224cf9771" annotatedElement="a0a787c4-d8a6-4418-8c5c-330e25f19b53">
-            <body>&lt;p>If &lt;code>isIndividual&lt;/code> is true, a &lt;code>LifeClass&lt;/code> that specializes this &lt;code>OccurrenceDefinition&lt;/code>, restricting it to represent an individual.&lt;/p></body>
-          </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="178cac7f-1e9a-485b-a353-88ba22d96235" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8d5920c1-d65f-4862-a2d6-bd397f8e6b34" name="" visibility="public" value="1"/>
-          <subsettedProperty href="KerML_only_xmi.uml#e77d17fa-39f5-4493-b101-5630bea6df70"/>
-        </ownedAttribute>
         <ownedAttribute xmi:id="6f3aa75a-82be-4dc5-9007-bfead1953145" name="isIndividual" visibility="public">
           <ownedComment xmi:id="a60d0cbe-cc03-406a-b41c-b2be80b9fb83" annotatedElement="6f3aa75a-82be-4dc5-9007-bfead1953145">
-            <body>&lt;p>Whether this OccurrenceDefinition is constrained to represent single individual.&lt;/p></body>
+            <body>&lt;p>Whether this &lt;code>OccurrenceDefinition&lt;/code> is constrained to represent at most one thing.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="3b07e080-7a0c-4868-94fc-ec404c9dd457" name="" visibility="public"/>
         </ownedAttribute>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="45208c66-3df7-43d3-b12f-665cd0456511" name="A_lifeClass_individualDefinition" visibility="public" memberEnd="a0a787c4-d8a6-4418-8c5c-330e25f19b53 f2603805-f0ed-47cc-8873-be4903b0de6f">
-        <ownedEnd xmi:id="f2603805-f0ed-47cc-8873-be4903b0de6f" name="individualDefinition" visibility="public" type="1eff3723-2ccb-4d48-b4cf-7a53e76a2d83" isDerived="true" association="45208c66-3df7-43d3-b12f-665cd0456511">
-          <ownedComment xmi:id="dc2c294d-8c53-4ddf-a454-ac900bb4526f" annotatedElement="f2603805-f0ed-47cc-8873-be4903b0de6f">
-            <body>&lt;p>The OccurrenceDefinition that has a certain &lt;code>lifeClass&lt;/code>.&lt;/p></body>
-          </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e595fe3f-263c-41ea-8c90-24043e9c5528" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="90bb5830-d295-47d2-9252-9d970d9f5478" name="" visibility="public" value="1"/>
-          <subsettedProperty href="KerML_only_xmi.uml#934985ee-d247-42fc-8106-101a5b3ebacb"/>
-        </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="8735ae80-e54c-48ff-9bfb-27eb7101ad9f" name="A_occurrenceDefinition_definedOccurrence" visibility="public" memberEnd="fdada158-1538-42b4-9cb4-b8726a8c162e f6c3f4e9-4eae-4dc9-a1f8-abbe9fd77a62">
         <ownedEnd xmi:id="f6c3f4e9-4eae-4dc9-a1f8-abbe9fd77a62" name="definedOccurrence" visibility="public" type="8750f181-cce3-4283-a48b-68d7977c6e0f" isDerived="true" subsettedProperty="029dca9e-2c98-48c7-b4db-978beb4178de" association="8735ae80-e54c-48ff-9bfb-27eb7101ad9f">
@@ -8418,28 +8415,28 @@ if isIndividual then n = 1 else n = 0 endif</body>
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="9b3dc749-7ef5-4099-9fc4-e5feb3d154d9" name="FlowConnections" visibility="public" URI="">
-      <packagedElement xmi:type="uml:Class" xmi:id="440a1876-4689-4594-82a0-57caf88cbbe1" name="FlowConnectionUsage" visibility="public">
+    <packagedElement xmi:type="uml:Package" xmi:id="9b3dc749-7ef5-4099-9fc4-e5feb3d154d9" name="Flows" visibility="public" URI="">
+      <packagedElement xmi:type="uml:Class" xmi:id="440a1876-4689-4594-82a0-57caf88cbbe1" name="FlowUsage" visibility="public">
         <ownedComment xmi:id="8a513734-40c9-467b-ab1b-f7696cdc2005" annotatedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
-          <body>&lt;p>A &lt;code>FlowConnectionUsage&lt;/code> is an &lt;code>ActionUsage&lt;/code> that is also a &lt;code>ConnectorAsUsage&lt;/code> and an &lt;code>ItemFlow&lt;/code>.&lt;/p></body>
+          <body>&lt;p>A &lt;code>FlowUsage&lt;/code> is an &lt;code>ActionUsage&lt;/code> that is also a &lt;code>ConnectorAsUsage&lt;/code> and a KerML &lt;code>Flow&lt;/code>.&lt;/p></body>
         </ownedComment>
-        <ownedRule xmi:id="3f311d31-fb7d-42f7-8188-1bdcb79cebd3" name="checkFlowConnectionUsageSpecialization" visibility="public" constrainedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
+        <ownedRule xmi:id="3f311d31-fb7d-42f7-8188-1bdcb79cebd3" name="checkFlowUsageSpecialization" visibility="public" constrainedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
           <ownedComment xmi:id="69746173-bb1b-4992-822e-7d660810c957" annotatedElement="3f311d31-fb7d-42f7-8188-1bdcb79cebd3">
-            <body>&lt;p>If a &lt;code>FlowConnectionUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionUsage&lt;/code> &lt;em>&lt;code>Connections::messageConnections&lt;/code>&lt;/em> from the Systems Library model.&lt;/p></body>
+            <body>&lt;p>A &lt;code>FlowUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::messages&lt;/code>&lt;/em> from the Systems Library model.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="060bd277-ad7e-4fb9-9342-e02d218dd5eb" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>specializesFromLibrary('FlowConnections::messageConnections')</body>
+            <body>specializesFromLibrary('Flows::messages')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="81dbe99f-e583-4536-976d-e89618322486" name="checkFlowConnectionUsageFlowSpecialization" visibility="public" constrainedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
+        <ownedRule xmi:id="81dbe99f-e583-4536-976d-e89618322486" name="checkFlowUsageFlowSpecialization" visibility="public" constrainedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
           <ownedComment xmi:id="7caaa9d3-b0f4-4f16-ae95-e18f795b84b1" annotatedElement="81dbe99f-e583-4536-976d-e89618322486">
-            <body>&lt;p>If a &lt;code>FlowConnectionUsage&lt;code> has &lt;code>ownedEndFeatures&lt;/code>, it must directly or indirectly specialize the &lt;code>FlowConnectionUsage&lt;/code> &lt;em>&lt;code>FlowConnections::flowConnections&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>FlowUsage&lt;code> has &lt;code>ownedEndFeatures&lt;/code>, it must directly or indirectly specialize the &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::flows&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="9dd8bea1-a82a-45d3-8179-981f60e60b16" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedEndFeatures->notEmpty() implies
-    specializesFromLibrary('FlowConnections::flowConnections')</body>
+    specializesFromLibrary('Flows::flows')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="7e83b9de-3651-4428-b955-e092437976c7" general="fa6f6025-c2ea-481f-9f30-c5f8af69b388"/>
@@ -8447,9 +8444,9 @@ if isIndividual then n = 1 else n = 0 endif</body>
           <general xmi:type="uml:Class" href="KerML_only_xmi.uml#73ae40ef-8916-44d6-a1fd-e1674275b1a3"/>
         </generalization>
         <generalization xmi:id="325d4bf4-bf94-4e4a-83f7-4b2e33923468" general="cae740a0-764e-4bfd-9247-c54eb6e66f3e"/>
-        <ownedAttribute xmi:id="d8905e11-5099-4f37-91b5-4f6202799b48" name="flowConnectionDefinition" visibility="public" isOrdered="true" isDerived="true" association="056ae5c1-c039-4e86-a4a7-718410da627c">
+        <ownedAttribute xmi:id="d8905e11-5099-4f37-91b5-4f6202799b48" name="flowDefinition" visibility="public" isOrdered="true" isDerived="true" association="056ae5c1-c039-4e86-a4a7-718410da627c">
           <ownedComment xmi:id="e196ae5d-88e3-40ab-b23a-5202e95957c6" annotatedElement="d8905e11-5099-4f37-91b5-4f6202799b48">
-            <body>&lt;p>The &lt;code>Interactions&lt;/code> that are the &lt;code>types&lt;/code> of this &lt;code>FlowConnectionUsage&lt;/code>. Nominally, these are &lt;code>FlowConnectionDefinitions&lt;/code>, but other kinds of Kernel &lt;code>Interactions&lt;/code> are also allowed, to permit use of Interactions from the Kernel Model Libraries.&lt;/p></body>
+            <body>&lt;p>The &lt;code>Interactions&lt;/code> that are the &lt;code>types&lt;/code> of this &lt;code>FlowUsage&lt;/code>. Nominally, these are &lt;code>FlowDefinitions&lt;/code>, but other kinds of Kernel &lt;code>Interactions&lt;/code> are also allowed, to permit use of Interactions from the Kernel Model Libraries.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:Class" href="KerML_only_xmi.uml#b92c89dc-cc86-4005-9867-fb8977b73e10"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ed170798-8acc-4bbd-b39c-bc6cf3ac0679" name="" visibility="public"/>
@@ -8458,45 +8455,45 @@ if isIndividual then n = 1 else n = 0 endif</body>
           <redefinedProperty href="KerML_only_xmi.uml#c7286954-bc9f-4c14-b1f8-33819e60a964"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="d5c624c5-cc03-40dc-b065-3008d8185cf2" name="FlowConnectionDefinition" visibility="public">
+      <packagedElement xmi:type="uml:Class" xmi:id="d5c624c5-cc03-40dc-b065-3008d8185cf2" name="FlowDefinition" visibility="public">
         <ownedComment xmi:id="ce3dcb7a-b966-4a05-b715-ffb98123c3ff" annotatedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
-          <body>&lt;p>A &lt;code>FlowConnectionDefinition&lt;/code> is an &lt;code>ActionDefinition&lt;/code> that is also an &lt;code>Interaction&lt;/code> (which is both a KerML &lt;code>Behavior&lt;/code> and &lt;code>Association&lt;/code>), representing flows between &lt;code>Usages&lt;/code>.&lt;/p></body>
+          <body>&lt;p>A &lt;code>FlowDefinition&lt;/code> is an &lt;code>ActionDefinition&lt;/code> that is also an &lt;code>Interaction&lt;/code> (which is both a KerML &lt;code>Behavior&lt;/code> and &lt;code>Association&lt;/code>), representing flows between &lt;code>Usages&lt;/code>.&lt;/p></body>
         </ownedComment>
-        <ownedRule xmi:id="8e181c4c-6eca-4ab1-9981-a9a710900a79" name="checkFlowConnectionDefinitionSpecialization" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
+        <ownedRule xmi:id="8e181c4c-6eca-4ab1-9981-a9a710900a79" name="checkFlowDefinitionSpecialization" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
           <ownedComment xmi:id="faf9668e-b038-47d1-be8f-1519c4fb0ef2" annotatedElement="8e181c4c-6eca-4ab1-9981-a9a710900a79">
-            <body>&lt;p>A &lt;code>FlowConnectionDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionDefinition&lt;/code> &lt;em>&lt;code>FlowConnections::MessageConnectionDefinition&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A &lt;code>FlowDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowDefinition&lt;/code> &lt;em>&lt;code>Flows::MessageAction&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="ca7032c9-4ed1-4440-9c1d-58780e002372" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>specializesFromLibrary('FlowConnections::MessageConnection')</body>
+            <body>specializesFromLibrary('Flows::MessageAction')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="38531b19-ff58-4698-afbf-cd7ce03a2d03" name="checkFlowConnectionDefinitionBinarySpecialization" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
+        <ownedRule xmi:id="38531b19-ff58-4698-afbf-cd7ce03a2d03" name="checkFlowDefinitionBinarySpecialization" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
           <ownedComment xmi:id="96263105-8660-4648-9137-327ce3a302c1" annotatedElement="38531b19-ff58-4698-afbf-cd7ce03a2d03">
-            <body>&lt;p>A binary &lt;code>FlowConnectionDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionDefinition&lt;code> &lt;em>&lt;code>FlowConnections::MessageTransferConnection&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A binary &lt;code>FlowDefinition&lt;/code> must directly or indirectly specialize the base &lt;code>FlowDefinition&lt;code> &lt;em>&lt;code>Flows::Message&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="e59cd1ea-4aeb-48c2-9296-83461e4e70e9" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>flowConnectionEnd->size() = 2 implies
-    specializesFromLibrary('FlowConnections::MessageTransferConnection')</body>
+            <body>flowEnd->size() = 2 implies
+    specializesFromLibrary('Flows::Message')</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="a026f3d6-06a0-4ab1-a63f-9fe1f2841304" name="validateFlowConnectionDefinitionFlowConnectionEnds" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
+        <ownedRule xmi:id="a026f3d6-06a0-4ab1-a63f-9fe1f2841304" name="validateFlowDefinitionFlowEnds" visibility="public" constrainedElement="d5c624c5-cc03-40dc-b065-3008d8185cf2">
           <ownedComment xmi:id="84d829b3-7414-4b57-ba3b-77ef3a499cd2" annotatedElement="a026f3d6-06a0-4ab1-a63f-9fe1f2841304">
-            <body>&lt;p>A &lt;code>FlowConnectionDefinition&lt;/code> may not have more than two &lt;code>flowConnectionEnds&lt;/code>.&lt;/p></body>
+            <body>&lt;p>A &lt;code>FlowDefinition&lt;/code> may not have more than two &lt;code>flowEnds&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="95d50f15-0f1b-4d47-a876-d622b131d3b6" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>flowConnectionEnd->size() &lt;= 2</body>
+            <body>flowEnd->size() &lt;= 2</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="6c810be8-386e-48ef-bb8b-2d03245b4df4">
           <general xmi:type="uml:Class" href="KerML_only_xmi.uml#b92c89dc-cc86-4005-9867-fb8977b73e10"/>
         </generalization>
         <generalization xmi:id="d7498189-450a-4417-b9d6-3b94a3b57616" general="3f3e3198-1be4-4987-9e4e-eb77c84f498f"/>
-        <ownedAttribute xmi:id="c1221436-6fad-4c8e-84da-fa350d9a75f3" name="flowConnectionEnd" visibility="public" type="de05c06e-0b7a-4f9c-9921-b84416ef917d" isDerived="true" association="421d85a4-bf6a-41f9-83aa-01f38258146c">
+        <ownedAttribute xmi:id="c1221436-6fad-4c8e-84da-fa350d9a75f3" name="flowEnd" visibility="public" type="de05c06e-0b7a-4f9c-9921-b84416ef917d" isDerived="true" association="421d85a4-bf6a-41f9-83aa-01f38258146c">
           <ownedComment xmi:id="0f0f3d52-5681-4e9d-93af-e5114ddf681c" annotatedElement="c1221436-6fad-4c8e-84da-fa350d9a75f3">
-            <body>&lt;p>The &lt;code>Usages&lt;/code> that define the things related by the &lt;code>FlowConnectionDefinition&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>Usages&lt;/code> that define the things related by the &lt;code>FlowDefinition&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e72c16d9-5da5-4e34-88d2-4e80fe7562fa" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="2dd5aa9c-222a-40be-bef4-5f7b53f412bc" name="" visibility="public" value="*"/>
@@ -8504,9 +8501,9 @@ if isIndividual then n = 1 else n = 0 endif</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="421d85a4-bf6a-41f9-83aa-01f38258146c" name="A_flowConnectionDefinitionWithEnd_flowConnectionEnd" visibility="public" memberEnd="c1221436-6fad-4c8e-84da-fa350d9a75f3 b80dd3b6-80ad-4e23-8cdc-c0ba27086b06">
-        <ownedEnd xmi:id="b80dd3b6-80ad-4e23-8cdc-c0ba27086b06" name="flowConnectionDefinitionWithEnd" visibility="public" type="d5c624c5-cc03-40dc-b065-3008d8185cf2" isDerived="true" association="421d85a4-bf6a-41f9-83aa-01f38258146c">
+        <ownedEnd xmi:id="b80dd3b6-80ad-4e23-8cdc-c0ba27086b06" name="flowDefinitionWithEnd" visibility="public" type="d5c624c5-cc03-40dc-b065-3008d8185cf2" isDerived="true" association="421d85a4-bf6a-41f9-83aa-01f38258146c">
           <ownedComment xmi:id="1746e0ca-a29e-4812-b42a-3117771f383e" annotatedElement="b80dd3b6-80ad-4e23-8cdc-c0ba27086b06">
-            <body>&lt;p>The &lt;code>FlowConnectionDefinitions&lt;code> that have a certain Usage as &lt;code>flowConnectionEnd&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>FlowDefinitions&lt;code> that have a certain Usage as &lt;code>flowEnd&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="84449dcc-4995-4f39-8583-2f2f247a93be" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="338218af-a4d9-494d-b5fa-eacee9f44dd2" name="" visibility="public" value="*"/>
@@ -8514,25 +8511,25 @@ if isIndividual then n = 1 else n = 0 endif</body>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="056ae5c1-c039-4e86-a4a7-718410da627c" name="A_flowConnectionDefinition_definedFlowConnection" visibility="public" memberEnd="d8905e11-5099-4f37-91b5-4f6202799b48 5815fe05-17ad-454b-87d6-636801653236">
-        <ownedEnd xmi:id="5815fe05-17ad-454b-87d6-636801653236" name="definedFlowConnection" visibility="public" type="440a1876-4689-4594-82a0-57caf88cbbe1" isDerived="true" redefinedProperty="a216cf0d-b702-4165-a381-ef55421eb124" association="056ae5c1-c039-4e86-a4a7-718410da627c">
+        <ownedEnd xmi:id="5815fe05-17ad-454b-87d6-636801653236" name="definedFlow" visibility="public" type="440a1876-4689-4594-82a0-57caf88cbbe1" isDerived="true" redefinedProperty="0a3c6a45-85d7-44a7-bdfa-fadf4725da35" association="056ae5c1-c039-4e86-a4a7-718410da627c">
           <ownedComment xmi:id="5948e4d7-e48c-4697-8839-fded606071ea" annotatedElement="5815fe05-17ad-454b-87d6-636801653236">
-            <body>&lt;p>The &lt;code>FlowConnectionUsages&lt;code> that have a certain &lt;code>Interaction&lt;/code> as their &lt;code>flowConnectionDefinition&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>FlowUsages&lt;code> that have a certain &lt;code>Interaction&lt;/code> as their &lt;code>flowDefinition&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ceeae2a7-8477-47d2-9667-6d31fea2aebd" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7cfdadc5-e31b-4829-9f7f-897f3a3f8652" name="" visibility="public" value="*"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="d404a127-1ef9-495c-b321-8d1a98bdf4e0" name="SuccessionFlowConnectionUsage" visibility="public">
+      <packagedElement xmi:type="uml:Class" xmi:id="d404a127-1ef9-495c-b321-8d1a98bdf4e0" name="SuccessionFlowUsage" visibility="public">
         <ownedComment xmi:id="58e5c393-9520-49ee-b837-823f54e721bb" annotatedElement="d404a127-1ef9-495c-b321-8d1a98bdf4e0">
-          <body>&lt;p>A &lt;code>SuccessionFlowConnectionUsage&lt;/code> is a &lt;code>FlowConnectionUsage&lt;/code> that is also a &lt;code>SuccessionItemFlow&lt;/code>.&lt;/p></body>
+          <body>&lt;p>A &lt;code>SuccessionFlowUsage&lt;/code> is a &lt;code>FlowUsage&lt;/code> that is also a KerML &lt;code>SuccessionFlow&lt;/code>.&lt;/p></body>
         </ownedComment>
-        <ownedRule xmi:id="482a3777-0a7a-484b-a40e-818c6a53ab37" name="checkSuccessionFlowConnectionUsageSpecialization" visibility="public" constrainedElement="d404a127-1ef9-495c-b321-8d1a98bdf4e0">
+        <ownedRule xmi:id="482a3777-0a7a-484b-a40e-818c6a53ab37" name="checkSuccessionFlowUsageSpecialization" visibility="public" constrainedElement="d404a127-1ef9-495c-b321-8d1a98bdf4e0">
           <ownedComment xmi:id="f89abe78-d8be-4314-9acc-0554c5255288" annotatedElement="482a3777-0a7a-484b-a40e-818c6a53ab37">
-            <body>&lt;p>A &lt;code>SuccessionFlowConnectionUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowConnectionUsage&lt;/code> &lt;em>&lt;code>FlowConnections::successionFlowConnections&lt;/code> from the Systems Library model.&lt;/p></body>
+            <body>&lt;p>A &lt;code>SuccessionFlowUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::successionFlows&lt;/code> from the Systems Library model.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="65f00f5f-9aff-4561-9874-71472a45640c" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>specializesFromLibrary('Connections::successionFlowConnections')</body>
+            <body>specializesFromLibrary('Flows::successionFlows')</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="c266dc23-77ac-4296-a86a-573ed9cb71df">

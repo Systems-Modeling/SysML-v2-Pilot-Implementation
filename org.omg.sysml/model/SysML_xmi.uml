@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZfhOQNOeEe-aLcdc5tialg" name="SysML" URI="https://www.omg.org/spec/SysML/20240201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ZfhOQNOeEe-aLcdc5tialg" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="d88c098b-e2c0-4287-8797-203ff1229107" name="Root" visibility="public" URI="">
     <ownedComment xmi:id="3bb1f127-0eb9-41b7-91f9-4478a092010a" annotatedElement="d88c098b-e2c0-4287-8797-203ff1229107">
       <body>The Root layer provides the syntactic foundation for KerML.

@@ -425,7 +425,7 @@ public class SysMLInteractive extends SysMLUtil {
 				
 				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName);
 				processingFacade.getTraversal().visit(element);
-				processingFacade.commit();
+				processingFacade.commit(element);
 				System.out.println();
 				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}

@@ -74,6 +74,9 @@ standard library package Occurrences {
 			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
+		/* Occurrences may be suboccurrences of no more than one other occurrence. */		
+		feature superoccurrence: Occurrence[0..1] subsets occurrences inverse of suboccurrences;
+
 		feature withoutOccurrences: Occurrence[0..*] unions successors, predecessors, outsideOfOccurrences
 			inverse of withoutOccurrences {
 			doc
@@ -377,6 +380,11 @@ standard library package Occurrences {
 			/*
 			 * The snapshot at the end of the occurrence in time.
 			 */
+
+			/* suboccurrences at the end of an Occurrence must also end. */
+			feature subendshot : Occurrence [0..*] chains self.suboccurrences.endShot {
+				  feature superendshot : Occurrence [1] subsets that;
+				  subset superendshot subsets self.timeCoincidentOccurrences; }
 		}
 
 		 connector :HappensJustBefore
@@ -446,7 +454,7 @@ standard library package Occurrences {
 			feature union: Occurrence[0..1];
 
 			connector :Within
-				  from [0..*] smallerOccurrence references elements
+				  from [0..*] smallerOccurrence references elements 
 				  to [1] largerOccurrence references union;
 			connector :Within
 				  from [0..*] smallerOccurrence references union.spaceTimeEnclosedPoints

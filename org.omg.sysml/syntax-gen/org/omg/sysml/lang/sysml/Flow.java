@@ -83,7 +83,7 @@ public interface Flow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The type of values transferred, which is the <code>type</code> of the <code>itemFeature</code> of the <code>ItemFlow</code>.</p>
+	 * <p>The type of values transferred, which is the <code>type</code> of the <code>payloadFeature</code> of the <code>Flow</code>.</p>
 	 * 
 	 * 
 	 * <!-- end-model-doc -->
@@ -105,7 +105,7 @@ public interface Flow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Feature</code> that receives the values carried by the <code>ItemFlow</code>. It must be an owned <code>output</code> of the target participant of the <code>ItemFlow</code>.</p>
+	 * <p>The <code>Feature</code> that receives the values carried by the <code>Flow</code>. It must be a <code>feature</code> of the <code>target</code> of the <code>Flow</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference.
 	 * @see #setTargetInputFeature(Feature)
@@ -136,7 +136,7 @@ public interface Flow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Feature</code> that provides the items carried by the <code>ItemFlow</code>. It must be an owned <code>output</code> of the <code>source</code> of the <code>ItemFlow</code>.</p>
+	 * <p>The <code>Feature</code> that provides the items carried by the <code>Flow</code>. It must be a <code>feature</code> of the <code>source</code> of the <code>Flow</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference.
@@ -171,7 +171,7 @@ public interface Flow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>connectorEnds</code> of this <code>ItemFlow</code> that are <code>ItemFlowEnds</code>.</p>
+	 * <p>The <code>connectorEnds</code> of this <code>Flow</code> that are <code>FlowEnds</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow End</em>' reference list.
@@ -195,7 +195,7 @@ public interface Flow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedFeature</code> of the <code>ItemFlow</code> that is an <code>ItemFeature</code> (if any).</p>
+	 * <p>The <code>ownedFeature</code> of the <code>Flow</code> that is a <code>PayloadFeature</code> (if any).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Payload Feature</em>' reference.
@@ -232,7 +232,7 @@ public interface Flow extends Connector, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Interactions</code> that type this <code>ItemFlow</code>. <code>Interactions</code> are both <code>Associations</code> and <code>Behaviors</code>, which can type <code>Connectors</code> and <code>Steps</code>, respectively.</p>
+	 * <p>The <code>Interactions</code> that type this <code>Flow</code>. <code>Interactions</code> are both <code>Associations</code> and <code>Behaviors</code>, which can type <code>Connectors</code> and <code>Steps</code>, respectively.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interaction</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFlow_Interaction()

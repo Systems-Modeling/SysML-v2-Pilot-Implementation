@@ -48,14 +48,14 @@ public class TypeItemProvider extends NamespaceItemProvider {
 
 			addOwnedSpecializationPropertyDescriptor(object);
 			addOwnedFeatureMembershipPropertyDescriptor(object);
-			addFeaturePropertyDescriptor(object);
 			addOwnedFeaturePropertyDescriptor(object);
+			addOwnedEndFeaturePropertyDescriptor(object);
+			addFeaturePropertyDescriptor(object);
 			addInputPropertyDescriptor(object);
 			addOutputPropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
 			addInheritedMembershipPropertyDescriptor(object);
 			addEndFeaturePropertyDescriptor(object);
-			addOwnedEndFeaturePropertyDescriptor(object);
 			addIsSufficientPropertyDescriptor(object);
 			addOwnedConjugatorPropertyDescriptor(object);
 			addIsConjugatedPropertyDescriptor(object);

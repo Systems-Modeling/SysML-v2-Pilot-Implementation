@@ -505,6 +505,15 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSetMayTimeVary() {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -1008,6 +1017,33 @@ public class UsageImpl extends FeatureImpl implements Usage {
   		return false;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isVariable() {
+		return isMayTimeVary();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsVariable(boolean newIsVariable) {
+		setMayTimeVary(newIsVariable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsVariable() {
+  		return false;
+	}
+
 	// Additional overrides
 	
 	@Override
@@ -1397,10 +1433,12 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__IS_VARIABLE:
+				return isSetIsVariable();
 			case SysMLPackage.USAGE__TYPE:
 				return isSetType();
 			case SysMLPackage.USAGE__MAY_TIME_VARY:
-				return MAY_TIME_VARY__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return isSetMayTimeVary();
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__VARIANT:

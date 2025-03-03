@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_fFLI8PQ8Ee-jUNjEymwBOA" name="KerML" URI="https://www.omg.org/spec/KerML/20250201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_UqgQAPhREe-WUf3r1kTaCA" name="KerML" URI="https://www.omg.org/spec/KerML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="d88c098b-e2c0-4287-8797-203ff1229107" name="Root" visibility="public" URI="">
     <ownedComment xmi:id="3bb1f127-0eb9-41b7-91f9-4478a092010a" annotatedElement="d88c098b-e2c0-4287-8797-203ff1229107">
       <body>The Root layer provides the syntactic foundation for KerML.
@@ -3572,13 +3572,6 @@ owningType &lt;> null and
     endif</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="c63240fb-a982-4073-8b67-3c33bedf2c79" name="checkFeatureFeatureMembershipFeaturingType" visibility="public" constrainedElement="56b2e3ab-f2e5-4330-9c25-362cb4af825d">
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="e23d1557-ce77-45cc-853a-20eb127f9fce" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>owningFeatureMembership &lt;> null implies
-    featuringType->exists(t | isFeaturingType(t))</body>
-          </specification>
-        </ownedRule>
         <ownedRule xmi:id="30667ce8-0ee5-4279-8bc6-e903e006b2ef" name="validateFeaturePortionNotVariable" visibility="public" constrainedElement="56b2e3ab-f2e5-4330-9c25-362cb4af825d">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="438f4f30-5317-4981-aed6-ab255b17c289" name="" visibility="public">
             <language>OCL2.0</language>
@@ -4249,19 +4242,11 @@ endif
         </ownedComment>
         <ownedRule xmi:id="01f41404-f99a-4848-b1bb-7fa595e4cfdb" name="validateSubsettingFeaturingTypes" visibility="public" constrainedElement="a26821f8-6af3-42a0-9043-03c372464172">
           <ownedComment xmi:id="943d8137-679c-49e8-9272-a60b7e1afa97" annotatedElement="01f41404-f99a-4848-b1bb-7fa595e4cfdb">
-            <body>&lt;p>For each &lt;code>featuringType&lt;/code> of the &lt;code>subsettedFeature&lt;/code> of a &lt;code>Subsetting&lt;/code>, there must be a &lt;code>featuringType&lt;/code> of the &lt;code>subsettingFeature&lt;/code> that conforms to it.&lt;/p></body>
+            <body>&lt;p>The &lt;code>subsettedFeature&lt;/code> must be accessible by the &lt;code>subsettingFeature&lt;/code>.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="70d2969d-7178-425e-a8ca-0a5f675040d7" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>let subsettingFeaturingTypes: OrderedSet(Type) =
-    subsettingFeature.featuringTypes in
-let subsettedFeaturingTypes: OrderedSet(Type) =
-    subsettedFeature.featuringTypes in
-let anythingType: Element =
-    subsettingFeature.resolveGlobal('Base::Anything').memberElement in 
-subsettedFeaturingTypes->forAll(t |
-    subsettingFeaturingTypes->isEmpty() and t = anythingType or
-    subsettingFeaturingTypes->exists(specializes(t))</body>
+            <body>subsettingFeature.canAccess(subsettedFeature)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="812243ff-9df4-44e3-b669-35781ca08f1d" name="validateSubsettingUniquenessConformance" visibility="public" constrainedElement="a26821f8-6af3-42a0-9043-03c372464172">
@@ -4271,6 +4256,24 @@ subsettedFeaturingTypes->forAll(t |
           <specification xmi:type="uml:OpaqueExpression" xmi:id="6cb3cfd6-8337-4306-a93c-f801e1aa1bd6" name="" visibility="public">
             <language>OCL2.0</language>
             <body>subsettedFeature.isUnique implies subsettingFeature.isUnique</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="70ba6f3f-21b9-48ef-98bf-e37771e9e921" name="validateSubsettingConstantConformance" visibility="public" constrainedElement="a26821f8-6af3-42a0-9043-03c372464172">
+          <ownedComment xmi:id="6b931d24-a345-4965-a77a-b221fadfbb3a" annotatedElement="70ba6f3f-21b9-48ef-98bf-e37771e9e921">
+            <body>&lt;p>If the &lt;code>subsettedFeature&lt;/code> of a &lt;code>Subsetting&lt;/code> has &lt;code>isConstant = true&lt;/code>, then the &lt;code>subsettingFeature&lt;/code> must have &lt;code>isConstant = true&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="1b5dcd5f-9f94-49dc-9185-5db541cc3f59" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>subsettedFeature.isConstant implies subsettingFeature.isConstant</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="ad783e3a-f9e4-4320-b788-608f0c1d4fd4" name="validateSubsettingPortionConformance" visibility="public" constrainedElement="a26821f8-6af3-42a0-9043-03c372464172">
+          <ownedComment xmi:id="31f5cd34-cb70-4302-8b03-47395fa2cf23" annotatedElement="ad783e3a-f9e4-4320-b788-608f0c1d4fd4">
+            <body>&lt;p>If the &lt;code>subsettedFeature&lt;/code> of a &lt;code>Subsetting&lt;/code> has &lt;code>isPortion = true&lt;/code>, then the &lt;code>subsettingFeature&lt;/code> must have &lt;code>isPortion = true&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="f41d3249-1bc0-459b-9bd4-e18a080a708f" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>subsettedFeature.isPortion implies subsettingFeature.isPortion</body>
           </specification>
         </ownedRule>
         <generalization xmi:id="9de20578-a7c0-49c1-948a-cad22f60b12d" general="d0bbaddc-004a-4559-b707-31bbc0d7c7e9"/>
@@ -4818,7 +4821,7 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
         <generalization xmi:id="1685e5ac-1b48-44e5-9232-61ae18602554" general="c81e263a-340a-4264-b5a9-ee441741919d"/>
         <ownedAttribute xmi:id="a0cbf746-f328-4d57-9954-465e4117e979" name="payloadType" visibility="public" type="d0a45a28-7af9-4bb2-9fc9-ac3e79928263" isOrdered="true" isUnique="false" isDerived="true" association="aebf8d0c-8d73-4f44-af01-ca673982c1fa">
           <ownedComment xmi:id="8807548d-6bd7-4535-a1e2-3f5040ab03a9" annotatedElement="a0cbf746-f328-4d57-9954-465e4117e979">
-            <body>&lt;p>The type of values transferred, which is the &lt;code>type&lt;/code> of the &lt;code>itemFeature&lt;/code> of the &lt;code>ItemFlow&lt;/code>.&lt;/p>
+            <body>&lt;p>The type of values transferred, which is the &lt;code>type&lt;/code> of the &lt;code>payloadFeature&lt;/code> of the &lt;code>Flow&lt;/code>.&lt;/p>
 
 </body>
           </ownedComment>
@@ -4827,14 +4830,14 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="cb963ace-2a41-43b1-bb94-a7a064dc7dcc" name="targetInputFeature" visibility="public" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" isOrdered="true" isUnique="false" isDerived="true" association="6fb9372c-eb1f-449b-b133-9f737a1e6076">
           <ownedComment xmi:id="71ee5cd2-cadb-4b7f-82fe-125cf39ffd0a" annotatedElement="cb963ace-2a41-43b1-bb94-a7a064dc7dcc">
-            <body>&lt;p>The &lt;code>Feature&lt;/code> that receives the values carried by the &lt;code>ItemFlow&lt;/code>. It must be an owned &lt;code>output&lt;/code> of the target participant of the &lt;code>ItemFlow&lt;/code>.&lt;/p></body>
+            <body>&lt;p>The &lt;code>Feature&lt;/code> that receives the values carried by the &lt;code>Flow&lt;/code>. It must be a &lt;code>feature&lt;/code> of the &lt;code>target&lt;/code> of the &lt;code>Flow&lt;/code>.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ba975252-70c6-408d-90b2-6ff402007231" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="e94d8008-2caf-42fc-b66c-d0d5ddf0da3d" name="" visibility="public" value="1"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="26d0e34b-1431-4a1a-922f-e6d597167761" name="sourceOutputFeature" visibility="public" type="56b2e3ab-f2e5-4330-9c25-362cb4af825d" isOrdered="true" isUnique="false" isDerived="true" association="5a0b55f5-30b3-47f7-b93c-d7a4fecd2b2a">
           <ownedComment xmi:id="696e70c1-8841-4e46-b906-549af1384745" annotatedElement="26d0e34b-1431-4a1a-922f-e6d597167761">
-            <body>&lt;p>The &lt;code>Feature&lt;/code> that provides the items carried by the &lt;code>ItemFlow&lt;/code>. It must be an owned &lt;code>output&lt;/code> of the &lt;code>source&lt;/code> of the &lt;code>ItemFlow&lt;/code>.&lt;/p>
+            <body>&lt;p>The &lt;code>Feature&lt;/code> that provides the items carried by the &lt;code>Flow&lt;/code>. It must be a &lt;code>feature&lt;/code> of the &lt;code>source&lt;/code> of the &lt;code>Flow&lt;/code>.&lt;/p>
 </body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d293c2b7-6ee0-4fd3-9884-aa6dde85794b" name="" visibility="public"/>
@@ -4842,7 +4845,7 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="a488bc40-85cc-48ca-aee8-f11f79165221" name="flowEnd" visibility="public" type="d6568efe-49f8-45d4-8463-6b8e20ff9966" isOrdered="true" isDerived="true" subsettedProperty="cf2b6440-1987-451c-b676-389e1aaa7122" association="a62ef893-b7a0-4351-84d4-0134a8cc6939">
           <ownedComment xmi:id="8ba0bdd6-056c-480d-a8e9-e347b997fd7d" annotatedElement="a488bc40-85cc-48ca-aee8-f11f79165221">
-            <body>&lt;p>The &lt;code>connectorEnds&lt;/code> of this &lt;code>ItemFlow&lt;/code> that are &lt;code>ItemFlowEnds&lt;/code>.&lt;/p>
+            <body>&lt;p>The &lt;code>connectorEnds&lt;/code> of this &lt;code>Flow&lt;/code> that are &lt;code>FlowEnds&lt;/code>.&lt;/p>
 </body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1b6f2541-78c6-4e73-a6c8-1b23646e2682" name="" visibility="public"/>
@@ -4850,7 +4853,7 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="a240b4b6-ff8d-4dd1-b9ae-a62d63d3f4fd" name="payloadFeature" visibility="public" type="97959ade-1b78-4d79-a2d8-00f6a04bc749" isDerived="true" subsettedProperty="f062fa83-0335-40e0-8652-a22e6a8b3b11" association="889ae49e-98a1-44fc-a5d8-cab49b8bfdb8">
           <ownedComment xmi:id="ca178dc8-9448-49d4-be09-7412caf08302" annotatedElement="a240b4b6-ff8d-4dd1-b9ae-a62d63d3f4fd">
-            <body>&lt;p>The &lt;code>ownedFeature&lt;/code> of the &lt;code>ItemFlow&lt;/code> that is an &lt;code>ItemFeature&lt;/code> (if any).&lt;/p>
+            <body>&lt;p>The &lt;code>ownedFeature&lt;/code> of the &lt;code>Flow&lt;/code> that is a &lt;code>PayloadFeature&lt;/code> (if any).&lt;/p>
 </body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="54810d25-2add-4983-bed1-156992f2d8e6" name="" visibility="public"/>
@@ -4858,7 +4861,7 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
         </ownedAttribute>
         <ownedAttribute xmi:id="c7286954-bc9f-4c14-b1f8-33819e60a964" name="interaction" visibility="public" type="b92c89dc-cc86-4005-9867-fb8977b73e10" isOrdered="true" isDerived="true" redefinedProperty="e15018cb-6a4b-48b2-b818-d21f0622c267 4f6477ef-2deb-4f17-a41e-e2aa01f6bb7e" association="576f0e19-ec93-4519-9a44-76a27eeaa055">
           <ownedComment xmi:id="6751a0e8-a042-4a05-b6c2-1b26c4bcf1ad" annotatedElement="c7286954-bc9f-4c14-b1f8-33819e60a964">
-            <body>&lt;p>The &lt;code>Interactions&lt;/code> that type this &lt;code>ItemFlow&lt;/code>. &lt;code>Interactions&lt;/code> are both &lt;code>Associations&lt;/code> and &lt;code>Behaviors&lt;/code>, which can type &lt;code>Connectors&lt;/code> and &lt;code>Steps&lt;/code>, respectively.&lt;/p></body>
+            <body>&lt;p>The &lt;code>Interactions&lt;/code> that type this &lt;code>Flow&lt;/code>. &lt;code>Interactions&lt;/code> are both &lt;code>Associations&lt;/code> and &lt;code>Behaviors&lt;/code>, which can type &lt;code>Connectors&lt;/code> and &lt;code>Steps&lt;/code>, respectively.&lt;/p></body>
           </ownedComment>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="9ef97ffb-83c4-47d3-a16b-d6d1898eacce" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a90b07c0-2aca-4775-b9ba-80b4f1a8378f" name="" visibility="public" value="*"/>
@@ -4866,7 +4869,7 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="d6568efe-49f8-45d4-8463-6b8e20ff9966" name="FlowEnd" visibility="public">
         <ownedComment xmi:id="81250fc9-fcf9-4573-9590-5c95f9926b99" annotatedElement="d6568efe-49f8-45d4-8463-6b8e20ff9966">
-          <body>&lt;p>A &lt;code>FlowEnd&lt;/code> is a &lt;code>Feature&lt;/code> that is one of the &lt;code>connectorEnds&lt;/code> giving the &lt;code>&lt;em>source&lt;/em>&lt;/code> or &lt;code>&lt;em>target&lt;/em>&lt;/code> of a &lt;code>Flow&lt;/code>. For &lt;code>Flows&lt;/code> typed by &lt;code>&lt;em>FlowTransfer&lt;/em>&lt;/code> or its specializations, &lt;code>IFlowEnds&lt;/code> must have exactly one &lt;code>ownedFeature&lt;/code>, which redefines &lt;code>&lt;em>Transfer::source::sourceOutput&lt;/em>&lt;/code> or &lt;code>&lt;em>Transfer::target::targetInput&lt;/em>&lt;/code> and redefines the corresponding feature of the &lt;code>relatedElement&lt;/code> for its end.&lt;/p></body>
+          <body>&lt;p>A &lt;code>FlowEnd&lt;/code> is a &lt;code>Feature&lt;/code> that is one of the &lt;code>connectorEnds&lt;/code> giving the &lt;code>&lt;em>source&lt;/em>&lt;/code> or &lt;code>&lt;em>target&lt;/em>&lt;/code> of a &lt;code>Flow&lt;/code>. For &lt;code>Flows&lt;/code> typed by &lt;code>&lt;em>FlowTransfer&lt;/em>&lt;/code> or its specializations, &lt;code>FlowEnds&lt;/code> must have exactly one &lt;code>ownedFeature&lt;/code>, which redefines &lt;code>&lt;em>Transfer::source::sourceOutput&lt;/em>&lt;/code> or &lt;code>&lt;em>Transfer::target::targetInput&lt;/em>&lt;/code> and redefines the corresponding feature of the &lt;code>relatedElement&lt;/code> for its end.&lt;/p></body>
         </ownedComment>
         <ownedRule xmi:id="3b901db9-e7ac-4708-865e-82e3b03ce081" name="validateFlowEndIsEnd" visibility="public" constrainedElement="d6568efe-49f8-45d4-8463-6b8e20ff9966">
           <ownedComment xmi:id="0196d042-ef8f-473f-9f80-292dcd7ffd78" annotatedElement="3b901db9-e7ac-4708-865e-82e3b03ce081">
@@ -5503,7 +5506,7 @@ membership->at(1).memberElement.oclIsKindOf(Feature)</body>
         </ownedRule>
         <ownedRule xmi:id="b5cc3af5-d573-4dd9-a3e4-435f87d624c6" name="validateFeatureReferenceExpressionResult" visibility="public" constrainedElement="d6f8cd8f-4a61-40ce-b17a-9c8dd722fb57">
           <ownedComment xmi:id="864c7214-df1b-4132-bed7-7a900d1db51f" annotatedElement="b5cc3af5-d573-4dd9-a3e4-435f87d624c6">
-            <body>&lt;p>A &lt;code>FeatureReferenceExpression&lt;/p> must own its &lt;code>result&lt;/code> parameter.&lt;/p></body>
+            <body>&lt;p>A &lt;code>FeatureReferenceExpression&lt;/code> must own its &lt;code>result&lt;/code> parameter.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="0d7cb040-50cb-480e-96b9-de5c3353376e" name="" visibility="public">
             <language>OCL2.0</language>
@@ -5652,7 +5655,7 @@ endif</body>
           <ownedRule xmi:id="cfa06b52-7d1d-4e1f-b53b-4dd98990dbf4" name="unnamed1" visibility="public">
             <specification xmi:type="uml:OpaqueExpression" xmi:id="c75e460e-c05a-494f-89ad-645c30075005" name="" visibility="public">
               <language>OCL2.0</language>
-              <body>et libFunctions : Sequence(Element) =
+              <body>let libFunctions : Sequence(Element) =
     Sequence{'BaseFunctions', 'DataFunctions', 'ControlFunctions'}->
     collect(ns | resolveGlobal(ns + &quot;::'&quot; + operator + &quot;'&quot;).
     memberElement) in
@@ -6952,7 +6955,7 @@ endif </body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="eb1dad4c-855f-4154-b5f3-bd7d07932a0c" name="ParameterMembership" visibility="public">
         <ownedComment xmi:id="25c150eb-59d2-488b-8909-c337dea2660d" annotatedElement="eb1dad4c-855f-4154-b5f3-bd7d07932a0c">
-          <body>&lt;p>A &lt;code>ParameterMembership&lt;/code> is a &lt;code>FeatureMembership&lt;/code> that identifies its &lt;code>memberFeature&lt;/code> as a parameter, which is always owned, and must have a &lt;code>direction&lt;/code>. A &lt;code>ParameterMembership&lt;/code> must be owned by a &lt;code>Behavior&lt;/code> or a &lt;code>Step&lt;/code>.&lt;/p></body>
+          <body>&lt;p>A &lt;code>ParameterMembership&lt;/code> is a &lt;code>FeatureMembership&lt;/code> that identifies its &lt;code>memberFeature&lt;/code> as a parameter, which is always owned, and must have a &lt;code>direction&lt;/code>. A &lt;code>ParameterMembership&lt;/code> must be owned by a &lt;code>Behavior&lt;/code>, a &lt;code>Step&lt;/code>, or the &lt;code>result&lt;/code> parameter of a &lt;code>ConstructorExpression&lt;/code>.&lt;/p></body>
         </ownedComment>
         <ownedRule xmi:id="59de919c-615a-4454-9d6a-05342d150082" name="validateParameterMembershipParameterDirection" visibility="public" constrainedElement="eb1dad4c-855f-4154-b5f3-bd7d07932a0c">
           <ownedComment xmi:id="cc84fd8e-a245-4e88-8485-4e4a504f97c0" annotatedElement="59de919c-615a-4454-9d6a-05342d150082">

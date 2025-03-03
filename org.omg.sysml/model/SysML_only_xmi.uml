@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_fFOzUPQ8Ee-jUNjEymwBOA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_UqiFMPhREe-WUf3r1kTaCA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="07571cf4-bf41-417e-9940-154e1578d394" name="Systems" visibility="public" URI="">
     <packageImport xmi:id="daeb66d9-cd8d-41ba-8001-cabcb2c8a400">
       <importedPackage href="KerML_only_xmi.uml#be3221b4-bef0-4d55-a9c7-cb7ffed86f6c"/>
@@ -2495,7 +2495,7 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
       <packagedElement xmi:type="uml:Association" xmi:id="6644b51b-01fa-4dc2-aca1-911ea913ea9c" name="A_nestedUsage_owningUsage" visibility="public" memberEnd="c2439ec2-23d5-4a07-b097-57a1b2089646 60923f5e-377f-46f3-a9b8-b90e28034da7"/>
       <packagedElement xmi:type="uml:Class" xmi:id="de05c06e-0b7a-4f9c-9921-b84416ef917d" name="Usage" visibility="public">
         <ownedComment xmi:id="7f17c645-cfc8-461c-9617-61dfb2a2cf90" annotatedElement="de05c06e-0b7a-4f9c-9921-b84416ef917d">
-          <body>&lt;p>A &lt;code>Usage&lt;/code> is a usage of a &lt;code>Definition&lt;/code>. A &lt;code>Usage&lt;/code> may only be an &lt;code>ownedFeature&lt;/code> of a &lt;code>Definition&lt;/code> or another &lt;code>Usage&lt;/code>.&lt;/p>
+          <body>&lt;p>A &lt;code>Usage&lt;/code> is a usage of a &lt;code>Definition&lt;/code>.&lt;/p>
 
 &lt;p>A &lt;code>Usage&lt;/code> may have &lt;code>nestedUsages&lt;/code> that model &lt;code>features&lt;/code> that apply in the context of the &lt;code>owningUsage&lt;/code>. A &lt;code>Usage&lt;/code> may also have &lt;code>Definitions&lt;/code> nested in it, but this has no semantic significance, other than the nested scoping resulting from the &lt;code>Usage&lt;/code> being considered as a &lt;code>Namespace&lt;/code> for any nested &lt;code>Definitions&lt;/code>.&lt;/p>
 
@@ -2894,6 +2894,7 @@ targetParameter->first().ownedFeature->first().redefines(referent)</body>
 &lt;p>The property &lt;code>mayTimeVary&lt;/code> redefines the KerML property &lt;code>Feature::isVariable&lt;/code>, making it derived. The property &lt;code>isConstant&lt;/code> is inherited from &lt;code>Feature&lt;/code>.&lt;/p></body>
           </ownedComment>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <redefinedProperty href="KerML_only_xmi.uml#675417be-26e9-4333-89c6-27ed8f8eab6e"/>
         </ownedAttribute>
         <ownedAttribute xmi:id="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2" name="isReference" visibility="public" isDerived="true">
           <ownedComment xmi:id="f6f0dedc-1dc6-4f5e-ae8b-3e618e9f42e4" annotatedElement="7ca1d9fd-4328-49cc-ba49-86d073b0c2d2">
@@ -8431,7 +8432,7 @@ owningType &lt;> null and
         </ownedRule>
         <ownedRule xmi:id="81dbe99f-e583-4536-976d-e89618322486" name="checkFlowUsageFlowSpecialization" visibility="public" constrainedElement="440a1876-4689-4594-82a0-57caf88cbbe1">
           <ownedComment xmi:id="7caaa9d3-b0f4-4f16-ae95-e18f795b84b1" annotatedElement="81dbe99f-e583-4536-976d-e89618322486">
-            <body>&lt;p>If a &lt;code>FlowUsage&lt;code> has &lt;code>ownedEndFeatures&lt;/code>, it must directly or indirectly specialize the &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::flows&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>If a &lt;code>FlowUsage&lt;/code> has &lt;code>ownedEndFeatures&lt;/code>, it must directly or indirectly specialize the &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::flows&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="9dd8bea1-a82a-45d3-8179-981f60e60b16" name="" visibility="public">
             <language>OCL2.0</language>
@@ -8525,7 +8526,7 @@ owningType &lt;> null and
         </ownedComment>
         <ownedRule xmi:id="482a3777-0a7a-484b-a40e-818c6a53ab37" name="checkSuccessionFlowUsageSpecialization" visibility="public" constrainedElement="d404a127-1ef9-495c-b321-8d1a98bdf4e0">
           <ownedComment xmi:id="f89abe78-d8be-4314-9acc-0554c5255288" annotatedElement="482a3777-0a7a-484b-a40e-818c6a53ab37">
-            <body>&lt;p>A &lt;code>SuccessionFlowUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::successionFlows&lt;/code> from the Systems Library model.&lt;/p></body>
+            <body>&lt;p>A &lt;code>SuccessionFlowUsage&lt;/code> must directly or indirectly specialize the base &lt;code>FlowUsage&lt;/code> &lt;em>&lt;code>Flows::successionFlows&lt;/code>&lt;/em> from the Systems Library model.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="65f00f5f-9aff-4561-9874-71472a45640c" name="" visibility="public">
             <language>OCL2.0</language>

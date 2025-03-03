@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>Usage</code> is a usage of a <code>Definition</code>. A <code>Usage</code> may only be an <code>ownedFeature</code> of a <code>Definition</code> or another <code>Usage</code>.</p>
+ * <p>A <code>Usage</code> is a usage of a <code>Definition</code>.</p>
  * 
  * <p>A <code>Usage</code> may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A <code>Usage</code> may also have <code>Definitions</code> nested in it, but this has no semantic significance, other than the nested scoping resulting from the <code>Usage</code> being considered as a <code>Namespace</code> for any nested <code>Definitions</code>.</p>
  * 
@@ -144,6 +144,12 @@ import org.eclipse.emf.common.util.EList;
 public interface Usage extends Feature {
 	/**
 	 * Returns the value of the '<em><b>May Time Vary</b></em>' attribute.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#isVariable() <em>Is Variable</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -155,6 +161,7 @@ public interface Usage extends Feature {
 	 * @see #setMayTimeVary(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_MayTimeVary()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

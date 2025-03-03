@@ -135,8 +135,8 @@ standard library package Items {
 		 * Touching items are just outside each other and happen at the same time.
 		 */
 	
-		end touchedWhileToo [0..*] item touchedItemToo :>> separateSpaceToo, thisOccurrence;
-		end touchedWhile [0..*] item touchedItem :>> separateSpace, thatOccurrence;
+		end touchesToo [0..*] item touchedItemToo :>> separateSpaceToo, thisOccurrence;
+		end touches [0..*] item touchedItem :>> separateSpace, thatOccurrence;
 	}
 
 	abstract item items : Item[0..*] nonunique :> objects {

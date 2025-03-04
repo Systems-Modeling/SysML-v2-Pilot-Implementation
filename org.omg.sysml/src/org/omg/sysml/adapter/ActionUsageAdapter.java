@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.TypeUtil;
 
 public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
@@ -101,11 +100,6 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		return redefinedFeature != null? isComputeRedefinitions:
 				super.isComputeRedefinitions();
 	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(getTarget());
-	}	
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {

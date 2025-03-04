@@ -494,9 +494,8 @@ public class FeatureAdapter extends TypeAdapter {
 	public boolean isComputeRedefinitions() {
 		Feature target = getTarget();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!FeatureUtil.isParameter(target) || 
-				 FeatureUtil.isResultParameter(target) ||
-				 target.getOwnedRedefinition().isEmpty());
+				(!(target.getOwningType() instanceof InvocationExpression) ||
+				  target.getOwnedRedefinition().isEmpty());
 	}
 	
 	/**

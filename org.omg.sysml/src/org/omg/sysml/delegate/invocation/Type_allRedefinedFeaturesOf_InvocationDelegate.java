@@ -32,16 +32,16 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 
-public class Membership_allRedefinedFeatures_InvocationDelegate extends BasicInvocationDelegate {
+public class Type_allRedefinedFeaturesOf_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Membership_allRedefinedFeatures_InvocationDelegate(EOperation operation) {
+	public Type_allRedefinedFeaturesOf_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Membership self = (Membership)target;
-		Element memberElement = self.getMemberElement();
+		Membership membership = (Membership)arguments.get(0);
+		Element memberElement = membership.getMemberElement();
 		return memberElement instanceof Feature? ((Feature)memberElement).allRedefinedFeatures():
 			new BasicEList<>();
 	}

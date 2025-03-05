@@ -32,10 +32,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.model.Element;
-import org.omg.sysml.model.Identified;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -120,7 +118,7 @@ public class APIModel {
 	 * @param delta changes to apply.
 	 */
 	public void merge(APIModelDelta delta) {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException("Not impelemnted");
 	}
 	
 	/**
@@ -147,6 +145,16 @@ public class APIModel {
 		return modelElements.get(UUID.fromString(uuid));
 	}
 	
+	/**
+	 * Adds a proxy object for every reference that cannot be resolved in the scope
+	 * of this model
+	 * 
+	 * The API server doesn't allow unresolvable references but the current
+	 * implementation doesn't support used projects yet. Since every model
+	 * references at least the standard library it is unavoidable to end up with
+	 * references that point outside the API model. This method serves as a
+	 * workaround for this issue by inserting proxy objects for out of scope references.
+	 */
 	public void addOutOfScopeReferencesAsProxies() {
 		Set<LocalReference> localReferences = modelElements.values().stream()
 			.flatMap(el -> el.values().stream())
@@ -158,7 +166,7 @@ public class APIModel {
 			UUID uuid = ref.getUUID();
 			if (getElement(uuid) == null && !added.contains(uuid)) {
 				Element proxy = new Element();
-				proxy.put(Identified.SERIALIZED_NAME_AT_ID, uuid.toString());
+				proxy.put(ProjectRepository.ID_FIELD, uuid.toString());
 				proxy.put("@type", ref.getType());
 				proxy.put("isLibraryElement", ref.isLibraryElement());
 				addModelRoot(uuid, proxy);
@@ -195,6 +203,13 @@ public class APIModel {
 		return gson.toJsonTree(getModelElements().values());
 	}
 	
+	/**
+	 * API model compatible representation of model references
+	 * This class is part of a workaround which requires
+	 * proxy creation for unresolved references. Objects of this class also store the type of the referenced
+	 * element (transient only). This is then used by {@link APIModel#addOutOfScopeReferencesAsProxies()}
+	 * to insert proxies into the API model.
+	 */
 	@SuppressWarnings("serial")
 	public static class LocalReference extends HashMap<String, UUID> {
 		
@@ -202,7 +217,7 @@ public class APIModel {
 		private boolean isLibraryElement;
 
 		public LocalReference(UUID identifier, String type, boolean isLibraryElement) {
-			put(Identified.SERIALIZED_NAME_AT_ID, identifier);
+			put(ProjectRepository.ID_FIELD, identifier);
 			this.type = type;
 			this.isLibraryElement = isLibraryElement;
 		}
@@ -216,17 +231,17 @@ public class APIModel {
 		}
 
 		public UUID getUUID() {
-			return get(Identified.SERIALIZED_NAME_AT_ID);
+			return get(ProjectRepository.ID_FIELD);
 		}
 		
 		@Override
 		public boolean equals(Object o) {
-			return o == this || (o instanceof Map m && m.containsKey(Identified.SERIALIZED_NAME_AT_ID) && idEquals(m));
+			return o == this || (o instanceof Map m && m.containsKey(ProjectRepository.ID_FIELD) && idEquals(m));
 		}
 		
 		private boolean idEquals(Map<?,?> other) {
-			UUID id = this.get(Identified.SERIALIZED_NAME_AT_ID);
-			Object otherid = other.get(Identified.SERIALIZED_NAME_AT_ID);
+			UUID id = this.get(ProjectRepository.ID_FIELD);
+			Object otherid = other.get(ProjectRepository.ID_FIELD);
 			if (otherid instanceof String idAsString) {
 				return UUID.fromString(idAsString).equals(id);
 			} else if (otherid instanceof UUID idAsUUID) {

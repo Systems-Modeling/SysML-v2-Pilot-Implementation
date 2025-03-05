@@ -39,6 +39,8 @@ import org.omg.sysml.model.Element;
 import org.omg.sysml.model.Identified;
 
 import com.google.common.base.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 /**
  * Delta between two models represented as {@link APIModel}.
@@ -118,6 +120,26 @@ public class APIModelDelta {
 	}
 	
 	/**
+	 * JSON string of the delta
+	 * 
+	 * @param gson JSON parser to use
+	 * @return JSON string
+	 */
+	public String toJson(Gson gson) {
+		return gson.toJson(toTrasferableDelta());
+	}
+	
+	/**
+	 * JSON string of the delta
+	 * 
+	 * @param gson JSON parser to use
+	 * @return JSON string
+	 */
+	public JsonElement toJsonTree(Gson gson) {
+		return gson.toJsonTree(toTrasferableDelta());
+	}
+	
+	/**
 	 * Creates an {@link APIModelDelta} between two {@link APIModel}s
 	 * 
 	 * @param thisModel model to compare with baseline
@@ -178,13 +200,6 @@ public class APIModelDelta {
 				change.add(field, thisValue);
 			}
 		}
-		//set removed fields to null
-//		Set<String> fieldsInTo = baselineElement.keySet();
-//		for (String field: fieldsInTo) {
-//			if (!thisElement.containsKey(field)) {
-//				change.put(field, null);
-//			}
-//		}
 		
 		return change;
 	}

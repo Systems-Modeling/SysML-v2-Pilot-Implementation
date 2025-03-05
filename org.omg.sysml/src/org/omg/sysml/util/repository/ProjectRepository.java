@@ -23,8 +23,8 @@
 package org.omg.sysml.util.repository;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -38,8 +38,14 @@ import org.omg.sysml.api.CommitApi;
 import org.omg.sysml.api.ElementApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.api.QueryApi;
+import org.omg.sysml.model.Branch;
+import org.omg.sysml.model.BranchHead;
+import org.omg.sysml.model.Commit;
+import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Element;
+import org.omg.sysml.model.Identified;
 import org.omg.sysml.model.Project;
+import org.omg.sysml.model.ProjectDefaultBranch;
 
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -50,6 +56,9 @@ import okhttp3.Response;
  * Java representation of a model repository that implements the standard API
  */
 public class ProjectRepository {
+	
+	public static final String ID_FIELD = Identified.SERIALIZED_NAME_AT_ID;
+	
 	private final String repositoryURL;
 	
 	private final ApiClient apiClient = new ApiClient();
@@ -133,12 +142,18 @@ public class ProjectRepository {
 	 * 
 	 * @return projects from the repository
 	 */
-	public List<RemoteProject> getProjects(){
+	public List<RemoteProject> getProjects() {
 		try {
-			List<Project> projects = getProjectApi().getProjects(null, null, null);
+			List<Project> projects = new LinkedList<>();
+			pager.reset();
+			
+			do {
+				projects.addAll(getProjectApi().getProjects(pager.next(), null, null));
+			} while (pager.hasNext());
+			
 			return projects.stream().map(p -> new RemoteProject(this, p.getAtId(), p.getName())).toList();
 		} catch (ApiException e) {
-			return Collections.emptyList();
+			throw new RemoteException("Error occured while trying to query projects", e);
 		}
 	}
 	
@@ -149,6 +164,9 @@ public class ProjectRepository {
 	 * @return wrapper object for the project or null if the no project with the UUID can be found
 	 */
 	public RemoteProject getProjectById(String projectId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
 		UUID projectUUID = UUID.fromString(projectId);
 		return getPRojectById(projectUUID);
 	}
@@ -156,15 +174,18 @@ public class ProjectRepository {
 	/**
 	 * Returns a {@link RemoteProject} with the given UUID.
 	 * 
-	 * @param projectUUID UUID of the project
+	 * @param projectId UUID of the project
 	 * @return wrapper object for the project or null if the no project with the UUID can be found
 	 */
-	public RemoteProject getPRojectById(UUID projectUUID) {
+	public RemoteProject getPRojectById(UUID projectId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
 		try {
-			Project projectById = getProjectApi().getProjectById(projectUUID);
-			return projectById == null? null: new RemoteProject(this, projectUUID, projectById.getName());
+			Project projectById = getProjectApi().getProjectById(projectId);
+			return projectById == null? null: new RemoteProject(this, projectId, projectById.getName());
 		} catch (ApiException e) {
-			return null;
+			throw new RemoteException("Error occured while trying to query the project", e);
 		}
 	}
 	
@@ -180,54 +201,197 @@ public class ProjectRepository {
 			return projects.stream().filter(p -> Objects.equals(projectName, p.getName())).findFirst()
 					.map(p -> new RemoteProject(this, p.getAtId(), projectName)).orElse(null);
 		} catch (ApiException e) {
-			return null;
+			throw new RemoteException("Error occured while trying to query the project", e);
 		}
 	}
 	
-	public RemoteProject createProject(String projectName) throws ApiException {
+	/**
+	 * Creates a project in the project repository.
+	 * 
+	 * @param projectName name of the project
+	 * @return wrapper object for the new project
+	 * @throws ApiException
+	 */
+	public RemoteProject createProject(String projectName) {
+		try {
 		Project project = new Project();
 		project.setName(projectName);
 		Project createdProject = getProjectApi().postProject(project);
 		return new RemoteProject(this, createdProject.getAtId(), createdProject.getName());
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to create project", e);
+		}
 	}
 	
-	Map<UUID, Element> getModelRoots(Revision revision) throws ApiException {
-		pager.reset();
-		Map<UUID, Element> projectRoots = new HashMap<>();
-		do {
-			List<Element> roots = getElementApi().getRootsByProjectCommit(revision.getRemoteProject().getRemoteId(), revision.getRemoteId(), pager.next(), null, null);
-			roots.forEach(el -> projectRoots.put(UUID.fromString(el.get("@id").toString()), el));
-		} while (this.pager.hasNext());
-		return projectRoots;
+	protected Map<UUID, Element> getModelRoots(UUID projectId, UUID commitId) {
+		try {
+			pager.reset();
+			Map<UUID, Element> projectRoots = new HashMap<>();
+			do {
+				List<Element> roots = getElementApi().getRootsByProjectCommit(projectId, commitId, pager.next(), null, null);
+				roots.forEach(el -> projectRoots.put(UUID.fromString(el.get(ID_FIELD).toString()), el));
+			} while (this.pager.hasNext());
+			return projectRoots;
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to download model roots", e);
+		}
 	}
 	
-	Map<UUID, Element> getModelElements(Revision revision) throws ApiException {
-		Map<UUID, Element> projectElements = new HashMap<>();
-		pager.reset();
-		do {
-			List<Element> elements = getElementApi().getElementsByProjectCommit(revision.getRemoteProject().getRemoteId(), revision.getRemoteId(), pager.next(), null, null);
-			elements.forEach(el -> projectElements.put(UUID.fromString(el.get("@id").toString()), el));
-		} while (pager.hasNext());
-		return projectElements;
+	protected Map<UUID, Element> getModelElements(UUID projectId, UUID commitId) {
+		try {
+			Map<UUID, Element> projectElements = new HashMap<>();
+			pager.reset();
+			do {
+				List<Element> elements = getElementApi().getElementsByProjectCommit(projectId, commitId, pager.next(), null, null);
+				elements.forEach(el -> projectElements.put(UUID.fromString(el.get(ID_FIELD).toString()), el));
+			} while (pager.hasNext());
+			return projectElements;
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to download model", e);
+		}
 	}
 
-	public ProjectApi getProjectApi() {
-		return projectApi;
+	protected String getProjectName(UUID projectId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
+		try {
+			Project project = getProjectApi().getProjectById(projectId);
+			return project == null? null : project.getName();
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to access project", e);
+		}
 	}
+	
+	protected Branch getBranch(UUID projectId, UUID branchId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
+		if (branchId == null) {
+			throw new IllegalArgumentException("branchId cannot be null");
+		}
+		try {
+			return getBranchApi().getBranchesByProjectAndId(projectId, branchId);
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to query branch", e);
+		}
+	}
+	
+	protected Branch createBranch(UUID projectId, UUID commitId, String name) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
+		
+		try {
+			BranchHead branchHead = new BranchHead().atId(commitId);
+			Branch branch = new Branch().head(branchHead).referencedCommit(branchHead);
+			branch.setName(name);
+			return getBranchApi().postBranchByProject(projectId, branch);
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to create branch", e);
+		}
+	}
+	
+	protected ProjectDefaultBranch getDefaultBranch(UUID projectId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
 
-	public ElementApi getElementApi() {
+		try {
+			Project project = getProjectApi().getProjectById(projectId);
+			ProjectDefaultBranch defaultBranch = project.getDefaultBranch();
+			return defaultBranch;
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to query default branch", e);
+		}
+	}
+	
+	protected Branch getBranch(UUID projectId, String branchName) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
+
+		try {
+			List<Branch> branches = new LinkedList<>();
+			pager.reset();
+			do {
+				branches.addAll(getBranchApi().getBranchesByProject(projectId, pager.next(), null, null));
+			} while (pager.hasNext());
+			
+			return branches.stream().filter(b -> Objects.equals(b.getName(), branchName)).findFirst().orElse(null);
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to query branch", e);
+		}
+	}
+	
+	protected Commit getCommit(UUID projectId, UUID commitId) {
+		if (projectId == null) {
+			throw new IllegalArgumentException("projectId cannot be null");
+		}
+		if (commitId == null) {
+			throw new IllegalArgumentException("branchId cannot be null");
+		}
+		try {
+			return getCommitApi().getCommitByProjectAndId(projectId, commitId);
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to query commit", null);
+		}
+	}
+	
+	public Commit commitChanges(UUID projectId, UUID branchId, UUID previousCommitId, List<DataVersion> changes) {
+		try {
+			Commit commit = new Commit();
+			commit.setChange(changes);
+			commit.setPreviousCommit(new BranchHead().atId(previousCommitId));
+			return commitApi.postCommitByProject(projectId, commit, branchId);
+		} catch (ApiException e) {
+			throw new RemoteException("Error occured while trying to post commit", e);
+		}
+	}
+	
+	protected ProjectApi getProjectApi() {
+		return projectApi;	}
+
+	protected ElementApi getElementApi() {
 		return elementApi;
 	}
 
-	public BranchApi getBranchApi() {
+	protected BranchApi getBranchApi() {
 		return branchApi;
 	}
 	
-	public CommitApi getCommitApi() {
+	protected CommitApi getCommitApi() {
 		return commitApi;
 	}
 	
-	public QueryApi getQueryApi() {
+	protected QueryApi getQueryApi() {
 		return queryApi;
+	}
+	
+	/**
+	 * Exception thrown by the ProjectRepository in case of server errors.
+	 */
+	public static class RemoteException extends RuntimeException {
+		private static final long serialVersionUID = 4949283470185055639L;
+		private final ApiException apiException;
+		
+		public RemoteException(String message, ApiException ex) {
+			super(message, ex);
+			apiException = ex;
+		}
+		
+		public int getCode() {
+			return apiException.getCode();
+		}
+		
+		public String getResponseBody() {
+			return apiException.getResponseBody();
+		}
+		
+		@Override
+		public String getMessage() {
+			String response = getResponseBody() == null? "" : ". Response: " + getResponseBody();
+			return super.getMessage() + ". Error code: " + getCode() + response;
+		}
 	}
 }

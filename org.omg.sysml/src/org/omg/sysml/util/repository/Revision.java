@@ -25,8 +25,6 @@ package org.omg.sysml.util.repository;
 import java.util.List;
 import java.util.UUID;
 
-import org.omg.sysml.ApiException;
-import org.omg.sysml.api.CommitApi;
 import org.omg.sysml.model.BranchHead;
 import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.DataVersion;
@@ -68,16 +66,19 @@ public class Revision {
 	}
 	
 	/**
-	 * Downloads the remote state from the project repository
+	 * Downloads the remote state from the project repository.
+	 * Use {@link Revision#isRemote()} to check if remote exists. 
 	 * 
-	 * @return
+	 * @return remote state
+	 * 
 	 * @throws UnsupportedOperationException if the revision is local only
-	 * @throws ApiException
 	 */
-	public APIModel fetchRemote() throws UnsupportedOperationException, ApiException {
+	public APIModel fetchRemote() {
 		if (isRemote()) {
-			var remoteModelRoots = project.getProjectRepository().getModelRoots(this);
-			var remoteElements = project.getProjectRepository().getModelElements(this);
+			UUID remoteProjectId = getRemoteProject().getRemoteId();
+			UUID revisionId = getRemoteId();
+			var remoteModelRoots = getRemoteProject().getProjectRepository().getModelRoots(remoteProjectId, revisionId);
+			var remoteElements = getRemoteProject().getProjectRepository().getModelElements(remoteProjectId, revisionId);
 			remoteState = new APIModel(remoteElements, remoteModelRoots);
 			return remoteState;
 		} else throw new UnsupportedOperationException("Revision has no remote!");
@@ -96,16 +97,32 @@ public class Revision {
 		this.localState = localState;
 	}
 	
+	/**
+	 * Delta between the remote state and the local state
+	 * 
+	 * @return delta
+	 */
 	public APIModelDelta getLocalChanges() {
 		return APIModelDelta.create(getLocalState(), getRemoteState());
 	}
 
-	public Revision pushLocalChanges() throws ApiException {
+	/**
+	 * Calculates local changes and uploads the delta to the API server
+	 * 
+	 * @return new revision created on the API server
+	 */
+	public Revision pushLocalChanges() {
 		APIModelDelta localChanges = getLocalChanges();
 		return pushChanges(localChanges);
 	}
 	
-	public Revision pushChanges(APIModelDelta changes) throws ApiException {
+	/**
+	 * Uploads the given changes to the API server
+	 * 
+	 * @param changes delta to be uploaded
+	 * @return new revision created on the API server
+	 */
+	public Revision pushChanges(APIModelDelta changes) {
 		if (changes.isEmpty()) {
 			return this;
 		}
@@ -113,26 +130,51 @@ public class Revision {
 		return pushChanges(localChanges.toTrasferableDelta());
 	}
 	
-	public Revision pushChanges(List<DataVersion> transferableChanges) throws ApiException {
+	/**
+	 * Uploads the given list of changes to the API server
+	 * 
+	 * @param changes list of changes to be uploaded
+	 * @return new revision created on the API server
+	 */
+	public Revision pushChanges(List<DataVersion> transferableChanges) {
 		if (transferableChanges.isEmpty()) {
 			return this;
 		}
-		CommitApi commitApi = getRemoteProject().getProjectRepository().getCommitApi();
-		Commit commit = new Commit();
-		commit.setChange(transferableChanges);
-		commit.setPreviousCommit(new BranchHead().atId(getRemoteId()));
-		Commit newCommit = commitApi.postCommitByProject(getRemoteProject().getRemoteId(), commit, getBranch().getRemoteId());
+		
+		UUID remoteProjectId = getRemoteProject().getRemoteId();
+		RemoteBranch branch = getBranch();
+		UUID currentRevisionId = getRemoteId();
+		
+		final Commit newCommit;
+		
+		if (branch.isDefault()) {
+			newCommit = getRemoteProject()
+					.getProjectRepository()
+					.commitChanges(remoteProjectId, null, currentRevisionId, transferableChanges);
+		} else {
+			newCommit = getRemoteProject()
+					.getProjectRepository()
+					.commitChanges(remoteProjectId, branch.getRemoteId(), currentRevisionId, transferableChanges);
+		}
+		
 		Revision projectRevision = new Revision(getRemoteProject(), getBranch(), newCommit.getAtId());
+		
 		projectRevision.setPreviousRevision(this);
+		
 		return projectRevision;
 	}
 	
+	/**
+	 * Check if the revision has a remote state.
+	 * 
+	 * @return true if revision exists as a commit in the API server
+	 */
 	public boolean isRemote() {
 		return getRemoteId() != null;
 	}
 	
 	/**
-	 * State of the model stored remotely in the project repository
+	 * Remotely stored state of the model
 	 * 
 	 * @return model in the project repository
 	 */
@@ -141,7 +183,7 @@ public class Revision {
 	}
 	
 	/**
-	 * State of the model stored locally
+	 * Locally stored state of the model
 	 * 
 	 * @return model stored locally in the same format as it was returned by the
 	 *         standard API
@@ -157,7 +199,6 @@ public class Revision {
 		return project;
 	}
 	
-	
 	public RemoteBranch getBranch() {
 		return remoteBranch;
 	}
@@ -170,14 +211,15 @@ public class Revision {
 	}
 	
 	/**
-	 * @return previous revision
-	 * @throws ApiException 
+	 * Previous revision
+	 * 
+	 * @return previous revision or null if there is none
 	 */
-	public Revision getPreviousRevision() throws ApiException {
+	public Revision getPreviousRevision() {
 		if (previousRevision == null) {
 			RemoteProject remoteProject = getRemoteProject();
 			ProjectRepository projectRepository = remoteProject.getProjectRepository();
-			Commit commit = projectRepository.getCommitApi().getCommitByProjectAndId(remoteProject.getRemoteId(), getRemoteId());
+			Commit commit = projectRepository.getCommit(remoteProject.getRemoteId(), getRemoteId());
 			BranchHead previousCommit = commit.getPreviousCommit();
 			if (previousCommit != null) {
 				setPreviousRevision(new Revision(getRemoteProject(), getBranch(), previousCommit.getAtId()));
@@ -187,11 +229,17 @@ public class Revision {
 		return previousRevision;
 	}
 	
-	public RemoteBranch createBranch(String name) throws ApiException {
-		return getRemoteProject().createBranch(this, name);
-	}
-	
 	private void setPreviousRevision(Revision previousRevision) {
 		this.previousRevision = previousRevision;
+	}
+	
+	/**
+	 * Creates a new branch using the API Server of this branch
+	 * 
+	 * @param name name of the new branch
+	 * @return newly created branch
+	 */
+	public RemoteBranch createBranch(String name) {
+		return getRemoteProject().createBranch(this, name);
 	}
 }

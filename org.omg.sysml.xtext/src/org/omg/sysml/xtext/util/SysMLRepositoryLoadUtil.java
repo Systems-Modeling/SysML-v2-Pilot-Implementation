@@ -75,10 +75,17 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		projectOption.addOption(projectNameOption);
 		projectOption.addOption(projectIdOption);
 		
+		var branchOption = new Option("br", "branch", true, "Branch's name in the project");
+		
 		var targetOption = new Option("t", "target", true, "Location where the project is loaded");
 		targetOption.setRequired(true);
 		
-		Options options = new Options().addOption(repositoryOption).addOptionGroup(projectOption).addOption(targetOption).addOption(localLibrary);
+		Options options = new Options()
+				.addOption(repositoryOption)
+				.addOptionGroup(projectOption)
+				.addOption(branchOption)
+				.addOption(targetOption)
+				.addOption(localLibrary);
 		
 		
 		CommandLineParser parser = new DefaultParser();
@@ -88,6 +95,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		return new SysMLRepositoryLoadUtil(
 					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
 					cli.hasOption(projectNameOption)? cli.getOptionValue(projectNameOption) : cli.getOptionValue(projectIdOption),
+					cli.getOptionValue(branchOption),
 					cli.getOptionValue(targetOption),
 					new File(cli.getOptionValue(localLibrary))
 				).setIsReferencedById(cli.hasOption(projectIdOption));
@@ -95,16 +103,18 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	
 	private final String repositoryURL;
 	private final String project;
+	private final String branchName;
 	private final String targetLocation;
 	private final File localLibraryPath;
 	private boolean isReferencedById;
 	
-	public SysMLRepositoryLoadUtil(String repositoryURL, String project, String targetLocation, File localLibraryPath) {
+	public SysMLRepositoryLoadUtil(String repositoryURL, String project, String branch, String targetLocation, File localLibraryPath) {
 		super();
 		this.repositoryURL = repositoryURL;
 		this.project = project;
 		this.targetLocation = targetLocation;
 		this.localLibraryPath = localLibraryPath;
+		this.branchName = branch;
 		
 		addExtension(".sysml");
 		addExtension(".kerml");
@@ -120,8 +130,13 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 			return;
 		}
 		
-		RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
-		Revision headRevision = defaultBranch.getHeadRevision();
+		final RemoteBranch branch;
+		if (branchName == null) {
+			branch = repositoryProject.getDefaultBranch();
+		} else {
+			branch = repositoryProject.getBranch(branchName);
+		}
+		Revision headRevision = branch.getHeadRevision();
 		APIModel remote = headRevision.fetchRemote();
 		
 		System.out.println("Reading library...");

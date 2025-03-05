@@ -141,8 +141,6 @@ public class PullRepositoryProject extends AbstractHandler {
 			e.printStackTrace();
 		} catch (UnsupportedOperationException e) {
 			e.printStackTrace();
-		} catch (ApiException e) {
-			e.printStackTrace();
 		}
 	}
 	

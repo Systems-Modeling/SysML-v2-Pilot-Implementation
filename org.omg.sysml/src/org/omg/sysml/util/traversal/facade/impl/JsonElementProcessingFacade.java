@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.APIModelDelta;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -48,7 +49,7 @@ import com.google.gson.JsonElement;
  * This is an element-processing facade that uses the SysML v2 REST API client
  * to export Elements to JSON. A list of Elements is constructed during
  * traversal of the model. This list of elements is equivalent to the ones that
- * the API server returns
+ * the API server returns when serialized
  * 
  * @author Ed Seidewitz
  * @author Ivan Gomes
@@ -128,7 +129,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * Create an Identified object with the given identifier.
 	 * 
 	 * @param 	identifier			the UUID of the object being identified
-	 * @param isLibraryElement 
+	 * @param isLibraryElement		set to true if the element is part of the standard library
 	 * @return	an Identified object with the given identifier
 	 */
 	protected static Map<String, UUID> identified(UUID identifier, String type, boolean isLibraryElement) {
@@ -272,16 +273,20 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	protected APIModel getLocalModel() {
 		return localModel;
 	}
-
-	protected void setLocalModel(APIModel localModel) {
-		this.localModel = localModel;
+	
+	public String toJson(boolean asDelta) {
+		if (asDelta) {
+			return APIModelDelta.create(getLocalModel(), APIModel.createEmpty()).toJson(gson);
+		} else {
+			return getLocalModel().toJson(gson);
+		}
 	}
 	
-	public String toJson() {
-		return getLocalModel().toJson(gson);
-	}
-	
-	public JsonElement toJsonTree() {
-		return getLocalModel().toJsonTree(gson);
+	public JsonElement toJsonTree(boolean asDelta) {
+		if (asDelta) {
+			return APIModelDelta.create(getLocalModel(), APIModel.createEmpty()).toJsonTree(gson);
+		} else {
+			return getLocalModel().toJsonTree(gson);
+		}
 	}
 }

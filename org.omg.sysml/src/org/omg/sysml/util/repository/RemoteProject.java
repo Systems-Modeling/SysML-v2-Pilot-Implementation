@@ -25,10 +25,8 @@ package org.omg.sysml.util.repository;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-import org.omg.sysml.ApiException;
 import org.omg.sysml.model.Branch;
 import org.omg.sysml.model.BranchHead;
-import org.omg.sysml.model.Project;
 import org.omg.sysml.model.ProjectDefaultBranch;
 
 /**
@@ -61,18 +59,24 @@ public class RemoteProject {
 	/**
 	 * Default branch of the project
 	 * 
-	 * @return default branch
-	 * @throws ApiException
-	 * @throws NoSuchElementException if project has no default branch
+	 * @return default branch or null if project has no default branch
 	 */
-	public RemoteBranch getDefaultBranch() throws ApiException, NoSuchElementException {
-		Project project = this.getProjectRepository().getProjectApi().getProjectById(projectUUID);
-		ProjectDefaultBranch defaultBranch = project.getDefaultBranch();
-		UUID defaultBranchId = defaultBranch.getAtId();
-		
-		if (defaultBranchId == null) throw new NoSuchElementException("Remote project does not have a default branch!");
-		
-		return new RemoteBranch(defaultBranchId);
+	public RemoteBranch getDefaultBranch() throws NoSuchElementException {
+		ProjectDefaultBranch defaultBranch = getProjectRepository().getDefaultBranch(getRemoteId());
+		if (defaultBranch == null || defaultBranch.getAtId() == null) return null;
+		return new RemoteBranch(defaultBranch.getAtId(), true);
+	}
+	
+	public RemoteBranch getBranch(String branchName) {
+		Branch branch = getProjectRepository().getBranch(getRemoteId(), branchName);
+		if (branch == null || branch.getAtId() == null) return null;
+		return new RemoteBranch(branch.getAtId(), branch.getName());
+	}
+	
+	public RemoteBranch getBranch(UUID branchId) {
+		Branch branch = getProjectRepository().getBranch(getRemoteId(), branchId);
+		if (branch == null || branch.getAtId() == null) return null;
+		return new RemoteBranch(branch.getAtId(), branch.getName());
 	}
 	
 	/**
@@ -81,14 +85,10 @@ public class RemoteProject {
 	 * @param revision revision to create the branch from
 	 * @param name name of the branch
 	 * @return new branch
-	 * @throws ApiException
 	 */
-	public RemoteBranch createBranch(Revision revision, String name) throws ApiException {
-		ProjectRepository projectRepository = getProjectRepository();
-		BranchHead branchHead = new BranchHead().atId(getRemoteId());
-		Branch branch = new Branch().head(branchHead).referencedCommit(branchHead);
-		branch.setName(name);
-		Branch newBranch = projectRepository.getBranchApi().postBranchByProject(getRemoteId(), branch);
+	public RemoteBranch createBranch(Revision revision, String name) {
+		UUID commitId = revision.getRemoteId();
+		Branch newBranch = getProjectRepository().createBranch(getRemoteId(), commitId, name);
 		return new RemoteBranch(newBranch.getAtId(), newBranch.getName());
 	}
 	
@@ -97,12 +97,7 @@ public class RemoteProject {
 	 */
 	public String getProjectName() {
 		if (projectName == null) {
-			try {
-				Project project = getProjectRepository().getProjectApi().getProjectById(projectUUID);
-				projectName = project.getName();
-			} catch (ApiException e) {
-				//No op
-			}
+			projectName = getProjectRepository().getProjectName(projectUUID);
 		}
 		return projectName;
 	}
@@ -127,13 +122,23 @@ public class RemoteProject {
 	public class RemoteBranch {
 		private final UUID branchId;
 		private String name;
+		private final boolean isDefault;
 		
-		public RemoteBranch(UUID branchId) {
+		/**
+		 * @param  @param branchId UUID of the branch on the API server
+		 */
+		public RemoteBranch(UUID branchId, boolean isDefault) {
 			this.branchId = branchId;
+			this.isDefault = isDefault;
 		}
 		
+		
+		/**
+		 * @param branchId UUID of the branch on the API server
+		 * @param name of the branch
+		 */
 		public RemoteBranch(UUID branchId, String name) {
-			this(branchId);
+			this(branchId, false);
 			this.name = name;
 		}
 		
@@ -144,22 +149,25 @@ public class RemoteProject {
 			return branchId;
 		}
 		
-		public String getName() throws ApiException {
+		/**
+		 * @return name of the branch
+		 */
+		public String getName() {
 			if (name == null) {
-				Branch branch = loadBranch();
+				Branch branch = getBranch();
 				name = branch.getName();
 			}
-			
 			return name;
 		}
 		
 		/**
+		 * Head revision of the branch. If the branch doesn't have a head revision on the server
+		 * a local one is created which can be later pushed as the first commit on the branch.
+		 * 
 		 * @return head commit of the branch in the project repository
-		 * @throws ApiException
-		 * @throws NoSuchElementException if branch has no head revision (commit)
 		 */
-		public Revision getHeadRevision() throws ApiException, NoSuchElementException {
-			Branch branch = loadBranch();
+		public Revision getHeadRevision() {
+			Branch branch = getBranch();
 			BranchHead branchHead = branch.getHead();
 			
 			if (branchHead == null) {
@@ -171,8 +179,8 @@ public class RemoteProject {
 			return new Revision(RemoteProject.this, this, branchHeadId);
 		}
 		
-		private Branch loadBranch() throws ApiException {
-			return getProjectRepository().getBranchApi().getBranchesByProjectAndId(getRemoteProject().getRemoteId(), getRemoteId());
+		private Branch getBranch() {
+			return getProjectRepository().getBranch(getRemoteProject().getRemoteId(), getRemoteId());
 		}
 		
 		/**
@@ -180,6 +188,11 @@ public class RemoteProject {
 		 */
 		public RemoteProject getRemoteProject() {
 			return RemoteProject.this;
+		}
+
+
+		public boolean isDefault() {
+			return isDefault;
 		}
 	}
 }

@@ -29,6 +29,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
@@ -46,6 +52,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	private boolean isAddDerivedElements = false;
 	private boolean isAddImplicitElements = false;
 	private String projectName;
+	private String branchName; 
 	private boolean isCommitted = false;
 	
 	public KerMLRepositorySaveUtil() {
@@ -116,30 +123,50 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 *          prepended to arguments for library model files.
 	 */
 	protected String[] processArgs(String[] args) {
-		int n = args.length;
-		if (n > 0) {
-			int i = 0;
-			while(("-b".equals(args[i]) || "-l".equals(args[i]) || "-d".equals(args[i]) ||
-				   "-g".equals(args[i]) || "-v".equals(args[i])) && 
-					i + 1 < n) {
-				if ("-b".equals(args[i])) {
-					this.basePath = args[++i];
-				} else if ("-l".equals(args[i])) {
-					this.libraryPath = args[++i];
-					if (!libraryPath.endsWith("/")) {
-						libraryPath += "/";
-					}
-				} else if ("-d".equals(args[i])) {
-					this.isAddDerivedElements = true;
-				} else if ("-g".equals(args[i])) {
-					this.isAddImplicitElements = true;
-				} else if ("-v".equals(args[i])) {
-					this.setVerbose(true);
-				}
-				i++;
+		var libraryPathOption = new Option("l", true, "gives the base path to used for reading model library resources");
+		var basePathOption = new Option("b", true, "");
+		var isVerboseOption = new Option("v", false, "");
+		var addImplicitsOption = new Option("g", "");
+		var addDerivedOption = new Option("d", "");
+		var projectOption = new Option("p", true, "");
+		var branchOption = new Option("br", true, "");
+		
+		libraryPathOption.setRequired(true);
+		basePathOption.setRequired(true);
+		isVerboseOption.setRequired(false);
+		addImplicitsOption.setRequired(false);
+		addDerivedOption.setRequired(false);
+		branchOption.setRequired(false);
+		projectOption.setRequired(false);
+		
+		Options options = new Options()
+				.addOption(libraryPathOption)
+				.addOption(basePathOption)
+				.addOption(isVerboseOption)
+				.addOption(addImplicitsOption)
+				.addOption(addDerivedOption)
+				.addOption(projectOption)
+				.addOption(branchOption);
+		
+		CommandLineParser parser = new DefaultParser();
+		
+		try {
+			CommandLine cli = parser.parse(options, args);
+			basePath = cli.getOptionValue(basePathOption);
+			libraryPath = cli.getOptionValue(libraryPathOption);
+			if (!libraryPath.endsWith("/")) {
+				libraryPath += "/";
 			}
-			if (i < n) {
-				args = Arrays.copyOfRange(args, i, n);
+			isAddImplicitElements = cli.hasOption(addImplicitsOption);
+			isAddDerivedElements = cli.hasOption(addDerivedOption);
+			setVerbose(cli.hasOption(isVerboseOption));
+			projectName = cli.getOptionValue(projectOption);
+			branchName = cli.getOptionValue(branchOption);
+			
+			args = cli.getArgs();
+			
+			if (args.length > 0) {
+				args = Arrays.copyOf(args, args.length);
 				
 				if (this.libraryPath != null) {
 					for (int k = 1; k < args.length; k++) {
@@ -149,7 +176,10 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				
 				return args;
 			}
+		} catch (ParseException e) {
+			System.err.println(e.getMessage());
 		}
+		
 		return null;
 	}
 	
@@ -166,14 +196,16 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			SysMLLibraryUtil.setModelLibraryDirectory(libraryPath);
 		}
 		
-		this.projectName = Paths.get(args[0]).getFileName().toString();
-		int j = this.projectName.indexOf('.');
-		if (j >= 0) {
-			this.projectName = this.projectName.substring(0, j);
+		if (this.projectName == null) {
+			this.projectName = Paths.get(args[0]).getFileName().toString();
+			int j = this.projectName.indexOf('.');
+			if (j >= 0) {
+				this.projectName = this.projectName.substring(0, j);
+			}
+			this.projectName += " " + new Date();
 		}
-		this.projectName += " " + new Date();
 		
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, branchName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(this.isVerbose());
 		processingFacade.setIsIncludeDerived(this.isAddDerivedElements);
@@ -197,7 +229,6 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		args = this.processArgs(args);
 		
 		if (args != null) {
-			
 			System.out.println("Saving " + args[0] + "...");
 			
 			this.initialize(args);				
@@ -211,7 +242,12 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			System.out.println();
 			
 			this.process();
-			System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			
+			if (isCommitted()) {
+				System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			} else {
+				System.out.println("Failed to save Project (" + this.getProjectName() + ") ");
+			}
 			System.out.println();
 		}
 	}

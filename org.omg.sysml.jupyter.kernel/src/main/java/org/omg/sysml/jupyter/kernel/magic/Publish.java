@@ -39,9 +39,11 @@ public class Publish {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> elements = vals.get("element");
         List<String> projects = vals.get("project");
+        List<String> branches = vals.get("branch");
         String element = elements.isEmpty()? null:elements.get(0);
         String project = projects.isEmpty()? null:projects.get(0);
+        String branch = branches.isEmpty()? null:branches.get(0);
         List<String> help = vals.get("help");
-        return ISysML.getKernelInstance().getInteractive().publish(element, project, help);
+        return ISysML.getKernelInstance().getInteractive().publish(element, project, branch, help);
     }
 }

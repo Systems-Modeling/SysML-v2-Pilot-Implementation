@@ -184,7 +184,7 @@ public class TypeUtil {
 			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
 			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
 			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
-				 return FeatureUtil.isAccessibleFrom((Feature)subtype, (Feature)supertype);
+				 return FeatureUtil.canAccess((Feature)subtype, (Feature)supertype);
 			}
 		}
 		return false;

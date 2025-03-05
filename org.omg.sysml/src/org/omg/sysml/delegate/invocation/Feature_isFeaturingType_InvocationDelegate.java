@@ -22,7 +22,6 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class Feature_isFeaturingType_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -45,18 +44,18 @@ public class Feature_isFeaturingType_InvocationDelegate extends BasicInvocationD
 		Type owningType = self.getOwningType();
 		if (!self.isVariable()) {
 			return type == owningType;
-		} else if (type instanceof Feature) {
-			Feature feature = (Feature)type;
-			List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(self, null).stream().
-					filter(Feature::isVariable).
-					flatMap(FeatureUtil::getFeaturingFeaturesOf).
-					toList();
-			return feature.getFeaturingType().contains(owningType) &&
-				   redefinedFeatures.isEmpty()? feature.redefinesFromLibrary("Occurrences::Occurrence::snapshots"):
-				   redefinedFeatures.stream().allMatch(r->feature.redefines(r));
 		} else {
-			return false;
+			Type occurrencesType = SysMLLibraryUtil.getLibraryType(self, "Occurrences::Occurrence");
+			Feature snapshotsFeature = (Feature) SysMLLibraryUtil.getLibraryType(self, "Occurrences::Occurrence::snapshots");
+			if (owningType == occurrencesType) {
+				return type == snapshotsFeature;
+			} else if (type instanceof Feature) {
+				Feature feature = (Feature)type;
+				return feature.getFeaturingType().contains(owningType) &&
+					   feature.redefines(snapshotsFeature);
+			}
 		}
+		return false;
 	}
 
 }

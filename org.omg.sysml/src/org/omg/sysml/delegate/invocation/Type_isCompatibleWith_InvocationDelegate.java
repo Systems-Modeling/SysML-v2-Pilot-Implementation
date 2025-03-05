@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,42 +22,25 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocationDelegate {
+public class Type_isCompatibleWith_InvocationDelegate extends BasicInvocationDelegate {
 
-	public Feature_isFeaturedWithin_InvocationDelegate(EOperation operation) {
+	public Type_isCompatibleWith_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
-	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		Feature self = (Feature) target;
-		Type type = (Type) arguments.get(0);
+	public Boolean dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+		Type self = (Type) target;
+		Type otherType = (Type) arguments.get(0);
 		
-		List<Type> featuringTypes = self.getFeaturingType();
-		if (featuringTypes.isEmpty()) {
-			return true;
-		} else if (type == null) {
-			Type anythingType = SysMLLibraryUtil.getLibraryType(self, "Base::Anything");
-			return featuringTypes.stream().allMatch(featuringType->featuringType == anythingType);
-		} else {
-			Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(self);
-			return featuringTypes.stream().allMatch(featuringType->TypeUtil.isCompatible(type, featuringType)) ||
-				   self.isVariable() && TypeUtil.conforms(type, self.getOwningType()) ||
-				   firstChainingFeature != null && firstChainingFeature.isVariable() &&
-				   		TypeUtil.conforms(type, firstChainingFeature.getOwningType());
-		}
+		return TypeUtil.isCompatible(self, otherType);
 	}
 
 }

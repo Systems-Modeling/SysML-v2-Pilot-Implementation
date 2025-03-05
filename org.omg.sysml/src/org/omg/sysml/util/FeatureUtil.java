@@ -397,11 +397,11 @@ public class FeatureUtil {
 				map(Feature.class::cast);
 	}
 	
-	public static boolean isAccessibleFrom(Feature subsettingFeature, Feature subsettedFeature) {
-		return isAccessibleFrom(subsettingFeature, subsettedFeature, new HashSet<>());
+	public static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature) {
+		return canAccess(subsettingFeature, subsettedFeature, new HashSet<>());
 	}	
 
-	private static boolean isAccessibleFrom(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
+	private static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
 		visited.add(subsettingFeature);
 		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
 		return featuringTypes.isEmpty() && subsettedFeature == 
@@ -410,7 +410,7 @@ public class FeatureUtil {
 						subsettedFeature.isFeaturedWithin(featuringType) ||				
 						featuringType instanceof Feature &&
 						!visited.contains(featuringType) &&
-						isAccessibleFrom(((Feature)featuringType), subsettedFeature, visited));
+						canAccess(((Feature)featuringType), subsettedFeature, visited));
 	}
 
 	// Feature Chaining

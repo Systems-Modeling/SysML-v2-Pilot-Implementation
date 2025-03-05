@@ -696,7 +696,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
-				!FeatureUtil.isAccessibleFrom(subsettingFeature, subsettedFeature)) {
+				!FeatureUtil.canAccess(subsettingFeature, subsettedFeature)) {
 				if (subsettingFeature.owningType instanceof FlowEnd) {
 					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {

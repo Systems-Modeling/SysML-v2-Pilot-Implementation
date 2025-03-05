@@ -41,7 +41,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.MetadataUsage;
@@ -508,7 +508,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	public boolean isSetMayTimeVary() {
-		return isMayTimeVary() != IS_VARIABLE_EDEFAULT;
+		return false;
 	}
 
 	/**
@@ -885,8 +885,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<FlowConnectionUsage> getNestedFlow() {
-		return (EList<FlowConnectionUsage>)NESTED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<FlowUsage> getNestedFlow() {
+		return (EList<FlowUsage>)NESTED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -1014,6 +1014,33 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated
 	 */
 	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isVariable() {
+		return isMayTimeVary();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsVariable(boolean newIsVariable) {
+		setMayTimeVary(newIsVariable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsVariable() {
   		return false;
 	}
 
@@ -1198,7 +1225,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				getNestedFlow().clear();
-				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
+				getNestedFlow().addAll((Collection<? extends FlowUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
@@ -1516,33 +1543,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 		result.append(isVariation);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isVariable() {
-		return isMayTimeVary();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsVariable(boolean newIsVariable) {
-		setMayTimeVary(newIsVariable);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIsVariable() {
-  		return false;
 	}
 
 } //UsageImpl

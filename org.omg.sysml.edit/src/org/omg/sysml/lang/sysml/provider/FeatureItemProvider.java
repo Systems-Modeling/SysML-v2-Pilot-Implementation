@@ -46,9 +46,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addOwningFeatureMembershipPropertyDescriptor(object);
 			addOwningTypePropertyDescriptor(object);
-			addEndOwningTypePropertyDescriptor(object);
 			addIsUniquePropertyDescriptor(object);
 			addIsOrderedPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
@@ -56,6 +54,7 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addOwnedSubsettingPropertyDescriptor(object);
 			addIsCompositePropertyDescriptor(object);
 			addIsEndPropertyDescriptor(object);
+			addEndOwningTypePropertyDescriptor(object);
 			addOwnedTypingPropertyDescriptor(object);
 			addFeaturingTypePropertyDescriptor(object);
 			addOwnedTypeFeaturingPropertyDescriptor(object);
@@ -63,14 +62,15 @@ public class FeatureItemProvider extends TypeItemProvider {
 			addChainingFeaturePropertyDescriptor(object);
 			addOwnedFeatureInvertingPropertyDescriptor(object);
 			addOwnedFeatureChainingPropertyDescriptor(object);
-			addIsConstantPropertyDescriptor(object);
 			addIsPortionPropertyDescriptor(object);
-			addDirectionPropertyDescriptor(object);
+			addIsVariablePropertyDescriptor(object);
+			addIsConstantPropertyDescriptor(object);
 			addOwnedReferenceSubsettingPropertyDescriptor(object);
 			addFeatureTargetPropertyDescriptor(object);
 			addCrossFeaturePropertyDescriptor(object);
-			addIsVariablePropertyDescriptor(object);
+			addDirectionPropertyDescriptor(object);
 			addOwnedCrossSubsettingPropertyDescriptor(object);
+			addOwningFeatureMembershipPropertyDescriptor(object);
 			addIsNonuniquePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -451,28 +451,6 @@ public class FeatureItemProvider extends TypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Constant feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsConstantPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_isConstant_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isConstant_feature", "_UI_Feature_type"),
-				 SysMLPackage.Literals.FEATURE__IS_CONSTANT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Is Portion feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,6 +464,50 @@ public class FeatureItemProvider extends TypeItemProvider {
 				 getString("_UI_Feature_isPortion_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isPortion_feature", "_UI_Feature_type"),
 				 SysMLPackage.Literals.FEATURE__IS_PORTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Is Variable feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsVariablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_isVariable_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isVariable_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__IS_VARIABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Is Constant feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsConstantPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Feature_isConstant_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isConstant_feature", "_UI_Feature_type"),
+				 SysMLPackage.Literals.FEATURE__IS_CONSTANT,
 				 true,
 				 false,
 				 false,
@@ -556,28 +578,6 @@ public class FeatureItemProvider extends TypeItemProvider {
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Is Variable feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIsVariablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Feature_isVariable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Feature_isVariable_feature", "_UI_Feature_type"),
-				 SysMLPackage.Literals.FEATURE__IS_VARIABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -694,10 +694,10 @@ public class FeatureItemProvider extends TypeItemProvider {
 			case SysMLPackage.FEATURE__IS_DERIVED:
 			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
 			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
-			case SysMLPackage.FEATURE__IS_CONSTANT:
 			case SysMLPackage.FEATURE__IS_PORTION:
-			case SysMLPackage.FEATURE__DIRECTION:
 			case SysMLPackage.FEATURE__IS_VARIABLE:
+			case SysMLPackage.FEATURE__IS_CONSTANT:
+			case SysMLPackage.FEATURE__DIRECTION:
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -745,17 +745,17 @@ public class FeatureItemProvider extends TypeItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
+			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
+			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_CONJUGATOR ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_INTERSECTING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_UNIONING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DISJOINING ||
 			childFeature == SysMLPackage.Literals.TYPE__OWNED_DIFFERENCING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
-			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||
-			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT;
 
 		if (qualify) {

@@ -32,7 +32,7 @@ public class Connector_defaultFeaturingType_SettingDelegate extends BasicDerived
 	public Connector_defaultFeaturingType_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
-
+	
 	@Override
 	protected Type basicGet(InternalEObject owner) {
 		return ConnectorUtil.getContextTypeFor((Connector)owner);

@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>Usage</code> is a usage of a <code>Definition</code>. A <code>Usage</code> may only be an <code>ownedFeature</code> of a <code>Definition</code> or another <code>Usage</code>.</p>
+ * <p>A <code>Usage</code> is a usage of a <code>Definition</code>.</p>
  * 
  * <p>A <code>Usage</code> may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A <code>Usage</code> may also have <code>Definitions</code> nested in it, but this has no semantic significance, other than the nested scoping resulting from the <code>Usage</code> being considered as a <code>Namespace</code> for any nested <code>Definitions</code>.</p>
  * 
@@ -81,11 +81,17 @@ import org.eclipse.emf.common.util.EList;
  * direction <> null or isEnd or featuringType->isEmpty() implies
  *     isReference
  * isVariation implies isAbstract
- * isVariable = 
+ * mayTimeVary =
  *     owningType <> null and
- *     owningType.specializes('Occurrences::Occurrence') and
- *     (isReference or
- *      not type->exists(specializes('Actions::Action'))
+ *     owningType.specializesFromLibrary('Occurrences::Occurrence') and
+ *     not (
+ *         isPortion or
+ *         specializesFromLibrary('Links::SelfLink') or
+ *         specializesFromLibrary('Occurrences::HappensLink') or
+ *         isComposite and specializesFromLibrary('Actions::Action')
+ *     )
+ * owningVariationUsage <> null implies
+ *     featuringType->asSet() = owningVariationUsage.featuringType->asSet()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -138,7 +144,6 @@ import org.eclipse.emf.common.util.EList;
 public interface Usage extends Feature {
 	/**
 	 * Returns the value of the '<em><b>May Time Vary</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -148,12 +153,14 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>True if the <code>Usage</code> has an <code>owningType</code> that is typed by an <em><code>Occurrence</code></em>, but the <code>Usage</code> is not a composite <em><code>Action</code></em>.</p>
+	 * <p>Whether this <code>Usage</code> may be time varying (that is, whether it is featured by the snapshots of its <code>owningType</code>, rather than being featured by the <code>owningType</code> itself). However, if <code>isConstant</code> is also true, then the value of the <code>Usage</code> is nevertheless constant over the entire duration of an instance of its <code>owningType</code> (that is, it has the same value on all snapshots).</p>
+	 * 
+	 * <p>The property <code>mayTimeVary</code> redefines the KerML property <code>Feature::isVariable</code>, making it derived. The property <code>isConstant</code> is inherited from <code>Feature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>May Time Vary</em>' attribute.
 	 * @see #setMayTimeVary(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_MayTimeVary()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -1048,7 +1055,7 @@ public interface Usage extends Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Nested Flow</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowConnectionUsage}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -1058,7 +1065,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The code>FlowConnectionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <p>The code>FlowUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Flow</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFlow()
@@ -1068,7 +1075,7 @@ public interface Usage extends Feature {
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<FlowConnectionUsage> getNestedFlow();
+	EList<FlowUsage> getNestedFlow();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Metadata</b></em>' reference list.

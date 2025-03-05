@@ -31,6 +31,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An <code>Annotation</code> is a Relationship between an <code>AnnotatingElement</code> and the <code>Element</code> that is annotated by that <code>AnnotatingElement</code>.</p>
  * 
+ * (owningAnnotatedElement <> null) = (ownedAnnotatingElement <> null)
+ * ownedAnnotatingElement <> null xor owningAnnotatingElement <> null
  * ownedAnnotatingElement =
  *     let ownedAnnotatingElements : Sequence(AnnotatingElement) = 
  *         ownedRelatedElement->selectByKind(AnnotatingElement) in
@@ -41,19 +43,17 @@ package org.omg.sysml.lang.sysml;
  *     if ownedAnnotatingElement <> null then ownedAnnotatingElement
  *     else owningAnnotatingElement
  *     endif
- * ownedAnnotatingElement <> null xor owningAnnotatingElement <> null
- * (owningAnnotatedElement <> null) = (ownedAnnotatingElement <> null)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement <em>Owning Annotating Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement <em>Owned Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement <em>Owned Annotating Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement <em>Owning Annotating Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()
@@ -179,8 +179,8 @@ public interface Annotation extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement() <em>Annotating Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

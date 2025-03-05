@@ -67,20 +67,24 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	protected SysMLSwitch<Adapter> modelSwitch =
 		new SysMLSwitch<Adapter>() {
 			@Override
-			public Adapter caseCrossSubsetting(CrossSubsetting object) {
-				return createCrossSubsettingAdapter();
+			public Adapter caseStructure(Structure object) {
+				return createStructureAdapter();
 			}
 			@Override
-			public Adapter caseSubsetting(Subsetting object) {
-				return createSubsettingAdapter();
+			public Adapter caseClass(org.omg.sysml.lang.sysml.Class object) {
+				return createClassAdapter();
 			}
 			@Override
-			public Adapter caseSpecialization(Specialization object) {
-				return createSpecializationAdapter();
+			public Adapter caseClassifier(Classifier object) {
+				return createClassifierAdapter();
 			}
 			@Override
-			public Adapter caseRelationship(Relationship object) {
-				return createRelationshipAdapter();
+			public Adapter caseType(Type object) {
+				return createTypeAdapter();
+			}
+			@Override
+			public Adapter caseNamespace(Namespace object) {
+				return createNamespaceAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
@@ -95,24 +99,76 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createMembershipAdapter();
 			}
 			@Override
-			public Adapter caseNamespace(Namespace object) {
-				return createNamespaceAdapter();
+			public Adapter caseRelationship(Relationship object) {
+				return createRelationshipAdapter();
+			}
+			@Override
+			public Adapter caseDocumentation(Documentation object) {
+				return createDocumentationAdapter();
+			}
+			@Override
+			public Adapter caseComment(Comment object) {
+				return createCommentAdapter();
+			}
+			@Override
+			public Adapter caseAnnotatingElement(AnnotatingElement object) {
+				return createAnnotatingElementAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
+			}
+			@Override
+			public Adapter caseTextualRepresentation(TextualRepresentation object) {
+				return createTextualRepresentationAdapter();
 			}
 			@Override
 			public Adapter caseImport(Import object) {
 				return createImportAdapter();
 			}
 			@Override
-			public Adapter caseFeature(Feature object) {
-				return createFeatureAdapter();
-			}
-			@Override
-			public Adapter caseType(Type object) {
-				return createTypeAdapter();
+			public Adapter caseSpecialization(Specialization object) {
+				return createSpecializationAdapter();
 			}
 			@Override
 			public Adapter caseFeatureMembership(FeatureMembership object) {
 				return createFeatureMembershipAdapter();
+			}
+			@Override
+			public Adapter caseFeature(Feature object) {
+				return createFeatureAdapter();
+			}
+			@Override
+			public Adapter caseRedefinition(Redefinition object) {
+				return createRedefinitionAdapter();
+			}
+			@Override
+			public Adapter caseSubsetting(Subsetting object) {
+				return createSubsettingAdapter();
+			}
+			@Override
+			public Adapter caseFeatureTyping(FeatureTyping object) {
+				return createFeatureTypingAdapter();
+			}
+			@Override
+			public Adapter caseTypeFeaturing(TypeFeaturing object) {
+				return createTypeFeaturingAdapter();
+			}
+			@Override
+			public Adapter caseFeatureInverting(FeatureInverting object) {
+				return createFeatureInvertingAdapter();
+			}
+			@Override
+			public Adapter caseFeatureChaining(FeatureChaining object) {
+				return createFeatureChainingAdapter();
+			}
+			@Override
+			public Adapter caseReferenceSubsetting(ReferenceSubsetting object) {
+				return createReferenceSubsettingAdapter();
+			}
+			@Override
+			public Adapter caseCrossSubsetting(CrossSubsetting object) {
+				return createCrossSubsettingAdapter();
 			}
 			@Override
 			public Adapter caseConjugation(Conjugation object) {
@@ -139,84 +195,56 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createDifferencingAdapter();
 			}
 			@Override
-			public Adapter caseRedefinition(Redefinition object) {
-				return createRedefinitionAdapter();
-			}
-			@Override
-			public Adapter caseFeatureTyping(FeatureTyping object) {
-				return createFeatureTypingAdapter();
-			}
-			@Override
-			public Adapter caseTypeFeaturing(TypeFeaturing object) {
-				return createTypeFeaturingAdapter();
-			}
-			@Override
-			public Adapter caseFeatureInverting(FeatureInverting object) {
-				return createFeatureInvertingAdapter();
-			}
-			@Override
-			public Adapter caseFeatureChaining(FeatureChaining object) {
-				return createFeatureChainingAdapter();
-			}
-			@Override
-			public Adapter caseReferenceSubsetting(ReferenceSubsetting object) {
-				return createReferenceSubsettingAdapter();
-			}
-			@Override
-			public Adapter caseDocumentation(Documentation object) {
-				return createDocumentationAdapter();
-			}
-			@Override
-			public Adapter caseComment(Comment object) {
-				return createCommentAdapter();
-			}
-			@Override
-			public Adapter caseAnnotatingElement(AnnotatingElement object) {
-				return createAnnotatingElementAdapter();
-			}
-			@Override
-			public Adapter caseAnnotation(Annotation object) {
-				return createAnnotationAdapter();
-			}
-			@Override
-			public Adapter caseTextualRepresentation(TextualRepresentation object) {
-				return createTextualRepresentationAdapter();
-			}
-			@Override
-			public Adapter caseEndFeatureMembership(EndFeatureMembership object) {
-				return createEndFeatureMembershipAdapter();
-			}
-			@Override
 			public Adapter caseSubclassification(Subclassification object) {
 				return createSubclassificationAdapter();
 			}
 			@Override
-			public Adapter caseClassifier(Classifier object) {
-				return createClassifierAdapter();
+			public Adapter caseDataType(DataType object) {
+				return createDataTypeAdapter();
 			}
 			@Override
-			public Adapter caseConnector(Connector object) {
-				return createConnectorAdapter();
+			public Adapter caseInteraction(Interaction object) {
+				return createInteractionAdapter();
 			}
 			@Override
 			public Adapter caseAssociation(Association object) {
 				return createAssociationAdapter();
 			}
 			@Override
-			public Adapter caseSuccession(Succession object) {
-				return createSuccessionAdapter();
+			public Adapter caseBehavior(Behavior object) {
+				return createBehaviorAdapter();
 			}
 			@Override
 			public Adapter caseStep(Step object) {
 				return createStepAdapter();
 			}
 			@Override
-			public Adapter caseBehavior(Behavior object) {
-				return createBehaviorAdapter();
+			public Adapter caseFlowEnd(FlowEnd object) {
+				return createFlowEndAdapter();
 			}
 			@Override
-			public Adapter caseClass(org.omg.sysml.lang.sysml.Class object) {
-				return createClassAdapter();
+			public Adapter caseSuccessionFlow(SuccessionFlow object) {
+				return createSuccessionFlowAdapter();
+			}
+			@Override
+			public Adapter caseSuccession(Succession object) {
+				return createSuccessionAdapter();
+			}
+			@Override
+			public Adapter caseConnector(Connector object) {
+				return createConnectorAdapter();
+			}
+			@Override
+			public Adapter caseFlow(Flow object) {
+				return createFlowAdapter();
+			}
+			@Override
+			public Adapter casePayloadFeature(PayloadFeature object) {
+				return createPayloadFeatureAdapter();
+			}
+			@Override
+			public Adapter caseFeatureValue(FeatureValue object) {
+				return createFeatureValueAdapter();
 			}
 			@Override
 			public Adapter caseExpression(Expression object) {
@@ -227,64 +255,16 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createFunctionAdapter();
 			}
 			@Override
-			public Adapter caseBindingConnector(BindingConnector object) {
-				return createBindingConnectorAdapter();
-			}
-			@Override
-			public Adapter caseMultiplicityRange(MultiplicityRange object) {
-				return createMultiplicityRangeAdapter();
-			}
-			@Override
-			public Adapter caseElementFilterMembership(ElementFilterMembership object) {
-				return createElementFilterMembershipAdapter();
-			}
-			@Override
-			public Adapter caseLibraryPackage(LibraryPackage object) {
-				return createLibraryPackageAdapter();
-			}
-			@Override
-			public Adapter casePackage(org.omg.sysml.lang.sysml.Package object) {
-				return createPackageAdapter();
-			}
-			@Override
-			public Adapter caseStructure(Structure object) {
-				return createStructureAdapter();
-			}
-			@Override
-			public Adapter caseResultExpressionMembership(ResultExpressionMembership object) {
-				return createResultExpressionMembershipAdapter();
-			}
-			@Override
-			public Adapter caseReturnParameterMembership(ReturnParameterMembership object) {
-				return createReturnParameterMembershipAdapter();
-			}
-			@Override
-			public Adapter caseParameterMembership(ParameterMembership object) {
-				return createParameterMembershipAdapter();
-			}
-			@Override
-			public Adapter casePredicate(Predicate object) {
-				return createPredicateAdapter();
-			}
-			@Override
-			public Adapter caseInvariant(Invariant object) {
-				return createInvariantAdapter();
-			}
-			@Override
-			public Adapter caseBooleanExpression(BooleanExpression object) {
-				return createBooleanExpressionAdapter();
-			}
-			@Override
-			public Adapter caseLiteralInfinity(LiteralInfinity object) {
-				return createLiteralInfinityAdapter();
-			}
-			@Override
 			public Adapter caseLiteralExpression(LiteralExpression object) {
 				return createLiteralExpressionAdapter();
 			}
 			@Override
-			public Adapter caseIndexExpression(IndexExpression object) {
-				return createIndexExpressionAdapter();
+			public Adapter caseLiteralInteger(LiteralInteger object) {
+				return createLiteralIntegerAdapter();
+			}
+			@Override
+			public Adapter caseCollectExpression(CollectExpression object) {
+				return createCollectExpressionAdapter();
 			}
 			@Override
 			public Adapter caseOperatorExpression(OperatorExpression object) {
@@ -293,6 +273,42 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInvocationExpression(InvocationExpression object) {
 				return createInvocationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseInstantiationExpression(InstantiationExpression object) {
+				return createInstantiationExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteralInfinity(LiteralInfinity object) {
+				return createLiteralInfinityAdapter();
+			}
+			@Override
+			public Adapter caseIndexExpression(IndexExpression object) {
+				return createIndexExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteralString(LiteralString object) {
+				return createLiteralStringAdapter();
+			}
+			@Override
+			public Adapter caseNullExpression(NullExpression object) {
+				return createNullExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteralRational(LiteralRational object) {
+				return createLiteralRationalAdapter();
+			}
+			@Override
+			public Adapter caseFeatureReferenceExpression(FeatureReferenceExpression object) {
+				return createFeatureReferenceExpressionAdapter();
+			}
+			@Override
+			public Adapter caseLiteralBoolean(LiteralBoolean object) {
+				return createLiteralBooleanAdapter();
+			}
+			@Override
+			public Adapter caseSelectExpression(SelectExpression object) {
+				return createSelectExpressionAdapter();
 			}
 			@Override
 			public Adapter caseMetadataAccessExpression(MetadataAccessExpression object) {
@@ -307,100 +323,80 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createMetaclassAdapter();
 			}
 			@Override
-			public Adapter caseLiteralInteger(LiteralInteger object) {
-				return createLiteralIntegerAdapter();
-			}
-			@Override
-			public Adapter caseLiteralString(LiteralString object) {
-				return createLiteralStringAdapter();
-			}
-			@Override
-			public Adapter caseFeatureReferenceExpression(FeatureReferenceExpression object) {
-				return createFeatureReferenceExpressionAdapter();
-			}
-			@Override
-			public Adapter caseCollectExpression(CollectExpression object) {
-				return createCollectExpressionAdapter();
-			}
-			@Override
-			public Adapter caseLiteralBoolean(LiteralBoolean object) {
-				return createLiteralBooleanAdapter();
-			}
-			@Override
-			public Adapter caseNullExpression(NullExpression object) {
-				return createNullExpressionAdapter();
-			}
-			@Override
-			public Adapter caseLiteralRational(LiteralRational object) {
-				return createLiteralRationalAdapter();
-			}
-			@Override
-			public Adapter caseSelectExpression(SelectExpression object) {
-				return createSelectExpressionAdapter();
+			public Adapter caseConstructorExpression(ConstructorExpression object) {
+				return createConstructorExpressionAdapter();
 			}
 			@Override
 			public Adapter caseFeatureChainExpression(FeatureChainExpression object) {
 				return createFeatureChainExpressionAdapter();
 			}
 			@Override
-			public Adapter caseInteraction(Interaction object) {
-				return createInteractionAdapter();
+			public Adapter caseMultiplicityRange(MultiplicityRange object) {
+				return createMultiplicityRangeAdapter();
 			}
 			@Override
-			public Adapter caseItemFlowEnd(ItemFlowEnd object) {
-				return createItemFlowEndAdapter();
+			public Adapter casePackage(org.omg.sysml.lang.sysml.Package object) {
+				return createPackageAdapter();
 			}
 			@Override
-			public Adapter caseItemFlow(ItemFlow object) {
-				return createItemFlowAdapter();
+			public Adapter caseElementFilterMembership(ElementFilterMembership object) {
+				return createElementFilterMembershipAdapter();
 			}
 			@Override
-			public Adapter caseItemFeature(ItemFeature object) {
-				return createItemFeatureAdapter();
+			public Adapter caseLibraryPackage(LibraryPackage object) {
+				return createLibraryPackageAdapter();
 			}
 			@Override
-			public Adapter caseSuccessionItemFlow(SuccessionItemFlow object) {
-				return createSuccessionItemFlowAdapter();
+			public Adapter caseBindingConnector(BindingConnector object) {
+				return createBindingConnectorAdapter();
+			}
+			@Override
+			public Adapter caseBooleanExpression(BooleanExpression object) {
+				return createBooleanExpressionAdapter();
+			}
+			@Override
+			public Adapter casePredicate(Predicate object) {
+				return createPredicateAdapter();
+			}
+			@Override
+			public Adapter caseResultExpressionMembership(ResultExpressionMembership object) {
+				return createResultExpressionMembershipAdapter();
+			}
+			@Override
+			public Adapter caseInvariant(Invariant object) {
+				return createInvariantAdapter();
+			}
+			@Override
+			public Adapter caseReturnParameterMembership(ReturnParameterMembership object) {
+				return createReturnParameterMembershipAdapter();
+			}
+			@Override
+			public Adapter caseParameterMembership(ParameterMembership object) {
+				return createParameterMembershipAdapter();
 			}
 			@Override
 			public Adapter caseAssociationStructure(AssociationStructure object) {
 				return createAssociationStructureAdapter();
 			}
 			@Override
-			public Adapter caseFeatureValue(FeatureValue object) {
-				return createFeatureValueAdapter();
-			}
-			@Override
-			public Adapter caseDataType(DataType object) {
-				return createDataTypeAdapter();
-			}
-			@Override
-			public Adapter caseNamespaceImport(NamespaceImport object) {
-				return createNamespaceImportAdapter();
-			}
-			@Override
-			public Adapter caseMembershipImport(MembershipImport object) {
-				return createMembershipImportAdapter();
+			public Adapter caseEndFeatureMembership(EndFeatureMembership object) {
+				return createEndFeatureMembershipAdapter();
 			}
 			@Override
 			public Adapter caseDependency(Dependency object) {
 				return createDependencyAdapter();
 			}
 			@Override
-			public Adapter caseViewpointDefinition(ViewpointDefinition object) {
-				return createViewpointDefinitionAdapter();
+			public Adapter caseMembershipImport(MembershipImport object) {
+				return createMembershipImportAdapter();
 			}
 			@Override
-			public Adapter caseRequirementDefinition(RequirementDefinition object) {
-				return createRequirementDefinitionAdapter();
+			public Adapter caseNamespaceImport(NamespaceImport object) {
+				return createNamespaceImportAdapter();
 			}
 			@Override
-			public Adapter caseConstraintDefinition(ConstraintDefinition object) {
-				return createConstraintDefinitionAdapter();
-			}
-			@Override
-			public Adapter caseOccurrenceDefinition(OccurrenceDefinition object) {
-				return createOccurrenceDefinitionAdapter();
+			public Adapter caseAttributeDefinition(AttributeDefinition object) {
+				return createAttributeDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseDefinition(Definition object) {
@@ -431,12 +427,12 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createEnumerationDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseAttributeDefinition(AttributeDefinition object) {
-				return createAttributeDefinitionAdapter();
-			}
-			@Override
 			public Adapter caseOccurrenceUsage(OccurrenceUsage object) {
 				return createOccurrenceUsageAdapter();
+			}
+			@Override
+			public Adapter caseOccurrenceDefinition(OccurrenceDefinition object) {
+				return createOccurrenceDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseItemUsage(ItemUsage object) {
@@ -475,8 +471,8 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createConnectorAsUsageAdapter();
 			}
 			@Override
-			public Adapter caseFlowConnectionUsage(FlowConnectionUsage object) {
-				return createFlowConnectionUsageAdapter();
+			public Adapter caseFlowUsage(FlowUsage object) {
+				return createFlowUsageAdapter();
 			}
 			@Override
 			public Adapter caseActionUsage(ActionUsage object) {
@@ -529,6 +525,14 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRequirementUsage(RequirementUsage object) {
 				return createRequirementUsageAdapter();
+			}
+			@Override
+			public Adapter caseRequirementDefinition(RequirementDefinition object) {
+				return createRequirementDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseConstraintDefinition(ConstraintDefinition object) {
+				return createConstraintDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseConcernUsage(ConcernUsage object) {
@@ -591,6 +595,10 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createViewpointUsageAdapter();
 			}
 			@Override
+			public Adapter caseViewpointDefinition(ViewpointDefinition object) {
+				return createViewpointDefinitionAdapter();
+			}
+			@Override
 			public Adapter caseRenderingUsage(RenderingUsage object) {
 				return createRenderingUsageAdapter();
 			}
@@ -603,36 +611,16 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createMetadataUsageAdapter();
 			}
 			@Override
-			public Adapter caseLifeClass(LifeClass object) {
-				return createLifeClassAdapter();
-			}
-			@Override
-			public Adapter caseExpose(Expose object) {
-				return createExposeAdapter();
-			}
-			@Override
-			public Adapter caseViewRenderingMembership(ViewRenderingMembership object) {
-				return createViewRenderingMembershipAdapter();
-			}
-			@Override
-			public Adapter caseNamespaceExpose(NamespaceExpose object) {
-				return createNamespaceExposeAdapter();
-			}
-			@Override
-			public Adapter caseMembershipExpose(MembershipExpose object) {
-				return createMembershipExposeAdapter();
-			}
-			@Override
-			public Adapter caseConjugatedPortTyping(ConjugatedPortTyping object) {
-				return createConjugatedPortTypingAdapter();
-			}
-			@Override
-			public Adapter caseObjectiveMembership(ObjectiveMembership object) {
-				return createObjectiveMembershipAdapter();
+			public Adapter caseStateSubactionMembership(StateSubactionMembership object) {
+				return createStateSubactionMembershipAdapter();
 			}
 			@Override
 			public Adapter caseTransitionFeatureMembership(TransitionFeatureMembership object) {
 				return createTransitionFeatureMembershipAdapter();
+			}
+			@Override
+			public Adapter caseStateDefinition(StateDefinition object) {
+				return createStateDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseExhibitStateUsage(ExhibitStateUsage object) {
@@ -647,20 +635,8 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createEventOccurrenceUsageAdapter();
 			}
 			@Override
-			public Adapter caseStateDefinition(StateDefinition object) {
-				return createStateDefinitionAdapter();
-			}
-			@Override
-			public Adapter caseStateSubactionMembership(StateSubactionMembership object) {
-				return createStateSubactionMembershipAdapter();
-			}
-			@Override
 			public Adapter caseAssertConstraintUsage(AssertConstraintUsage object) {
 				return createAssertConstraintUsageAdapter();
-			}
-			@Override
-			public Adapter caseMetadataDefinition(MetadataDefinition object) {
-				return createMetadataDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseRequirementVerificationMembership(RequirementVerificationMembership object) {
@@ -671,28 +647,60 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createRequirementConstraintMembershipAdapter();
 			}
 			@Override
-			public Adapter caseIncludeUseCaseUsage(IncludeUseCaseUsage object) {
-				return createIncludeUseCaseUsageAdapter();
+			public Adapter caseActorMembership(ActorMembership object) {
+				return createActorMembershipAdapter();
 			}
 			@Override
-			public Adapter caseTriggerInvocationExpression(TriggerInvocationExpression object) {
-				return createTriggerInvocationExpressionAdapter();
+			public Adapter caseSatisfyRequirementUsage(SatisfyRequirementUsage object) {
+				return createSatisfyRequirementUsageAdapter();
+			}
+			@Override
+			public Adapter caseStakeholderMembership(StakeholderMembership object) {
+				return createStakeholderMembershipAdapter();
+			}
+			@Override
+			public Adapter caseSubjectMembership(SubjectMembership object) {
+				return createSubjectMembershipAdapter();
+			}
+			@Override
+			public Adapter caseFramedConcernMembership(FramedConcernMembership object) {
+				return createFramedConcernMembershipAdapter();
+			}
+			@Override
+			public Adapter caseObjectiveMembership(ObjectiveMembership object) {
+				return createObjectiveMembershipAdapter();
 			}
 			@Override
 			public Adapter caseIfActionUsage(IfActionUsage object) {
 				return createIfActionUsageAdapter();
 			}
 			@Override
-			public Adapter caseMergeNode(MergeNode object) {
-				return createMergeNodeAdapter();
+			public Adapter caseTerminateActionUsage(TerminateActionUsage object) {
+				return createTerminateActionUsageAdapter();
+			}
+			@Override
+			public Adapter caseDecisionNode(DecisionNode object) {
+				return createDecisionNodeAdapter();
 			}
 			@Override
 			public Adapter caseControlNode(ControlNode object) {
 				return createControlNodeAdapter();
 			}
 			@Override
-			public Adapter caseWhileLoopActionUsage(WhileLoopActionUsage object) {
-				return createWhileLoopActionUsageAdapter();
+			public Adapter caseSendActionUsage(SendActionUsage object) {
+				return createSendActionUsageAdapter();
+			}
+			@Override
+			public Adapter caseForkNode(ForkNode object) {
+				return createForkNodeAdapter();
+			}
+			@Override
+			public Adapter caseMergeNode(MergeNode object) {
+				return createMergeNodeAdapter();
+			}
+			@Override
+			public Adapter caseJoinNode(JoinNode object) {
+				return createJoinNodeAdapter();
 			}
 			@Override
 			public Adapter caseLoopActionUsage(LoopActionUsage object) {
@@ -703,64 +711,60 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createForLoopActionUsageAdapter();
 			}
 			@Override
-			public Adapter caseTerminateActionUsage(TerminateActionUsage object) {
-				return createTerminateActionUsageAdapter();
+			public Adapter caseWhileLoopActionUsage(WhileLoopActionUsage object) {
+				return createWhileLoopActionUsageAdapter();
 			}
 			@Override
-			public Adapter caseForkNode(ForkNode object) {
-				return createForkNodeAdapter();
-			}
-			@Override
-			public Adapter caseDecisionNode(DecisionNode object) {
-				return createDecisionNodeAdapter();
+			public Adapter caseTriggerInvocationExpression(TriggerInvocationExpression object) {
+				return createTriggerInvocationExpressionAdapter();
 			}
 			@Override
 			public Adapter caseAssignmentActionUsage(AssignmentActionUsage object) {
 				return createAssignmentActionUsageAdapter();
 			}
 			@Override
-			public Adapter caseSendActionUsage(SendActionUsage object) {
-				return createSendActionUsageAdapter();
-			}
-			@Override
-			public Adapter caseJoinNode(JoinNode object) {
-				return createJoinNodeAdapter();
-			}
-			@Override
-			public Adapter caseSuccessionAsUsage(SuccessionAsUsage object) {
-				return createSuccessionAsUsageAdapter();
+			public Adapter caseMetadataDefinition(MetadataDefinition object) {
+				return createMetadataDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseBindingConnectorAsUsage(BindingConnectorAsUsage object) {
 				return createBindingConnectorAsUsageAdapter();
 			}
 			@Override
-			public Adapter caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage object) {
-				return createSuccessionFlowConnectionUsageAdapter();
+			public Adapter caseSuccessionAsUsage(SuccessionAsUsage object) {
+				return createSuccessionAsUsageAdapter();
 			}
 			@Override
-			public Adapter caseFlowConnectionDefinition(FlowConnectionDefinition object) {
-				return createFlowConnectionDefinitionAdapter();
+			public Adapter caseNamespaceExpose(NamespaceExpose object) {
+				return createNamespaceExposeAdapter();
 			}
 			@Override
-			public Adapter caseActorMembership(ActorMembership object) {
-				return createActorMembershipAdapter();
+			public Adapter caseExpose(Expose object) {
+				return createExposeAdapter();
 			}
 			@Override
-			public Adapter caseSatisfyRequirementUsage(SatisfyRequirementUsage object) {
-				return createSatisfyRequirementUsageAdapter();
+			public Adapter caseMembershipExpose(MembershipExpose object) {
+				return createMembershipExposeAdapter();
 			}
 			@Override
-			public Adapter caseSubjectMembership(SubjectMembership object) {
-				return createSubjectMembershipAdapter();
+			public Adapter caseViewRenderingMembership(ViewRenderingMembership object) {
+				return createViewRenderingMembershipAdapter();
 			}
 			@Override
-			public Adapter caseStakeholderMembership(StakeholderMembership object) {
-				return createStakeholderMembershipAdapter();
+			public Adapter caseIncludeUseCaseUsage(IncludeUseCaseUsage object) {
+				return createIncludeUseCaseUsageAdapter();
 			}
 			@Override
-			public Adapter caseFramedConcernMembership(FramedConcernMembership object) {
-				return createFramedConcernMembershipAdapter();
+			public Adapter caseConjugatedPortTyping(ConjugatedPortTyping object) {
+				return createConjugatedPortTypingAdapter();
+			}
+			@Override
+			public Adapter caseFlowDefinition(FlowDefinition object) {
+				return createFlowDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseSuccessionFlowUsage(SuccessionFlowUsage object) {
+				return createSuccessionFlowUsageAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1343,6 +1347,20 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.InstantiationExpression <em>Instantiation Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.InstantiationExpression
+	 * @generated
+	 */
+	public Adapter createInstantiationExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.LiteralInteger <em>Literal Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1409,6 +1427,20 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSelectExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ConstructorExpression <em>Constructor Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.ConstructorExpression
+	 * @generated
+	 */
+	public Adapter createConstructorExpressionAdapter() {
 		return null;
 	}
 
@@ -1609,6 +1641,62 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.SuccessionFlow <em>Succession Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.SuccessionFlow
+	 * @generated
+	 */
+	public Adapter createSuccessionFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.Flow <em>Flow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.Flow
+	 * @generated
+	 */
+	public Adapter createFlowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.FlowEnd <em>Flow End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.FlowEnd
+	 * @generated
+	 */
+	public Adapter createFlowEndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.PayloadFeature <em>Payload Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.PayloadFeature
+	 * @generated
+	 */
+	public Adapter createPayloadFeatureAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1791,48 +1879,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFlowEnd <em>Item Flow End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.ItemFlowEnd
-	 * @generated
-	 */
-	public Adapter createItemFlowEndAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFlow <em>Item Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.ItemFlow
-	 * @generated
-	 */
-	public Adapter createItemFlowAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.ItemFeature <em>Item Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.ItemFeature
-	 * @generated
-	 */
-	public Adapter createItemFeatureAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.Interaction <em>Interaction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1843,20 +1889,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInteractionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.SuccessionItemFlow <em>Succession Item Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.SuccessionItemFlow
-	 * @generated
-	 */
-	public Adapter createSuccessionItemFlowAdapter() {
 		return null;
 	}
 
@@ -1899,20 +1931,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDependencyAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.LifeClass <em>Life Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.LifeClass
-	 * @generated
-	 */
-	public Adapter createLifeClassAdapter() {
 		return null;
 	}
 
@@ -2183,16 +2201,16 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.FlowConnectionUsage <em>Flow Connection Usage</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.FlowUsage <em>Flow Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.FlowConnectionUsage
+	 * @see org.omg.sysml.lang.sysml.FlowUsage
 	 * @generated
 	 */
-	public Adapter createFlowConnectionUsageAdapter() {
+	public Adapter createFlowUsageAdapter() {
 		return null;
 	}
 
@@ -2981,6 +2999,34 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.SuccessionFlowUsage <em>Succession Flow Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.SuccessionFlowUsage
+	 * @generated
+	 */
+	public Adapter createSuccessionFlowUsageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.FlowDefinition <em>Flow Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.FlowDefinition
+	 * @generated
+	 */
+	public Adapter createFlowDefinitionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.AssertConstraintUsage <em>Assert Constraint Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -3117,34 +3163,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConjugatedPortTypingAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.FlowConnectionDefinition <em>Flow Connection Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.FlowConnectionDefinition
-	 * @generated
-	 */
-	public Adapter createFlowConnectionDefinitionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage <em>Succession Flow Connection Usage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage
-	 * @generated
-	 */
-	public Adapter createSuccessionFlowConnectionUsageAdapter() {
 		return null;
 	}
 

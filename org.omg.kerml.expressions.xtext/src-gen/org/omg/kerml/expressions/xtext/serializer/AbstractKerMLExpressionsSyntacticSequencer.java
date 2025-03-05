@@ -73,10 +73,10 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=ConditionalOperator
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=ElementReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) referencedElement=[Element|QualifiedName]
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue

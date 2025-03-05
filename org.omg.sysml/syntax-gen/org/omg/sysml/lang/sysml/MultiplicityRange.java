@@ -173,7 +173,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned <code>Expressions</code> of the <code>MultiplicityRange</code> whose results provide its bounds. These must be the only <code>ownedMembers</code> of the <code>MultiplicityRange</code>.</p>
+	 * <p>The owned <code>Expressions</code> of the <code>MultiplicityRange</code> whose results provide its bounds. These must be the first <code>ownedMembers</code> of the <code>MultiplicityRange</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicityRange_Bound()

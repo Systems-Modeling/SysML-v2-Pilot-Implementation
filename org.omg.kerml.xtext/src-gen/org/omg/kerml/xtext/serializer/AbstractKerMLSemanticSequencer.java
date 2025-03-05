@@ -43,15 +43,14 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Flow;
+import org.omg.sysml.lang.sysml.FlowEnd;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.IndexExpression;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.LibraryPackage;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
@@ -71,6 +70,7 @@ import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
@@ -83,7 +83,7 @@ import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
+import org.omg.sysml.lang.sysml.SuccessionFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
 import org.omg.sysml.lang.sysml.Type;
@@ -498,6 +498,20 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
+			case SysMLPackage.FLOW:
+				if (rule == grammarAccess.getOwnedRelatedElementRule()
+						|| rule == grammarAccess.getFeatureElementRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Flow) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getItemFlowRule()) {
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (Flow) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.FLOW_END:
+				sequence_ItemFlowEnd(context, (FlowEnd) semanticObject); 
+				return; 
 			case SysMLPackage.FUNCTION:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Function) semanticObject); 
 				return; 
@@ -573,23 +587,6 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
-			case SysMLPackage.ITEM_FEATURE:
-				sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (ItemFeature) semanticObject); 
-				return; 
-			case SysMLPackage.ITEM_FLOW:
-				if (rule == grammarAccess.getOwnedRelatedElementRule()
-						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getItemFlowRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (ItemFlow) semanticObject); 
-					return; 
-				}
-				else break;
-			case SysMLPackage.ITEM_FLOW_END:
-				sequence_ItemFlowEnd(context, (ItemFlowEnd) semanticObject); 
-				return; 
 			case SysMLPackage.LIBRARY_PACKAGE:
 				sequence_Identification_LibraryPackage_PackageBody(context, (LibraryPackage) semanticObject); 
 				return; 
@@ -611,6 +608,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getAliasMemberRule()) {
 					sequence_AliasMember_MemberPrefix_RelationshipOwnedElement(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getElementReferenceMemberRule()) {
+					sequence_ElementReferenceMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
@@ -867,6 +868,9 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
+			case SysMLPackage.PAYLOAD_FEATURE:
+				sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (PayloadFeature) semanticObject); 
+				return; 
 			case SysMLPackage.PREDICATE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_FunctionBodyPart_Identification_IntersectingPart_SuperclassingPart_TypePrefix_UnioningPart(context, (Predicate) semanticObject); 
 				return; 
@@ -985,14 +989,14 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
-			case SysMLPackage.SUCCESSION_ITEM_FLOW:
+			case SysMLPackage.SUCCESSION_FLOW:
 				if (rule == grammarAccess.getOwnedRelatedElementRule()
 						|| rule == grammarAccess.getFeatureElementRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionFlow) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSuccessionItemFlowRule()) {
-					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionItemFlow) semanticObject); 
+					sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(context, (SuccessionFlow) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1910,8 +1914,8 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     OwnedRelatedElement returns ItemFlow
-	 *     FeatureElement returns ItemFlow
+	 *     OwnedRelatedElement returns Flow
+	 *     FeatureElement returns Flow
 	 *
 	 * Constraint:
 	 *     (
@@ -1999,7 +2003,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Flow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2009,7 +2013,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     ItemFlow returns ItemFlow
+	//     ItemFlow returns Flow
 	//
 	// Constraint:
 	//     (
@@ -2098,13 +2102,13 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, ItemFlow semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, Flow semanticObject) { }
 	
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     OwnedRelatedElement returns SuccessionItemFlow
-	 *     FeatureElement returns SuccessionItemFlow
+	 *     OwnedRelatedElement returns SuccessionFlow
+	 *     FeatureElement returns SuccessionFlow
 	 *
 	 * Constraint:
 	 *     (
@@ -2192,7 +2196,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) {
+	protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2202,7 +2206,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     SuccessionItemFlow returns SuccessionItemFlow
+	//     SuccessionItemFlow returns SuccessionFlow
 	//
 	// Constraint:
 	//     (
@@ -2291,7 +2295,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	//         ((ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)*
 	//     )
 	//
-	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionItemFlow semanticObject) { }
+	// protected void sequence_BasicFeaturePrefix_ChainingPart_Crossings_DifferencingPart_DisjoiningPart_FeatureChain_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_IntersectingPart_InvertingPart_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_UnioningPart_ValuePart(ISerializationContext context, SuccessionFlow semanticObject) { }
 	
 	/**
 	 * <pre>
@@ -3501,7 +3505,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ItemFeature returns ItemFeature
+	 *     ItemFeature returns PayloadFeature
 	 *
 	 * Constraint:
 	 *     (
@@ -3546,7 +3550,7 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(ISerializationContext context, ItemFeature semanticObject) {
+	protected void sequence_Crossings_Identification_ItemFeature_MultiplicityPart_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(ISerializationContext context, PayloadFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4248,13 +4252,13 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ItemFlowEnd returns ItemFlowEnd
+	 *     ItemFlowEnd returns FlowEnd
 	 *
 	 * Constraint:
 	 *     (ownedRelationship+=ItemFlowEndSubsetting? ownedRelationship+=ItemFlowFeatureMember)
 	 * </pre>
 	 */
-	protected void sequence_ItemFlowEnd(ISerializationContext context, ItemFlowEnd semanticObject) {
+	protected void sequence_ItemFlowEnd(ISerializationContext context, FlowEnd semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

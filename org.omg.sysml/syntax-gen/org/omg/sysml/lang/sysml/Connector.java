@@ -59,6 +59,18 @@ import org.eclipse.emf.common.util.EList;
  *     specializesFromLibrary('Links::binaryLinks')
  * connectorEnds->size() > 2 implies
  *     not specializesFromLibrary('Links::BinaryLink')
+ * let commonFeaturingTypes : OrderedSet(Type) = 
+ *     relatedFeature->closure(featuringType)->select(t | 
+ *         relatedFeature->forAll(f | f.isFeaturedWithin(t))
+ *     ) in
+ * let nearestCommonFeaturingTypes : OrderedSet(Type) =
+ *     commonFeaturingTypes->reject(t1 | 
+ *         commonFeaturingTypes->exists(t2 | 
+ *             t2 <> t1 and t2->closure(featuringType)->contains(t1)
+ *     )) in
+ * if nearestCommonFeaturingTypes->isEmpty() then null
+ * else nearestCommonFeaturingTypes->first()
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

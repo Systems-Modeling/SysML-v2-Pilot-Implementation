@@ -57,8 +57,8 @@ import org.omg.sysml.lang.sysml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorAsUsageImpl#getAssociation <em>Association</em>}</li>
@@ -425,7 +425,7 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR_AS_USAGE__TARGET, SysMLPackage.CONNECTOR_AS_USAGE__SOURCE};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR_AS_USAGE__TARGET, SysMLPackage.CONNECTOR_AS_USAGE__SOURCE, SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -526,12 +526,12 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -544,10 +544,10 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -574,16 +574,16 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
 			case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT:
 				return getRelatedElement();
 			case SysMLPackage.CONNECTOR_AS_USAGE__TARGET:
 				return getTarget();
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE:
 				return getSource();
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
 			case SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED:
 				return isImplied();
 			case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_FEATURE:
@@ -613,13 +613,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
-				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				getRelatedElement().addAll((Collection<? extends Element>)newValue);
@@ -631,6 +624,13 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED:
 				setIsImplied((Boolean)newValue);
@@ -669,12 +669,6 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				return;
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
-				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				return;
@@ -683,6 +677,12 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE:
 				getSource().clear();
+				return;
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED:
 				setIsImplied(IS_IMPLIED_EDEFAULT);
@@ -717,16 +717,16 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT:
 				return isSetRelatedElement();
 			case SysMLPackage.CONNECTOR_AS_USAGE__TARGET:
 				return isSetTarget();
 			case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE:
 				return isSetSource();
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED:
 				return isImplied != IS_IMPLIED_EDEFAULT;
 			case SysMLPackage.CONNECTOR_AS_USAGE__TYPE:
@@ -758,11 +758,11 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.CONNECTOR_AS_USAGE__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.CONNECTOR_AS_USAGE__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
+				case SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED: return SysMLPackage.RELATIONSHIP__IS_IMPLIED;
 				default: return -1;
 			}
@@ -790,11 +790,11 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.CONNECTOR_AS_USAGE__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.CONNECTOR_AS_USAGE__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.CONNECTOR_AS_USAGE__SOURCE;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTOR_AS_USAGE__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTOR_AS_USAGE__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__IS_IMPLIED: return SysMLPackage.CONNECTOR_AS_USAGE__IS_IMPLIED;
 				default: return -1;
 			}

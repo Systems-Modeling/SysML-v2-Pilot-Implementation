@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>FeatureMembership</code> is an <code>OwningMembership</code> between a <code>Feature</code> in an <code>owningType</code> that is also a <code>Featuring</code> <code>Relationship</code> between the <code>Feature</code> and the <code>Type</code>, in which the <code>featuringType</code> is the <code>source</code> and the <code>featureOfType</code> is the <code>target</code>. A <code>FeatureMembership</code> is always owned by its <code>owningType</code>, which is the <code>featuringType</code> for the <code>FeatureMembership</code> considered as a <code>Featuring</code>.</p>
+ * <p>A <code>FeatureMembership</code> is an <code>OwningMembership</code> between an <code>ownedMemberFeature</code> and an <code>owningType</code>. If the <code>ownedMemberFeature</code> has <code>isVariable = false</code>, then the <code>FeatureMembership</code> implies that the <code>owningType</code> is also a <code>featuringType</code> of the <code>ownedMemberFeature</code>. If the <code>ownedMemberFeature</code> has <code>isVariable = true</code>, then the <code>FeatureMembership</code> implies that the <code>ownedMemberFeature</code> is featured by the <em><code>snapshots</code></em> of the <code>owningType</code>, which must specialize the Kernel Semantic Library base class <em><code>Occurrence</code></em>.</p>
  * 
  * <!-- end-model-doc -->
  *

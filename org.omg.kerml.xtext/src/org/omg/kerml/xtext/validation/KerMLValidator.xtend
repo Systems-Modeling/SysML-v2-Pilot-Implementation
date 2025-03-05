@@ -48,7 +48,7 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
-import org.omg.sysml.lang.sysml.ItemFlow
+import org.omg.sysml.lang.sysml.Flow
 import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Subsetting
@@ -65,7 +65,7 @@ import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.LibraryPackage
-import org.omg.sysml.lang.sysml.ItemFlowEnd
+import org.omg.sysml.lang.sysml.FlowEnd
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Specialization
@@ -78,7 +78,7 @@ import org.omg.sysml.lang.sysml.Step
 import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.Function
 import org.omg.sysml.lang.sysml.ResultExpressionMembership
-import org.omg.sysml.lang.sysml.ItemFeature
+import org.omg.sysml.lang.sysml.PayloadFeature
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
@@ -183,6 +183,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE = "validateRedefinitionDirectionConformance"
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG = "Redefining feature must have a compatible direction"
+	public static val INVALID_REDEFINITION_END_CONFORMANCE = "validateRedefinitionEndConformance"
+	public static val INVALID_REDEFINITION_END_CONFORMANCE_MSG = "Redefining feature must be an end feature"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature cannot be redefined"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Featuring types of redefining feature and redefined feature cannot be the same"
@@ -366,6 +368,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				checkDistinguishibility(mem, aliasMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
+				ElementUtil.clearCachesOf(namesp)
 				val inheritedMemberships = namesp.inheritedMembership
 				for (mem: ownedMemberships) {
 					checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
@@ -478,7 +481,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 		// validateClassifierMultiplicityDomain
 		val m = c.multiplicity;
-		if (m !== null && !m.multiplicity.featuringType.empty) {
+		if (m !== null && !m.featuringType.empty) {
 			error(INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN_MSG, c, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN)
 		}
 	}
@@ -604,6 +607,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_FEATURING_TYPES)
 				}
 			}
+			
+			// validatRedefinitionEndConformance
+			
+			if (redefinedFeature.isEnd && !redefiningFeature.isEnd) {
+				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
+			}
 		}		
 	}
 	
@@ -687,7 +697,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
 				!FeatureUtil.isAccessibleFrom(subsettingFeature, subsettedFeature)) {
-				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
+				if (subsettingFeature.owningType instanceof FlowEnd) {
 					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 				} else {
 					warning(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
@@ -883,7 +893,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				// TODO: Be able to remove these special cases
 				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
 					relatedFeature.getOwningType() == location ||
-				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
+				c instanceof Flow && c.owningNamespace instanceof Feature && c.owningType === null)) {
 					
 				warning(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
@@ -1064,14 +1074,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// }
 	
 	@Check
-	def checkItemFlow(ItemFlow flow) {
+	def checkItemFlow(Flow flow) {
 		// validateItemFlowItemFeature
-		val items = flow.ownedFeature.filter[f | f instanceof ItemFeature]
+		val items = flow.ownedFeature.filter[f | f instanceof PayloadFeature]
 		checkAtMostOne(items, INVALID_ITEM_FLOW_ITEM_FEATURE_MSG, null, INVALID_ITEM_FLOW_ITEM_FEATURE)
 	}
 	
 	@Check
-	def checkItemFlowEnd(ItemFlowEnd flowEnd) {
+	def checkItemFlowEnd(FlowEnd flowEnd) {
 		// validateItemFlowEndIsEnd is automatically satisfied
 		
 		// validateItemFlowEndNestedFeature
@@ -1080,7 +1090,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateItemFlowEndOwningType
-		if (!(flowEnd.owningType instanceof ItemFlow)) {
+		if (!(flowEnd.owningType instanceof Flow)) {
 			error(INVALID_ITEM_FLOW_END_OWNING_TYPE_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_OWNING_TYPE)
 		}
 	

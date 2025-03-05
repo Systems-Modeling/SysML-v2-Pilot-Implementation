@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  *  else Sequence{owningNamespace} endif
  * ownedAnnotatingRelationship = ownedRelationship->
  *     selectByKind(Annotation)->
- *     select(a | a.annotatingElement = self)
+ *     select(a | a.annotatedElement <> self)
  * annotation = 
  *     if owningAnnotatingRelationship = null then ownedAnnotatingRelationship
  *     else owningAnnotatingRelationship->prepend(owningAnnotatingRelationship)
@@ -50,8 +50,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement()
@@ -129,8 +129,8 @@ public interface AnnotatingElement extends Element {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation() <em>Annotation</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship() <em>Owning Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation() <em>Annotation</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

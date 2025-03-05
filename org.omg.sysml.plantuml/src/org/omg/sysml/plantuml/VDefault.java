@@ -45,9 +45,9 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -78,9 +78,9 @@ public class VDefault extends VTraverser {
         addConnector(c, c, desc);
     }
 
-    protected String itemFlowDesc(ItemFlow itf) {
+    protected String itemFlowDesc(Flow itf) {
         StringBuilder sb = new StringBuilder();
-        Feature f = itf.getItemFeature();
+        Feature f = itf.getPayloadFeature();
         if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
                Use getName() instead. */
@@ -217,7 +217,7 @@ public class VDefault extends VTraverser {
     }
 
     @Override
-    public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+    public String caseFlowUsage(FlowUsage fcu) {
         String desc = itemFlowDesc(fcu);
         addConnector(fcu, desc);
         return "";

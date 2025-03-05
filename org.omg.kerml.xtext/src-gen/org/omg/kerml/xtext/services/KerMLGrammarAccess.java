@@ -6212,7 +6212,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* Item Flows */
-		//ItemFlow returns SysML::ItemFlow :
+		//ItemFlow returns SysML::Flow :
 		//    FeaturePrefix 'flow'
 		//    ItemFlowDeclaration TypeBody
 		//;
@@ -6243,7 +6243,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cItemFlowDeclarationParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cTypeBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		//SuccessionItemFlow returns SysML::SuccessionItemFlow :
+		//SuccessionItemFlow returns SysML::SuccessionFlow :
 		//    FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -6292,7 +6292,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final RuleCall cOwnedRelationshipItemFlowEndMemberParserRuleCall_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_3.eContents().get(0);
 		
-		//fragment ItemFlowDeclaration returns SysML::ItemFlow :
+		//fragment ItemFlowDeclaration returns SysML::Flow :
 		//      FeatureDeclaration? ValuePart?
 		//      ( 'of'  ownedRelationship += ItemFeatureMember )?
 		//      ( 'from' ownedRelationship += ItemFlowEndMember
@@ -6421,7 +6421,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cOwnedRelationshipOwnedFeatureTypingParserRuleCall_3_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_1.eContents().get(0);
 		
-		//ItemFeature returns SysML::ItemFeature :
+		//ItemFeature returns SysML::PayloadFeature :
 		//      Identification? ItemFeatureSpecializationPart ValuePart?
 		//    | Identification? ValuePart
 		//    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
@@ -6552,7 +6552,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipItemFlowFeatureMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
-		//ItemFlowEnd returns SysML::ItemFlowEnd :
+		//ItemFlowEnd returns SysML::FlowEnd :
 		//    ( ownedRelationship += ItemFlowEndSubsetting )?
 		//    ownedRelationship += ItemFlowFeatureMember
 		//;
@@ -9563,7 +9563,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	///* Item Flows */
-	//ItemFlow returns SysML::ItemFlow :
+	//ItemFlow returns SysML::Flow :
 	//    FeaturePrefix 'flow'
 	//    ItemFlowDeclaration TypeBody
 	//;
@@ -9575,7 +9575,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getItemFlowAccess().getRule();
 	}
 	
-	//SuccessionItemFlow returns SysML::SuccessionItemFlow :
+	//SuccessionItemFlow returns SysML::SuccessionFlow :
 	//    FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
 	//;
 	public SuccessionItemFlowElements getSuccessionItemFlowAccess() {
@@ -9586,7 +9586,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getSuccessionItemFlowAccess().getRule();
 	}
 	
-	//fragment ItemFlowDeclaration returns SysML::ItemFlow :
+	//fragment ItemFlowDeclaration returns SysML::Flow :
 	//      FeatureDeclaration? ValuePart?
 	//      ( 'of'  ownedRelationship += ItemFeatureMember )?
 	//      ( 'from' ownedRelationship += ItemFlowEndMember
@@ -9614,7 +9614,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getItemFeatureMemberAccess().getRule();
 	}
 	
-	//ItemFeature returns SysML::ItemFeature :
+	//ItemFeature returns SysML::PayloadFeature :
 	//      Identification? ItemFeatureSpecializationPart ValuePart?
 	//    | Identification? ValuePart
 	//    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
@@ -9651,7 +9651,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getItemFlowEndMemberAccess().getRule();
 	}
 	
-	//ItemFlowEnd returns SysML::ItemFlowEnd :
+	//ItemFlowEnd returns SysML::FlowEnd :
 	//    ( ownedRelationship += ItemFlowEndSubsetting )?
 	//    ownedRelationship += ItemFlowFeatureMember
 	//;
@@ -10241,7 +10241,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//MetadataReference returns SysML::MetadataAccessExpression :
-	//    referencedElement = [SysML::Element | QualifiedName]
+	//    ownedRelationship += ElementReferenceMember
 	//;
 	public KerMLExpressionsGrammarAccess.MetadataReferenceElements getMetadataReferenceAccess() {
 		return gaKerMLExpressions.getMetadataReferenceAccess();
@@ -10655,7 +10655,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Metadata Access Expressions
 	//MetadataAccessExpression returns SysML::MetadataAccessExpression :
-	//    referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+	//    ownedRelationship += ElementReferenceMember '.' 'metadata'
 	//;
 	public KerMLExpressionsGrammarAccess.MetadataAccessExpressionElements getMetadataAccessExpressionAccess() {
 		return gaKerMLExpressions.getMetadataAccessExpressionAccess();
@@ -10663,6 +10663,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getMetadataAccessExpressionRule() {
 		return getMetadataAccessExpressionAccess().getRule();
+	}
+	
+	//ElementReferenceMember returns SysML::Membership :
+	//    memberElement = [SysML::Element | QualifiedName]
+	//;
+	public KerMLExpressionsGrammarAccess.ElementReferenceMemberElements getElementReferenceMemberAccess() {
+		return gaKerMLExpressions.getElementReferenceMemberAccess();
+	}
+	
+	public ParserRule getElementReferenceMemberRule() {
+		return getElementReferenceMemberAccess().getRule();
 	}
 	
 	//// Invocation Expressions

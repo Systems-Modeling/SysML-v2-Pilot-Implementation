@@ -46,27 +46,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getRelatedElement <em>Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#isImplied <em>Is Implied</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class RelationshipImpl extends ElementImpl implements Relationship {
-	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> ownedRelatedElement;
-
 	/**
 	 * The cached setting delegate for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -96,6 +86,16 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	 * @ordered
 	 */
 	protected EList<Element> source;
+
+	/**
+	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRelatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Element> ownedRelatedElement;
 
 	/**
 	 * The default value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
@@ -155,7 +155,7 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc --> 
@@ -271,12 +271,12 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -289,10 +289,10 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -319,16 +319,16 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
-			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
 			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				return getRelatedElement();
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				return getTarget();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
 				return getSource();
+			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
 			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
 				return isImplied();
 		}
@@ -344,13 +344,6 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
-				return;
 			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				getRelatedElement().addAll((Collection<? extends Element>)newValue);
@@ -362,6 +355,13 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 			case SysMLPackage.RELATIONSHIP__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
 				setIsImplied((Boolean)newValue);
@@ -378,12 +378,6 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				return;
-			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
-				return;
 			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				getRelatedElement().clear();
 				return;
@@ -392,6 +386,12 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 				return;
 			case SysMLPackage.RELATIONSHIP__SOURCE:
 				getSource().clear();
+				return;
+			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
 				setIsImplied(IS_IMPLIED_EDEFAULT);
@@ -408,16 +408,16 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
 			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				return RELATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				return target != null && !target.isEmpty();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
 				return source != null && !source.isEmpty();
+			case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
 				return isImplied != IS_IMPLIED_EDEFAULT;
 		}

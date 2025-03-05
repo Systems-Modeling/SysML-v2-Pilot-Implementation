@@ -425,18 +425,6 @@ public class TypeAdapter extends NamespaceAdapter {
 		return SysMLLibraryUtil.getLibraryType(getTarget(), defaultNames);
 	}
 	
-	// Computed Redefinitions
-	
-	/**
-	 * This method returns those features from the target type that should be automatically overridden in its usages.
-	 * By default, there are none.
-	 * 
-	 * @return	Relevant features from the target type that should be redefined in usages.
-	 */
-	public List<? extends Feature> getRelevantFeatures() {
-		return Collections.emptyList();
-	}
-	
 	// Extension
 	
 	private boolean isGetBaseTypes = true;

@@ -216,12 +216,13 @@ public abstract class InternalSysMLParser1 extends AbstractInternalAntlrParser {
     public abstract boolean synpred1_InternalSysML();
     public abstract boolean synpred7_InternalSysML();
     public abstract boolean synpred9_InternalSysML();
-    public abstract boolean synpred14_InternalSysML();
+    public abstract boolean synpred13_InternalSysML();
     public abstract boolean synpred8_InternalSysML();
     public abstract boolean synpred15_InternalSysML();
     public abstract boolean synpred2_InternalSysML();
     public abstract boolean synpred4_InternalSysML();
     public abstract boolean synpred16_InternalSysML();
     public abstract boolean synpred10_InternalSysML();
+    public abstract boolean synpred17_InternalSysML();
     public abstract boolean synpred3_InternalSysML();
 }

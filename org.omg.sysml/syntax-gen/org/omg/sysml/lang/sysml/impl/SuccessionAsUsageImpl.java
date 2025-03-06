@@ -51,5 +51,12 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SUCCESSION_AS_USAGE;
 	}
+	
+	// Additional overrides
+	
+	@Override
+	public boolean isComposite() {
+		return false;
+	}
 
 } //SuccessionAsUsageImpl

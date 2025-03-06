@@ -66,11 +66,11 @@ public class UsageAdapter extends FeatureAdapter {
 			Usage target = getTarget();
 			Type owningType = target.getOwningType();
 			mayTimeVary = owningType != null &&
-					TypeUtil.conforms(owningType, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::Occurrence")) &&
+					TypeUtil.specializes(owningType, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::Occurrence")) &&
 					!(target.isPortion() ||
-					  TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Links::SelfLink")) ||
-					  TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::HappensLink")) ||
-					  target.isComposite() && TypeUtil.conforms(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Actions::Action")));
+					  TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Links::SelfLink")) ||
+					  TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::HappensLink")) ||
+					  target.isComposite() && TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Actions::Action")));
 		}
 		return mayTimeVary;
 	}

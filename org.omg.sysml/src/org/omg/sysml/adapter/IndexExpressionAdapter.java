@@ -63,7 +63,7 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 	protected boolean hasArrayType(Feature feature) {
 		Type arrayType = getLibraryType(ARRAY_TYPE);
 		return arrayType != null && 
-			   feature.getType().stream().anyMatch(t->TypeUtil.conforms(t, arrayType));
+			   feature.getType().stream().anyMatch(t->TypeUtil.specializes(t, arrayType));
 	}
 
 }

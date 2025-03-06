@@ -153,23 +153,28 @@ public class TypeUtil {
 		return generalTypes;
 	}
 
+	@Deprecated
 	public static boolean conforms(Type subtype, Type supertype) {
-		return conforms(subtype, supertype, new HashSet<>());
+		return specializes(subtype, supertype);
+	}
+	
+	public static boolean specializes(Type subtype, Type supertype) {
+		return specializes(subtype, supertype, new HashSet<>());
 	}
 	
 	// Note: Generalizations are allowed to be cyclic.
-	public static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
+	public static boolean specializes(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
 		} else if (subtype != null) {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && conforms(originalType, supertype);
+				return !visited.contains(originalType) && specializes(originalType, supertype);
 			} else {
 				return getGeneralTypesOf(subtype).stream().
 						anyMatch(type->!visited.contains(type) && 
-								conforms(type, supertype, visited));
+								specializes(type, supertype, visited));
 			}
 		} else {
 			return false;
@@ -177,7 +182,7 @@ public class TypeUtil {
 	}
 	
 	public static boolean isCompatible(Type subtype, Type supertype) {
-		if (conforms(subtype, supertype)) {
+		if (specializes(subtype, supertype)) {
 			return true;
 		} else if (subtype instanceof Feature && supertype instanceof Feature &&
 				   (subtype.getOwnedFeature().isEmpty() || supertype.getOwnedFeature().isEmpty())) {

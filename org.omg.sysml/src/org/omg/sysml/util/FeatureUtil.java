@@ -174,7 +174,7 @@ public class FeatureUtil {
 	protected static void removeRedundantTypes(List<Type> types) {
 		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
 				types.remove(i);
 			}
 		}
@@ -254,7 +254,7 @@ public class FeatureUtil {
 	
 	public static List<Feature> getAllSubsettingFeaturesIn(Type type, Feature subsettedFeature) {
 		return type.getFeature().stream().
-				filter(f->TypeUtil.conforms(f, subsettedFeature)).
+				filter(f->TypeUtil.specializes(f, subsettedFeature)).
 				collect(Collectors.toList());
 	}
 	

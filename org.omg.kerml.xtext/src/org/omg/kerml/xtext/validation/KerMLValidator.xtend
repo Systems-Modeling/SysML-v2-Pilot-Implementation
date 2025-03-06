@@ -476,7 +476,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkClassifier(Classifier c){
 		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
-		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
+		if (!TypeUtil.specializes(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
 			error(INVALID_CLASSIFIER_DEFAULT_SUPERTYPE_MSG.replace("{supertype}", defaultSupertype), c, SysMLPackage.eINSTANCE.classifier_OwnedSubclassification, INVALID_CLASSIFIER_DEFAULT_SUPERTYPE)
 			
 		// validateClassifierMultiplicityDomain
@@ -533,7 +533,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (crossFeature !== null) {
 			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
 			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
-				exists[cf | cf !== null && !TypeUtil.conforms(crossFeature, cf)]) {
+				exists[cf | cf !== null && !TypeUtil.specializes(crossFeature, cf)]) {
 				if (f.ownedCrossSubsetting === null) {
 					error(INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION)
 				} else {
@@ -1159,7 +1159,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
 				val metaclass = ElementUtil.getMetaclassOf(element)
-				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.specializes(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG.replace("{metaclass}", metaclass.declaredName), mf, null, INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT)
 				}
 			}
@@ -1178,7 +1178,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	def checkMetadataBodyFeature(Feature f) {
 		// Must redefine a feature owned by a supertype of its owner.
-		if (!f.ownedRedefinition.map[redefinedFeature?.owningType].exists[t | t !== null && TypeUtil.conforms(f.owningType, t)]) {
+		if (!f.ownedRedefinition.map[redefinedFeature?.owningType].exists[t | t !== null && TypeUtil.specializes(f.owningType, t)]) {
 			error(INVALID_METADATA_FEATURE_BODY_MSG_1, f, null, INVALID_METADATA_FEATURE_BODY)
 		}
 		
@@ -1274,7 +1274,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def static specializesFromLibrary(Element context, Type type, String qualifiedName) {
-		TypeUtil.conforms(type, getLibraryType(context, qualifiedName))
+		TypeUtil.specializes(type, getLibraryType(context, qualifiedName))
 	}
 	
 	def static getLibraryType(Element context, String qualifiedName) {
@@ -1320,7 +1320,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 
 	protected static def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || TypeUtil.conforms(subtype, supertype) ||
+		supertype === null || TypeUtil.specializes(subtype, supertype) ||
 			subtype instanceof Expression &&
 			isBooleanExpression(subtype as Expression) && 
 			specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression")

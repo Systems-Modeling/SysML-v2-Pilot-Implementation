@@ -54,9 +54,9 @@ public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocation
 		} else {
 			Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(self);
 			return featuringTypes.stream().allMatch(featuringType->TypeUtil.isCompatible(type, featuringType)) ||
-				   self.isVariable() && TypeUtil.conforms(type, self.getOwningType()) ||
+				   self.isVariable() && TypeUtil.specializes(type, self.getOwningType()) ||
 				   firstChainingFeature != null && firstChainingFeature.isVariable() &&
-				   		TypeUtil.conforms(type, firstChainingFeature.getOwningType());
+				   		TypeUtil.specializes(type, firstChainingFeature.getOwningType());
 		}
 	}
 

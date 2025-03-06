@@ -313,7 +313,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
 				map(Specialization.class::cast).
-				noneMatch(spec->spec.getSpecific() == type && TypeUtil.conforms(defaultGeneral, spec.getGeneral()));
+				noneMatch(spec->spec.getSpecific() == type && TypeUtil.specializes(defaultGeneral, spec.getGeneral()));
 	}
 
 	public void addImplicitGeneralType(EClass eClass, Type general) {
@@ -362,8 +362,8 @@ public class TypeAdapter extends NamespaceAdapter {
 				implicitEClassGenerals.removeAll(redefinedFeatures);
 			} else {
 				implicitEClassGenerals.removeIf(gen->
-					generals.stream().anyMatch(type->conforms(type, gen)) ||
-					implicitGenerals.stream().anyMatch(type->type != gen && conforms(type, gen)));
+					generals.stream().anyMatch(type->specializesExcludingTarget(type, gen)) ||
+					implicitGenerals.stream().anyMatch(type->type != gen && specializesExcludingTarget(type, gen)));
 			}
 			if (implicitEClassGenerals.isEmpty()) {
 				implicitGeneralTypes.remove(eClass);
@@ -374,13 +374,13 @@ public class TypeAdapter extends NamespaceAdapter {
 		setIsAddImplicitGeneralTypes(false);
 	}
 	
-	protected boolean conforms(Type subtype, Type supertype) {
+	protected boolean specializesExcludingTarget(Type subtype, Type supertype) {
 		// NOTE: Treat target as already having been visited when checking conformance,
 		// to allow for the possibility of circular specialization. Otherwise, implicit
 		// specializations would get removed from all types in the circle.
 		Set<Type> visited = new HashSet<>();
 		visited.add(getTarget());
-		return TypeUtil.conforms(subtype, supertype, visited);
+		return TypeUtil.specializes(subtype, supertype, visited);
 	}
 	
 	// Implicit Specialization Computation
@@ -436,7 +436,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
 				metadataFeature.getFeature().stream().
-						filter(f->TypeUtil.conforms(f, getBaseTypeFeature(metadataFeature))).
+						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
 						map(expr->expr.evaluate(target)).

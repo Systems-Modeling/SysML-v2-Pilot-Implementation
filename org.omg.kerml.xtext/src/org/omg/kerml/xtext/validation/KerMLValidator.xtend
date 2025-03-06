@@ -163,6 +163,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG = "Feature cannot have itself in a feature chain"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
+	public static val INVALID_FEATURE_CONSTANT_IS_VARIABLE = "validateFeatureConstantIsVariable"
+	public static val INVALID_FEATURE_CONSTANT_IS_VARIABLE_MSG = "Only a variable feature can be constant"
 	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION = "validateFeatureCrossFeatureSpecialization"
 	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined-end cross features"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
@@ -171,12 +173,22 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG = "Must be the cross feature"
 	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
 	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
+	public static val INVALID_FEATURE_END_IS_CONSTANT = "validateFeatureEndIsConstant"
+	public static val INVALID_FEATURE_END_IS_CONSTANT_MSG = "End feature must be constant"
+	public static val INVALID_FEATURE_END_NO_DIRECTION = "validateFeatureEndNoDirection"
+	public static val INVALID_FEATURE_END_NO_DIRECTION_MSG = "End feature cannot have direction"
+	public static val INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION = "validateFeatureEndNotDerivedAbstractCompositeOrPortion"
+	public static val INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION_MSG = "End feature cannot be derived, abstract, composite or portion"
+	public static val INVALID_FEATURE_IS_VARIABLE = "validateFeatureIsVariable"
+	public static val INVALID_FEATURE_IS_VARIABLE_MSG = "Must be owned by an occurrence type"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING = "validateFeatureOwnedCrossSubsetting"
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
+	public static val INVALID_FEATURE_PORTION_NOT_VARIABLE = "validateFeaturePortionNotVariable"
+	public static val INVALID_FEATURE_PORTION_NOT_VARIABLE_MSG = "A portion cannot be variable"
 
 	public static val INVALID_FEATURE_CHAINING_FEATURE_CONFORMANCE = "validateFeatureChainingFeatureConformance"
 	public static val INVALID_FEATURE_CHAINING__FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
@@ -191,10 +203,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
 
+	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE = "validateSubsettingConstantConformance"
+	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG = "Subsetting/redefining feature must be constant if subsetted/redefined feature is constant"
 	public static val INVALID_SUBSETTING_FEATURING_TYPES = "validateSubsettingFeaturingTypes"
 	public static val INVALID_SUBSETTING_FEATURING_TYPES_MSG = "Must be an accessible feature (use dot notation for nesting)"
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE = "validateSubsettingMultiplicityConformance"
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG = "Subsetting/redefining feature should not have larger multiplicity upper bound"
+	public static val INVALID_SUBSETTING_PORTION_CONFORMANCE = "validateSubsettingPortionConformance"
+	public static val INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG = "Subsetting/redefining feature must be portion if subsetted/redefined feature is portion"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
 	
@@ -291,6 +307,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING = "validateItemFlowEndImplicitSubsetting"
 	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
 	
+	public static val INVALID_FEATURE_VALUE_IS_INITIAL = "validateFeatureValueIsInitial"
+	public static val INVALID_FEATURE_VALUE_IS_INITIAL_MSG = "Initialized feature must be variable"
 	public static val INVALID_FEATURE_VALUE_OVERRIDING = "validateFeatureValueOverriding"
 	public static val INVALID_FEATURE_VALUE_OVERRIDING_MSG = "Cannot override a binding feature value"
 	
@@ -511,7 +529,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
-		// TODO: Update OCL
+		// TODO: Update OCL for owned cross feature multiplicity featuring type.
 		val m = f.multiplicity;
 		val featuringTypes = f.featuringType
 		var mFeaturingTypes =
@@ -569,6 +587,32 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (ownedCrossFeature !== null && ownedCrossFeature !== crossFeature) {
 			error(INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG, ownedCrossFeature, null, INVALID_FEATURE_CROSSING_SPECIALIZATION)
 		}
+		
+		// validateFeatureConstantIsVariable
+		if (f.isConstant && !f.isVariable) {
+			error(INVALID_FEATURE_CONSTANT_IS_VARIABLE_MSG, f, null, INVALID_FEATURE_CONSTANT_IS_VARIABLE)
+		}
+		
+		// validateFeatureEndNoDirection
+		if (f.isEnd && f.direction !== null) {
+			error(INVALID_FEATURE_END_NO_DIRECTION_MSG, f, null, INVALID_FEATURE_END_NO_DIRECTION)
+		}
+		
+		// validateFeatureEndNotDerivedAbstractCompositeOrPortion
+		if (f.isEnd && (f.isDerived || f.isAbstract || f.isComposite || f.isPortion)) {
+			error(INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION_MSG, f, null, INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION)
+		}
+		
+		// validateFeatureIsVariable
+		if (f.isVariable && (f.owningType === null || 
+			!TypeUtil.specializes(f.owningType, SysMLLibraryUtil.getLibraryType(f, "Occurrences::Occurrence")))) {
+			error(INVALID_FEATURE_IS_VARIABLE_MSG, f, null, INVALID_FEATURE_IS_VARIABLE)
+		}
+		
+		// validatePortionNotVariable
+		if (f.isPortion && f.isVariable) {
+			error(INVALID_FEATURE_PORTION_NOT_VARIABLE_MSG, f, null, INVALID_FEATURE_PORTION_NOT_VARIABLE)
+		}
 	}
 		
 	@Check
@@ -608,8 +652,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 			
-			// validatRedefinitionEndConformance
-			
+			// validatRedefinitionEndConformance			
 			if (redefinedFeature.isEnd && !redefiningFeature.isEnd) {
 				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
@@ -691,6 +734,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 		}
 					
+		// validateSubsettingConstantConformance
+		if (subsettedFeature.isConstant && !subsettingFeature.isConstant) {
+			error(INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_CONSTANT_CONFORMANCE)
+		}
+		
+		// validateSubsettingPortionConformance
+		if (subsettedFeature.isPortion && !subsettingFeature.isPortion) {
+			error(INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_PORTION_CONFORMANCE)
+		}
+		
 		// validateSubsettingFeaturingTypes
 		if (subsettingFeature !== null && subsettedFeature !== null) {
 			val subsettedFeaturingTypes = subsettedFeature.featuringType
@@ -704,6 +757,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 		}
+		
 	}
 	
 	@Check
@@ -832,7 +886,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
-			val boolType = getLibraryType(location, "Performances::BooleanEvaluation")
+			val boolType = SysMLLibraryUtil.getLibraryType(location, "Performances::BooleanEvaluation")
 						 
 			if (!(typesConform(f1types, f2types) ||
 				  // Consider the result of an expression returning a Boolean-valued Expression to conform to BooleanEvaluation.
@@ -1115,6 +1169,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 				error(INVALID_FEATURE_VALUE_OVERRIDING_MSG, fv, null, INVALID_FEATURE_VALUE_OVERRIDING);
 			}
 		}
+		
+		// validateFeatureValueIsInitial
+		if (fv.isInitial && !f.isVariable) {
+			error(INVALID_FEATURE_VALUE_IS_INITIAL_MSG, fv, null, INVALID_FEATURE_VALUE_IS_INITIAL);
+		}
 	}
 	
 	@Check
@@ -1274,11 +1333,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def static specializesFromLibrary(Element context, Type type, String qualifiedName) {
-		TypeUtil.specializes(type, getLibraryType(context, qualifiedName))
-	}
-	
-	def static getLibraryType(Element context, String qualifiedName) {
-		SysMLLibraryUtil.getLibraryElement(context, qualifiedName) as Type
+		TypeUtil.specializes(type, SysMLLibraryUtil.getLibraryType(context, qualifiedName))
 	}
 	
 	protected def checkAtMostOne(Iterable<? extends EObject> list, String msg, EStructuralFeature feature, String code) {

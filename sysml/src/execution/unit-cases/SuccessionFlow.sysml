@@ -10,58 +10,42 @@ package execution_unitcase_abc_xyz {
 	 * Expectation: Instantiation of Correct Values
 	 */
 	
-	package SimpleSuccession {
+	package SuccessionFlow {
 		private import ScalarValues::*;
 		
 		doc
-		/* This example is illustration of the basic succession ordering.
+		/* This example is illustration of a succession flow between two elements.
 		 */
 		
 		case def ExecutionContext {
-			subject s [1] : 'Simple Step';
+			subject s [1] : 'Simple Step Flow';
 		}
 		
-		action def 'Simple Step' {
-			action 'Step 1';
-			action 'Step 2';
+		item def 'Packet' {
+			doc /* Packet is a discrete piece of information to send. */
+		}
+		
+		action def 'Simple Step Flow' {
+			action 'Step 1' {
+				/* Don't know semantics of setting this later */
+				out pkt : 'Packet' [0..1] = set_pkt;
+			}
+			action 'Step 2' {
+				in pkt : 'Packet' [0..1] = ();
+			}
+			
+			item set_pkt : 'Packet' [1];
 			
 			first start then 'Step 1';
-			first 'Step 1' then 'Step 2';
-			first 'Step 2' then done;
-		}
-	}
-	
-	package UnitCaseTest {
-		private import Occurrences::*;
-		private import SimpleSuccession::*;
-		private import VerificationCases::*;
-		
-		doc
-		/*
-		 * A verification case that executes the "ExecutionContext" from the "UserModel"
-		 * and performs a test whether the result meets expectations for the specified 
-		 * execution rule outlined in the language specification.
-		 */
-		 
-		verification def ExecutionVerification :> ExecutionContext {
-			subject s : Occurrence [1]; // Replace "Occurrence" with the type of the subject
-		
-			objective {
-				verify requirement expectation {
-					doc 
-					/*
-					 * We expect no overlap in time between Step 1 and Step 2 and for the 
-					 * frame containing Step 1 to occur before Step 2.
-					 */
-				}
-			}
-						
-			action testExpectation {
-				out verdict : VerdictKind;
-			}
-			first s.endShot then testExpectation;
+			/* Keep in mind this has Step 1 as first occurrence, Step 2 as second */
 			
-			return verdict : VerdictKind = testExpectation.verdict;
+			/* Succession means that Step 1 ends before transfer, transfer ends before Step 2 because of
+			 * private succession source then self;
+	  	     * private succession self then target;
+	  	     * inside TransferBefore
+			 */
+			succession flow 'Pass Packet' of 'Packet' [1] from 'Step 1'.pkt to 'Step 2'.pkt;
+			first 'Step 2' then done;
 		}
 	}
 	
@@ -69,8 +53,7 @@ package execution_unitcase_abc_xyz {
 		
 		private import Execution::*;
 		private import Occurrences::*;
-		private import SimpleSuccession::*;
-		private import UnitCaseTest::*;
+		private import SuccessionFlow::*;
 
 		doc
 		/*
@@ -89,24 +72,79 @@ package execution_unitcase_abc_xyz {
 				:>> that : Trace;
 			}
 			
+			occurrence TraceValueSlice : ValueSlice {
+				:>> that : Trace;
+			}
+			
+			/* Flows come with 2 connectors that change in time, want to have 
+			 * trace for them:
+			 * 
+			 * sourceOutputLink
+			 * targetInputLink
+			 */
+			
+			/* Only care about packet value when action is active. */
+			
+			timeslice x0 :> TraceValueSlice {
+				:>> s.'Step 1'.pkt = s.set_pkt;
+				:>> valueStart = that.'Trace Frame 1'.startShot;
+				/* output leaves the action */
+				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.1'.endShot;
+			}
+			
+			then timeslice x1 :> TraceValueSlice {
+				:>> s.'Pass Packet'.payload = s.set_pkt;
+				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.2'.startShot;
+				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.2'.endShot;
+			}
+			
+			then timeslice x2 :> TraceValueSlice {
+				:>> s.'Step 2'.pkt = s.set_pkt;
+				/* input arrives at the action */
+				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.4'.startShot;
+				:>> valueEnd = that.'Trace Frame 3'.endShot;
+			}
+			
 			// Timeslices below are a simple procession from each of the subactions of the 
 			// verification subject action.
 			
 			timeslice 'Trace Frame 0' :> TraceBehaviorSlice {
 				:>> activeSteps = s.start;
-				:>> inactiveSteps = (s.'Step 1', s.'Step 2', s.done);
+				:>> inactiveSteps = (s.'Step 1', s.'Pass Packet', s.'Step 2', s.done);
 			}
 			then timeslice 'Trace Frame 1' :> TraceBehaviorSlice {
 				:>> activeSteps = s.'Step 1';
-				:>> inactiveSteps = (s.start, s.'Step 2', s.done);
+				:>> inactiveSteps = (s.start, s.'Pass Packet', s.'Step 2', s.done);
 			}
 			then timeslice 'Trace Frame 2' :> TraceBehaviorSlice {
-				:>> activeSteps = s.'Step 2';
+				:>> activeSteps = s.'Pass Packet';
 				:>> inactiveSteps = (s.start, s.'Step 1', s.done);
+				
+				// covers sending
+				timeslice 'Trace Frame 2.1' :> TraceBehaviorSlice {
+					:>> activeSteps = (s.'Pass Packet'.start, s.'Pass Packet'.sourceOutputLink);
+					:>> inactiveSteps = (s.'Pass Packet'.targetInputLink);
+				}
+				// if move is true, and push is true, sourceOutputlink is coincident with transfer start shot
+				snapshot 'Trace Frame 2.2' :> TraceBehaviorSlice {
+					/* Transfer is active but the output and input aren't happening */
+					:>> activeSteps = ();
+					:>> inactiveSteps = (s.'Pass Packet'.sourceOutputLink, s.'Pass Packet'.targetInputLink);
+				}
+				
+				// covers delivery - always coincident 
+				snapshot 'Trace Frame 2.4' :> TraceBehaviorSlice {
+					:>> activeSteps = (s.'Pass Packet'.done, s.'Pass Packet'.targetInputLink);
+					:>> inactiveSteps = (s.'Pass Packet'.sourceOutputLink);
+				}
 			}
 			then timeslice 'Trace Frame 3' :> TraceBehaviorSlice {
+				:>> activeSteps = s.'Step 2';
+				:>> inactiveSteps = (s.start, s.'Step 1', s.'Pass Packet', s.done);
+			}
+			then timeslice 'Trace Frame 4' :> TraceBehaviorSlice {
 				:>> activeSteps = s.done;
-				:>> inactiveSteps = (s.start, s.'Step 1', s.'Step 2');
+				:>> inactiveSteps = (s.start, s.'Step 1', s.'Pass Packet', s.'Step 2');
 			}
 		}
 		

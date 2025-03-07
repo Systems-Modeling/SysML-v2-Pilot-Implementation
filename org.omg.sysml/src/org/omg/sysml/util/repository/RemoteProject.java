@@ -67,12 +67,24 @@ public class RemoteProject {
 		return new RemoteBranch(defaultBranch.getAtId(), true);
 	}
 	
+	/**
+	 * Branch by name
+	 *  
+	 * @param branchName	name of the branch
+	 * @return	branch with the given name or null if no branch is found
+	 */
 	public RemoteBranch getBranch(String branchName) {
 		Branch branch = getProjectRepository().getBranch(getRemoteId(), branchName);
 		if (branch == null || branch.getAtId() == null) return null;
 		return new RemoteBranch(branch.getAtId(), branch.getName());
 	}
 	
+	/**
+	 * Branch by id
+	 * 
+	 * @param branchId	id of the branch
+	 * @return	branch with the given UUID or null of no such branch is found
+	 */
 	public RemoteBranch getBranch(UUID branchId) {
 		Branch branch = getProjectRepository().getBranch(getRemoteId(), branchId);
 		if (branch == null || branch.getAtId() == null) return null;
@@ -190,7 +202,9 @@ public class RemoteProject {
 			return RemoteProject.this;
 		}
 
-
+		/**
+		 * @return true if this branch is the default branch of its project
+		 */
 		public boolean isDefault() {
 			return isDefault;
 		}

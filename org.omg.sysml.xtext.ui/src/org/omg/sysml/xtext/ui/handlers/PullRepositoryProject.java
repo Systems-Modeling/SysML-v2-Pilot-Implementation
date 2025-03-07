@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -49,7 +50,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.ApiException;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
@@ -66,6 +66,7 @@ public class PullRepositoryProject extends AbstractHandler {
 	
 	public static final String REPOSITORY_CONFIGURATION_FILE = ".settings/org.omg.sysml.remote.properties";
 	private static final String REPOSITORY_PROJECT_ID_PROPERTY = "remote.projectId";
+	private static final String REPOSITORY_BRANCH_ID_PROPERTY = "remote.branchId";
 	private static final String REPOSITORY_BASE_URL_PROPERTY = "base.url";
 	
 	@Inject
@@ -115,7 +116,8 @@ public class PullRepositoryProject extends AbstractHandler {
 				properties.load(repositoryPropertiesFile.getContents());
 				
 				String repositoryUrl = properties.getProperty(REPOSITORY_BASE_URL_PROPERTY);
-				String projectName = properties.getProperty(REPOSITORY_PROJECT_ID_PROPERTY);
+				String projectId = properties.getProperty(REPOSITORY_PROJECT_ID_PROPERTY);
+				String branchId = properties.getProperty(REPOSITORY_BRANCH_ID_PROPERTY);
 				String targetPath = project.getFullPath().toString();
 				
 				Set<IFile> libraryResources = new HashSet<>();
@@ -128,9 +130,14 @@ public class PullRepositoryProject extends AbstractHandler {
 				tracker.trackLibraryUUIDs(resourceSet.getResources());
 				
 				ProjectRepository projectRepository = new ProjectRepository(repositoryUrl);
-				RemoteProject repositoryProject = projectRepository.getProjectById(projectName);
+				RemoteProject remoteProject = projectRepository.getProjectById(projectId);
 				
-				RemoteBranch defaultBranch = repositoryProject.getDefaultBranch();
+				final RemoteBranch defaultBranch;
+				if (branchId == null) {
+					defaultBranch = remoteProject.getDefaultBranch();
+				} else {
+					defaultBranch = remoteProject.getBranch(UUID.fromString(branchId));
+				}
 				Revision headRevision = defaultBranch.getHeadRevision();
 				APIModel model = headRevision.fetchRemote();
 				EMFModelRefresher repositoryFetcher = new EMFModelRefresher(model, tracker);
@@ -138,8 +145,6 @@ public class PullRepositoryProject extends AbstractHandler {
 				delta.apply(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}
 		} catch (IOException | CoreException e) {
-			e.printStackTrace();
-		} catch (UnsupportedOperationException e) {
 			e.printStackTrace();
 		}
 	}

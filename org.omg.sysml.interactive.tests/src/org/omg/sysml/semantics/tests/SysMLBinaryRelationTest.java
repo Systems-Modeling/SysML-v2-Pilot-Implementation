@@ -100,7 +100,7 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	public void checkFlowConnectionUsageFlowSpecialization() {
 		//Succession flow connection is always binary, no base case
 		var resource = getResource();
-		var flowConnectionUsage = SysMLFactory.eINSTANCE.createFlowConnectionUsage();
+		var flowConnectionUsage = SysMLFactory.eINSTANCE.createFlowUsage();
 		
 		resource.getContents().add(flowConnectionUsage);
 		
@@ -116,7 +116,7 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	public void checkSuccessionFlowConnectionUsageSpecialization() {
 		//Succession flow connection is always binary, no base case
 		var resource = getResource();
-		var interfaceDefinition = SysMLFactory.eINSTANCE.createSuccessionFlowConnectionUsage();
+		var interfaceDefinition = SysMLFactory.eINSTANCE.createSuccessionFlowUsage();
 		
 		resource.getContents().add(interfaceDefinition);
 		
@@ -133,7 +133,7 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	public static void addEndTo(Type type) {
 		var end = SysMLFactory.eINSTANCE.createFeature();
 		var endMembership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-		endMembership.setFeature(end);
+		endMembership.setOwnedMemberFeature(end);
 		type.getOwnedRelationship().add(endMembership);
 	}
 }

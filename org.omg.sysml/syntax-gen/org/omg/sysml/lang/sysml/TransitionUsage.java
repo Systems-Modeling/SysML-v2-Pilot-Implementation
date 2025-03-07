@@ -300,9 +300,9 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>Feature</code> to be used as the <code>source</code> of the <code>succession</code> of this <code>TransitionUsage</code>, which is the first <code>ownedMember</code> of the <code>TransitionUsage</code> that is a <code>Feature</code> <em>not</em> owned via a <code>FeatureMembership</code> whose <code>featureTarget</code> is an <code>ActionUsage</code>.</p>
-	 * let features : Sequence(Feature) = ownedMembers->
-	 *     reject(owningMembership.oclIsKindOf(FeatureMembership))->
+	 * <p>Return the <code>Feature</code> to be used as the <code>source</code> of the <code>succession</code> of this <code>TransitionUsage</code>, which is the first <code>member</code> of the <code>TransitionUsage</code> that is a <code>Feature</code>, that is owned by the <code>TransitionUsage</code> via a <code>Membership</code> that is <em>not</em> a <code>FeatureMembership</code>, and whose <code>featureTarget</code> is an <code>ActionUsage</code>.</p>
+	 * let features : Sequence(Feature) = ownedMembership->
+	 *     reject(oclIsKindOf(FeatureMembership)).memberElement->
 	 *     selectByKind(Feature)->
 	 *     select(featureTarget.oclIsKindOf(ActionUsage)) in
 	 * if features->isEmpty() then null

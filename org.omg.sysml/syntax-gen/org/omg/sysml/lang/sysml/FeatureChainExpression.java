@@ -25,8 +25,7 @@ package org.omg.sysml.lang.sysml;
  *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
  *     endif
  * argument->notEmpty() implies
- *     targetFeature.featuringType->forAll(t | 
- *         t.specializes(argument->at(1).result))
+ *     targetFeature.isFeaturedWithin(argument->first().result)
  * operator = '.'
  * let inputParameters : Sequence(Feature) = 
  *     ownedFeatures->select(direction = _'in') in

@@ -300,7 +300,11 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_LiteralString(context, (LiteralString) semanticObject); 
 				return; 
 			case SysMLPackage.MEMBERSHIP:
-				if (rule == grammarAccess.getFeatureChainMemberRule()) {
+				if (rule == grammarAccess.getElementReferenceMemberRule()) {
+					sequence_ElementReferenceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
 					sequence_FeatureChainMember(context, (Membership) semanticObject); 
 					return; 
 				}
@@ -669,6 +673,26 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBodyParameterAccess().getDeclaredNameNameParserRuleCall_0(), semanticObject.getDeclaredName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ElementReferenceMember returns Membership
+	 *
+	 * Constraint:
+	 *     memberElement=[Element|QualifiedName]
+	 * </pre>
+	 */
+	protected void sequence_ElementReferenceMember(ISerializationContext context, Membership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getElementReferenceMemberAccess().getMemberElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
 		feeder.finish();
 	}
 	
@@ -1320,17 +1344,11 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     MetadataAccessExpression returns MetadataAccessExpression
 	 *
 	 * Constraint:
-	 *     referencedElement=[Element|QualifiedName]
+	 *     ownedRelationship+=ElementReferenceMember
 	 * </pre>
 	 */
 	protected void sequence_MetadataAccessExpression(ISerializationContext context, MetadataAccessExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataAccessExpressionAccess().getReferencedElementElementQualifiedNameParserRuleCall_0_0_1(), semanticObject.eGet(SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1340,17 +1358,11 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     MetadataReference returns MetadataAccessExpression
 	 *
 	 * Constraint:
-	 *     referencedElement=[Element|QualifiedName]
+	 *     ownedRelationship+=ElementReferenceMember
 	 * </pre>
 	 */
 	protected void sequence_MetadataReference(ISerializationContext context, MetadataAccessExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataReferenceAccess().getReferencedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

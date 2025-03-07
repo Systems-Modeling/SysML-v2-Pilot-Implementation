@@ -37,11 +37,14 @@ import org.eclipse.emf.ecore.EObject;
  * owner = owningRelationship.owningRelatedElement
  * qualifiedName =
  *     if owningNamespace = null then null
+ *     else if name <> null and 
+ *         owningNamespace.ownedMember->
+ *         select(m | m.name = name).indexOf(self) <> 1 then null
  *     else if owningNamespace.owner = null then escapedName()
  *     else if owningNamespace.qualifiedName = null or 
  *             escapedName() = null then null
  *     else owningNamespace.qualifiedName + '::' + escapedName()
- *     endif endif endif
+ *     endif endif endif endif
  * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->
  *     selectByKind(Annotation)->
@@ -63,10 +66,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
@@ -245,7 +248,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The full ownership-qualified name of this <code>Element</code>, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this <code>Element</code> has no <code>owningNamespace</code> or if there is not a complete ownership chain of named <code>Namespaces</code> from a root <code>Namespace</code> to this <code>Element</code>.</p>
+	 * <p>The full ownership-qualified name of this <code>Element</code>, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this <code>Element</code> has no <code>owningNamespace</code> or if there is not a complete ownership chain of named <code>Namespaces</code> from a root <code>Namespace</code> to this <code>Element</code>. If the <code>owningNamespace</code> has other <code>Elements</code> with the same name as this one, then the <code>qualifiedName</code> is null for all such <code>Elements</code> other than the first.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
@@ -624,5 +627,28 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	Namespace libraryNamespace();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return a unique description of the location of this <code>Element</code> in the containment structure rooted in a root <code>Namespace</code>. If the <code>Element</code> has a non-null <code>qualifiedName</code>, then return that. Otherwise, if it has an <code>owningRelationship</code>, then return the string constructed by appending to the <code>path</code> of it's <code>owningRelationship</code> the character <code>/</code> followed by the string representation of its position in the list of <code>ownedRelatedElements</code> of the <code>owningRelationship</code> (indexed starting at 1). Otherwise, return the empty string.</p>
+	 * 
+	 * <p>(Note that this operation is overridden for <code>Relationships</code> to use <code>owningRelatedElement</code> when appropriate.)</p>
+	 * if qualifiedName <> null then qualifiedName
+	 * else if owningRelationship <> null then
+	 *     owningRelationship.path() + '/' + 
+	 *     owningRelationship.ownedRelatedElement->indexOf(self).toString()
+	 *     -- A position index shall be converted to a decimal string representation 
+	 *     -- consisting of only decimal digits, with no sign, leading zeros or leading 
+	 *     -- or trailing whitespace.
+	 * else ''
+	 * endif endif
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	String path();
 	
 } // Element

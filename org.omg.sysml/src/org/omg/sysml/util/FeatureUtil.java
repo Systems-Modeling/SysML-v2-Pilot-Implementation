@@ -412,7 +412,7 @@ public class FeatureUtil {
 						!visited.contains(featuringType) &&
 						canAccess(((Feature)featuringType), subsettedFeature, visited));
 	}
-
+	
 	// Feature Chaining
 	
 	public static Feature getFirstChainingFeatureOf(Feature feature) {

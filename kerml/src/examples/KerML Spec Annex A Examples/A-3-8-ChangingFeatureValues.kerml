@@ -23,9 +23,9 @@ package ChangingFeatureValuesModelToBeExecuted {
 	}
 
 	struct Product {
-		feature isPainted : Boolean [1] := false;
-		feature isDry : Boolean [1] := true;
-		feature isShipped : Boolean [1] := false;
+		var feature isPainted : Boolean [1] := false;
+		var feature isDry : Boolean [1] := true;
+		var feature isShipped : Boolean [1] := false;
 	}
 
 	behavior Paint {

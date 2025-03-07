@@ -33,7 +33,7 @@ package TimeVaryingFeatures {
         portion :>> startShot {
             // var feature :>> x = 0;
             member feature :>> CC1::x featured by CC1_startShot_snapshots = 0 {
-                member feature CC1_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by CC1::startShot;
+                member feature CC1_startShot_snapshots :>> CC1_snapshots featured by CC1::startShot;
             }
         }
         
@@ -45,22 +45,22 @@ package TimeVaryingFeatures {
             portion :>> startShot {
                 // var feature :>> x = 0;
                 member feature :>> CC1::x featured by CC1_t_startShot_snapshots = 0 {
-                    member feature CC1_t_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by CC1::t::startShot;
+                    member feature CC1_t_startShot_snapshots :>> CC1_snapshots featured by CC1::t::startShot;
                 }
                 // var feature :>> y = 1;
                 member feature :>> CC1::t::y featured by CC1_t_startShot_snapshots = 1 {
-                    member feature CC1_t_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by CC1::t::startShot;
+                    member feature CC1_t_startShot_snapshots :>> CC1_t_snapshots featured by CC1::t::startShot;
                 }
             }
             portion t1 :> timeSlices {
                 portion :>> startShot {
                     // var feature :>> x = 2;
                     member feature :>> CC1::x featured by CC1_t_t1_startShot_snapshots = 2 {
-                        member feature CC1_t_t1_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by CC1::t::t1::startShot;
+                        member feature CC1_t_t1_startShot_snapshots :>> CC1_snapshots featured by CC1::t::t1::startShot;
                     }
                     // var feature :>> y = 3;
                     member feature :>> CC1::t::y featured by CC1_t_t1_startShot_snapshots = 3 {
-                        member feature CC1_t_t1_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by CC1::t::t1::startShot;
+                        member feature CC1_t_t1_startShot_snapshots :>> CC1_t_snapshots featured by CC1::t::t1::startShot;
                     }
                 }
             }

@@ -57,7 +57,7 @@ package Expressions {
 	bb : Boolean = f.s(1);
 	
 	class C {
-		count : ScalarValues::Integer := 0;
+		var count : ScalarValues::Integer := 0;
 	}
 	
 	feature obj1 : C;

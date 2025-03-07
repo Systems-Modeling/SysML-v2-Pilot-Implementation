@@ -97,6 +97,7 @@ import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 
 import org.omg.sysml.expressions.util.EvaluationUtil
+import java.util.Collections
 
 /**
  * This class contains custom validation rules. 
@@ -253,7 +254,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_RELATED_FEATURES = "validateConnectorRelatedFeatures"
 	public static val INVALID_CONNECTOR_RELATED_FEATURES_MSG = "Must have at least two related elements"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING = "validateConnectorTypeFeaturing"
-	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Should be an accessible feature (use dot notation for nesting)"
+	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Must be an accessible feature (use dot notation for nesting)"
 	
 	public static val INVALID_BEHAVIOR_SPECIALIZATION = "validateBehaviorSpecialization"
 	public static val INVALID_BEHAVIOR_SPECIALIZATION_MSG = "Cannot specialize structure"    
@@ -540,9 +541,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateRedefinitionDirectionConformance (for implicit Redefinitions)
-		val direction = f.direction
 		for (redefinedFeature: TypeUtil.getImplicitGeneralTypesOnly(f, SysMLPackage.eINSTANCE.redefinition)) {
-			checkRedefinitionDirection(direction, featuringTypes, redefinedFeature as Feature, f)
+			checkRedefinitionDirection(f, redefinedFeature as Feature, f)
 		}
 		
 		// validateFeatureCrossFeatureSpecialization
@@ -634,11 +634,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val redefinedFeature = redef.redefinedFeature
 
 		if (redefiningFeature !== null && redefinedFeature !== null) {
-			val redefiningFeaturingTypes = redefiningFeature.featuringType
-			val redefinedFeaturingTypes = redefinedFeature.featuringType
+			val redefiningFeaturingTypes = redefiningFeature.effectiveFeaturingTypes
+			val redefinedFeaturingTypes = redefinedFeature.effectiveFeaturingTypes
 			
 			// validateRedefinitionDirectionConformance
-			checkRedefinitionDirection(redefiningFeature.direction, redefiningFeaturingTypes, redefinedFeature, redef)
+			checkRedefinitionDirection(redefiningFeature, redefinedFeature, redef)
 			
 			// validateRedefinitionFeaturingTypes
 			if (redefinedFeature.owningRelationship != redef &&
@@ -660,8 +660,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 	}
 	
-	def checkRedefinitionDirection(FeatureDirectionKind redefiningDirection, List<Type> featuringTypes, Feature redefinedFeature, Element source) {
-		for (featuringType: featuringTypes) {
+	def checkRedefinitionDirection(Feature redefiningFeature, Feature redefinedFeature, Element source) {
+		val redefiningDirection = redefiningFeature.direction
+		for (featuringType: redefiningFeature.effectiveFeaturingTypes) {
 			val redefinedDirection = featuringType.directionOf(redefinedFeature)
 			if ((redefinedDirection === FeatureDirectionKind.IN ||
 				redefinedDirection === FeatureDirectionKind.OUT) &&
@@ -675,6 +676,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 					}
 			}
 		}
+	}
+	
+	def effectiveFeaturingTypes(Feature feature) {
+		if (feature.isVariable) Collections.singletonList(feature.owningType) 
+		else feature.featuringType
 	}
 	
 	@Check
@@ -735,14 +741,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 					
 		// validateSubsettingConstantConformance
-		if (subsettedFeature.isConstant && !subsettingFeature.isConstant) {
+		if (subsettedFeature.isConstant && subsettingFeature.isVariable && !subsettingFeature.isConstant) {
 			error(INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_CONSTANT_CONFORMANCE)
 		}
 		
-		// validateSubsettingPortionConformance
-		if (subsettedFeature.isPortion && !subsettingFeature.isPortion) {
-			error(INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_PORTION_CONFORMANCE)
-		}
+//		// validateSubsettingPortionConformance
+//		if (subsettedFeature.isPortion && !subsettingFeature.isPortion) {
+//			error(INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_PORTION_CONFORMANCE)
+//		}
 		
 		// validateSubsettingFeaturingTypes
 		if (subsettingFeature !== null && subsettedFeature !== null) {
@@ -750,11 +756,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			if (!subsettedFeaturingTypes.isEmpty() && 
 				!FeatureUtil.canAccess(subsettingFeature, subsettedFeature)) {
-				if (subsettingFeature.owningType instanceof FlowEnd) {
-					error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
-				} else {
-					warning(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
-				}
+				error(INVALID_SUBSETTING_FEATURING_TYPES_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_FEATURING_TYPES)
 			}
 		}
 		
@@ -948,10 +950,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
 					relatedFeature.getOwningType() == location ||
 				c instanceof Flow && c.owningNamespace instanceof Feature && c.owningType === null)) {
-					
-				warning(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
-					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
-					null, INVALID_CONNECTOR_TYPE_FEATURING)
+				
+				val connectorEnd = connectorEnds.get(i)
+				// Do not repeat error message if error will already be caught by validateSubsettingFeaturingTypes.
+				if (location !== c || FeatureUtil.canAccess(connectorEnd, relatedFeature)) {
+					error(INVALID_CONNECTOR_TYPE_FEATURING_MSG, 
+						if (location === c && i < connectorEnds.size) connectorEnd else location, 
+						null, INVALID_CONNECTOR_TYPE_FEATURING)
+				}
 			}
 		}
 	}

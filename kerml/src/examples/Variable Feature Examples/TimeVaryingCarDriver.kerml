@@ -79,7 +79,7 @@ package TimeVaryingCarDriver {
         portion :>> startShot {
         	// var feature :>> driver [0];
            	member feature :>> Car1_::driver [0] featured by Car_startShot_snapshots {
-                member feature Car_startShot_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::startShot;
+                member feature Car_startShot_snapshots :>> Car_snapshots featured by Car1_::startShot;
         	}
         }
         
@@ -88,7 +88,7 @@ package TimeVaryingCarDriver {
         portion operated [0..*] :> timeSlices {
             // var feature :>> driver [1]
             member feature :>> Car1_::driver [1] featured by Car_operated_snapshots {
-                member feature Car_operated_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::operated;
+                member feature Car_operated_snapshots :>> Car_snapshots featured by Car1_::operated;
                 // var feature :>> isLicensed = true;
                 member feature isLicensed1 :>> Person1_::isLicensed featured by Car_operated_driver_snapshots = true {
                     member feature Car_operated_driver_snapshots :>> Occurrences::Occurrence::snapshots featured by Car1_::operated::driver;

@@ -6,7 +6,7 @@ package PartTest {
 		part <'1'> b: B;
 		protected port c: C;
 		constant attribute x[0..2];
-		derived ref attribute y :> x;
+		derived constant ref attribute y :> x;
 		ref z : ScalarValues::Integer;
 	}
 	

@@ -87,21 +87,50 @@ package execution_unitcase_abc_xyz {
 			
 			timeslice x0 :> TraceValueSlice {
 				:>> s.'Step 1'.pkt = s.set_pkt;
+				:>> s.'Pass Packet'.payload = null;
+				:>> s.'Step 2'.pkt = null;
 				:>> valueStart = that.'Trace Frame 1'.startShot;
 				/* output leaves the action */
 				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.1'.endShot;
 			}
 			
-			then timeslice x1 :> TraceValueSlice {
+			/* Is there a moment of overlap where payload is both in the transfer but
+			 * also on the source feature?
+			 * 
+			 * end [1] feature transferSource references source;
+			 * end [itemNum] feature transferPayload references item subsets transferSource.sourceOutput;
+			 */
+			 
+			then timeslice x1_0 :> TraceValueSlice {
+				:>> s.'Step 1'.pkt = s.set_pkt;
 				:>> s.'Pass Packet'.payload = s.set_pkt;
+				:>> s.'Step 2'.pkt = null;
+				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.1'.startShot;
+				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.1'.endShot;
+			}
+			
+			then timeslice x1_1 :> TraceValueSlice {
+				:>> s.'Step 1'.pkt = null;
+				:>> s.'Pass Packet'.payload = s.set_pkt;
+				:>> s.'Step 2'.pkt = null;
 				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.2'.startShot;
 				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.2'.endShot;
 			}
 			
+			then timeslice x1_2 :> TraceValueSlice {
+				:>> s.'Step 1'.pkt = null;
+				:>> s.'Pass Packet'.payload = s.set_pkt;
+				:>> s.'Step 2'.pkt = s.set_pkt;
+				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.3'.startShot;
+				:>> valueEnd = that.'Trace Frame 2'.'Trace Frame 2.3'.endShot;
+			}
+			
 			then timeslice x2 :> TraceValueSlice {
+				:>> s.'Step 1'.pkt = null;
+				:>> s.'Pass Packet'.payload = null;
 				:>> s.'Step 2'.pkt = s.set_pkt;
 				/* input arrives at the action */
-				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.4'.startShot;
+				:>> valueStart = that.'Trace Frame 2'.'Trace Frame 2.3'.startShot;
 				:>> valueEnd = that.'Trace Frame 3'.endShot;
 			}
 			
@@ -122,6 +151,8 @@ package execution_unitcase_abc_xyz {
 				
 				// covers sending
 				timeslice 'Trace Frame 2.1' :> TraceBehaviorSlice {
+					/* Slice starts concurrently with parent */
+					:>> start subsets that.start;
 					:>> activeSteps = (s.'Pass Packet'.start, s.'Pass Packet'.sourceOutputLink);
 					:>> inactiveSteps = (s.'Pass Packet'.targetInputLink);
 				}
@@ -133,7 +164,9 @@ package execution_unitcase_abc_xyz {
 				}
 				
 				// covers delivery - always coincident 
-				snapshot 'Trace Frame 2.4' :> TraceBehaviorSlice {
+				snapshot 'Trace Frame 2.3' :> TraceBehaviorSlice {
+					/* Slice ends concurrently with parent */
+					:>> done subsets that.done;
 					:>> activeSteps = (s.'Pass Packet'.done, s.'Pass Packet'.targetInputLink);
 					:>> inactiveSteps = (s.'Pass Packet'.sourceOutputLink);
 				}

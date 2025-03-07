@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,14 +21,10 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
@@ -88,12 +84,7 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 				getDefaultSupertype("message"):
 				getDefaultSupertype("base");
 	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(getTarget());
-	}
-	
+		
 	@Override
 	public void doTransform() {
 		ConnectorUtil.transformConnectorEndsOf(getTarget());

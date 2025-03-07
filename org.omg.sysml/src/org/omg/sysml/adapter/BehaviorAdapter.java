@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.util.TypeUtil;
 
 public class BehaviorAdapter extends ClassAdapter {
 
@@ -38,12 +34,4 @@ public class BehaviorAdapter extends ClassAdapter {
 		return (Behavior)super.getTarget();
 	}
 
-	/**
-	 * Return the non-parameter abstract features of the Behavior.
-	 */
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return TypeUtil.getNonParameterAbstractFeaturesFor(getTarget());
-	}
-	
 }

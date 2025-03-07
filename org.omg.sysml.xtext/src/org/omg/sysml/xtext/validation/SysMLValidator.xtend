@@ -1352,7 +1352,6 @@ class SysMLValidator extends KerMLValidator {
 	protected def boolean checkReferenceType(Feature feature, Class<?> type, String msg, String eId) {
 		val subsetting = feature.ownedReferenceSubsetting
 		
-		// NOTE: This is implemented using getBasicFeatureOf to account for feature chaining. (See SYSML2-307.)
 		if (subsetting !== null && !type.isInstance(FeatureUtil.getBasicFeatureOf(subsetting.referencedFeature))) {
 			error(msg, subsetting, null, eId)
 			return false

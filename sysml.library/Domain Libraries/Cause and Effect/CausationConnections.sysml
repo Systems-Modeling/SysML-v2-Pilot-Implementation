@@ -30,10 +30,17 @@ standard library package CausationConnections {
 		 */
 		 
 		abstract constant ref occurrence causes[1..*] :>> causes :> participant {
-			doc /* The causing occurrences. */
+			doc 
+			/* 
+			 * The causing occurrences. (Constant for each Multicausation instance.)
+			 */
 		}
 		abstract constant ref occurrence effects[1..*] :>> effects :> participant {
-			doc /* The effect occurrences caused by the causing occurrences. */
+			doc 
+			/* 
+			 * The effect occurrences caused by the causing occurrences. 
+			 * (Constant for each Multicausation instance.)
+			 */
 		}
 		
 		private assert constraint disjointCauseEffect {

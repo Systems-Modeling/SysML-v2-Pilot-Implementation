@@ -745,11 +745,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_CONSTANT_CONFORMANCE)
 		}
 		
-//		// validateSubsettingPortionConformance
-//		if (subsettedFeature.isPortion && !subsettingFeature.isPortion) {
-//			error(INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG, sub, SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_PORTION_CONFORMANCE)
-//		}
-		
 		// validateSubsettingFeaturingTypes
 		if (subsettingFeature !== null && subsettedFeature !== null) {
 			val subsettedFeaturingTypes = subsettedFeature.featuringType

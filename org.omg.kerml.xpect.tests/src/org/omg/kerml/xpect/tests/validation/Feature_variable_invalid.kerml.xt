@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+                File {from ="/library/Links.kerml"}
+                File {from ="/library/Occurrences.kerml"}
+                File {from ="/library/Objects.kerml"}
+
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                                File {from ="/library/Links.kerml"}
+                                File {from ="/library/Occurrences.kerml"}
+                 				File {from ="/library/Objects.kerml"}
+
+                        }
+                }
+        }
+END_SETUP 
+*/
+
+package Feature_variable_invalid {
+	
+	class C {
+		var feature x;
+		// XPECT errors ---> "A portion cannot be variable" at "portion var feature y;"
+		portion var feature y;
+	}
+	
+	datatype D {
+		// XPECT errors ---> "Must be owned by an occurrence type" at "var feature z;"
+		var feature z;
+	}
+	
+}

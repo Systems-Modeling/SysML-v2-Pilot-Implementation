@@ -49,6 +49,8 @@ public class Traversal {
 	 * The map that records the identifiers for visited Elements.
 	 */
 	protected final Map<Element, Object> elementMap = new HashMap<>();
+
+	private boolean traverseStandardLibrary;
 	
 	/**
 	 * Create a new traversal object using given visitor factory.
@@ -56,8 +58,15 @@ public class Traversal {
 	 * @param 	facade			the ElementProcessingFacade to be used for this traversal
 	 */
 	public Traversal(ElementProcessingFacade facade) {
-		this.facade = facade;
+		this(facade, false);
 	}
+	
+	public Traversal(ElementProcessingFacade facade, boolean traverseStandardLibrary) {
+		this.facade = facade;
+		this.traverseStandardLibrary = traverseStandardLibrary;
+	}
+	
+	
 	
 	public ElementProcessingFacade getFacade() {
 		return this.facade;
@@ -142,7 +151,7 @@ public class Traversal {
 	 * Create an Element visitor for the given element.
 	 */
 	public ElementVisitor createVisitor(Element element) {
-		return new ElementVisitor(element, this, this.facade);
+		return new ElementVisitor(element, this, this.facade, traverseStandardLibrary);
 	}
 
 }

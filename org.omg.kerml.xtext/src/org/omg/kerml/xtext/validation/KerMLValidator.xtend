@@ -98,6 +98,9 @@ import org.omg.sysml.util.ImplicitGeneralizationMap
 
 import org.omg.sysml.expressions.util.EvaluationUtil
 import java.util.Collections
+import java.util.HashMap
+import java.util.Set
+import java.util.Map
 
 /**
  * This class contains custom validation rules. 
@@ -379,31 +382,59 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val ownedMemberships = namesp.ownedMembership
 			val owningMemberships = ownedMemberships.filter[m | m instanceof OwningMembership]
 			val aliasMemberships = ownedMemberships.filter[m | !(m instanceof OwningMembership)]
+			
+			val owningMembershipMap = owningMemberships.nameMap
 			for (mem: owningMemberships) {
-				checkDistinguishibility(mem, owningMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
+				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
 			}
+			
+			val aliasMembershipMap = aliasMemberships.nameMap
 			for (mem: aliasMemberships) {
-				checkDistinguishibility(mem, owningMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
-				checkDistinguishibility(mem, aliasMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
+				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
+				checkDistinguishibility(mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				ElementUtil.clearCachesOf(namesp)
-				val inheritedMemberships = namesp.inheritedMembership
+				val inheritedMembershipMap = namesp.inheritedMembership.nameMap
 				for (mem: ownedMemberships) {
-					checkDistinguishibility(mem, inheritedMemberships, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
+					checkDistinguishibility(mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
 			}
 		}		
 	}
 	
-	def checkDistinguishibility(Membership mem, Iterable<Membership> others, String msg) {
+	def nameMap(Iterable<Membership> memberships) {
+		var nameMap = new HashMap<String, Set<Membership>>()
+		for (mem: memberships) {
+			val shortName = mem.memberShortName
+			val name = mem.memberName
+			if (shortName !== null) {
+				var mems = nameMap.get(shortName)
+				if (mems === null) {
+					mems = newHashSet
+					nameMap.put(shortName, mems)
+				}
+				mems.add(mem)
+			}
+			if (name !== null) {
+				var mems = nameMap.get(name)
+				if (mems === null) {
+					mems = newHashSet
+					nameMap.put(name, mems)
+				}
+				mems.add(mem)
+			}
+		}
+		return nameMap;	
+	}
+	
+	def checkDistinguishibility(Membership mem, Map<String, Set<Membership>> nameMap, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
-				
-		val distinctOthers = others.filter[other | mem.memberElement !== other.memberElement]
+		val memElement = mem.memberElement
+		
 		if (memShortName !== null) {
-			val dups = distinctOthers.filter[other | memShortName == other.memberShortName || memShortName == other.memberName]
-			if (!dups.empty) {
+			var dups = nameMap.get(memShortName)?.filter[m | m.memberElement != memElement]
+			if (dups !== null && !dups.empty) {
 				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memShortName, dups)		
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
@@ -413,8 +444,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		if (memName !== null) {
-			val dups = distinctOthers.filter[other | memName == other.memberShortName || memName == other.memberName]
-			if (!dups.empty) {
+			val dups = nameMap.get(memName)?.filter[m | m.memberElement != memElement]
+			if (dups !== null && !dups.empty) {
 				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memName, dups)			
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)

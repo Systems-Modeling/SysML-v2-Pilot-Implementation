@@ -328,6 +328,7 @@ public class ElementUtil {
 			root.setIsImpliedIncluded(true);
 			TypeUtil.insertImplicitBindingConnectors((Type) root);
 		}
+		clearCachesOf(root);
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
 			// transformAll(relationship, addImplicitElements);

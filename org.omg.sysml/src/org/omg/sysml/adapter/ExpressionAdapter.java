@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,18 +23,13 @@ package org.omg.sysml.adapter;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 public class ExpressionAdapter extends StepAdapter {
@@ -48,22 +43,6 @@ public class ExpressionAdapter extends StepAdapter {
 	@Override
 	public Expression getTarget() {
 		return (Expression)super.getTarget();
-	}
-	
-	// Utility
-	
-	// May be overridden in subclasses
-	public Type getExpressionType() {
-		return getTarget().getFunction();
-	}		
-	
-	// May be overridden in subclasses
-	public List<Feature> getTypeParameters() {
-		Type type = getExpressionType();
-		return type == null? Collections.emptyList():
-			   type.getInput().stream().
-				filter(input->FeatureUtil.isParameter(input) && input.getOwner() == type).
-				collect(Collectors.toList());
 	}
 	
 	// Implicit Generalization
@@ -111,23 +90,6 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	// Transformation
 
-	protected Feature createFeatureForParameter(Feature parameter) {
-		if (parameter == null) {
-			return null;
-		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createFeature();
-			feature.setDirection(parameter.getDirection());
-			
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
-			membership.setOwnedMemberFeature(feature);
-			
-			Expression expression = getTarget();
-			expression.getOwnedRelationship().add(membership);
-			
-			return feature;
-		}
-	}
-	
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();

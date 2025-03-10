@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,25 +26,23 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
+import org.omg.sysml.lang.sysml.TriggerKind;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
-public class InvocationExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
+public class TriggerInvocationExpression_instantiatedType_InvocationDelegate extends Expression_evaluate_InvocationDelegate {
 
-	public InvocationExpression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public TriggerInvocationExpression_instantiatedType_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		InvocationExpression self = (InvocationExpression) target;
-		@SuppressWarnings("unchecked")
-		EList<Feature> visited = (EList<Feature>) arguments.get(0);
-
-		Function function = self.getFunction();
-		return function != null && function.isModelLevelEvaluable() && 
-			   self.getArgument().stream().allMatch(arg->arg.modelLevelEvaluable(visited));
+		TriggerInvocationExpression self = (TriggerInvocationExpression) target;
+		TriggerKind kind = self.getKind();
+		return kind == null? null:SysMLLibraryUtil.getLibraryType(self, 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(self.getClass(), kind.toString()));
 	}
 
 }

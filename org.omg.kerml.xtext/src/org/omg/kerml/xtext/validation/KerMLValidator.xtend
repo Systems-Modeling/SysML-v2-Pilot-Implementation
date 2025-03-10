@@ -1111,9 +1111,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
-		val type = ExpressionUtil.getExpressionTypeOf(e)
+		val type = e.instantiatedType()
 		if (type !== null) {
-			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
+			val typeParams = type.feature.filter[p | FeatureUtil.isInputParameter(p)]
 			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
 			val usedParams = newHashSet
 			for (p: exprParams) {

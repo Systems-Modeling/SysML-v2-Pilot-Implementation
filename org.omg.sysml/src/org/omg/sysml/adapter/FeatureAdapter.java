@@ -44,7 +44,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -58,7 +57,6 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -602,10 +600,6 @@ public class FeatureAdapter extends TypeAdapter {
 	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
 		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
-			   owningType instanceof InvocationExpression && 
-			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
-			   		!(type instanceof Function || type instanceof Expression)? 
-			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
 			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
 	}
 	

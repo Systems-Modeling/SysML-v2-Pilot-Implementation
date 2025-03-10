@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,14 +36,9 @@ import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 
@@ -78,18 +73,6 @@ public class InvocationExpressionImpl extends InstantiationExpressionImpl implem
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 	
-	// Additional overrides
-
-	@Override
-	public Function getFunction() {
-		// TODO: Invoke expressions/features using subsetting instead of feature typing.
-		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		return type instanceof Function? (Function)type:
-			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)SysMLLibraryUtil.getLibraryType(this, 
-					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
-	}
-
 	// Operand mechanism
 	
 	/**
@@ -98,12 +81,16 @@ public class InvocationExpressionImpl extends InstantiationExpressionImpl implem
 	 * It contains a list of direct containment references to arguments of this InvocationExpression.
 	 * It allows for tractable parsing in Xtext of expressions with left-recursive syntax 
 	 * (particularly operator expressions).
+	 * 
+	 * @generated NOT
 	 */
 	protected EList<Expression> operand = null;
 	
 	/**
 	 * Filter operands from the eContents of the InvocationExpression, because the referenced arguments will
 	 * already be including via owning FeatureMemberships. 
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public EList<EObject> eContents() {

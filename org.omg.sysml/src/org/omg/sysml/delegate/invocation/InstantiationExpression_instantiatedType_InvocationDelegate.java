@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,25 +26,26 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.InstantiationExpression;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Type;
 
-public class InvocationExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
+public class InstantiationExpression_instantiatedType_InvocationDelegate extends Expression_evaluate_InvocationDelegate {
 
-	public InvocationExpression_modelLevelEvaluable_InvocationDelegate(EOperation operation) {
+	public InstantiationExpression_instantiatedType_InvocationDelegate(EOperation operation) {
 		super(operation);
 	}
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		InvocationExpression self = (InvocationExpression) target;
-		@SuppressWarnings("unchecked")
-		EList<Feature> visited = (EList<Feature>) arguments.get(0);
-
-		Function function = self.getFunction();
-		return function != null && function.isModelLevelEvaluable() && 
-			   self.getArgument().stream().allMatch(arg->arg.modelLevelEvaluable(visited));
+		InstantiationExpression self = (InstantiationExpression) target;
+		Element member =self.getOwnedMembership().stream().
+			filter(m->!(m instanceof FeatureMembership)).
+			map(Membership::getMemberElement).
+			findFirst().orElse(null);
+		return member instanceof Type? member: null;
 	}
 
 }

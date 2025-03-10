@@ -88,7 +88,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 				.addOption(localLibrary);
 		
 		
-		CommandLineParser parser = new DefaultParser();
+		CommandLineParser parser = new DefaultParser(false);
 		
 		CommandLine cli = parser.parse(options, args);
 		

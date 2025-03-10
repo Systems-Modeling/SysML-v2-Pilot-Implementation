@@ -10,6 +10,8 @@ package PartTest {
 		ref z : ScalarValues::Integer;
 	}
 	
+	item def S;
+	
 	abstract part def <xx> B {
 		public abstract part a: A[1..2];
 		public abstract part b subsets a;
@@ -20,7 +22,12 @@ package PartTest {
 		}
 		package P { }
 		
-		action a1;
+		succession flow x.p to a1.aa.receiver;
+		
+		action a1 {
+			accept S via x;
+			action aa accept S;
+		}
 		perform action a2;
 		
 		state s1;

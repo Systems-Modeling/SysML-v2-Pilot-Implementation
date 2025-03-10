@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -76,7 +76,7 @@ public class ConnectorUtil {
 		return endFeature;
 	}
 	
-	public static void transformConnectorEndsOf(ItemFlow flow) {
+	public static void transformConnectorEndsOf(Flow flow) {
 		Namespace owner = flow.getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Feature> ends = flow.getConnectorEnd();

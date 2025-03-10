@@ -30,8 +30,8 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A <code>PerformActionUsage</code> is an <code>ActionUsage</code> that represents the performance of an <code>ActionUsage</code>. Unless it is the <code>PerformActionUsage</code> itself, the <code>ActionUsage</code> to be performed is related to the <code>PerformActionUsage</code> by a <code>ReferenceSubsetting</code> relationship. A <code>PerformActionUsage</code> is also an <code>EventOccurrenceUsage</code>, with its <code>performedAction</code> as the <code>eventOccurrence</code>.</p>
- * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ActionUsage)
+ * referencedFeatureTarget() <> null implies
+ *     referencedFeatureTarget().oclIsKindOf(ActionUsage)
  * owningType <> null and
  * (owningType.oclIsKindOf(PartDefinition) or
  *  owningType.oclIsKindOf(PartUsage)) implies

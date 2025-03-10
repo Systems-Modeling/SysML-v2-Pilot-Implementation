@@ -4758,15 +4758,15 @@ ruleBasicFeaturePrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
-				lv_isReadOnly_4_0='readonly'
+				lv_isConstant_4_0='readonly'
 				{
-					newLeafNode(lv_isReadOnly_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsReadOnlyReadonlyKeyword_3_0());
+					newLeafNode(lv_isConstant_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsConstantReadonlyKeyword_3_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
 					}
-					setWithLastConsumed($current, "isReadOnly", lv_isReadOnly_4_0 != null, "readonly");
+					setWithLastConsumed($current, "isConstant", lv_isConstant_4_0 != null, "readonly");
 				}
 			)
 		)?
@@ -12944,15 +12944,18 @@ ruleMetadataReference returns [EObject current=null]
 	(
 		(
 			{
+				newCompositeNode(grammarAccess.getMetadataReferenceAccess().getOwnedRelationshipElementReferenceMemberParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=ruleElementReferenceMember
+			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getMetadataReferenceRule());
+					$current = createModelElementForParent(grammarAccess.getMetadataReferenceRule());
 				}
-			}
-			{
-				newCompositeNode(grammarAccess.getMetadataReferenceAccess().getReferencedElementElementCrossReference_0());
-			}
-			ruleQualifiedName
-			{
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.kerml.expressions.xtext.KerMLExpressions.ElementReferenceMember");
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -14755,15 +14758,18 @@ ruleMetadataAccessExpression returns [EObject current=null]
 		(
 			(
 				{
+					newCompositeNode(grammarAccess.getMetadataAccessExpressionAccess().getOwnedRelationshipElementReferenceMemberParserRuleCall_0_0());
+				}
+				lv_ownedRelationship_0_0=ruleElementReferenceMember
+				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMetadataAccessExpressionRule());
+						$current = createModelElementForParent(grammarAccess.getMetadataAccessExpressionRule());
 					}
-				}
-				{
-					newCompositeNode(grammarAccess.getMetadataAccessExpressionAccess().getReferencedElementElementCrossReference_0_0());
-				}
-				ruleQualifiedName
-				{
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.ElementReferenceMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -14776,6 +14782,39 @@ ruleMetadataAccessExpression returns [EObject current=null]
 		{
 			newLeafNode(otherlv_2, grammarAccess.getMetadataAccessExpressionAccess().getMetadataKeyword_2());
 		}
+	)
+;
+
+// Entry rule entryRuleElementReferenceMember
+entryRuleElementReferenceMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getElementReferenceMemberRule()); }
+	iv_ruleElementReferenceMember=ruleElementReferenceMember
+	{ $current=$iv_ruleElementReferenceMember.current; }
+	EOF;
+
+// Rule ElementReferenceMember
+ruleElementReferenceMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getElementReferenceMemberRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getElementReferenceMemberAccess().getMemberElementElementCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

@@ -37,7 +37,8 @@ package org.omg.sysml.lang.sysml;
  *     featureWithValue.ownedMember->
  *         selectByKind(BindingConnector)->exists(b |
  *             b.relatedFeature->includes(featureWithValue) and
- *             b.relatedFeature->includes(value.result) and
+ *             b.relatedFeature->exists(f | 
+ *                 f.chainingFeature = Sequence{value, value.result}) and
  *             if not isInitial then 
  *                 b.featuringType = featureWithValue.featuringType
  *             else 
@@ -55,6 +56,7 @@ package org.omg.sysml.lang.sysml;
  * featureWithValue.redefinition.redefinedFeature->
  *     closure(redefinition.redefinedFeature).valuation->
  *     forAll(isDefault)
+ * isInitial implies featureWithValue.isVariable
  * <!-- end-model-doc -->
  *
  * <p>

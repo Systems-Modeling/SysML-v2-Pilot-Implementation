@@ -431,6 +431,7 @@ standard library package Actions {
 		 * A LoopAction is the base type for all LoopActionUsages.
 		 */
 	
+        in ref iterator;
 		
 		in action body[0..*] {
 			doc
@@ -447,7 +448,7 @@ standard library package Actions {
 		 * It is the base type for all WhileLoopActionUsages.
 		 */
 	
-		in :>> whileTest default {true} {
+		in whileTest default {true} {
 			doc
 			/*
 			 * A Boolean expression that must be true for the loop to continue.
@@ -456,7 +457,7 @@ standard library package Actions {
 			 */
 		}
 		
-		in action body :>> LoopAction::body, LoopPerformance::body {
+		in action body {
 			doc
 			/*
 			 * The action that is performed while the whileTest is true and the
@@ -464,7 +465,7 @@ standard library package Actions {
 			 */
 		}
 		
-		in :>> untilTest default {false} {
+		in untilTest default {false} {
 			doc
 			/*
 			 * A Boolean expression that must be false for the loop to continue.
@@ -473,12 +474,7 @@ standard library package Actions {
 		}
 	}
 	
-	private abstract action def ForLoopActionBase :> LoopAction {
-		in action body;
-		in ref seq[0..*] ordered nonunique;
-	}
-	
-	action def ForLoopAction :> ForLoopActionBase {
+	action def ForLoopAction :> LoopAction {
 		doc
 		/*
 		 * A ForLoopAction is a LoopAction that iterates over an ordered sequence of values.
@@ -493,14 +489,14 @@ standard library package Actions {
 			 */
 		}
 		
-		in ref :>> seq {
+		in ref seq {
 			doc
 			/*
 			 * The sequence of values over which the loop iterates.
 			 */
 		}
 		
-		in action :>> body {
+		in action body {
 			doc
 			/*
 			 * The action that is performed on each iteration of the loop.

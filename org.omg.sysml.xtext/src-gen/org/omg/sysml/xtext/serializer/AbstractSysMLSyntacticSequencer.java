@@ -1017,69 +1017,91 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'perform' ActionUsageKeyword (ambiguity) (rule start)
+	 *     (rule start) 'send' (ambiguity) (rule start)
 	 *     (rule start) 'terminate' (ambiguity) (rule start)
 	 *     (rule start) ActionDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ActionUsageKeyword (ambiguity) (rule start)
+	 *     declaredName=Name 'send' (ambiguity) (rule end)
 	 *     declaredName=Name 'terminate' (ambiguity) (rule end)
 	 *     declaredName=Name (ambiguity) (rule end)
+	 *     declaredShortName=Name '&gt;' 'send' (ambiguity) (rule end)
 	 *     declaredShortName=Name '&gt;' 'terminate' (ambiguity) (rule end)
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'send' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'terminate' (ambiguity) (rule end)
 	 *     direction=FeatureDirection ActionUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'send' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'terminate' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ActionDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'send' (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'terminate' (ambiguity) (rule end)
+	 *     isConstant?='readonly' ActionUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isDerived?='derived' 'send' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'terminate' (ambiguity) (rule end)
 	 *     isDerived?='derived' ActionUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' 'send' (ambiguity) (rule end)
 	 *     isEnd?='end' 'terminate' (ambiguity) (rule end)
 	 *     isEnd?='end' ActionUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' 'send' (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'terminate' (ambiguity) (rule end)
 	 *     isIndividual?='individual' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isNonunique?='nonunique' 'send' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' 'terminate' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
+	 *     isOrdered?='ordered' 'send' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' 'terminate' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'perform' ActionUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'terminate' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ActionUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isReference?='ref' 'send' (ambiguity) (rule end)
 	 *     isReference?='ref' 'terminate' (ambiguity) (rule end)
 	 *     isReference?='ref' ActionUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'send' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'terminate' (ambiguity) (rule end)
 	 *     isVariation?='variation' ActionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ActionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureTyping 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership ActionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedCrossFeatureMember 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember ActionUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedCrossSubsetting 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossSubsetting 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedMultiplicity 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PayloadParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'send' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'perform' ActionUsageKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind 'send' (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'terminate' (ambiguity) (rule end)
 	 *     portionKind=PortionKind ActionUsageKeyword (ambiguity) (rule end)
 	 
@@ -1109,6 +1131,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'fork' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'join' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'merge' (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'decide' (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'fork' (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'join' (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'merge' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'decide' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'fork' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'join' (ambiguity) (rule end)
@@ -1119,10 +1145,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' 'merge' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'decide' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'fork' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'join' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'merge' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'decide' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'fork' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'join' (ambiguity) (rule end)
@@ -1160,14 +1182,14 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isIndividual?='individual' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isIndividual?='individual' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
@@ -1198,10 +1220,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=ConditionalOperator
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=ElementReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) referencedElement=[Element|QualifiedName]
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -1252,9 +1274,9 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     direction=FeatureDirection (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=OwnedCrossFeatureMember (ambiguity) 'bind' ownedRelationship+=ConnectorEndMember
@@ -1297,6 +1319,11 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' VerificationCaseUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' AnalysisCaseUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' UseCaseUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' CaseUsageKeyword (ambiguity) (rule end)
@@ -1314,11 +1341,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' CaseUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' CaseUsageKeyword (ambiguity) (rule end)
@@ -1398,14 +1420,14 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isIndividual?='individual' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isIndividual?='individual' (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
@@ -1504,6 +1526,20 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' AllocationUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' AttributeUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ConnectionUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' EnumerationUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ItemUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' MessageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' OccurrenceUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' PartUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' PortUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ReferenceUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' AttributeUsageKeyword (ambiguity) (rule end)
@@ -1549,20 +1585,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' AllocationUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' AttributeUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' FlowConnectionKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ItemUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' MessageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' OccurrenceUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' PartUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' PortUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ReferenceUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' AttributeUsageKeyword (ambiguity) (rule end)
@@ -1710,7 +1732,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
@@ -1719,6 +1740,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PayloadParameterMember (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
@@ -1822,12 +1844,12 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' InterfaceDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' InterfaceDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) (rule end)
@@ -1864,14 +1886,14 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isConstant?='readonly' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isConstant?='readonly' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isDerived?='derived' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isDerived?='derived' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
-	 *     isReadOnly?='readonly' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
-	 *     isReadOnly?='readonly' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
 	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
@@ -2037,6 +2059,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ViewpointDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ViewpointUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ConcernUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' RequirementUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' ConcernUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' RequirementUsageKeyword (ambiguity) (rule end)
@@ -2052,10 +2078,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isNegated?='not' 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ConcernUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' RequirementUsageKeyword (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ConcernUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' RequirementUsageKeyword (ambiguity) (rule end)
@@ -2192,6 +2214,34 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isAbstract?='abstract' (ambiguity) isNegated?='not'
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=AliasMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=DefinitionMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=FramedConcernMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=Import
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=NonOccurrenceUsageMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=OccurrenceUsageMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=StakeholderMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword CrossesKeyword ownedRelationship+=OwnedCrossSubsetting
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword declaredName=Name
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
+	 *     isConstant?='readonly' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
+	 *     isConstant?='readonly' (ambiguity) isNegated?='not'
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
@@ -2276,34 +2326,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isIndividual?='individual' (ambiguity) isNegated?='not'
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=AliasMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=DefinitionMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=FramedConcernMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=Import
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=NonOccurrenceUsageMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=OccurrenceUsageMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=StakeholderMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword CrossesKeyword ownedRelationship+=OwnedCrossSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword declaredName=Name
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
-	 *     isReadOnly?='readonly' (ambiguity) isNegated?='not'
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword '&lt;' declaredShortName=Name
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword '{' ownedRelationship+=ActorMember
@@ -2494,9 +2516,9 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     direction=FeatureDirection (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     isAbstract?='abstract' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
+	 *     isConstant?='readonly' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     isDerived?='derived' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     isEnd?='end' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
-	 *     isReadOnly?='readonly' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     isReference?='ref' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     isVariation?='variation' (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
 	 *     ownedRelationship+=OwnedCrossFeatureMember (ambiguity) 'first' ownedRelationship+=ConnectorEndMember
@@ -2561,12 +2583,12 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
 	 *     direction=FeatureDirection ViewUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ViewUsageKeyword (ambiguity) (rule end)
+	 *     isConstant?='readonly' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReadOnly?='readonly' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ViewUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)

@@ -185,7 +185,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (feature.isPortion) {
 			text += ' portion'
 		}
-		if (feature.isReadOnly) {
+		if (feature.isConstant) {
 			text += ' readonly'
 		}
 		if (feature.isDerived) {

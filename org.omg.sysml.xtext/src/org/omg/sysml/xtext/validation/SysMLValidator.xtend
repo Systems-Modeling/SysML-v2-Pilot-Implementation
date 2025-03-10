@@ -91,9 +91,7 @@ import org.omg.sysml.lang.sysml.MetadataUsage
 import org.omg.sysml.lang.sysml.Metaclass
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
-import org.omg.sysml.lang.sysml.FlowConnectionUsage
 import org.omg.sysml.lang.sysml.Interaction
-import org.omg.sysml.lang.sysml.FlowConnectionDefinition
 import org.omg.sysml.lang.sysml.SendActionUsage
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.FeatureChainExpression
@@ -124,7 +122,6 @@ import org.omg.sysml.lang.sysml.Expose
 import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.AttributeDefinition
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.LifeClass
 import org.omg.sysml.lang.sysml.ActionDefinition
 import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
@@ -136,6 +133,8 @@ import org.omg.sysml.lang.sysml.IfActionUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
 import org.omg.sysml.lang.sysml.TriggerKind
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.lang.sysml.FlowDefinition
+import org.omg.sysml.lang.sysml.FlowUsage
 
 /**
  * This class contains custom validation rules. 
@@ -232,8 +231,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ALLOCATION_USAGE_TYPE = "validateAllocationUsageType_"
 	public static val INVALID_ALLOCATION_USAGE_TYPE_MSG = "An allocation must be typed by allocation definitions."
 	
-	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS = "validateAcceptActionUsageParameter"
-	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG = "An accept action must have two input parameters."
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS = "validateAcceptActionUsageParameters"
+	public static val INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG = "An accept action must have a payload parameter."
 	
 	public static val INVALID_ACTION_USAGE_TYPE = "validateActionUsageType_"
 	public static val INVALID_ACTION_USAGE_TYPE_MSG = "An action must be typed by action definitions."
@@ -276,12 +275,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE = "validatePerformActionUsageReference"
 	public static val INVALID_PERFORM_ACTION_USAGE_REFERENCE_MSG = "Must reference an action."
 	
-	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS = "validateSendActionUsageParameter"
-	public static val INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG = "A send action usage must have three input parameters."
-	public static val INVALID_SEND_ACTION_USAGE_RECEIVER = "validateSendActionReceiver_"
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT = "validateSendActionUsagePayloadArgument"
+	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG = 'A send action must have a payload.'
+	public static val INVALID_SEND_ACTION_USAGE_RECEIVER = "validateSendActionUsageReceiver_"
 	public static val INVALID_SEND_ACTION_USAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
-	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD = "validateSendActionPayload_"
-	public static val INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG = 'A send action must have a payload.'
 	
 	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE = "validateForLoopActionUsageLoopVariable"
 	public static val INVALID_FOR_LOOP_ACTION_USAGE_LOOP_VARIABLE_MSG ="A for loop action must have a loop variable."
@@ -561,24 +558,8 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	
-//	@Check
-//	def checkLifeClass(LifeClass cls) {}
-//		// validateLifeClassIsSufficient is satisfied automatically
-//	}
-	
 	@Check
 	def checkOccurrenceDefinition(OccurrenceDefinition defn) {
-		// validateOccurrenceDefinitionLifeClass
-		val n = defn.ownedMember.filter[m | m instanceof LifeClass].size
-		if (defn.isIndividual) {
-			if (n != 1) {
-				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
-			}
-		} else {
-			if (n > 0) {
-				error(INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2, defn, null, INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS)
-			}			
-		}
 	}
 	
 	@Check 
@@ -658,12 +639,12 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkConnectionUsage(ConnectionUsage usg) {
 		// All types must be Associations
-		if (!(usg instanceof FlowConnectionUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
+		if (!(usg instanceof FlowUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
 			checkAllTypes(usg, Association, INVALID_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.connectionUsage_ConnectionDefinition, INVALID_CONNECTION_USAGE_TYPE)
 	}
 	
 	@Check
-	def checkFlowConnectionDefinition(FlowConnectionDefinition cdef) {
+	def checkFlowConnectionDefinition(FlowDefinition cdef) {
 		// validateConnectionDefinitionConnectionEnds
 		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
 		if (ends.size > 2) {
@@ -679,9 +660,9 @@ class SysMLValidator extends KerMLValidator {
 	}
 
 	@Check 
-	def checkFlowConnectionUsage(FlowConnectionUsage usg) {
+	def checkFlowConnectionUsage(FlowUsage usg) {
 		// All types must be Interactions
-		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowConnectionUsage_FlowConnectionDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
+		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowUsage_FlowDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
 	}
 
 	@Check
@@ -719,7 +700,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkAcceptActionUsage(AcceptActionUsage usg) {
 		// validateAcceptActionUsageParameters
-		if (usg.inputParameters.size < 2) {
+		if (usg.inputParameters.empty) {
 			error(INVALID_ACCEPT_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_ACCEPT_ACTION_USAGE_PARAMETERS)
 		}
 	}
@@ -727,7 +708,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkActionUsage(ActionUsage usg) {
 		// All types must be Behaviors
-		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowConnectionUsage) )
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowUsage) )
 			checkAllTypes(usg, Behavior, INVALID_ACTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, INVALID_ACTION_USAGE_TYPE)
 	}
 	
@@ -855,15 +836,13 @@ class SysMLValidator extends KerMLValidator {
 			warning(INVALID_SEND_ACTION_USAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SEND_ACTION_USAGE_RECEIVER)
 		}
 		
-		// payloadArgument has multiplicity 1
-		if (usg.payloadArgument === null) {
-			error(INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PAYLOAD_MSG)
+		// validateSendActionPayloadArgument
+		val featureMembership = usg.featureMembership
+		if ((featureMembership instanceof StateSubactionMembership || 
+			 featureMembership instanceof TransitionFeatureMembership) && 
+			usg.payloadArgument === null) {
+			error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
 		} 
-
-		// validateSendActionParameters
-		if (usg.inputParameters.size < 3) {
-			error(INVALID_SEND_ACTION_USAGE_PARAMETERS_MSG, usg, null, INVALID_SEND_ACTION_USAGE_PARAMETERS)
-		}
 	}
 	
 	@Check
@@ -1373,7 +1352,6 @@ class SysMLValidator extends KerMLValidator {
 	protected def boolean checkReferenceType(Feature feature, Class<?> type, String msg, String eId) {
 		val subsetting = feature.ownedReferenceSubsetting
 		
-		// NOTE: This is implemented using getBasicFeatureOf to account for feature chaining. (See SYSML2-307.)
 		if (subsetting !== null && !type.isInstance(FeatureUtil.getBasicFeatureOf(subsetting.referencedFeature))) {
 			error(msg, subsetting, null, eId)
 			return false

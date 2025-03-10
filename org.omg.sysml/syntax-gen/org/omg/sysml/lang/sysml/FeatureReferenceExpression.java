@@ -44,6 +44,7 @@ package org.omg.sysml.lang.sysml;
  * membership->notEmpty() and
  * membership->at(1).memberElement.oclIsKindOf(Feature)
  * result.owningType() = self and result.specializes(referent)
+ * result.owningType = self
  * <!-- end-model-doc -->
  *
  * <p>

@@ -65,8 +65,8 @@ standard library package FlowConnections {
              */
         }
         
-        connection :HappensDuring connect sourceEvent to source;
-        connection :HappensDuring connect targetEvent to target;
+        connection :HappensDuring connect sourceEvent to [1] source;
+        connection :HappensDuring connect targetEvent to [1] target;
         
         private attribute seBeforeNum: Natural[1] = if sourceEvent==thisConnection.start ? 0 else 1;
         private attribute teAfterNum: Natural[1] = if targetEvent==thisConnection.done ? 0 else 1;

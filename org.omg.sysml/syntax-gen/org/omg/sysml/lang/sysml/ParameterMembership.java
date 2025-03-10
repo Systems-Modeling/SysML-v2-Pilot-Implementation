@@ -27,9 +27,11 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Parameter Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A <code>ParameterMembership</code> is a <code>FeatureMembership</code> that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A <code>ParameterMembership</code> must be owned by a <code>Behavior</code> or a <code>Step</code>.</p>
+ * <p>A <code>ParameterMembership</code> is a <code>FeatureMembership</code> that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A <code>ParameterMembership</code> must be owned by a <code>Behavior</code>, a <code>Step</code>, or the <code>result</code> parameter of a <code>ConstructorExpression</code>.</p>
  * ownedMemberParameter.direction = parameterDirection()
- * owningType.oclIsKindOf(Behavior) or owningType.oclIsKindOf(Step)
+ * owningType.oclIsKindOf(Behavior) or owningType.oclIsKindOf(Step) or
+ * owningType.owningMembership.oclIsKindOf(ReturnParameterMembership) and
+ *     owningType.owningNamespace.oclIsKindOf(ConstructorExpression)
  * <!-- end-model-doc -->
  *
  * <p>

@@ -1020,23 +1020,19 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class MetadataReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.MetadataReference");
-		private final Assignment cReferencedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cReferencedElementElementCrossReference_0 = (CrossReference)cReferencedElementAssignment.eContents().get(0);
-		private final RuleCall cReferencedElementElementQualifiedNameParserRuleCall_0_1 = (RuleCall)cReferencedElementElementCrossReference_0.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipElementReferenceMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//MetadataReference returns SysML::MetadataAccessExpression :
-		//    referencedElement = [SysML::Element | QualifiedName]
+		//    ownedRelationship += ElementReferenceMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//referencedElement = [SysML::Element | QualifiedName]
-		public Assignment getReferencedElementAssignment() { return cReferencedElementAssignment; }
+		//ownedRelationship += ElementReferenceMember
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
-		//[SysML::Element | QualifiedName]
-		public CrossReference getReferencedElementElementCrossReference_0() { return cReferencedElementElementCrossReference_0; }
-		
-		//QualifiedName
-		public RuleCall getReferencedElementElementQualifiedNameParserRuleCall_0_1() { return cReferencedElementElementQualifiedNameParserRuleCall_0_1; }
+		//ElementReferenceMember
+		public RuleCall getOwnedRelationshipElementReferenceMemberParserRuleCall_0() { return cOwnedRelationshipElementReferenceMemberParserRuleCall_0; }
 	}
 	public class TypeReferenceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.TypeReferenceMember");
@@ -2263,35 +2259,51 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	public class MetadataAccessExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.MetadataAccessExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cReferencedElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cReferencedElementElementCrossReference_0_0 = (CrossReference)cReferencedElementAssignment_0.eContents().get(0);
-		private final RuleCall cReferencedElementElementQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cReferencedElementElementCrossReference_0_0.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOwnedRelationshipElementReferenceMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cMetadataKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//// Metadata Access Expressions
 		//MetadataAccessExpression returns SysML::MetadataAccessExpression :
-		//    referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+		//    ownedRelationship += ElementReferenceMember '.' 'metadata'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+		//ownedRelationship += ElementReferenceMember '.' 'metadata'
 		public Group getGroup() { return cGroup; }
 		
-		//referencedElement = [SysML::Element | QualifiedName]
-		public Assignment getReferencedElementAssignment_0() { return cReferencedElementAssignment_0; }
+		//ownedRelationship += ElementReferenceMember
+		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
 		
-		//[SysML::Element | QualifiedName]
-		public CrossReference getReferencedElementElementCrossReference_0_0() { return cReferencedElementElementCrossReference_0_0; }
-		
-		//QualifiedName
-		public RuleCall getReferencedElementElementQualifiedNameParserRuleCall_0_0_1() { return cReferencedElementElementQualifiedNameParserRuleCall_0_0_1; }
+		//ElementReferenceMember
+		public RuleCall getOwnedRelationshipElementReferenceMemberParserRuleCall_0_0() { return cOwnedRelationshipElementReferenceMemberParserRuleCall_0_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 		
 		//'metadata'
 		public Keyword getMetadataKeyword_2() { return cMetadataKeyword_2; }
+	}
+	public class ElementReferenceMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ElementReferenceMember");
+		private final Assignment cMemberElementAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cMemberElementElementCrossReference_0 = (CrossReference)cMemberElementAssignment.eContents().get(0);
+		private final RuleCall cMemberElementElementQualifiedNameParserRuleCall_0_1 = (RuleCall)cMemberElementElementCrossReference_0.eContents().get(1);
+		
+		//ElementReferenceMember returns SysML::Membership :
+		//    memberElement = [SysML::Element | QualifiedName]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//memberElement = [SysML::Element | QualifiedName]
+		public Assignment getMemberElementAssignment() { return cMemberElementAssignment; }
+		
+		//[SysML::Element | QualifiedName]
+		public CrossReference getMemberElementElementCrossReference_0() { return cMemberElementElementCrossReference_0; }
+		
+		//QualifiedName
+		public RuleCall getMemberElementElementQualifiedNameParserRuleCall_0_1() { return cMemberElementElementQualifiedNameParserRuleCall_0_1; }
 	}
 	public class InvocationExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.InvocationExpression");
@@ -3000,6 +3012,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final FeatureReferenceExpressionElements pFeatureReferenceExpression;
 	private final FeatureReferenceMemberElements pFeatureReferenceMember;
 	private final MetadataAccessExpressionElements pMetadataAccessExpression;
+	private final ElementReferenceMemberElements pElementReferenceMember;
 	private final InvocationExpressionElements pInvocationExpression;
 	private final OwnedFeatureTypingElements pOwnedFeatureTyping;
 	private final OwnedFeatureChainElements pOwnedFeatureChain;
@@ -3109,6 +3122,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pFeatureReferenceExpression = new FeatureReferenceExpressionElements();
 		this.pFeatureReferenceMember = new FeatureReferenceMemberElements();
 		this.pMetadataAccessExpression = new MetadataAccessExpressionElements();
+		this.pElementReferenceMember = new ElementReferenceMemberElements();
 		this.pInvocationExpression = new InvocationExpressionElements();
 		this.pOwnedFeatureTyping = new OwnedFeatureTypingElements();
 		this.pOwnedFeatureChain = new OwnedFeatureChainElements();
@@ -3552,7 +3566,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//MetadataReference returns SysML::MetadataAccessExpression :
-	//    referencedElement = [SysML::Element | QualifiedName]
+	//    ownedRelationship += ElementReferenceMember
 	//;
 	public MetadataReferenceElements getMetadataReferenceAccess() {
 		return pMetadataReference;
@@ -3990,7 +4004,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	//// Metadata Access Expressions
 	//MetadataAccessExpression returns SysML::MetadataAccessExpression :
-	//    referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+	//    ownedRelationship += ElementReferenceMember '.' 'metadata'
 	//;
 	public MetadataAccessExpressionElements getMetadataAccessExpressionAccess() {
 		return pMetadataAccessExpression;
@@ -3998,6 +4012,17 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	public ParserRule getMetadataAccessExpressionRule() {
 		return getMetadataAccessExpressionAccess().getRule();
+	}
+	
+	//ElementReferenceMember returns SysML::Membership :
+	//    memberElement = [SysML::Element | QualifiedName]
+	//;
+	public ElementReferenceMemberElements getElementReferenceMemberAccess() {
+		return pElementReferenceMember;
+	}
+	
+	public ParserRule getElementReferenceMemberRule() {
+		return getElementReferenceMemberAccess().getRule();
 	}
 	
 	//// Invocation Expressions

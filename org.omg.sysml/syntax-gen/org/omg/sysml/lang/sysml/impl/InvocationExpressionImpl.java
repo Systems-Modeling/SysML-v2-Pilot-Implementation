@@ -54,24 +54,13 @@ import org.omg.sysml.util.TypeUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
+public class InvocationExpressionImpl extends InstantiationExpressionImpl implements InvocationExpression {
 	
-	/**
-	 * The cached setting delegate for the '{@link #getArgument() <em>Argument</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArgument()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INVOCATION_EXPRESSION__ARGUMENT).getSettingDelegate();
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -87,17 +76,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Expression> getArgument() {
-		return (EList<Expression>)ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	// Additional overrides
@@ -269,8 +247,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return getArgument();
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				return getOperand();
 		}
@@ -286,10 +262,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends Expression>)newValue);
-				return;
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				getOperand().clear();
 				getOperand().addAll((Collection<? extends Expression>)newValue);
@@ -306,9 +278,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
-				return;
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				getOperand().clear();
 				return;
@@ -324,8 +293,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				return !getOperand().isEmpty();
 		}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.util.FeatureUtil;
 
 public class ItemUsage_itemDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -35,8 +35,8 @@ public class ItemUsage_itemDefinition_SettingDelegate extends BasicDerivedListSe
 	}
 
 	@Override
-	protected EList<ItemDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, ItemDefinition.class, eStructuralFeature.getFeatureID());
+	protected EList<Structure> basicGet(InternalEObject owner) {
+		return FeatureUtil.getAllTypesOf((Feature)owner, Structure.class, eStructuralFeature.getFeatureID());
 	}
 
 }

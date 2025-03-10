@@ -32,9 +32,15 @@ import org.eclipse.emf.common.util.EList;
  * occurrenceDefinition->
  *     selectByKind(OccurrenceDefinition)->
  *     select(isIndividual).size() <= 1
+ * portionKind = PortionKind::snapshot implies
+ *     specializesFromLibrary('Occurrences::Occurrence::snapshots')
+ * portionKind = PortionKind::timeslice implies 
+ *     specializesFromLibrary('Occurrences::Occurrence::timeSlices')
  * portionKind <> null implies
- *     occurrenceDefinition->forAll(occ | 
- *         featuringType->exists(specializes(occ)))
+ *     owningType <> null and
+ *     (owningType.oclIsKindOf(OccurrenceDefinition) or
+ *      owningType.oclIsKindOf(OccurrenceUsage))
+ * portionKind <> null implies isPortion
  * <!-- end-model-doc -->
  *
  * <p>
@@ -116,7 +122,7 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this <code>OccurrenceUsage</code> represents the usage of the specific individual (or portion of it) represented by its <code>individualDefinition</code>.</p>
+	 * <p>Whether this <code>OccurrenceUsage</code> represents the usage of the specific individual represented by its <code>individualDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Individual</em>' attribute.
 	 * @see #setIsIndividual(boolean)
@@ -142,7 +148,7 @@ public interface OccurrenceUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The kind of (temporal) portion of the life of the <code>occurrenceDefinition</code> represented by this <code>OccurrenceUsage</code>, if it is so restricted.</p>
+	 * <p>The kind of temporal portion (time slice or snapshot) is represented by this <code>OccurrenceUsage</code>. If <code>portionKind</code> is not null, then the <code>owningType</code> of the <code>OccurrenceUsage</code> must be non-null, and the <code>OccurrenceUsage</code> represents portions of the featuring instance of the <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Portion Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.PortionKind

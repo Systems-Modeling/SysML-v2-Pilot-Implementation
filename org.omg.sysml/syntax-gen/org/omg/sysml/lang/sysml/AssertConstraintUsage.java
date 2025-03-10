@@ -41,8 +41,8 @@ package org.omg.sysml.lang.sysml;
  * else
  *     specializesFromLibrary('Constraints::assertedConstraintChecks')
  * endif
- * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(ConstraintUsage)
+ * referencedFeaureTarget() <> null implies
+ *     referencedFeatureTarget().oclIsKindOf(ConstraintUsage)
  * <!-- end-model-doc -->
  *
  * <p>

@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.MetadataUsage;
@@ -69,6 +69,7 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#isVariation <em>Is Variation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariant <em>Variant</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getDirectedUsage <em>Directed Usage</em>}</li>
@@ -98,7 +99,6 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRendering <em>Owned Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMetadata <em>Owned Metadata</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -131,6 +131,15 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -393,15 +402,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_METADATA__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_METADATA).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -625,8 +625,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<FlowConnectionUsage> getOwnedFlow() {
-		return (EList<FlowConnectionUsage>)OWNED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<FlowUsage> getOwnedFlow() {
+		return (EList<FlowUsage>)OWNED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -805,6 +805,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return isVariation();
 			case SysMLPackage.DEFINITION__VARIANT:
 				return getVariant();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 			case SysMLPackage.DEFINITION__USAGE:
@@ -863,8 +865,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return getOwnedRendering();
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				return getOwnedMetadata();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -884,6 +884,10 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__VARIANT:
 				getVariant().clear();
 				getVariant().addAll((Collection<? extends Usage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -931,7 +935,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return;
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				getOwnedFlow().clear();
-				getOwnedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
+				getOwnedFlow().addAll((Collection<? extends FlowUsage>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
 				getOwnedInterface().clear();
@@ -1001,10 +1005,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				getOwnedMetadata().clear();
 				getOwnedMetadata().addAll((Collection<? extends MetadataUsage>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1022,6 +1022,9 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return;
 			case SysMLPackage.DEFINITION__VARIANT:
 				getVariant().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
 				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -1110,9 +1113,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				getOwnedMetadata().clear();
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1129,6 +1129,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return isVariation != IS_VARIATION_EDEFAULT;
 			case SysMLPackage.DEFINITION__VARIANT:
 				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__USAGE:
@@ -1187,8 +1189,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return OWNED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				return OWNED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -47,6 +47,16 @@ import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
  */
 public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
+	public static final String BASE_PATH_OPTION_LONG_NAME = "base-path-url";
+	public static final String LIBRARY_OPTION_LONG_NAME = "library-base-path";
+	public static final String BRANCH_OPTION = "Project branch to use. If none given the default branch of the project is used";
+	public static final String PROJECT_NAME_OPTION_DESCRIPTION = "project name to upload the model into. If not specified a unique name is generated based on the selected folders and the current timestamp";
+	public static final String DERIVED_OPTION_DESCRIPTION = "specifies that derived attributes should be included (the default is not to)";
+	public static final String IMPLICIT_GEN_OPTION_DESCRIPTION = "specifies that implicit generalizations should be generated (the default is not to)";
+	public static final String VERBOSE_MODE_OPTION_DESCRIPTION = "verbose mode";
+	public static final String BASE_PATH_OPTION_DESCRIPTION = "gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)";
+	public static final String LIBRARY_OPTION_DESCRIPTION = "gives the base path to used for reading model library resources";
+	
 	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
 	private boolean isAddDerivedElements = false;
@@ -123,13 +133,13 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 *          prepended to arguments for library model files.
 	 */
 	protected String[] processArgs(String[] args) {
-		var libraryPathOption = new Option("l", true, "gives the base path to used for reading model library resources");
-		var basePathOption = new Option("b", true, "");
-		var isVerboseOption = new Option("v", false, "");
-		var addImplicitsOption = new Option("g", "");
-		var addDerivedOption = new Option("d", "");
-		var projectOption = new Option("p", true, "");
-		var branchOption = new Option("br", true, "");
+		var libraryPathOption = new Option("l", LIBRARY_OPTION_LONG_NAME, true, LIBRARY_OPTION_DESCRIPTION);
+		var basePathOption = new Option("b", BASE_PATH_OPTION_LONG_NAME, true, BASE_PATH_OPTION_DESCRIPTION);
+		var isVerboseOption = new Option("v", false, VERBOSE_MODE_OPTION_DESCRIPTION);
+		var addImplicitsOption = new Option("g", IMPLICIT_GEN_OPTION_DESCRIPTION);
+		var addDerivedOption = new Option("d", DERIVED_OPTION_DESCRIPTION);
+		var projectOption = new Option("p", true, PROJECT_NAME_OPTION_DESCRIPTION);
+		var branchOption = new Option(null, "branch", true, BRANCH_OPTION);
 		
 		libraryPathOption.setRequired(true);
 		basePathOption.setRequired(true);
@@ -148,7 +158,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				.addOption(projectOption)
 				.addOption(branchOption);
 		
-		CommandLineParser parser = new DefaultParser();
+		CommandLineParser parser = new DefaultParser(false);
 		
 		try {
 			CommandLine cli = parser.parse(options, args);

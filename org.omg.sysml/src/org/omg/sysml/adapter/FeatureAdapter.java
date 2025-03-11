@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -48,12 +49,14 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
@@ -507,8 +510,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public boolean isComputeRedefinitions() {
 		Feature target = getTarget();
+		Type owningType = target.getOwningType();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!(target.getOwningType() instanceof InvocationExpression) ||
+				(!(owningType instanceof InvocationExpression || isConstructorResult(owningType)) ||
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
@@ -599,8 +603,21 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
-		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
-			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
+		if (type == owningType) {
+			return filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type));
+		} else if (isConstructorResult(owningType)) {
+			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
+			if (type == instantiatedType) {
+				return instantiatedType.getFeature().stream().filter(f->
+					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
+			}
+		}
+		return filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
+	}
+	
+	protected static boolean isConstructorResult(Type type) {
+		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
+				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {

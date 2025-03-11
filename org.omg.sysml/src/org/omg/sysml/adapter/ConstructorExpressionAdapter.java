@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,60 +21,30 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public class InvocationExpressionAdapter extends InstantiationExpressionAdapter {
+public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter {
 
-	public InvocationExpressionAdapter(InvocationExpression element) {
+	public ConstructorExpressionAdapter(ConstructorExpression element) {
 		super(element);
 	}
 	
 	@Override
-	public InvocationExpression getTarget() {
-		return (InvocationExpression)super.getTarget();
+	public ConstructorExpression getTarget() {
+		return (ConstructorExpression)super.getTarget();
 	}
-	
-	// Implicit generalization
-	
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
 		
-		// checkInvocationExpressionSpecialization
-		Type instantiatedType = getTarget().getInstantiatedType();
-		if (instantiatedType != null) {
-			if (instantiatedType instanceof Feature) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), instantiatedType);
-			} else {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), instantiatedType);
-			}			
-		}
-	}
-	
 	// Transformation
 	
-	protected void createSelfResultConnector() {
-		// checkInvocationExpressionBehaviorBindingConnector
-		InvocationExpression target = getTarget();
-		Type instantiatedType = target.getInstantiatedType();
-		if (instantiatedType != null && !isFunctionType(instantiatedType)) {
-			Feature result = TypeUtil.getOwnedResultParameterOf(target);
-			if (result != null) {
-				addBindingConnector(target, result);
-			}
-		}		
-	}
-	
 	protected void addResultTyping() {
-		// checkInvocationExpressionBehaviorResultSpecialization
-		InvocationExpression target = getTarget();
+		// checkConstructorExpressionResultSpecialization
+		ConstructorExpression target = getTarget();
 		Type instantiatedType = target.getInstantiatedType();
-		if (instantiatedType != null && !isFunctionType(instantiatedType)) {
+		if (instantiatedType != null) {
 			Feature result = TypeUtil.getOwnedResultParameterOf(target);
 			if (result != null) {
 				if (instantiatedType instanceof Feature) {
@@ -85,12 +55,7 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 			}
 		}
 	}
-	
-	protected static boolean isFunctionType(Type type) {
-		return type instanceof Function ||
-			   type instanceof Feature && ((Feature)type).getType().stream().anyMatch(Function.class::isInstance);
-	}
-	
+		
 	@Override
 	public void addAdditionalMembers() {
 		TypeUtil.addResultParameterTo(getTarget());
@@ -99,7 +64,6 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		createSelfResultConnector();
 		addResultTyping();
 	}
 	

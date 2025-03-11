@@ -65,6 +65,8 @@ public class ImplicitGeneralizationMap {
 		put(ConnectorImpl.class, "object", "Objects::linkObjects");
 		put(ConnectorImpl.class, "binaryObject", "Objects::binaryLinkObjects");
 		
+		put(ConstructorExpressionImpl.class, "base", "Performances::constructorEvaluations");
+
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
 		put(ExpressionImpl.class, "base", "Performances::evaluations");

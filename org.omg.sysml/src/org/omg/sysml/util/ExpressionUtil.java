@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -39,6 +40,7 @@ import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -176,4 +178,9 @@ public class ExpressionUtil {
 		return (Expression)TypeUtil.getFeatureByMembershipIn(type, ResultExpressionMembership.class);
 	}
 
+	public static boolean isConstructorResult(Type type) {
+		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
+				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
+	}
+	
 }

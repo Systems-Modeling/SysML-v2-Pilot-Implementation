@@ -49,7 +49,6 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -60,6 +59,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -209,7 +209,7 @@ public class FeatureAdapter extends TypeAdapter {
 			Expression value = valuation.getValue();
 			if (value != null) {
 				ElementUtil.transform(value);
-				Feature result = value.getResult();
+				Feature result = FeatureUtil.chainFeatures(value, value.getResult());
 				return result;
 			}
 		}
@@ -230,7 +230,7 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), FeatureUtil.chainFeatures((Feature)result.getOwningType(), result));
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 		}
 	}
 	
@@ -512,7 +512,7 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Type owningType = target.getOwningType();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!(owningType instanceof InvocationExpression || isConstructorResult(owningType)) ||
+				(!(owningType instanceof InvocationExpression || ExpressionUtil.isConstructorResult(owningType)) ||
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
@@ -605,7 +605,7 @@ public class FeatureAdapter extends TypeAdapter {
 		Type owningType = getTarget().getOwningType();
 		if (type == owningType) {
 			return filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type));
-		} else if (isConstructorResult(owningType)) {
+		} else if (ExpressionUtil.isConstructorResult(owningType)) {
 			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
 			if (type == instantiatedType) {
 				return instantiatedType.getFeature().stream().filter(f->
@@ -613,11 +613,6 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 		}
 		return filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
-	}
-	
-	protected static boolean isConstructorResult(Type type) {
-		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
-				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
@@ -736,7 +731,7 @@ public class FeatureAdapter extends TypeAdapter {
 			} else {
 				featuringTypes = target.getFeaturingType();
 			}
-			addBindingConnector(featuringTypes, FeatureUtil.chainFeatures((Feature)result.getOwningType(), result), target);
+			addBindingConnector(featuringTypes, result, target);
 		}
 	}
 	

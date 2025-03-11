@@ -36,9 +36,11 @@ import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 
@@ -127,7 +129,10 @@ public class InvocationExpressionImpl extends InstantiationExpressionImpl implem
 
 		@Override
 		protected List<Expression> delegateList() {
-			return getArgument();
+			return TypeUtil.getOwnedParametersOf(InvocationExpressionImpl.this).stream().
+						filter(param->param.getDirection() == FeatureDirectionKind.IN).
+						map(FeatureUtil::getValueExpressionFor).
+						toList();
 		}
 
 		@Override

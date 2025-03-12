@@ -571,15 +571,28 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	/**
 	 * Get the relevant Features that may be redefined from the given Type.
-	 * If this is an end Feature, return the end Features of the Type,
-	 * otherwise return the relevant features of the type.
+	 * This includes end features, owned features of constructor results, and
+	 * generally parameters.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
 		return type == null? Collections.emptyList():
 			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   ExpressionUtil.isConstructorResult(target.getOwningType())? getConstructorRelevantFeatures(type):
 			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
 			   Collections.emptyList();
+	}
+	
+	protected List<? extends Feature> getConstructorRelevantFeatures(Type type) {
+		Type owningType = getTarget().getOwningType();
+		if (type == owningType) {
+			return type.getOwnedFeature();
+		} else {
+			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
+			return type != instantiatedType? Collections.emptyList():
+				instantiatedType.getFeature().stream().filter(f->
+					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
+		}
 	}
 	
 	/**
@@ -603,16 +616,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
-		if (type == owningType) {
-			return filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type));
-		} else if (ExpressionUtil.isConstructorResult(owningType)) {
-			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
-			if (type == instantiatedType) {
-				return instantiatedType.getFeature().stream().filter(f->
-					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
-			}
-		}
-		return filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
+		return filterIgnoredParameters(type == owningType? 
+					TypeUtil.getOwnedParametersOf(type): 
+					TypeUtil.getAllParametersOf(type, skip));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {

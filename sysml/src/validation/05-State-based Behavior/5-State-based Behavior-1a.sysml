@@ -83,7 +83,7 @@ package '5-State-based Behavior-1a' {
 					first off
 					accept 'Vehicle Start Signal' 
 					if vehicle1_c1.'brake pedal depressed'
-					do send 'Start Signal'() to vehicle1_c1.vehicleController
+					do send new 'Start Signal'() to vehicle1_c1.vehicleController
 					then starting {
 					/*
 					 * The transition definition for a transition usage is always implicit.
@@ -146,7 +146,7 @@ package '5-State-based Behavior-1a' {
 				transition 'normal-degraded'
 					first normal
 					accept when 'sense temperature'.temp > vehicle1_c1.Tmax
-					do send 'Over Temp'() to vehicle1_c1.vehicleController 
+					do send new 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				
 				state maintenance;

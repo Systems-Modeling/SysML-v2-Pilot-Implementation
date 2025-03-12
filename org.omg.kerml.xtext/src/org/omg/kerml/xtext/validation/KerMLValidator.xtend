@@ -319,17 +319,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR = "validateOperatorExpressionBracketOperator_"
 	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR_MSG = "Use #(...) for indexing"
 	
-	public static val INVALID_ITEM_FLOW_ITEM_FEATURE = "validateItemFlowItemFeature"
-	public static val INVALID_ITEM_FLOW_ITEM_FEATURE_MSG = "Only one item feature is allowed"	
+	public static val INVALID_FLOW_ITEM_FEATURE = "validateFlowItemFeature"
+	public static val INVALID_FLOW_ITEM_FEATURE_MSG = "Only one item feature is allowed"	
 		
-	public static val INVALID_ITEM_FLOW_END_OWNING_TYPE = "validateItemFlowEndOwningType"
-	public static val INVALID_ITEM_FLOW_END_OWNING_TYPE_MSG = "Item flow end not allowed"
-	public static val INVALID_ITEM_FLOW_END_NESTED_FEATURE = "validateItemFlowEndNestedFeature"
-	public static val INVALID_ITEM_FLOW_END_NESTED_FEATURE_MSG = "Item flow end must have a nested input or output feature"
-	public static val INVALID_ITEM_FLOW_END_SUBSETTING = 'validateItemFlowEndSubsetting'
-	public static val INVALID_ITEM_FLOW_END_SUBSETTING_MSG = "Cannot identify item flow end (use dot notation)"
-	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING = "validateItemFlowEndImplicitSubsetting"
-	public static val INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
+	public static val INVALID_FLOW_END_OWNING_TYPE = "validateFlowEndOwningType"
+	public static val INVALID_FLOW_END_OWNING_TYPE_MSG = "Flow end not allowed"
+	public static val INVALID_FLOW_END_NESTED_FEATURE = "validateFlowEndNestedFeature"
+	public static val INVALID_FLOW_END_NESTED_FEATURE_MSG = "Flow end must have a nested input or output feature"
+	public static val INVALID_FLOW_END_SUBSETTING = "validateFlowEndSubsetting"
+	public static val INVALID_FLOW_END_SUBSETTING_MSG = "Cannot identify flow end (use dot notation)"
+	public static val INVALID_FLOW_END_IMPLICIT_SUBSETTING = "validateFlowEndImplicitSubsetting"
+	public static val INVALID_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
 	
 	public static val INVALID_FEATURE_VALUE_IS_INITIAL = "validateFeatureValueIsInitial"
 	public static val INVALID_FEATURE_VALUE_IS_INITIAL_MSG = "Initialized feature must be variable"
@@ -1247,33 +1247,33 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// }
 	
 	@Check
-	def checkItemFlow(Flow flow) {
-		// validateItemFlowItemFeature
+	def checkFlow(Flow flow) {
+		// validateFlowItemFeature
 		val items = flow.ownedFeature.filter[f | f instanceof PayloadFeature]
-		checkAtMostOne(items, INVALID_ITEM_FLOW_ITEM_FEATURE_MSG, null, INVALID_ITEM_FLOW_ITEM_FEATURE)
+		checkAtMostOne(items, INVALID_FLOW_ITEM_FEATURE_MSG, null, INVALID_FLOW_ITEM_FEATURE)
 	}
 	
 	@Check
-	def checkItemFlowEnd(FlowEnd flowEnd) {
-		// validateItemFlowEndIsEnd is automatically satisfied
+	def checkFlowEnd(FlowEnd flowEnd) {
+		// validateFlowEndIsEnd is automatically satisfied
 		
-		// validateItemFlowEndNestedFeature
+		// validateFlowEndNestedFeature
 		if (flowEnd.ownedFeature.size != 1) {
-			error(INVALID_ITEM_FLOW_END_NESTED_FEATURE_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_NESTED_FEATURE)
+			error(INVALID_FLOW_END_NESTED_FEATURE_MSG, flowEnd, null, INVALID_FLOW_END_NESTED_FEATURE)
 		}
 		
-		// validateItemFlowEndOwningType
+		// validateFlowEndOwningType
 		if (!(flowEnd.owningType instanceof Flow)) {
-			error(INVALID_ITEM_FLOW_END_OWNING_TYPE_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_OWNING_TYPE)
+			error(INVALID_FLOW_END_OWNING_TYPE_MSG, flowEnd, null, INVALID_FLOW_END_OWNING_TYPE)
 		}
 	
-		// TODO: Add validateItemFlowEndSubsetting? validateItemFlowEndImplicitSubsetting?
+		// TODO: Add validateFlowEndSubsetting? validateFlowEndImplicitSubsetting?
 		if (FeatureUtil.getSubsettedNotRedefinedFeaturesOf(flowEnd).isEmpty) {
-			error(INVALID_ITEM_FLOW_END_SUBSETTING_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_SUBSETTING)
+			error(INVALID_FLOW_END_SUBSETTING_MSG, flowEnd, null, INVALID_FLOW_END_SUBSETTING)
 		} else if (flowEnd.ownedSubsetting.isEmpty) {
 			val features = flowEnd.ownedFeature
 			if (!features.isEmpty && !features.get(0).ownedRedefinition.isEmpty) {
-				warning(INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING_MSG, flowEnd, null, INVALID_ITEM_FLOW_END_IMPLICIT_SUBSETTING)
+				warning(INVALID_FLOW_END_IMPLICIT_SUBSETTING_MSG, flowEnd, null, INVALID_FLOW_END_IMPLICIT_SUBSETTING)
 			}
 		}
 	}

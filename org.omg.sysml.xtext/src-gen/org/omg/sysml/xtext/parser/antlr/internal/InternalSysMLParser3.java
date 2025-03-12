@@ -7652,7 +7652,7 @@ public abstract class InternalSysMLParser3 extends InternalSysMLParser2 {
             this.transition = dfa_87;
         }
         public String getDescription() {
-            return "6106:2: (this_OccurrenceUsage_0= ruleOccurrenceUsage | this_IndividualUsage_1= ruleIndividualUsage | this_PortionUsage_2= rulePortionUsage | this_EventOccurrenceUsage_3= ruleEventOccurrenceUsage | this_ItemUsage_4= ruleItemUsage | this_PartUsage_5= rulePartUsage | this_ViewUsage_6= ruleViewUsage | this_RenderingUsage_7= ruleRenderingUsage | this_PortUsage_8= rulePortUsage | this_ConnectionUsage_9= ruleConnectionUsage | this_InterfaceUsage_10= ruleInterfaceUsage | this_AllocationUsage_11= ruleAllocationUsage | this_Message_12= ruleMessage | this_FlowConnectionUsage_13= ruleFlowConnectionUsage | this_SuccessionFlowConnectionUsage_14= ruleSuccessionFlowConnectionUsage )";
+            return "6106:2: (this_OccurrenceUsage_0= ruleOccurrenceUsage | this_IndividualUsage_1= ruleIndividualUsage | this_PortionUsage_2= rulePortionUsage | this_EventOccurrenceUsage_3= ruleEventOccurrenceUsage | this_ItemUsage_4= ruleItemUsage | this_PartUsage_5= rulePartUsage | this_ViewUsage_6= ruleViewUsage | this_RenderingUsage_7= ruleRenderingUsage | this_PortUsage_8= rulePortUsage | this_ConnectionUsage_9= ruleConnectionUsage | this_InterfaceUsage_10= ruleInterfaceUsage | this_AllocationUsage_11= ruleAllocationUsage | this_Message_12= ruleMessage | this_FlowUsage_13= ruleFlowUsage | this_SuccessionFlowUsage_14= ruleSuccessionFlowUsage )";
         }
     }
     static final String dfa_88s = "\u031f\uffff";

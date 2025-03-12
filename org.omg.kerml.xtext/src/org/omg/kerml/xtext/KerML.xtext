@@ -271,8 +271,8 @@ FeatureElement returns SysML::Feature :
 	| Connector
 	| BindingConnector
 	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
+	| Flow
+	| SuccessionFlow
 ;
 
 /* PACKAGES */
@@ -983,53 +983,53 @@ Interaction returns SysML::Interaction :
 	ClassifierDeclaration TypeBody
 ;
 
-/* Item Flows */
+/* Flows */
 
-ItemFlow returns SysML::Flow :
+Flow returns SysML::Flow :
 	FeaturePrefix 'flow' 
-	ItemFlowDeclaration TypeBody
+	FlowDeclaration TypeBody
 ;
 
-SuccessionItemFlow returns SysML::SuccessionFlow :
-	FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
+SuccessionFlow returns SysML::SuccessionFlow :
+	FeaturePrefix 'succession' 'flow' FlowDeclaration TypeBody
 ;
 
-fragment ItemFlowDeclaration returns SysML::Flow :
+fragment FlowDeclaration returns SysML::Flow :
 	  FeatureDeclaration? ValuePart?
-      ( 'of'  ownedRelationship += ItemFeatureMember )?
-	  ( 'from' ownedRelationship += ItemFlowEndMember 
-	    'to' ownedRelationship += ItemFlowEndMember )?
+      ( 'of'  ownedRelationship += PayloadFeatureMember )?
+	  ( 'from' ownedRelationship += FlowEndMember 
+	    'to' ownedRelationship += FlowEndMember )?
     | ( isSufficient ?= 'all' )?
-      ownedRelationship += ItemFlowEndMember 'to'
-	  ownedRelationship += ItemFlowEndMember
+      ownedRelationship += FlowEndMember 'to'
+	  ownedRelationship += FlowEndMember
 ;
 
-ItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFeature 
+PayloadFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += PayloadFeature 
 ;
 
-ItemFeature returns SysML::PayloadFeature :
-	  Identification? ItemFeatureSpecializationPart ValuePart?
+PayloadFeature returns SysML::PayloadFeature :
+	  Identification? PayloadFeatureSpecializationPart ValuePart?
 	| Identification? ValuePart
     | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
     | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-fragment ItemFeatureSpecializationPart returns SysML::Feature :
+fragment PayloadFeatureSpecializationPart returns SysML::Feature :
 	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
 	| MultiplicityPart FeatureSpecialization+
 ;
 
-ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ItemFlowEnd 
+FlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += FlowEnd 
 ;
 
-ItemFlowEnd returns SysML::FlowEnd :
-	( ownedRelationship += ItemFlowEndSubsetting )?
-	ownedRelationship += ItemFlowFeatureMember
+FlowEnd returns SysML::FlowEnd :
+	( ownedRelationship += FlowEndSubsetting )?
+	ownedRelationship += FlowFeatureMember
 ;
 
-ItemFlowEndSubsetting returns SysML::ReferenceSubsetting :
+FlowEndSubsetting returns SysML::ReferenceSubsetting :
 	  referencedFeature = [SysML::Feature | QualifiedName] '.'
 	| ownedRelatedElement += FeatureChainPrefix
 ;
@@ -1039,15 +1039,15 @@ FeatureChainPrefix returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
-ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFlowFeature 
+FlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FlowFeature 
 ;
 
-ItemFlowFeature returns SysML::Feature :
-	ownedRelationship += ItemFlowRedefinition
+FlowFeature returns SysML::Feature :
+	ownedRelationship += FlowRedefinition
 ;
 
-ItemFlowRedefinition returns SysML::Redefinition :
+FlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 

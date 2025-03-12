@@ -8494,7 +8494,7 @@ public abstract class InternalSysMLParser5 extends InternalSysMLParser4 {
             this.transition = dfa_187;
         }
         public String getDescription() {
-            return "13780:2: (this_PayloadFeature_0= rulePayloadFeature[$current] | ( (this_Identification_1= ruleIdentification[$current] )? (this_PayloadFeatureSpecializationPart_2= rulePayloadFeatureSpecializationPart[$current] )? this_TriggerValuePart_3= ruleTriggerValuePart[$current] ) )";
+            return "13780:2: (this_Payload_0= rulePayload[$current] | ( (this_Identification_1= ruleIdentification[$current] )? (this_PayloadFeatureSpecializationPart_2= rulePayloadFeatureSpecializationPart[$current] )? this_TriggerValuePart_3= ruleTriggerValuePart[$current] ) )";
         }
     }
     static final String dfa_188s = "\34\uffff";

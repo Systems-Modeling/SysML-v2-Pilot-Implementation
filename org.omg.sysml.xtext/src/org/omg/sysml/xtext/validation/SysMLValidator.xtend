@@ -174,16 +174,16 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE = "validateEventOccurrenceUsageReferent"
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS = "validateOccurrenceDefinitionLifeClass"
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1 = "Must have exactly one LifeClass."
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2 = "Must not have a LifeClass."
-	
 	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
 	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "At most one individual definition is allowed."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG = "An individual must be typed by one individual definition."	
+	public static val INVALID_OCCURRENCE_USAGE_IS_PORTION = "validateOccurrenceUsageIsPortion"
+	public static val INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG = "Must be a portion."	
+	public static val INVALID_OCCURRENCE_USAGE_PORTION_KIND = "validateOccurrenceUsageIsPortion"
+	public static val INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG = "Must be owned by an occurrence definition or usage."	
 	
 	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION = "validateClassSpecialization"
 	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG = "Cannot specialize attribute definition"    	
@@ -576,6 +576,17 @@ class SysMLValidator extends KerMLValidator {
 		// validateOccurrenceUsageIndividualUsage
 		} else if (usg.isIndividual && nIndividualDefs != 1) {
 			error (INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE)
+		}
+		
+		// validateOccurrenceUsageIsPortion
+		if (usg.isIndividual && !usg.isPortion) {
+			error(INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG, usg, null, INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG)
+		}
+		
+		// validateOccurrenceUsagePortionKind
+		val owningType = usg.owningType;
+		if (usg.portionKind === null && !(owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage )) {
+			error(INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG, usg, null, INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG)
 		}
 
 	}

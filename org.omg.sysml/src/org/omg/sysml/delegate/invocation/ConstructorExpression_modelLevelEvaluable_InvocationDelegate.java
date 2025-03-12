@@ -26,6 +26,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
+import org.omg.sysml.lang.sysml.Feature;
 
 public class ConstructorExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
 
@@ -35,6 +37,10 @@ public class ConstructorExpression_modelLevelEvaluable_InvocationDelegate extend
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		return false;
+		ConstructorExpression self = (ConstructorExpression) target;
+		@SuppressWarnings("unchecked")
+		EList<Feature> visited = (EList<Feature>) arguments.get(0);
+
+		return self.getArgument().stream().allMatch(arg->arg.modelLevelEvaluable(visited));
 	}
 }

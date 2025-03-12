@@ -45,8 +45,8 @@ package 'Streaming Example' {
 			in ref myIn;
 		}
 		//* XPECT errors ---
-			"Cannot identify item flow end (use dot notation)" at "B::myOut"
-			"Cannot identify item flow end (use dot notation)" at "C::myIn"
+			"Cannot identify flow end (use dot notation)" at "B::myOut"
+			"Cannot identify flow end (use dot notation)" at "C::myIn"
 			"Must be an accessible feature (use dot notation for nesting)" at "B::myOut"
 			"Must be an accessible feature (use dot notation for nesting)" at "C::myIn"
 		    --- */

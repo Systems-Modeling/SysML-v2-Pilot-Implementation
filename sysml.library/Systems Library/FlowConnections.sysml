@@ -46,7 +46,7 @@ standard library package FlowConnections {
         end occurrence source: Occurrence :>> Transfer::source;
         end occurrence target: Occurrence :>> Transfer::target;
         
-        ref :>> payload :>> 'item';
+        ref payload :>> MessageConnection::payload, Transfer::payload;
         
         private ref action thisConnection = self;
         

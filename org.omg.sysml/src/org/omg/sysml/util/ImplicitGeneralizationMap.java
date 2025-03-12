@@ -90,7 +90,7 @@ public class ImplicitGeneralizationMap {
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
-		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::item");
+		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
 		put(FlowImpl.class, "base", "Transfers::flowTransfers");
 		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");

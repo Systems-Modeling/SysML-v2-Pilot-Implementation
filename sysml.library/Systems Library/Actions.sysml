@@ -189,7 +189,7 @@ standard library package Actions {
 		 * from a designated sender Occurrence with a given payload, optionally to a designated receiver.
 		 */
 	
-		in payload :>> sentItem;
+		in :>> payload [0..*];
 	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageConnection;
 	}
 	
@@ -206,7 +206,7 @@ standard library package Actions {
 		 * An AcceptMessageAction is an Action that identifies an incomingTransferToSelf
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
-		inout payload :>> acceptedItem;
+		inout :>> payload;
 		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageConnection;
 	}
 	

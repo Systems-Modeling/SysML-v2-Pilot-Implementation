@@ -4,13 +4,13 @@ Author: Hans Peter de Koning, DEKonsult.
 
 == Overview
 
-This is a generator tool written in Python, that auto-generates the SysML v2 standard library packages for quantities and measurement references, in particular measurement units and coordinate frames.
+This is a generator tool written in Python, that auto-generates the SysML v2 standard library packages for the ISO/IEC 80000 quantities and measurement references, in particular measurement units and coordinate frames.
 
-The primary input is an Excel workbook that captures the ISQ quantities and as well as the SI measurement units defined in the ISO/IEC 80000 series of standards.
+The primary input is an Excel workbook (`data/iso-iec-80000/iso_iec_80000_quantities_and_units.xlsx`) that captures the ISQ quantities and as well as the SI measurement units defined in the ISO/IEC 80000 series of standards.
 
-Note. ISQ stands for ``International System of Quantities'', and ``SI'' stands for ``International System of Units''.
+Note. ISQ stands for "International System of Quantities", and SI stands for "International System of Units".
 
-The generator also contains tools to generate the USCustomaryUnits standard library package based on the official definitions, including their official conversion factors, as defined in NIST SP 811 Annex B.
+A next release of the generator will also contain tools to generate the `USCustomaryUnits.sysml` standard library package based on the official definitions, including their official conversion factors, as defined in NIST SP 811 Annex B.
 
 == Mathematical notation
 
@@ -48,9 +48,18 @@ The generator has been tested with Windows 11, but should run also on any MacOS 
 Run the generator and update the standard domain libraries
 
 * Simplest is to run script `quantities_lib_generator.py` directly in the PyCharm IDE.
+** Before first use, configure PyCharm as follows:
+*** Via menu _File > Settings > Project > Python Interpreter_, select python v3.11 or higher using your favorite environment manager.
+*** Install module `openpyxl`, for interaction with Excel `.xlsx` files.
+** Open file `quantities_lib_generator.py` and run it by clicking the _run icon_ or selecting menu _Run_.
 * In case no IDE is used:
-** Ensure python v3.11 or higher is installed and available.
+** Ensure python v3.11 or higher is installed, and accessible via the command line.
 ** Open a terminal and change the working directory to the `tool-support/quantities_lib_generator` folder.
+** Install module `openpyxl` e.g. using:
++
+....
+$ pip install openpyxl
+....
 ** Run the following command:
 +
 ....

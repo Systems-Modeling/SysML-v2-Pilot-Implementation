@@ -27,7 +27,7 @@ standard library package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
-	private import FlowConnections::MessageConnection;
+	private import Flows::MessageAction;
 	private import OccurrenceFunctions::destroy;
 	
 	abstract action def Action :> Performance {
@@ -190,7 +190,7 @@ standard library package Actions {
 		 */
 	
 		in :>> payload [0..*];
-	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageConnection;
+	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageAction;
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions, sendPerformances {
@@ -207,7 +207,7 @@ standard library package Actions {
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
 		inout :>> payload;
-		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageConnection;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageAction;
 	}
 	
 	action def AcceptAction :> AcceptMessageAction {
@@ -330,7 +330,7 @@ standard library package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageConnection :>> trigger;
+		ref acceptedMessage : MessageTransfer, MessageAction :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 

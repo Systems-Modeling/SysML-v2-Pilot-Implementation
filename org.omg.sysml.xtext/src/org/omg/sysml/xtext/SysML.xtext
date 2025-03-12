@@ -800,7 +800,9 @@ OccurrenceDefKeyword :
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix?
-	( isIndividual ?= 'individual' )?
+	( isIndividual ?= 'individual' 
+	  ownedRelationship += EmptyMultiplicityMember
+	)?
 	DefinitionExtensionKeyword*
 ;
 
@@ -810,7 +812,16 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix? isIndividual ?= 'individual' 
+	ownedRelationship += EmptyMultiplicityMember
 	DefinitionExtensionKeyword* 'def' Definition
+;
+
+EmptyMultiplicityMember returns SysML::OwningMembership :
+        ownedRelatedElement += EmptyMultiplicity
+;
+
+EmptyMultiplicity returns SysML::Multiplicity :
+	{SysML::Multiplicity}
 ;
 
 /* Occurrence Usages */

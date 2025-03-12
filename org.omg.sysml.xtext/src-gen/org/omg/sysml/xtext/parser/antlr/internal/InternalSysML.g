@@ -7350,16 +7350,37 @@ ruleOccurrenceDefinitionPrefix[EObject in_current]  returns [EObject current=in_
 		)?
 		(
 			(
-				lv_isIndividual_1_0='individual'
-				{
-					newLeafNode(lv_isIndividual_1_0, grammarAccess.getOccurrenceDefinitionPrefixAccess().getIsIndividualIndividualKeyword_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOccurrenceDefinitionPrefixRule());
+				(
+					lv_isIndividual_1_0='individual'
+					{
+						newLeafNode(lv_isIndividual_1_0, grammarAccess.getOccurrenceDefinitionPrefixAccess().getIsIndividualIndividualKeyword_1_0_0());
 					}
-					setWithLastConsumed($current, "isIndividual", lv_isIndividual_1_0 != null, "individual");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getOccurrenceDefinitionPrefixRule());
+						}
+						setWithLastConsumed($current, "isIndividual", lv_isIndividual_1_0 != null, "individual");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOccurrenceDefinitionPrefixAccess().getOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_1_1_0());
+					}
+					lv_ownedRelationship_2_0=ruleEmptyMultiplicityMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOccurrenceDefinitionPrefixRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.xtext.SysML.EmptyMultiplicityMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)?
 		(
@@ -7369,9 +7390,9 @@ ruleOccurrenceDefinitionPrefix[EObject in_current]  returns [EObject current=in_
 				}
 				newCompositeNode(grammarAccess.getOccurrenceDefinitionPrefixAccess().getDefinitionExtensionKeywordParserRuleCall_2());
 			}
-			this_DefinitionExtensionKeyword_2=ruleDefinitionExtensionKeyword[$current]
+			this_DefinitionExtensionKeyword_3=ruleDefinitionExtensionKeyword[$current]
 			{
-				$current = $this_DefinitionExtensionKeyword_2.current;
+				$current = $this_DefinitionExtensionKeyword_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*
@@ -7470,32 +7491,111 @@ ruleIndividualDefinition returns [EObject current=null]
 			)
 		)
 		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_2_0());
+				}
+				lv_ownedRelationship_2_0=ruleEmptyMultiplicityMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndividualDefinitionRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_2_0,
+						"org.omg.sysml.xtext.SysML.EmptyMultiplicityMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getIndividualDefinitionRule());
 				}
-				newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getDefinitionExtensionKeywordParserRuleCall_2());
+				newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getDefinitionExtensionKeywordParserRuleCall_3());
 			}
-			this_DefinitionExtensionKeyword_2=ruleDefinitionExtensionKeyword[$current]
+			this_DefinitionExtensionKeyword_3=ruleDefinitionExtensionKeyword[$current]
 			{
-				$current = $this_DefinitionExtensionKeyword_2.current;
+				$current = $this_DefinitionExtensionKeyword_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*
-		otherlv_3='def'
+		otherlv_4='def'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getIndividualDefinitionAccess().getDefKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getIndividualDefinitionAccess().getDefKeyword_4());
 		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getIndividualDefinitionRule());
 			}
-			newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getDefinitionParserRuleCall_4());
+			newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getDefinitionParserRuleCall_5());
 		}
-		this_Definition_4=ruleDefinition[$current]
+		this_Definition_5=ruleDefinition[$current]
 		{
-			$current = $this_Definition_4.current;
+			$current = $this_Definition_5.current;
 			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleEmptyMultiplicityMember
+entryRuleEmptyMultiplicityMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEmptyMultiplicityMemberRule()); }
+	iv_ruleEmptyMultiplicityMember=ruleEmptyMultiplicityMember
+	{ $current=$iv_ruleEmptyMultiplicityMember.current; }
+	EOF;
+
+// Rule EmptyMultiplicityMember
+ruleEmptyMultiplicityMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getEmptyMultiplicityMemberAccess().getOwnedRelatedElementEmptyMultiplicityParserRuleCall_0());
+			}
+			lv_ownedRelatedElement_0_0=ruleEmptyMultiplicity
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getEmptyMultiplicityMemberRule());
+				}
+				add(
+					$current,
+					"ownedRelatedElement",
+					lv_ownedRelatedElement_0_0,
+					"org.omg.sysml.xtext.SysML.EmptyMultiplicity");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleEmptyMultiplicity
+entryRuleEmptyMultiplicity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getEmptyMultiplicityRule()); }
+	iv_ruleEmptyMultiplicity=ruleEmptyMultiplicity
+	{ $current=$iv_ruleEmptyMultiplicity.current; }
+	EOF;
+
+// Rule EmptyMultiplicity
+ruleEmptyMultiplicity returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			$current = forceCreateModelElement(
+				grammarAccess.getEmptyMultiplicityAccess().getMultiplicityAction(),
+				$current);
 		}
 	)
 ;

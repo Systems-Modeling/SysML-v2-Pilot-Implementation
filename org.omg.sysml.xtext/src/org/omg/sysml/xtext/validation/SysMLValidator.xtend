@@ -579,13 +579,14 @@ class SysMLValidator extends KerMLValidator {
 		}
 		
 		// validateOccurrenceUsageIsPortion
-		if (usg.isIndividual && !usg.isPortion) {
+		val portionKind = usg.portionKind
+		if (! (portionKind === null || usg.isPortion)) {
 			error(INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG, usg, null, INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG)
 		}
 		
 		// validateOccurrenceUsagePortionKind
 		val owningType = usg.owningType;
-		if (usg.portionKind === null && !(owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage )) {
+		if (!(portionKind === null || owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage)) {
 			error(INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG, usg, null, INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG)
 		}
 

@@ -4458,30 +4458,48 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OccurrenceDefinitionPrefix");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cBasicDefinitionPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Assignment cIsIndividualAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cIsIndividualAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsIndividualIndividualKeyword_1_0_0 = (Keyword)cIsIndividualAssignment_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
 		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 		//    BasicDefinitionPrefix?
-		//    ( isIndividual ?= 'individual' )?
+		//    ( isIndividual ?= 'individual'
+		//      ownedRelationship += EmptyMultiplicityMember
+		//    )?
 		//    DefinitionExtensionKeyword*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicDefinitionPrefix?
-		//( isIndividual ?= 'individual' )?
+		//( isIndividual ?= 'individual'
+		//  ownedRelationship += EmptyMultiplicityMember
+		//)?
 		//DefinitionExtensionKeyword*
 		public Group getGroup() { return cGroup; }
 		
 		//BasicDefinitionPrefix?
 		public RuleCall getBasicDefinitionPrefixParserRuleCall_0() { return cBasicDefinitionPrefixParserRuleCall_0; }
 		
-		//( isIndividual ?= 'individual' )?
-		public Assignment getIsIndividualAssignment_1() { return cIsIndividualAssignment_1; }
+		//( isIndividual ?= 'individual'
+		//  ownedRelationship += EmptyMultiplicityMember
+		//)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//isIndividual ?= 'individual'
+		public Assignment getIsIndividualAssignment_1_0() { return cIsIndividualAssignment_1_0; }
 		
 		//'individual'
-		public Keyword getIsIndividualIndividualKeyword_1_0() { return cIsIndividualIndividualKeyword_1_0; }
+		public Keyword getIsIndividualIndividualKeyword_1_0_0() { return cIsIndividualIndividualKeyword_1_0_0; }
+		
+		//ownedRelationship += EmptyMultiplicityMember
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		
+		//EmptyMultiplicityMember
+		public RuleCall getOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_1_1_0() { return cOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_1_1_0; }
 		
 		//DefinitionExtensionKeyword*
 		public RuleCall getDefinitionExtensionKeywordParserRuleCall_2() { return cDefinitionExtensionKeywordParserRuleCall_2; }
@@ -4516,17 +4534,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cBasicDefinitionPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cIsIndividualAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
-		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final Keyword cDefKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final RuleCall cDefinitionParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cDefKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cDefinitionParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//IndividualDefinition returns SysML::OccurrenceDefinition :
 		//    BasicDefinitionPrefix? isIndividual ?= 'individual'
+		//    ownedRelationship += EmptyMultiplicityMember
 		//    DefinitionExtensionKeyword* 'def' Definition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicDefinitionPrefix? isIndividual ?= 'individual'
+		//ownedRelationship += EmptyMultiplicityMember
 		//DefinitionExtensionKeyword* 'def' Definition
 		public Group getGroup() { return cGroup; }
 		
@@ -4539,14 +4561,48 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'individual'
 		public Keyword getIsIndividualIndividualKeyword_1_0() { return cIsIndividualIndividualKeyword_1_0; }
 		
+		//ownedRelationship += EmptyMultiplicityMember
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		
+		//EmptyMultiplicityMember
+		public RuleCall getOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_2_0() { return cOwnedRelationshipEmptyMultiplicityMemberParserRuleCall_2_0; }
+		
 		//DefinitionExtensionKeyword*
-		public RuleCall getDefinitionExtensionKeywordParserRuleCall_2() { return cDefinitionExtensionKeywordParserRuleCall_2; }
+		public RuleCall getDefinitionExtensionKeywordParserRuleCall_3() { return cDefinitionExtensionKeywordParserRuleCall_3; }
 		
 		//'def'
-		public Keyword getDefKeyword_3() { return cDefKeyword_3; }
+		public Keyword getDefKeyword_4() { return cDefKeyword_4; }
 		
 		//Definition
-		public RuleCall getDefinitionParserRuleCall_4() { return cDefinitionParserRuleCall_4; }
+		public RuleCall getDefinitionParserRuleCall_5() { return cDefinitionParserRuleCall_5; }
+	}
+	public class EmptyMultiplicityMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyMultiplicityMember");
+		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementEmptyMultiplicityParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		
+		//EmptyMultiplicityMember returns SysML::OwningMembership :
+		//        ownedRelatedElement += EmptyMultiplicity
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelatedElement += EmptyMultiplicity
+		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		
+		//EmptyMultiplicity
+		public RuleCall getOwnedRelatedElementEmptyMultiplicityParserRuleCall_0() { return cOwnedRelatedElementEmptyMultiplicityParserRuleCall_0; }
+	}
+	public class EmptyMultiplicityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyMultiplicity");
+		private final Action cMultiplicityAction = (Action)rule.eContents().get(1);
+		
+		//EmptyMultiplicity returns SysML::Multiplicity :
+		//    {SysML::Multiplicity}
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SysML::Multiplicity}
+		public Action getMultiplicityAction() { return cMultiplicityAction; }
 	}
 	public class OccurrenceUsageKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OccurrenceUsageKeyword");
@@ -14198,6 +14254,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final OccurrenceDefinitionPrefixElements pOccurrenceDefinitionPrefix;
 	private final OccurrenceDefinitionElements pOccurrenceDefinition;
 	private final IndividualDefinitionElements pIndividualDefinition;
+	private final EmptyMultiplicityMemberElements pEmptyMultiplicityMember;
+	private final EmptyMultiplicityElements pEmptyMultiplicity;
 	private final OccurrenceUsageKeywordElements pOccurrenceUsageKeyword;
 	private final OccurrenceUsagePrefixElements pOccurrenceUsagePrefix;
 	private final OccurrenceUsageElements pOccurrenceUsage;
@@ -14649,6 +14707,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pOccurrenceDefinitionPrefix = new OccurrenceDefinitionPrefixElements();
 		this.pOccurrenceDefinition = new OccurrenceDefinitionElements();
 		this.pIndividualDefinition = new IndividualDefinitionElements();
+		this.pEmptyMultiplicityMember = new EmptyMultiplicityMemberElements();
+		this.pEmptyMultiplicity = new EmptyMultiplicityElements();
 		this.pOccurrenceUsageKeyword = new OccurrenceUsageKeywordElements();
 		this.pOccurrenceUsagePrefix = new OccurrenceUsagePrefixElements();
 		this.pOccurrenceUsage = new OccurrenceUsageElements();
@@ -16649,7 +16709,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	//    BasicDefinitionPrefix?
-	//    ( isIndividual ?= 'individual' )?
+	//    ( isIndividual ?= 'individual'
+	//      ownedRelationship += EmptyMultiplicityMember
+	//    )?
 	//    DefinitionExtensionKeyword*
 	//;
 	public OccurrenceDefinitionPrefixElements getOccurrenceDefinitionPrefixAccess() {
@@ -16673,6 +16735,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//IndividualDefinition returns SysML::OccurrenceDefinition :
 	//    BasicDefinitionPrefix? isIndividual ?= 'individual'
+	//    ownedRelationship += EmptyMultiplicityMember
 	//    DefinitionExtensionKeyword* 'def' Definition
 	//;
 	public IndividualDefinitionElements getIndividualDefinitionAccess() {
@@ -16681,6 +16744,28 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getIndividualDefinitionRule() {
 		return getIndividualDefinitionAccess().getRule();
+	}
+	
+	//EmptyMultiplicityMember returns SysML::OwningMembership :
+	//        ownedRelatedElement += EmptyMultiplicity
+	//;
+	public EmptyMultiplicityMemberElements getEmptyMultiplicityMemberAccess() {
+		return pEmptyMultiplicityMember;
+	}
+	
+	public ParserRule getEmptyMultiplicityMemberRule() {
+		return getEmptyMultiplicityMemberAccess().getRule();
+	}
+	
+	//EmptyMultiplicity returns SysML::Multiplicity :
+	//    {SysML::Multiplicity}
+	//;
+	public EmptyMultiplicityElements getEmptyMultiplicityAccess() {
+		return pEmptyMultiplicity;
+	}
+	
+	public ParserRule getEmptyMultiplicityRule() {
+		return getEmptyMultiplicityAccess().getRule();
 	}
 	
 	///* Occurrence Usages */

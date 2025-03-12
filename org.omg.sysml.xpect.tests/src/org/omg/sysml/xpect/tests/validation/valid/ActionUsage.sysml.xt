@@ -18,7 +18,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
-		File {from ="/library.systems/FlowConnections.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -40,7 +40,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
-				File {from ="/library.systems/FlowConnections.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
 			}
 		}
 	}

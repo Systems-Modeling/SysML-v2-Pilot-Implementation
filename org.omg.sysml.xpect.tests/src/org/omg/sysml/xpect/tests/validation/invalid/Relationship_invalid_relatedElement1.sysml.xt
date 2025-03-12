@@ -11,7 +11,7 @@
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
-		File {from ="/library.systems/FlowConnections.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
@@ -28,7 +28,7 @@
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/FlowConnections.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 			}
 		}

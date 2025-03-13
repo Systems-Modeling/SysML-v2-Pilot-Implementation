@@ -2,7 +2,7 @@ standard library package ISQAcoustics {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-8:2020 "Acoustics"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-8:2020 "Acoustics"
      * see also https://www.iso.org/standard/64978.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -97,7 +97,7 @@ standard library package ISQAcoustics {
          * remarks: None.
          */
         attribute :>> isBound = false;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianSoundParticleDisplacement3dVector: CartesianSoundParticleDisplacement3dVector :> vectorQuantities;

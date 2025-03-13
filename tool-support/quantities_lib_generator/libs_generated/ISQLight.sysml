@@ -2,7 +2,7 @@ standard library package ISQLight {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-7:2019 "Light and radiation"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-7:2019 "Light and radiation"
      * see also https://www.iso.org/standard/64977.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

@@ -2,7 +2,7 @@ standard library package ISQCondensedMatter {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-12:2019 "Condensed matter physics"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-12:2019 "Condensed matter physics"
      * see also https://www.iso.org/standard/63480.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -42,7 +42,7 @@ standard library package ISQCondensedMatter {
          * remarks: The non-SI unit ångström (Å) is widely used by x-ray crystallographers and structural chemists.
          */
         attribute :>> isBound = false;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianLattice3dVector: CartesianLattice3dVector :> vectorQuantities;
@@ -62,7 +62,7 @@ standard library package ISQCondensedMatter {
          * remarks: The lattice vector (item 12-1.1) can be given as `vec(R) = n_1 vec(a_1) + n_2 vec(a_2) + n_3 vec(a_3)` where `n_1`, `n_2` and `n_3` are integers.
          */
         attribute :>> isBound = false;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianFundamentalLattice3dVector: CartesianFundamentalLattice3dVector :> vectorQuantities;
@@ -282,7 +282,7 @@ standard library package ISQCondensedMatter {
          * remarks: None.
          */
         attribute :>> isBound = false;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianBurgers3dVector: CartesianBurgers3dVector :> vectorQuantities;
@@ -302,7 +302,7 @@ standard library package ISQCondensedMatter {
          * remarks: Often, `r` is used for electrons and `R` is used for atoms and other heavier particles.
          */
         attribute :>> isBound = true;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianParticlePosition3dVector: CartesianParticlePosition3dVector :> vectorQuantities;
@@ -322,7 +322,7 @@ standard library package ISQCondensedMatter {
          * remarks: None.
          */
         attribute :>> isBound = true;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianEquilibriumPosition3dVector: CartesianEquilibriumPosition3dVector :> vectorQuantities;
@@ -342,7 +342,7 @@ standard library package ISQCondensedMatter {
          * remarks: The displacement vector can be expressed by: `vec(u) = vec(R) − vec(R_0)`, where `vec(R)` is particle position vector (item 12-7.1) and `vec(R_0)` is position vector of an ion or atom in equilibrium (item 12-7.2).
          */
         attribute :>> isBound = false;
-        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
 
     attribute cartesianDisplacement3dVector: CartesianDisplacement3dVector :> vectorQuantities;

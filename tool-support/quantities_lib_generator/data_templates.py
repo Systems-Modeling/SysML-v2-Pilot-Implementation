@@ -149,7 +149,7 @@ standard library package ISQBase {{
         attribute :>> isOrthogonal = true;
     }
 
-    readonly attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
+    attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
         doc
         /*
          * A singleton CartesianSpatial3dCoordinateFrame that can be used as a default universal Cartesian 3D coordinate frame.

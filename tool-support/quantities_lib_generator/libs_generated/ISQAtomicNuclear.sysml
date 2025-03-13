@@ -2,7 +2,7 @@ standard library package ISQAtomicNuclear {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
      * see also https://www.iso.org/standard/64980.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

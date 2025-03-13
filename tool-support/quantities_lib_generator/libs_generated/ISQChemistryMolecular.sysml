@@ -2,7 +2,7 @@ standard library package ISQChemistryMolecular {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
      * see also https://www.iso.org/standard/64979.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

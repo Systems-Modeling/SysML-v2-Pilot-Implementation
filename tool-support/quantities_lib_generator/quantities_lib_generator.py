@@ -698,12 +698,10 @@ class Generator:
             alias_name_lower = convert_to_lowercase_first_letter(alias_name)
 
             quantity_name_cs = quote_non_ascii(f"Cartesian{quantity_name}3dCoordinateFrame")
-            quantity_quantities_usage = quote_non_ascii(f"{quantity_name_lower}Vectors")
-            quantity_name_usage = quote_non_ascii(f"{quantity_name_lower}Vector")
+            quantity_name_usage = quote_non_ascii(f"cartesian{quantity_name}3dVector")
 
             alias_name_cs = quote_non_ascii(f"Cartesian{alias_name}3dCoordinateFrame")
-            alias_quantities_usage = quote_non_ascii(f"{alias_name_lower}Vectors")
-            alias_name_usage = quote_non_ascii(f"{alias_name_lower}Vector")
+            alias_name_usage = quote_non_ascii(f"cartesian{alias_name}3dVector")
 
             if general_quantity_name == "":
                 s += c(1, f"alias {alias_name_cs} for {quantity_name_cs};")
@@ -764,7 +762,7 @@ class Generator:
                 # Skip base units because they are inserted manually
                 pass
             elif unit in ("°C",):
-                # Skip
+                # Skip degree C because it is inserted manually
                 pass
             elif isinstance(unit_quantity, RecognizedQuantity):
                 statement = f'    attribute <{unit_in_unicode}> {verbalization_quoted} : {sysml_name}Unit {{' \
@@ -1029,8 +1027,10 @@ class Generator:
         if magnitude_quantity_name in ("Speed",):
             coordinate_frame_name = quote_non_ascii(f"Cartesian{quantity_name}3dCoordinateFrame")
             add_coordinate_frame = True
-        elif magnitude_quantity_name == "Length" or general_quantity_name in ("Displacement", "PositionVector"):
+        elif magnitude_quantity_name == "Length":
             coordinate_frame_name = "Spatial3dCoordinateFrame"
+        elif general_quantity_name in ("Displacement", "PositionVector"):
+            coordinate_frame_name = "CartesianSpatial3dCoordinateFrame"
         elif general_quantity_name == "":
             coordinate_frame_name = quote_non_ascii(f"Cartesian{quantity_name}3dCoordinateFrame")
             add_coordinate_frame = True

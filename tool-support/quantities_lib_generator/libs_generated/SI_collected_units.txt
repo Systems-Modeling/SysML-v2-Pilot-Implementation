@@ -192,8 +192,8 @@ rad*m^2/mol              for molar optical rotatory power / MolarOpticalRotatory
 rad*s^-1                 for angular velocity / AngularVelocity
 rad*s^-2                 for angular acceleration / AngularAcceleration
 rad/m                    for phase coefficient / PhaseCoefficient
-S                        for conductance / Conductance
 s                        for duration / Duration
+S                        for conductance / Conductance
 s*A                      for elementary charge / ElectricCharge
 S*m^2/mol                for molar conductivity / MolarConductivity
 S/m                      for conductivity / Conductivity

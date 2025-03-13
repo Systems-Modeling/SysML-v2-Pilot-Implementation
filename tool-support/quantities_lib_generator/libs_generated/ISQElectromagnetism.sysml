@@ -2,7 +2,7 @@ standard library package ISQElectromagnetism {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard IEC-80000-6:2008 "Electromagnetism"
+     * Generated on 2025-03-13T15:00:05Z from standard IEC-80000-6:2008 "Electromagnetism"
      * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -300,7 +300,7 @@ standard library package ISQElectromagnetism {
     }
 
     alias CartesianAreicElectricCurrent3dCoordinateFrame for CartesianElectricCurrentDensity3dCoordinateFrame;
-    alias areicElectricCurrentVector for electricCurrentDensityVector;
+    alias cartesianAreicElectricCurrent3dVector for cartesianElectricCurrentDensity3dVector;
 
     /* IEC-80000-6 item 6-9 linear electric current density, lineic electric current */
     attribute def LinearElectricCurrentDensityValue :> ScalarQuantityValue {
@@ -354,7 +354,7 @@ standard library package ISQElectromagnetism {
     }
 
     alias CartesianLineicElectricCurrent3dCoordinateFrame for CartesianLinearElectricCurrentDensity3dCoordinateFrame;
-    alias lineicElectricCurrentVector for linearElectricCurrentDensityVector;
+    alias cartesianLineicElectricCurrent3dVector for cartesianLinearElectricCurrentDensity3dVector;
 
     /* IEC-80000-6 item 6-10 electric field strength */
     attribute def ElectricFieldStrengthValue :> ScalarQuantityValue {
@@ -536,7 +536,7 @@ standard library package ISQElectromagnetism {
     }
 
     alias CartesianElectricDisplacement3dCoordinateFrame for CartesianElectricFluxDensity3dCoordinateFrame;
-    alias electricDisplacementVector for electricFluxDensityVector;
+    alias cartesianElectricDisplacement3dVector for cartesianElectricFluxDensity3dVector;
 
     /* IEC-80000-6 item 6-13 capacitance */
     attribute def CapacitanceValue :> ScalarQuantityValue {
@@ -980,7 +980,7 @@ standard library package ISQElectromagnetism {
     }
 
     alias CartesianMagneticAreaMoment3dCoordinateFrame for CartesianMagneticMoment3dCoordinateFrame;
-    alias magneticAreaMomentVector for magneticMomentVector;
+    alias cartesianMagneticAreaMoment3dVector for cartesianMagneticMoment3dVector;
 
     /* IEC-80000-6 item 6-24 magnetization */
     attribute def MagnetizationValue :> ScalarQuantityValue {
@@ -1085,7 +1085,7 @@ standard library package ISQElectromagnetism {
     }
 
     alias CartesianMagnetizingField3dCoordinateFrame for CartesianMagneticFieldStrength3dCoordinateFrame;
-    alias magnetizingFieldVector for magneticFieldStrengthVector;
+    alias cartesianMagnetizingField3dVector for cartesianMagneticFieldStrength3dVector;
 
     /* IEC-80000-6 item 6-26.1 magnetic constant, permeability of vacuum */
     attribute def MagneticConstantValue :> ScalarQuantityValue {

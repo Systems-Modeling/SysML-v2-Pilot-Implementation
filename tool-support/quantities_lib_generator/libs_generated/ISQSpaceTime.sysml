@@ -2,7 +2,7 @@ standard library package ISQSpaceTime {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-3:2019 "Space and Time"
+     * Generated on 2025-03-13T17:19:25Z from standard ISO-80000-3:2019 "Space and Time"
      * see also https://www.iso.org/standard/64974.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -185,7 +185,7 @@ standard library package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    readonly attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
+    attribute universalCartesianSpatial3dCoordinateFrame : CartesianSpatial3dCoordinateFrame[1] {
         doc
         /*
          * A singleton CartesianSpatial3dCoordinateFrame that can be used as a default universal Cartesian 3D coordinate frame.

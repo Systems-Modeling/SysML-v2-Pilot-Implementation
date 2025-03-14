@@ -1,6 +1,7 @@
 '!='=131
 '!=='=133
 '#'=117
+'$'=150
 '%'=144
 '&'=128
 '('=97
@@ -83,8 +84,8 @@
 'if'=122
 'implies'=124
 'import'=31
-'in'=153
-'inout'=155
+'in'=154
+'inout'=156
 'interaction'=113
 'intersects'=49
 'inv'=110
@@ -106,13 +107,13 @@
 'of'=67
 'or'=126
 'ordered'=70
-'out'=154
+'out'=155
 'package'=39
 'portion'=60
 'predicate'=108
-'private'=151
-'protected'=152
-'public'=150
+'private'=152
+'protected'=153
+'public'=151
 'readonly'=61
 'redefines'=80
 'redefinition'=85
@@ -208,6 +209,7 @@ T__152=152
 T__153=153
 T__154=154
 T__155=155
+T__156=156
 T__15=15
 T__16=16
 T__17=17

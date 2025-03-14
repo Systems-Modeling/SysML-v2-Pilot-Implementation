@@ -2902,6 +2902,26 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//UNRESTRICTED_NAME
 		public RuleCall getUNRESTRICTED_NAMETerminalRuleCall_1() { return cUNRESTRICTED_NAMETerminalRuleCall_1; }
 	}
+	public class GlobalQualificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.GlobalQualification");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDollarSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//GlobalQualification :
+		//    '$' '::'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'$' '::'
+		public Group getGroup() { return cGroup; }
+		
+		//'$'
+		public Keyword getDollarSignKeyword_0() { return cDollarSignKeyword_0; }
+		
+		//'::'
+		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
+	}
 	public class QualificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.Qualification");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2925,22 +2945,26 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cQualificationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cNameParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cGlobalQualificationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cQualificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cNameParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//QualifiedName:
-		//    Qualification? Name
+		//    GlobalQualification? Qualification? Name
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Qualification? Name
+		//GlobalQualification? Qualification? Name
 		public Group getGroup() { return cGroup; }
 		
+		//GlobalQualification?
+		public RuleCall getGlobalQualificationParserRuleCall_0() { return cGlobalQualificationParserRuleCall_0; }
+		
 		//Qualification?
-		public RuleCall getQualificationParserRuleCall_0() { return cQualificationParserRuleCall_0; }
+		public RuleCall getQualificationParserRuleCall_1() { return cQualificationParserRuleCall_1; }
 		
 		//Name
-		public RuleCall getNameParserRuleCall_1() { return cNameParserRuleCall_1; }
+		public RuleCall getNameParserRuleCall_2() { return cNameParserRuleCall_2; }
 	}
 	
 	
@@ -3037,6 +3061,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final RealValueElements pRealValue;
 	private final LiteralInfinityElements pLiteralInfinity;
 	private final NameElements pName;
+	private final GlobalQualificationElements pGlobalQualification;
 	private final QualificationElements pQualification;
 	private final QualifiedNameElements pQualifiedName;
 	private final TerminalRule tDECIMAL_VALUE;
@@ -3147,6 +3172,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pRealValue = new RealValueElements();
 		this.pLiteralInfinity = new LiteralInfinityElements();
 		this.pName = new NameElements();
+		this.pGlobalQualification = new GlobalQualificationElements();
 		this.pQualification = new QualificationElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.tDECIMAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.DECIMAL_VALUE");
@@ -4302,6 +4328,17 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getNameAccess().getRule();
 	}
 	
+	//GlobalQualification :
+	//    '$' '::'
+	//;
+	public GlobalQualificationElements getGlobalQualificationAccess() {
+		return pGlobalQualification;
+	}
+	
+	public ParserRule getGlobalQualificationRule() {
+		return getGlobalQualificationAccess().getRule();
+	}
+	
 	//Qualification :
 	//    ( Name '::' )+
 	//;
@@ -4314,7 +4351,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//QualifiedName:
-	//    Qualification? Name
+	//    GlobalQualification? Qualification? Name
 	//;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;

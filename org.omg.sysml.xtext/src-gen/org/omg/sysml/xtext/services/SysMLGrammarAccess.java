@@ -21500,6 +21500,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getNameAccess().getRule();
 	}
 	
+	//GlobalQualification :
+	//    '$' '::'
+	//;
+	public KerMLExpressionsGrammarAccess.GlobalQualificationElements getGlobalQualificationAccess() {
+		return gaKerMLExpressions.getGlobalQualificationAccess();
+	}
+	
+	public ParserRule getGlobalQualificationRule() {
+		return getGlobalQualificationAccess().getRule();
+	}
+	
 	//Qualification :
 	//    ( Name '::' )+
 	//;
@@ -21512,7 +21523,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//QualifiedName:
-	//    Qualification? Name
+	//    GlobalQualification? Qualification? Name
 	//;
 	public KerMLExpressionsGrammarAccess.QualifiedNameElements getQualifiedNameAccess() {
 		return gaKerMLExpressions.getQualifiedNameAccess();

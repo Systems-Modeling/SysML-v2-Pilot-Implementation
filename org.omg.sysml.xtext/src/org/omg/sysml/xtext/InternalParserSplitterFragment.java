@@ -85,7 +85,7 @@ public class InternalParserSplitterFragment extends AbstractXtextGeneratorFragme
 	private static final String MARKER_2 = "    // delegates";
 	private static final String MARKER_3 = "    static final String dfa";
 	
-	private int count = 40;
+	private int count = 23;
 	private String originalClassName = "InternalSysMLParser";
 	private String baseName = "";
 	private String antlrPackageName = "parser.antlr.internal";

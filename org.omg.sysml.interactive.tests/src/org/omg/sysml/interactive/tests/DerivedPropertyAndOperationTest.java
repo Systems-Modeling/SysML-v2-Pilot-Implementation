@@ -37,11 +37,12 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 
-public class DerivedPropertyTest extends SysMLInteractiveTest {
+public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testOwnedUsage() throws Exception {
@@ -85,6 +86,68 @@ public class DerivedPropertyTest extends SysMLInteractiveTest {
 		ViewUsage view = (ViewUsage)((Namespace)elements.get(0)).getOwnedMember().get(1);
 		List<Element> exposed = view.getExposedElement();
 		assertEquals(1, exposed.size());
+	}
+	
+	public final String pathTest =
+			  "// Path of package: TopLevel\n"
+			+ "// Path of owning membership: TopLevel/owningMembership\n"
+			+ "package TopLevel {\n"
+			+ "\n"
+			+ "    // Path of classifier: TopLevel::A\n"
+			+ "    // Path of owning membership: TopLevel::A/owningMembership\n"
+			+ "    part def A;\n"
+			+ "\n"
+			+ "    // Path of classifier: TopLevel::B\n"
+			+ "    // Path of owning membership: TopLevel::B/owningMembership\n"
+			+ "    // Path of owned subclassification: TopLevel::B/1\n"
+			+ "    part def B specializes A {\n"
+			+ "        // Path of owning membership: TopLevel::B/2\n"
+			+ "        // Path of feature:  TopLevel::B/2/1\n"
+			+ "        ref;\n"
+			+ "    }\n"
+			+ "\n"
+			+ "    // Path of owning membership: TopLevel/3\n"
+			+ "    // Path of classifier: TopLevel/3/1\n"
+			+ "    part def {\n"
+			+ "        // Path of owning membership: TopLevel/3/1/1\n"
+			+ "        // Path of feature: TopLevel/3/1/1/1\n"
+			+ "        ref f;\n"
+			+ "    }\n"
+			+ "}";
+	
+	@Test
+	public void testPathOperation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		List<Element> elements = process(instance, pathTest);
+		
+		Namespace TopLevel = (Namespace)elements.get(0);
+		assertEquals("TopLevel", TopLevel.path());
+		assertEquals("TopLevel/owningMembership", TopLevel.getOwningMembership().path());
+		
+		Namespace A = (Namespace)TopLevel.getOwnedMember().get(0);
+		assertEquals("TopLevel::A", A.path());
+		assertEquals("TopLevel::A/owningMembership", A.getOwningMembership().path());
+		
+		Namespace B = (Namespace)TopLevel.getOwnedMember().get(1);
+		assertEquals("TopLevel::B", B.path());
+		assertEquals("TopLevel::B/owningMembership", B.getOwningMembership().path());
+		
+		Relationship B_1 = B.getOwnedRelationship().get(0);
+		assertEquals("TopLevel::B/1", B_1.path());
+		
+		Relationship B_2 = B.getOwnedRelationship().get(1);
+		assertEquals("TopLevel::B/2", B_2.path());
+		assertEquals("TopLevel::B/2/1", B_2.getOwnedRelatedElement().get(0).path());
+		
+		Relationship TopLevel_3 = TopLevel.getOwnedRelationship().get(2);
+		assertEquals("TopLevel/3", TopLevel_3.path());
+		
+		Element TopLevel_3_1 = TopLevel_3.getOwnedRelatedElement().get(0);
+		assertEquals("TopLevel/3/1", TopLevel_3_1.path());
+		
+		Relationship TopLevel_3_1_1 = TopLevel_3_1.getOwnedRelationship().get(0);
+		assertEquals("TopLevel/3/1/1", TopLevel_3_1_1.path());
+		assertEquals("TopLevel/3/1/1/1", TopLevel_3_1_1.getOwnedRelatedElement().get(0).path());
 	}
 
 }

@@ -2,7 +2,7 @@ standard library package ISQMechanics {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2025-02-14T22:58:27Z from standard ISO-80000-4:2019 "Mechanics"
+     * Generated on 2025-03-13T15:00:05Z from standard ISO-80000-4:2019 "Mechanics"
      * see also https://www.iso.org/standard/64975.html
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -354,7 +354,7 @@ standard library package ISQMechanics {
 
     attribute cartesianStaticFrictionForce3dVector: CartesianStaticFrictionForce3dVector :> vectorQuantities;
 
-    alias staticFrictionVector for staticFrictionForceVector;
+    alias cartesianStaticFriction3dVector for cartesianStaticFrictionForce3dVector;
 
     /* ISO-80000-4 item 4-9.4 kinetic friction force, dynamic friction force */
     attribute def CartesianKineticFrictionForce3dVector :> '3dVectorQuantityValue' {
@@ -376,7 +376,7 @@ standard library package ISQMechanics {
 
     attribute cartesianKineticFrictionForce3dVector: CartesianKineticFrictionForce3dVector :> vectorQuantities;
 
-    alias dynamicFrictionForceVector for kineticFrictionForceVector;
+    alias cartesianDynamicFrictionForce3dVector for cartesianKineticFrictionForce3dVector;
 
     /* ISO-80000-4 item 4-9.5 rolling resistance, rolling drag, rolling friction force */
     attribute def CartesianRollingResistance3dVector :> '3dVectorQuantityValue' {
@@ -398,9 +398,9 @@ standard library package ISQMechanics {
 
     attribute cartesianRollingResistance3dVector: CartesianRollingResistance3dVector :> vectorQuantities;
 
-    alias rollingDragVector for rollingResistanceVector;
+    alias cartesianRollingDrag3dVector for cartesianRollingResistance3dVector;
 
-    alias rollingFrictionForceVector for rollingResistanceVector;
+    alias cartesianRollingFrictionForce3dVector for cartesianRollingResistance3dVector;
 
     /* ISO-80000-4 item 4-9.6 drag force */
     attribute def CartesianDragForce3dVector :> '3dVectorQuantityValue' {

@@ -264,7 +264,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		org.omg.sysml.model.Element apiModelElement = this.createApiModelElement(element);
 		UUID id = UUID.fromString(apiModelElement.get("@id").toString());
 		
-		if (element.getOwningNamespace() == null || element.isLibraryElement()) {
+		if (element.eContainer() == null || element.isLibraryElement()) {
 			this.getLocalModel().addModelRoot(id, apiModelElement);
 		}
 		this.getLocalModel().addModelElement(id, apiModelElement);;

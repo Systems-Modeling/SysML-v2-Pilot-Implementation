@@ -524,12 +524,16 @@ Name:
 	ID | UNRESTRICTED_NAME
 ;
 
+GlobalQualification :
+	'$' '::'
+;
+
 Qualification :
 	( Name '::' )+
 ;
 
 QualifiedName:
-	Qualification? Name
+	GlobalQualification? Qualification? Name
 ;
 	
 /* TERMINALS */

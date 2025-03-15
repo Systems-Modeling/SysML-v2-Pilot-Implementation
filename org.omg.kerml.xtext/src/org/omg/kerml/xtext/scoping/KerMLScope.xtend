@@ -56,7 +56,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.kerml.xtext.naming.QualifiedNamesUtil
+import org.omg.kerml.xtext.naming.QualifiedNameUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -168,7 +168,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 
 	override getSingleElement(QualifiedName name) {
-		if (QualifiedNamesUtil.isGlobalNameQualification(name)){
+		if (QualifiedNameUtil.isGlobalScopeQualification(name)){
 			parent.getSingleElement(name)
 		} else {
 			val result = resolveInScope(name, true);

@@ -122,12 +122,23 @@ public class ElementUtil {
 		return name.matches("[a-zA-Z_]\\w*");
 	}
 	
+	public static final String GLOBAL_SCOPE_SYMBOL = "$";
+	
 	public static List<String> parseQualifiedName(String qualifiedNameText) {
 			List<String> segments = new ArrayList<>();		
 			int i = 0;
 			int j = 0;
 			int n = qualifiedNameText.length();
 			boolean isDelimitable = true;
+			
+			
+			if (qualifiedNameText.startsWith(GLOBAL_SCOPE_SYMBOL)) {
+				// A globally-scoped qualified name is parsed as having a null initial segment.
+				// It is not possible for a segment to be null otherwise.
+				segments.add(null);
+				i = 3;
+				j = 3;
+			}
 			
 			while (j < n) {
 				char c = qualifiedNameText.charAt(j);

@@ -38,7 +38,7 @@ import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Element
-import org.omg.kerml.xtext.naming.QualifiedNamesUtil
+import org.omg.kerml.xtext.naming.QualifiedNameUtil
 
 class KerMLGlobalScope extends AbstractScope {
 
@@ -79,13 +79,11 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
-		val isGlobalQualification = QualifiedNamesUtil.isGlobalNameQualification(name)
-		val qualifiedName = isGlobalQualification? name.skipFirst(1) : name
-			
+		val qualifiedName = QualifiedNameUtil.getNonGlobalQualifiedName(name)			
 		var IEObjectDescription result = null
 		
 		if (qualifiedName.segmentCount > 0) {
-			if (isGlobalQualification) {
+			if (QualifiedNameUtil.isGlobalScopeQualification(name)) {
 				//search the context resource first
 				val rootNS = resource.contents.head as Namespace
 				result = scopeFor(rootNS).getSingleElement(qualifiedName)

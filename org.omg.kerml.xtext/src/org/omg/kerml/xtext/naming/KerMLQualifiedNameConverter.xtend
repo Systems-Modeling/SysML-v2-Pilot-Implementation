@@ -43,13 +43,12 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 		Preconditions.checkArgument(!qualifiedNameAsText.empty, "Qualified name cannot be empty")
 
 		val segments = ElementUtil.parseQualifiedName(qualifiedNameAsText)		
-		QualifiedName.create(segments)
+		QualifiedNameUtil.createQualifiedName(segments)
 	}
 
 	override toString(QualifiedName name) {
 		Preconditions.checkArgument(name !== null, "Qualified name cannot be null")
-			
-		ElementUtil.toQualifiedNameString(name.segments)
+		QualifiedNameUtil.toQualifiedNameString(name);		
 	}
 	
 }

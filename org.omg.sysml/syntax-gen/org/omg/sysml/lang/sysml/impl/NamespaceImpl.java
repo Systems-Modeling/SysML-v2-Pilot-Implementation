@@ -24,6 +24,8 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.UUID;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -42,6 +44,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -520,6 +523,31 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * If the Namespace is the root Namespace of a standard library package, then give it a stable elementId.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getElementId() {
+		if (elementId == null && getOwningRelationship() == null) {
+			EList<Element> ownedMembers = getOwnedMember();
+			if (!ownedMembers.isEmpty()) {
+				Element firstOwnedMember = ownedMembers.get(0);
+				if (ElementUtil.isStandardLibraryElement(firstOwnedMember) && 
+						firstOwnedMember.libraryNamespace() == firstOwnedMember) {
+					String qualifiedName = firstOwnedMember.getQualifiedName();
+					if (qualifiedName != null) {
+						UUID namespaceUUID = UUID.fromString(firstOwnedMember.getElementId());
+						elementId = ElementUtil.constructNameUUID(namespaceUUID, qualifiedName + "/owner").toString();
+					}
+				}
+			}
+		}
+		return super.getElementId();
 	}
 
 	/**

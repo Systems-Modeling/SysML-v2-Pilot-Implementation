@@ -23,12 +23,14 @@ package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Test;
 import org.omg.sysml.interactive.SysMLInteractive;
+import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
@@ -86,6 +88,26 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		ViewUsage view = (ViewUsage)((Namespace)elements.get(0)).getOwnedMember().get(1);
 		List<Element> exposed = view.getExposedElement();
 		assertEquals(1, exposed.size());
+	}
+	
+	public final String qualifiedNameTest =
+			"package Test {\n"
+			+ "    package P {\n"
+			+ "        item x;\n"
+			+ "        item x;\n"
+			+ "    }"
+			+ "}";
+	
+	@Test
+	public void testQualifiedName() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(qualifiedNameTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		Namespace P = (Namespace)((Namespace)elements.get(0)).getOwnedMember().get(0);
+		List<Element> P_ownedMembers = P.getOwnedMember();
+		assertEquals("Test::P::x", P_ownedMembers.get(0).getQualifiedName());
+		assertNull(P_ownedMembers.get(1).getQualifiedName());
 	}
 	
 	public final String pathTest =

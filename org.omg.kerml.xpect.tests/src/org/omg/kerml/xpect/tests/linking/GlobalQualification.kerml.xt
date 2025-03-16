@@ -27,6 +27,14 @@ package Classes1 {
 	private class B specializes $::Classes2::A {
 		// XPECT linkedName at A --> Classes1.Classes2.A
 		private y: Classes2::A;
+		// XPECT linkedName at A --> Classes1.$.Classes2.A
+		feature x : '$'::Classes2::A; 
+	}
+	
+	package '$' {
+		class Classes2 {
+			class A;
+		}
 	}
 	
 	package Classes2 {

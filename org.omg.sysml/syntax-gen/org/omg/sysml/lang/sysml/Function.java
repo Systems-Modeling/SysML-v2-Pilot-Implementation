@@ -44,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *     let resultParams : Sequence(Feature) =
  *         featureMemberships->
  *             selectByKind(ReturnParameterMembership).
- *             ownedParameterMember in
+ *             ownedMemberParameter in
  *     if resultParams->notEmpty() then resultParams->first()
  *     else null
  *     endif

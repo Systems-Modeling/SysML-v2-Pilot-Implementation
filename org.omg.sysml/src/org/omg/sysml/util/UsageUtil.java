@@ -45,7 +45,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
@@ -240,7 +240,7 @@ public class UsageUtil {
 	// Flow Connections
 	
 	public static boolean isMessageConnection(Feature feature) {
-		return feature instanceof FlowConnectionUsage &&
+		return feature instanceof FlowUsage &&
 			   feature.getOwnedFeature().stream().noneMatch(Feature::isEnd);
 	}
 	

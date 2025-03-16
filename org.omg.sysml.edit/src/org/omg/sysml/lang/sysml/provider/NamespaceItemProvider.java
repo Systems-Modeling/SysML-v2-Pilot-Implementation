@@ -262,7 +262,17 @@ public class NamespaceItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
+				 SysMLFactory.eINSTANCE.createFeatureValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
 				 SysMLFactory.eINSTANCE.createElementFilterMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
+				 SysMLFactory.eINSTANCE.createResultExpressionMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -273,16 +283,6 @@ public class NamespaceItemProvider extends ElementItemProvider {
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
 				 SysMLFactory.eINSTANCE.createReturnParameterMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createResultExpressionMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createFeatureValue()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -307,17 +307,17 @@ public class NamespaceItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createActorMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
 				 SysMLFactory.eINSTANCE.createRequirementConstraintMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createFramedConcernMembership()));
+				 SysMLFactory.eINSTANCE.createRequirementVerificationMembership()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
+				 SysMLFactory.eINSTANCE.createActorMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -332,12 +332,7 @@ public class NamespaceItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createRequirementVerificationMembership()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
-				 SysMLFactory.eINSTANCE.createViewRenderingMembership()));
+				 SysMLFactory.eINSTANCE.createFramedConcernMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -346,8 +341,8 @@ public class NamespaceItemProvider extends ElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT,
-				 SysMLFactory.eINSTANCE.createNamespaceImport()));
+				(SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP,
+				 SysMLFactory.eINSTANCE.createViewRenderingMembership()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -357,12 +352,17 @@ public class NamespaceItemProvider extends ElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT,
-				 SysMLFactory.eINSTANCE.createMembershipExpose()));
+				 SysMLFactory.eINSTANCE.createNamespaceImport()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT,
 				 SysMLFactory.eINSTANCE.createNamespaceExpose()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT,
+				 SysMLFactory.eINSTANCE.createMembershipExpose()));
 	}
 
 	/**

@@ -30,6 +30,8 @@ standard library package States {
 		attribute :>> isTriggerDuring;
 		
 		ref state self: StateAction :>> Action::self, StatePerformance::self;
+		ref state start: StateAction :>> Action::start, StatePerformance::startShot;
+		ref state done: StateAction :>> Action::done, StatePerformance::endShot;
 		
 		action :>> subactions :> middle {
 			doc

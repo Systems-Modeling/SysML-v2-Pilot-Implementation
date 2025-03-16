@@ -43,6 +43,7 @@ package org.omg.sysml.lang.sysml;
  *     forAll(targetMult | 
  *         multiplicityHasBounds(targetMult, 1, 1))
  * specializesFromLibrary('Action::Action::controls')
+ * isComposite
  * <!-- end-model-doc -->
  *
  *

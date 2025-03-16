@@ -11,7 +11,7 @@ standard library package KerML {
 		metaclass AnnotatingElement specializes Element {
 			derived feature annotatedElement : Element[1..*] ordered redefines annotatedElement;
 			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
-			derived feature owningAnnotatingRelationship : Annotation[0..1] subsets annotation, owningRelationship;
+			derived feature owningAnnotatingRelationship : Annotation[0..1] subsets owningRelationship, annotation;
 			derived feature annotation : Annotation[0..*] ordered;
 		}		
 		
@@ -20,7 +20,7 @@ standard library package KerML {
 			derived feature annotatingElement : AnnotatingElement[1..1] redefines source;
 			derived feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
 			derived feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
-			composite derived feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets ownedRelatedElement, annotatingElement;
+			composite derived feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, ownedRelatedElement;
 		}		
 		
 		metaclass Comment specializes AnnotatingElement {
@@ -167,11 +167,12 @@ standard library package KerML {
 			feature isComposite : Boolean[1..1];
 			feature isEnd : Boolean[1..1];
 			feature isDerived : Boolean[1..1];
-			feature isReadOnly : Boolean[1..1];
 			feature isPortion : Boolean[1..1];
+			feature isVariable : Boolean[1..1];
+			feature isConstant : Boolean[1..1];
 			feature direction : FeatureDirectionKind[0..1];
 			
-			derived feature owningType : Type[0..1] subsets featuringType, owningNamespace;
+			derived feature owningType : Type[0..1] subsets owningNamespace, featuringType;
 			derived feature 'type' : Type[0..*] ordered;
 			composite derived feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
 			composite derived feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
@@ -184,9 +185,9 @@ standard library package KerML {
 			composite derived feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
 			composite derived feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
 			composite derived feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
+			derived feature featureTarget : Feature[1..1];
 			derived feature crossFeature : Feature[0..1];
 			composite derived feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
-			derived feature featureTarget : Feature[1..1];
 		}		
 		
 		metaclass FeatureChaining specializes Relationship {
@@ -206,20 +207,15 @@ standard library package KerML {
 			derived feature owningFeature : Feature[0..1] subsets featureInverted, owningRelatedElement;
 		}		
 		
-		metaclass FeatureMembership specializes Featuring, OwningMembership {
-			derived feature owningType : Type[1..1] redefines 'type', membershipOwningNamespace;
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines 'feature', ownedMemberElement;
+		metaclass FeatureMembership specializes OwningMembership {
+			derived feature owningType : Type[1..1] redefines membershipOwningNamespace;
+			composite derived feature ownedMemberFeature : Feature[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass FeatureTyping specializes Specialization {
 			feature typedFeature : Feature[1..1] redefines specific;
 			feature 'type' : Type[1..1] redefines general;
 			derived feature owningFeature : Feature[0..1] subsets typedFeature redefines owningType;
-		}		
-		
-		abstract metaclass Featuring specializes Relationship {
-			feature 'type' : Type[1..1] subsets relatedElement;
-			feature 'feature' : Feature[1..1] subsets relatedElement;
 		}		
 		
 		metaclass Intersecting specializes Relationship {
@@ -285,9 +281,9 @@ standard library package KerML {
 			derived feature directedFeature : Feature[0..*] ordered subsets 'feature';
 		}		
 		
-		metaclass TypeFeaturing specializes Featuring {
-			feature featureOfType : Feature[1..1] redefines source, 'feature';
-			feature featuringType : Type[1..1] redefines target, 'type';
+		metaclass TypeFeaturing specializes Relationship {
+			feature featureOfType : Feature[1..1] redefines source;
+			feature featuringType : Type[1..1] redefines target;
 			derived feature owningFeatureOfType : Feature[0..1] subsets owningRelatedElement, featureOfType;
 		}		
 		
@@ -333,7 +329,10 @@ standard library package KerML {
 			derived feature connectorEnd : Feature[0..*] ordered redefines endFeature;
 			derived feature sourceFeature : Feature[0..1] ordered subsets relatedFeature redefines source;
 			derived feature targetFeature : Feature[0..*] ordered subsets relatedFeature redefines target;
+			derived feature defaultFeaturingType : Type[0..1];
 		}		
+		
+		metaclass ConstructorExpression specializes InstantiationExpression;		
 		
 		metaclass DataType specializes Classifier;		
 		
@@ -366,6 +365,17 @@ standard library package KerML {
 			composite derived feature value : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
+		metaclass Flow specializes Connector, Step {
+			derived feature payloadType : Classifier[0..*] ordered nonunique;
+			derived feature targetInputFeature : Feature[0..1] ordered nonunique;
+			derived feature sourceOutputFeature : Feature[0..1] ordered nonunique;
+			derived feature flowEnd : FlowEnd[0..2] ordered subsets connectorEnd;
+			derived feature payloadFeature : PayloadFeature[0..1] subsets ownedFeature;
+			derived feature 'interaction' : Interaction[0..*] ordered redefines association, 'behavior';
+		}		
+		
+		metaclass FlowEnd specializes Feature;		
+		
 		metaclass Function specializes Behavior {
 			derived feature isModelLevelEvaluable : Boolean[1..1];
 			
@@ -377,28 +387,18 @@ standard library package KerML {
 			feature operator : String[1..1] redefines operator;
 		}		
 		
+		abstract metaclass InstantiationExpression specializes Expression {
+			derived feature argument : Expression[0..*] ordered;
+			derived feature instantiatedType : Type[1..1] subsets 'member';
+		}		
+		
 		metaclass Interaction specializes Association, Behavior;		
 		
 		metaclass Invariant specializes BooleanExpression {
 			feature isNegated : Boolean[1..1];
 		}		
 		
-		metaclass InvocationExpression specializes Expression {
-			derived feature argument : Expression[0..*] ordered subsets ownedFeature;
-		}		
-		
-		metaclass ItemFeature specializes Feature;		
-		
-		metaclass ItemFlow specializes Connector, Step {
-			derived feature itemType : Classifier[0..*] ordered nonunique;
-			derived feature targetInputFeature : Feature[0..1] ordered nonunique;
-			derived feature sourceOutputFeature : Feature[0..1] ordered nonunique;
-			derived feature itemFlowEnd : ItemFlowEnd[0..2] ordered subsets connectorEnd;
-			derived feature itemFeature : ItemFeature[0..1] subsets ownedFeature;
-			derived feature 'interaction' : Interaction[0..*] ordered redefines association, 'behavior';
-		}		
-		
-		metaclass ItemFlowEnd specializes Feature;		
+		metaclass InvocationExpression specializes InstantiationExpression;		
 		
 		metaclass LibraryPackage specializes Package {
 			feature isStandard : Boolean[1..1];
@@ -427,7 +427,7 @@ standard library package KerML {
 		metaclass Metaclass specializes Structure;		
 		
 		metaclass MetadataAccessExpression specializes Expression {
-			feature referencedElement : Element[1..1];
+			derived feature referencedElement : Element[1..1] subsets 'member';
 		}		
 		
 		metaclass MetadataFeature specializes AnnotatingElement, Feature {
@@ -454,6 +454,8 @@ standard library package KerML {
 			composite derived feature ownedMemberParameter : Feature[1..1] redefines ownedMemberFeature;
 		}		
 		
+		metaclass PayloadFeature specializes Feature;		
+		
 		metaclass Predicate specializes Function;		
 		
 		metaclass ResultExpressionMembership specializes FeatureMembership {
@@ -473,14 +475,9 @@ standard library package KerML {
 		
 		metaclass Structure specializes Class;		
 		
-		metaclass Succession specializes Connector {
-			derived feature transitionStep : Step[0..1];
-			derived feature triggerStep : Step[0..*];
-			derived feature effectStep : Step[0..*];
-			derived feature guardExpression : Expression[0..*];
-		}		
+		metaclass Succession specializes Connector;		
 		
-		metaclass SuccessionItemFlow specializes ItemFlow, Succession;		
+		metaclass SuccessionFlow specializes Succession, Flow;		
 		
 	}
 }

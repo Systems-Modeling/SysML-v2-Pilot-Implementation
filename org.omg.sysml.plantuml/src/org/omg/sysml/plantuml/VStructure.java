@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -330,12 +329,6 @@ public abstract class VStructure extends VDefault {
     @Override
     public String caseConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
         // Do not show conjugated ports.
-        return "";
-    }
-
-    @Override
-    public String caseLifeClass(LifeClass lc) {
-        // Do not show life classes
         return "";
     }
 

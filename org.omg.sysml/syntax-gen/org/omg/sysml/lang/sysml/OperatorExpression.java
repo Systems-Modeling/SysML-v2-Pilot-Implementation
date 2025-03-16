@@ -28,13 +28,6 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>An <code>OperatorExpression</code> is an <code>InvocationExpression</code> whose <code>function</code> is determined by resolving its <code>operator</code> in the context of one of the standard packages from the Kernel Function Library.</p>
- * let libFunctions : Sequence(Element) = 
- *     Sequence{'BaseFunctions', 'DataFunctions', 'ControlFunctions'}->
- *     collect(ns | resolveGlobal(ns + "::'" + operator + "'").
- *     memberElement) in
- * libFunctions->includes(function)
- *     
- * 
  * <!-- end-model-doc -->
  *
  * <p>

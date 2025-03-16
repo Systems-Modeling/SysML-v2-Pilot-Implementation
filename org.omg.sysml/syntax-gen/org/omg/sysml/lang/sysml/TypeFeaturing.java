@@ -45,7 +45,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface TypeFeaturing extends Featuring {
+public interface TypeFeaturing extends Relationship {
 	/**
 	 * Returns the value of the '<em><b>Feature Of Type</b></em>' reference.
 	 * <p>
@@ -53,7 +53,6 @@ public interface TypeFeaturing extends Featuring {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,7 +86,6 @@ public interface TypeFeaturing extends Featuring {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

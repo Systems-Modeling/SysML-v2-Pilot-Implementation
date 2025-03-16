@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -43,7 +43,7 @@ public class FlowConnectionUsage_isSubactionUsage_InvocationDelegate extends Bas
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		FlowConnectionUsage self = (FlowConnectionUsage) target;
+		FlowUsage self = (FlowUsage) target;
 		
 		Type owningType = self.getOwningType();
 		FeatureMembership owningMembership = self.getOwningFeatureMembership();

@@ -42,8 +42,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SubclassificationImpl#getSuperclassifier <em>Superclassifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SubclassificationImpl#getOwningClassifier <em>Owning Classifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SubclassificationImpl#getSubclassifier <em>Subclassifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SubclassificationImpl#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,16 +60,6 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	protected Classifier superclassifier;
 
 	/**
-	 * The cached setting delegate for the '{@link #getOwningClassifier() <em>Owning Classifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningClassifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_CLASSIFIER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBCLASSIFICATION__OWNING_CLASSIFIER).getSettingDelegate();
-
-	/**
 	 * The cached value of the '{@link #getSubclassifier() <em>Subclassifier</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +68,16 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	 * @ordered
 	 */
 	protected Classifier subclassifier;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningClassifier() <em>Owning Classifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningClassifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_CLASSIFIER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBCLASSIFICATION__OWNING_CLASSIFIER).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -351,12 +351,12 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 			case SysMLPackage.SUBCLASSIFICATION__SUPERCLASSIFIER:
 				if (resolve) return getSuperclassifier();
 				return basicGetSuperclassifier();
-			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
-				if (resolve) return getOwningClassifier();
-				return basicGetOwningClassifier();
 			case SysMLPackage.SUBCLASSIFICATION__SUBCLASSIFIER:
 				if (resolve) return getSubclassifier();
 				return basicGetSubclassifier();
+			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
+				if (resolve) return getOwningClassifier();
+				return basicGetOwningClassifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -371,11 +371,11 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 			case SysMLPackage.SUBCLASSIFICATION__SUPERCLASSIFIER:
 				setSuperclassifier((Classifier)newValue);
 				return;
-			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
-				setOwningClassifier((Classifier)newValue);
-				return;
 			case SysMLPackage.SUBCLASSIFICATION__SUBCLASSIFIER:
 				setSubclassifier((Classifier)newValue);
+				return;
+			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -391,11 +391,11 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 			case SysMLPackage.SUBCLASSIFICATION__SUPERCLASSIFIER:
 				setSuperclassifier((Classifier)null);
 				return;
-			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
-				setOwningClassifier((Classifier)null);
-				return;
 			case SysMLPackage.SUBCLASSIFICATION__SUBCLASSIFIER:
 				setSubclassifier((Classifier)null);
+				return;
+			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -410,16 +410,16 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 		switch (featureID) {
 			case SysMLPackage.SUBCLASSIFICATION__GENERAL:
 				return isSetGeneral();
-			case SysMLPackage.SUBCLASSIFICATION__OWNING_TYPE:
-				return isSetOwningType();
 			case SysMLPackage.SUBCLASSIFICATION__SPECIFIC:
 				return isSetSpecific();
+			case SysMLPackage.SUBCLASSIFICATION__OWNING_TYPE:
+				return isSetOwningType();
 			case SysMLPackage.SUBCLASSIFICATION__SUPERCLASSIFIER:
 				return isSetSuperclassifier();
-			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
-				return isSetOwningClassifier();
 			case SysMLPackage.SUBCLASSIFICATION__SUBCLASSIFIER:
 				return isSetSubclassifier();
+			case SysMLPackage.SUBCLASSIFICATION__OWNING_CLASSIFIER:
+				return isSetOwningClassifier();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,0 +1,33 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+       ThisFile {}
+        File {from ="/library/Base.kerml"}
+        File {from ="/library/Occurrences.kerml"}
+        File {from ="/library/Objects.kerml"}
+        File {from ="/library/Performances.kerml"}
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+                ThisFile {}
+		            File {from ="/library/Base.kerml"}
+		            File {from ="/library/Occurrences.kerml"}
+		            File {from ="/library/Objects.kerml"}
+		            File {from ="/library/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package RedefinitionEnd {
+	classifier A {
+		end feature e[1];
+	}
+	
+	classifier B :> A {
+		// XPECT errors ---> "Redefining feature must be an end feature" at "e"
+		feature :>> e;
+	}
+
+}

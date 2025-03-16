@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -321,11 +320,9 @@ public class TypeUtil {
 		visited.add(type);
 		getTypeAdapter(type).addAdditionalMembers();
 		Set<ResultExpressionMembership> resultExpressions = new HashSet<>(getOwnedResultExpressionMembershipsOf(type));
-		if (resultExpressions.isEmpty()) {
-			for (Type general: getSupertypesOf(type)) {
-				if (general != null && !visited.contains(general)) {
-					resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
-				}
+		for (Type general: getSupertypesOf(type)) {
+			if (general != null && !visited.contains(general)) {
+				resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
 			}
 		}
 		return resultExpressions;
@@ -491,30 +488,6 @@ public class TypeUtil {
 		}
 	}
 	
-	// Relevant features
-	
-	public static List<? extends Feature> getRelevantFeaturesOf(Type type) {
-		return getTypeAdapter(type).getRelevantFeatures();
-	}
-	
-	/**
-	 * Get the non-parameter abstract Features. (For use with Behaviors.)
-	 */
-	public static List<Feature> getNonParameterAbstractFeaturesFor(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(feature -> !FeatureUtil.isParameter(feature) && feature.isAbstract()).
-				collect(Collectors.toList());
-	}
-	
-	/**
-	 * Get ItemFeatures. (For use with Steps.)
-	 */
-	public static List<? extends Feature> getItemFeaturesOf(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(ItemFeature.class::isInstance).
-				collect(Collectors.toList());
-	}
-
 	// Associations
 
 	public static Type getSourceTypeOf(Association association) {

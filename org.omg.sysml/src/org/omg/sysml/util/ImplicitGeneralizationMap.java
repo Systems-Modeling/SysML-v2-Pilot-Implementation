@@ -88,15 +88,15 @@ public class ImplicitGeneralizationMap {
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
-		put(ItemFeatureImpl.class, "payload", "Transfers::Transfer::item");
+		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::item");
 		
-		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
-		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
-		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowImpl.class, "base", "Transfers::flowTransfers");
+		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		put(FlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(FlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
-		put(ItemFlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
-		put(ItemFlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
+		put(FlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
+		put(FlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
 		
 		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
 		
@@ -139,10 +139,10 @@ public class ImplicitGeneralizationMap {
 		
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
-		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
-		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
-		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(SuccessionFlowImpl.class, "base", "Transfers::flowTransfersBefore");
+		put(SuccessionFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
+		put(SuccessionFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(SuccessionFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 
 		put(TypeImpl.class, "base", "Base::Anything");
 
@@ -219,23 +219,23 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionDefinitionImpl.class, "base", "FlowConnections::MessageConnection");		
-		put(FlowConnectionDefinitionImpl.class, "binary", "FlowConnections::MessageTransferConnection");		
-		put(FlowConnectionUsageImpl.class, "base", "FlowConnections::flowConnections");
-		put(FlowConnectionUsageImpl.class, "message", "FlowConnections::messageConnections");
-		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
-		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
-		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
-		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		put(FlowConnectionUsageImpl.class, "entry", "States::StateAction::entryAction");
-		put(FlowConnectionUsageImpl.class, "do", "States::StateAction::doAction");
-		put(FlowConnectionUsageImpl.class, "exit", "States::StateAction::exitAction");
-		put(FlowConnectionUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
-		put(FlowConnectionUsageImpl.class, "guard", "Actions::TransitionAction::guard");
-		put(FlowConnectionUsageImpl.class, "effect", "Actions::TransitionAction::effect");
-		put(FlowConnectionUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
-		put(FlowConnectionUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
+		put(FlowDefinitionImpl.class, "base", "FlowConnections::MessageConnection");		
+		put(FlowDefinitionImpl.class, "binary", "FlowConnections::MessageTransferConnection");		
+		put(FlowUsageImpl.class, "base", "FlowConnections::flowConnections");
+		put(FlowUsageImpl.class, "message", "FlowConnections::messageConnections");
+		put(FlowUsageImpl.class, "subaction", "Actions::Action::subactions");
+		put(FlowUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		put(FlowUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		put(FlowUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(FlowUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowUsageImpl.class, "entry", "States::StateAction::entryAction");
+		put(FlowUsageImpl.class, "do", "States::StateAction::doAction");
+		put(FlowUsageImpl.class, "exit", "States::StateAction::exitAction");
+		put(FlowUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
+		put(FlowUsageImpl.class, "guard", "Actions::TransitionAction::guard");
+		put(FlowUsageImpl.class, "effect", "Actions::TransitionAction::effect");
+		put(FlowUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(FlowUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
 		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
 		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");
@@ -260,8 +260,6 @@ public class ImplicitGeneralizationMap {
 		put(ItemUsageImpl.class, "subitem", "Items::Item::subitems");
 		
 		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
-		
-		put(LifeClassImpl.class, "base", "Occurrences::Life");
 		
 		put(MetadataDefinitionImpl.class, "base", "Metadata::MetadataItem");
 		put(MetadataUsageImpl.class, "base", "Metadata::metadataItems");
@@ -314,8 +312,8 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "FlowConnections::successionFlowConnections");
-		put(SuccessionFlowConnectionUsageImpl.class, "message", "FlowConnections::successionFlowConnections");
+		put(SuccessionFlowUsageImpl.class, "base", "FlowConnections::successionFlowConnections");
+		put(SuccessionFlowUsageImpl.class, "message", "FlowConnections::successionFlowConnections");
 
 		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");

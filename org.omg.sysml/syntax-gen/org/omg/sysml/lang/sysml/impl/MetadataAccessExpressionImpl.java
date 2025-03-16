@@ -22,14 +22,11 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -50,15 +47,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class MetadataAccessExpressionImpl extends ExpressionImpl implements MetadataAccessExpression {
 	/**
-	 * The cached value of the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+	 * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReferencedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Element referencedElement;
-
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,15 +81,7 @@ public class MetadataAccessExpressionImpl extends ExpressionImpl implements Meta
 	 */
 	@Override
 	public Element getReferencedElement() {
-		if (referencedElement != null && referencedElement.eIsProxy()) {
-			InternalEObject oldReferencedElement = (InternalEObject)referencedElement;
-			referencedElement = (Element)eResolveProxy(oldReferencedElement);
-			if (referencedElement != oldReferencedElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
-			}
-		}
-		return referencedElement;
+		return (Element)REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -102,7 +90,7 @@ public class MetadataAccessExpressionImpl extends ExpressionImpl implements Meta
 	 * @generated
 	 */
 	public Element basicGetReferencedElement() {
-		return referencedElement;
+		return (Element)REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -112,10 +100,7 @@ public class MetadataAccessExpressionImpl extends ExpressionImpl implements Meta
 	 */
 	@Override
 	public void setReferencedElement(Element newReferencedElement) {
-		Element oldReferencedElement = referencedElement;
-		referencedElement = newReferencedElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
+		REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedElement);
 	}
 	
 	/**
@@ -196,7 +181,7 @@ public class MetadataAccessExpressionImpl extends ExpressionImpl implements Meta
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT:
-				return referencedElement != null;
+				return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

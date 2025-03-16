@@ -19,18 +19,19 @@
  * 
  * Contributors:
  *   Laszlo Gati, MDS
+ *   Ed Seidewitz. MDS
  */
 package org.omg.kerml.xtext.naming;
 
 import org.eclipse.xtext.naming.QualifiedName;
+import org.omg.sysml.util.ElementUtil;
 
-public class QualifiedNamesUtil {
-	
-	public static final String GLOBAL_CLASSIFIER_SYMBOL = "$";
+public class QualifiedNameUtil {
 	
 	public static boolean isGlobalNameQualification(QualifiedName qualifiedName) {
 		return qualifiedName != null &&
 				qualifiedName.getSegmentCount() > 0 &&
-				GLOBAL_CLASSIFIER_SYMBOL.equals(qualifiedName.getFirstSegment()); 
+				ElementUtil.isGlobalScopeSymbol(qualifiedName.getFirstSegment()); 
 	}
+
 }

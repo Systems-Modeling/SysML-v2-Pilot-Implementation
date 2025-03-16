@@ -38,7 +38,7 @@ import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Element
-import org.omg.kerml.xtext.naming.QualifiedNamesUtil
+import org.omg.kerml.xtext.naming.QualifiedNameUtil
 
 class KerMLGlobalScope extends AbstractScope {
 
@@ -79,7 +79,7 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
-		val isGlobalQualification = QualifiedNamesUtil.isGlobalNameQualification(name)
+		val isGlobalQualification = QualifiedNameUtil.isGlobalNameQualification(name)
 		val qualifiedName = isGlobalQualification? name.skipFirst(1) : name
 			
 		var IEObjectDescription result = null

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020, 2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020, 2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -122,12 +122,28 @@ public class ElementUtil {
 		return name.matches("[a-zA-Z_]\\w*");
 	}
 	
+	// Specific string used to identify a segment as a global scope qualifier
+	public static final String GLOBAL_SCOPE_SYMBOL = "$";
+	
+	public static boolean isGlobalScopeSymbol(String segment) {
+		return segment == GLOBAL_SCOPE_SYMBOL;
+	}
+	
 	public static List<String> parseQualifiedName(String qualifiedNameText) {
 			List<String> segments = new ArrayList<>();		
 			int i = 0;
 			int j = 0;
 			int n = qualifiedNameText.length();
 			boolean isDelimitable = true;
+			
+			
+			if (qualifiedNameText.startsWith(GLOBAL_SCOPE_SYMBOL)) {
+				// Add the specific GLOBAL_SCOPE_SYMBOL string to identify 
+				// a global scope qualifier segment.
+				segments.add(GLOBAL_SCOPE_SYMBOL);
+				i = 3;
+				j = 3;
+			}
 			
 			while (j < n) {
 				char c = qualifiedNameText.charAt(j);

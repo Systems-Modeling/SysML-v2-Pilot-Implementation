@@ -80,7 +80,9 @@ public class SysMLInteractiveHelp {
 
 	private static final String PUBLISH_HELP_STRING =
 			  "Usage: %publish <NAME>\n\n"
-			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n";
+			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n"
+			+ "Use the --project parameter to specify a project to create or update. If not specified, a new project is created with the name of the model element and a timestamp.\n"
+			+ "(Experimental) Use --branch to specify the target branch name. If not specified, the default branch is selected.\n";
 
     private static final String VIZ_HELP_STRING =
     	      "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
@@ -120,9 +122,10 @@ public class SysMLInteractiveHelp {
 		    + "<NAME> must be fully qualified.\n";
 	
 	private static final String LOAD_HELP_STRING =
-			  "Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [<NAME>]\n\n"
+			"Usage: %load [--branch=<BRANCH_NAME>] [--id=<PROJECT ID] [--name=<NAME>] [<NAME>]\n\n"
 			+ "Downloads previously published models from the repository. <NAME> must be the full name of the project.\n"
-			+ "Use --id=<PROJECT ID> to load projects by id.\n"		  
+			+ "Use --id=<PROJECT ID> to load projects by id. It is not supported to provide both id and name.\n"
+			+ "(Experimental) Use --branch=<BRANCH_NAME> to select the branch to load from. If not specified, the default branch is used.\n"
 			+ "Use %projects to view repository contents.\n";
 	
 	private static final String PROJECTS_HELP_STRING =

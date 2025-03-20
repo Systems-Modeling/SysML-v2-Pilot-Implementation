@@ -77,7 +77,7 @@ public class EMFModelRefresher {
 		
 		//traverse containment
 		for (var projectRoot: model.getModelRoots().values()) {
-			if (!Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
+			if (isNonStandardLibrary(projectRoot) || !Boolean.TRUE.equals(projectRoot.get("isLibraryElement"))) {
 				EObject rootNamespace = transform(projectRoot);
 				rootNamespaces.put(rootNamespace, projectRoot);
 			}
@@ -95,6 +95,10 @@ public class EMFModelRefresher {
 		});
 		
 		return new EMFModelDelta(rootNamespaces);
+	}
+	
+	private boolean isNonStandardLibrary(Element element) {
+		return element.get("@type").equals("LibraryPackage") && !Boolean.TRUE.equals(element.get("isStandard"));
 	}
 	
 	private EObject transform(Element dto) {

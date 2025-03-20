@@ -407,7 +407,7 @@ public class SysMLInteractive extends SysMLUtil {
 				show(name, Collections.emptyList(), Collections.emptyList()));
 	}
 	
-	public String publish(String elementName, String projectName, String branchName, List<String> help) {
+	public String publish(String elementName, String projectName, String branchName, boolean includeDerievd, List<String> help) {
 		this.counter++;
 		if (Strings.isNullOrEmpty(elementName)) {
 			return help.isEmpty()? "": SysMLInteractiveHelp.getPublishHelp();
@@ -421,7 +421,7 @@ public class SysMLInteractive extends SysMLUtil {
 			} else {
 				String remoteProjectName = projectName == null? element.getDeclaredName() + " " + new Date() : projectName;
 				
-				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName, branchName);
+				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName, branchName, includeDerievd);
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit(element);
 				System.out.println();
@@ -434,8 +434,8 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected String publish(String name) {
 		return "-h".equals(name)? 
-				publish(null, null, null, Collections.singletonList("true")):
-				publish(name, null, null, Collections.emptyList());
+				publish(null, null, null, false, Collections.singletonList("true")):
+				publish(name, null, null, false, Collections.emptyList());
 	}
 	
 	public String loadByName(String projectName, String branchName, List<String> help) {
@@ -552,10 +552,10 @@ public class SysMLInteractive extends SysMLUtil {
 				.collect(Collectors.joining("\n"));
 	}
 	
-	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName) {
+	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, branchName, this.apiBasePath);	
-		processingFacade.setIsIncludeDerived(true);
+		processingFacade.setIsIncludeDerived(includeDerived);
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}

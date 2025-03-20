@@ -178,7 +178,9 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String className = eClass.getName();
 			String featureName = feature.getName();
-			if ((this.isIncludeDerived() || !feature.isDerived()) && 
+			//always add the importedElement derived field. This field is used for a workaround that addresses
+			//unstable library membership UUIDs in the EMFModelRefresher.
+			if ((this.isIncludeDerived() || !feature.isDerived() || "importedElement".equals(feature.getName())) && 
 					// Skip implementation-specific features.
 					!(/*"Feature".equals(className) && */"isNonunique".equals(featureName) || 
 					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 

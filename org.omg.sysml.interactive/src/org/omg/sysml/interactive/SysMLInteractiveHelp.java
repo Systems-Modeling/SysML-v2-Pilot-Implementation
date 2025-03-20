@@ -82,6 +82,7 @@ public class SysMLInteractiveHelp {
 			  "Usage: %publish <NAME>\n\n"
 			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n"
 			+ "Use the --project parameter to specify a project to create or update. If not specified, a new project is created with the name of the model element and a timestamp.\n"
+			+ "Use the -d flag to include derived properties\n"
 			+ "(Experimental) Use --branch to specify the target branch name. If not specified, the default branch is selected.\n";
 
     private static final String VIZ_HELP_STRING =

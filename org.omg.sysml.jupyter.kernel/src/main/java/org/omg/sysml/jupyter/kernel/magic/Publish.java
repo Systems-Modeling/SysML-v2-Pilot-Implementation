@@ -31,6 +31,7 @@ public class Publish {
     		.optional("element")
     		.keyword("project")
     		.keyword("branch")
+    		.flag("derived", 'd', "false")
             .flag("help", 'h', "true")
     		.build();
 
@@ -43,7 +44,8 @@ public class Publish {
         String element = elements.isEmpty()? null:elements.get(0);
         String project = projects.isEmpty()? null:projects.get(0);
         String branch = branches.isEmpty()? null:branches.get(0);
+        boolean includeDerived = !vals.get("derived").isEmpty();
         List<String> help = vals.get("help");
-        return ISysML.getKernelInstance().getInteractive().publish(element, project, branch, help);
+        return ISysML.getKernelInstance().getInteractive().publish(element, project, branch, includeDerived, help);
     }
 }

@@ -168,7 +168,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 
 	override getSingleElement(QualifiedName name) {
-		if (QualifiedNameUtil.isGlobalNameQualification(name)){
+		if (QualifiedNameUtil.isGlobalScopeQualification(name)){
 			parent.getSingleElement(name)
 		} else {
 			val result = resolveInScope(name, true);

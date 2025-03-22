@@ -23,15 +23,34 @@
  */
 package org.omg.kerml.xtext.naming;
 
+import java.util.List;
+
 import org.eclipse.xtext.naming.QualifiedName;
 import org.omg.sysml.util.ElementUtil;
 
+/**
+ * This class provides utility methods for qualified names that abstracts the representation of
+ * globally scoped qualified names. The current implementation presumes that globally scoped
+ * qualified names are represented as Xtext QualifiedNames whose first symbol is specific
+ * String identified by ElementUtil.isGlobalScopeSymbol.
+ */
 public class QualifiedNameUtil {
 	
-	public static boolean isGlobalNameQualification(QualifiedName qualifiedName) {
+	public static QualifiedName createQualifiedName(List<String> segments) {
+		return QualifiedName.create(segments);
+	}
+	
+	public static boolean isGlobalScopeQualification(QualifiedName qualifiedName) {
 		return qualifiedName != null &&
 				qualifiedName.getSegmentCount() > 0 &&
 				ElementUtil.isGlobalScopeSymbol(qualifiedName.getFirstSegment()); 
 	}
 
+	public static QualifiedName getNonGlobalQualifiedName(QualifiedName qualifiedName) {
+		return isGlobalScopeQualification(qualifiedName)? qualifiedName.skipFirst(1): qualifiedName;
+	}
+	
+	public static String toQualifiedNameString(QualifiedName qualifiedName) {
+		return ElementUtil.toQualifiedNameString(qualifiedName.getSegments());
+	}
 }

@@ -79,13 +79,11 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
-		val isGlobalQualification = QualifiedNameUtil.isGlobalNameQualification(name)
-		val qualifiedName = isGlobalQualification? name.skipFirst(1) : name
-			
+		val qualifiedName = QualifiedNameUtil.getNonGlobalQualifiedName(name)							
 		var IEObjectDescription result = null
 		
 		if (qualifiedName.segmentCount > 0) {
-			if (isGlobalQualification) {
+			if (QualifiedNameUtil.isGlobalScopeQualification(name)) {
 				//search the context resource first
 				val rootNS = resource.contents.head as Namespace
 				result = scopeFor(rootNS).getSingleElement(qualifiedName)

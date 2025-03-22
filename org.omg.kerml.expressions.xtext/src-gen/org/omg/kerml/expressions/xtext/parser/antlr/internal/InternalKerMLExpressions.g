@@ -4877,6 +4877,35 @@ ruleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	)
 ;
 
+// Entry rule entryRuleGlobalQualification
+entryRuleGlobalQualification returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getGlobalQualificationRule()); }
+	iv_ruleGlobalQualification=ruleGlobalQualification
+	{ $current=$iv_ruleGlobalQualification.current.getText(); }
+	EOF;
+
+// Rule GlobalQualification
+ruleGlobalQualification returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='$'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getGlobalQualificationAccess().getDollarSignKeyword_0());
+		}
+		kw='::'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getGlobalQualificationAccess().getColonColonKeyword_1());
+		}
+	)
+;
+
 // Entry rule entryRuleQualification
 entryRuleQualification returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getQualificationRule()); }
@@ -4929,22 +4958,34 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getQualifiedNameAccess().getQualificationParserRuleCall_0());
+				newCompositeNode(grammarAccess.getQualifiedNameAccess().getGlobalQualificationParserRuleCall_0());
 			}
-			this_Qualification_0=ruleQualification
+			this_GlobalQualification_0=ruleGlobalQualification
 			{
-				$current.merge(this_Qualification_0);
+				$current.merge(this_GlobalQualification_0);
+			}
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
+			{
+				newCompositeNode(grammarAccess.getQualifiedNameAccess().getQualificationParserRuleCall_1());
+			}
+			this_Qualification_1=ruleQualification
+			{
+				$current.merge(this_Qualification_1);
 			}
 			{
 				afterParserOrEnumRuleCall();
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1());
+			newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_2());
 		}
-		this_Name_1=ruleName
+		this_Name_2=ruleName
 		{
-			$current.merge(this_Name_1);
+			$current.merge(this_Name_2);
 		}
 		{
 			afterParserOrEnumRuleCall();

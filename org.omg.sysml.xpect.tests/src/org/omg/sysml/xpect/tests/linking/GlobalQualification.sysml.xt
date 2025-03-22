@@ -1,0 +1,52 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Attributes.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Attributes.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Definitions {
+	part def A;
+}
+
+package Parts {
+	package Definitions {
+		part def A;
+	}
+	// XPECT linkedName at A --> Parts.Definitions.A
+	part a1: Definitions::A;
+	// XPECT linkedName at A --> Definitions.A
+	part a2: $::Definitions::A;
+	// XPECT errors --> "Couldn't resolve reference to Feature 'Parts::parts'." at "Parts::parts"  
+	part a3 :> Parts::parts;
+	// XPECT linkedName at parts --> Parts.parts
+	part a4 :> $::Parts::parts;
+}

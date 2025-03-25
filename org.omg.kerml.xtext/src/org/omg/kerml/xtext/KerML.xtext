@@ -511,10 +511,10 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 fragment BasicFeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
+	( isDerived ?= 'derived' )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
-	( isConstant ?= 'readonly' )?
-	( isDerived ?= 'derived' )?
+	( isVariable ?= 'var' | isConstant ?= 'const' )?
 ;
 
 fragment FeaturePrefix returns SysML::Feature :

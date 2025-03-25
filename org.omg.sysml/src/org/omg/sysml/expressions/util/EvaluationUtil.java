@@ -289,7 +289,7 @@ public class EvaluationUtil {
 
 	public static boolean isType(Element context, Element element, Type type) {
 		return getType(context, element).stream().
-				anyMatch(elementType->TypeUtil.conforms(elementType, type));
+				anyMatch(elementType->TypeUtil.specializes(elementType, type));
 	}
 
 	public static boolean hasType(Element context, Element element, Type type) {
@@ -297,7 +297,7 @@ public class EvaluationUtil {
 	}
 
 	public static boolean isMetatype(Element element, Type targetType) {
-		return TypeUtil.conforms(ElementUtil.getMetaclassOf(element), targetType);
+		return TypeUtil.specializes(ElementUtil.getMetaclassOf(element), targetType);
 	}
 
 }

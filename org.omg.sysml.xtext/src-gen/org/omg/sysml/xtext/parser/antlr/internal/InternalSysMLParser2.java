@@ -33,8 +33,8 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             "\1\2\2\uffff\2\35\3\uffff\1\35\4\uffff\1\2\3\uffff\1\2\1\uffff\5\2\1\uffff\1\2\1\3\1\1\3\35\3\2\11\uffff\1\35\1\uffff\4\35\1\uffff\6\35\1\uffff\1\4\1\uffff\3\35\3\uffff\1\5\1\6\1\10\1\7\1\35\1\uffff\1\11\1\12\1\17\1\uffff\4\35\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\16\uffff\1\35\5\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\37\uffff\4\35",
             "\1\37\1\40\u00a2\uffff\1\36",
             "",
-            "\2\35\3\uffff\1\35\16\uffff\1\2\3\uffff\1\41\3\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\3\uffff\2\35\4\uffff\1\5\1\35\1\10\1\7\1\35\1\uffff\1\11\1\12\1\17\1\uffff\4\35\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\24\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\41\uffff\2\35",
-            "\2\35\3\uffff\1\35\22\uffff\1\42\3\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\3\uffff\2\35\4\uffff\1\5\1\35\1\10\1\7\1\35\1\uffff\1\11\1\12\1\17\1\uffff\4\35\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\24\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\41\uffff\2\35",
+            "\2\35\3\uffff\1\35\16\uffff\1\2\3\uffff\1\41\3\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\4\uffff\1\35\4\uffff\1\5\1\35\1\10\1\7\1\35\1\uffff\1\11\1\12\1\17\1\uffff\4\35\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\24\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\41\uffff\2\35",
+            "\2\35\3\uffff\1\35\22\uffff\1\42\3\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\4\uffff\1\35\4\uffff\1\5\1\35\1\10\1\7\1\35\1\uffff\1\11\1\12\1\17\1\uffff\4\35\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\24\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\41\uffff\2\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\2\uffff\1\43\1\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35\2\uffff\1\10\1\uffff\1\35\1\uffff\1\11\1\12\1\35\3\uffff\1\35\1\uffff\1\13\1\35\2\uffff\1\15\1\16\1\35\1\14\1\35\2\uffff\1\20\1\35\24\uffff\1\22\4\uffff\1\35\1\uffff\1\21\1\uffff\1\23\2\35\1\24\3\uffff\1\35\1\25\1\26\1\uffff\1\27\1\30\1\31\1\35\1\32\1\uffff\1\34\1\33\41\uffff\2\35",
@@ -113,7 +113,7 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
     static final String dfa_7s = "\16\uffff";
     static final String dfa_8s = "\1\u00ad\3\52\2\10\1\54\2\17\2\10\2\uffff\1\17";
     static final String dfa_9s = "\1\u00af\3\52\2\u00ac\1\54\2\74\1\11\1\56\2\uffff\1\74";
-    static final String dfa_10s = "\13\uffff\1\2\1\1\1\uffff";
+    static final String dfa_10s = "\13\uffff\1\1\1\2\1\uffff";
     static final String dfa_11s = "\16\uffff}>";
     static final String[] dfa_12s = {
             "\1\1\1\2\1\3",
@@ -123,13 +123,13 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             "\1\7\1\10\41\uffff\1\5\u0080\uffff\1\6",
             "\1\7\1\10\u00a2\uffff\1\6",
             "\1\11",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
+            "\2\13\33\uffff\1\12\17\uffff\1\14",
+            "\2\13\33\uffff\1\12\17\uffff\1\14",
             "\1\7\1\10",
-            "\1\7\1\10\43\uffff\1\15\1\13",
+            "\1\7\1\10\43\uffff\1\15\1\14",
             "",
             "",
-            "\2\14\53\uffff\1\13"
+            "\2\13\53\uffff\1\14"
     };
 
     static final short[] dfa_7 = DFA.unpackEncodedString(dfa_7s);

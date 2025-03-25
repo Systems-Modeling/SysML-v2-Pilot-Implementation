@@ -4713,75 +4713,92 @@ ruleBasicFeaturePrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
-				lv_isAbstract_1_0='abstract'
+				lv_isDerived_1_0='derived'
 				{
-					newLeafNode(lv_isAbstract_1_0, grammarAccess.getBasicFeaturePrefixAccess().getIsAbstractAbstractKeyword_1_0());
+					newLeafNode(lv_isDerived_1_0, grammarAccess.getBasicFeaturePrefixAccess().getIsDerivedDerivedKeyword_1_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
 					}
-					setWithLastConsumed($current, "isAbstract", lv_isAbstract_1_0 != null, "abstract");
+					setWithLastConsumed($current, "isDerived", lv_isDerived_1_0 != null, "derived");
+				}
+			)
+		)?
+		(
+			(
+				lv_isAbstract_2_0='abstract'
+				{
+					newLeafNode(lv_isAbstract_2_0, grammarAccess.getBasicFeaturePrefixAccess().getIsAbstractAbstractKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+					}
+					setWithLastConsumed($current, "isAbstract", lv_isAbstract_2_0 != null, "abstract");
 				}
 			)
 		)?
 		(
 			(
 				(
-					lv_isComposite_2_0='composite'
+					lv_isComposite_3_0='composite'
 					{
-						newLeafNode(lv_isComposite_2_0, grammarAccess.getBasicFeaturePrefixAccess().getIsCompositeCompositeKeyword_2_0_0());
+						newLeafNode(lv_isComposite_3_0, grammarAccess.getBasicFeaturePrefixAccess().getIsCompositeCompositeKeyword_3_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
 						}
-						setWithLastConsumed($current, "isComposite", lv_isComposite_2_0 != null, "composite");
+						setWithLastConsumed($current, "isComposite", lv_isComposite_3_0 != null, "composite");
 					}
 				)
 			)
 			    |
 			(
 				(
-					lv_isPortion_3_0='portion'
+					lv_isPortion_4_0='portion'
 					{
-						newLeafNode(lv_isPortion_3_0, grammarAccess.getBasicFeaturePrefixAccess().getIsPortionPortionKeyword_2_1_0());
+						newLeafNode(lv_isPortion_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsPortionPortionKeyword_3_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
 						}
-						setWithLastConsumed($current, "isPortion", lv_isPortion_3_0 != null, "portion");
+						setWithLastConsumed($current, "isPortion", lv_isPortion_4_0 != null, "portion");
 					}
 				)
 			)
 		)?
 		(
 			(
-				lv_isConstant_4_0='readonly'
-				{
-					newLeafNode(lv_isConstant_4_0, grammarAccess.getBasicFeaturePrefixAccess().getIsConstantReadonlyKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+				(
+					lv_isVariable_5_0='var'
+					{
+						newLeafNode(lv_isVariable_5_0, grammarAccess.getBasicFeaturePrefixAccess().getIsVariableVarKeyword_4_0_0());
 					}
-					setWithLastConsumed($current, "isConstant", lv_isConstant_4_0 != null, "readonly");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+						}
+						setWithLastConsumed($current, "isVariable", lv_isVariable_5_0 != null, "var");
+					}
+				)
 			)
-		)?
-		(
+			    |
 			(
-				lv_isDerived_5_0='derived'
-				{
-					newLeafNode(lv_isDerived_5_0, grammarAccess.getBasicFeaturePrefixAccess().getIsDerivedDerivedKeyword_4_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+				(
+					lv_isConstant_6_0='const'
+					{
+						newLeafNode(lv_isConstant_6_0, grammarAccess.getBasicFeaturePrefixAccess().getIsConstantConstKeyword_4_1_0());
 					}
-					setWithLastConsumed($current, "isDerived", lv_isDerived_5_0 != null, "derived");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBasicFeaturePrefixRule());
+						}
+						setWithLastConsumed($current, "isConstant", lv_isConstant_6_0 != null, "const");
+					}
+				)
 			)
 		)?
 	)

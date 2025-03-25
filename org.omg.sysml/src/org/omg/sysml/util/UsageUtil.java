@@ -88,9 +88,15 @@ public class UsageUtil {
 	// References
 	
 	public static boolean isComposite(Usage usage, boolean isComposite) {
-		return isComposite && !usage.getFeaturingType().isEmpty() && usage.getDirection() == null && !usage.isEnd();
+		return isComposite && (usage.getOwningType() != null || !usage.getFeaturingType().isEmpty()) && usage.getDirection() == null && !usage.isEnd();
 	}
 	
+	// Time Varying
+	
+	public static boolean mayTimeVary(Usage usage) {
+		return getUsageAdapter(usage).mayTimeVary();
+	}
+		
 	// Variants
 	
 	public static boolean isVariant(Usage usage) {

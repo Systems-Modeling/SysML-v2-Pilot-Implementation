@@ -3133,28 +3133,28 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_0_0 = (RuleCall)cDirectionAssignment_0.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Assignment cIsAbstractAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final Keyword cIsAbstractAbstractKeyword_1_0_0 = (Keyword)cIsAbstractAssignment_1_0.eContents().get(0);
-		private final Assignment cIsVariationAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
-		private final Keyword cIsVariationVariationKeyword_1_1_0 = (Keyword)cIsVariationAssignment_1_1.eContents().get(0);
-		private final Assignment cIsConstantAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cIsConstantReadonlyKeyword_2_0 = (Keyword)cIsConstantAssignment_2.eContents().get(0);
-		private final Assignment cIsDerivedAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsDerivedDerivedKeyword_3_0 = (Keyword)cIsDerivedAssignment_3.eContents().get(0);
+		private final Assignment cIsDerivedAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsDerivedDerivedKeyword_1_0 = (Keyword)cIsDerivedAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cIsAbstractAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_2_0_0 = (Keyword)cIsAbstractAssignment_2_0.eContents().get(0);
+		private final Assignment cIsVariationAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsVariationVariationKeyword_2_1_0 = (Keyword)cIsVariationAssignment_2_1.eContents().get(0);
+		private final Assignment cIsConstantAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cIsConstantConstantKeyword_3_0 = (Keyword)cIsConstantAssignment_3.eContents().get(0);
 		
 		//fragment RefPrefix returns SysML::Usage :
 		//    ( direction = FeatureDirection )?
-		//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		//    ( isConstant ?= 'readonly' )?
 		//    ( isDerived ?= 'derived' )?
+		//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//    ( isConstant ?= 'constant' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( direction = FeatureDirection )?
-		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		//( isConstant ?= 'readonly' )?
 		//( isDerived ?= 'derived' )?
+		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//( isConstant ?= 'constant' )?
 		public Group getGroup() { return cGroup; }
 		
 		//( direction = FeatureDirection )?
@@ -3163,32 +3163,32 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureDirection
 		public RuleCall getDirectionFeatureDirectionEnumRuleCall_0_0() { return cDirectionFeatureDirectionEnumRuleCall_0_0; }
 		
-		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//isAbstract ?= 'abstract'
-		public Assignment getIsAbstractAssignment_1_0() { return cIsAbstractAssignment_1_0; }
-		
-		//'abstract'
-		public Keyword getIsAbstractAbstractKeyword_1_0_0() { return cIsAbstractAbstractKeyword_1_0_0; }
-		
-		//isVariation ?= 'variation'
-		public Assignment getIsVariationAssignment_1_1() { return cIsVariationAssignment_1_1; }
-		
-		//'variation'
-		public Keyword getIsVariationVariationKeyword_1_1_0() { return cIsVariationVariationKeyword_1_1_0; }
-		
-		//( isConstant ?= 'readonly' )?
-		public Assignment getIsConstantAssignment_2() { return cIsConstantAssignment_2; }
-		
-		//'readonly'
-		public Keyword getIsConstantReadonlyKeyword_2_0() { return cIsConstantReadonlyKeyword_2_0; }
-		
 		//( isDerived ?= 'derived' )?
-		public Assignment getIsDerivedAssignment_3() { return cIsDerivedAssignment_3; }
+		public Assignment getIsDerivedAssignment_1() { return cIsDerivedAssignment_1; }
 		
 		//'derived'
-		public Keyword getIsDerivedDerivedKeyword_3_0() { return cIsDerivedDerivedKeyword_3_0; }
+		public Keyword getIsDerivedDerivedKeyword_1_0() { return cIsDerivedDerivedKeyword_1_0; }
+		
+		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//isAbstract ?= 'abstract'
+		public Assignment getIsAbstractAssignment_2_0() { return cIsAbstractAssignment_2_0; }
+		
+		//'abstract'
+		public Keyword getIsAbstractAbstractKeyword_2_0_0() { return cIsAbstractAbstractKeyword_2_0_0; }
+		
+		//isVariation ?= 'variation'
+		public Assignment getIsVariationAssignment_2_1() { return cIsVariationAssignment_2_1; }
+		
+		//'variation'
+		public Keyword getIsVariationVariationKeyword_2_1_0() { return cIsVariationVariationKeyword_2_1_0; }
+		
+		//( isConstant ?= 'constant' )?
+		public Assignment getIsConstantAssignment_3() { return cIsConstantAssignment_3; }
+		
+		//'constant'
+		public Keyword getIsConstantConstantKeyword_3_0() { return cIsConstantConstantKeyword_3_0; }
 	}
 	public class BasicUsagePrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.BasicUsagePrefix");
@@ -4425,42 +4425,30 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OccurrenceDefinitionPrefix");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cBasicDefinitionPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cIsIndividualAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Keyword cIsIndividualIndividualKeyword_1_0_0 = (Keyword)cIsIndividualAssignment_1_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipLifeClassMembershipParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
+		private final Assignment cIsIndividualAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsIndividualIndividualKeyword_1_0 = (Keyword)cIsIndividualAssignment_1.eContents().get(0);
 		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 		//    BasicDefinitionPrefix?
-		//    ( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+		//    ( isIndividual ?= 'individual' )?
 		//    DefinitionExtensionKeyword*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicDefinitionPrefix?
-		//( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+		//( isIndividual ?= 'individual' )?
 		//DefinitionExtensionKeyword*
 		public Group getGroup() { return cGroup; }
 		
 		//BasicDefinitionPrefix?
 		public RuleCall getBasicDefinitionPrefixParserRuleCall_0() { return cBasicDefinitionPrefixParserRuleCall_0; }
 		
-		//( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//isIndividual ?= 'individual'
-		public Assignment getIsIndividualAssignment_1_0() { return cIsIndividualAssignment_1_0; }
+		//( isIndividual ?= 'individual' )?
+		public Assignment getIsIndividualAssignment_1() { return cIsIndividualAssignment_1; }
 		
 		//'individual'
-		public Keyword getIsIndividualIndividualKeyword_1_0_0() { return cIsIndividualIndividualKeyword_1_0_0; }
-		
-		//ownedRelationship += LifeClassMembership
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
-		
-		//LifeClassMembership
-		public RuleCall getOwnedRelationshipLifeClassMembershipParserRuleCall_1_1_0() { return cOwnedRelationshipLifeClassMembershipParserRuleCall_1_1_0; }
+		public Keyword getIsIndividualIndividualKeyword_1_0() { return cIsIndividualIndividualKeyword_1_0; }
 		
 		//DefinitionExtensionKeyword*
 		public RuleCall getDefinitionExtensionKeywordParserRuleCall_2() { return cDefinitionExtensionKeywordParserRuleCall_2; }
@@ -4498,19 +4486,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cDefinitionExtensionKeywordParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cDefKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final RuleCall cDefinitionParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Assignment cOwnedRelationshipAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cOwnedRelationshipLifeClassMembershipParserRuleCall_5_0 = (RuleCall)cOwnedRelationshipAssignment_5.eContents().get(0);
 		
 		//IndividualDefinition returns SysML::OccurrenceDefinition :
 		//    BasicDefinitionPrefix? isIndividual ?= 'individual'
 		//    DefinitionExtensionKeyword* 'def' Definition
-		//    ownedRelationship += LifeClassMembership
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BasicDefinitionPrefix? isIndividual ?= 'individual'
 		//DefinitionExtensionKeyword* 'def' Definition
-		//ownedRelationship += LifeClassMembership
 		public Group getGroup() { return cGroup; }
 		
 		//BasicDefinitionPrefix?
@@ -4530,40 +4514,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Definition
 		public RuleCall getDefinitionParserRuleCall_4() { return cDefinitionParserRuleCall_4; }
-		
-		//ownedRelationship += LifeClassMembership
-		public Assignment getOwnedRelationshipAssignment_5() { return cOwnedRelationshipAssignment_5; }
-		
-		//LifeClassMembership
-		public RuleCall getOwnedRelationshipLifeClassMembershipParserRuleCall_5_0() { return cOwnedRelationshipLifeClassMembershipParserRuleCall_5_0; }
-	}
-	public class LifeClassMembershipElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.LifeClassMembership");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementLifeClassParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//LifeClassMembership returns SysML::OwningMembership :
-		//    ownedRelatedElement += LifeClass
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += LifeClass
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//LifeClass
-		public RuleCall getOwnedRelatedElementLifeClassParserRuleCall_0() { return cOwnedRelatedElementLifeClassParserRuleCall_0; }
-	}
-	public class LifeClassElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.LifeClass");
-		private final Action cClassAction = (Action)rule.eContents().get(1);
-		
-		//LifeClass returns SysML::Class :
-		//    {SysML::Class}
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SysML::Class}
-		public Action getClassAction() { return cClassAction; }
 	}
 	public class OccurrenceUsageKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OccurrenceUsageKeyword");
@@ -14214,8 +14164,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final OccurrenceDefinitionPrefixElements pOccurrenceDefinitionPrefix;
 	private final OccurrenceDefinitionElements pOccurrenceDefinition;
 	private final IndividualDefinitionElements pIndividualDefinition;
-	private final LifeClassMembershipElements pLifeClassMembership;
-	private final LifeClassElements pLifeClass;
 	private final OccurrenceUsageKeywordElements pOccurrenceUsageKeyword;
 	private final OccurrenceUsagePrefixElements pOccurrenceUsagePrefix;
 	private final OccurrenceUsageElements pOccurrenceUsage;
@@ -14666,8 +14614,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pOccurrenceDefinitionPrefix = new OccurrenceDefinitionPrefixElements();
 		this.pOccurrenceDefinition = new OccurrenceDefinitionElements();
 		this.pIndividualDefinition = new IndividualDefinitionElements();
-		this.pLifeClassMembership = new LifeClassMembershipElements();
-		this.pLifeClass = new LifeClassElements();
 		this.pOccurrenceUsageKeyword = new OccurrenceUsageKeywordElements();
 		this.pOccurrenceUsagePrefix = new OccurrenceUsagePrefixElements();
 		this.pOccurrenceUsage = new OccurrenceUsageElements();
@@ -16128,9 +16074,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment RefPrefix returns SysML::Usage :
 	//    ( direction = FeatureDirection )?
-	//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	//    ( isConstant ?= 'readonly' )?
 	//    ( isDerived ?= 'derived' )?
+	//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+	//    ( isConstant ?= 'constant' )?
 	//;
 	public RefPrefixElements getRefPrefixAccess() {
 		return pRefPrefix;
@@ -16657,7 +16603,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	//    BasicDefinitionPrefix?
-	//    ( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+	//    ( isIndividual ?= 'individual' )?
 	//    DefinitionExtensionKeyword*
 	//;
 	public OccurrenceDefinitionPrefixElements getOccurrenceDefinitionPrefixAccess() {
@@ -16682,7 +16628,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//IndividualDefinition returns SysML::OccurrenceDefinition :
 	//    BasicDefinitionPrefix? isIndividual ?= 'individual'
 	//    DefinitionExtensionKeyword* 'def' Definition
-	//    ownedRelationship += LifeClassMembership
 	//;
 	public IndividualDefinitionElements getIndividualDefinitionAccess() {
 		return pIndividualDefinition;
@@ -16690,28 +16635,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getIndividualDefinitionRule() {
 		return getIndividualDefinitionAccess().getRule();
-	}
-	
-	//LifeClassMembership returns SysML::OwningMembership :
-	//    ownedRelatedElement += LifeClass
-	//;
-	public LifeClassMembershipElements getLifeClassMembershipAccess() {
-		return pLifeClassMembership;
-	}
-	
-	public ParserRule getLifeClassMembershipRule() {
-		return getLifeClassMembershipAccess().getRule();
-	}
-	
-	//LifeClass returns SysML::Class :
-	//    {SysML::Class}
-	//;
-	public LifeClassElements getLifeClassAccess() {
-		return pLifeClass;
-	}
-	
-	public ParserRule getLifeClassRule() {
-		return getLifeClassAccess().getRule();
 	}
 	
 	///* Occurrence Usages */

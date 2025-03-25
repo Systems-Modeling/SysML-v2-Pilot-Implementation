@@ -549,9 +549,9 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 fragment RefPrefix returns SysML::Usage :
     ( direction = FeatureDirection )?
-    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-    ( isConstant ?= 'readonly' )?
     ( isDerived ?= 'derived' )?
+    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+    ( isConstant ?= 'constant' )?
 ;
 
 fragment BasicUsagePrefix returns SysML::Usage :
@@ -797,7 +797,7 @@ OccurrenceDefKeyword :
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix?
-	( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+	( isIndividual ?= 'individual' )?
 	DefinitionExtensionKeyword*
 ;
 
@@ -808,15 +808,6 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 IndividualDefinition returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix? isIndividual ?= 'individual' 
 	DefinitionExtensionKeyword* 'def' Definition
-	ownedRelationship += LifeClassMembership
-;
-
-LifeClassMembership returns SysML::OwningMembership :
-	ownedRelatedElement += LifeClass 
-;
-
-LifeClass returns SysML::Class :
-	{SysML::Class}
 ;
 
 /* Occurrence Usages */

@@ -379,9 +379,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
-			case SysMLPackage.CLASS:
-				sequence_LifeClass(context, (org.omg.sysml.lang.sysml.Class) semanticObject); 
-				return; 
 			case SysMLPackage.COLLECT_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
@@ -1363,10 +1360,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_FeatureChainMember(context, (OwningMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getLifeClassMembershipRule()) {
-					sequence_LifeClassMembership(context, (OwningMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getPackageMemberRule()) {
 					sequence_MemberPrefix_PackageMember(context, (OwningMembership) semanticObject); 
 					return; 
@@ -2009,9 +2002,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -2068,9 +2061,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -2240,9 +2233,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -2330,9 +2323,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -2416,9 +2409,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -2476,9 +2469,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -2574,7 +2567,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2615,7 +2608,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2651,7 +2644,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2692,7 +2685,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2728,7 +2721,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2772,7 +2765,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2811,7 +2804,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2855,7 +2848,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2894,7 +2887,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2938,7 +2931,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -2977,7 +2970,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -3021,7 +3014,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	// Constraint:
 	//     (
 	//         (isAbstract?='abstract' | isVariation?='variation')? 
-	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         isIndividual?='individual'? 
 	//         ownedRelationship+=PrefixMetadataMember* 
 	//         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -3061,7 +3054,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -3104,9 +3097,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3172,9 +3165,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3231,9 +3224,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3299,9 +3292,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3358,9 +3351,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3430,9 +3423,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3500,9 +3493,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3571,9 +3564,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3633,9 +3626,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3704,9 +3697,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3766,9 +3759,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3837,9 +3830,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -3899,9 +3892,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -3970,9 +3963,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -4031,9 +4024,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -4099,9 +4092,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -4161,9 +4154,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -4235,9 +4228,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -4304,9 +4297,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -4792,9 +4785,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isIndividual?='individual'? 
 	 *         portionKind=PortionKind? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
@@ -4827,9 +4820,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isIndividual?='individual'? 
 	 *         portionKind=PortionKind? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
@@ -4862,9 +4855,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isIndividual?='individual'? 
 	 *         portionKind=PortionKind? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
@@ -4897,9 +4890,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isIndividual?='individual'? 
 	 *         portionKind=PortionKind? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
@@ -5149,21 +5142,21 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         ((isIndividual?='individual' ownedRelationship+=LifeClassMembership) | isIndividual?='individual')? 
+	 *         (isIndividual?='individual' | isIndividual?='individual')? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	 *         ownedRelationship+=DefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedRelationship+=DefinitionMember | 
 	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember)?
-	 *         )+ 
-	 *         ownedRelationship+=LifeClassMembership?
+	 *             ownedRelationship+=DefinitionMember?
+	 *         )*
 	 *     )
 	 * </pre>
 	 */
@@ -5193,8 +5186,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 ownedRelationship+=Import
 	 *             )? 
 	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember)?
-	 *         )+ 
-	 *         ownedRelationship+=LifeClassMembership
+	 *         )+
 	 *     )
 	 * </pre>
 	 */
@@ -5212,7 +5204,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5249,7 +5241,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5286,7 +5278,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5323,7 +5315,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5354,7 +5346,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5385,7 +5377,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5416,7 +5408,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5446,7 +5438,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5477,7 +5469,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5508,7 +5500,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5539,7 +5531,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5663,7 +5655,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5694,7 +5686,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	 *         isIndividual?='individual'? 
 	 *         ownedRelationship+=PrefixMetadataMember* 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
@@ -5736,9 +5728,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -5798,9 +5790,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -5852,9 +5844,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -5918,9 +5910,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -5979,9 +5971,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -6031,9 +6023,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -6077,9 +6069,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (
 	 *                     (
 	 *                         direction=FeatureDirection? 
-	 *                         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                         isConstant?='readonly'? 
 	 *                         isDerived?='derived'? 
+	 *                         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                         isConstant?='constant'? 
 	 *                         isReference?='ref'? 
 	 *                         isIndividual?='individual'? 
 	 *                         portionKind=PortionKind?
@@ -6141,9 +6133,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6201,9 +6193,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -6259,9 +6251,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6326,9 +6318,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6395,9 +6387,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6463,9 +6455,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 ((isIndividual?='individual'? portionKind=PortionKind?) | isIndividual?='individual' | (isIndividual?='individual'? portionKind=PortionKind))?
 	 *             ) | 
@@ -6519,9 +6511,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6581,9 +6573,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6652,9 +6644,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6720,9 +6712,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6788,9 +6780,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6855,9 +6847,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -6914,9 +6906,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -6960,9 +6952,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7014,9 +7006,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7073,9 +7065,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -7122,9 +7114,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7181,9 +7173,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -7231,9 +7223,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7290,9 +7282,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'? 
 	//                 isIndividual?='individual'? 
 	//                 portionKind=PortionKind?
@@ -7341,9 +7333,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7402,9 +7394,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7454,9 +7446,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7499,9 +7491,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7558,9 +7550,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7609,9 +7601,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7668,9 +7660,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         (
 	//             (
 	//                 direction=FeatureDirection? 
-	//                 (isAbstract?='abstract' | isVariation?='variation')? 
-	//                 isConstant?='readonly'? 
 	//                 isDerived?='derived'? 
+	//                 (isAbstract?='abstract' | isVariation?='variation')? 
+	//                 isConstant?='constant'? 
 	//                 isReference?='ref'?
 	//             ) | 
 	//             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7721,9 +7713,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'?
 	 *             ) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
@@ -7774,9 +7766,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isReference?='ref'? 
 	 *         isIndividual?='individual' 
 	 *         ownedRelationship+=PrefixMetadataMember* 
@@ -7818,9 +7810,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isReference?='ref'? 
 	 *         isIndividual?='individual'? 
 	 *         portionKind=PortionKind 
@@ -7870,9 +7862,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7935,9 +7927,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -7977,9 +7969,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -8023,9 +8015,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -8087,9 +8079,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
-	 *                 isConstant?='readonly'? 
 	 *                 isDerived?='derived'? 
+	 *                 (isAbstract?='abstract' | isVariation?='variation')? 
+	 *                 isConstant?='constant'? 
 	 *                 isReference?='ref'? 
 	 *                 isIndividual?='individual'? 
 	 *                 portionKind=PortionKind?
@@ -8134,9 +8126,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         isReference?='ref'? 
 	 *         (
 	 *             (declaredShortName=Name declaredName=Name?) | 
@@ -8344,27 +8336,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (
+	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?) | 
 	 *                     (
+	 *                         isEnd?='end' 
 	 *                         (
+	 *                             (direction=FeatureDirection isConstant?='constant') | 
 	 *                             (
-	 *                                 (
-	 *                                     (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?) | 
-	 *                                     (isEnd?='end' ((direction=FeatureDirection? isDerived?='derived') | isDerived?='derived'))
-	 *                                 ) 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                             ) | 
-	 *                             (
-	 *                                 (isEnd?='end' | (isEnd?='end' direction=FeatureDirection? isConstant?='readonly' isDerived?='derived')) 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                             ) | 
-	 *                             (
-	 *                                 isEnd?='end' 
-	 *                                 direction=FeatureDirection? 
+	 *                                 ((direction=FeatureDirection isDerived?='derived') | isDerived?='derived')? 
 	 *                                 (isAbstract?='abstract' | isVariation?='variation') 
-	 *                                 ((isConstant?='readonly' isDerived?='derived') | isDerived?='derived') 
-	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?
-	 *                             )
-	 *                         ) 
+	 *                                 isConstant?='constant'
+	 *                             ) | 
+	 *                             (((direction=FeatureDirection isDerived?='derived') | isDerived?='derived') isConstant?='constant') | 
+	 *                             isConstant?='constant'
+	 *                         )?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (declaredShortName=Name declaredName=Name?) | 
+	 *                     (
+	 *                         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
 	 *                         (
 	 *                             ownedRelationship+=OwnedMultiplicity | 
 	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8372,15 +8362,47 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     ) | 
 	 *                     (
 	 *                         (
-	 *                             isEnd?='end' | 
-	 *                             (isEnd?='end' direction=FeatureDirection? isConstant?='readonly' isDerived?='derived') | 
+	 *                             (declaredShortName=Name declaredName=Name?) | 
 	 *                             (
-	 *                                 isEnd?='end' 
-	 *                                 direction=FeatureDirection? 
-	 *                                 (isAbstract?='abstract' | isVariation?='variation') 
-	 *                                 ((isConstant?='readonly' isDerived?='derived') | isDerived?='derived')
-	 *                             )
-	 *                         ) 
+	 *                                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
+	 *                                 (
+	 *                                     ownedRelationship+=OwnedMultiplicity | 
+	 *                                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                                 )?
+	 *                             ) | 
+	 *                             declaredName=Name
+	 *                         )? 
+	 *                         (
+	 *                             (
+	 *                                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	 *                                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                                 ownedRelationship+=OwnedReferenceSubsetting | 
+	 *                                 ownedRelationship+=OwnedCrossSubsetting | 
+	 *                                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                             ) 
+	 *                             (
+	 *                                 ownedRelationship+=OwnedMultiplicity | 
+	 *                                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                             )?
+	 *                         )+
+	 *                     ) | 
+	 *                     declaredName=Name
+	 *                 )?
+	 *             ) | 
+	 *             (isEnd?='end' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?) | 
+	 *             (
+	 *                 (isEnd?='end' | (isEnd?='end' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?))? 
+	 *                 (
+	 *                     ownedRelationship+=OwnedMultiplicity | 
+	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	 *                 )?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     isEnd?='end' | 
+	 *                     (isEnd?='end' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?) | 
+	 *                     (
+	 *                         (isEnd?='end' | (isEnd?='end' ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?))? 
 	 *                         (
 	 *                             ownedRelationship+=OwnedMultiplicity | 
 	 *                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8399,39 +8421,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         ownedRelationship+=OwnedMultiplicity | 
 	 *                         (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	 *                     )?
-	 *                 )*
-	 *             ) | 
-	 *             (isEnd?='end' direction=FeatureDirection? isConstant?='readonly' isDerived?='derived') | 
-	 *             (
-	 *                 isEnd?='end' 
-	 *                 direction=FeatureDirection? 
-	 *                 (isAbstract?='abstract' | isVariation?='variation') 
-	 *                 ((isConstant?='readonly' isDerived?='derived') | isDerived?='derived')?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     isEnd?='end' | 
-	 *                     (isEnd?='end' direction=FeatureDirection? isConstant?='readonly' isDerived?='derived') | 
-	 *                     (
-	 *                         isEnd?='end' 
-	 *                         direction=FeatureDirection? 
-	 *                         (isAbstract?='abstract' | isVariation?='variation') 
-	 *                         ((isConstant?='readonly' isDerived?='derived') | isDerived?='derived')
-	 *                     )
-	 *                 )? 
-	 *                 (
-	 *                     (
-	 *                         (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
-	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                         ownedRelationship+=OwnedReferenceSubsetting | 
-	 *                         ownedRelationship+=OwnedCrossSubsetting | 
-	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                     ) 
-	 *                     (
-	 *                         ownedRelationship+=OwnedMultiplicity | 
-	 *                         (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
-	 *                     )?
-	 *                 )*
+	 *                 )+
 	 *             )
 	 *         )? 
 	 *         ownedRelationship+=FeatureValue? 
@@ -8463,9 +8453,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         isEnd?='end'? 
 	 *         direction=FeatureDirection? 
-	 *         (isAbstract?='abstract' | isVariation?='variation')? 
-	 *         isConstant?='readonly'? 
 	 *         isDerived?='derived'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isConstant?='constant'? 
 	 *         (
 	 *             (
 	 *                 (
@@ -8532,7 +8522,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (
-	 *             (direction=FeatureDirection? (isAbstract?='abstract' | isVariation?='variation')? isConstant?='readonly'? isDerived?='derived'?) | 
+	 *             (direction=FeatureDirection? isDerived?='derived'? (isAbstract?='abstract' | isVariation?='variation')? isConstant?='constant'?) | 
 	 *             (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
 	 *         ) 
 	 *         ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
@@ -8575,7 +8565,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (
-	 *                     (direction=FeatureDirection? (isAbstract?='abstract' | isVariation?='variation')? isConstant?='readonly'? isDerived?='derived'?) | 
+	 *                     (direction=FeatureDirection? isDerived?='derived'? (isAbstract?='abstract' | isVariation?='variation')? isConstant?='constant'?) | 
 	 *                     (isEnd?='end' ownedRelationship+=OwnedCrossFeatureMember?)
 	 *                 ) 
 	 *                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
@@ -10182,34 +10172,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_ItemFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     LifeClassMembership returns OwningMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=LifeClass
-	 * </pre>
-	 */
-	protected void sequence_LifeClassMembership(ISerializationContext context, OwningMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     LifeClass returns Class
-	 *
-	 * Constraint:
-	 *     {Class}
-	 * </pre>
-	 */
-	protected void sequence_LifeClass(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

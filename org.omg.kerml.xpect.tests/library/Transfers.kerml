@@ -39,7 +39,7 @@ standard library package Transfers {
 		    feature targetInput: Occurrence[0..*];
 		}
 		
-		readonly feature isInstant: Boolean[1] {
+		feature isInstant: Boolean[1] {
 			doc
 			/*
 			 * If isInstance is true, then the transfer is instantaneous.
@@ -81,7 +81,7 @@ standard library package Transfers {
 		 * start when items are available at the source and move or copy them to the target.
 		 */
 		 
-		readonly feature isMove: Boolean[1] default true {
+		feature isMove: Boolean[1] default true {
 			doc
 			/*
 			 * If isMove is true, then all items leave the source at the start
@@ -89,7 +89,7 @@ standard library package Transfers {
 			 */
 		}
 		
-		readonly feature isPush: Boolean[1] default true {
+		feature isPush: Boolean[1] default true {
 			doc
 			/*
 			 * If isPush is true, then the transfer begins when the items are available

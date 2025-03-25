@@ -24,10 +24,8 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
     public InternalSysMLParser12(TokenStream input, RecognizerSharedState state) {
         super(input, state);
     }
-    static final String dfa_278s = "\1\176\1\u00ac\1\uffff\1\54\2\176\2\11\1\uffff";
-    static final String dfa_279s = "\2\uffff\1\1\5\uffff\1\2";
-    static final String dfa_280s = "\11\uffff}>";
-    static final String[] dfa_281s = {
+    static final String dfa_278s = "\11\uffff}>";
+    static final String[] dfa_279s = {
             "\1\1\135\uffff\1\2",
             "\1\4\1\5\u00a2\uffff\1\3",
             "",
@@ -39,72 +37,68 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             ""
     };
 
-    static final short[] dfa_276 = DFA.unpackEncodedString(dfa_276s);
-    static final char[] dfa_277 = DFA.unpackEncodedStringToUnsignedChars(dfa_277s);
-    static final char[] dfa_278 = DFA.unpackEncodedStringToUnsignedChars(dfa_278s);
-    static final short[] dfa_279 = DFA.unpackEncodedString(dfa_279s);
-    static final short[] dfa_280 = DFA.unpackEncodedString(dfa_280s);
-    static final short[][] dfa_281 = unpackEncodedStringArray(dfa_281s);
+    static final short[] dfa_274 = DFA.unpackEncodedString(dfa_274s);
+    static final char[] dfa_275 = DFA.unpackEncodedStringToUnsignedChars(dfa_275s);
+    static final char[] dfa_276 = DFA.unpackEncodedStringToUnsignedChars(dfa_276s);
+    static final short[] dfa_277 = DFA.unpackEncodedString(dfa_277s);
+    static final short[] dfa_278 = DFA.unpackEncodedString(dfa_278s);
+    static final short[][] dfa_279 = unpackEncodedStringArray(dfa_279s);
 
     class DFA298 extends DFA {
 
         public DFA298(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 298;
-            this.eot = dfa_276;
-            this.eof = dfa_276;
-            this.min = dfa_277;
-            this.max = dfa_278;
-            this.accept = dfa_279;
-            this.special = dfa_280;
-            this.transition = dfa_281;
+            this.eot = dfa_274;
+            this.eof = dfa_274;
+            this.min = dfa_275;
+            this.max = dfa_276;
+            this.accept = dfa_277;
+            this.special = dfa_278;
+            this.transition = dfa_279;
         }
         public String getDescription() {
-            return "20463:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConstraintUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
+            return "20363:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConstraintUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
         }
     }
-    static final String dfa_282s = "\1\40\1\10\1\uffff\1\54\3\10\1\uffff\1\10";
-    static final String dfa_283s = "\1\u0086\1\u00ac\1\uffff\1\54\2\u0086\1\11\1\uffff\1\11";
-    static final String dfa_284s = "\2\uffff\1\1\4\uffff\1\2\1\uffff";
-    static final String[] dfa_285s = {
+    static final String dfa_280s = "\1\u0086\1\u00ac\1\uffff\1\54\2\u0086\2\11\1\uffff";
+    static final String[] dfa_281s = {
             "\1\1\145\uffff\1\2",
             "\1\4\1\5\u00a2\uffff\1\3",
             "",
             "\1\6",
-            "\2\7\3\uffff\1\7\1\uffff\2\7\17\uffff\1\1\1\uffff\2\7\10\uffff\1\10\3\uffff\1\7\1\uffff\4\7\1\uffff\6\7\6\uffff\3\7\100\uffff\1\2",
-            "\2\7\3\uffff\1\7\1\uffff\2\7\17\uffff\1\1\1\uffff\2\7\10\uffff\1\10\3\uffff\1\7\1\uffff\4\7\1\uffff\6\7\6\uffff\3\7\100\uffff\1\2",
+            "\2\10\3\uffff\1\10\1\uffff\2\10\17\uffff\1\1\1\uffff\2\10\10\uffff\1\7\3\uffff\1\10\1\uffff\4\10\1\uffff\6\10\6\uffff\3\10\100\uffff\1\2",
+            "\2\10\3\uffff\1\10\1\uffff\2\10\17\uffff\1\1\1\uffff\2\10\10\uffff\1\7\3\uffff\1\10\1\uffff\4\10\1\uffff\6\10\6\uffff\3\10\100\uffff\1\2",
             "\1\4\1\5",
-            "",
-            "\1\4\1\5"
+            "\1\4\1\5",
+            ""
     };
-    static final char[] dfa_282 = DFA.unpackEncodedStringToUnsignedChars(dfa_282s);
-    static final char[] dfa_283 = DFA.unpackEncodedStringToUnsignedChars(dfa_283s);
-    static final short[] dfa_284 = DFA.unpackEncodedString(dfa_284s);
-    static final short[][] dfa_285 = unpackEncodedStringArray(dfa_285s);
+    static final char[] dfa_280 = DFA.unpackEncodedStringToUnsignedChars(dfa_280s);
+    static final short[][] dfa_281 = unpackEncodedStringArray(dfa_281s);
 
     class DFA303 extends DFA {
 
         public DFA303(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 303;
-            this.eot = dfa_276;
-            this.eof = dfa_276;
-            this.min = dfa_282;
-            this.max = dfa_283;
-            this.accept = dfa_284;
-            this.special = dfa_280;
-            this.transition = dfa_285;
+            this.eot = dfa_274;
+            this.eof = dfa_274;
+            this.min = dfa_275;
+            this.max = dfa_280;
+            this.accept = dfa_277;
+            this.special = dfa_278;
+            this.transition = dfa_281;
         }
         public String getDescription() {
-            return "20658:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
+            return "20558:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
         }
     }
-    static final String dfa_286s = "\171\uffff";
-    static final String dfa_287s = "\1\4\3\0\3\uffff\1\0\13\uffff\2\0\4\uffff\1\0\1\uffff\1\0\135\uffff";
-    static final String dfa_288s = "\1\u00b3\3\0\3\uffff\1\0\13\uffff\2\0\4\uffff\1\0\1\uffff\1\0\135\uffff";
-    static final String dfa_289s = "\4\uffff\1\2\30\uffff\134\1";
-    static final String dfa_290s = "\1\0\1\1\1\2\1\3\3\uffff\1\4\13\uffff\1\5\1\6\4\uffff\1\7\1\uffff\1\10\135\uffff}>";
-    static final String[] dfa_291s = {
+    static final String dfa_282s = "\171\uffff";
+    static final String dfa_283s = "\1\4\3\0\3\uffff\1\0\13\uffff\2\0\4\uffff\1\0\1\uffff\1\0\135\uffff";
+    static final String dfa_284s = "\1\u00b3\3\0\3\uffff\1\0\13\uffff\2\0\4\uffff\1\0\1\uffff\1\0\135\uffff";
+    static final String dfa_285s = "\4\uffff\1\2\30\uffff\134\1";
+    static final String dfa_286s = "\1\0\1\1\1\2\1\3\3\uffff\1\4\13\uffff\1\5\1\6\4\uffff\1\7\1\uffff\1\10\135\uffff}>";
+    static final String[] dfa_287s = {
             "\1\4\1\44\2\4\1\23\1\24\3\uffff\1\113\1\uffff\3\4\1\51\3\uffff\1\42\1\uffff\1\43\1\45\1\46\1\47\1\50\1\uffff\1\31\1\52\1\36\1\131\1\124\1\125\1\40\1\41\1\37\1\uffff\1\35\1\157\1\uffff\1\4\2\uffff\1\4\1\uffff\1\116\1\uffff\1\127\1\130\1\114\1\115\1\uffff\1\117\1\120\1\121\1\122\1\123\1\126\1\uffff\1\53\1\104\1\111\1\112\1\105\3\uffff\1\54\1\55\1\57\1\56\1\141\1\136\1\60\1\61\1\66\1\4\1\132\1\133\1\134\1\135\1\62\1\142\1\4\1\uffff\1\64\1\65\1\143\1\63\1\144\1\uffff\1\4\1\67\1\145\1\153\4\uffff\1\152\1\154\2\uffff\1\33\1\uffff\1\155\1\156\1\uffff\1\106\1\160\1\161\1\162\1\163\1\164\1\71\4\uffff\1\146\1\uffff\1\70\1\165\1\72\1\150\1\7\1\73\1\166\1\167\1\uffff\1\151\1\74\1\75\1\170\1\76\1\77\1\100\1\147\1\101\1\uffff\1\103\1\102\14\uffff\2\4\1\uffff\1\4\3\uffff\2\4\3\uffff\4\4\1\1\1\2\1\3\1\107\1\110\1\137\1\140",
             "\1\uffff",
             "\1\uffff",
@@ -228,28 +222,28 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             ""
     };
 
+    static final short[] dfa_282 = DFA.unpackEncodedString(dfa_282s);
+    static final char[] dfa_283 = DFA.unpackEncodedStringToUnsignedChars(dfa_283s);
+    static final char[] dfa_284 = DFA.unpackEncodedStringToUnsignedChars(dfa_284s);
+    static final short[] dfa_285 = DFA.unpackEncodedString(dfa_285s);
     static final short[] dfa_286 = DFA.unpackEncodedString(dfa_286s);
-    static final char[] dfa_287 = DFA.unpackEncodedStringToUnsignedChars(dfa_287s);
-    static final char[] dfa_288 = DFA.unpackEncodedStringToUnsignedChars(dfa_288s);
-    static final short[] dfa_289 = DFA.unpackEncodedString(dfa_289s);
-    static final short[] dfa_290 = DFA.unpackEncodedString(dfa_290s);
-    static final short[][] dfa_291 = unpackEncodedStringArray(dfa_291s);
+    static final short[][] dfa_287 = unpackEncodedStringArray(dfa_287s);
 
     class DFA314 extends DFA {
 
         public DFA314(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 314;
-            this.eot = dfa_286;
-            this.eof = dfa_286;
-            this.min = dfa_287;
-            this.max = dfa_288;
-            this.accept = dfa_289;
-            this.special = dfa_290;
-            this.transition = dfa_291;
+            this.eot = dfa_282;
+            this.eof = dfa_282;
+            this.min = dfa_283;
+            this.max = dfa_284;
+            this.accept = dfa_285;
+            this.special = dfa_286;
+            this.transition = dfa_287;
         }
         public String getDescription() {
-            return "()* loopback of 21642:4: ( ( ruleCaseBodyItem[null] )=>this_CaseBodyItem_2= ruleCaseBodyItem[$current] )*";
+            return "()* loopback of 21542:4: ( ( ruleCaseBodyItem[null] )=>this_CaseBodyItem_2= ruleCaseBodyItem[$current] )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -596,8 +590,8 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             throw nvae;
         }
     }
-    static final String dfa_292s = "\1\u0081\1\u00ac\1\uffff\1\54\2\u0081\2\11\1\uffff";
-    static final String[] dfa_293s = {
+    static final String dfa_288s = "\1\u0081\1\u00ac\1\uffff\1\54\2\u0081\2\11\1\uffff";
+    static final String[] dfa_289s = {
             "\1\1\140\uffff\1\2",
             "\1\4\1\5\u00a2\uffff\1\3",
             "",
@@ -608,28 +602,30 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             "\1\4\1\5",
             ""
     };
-    static final char[] dfa_292 = DFA.unpackEncodedStringToUnsignedChars(dfa_292s);
-    static final short[][] dfa_293 = unpackEncodedStringArray(dfa_293s);
+    static final char[] dfa_288 = DFA.unpackEncodedStringToUnsignedChars(dfa_288s);
+    static final short[][] dfa_289 = unpackEncodedStringArray(dfa_289s);
 
     class DFA322 extends DFA {
 
         public DFA322(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 322;
-            this.eot = dfa_276;
-            this.eof = dfa_276;
-            this.min = dfa_277;
-            this.max = dfa_292;
-            this.accept = dfa_279;
-            this.special = dfa_280;
-            this.transition = dfa_293;
+            this.eot = dfa_274;
+            this.eof = dfa_274;
+            this.min = dfa_275;
+            this.max = dfa_288;
+            this.accept = dfa_277;
+            this.special = dfa_278;
+            this.transition = dfa_289;
         }
         public String getDescription() {
-            return "22493:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleRequirementUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
+            return "22393:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleRequirementUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
         }
     }
-    static final String dfa_294s = "\1\u008f\1\u00ac\1\uffff\1\54\2\u008f\1\11\1\uffff\1\11";
-    static final String[] dfa_295s = {
+    static final String dfa_290s = "\1\40\1\10\1\uffff\1\54\3\10\1\uffff\1\10";
+    static final String dfa_291s = "\1\u008f\1\u00ac\1\uffff\1\54\2\u008f\1\11\1\uffff\1\11";
+    static final String dfa_292s = "\2\uffff\1\1\4\uffff\1\2\1\uffff";
+    static final String[] dfa_293s = {
             "\1\1\156\uffff\1\2",
             "\1\4\1\5\u00a2\uffff\1\3",
             "",
@@ -640,32 +636,34 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             "",
             "\1\4\1\5"
     };
-    static final char[] dfa_294 = DFA.unpackEncodedStringToUnsignedChars(dfa_294s);
-    static final short[][] dfa_295 = unpackEncodedStringArray(dfa_295s);
+    static final char[] dfa_290 = DFA.unpackEncodedStringToUnsignedChars(dfa_290s);
+    static final char[] dfa_291 = DFA.unpackEncodedStringToUnsignedChars(dfa_291s);
+    static final short[] dfa_292 = DFA.unpackEncodedString(dfa_292s);
+    static final short[][] dfa_293 = unpackEncodedStringArray(dfa_293s);
 
     class DFA334 extends DFA {
 
         public DFA334(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 334;
-            this.eot = dfa_276;
-            this.eof = dfa_276;
-            this.min = dfa_282;
-            this.max = dfa_294;
-            this.accept = dfa_284;
-            this.special = dfa_280;
-            this.transition = dfa_295;
+            this.eot = dfa_274;
+            this.eof = dfa_274;
+            this.min = dfa_290;
+            this.max = dfa_291;
+            this.accept = dfa_292;
+            this.special = dfa_278;
+            this.transition = dfa_293;
         }
         public String getDescription() {
-            return "23218:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* otherlv_4= 'rendering' ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
+            return "23118:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* otherlv_4= 'rendering' ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
         }
     }
-    static final String dfa_296s = "\12\uffff";
-    static final String dfa_297s = "\1\u00b8\1\10\1\54\2\17\2\10\2\uffff\1\17";
-    static final String dfa_298s = "\1\u00b8\1\u00ac\1\54\2\74\1\11\1\56\2\uffff\1\74";
-    static final String dfa_299s = "\7\uffff\1\2\1\1\1\uffff";
-    static final String dfa_300s = "\12\uffff}>";
-    static final String[] dfa_301s = {
+    static final String dfa_294s = "\12\uffff";
+    static final String dfa_295s = "\1\u00b8\1\10\1\54\2\17\2\10\2\uffff\1\17";
+    static final String dfa_296s = "\1\u00b8\1\u00ac\1\54\2\74\1\11\1\56\2\uffff\1\74";
+    static final String dfa_297s = "\7\uffff\1\2\1\1\1\uffff";
+    static final String dfa_298s = "\12\uffff}>";
+    static final String[] dfa_299s = {
             "\1\1",
             "\1\3\1\4\u00a2\uffff\1\2",
             "\1\5",
@@ -678,28 +676,28 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             "\2\10\53\uffff\1\7"
     };
 
-    static final short[] dfa_296 = DFA.unpackEncodedString(dfa_296s);
-    static final char[] dfa_297 = DFA.unpackEncodedStringToUnsignedChars(dfa_297s);
-    static final char[] dfa_298 = DFA.unpackEncodedStringToUnsignedChars(dfa_298s);
-    static final short[] dfa_299 = DFA.unpackEncodedString(dfa_299s);
-    static final short[] dfa_300 = DFA.unpackEncodedString(dfa_300s);
-    static final short[][] dfa_301 = unpackEncodedStringArray(dfa_301s);
+    static final short[] dfa_294 = DFA.unpackEncodedString(dfa_294s);
+    static final char[] dfa_295 = DFA.unpackEncodedStringToUnsignedChars(dfa_295s);
+    static final char[] dfa_296 = DFA.unpackEncodedStringToUnsignedChars(dfa_296s);
+    static final short[] dfa_297 = DFA.unpackEncodedString(dfa_297s);
+    static final short[] dfa_298 = DFA.unpackEncodedString(dfa_298s);
+    static final short[][] dfa_299 = unpackEncodedStringArray(dfa_299s);
 
     class DFA341 extends DFA {
 
         public DFA341(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 341;
-            this.eot = dfa_296;
-            this.eof = dfa_296;
-            this.min = dfa_297;
-            this.max = dfa_298;
-            this.accept = dfa_299;
-            this.special = dfa_300;
-            this.transition = dfa_301;
+            this.eot = dfa_294;
+            this.eof = dfa_294;
+            this.min = dfa_295;
+            this.max = dfa_296;
+            this.accept = dfa_297;
+            this.special = dfa_298;
+            this.transition = dfa_299;
         }
         public String getDescription() {
-            return "23540:3: (this_MembershipExpose_0= ruleMembershipExpose | this_NamespaceExpose_1= ruleNamespaceExpose )";
+            return "23440:3: (this_MembershipExpose_0= ruleMembershipExpose | this_NamespaceExpose_1= ruleNamespaceExpose )";
         }
     }
 
@@ -717,14 +715,14 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             this.transition = dfa_19;
         }
         public String getDescription() {
-            return "23641:3: (this_ImportedNamespace_1= ruleImportedNamespace[$current] | ( (lv_ownedRelatedElement_2_0= ruleFilterPackage ) ) )";
+            return "23541:3: (this_ImportedNamespace_1= ruleImportedNamespace[$current] | ( (lv_ownedRelatedElement_2_0= ruleFilterPackage ) ) )";
         }
     }
-    static final String dfa_302s = "\3\uffff\2\1\6\uffff";
-    static final String dfa_303s = "\1\4\1\uffff\1\54\2\15\2\uffff\2\10\2\uffff";
-    static final String dfa_304s = "\1\u00ac\1\uffff\1\54\2\u00a8\2\uffff\2\11\2\uffff";
-    static final String dfa_305s = "\1\uffff\1\1\3\uffff\1\2\1\4\2\uffff\1\5\1\3";
-    static final String[] dfa_306s = {
+    static final String dfa_300s = "\3\uffff\2\1\6\uffff";
+    static final String dfa_301s = "\1\4\1\uffff\1\54\2\15\2\uffff\2\10\2\uffff";
+    static final String dfa_302s = "\1\u00ac\1\uffff\1\54\2\u00a8\2\uffff\2\11\2\uffff";
+    static final String dfa_303s = "\1\uffff\1\1\3\uffff\1\2\1\4\2\uffff\1\5\1\3";
+    static final String[] dfa_304s = {
             "\1\1\1\uffff\2\1\1\3\1\4\5\uffff\2\1\15\uffff\1\5\14\uffff\1\1\2\uffff\1\1\40\uffff\1\1\6\uffff\1\1\7\uffff\1\1\41\uffff\1\1\34\uffff\2\5\1\uffff\1\6\3\uffff\2\1\3\uffff\3\1\1\2",
             "",
             "\1\7",
@@ -737,11 +735,11 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             "",
             ""
     };
-    static final short[] dfa_302 = DFA.unpackEncodedString(dfa_302s);
-    static final char[] dfa_303 = DFA.unpackEncodedStringToUnsignedChars(dfa_303s);
-    static final char[] dfa_304 = DFA.unpackEncodedStringToUnsignedChars(dfa_304s);
-    static final short[] dfa_305 = DFA.unpackEncodedString(dfa_305s);
-    static final short[][] dfa_306 = unpackEncodedStringArray(dfa_306s);
+    static final short[] dfa_300 = DFA.unpackEncodedString(dfa_300s);
+    static final char[] dfa_301 = DFA.unpackEncodedStringToUnsignedChars(dfa_301s);
+    static final char[] dfa_302 = DFA.unpackEncodedStringToUnsignedChars(dfa_302s);
+    static final short[] dfa_303 = DFA.unpackEncodedString(dfa_303s);
+    static final short[][] dfa_304 = unpackEncodedStringArray(dfa_304s);
 
     class DFA354 extends DFA {
 
@@ -749,16 +747,18 @@ public abstract class InternalSysMLParser12 extends InternalSysMLParser11 {
             this.recognizer = recognizer;
             this.decisionNumber = 354;
             this.eot = dfa_13;
-            this.eof = dfa_302;
-            this.min = dfa_303;
-            this.max = dfa_304;
-            this.accept = dfa_305;
+            this.eof = dfa_300;
+            this.min = dfa_301;
+            this.max = dfa_302;
+            this.accept = dfa_303;
             this.special = dfa_18;
-            this.transition = dfa_306;
+            this.transition = dfa_304;
         }
         public String getDescription() {
-            return "25358:2: ( (this_RelationalExpression_0= ruleRelationalExpression ( ( () ( (lv_operator_2_0= ruleClassificationTestOperator ) ) ( (lv_ownedRelationship_3_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operator_5_0= ruleCastOperator ) ) ( (lv_ownedRelationship_6_0= ruleTypeResultMember ) ) ) )? ) | ( () ( (lv_operand_8_0= ruleSelfReferenceExpression ) ) ( (lv_operator_9_0= ruleClassificationTestOperator ) ) ( (lv_ownedRelationship_10_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operand_12_0= ruleMetadataReference ) ) ( (lv_operator_13_0= ruleMetaClassificationTestOperator ) ) ( (lv_ownedRelationship_14_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operand_16_0= ruleSelfReferenceExpression ) ) ( (lv_operator_17_0= ruleCastOperator ) ) ( (lv_ownedRelationship_18_0= ruleTypeResultMember ) ) ) | ( () ( (lv_operand_20_0= ruleMetadataReference ) ) ( (lv_operator_21_0= ruleMetaCastOperator ) ) ( (lv_ownedRelationship_22_0= ruleTypeResultMember ) ) ) )";
+            return "25258:2: ( (this_RelationalExpression_0= ruleRelationalExpression ( ( () ( (lv_operator_2_0= ruleClassificationTestOperator ) ) ( (lv_ownedRelationship_3_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operator_5_0= ruleCastOperator ) ) ( (lv_ownedRelationship_6_0= ruleTypeResultMember ) ) ) )? ) | ( () ( (lv_operand_8_0= ruleSelfReferenceExpression ) ) ( (lv_operator_9_0= ruleClassificationTestOperator ) ) ( (lv_ownedRelationship_10_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operand_12_0= ruleMetadataReference ) ) ( (lv_operator_13_0= ruleMetaClassificationTestOperator ) ) ( (lv_ownedRelationship_14_0= ruleTypeReferenceMember ) ) ) | ( () ( (lv_operand_16_0= ruleSelfReferenceExpression ) ) ( (lv_operator_17_0= ruleCastOperator ) ) ( (lv_ownedRelationship_18_0= ruleTypeResultMember ) ) ) | ( () ( (lv_operand_20_0= ruleMetadataReference ) ) ( (lv_operator_21_0= ruleMetaCastOperator ) ) ( (lv_ownedRelationship_22_0= ruleTypeResultMember ) ) ) )";
         }
     }
-    static final String dfa_307s = "\2\uffff\2\7\5\uffff";
+    static final String dfa_305s = "\2\uffff\2\7\5\uffff";
+    static final String dfa_306s = "\1\10\1\54\2\15\3\10\2\uffff";
+    static final String dfa_307s = "\1\u00ac\1\54\2\u00a8\1\11\1\u00ac\1\11\2\uffff";
 }

@@ -110,7 +110,7 @@ public class ModelLevelExpressionEvaluator {
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {
-		if (type != null && TypeUtil.conforms(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
+		if (type != null && TypeUtil.specializes(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
 			// Evaluate "self" feature. (Note: Must be checked before test for feature chain because "self" has chaining features.)
 			return EvaluationUtil.singletonList(EvaluationUtil.getTargetFeatureFor(type));
 			
@@ -129,7 +129,7 @@ public class ModelLevelExpressionEvaluator {
 			// Find the most specific type with a binding for the feature and evaluate it.	
 			for (int i = types.size() - 1; i >= 0; i--) {
 				Type t = types.get(i);
-				if (t instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature((MetadataFeature)t))) {
+				if (t instanceof MetadataFeature && TypeUtil.specializes(feature, EvaluationUtil.getAnnotatedElementFeature((MetadataFeature)t))) {
 					// Evaluate "Metaobject::annotatedElement" feature.
 					return EvaluationUtil.results(((MetadataFeature)t).getAnnotatedElement());
 				} else if (EvaluationUtil.isMetaclassFeature(t)) {

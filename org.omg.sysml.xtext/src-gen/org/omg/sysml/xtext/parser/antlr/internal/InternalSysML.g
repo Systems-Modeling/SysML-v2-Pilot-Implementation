@@ -5095,60 +5095,60 @@ ruleRefPrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
+				lv_isDerived_1_0='derived'
+				{
+					newLeafNode(lv_isDerived_1_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRefPrefixRule());
+					}
+					setWithLastConsumed($current, "isDerived", lv_isDerived_1_0 != null, "derived");
+				}
+			)
+		)?
+		(
+			(
 				(
-					lv_isAbstract_1_0='abstract'
+					lv_isAbstract_2_0='abstract'
 					{
-						newLeafNode(lv_isAbstract_1_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_1_0_0());
+						newLeafNode(lv_isAbstract_2_0, grammarAccess.getRefPrefixAccess().getIsAbstractAbstractKeyword_2_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getRefPrefixRule());
 						}
-						setWithLastConsumed($current, "isAbstract", lv_isAbstract_1_0 != null, "abstract");
+						setWithLastConsumed($current, "isAbstract", lv_isAbstract_2_0 != null, "abstract");
 					}
 				)
 			)
 			    |
 			(
 				(
-					lv_isVariation_2_0='variation'
+					lv_isVariation_3_0='variation'
 					{
-						newLeafNode(lv_isVariation_2_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_1_1_0());
+						newLeafNode(lv_isVariation_3_0, grammarAccess.getRefPrefixAccess().getIsVariationVariationKeyword_2_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getRefPrefixRule());
 						}
-						setWithLastConsumed($current, "isVariation", lv_isVariation_2_0 != null, "variation");
+						setWithLastConsumed($current, "isVariation", lv_isVariation_3_0 != null, "variation");
 					}
 				)
 			)
 		)?
 		(
 			(
-				lv_isConstant_3_0='readonly'
+				lv_isConstant_4_0='constant'
 				{
-					newLeafNode(lv_isConstant_3_0, grammarAccess.getRefPrefixAccess().getIsConstantReadonlyKeyword_2_0());
+					newLeafNode(lv_isConstant_4_0, grammarAccess.getRefPrefixAccess().getIsConstantConstantKeyword_3_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRefPrefixRule());
 					}
-					setWithLastConsumed($current, "isConstant", lv_isConstant_3_0 != null, "readonly");
-				}
-			)
-		)?
-		(
-			(
-				lv_isDerived_4_0='derived'
-				{
-					newLeafNode(lv_isDerived_4_0, grammarAccess.getRefPrefixAccess().getIsDerivedDerivedKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRefPrefixRule());
-					}
-					setWithLastConsumed($current, "isDerived", lv_isDerived_4_0 != null, "derived");
+					setWithLastConsumed($current, "isConstant", lv_isConstant_4_0 != null, "constant");
 				}
 			)
 		)?
@@ -7295,37 +7295,16 @@ ruleOccurrenceDefinitionPrefix[EObject in_current]  returns [EObject current=in_
 		)?
 		(
 			(
-				(
-					lv_isIndividual_1_0='individual'
-					{
-						newLeafNode(lv_isIndividual_1_0, grammarAccess.getOccurrenceDefinitionPrefixAccess().getIsIndividualIndividualKeyword_1_0_0());
+				lv_isIndividual_1_0='individual'
+				{
+					newLeafNode(lv_isIndividual_1_0, grammarAccess.getOccurrenceDefinitionPrefixAccess().getIsIndividualIndividualKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getOccurrenceDefinitionPrefixRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getOccurrenceDefinitionPrefixRule());
-						}
-						setWithLastConsumed($current, "isIndividual", lv_isIndividual_1_0 != null, "individual");
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getOccurrenceDefinitionPrefixAccess().getOwnedRelationshipLifeClassMembershipParserRuleCall_1_1_0());
-					}
-					lv_ownedRelationship_2_0=ruleLifeClassMembership
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getOccurrenceDefinitionPrefixRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_2_0,
-							"org.omg.sysml.xtext.SysML.LifeClassMembership");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					setWithLastConsumed($current, "isIndividual", lv_isIndividual_1_0 != null, "individual");
+				}
 			)
 		)?
 		(
@@ -7335,9 +7314,9 @@ ruleOccurrenceDefinitionPrefix[EObject in_current]  returns [EObject current=in_
 				}
 				newCompositeNode(grammarAccess.getOccurrenceDefinitionPrefixAccess().getDefinitionExtensionKeywordParserRuleCall_2());
 			}
-			this_DefinitionExtensionKeyword_3=ruleDefinitionExtensionKeyword[$current]
+			this_DefinitionExtensionKeyword_2=ruleDefinitionExtensionKeyword[$current]
 			{
-				$current = $this_DefinitionExtensionKeyword_3.current;
+				$current = $this_DefinitionExtensionKeyword_2.current;
 				afterParserOrEnumRuleCall();
 			}
 		)*
@@ -7462,85 +7441,6 @@ ruleIndividualDefinition returns [EObject current=null]
 		{
 			$current = $this_Definition_4.current;
 			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getIndividualDefinitionAccess().getOwnedRelationshipLifeClassMembershipParserRuleCall_5_0());
-				}
-				lv_ownedRelationship_5_0=ruleLifeClassMembership
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getIndividualDefinitionRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_5_0,
-						"org.omg.sysml.xtext.SysML.LifeClassMembership");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleLifeClassMembership
-entryRuleLifeClassMembership returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLifeClassMembershipRule()); }
-	iv_ruleLifeClassMembership=ruleLifeClassMembership
-	{ $current=$iv_ruleLifeClassMembership.current; }
-	EOF;
-
-// Rule LifeClassMembership
-ruleLifeClassMembership returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getLifeClassMembershipAccess().getOwnedRelatedElementLifeClassParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleLifeClass
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getLifeClassMembershipRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.LifeClass");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleLifeClass
-entryRuleLifeClass returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLifeClassRule()); }
-	iv_ruleLifeClass=ruleLifeClass
-	{ $current=$iv_ruleLifeClass.current; }
-	EOF;
-
-// Rule LifeClass
-ruleLifeClass returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getLifeClassAccess().getClassAction(),
-				$current);
 		}
 	)
 ;

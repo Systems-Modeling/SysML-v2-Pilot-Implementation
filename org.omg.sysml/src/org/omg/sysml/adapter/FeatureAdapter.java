@@ -73,6 +73,22 @@ public class FeatureAdapter extends TypeAdapter {
 		return (Feature)super.getTarget();
 	}
 	
+	// Post-processing
+	
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		setIsVariableIfConstant();
+	}
+	
+	// Note: Can be individually overridden.
+	protected void setIsVariableIfConstant() {
+		Feature target = getTarget();
+		if (target.isConstant()) {
+			target.setIsVariable(true);
+		}		
+	}
+	
 	// Caching
 	
 	EList<Type> types = null;
@@ -203,9 +219,9 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		
-		addBoundValueSubsetting();		
-		addParticipantSubsetting();		
-		addCrossingSpecialization();		
+		addBoundValueSubsetting();
+		addParticipantSubsetting();
+		addCrossingSpecialization();
 		addOwnedCrossFeatureSpecialization();
 	}
 	
@@ -213,7 +229,7 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), FeatureUtil.chainFeatures((Feature)result.getOwningType(), result));
 		}
 	}
 	
@@ -605,6 +621,52 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
+	protected Type computeFeaturingType() {
+		Feature feature = getTarget();
+		Type owningType = feature.getOwningType();
+		if (owningType == null) {
+			return null;
+		} else if (!feature.isVariable()) {
+			addFeaturingType(owningType);
+			return owningType;
+		} else {
+			Element occurrenceClass = getLibraryType("Occurrences::Occurrence");
+			Feature snapshotsFeature = (Feature)getLibraryType("Occurrences::Occurrence::snapshots");
+			Feature featuringType;
+
+			if (owningType == occurrenceClass) {
+				featuringType = snapshotsFeature;
+			} else {
+				featuringType = SysMLFactory.eINSTANCE.createFeature();
+				
+				String name = owningType.getQualifiedName();
+				if (name == null) {
+					name = "";
+				} else {
+					int i = name.indexOf("::");
+					if (i >= 0) {
+						name = name.substring(i + 2);
+					}
+					name = name.replace("::", "_");
+				}
+				featuringType.setDeclaredName(name + "_snapshots");
+			
+				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				redefinition.setRedefinedFeature(snapshotsFeature);
+				redefinition.setRedefiningFeature(featuringType);
+				featuringType.getOwnedRelationship().add(redefinition);
+				
+				TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				typeFeaturing.setFeaturingType(owningType);
+				typeFeaturing.setFeatureOfType(featuringType);
+				featuringType.getOwnedRelationship().add(typeFeaturing);
+			}
+			
+			addFeaturingType(featuringType);
+			return featuringType;
+		}
+	}
+	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {
 		Feature feature = getTarget();
 		if (featuringType != null && feature.getOwningType() == null && 
@@ -616,11 +678,9 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void addImplicitFeaturingTypesIfNecessary() {
 		Feature feature = getTarget();
 		Namespace owner = feature.getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (isImplicitFeaturingTypesEmpty()) {
-				addFeaturingTypes(ownerFeaturingTypes);
-			}
+		if (owner instanceof Feature && isImplicitFeaturingTypesEmpty()) {
+			ElementUtil.transform(owner);
+			addFeaturingTypes(((Feature)owner).getFeaturingType());
 		}
 	}
 	
@@ -665,7 +725,7 @@ public class FeatureAdapter extends TypeAdapter {
 			} else {
 				featuringTypes = target.getFeaturingType();
 			}
-			addBindingConnector(featuringTypes, result, target);
+			addBindingConnector(featuringTypes, FeatureUtil.chainFeatures((Feature)result.getOwningType(), result), target);
 		}
 	}
 	
@@ -734,6 +794,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
+		computeFeaturingType();
 		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();

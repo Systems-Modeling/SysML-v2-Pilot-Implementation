@@ -10,7 +10,7 @@ standard library package KerML {
 	package Root {
 		metaclass AnnotatingElement specializes Element {
 			derived feature annotatedElement : Element[1..*] ordered redefines annotatedElement;
-			composite derived feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
+			derived composite feature ownedAnnotatingRelationship : Annotation[0..*] ordered subsets annotation, ownedRelationship;
 			derived feature owningAnnotatingRelationship : Annotation[0..1] subsets owningRelationship, annotation;
 			derived feature annotation : Annotation[0..*] ordered;
 		}		
@@ -20,7 +20,7 @@ standard library package KerML {
 			derived feature annotatingElement : AnnotatingElement[1..1] redefines source;
 			derived feature owningAnnotatedElement : Element[0..1] subsets annotatedElement, owningRelatedElement;
 			derived feature owningAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, owningRelatedElement;
-			composite derived feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, ownedRelatedElement;
+			derived composite feature ownedAnnotatingElement : AnnotatingElement[0..1] subsets annotatingElement, ownedRelatedElement;
 		}		
 		
 		metaclass Comment specializes AnnotatingElement {
@@ -55,7 +55,7 @@ standard library package KerML {
 			derived feature owner : Element[0..1];
 			derived feature ownedElement : Element[0..*] ordered;
 			derived feature documentation : Documentation[0..*] ordered subsets ownedElement;
-			composite derived feature ownedAnnotation : Annotation[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedAnnotation : Annotation[0..*] ordered subsets ownedRelationship;
 			derived feature textualRepresentation : TextualRepresentation[0..*] ordered subsets ownedElement;
 		}		
 		
@@ -83,11 +83,11 @@ standard library package KerML {
 		}		
 		
 		metaclass Namespace specializes Element {
-			abstract derived feature membership : Membership[0..*] ordered;
-			composite derived feature ownedImport : Import[0..*] ordered subsets ownedRelationship;
+			derived abstract feature membership : Membership[0..*] ordered;
+			derived composite feature ownedImport : Import[0..*] ordered subsets ownedRelationship;
 			derived feature 'member' : Element[0..*] ordered;
 			derived feature ownedMember : Element[0..*] ordered subsets 'member';
-			composite derived feature ownedMembership : Membership[0..*] ordered subsets membership, ownedRelationship;
+			derived composite feature ownedMembership : Membership[0..*] ordered subsets membership, ownedRelationship;
 			derived feature importedMembership : Membership[0..*] ordered subsets membership;
 		}		
 		
@@ -100,7 +100,7 @@ standard library package KerML {
 			derived feature ownedMemberShortName : String[0..1] redefines memberShortName;
 			derived feature ownedMemberName : String[0..1] redefines memberName;
 			
-			composite derived feature ownedMemberElement : Element[1..1] subsets ownedRelatedElement redefines memberElement;
+			derived composite feature ownedMemberElement : Element[1..1] subsets ownedRelatedElement redefines memberElement;
 		}		
 		
 		abstract metaclass Relationship specializes Element {
@@ -132,7 +132,7 @@ standard library package KerML {
 		public import Root::*;
 		
 		metaclass Classifier specializes Type {
-			composite derived feature ownedSubclassification : Subclassification[0..*] subsets ownedSpecialization;
+			derived composite feature ownedSubclassification : Subclassification[0..*] subsets ownedSpecialization;
 		}		
 		
 		metaclass Conjugation specializes Relationship {
@@ -158,7 +158,7 @@ standard library package KerML {
 		}		
 		
 		metaclass EndFeatureMembership specializes FeatureMembership {
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines ownedMemberFeature;
+			derived composite feature ownedMemberFeature : Feature[1..1] redefines ownedMemberFeature;
 		}		
 		
 		metaclass Feature specializes Type {
@@ -174,20 +174,20 @@ standard library package KerML {
 			
 			derived feature owningType : Type[0..1] subsets owningNamespace, featuringType;
 			derived feature 'type' : Type[0..*] ordered;
-			composite derived feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
-			composite derived feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
+			derived composite feature ownedRedefinition : Redefinition[0..*] subsets ownedSubsetting;
+			derived composite feature ownedSubsetting : Subsetting[0..*] subsets ownedSpecialization;
 			derived feature owningFeatureMembership : FeatureMembership[0..1] subsets owningMembership;
 			derived feature endOwningType : Type[0..1] subsets owningType;
-			composite derived feature ownedTyping : FeatureTyping[0..*] ordered subsets ownedSpecialization;
+			derived composite feature ownedTyping : FeatureTyping[0..*] ordered subsets ownedSpecialization;
 			derived feature featuringType : Type[0..*] ordered;
-			composite derived feature ownedTypeFeaturing : TypeFeaturing[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedTypeFeaturing : TypeFeaturing[0..*] ordered subsets ownedRelationship;
 			derived feature chainingFeature : Feature[0..*] ordered nonunique;
-			composite derived feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
-			composite derived feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
+			derived composite feature ownedFeatureInverting : FeatureInverting[0..*] subsets ownedRelationship;
+			derived composite feature ownedFeatureChaining : FeatureChaining[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedReferenceSubsetting : ReferenceSubsetting[0..1] subsets ownedSubsetting;
 			derived feature featureTarget : Feature[1..1];
 			derived feature crossFeature : Feature[0..1];
-			composite derived feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
+			derived composite feature ownedCrossSubsetting : CrossSubsetting[0..1] subsets ownedSubsetting;
 		}		
 		
 		metaclass FeatureChaining specializes Relationship {
@@ -209,7 +209,7 @@ standard library package KerML {
 		
 		metaclass FeatureMembership specializes OwningMembership {
 			derived feature owningType : Type[1..1] redefines membershipOwningNamespace;
-			composite derived feature ownedMemberFeature : Feature[1..1] redefines ownedMemberElement;
+			derived composite feature ownedMemberFeature : Feature[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass FeatureTyping specializes Specialization {
@@ -258,8 +258,8 @@ standard library package KerML {
 			feature isSufficient : Boolean[1..1];
 			derived feature isConjugated : Boolean[1..1];
 			
-			composite derived feature ownedSpecialization : Specialization[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedFeatureMembership : FeatureMembership[0..*] ordered subsets ownedMembership, featureMembership;
+			derived composite feature ownedSpecialization : Specialization[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedFeatureMembership : FeatureMembership[0..*] ordered subsets ownedMembership, featureMembership;
 			derived feature 'feature' : Feature[0..*] ordered subsets 'member';
 			derived feature ownedFeature : Feature[0..*] ordered subsets ownedMember;
 			derived feature input : Feature[0..*] ordered subsets directedFeature;
@@ -267,17 +267,17 @@ standard library package KerML {
 			derived feature inheritedMembership : Membership[0..*] ordered subsets membership;
 			derived feature endFeature : Feature[0..*] ordered subsets 'feature';
 			derived feature ownedEndFeature : Feature[0..*] ordered subsets endFeature, ownedFeature;
-			composite derived feature ownedConjugator : Conjugation[0..1] subsets ownedRelationship;
+			derived composite feature ownedConjugator : Conjugation[0..1] subsets ownedRelationship;
 			derived feature inheritedFeature : Feature[0..*] ordered subsets 'feature';
 			derived feature 'multiplicity' : Multiplicity[0..1] subsets ownedMember;
 			derived feature unioningType : Type[0..*] ordered;
-			composite derived feature ownedIntersecting : Intersecting[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedIntersecting : Intersecting[0..*] ordered subsets ownedRelationship;
 			derived feature intersectingType : Type[0..*] ordered;
-			composite derived feature ownedUnioning : Unioning[0..*] ordered subsets ownedRelationship;
-			composite derived feature ownedDisjoining : Disjoining[0..*] subsets ownedRelationship;
+			derived composite feature ownedUnioning : Unioning[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedDisjoining : Disjoining[0..*] subsets ownedRelationship;
 			derived feature featureMembership : FeatureMembership[0..*] ordered;
 			derived feature differencingType : Type[0..*] ordered;
-			composite derived feature ownedDifferencing : Differencing[0..*] ordered subsets ownedRelationship;
+			derived composite feature ownedDifferencing : Differencing[0..*] ordered subsets ownedRelationship;
 			derived feature directedFeature : Feature[0..*] ordered subsets 'feature';
 		}		
 		
@@ -337,7 +337,7 @@ standard library package KerML {
 		metaclass DataType specializes Classifier;		
 		
 		metaclass ElementFilterMembership specializes OwningMembership {
-			composite derived feature condition : Expression[1..1] redefines ownedMemberElement;
+			derived composite feature condition : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass Expression specializes Step {
@@ -362,7 +362,7 @@ standard library package KerML {
 			feature isDefault : Boolean[1..1];
 			
 			derived feature featureWithValue : Feature[1..1] subsets membershipOwningNamespace;
-			composite derived feature value : Expression[1..1] redefines ownedMemberElement;
+			derived composite feature value : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
 		metaclass Flow specializes Connector, Step {
@@ -451,7 +451,7 @@ standard library package KerML {
 		}		
 		
 		metaclass ParameterMembership specializes FeatureMembership {
-			composite derived feature ownedMemberParameter : Feature[1..1] redefines ownedMemberFeature;
+			derived composite feature ownedMemberParameter : Feature[1..1] redefines ownedMemberFeature;
 		}		
 		
 		metaclass PayloadFeature specializes Feature;		
@@ -459,7 +459,7 @@ standard library package KerML {
 		metaclass Predicate specializes Function;		
 		
 		metaclass ResultExpressionMembership specializes FeatureMembership {
-			composite derived feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
+			derived composite feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
 		}		
 		
 		metaclass ReturnParameterMembership specializes ParameterMembership;		

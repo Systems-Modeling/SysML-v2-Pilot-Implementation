@@ -42,8 +42,8 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -189,7 +189,7 @@ public class VSwimlane extends VBehavior {
     @Override
     public String caseActionUsage(ActionUsage au) {
         if (au instanceof TransitionUsage) return null;
-        if (au instanceof FlowConnectionUsage) return null;
+        if (au instanceof FlowUsage) return null;
 
         Integer id = newId(au);
 
@@ -209,7 +209,7 @@ public class VSwimlane extends VBehavior {
     }
 
     private static boolean isSuccessionLike(Element e) {
-        return (e instanceof Succession) || (e instanceof ItemFlow) || (e instanceof TransitionUsage);
+        return (e instanceof Succession) || (e instanceof Flow) || (e instanceof TransitionUsage);
     }
 
     private void buildEquivParam(Pair p1, ActionUsage au, Integer id) {

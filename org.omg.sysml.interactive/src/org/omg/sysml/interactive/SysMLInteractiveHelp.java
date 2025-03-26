@@ -38,6 +38,7 @@ public class SysMLInteractiveHelp {
 	private static final String GENERAL_HELP_STRING =
 			  "The following SysML v2 magic commands are available.\n"
 			+ "For help on a specific command, use \"%help <COMMAND>\" or \"%<cmd> -h\".\n\n"
+			+ "%api-base-path\t Sets and prints the current api base path"
 			+ "%eval\t\tEvaluate a given expression.\n"
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
@@ -115,6 +116,11 @@ public class SysMLInteractiveHelp {
 			  "Usage: %export <NAME>\n\n"
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
+	
+	private static final String API_BASE_PATH_HELP_STRING =
+			  "Usage: %api-base-path [<BASE PATH>]\n\n"
+			+ "Sets the current api base path\n"
+			+ "If no argument is passed it prints the current api base path";
  
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;
@@ -152,6 +158,10 @@ public class SysMLInteractiveHelp {
     	return EXPORT_HELP_STRING;
     }
     
+	public static String getApiBasePathHelp() {
+		return API_BASE_PATH_HELP_STRING;
+	}
+    
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
     
     private static Map<String, String> createCommandHelpMap() {
@@ -170,5 +180,4 @@ public class SysMLInteractiveHelp {
     public static String getHelpString(String command) {
     	return commandHelpMap.get(command);
     }
-	
 }

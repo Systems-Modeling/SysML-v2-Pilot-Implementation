@@ -88,10 +88,10 @@ package '5-State-based Behavior-1' {
 					 * The transition definition for a transition usage is always implicit.
 					 * "accept" marks the trigger, "if" the guard and "do" the effect.
 					 * 
-					 * The notation "'Start Signal'()" constructs a specific instance of the
+					 * The notation "new 'Start Signal'()" constructs a specific instance of the
 					 * 'Start Signal' attribute def to be sent to the 'vehicleController'. If the
 					 * attribute def had properties, their values would be given as arguments
-					 * inside the parhentheses.
+					 * inside the parentheses.
 					 */						
 					}
 					

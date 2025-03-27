@@ -35,9 +35,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -52,6 +54,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.omg.kerml.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
@@ -69,11 +72,21 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.repository.EObjectUUIDTracker;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.EMFModelDelta;
+import org.omg.sysml.util.repository.ProjectRepository;
+import org.omg.sysml.util.repository.Revision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
+import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicates;
@@ -89,6 +102,8 @@ public class SysMLInteractive extends SysMLUtil {
 
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
+	public static final String KERMLX_EXTENSION = ".kermlx";
+	public static final String SYSMLX_EXTENSION = ".sysmlx";
 	
 	protected static Injector injector;
 	protected static SysMLInteractive instance = null;
@@ -96,7 +111,7 @@ public class SysMLInteractive extends SysMLUtil {
 	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	
 	protected int counter = 1;
-	protected XtextResource resource;
+	protected Resource resource;
 	
 	protected Traversal traversal;
 	
@@ -115,6 +130,8 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private ILibraryIndexProvider libraryIndexCache;
+	
+	private EObjectUUIDTracker tracker = new EObjectUUIDTracker();
 	
 	@Inject
 	private SysMLInteractive() {
@@ -137,13 +154,13 @@ public class SysMLInteractive extends SysMLUtil {
 		this.apiBasePath = apiBasePath;
 	}
 	
-	public int next() {
-		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
+	public int next(String extension) {
+		this.resource = this.createResource(counter + extension);
 		this.addInputResource(this.resource);
 		return this.counter++;
 	}
 	
-	public XtextResource getResource() {
+	public Resource getResource() {
 		return this.resource;
 	}
 	
@@ -163,24 +180,27 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public Element getRootElement() {
-		XtextResource resource = this.getResource();
-		if (resource == null) {
-			return null;
-		} else {
-			final IParseResult result = resource.getParseResult();
+		Resource resource = this.getResource();
+		if (resource instanceof XtextResource xtextResource) {
+			final IParseResult result = xtextResource.getParseResult();
 			return result == null? null: (Element)result.getRootASTElement();
+		} else {
+			EList<EObject> contents = resource.getContents();
+			return contents.isEmpty()? null: (Element)contents.get(0);
 		}
 	}
 	
 	public void parse(String input) throws IOException {
-		XtextResource resource = this.getResource();
-		if (resource != null) {
-			resource.reparse(input);
+		Resource resource = this.getResource();
+		if (resource instanceof XtextResource xtextResource) {
+			xtextResource.reparse(input);
+		} else {
+			//TODO: add warning when resource is not meant to be parsed
 		}
 	}
 	
 	public List<Issue> validate() {
-		XtextResource resource = this.getResource();
+		Resource resource = this.getResource();
 		return resource == null? Collections.emptyList():
 			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 	}
@@ -213,7 +233,7 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public SysMLInteractiveResult process(String input, boolean isAddResource) {
-		this.next();
+		this.next(SYSML_EXTENSION);
 		try {
 			this.parse(input);
 			List<Issue> issues = this.validate();
@@ -343,7 +363,7 @@ public class SysMLInteractive extends SysMLUtil {
 			else if (matchStyle(styles, "JSON")) {
 				JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
 				processingFacade.getTraversal().visit(element);
-				return processingFacade.toJsonTree();
+				return processingFacade.toJsonTree(true);
 			}
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
 				return SysMLInteractiveUtil.formatTree(element);
@@ -367,7 +387,7 @@ public class SysMLInteractive extends SysMLUtil {
 			}
 			JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
 			processingFacade.getTraversal().visit(element);
-			return processingFacade.toJsonTree();
+			return processingFacade.toJsonTree(true);
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
 		}
@@ -387,24 +407,25 @@ public class SysMLInteractive extends SysMLUtil {
 				show(name, Collections.emptyList(), Collections.emptyList()));
 	}
 	
-	public String publish(String name, List<String> help) {
+	public String publish(String elementName, String projectName, String branchName, boolean includeDerievd, List<String> help) {
 		this.counter++;
-		if (Strings.isNullOrEmpty(name)) {
+		if (Strings.isNullOrEmpty(elementName)) {
 			return help.isEmpty()? "": SysMLInteractiveHelp.getPublishHelp();
 		}
 		try {
-			Element element = this.resolve(name);
+			Element element = this.resolve(elementName);
 			if (element == null) {
-				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+				return "ERROR:Couldn't resolve reference to Element '" + elementName + "'\n";
 			} else if (!this.isInputResource(element.eResource())) {
-				return "ERROR:'" + name + "' is a library element\n";
+				return "ERROR:'" + elementName + "' is a library element\n";
 			} else {
-				String modelName = element.getDeclaredName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(modelName);
+				String remoteProjectName = projectName == null? element.getDeclaredName() + " " + new Date() : projectName;
+				
+				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName, branchName, includeDerievd);
 				processingFacade.getTraversal().visit(element);
-				processingFacade.commit();
+				processingFacade.commit(element);
 				System.out.println();
-				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
+				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -413,14 +434,128 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected String publish(String name) {
 		return "-h".equals(name)? 
-				publish(null, Collections.singletonList("true")):
-				publish(name, Collections.emptyList());
+				publish(null, null, null, false, Collections.singletonList("true")):
+				publish(name, null, null, false, Collections.emptyList());
 	}
 	
-	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName) {
+	public String loadByName(String projectName, String branchName, List<String> help) {
+		if (Strings.isNullOrEmpty(projectName)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+		}
+		
+		ProjectRepository repository = new ProjectRepository(apiBasePath);
+		
+		System.out.println("Locating model");
+		RemoteProject repositoryProject = repository.getProjectByName(projectName);
+		
+		if (repositoryProject == null) {
+			return "ERROR:Project doesn't exist.";
+		}
+		
+		return load(repositoryProject, branchName);
+	}
+	
+	public String loadById(String projectId, String branchId, List<String> help) {
+		if (Strings.isNullOrEmpty(projectId)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+		}
+		
+		ProjectRepository repository = new ProjectRepository(apiBasePath);
+		
+		System.out.println("Locating model");
+		RemoteProject remoteProject = repository.getPRojectById(UUID.fromString(projectId));
+		
+		if (remoteProject == null) {
+			return "ERROR:Project doesn't exist.";
+		}
+		
+		if (branchId == null) {
+			return load(remoteProject, (UUID) null);
+		} else {
+			UUID branchUUID = UUID.fromString(branchId);
+			return load(remoteProject, branchUUID);
+		}
+	}
+	
+	private String load(RemoteProject remoteProject, String branchName) {
+		final RemoteBranch branch;
+		if (branchName == null) {
+			branch = remoteProject.getDefaultBranch();
+		} else {
+			branch = remoteProject.getBranch(branchName);
+		}
+		return load(branch);
+	}
+	
+	private String load(RemoteProject remoteProject, UUID branchId) {
+		final RemoteBranch branch;
+		if (branchId == null) {
+			branch = remoteProject.getDefaultBranch();
+		} else {
+			branch = remoteProject.getBranch(branchId);
+		}
+		return load(branch);
+	}
+
+	private String load(RemoteBranch branch) {
+		RemoteProject remoteProject = branch.getRemoteProject();
+		Revision headRevision = branch.getHeadRevision();
+		APIModel model = headRevision.fetchRemote();
+		
+		System.out.println("Selected branch " + branch.getName());
+		
+		System.out.println("Collecting UUIDs...");
+		if (!tracker.isLibraryTracked()) {
+			tracker.trackLibraryUUIDs(getLibraryResources());
+		}
+		
+		tracker.clear();
+		List<Resource> inputResources = getInputResources();
+		//UUIDS coming from resources that were added later in time will shadow previous ones
+		tracker.trackLocalUUIDs(inputResources);
+		
+		EMFModelRefresher fetcher = new EMFModelRefresher(model, tracker);
+		
+		System.out.println("Downloading model...");
+		EMFModelDelta delta = fetcher.create();
+		
+		System.out.println("Adding model to index");
+		delta.getProjectRoots().forEach((eObject, dto) -> {
+			next(SYSMLX_EXTENSION);
+			Resource xmiResource = getResource();
+			if (eObject instanceof Namespace) {
+				xmiResource.getContents().add(eObject);
+			} else {
+				Namespace root = SysMLFactory.eINSTANCE.createNamespace();
+				NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
+				xmiResource.getContents().add(root);
+			}
+			addResourceToIndex(xmiResource);
+		});
+		
+		return "Project loaded: " + remoteProject.getProjectName() + ", " + remoteProject.getRemoteId().toString();
+	}
+	
+	protected String download(String name) {
+		return "-h".equals(name)?
+				loadByName(null, null, Collections.singletonList("true")):
+				loadByName(name, null, Collections.emptyList());
+	}
+	
+	public String listPublications(List<String> help) {
+		if (help != null && !help.isEmpty()) {
+			return SysMLInteractiveHelp.getProjectsHelp();
+		}
+		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
+		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
+		return repositoryProjects.stream().map(p -> String.format("name=%s, id=%s", p.getProjectName(), p.getRemoteId()))
+				.collect(Collectors.joining("\n"));
+	}
+	
+	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {
 		System.out.println("API base path: " + this.apiBasePath);
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
-		processingFacade.setIsIncludeDerived(true);
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, branchName, this.apiBasePath);	
+		processingFacade.setIsIncludeDerived(includeDerived);
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
@@ -640,6 +775,8 @@ public class SysMLInteractive extends SysMLUtil {
 			// CompositeEValidator is used.
 			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
 			KerMLStandaloneSetup.doSetup();
+			KerMLxStandaloneSetup.doSetup();
+			SysMLxStandaloneSetup.doSetup();
 			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}
 		return injector.getInstance(SysMLInteractive.class);

@@ -101,6 +101,8 @@ import java.util.Collections
 import java.util.HashMap
 import java.util.Set
 import java.util.Map
+import org.omg.sysml.lang.sysml.InstantiationExpression
+import org.omg.sysml.lang.sysml.ConstructorExpression
 
 /**
  * This class contains custom validation rules. 
@@ -281,16 +283,34 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE = "validateResultExpressionMembershipOwningType"
 	public static val INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE_MSG = "Result expression not allowed"	
 		
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION = "checkConstructorExpressionResultFeatureRedefinition"
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG = "Must correspond to one feature of the instantiated type"
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION = "validateConstructorExpressionNoDuplicateFeatureRedefinition"
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION_MSG = "Feature already bound"
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES = "validateConstructorExpressionOwnedFeatures"
+	public static val INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES_MSG = "Owned feature not allowed"
+
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE = "validateFeatureChainExpressionFeatureConformance"
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG = "Must be a valid feature"
 
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE = "validateFeatureReferenceExpressionReferentIsFeature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG = "Must be a valid feature"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT = "validateFeatureReferenceExpressionResult"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT_MSG = "Must own its result parameter"
 
+	public static val INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE = "validateInstantiationExpressionInstantiatedType"
+	public static val INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE_MSG = "Must have an invoked/instantiated type"
+	public static val INVALID_INSTANTIATION_EXPRESSION_RESULT = "validateInstantiationExpressionResult"
+	public static val INVALID_INSTANTIATION_EXPRESSION_RESULT_MSG = "Must own its result parameter"
+
+	public static val INVALID_INVOCATION_EXPRESSION_INSTANTIATED_TYPE = "validateInvocationExpressionInstantiatedType"
+	public static val INVALID_INVOCATION_EXPRESSION_INSTANTIATED_TYPE_MSG = "Must invoke a behavior or a behavioral feature"
 	public static val INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION = "validateInvocationExpressionParameterRedefinition"
-	public static val INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG = "Must name an input or undirected feature"
+	public static val INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG = "Must correspond to one input parameter of the invoked type"
 	public static val INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION = "validateInvocationExpressionNoDuplicateParameterRedefinition"
-	public static val INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG = "Feature already bound"
+	public static val INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG = "Parameter already bound"
+	public static val INVALID_INVOCATION_EXPRESSION_OWNED_FEATURES = "validateInvocationExpressionOwnedFeatures"
+	public static val INVALID_INVOCATION_EXPRESSION_OWNED_FEATURES_MSG = "Must be an in parameter"
 
 	public static val INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_TYPE = "validateOperatorExpressionCastConformance"
 	public static val INVALID_OPERATOR_EXPRESSION_CAST_CONFORMANCE_MSG = "Cast argument should have conforming types"
@@ -1003,7 +1023,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(m instanceof ReturnParameterMembership)) {
 			// validateParameterMembershipOwningType
 			val owningType = m.owningType
-			if (!(owningType instanceof Behavior || owningType instanceof Step)) {
+			if (!(owningType instanceof Behavior || owningType instanceof Step ||
+				  ExpressionUtil.isConstructorResult(owningType))) {
 				error(INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE)
 			}
 			
@@ -1102,36 +1123,97 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (feature !== null && !(feature instanceof Feature)) {
 			error(INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE)
 		}
+		
+		// validateFeatureReferenceExpressionResult
+		if (TypeUtil.getOwnedResultParameterOf(e) === null) {
+			error(INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT)
+		}
+		
 	}
 	
-	// @Check
-	// def checkIndexExpression(IndexExpression e) {
-	//     // validateIndexExpressionOperator is automatically satisfied
-	// }
+	@Check
+	def checkInstantiationExpression(InstantiationExpression e) {
+		// validateInstantiationExpressionInstantiatedType
+		if (e.instantiatedType() === null) {
+			error(INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE_MSG, e, null, INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE)
+		}
+		
+		// validateInstantiationExpressionResult
+		if (TypeUtil.getOwnedResultParameterOf(e) === null) {
+			error(INVALID_INSTANTIATION_EXPRESSION_RESULT, e, null, INVALID_INSTANTIATION_EXPRESSION_RESULT)
+		}
+	}
+	
+	@Check
+	def checkConstructionExpression(ConstructorExpression e) {
+		// checkConstructorExpressionResultFeatureRedefinition (validation)
+		// validateConstructorExpressionNoDuplicateParameterRedefinition
+		val type = e.instantiatedType()
+		val result = TypeUtil.getOwnedResultParameterOf(e)
+		if (type !== null && result !== null) {
+			val typeFeatures = type.feature.filter[f | f.owningMembership.visibility == VisibilityKind.PUBLIC]
+			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			e.checkInstantiationExpressionFeatures(typeFeatures, resultFeatures,
+				INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION,
+				INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION
+			)
+		}
+		
+		// validateConstructorExpressionOwnedFeatures
+		for (f: e.ownedFeature) {
+			if (f != result) {
+				error(INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES_MSG, f, null, INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES)
+			}
+		}
+	}
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
-		val type = ExpressionUtil.getExpressionTypeOf(e)
-		if (type !== null) {
-			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
-			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
-			val usedParams = newHashSet
-			for (p: exprParams) {
-				val redefinitions = p.ownedRedefinition
-				if (!redefinitions.empty) {
-					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
-					if (redefParams.empty) {
-						// validateInvocationExpressionParameterRedefinition
-						// Input parameter must redefine a parameter of the expression type
-						error(INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION)
-					} else if (redefParams.exists[f | usedParams.contains(f)]) {
-						// validateInvocationExpressionNoDuplicateParameterRedefinition
-						// Two parameters cannot redefine the same type parameter 
-						error(INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION)
-					}
-					usedParams.addAll(redefParams)
+		val type = e.instantiatedType()
+		
+		// validateInvocationExpressionInstantiatedType
+		if (!(type instanceof Behavior ||
+			  type instanceof Feature &&
+			  	(type as Feature).type.size == 1 &&
+			  	(type as Feature).type.get(0) instanceof Behavior)) {
+			error(INVALID_INVOCATION_EXPRESSION_INSTANTIATED_TYPE_MSG, e, null, INVALID_INVOCATION_EXPRESSION_INSTANTIATED_TYPE)	
+		} else {
+			// Don't check the following validations if the instantiated type is invalid, 
+			// to avoid unnecessary multiple error messages.
+			
+			// validateInvocationExpressionOwnedFeatures
+			val result = TypeUtil.getOwnedResultParameterOf(e)
+			for (f: e.ownedFeature) {
+				if (f != result && f.direction != FeatureDirectionKind.IN) {
+					error(INVALID_INVOCATION_EXPRESSION_OWNED_FEATURES_MSG, f, null, INVALID_INVOCATION_EXPRESSION_OWNED_FEATURES)
 				}
 			}
+			
+			// validateInvocationExpressionParameterRedefinition
+			// validateInvocationExpressionNoDuplicateParameterRedefinition
+			val typeParams = type.feature.filter[p | FeatureUtil.isInputParameter(p)]
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			e.checkInstantiationExpressionFeatures(typeParams, exprParams,
+				INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION,
+				INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION
+			)
+		}
+		
+	}
+	
+	def checkInstantiationExpressionFeatures(InstantiationExpression e, Iterable<Feature> typeFeatures, Iterable<Feature> exprFeatures, 
+		String redefMsg, String redefCode, String dupMsg, String dupCode) {
+		val usedFeatures = newHashSet
+		for (p: exprFeatures) {
+			val redefFeatures = FeatureUtil.getRedefinedFeaturesOf(p).filter[f | typeFeatures.contains(f)]
+			if (redefFeatures.size != 1) {
+				// Expression feature must redefine exactly one feature of the instantiated type
+				error(redefMsg, p, null, redefCode)
+			} else if (redefFeatures.exists[f | usedFeatures.contains(f)]) {
+				// Two expression features cannot redefine the same type feature 
+				error(dupMsg, p, null, dupCode)
+			}
+			usedFeatures.addAll(redefFeatures)
 		}
 	}
 	
@@ -1157,6 +1239,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	// @Check
 	// def checkSelectExpression(SelectExpression e) {
 	//     // validateSelectExpressionOperator is automatically satisfied
+	// }
+	
+	// @Check
+	// def checkIndexExpression(IndexExpression e) {
+	//     // validateIndexExpressionOperator is automatically satisfied
 	// }
 	
 	@Check

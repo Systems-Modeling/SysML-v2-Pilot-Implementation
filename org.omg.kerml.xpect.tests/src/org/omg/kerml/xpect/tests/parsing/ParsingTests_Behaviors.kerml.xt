@@ -6,6 +6,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 		File {from ="/library/Links.kerml"}
 		File {from ="/library/Occurrences.kerml"}
 		File {from ="/library/Performances.kerml"}
+		File {from ="/library/ControlFunctions.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -15,6 +16,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 				File {from ="/library/Links.kerml"}
 				File {from ="/library/Occurrences.kerml"}
 				File {from ="/library/Performances.kerml"}
+				File {from ="/library/ControlFunctions.kerml"}
 			}
 		}
 	}

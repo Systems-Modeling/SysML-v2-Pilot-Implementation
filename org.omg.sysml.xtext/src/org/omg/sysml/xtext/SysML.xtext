@@ -435,7 +435,10 @@ FeatureTyping returns SysML::FeatureTyping :
 	OwnedFeatureTyping | ConjugatedPortTyping
 ;
 
-// OwnedFeatureTyping inherited from Expression syntax.
+OwnedFeatureTyping returns SysML::FeatureTyping :
+	  type = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
 
 OwnedSubsetting returns SysML::Subsetting :
 	  subsettedFeature = [SysML::Feature|QualifiedName]

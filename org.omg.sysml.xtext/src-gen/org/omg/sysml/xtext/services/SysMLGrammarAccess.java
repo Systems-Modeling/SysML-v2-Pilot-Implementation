@@ -2494,6 +2494,40 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ConjugatedPortTyping
 		public RuleCall getConjugatedPortTypingParserRuleCall_1() { return cConjugatedPortTypingParserRuleCall_1; }
 	}
+	public class OwnedFeatureTypingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OwnedFeatureTyping");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final CrossReference cTypeTypeCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypeTypeQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cTypeTypeCrossReference_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
+		
+		//OwnedFeatureTyping returns SysML::FeatureTyping :
+		//      type = [SysML::Type | QualifiedName]
+		//    | ownedRelatedElement += OwnedFeatureChain
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//  type = [SysML::Type | QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//type = [SysML::Type | QualifiedName]
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
+		//[SysML::Type | QualifiedName]
+		public CrossReference getTypeTypeCrossReference_0_0() { return cTypeTypeCrossReference_0_0; }
+		
+		//QualifiedName
+		public RuleCall getTypeTypeQualifiedNameParserRuleCall_0_0_1() { return cTypeTypeQualifiedNameParserRuleCall_0_0_1; }
+		
+		//ownedRelatedElement += OwnedFeatureChain
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//OwnedFeatureChain
+		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0; }
+	}
 	public class OwnedSubsettingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OwnedSubsetting");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -2503,7 +2537,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
-		//// OwnedFeatureTyping inherited from Expression syntax.
 		//OwnedSubsetting returns SysML::Subsetting :
 		//      subsettedFeature = [SysML::Feature|QualifiedName]
 		//    | ownedRelatedElement += OwnedFeatureChain
@@ -14098,6 +14131,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final RedefinesElements pRedefines;
 	private final RedefinesKeywordElements pRedefinesKeyword;
 	private final FeatureTypingElements pFeatureTyping;
+	private final OwnedFeatureTypingElements pOwnedFeatureTyping;
 	private final OwnedSubsettingElements pOwnedSubsetting;
 	private final OwnedReferenceSubsettingElements pOwnedReferenceSubsetting;
 	private final OwnedCrossSubsettingElements pOwnedCrossSubsetting;
@@ -14548,6 +14582,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pRedefines = new RedefinesElements();
 		this.pRedefinesKeyword = new RedefinesKeywordElements();
 		this.pFeatureTyping = new FeatureTypingElements();
+		this.pOwnedFeatureTyping = new OwnedFeatureTypingElements();
 		this.pOwnedSubsetting = new OwnedSubsettingElements();
 		this.pOwnedReferenceSubsetting = new OwnedReferenceSubsettingElements();
 		this.pOwnedCrossSubsetting = new OwnedCrossSubsettingElements();
@@ -15811,7 +15846,18 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureTypingAccess().getRule();
 	}
 	
-	//// OwnedFeatureTyping inherited from Expression syntax.
+	//OwnedFeatureTyping returns SysML::FeatureTyping :
+	//      type = [SysML::Type | QualifiedName]
+	//    | ownedRelatedElement += OwnedFeatureChain
+	//;
+	public OwnedFeatureTypingElements getOwnedFeatureTypingAccess() {
+		return pOwnedFeatureTyping;
+	}
+	
+	public ParserRule getOwnedFeatureTypingRule() {
+		return getOwnedFeatureTypingAccess().getRule();
+	}
+	
 	//OwnedSubsetting returns SysML::Subsetting :
 	//      subsettedFeature = [SysML::Feature|QualifiedName]
 	//    | ownedRelatedElement += OwnedFeatureChain
@@ -20721,7 +20767,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMetadataReferenceAccess().getRule();
 	}
 	
-	//TypeReferenceMember returns SysML::FeatureMembership :
+	//TypeReferenceMember returns SysML::ParameterMembership :
 	//    ownedRelatedElement += TypeReference
 	//;
 	public KerMLExpressionsGrammarAccess.TypeReferenceMemberElements getTypeReferenceMemberAccess() {
@@ -20953,7 +20999,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      | {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
 	//      | {SysML::InvocationExpression.operand += current} '->'
-	//        ownedRelationship += ReferenceTyping
+	//        ownedRelationship += InstantiatedTypeMember
 	//        ( operand += BodyExpression
 	//        | operand += FunctionReferenceExpression
 	//        | ArgumentList
@@ -21021,6 +21067,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureChainMemberAccess().getRule();
 	}
 	
+	//OwnedFeatureChain returns SysML::Feature :
+	//    FeatureChain
+	//;
+	public KerMLExpressionsGrammarAccess.OwnedFeatureChainElements getOwnedFeatureChainAccess() {
+		return gaKerMLExpressions.getOwnedFeatureChainAccess();
+	}
+	
+	public ParserRule getOwnedFeatureChainRule() {
+		return getOwnedFeatureChainAccess().getRule();
+	}
+	
 	///* Base Expressions */
 	//BaseExpression returns SysML::Expression :
 	//      NullExpression
@@ -21028,6 +21085,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | FeatureReferenceExpression
 	//    | MetadataAccessExpression
 	//    | InvocationExpression
+	//    | ConstructorExpression
 	//    | BodyExpression
 	//    | '(' SequenceExpression ')'
 	//;
@@ -21148,7 +21206,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Invocation Expressions
 	//InvocationExpression returns SysML::InvocationExpression :
-	//    ownedRelationship += OwnedFeatureTyping ArgumentList
+	//    ownedRelationship += InstantiatedTypeMember ArgumentList
 	//;
 	public KerMLExpressionsGrammarAccess.InvocationExpressionElements getInvocationExpressionAccess() {
 		return gaKerMLExpressions.getInvocationExpressionAccess();
@@ -21158,27 +21216,50 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getInvocationExpressionAccess().getRule();
 	}
 	
-	//OwnedFeatureTyping returns SysML::FeatureTyping :
-	//      type = [SysML::Type | QualifiedName]
-	//    | ownedRelatedElement += OwnedFeatureChain
+	//ConstructorExpression returns SysML::ConstructorExpression:
+	//    'new' ownedRelationship += InstantiatedTypeMember
+	//    ownedRelationship += ConstructorResultMember
 	//;
-	public KerMLExpressionsGrammarAccess.OwnedFeatureTypingElements getOwnedFeatureTypingAccess() {
-		return gaKerMLExpressions.getOwnedFeatureTypingAccess();
+	public KerMLExpressionsGrammarAccess.ConstructorExpressionElements getConstructorExpressionAccess() {
+		return gaKerMLExpressions.getConstructorExpressionAccess();
 	}
 	
-	public ParserRule getOwnedFeatureTypingRule() {
-		return getOwnedFeatureTypingAccess().getRule();
+	public ParserRule getConstructorExpressionRule() {
+		return getConstructorExpressionAccess().getRule();
 	}
 	
-	//OwnedFeatureChain returns SysML::Feature :
-	//    FeatureChain
+	//ConstructorResultMember returns SysML::ReturnParameterMembership :
+	//    ownedRelatedElement += ConstructorResult
 	//;
-	public KerMLExpressionsGrammarAccess.OwnedFeatureChainElements getOwnedFeatureChainAccess() {
-		return gaKerMLExpressions.getOwnedFeatureChainAccess();
+	public KerMLExpressionsGrammarAccess.ConstructorResultMemberElements getConstructorResultMemberAccess() {
+		return gaKerMLExpressions.getConstructorResultMemberAccess();
 	}
 	
-	public ParserRule getOwnedFeatureChainRule() {
-		return getOwnedFeatureChainAccess().getRule();
+	public ParserRule getConstructorResultMemberRule() {
+		return getConstructorResultMemberAccess().getRule();
+	}
+	
+	//ConstructorResult returns SysML::Feature :
+	//    ArgumentList
+	//;
+	public KerMLExpressionsGrammarAccess.ConstructorResultElements getConstructorResultAccess() {
+		return gaKerMLExpressions.getConstructorResultAccess();
+	}
+	
+	public ParserRule getConstructorResultRule() {
+		return getConstructorResultAccess().getRule();
+	}
+	
+	//InstantiatedTypeMember returns SysML::Membership :
+	//      memberElement = [SysML::Type | QualifiedName]
+	//    | {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain
+	//;
+	public KerMLExpressionsGrammarAccess.InstantiatedTypeMemberElements getInstantiatedTypeMemberAccess() {
+		return gaKerMLExpressions.getInstantiatedTypeMemberAccess();
+	}
+	
+	public ParserRule getInstantiatedTypeMemberRule() {
+		return getInstantiatedTypeMemberAccess().getRule();
 	}
 	
 	//// For use in KerML and SysML grammars
@@ -21205,7 +21286,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getOwnedFeatureChainingAccess().getRule();
 	}
 	
-	//fragment ArgumentList returns SysML::Expression :
+	//fragment ArgumentList returns SysML::Feature :
 	//    '(' ( PositionalArgumentList | NamedArgumentList )? ')'
 	//;
 	public KerMLExpressionsGrammarAccess.ArgumentListElements getArgumentListAccess() {
@@ -21216,7 +21297,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getArgumentListAccess().getRule();
 	}
 	
-	//fragment PositionalArgumentList returns SysML::Expression :
+	//fragment PositionalArgumentList returns SysML::Feature :
 	//    ownedRelationship += ArgumentMember
 	//    ( ',' ownedRelationship += ArgumentMember )*
 	//;
@@ -21250,7 +21331,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getArgumentAccess().getRule();
 	}
 	
-	//fragment NamedArgumentList returns SysML::Expression :
+	//fragment NamedArgumentList returns SysML::Feature :
 	//    ownedRelationship += NamedArgumentMember
 	//    ( ',' ownedRelationship += NamedArgumentMember )*
 	//;

@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DecisionNode;
 import org.omg.sysml.lang.sysml.Definition;
@@ -494,6 +495,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else break;
+			case SysMLPackage.CONSTRUCTOR_EXPRESSION:
+				sequence_ConstructorExpression(context, (ConstructorExpression) semanticObject); 
+				return; 
 			case SysMLPackage.CROSS_SUBSETTING:
 				sequence_OwnedCrossSubsetting(context, (CrossSubsetting) semanticObject); 
 				return; 
@@ -618,6 +622,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getOwnedFeatureChainRule()) {
 					sequence_FeatureChain(context, (Feature) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConstructorResultRule()) {
+					sequence_NamedArgumentList_PositionalArgumentList(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getNamedArgumentRule()) {
@@ -788,10 +796,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getTargetFeatureMemberRule()) {
 					sequence_TargetFeatureMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
-					sequence_TypeReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getXorExpressionMemberRule()) {
@@ -1110,6 +1114,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_InitialNodeMember_MemberPrefix_RelationshipBody(context, (Membership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getInstantiatedTypeMemberRule()) {
+					sequence_InstantiatedTypeMember(context, (Membership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
 					sequence_TransitionSourceMember(context, (Membership) semanticObject); 
 					return; 
@@ -1360,6 +1368,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_FeatureChainMember(context, (OwningMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getInstantiatedTypeMemberRule()) {
+					sequence_InstantiatedTypeMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getPackageMemberRule()) {
 					sequence_MemberPrefix_PackageMember(context, (OwningMembership) semanticObject); 
 					return; 
@@ -1451,6 +1463,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getPayloadParameterMemberRule()) {
 					sequence_PayloadParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTypeReferenceMemberRule()) {
+					sequence_TypeReferenceMember(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1688,7 +1704,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_MemberPrefix_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
 				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
-				if (rule == grammarAccess.getReturnParameterMemberRule()) {
+				if (rule == grammarAccess.getConstructorResultMemberRule()) {
+					sequence_ConstructorResultMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getReturnParameterMemberRule()) {
 					sequence_MemberPrefix_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
 					return; 
 				}
@@ -10612,6 +10632,21 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_OwnedCrossSubsetting(ISerializationContext context, CrossSubsetting semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FeatureTyping returns FeatureTyping
+	 *     OwnedFeatureTyping returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     (type=[Type|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
+	 * </pre>
+	 */
+	protected void sequence_OwnedFeatureTyping(ISerializationContext context, FeatureTyping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

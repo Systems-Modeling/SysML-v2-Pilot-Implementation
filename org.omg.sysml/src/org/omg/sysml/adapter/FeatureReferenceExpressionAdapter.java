@@ -82,6 +82,11 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	}
 	
 	@Override
+	public void addAdditionalMembers() {
+		TypeUtil.addResultParameterTo(getTarget());
+	}
+	
+	@Override
 	public void doTransform() {
 		super.doTransform();
 		addReferenceConnector();

@@ -48,6 +48,7 @@ Workflow {
 	        fragment = InternalParserSplitterFragment {
 	        	originalClassName = "InternalSysMLParser"
 	        	baseName = "${projectName}.xtext"
+	        	count = 20
 	        }
 	        fragment = validation.ValidatorFragment2 {}
 	        fragment = scoping.ImportNamespacesScopingFragment2 {}

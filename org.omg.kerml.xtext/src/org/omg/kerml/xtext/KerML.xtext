@@ -661,7 +661,6 @@ FeatureTyping returns SysML::FeatureTyping :
     RelationshipBody
 ;
 
-@Override
 OwnedFeatureTyping returns SysML::FeatureTyping :
 	FeatureType
 ;

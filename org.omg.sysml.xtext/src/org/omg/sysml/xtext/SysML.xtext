@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -800,7 +800,9 @@ OccurrenceDefKeyword :
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix?
-	( isIndividual ?= 'individual' )?
+	( isIndividual ?= 'individual' 
+	  ownedRelationship += EmptyMultiplicityMember
+	)?
 	DefinitionExtensionKeyword*
 ;
 
@@ -810,7 +812,16 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix? isIndividual ?= 'individual' 
+	ownedRelationship += EmptyMultiplicityMember
 	DefinitionExtensionKeyword* 'def' Definition
+;
+
+EmptyMultiplicityMember returns SysML::OwningMembership :
+        ownedRelatedElement += EmptyMultiplicity
+;
+
+EmptyMultiplicity returns SysML::Multiplicity :
+	{SysML::Multiplicity}
 ;
 
 /* Occurrence Usages */

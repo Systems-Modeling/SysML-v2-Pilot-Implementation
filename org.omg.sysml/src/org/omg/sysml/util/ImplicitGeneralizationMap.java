@@ -271,6 +271,7 @@ public class ImplicitGeneralizationMap {
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
+		put(OccurrenceDefinitionImpl.class, "life", "Occurrences::Life");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
 		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
 		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");

@@ -148,10 +148,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 			return getEnumerationDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getEnumerationUsageKeywordRule())
 			return getEnumerationUsageKeywordToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getFlowConnectionDefKeywordRule())
-			return getFlowConnectionDefKeywordToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getFlowConnectionKeywordRule())
-			return getFlowConnectionKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFlowDefKeywordRule())
+			return getFlowDefKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFlowKeywordRule())
+			return getFlowKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getInterfaceDefKeywordRule())
 			return getInterfaceDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getInterfaceUsageKeywordRule())
@@ -200,8 +200,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 			return getStateUsageKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSubsetsKeywordRule())
 			return getSubsetsKeywordToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getSuccessionFlowConnectionKeywordRule())
-			return getSuccessionFlowConnectionKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSuccessionFlowKeywordRule())
+			return getSuccessionFlowKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getSuccessionKeywordRule())
 			return getSuccessionKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getTransitionUsageKeywordRule())
@@ -501,22 +501,22 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	}
 	
 	/**
-	 * FlowConnectionDefKeyword :
-	 * 	FlowConnectionKeyword 'def'
+	 * FlowDefKeyword :
+	 * 	FlowKeyword 'def'
 	 * ;
 	 */
-	protected String getFlowConnectionDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getFlowDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "flow def";
 	}
 	
 	/**
-	 * FlowConnectionKeyword :
+	 * FlowKeyword :
 	 * 	'flow'
 	 * ;
 	 */
-	protected String getFlowConnectionKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getFlowKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "flow";
@@ -787,11 +787,11 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	}
 	
 	/**
-	 * SuccessionFlowConnectionKeyword :
-	 * 	SuccessionKeyword FlowConnectionKeyword
+	 * SuccessionFlowKeyword :
+	 * 	SuccessionKeyword FlowKeyword
 	 * ;
 	 */
-	protected String getSuccessionFlowConnectionKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getSuccessionFlowKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "succession flow";
@@ -1465,8 +1465,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) ConnectionUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword? (ambiguity) (rule start)
-	 *     (rule start) FlowConnectionDefKeyword (ambiguity) (rule start)
-	 *     (rule start) FlowConnectionKeyword (ambiguity) (rule start)
+	 *     (rule start) FlowDefKeyword (ambiguity) (rule start)
+	 *     (rule start) FlowKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) MessageKeyword (ambiguity) (rule start)
@@ -1480,7 +1480,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) ReferenceUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) RenderingDefKeyword (ambiguity) (rule start)
 	 *     (rule start) RenderingUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) SuccessionFlowConnectionKeyword (ambiguity) (rule start)
+	 *     (rule start) SuccessionFlowKeyword (ambiguity) (rule start)
 	 *     declaredName=Name (ambiguity) (rule end)
 	 *     declaredName=Name (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     declaredShortName=Name '&gt;' (ambiguity) (rule end)
@@ -1490,7 +1490,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection AttributeUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     direction=FeatureDirection FlowConnectionKeyword (ambiguity) (rule end)
+	 *     direction=FeatureDirection FlowKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection ItemUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection MessageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1498,7 +1498,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection PortUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection RenderingUsageKeyword (ambiguity) (rule end)
-	 *     direction=FeatureDirection SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     direction=FeatureDirection SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AllocationDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AllocationUsageKeyword (ambiguity) (rule end)
@@ -1507,8 +1507,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' FlowConnectionDefKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' FlowDefKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' FlowKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' MessageKeyword (ambiguity) (rule end)
@@ -1522,13 +1522,13 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isConstant?='constant' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isConstant?='constant' FlowKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' MessageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1536,13 +1536,13 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isConstant?='constant' PortUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isConstant?='constant' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isConstant?='constant' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isConstant?='constant' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isDerived?='derived' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isDerived?='derived' FlowKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' MessageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1550,14 +1550,14 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isDerived?='derived' PortUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isDerived?='derived' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isDerived?='derived' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isDerived?='derived' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' (ambiguity) (rule end)
 	 *     isEnd?='end' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isEnd?='end' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' FlowKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' MessageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1565,7 +1565,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' PortUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isEnd?='end' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'def' (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' (ambiguity) (rule end)
@@ -1573,8 +1573,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' FlowConnectionDefKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' FlowDefKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' FlowKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ItemDefKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' MessageKeyword (ambiguity) (rule end)
@@ -1585,7 +1585,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' PortUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isReference?='ref' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1593,14 +1593,14 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isReference?='ref' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isReference?='ref' FlowKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' MessageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' PortUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isReference?='ref' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isReference?='ref' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AllocationDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AllocationUsageKeyword (ambiguity) (rule end)
@@ -1609,8 +1609,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' FlowConnectionDefKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' FlowConnectionKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' FlowDefKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' FlowKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' MessageKeyword (ambiguity) (rule end)
@@ -1623,20 +1623,19 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=FlowEndMember (ambiguity) (rule end)
-	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=MessageEventMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember AllocationUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember AttributeUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedCrossFeatureMember FlowConnectionKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedCrossFeatureMember FlowKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember MessageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -1644,7 +1643,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedCrossFeatureMember PortUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossFeatureMember RenderingUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedCrossFeatureMember SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedCrossFeatureMember SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedCrossSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
@@ -1652,6 +1651,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PayloadFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'def' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (rule end)
@@ -1663,8 +1663,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember EnumerationUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember EnumerationUsageKeyword? (ambiguity) (rule end)
-	 *     ownedRelationship+=PrefixMetadataMember FlowConnectionDefKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PrefixMetadataMember FlowConnectionKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember FlowDefKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember FlowKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember MessageKeyword (ambiguity) (rule end)
@@ -1677,20 +1677,20 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember PortUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RenderingDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RenderingUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PrefixMetadataMember SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember SuccessionFlowKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind (ambiguity) (rule end)
 	 *     portionKind=PortionKind AllocationUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     portionKind=PortionKind FlowConnectionKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind FlowKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind ItemUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind MessageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind PartUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind PortUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind RenderingUsageKeyword (ambiguity) (rule end)
-	 *     portionKind=PortionKind SuccessionFlowConnectionKeyword (ambiguity) (rule end)
+	 *     portionKind=PortionKind SuccessionFlowKeyword (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */

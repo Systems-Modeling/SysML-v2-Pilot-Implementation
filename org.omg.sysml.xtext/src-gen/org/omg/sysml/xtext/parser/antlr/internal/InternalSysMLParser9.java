@@ -2851,7 +2851,7 @@ public abstract class InternalSysMLParser9 extends InternalSysMLParser8 {
             this.transition = dfa_183;
         }
         public String getDescription() {
-            return "13780:2: (this_PayloadFeature_0= rulePayloadFeature[$current] | ( (this_Identification_1= ruleIdentification[$current] )? (this_PayloadFeatureSpecializationPart_2= rulePayloadFeatureSpecializationPart[$current] )? this_TriggerValuePart_3= ruleTriggerValuePart[$current] ) )";
+            return "13780:2: (this_Payload_0= rulePayload[$current] | ( (this_Identification_1= ruleIdentification[$current] )? (this_PayloadFeatureSpecializationPart_2= rulePayloadFeatureSpecializationPart[$current] )? this_TriggerValuePart_3= ruleTriggerValuePart[$current] ) )";
         }
     }
     static final String dfa_184s = "\35\uffff";

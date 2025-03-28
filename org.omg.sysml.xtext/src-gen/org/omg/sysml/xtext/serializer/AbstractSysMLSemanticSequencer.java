@@ -750,10 +750,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_InterfaceOccurrenceUsageMember_MemberPrefix(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getItemFeatureMemberRule()) {
-					sequence_ItemFeatureMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getNonOccurrenceUsageMemberRule()) {
 					sequence_MemberPrefix_NonOccurrenceUsageMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -788,6 +784,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getOwnedExpressionMemberRule()) {
 					sequence_OwnedExpressionMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPayloadFeatureMemberRule()) {
+					sequence_PayloadFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTargetAccessedFeatureMemberRule()) {
@@ -950,11 +950,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 						|| rule == grammarAccess.getStructureUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
-					sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MessageDeclaration_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (FlowUsage) semanticObject); 
+					sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MessageDeclaration_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (FlowUsage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFlowConnectionUsageRule()) {
-					sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (FlowUsage) semanticObject); 
+				else if (rule == grammarAccess.getFlowUsageRule()) {
+					sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (FlowUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMessageRule()) {
@@ -1493,7 +1493,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.PAYLOAD_FEATURE:
-				sequence_Crosses_Identification_MultiplicityPart_PayloadFeature_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (PayloadFeature) semanticObject); 
+				sequence_Crosses_Identification_MultiplicityPart_Payload_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(context, (PayloadFeature) semanticObject); 
 				return; 
 			case SysMLPackage.PERFORM_ACTION_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
@@ -1609,7 +1609,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					return; 
 				}
 				else if (rule == grammarAccess.getPayloadParameterRule()) {
-					sequence_Crosses_Identification_MultiplicityPart_PayloadFeature_Redefines_Redefinitions_References_Subsets_Subsettings_TriggerValuePart_TypedBy_Typings_ValuePart(context, (ReferenceUsage) semanticObject); 
+					sequence_Crosses_Identification_MultiplicityPart_Payload_Redefines_Redefinitions_References_Subsets_Subsettings_TriggerValuePart_TypedBy_Typings_ValuePart(context, (ReferenceUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getForVariableDeclarationRule()) {
@@ -1863,7 +1863,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.SUCCESSION_FLOW_USAGE:
-				sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (SuccessionFlowUsage) semanticObject); 
+				sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (SuccessionFlowUsage) semanticObject); 
 				return; 
 			case SysMLPackage.TERMINATE_ACTION_USAGE:
 				sequence_ActionBodyItem_BasicUsagePrefix_Crosses_EndUsagePrefix_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TerminateNode_TypedBy_Typings_UsageExtensionKeyword(context, (TerminateActionUsage) semanticObject); 
@@ -5392,7 +5392,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * <pre>
 	 * Contexts:
 	 *     DefinitionElement returns FlowDefinition
-	 *     FlowConnectionDefinition returns FlowDefinition
+	 *     FlowDefinition returns FlowDefinition
 	 *
 	 * Constraint:
 	 *     (
@@ -6303,8 +6303,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 )* 
 	 *                 ownedRelationship+=FeatureValue? 
 	 *                 (
-	 *                     (ownedRelationship+=ItemFeatureMember? (ownedRelationship+=MessageEventMember ownedRelationship+=MessageEventMember)?) | 
-	 *                     (ownedRelationship+=ItemFeatureMember? (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)?)
+	 *                     (ownedRelationship+=PayloadFeatureMember? (ownedRelationship+=MessageEventMember ownedRelationship+=MessageEventMember)?) | 
+	 *                     (ownedRelationship+=PayloadFeatureMember? (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)?)
 	 *                 )
 	 *             ) | 
 	 *             (ownedRelationship+=MessageEventMember ownedRelationship+=MessageEventMember) | 
@@ -6323,7 +6323,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MessageDeclaration_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, FlowUsage semanticObject) {
+	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MessageDeclaration_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, FlowUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -6331,7 +6331,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     FlowConnectionUsage returns FlowUsage
+	 *     FlowUsage returns FlowUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -6369,7 +6369,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     )?
 	 *                 )* 
 	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=ItemFeatureMember? 
+	 *                 ownedRelationship+=PayloadFeatureMember? 
 	 *                 (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)?
 	 *             ) | 
 	 *             (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)
@@ -6387,7 +6387,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, FlowUsage semanticObject) {
+	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, FlowUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -6400,7 +6400,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     StructureUsageElement returns SuccessionFlowUsage
 	 *     VariantUsageElement returns SuccessionFlowUsage
 	 *     InterfaceOccurrenceUsageElement returns SuccessionFlowUsage
-	 *     SuccessionFlowConnectionUsage returns SuccessionFlowUsage
+	 *     SuccessionFlowUsage returns SuccessionFlowUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -6438,7 +6438,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     )?
 	 *                 )* 
 	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=ItemFeatureMember? 
+	 *                 ownedRelationship+=PayloadFeatureMember? 
 	 *                 (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)?
 	 *             ) | 
 	 *             (ownedRelationship+=FlowEndMember ownedRelationship+=FlowEndMember)
@@ -6456,7 +6456,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowConnectionDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, SuccessionFlowUsage semanticObject) {
+	protected void sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_FlowDeclaration_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, SuccessionFlowUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -6554,7 +6554,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))?
 	 *                 )* 
 	 *                 ownedRelationship+=FeatureValue? 
-	 *                 ownedRelationship+=ItemFeatureMember? 
+	 *                 ownedRelationship+=PayloadFeatureMember? 
 	 *                 (ownedRelationship+=MessageEventMember ownedRelationship+=MessageEventMember)?
 	 *             ) | 
 	 *             (ownedRelationship+=MessageEventMember ownedRelationship+=MessageEventMember)
@@ -9040,7 +9040,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Crosses_Identification_MultiplicityPart_PayloadFeature_Redefines_Redefinitions_References_Subsets_Subsettings_TriggerValuePart_TypedBy_Typings_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
+	protected void sequence_Crosses_Identification_MultiplicityPart_Payload_Redefines_Redefinitions_References_Subsets_Subsettings_TriggerValuePart_TypedBy_Typings_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9048,7 +9048,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ItemFeature returns PayloadFeature
+	 *     PayloadFeature returns PayloadFeature
 	 *
 	 * Constraint:
 	 *     (
@@ -9093,7 +9093,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Crosses_Identification_MultiplicityPart_PayloadFeature_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(ISerializationContext context, PayloadFeature semanticObject) {
+	protected void sequence_Crosses_Identification_MultiplicityPart_Payload_Redefines_Redefinitions_References_Subsets_Subsettings_TypedBy_Typings_ValuePart(ISerializationContext context, PayloadFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -10185,20 +10185,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ItemFeatureMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=ItemFeature
-	 * </pre>
-	 */
-	protected void sequence_ItemFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     NonOccurrenceUsageMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -10737,6 +10723,20 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_PackageBodyElement_RootNamespace(ISerializationContext context, Namespace semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     PayloadFeatureMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=PayloadFeature
+	 * </pre>
+	 */
+	protected void sequence_PayloadFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

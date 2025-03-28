@@ -23,7 +23,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Calculations.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
-		File {from ="/library.systems/FlowConnections.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
@@ -56,7 +56,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Calculations.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
-				File {from ="/library.systems/FlowConnections.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}

@@ -15,5 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.omg.sysml.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.emf.ecore.editor
 Bundle-ActivationPolicy: lazy

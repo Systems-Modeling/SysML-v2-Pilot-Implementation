@@ -50,6 +50,10 @@ public class LibraryNamespaces {
 	
 	public boolean canContainMember(Namespace namespace, QualifiedName prefix, QualifiedName memberQn) {
 		
+		if (memberQn == null) {
+			return true;
+		}
+		
 		if (libraryIndexProvider.isIndexDisabled()) {
 			return true;
 		};

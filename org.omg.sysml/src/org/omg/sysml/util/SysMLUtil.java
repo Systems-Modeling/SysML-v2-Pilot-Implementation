@@ -27,7 +27,7 @@ package org.omg.sysml.util;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,7 +59,7 @@ import com.google.common.base.Predicates;
 public abstract class SysMLUtil {
 
 	private final ResourceSet resourceSet;
-	private final Set<Resource> inputResources = new HashSet<Resource>();
+	private final List<Resource> inputResources = new LinkedList<>();
 	private final List<String> extensions = new ArrayList<String>();
 	private final ResourceDescriptionsData index;
 	
@@ -163,7 +163,7 @@ public abstract class SysMLUtil {
 	 * 
 	 * @return the input resources.
 	 */
-	public Set<Resource> getInputResources() {
+	public List<Resource> getInputResources() {
 		return this.inputResources;
 	}
 	

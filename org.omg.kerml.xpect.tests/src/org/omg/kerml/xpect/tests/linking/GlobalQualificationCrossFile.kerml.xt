@@ -1,0 +1,43 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.linking.KerMLLinkingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Objects.kerml"}
+		File "Classes2.kerml" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
+				File "Classes2.kerml" {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Classes1 {
+	private import Classes2::*;
+	
+	package Classes2;
+	class A;
+	
+	// XPECT linkedName at A --> Classes2.A
+	private class B specializes $::Classes2::A {
+		// XPECT linkedName at A --> Classes1.A
+		private y: A;
+		// XPECT linkedName at A --> Classes1.$.Classes2.A
+		feature x : '$'::Classes2::A; 
+	} 
+	
+	package '$' {
+		class Classes2 {
+			class A;
+		}
+	}	
+}

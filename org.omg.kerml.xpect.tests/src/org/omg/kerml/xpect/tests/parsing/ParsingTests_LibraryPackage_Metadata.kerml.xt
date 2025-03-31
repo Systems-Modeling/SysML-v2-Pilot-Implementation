@@ -30,7 +30,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package MetadataTest {
-	import 'User Defined Extensions'::*;
+	public import 'User Defined Extensions'::*;
 	
 	library package 'User Defined Extensions' {
 		

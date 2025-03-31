@@ -38,7 +38,7 @@ package RecursiveImport {
     
   }
  
-   	import P::**;
+   	public import P::**;
 
 	//All X, Y and Z are visible here.
 	 x: X;	

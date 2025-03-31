@@ -11,12 +11,13 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A <code>ViewRenderingMembership</code> is a <coed>FeatureMembership</code> that identifies the <code>viewRendering</code> of a <code>ViewDefinition</code> or <code>ViewUsage</code>.</p>
  * referencedRendering =
- *     let reference: ReferenceSubsetting = 
- *         ownedRendering.ownedReferenceSubsetting in
- *     if reference = null then ownedRendering
- *     else if not reference.referencedFeature.oclIsKindOf(RenderingUsage) then null
- *     else reference.referencedFeature.oclAsType(RenderingUsage)
- *     endif
+ *     let referencedFeature : Feature = 
+ *         ownedRendering.referencedFeatureTarget() in
+ *     if referencedFeature = null then ownedRendering
+ *     else if referencedFeature.oclIsKindOf(RenderingUsage) then
+ *         refrencedFeature.oclAsType(RenderingUsage)
+ *     else null
+ *     endif endif
  * owningType.oclIsKindOf(ViewDefinition) or
  * owningType.oclIsKindOf(ViewUsage)
  * <!-- end-model-doc -->

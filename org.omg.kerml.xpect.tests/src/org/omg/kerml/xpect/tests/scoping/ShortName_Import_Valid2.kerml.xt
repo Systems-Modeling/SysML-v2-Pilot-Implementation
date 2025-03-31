@@ -19,7 +19,7 @@ END_SETUP
 package Test {
 
 	package Test2 {
-		import VP::VP2::*;
+		public import VP::VP2::*;
 		classifier A;
 		//* XPECT scope at A_Id ---
 		 A,  Test2.A, Test.Test2.A,

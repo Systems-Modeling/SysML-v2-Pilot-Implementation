@@ -10,7 +10,7 @@ standard library package CollectionFunctions {
 	private import SequenceFunctions::equals;
 	private import SequenceFunctions::includes;
 	private import ControlFunctions::exists;
-	import Collections::*;
+	public import Collections::*;
 	
 	function '==' specializes BaseFunctions::'==' { in col1: Collection[0..1]; in col2: Collection[0..1];
 		return : Boolean[1] = col1.elements->equals(col2.elements);
@@ -57,7 +57,7 @@ standard library package CollectionFunctions {
 		private feature n : Natural[1] = arr.rank;
 		
 		// Assumes row-major ordering for elements.
-		private function index { in arr: Array[1]; i : Natural; indexes : Positive[1..*];
+		private function index { in arr: Array[1]; in i : Natural; in indexes : Positive[1..*];
 			if i <= 1? indexes#(1) else arr.dimensions#(i) * (index(arr, i-1, indexes) - 1) + indexes#(i)
 		}
 		

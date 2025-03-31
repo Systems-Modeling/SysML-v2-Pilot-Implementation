@@ -76,11 +76,6 @@ import org.eclipse.emf.common.util.EList;
  * (owningType.oclIsKindOf(Structure) or
  *  owningType.type->includes(oclIsKindOf(Structure))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::suboccurrences')
- * owningType <> null and
- * owningType.oclIsKindOf(FeatureReferenceExpression) and
- * self = owningType.oclAsType(FeatureReferenceExpression).result implies
- *     specializes(owningType.oclAsType(FeatureReferenceExpression).referent)
- * 
  * ownedTyping.type->exists(selectByKind(Class)) implies
  *     specializesFromLibrary('Occurrences::occurrences')
  * isComposite and
@@ -94,7 +89,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedTyping.type->exists(selectByKind(DataType)) implies
  *     specializesFromLibrary('Base::dataValues')
  * owningType <> null and
- * owningType.oclIsKindOf(ItemFlowEnd) and
+ * owningType.oclIsKindOf(FlowEnd) and
  * owningType.ownedFeature->at(1) = self implies
  *     let flowType : Type = owningType.owningType in
  *     flowType <> null implies
@@ -107,13 +102,18 @@ import org.eclipse.emf.common.util.EList;
  *                  
  * owningType <> null and
  * (owningType.oclIsKindOf(Behavior) or
- *  owningType.oclIsKindOf(Step)) implies
+ *  owningType.oclIsKindOf(Step) and 
+ *     not owningType.oclIsKindOf(InvocationExpression)) implies
  *     let i : Integer = 
- *         owningType.ownedFeature->select(direction <> null) in
+ *         owningType.ownedFeature->select(direction <> null)->
+ *             reject(owningFeatureMembership.
+ *                 oclIsKindOf(ReturnParameterMembership) in
  *     owningType.ownedSpecialization.general->
  *         forAll(supertype |
  *             let ownedParameters : Sequence(Feature) = 
- *                 supertype.ownedFeature->select(direction <> null) in
+ *                 supertype.ownedFeature->select(direction <> null)->
+ *                      reject(owningFeatureMembership.
+ *                          oclIsKindOf(ReturnParameterMembership) in
  *             ownedParameters->size() >= i implies
  *                 redefines(ownedParameters->at(i))
  * ownedTyping.type->exists(selectByKind(Structure)) implies
@@ -149,9 +149,8 @@ import org.eclipse.emf.common.util.EList;
  *     if referenceSubsettings->isEmpty() then null
  *     else referenceSubsettings->first() endif
  * ownedSubsetting->selectByKind(ReferenceSubsetting)->size() <= 1
- * Sequence{1..chainingFeature->size() - 1}->forAll(i |
- *     chainingFeature->at(i + 1).featuringType->forAll(t | 
- *         chainingFeature->at(i).specializes(t)))
+ * Sequence{2..chainingFeature->size()}->forAll(i |
+ *     chainingFeature->at(i).isFeaturedWithin(chainingFeature->at(i-1)))
  * 
  * isPortion and
  * ownedTyping.type->includes(oclIsKindOf(Class)) and
@@ -161,6 +160,61 @@ import org.eclipse.emf.common.util.EList;
  *     owningType.oclAsType(Feature).type->
  *         exists(oclIsKindOf(Class))) implies
  *     specializesFromLibrary('Occurrence::Occurrence::portions')
+ * featureTarget = if chainingFeature->isEmpty() then self else chainingFeature->last() endif
+ * ownedCrossSubsetting =
+ *     let crossSubsettings: Sequence(CrossSubsetting) = 
+ *         ownedSubsetting->selectByKind(CrossSubsetting) in
+ *     if crossSubsettings->isEmpty() then null
+ *     else crossSubsettings->first()
+ *     endif
+ * isEnd implies 
+ *     multiplicities().allSuperTypes()->flatten()->
+ *     selectByKind(MultiplicityRange)->exists(hasBounds(1,1))
+ * crossFeature <> null implies
+ *     crossFeature.type->asSet() = type->asSet()
+ * ownedSubsetting->selectByKind(CrossSubsetting)->size() <= 1
+ * crossFeature =
+ *     if ownedCrossSubsetting = null then null
+ *     else 
+ *         let chainingFeatures: Sequence(Feature) = 
+ *             ownedCrossSubsetting.crossedFeature.chainingFeature in
+ *         if chainingFeatures->size() < 2 then null
+ *         else chainingFeatures->at(2)
+ *     endif
+ * isOwnedCrossFeature() implies
+ *     owner.oclAsType(Feature).type->forAll(t | self.specializes(t))
+ * isOwnedCrossFeature() implies
+ *     ownedSubsetting.subsettedFeature->includesAll(
+ *         owner.oclAsType(Feature).ownedRedefinition.redefinedFeature->
+ *             select(crossFeature <> null).crossFeature)
+ * crossFeature <> null implies
+ *     ownedRedefinition.redefinedFeature.crossFeature->
+ *             forAll(f | f <> null implies crossFeature.specializes(f))
+ * ownedCrossFeature() <> null implies
+ *     crossFeature = ownedCrossFeature()
+ * isOwnedCrossFeature() implies
+ *     let otherEnds : OrderedSet(Feature) = 
+ *         owner.oclAsType(Feature).owningType.endFeature->excluding(self) in
+ *     if (otherEnds->size() = 1) then
+ *         featuringType = otherEnds->first().type
+ *     else
+ *         featuringType->size() = 1 and
+ *         featuringType->first().isCartesianProduct() and
+ *         featuringType->first().asCartesianProduct() = otherEnds.type and
+ *         featuringType->first().allSupertypes()->includesAll(
+ *             owner.oclAsType(Feature).ownedRedefinition.redefinedFeature->
+ *                select(crossFeature() <> null).crossFeature().featuringType)      
+ *     endif
+ * isPortion implies not isVariable
+ * isEnd implied direction = null
+ * owningFeatureMembership <> null implies
+ *     featuringTypes->exists(t | isFeaturingType(t))
+ * isConstant implies isVariable
+ * isVariable implies
+ *     owningType <> null and 
+ *     owningType.specializes('Occurrences::Occurrence')
+ * isEnd implies not (isDerived or isAbstract or isComposite or isPortion)
+ * isEnd and isVariable implies isConstant
  * <!-- end-model-doc -->
  *
  * <p>
@@ -173,7 +227,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
@@ -184,10 +237,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getChainingFeature <em>Chaining Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureInverting <em>Owned Feature Inverting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isVariable <em>Is Variable</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isConstant <em>Is Constant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getCrossFeature <em>Cross Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -314,33 +372,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setIsDerived(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this <code>Feature</code> can change over the lifetime of an instance of the domain.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Read Only</em>' attribute.
-	 * @see #setIsReadOnly(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsReadOnly()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isReadOnly();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isReadOnly <em>Is Read Only</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Read Only</em>' attribute.
-	 * @see #isReadOnly()
-	 * @generated
-	 */
-	void setIsReadOnly(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
@@ -620,7 +651,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the <code>Feature</code> is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the <code>Feature</code> cannot exist after its featuring instance no longer does.</p>
+	 * <p>Whether the <code>Feature</code> is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the <code>Feature</code> cannot exist after its featuring instance no longer does and cannot be values of another composite feature that is not on the same featuring instance.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
@@ -669,6 +700,59 @@ public interface Feature extends Type {
 	void setIsPortion(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Is Variable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the value of this <code>Feature</code> might vary over time. That is, whether the <code>Feature</code> may have a different value for each <em><code>snapshot</code></em> of an <code>owningType</code> that is an <em><code>Occurrence</code></em>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Variable</em>' attribute.
+	 * @see #setIsVariable(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsVariable()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isVariable();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isVariable <em>Is Variable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Variable</em>' attribute.
+	 * @see #isVariable()
+	 * @generated
+	 */
+	void setIsVariable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Constant</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>isVariable</code> is true, then whether the value of this <code>Feature</code> nevertheless does not change over all <code><em>snapshots</em></code> of its <code>owningType</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Constant</em>' attribute.
+	 * @see #setIsConstant(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsConstant()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isConstant();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isConstant <em>Is Constant</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Constant</em>' attribute.
+	 * @see #isConstant()
+	 * @generated
+	 */
+	void setIsConstant(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
@@ -678,9 +762,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the this <code>Feature</code> is an end <code>Feature</code>, requiring a different interpretation of the <code>multiplicity</code> of the <code>Feature</code>.</p>
-	 * 
-	 * <p>An end <code>Feature</code> is always considered to map each domain instance to a single co-domain instance, whether or not a <code>Multiplicity</code> is given for it. If a <code>Multiplicity</code> is given for an end <code>Feature</code>, rather than giving the co-domain cardinality for the <code>Feature</code> as usual, it specifies a cardinality constraint for <em>navigating</em> across the <code>endFeatures</code> of the <code>featuringType</code> of the end <code>Feature</code>. That is, if a <code>Type</code> has <em>n</em> <code>endFeatures</code>, then the <code>Multiplicity</code> of any one of those end <code>Features</code> constrains the cardinality of the set of values of that <code>Feature</code> when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
+	 * <p>Whether or not this <code>Feature</code> is an end <code>Feature</code>. An end <code>Feature</code> always has multiplicity 1, mapping each of its domain instances to a single co-domain instance. However, it may have a <code>crossFeature</code>, in which case values of the <code>crossFeature</code> must be the same as those found by navigation across instances of the <code>owningType</code> from values of other end <code>Features</code> to values of this Feature. If the <code>owningType</code> has <em>n</em> end <code>Features</code>, then the multiplicity, ordering, and uniqueness declared for the <code>crossFeature</code> of any one of these end <code>Features</code> constrains the cardinality, ordering, and uniqueness of the collection of values of that <code>Feature</code> reached by navigation when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is End</em>' attribute.
@@ -766,6 +848,96 @@ public interface Feature extends Type {
 	void setOwnedReferenceSubsetting(ReferenceSubsetting value);
 
 	/**
+	 * Returns the value of the '<em><b>Cross Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The second <code>chainingFeature</code> of the <code>crossedFeature</code> of the <code>ownedCrossSubsetting</code> of this <code>Feature</code>, if it has one. Semantically, the values of the <code>crossFeature</code> of an end <code>Feature</code> must include all values of the end <code>Feature</code> obtained when navigating from values of the other end <code>Features</code> of the same <code>owningType</code>.
+	 * </p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Cross Feature</em>' reference.
+	 * @see #setCrossFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_CrossFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureCrossing'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getCrossFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getCrossFeature <em>Cross Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cross Feature</em>' reference.
+	 * @see #getCrossFeature()
+	 * @generated
+	 */
+	void setCrossFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Cross Subsetting</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.CrossSubsetting#getCrossingFeature <em>Crossing Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The one <code>ownedSubsetting</code> of this <code>Feature</code>, if any, that is a <code>CrossSubsetting}, for which the <code>Feature</code> is the <code>crossingFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Cross Subsetting</em>' reference.
+	 * @see #setOwnedCrossSubsetting(CrossSubsetting)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedCrossSubsetting()
+	 * @see org.omg.sysml.lang.sysml.CrossSubsetting#getCrossingFeature
+	 * @model opposite="crossingFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	CrossSubsetting getOwnedCrossSubsetting();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Cross Subsetting</em>' reference.
+	 * @see #getOwnedCrossSubsetting()
+	 * @generated
+	 */
+	void setOwnedCrossSubsetting(CrossSubsetting value);
+
+	/**
+	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The last of the <code>chainingFeatures</code> of this <code>Feature</code>, if it has any. Otherwise, this <code>Feature</code> itself.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Feature Target</em>' reference.
+	 * @see #setFeatureTarget(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeatureTarget()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='baseFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getFeatureTarget();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Feature Target</em>' reference.
+	 * @see #getFeatureTarget()
+	 * @generated
+	 */
+	void setFeatureTarget(Feature value);
+
+	/**
 	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}'.
 	 * <p>
@@ -848,13 +1020,14 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return whether this <code>Feature</code> has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>.</p>
-	 * if type = null then 
-	 *     featuringType->isEmpty() or
-	 *     featuringType=Sequence{resolveGlobal('Base::Anything').memberElement)}
-	 * else 
-	 *     featuringType->notEmpty() and
-	 *     featuringType->forAll(f | type.specializes(f)))
+	 * <p>Return if the <code>featuringTypes</code> of this <code>Feature</code> are compatible with the given <code>type</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>. If this <code>Feature</code> has <code>isVariable = true</code>, then also consider it to be featured within its <code>owningType</code>. If this <code>Feature</code> is a feature chain whose first <code>chainingFeature</code> has <code>isVariable = true</code>, then also consider it to be featured within the <code>owningType</code> of its first <code>chainingFeature</code>.</p>
+	 * if type = null then
+	 *     featuringType->forAll(f | f = resolveGlobal('Base::Anything').memberElement)
+	 * else
+	 *     featuringType->forAll(f | type.isCompatibleWith(f)) or
+	 *     isVariable and type.specializes(owningType) or
+	 *     chainingFeature->notEmpty() and chainingFeature->first().isVariable and
+	 *         type.specializes(chainingFeature->first().owningType)
 	 * endif
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
@@ -862,6 +1035,53 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	boolean isFeaturedWithin(Type type);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A <code>Feature</code> can access another <code>feature</code> if the other <code>feature</code> is featured within one of the direct or indirect <code>featuringTypes</code> of this <code>Feature</code>.</p>
+	 * let anythingType: Element =
+	 *     subsettingFeature.resolveGlobal('Base::Anything').memberElement in
+	 * let allFeaturingTypes : Sequence(Type) =
+	 *     featuringTypes->closure(t |
+	 *         if not t.oclIsKindOf(Feature) then Sequence{}
+	 *         else
+	 *             let featuringTypes : OrderedSet(Type) = t.oclAsType(Feature).featuringType in
+	 *             if featuringTypes->isEmpty() then Sequence{anythingType}
+	 *             else featuringTypes
+	 *             endif 
+	 *         endif) in
+	 * allFeaturingTypes->exists(t | feature.isFeaturedWithin(t))
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" featureRequired="true" featureOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean canAccess(Feature feature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return whether the given <code>type</code> must be a <code>featuringType</code> of this <code>Feature</code>. If this <code>Feature</code> has <code>isVariable = false</code>, then return true if the <code>type</code> is the <code>owningType</code> of the <code>Feature</code>. If <code>isVariable = true</code>, then return true if the <code>type</code> is a <code>Feature</code> representing the <em><code>snapshots</code></em> of the <code>owningType</code> of this <code>Feature</code>.</p>
+	 * owningType <> null and
+	 * if not isVariable then type = owningType
+	 * else if owningType = resolveGlobal('Occurrences::Occurrence').memberElement then
+	 *     type = resolveGlobal('Occurrences::Occurrence::snapshots').memberElement 
+	 * else 
+	 *     type.oclIsKindOf(Feature) and
+	 *     let feature : Feature = type.oclAsType(Feature) in
+	 *     feature.featuringType->includes(owningType) and
+	 *     feature.redefinesFromLibrary('Occurrences::Occurrence::snapshots')
+	 * endif
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeRequired="true" typeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isFeaturingType(Type type);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -929,9 +1149,13 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself), consisting of all subsetted <code>Features</code> and the last <code>chainingFeature</code> (if any), if this <code>Feature</code> is not conjugated, or its <code>originalType</code>, if it is conjugated (and the <code>originalType</code> is a <code>Feature</code>).</p>
+	 * <p>Return the <code>Features</code> used to determine the <code>types</code> of this <code>Feature</code> (other than this <code>Feature</code> itself). If this <code>Feature</code> is <em>not</em> conjugated, then the <code>typingFeatures</code> consist of all subsetted <code>Features</code>, <em>except</em> from <code>CrossSubsetting</code>, and the last <code>chainingFeature</code> (if any). If this <code>Feature</code> <em>is</em> conjugated, then the <code>typingFeatures</code> are only its <code>originalType</code> (if the <code>originalType</code> is a <code>Feature</code>).</p>
+	 * 
+	 * <p><strong>Note.</strong> <code>CrossSubsetting</code> is excluded from the determination of the <code>type</code> of a <code>Feature</code> in order to avoid circularity in the construction of implied <code>CrossSubsetting</code> relationships. The <code>validateFeatureCrossFeatureType</code> requires that the <code>crossFeature</code> of a <code>Feature</code> have the same <code>type</code> as the <code>Feature</code>.</p>
+	 * 
 	 * if not isConjugated then
-	 *     let subsettedFeatures : OrderedSet(Feature) = subsetting.subsettedFeatures in 
+	 *     let subsettedFeatures : OrderedSet(Feature) = 
+	 *         subsetting->reject(s | s.oclIsKindOf(CrossSubsetting)).subsettedFeatures in 
 	 *     if chainingFeature->isEmpty() or
 	 *        subsettedFeature->includes(chainingFeature->last())
 	 *     then subsettedFeatures
@@ -947,5 +1171,92 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<Feature> typingFeatures();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If <code>isCartesianProduct</code> is true, then return the list of <code>Types</code> whose Cartesian product can be represented by this <code>Feature</code>. (If <code>isCartesianProduct</code> is not true, the operation will still return a valid value, it will just not represent anything useful.)</p>
+	 * featuringType->select(t | t.owner <> self)->
+	 *     union(featuringType->select(t | t.owner = self)->
+	 *         selectByKind(Feature).asCartesianProduct())->
+	 *     union(type)
+	 * <!-- end-model-doc -->
+	 * @model unique="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> asCartesianProduct();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Check whether this <code>Feature</code> can be used to represent a Cartesian product of <code>Types</code>.</p>
+	 * type->size() = 1 and
+	 * featuringType.size() = 1 and
+	 * (featuringType.first().owner = self implies
+	 *     featuringType.first().oclIsKindOf(Feature) and
+	 *     featuringType.first().oclAsType(Feature).isCartesianProduct())
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isCartesianProduct();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return whether this <code>Feature</code> is an owned cross <code>Feature</code> of an end <code>Feature</code>.</p>
+	 * owningNamespace <> null and 
+	 * owningNamespace.oclIsKindOf(Feature) and 
+	 * owningNamespace.oclAsType(Feature).ownedCrossFeature() = self
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isOwnedCrossFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but not a <code>Multiplicity</code> or a <code>MetadataFeature</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
+	 * if not isEnd or owningType = null then null
+	 * else
+	 *     let ownedMemberFeatures: Sequence(Feature) =
+	 *         ownedMember->selectByKind(Feature)->
+	 *             reject(oclIsKindOf(Multiplicity) or 
+	 *                    oclIsKindOf(MetadataFeature) or
+	 *                    oclIsKindOf(FeatureValue))->
+	 *             reject(owningMembership.oclIsKindOf(FeatureMembership)) in
+	 *     if ownedMemberFeatures.isEmpty() then null
+	 *     else ownedMemberFeatures->first()
+	 *     endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature ownedCrossFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return this <code>Feature</code> and all the <code>Features</code> that are directly or indirectly <code>Redefined</code> by this <code>Feature</code>.</p>
+	 * ownedRedefinition.redefinedFeature->
+	 *     closure(ownedRedefinition.redefinedFeature)->
+	 *     asOrderedSet()->prepend(self)
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Feature> allRedefinedFeatures();
 
 } // Feature

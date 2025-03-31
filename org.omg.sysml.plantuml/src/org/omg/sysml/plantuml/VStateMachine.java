@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -65,12 +65,12 @@ public class VStateMachine extends VDefault {
     
     public VStateMachine(Visitor prev) {
     	super(prev);
-        setShowsMultiplicity(false);
+        setMultiplicityStyle(MultiplicityStyle.NONE);
         this.showStereotype = true;
     }
 
     public VStateMachine() {
-        setShowsMultiplicity(false);
+        setMultiplicityStyle(MultiplicityStyle.NONE);
         this.showStereotype = false;
     }
 }

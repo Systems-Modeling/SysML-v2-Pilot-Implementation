@@ -16,7 +16,7 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::c_Public::*;
+	public import VisibilityPackage::c_Public::*;
 	feature a : c_public;
 	feature b : VisibilityPackage::c_Public::c_public;
 }

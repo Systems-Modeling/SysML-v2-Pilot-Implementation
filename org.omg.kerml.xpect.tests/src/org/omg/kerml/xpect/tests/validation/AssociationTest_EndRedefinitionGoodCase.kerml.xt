@@ -22,16 +22,16 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	}
 END_SETUP 
 */
-
+// XPECT noErrors --> ""
 package test{
 	assoc A {
 		end x;
-		end y[1..*];
+		end [1..*] feature y;
 	}
 	
 	assoc B specializes A {
 		end x1;
 		// Reducing multiplicity lower bound is OK for an end feature.
-		end y1[0..*] redefines y;
+		end [0..*] feature y1 redefines y;
 	}
 }

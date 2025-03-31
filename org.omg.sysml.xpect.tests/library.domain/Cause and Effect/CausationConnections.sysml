@@ -29,11 +29,18 @@ standard library package CausationConnections {
 		 * There must be at least one cause and at least one effect.
 		 */
 		 
-		ref occurrence causes[1..*] :>> causes :> participant {
-			doc /* The causing occurrences. */
+		abstract constant ref occurrence causes[1..*] :>> causes :> participant {
+			doc 
+			/* 
+			 * The causing occurrences. (Constant for each Multicausation instance.)
+			 */
 		}
-		ref occurrence effects[1..*] :>> effects :> participant {
-			doc /* The effect occurrences caused by the causing occurrences. */
+		abstract constant ref occurrence effects[1..*] :>> effects :> participant {
+			doc 
+			/* 
+			 * The effect occurrences caused by the causing occurrences. 
+			 * (Constant for each Multicausation instance.)
+			 */
 		}
 		
 		private assert constraint disjointCauseEffect {
@@ -41,7 +48,7 @@ standard library package CausationConnections {
 			isEmpty(intersection(causes, effects))
 		}
 		
-		private succession causalOrdering first causes.startShot[nCauses] then effects[nEffects] {
+		private succession causalOrdering first [nCauses] causes.startShot then [nEffects] effects {
 			doc /* All causes must exist before all effects. */
 			attribute nCauses = size(causes);
 			attribute nEffects = size(effects);
@@ -60,12 +67,12 @@ standard library package CausationConnections {
 		 * have multiple effects, and a single effect can have separate Causation
 		 * connections with multiple causes.)
 		 */
-		 
-		end occurrence theCause[*] :>> causes :>> source {
-			doc /* The single causing occurrence. */
+		
+		end theCauses [*] occurrence theCause :> causes :>> source {
+		    doc /* The single causing occurrence. */
 		}
 		
-		end occurrence theEffect[*] :>> effects :>> target {
+		end theEffects [*] occurrence theEffect :> effects :>> target {
 			doc /* The single effect occurrence resulting from the cause. */
 		}
 	}

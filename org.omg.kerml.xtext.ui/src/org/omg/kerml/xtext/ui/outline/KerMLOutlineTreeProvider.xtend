@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 import org.omg.sysml.lang.sysml.LibraryPackage
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.NamespaceImport
+import org.omg.sysml.lang.sysml.BindingConnector
 
 /**
  * Customization of the default outline structure.
@@ -185,8 +186,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (feature.isPortion) {
 			text += ' portion'
 		}
-		if (feature.isReadOnly) {
-			text += ' readonly'
+		if (feature.isVariable) {
+			text += ' var'
+		}
+		if (feature.isConstant) {
+			text += ' const'
 		}
 		if (feature.isDerived) {
 			text += ' derived'
@@ -396,16 +400,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, TypeFeaturing featuring) {
-		if (featuring.featureOfType !== null && featuring.featureOfType !== featuring.eContainer) {
-			createNode(parentNode, featuring.featureOfType, 
-				featuring.featureOfType._image, featuring.featureOfType._text, 
+		val featureOfType = featuring.featureOfType
+		if (featureOfType !== null && featureOfType !== featuring.eContainer) {
+			createNode(parentNode, featureOfType, 
+				featureOfType._image, featureOfType._text, 
 				true
 			)			
 		}
-		if (featuring.featuringType !== null) {
-			createNode(parentNode, featuring.featuringType, 
-				featuring.featuringType._image, featuring.featuringType._text, 
-				true
+		val featuringType = featuring.featuringType
+		if (featuringType !== null) {
+			createNode(parentNode, featuringType, 
+				featuringType._image, featuringType._text, 
+				featuringType.getOwningRelationship() !== featuring
 			)
 		}
 	}
@@ -418,7 +424,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (chaining.chainingFeature !== null) {
 			createNode(parentNode, chaining.chainingFeature, 
 				chaining.chainingFeature._image, chaining.chainingFeature._text, 
-				true
+				chaining.chainingFeature.owningRelationship != chaining
 			)
 			
 		}
@@ -432,12 +438,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		val specific = specialization.specific
 		if (specific !== null && specific !== specialization.eContainer) {
 			createNode(parentNode, specific, specific._image, specific._text,  
-				!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty)		
+				specific.owningRelationship !== specialization)	
 		}
 		val general = specialization.general
 		if (general !== null) {
 			createNode(parentNode, general, general._image, general._text, 
-				!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty)
+				general.owningRelationship !== specialization)
 		}
 	}
 	
@@ -537,10 +543,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		FeatureUtil.forEachImplicitFeaturingTypeOf(feature, [featuringType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
-			 * returns that appropriate icon for generalizations, but there
-			 * are no such icons added yet; in the future, the generalType
-			 * reference might return an unexpected icon if at a later point
-			 * type-specific icons are added.
+			 * returns that appropriate icon for type featuring, but there
+			 * are no such icons added yet.
 			 */
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
@@ -549,7 +553,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (featuringType !== null) {
 				createNode(implicitNode, featuringType, 
 					featuringType._image, featuringType._text, 
-					true
+					featuringType.owningRelationship !== null || featuringType instanceof BindingConnector
 				)
 			}
 		])
@@ -559,10 +563,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, eClass |
 			/*
 			 * TODO here image dispatcher should be called with a type that
-			 * returns that appropriate icon for generalizations, but there
-			 * are no such icons added yet; in the future, the generalType
-			 * reference might return an unexpected icon if at a later point
-			 * type-specific icons are added.
+			 * returns that appropriate icon for membership, but there
+			 * are no such icons added yet.
 			 */
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(connector), eClass)
@@ -629,7 +631,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (modelElement instanceof Element) {
 				ElementUtil.transform(modelElement);
 			}
-			createChildrenDispatcher.invoke(node, modelElement)
+			if (!isLeaf) {
+				createChildrenDispatcher.invoke(node, modelElement)
+			}
 			node
 		}
 	}

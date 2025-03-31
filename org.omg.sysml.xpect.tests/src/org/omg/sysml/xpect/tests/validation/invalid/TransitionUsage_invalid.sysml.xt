@@ -46,8 +46,14 @@ package TransitionUsage_invalid {
 		then S1_2;
 		state S1_2;
 	}
+	
+	item def A;
 
 	state def S2 {
+		entry action init;
+		// XPECT errors ---> "A transition with an accepter must have a state as its source." at "accept A"
+		transition init accept A then S2_1;
+		
 		state S2_1;
 		transition
 			first S2_1

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Package;
-import org.omg.sysml.lang.sysml.Type;
 
 public class PackageAdapter extends NamespaceAdapter {
 
@@ -40,9 +39,9 @@ public class PackageAdapter extends NamespaceAdapter {
 	}
 
 	@Override
-	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+	public EList<Membership> getImportedMembership(Set<Namespace> excludedNamespaces, boolean isIncludeAll) {
 		Package target = getTarget();
-		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, isIncludeAll);
 		importedMemberships.removeIf(membership->!target.includeAsMember(membership.getMemberElement()));
 		return importedMemberships;
 	}

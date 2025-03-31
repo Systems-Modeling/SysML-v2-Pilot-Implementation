@@ -1,7 +1,7 @@
 package ConstraintTest {
-	import ISQ::MassValue;
-	import SI::kg;
-	import NumericalFunctions::sum;
+	private import ISQ::MassValue;
+	private import SI::kg;
+	private import NumericalFunctions::sum;
 	
 	constraint def MassAnalysis {
 		attribute totalMass: MassValue;
@@ -27,9 +27,9 @@ package ConstraintTest {
 		}
 		
 		bind massAnalysis.totalMass = mass;
-		bind massAnalysis.componentMasses[1] = engine.mass;
-		bind massAnalysis.componentMasses[1] = frontAxleAssembly.mass;
-		bind massAnalysis.componentMasses[1] = rearAxleAssembly.mass;
+		bind massAnalysis.componentMasses = engine.mass;
+		bind massAnalysis.componentMasses = frontAxleAssembly.mass;
+		bind massAnalysis.componentMasses = rearAxleAssembly.mass;
 	}
 	
 	part vehicle1b :> vehicle {		
@@ -50,9 +50,9 @@ package ConstraintTest {
 		assert constraint massConstraint : MassAnalysis2;
 		
 		bind massConstraint.totalMass = mass;
-		bind massConstraint.componentMasses[1] = engine.mass;
-		bind massConstraint.componentMasses[1] = frontAxleAssembly.mass;
-		bind massConstraint.componentMasses[1] = rearAxleAssembly.mass;
+		bind massConstraint.componentMasses = engine.mass;
+		bind massConstraint.componentMasses = frontAxleAssembly.mass;
+		bind massConstraint.componentMasses = rearAxleAssembly.mass;
 	}
 		
 	part vehicle2b :> vehicle {

@@ -10,7 +10,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated sysml -->
       <package
-            uri="https://www.omg.org/spec/SysML/20240201"
+            uri="https://www.omg.org/spec/SysML/20250201"
             class="org.omg.sysml.lang.sysml.SysMLPackage"
             genModel="model/SysML.genmodel"/>
    </extension>

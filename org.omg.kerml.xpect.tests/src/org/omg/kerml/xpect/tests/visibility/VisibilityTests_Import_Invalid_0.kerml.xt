@@ -19,7 +19,7 @@ END_SETUP
 
 
 package Test3{
-	import VisibilityPackage::*;
+	public import VisibilityPackage::*;
 	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Protect::c_publicc'." at "c_clazz::c_Protect::c_publicc"
 	classifier try specializes c_clazz::c_Protect::c_publicc{}
 	

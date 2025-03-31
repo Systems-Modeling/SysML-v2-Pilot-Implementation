@@ -44,6 +44,10 @@ import org.eclipse.emf.common.util.EList;
  * not owningType.oclIsKindOf(PortDefinition) and
  * not owningType.oclIsKindOf(PortUsage) implies
  *     isReference
+ * owningType <> null and
+ * (owningType.oclIsKindOf(PartDefinition) or
+ *  owningType.oclIsKindOf(PartUsage)) implies
+ *     specializesFromLibrary('Parts::Part::ownedPorts')
  * <!-- end-model-doc -->
  *
  * <p>

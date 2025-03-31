@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,14 +36,11 @@ import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 
@@ -54,24 +51,13 @@ import org.omg.sysml.util.TypeUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
+public class InvocationExpressionImpl extends InstantiationExpressionImpl implements InvocationExpression {
 	
-	/**
-	 * The cached setting delegate for the '{@link #getArgument() <em>Argument</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArgument()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INVOCATION_EXPRESSION__ARGUMENT).getSettingDelegate();
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -89,29 +75,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Expression> getArgument() {
-		return (EList<Expression>)ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-	
-	// Additional overrides
-
-	@Override
-	public Function getFunction() {
-		// TODO: Invoke expressions/features using subsetting instead of feature typing.
-		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		return type instanceof Function? (Function)type:
-			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)SysMLLibraryUtil.getLibraryType(this, 
-					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
-	}
-
 	// Operand mechanism
 	
 	/**
@@ -120,12 +83,16 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	 * It contains a list of direct containment references to arguments of this InvocationExpression.
 	 * It allows for tractable parsing in Xtext of expressions with left-recursive syntax 
 	 * (particularly operator expressions).
+	 * 
+	 * @generated NOT
 	 */
 	protected EList<Expression> operand = null;
 	
 	/**
 	 * Filter operands from the eContents of the InvocationExpression, because the referenced arguments will
 	 * already be including via owning FeatureMemberships. 
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public EList<EObject> eContents() {
@@ -162,7 +129,10 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 
 		@Override
 		protected List<Expression> delegateList() {
-			return getArgument();
+			return TypeUtil.getOwnedParametersOf(InvocationExpressionImpl.this).stream().
+						filter(param->param.getDirection() == FeatureDirectionKind.IN).
+						map(FeatureUtil::getValueExpressionFor).
+						toList();
 		}
 
 		@Override
@@ -269,8 +239,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return getArgument();
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				return getOperand();
 		}
@@ -286,10 +254,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
-				getArgument().addAll((Collection<? extends Expression>)newValue);
-				return;
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				getOperand().clear();
 				getOperand().addAll((Collection<? extends Expression>)newValue);
@@ -306,9 +270,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				getArgument().clear();
-				return;
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				getOperand().clear();
 				return;
@@ -324,8 +285,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
 				return !getOperand().isEmpty();
 		}

@@ -59,7 +59,7 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  *
  * @generated
  */
-public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
+public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing {
 	/**
 	 * The cached value of the '{@link #getFeatureOfType() <em>Feature Of Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -108,24 +108,14 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.TYPE_FEATURING;
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Xtext workaround.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Feature getFeatureOfType() {
-		return featureOfType == null? basicGetFeatureOfType(): getFeatureOfTypeGen();
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeatureOfTypeGen() {
+	@Override
+	public Feature getFeatureOfType() {
 		if (featureOfType != null && featureOfType.eIsProxy()) {
 			InternalEObject oldFeatureOfType = (InternalEObject)featureOfType;
 			featureOfType = (Feature)eResolveProxy(oldFeatureOfType);
@@ -139,18 +129,10 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureOfType() {
-		if (featureOfType == null) {
-			Element owner = getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				featureOfType = (Feature)owner;
-			}
-		}
 		return featureOfType;
 	}
 
@@ -375,12 +357,8 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.TYPE_FEATURING__SOURCE:
 				return isSetSource();
-			case SysMLPackage.TYPE_FEATURING__FEATURE:
-				return isSetFeature();
 			case SysMLPackage.TYPE_FEATURING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.TYPE_FEATURING__TYPE:
-				return isSetType();
 			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
 				return isSetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
@@ -418,43 +396,6 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getFeature() {
-		return getFeatureOfType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature basicGetFeature() {
-		return basicGetFeatureOfType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFeature(Feature newFeature) {
-		setFeatureOfType(newFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetFeature() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new UniqueEList<Element>();
@@ -471,43 +412,6 @@ public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	 * @generated
 	 */
 	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type getType() {
-		return getFeaturingType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetType() {
-		return basicGetFeaturingType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(Type newType) {
-		setFeaturingType(newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
   		return false;
 	}
 

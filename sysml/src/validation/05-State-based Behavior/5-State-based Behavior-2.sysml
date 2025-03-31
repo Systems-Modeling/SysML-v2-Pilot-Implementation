@@ -1,7 +1,7 @@
 package '5-State-based Behavior-2' {
-	import ScalarValues::*;
-	import ISQ::*;
-	import '3a-Function-based Behavior-1'::*;
+	private import ScalarValues::*;
+	private import ISQ::*;
+	private import '3a-Function-based Behavior-1'::*;
 	
 	package Definitions {
 		part def VehicleA {
@@ -31,7 +31,7 @@ package '5-State-based Behavior-2' {
 	}
 	
 	package Usages {
-		import Definitions::*;
+		private import Definitions::*;
 		 
 		action 'perform self test': 'Perform Self Test';
 		action 'apply parking brake': 'Apply Parking Brake';
@@ -49,7 +49,7 @@ package '5-State-based Behavior-2' {
 				state off;
 				accept 'Vehicle Start Signal' 
 					if vehicle1_c1.'brake pedal depressed'
-					do send 'Start Signal'() to vehicle1_c1.vehicleController
+					do send new 'Start Signal'() to vehicle1_c1.vehicleController
 					then starting;
 					
 				state starting;
@@ -77,7 +77,7 @@ package '5-State-based Behavior-2' {
 				accept at vehicle1_c1.maintenanceTime
 					then maintenance;
 				accept when 'sense temperature'.temp > vehicle1_c1.Tmax
-					do send 'Over Temp'() to vehicle1_c1.vehicleController 
+					do send new 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				
 				state maintenance;

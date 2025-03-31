@@ -1,13 +1,13 @@
 package CarWithShapeAndCSG {
-	import SpatialItems::*;
-    import ShapeItems::*;
-    import Objects::Point;
-	import Quantities::VectorQuantityValue;
-	import MeasurementReferences::CoordinateFrame;
-	import MeasurementReferences::TranslationRotationSequence;
-	import MeasurementReferences::Translation;
-	import MeasurementReferences::Rotation;
-	import SI::*;
+	private import SpatialItems::*;
+	private import ShapeItems::*;
+	private import Objects::Point;
+	private import Quantities::VectorQuantityValue;
+	private import MeasurementReferences::CoordinateFrame;
+	private import MeasurementReferences::TranslationRotationSequence;
+	private import MeasurementReferences::Translation;
+	private import MeasurementReferences::Rotation;
+	private import SI::*;
 
 	part def Car :> SpatialItem {
 		doc
@@ -15,7 +15,7 @@ package CarWithShapeAndCSG {
 		 * Car with simple engine
 		 */
 	
-        item :>> shape = Cuboid(4800 [mm], 1840 [mm], 1350 [mm]);
+        item :>> shape = new Cuboid(4800 [mm], 1840 [mm], 1350 [mm]);
 
         attribute datum :>> coordinateFrame {
             :>> mRefs = (mm, mm, mm);
@@ -26,7 +26,7 @@ package CarWithShapeAndCSG {
 				:>> mRefs = datum.mRefs;
 				:>> transformation : TranslationRotationSequence {
 					:>> source = datum;
-					:>> elements = ( Translation((3800, (1840-190)/2, 40)[datum]) );
+					:>> elements = ( new Translation((3800, (1840-190)/2, 40)[datum]) );
 				}
 			}
 		}
@@ -61,7 +61,7 @@ package CarWithShapeAndCSG {
 			attribute :>> coordinateFrame {
 				:>> transformation : TranslationRotationSequence {
 					:>> source = ecf;
-					:>> elements = (Translation( (rearCylinderSpacing, rawEngineBlock.shape.width/2, -10)[ecf]));
+					:>> elements = (new Translation( (rearCylinderSpacing, rawEngineBlock.shape.width/2, -10)[ecf]));
 				}
 			}
 		}
@@ -75,7 +75,7 @@ package CarWithShapeAndCSG {
 			attribute :>> coordinateFrame {
 				:>> transformation : TranslationRotationSequence {
 					:>> source = ecf;
-					:>> elements = ( Translation((rearCylinderSpacing + cylinderSpacing, rawEngineBlock.shape.width/2, -10)[ecf]) );
+					:>> elements = ( new Translation((rearCylinderSpacing + cylinderSpacing, rawEngineBlock.shape.width/2, -10)[ecf]) );
 				}
 			}
 		}

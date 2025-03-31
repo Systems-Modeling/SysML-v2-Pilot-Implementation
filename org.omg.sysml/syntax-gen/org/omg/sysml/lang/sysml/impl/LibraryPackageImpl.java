@@ -102,6 +102,13 @@ public class LibraryPackageImpl extends PackageImpl implements LibraryPackage {
 	// UUID for "NameSpace_URL", per ITU-T Rec. X.667 (10/2012), Annex D.9
 	public final UUID UUID_NAMESPACE_URL = UUID.fromString("6ba7b811-9dad-11d1-80b4-00c04fd430c8");
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * If this is a standard library Package, then set the elementId to a named-based UUID
+	 * using a URL constructed from the KerML or SysML base URI and the Package's name.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public String getElementId() {
 		if (elementId == null && isStandard()) {

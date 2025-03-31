@@ -15,8 +15,8 @@ package org.omg.sysml.lang.sysml;
  * (owningType.oclIsKindOf(UseCaseDefinition) or
  *  owningType.oclIsKindOf(UseCaseUsage) implies
  *     specializesFromLibrary('UseCases::UseCase::includedUseCases')
- * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(UseCaseUsage)
+ * referencedFeatureTarget() <> null implies
+ *     referencedFeatureTarget().oclIsKindOf(UseCaseUsage)
  * <!-- end-model-doc -->
  *
  * <p>

@@ -22,7 +22,7 @@ END_SETUP
 */
 
 package test{
-	import OuterPackage3::D;
+	public import OuterPackage3::D;
 	// XPECT errors ---> "Couldn't resolve reference to Classifier 'B'." at "B"
 	classifier EE specializes B{
 		// XPECT errors ---> "Couldn't resolve reference to Type 'b'." at "b"

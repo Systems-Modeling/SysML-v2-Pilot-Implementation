@@ -4,12 +4,12 @@ package OneToUnrestrictedConnectorsModelToBeExecuted {
 	/* 
 	 */
 
-	import WithoutConnectorsModelToBeExecuted::BikeFork;
+	private import WithoutConnectorsModelToBeExecuted::BikeFork;
 
 	classifier Bicycle {
 		feature carrier : BikeBasket [*];
 		feature holdsWheel : BikeFork [*];
-		connector carrierFixed : BikeBasketFixed from carrier [*] to holdsWheel [1];
+		connector carrierFixed : BikeBasketFixed from [*] carrier to [1] holdsWheel;
 	}
 	classifier BikeBasket;
 
@@ -24,11 +24,11 @@ package OneToUnrestrictedConnectorsExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import OneToUnrestrictedConnectorsModelToBeExecuted::*;
-	import OneToOneConnectorsExecution::MyBikeFork1;
-	import OneToOneConnectorsExecution::MyBikeFork2;
-	import OneToOneConnectorsExecution::MyBikeFork;
+	private import Atoms::*;
+	private import OneToUnrestrictedConnectorsModelToBeExecuted::*;
+	private import OneToOneConnectorsExecution::MyBikeFork1;
+	private import OneToOneConnectorsExecution::MyBikeFork2;
+	private import OneToOneConnectorsExecution::MyBikeFork;
 
 	#atom
 	classifier MyBikeBasket1 specializes BikeBasket;
@@ -54,6 +54,6 @@ package OneToUnrestrictedConnectorsExecution {
 	classifier MyBike specializes Bicycle {
 		feature redefines carrier : MyBikeBasket [2];
 		feature redefines holdsWheel : MyBikeFork [2];
-		connector redefines carrierFixed : MyBikeBasket_Fork_BBF_Link [2] from carrier [*] to holdsWheel [1];
+		connector redefines carrierFixed : MyBikeBasket_Fork_BBF_Link [2] from [*] carrier to [1] holdsWheel;
 	}
 }

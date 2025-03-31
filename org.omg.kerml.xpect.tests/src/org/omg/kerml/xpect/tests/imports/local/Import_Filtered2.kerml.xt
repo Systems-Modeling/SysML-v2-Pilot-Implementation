@@ -19,7 +19,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 END_SETUP 
 */
 package Import_Filtered {
-	import P1::*;
+	public import P1::*;
 	
 	package P1 {
 		feature f {
@@ -29,7 +29,7 @@ package Import_Filtered {
 	}
 	
 	package P2 {
-		import P1::*[false];
+		public import P1::*[false];
 		feature x :> f.a;		
 	}
 }

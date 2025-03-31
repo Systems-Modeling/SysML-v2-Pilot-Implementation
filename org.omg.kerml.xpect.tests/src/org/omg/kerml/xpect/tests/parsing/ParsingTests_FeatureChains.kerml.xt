@@ -34,7 +34,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package P {
-    import ScalarValues::*;
+    public import ScalarValues::*;
     
     struct V {
     	feature n : Integer;

@@ -17,7 +17,7 @@ END_SETUP
 //
 // XPECT noErrors ---> ""
 package test{
- 	import PackageAlias1;
+ 	public import PackageAlias1;
 	//* XPECT scope at PackageAlias1::A::a ---
 	   	PackageAlias1, PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
 	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
@@ -30,7 +30,7 @@ package test{
 	   	test.PackageAlias1.A_alias, test.PackageAlias1.A_alias.a, test.PackageAlias1.A_alias.a_alias,
     	test.PackageAlias1.AA_alias, test.PackageAlias1.AA_alias.aa, test.PackageAlias1.AA_alias.aa_alias,
  --- */
- 	import PackageAlias1::A::a::*;
+ 	public import PackageAlias1::A::a::*;
 }
 //*
 package PackageAlias1{

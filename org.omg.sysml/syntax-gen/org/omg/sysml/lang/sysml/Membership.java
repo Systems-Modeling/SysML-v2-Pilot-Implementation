@@ -196,7 +196,7 @@ public interface Membership extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Namespace</code> of which the <code>memberElement</code> becomes a <cpde>member due to this <code>Membership</code>.</cpde></p>
+	 * <p>The <code>Namespace</code> of which the <code>memberElement</code> becomes a <code>member</code> due to this <code>Membership</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership Owning Namespace</em>' reference.

@@ -22,10 +22,10 @@ package test{
 		feature a2{}
 	}
 	feature inner{
-		import OuterPackage::*;
+		public import OuterPackage::*;
 	}
 	feature inner1 subsets inner {
-		//XPECT warnings --> "Duplicate of inherited member name" at "B"
+		//XPECT warnings --> "Duplicate of inherited member name B from OuterPackage" at "B"
 		feature B redefines A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---

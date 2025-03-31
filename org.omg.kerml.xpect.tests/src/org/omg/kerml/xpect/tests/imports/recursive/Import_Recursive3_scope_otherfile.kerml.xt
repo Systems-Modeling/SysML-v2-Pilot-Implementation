@@ -21,10 +21,10 @@ END_SETUP
 package RecursiveImport {
   
   
-   	import P::**;
+   	public import P::**;
 
-  	// NOTE: There is some duplication due to the implicit import of "P" itself
-  	// as part of the recursive import.
+  	// NOTE: There is some duplication due to the implicit public import of "P" itself
+  	// as part of the recursive public import.
 	//* XPECT scope at X ---
 	P.X, RecursiveImport.P.X,
 	P.X.X1, RecursiveImport.P.X.X1, 

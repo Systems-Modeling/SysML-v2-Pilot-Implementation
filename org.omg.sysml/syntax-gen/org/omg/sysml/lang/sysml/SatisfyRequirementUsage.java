@@ -44,8 +44,13 @@ package org.omg.sysml.lang.sysml;
  *         b.relatedElement->includes(subjectParameter) and
  *         b.relatedElement->exists(r | r <> subjectParameter))->
  *     size() = 1
- * ownedReferenceSubsetting <> null implies
- *     ownedReferenceSubsetting.referencedFeature.oclIsKindOf(RequirementUsage)
+ * referencedFeatureTarget() <> null implies
+ *     referencedFeatureTarget().oclIsKindOf(RequirementUsage)
+ * if isNegated then
+ *     specializesFromLibrary('Requirements::notSatisfiedRequirementChecks')
+ * else
+ *     specializesFromLibrary('Requirements::satisfiedRequirementChecks')
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

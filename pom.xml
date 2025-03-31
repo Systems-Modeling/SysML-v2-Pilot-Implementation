@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-	<revision>0.41.1-SNAPSHOT</revision>
+	<revision>0.48.0-SNAPSHOT</revision>
     <tycho-version>4.0.7</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
@@ -61,7 +61,7 @@
     <module>org.omg.sysml.plantuml.feature</module>
     <module>org.omg.sysml.site</module>
     <module>org.omg.sysml.target</module>
-</modules>
+  </modules>
 
   <build>
     <plugins>

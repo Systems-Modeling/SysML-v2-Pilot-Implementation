@@ -44,8 +44,9 @@ public class StateUsage_isSubstateUsage_InvocationDelegate extends BasicInvocati
 		boolean isParallel = (boolean) arguments.get(0);
 
 		Type owningType = self.getOwningType();
-		return (owningType instanceof StateDefinition && ((StateDefinition)owningType).isParallel() == isParallel || 
-				owningType instanceof StateUsage && ((StateDefinition)owningType).isParallel() == isParallel) &&
+		return  self.isComposite() && owningType != null &&
+				(owningType instanceof StateDefinition && ((StateDefinition)owningType).isParallel() == isParallel || 
+				owningType instanceof StateUsage && ((StateUsage)owningType).isParallel() == isParallel) &&
 			   !(self.getOwningFeatureMembership() instanceof StateSubactionMembership);
 	}
 

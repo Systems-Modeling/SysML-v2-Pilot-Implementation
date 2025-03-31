@@ -52,11 +52,11 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -76,6 +76,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SuccessionFlowUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
@@ -188,6 +189,9 @@ public class SysML2PlantUMLStyle {
         add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
         add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
         add("EVAL", "Evaluate expressions", " ", "evalExp", "true");
+        add("NODEMULTIPLICITY", "Show multiplicities in nodes", " ", "nodeMultiplicity", "true");
+        add("EDGEMULTIPLICITY", "Show multiplicities on edges", " ", "edgeMultiplicity", "true");
+        add("IMPLICITMULTIPLICITY", "Show implicit multiplicities", " ", "implicitMultiplicity", "true");
     }
 
     public static class StyleSwitch {
@@ -422,14 +426,19 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseItemFlow(ItemFlow itemFlow) {
+		public String caseFlow(Flow itemFlow) {
             return " --> ";
 		}
 
 		@Override
-		public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+		public String caseFlowUsage(FlowUsage fcu) {
             return " --> ";
 		}
+
+        @Override
+        public String caseSuccessionFlowUsage(SuccessionFlowUsage sfcu) {
+            return " ..> ";
+        }
 
 		@Override
 		public String caseAllocationUsage(AllocationUsage au) {

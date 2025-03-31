@@ -18,7 +18,7 @@ package StateTest {
 			then S2;
 				
 		state S2 {
-			do send Sig(T.s.x) to p;
+			do send new Sig(T.s.x) to p;
 			state S3;
 		}
 		accept Exit then done;
@@ -37,6 +37,22 @@ package StateTest {
 			then S1;
 			
 		exit act;
+		
+		state S3 {
+			state S3a;
+		}
+		
+		transition first S3.S3a then S1; 
+	}
+	
+	state s0 {
+  		state s1 {
+    		state s2;
+  		}
+  		state s3 {
+  			state s4;
+  		}
+  		transition t1 first s1.s2 then s3.s4;
 	}
 	
 	state s parallel {

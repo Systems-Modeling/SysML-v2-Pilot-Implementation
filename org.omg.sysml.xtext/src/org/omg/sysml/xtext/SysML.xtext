@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -31,7 +31,7 @@
 grammar org.omg.sysml.xtext.SysML with org.omg.kerml.expressions.xtext.KerMLExpressions
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "https://www.omg.org/spec/SysML/20240201" as SysML
+import "https://www.omg.org/spec/SysML/20250201" as SysML
 
 /* ROOT NAMESPACE */
 
@@ -239,7 +239,7 @@ AliasMember returns SysML::Membership :
 ;
 
 fragment ImportPrefix returns SysML::Import :
-	( visibility = VisibilityIndicator )?  
+	visibility = VisibilityIndicator  
 	'import' ( isImportAll ?= 'all' )?
 ;
 
@@ -313,7 +313,7 @@ DefinitionElement returns SysML::Element :
 	| MetadataDefinition
 	| PartDefinition
 	| ConnectionDefinition
-	| FlowConnectionDefinition
+	| FlowDefinition
 	| InterfaceDefinition
 	| AllocationDefinition
 	| PortDefinition
@@ -378,7 +378,7 @@ fragment MultiplicityPart returns SysML::Feature :
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
-	Typings | Subsettings | References | Redefinitions
+    Typings | Subsettings | References | Crosses | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
@@ -413,8 +413,12 @@ ReferencesKeyword :
 	'::>' | 'references'
 ;
 
-fragment Redefinitions returns SysML::Feature :
-	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
+fragment Crosses returns SysML::Feature :
+    CrossesKeyword ownedRelationship += OwnedCrossSubsetting
+;
+
+CrossesKeyword :
+	'=>' | 'crosses'
 ;
 
 fragment Redefines returns SysML::Feature :
@@ -431,7 +435,10 @@ FeatureTyping returns SysML::FeatureTyping :
 	OwnedFeatureTyping | ConjugatedPortTyping
 ;
 
-// OwnedFeatureTyping inherited from Expression syntax.
+OwnedFeatureTyping returns SysML::FeatureTyping :
+	  type = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
 
 OwnedSubsetting returns SysML::Subsetting :
 	  subsettedFeature = [SysML::Feature|QualifiedName]
@@ -441,6 +448,15 @@ OwnedSubsetting returns SysML::Subsetting :
 OwnedReferenceSubsetting returns SysML::ReferenceSubsetting :
 	  referencedFeature = [SysML::Feature|QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
+;
+
+OwnedCrossSubsetting returns SysML::CrossSubsetting :
+      crossedFeature = [SysML::Feature|QualifiedName]
+    | ownedRelatedElement += OwnedFeatureChain
+;
+
+fragment Redefinitions returns SysML::Feature :
+	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
@@ -535,11 +551,10 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 ;
 
 fragment RefPrefix returns SysML::Usage :
-	( direction = FeatureDirection )?
-	( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	( isReadOnly ?= 'readonly' )?
-	( isDerived ?= 'derived' )?
-	( isEnd ?= 'end' )?	
+    ( direction = FeatureDirection )?
+    ( isDerived ?= 'derived' )?
+    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+    ( isConstant ?= 'constant' )?
 ;
 
 fragment BasicUsagePrefix returns SysML::Usage :
@@ -547,12 +562,28 @@ fragment BasicUsagePrefix returns SysML::Usage :
 	( isReference ?= 'ref' )?
 ;
 
+fragment EndUsagePrefix returns SysML::Usage :
+	isEnd ?= 'end' ( ownedRelationship += OwnedCrossFeatureMember )?
+;
+
+fragment UnextendedUsagePrefix returns SysML::Usage :
+    EndUsagePrefix | BasicUsagePrefix
+;
+
 fragment UsageExtensionKeyword returns SysML::Usage :
 	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment UsagePrefix returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword*
+	UnextendedUsagePrefix UsageExtensionKeyword*
+;
+
+OwnedCrossFeatureMember returns SysML::OwningMembership :
+    ownedRelatedElement += OwnedCrossFeature
+;
+
+OwnedCrossFeature returns SysML::ReferenceUsage :
+    BasicUsagePrefix UsageDeclaration
 ;
 
 fragment Usage returns SysML::Usage :
@@ -594,11 +625,13 @@ ReferenceUsageKeyword :
 ;
 
 DefaultReferenceUsage returns SysML::ReferenceUsage :
-	RefPrefix UsageDeclaration ValuePart? UsageBody
+	( isEnd ?= 'end' )? RefPrefix 
+	UsageDeclaration ValuePart? UsageBody
 ;
 
 ReferenceUsage returns SysML::ReferenceUsage :
-	RefPrefix ReferenceUsageKeyword Usage
+	( EndUsagePrefix | RefPrefix) 
+	ReferenceUsageKeyword Usage
 ;
 
 VariantReference returns SysML::ReferenceUsage :
@@ -636,8 +669,8 @@ StructureUsageElement returns SysML::Usage :
 	| InterfaceUsage
 	| AllocationUsage
 	| Message
-	| FlowConnectionUsage
-	| SuccessionFlowConnectionUsage
+	| FlowUsage
+	| SuccessionFlowUsage
 ;
 
 BehaviorUsageElement returns SysML::Usage :
@@ -678,8 +711,8 @@ VariantUsageElement returns SysML::Usage :
 	| InterfaceUsage
 	| AllocationUsage
 	| Message
-	| FlowConnectionUsage
-	| SuccessionFlowConnectionUsage
+	| FlowUsage
+	| SuccessionFlowUsage
 	| BehaviorUsageElement
 ;
 
@@ -690,7 +723,7 @@ ExtendedDefinition returns SysML::Definition :
 ;
 
 ExtendedUsage returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword+ Usage
+	UnextendedUsagePrefix UsageExtensionKeyword+ Usage
 ;
 
 /* ATTRIBUTES */
@@ -767,7 +800,9 @@ OccurrenceDefKeyword :
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix?
-	( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+	( isIndividual ?= 'individual' 
+	  ownedRelationship += EmptyMultiplicityMember
+	)?
 	DefinitionExtensionKeyword*
 ;
 
@@ -777,16 +812,16 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix? isIndividual ?= 'individual' 
+	ownedRelationship += EmptyMultiplicityMember
 	DefinitionExtensionKeyword* 'def' Definition
-	ownedRelationship += LifeClassMembership
 ;
 
-LifeClassMembership returns SysML::OwningMembership :
-	ownedRelatedElement += LifeClass 
+EmptyMultiplicityMember returns SysML::OwningMembership :
+        ownedRelatedElement += EmptyMultiplicity
 ;
 
-LifeClass returns SysML::LifeClass :
-	{SysML::LifeClass}
+EmptyMultiplicity returns SysML::Multiplicity :
+	{SysML::Multiplicity}
 ;
 
 /* Occurrence Usages */
@@ -796,10 +831,12 @@ OccurrenceUsageKeyword :
 ;
 
 fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
-	  BasicUsagePrefix
+	( EndUsagePrefix
+	| BasicUsagePrefix
 	  ( isIndividual ?= 'individual' )?
 	  ( portionKind = PortionKind )?
-	  UsageExtensionKeyword*
+	)
+	UsageExtensionKeyword*
 ;
 
 OccurrenceUsage returns SysML::OccurrenceUsage :
@@ -956,9 +993,17 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::ReferenceUsage :
+	( ownedRelationship += OwnedCrossMultiplicityMember )?
 	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
+;
+
+OwnedCrossMultiplicityMember returns SysML::OwningMembership :
+	ownedRelatedElement += OwnedCrossMultiplicity
+;
+
+OwnedCrossMultiplicity returns SysML::Feature :
+	ownedRelationship += OwnedMultiplicity
 ;
 
 /* Binding Connectors */
@@ -1042,129 +1087,6 @@ EmptySourceEnd returns SysML::ReferenceUsage :
 	{SysML::ReferenceUsage}
 ;
 
-/* FLOW CONNECTIONS */
-
-
-/* Flow Connection Definitions */
-
-FlowConnectionKeyword :
-	'flow'
-;
-
-FlowConnectionDefKeyword :
-	FlowConnectionKeyword 'def'
-;
-
-FlowConnectionDefinition returns SysML::FlowConnectionDefinition :
-	OccurrenceDefinitionPrefix FlowConnectionDefKeyword Definition
-;
-
-/* Messages */
-
-MessageKeyword :
-	'message'
-;
-
-Message returns SysML::FlowConnectionUsage :
-	OccurrenceUsagePrefix MessageKeyword MessageDeclaration DefinitionBody
-;
-
-fragment MessageDeclaration returns SysML::FlowConnectionUsage :
-	  UsageDeclaration? ValuePart?
-      ( 'of' ownedRelationship += ItemFeatureMember )?
-      ( 'from' ownedRelationship += MessageEventMember 
-        'to' ownedRelationship += MessageEventMember
-      )?
-    | ownedRelationship += MessageEventMember 'to' 
-	  ownedRelationship += MessageEventMember
-;
-
-MessageEventMember returns SysML::ParameterMembership :
-	ownedRelatedElement += MessageEvent 
-;
-
-MessageEvent returns SysML::EventOccurrenceUsage :
-	ownedRelationship += OwnedReferenceSubsetting
-;
-
-/* Flow Connection Usages */
-
-FlowConnectionUsage returns SysML::FlowConnectionUsage :
-	OccurrenceUsagePrefix FlowConnectionKeyword 
-	FlowConnectionDeclaration DefinitionBody
-;
-
-SuccessionFlowConnectionKeyword :
-	SuccessionKeyword FlowConnectionKeyword
-;
-
-SuccessionFlowConnectionUsage returns SysML::SuccessionFlowConnectionUsage :
-	OccurrenceUsagePrefix SuccessionFlowConnectionKeyword 
-	FlowConnectionDeclaration DefinitionBody
-;
-
-fragment FlowConnectionDeclaration returns SysML::FlowConnectionUsage :
-	  UsageDeclaration? ValuePart?
-      ( 'of'  ownedRelationship += ItemFeatureMember )?
-      ( 'from' ownedRelationship += FlowEndMember 
-        'to' ownedRelationship += FlowEndMember )?
-    | ownedRelationship += FlowEndMember 'to' 
-	  ownedRelationship += FlowEndMember
-;
-
-/* Flow Members */
-
-ItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFeature 
-;
-
-ItemFeature returns SysML::ItemFeature :
-	  PayloadFeature
-;
-
-fragment PayloadFeature returns SysML::Feature :
-	  Identification? PayloadFeatureSpecializationPart ValuePart?
-	| Identification? ValuePart
-    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
-    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
-;
-
-fragment PayloadFeatureSpecializationPart returns SysML::Feature :
-	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
-	| MultiplicityPart FeatureSpecialization+
-;
-
-FlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += FlowEnd 
-;
-
-FlowEnd returns SysML::ItemFlowEnd :
-	( ownedRelationship += FlowEndSubsetting )?
-	ownedRelationship += FlowFeatureMember
-;
-
-FlowEndSubsetting returns SysML::ReferenceSubsetting :
-	  referencedFeature = [SysML::Feature | QualifiedName] '.'
-	| ownedRelatedElement += FeatureChainPrefix
-;
-
-FeatureChainPrefix returns SysML::Feature :
-	( ownedRelationship += OwnedFeatureChaining '.' )+
-	ownedRelationship += OwnedFeatureChaining '.'
-;
-
-FlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += FlowFeature 
-;
-
-FlowFeature returns SysML::ReferenceUsage :
-	ownedRelationship += FlowRedefinition
-;
-
-FlowRedefinition returns SysML::Redefinition :
-	redefinedFeature = [SysML::Feature|QualifiedName]
-;
-
 /* INTERFACES */
 
 /* Interface Definitions */
@@ -1216,9 +1138,7 @@ InterfaceOccurrenceUsageElement returns SysML::Usage :
 ;
 
 DefaultInterfaceEnd returns SysML::PortUsage :
-	( direction = FeatureDirection )?
-	( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
-	isEnd ?= 'end' Usage
+    isEnd ?= 'end' Usage
 ;
 
 /* Interface Usages */
@@ -1255,9 +1175,9 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 ;
 
 InterfaceEnd returns SysML::PortUsage :
+	( ownedRelationship += OwnedCrossMultiplicityMember )?
 	( declaredName = Name ReferencesKeyword )? 
 	ownedRelationship += OwnedReferenceSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
 ;
 
 /* ALLOCATIONS */
@@ -1293,6 +1213,128 @@ AllocationUsage returns SysML::AllocationUsage :
 fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
 	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
 	  | AllocateKeyword ConnectorPart
+;
+
+/* FLOWS */
+
+/* Flow Definitions */
+
+FlowKeyword :
+	'flow'
+;
+
+FlowDefKeyword :
+	FlowKeyword 'def'
+;
+
+FlowDefinition returns SysML::FlowDefinition :
+	OccurrenceDefinitionPrefix FlowDefKeyword Definition
+;
+
+/* Messages */
+
+MessageKeyword :
+	'message'
+;
+
+Message returns SysML::FlowUsage :
+	OccurrenceUsagePrefix MessageKeyword MessageDeclaration DefinitionBody
+;
+
+fragment MessageDeclaration returns SysML::FlowUsage :
+	  UsageDeclaration? ValuePart?
+      ( 'of' ownedRelationship += PayloadFeatureMember )?
+      ( 'from' ownedRelationship += MessageEventMember 
+        'to' ownedRelationship += MessageEventMember
+      )?
+    | ownedRelationship += MessageEventMember 'to' 
+	  ownedRelationship += MessageEventMember
+;
+
+MessageEventMember returns SysML::ParameterMembership :
+	ownedRelatedElement += MessageEvent 
+;
+
+MessageEvent returns SysML::EventOccurrenceUsage :
+	ownedRelationship += OwnedReferenceSubsetting
+;
+
+/* Flow Usages */
+
+FlowUsage returns SysML::FlowUsage :
+	OccurrenceUsagePrefix FlowKeyword 
+	FlowDeclaration DefinitionBody
+;
+
+SuccessionFlowKeyword :
+	SuccessionKeyword FlowKeyword
+;
+
+SuccessionFlowUsage returns SysML::SuccessionFlowUsage :
+	OccurrenceUsagePrefix SuccessionFlowKeyword 
+	FlowDeclaration DefinitionBody
+;
+
+fragment FlowDeclaration returns SysML::FlowUsage :
+	  UsageDeclaration? ValuePart?
+      ( 'of'  ownedRelationship += PayloadFeatureMember )?
+      ( 'from' ownedRelationship += FlowEndMember 
+        'to' ownedRelationship += FlowEndMember )?
+    | ownedRelationship += FlowEndMember 'to' 
+	  ownedRelationship += FlowEndMember
+;
+
+/* Flow Members */
+
+PayloadFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += PayloadFeature 
+;
+
+PayloadFeature returns SysML::PayloadFeature :
+	  Payload
+;
+
+fragment Payload returns SysML::Feature :
+	  Identification? PayloadFeatureSpecializationPart ValuePart?
+	| Identification? ValuePart
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
+    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
+;
+
+fragment PayloadFeatureSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
+;
+
+FlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += FlowEnd 
+;
+
+FlowEnd returns SysML::FlowEnd :
+	( ownedRelationship += FlowEndSubsetting )?
+	ownedRelationship += FlowFeatureMember
+;
+
+FlowEndSubsetting returns SysML::ReferenceSubsetting :
+	  referencedFeature = [SysML::Feature | QualifiedName] '.'
+	| ownedRelatedElement += FeatureChainPrefix
+;
+
+FeatureChainPrefix returns SysML::Feature :
+	( ownedRelationship += OwnedFeatureChaining '.' )+
+	ownedRelationship += OwnedFeatureChaining '.'
+;
+
+FlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FlowFeature 
+;
+
+FlowFeature returns SysML::ReferenceUsage :
+	ownedRelationship += FlowRedefinition
+;
+
+FlowRedefinition returns SysML::Redefinition :
+	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 
 /* ACTION */
@@ -1380,6 +1422,7 @@ fragment ActionUsageDeclaration returns SysML::ActionUsage :
 ActionNode returns SysML::ActionUsage :
 	  SendNode | AcceptNode | AssignmentNode 
 	| IfNode | WhileLoopNode | ForLoopNode
+	| TerminateNode
 	| ControlNode
 ;
 
@@ -1401,9 +1444,7 @@ fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
 	ownedRelationship += PayloadParameterMember
-	( 'via' ownedRelationship += NodeParameterMember 
-	| ownedRelationship += EmptyParameterMember
-	)
+	( 'via' ownedRelationship += NodeParameterMember )?
 ;
 
 PayloadParameterMember returns SysML::ParameterMembership :
@@ -1411,7 +1452,7 @@ PayloadParameterMember returns SysML::ParameterMembership :
 ;
 
 PayloadParameter returns SysML::ReferenceUsage :
-	  PayloadFeature
+	  Payload
 	| Identification? PayloadFeatureSpecializationPart? TriggerValuePart
 ;
 
@@ -1451,17 +1492,27 @@ ArgumentExpressionValue returns SysML::FeatureValue :
 ;
 
 SendNode returns SysML::SendActionUsage :
-	OccurrenceUsagePrefix SendNodeDeclaration ActionBody
+	OccurrenceUsagePrefix ActionNodeUsageDeclaration? 'send' 
+	( ActionBody
+	| ( => 
+		( ownedRelationship += NodeParameterMember SenderReceiverPart?
+	    | ownedRelationship += EmptyParameterMember SenderReceiverPart
+	    )
+	    ActionBody
+	  )
+	)
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
-	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
-	( 'via' ownedRelationship += NodeParameterMember 
+	ActionNodeUsageDeclaration? 'send' 
+	ownedRelationship += NodeParameterMember SenderReceiverPart?
+;
+
+fragment SenderReceiverPart returns SysML::ActionUsage :
+	'via' ownedRelationship += NodeParameterMember 
+	  ( 'to' ownedRelationship += NodeParameterMember )?
 	| ownedRelationship += EmptyParameterMember
-	)
-	( 'to' ownedRelationship += NodeParameterMember
-	| ownedRelationship += EmptyParameterMember	
-	)
+	  'to' ownedRelationship += NodeParameterMember
 ;
 
 NodeParameterMember returns SysML::ParameterMembership :
@@ -1582,6 +1633,15 @@ ForVariableDeclaration returns SysML::ReferenceUsage :
 	UsageDeclaration
 ;
 
+TerminateNode returns SysML::TerminateActionUsage :
+	OccurrenceUsagePrefix ActionNodeUsageDeclaration? 
+	'terminate' 
+	( ActionBody
+	| -> ownedRelationship += NodeParameterMember
+	  ActionBody
+	)
+;
+
 ControlNode returns SysML::ControlNode :
 	  MergeNode
 	| DecisionNode
@@ -1636,8 +1696,8 @@ ActionTargetSuccession returns SysML::Usage :
 ;
 
 TargetSuccession returns SysML::SuccessionAsUsage :
-	'then' ownedRelationship += MultiplicitySourceEndMember 
-	ownedRelationship += ConnectorEndMember
+	ownedRelationship += MultiplicitySourceEndMember
+	'then' ownedRelationship += ConnectorEndMember
 ;
 
 GuardedTargetSuccession returns SysML::TransitionUsage :
@@ -2299,8 +2359,11 @@ fragment ViewBodyItem returns SysML::ViewUsage :
 ;
 
 fragment ExposePrefix returns SysML::Expose :
-	( visibility = VisibilityIndicator )?
-	'expose'
+	visibility = ExposeVisibilityKind
+;
+
+enum ExposeVisibilityKind returns SysML::VisibilityKind :
+	protected = 'expose'
 ;
 
 Expose returns SysML::Expose :

@@ -33,7 +33,31 @@ import org.eclipse.emf.common.util.EList;
  * <p>A <code>MetadataFeature</code> is a <code>Feature</code> that is an <code>AnnotatingElement</code> used to annotate another <code>Element</code> with metadata. It is typed by a <code>Metaclass</code>. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
  * 
  * 
+ * type->selectByKind(Metaclass).size() = 1
+ * not metaclass.isAbstract
  * specializesFromLibrary('Metaobjects::metaobjects')
+ * ownedFeature->closure(ownedFeature)->forAll(f |
+ *     f.declaredName = null and f.declaredShortName = null and
+ *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
+ *     f.redefinition.redefinedFeature->size() = 1)
+ * metaclass = 
+ *     let metaclassTypes : Sequence(Type) = type->selectByKind(Metaclass) in
+ *     if metaclassTypes->isEmpty() then null
+ *     else metaClassTypes->first()
+ *     endif
+ * let baseAnnotatedElementFeature : Feature =
+ *     resolveGlobal('Metaobjects::Metaobject::annotatedElement').memberElement.
+ *     oclAsType(Feature) in
+ * let annotatedElementFeatures : OrderedSet(Feature) = feature->
+ *     select(specializes(baseAnnotatedElementFeature))->
+ *     excluding(baseAnnotatedElementFeature) in
+ * annotatedElementFeatures->notEmpty() implies
+ *     let annotatedElementTypes : Set(Feature) =
+ *         annotatedElementFeatures.typing.type->asSet() in
+ *     let metaclasses : Set(Metaclass) =
+ *         annotatedElement.oclType().qualifiedName->collect(qn | 
+ *             resolveGlobal(qn).memberElement.oclAsType(Metaclass)) in
+ *    metaclasses->forAll(m | annotatedElementTypes->exists(t | m.specializes(t)))
  * isSemantic() implies
  *     let annotatedTypes : Sequence(Type) = 
  *         annotatedElement->selectAsKind(Type) in
@@ -57,30 +81,6 @@ import org.eclipse.emf.common.util.EList;
  *         else
  *             true
  *         endif
- * not metaclass.isAbstract
- * let baseAnnotatedElementFeature : Feature =
- *     resolveGlobal('Metaobjects::Metaobject::annotatedElement').memberElement.
- *     oclAsType(Feature) in
- * let annotatedElementFeatures : OrderedSet(Feature) = feature->
- *     select(specializes(baseAnnotatedElementFeature))->
- *     excluding(baseAnnotatedElementFeature) in
- * annotatedElementFeatures->notEmpty() implies
- *     let annotatedElementTypes : Set(Feature) =
- *         annotatedElementFeatures.typing.type->asSet() in
- *     let metaclasses : Set(Metaclass) =
- *         annotatedElement.oclType().qualifiedName->collect(qn | 
- *             resolveGlobal(qn).memberElement.oclAsType(Metaclass)) in
- *    metaclasses->forAll(m | annotatedElementTypes->exists(t | m.specializes(t)))
- * ownedFeature->closure(ownedFeature)->forAll(f |
- *     f.declaredName = null and f.declaredShortName = null and
- *     f.valuation <> null implies f.valuation.value.isModelLevelEvaluable and
- *     f.redefinition.redefinedFeature->size() = 1)
- * metaclass = 
- *     let metaclassTypes : Sequence(Type) = type->selectByKind(Metaclass) in
- *     if metaclassTypes->isEmpty() then null
- *     else metaClassTypes->first()
- *     endif
- * type->selectByKind(Metaclass).size() = 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -184,8 +184,8 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>If this <code>MetadataFeature</code> reflectively represents a model element, then return the corresponding <code>Element</code> instance from the MOF abstract syntax representation of the model.</p>
-	 * isSyntactic()
 	 * No OCL
+	 * isSyntactic()
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"

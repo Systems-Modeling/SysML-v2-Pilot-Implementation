@@ -48,6 +48,7 @@ public class MetadataFeatureItemProvider extends FeatureItemProvider {
 			addAnnotatedElementPropertyDescriptor(object);
 			addOwnedAnnotatingRelationshipPropertyDescriptor(object);
 			addAnnotationPropertyDescriptor(object);
+			addOwningAnnotatingRelationshipPropertyDescriptor(object);
 			addMetaclassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -67,6 +68,28 @@ public class MetadataFeatureItemProvider extends FeatureItemProvider {
 				 getString("_UI_AnnotatingElement_annotation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotatingElement_annotation_feature", "_UI_AnnotatingElement_type"),
 				 SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Annotating Relationship feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningAnnotatingRelationshipPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AnnotatingElement_owningAnnotatingRelationship_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotatingElement_owningAnnotatingRelationship_feature", "_UI_AnnotatingElement_type"),
+				 SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNING_ANNOTATING_RELATIONSHIP,
 				 true,
 				 false,
 				 true,

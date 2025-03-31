@@ -4,7 +4,7 @@ standard library package RiskMetadata {
 	 * This package defines metadata for annotating model elements with assessments of risk.
 	 */
 
-	import ScalarValues::Real;
+	private import ScalarValues::Real;
 	
 	attribute def Level :> Real {
 		doc
@@ -56,9 +56,9 @@ standard library package RiskMetadata {
 		 * (without including impact).
 		 */
 
-		low = RiskLevel(probability = LevelEnum::low);
-		medium = RiskLevel(probability = LevelEnum::medium);
-		high = RiskLevel(probability = LevelEnum::high);
+		low = new RiskLevel(probability = LevelEnum::low);
+		medium = new RiskLevel(probability = LevelEnum::medium);
+		high = new RiskLevel(probability = LevelEnum::high);
 	}
 	
 	metadata def Risk {

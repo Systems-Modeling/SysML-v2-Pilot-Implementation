@@ -31,23 +31,23 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Function</code> is a <code>Behavior</code> that has an <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. A <code>Function</code> represents the performance of a calculation that produces the values of its <code>result</code> <code>parameter</code>. This calculation may be decomposed into <code>Expressions</code> that are <code>steps</code> of the <code>Function</code>.</p>
  * 
+ * featureMembership->
+ *     selectByKind(ReturnParameterMembership)->
+ *     size() = 1
+ * specializesFromLibrary('Performances::Evaluation')
  * ownedMembership.selectByKind(ResultExpressionMembership)->
  *     forAll(mem | ownedFeature.selectByKind(BindingConnector)->
  *         exists(binding |
  *             binding.relatedFeature->includes(result) and
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
- * specializesFromLibrary('Performances::Evaluation')
  * result =
  *     let resultParams : Sequence(Feature) =
- *         ownedFeatureMemberships->
+ *         featureMemberships->
  *             selectByKind(ReturnParameterMembership).
- *             ownedParameterMember in
+ *             ownedMemberParameter in
  *     if resultParams->notEmpty() then resultParams->first()
  *     else null
  *     endif
- * ownedFeatureMembership->
- *     selectByKind(ReturnParameterMembership)->
- *     size() <= 1
  * membership->selectByKind(ResultExpressionMembership)->size() <= 1
  * <!-- end-model-doc -->
  *
@@ -103,8 +103,8 @@ public interface Function extends Behavior {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -113,9 +113,9 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <p>The <code>result</code> <code>parameter</code> of the <code>Function</code>, which is owned by the <code>Function</code> via a <code>ReturnParameterMembership</code>.</p>
 	 * 
-	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
 	 * @see #setResult(Feature)

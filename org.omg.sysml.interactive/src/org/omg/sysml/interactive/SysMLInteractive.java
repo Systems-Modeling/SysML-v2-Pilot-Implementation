@@ -489,6 +489,7 @@ public class SysMLInteractive extends SysMLUtil {
 		
 		System.out.println("Downloading model...");
 		ProjectDelta delta = fetcher.fetch();
+		fetcher.getIssues().forEach(System.out::println);
 		
 		System.out.println("Adding model to index");
 		delta.getProjectRoots().forEach((eObject, dto) -> {

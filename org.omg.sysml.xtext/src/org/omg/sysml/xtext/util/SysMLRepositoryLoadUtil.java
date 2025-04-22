@@ -40,6 +40,7 @@ import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.ProjectDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
 import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.repository.RepositoryContentFetcher;
 import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
@@ -60,7 +61,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		var localLibrary = new Option("l", "library", true, "Path to local library");
 		localLibrary.setRequired(true);
 		
-		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: http://localhost:9000");
+		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: " + ApiElementProcessingFacade.DEFAULT_BASE_PATH);
 		repositoryOption.setRequired(false);
 		
 		OptionGroup projectOption = new OptionGroup();
@@ -82,7 +83,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		CommandLine cli = parser.parse(options, args);
 		
 		return new SysMLRepositoryLoadUtil(
-					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
+					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : ApiElementProcessingFacade.DEFAULT_BASE_PATH,
 					cli.hasOption(projectNameOption)? cli.getOptionValue(projectNameOption) : cli.getOptionValue(projectIdOption),
 					cli.getOptionValue(targetOption),
 					new File(cli.getOptionValue(localLibrary))
@@ -129,6 +130,9 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
 		System.out.println("Fetching project...");
 		ProjectDelta delta = repositoryFetcher.fetch();
+		
+		repositoryFetcher.getIssues().forEach(System.out::println);
+		
 		ResourceSet resourceSet = getResourceSet();
 		
 		try {

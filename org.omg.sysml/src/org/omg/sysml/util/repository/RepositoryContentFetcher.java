@@ -24,9 +24,11 @@ package org.omg.sysml.util.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -60,6 +62,8 @@ public class RepositoryContentFetcher {
 	
 	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
 	
+	private final List<Issue> issues = new LinkedList<>();
+	
 	/**
 	 * @param repositoryProject as the input
 	 * @param tracker index based on element UUIDs
@@ -76,6 +80,7 @@ public class RepositoryContentFetcher {
 	 * @return project diff. (currently just a container for the entire model downloaded from the project)
 	 */
 	public ProjectDelta fetch() {
+		issues.clear();
 		boolean success = repositoryProject.loadRemote();
 		
 		if (!success) throw new RuntimeException("Couldn't download project: " + repositoryProject.getProjectName());
@@ -94,8 +99,8 @@ public class RepositoryContentFetcher {
 		tracker.forEachTrackedUserElement((id, langElement) -> {
 			Element element = repositoryProject.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
-				tranformCrossreferences(langElement, element);
-				tranformAttributes(langElement, element);
+				tranformCrossReferences(langElement, element);
+				transformAttributes(langElement, element);
 				//set importedMemberships for MembershipImports
 				setImportedMembership(langElement, element);
 			}
@@ -130,10 +135,9 @@ public class RepositoryContentFetcher {
 			//this is a workaround to address library element proxies where UUIDs of referenced Memberships aren't stable,
 			//so the importedElement UUID is used instead.
 			Object importedMembers = dto.get("importedElement");
-			EObject resolvedReference = resolveReference(importedMembers, false);
-			if (resolvedReference != null) {
+			resolveReference(importedMembers, false).ifPresent(resolvedReference -> {
 				membershipImport.setImportedMembership(((org.omg.sysml.lang.sysml.Element) resolvedReference).getOwningMembership());
-			}
+			});
 		}
 	}
 
@@ -153,7 +157,7 @@ public class RepositoryContentFetcher {
 	}
 
 	private void transformContainmentReferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.get(feature.getName()) != null) {
 				if (feature instanceof EReference reference && reference.isContainment()) {
@@ -163,8 +167,8 @@ public class RepositoryContentFetcher {
 		}
 	}
 	
-	private void tranformCrossreferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+	private void tranformCrossReferences(EObject langElement, Element remoteElement) {
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EReference reference) {
@@ -178,8 +182,8 @@ public class RepositoryContentFetcher {
 		}
 	}
 	
-	private void tranformAttributes(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+	private void transformAttributes(EObject langElement, Element remoteElement) {
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EAttribute reference) {
@@ -189,7 +193,7 @@ public class RepositoryContentFetcher {
 		}
 	}
 	
-	private static Collection<EStructuralFeature> getStructuralFeatuers(EObject langElement){
+	private static Collection<EStructuralFeature> getStructuralFeatures(EObject langElement){
 		EClass eClass = langElement.eClass();
 		
 		Set<EObject> allRedefined = eClass.getEAllStructuralFeatures().stream()
@@ -208,33 +212,31 @@ public class RepositoryContentFetcher {
 					Object value = remoteElement.get(feature.getName());
 					if (value instanceof Collection valueCollection) {
 						for (Object referenceValue: valueCollection) {
-							EObject referencedLangElement = resolveReference(referenceValue, isContainment);
-							if (referencedLangElement != null) {
-								referenceList.add(referencedLangElement);
-							}
+							resolveReference(referenceValue, isContainment).ifPresent(referenceList::add);
 						}
 					} 
 				} else {
 					Object value = remoteElement.get(feature.getName());
 					if (value != null) {
-						langElement.eSet(feature, isReference? resolveReference(value, isContainment) : transformAttributeValue(value, feature));
+						langElement.eSet(feature, isReference? resolveReference(value, isContainment).orElse(null) : transformAttributeValue(value, feature));
 					}
 				}
 			}
-			catch (Exception e) {
-				System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
+			catch (IllegalArgumentException e) {
+				//handle EObject.eGet, eSet errors
+				issues.add(new Issue(String.format("Unable to set structural feature %s because %s ha no such feature.", feature.getName(), feature.getEType().getName())));
 			}
 		}
 	}
 	
-	private EObject resolveReference(Object referenceValue, boolean isContainment) {
+	private Optional<EObject> resolveReference(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
 			Element referencedElement = repositoryProject.getElement(UUID.fromString(refUUID.toString()));
 			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(UUID.fromString(refUUID.toString()));
-			return referencedLangElement;
+			return Optional.ofNullable(referencedLangElement);
 		}
-		return null;		
+		return Optional.empty();		
 	}
 	
 	
@@ -256,5 +258,21 @@ public class RepositoryContentFetcher {
 		}
 		
 		return null;		
+	}
+	
+	public List<Issue> getIssues() {
+		return issues;
+	}
+	
+	public static class Issue {
+		private final String message;
+
+		public Issue(String message) {
+			this.message = message;
+		}
+		
+		public String getMessage() {
+			return message;
+		}
 	}
 }

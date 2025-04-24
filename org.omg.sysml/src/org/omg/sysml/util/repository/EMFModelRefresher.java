@@ -25,9 +25,11 @@ package org.omg.sysml.util.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -56,6 +58,9 @@ public class EMFModelRefresher {
 	private final APIModel model;
 	
 	private static Set<String> disabledStructuralFeatures = Set.of("importedMembership");
+	
+	
+	private final List<Issue> issues = new LinkedList<>();
 	
 	/**
 	 * @param model to propagate into EMF
@@ -87,8 +92,8 @@ public class EMFModelRefresher {
 		tracker.forEachTrackedLocalElement((id, langElement) -> {
 			Element element = model.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
-				tranformCrossreferences(langElement, element);
-				tranformAttributes(langElement, element);
+				transformCrossreferences(langElement, element);
+				transformAttributes(langElement, element);
 				//set importedMemberships for MembershipImports
 				setImportedMembership(langElement, element);
 			}
@@ -127,10 +132,9 @@ public class EMFModelRefresher {
 			//this is a workaround to address library element proxies where UUIDs of referenced Memberships aren't stable,
 			//so the importedElement UUID is used instead.
 			Object importedMembers = dto.get("importedElement");
-			EObject resolvedReference = resolveReference(importedMembers, false);
-			if (resolvedReference != null) {
+			resolveReference(importedMembers, false).ifPresent(resolvedReference -> {
 				membershipImport.setImportedMembership(((org.omg.sysml.lang.sysml.Element) resolvedReference).getOwningMembership());
-			}
+			});
 		}
 	}
 
@@ -150,7 +154,7 @@ public class EMFModelRefresher {
 	}
 
 	private void transformContainmentReferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.get(feature.getName()) != null) {
 				if (feature instanceof EReference reference && reference.isContainment()) {
@@ -160,8 +164,8 @@ public class EMFModelRefresher {
 		}
 	}
 	
-	private void tranformCrossreferences(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+	private void transformCrossreferences(EObject langElement, Element remoteElement) {
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EReference reference) {
@@ -175,8 +179,8 @@ public class EMFModelRefresher {
 		}
 	}
 	
-	private void tranformAttributes(EObject langElement, Element remoteElement) {
-		for (EStructuralFeature feature: getStructuralFeatuers(langElement))
+	private void transformAttributes(EObject langElement, Element remoteElement) {
+		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
 				if (feature instanceof EAttribute reference) {
@@ -186,7 +190,7 @@ public class EMFModelRefresher {
 		}
 	}
 	
-	private static Collection<EStructuralFeature> getStructuralFeatuers(EObject langElement){
+	private static Collection<EStructuralFeature> getStructuralFeatures(EObject langElement){
 		EClass eClass = langElement.eClass();
 		
 		Set<EObject> allRedefined = eClass.getEAllStructuralFeatures().stream()
@@ -196,42 +200,54 @@ public class EMFModelRefresher {
 		return eClass.getEAllStructuralFeatures().stream().filter(f -> !allRedefined.contains(f)).collect(Collectors.toList());
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
-		if (!disabledStructuralFeatures.contains(feature.getName())) {
-			try {
-				if (feature.isMany()) {
-					var referenceList = (List<EObject>) langElement.eGet(feature, false);
-					Object value = remoteElement.get(feature.getName());
-					if (value instanceof Collection valueCollection) {
-						for (Object referenceValue: valueCollection) {
-							EObject referencedLangElement = resolveReference(referenceValue, isContainment);
-							if (referencedLangElement != null) {
-								referenceList.add(referencedLangElement);
-							}
-						}
-					} 
-				} else {
-					Object value = remoteElement.get(feature.getName());
-					if (value != null) {
-						langElement.eSet(feature, isReference? resolveReference(value, isContainment) : transformAttributeValue(value, feature));
-					}
-				}
+		
+		if (disabledStructuralFeatures.contains(feature.getName())) {
+			return;
+		}
+		
+		try {
+			if (feature.isMany()) {
+				Object value = remoteElement.get(feature.getName());
+				transformAndAddFeatureValues(langElement, feature, isReference, isContainment, value);
+			} else {
+				Object value = remoteElement.get(feature.getName());
+				transformAndSetFeatureValue(langElement, feature, isReference, isContainment, value);
 			}
-			catch (Exception e) {
-				System.out.printf("Unable to set structural feature %s::%s %n", feature.getEContainingClass().getName(), feature.getName());
+		} catch (IllegalArgumentException e) {
+			// handle EObject.eGet, eSet errors
+			issues.add(new Issue(String.format("Unable to set structural feature %s because %s ha no such feature or feature is not changable.",
+					feature.getName(), feature.getEType().getName())));
+		}
+	}
+	
+	private void transformAndSetFeatureValue(EObject langElement, EStructuralFeature feature, boolean isReference, boolean isContainment,  Object valueToTransform) {
+		if (valueToTransform != null) {
+			langElement.eSet(feature, isReference ? resolveReference(valueToTransform, isContainment).orElse(null)
+					: transformAttributeValue(valueToTransform, feature));
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void transformAndAddFeatureValues(EObject langElement, EStructuralFeature feature, boolean isReference, boolean isContainment,  Object valueToTransform) {
+		var referenceList = (List<EObject>) langElement.eGet(feature, false);
+		if (valueToTransform instanceof Collection valueCollection) {
+			for (Object referenceValue : valueCollection) {
+				resolveReference(referenceValue, isContainment).ifPresentOrElse(referenceList::add, () -> {
+					issues.add(new Issue("Could not resolve reference: " + feature.getName()));
+				});
 			}
 		}
 	}
 	
-	private EObject resolveReference(Object referenceValue, boolean isContainment) {
+	private Optional<EObject> resolveReference(Object referenceValue, boolean isContainment) {
 		if (referenceValue instanceof Map referenceObjectMap) {
 			Object refUUID = referenceObjectMap.get("@id");
 			Element referencedElement = model.getElement(UUID.fromString(refUUID.toString()));
 			EObject referencedLangElement = isContainment? transform(referencedElement) : tracker.get(UUID.fromString(refUUID.toString()));
-			return referencedLangElement;
+			return Optional.ofNullable(referencedLangElement);
 		}
-		return null;		
+		return Optional.empty();		
 	}
 	
 	
@@ -253,5 +269,21 @@ public class EMFModelRefresher {
 		}
 		
 		return null;		
+	}
+	
+	public List<Issue> getIssues() {
+		return issues;
+	}
+	
+	public static class Issue {
+		private final String message;
+
+		public Issue(String message) {
+			this.message = message;
+		}
+		
+		public String getMessage() {
+			return message;
+		}
 	}
 }

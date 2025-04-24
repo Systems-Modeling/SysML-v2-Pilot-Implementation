@@ -514,10 +514,11 @@ public class SysMLInteractive extends SysMLUtil {
 		//UUIDS coming from resources that were added later in time will shadow previous ones
 		tracker.trackLocalUUIDs(inputResources);
 		
-		EMFModelRefresher fetcher = new EMFModelRefresher(model, tracker);
+		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
 		
 		System.out.println("Downloading model...");
-		EMFModelDelta delta = fetcher.create();
+		EMFModelDelta delta = modelRefresher.create();
+		modelRefresher.getIssues().forEach(System.out::println);
 		
 		System.out.println("Adding model to index");
 		delta.getProjectRoots().forEach((eObject, dto) -> {

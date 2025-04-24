@@ -45,6 +45,7 @@ import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 import org.omg.sysml.util.repository.EMFModelRefresher;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -64,7 +65,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		var localLibrary = new Option("l", "library", true, "Path to local library");
 		localLibrary.setRequired(true);
 		
-		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: http://localhost:9000");
+		var repositoryOption = new Option("b", "base", true, "Repository url. E.g: " + ApiElementProcessingFacade.DEFAULT_BASE_PATH);
 		repositoryOption.setRequired(false);
 		
 		OptionGroup projectOption = new OptionGroup();
@@ -93,7 +94,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		CommandLine cli = parser.parse(options, args);
 		
 		return new SysMLRepositoryLoadUtil(
-					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : "http://localhost:9000",
+					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : ApiElementProcessingFacade.DEFAULT_BASE_PATH,
 					cli.hasOption(projectNameOption)? cli.getOptionValue(projectNameOption) : cli.getOptionValue(projectIdOption),
 					cli.getOptionValue(branchOption),
 					cli.getOptionValue(targetOption),
@@ -149,9 +150,10 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		tracker.trackLibraryUUIDs(getLibraryResources());
 		
 		
-		EMFModelRefresher repositoryFetcher = new EMFModelRefresher(remote, tracker);
+		EMFModelRefresher modelRefresher = new EMFModelRefresher(remote, tracker);
 		System.out.println("Fetching project...");
-		EMFModelDelta delta = repositoryFetcher.create();
+		EMFModelDelta delta = modelRefresher.create();
+		modelRefresher.getIssues().forEach(System.out::println);
 		ResourceSet resourceSet = getResourceSet();
 		
 		try {

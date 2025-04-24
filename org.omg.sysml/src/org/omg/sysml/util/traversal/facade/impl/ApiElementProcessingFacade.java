@@ -159,7 +159,6 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 			localState.addOutOfScopeReferencesAsProxies();
 			headRevision.setLocalState(localState);
 			APIModelDelta localChanges = headRevision.getLocalChanges();
-//			System.out.println(new org.omg.sysml.JSON().serialize(localChanges));
 			
 			int additions = localChanges.getAdditions().size();
 			int deletions = localChanges.getDeletions().size();

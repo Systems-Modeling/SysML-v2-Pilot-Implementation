@@ -99,7 +99,7 @@ public class RepositoryContentFetcher {
 		tracker.forEachTrackedUserElement((id, langElement) -> {
 			Element element = repositoryProject.getElement(id);
 			if (element != null && isNotStandardLibraryElement(langElement)) {
-				tranformCrossReferences(langElement, element);
+				transformCrossReferences(langElement, element);
 				transformAttributes(langElement, element);
 				//set importedMemberships for MembershipImports
 				setImportedMembership(langElement, element);
@@ -167,7 +167,7 @@ public class RepositoryContentFetcher {
 		}
 	}
 	
-	private void tranformCrossReferences(EObject langElement, Element remoteElement) {
+	private void transformCrossReferences(EObject langElement, Element remoteElement) {
 		for (EStructuralFeature feature: getStructuralFeatures(langElement))
 		{
 			if (!feature.isDerived() && remoteElement.containsKey(feature.getName())) {
@@ -203,28 +203,43 @@ public class RepositoryContentFetcher {
 		return eClass.getEAllStructuralFeatures().stream().filter(f -> !allRedefined.contains(f)).collect(Collectors.toList());
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	private void transformStructuralFeature(EObject langElement,  Element remoteElement, EStructuralFeature feature, boolean isReference, boolean isContainment) {
-		if (!disabledStructuralFeatures.contains(feature.getName())) {
-			try {
-				if (feature.isMany()) {
-					var referenceList = (List<EObject>) langElement.eGet(feature, false);
-					Object value = remoteElement.get(feature.getName());
-					if (value instanceof Collection valueCollection) {
-						for (Object referenceValue: valueCollection) {
-							resolveReference(referenceValue, isContainment).ifPresent(referenceList::add);
-						}
-					} 
-				} else {
-					Object value = remoteElement.get(feature.getName());
-					if (value != null) {
-						langElement.eSet(feature, isReference? resolveReference(value, isContainment).orElse(null) : transformAttributeValue(value, feature));
-					}
-				}
+		
+		if (disabledStructuralFeatures.contains(feature.getName())) {
+			return;
+		}
+		
+		try {
+			if (feature.isMany()) {
+				Object value = remoteElement.get(feature.getName());
+				transformAndAddFeatureValues(langElement, feature, isReference, isContainment, value);
+			} else {
+				Object value = remoteElement.get(feature.getName());
+				transformAndSetFeatureValue(langElement, feature, isReference, isContainment, value);
 			}
-			catch (IllegalArgumentException e) {
-				//handle EObject.eGet, eSet errors
-				issues.add(new Issue(String.format("Unable to set structural feature %s because %s ha no such feature.", feature.getName(), feature.getEType().getName())));
+		} catch (IllegalArgumentException e) {
+			// handle EObject.eGet, eSet errors
+			issues.add(new Issue(String.format("Unable to set structural feature %s because %s ha no such feature or feature is not changable.",
+					feature.getName(), feature.getEType().getName())));
+		}
+	}
+	
+	private void transformAndSetFeatureValue(EObject langElement, EStructuralFeature feature, boolean isReference, boolean isContainment,  Object valueToTransform) {
+		if (valueToTransform != null) {
+			langElement.eSet(feature, isReference ? resolveReference(valueToTransform, isContainment).orElse(null)
+					: transformAttributeValue(valueToTransform, feature));
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void transformAndAddFeatureValues(EObject langElement, EStructuralFeature feature, boolean isReference, boolean isContainment,  Object valueToTransform) {
+		var referenceList = (List<EObject>) langElement.eGet(feature, false);
+		if (valueToTransform instanceof Collection valueCollection) {
+			for (Object referenceValue : valueCollection) {
+				resolveReference(referenceValue, isContainment).ifPresentOrElse(referenceList::add, () -> {
+					issues.add(new Issue("Could not resolve reference: " + feature.getName()));
+				});
 			}
 		}
 	}

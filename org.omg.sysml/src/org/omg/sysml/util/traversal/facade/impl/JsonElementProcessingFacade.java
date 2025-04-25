@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.LibraryPackage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.APIModelDelta;
@@ -182,7 +183,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			//unstable library membership UUIDs in the EMFModelRefresher.
 			if ((this.isIncludeDerived() || !feature.isDerived() || "importedElement".equals(feature.getName())) && 
 					// Skip implementation-specific features.
-					!(/*"Feature".equals(className) && */"isNonunique".equals(featureName) || 
+					!("isNonunique".equals(featureName) || 
 					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 
 					  apiElement.containsKey(featureName))) {
 				Object value = element.eGet(feature);
@@ -266,10 +267,15 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		org.omg.sysml.model.Element apiModelElement = this.createApiModelElement(element);
 		UUID id = UUID.fromString(apiModelElement.get("@id").toString());
 		
-		if (element.eContainer() == null || element.isLibraryElement()) {
+		if (element.eContainer() == null || isStandardLibraryElement(element)) {
 			this.getLocalModel().addModelRoot(id, apiModelElement);
 		}
 		this.getLocalModel().addModelElement(id, apiModelElement);;
+	}
+	
+	boolean isStandardLibraryElement(Element element) {
+		return element.eResource().getContents().stream().filter(LibraryPackage.class::isInstance)
+				.map(LibraryPackage.class::cast).anyMatch(LibraryPackage::isStandard);
 	}
 
 	protected APIModel getLocalModel() {

@@ -94,7 +94,7 @@ public class APIModelDelta {
 	 * 
 	 * @return list model changes acceptable by the API server
 	 */
-	public List<DataVersion> toTrasferableDelta() {
+	public List<DataVersion> toTransferableDelta() {
 		List<DataVersion> delta = new LinkedList<>();
 		
 		for (Element addition: getAdditions()) {
@@ -126,7 +126,7 @@ public class APIModelDelta {
 	 * @return JSON string
 	 */
 	public String toJson(Gson gson) {
-		return gson.toJson(toTrasferableDelta());
+		return gson.toJson(toTransferableDelta());
 	}
 	
 	/**
@@ -136,34 +136,34 @@ public class APIModelDelta {
 	 * @return JSON string
 	 */
 	public JsonElement toJsonTree(Gson gson) {
-		return gson.toJsonTree(toTrasferableDelta());
+		return gson.toJsonTree(toTransferableDelta());
 	}
 	
 	/**
 	 * Creates an {@link APIModelDelta} between two {@link APIModel}s
 	 * 
-	 * @param thisModel model to compare with baseline
+	 * @param current model to compare with baseline
 	 * @param baseline model to use as a baseline
 	 * 
 	 * @return {@link APIModelDelta} of the two models
 	 */
-	public static APIModelDelta create(APIModel thisModel, APIModel baseline) {
-		if (thisModel == null) thisModel = APIModel.createEmpty();
+	public static APIModelDelta create(APIModel current, APIModel baseline) {
+		if (current == null) current = APIModel.createEmpty();
 		if (baseline == null) baseline = APIModel.createEmpty();
 		
 		Set<Element> additions = new HashSet<>();
 		Set<UUID> deletions = new HashSet<>();
 		Map<UUID, ChangedElement> changes = new HashMap<>();
 		
-		Map<UUID, Element> elementsFromThis = thisModel.getModelElements();
+		Map<UUID, Element> currentElements = current.getModelElements();
 		
-		for (UUID id: elementsFromThis.keySet()) {
+		for (UUID id: currentElements.keySet()) {
 			Element baselineElement = baseline.getElement(id);
 			if (baselineElement == null) {
-				additions.add(thisModel.getElement(id));
+				additions.add(current.getElement(id));
 			} else {
-				Element thisElement = thisModel.getElement(id);
-				ChangedElement change = createElementDelta(thisElement, baselineElement);
+				Element currentElement = current.getElement(id);
+				ChangedElement change = createElementDelta(currentElement, baselineElement);
 				if (change != null) {
 					changes.put(id, change);
 				}
@@ -173,7 +173,7 @@ public class APIModelDelta {
 		Map<UUID, Element> elementsFromBaseline = baseline.getModelElements();
 		
 		for (UUID id: elementsFromBaseline.keySet()) {
-			Element element = thisModel.getElement(id);
+			Element element = current.getElement(id);
 			if (element == null) {
 				deletions.add(id);
 			}
@@ -185,19 +185,19 @@ public class APIModelDelta {
 	/**
 	 * Creates a {@link Data} object which contains changed fields and their new values
 	 * 
-	 * @param thisElement element to compare with baseline
+	 * @param currentElement element to compare with baseline
 	 * @param baselineElement element to use as a baseline
 	 * @return changed fields and their new values wrapped in a {@link Data} object.
 	 */
-	public static ChangedElement createElementDelta(Element thisElement, Element baselineElement) {
+	public static ChangedElement createElementDelta(Element currentElement, Element baselineElement) {
 		ChangedElement change = null;
-		Set<String> fieldsInThis = thisElement.keySet();
+		Set<String> fieldsInThis = currentElement.keySet();
 		for (String field: fieldsInThis) {
-			Object thisValue = thisElement.get(field);
+			Object currentValue = currentElement.get(field);
 			Object baselineValue = baselineElement.get(field);
-			if (!Objects.equal(thisValue, baselineValue)) {
+			if (!Objects.equal(currentValue, baselineValue)) {
 				if (change == null) change = new ChangedElement(baselineElement);
-				change.add(field, thisValue);
+				change.add(field, currentValue);
 			}
 		}
 		
@@ -205,11 +205,11 @@ public class APIModelDelta {
 	}
 	
 	private static class ChangedElement {
-		private Element originalElement;
+		private Element baselineElement;
 		private Map<String, Object> changes = new HashMap<>();
 		
-		public ChangedElement(Element originalElement) {
-			this.originalElement = originalElement;
+		public ChangedElement(Element baselineElement) {
+			this.baselineElement = baselineElement;
 		}
 		
 		public void add(String field, Object thisValue) {
@@ -218,7 +218,7 @@ public class APIModelDelta {
 		
 		public Data toData() {
 			Data data = new Data();
-			data.putAll(originalElement);
+			data.putAll(baselineElement);
 			data.putAll(changes);
 			return data;
 		}

@@ -127,7 +127,7 @@ public class Revision {
 			return this;
 		}
 		APIModelDelta localChanges = getLocalChanges();
-		return pushChanges(localChanges.toTrasferableDelta());
+		return pushChanges(localChanges.toTransferableDelta());
 	}
 	
 	/**

@@ -350,7 +350,8 @@ public class ProjectRepository {
 	}
 	
 	protected ProjectApi getProjectApi() {
-		return projectApi;	}
+		return projectApi;
+	}
 
 	protected ElementApi getElementApi() {
 		return elementApi;

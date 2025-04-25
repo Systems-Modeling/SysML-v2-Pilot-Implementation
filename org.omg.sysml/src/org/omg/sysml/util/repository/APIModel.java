@@ -118,7 +118,7 @@ public class APIModel {
 	 * @param delta changes to apply.
 	 */
 	public void merge(APIModelDelta delta) {
-		throw new UnsupportedOperationException("Not impelemnted");
+		throw new UnsupportedOperationException("Not implemented");
 	}
 	
 	/**

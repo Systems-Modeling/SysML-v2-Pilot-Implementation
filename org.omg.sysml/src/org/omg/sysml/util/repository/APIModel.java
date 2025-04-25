@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.omg.sysml.StringUtil;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.model.Element;
 
@@ -237,6 +238,11 @@ public class APIModel {
 		@Override
 		public boolean equals(Object o) {
 			return o == this || (o instanceof Map m && m.containsKey(ProjectRepository.ID_FIELD) && idEquals(m));
+		}
+		
+		@Override
+		public int hashCode() {
+			return this.containsKey(ProjectRepository.ID_FIELD)? this.get(ProjectRepository.ID_FIELD).hashCode(): super.hashCode();
 		}
 		
 		private boolean idEquals(Map<?,?> other) {

@@ -2,7 +2,7 @@
 <feature
       id="org.omg.sysml.plantuml.feature"
       label="SysML v2 PlantUML Visualization Feature"
-      version="0.48.0.qualifier"
+      version="0.49.0.qualifier"
       provider-name="SysML v2 Submission Team">
 
    <description url="http://www.example.com/description">

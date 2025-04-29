@@ -12,7 +12,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
-		File {from ="/library.systems/FlowConnections.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
@@ -29,7 +29,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
-				File {from ="/library.systems/FlowConnections.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
@@ -77,11 +77,22 @@ package ConnectionTest {
 	
 	connection {
 		part q;
-		end end1 ::> d1 :> q;
+		end [2] ref end1 ::> d1 :> q;
 		end end2 ::> d2;
 	}
 	
 	abstract flow def F;
 	
 	message : F from p to p;
+	
+	part def A {
+	    ref b : B;
+	}
+	
+	part def B;
+	
+	connection def AB {
+	    end a : A;
+	    end b : B crosses a.b;
+	}
 }

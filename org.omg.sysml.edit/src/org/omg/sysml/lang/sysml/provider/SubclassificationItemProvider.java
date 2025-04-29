@@ -44,8 +44,8 @@ public class SubclassificationItemProvider extends SpecializationItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addSuperclassifierPropertyDescriptor(object);
-			addSubclassifierPropertyDescriptor(object);
 			addOwningClassifierPropertyDescriptor(object);
+			addSubclassifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -49,7 +49,7 @@ public class FeatureReferenceExpression_modelLevelEvaluable_InvocationDelegate e
 		EList<Feature> visited = (EList<Feature>) arguments.get(0);
 
 		Feature referent = self.getReferent();
-		if (referent == null || TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(referent))) {
+		if (referent == null || TypeUtil.specializes(referent, ExpressionUtil.getSelfReferenceFeature(referent))) {
 			return true;
 		} else if (visited.contains(referent)) {
 			return false;

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -352,15 +351,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
   		return false;
 	}
 	
-	// Additional overrides
-
-	@Override
-	public boolean isComposite() {
-		return UsageUtil.isComposite(this, isComposite);
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

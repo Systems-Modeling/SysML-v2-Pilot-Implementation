@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -74,6 +75,8 @@ public class ModelLevelExpressionEvaluator {
 			return evaluateMetadataAccess((MetadataAccessExpression)expression, target);
 		} else if (expression instanceof InvocationExpression) {
 			return evaluateInvocation((InvocationExpression)expression, target);
+		} else if (expression instanceof ConstructorExpression) {
+			return evaluateConstructor((ConstructorExpression)expression, target);
 		} else {
 			return new BasicEList<>();
 		}		
@@ -107,6 +110,11 @@ public class ModelLevelExpressionEvaluator {
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
 		LibraryFunction function = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
 		return function == null? EvaluationUtil.singletonList(expression): function.invoke(expression, target, this);
+	}
+	
+	public EList<Element> evaluateConstructor(ConstructorExpression expression, Element target) {
+		Feature resultParameter = TypeUtil.getResultParameterOf(expression);
+		return resultParameter == null? null: EvaluationUtil.singletonList(resultParameter);
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {

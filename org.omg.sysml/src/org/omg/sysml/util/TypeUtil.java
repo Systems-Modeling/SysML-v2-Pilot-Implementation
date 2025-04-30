@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -97,7 +97,7 @@ public class TypeUtil {
 				collect(Collectors.toSet());
 	}
 	
-	public static Collection<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+	public static List<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
 		return type.getOwnedFeature().stream().
 				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
 				toList();
@@ -153,28 +153,48 @@ public class TypeUtil {
 		return generalTypes;
 	}
 
+	@Deprecated
 	public static boolean conforms(Type subtype, Type supertype) {
-		return conforms(subtype, supertype, new HashSet<>());
+		return specializes(subtype, supertype);
+	}
+	
+	public static boolean specializes(Type subtype, Type supertype) {
+		return specializes(subtype, supertype, new HashSet<>());
 	}
 	
 	// Note: Generalizations are allowed to be cyclic.
-	public static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
+	public static boolean specializes(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
 		} else if (subtype != null) {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && conforms(originalType, supertype);
+				return !visited.contains(originalType) && specializes(originalType, supertype);
 			} else {
-				// TODO: Should this use getSupertypesOf instead of getGeneralTypesOf?
 				return getGeneralTypesOf(subtype).stream().
 						anyMatch(type->!visited.contains(type) && 
-								conforms(type, supertype, visited));
+								specializes(type, supertype, visited));
 			}
 		} else {
 			return false;
 		}
+	}
+	
+	public static boolean isCompatible(Type subtype, Type supertype) {
+		if (specializes(subtype, supertype)) {
+			return true;
+		} else if (subtype instanceof Feature && supertype instanceof Feature &&
+				   (subtype.getOwnedFeature().isEmpty() || supertype.getOwnedFeature().isEmpty())) {
+			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
+			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
+			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
+//				 return FeatureUtil.canAccess((Feature)subtype, (Feature)supertype);
+				return ((Feature)subtype).getFeaturingType().stream().anyMatch(featuringType-> 
+					((Feature)supertype).isFeaturedWithin(featuringType));
+			}
+		}
+		return false;
 	}
 	
 	// Features

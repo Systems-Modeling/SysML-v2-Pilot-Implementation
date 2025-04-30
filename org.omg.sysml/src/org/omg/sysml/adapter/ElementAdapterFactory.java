@@ -203,6 +203,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseConstructorExpression(ConstructorExpression element) {
+			return new ConstructorExpressionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseDataType(DataType element) {
 			return new DataTypeAdapter(element);
 		}

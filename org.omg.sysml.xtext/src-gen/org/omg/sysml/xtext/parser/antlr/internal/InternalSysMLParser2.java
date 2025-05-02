@@ -202,6 +202,4 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
         }
     }
     static final String dfa_20s = "\10\uffff";
-    static final String dfa_21s = "\2\uffff\2\6\4\uffff";
-    static final String dfa_22s = "\1\10\3\54\2\10\2\uffff";
 }

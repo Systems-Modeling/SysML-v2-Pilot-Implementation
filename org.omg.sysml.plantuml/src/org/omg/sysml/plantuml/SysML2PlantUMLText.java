@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -270,7 +271,8 @@ public class SysML2PlantUMLText {
             if (!u.isVariation()) return;
         } else if (typ instanceof Definition) {
             Definition d = (Definition) typ;
-            if (!d.isVariation()) return;
+            if (d instanceof EnumerationDefinition // Do not render <<variation>> for EnumerationDefinition
+            	|| !d.isVariation()) return;
         } else {
             return;
         }

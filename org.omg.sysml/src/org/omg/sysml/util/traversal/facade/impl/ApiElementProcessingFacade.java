@@ -122,11 +122,8 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	public boolean commit() {
 		try {
 			this.project = projectApi.postProject(this.project);
-			
 			List<DataVersion> changes = this.getVersions();
 			Commit commit = new Commit().change(changes);
-//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
-			
 			int n = changes.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
 			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);

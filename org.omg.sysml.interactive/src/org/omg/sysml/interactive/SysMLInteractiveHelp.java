@@ -42,10 +42,13 @@ public class SysMLInteractiveHelp {
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
+			+ "%load\tLoads a model from the repository and adds it to the Xtext index\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
+			+ "%projects\tList projects in the repository\n"
 			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
 			+ "%view\t\tRender the view specified by the named view usage\n"
-			+ "%viz\t\tVisualize the name model elements\n";
+			+ "%viz\t\tVisualize the name model elements\n"
+			;
 	
 	private static final String HELP_HELP_STRING =
 			  "Usage: %help [<COMMAND>]\n\n"
@@ -115,6 +118,16 @@ public class SysMLInteractiveHelp {
 			  "Usage: %export <NAME>\n\n"
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
+	
+	private static final String LOAD_HELP_STRING =
+			  "Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [<NAME>]\n\n"
+			+ "Downloads previously published models from the repository. <NAME> must be the full name of the project.\n"
+			+ "Use --id=<PROJECT ID> to load projects by id.\n"		  
+			+ "Use %projects to view repository contents.\n";
+	
+	private static final String PROJECTS_HELP_STRING =
+			  "Usage: %projects\n\n"
+			+ "Returns the name and identifier from the repository for all publications\n";
  
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;
@@ -152,6 +165,14 @@ public class SysMLInteractiveHelp {
     	return EXPORT_HELP_STRING;
     }
     
+    public static String getProjectsHelp() {
+    	return PROJECTS_HELP_STRING;
+    }
+    
+    public static String getLoadHelp() {
+    	return LOAD_HELP_STRING;
+    }
+    
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
     
     private static Map<String, String> createCommandHelpMap() {
@@ -163,7 +184,10 @@ public class SysMLInteractiveHelp {
     	map.put("%publish", PUBLISH_HELP_STRING);    	
     	map.put("%viz", VIZ_HELP_STRING);    	
     	map.put("%view", VIEW_HELP_STRING);    	
-    	map.put("%export", EXPORT_HELP_STRING);    	
+    	map.put("%export", EXPORT_HELP_STRING);
+    	map.put("%load", LOAD_HELP_STRING);
+    	map.put("%projects", PROJECTS_HELP_STRING);
+    	
     	return map;
     }
     

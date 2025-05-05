@@ -124,7 +124,7 @@ public class SysMLInteractiveHelp {
 			+ "If <BASE PATH> is given, set the repository base path.\r\n"
 			+ "\r\n"
 			+ "<BASE PATH> is a URL giving the API base path for the repository access by the %projects, %publish and %load commands. \r\n"
-			+ "For example: " + ApiElementProcessingFacade.DEFAULT_BASE_PATH;
+			+ "For example: https://my.domain.com/sysml_repo";
  
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;

@@ -38,6 +38,6 @@ public class Projects {
 	public static String projects(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> help = vals.get("help");
-		return ISysML.getKernelInstance().getInteractive().listPublications(help);
+		return ISysML.getKernelInstance().getInteractive().projects(help);
 	}
 }

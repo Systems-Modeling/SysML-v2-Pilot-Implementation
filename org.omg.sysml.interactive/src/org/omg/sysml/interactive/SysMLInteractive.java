@@ -440,12 +440,10 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		
-		System.out.println("Locating model");
 		RepositoryProject repositoryProject = repository.getProjectByName(projectName);
 		
 		if (repositoryProject == null) {
-			return "ERROR:Publication doesn't exist.";
+			return "ERROR:Project doesn't exist.";
 		}
 		
 		return load(repositoryProject);
@@ -457,26 +455,18 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		
-		System.out.println("Locating model");
 		RepositoryProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
 		
 		if (repositoryProject == null) {
-			return "ERROR:Publication doesn't exist.";
+			return "ERROR:Project doesn't exist.";
 		}
 		
 		return load(repositoryProject);
 	}
 
 	private String load(RepositoryProject repositoryProject) {
-		boolean success = repositoryProject.loadRemote();
-		
-		if (!success) {
-			return "ERROR:Could not download the publication.";
-		}
-		
-		System.out.println("Collecting UUIDs...");
 		if (!tracker.isLibraryTracked()) {
+			System.out.println("Caching library UUIDs...");
 			tracker.trackLibraryUUIDs(getLibraryResources());
 		}
 		
@@ -485,13 +475,18 @@ public class SysMLInteractive extends SysMLUtil {
 		//UUIDS coming from resources that were added later in time will shadow previous ones
 		tracker.trackUserUUIDs(inputResources);
 		
+		System.out.println("Downloading model...");
+		boolean success = repositoryProject.loadRemote();
+		
+		if (!success) {
+			return "ERROR:Could not download the project.";
+		}
+		
 		RepositoryContentFetcher fetcher = new RepositoryContentFetcher(repositoryProject, tracker);
 		
-		System.out.println("Downloading model...");
 		ProjectDelta delta = fetcher.fetch();
 		fetcher.getIssues().forEach(System.out::println);
 		
-		System.out.println("Adding model to index");
 		delta.getProjectRoots().forEach((eObject, dto) -> {
 			next(SYSMLX_EXTENSION);
 			Resource xmiResource = getResource();
@@ -505,7 +500,7 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Project loaded: " + repositoryProject.getProjectName() + ", " + repositoryProject.getProjectId().toString();
+		return "Loaded Project " + repositoryProject.getProjectName() + " (" + repositoryProject.getProjectId().toString() + ")";
 	}
 	
 	protected String download(String name) {
@@ -514,14 +509,17 @@ public class SysMLInteractive extends SysMLUtil {
 				loadByName(name, Collections.emptyList());
 	}
 	
-	public String listPublications(List<String> help) {
+	public String projects(List<String> help) {
 		if (help != null && !help.isEmpty()) {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
+		
+		String apiBasePathString = "API base path: " + apiBasePath;
 		List<RepositoryProject> repositoryProjects = projectRepository.getProjects();
-		return repositoryProjects.stream().map(p -> String.format("name=%s, id=%s", p.getProjectName(), p.getProjectId()))
+		String projectsListString = repositoryProjects.stream().map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getProjectId()))
 				.collect(Collectors.joining("\n"));
+		return apiBasePathString + "\n\n" + projectsListString;
 	}
 	
 	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName) {

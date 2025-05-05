@@ -444,8 +444,6 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		
-		System.out.println("Locating model");
 		RemoteProject repositoryProject = repository.getProjectByName(projectName);
 		
 		if (repositoryProject == null) {
@@ -461,8 +459,6 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		
-		System.out.println("Locating model");
 		RemoteProject remoteProject = repository.getPRojectById(UUID.fromString(projectId));
 		
 		if (remoteProject == null) {
@@ -498,14 +494,10 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 
 	private String load(RemoteBranch branch) {
-		RemoteProject remoteProject = branch.getRemoteProject();
-		Revision headRevision = branch.getHeadRevision();
-		APIModel model = headRevision.fetchRemote();
-		
 		System.out.println("Selected branch " + branch.getName());
 		
-		System.out.println("Collecting UUIDs...");
 		if (!tracker.isLibraryTracked()) {
+			System.out.println("Caching library UUIDs...");
 			tracker.trackLibraryUUIDs(getLibraryResources());
 		}
 		
@@ -514,13 +506,16 @@ public class SysMLInteractive extends SysMLUtil {
 		//UUIDS coming from resources that were added later in time will shadow previous ones
 		tracker.trackLocalUUIDs(inputResources);
 		
-		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
-		
 		System.out.println("Downloading model...");
+		
+		RemoteProject remoteProject = branch.getRemoteProject();
+		Revision headRevision = branch.getHeadRevision();
+		APIModel model = headRevision.fetchRemote();
+		
+		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
 		EMFModelDelta delta = modelRefresher.create();
 		modelRefresher.getIssues().forEach(System.out::println);
 		
-		System.out.println("Adding model to index");
 		delta.getProjectRoots().forEach((eObject, dto) -> {
 			next(SYSMLX_EXTENSION);
 			Resource xmiResource = getResource();
@@ -534,7 +529,7 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Project loaded: " + remoteProject.getProjectName() + ", " + remoteProject.getRemoteId().toString();
+		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")";
 	}
 	
 	protected String download(String name) {
@@ -543,14 +538,17 @@ public class SysMLInteractive extends SysMLUtil {
 				loadByName(name, null, Collections.emptyList());
 	}
 	
-	public String listPublications(List<String> help) {
+	public String projects(List<String> help) {
 		if (help != null && !help.isEmpty()) {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
+
+		String apiBasePathString = "API base path: " + apiBasePath;
 		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
-		return repositoryProjects.stream().map(p -> String.format("name=%s, id=%s", p.getProjectName(), p.getRemoteId()))
+		String projectsListString = repositoryProjects.stream().map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
+		return apiBasePathString + "\n\n" + projectsListString;
 	}
 	
 	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {

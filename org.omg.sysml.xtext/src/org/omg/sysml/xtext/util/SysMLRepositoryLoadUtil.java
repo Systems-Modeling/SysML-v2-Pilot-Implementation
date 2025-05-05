@@ -35,19 +35,23 @@ import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.sysml.ApiException;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
+import org.omg.sysml.util.repository.Revision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
-import org.omg.sysml.util.repository.RepositoryContentFetcher;
 import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) throws ParseException, UnsupportedOperationException, ApiException {
 		SysMLRepositoryLoadUtil sysMLRepositoryLoadUtil = createUsingArgs(args);
 		
 		KerMLStandaloneSetup.doSetup();
@@ -72,10 +76,17 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		projectOption.addOption(projectNameOption);
 		projectOption.addOption(projectIdOption);
 		
+		var branchOption = new Option("br", "branch", true, "Branch's name in the project");
+		
 		var targetOption = new Option("t", "target", true, "Location where the project is loaded");
 		targetOption.setRequired(true);
 		
-		Options options = new Options().addOption(repositoryOption).addOptionGroup(projectOption).addOption(targetOption).addOption(localLibrary);
+		Options options = new Options()
+				.addOption(repositoryOption)
+				.addOptionGroup(projectOption)
+				.addOption(branchOption)
+				.addOption(targetOption)
+				.addOption(localLibrary);
 		
 		
 		CommandLineParser parser = new DefaultParser(false);
@@ -85,6 +96,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		return new SysMLRepositoryLoadUtil(
 					cli.hasOption(repositoryOption)? cli.getOptionValue(repositoryOption) : ApiElementProcessingFacade.DEFAULT_BASE_PATH,
 					cli.hasOption(projectNameOption)? cli.getOptionValue(projectNameOption) : cli.getOptionValue(projectIdOption),
+					cli.getOptionValue(branchOption),
 					cli.getOptionValue(targetOption),
 					new File(cli.getOptionValue(localLibrary))
 				).setIsReferencedById(cli.hasOption(projectIdOption));
@@ -92,30 +104,41 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	
 	private final String repositoryURL;
 	private final String project;
+	private final String branchName;
 	private final String targetLocation;
 	private final File localLibraryPath;
 	private boolean isReferencedById;
 	
-	public SysMLRepositoryLoadUtil(String repositoryURL, String project, String targetLocation, File localLibraryPath) {
+	public SysMLRepositoryLoadUtil(String repositoryURL, String project, String branch, String targetLocation, File localLibraryPath) {
 		super();
 		this.repositoryURL = repositoryURL;
 		this.project = project;
 		this.targetLocation = targetLocation;
 		this.localLibraryPath = localLibraryPath;
+		this.branchName = branch;
 		
 		addExtension(".sysml");
 		addExtension(".kerml");
 	}
 	
-	public void load() {
+	public void load() throws UnsupportedOperationException, ApiException {
 		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
-		RepositoryProject repositoryProject =  isReferencedById? projectRepository.getProjectById(project):
+		RemoteProject repositoryProject =  isReferencedById? projectRepository.getProjectById(project):
 			projectRepository.getProjectByName(project);
 		
 		if (repositoryProject == null) {
 			System.err.println("Project does not exist.");
 			return;
 		}
+		
+		final RemoteBranch branch;
+		if (branchName == null) {
+			branch = repositoryProject.getDefaultBranch();
+		} else {
+			branch = repositoryProject.getBranch(branchName);
+		}
+		Revision headRevision = branch.getHeadRevision();
+		APIModel remote = headRevision.fetchRemote();
 		
 		System.out.println("Reading library...");
 		
@@ -127,17 +150,15 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		tracker.trackLibraryUUIDs(getLibraryResources());
 		
 		
-		RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
+		EMFModelRefresher modelRefresher = new EMFModelRefresher(remote, tracker);
 		System.out.println("Fetching project...");
-		ProjectDelta delta = repositoryFetcher.fetch();
-		
-		repositoryFetcher.getIssues().forEach(System.out::println);
-		
+		EMFModelDelta delta = modelRefresher.create();
+		modelRefresher.getIssues().forEach(System.out::println);
 		ResourceSet resourceSet = getResourceSet();
 		
 		try {
 			System.out.println("Saving resources...");
-			delta.save(resourceSet, URI.createFileURI(targetLocation));
+			delta.apply(resourceSet, URI.createFileURI(targetLocation));
 			System.out.println("Done.");
 		} catch (IOException e) {
 			e.printStackTrace();

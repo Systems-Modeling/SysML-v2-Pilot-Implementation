@@ -29,6 +29,9 @@ import java.util.Map;
 public class Publish {
     private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("element")
+    		.keyword("project")
+    		.keyword("branch")
+    		.flag("derived", 'd', "false")
             .flag("help", 'h', "true")
     		.build();
 
@@ -36,8 +39,13 @@ public class Publish {
     public static String publish(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> elements = vals.get("element");
+        List<String> projects = vals.get("project");
+        List<String> branches = vals.get("branch");
         String element = elements.isEmpty()? null:elements.get(0);
+        String project = projects.isEmpty()? null:projects.get(0);
+        String branch = branches.isEmpty()? null:branches.get(0);
+        boolean includeDerived = !vals.get("derived").isEmpty();
         List<String> help = vals.get("help");
-        return ISysML.getKernelInstance().getInteractive().publish(element, help);
+        return ISysML.getKernelInstance().getInteractive().publish(element, project, branch, includeDerived, help);
     }
 }

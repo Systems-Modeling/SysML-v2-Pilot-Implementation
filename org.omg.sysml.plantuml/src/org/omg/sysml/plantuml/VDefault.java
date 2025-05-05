@@ -304,13 +304,15 @@ public class VDefault extends VTraverser {
 
     protected static boolean isEmptySubject(SubjectMembership sm) {
         Usage u = sm.getOwnedSubjectParameter();
-        if (!"subj".equals(u.getName())) return false;
+        String name = u.getName();
+        if (name != null && !"subj".equals(u.getName())) return false;
         return u.getOwnedRelationship().isEmpty();
     }
 
     protected static boolean isEmptyObjective(ObjectiveMembership om) {
         Usage u = om.getOwnedObjectiveRequirement();
-        if (!"obj".equals(u.getName())) return false;
+        String name = u.getName();
+        if (name != null && !"obj".equals(u.getName())) return false;
         return isEmpty(u);
     }
 

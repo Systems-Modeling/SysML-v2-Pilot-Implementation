@@ -32,19 +32,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 public class SysMLInteractiveHelp {
 	
 	private static final String GENERAL_HELP_STRING =
 			  "The following SysML v2 magic commands are available.\n"
 			+ "For help on a specific command, use \"%help <COMMAND>\" or \"%<cmd> -h\".\n\n"
-			+ "%api-base-path\t Sets and prints the current api base path"
+			+ "%repo\t Set the api base path for the repository"
 			+ "%eval\t\tEvaluate a given expression.\n"
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
-			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
+			+ "%publish\tPublish to the repository the model elements rooted in a named element\n"
 			+ "%view\t\tRender the view specified by the named view usage\n"
 			+ "%viz\t\tVisualize the name model elements\n";
 	
@@ -118,9 +119,12 @@ public class SysMLInteractiveHelp {
 		    + "<NAME> must be fully qualified.\n";
 	
 	private static final String API_BASE_PATH_HELP_STRING =
-			  "Usage: %api-base-path [<BASE PATH>]\n\n"
-			+ "Sets the current api base path\n"
-			+ "If no argument is passed it prints the current api base path";
+			  "Usage: %repo [<BASE PATH>]\n\n"
+			+ "If <BASE PATH> is not given, print the current repository base path.\r\n"
+			+ "If <BASE PATH> is given, set the repository base path.\r\n"
+			+ "\r\n"
+			+ "<BASE PATH> is a URL giving the API base path for the repository access by the %projects, %publish and %load commands. \r\n"
+			+ "For example: " + ApiElementProcessingFacade.DEFAULT_BASE_PATH;
  
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;
@@ -173,7 +177,8 @@ public class SysMLInteractiveHelp {
     	map.put("%publish", PUBLISH_HELP_STRING);    	
     	map.put("%viz", VIZ_HELP_STRING);    	
     	map.put("%view", VIEW_HELP_STRING);    	
-    	map.put("%export", EXPORT_HELP_STRING);    	
+    	map.put("%export", EXPORT_HELP_STRING);
+    	map.put("%repo", API_BASE_PATH_HELP_STRING);
     	return map;
     }
     

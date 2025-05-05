@@ -33,23 +33,19 @@ import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
 
 public class ApiBasePath {
 	
-    private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
+    private static final MagicsArgs REPO_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("basePath")
             .flag("help", 'h', "true")
     		.build();
 	
-	@LineMagic("api-base-path")
+	@LineMagic("repo")
 	public static String apiBasePath(List<String> args) {
-		Map<String, List<String>> vals = SHOW_ARGS.parse(args);
+		Map<String, List<String>> vals = REPO_ARGS.parse(args);
 		List<String> basePaths = vals.get("basePath");
+		List<String> help = vals.get("help");
 		String basePath = basePaths.isEmpty()? null: basePaths.get(0);
 		
 		SysMLInteractive interactive = ISysML.getKernelInstance().getInteractive();
-		
-		if (basePath != null) {
-			interactive.setApiBasePath(basePath);
-		}
-		
-		return "Api base path is: " + ISysML.getKernelInstance().getInteractive().getApiBasePath();
+		return interactive.apiBasePath(basePath, help);
 	}
 }

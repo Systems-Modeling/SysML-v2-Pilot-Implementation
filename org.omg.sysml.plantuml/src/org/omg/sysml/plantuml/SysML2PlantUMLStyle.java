@@ -52,11 +52,11 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -506,6 +506,27 @@ public class SysML2PlantUMLStyle {
 		public String caseImport(Import imp) {
             return " ..> ";
 		}
+
+        @Override
+		public String casePerformActionUsage(PerformActionUsage pau) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iuc) {
+            return " --> ";
+		}
+
     }
 
     public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {

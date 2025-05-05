@@ -323,7 +323,8 @@ public abstract class VStructure extends VDefault {
         if ((ru != null) && (target != null)) {
             addPRelation(target, ru, sru, "<<satisfy>>");
         }
-        return "";
+        if (hasRefSubsettingWithoutDeclaredName(sru)) return "";
+        return null;
     }
     
     @Override

@@ -27,8 +27,10 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -595,12 +597,29 @@ public class SysML2PlantUMLText {
         idMap = idMap.pop(keep);
     }
 
+    private Set<Element> assigned = new HashSet<Element>();
+
     Integer newId(Element e) {
-        return idMap.newId(e);
+        if (assigned.contains(e)) {
+            assigned.remove(e);
+            return idMap.getId(e);
+        } else {
+            return idMap.newId(e);
+        }
     }
 
     Integer getId(Element e) {
         return idMap.getId(e);
+    }
+
+    private Integer assignId(Element e) {
+        assigned.add(e);
+        return idMap.getId(e);
+    }
+
+    boolean isReferred(Element e) {
+        int pid = assignId(e);
+        return null != vpath.getPaths(pid);
     }
 
     private boolean inherited;

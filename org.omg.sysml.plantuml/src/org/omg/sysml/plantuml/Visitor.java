@@ -199,6 +199,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.checkId(e);
     }
 
+    protected boolean isReferred(Element e) {
+        return s2p.isReferred(e);
+    }
+
     protected void pushIdMap() {
         s2p.pushIdMap();
     }

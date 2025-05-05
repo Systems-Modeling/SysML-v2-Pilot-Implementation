@@ -67,7 +67,6 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -312,7 +311,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        //rec(om, om, true);
+        if (isEmptyObjective(om)) return "";
         recOrAddOwningMembership(om);
         return "";
     }
@@ -327,12 +326,6 @@ public class VCompartment extends VStructure {
     public String caseStakeholderMembership(StakeholderMembership sm) {
         recOrAddOwningMembership(sm);
         return "";
-    }
-
-    private boolean isEmptySubject(SubjectMembership sm) {
-        Usage u = sm.getOwnedSubjectParameter();
-        if (!"subj".equals(u.getName())) return false;
-        return u.getOwnedRelationship().isEmpty();
     }
 
     @Override

@@ -54,12 +54,14 @@ import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -300,6 +302,34 @@ public class VDefault extends VTraverser {
         return ret;
     }
 
+    protected static boolean isEmptySubject(SubjectMembership sm) {
+        Usage u = sm.getOwnedSubjectParameter();
+        if (!"subj".equals(u.getName())) return false;
+        return u.getOwnedRelationship().isEmpty();
+    }
+
+    protected static boolean isEmptyObjective(ObjectiveMembership om) {
+        Usage u = om.getOwnedObjectiveRequirement();
+        if (!"obj".equals(u.getName())) return false;
+        return isEmpty(u);
+    }
+
+    private static boolean isEmpty(Feature f) {
+        for (Membership ms: toOwnedMembershipArray(f)) {
+            if (!(ms instanceof OwningMembership)) continue;
+            if (ms instanceof SubjectMembership) {
+                if (isEmptySubject((SubjectMembership) ms)) continue;
+                return false;
+            }
+            if (ms instanceof ObjectiveMembership) {
+                if (isEmptyObjective((ObjectiveMembership) ms)) continue;
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
     // Shorthand notation
     private boolean addShorthandRelation(Usage u, String title) {
         if (u.getDeclaredName() != null) return false;
@@ -307,8 +337,7 @@ public class VDefault extends VTraverser {
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
         if (rs == null) return false;
 
-        List<Membership> mss = u.getOwnedMembership();
-        if (!mss.isEmpty()) return false;
+        if (!isEmpty(u)) return false;
 
         if (isReferred(u)) return false;
 

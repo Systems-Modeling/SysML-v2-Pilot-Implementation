@@ -338,6 +338,8 @@ public class VDefault extends VTraverser {
         if (u.getDeclaredShortName() != null) return false;
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
         if (rs == null) return false;
+        Feature tgt = rs.getReferencedFeature();
+        if (!checkId(tgt)) return false; // If the target does not exist, we render a distinct node.
 
         if (!isEmpty(u)) return false;
 
@@ -347,7 +349,7 @@ public class VDefault extends VTraverser {
         if (!(owner instanceof Type)) return false;
         if (!checkId(owner)) return false;
 
-        addPRelation(owner, rs.getReferencedFeature(), u, title);
+        addPRelation(owner, tgt, u, title);
 
         return true;
     }

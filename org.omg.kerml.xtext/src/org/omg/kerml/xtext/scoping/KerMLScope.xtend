@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022,2024 Model Driven Solutions, Inc.
  * Copyright (c) 2018-2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, JPL
+ *  Laszlo Gati, MDS
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
@@ -55,6 +56,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.kerml.xtext.naming.QualifiedNameUtil
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -166,10 +168,14 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 
 	override getSingleElement(QualifiedName name) {
-		val result = resolveInScope(name, true);
-		if (!result.isEmpty) result.get(0)
-		else if (parent !== null && !isShadowing) parent.getSingleElement(name)
-		else null
+		if (QualifiedNameUtil.isGlobalScopeQualification(name)){
+			parent.getSingleElement(name)
+		} else {
+			val result = resolveInScope(name, true);
+			if (!result.isEmpty) result.get(0)
+			else if (parent !== null && !isShadowing) parent.getSingleElement(name)
+			else null
+		}
 	}
 	
 	override getLocalElementsByName(QualifiedName name) {
@@ -217,9 +223,11 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
-		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
-		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
-		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		if (this.ns === ns || scopeProvider.libraryNamespaces.canContainMember(ns, qn, targetqn)) {
+    		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
+    		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
+    		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
+		} else false
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {
@@ -363,7 +371,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
 				newRedefined.addAll(redefined)
-				newRedefined.addAll(ns.redefinedFeatures)
+				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, skip))
 			}
 			for (e: ns.ownedSpecialization) {
 				if (!scopeProvider.visited.contains(e)) {
@@ -397,11 +405,6 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			}
 		}
 		return false
-	}
-	
-	protected def Set<Feature> redefinedFeatures(Type type) {
-		type.ownedFeature.
-			flatMap[feature|FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip)].toSet
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean isInsideScope, boolean includeImplicitGen, boolean includeAll) {

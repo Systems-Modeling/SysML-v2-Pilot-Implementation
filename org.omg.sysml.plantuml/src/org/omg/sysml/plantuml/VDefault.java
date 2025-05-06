@@ -45,13 +45,14 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -77,9 +78,9 @@ public class VDefault extends VTraverser {
         addConnector(c, c, desc);
     }
 
-    protected String itemFlowDesc(ItemFlow itf) {
+    protected String itemFlowDesc(Flow itf) {
         StringBuilder sb = new StringBuilder();
-        Feature f = itf.getItemFeature();
+        Feature f = itf.getPayloadFeature();
         if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
                Use getName() instead. */
@@ -126,7 +127,13 @@ public class VDefault extends VTraverser {
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            PRelation pr = new PRelation(ik, typId, gt, s, null);
+            InheritKey ik2;
+            if (s instanceof Redefinition && gt instanceof Feature) {
+                ik2 = InheritKey.makeInheritKeyForRedefiningTarget(ik, (Feature) gt, showInherited());
+            } else {
+                ik2 = ik;
+            }
+            PRelation pr = new PRelation(ik2, typId, gt, s, null);
             addPRelation(pr);
         }
     }
@@ -210,10 +217,18 @@ public class VDefault extends VTraverser {
     }
 
     @Override
-    public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+    public String caseFlowUsage(FlowUsage fcu) {
         String desc = itemFlowDesc(fcu);
         addConnector(fcu, desc);
         return "";
+    }
+
+    private VMetadata vMetadata;
+    protected VMetadata getVMetadata() {
+        if (this.vMetadata == null) {
+            this.vMetadata = new VMetadata(this);
+        }
+        return vMetadata;
     }
 
     @Override
@@ -225,7 +240,7 @@ public class VDefault extends VTraverser {
             v.addComment(c, a.getAnnotatedElement());
         } else if (ae instanceof MetadataFeature) {
             MetadataFeature af = (MetadataFeature) ae;
-            VMetadata v = new VMetadata(this);
+            VMetadata v = getVMetadata();
             v.addMetadataFeature(af, a.getAnnotatedElement());
         }
         return "";
@@ -233,7 +248,7 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseMetadataFeature(MetadataFeature af) {
-        VMetadata v = new VMetadata(this);
+        VMetadata v = getVMetadata();
         v.addMetadataFeature(af);
         return "";
     }

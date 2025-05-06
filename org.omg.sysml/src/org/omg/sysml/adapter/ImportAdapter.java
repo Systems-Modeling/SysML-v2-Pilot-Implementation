@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,17 +21,14 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.NamespaceImport;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.NamespaceUtil;
 
 public abstract class ImportAdapter extends RelationshipAdapter {
 
@@ -43,36 +40,20 @@ public abstract class ImportAdapter extends RelationshipAdapter {
 		return (Import)super.getTarget();
 	}
 	
-	// Additional operations
-	// Note: The excludedType parameter is needed in case the imported Namespace
-	// is a Type that has one or more Generalizations.
-	public abstract EList<Membership> importMemberships(EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes);
-	
-	protected void importMembershipsFrom(Namespace importedNamespace, EList<Membership> importedMembership,
-			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
-			Collection<Type> excludedTypes, boolean isRecursive) {
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		
+		// If the target Import is for a filtered import package, set its visibility to PUBLIC.
 		Import target = getTarget();
-		Collection<Membership> namespaceMembership = 
-				NamespaceUtil.getVisibleMembershipsFor(importedNamespace, excludedNamespaces, excludedTypes, target.isImportAll());
-		importedMembership.addAll(namespaceMembership);
-		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(target.getVisibility())) {
-			nonpublicMembership.addAll(namespaceMembership);
-		}
-		if (isRecursive) {
-			excludedNamespaces.add(importedNamespace);
-			for (Membership membership: namespaceMembership) {
-				if (membership instanceof OwningMembership) {
-					Element member = membership.getMemberElement();
-					if (member instanceof Namespace) {
-						importMembershipsFrom((Namespace)member, importedMembership, nonpublicMembership, 
-								excludedNamespaces, excludedTypes, true);
-					}
-				}
-			}
-			excludedNamespaces.remove(importedNamespace);
+		Namespace owningNamespace = target.getImportOwningNamespace();
+		if (owningNamespace != null && owningNamespace.getOwningRelationship() instanceof NamespaceImport) {
+			target.setVisibility(VisibilityKind.PUBLIC);
 		}
 	}
-
+	
+	// Additional operations
+	
+	public abstract void importMemberships(EList<Membership> importedMemberships, Set<Namespace> excluded);
+	
 }

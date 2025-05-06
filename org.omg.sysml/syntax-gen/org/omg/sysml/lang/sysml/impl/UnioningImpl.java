@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Unioning;
@@ -33,23 +32,13 @@ import org.omg.sysml.lang.sysml.Unioning;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UnioningImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UnioningImpl#getTypeUnioned <em>Type Unioned</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UnioningImpl#getUnioningType <em>Unioning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UnioningImpl#getTypeUnioned <em>Type Unioned</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UnioningImpl extends RelationshipImpl implements Unioning {
-	/**
-	 * The cached setting delegate for the '{@link #getTypeUnioned() <em>Type Unioned</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypeUnioned()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate TYPE_UNIONED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.UNIONING__TYPE_UNIONED).getSettingDelegate();
-
 	/**
 	 * The cached value of the '{@link #getUnioningType() <em>Unioning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -59,6 +48,16 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 	 * @ordered
 	 */
 	protected Type unioningType;
+
+	/**
+	 * The cached setting delegate for the '{@link #getTypeUnioned() <em>Type Unioned</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeUnioned()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TYPE_UNIONED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.UNIONING__TYPE_UNIONED).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,21 +123,11 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Type getUnioningType() {
-		return unioningType == null? basicGetUnioningType(): getUnioningTypeGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getUnioningTypeGen() {
+	@Override
+	public Type getUnioningType() {
 		if (unioningType != null && unioningType.eIsProxy()) {
 			InternalEObject oldUnioningType = (InternalEObject)unioningType;
 			unioningType = (Type)eResolveProxy(oldUnioningType);
@@ -152,21 +141,10 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Xtext workaround:
-	 * If a Unioning is parsed targeting a Feature chain, then the unioningType will be empty,
-	 * but the Unioning will own the unioningType. So, in this case, the unioningType should
-	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetUnioningType() {
-		if (unioningType == null) {
-			// Handle a intersectingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				unioningType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
-			}
-		}
 		return unioningType;
 	}
 
@@ -282,12 +260,12 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.UNIONING__TYPE_UNIONED:
-				if (resolve) return getTypeUnioned();
-				return basicGetTypeUnioned();
 			case SysMLPackage.UNIONING__UNIONING_TYPE:
 				if (resolve) return getUnioningType();
 				return basicGetUnioningType();
+			case SysMLPackage.UNIONING__TYPE_UNIONED:
+				if (resolve) return getTypeUnioned();
+				return basicGetTypeUnioned();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -300,11 +278,11 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.UNIONING__TYPE_UNIONED:
-				setTypeUnioned((Type)newValue);
-				return;
 			case SysMLPackage.UNIONING__UNIONING_TYPE:
 				setUnioningType((Type)newValue);
+				return;
+			case SysMLPackage.UNIONING__TYPE_UNIONED:
+				setTypeUnioned((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -318,11 +296,11 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.UNIONING__TYPE_UNIONED:
-				setTypeUnioned((Type)null);
-				return;
 			case SysMLPackage.UNIONING__UNIONING_TYPE:
 				setUnioningType((Type)null);
+				return;
+			case SysMLPackage.UNIONING__TYPE_UNIONED:
+				setTypeUnioned((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,14 +316,14 @@ public class UnioningImpl extends RelationshipImpl implements Unioning {
 		switch (featureID) {
 			case SysMLPackage.UNIONING__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
-			case SysMLPackage.UNIONING__SOURCE:
-				return isSetSource();
 			case SysMLPackage.UNIONING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.UNIONING__TYPE_UNIONED:
-				return isSetTypeUnioned();
+			case SysMLPackage.UNIONING__SOURCE:
+				return isSetSource();
 			case SysMLPackage.UNIONING__UNIONING_TYPE:
 				return isSetUnioningType();
+			case SysMLPackage.UNIONING__TYPE_UNIONED:
+				return isSetTypeUnioned();
 		}
 		return super.eIsSet(featureID);
 	}

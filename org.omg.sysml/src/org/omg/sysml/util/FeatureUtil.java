@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,29 +31,38 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class FeatureUtil {
 	
@@ -95,6 +104,21 @@ public class FeatureUtil {
 		}
 	}	
 	
+	public static boolean checkIsOrdered(Feature feature, Set<Feature> visited) {
+		if (feature.isOrdered()) {
+			return feature.isOrdered();
+		} else {
+			visited.add(feature);
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(subsettedFeature, visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 	// Typing
 	
 	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
@@ -150,10 +174,17 @@ public class FeatureUtil {
 	protected static void removeRedundantTypes(List<Type> types) {
 		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
 				types.remove(i);
 			}
 		}
+	}
+	
+	public static FeatureTyping addFeatureTypingTo(Feature feature) {
+		FeatureTyping featureTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
+		featureTyping.setTypedFeature(feature);
+		feature.getOwnedRelationship().add(featureTyping);
+		return featureTyping;
 	}
 
 	// Subsetting and redefinition
@@ -164,6 +195,10 @@ public class FeatureUtil {
 
 	public static List<Feature> getSubsettedNotRedefinedFeaturesOf(Feature feature) {
 		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
+	}
+
+	public static List<Feature> getSubsettedNotCrossedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getSubsettedNotCrossedFeatures();
 	}
 
 	public static Feature getReferencedFeatureOf(Feature feature) {
@@ -183,8 +218,14 @@ public class FeatureUtil {
 	}
 	
 	public static <T extends Feature> T getEffectiveReferencedFeatureOf(T feature, Class<T> kind) {
-		Feature referencedFeature = getBasicFeatureOf(getReferencedFeatureOf(feature));
-		return kind.isInstance(referencedFeature)? kind.cast(referencedFeature): feature;
+		ReferenceSubsetting subsetting = feature.getOwnedReferenceSubsetting();
+		if (subsetting != null) {
+			Feature referencedFeature = getBasicFeatureOf(subsetting.getReferencedFeature());
+			if (kind.isInstance(referencedFeature)) {
+				return kind.cast(referencedFeature);
+			}
+		}
+		return feature;
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {
@@ -213,8 +254,49 @@ public class FeatureUtil {
 	
 	public static List<Feature> getAllSubsettingFeaturesIn(Type type, Feature subsettedFeature) {
 		return type.getFeature().stream().
-				filter(f->TypeUtil.conforms(f, subsettedFeature)).
+				filter(f->TypeUtil.specializes(f, subsettedFeature)).
 				collect(Collectors.toList());
+	}
+	
+	// Cross features
+	
+	public static Feature getCrossFeatureOf(Feature feature) {
+		Feature crossedFeature = getFeatureAdapter(feature).getCrossedFeature();
+		if (crossedFeature != null) {
+			List<Feature> chainingFeatures = crossedFeature.getChainingFeature();
+			if (chainingFeatures.size() >=2) {
+				return chainingFeatures.get(1);
+			}
+		}
+		return null;
+	}
+
+	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
+		return !(namespace instanceof Feature) || !((Feature)namespace).isEnd()? null:
+				(Feature)namespace.getOwnedMember().stream().
+				filter(element->element instanceof Feature && 
+						!(element instanceof Multiplicity) && 
+						!(element instanceof MetadataFeature) &&
+						!(element.getOwningMembership() instanceof FeatureMembership)&&
+						!(element.getOwningMembership() instanceof FeatureValue)).
+				findFirst().orElse(null);
+	}
+
+	public static boolean isOwnedCrossFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		return feature == getOwnedCrossFeatureOf(owner);
+	}
+	
+	public static List<Type> getCrossFeatureTypes(Feature feature) {
+		return feature.getOwnedSpecialization().stream().
+				filter(s->!(s instanceof Redefinition ||
+						s instanceof ReferenceSubsetting || 
+						s instanceof CrossSubsetting)).
+				map(Specialization::getGeneral).toList();
+	}
+	
+	public static void addOwnedCrossFeatureTypeFeaturingTo(Feature feature) {
+		getFeatureAdapter(feature).addOwnedCrossFeatureTypeFeaturing();
 	}
 
 	// Feature values
@@ -242,7 +324,7 @@ public class FeatureUtil {
 	/**
 	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
 	 */
-	protected static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
+	public static List<Type> getAllFeaturingTypesOf(Feature originalFeature) {
 		List<Type> allFeaturingTypes = new ArrayList<>();
 		List<Feature> features = new ArrayList<>();
 		features.add(originalFeature);
@@ -255,7 +337,8 @@ public class FeatureUtil {
 					// in case this transformation has not been done yet.
 					feature = ((FeatureValue)owningMembership).getFeatureWithValue();
 				}
-				for (Type featuringType: feature.getFeaturingType()) {
+				EList<Type> featuringTypes = feature.getFeaturingType();
+				for (Type featuringType: featuringTypes) {
 					if (!allFeaturingTypes.contains(featuringType)) {
 						allFeaturingTypes.add(featuringType);
 						if (featuringType instanceof Feature) {
@@ -268,13 +351,20 @@ public class FeatureUtil {
 		}
 		return allFeaturingTypes;
 	}
-
+	
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
 		getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
 	}
 
 	public static void forEachImplicitFeaturingTypeOf(Feature feature, Consumer<Type> action) {
 		getFeatureAdapter(feature).forEachImplicitFeaturingType(action);
+	}
+	
+	public static TypeFeaturing addTypeFeaturingTo(Feature feature) {
+		TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+		typeFeaturing.setFeatureOfType(feature);
+		feature.getOwnedRelationship().add(typeFeaturing);
+		return typeFeaturing;
 	}
 
 	/**
@@ -292,9 +382,35 @@ public class FeatureUtil {
 				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
+				if (type.getOwningRelationship() == null) {
+					featuring.getOwnedRelatedElement().add(type);
+				}
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});
+	}
+
+	public static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
+		ElementUtil.transform(feature);
+		return feature.getFeaturingType().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast);
+	}
+	
+	public static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature) {
+		return canAccess(subsettingFeature, subsettedFeature, new HashSet<>());
+	}	
+
+	private static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
+		visited.add(subsettingFeature);
+		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
+		return featuringTypes.isEmpty() && subsettedFeature == 
+				SysMLLibraryUtil.getLibraryType(subsettingFeature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+				featuringTypes.stream().anyMatch(featuringType-> 
+						subsettedFeature.isFeaturedWithin(featuringType) ||				
+						featuringType instanceof Feature &&
+						!visited.contains(featuringType) &&
+						canAccess(((Feature)featuringType), subsettedFeature, visited));
 	}
 	
 	// Feature Chaining
@@ -375,37 +491,63 @@ public class FeatureUtil {
 			}
 		}
 		return null;
+	}	
+	
+	//Naming
+	
+	public static String computeEffectiveName(Feature self) {
+		return computeEffectiveName(self, new HashSet<>());
 	}
 	
-	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
-			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
-			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
-			membership.setOwnedMemberElement(multiplicity);
-			type.getOwnedRelationship().add(membership);
+	private static String computeEffectiveName(Feature self, Set<Feature> visited) {
+		if (isNameSet(self)) {
+			return self.getDeclaredName();
 		}
-	}
-	
-	public static Multiplicity getMultiplicityOf(Type type) {
-		return getMultiplicityOf(type, new HashSet<>());
-	}
-	
-	public static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
-		Multiplicity multiplicity = type.getMultiplicity();
-		if (multiplicity == null) {
-			visited.add(type);
-			for (Type general: TypeUtil.getGeneralTypesOf(type)){
-				if (general != null && !visited.contains(general)) { 
-					multiplicity = getMultiplicityOf(general, visited);
-					if (multiplicity != null) {
-						break;
-					}
-				}
-			}
+		
+		String effectiveName = getFeatureAdapter(self).getEffectiveName();
+		
+		if (effectiveName != null) {
+			return effectiveName;
 		}
-		return multiplicity;
+
+		visited.add(self);
+		Feature namingFeature = self.namingFeature();
+		
+		if (namingFeature != null && !visited.contains(namingFeature)) {
+			effectiveName = computeEffectiveName(namingFeature, visited);
+			getFeatureAdapter(self).storeEffectiveName(effectiveName);
+		}
+		
+		return effectiveName;
+	}
+	
+	public static String computeEffectiveShortName(Feature self) {
+		return computeEffectiveShortName(self, new HashSet<>());
+	}
+	
+	private static String computeEffectiveShortName(Feature self, Set<Feature> visited) {
+		if (isNameSet(self)) {
+			return self.getDeclaredShortName();
+		}
+		
+		String effectiveShortName = getFeatureAdapter(self).getEffectiveShortName();
+		
+		if (effectiveShortName != null) {
+			return effectiveShortName;
+		}
+
+		visited.add(self);
+		Feature namingFeature = self.namingFeature();
+		
+		if (namingFeature != null && !visited.contains(namingFeature)) {
+			effectiveShortName = computeEffectiveShortName(namingFeature, visited);
+			getFeatureAdapter(self).storeEffectiveShortName(effectiveShortName);
+		}
+		
+		return effectiveShortName;
+	}
+	
+	private static boolean isNameSet(Feature self) {
+		return self.getDeclaredName() != null || self.getDeclaredShortName() != null;
 	}
 }

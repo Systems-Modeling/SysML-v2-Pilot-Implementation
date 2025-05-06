@@ -20,7 +20,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	
-	import PackageAlias1::*;
+	public import PackageAlias1::*;
 	
 	//* XPECT scope at A ---
 	    X, X.a, X.a_alias,  test.X, test.X.a, test.X.a_alias,

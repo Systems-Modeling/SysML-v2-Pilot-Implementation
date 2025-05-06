@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public abstract class Visitor extends SysMLSwitch<String> {
     private SysML2PlantUMLText s2p = null;
@@ -57,9 +58,62 @@ public abstract class Visitor extends SysMLSwitch<String> {
         this.s2p = s2p;
     }
 
-    private boolean showsMultiplicity = true;
-    public void setShowsMultiplicity(boolean flag) {
-        this.showsMultiplicity = flag;
+    public enum MultiplicityStyle {
+        NONE,
+        DEFAULT,
+
+        EDGE,
+        NODE,
+        BOTH,
+    }
+
+    private boolean showImplicitMultiplicity = false;
+    private MultiplicityStyle multiplicityStyle = null;
+    public void setMultiplicityStyle(MultiplicityStyle style) {
+        this.multiplicityStyle = style;
+    }
+
+    protected MultiplicityStyle getDefaultMultiplicityStyle() {
+        return MultiplicityStyle.DEFAULT;
+    }
+
+    private MultiplicityStyle getMultiplicityStyle() {
+        if (multiplicityStyle != null) return multiplicityStyle;
+        boolean em = styleBooleanValue("edgeMultiplicity");
+        boolean nm = styleBooleanValue("nodeMultiplicity");
+        if (em) {
+            if (nm) {
+                this.multiplicityStyle = MultiplicityStyle.BOTH;
+            } else {
+                this.multiplicityStyle = MultiplicityStyle.EDGE;
+            }
+        } else if (nm) {
+            this.multiplicityStyle = MultiplicityStyle.NODE;
+        } else {
+            this.multiplicityStyle = getDefaultMultiplicityStyle();
+        }
+        if (styleBooleanValue("implicitMultiplicity")) {
+            this.showImplicitMultiplicity = true;
+        }
+
+        return multiplicityStyle;
+    }
+
+    protected boolean showsMultiplicity(boolean node) {
+        switch (getMultiplicityStyle()) {
+        case DEFAULT:
+            return !node;
+        case EDGE:
+            return !node;
+        case NODE:
+            return node;
+        case BOTH:
+            return true;
+
+        case NONE:
+        default:
+            return false;
+        }
     }
 
     protected SysML2PlantUMLStyle getStyle() {
@@ -353,42 +407,46 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return addPRelation(src, dest, rel, null);
     }
 
-    private MultiplicityRange getEffectiveMultiplicityRange(Element e) {
+    private MultiplicityRange getMultiplicityRange(Element e) {
         if (!(e instanceof Type)) return null;
         Type typ = (Type) e;
-        Multiplicity m = FeatureUtil.getMultiplicityOf(typ);
-        return FeatureUtil.getMultiplicityRangeOf(m);
+        if (showImplicitMultiplicity) {
+            Multiplicity m = TypeUtil.getMultiplicityOf(typ);
+            return FeatureUtil.getMultiplicityRangeOf(m);
+        } else {
+            Multiplicity m = typ.getMultiplicity();
+            if (m instanceof MultiplicityRange) {
+                return (MultiplicityRange) m;
+            }
+        }
+        return null;
     }
 
-    private void addMultiplicityString(StringBuilder ss, Element e) {
-        if (!showsMultiplicity) return;
-        MultiplicityRange mr = getEffectiveMultiplicityRange(e);
-        if (mr == null) return;
+    protected String getMultiplicityString(Element e) {
+        MultiplicityRange mr = getMultiplicityRange(e);
+        if (mr == null) return null;
 
         String exl = getText(mr.getLowerBound());
         String exu = getText(mr.getUpperBound());
+
         if (exl == null) {
-            if (exu == null) return;
-            ss.append('"');
-            ss.append(quote0Str(exu));
-            ss.append('"');
-            return;
+            if (exu == null) return null;
+            return exu;
         }
         if ((exu == null) || (exl.equals(exu))) {
-            ss.append('"');
-            ss.append(quote0Str(exl));
-            ss.append('"');
-            return;
+            return exl;
         }
-        if ("0".equals(exl) && "*".equals(exu)) {
-            ss.append("\"*\"");
-        } else {
-            ss.append('"');
-            ss.append(quote0Str(exl));
-            ss.append("..");
-            ss.append(quote0Str(exu));
-            ss.append('"');
-        }
+        if ("0".equals(exl) && "*".equals(exu)) return "*";
+        return exl + ".." + exu;
+    }
+
+    private void addMultiplicityStringOnEdge(StringBuilder ss, Element e) {
+        if (!showsMultiplicity(false)) return;
+        String str = getMultiplicityString(e);
+        if (str == null) return;
+        ss.append('"');
+        ss.append(quote0Str(str));
+        ss.append('"');
     }
 
     protected static String getFeatureName(Feature f) {
@@ -661,10 +719,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (pr.rel instanceof Membership) {
             Element dest = pr.getDestElement();
             if (dest != null) {
-                addMultiplicityString(ss, dest);
+                addMultiplicityStringOnEdge(ss, dest);
             }
         } else {
-            addMultiplicityString(ss, pr.rel);
+            addMultiplicityStringOnEdge(ss, pr.rel);
         }
 
         ss.append(destId);
@@ -737,7 +795,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
             this.pRelations = parent.pRelations;
             this.pRelationsSB = parent.pRelationsSB;
             this.s2p = parent.s2p;
-            this.showsMultiplicity = parent.showsMultiplicity;
+            this.multiplicityStyle = parent.multiplicityStyle;
+            this.showImplicitMultiplicity = parent.showImplicitMultiplicity;
         }
     }
 
@@ -770,8 +829,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return ms.toArray(array);
     }
 
-    public static FeatureMembership[] toOwnedFeatureMembershipArray(Feature f) {
-        List<FeatureMembership> fms = f.getOwnedFeatureMembership();
+    public static FeatureMembership[] toOwnedFeatureMembershipArray(Type typ) {
+        List<FeatureMembership> fms = typ.getOwnedFeatureMembership();
         FeatureMembership[] array = new FeatureMembership[fms.size()];
         return fms.toArray(array);
     }

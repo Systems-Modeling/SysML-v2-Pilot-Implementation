@@ -28,7 +28,7 @@ package Test1{
 	--- */
 	classifier A specializes A::B {
 		classifier B {
-			import A::*;
+			public import A::*;
 			//* XPECT scope at B ---
 			   A, A.B, A.B.B, A.B.B.b, A.B.B.b.b, A.B.B.b.b.self, A.B.B.b.b.that,
 			   A.B.B.b.b.that.self, A.B.B.b.self, A.B.B.b.self.that, A.B.B.b.that, A.B.B.b.that.self, A.B.B.self,

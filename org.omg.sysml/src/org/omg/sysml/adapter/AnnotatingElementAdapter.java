@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,11 +19,7 @@
  *******************************************************************************/
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.Annotation;
-import org.omg.sysml.lang.sysml.Relationship;
 
 public class AnnotatingElementAdapter extends ElementAdapter {
 	
@@ -34,25 +30,4 @@ public class AnnotatingElementAdapter extends ElementAdapter {
 	public AnnotatingElement getTarget() {
 		return (AnnotatingElement)super.getTarget();
 	}
-	
-	public static void transformAnnotatingElement(AnnotatingElement annotatingElement) {
-		EList<Annotation> annotations = annotatingElement.getAnnotation();
-		if (annotations.isEmpty()) {
-			Relationship owningRelationship = annotatingElement.getOwningRelationship();
-			if (owningRelationship instanceof Annotation) {
-				annotations.add((Annotation)owningRelationship);
-			} else {
-				annotatingElement.getOwnedRelationship().stream().
-					filter(Annotation.class::isInstance).
-					forEachOrdered(a->((InternalEList<Annotation>)annotations).basicAdd((Annotation)a, null));
-			}
-		}
-	}
-	
-	@Override
-	public void doTransform() {
-		super.doTransform();
-		transformAnnotatingElement(getTarget());
-	}
-
 }

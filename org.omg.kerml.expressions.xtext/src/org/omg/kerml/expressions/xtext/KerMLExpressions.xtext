@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -31,7 +31,7 @@
 grammar org.omg.kerml.expressions.xtext.KerMLExpressions hidden(WS, ML_NOTE, SL_NOTE)
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "https://www.omg.org/spec/SysML/20240201" as SysML
+import "https://www.omg.org/spec/SysML/20250201" as SysML
 
 /* EXPRESSIONS */
 
@@ -200,10 +200,10 @@ MetaCastOperator :
 ;
 
 MetadataReference returns SysML::MetadataAccessExpression :
-	referencedElement = [SysML::Element | QualifiedName]
+	ownedRelationship += ElementReferenceMember
 ;
 
-TypeReferenceMember returns SysML::FeatureMembership :
+TypeReferenceMember returns SysML::ParameterMembership :
 	ownedRelatedElement += TypeReference
 ;
 
@@ -303,12 +303,12 @@ PrimaryExpression returns SysML::Expression :
 	( {SysML::FeatureChainExpression.operand += current} '.' 
 	  ownedRelationship += FeatureChainMember
 	)?
-	( ( {SysML::OperatorExpression.operand += current} 
-	    operator = '#' '(' operand += SequenceExpression ')'
+	( ( {SysML::IndexExpression.operand += current} 
+	    '#' '(' operand += SequenceExpression ')'
 	  | {SysML::OperatorExpression.operand += current} 
 	    operator = '[' operand += SequenceExpression ']'
 	  | {SysML::InvocationExpression.operand += current} '->' 
-	    ownedRelationship += ReferenceTyping 
+	    ownedRelationship += InstantiatedTypeMember 
 	    ( operand += BodyExpression 
 	    | operand += FunctionReferenceExpression 
 	    | ArgumentList
@@ -341,6 +341,10 @@ FeatureChainMember returns SysML::Membership :
 	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
 ;
 
+OwnedFeatureChain returns SysML::Feature :
+	FeatureChain
+;
+
 /* Base Expressions */
 
 BaseExpression returns SysML::Expression :
@@ -349,6 +353,7 @@ BaseExpression returns SysML::Expression :
 	| FeatureReferenceExpression 
 	| MetadataAccessExpression
 	| InvocationExpression 
+	| ConstructorExpression
 	| BodyExpression
 	| '(' SequenceExpression ')'
 ;
@@ -404,22 +409,35 @@ FeatureReferenceMember returns SysML::Membership :
 // Metadata Access Expressions
 
 MetadataAccessExpression returns SysML::MetadataAccessExpression :
-	referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
+	ownedRelationship += ElementReferenceMember '.' 'metadata'
 ;
 
+ElementReferenceMember returns SysML::Membership :
+    memberElement = [SysML::Element | QualifiedName]
+;
+   
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship += OwnedFeatureTyping ArgumentList
+	ownedRelationship += InstantiatedTypeMember ArgumentList
 ;
 
-OwnedFeatureTyping returns SysML::FeatureTyping :
-	  type = [SysML::Type | QualifiedName]
-	| ownedRelatedElement += OwnedFeatureChain
+ConstructorExpression returns SysML::ConstructorExpression:
+    'new' ownedRelationship += InstantiatedTypeMember
+    ownedRelationship += ConstructorResultMember
 ;
 
-OwnedFeatureChain returns SysML::Feature :
-	FeatureChain
+ConstructorResultMember returns SysML::ReturnParameterMembership :
+    ownedRelatedElement += ConstructorResult
+;
+
+ConstructorResult returns SysML::Feature :
+    ArgumentList
+;
+
+InstantiatedTypeMember returns SysML::Membership :
+	  memberElement = [SysML::Type | QualifiedName]
+	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
 ;
 
 // For use in KerML and SysML grammars
@@ -432,11 +450,11 @@ OwnedFeatureChaining returns SysML::FeatureChaining :
 	chainingFeature = [SysML::Feature | QualifiedName]
 ;
 
-fragment ArgumentList returns SysML::Expression :
+fragment ArgumentList returns SysML::Feature :
 	'(' ( PositionalArgumentList | NamedArgumentList )? ')'
 ;
 
-fragment PositionalArgumentList returns SysML::Expression :
+fragment PositionalArgumentList returns SysML::Feature :
 	ownedRelationship += ArgumentMember 
 	( ',' ownedRelationship += ArgumentMember )*
 ;
@@ -449,7 +467,7 @@ Argument returns SysML::Feature :
 	ownedRelationship += ArgumentValue
 ;
 
-fragment NamedArgumentList returns SysML::Expression :
+fragment NamedArgumentList returns SysML::Feature :
 	ownedRelationship += NamedArgumentMember 
 	( ',' ownedRelationship += NamedArgumentMember )*
 ;
@@ -520,12 +538,16 @@ Name:
 	ID | UNRESTRICTED_NAME
 ;
 
+GlobalQualification :
+	'$' '::'
+;
+
 Qualification :
 	( Name '::' )+
 ;
 
 QualifiedName:
-	Qualification? Name
+	GlobalQualification? Qualification? Name
 ;
 	
 /* TERMINALS */

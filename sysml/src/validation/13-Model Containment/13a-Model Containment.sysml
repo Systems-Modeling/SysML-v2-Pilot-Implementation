@@ -1,9 +1,9 @@
 package '13a-Model Containment' {
-	import '2a-Parts Interconnection'::*;
-	import '8-Requirements'::*;
+	private import '2a-Parts Interconnection'::*;
+	private import '8-Requirements'::*;
 	
 	requirement BodyAndInteriorRequirements {
-		import MassLimitationRequirement; 
+		public import MassLimitationRequirement; 
 	}
 	
 	requirement PowerTrainRequirements;
@@ -20,7 +20,7 @@ package '13a-Model Containment' {
 		package 'Vehicle1-Configuration' {			
 			alias 'Sport Sedan' for vehicle1_c1;
 			
-			import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
+			public import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
 		}
 		
 		package 'Vehicle Reference Model' {
@@ -31,31 +31,31 @@ package '13a-Model Containment' {
 			 * used in this way.
 			 */
 		
-			import VehicleA;			
-			import VehicleSubsystems;
+			public import VehicleA;			
+			public import VehicleSubsystems;
 			
 			//*
 			// The following would transitively import all the
 			// members of the VehicleSubsystems package, rather
 			// then importing the package itself.
 			 
-			   import VehicleSubsystems::*;
+			   public import VehicleSubsystems::*;
 			*/
 		}
 		
 		package VehicleSubsystems {
-			import 'Body&Interior';
-			import 'PowerTrain';
+			public import 'Body&Interior';
+			public import 'PowerTrain';
 		}
 		
 		package 'Body&Interior' {
-			import BodyAndInteriorRequirements;			
+			public import BodyAndInteriorRequirements;			
 		}
 		
 		package PowerTrain {
-			import Engine;
-			import Transmission;
-			import PowerTrainRequirements;			
+			public import Engine;
+			public import Transmission;
+			public import PowerTrainRequirements;			
 		}
 	}
 	

@@ -42,6 +42,7 @@ package org.omg.sysml.lang.sysml;
  * ownedMembership->exists(
  *     not oclIsKindOf(OwningMembership) and 
  *     memberElement.oclIsKindOf(Feature))
+ * referent <> null implies referent.featureTarget.mayTimeVary
  * <!-- end-model-doc -->
  *
  * <p>

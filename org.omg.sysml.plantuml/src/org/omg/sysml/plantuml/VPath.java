@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.FlowEnd;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -334,21 +334,22 @@ public class VPath extends VTraverser {
         Feature ref = (Feature) e;
 
         Namespace ns = getCurrentNamespace();
+        if (!(ns instanceof Type)) return null;
+
         if (ns instanceof Feature) {
             Feature tgt = (Feature) ns;
             InheritKey ik = makeInheritKey(tgt);
             if (ik != null) {
                 // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
                 ik = InheritKey.makeIndirect(ik);
-                return InheritKey.findTop(ik, ref);
+                ik = InheritKey.findTop(ik, ref);
+                if (ik != null) return ik;
             }
         }
-        if (ns instanceof Type) {
-            // In case that tgt inherits ref, we need to make an InheritKey for tgt.
-            Type tgt = (Type) ns;
-            return InheritKey.makeTargetKey(tgt, ref);
-        }
-        return null;
+
+        // In case that tgt inherits ref, we need to make an InheritKey for tgt.
+        Type tgt = (Type) ns;
+        return InheritKey.makeTargetKey(tgt, ref);
     }
 
 
@@ -358,7 +359,7 @@ public class VPath extends VTraverser {
            iff : Feature :>> ioTarget: ReferenceUsage;
       }
     */
-    private static Feature getIOTarget(ItemFlowEnd ife) {
+    private static Feature getIOTarget(FlowEnd ife) {
         for (FeatureMembership fm: toOwnedFeatureMembershipArray(ife)) {
             Feature f = fm.getOwnedMemberFeature();
             for (Redefinition rd: f.getOwnedRedefinition()) {
@@ -372,7 +373,7 @@ public class VPath extends VTraverser {
         private final Feature ioTarget;
         private final PC basePC;
 
-        public PCItemFlowEnd(ItemFlowEnd ife, PC basePC, Feature ioTarget) {
+        public PCItemFlowEnd(FlowEnd ife, PC basePC, Feature ioTarget) {
             super(ife, false);
             this.basePC = basePC;
             this.ioTarget = ioTarget;
@@ -531,15 +532,17 @@ public class VPath extends VTraverser {
 
     private String addContextForFeature(Feature f, boolean isRedefinition) {
         PC pc = makeFeaturePC(f, f, isRedefinition);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        // InheritKey ik = makeInheritKey(f);
+        InheritKey ik = makeInheritKey(f);
+        if (isRedefinition) {
+            ik = InheritKey.makeInheritKeyForRedefiningTarget(ik, f, showInherited());
+        }
         if (createRefPC(ik, pc) == null) return null;
         return "";
     }
 
     private String addContextForEnd(Feature f) {
-        if (f instanceof ItemFlowEnd) {
-            return addContextForItemFlowEnd((ItemFlowEnd) f);
+        if (f instanceof FlowEnd) {
+            return addContextForItemFlowEnd((FlowEnd) f);
         }
         PC pc = makeEndFeaturePC(f);
         InheritKey ik = makeInheritKeyForReferer(pc);
@@ -547,14 +550,7 @@ public class VPath extends VTraverser {
         return "";
     }
 
-    private String addContextForTransitionUsageEnd(Feature tu, Feature end) {
-        PC pc = makeEndFeaturePC(end);
-        InheritKey ik = makeInheritKey(tu);
-        if (createRefPC(ik, pc) == null) return null;
-        return "";
-    }
-
-    private String addContextForItemFlowEnd(ItemFlowEnd ife) {
+    private String addContextForItemFlowEnd(FlowEnd ife) {
         PC pc = makeEndFeaturePC(ife);
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
@@ -646,6 +642,7 @@ public class VPath extends VTraverser {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();
             if (g == null) continue;
+            if (isHidden(g)) continue;
             if (g instanceof Feature) {
                 addContextForFeature((Feature) g, sp instanceof Redefinition);
             }
@@ -668,7 +665,7 @@ public class VPath extends VTraverser {
     }
 
     @Override
-    public String caseItemFlowEnd(ItemFlowEnd ife) {
+    public String caseFlowEnd(FlowEnd ife) {
         return addContextForItemFlowEnd(ife);
     }
 
@@ -685,9 +682,6 @@ public class VPath extends VTraverser {
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
         Succession su = tu.getSuccession();
-        for (Feature end: su.getConnectorEnd()) {
-            addContextForTransitionUsageEnd(tu, end);
-        }
-        return "";
+        return caseConnector(su);
     }
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,6 +36,8 @@ public class PortUsageAdapter extends UsageAdapter {
 	public PortUsage getTarget() {
 		return (PortUsage)super.getTarget();
 	}
+	
+	// Implicit Generalization
 
 	@Override
 	protected String getDefaultSupertype() {
@@ -49,7 +51,7 @@ public class PortUsageAdapter extends UsageAdapter {
 	public boolean isOwnedPort() {
 		PortUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);		
+		return owningType instanceof PartDefinition || owningType instanceof PartUsage;		
 	}
 	
 	public boolean isSubport() {
@@ -58,10 +60,11 @@ public class PortUsageAdapter extends UsageAdapter {
 		return target.isComposite() && (owningType instanceof PortDefinition || owningType instanceof PortUsage);
 	}
 	
+	// Transformation
+	
 	@Override
-	public void doTransform() {
-		super.doTransform();
-		addDefaultMultiplicity();
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
 	}
 	
 }

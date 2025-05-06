@@ -40,8 +40,8 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package AnalysisAnnotation {
-	import ScalarValues::Real;
-	import AnalysisTooling::*;
+	public import ScalarValues::Real;
+	public import AnalysisTooling::*;
 	
 	action def ComputeDynamics {
 		metadata ToolExecution {

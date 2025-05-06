@@ -4,9 +4,9 @@ package TimingForStructuresModelToBeExecuted1 {
 	/* 
 	 */
 
-	import WithoutConnectorsModelToBeExecuted::Wheel;
-	import WithoutConnectorsModelToBeExecuted::BikeFork;
-	import Occurrences::Occurrence;
+	private import WithoutConnectorsModelToBeExecuted::Wheel;
+	private import WithoutConnectorsModelToBeExecuted::BikeFork;
+	private import Occurrences::Occurrence;
 
 	struct Bicycle {
 		feature rollsOn : Wheel [2] subsets timeCoincidentOccurrences;
@@ -19,10 +19,10 @@ package TimingForStructuresExecution1 {
 	/* 
 	 */
 
-	import Atoms::*;
-	import TimingForStructuresModelToBeExecuted1::*;
-	import OneToOneConnectorsExecution::MyWheel;
-	import OneToOneConnectorsExecution::MyBikeFork;
+	private import Atoms::*;
+	private import TimingForStructuresModelToBeExecuted1::*;
+	private import OneToOneConnectorsExecution::MyWheel;
+	private import OneToOneConnectorsExecution::MyBikeFork;
 
 	struct MyBikeTimeCoincident unions MyWheel, MyBikeFork, MyBike;
 
@@ -41,16 +41,16 @@ package TimingForStructuresModelToBeExecuted2 {
 	/* 
 	 */
 
-	import WithoutConnectorsModelToBeExecuted::Wheel;
-	import WithoutConnectorsModelToBeExecuted::BikeFork;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensDuring;
+	private import WithoutConnectorsModelToBeExecuted::Wheel;
+	private import WithoutConnectorsModelToBeExecuted::BikeFork;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensDuring;
 
 	struct Bicycle {
 		feature rollsOn : Wheel [2];
 		feature holdsWheel : BikeFork [2];
 		feature allParts : Occurrence unions rollsOn, holdsWheel;
-		connector b_during_ap : HappensDuring from self [1] to allParts [*];
+		connector b_during_ap : HappensDuring from [1] self to [*] allParts;
 	}
 }
 
@@ -59,15 +59,16 @@ package TimingForStructuresExecution2 {
 	/* 
 	 */
 
-	import Atoms::*;
-	import TimingForStructuresModelToBeExecuted2::*;
-	import Occurrences::HappensDuring;
-	import OneToOneConnectorsExecution::MyWheel1;
-	import OneToOneConnectorsExecution::MyWheel2;
-	import OneToOneConnectorsExecution::MyWheel;
-	import OneToOneConnectorsExecution::MyBikeFork1;
-	import OneToOneConnectorsExecution::MyBikeFork2;
-	import OneToOneConnectorsExecution::MyBikeFork;
+	private import Atoms::*;
+	private import TimingForStructuresModelToBeExecuted2::*;
+	private import Occurrences::HappensDuring;
+	private import OneToOneConnectorsExecution::MyWheel;
+	private import OneToOneConnectorsExecution::MyBikeFork;
+	
+	struct MyWheel1 specializes OneToOneConnectorsExecution::MyWheel1;
+	struct MyWheel2 specializes OneToOneConnectorsExecution::MyWheel2;
+    struct MyBikeFork1 specializes OneToOneConnectorsExecution::MyBikeFork1;
+    struct MyBikeFork2 specializes OneToOneConnectorsExecution::MyBikeFork2;
 
 	#atom
 	assoc MyBike_During_Wheel1_Link specializes HappensDuring {
@@ -104,7 +105,7 @@ package TimingForStructuresExecution2 {
 
 		feature redefines self : MyBike;
 		connector redefines b_during_ap : MyBike_During_Parts_Link [4]
-			from self [1] to allParts [*];
+			from [1] self to [*] allParts;
 	}
 }
 
@@ -113,17 +114,17 @@ package TimingForStructuresModelToBeExecuted3 {
 	/* 
 	 */
 
-	import WithoutConnectorsModelToBeExecuted::Wheel;
-	import WithoutConnectorsModelToBeExecuted::BikeFork;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensWhile;
+	private import WithoutConnectorsModelToBeExecuted::Wheel;
+	private import WithoutConnectorsModelToBeExecuted::BikeFork;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
 
 	struct Bicycle {
 		feature rollsOn : Wheel [2];
 		feature holdsWheel : BikeFork [2];
 		feature allParts : Occurrence unions rollsOn, holdsWheel;
 		feature redefines endShot : Bicycle;
-		connector be_while_pe : HappensWhile from endShot [1] to endShot.allParts.endShot[*];
+		connector be_while_pe : HappensWhile from [1] endShot to [*] endShot.allParts.endShot;
 	}
 }
 
@@ -132,12 +133,12 @@ package TimingForStructuresExecution3 {
 	/* 
 	 */
 
-	import Atoms::*;
-	import TimingForStructuresModelToBeExecuted3::*;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensWhile;
-	import WithoutConnectorsModelToBeExecuted::Wheel;
-	import WithoutConnectorsModelToBeExecuted::BikeFork;
+	private import Atoms::*;
+	private import TimingForStructuresModelToBeExecuted3::*;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
+	private import WithoutConnectorsModelToBeExecuted::Wheel;
+	private import WithoutConnectorsModelToBeExecuted::BikeFork;
 
 	  /* End atoms */
 	#atom
@@ -195,6 +196,6 @@ package TimingForStructuresExecution3 {
 	struct MyBike specializes Bicycle {
 		feature redefines endShot : MyBikeEnd;
 		connector redefines be_while_pe : MyBikeEnd_While_PartsEnd_Link [4]
-			from endShot [1] to endShot.allParts.endShot[*];  
+			from [1] endShot to [*] endShot.allParts.endShot;  
 	}
 }

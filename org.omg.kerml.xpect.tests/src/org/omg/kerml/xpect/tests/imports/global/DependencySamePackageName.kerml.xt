@@ -26,7 +26,7 @@ package test{
 	    SamePackage, SamePackage, 
 	    SamePackage.container, SamePackage.container, SamePackage.container.A,	SamePackage.container.B, 
 	--- */
-	import SamePackage::container;
+	public import SamePackage::container;
 	
 }
 //*

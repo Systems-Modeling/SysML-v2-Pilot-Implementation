@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
 import org.omg.sysml.util.NamespaceUtil;
 
@@ -43,9 +42,10 @@ public class Namespace_visibleMemberships_InvocationDelegate extends BasicInvoca
 		NamespaceImpl self = (NamespaceImpl) target;
 		@SuppressWarnings("unchecked")
 		EList<Namespace> excluded = (EList<Namespace>) arguments.get(0);
+		boolean isRecursive = (boolean) arguments.get(1);
 		boolean includeAll = (boolean) arguments.get(2);
 		
-		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), new HashSet<Type>(), includeAll);
+		return NamespaceUtil.getVisibleMembershipsFor(self, new HashSet<>(excluded), isRecursive, includeAll);
 	}
 
 }

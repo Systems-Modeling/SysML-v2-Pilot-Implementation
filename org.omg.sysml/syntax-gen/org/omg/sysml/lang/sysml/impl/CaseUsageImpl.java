@@ -132,11 +132,11 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setObjectiveRequirement(RequirementUsage newObjectiveRequirement) {
-		throw new UnsupportedOperationException();
+		OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newObjectiveRequirement);
 	}
 
 	/**

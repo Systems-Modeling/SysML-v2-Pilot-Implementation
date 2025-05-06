@@ -42,7 +42,7 @@ package RecursiveImport {
     
   }
   
-  import P::**;
+  public import P::**;
   	x1: X1;
 	y: Y;
 	z: Z;

@@ -35,24 +35,6 @@ Workflow {
 			}
 		}
 		
-//		language = StandardLanguage {
-//			name = "${projectName}.xtext.SysML"
-//			fileExtensions = "sysml"
-//		    referencedResource = "${genModel}"
-//
-//			serializer = {
-//				generateStub = false
-//			}
-//			validator = {
-//				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-//				// Generates checks for @Deprecated grammar annotations, an IssueProvider and a corresponding PropertyPage
-//				// generateDeprecationValidation = true
-//			}
-//			junitSupport = {
-//				junitVersion = "5"
-//			}
-//		}
-
 	    language = XtextGeneratorLanguage {
 			name = "${projectName}.xtext.SysML"
 			fileExtensions = "sysml"
@@ -63,6 +45,11 @@ Workflow {
 	        fragment = serializer.SerializerFragment2 {}
 	        fragment = resourceFactory.ResourceFactoryFragment2 {}
 	        fragment = NoContentAssistAntlrGeneratorFragment {}
+	        fragment = InternalParserSplitterFragment {
+	        	originalClassName = "InternalSysMLParser"
+	        	baseName = "${projectName}.xtext"
+	        	count = 18
+	        }
 	        fragment = validation.ValidatorFragment2 {}
 	        fragment = scoping.ImportNamespacesScopingFragment2 {}
 	        fragment = exporting.QualifiedNamesFragment2 {}

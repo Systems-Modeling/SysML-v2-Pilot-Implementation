@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -224,34 +225,40 @@ public class SysML2PlantUMLText {
         return "";
     }
 
+    private static StringBuilder addMetadataUsageName(StringBuilder sb, String mName) {
+        if (sb == null) {
+            sb = new StringBuilder();
+            sb.append("<<");
+        } else {
+            sb.append(' ');
+        }
+        sb.append('#');
+        sb.append(mName);
+        return sb;
+    }
+
     public static String getMetadataUsageName(Element e) {
         StringBuilder sb = null;
         for (Element oe: e.getOwnedElement()) {
-            if (oe instanceof MetadataUsage) {
-                MetadataUsage mu = (MetadataUsage) oe;
-                List<FeatureTyping> tt = mu.getOwnedTyping();
-                for (FeatureTyping ft: tt) {
-                    if (ft == null) continue;
-                    Type typ = ft.getType();
-                    if (typ == null) continue;
-                    String mName = typ.getDeclaredShortName();
+            if (!(oe instanceof MetadataUsage)) continue;
+            MetadataUsage mu = (MetadataUsage) oe;
+
+            if (!VMetadata.isEmptyMetadata(mu)) continue; /// Only empty MetadataUsage is rendered with #-name.
+            List<FeatureTyping> tt = mu.getOwnedTyping();
+            for (FeatureTyping ft: tt) {
+                if (ft == null) continue;
+                Type typ = ft.getType();
+                if (typ == null) continue;
+                String mName = typ.getDeclaredShortName();
+                if (mName == null || mName.isEmpty()) {
+                    mName = typ.getDeclaredName();
                     if (mName == null || mName.isEmpty()) {
-                        mName = typ.getDeclaredName();
-                        if (mName == null || mName.isEmpty()) {
-                            continue;
-                        }
+                        continue;
                     }
-                    if (sb == null) {
-                        sb = new StringBuilder();
-                        sb.append("<<");
-                    } else {
-                        sb.append(' ');
-                    }
-                    sb.append('#');
-                    sb.append(mName);
                 }
+                sb = addMetadataUsageName(sb, mName);
             }
-            if (sb != null) break; // Do not show more than one metadata.
+            //if (sb != null) break; // Do not show more than one metadata.
         }
         if (sb == null) return null;
         sb.append(">>");
@@ -264,7 +271,8 @@ public class SysML2PlantUMLText {
             if (!u.isVariation()) return;
         } else if (typ instanceof Definition) {
             Definition d = (Definition) typ;
-            if (!d.isVariation()) return;
+            if (d instanceof EnumerationDefinition // Do not render <<variation>> for EnumerationDefinition
+            	|| !d.isVariation()) return;
         } else {
             return;
         }
@@ -485,6 +493,8 @@ public class SysML2PlantUMLText {
         }
         vpath.init();
 
+        boolean exceeds = exceedsTheLimit();
+
         numVisits = 0;
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
@@ -494,6 +504,12 @@ public class SysML2PlantUMLText {
             }
         }
         sb.append(v.getString());
+
+        if (exceeds || exceedsTheLimit()) {
+            sb.insert(0, "title EXCEEDS THE LIMIT!!!\\nSince it exceeds the maximum number of model elements to be processed,\\n the visualization result may be incomplete.\n");
+            sb.insert(0, "skinparam titleBorderThickness 2\nskinparam titleBorderColor red\n");
+        }
+        
         return sb.toString();
     }
 
@@ -526,9 +542,7 @@ public class SysML2PlantUMLText {
 
         Integer newId(Element e) {
             Integer ii = idCounter++;
-            if (!isInherited()) {
-                idMap.put(e, ii);
-            }
+            idMap.put(e, ii);
             if (vpath != null) {
                 vpath.setId(e, ii);
             }
@@ -615,8 +629,12 @@ public class SysML2PlantUMLText {
         numVisits++;
     }
 
+    private boolean exceedsTheLimit() {
+        return numVisits > MAX_VISITS;
+    }
+
     boolean pushNamespace(Namespace ns) {
-        if (numVisits > MAX_VISITS) return false;
+        if (exceedsTheLimit()) return false;
         if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
         return true;

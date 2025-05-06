@@ -17,13 +17,13 @@ END_SETUP
 package Test {
 	package Circular {
 		classifier A { 
-			import A::*;
+			public import A::*;
 			feature a: A;
 		}
 
 		alias Circ for Circular;
 		package P {
-			import Circular::*;
+			public import Circular::*;
 		}
 		
 		classifier B :> B;		

@@ -19,8 +19,8 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::c_Public::c_public ;
-	import VisibilityPackage::c_Public;
+	public import VisibilityPackage::c_Public::c_public ;
+	public import VisibilityPackage::c_Public;
 	classifier Try{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		// The below pass the junit test but if change scope at VisibilityPackage.c_Private get an Error "Reference type is not visible in this scope." 

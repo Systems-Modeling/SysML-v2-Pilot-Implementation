@@ -19,7 +19,7 @@ END_SETUP
 package Test {
 
 	package Test0 {
-		import Test2::VP_Id::*;
+		public import Test2::VP_Id::*;
 		//XPECT linkedName at VVP_Id::VVVP_Id--> Test.Test2.VP.VVP.VVVP
 		classifier A specializes VVP_Id::VVVP_Id;
 		//XPECT linkedName at VVP::VVVP_Id--> Test.Test2.VP.VVP.VVVP
@@ -31,7 +31,7 @@ package Test {
 		
 	}
 	package Test1 {
-		import Test2::VP_Id::*;
+		public import Test2::VP_Id::*;
 		//XPECT linkedName at VVP_Id --> Test.Test2.VP.VVP
 		classifier A specializes VVP_Id;
 	}

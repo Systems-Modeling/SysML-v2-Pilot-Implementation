@@ -40,17 +40,17 @@ export function defineSysMLv2Mode(): void {
             keywords: [
                 "about", "abstract", "accept", "action", "actor", "after", "alias", "all", "allocate", "allocation",
                 "analysis", "and", "as", "assert", "assign", "assume", "at", "attribute", "bind", "binding", "by",
-                "calc", "case", "comment", "concern", "connect", "connection", "constraint", "decide", "def", "default",
-                "defined", "dependency", "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit",
-                "exit", "expose", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if", "implies",
-                "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join", "language",
-                "library", "locale", "loop", "merge", "message", "meta", "metadata", "nonunique", "not", "objective",
-                "occurrence", "of", "or", "ordered", "out", "package", "parallel", "part", "perform", "port", "private",
-                "protected", "public", "readonly", "redefines", "ref", "references", "render", "rendering", "rep",
-                "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes", "stakeholder",
-                "standard", "state", "subject", "subsets", "succession", "then", "timeslice", "to", "transition",
-                "until", "use", "variant", "variation", "verification", "verify", "via", "view", "viewpoint", "when",
-                "while", "xor"
+                "calc", "case", "comment", "concern", "connect", "connection", "constant", "constraint", "crosses",
+                "decide", "def", "default", "defined", "dependency", "derived", "do", "doc", "else", "end", "entry",
+                "enum", "event", "exhibit", "exit", "expose", "filter", "first", "flow", "for", "fork", "frame", "from",
+                "hastype", "if", "implies", "import", "in", "include", "individual", "inout", "interface", "istype",
+                "item", "join", "language", "library", "locale", "loop", "merge", "message", "meta", "metadata", "new",
+                "nonunique", "not", "objective", "occurrence", "of", "or", "ordered", "out", "package", "parallel",
+                "part", "perform", "port", "private", "protected", "public", "redefines", "ref", "references", "render",
+                "rendering", "rep", "require", "requirement", "return", "satisfy", "send", "snapshot", "specializes",
+                "stakeholder", "standard", "state", "subject", "subsets", "succession", "terminate", "then",
+                "timeslice", "to", "transition", "until", "use", "variant", "variation", "verification", "verify",
+                "via", "view", "viewpoint", "when", "while", "xor"
             ].reduce(f_wordify, {}),
             defKeywords: [
                 "action", "allocation", "analysis", "attribute", "binding", "calc", "case", "comment", "concern",

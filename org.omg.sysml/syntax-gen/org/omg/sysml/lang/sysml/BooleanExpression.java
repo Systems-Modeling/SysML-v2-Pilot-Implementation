@@ -61,9 +61,9 @@ public interface BooleanExpression extends Expression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Predicate</code> that types this <code>BooleanExpression</code>.</p>
 	 * <p>The Predicate that types the Expression.</p>
 	 * 
+	 * <p>The <code>Predicate</code> that types this <code>BooleanExpression</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Predicate</em>' reference.
 	 * @see #setPredicate(Predicate)

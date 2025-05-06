@@ -47,8 +47,9 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -63,7 +64,7 @@ import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
+import org.omg.sysml.lang.sysml.SuccessionFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -189,7 +190,7 @@ public class VCompartment extends VStructure {
     }
     
     @Override
-    public String caseItemFlow(ItemFlow itf) {
+    public String caseFlow(Flow itf) {
     	addEntry(itf);
     	return "";
     }
@@ -282,7 +283,7 @@ public class VCompartment extends VStructure {
     @Override
     public String caseOwningMembership(OwningMembership m) {
         Element e = m.getOwnedMemberElement();
-        if (e instanceof Documentation) {
+        if ((e instanceof Documentation) ||  (e instanceof MetadataUsage)) {
             return visitMembership(m);
         }
         rec(m, e, false);
@@ -375,8 +376,8 @@ public class VCompartment extends VStructure {
         if (ends.size() == 2) {
             Feature f1 = ends.get(0);
             Feature f2 = ends.get(1);
-            if (c instanceof ItemFlow) {
-                ItemFlow itf = (ItemFlow) c;
+            if (c instanceof Flow) {
+                Flow itf = (Flow) c;
                 String desc = itemFlowDesc(itf);
                 if (desc != null) {
                     if (hasPrefix) {
@@ -390,7 +391,7 @@ public class VCompartment extends VStructure {
             if (hasPrefix) {
                 if (c instanceof BindingConnector) {
                     append(" bind ");
-                } else if (c instanceof ItemFlow) {
+                } else if (c instanceof Flow) {
                     append(" from ");
                 } else if (c instanceof Succession) {
                     append(" first ");
@@ -402,7 +403,7 @@ public class VCompartment extends VStructure {
             if (c instanceof BindingConnector) {
                 append(" = ");
             } else if ((c instanceof Succession)
-                       && !(c instanceof SuccessionItemFlow)) {
+                       && !(c instanceof SuccessionFlow)) {
                 append(" then ");
             } else {
                 append(" to ");
@@ -423,6 +424,14 @@ public class VCompartment extends VStructure {
                 addEnd(end);
             }
         }
+    }
+
+    private boolean addMetadataUsage(MetadataUsage mu) {
+        VMetadata vm = getVMetadata();
+        String text = vm.getMetadataFeatureText(mu, 0);
+        if (text == null) return false;
+        append(text);
+        return true;
     }
 
     private boolean appendFeatureText(Feature f, String toBeRemoved) {
@@ -468,6 +477,8 @@ public class VCompartment extends VStructure {
                 append(" }");
                 addEvaluatedResults(ce.f);
             }
+        } else if (ce.f instanceof MetadataUsage) {
+            return addMetadataUsage((MetadataUsage) ce.f);
         } else if (getFeatureName(ce.f) == null) {
             addAnonymouseFeatureText(ce.f);
         } else {
@@ -626,6 +637,14 @@ public class VCompartment extends VStructure {
     public String caseDocumentation(Documentation doc) {
         if (addDocumentation(doc)) return "";
         return null;
+    }
+
+    @Override
+    public String caseMetadataUsage(MetadataUsage mu) {
+        VMetadata vm = getVMetadata();
+        if (vm.isHidden(mu)) return "";
+        if (addEntry(mu, true) == null) return null;
+        return "";
     }
     
 }

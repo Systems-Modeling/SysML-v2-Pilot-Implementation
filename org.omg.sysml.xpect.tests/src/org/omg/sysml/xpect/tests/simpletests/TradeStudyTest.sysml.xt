@@ -54,7 +54,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package TradeStudyTest {
-	import TradeStudies::*;
+	public import TradeStudies::*;
 	
 	part def Engine;
 	part engine1: Engine;

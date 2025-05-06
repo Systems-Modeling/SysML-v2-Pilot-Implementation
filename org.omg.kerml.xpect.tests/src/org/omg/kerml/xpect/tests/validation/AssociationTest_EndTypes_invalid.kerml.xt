@@ -1,0 +1,45 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Objects.kerml"}
+		File {from ="/library/Performances.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
+				File {from ="/library/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package AssociationTest_EndTypes_invalid {
+	class C1;	
+	class C2;
+	class C3 specializes C1;
+	
+	assoc A1 {
+		end x : C1;
+		// XPECT errors --> "An association end must have exactly one type" at "end y : C1, C2;"
+		end y : C1, C2;
+	}
+	
+	assoc A2 specializes A1 {
+		// XPECT errors --> "An association end must have exactly one type" at "end x : C2;"
+		end x : C2;
+	}
+	
+	assoc A3 specializes A1 {
+		end x : C3;
+	}
+	
+}

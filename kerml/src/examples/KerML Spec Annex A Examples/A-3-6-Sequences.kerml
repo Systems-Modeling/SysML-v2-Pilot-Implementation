@@ -7,9 +7,9 @@ package SequencesModelToBeExecuted {
 	behavior Manufacture {
 		step paint : Paint [1];
 		step dry : Dry [*];
-		succession p_before_d first paint [1] then dry [1];
+		succession p_before_d first [1] paint then [1] dry;
 		step ship : Ship [*];
-		succession d_before_s first dry [1] then ship [1];
+		succession d_before_s first [1] dry then [1] ship;
 	}
 	behavior Paint;
 	behavior Dry;
@@ -21,10 +21,10 @@ package SequencesExecution {
 	/* 
 	 */
 
-	import Atoms::*;
-	import SequencesModelToBeExecuted::*;
-	import Occurrences::Occurrence;
-	import Occurrences::HappensBefore;
+	private import Atoms::*;
+	private import SequencesModelToBeExecuted::*;
+	private import Occurrences::Occurrence;
+	private import Occurrences::HappensBefore;
 
 	#atom
 	behavior MyPaint specializes Paint;

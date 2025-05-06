@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,12 +43,14 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -66,53 +67,79 @@ public class TypeUtil {
 	
 	// Inheritance
 	
-	public static EList<Membership> getMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getMembership(excludedNamespaces, excludedTypes, includeProtected);
+	public static EList<Membership> getNonPrivateMembershipFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
-	public static EList<Membership> getNonPrivateMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected);
+	public static void addNonPrivateMembershipFor(Type type, EList<Membership> inheritedMemberships, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		getTypeAdapter(type).addNonPrivateMembership(inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 	}
 
-	public static EList<Membership> getInheritedMembershipFor(Type type, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		return getTypeAdapter(type).getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected);
-	}
-
-	// Caching
-	
-	public static EList<Membership> cacheInheritedMembershipOf(Type type, Supplier<EList<Membership>> supplier) {	
-		TypeAdapter adapter = getTypeAdapter(type);
-		EList<Membership> membership = adapter.getInheritedMembership();
-		return membership == null? adapter.setInheritedMembership(supplier.get()): membership;
+	public static EList<Membership> getInheritableMembershipsFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
 	}
 	
+	public static EList<Membership> getInheritedMembershipsFor(Type type, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		return getTypeAdapter(type).getInheritedMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+	}
+	
+	public static EList<Membership> getInheritedMembershipOf(Type type) {
+		return getTypeAdapter(type).getInheritedMembership();
+	}
+	
+	public static void removeRedefinedFeaturesFor(Type type, List<Membership> memberships) {
+		getTypeAdapter(type).removeRedefinedFeatures(memberships);
+	}
+	
+	public static Collection<Feature> getAllFeaturesRedefinedBy(Type type) {
+		return type.getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
+				collect(Collectors.toSet());
+	}
+	
+	public static List<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+		return type.getOwnedFeature().stream().
+				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
+				toList();
+	}
+
 	// Supertypes
 	
 	public static List<Type> getSupertypesOf(Type type) {
-		return getSupertypesOf(type, null);
+		return getSupertypesOf(type, false);
 	}
 	
-	public static List<Type> getSupertypesOf(Type type, Element skip) {
+	public static List<Type> getSupertypesOf(Type type, boolean excludeImplied) {
+		return getSupertypesOf(type, excludeImplied, null);
+	}
+	
+	public static List<Type> getSupertypesOf(Type type, boolean excludeImplied, Element skip) {
 		List<Type> supertypes = new ArrayList<>();
 		type.getOwnedSpecialization()
 			.stream()
 			.filter(spec -> spec != skip)
 			.map(Specialization::getGeneral)
 			.forEachOrdered(supertypes::add);
-		supertypes.addAll(getImplicitGeneralTypesFor(type));
+		if (!excludeImplied) {
+			supertypes.addAll(getImplicitGeneralTypesFor(type));
+		}
 		return supertypes;
 	}
 	
 	public static List<Type> getGeneralTypesOf(Type type) {
-		return getGeneralTypesOf(type, null);
+		return getGeneralTypesOf(type, false);
+	}
+
+	public static List<Type> getGeneralTypesOf(Type type, boolean excludeImplied) {
+		return getGeneralTypesOf(type, excludeImplied, null);
 	}
 
 	/**
 	 * Get the immediate general types of the given type. If the type is a chained Feature,
 	 * then its last chaining Feature is included, for the purposes of inheritance.
 	 */
-	public static List<Type> getGeneralTypesOf(Type type, Element skip) {
-		List<Type> generalTypes = getSupertypesOf(type);
+	public static List<Type> getGeneralTypesOf(Type type, boolean excludeImplied, Element skip) {
+		List<Type> generalTypes = getSupertypesOf(type, excludeImplied);
 		if (type instanceof Feature) {
 			EList<FeatureChaining> featureChainings = ((Feature)type).getOwnedFeatureChaining();
 			if (!featureChainings.isEmpty() && !featureChainings.contains(skip)) {
@@ -126,27 +153,48 @@ public class TypeUtil {
 		return generalTypes;
 	}
 
+	@Deprecated
 	public static boolean conforms(Type subtype, Type supertype) {
-		return conforms(subtype, supertype, new HashSet<>());
+		return specializes(subtype, supertype);
+	}
+	
+	public static boolean specializes(Type subtype, Type supertype) {
+		return specializes(subtype, supertype, new HashSet<>());
 	}
 	
 	// Note: Generalizations are allowed to be cyclic.
-	public static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
+	public static boolean specializes(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
 		} else if (subtype != null) {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && conforms(originalType, supertype);
+				return !visited.contains(originalType) && specializes(originalType, supertype);
 			} else {
 				return getGeneralTypesOf(subtype).stream().
 						anyMatch(type->!visited.contains(type) && 
-								conforms(type, supertype, visited));
+								specializes(type, supertype, visited));
 			}
 		} else {
 			return false;
 		}
+	}
+	
+	public static boolean isCompatible(Type subtype, Type supertype) {
+		if (specializes(subtype, supertype)) {
+			return true;
+		} else if (subtype instanceof Feature && supertype instanceof Feature &&
+				   (subtype.getOwnedFeature().isEmpty() || supertype.getOwnedFeature().isEmpty())) {
+			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
+			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
+			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
+//				 return FeatureUtil.canAccess((Feature)subtype, (Feature)supertype);
+				return ((Feature)subtype).getFeaturingType().stream().anyMatch(featuringType-> 
+					((Feature)supertype).isFeaturedWithin(featuringType));
+			}
+		}
+		return false;
 	}
 	
 	// Features
@@ -199,7 +247,7 @@ public class TypeUtil {
 		parameters.removeIf(FeatureUtil::isResultParameter);
 		int n = parameters.size();
 		Feature resultParameter = getOwnedResultParameterOf(type);
-		for (Type general: TypeUtil.getGeneralTypesOf(type, skip)) {
+		for (Type general: TypeUtil.getGeneralTypesOf(type, false, skip)) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = getAllParametersOf(general, visited, skip);
 				if (resultParameter == null) {
@@ -278,6 +326,28 @@ public class TypeUtil {
 		}		
 	}
 	
+	public static Collection<ResultExpressionMembership> getOwnedResultExpressionMembershipsOf(Type type) {
+		return type.getOwnedMembership().stream().
+				filter(ResultExpressionMembership.class::isInstance).
+				map(ResultExpressionMembership.class::cast).toList();
+	}
+	
+	public static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type) {
+		return getResultExpressionMembershipsOf(type, new HashSet<>());
+	}
+	
+	private static Set<ResultExpressionMembership> getResultExpressionMembershipsOf(Type type, Set<Type> visited) {
+		visited.add(type);
+		getTypeAdapter(type).addAdditionalMembers();
+		Set<ResultExpressionMembership> resultExpressions = new HashSet<>(getOwnedResultExpressionMembershipsOf(type));
+		for (Type general: getSupertypesOf(type)) {
+			if (general != null && !visited.contains(general)) {
+				resultExpressions.addAll(getResultExpressionMembershipsOf(general, visited));
+			}
+		}
+		return resultExpressions;
+	}
+
 	// Membership
 
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {
@@ -296,6 +366,11 @@ public class TypeUtil {
 
 	public static <T extends Membership> Feature getFeatureByMembershipIn(Type type, Class<T> kind) {
 		return getFeaturesByMembershipIn(type, kind).findFirst().orElse(null);
+	}
+
+	public static <M extends Membership, E extends Element> void addFeaturesByMembership(Type type, 
+			Class<M> kind, Class<E> elementKind, List<E> list) {
+		getFeaturesByMembershipIn(type, kind).map(elementKind::cast).forEachOrdered(list::add);
 	}
 
 	public static <T extends Membership> Stream<Feature> getOwnedFeaturesByMembershipIn(Type type, Class<T> kind) {
@@ -395,6 +470,9 @@ public class TypeUtil {
 			newSpecialization.setIsImplied(true);
 			newSpecialization.setGeneral(general);
 			newSpecialization.setSpecific(type);
+			if (general.getOwningRelationship() == null) {
+				newSpecialization.getOwnedRelatedElement().add(general);
+			}
 			type.getOwnedRelationship().add(newSpecialization);			
 		});
 		adapter.cleanImplicitGeneralTypes();
@@ -430,30 +508,6 @@ public class TypeUtil {
 		}
 	}
 	
-	// Relevant features
-	
-	public static List<? extends Feature> getRelevantFeaturesOf(Type type) {
-		return getTypeAdapter(type).getRelevantFeatures();
-	}
-	
-	/**
-	 * Get the non-parameter abstract Features. (For use with Behaviors.)
-	 */
-	public static List<Feature> getNonParameterAbstractFeaturesFor(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(feature -> !FeatureUtil.isParameter(feature) && feature.isAbstract()).
-				collect(Collectors.toList());
-	}
-	
-	/**
-	 * Get ItemFeatures. (For use with Steps.)
-	 */
-	public static List<? extends Feature> getItemFeaturesOf(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(ItemFeature.class::isInstance).
-				collect(Collectors.toList());
-	}
-
 	// Associations
 
 	public static Type getSourceTypeOf(Association association) {
@@ -468,6 +522,45 @@ public class TypeUtil {
 		}
 	}
 	
+	// Multiplicity
+
+	public static void addMultiplicityTo(Type type) {
+		EList<Membership> ownedMemberships = type.getOwnedMembership();
+		if (!ownedMemberships.stream().
+				map(Membership::getMemberElement).
+				anyMatch(Multiplicity.class::isInstance)) {
+			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
+			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
+			membership.setOwnedMemberElement(multiplicity);
+			type.getOwnedRelationship().add(membership);
+		}
+	}
+	
+	public static Multiplicity getMultiplicityOf(Type type) {
+		List<Multiplicity> multiplicities = getMultiplicitiesOf(type, new HashSet<>());
+		return multiplicities.isEmpty()? null: multiplicities.get(0);
+	}
+
+	public static List<Multiplicity> getMultiplicitiesOf(Type type) {
+		return getMultiplicitiesOf(type, new HashSet<>());
+	}
+
+	public static List<Multiplicity> getMultiplicitiesOf(Type type, Set<Type> visited) {
+		Multiplicity multiplicity = type.getMultiplicity();
+		if (multiplicity != null) {
+			return Collections.singletonList(multiplicity);
+		} else {
+			List<Multiplicity> multiplicities = new ArrayList<>();
+			visited.add(type);
+			for (Type general: getGeneralTypesOf(type)){
+				if (general != null && !visited.contains(general)) { 
+					multiplicities.addAll(getMultiplicitiesOf(general, visited));
+				}
+			}
+			return multiplicities;
+		}
+	}
+
 	// Individuals
 	
 	public static boolean isIndividual(Type type) {

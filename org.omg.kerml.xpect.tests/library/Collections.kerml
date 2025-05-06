@@ -90,13 +90,14 @@ standard library package Collections {
 		 */
 	}
 
-	datatype OrderedSet :> OrderedCollection, UniqueCollection {
+	datatype OrderedSet :> OrderedCollection, UniqueCollection 
+		intersects OrderedCollection, UniqueCollection {
 		doc
 		/*
 		 * OrderedSet is a variable-size, ordered collection of unique elements.
 		 */	
 		
-		feature elements[0..*] ordered :>> OrderedCollection::elements {
+		feature elements[0..*] ordered :>> OrderedCollection::elements, UniqueCollection::elements {
 			/* Note: Redefinition of `elements` is unique by default. */
 		}
 	}

@@ -40,7 +40,7 @@ package RecursiveImport {
     
   }
   
-  import P::Q::**;
+  public import P::Q::**;
   	y: Y;
 	
 	//* XPECT scope at Z ---

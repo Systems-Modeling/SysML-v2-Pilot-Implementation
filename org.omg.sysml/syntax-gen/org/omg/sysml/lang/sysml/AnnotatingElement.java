@@ -37,7 +37,11 @@ import org.eclipse.emf.common.util.EList;
  *  else Sequence{owningNamespace} endif
  * ownedAnnotatingRelationship = ownedRelationship->
  *     selectByKind(Annotation)->
- *     select(a | a.annotatingElement = self)
+ *     select(a | a.annotatedElement <> self)
+ * annotation = 
+ *     if owningAnnotatingRelationship = null then ownedAnnotatingRelationship
+ *     else owningAnnotatingRelationship->prepend(owningAnnotatingRelationship)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -47,6 +51,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwnedAnnotatingRelationship <em>Owned Annotating Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement()
@@ -91,7 +96,7 @@ public interface AnnotatingElement extends Element {
 	 * @return the value of the '<em>Owned Annotating Relationship</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_OwnedAnnotatingRelationship()
 	 * @see org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatingElement
-	 * @model opposite="owningAnnotatingElement" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningAnnotatingElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -105,15 +110,52 @@ public interface AnnotatingElement extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Annotations</code> that relate this <code>AnnotatingElement</code> to its <code>annotatedElements</code>.</p>
+	 * <p>The <code>Annotations</code> that relate this <code>AnnotatingElement</code> to its <code>annotatedElements</code>. This includes the <code>owningAnnotatingRelationship</code> (if any) followed by all the <code>ownedAnnotatingRelationshps</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_Annotation()
 	 * @see org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement
-	 * @model opposite="annotatingElement"
+	 * @model opposite="annotatingElement" transient="true" volatile="true" derived="true"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Annotation> getAnnotation();
+
+	/**
+	 * Returns the value of the '<em><b>Owning Annotating Relationship</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement <em>Owned Annotating Element</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship() <em>Owning Relationship</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation() <em>Annotation</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>owningRelationship</code> of this <code>AnnotatingRelationship</code>, if it is an <code>Annotation</code></p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Annotating Relationship</em>' reference.
+	 * @see #setOwningAnnotatingRelationship(Annotation)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_OwningAnnotatingRelationship()
+	 * @see org.omg.sysml.lang.sysml.Annotation#getOwnedAnnotatingElement
+	 * @model opposite="ownedAnnotatingElement" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Annotation getOwningAnnotatingRelationship();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AnnotatingElement#getOwningAnnotatingRelationship <em>Owning Annotating Relationship</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Annotating Relationship</em>' reference.
+	 * @see #getOwningAnnotatingRelationship()
+	 * @generated
+	 */
+	void setOwningAnnotatingRelationship(Annotation value);
 
 } // AnnotatingElement

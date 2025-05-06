@@ -19,7 +19,7 @@ END_SETUP
 package Test {
 
 	package Test1 {
-		import VP::VP1::*;
+		public import VP::VP1::*;
 		//* XPECT scope at c_Public_Id ---
 		A, A.c_public, Test1.A, Test1.A.c_public, Test.Test1.A, Test.Test1.A.c_public, 
 		c_Public, Test1.c_Public, Test.Test1.c_Public, VP.VP1.c_Public, Test.VP.VP1.c_Public,  

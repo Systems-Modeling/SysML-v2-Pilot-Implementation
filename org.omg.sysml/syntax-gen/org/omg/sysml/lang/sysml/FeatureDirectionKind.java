@@ -46,7 +46,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values&nbsp;of the <code>Feature</code> on each&nbsp;instance of its domain are&nbsp;determined&nbsp;externally to that instance and&nbsp;used internally.</p>
+	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined externally to that instance and used internally.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #IN_VALUE
@@ -60,7 +60,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values&nbsp;of the <code>Feature</code> on each&nbsp;instance are&nbsp;determined either as&nbsp;<em>in</em> or <em>out</em>&nbsp;directions, or both.</p>
+	 * <p>Values of the <code>Feature</code> on each instance are determined either as <em>in</em> or <em>out</em> directions, or both.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #INOUT_VALUE
@@ -73,7 +73,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values of the <code>Feature</code> on each instance of its domain are&nbsp;determined internally to that instance and used externally.</p>
+	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined internally to that instance and used externally.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #OUT_VALUE
@@ -91,7 +91,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values&nbsp;of the <code>Feature</code> on each&nbsp;instance of its domain are&nbsp;determined&nbsp;externally to that instance and&nbsp;used internally.</p>
+	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined externally to that instance and used internally.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #IN
@@ -110,7 +110,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values&nbsp;of the <code>Feature</code> on each&nbsp;instance are&nbsp;determined either as&nbsp;<em>in</em> or <em>out</em>&nbsp;directions, or both.</p>
+	 * <p>Values of the <code>Feature</code> on each instance are determined either as <em>in</em> or <em>out</em> directions, or both.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #INOUT
@@ -129,7 +129,7 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Values of the <code>Feature</code> on each instance of its domain are&nbsp;determined internally to that instance and used externally.</p>
+	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined internally to that instance and used externally.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #OUT

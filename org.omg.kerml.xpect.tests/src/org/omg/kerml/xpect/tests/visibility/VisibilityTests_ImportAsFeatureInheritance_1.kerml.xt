@@ -19,7 +19,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::c_Public;
+	public import VisibilityPackage::c_Public;
 	classifier Try specializes c_Public {
 		feature f1: c_protected;
 		

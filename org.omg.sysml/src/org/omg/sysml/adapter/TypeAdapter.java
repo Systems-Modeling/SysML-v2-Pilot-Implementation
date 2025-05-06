@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -36,7 +37,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -57,6 +58,7 @@ import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
@@ -72,87 +74,146 @@ public class TypeAdapter extends NamespaceAdapter {
 	// Additional operations
 	
 	@Override
-	public EList<Membership> getVisibleMemberships(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> visibleMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, includeAll);
-		visibleMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeAll));
+	public EList<Membership> getVisibleMemberships(Set<org.omg.sysml.lang.sysml.Namespace> excluded, boolean isRecursive, boolean includeAll) {
+		Type target = getTarget();
+		EList<Membership> visibleMembership = super.getVisibleMemberships(excluded, isRecursive, includeAll);
+		excluded.add(target);
+		EList<Membership> inheritedMembership = getInheritedMemberships(excluded, new HashSet<>(), isRecursive);
+		excluded.remove(target);
+		if (!includeAll) {
+			inheritedMembership.removeIf(mem->mem.getVisibility() != VisibilityKind.PUBLIC);
+		}
+		visibleMembership.addAll(inheritedMembership);
 		return visibleMembership;
 	}
 	
-	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getVisibleMemberships(excludedNamespaces, excludedTypes, false);
-		if (includeProtected) {
-			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
+	public EList<Membership> getNonPrivateMembership(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		EList<Membership> nonPrivateMemberships = getMembershipsOfVisibility(VisibilityKind.PUBLIC, excludedNamespaces);
+		nonPrivateMemberships.addAll(getMembershipsOfVisibility(VisibilityKind.PROTECTED, excludedNamespaces));
+		nonPrivateMemberships.addAll(getInheritedMemberships(excludedNamespaces, excludedTypes, excludeImplied));
+		return nonPrivateMemberships;
+	}
+	
+	/**
+	 * As defined in the OCL in the specification, excludedTypes only accumulate along the traversal of a single path in the specialization graph, essentially just
+	 * to avoid circular references within that path. This means that a Type may be visited multiple times along different paths (e.g., due to "diamond specialization").
+	 * However, the non-private memberships computed for the Type should not differ from visit to visit.
+	 * 
+	 * Therefore, this method computes the non-private membership of a Type only if the Type is not contained in excludedTypes. If computed, the non-private memberships 
+	 * are cached, and the cached memberships are used if the Type is visited again during traversal of the specialization graph. This allows the set of excludedTypes to 
+	 * "accumulate" as the entire specialization graph is traversed, avoiding recomputation of non-private membership if a Type is revisited and greatly improving
+	 * performance.
+	 * 
+	 * Note that this only affects the handling of excludedTypes for inheritance, with no impact on the handling of excludedNamespaces for imports.
+	 */
+	public void addNonPrivateMembership(EList<Membership> inheritedMemberships, Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		if (!excludedTypes.contains(getTarget())) {
+			nonPrivateMembership = getNonPrivateMembership(excludedNamespaces, excludedTypes, excludeImplied);
 		}
-		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
-		return nonPrivateMembership;
+		if (nonPrivateMembership != null) {
+			inheritedMemberships.addAll(nonPrivateMembership);
+		}
 	}
 	
-	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
-		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
-		removeRedefinedFeatures(inheritedMemberships);
-		return inheritedMemberships;
-	}
-	
-	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+	/**
+	 * This method uses addNonPrivateMembershipsFor, rather than calling getNonPrivateMemberships directly, in order to take advantage of the caching of
+	 * nonPrivateMemberships.
+	 */
+	public EList<Membership> getInheritableMemberships(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
 		Type target = getTarget();
 		excludedTypes.add(target);
+
+		// Using an EObjectEList ensures that isUnique = true.
+		EList<Membership> inheritedMemberships = new NonNotifyingEObjectEList<Membership>(Membership.class, (InternalEObject) target, SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
+		
 		Conjugation conjugator = target.getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
-			if (originalType != null && !excludedTypes.contains(originalType)) {
-				inheritedMemberships.addAll(TypeUtil.getMembershipFor(originalType, excludedNamespaces, excludedTypes, includeProtected));
+			if (originalType != null) {
+				TypeUtil.addNonPrivateMembershipFor(originalType, inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 			}
 		}
-		for (Type general: TypeUtil.getGeneralTypesOf(target)) {
-			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(TypeUtil.getNonPrivateMembershipFor(general, excludedNamespaces, excludedTypes, includeProtected));
+		for (Type general: TypeUtil.getGeneralTypesOf(target, excludeImplied)) {
+			if (general != null) {
+				TypeUtil.addNonPrivateMembershipFor(general, inheritedMemberships, excludedNamespaces, excludedTypes, excludeImplied);
 			}
+		}
+		return inheritedMemberships;
+	}
+	
+	/**
+	 * Make a first path through the given memberships list, removing Memberships with memberElements redefined by ownedFeatures of
+	 * the target Type and collecting the set of all Features redefined (directly or indirectly) by any of the memberships. Then use
+	 * the allFeatureRedefinedByMemberships set to remove any Membership with a memberElement redefined by another Membership.
+	 */
+	public void removeRedefinedFeatures(List<Membership> memberships) {
+		Collection<Feature> featuresRedefinedByType = getFeaturesRedefinedByType();
+		Collection<Feature> allFeaturesRedefinedByMemberships = new HashSet<>();
+		int n = memberships.size();
+		for (int i = 0; i < n; i++) {
+			Membership membership = memberships.get(i);
+			Element memberElement = membership.getMemberElement();
+			if (memberElement instanceof Feature) {
+				Collection<Feature> membershipRedefinedFeatures = 
+						FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement);
+				if (membershipRedefinedFeatures.stream().anyMatch(featuresRedefinedByType::contains)) {
+					memberships.remove(membership);
+					i--; n--;
+				}
+				membershipRedefinedFeatures.stream().
+					filter(feature->feature != memberElement).
+					forEach(allFeaturesRedefinedByMemberships::add);
+			}
+		}
+		memberships.removeIf(membership->allFeaturesRedefinedByMemberships.contains(membership.getMemberElement()));
+	}
+	
+	/**
+	 * If excludeImplied is false and inheritedMembership has been previously cached, then return the cached collection, rather than recomputing it. Otherwise, compute 
+	 * an inheritedMembership collection, but taking into account the given exclusions. However, do not cache the computed collection. Only the full inheritedMembership 
+	 * collection is cached, without exclusions. 
+	 */
+	public EList<Membership> getInheritedMemberships(Set<Namespace> excludedNamespaces, Set<Type> excludedTypes, boolean excludeImplied) {
+		if (!excludeImplied && inheritedMembership != null) {
+			return inheritedMembership;
+		} else {
+			EList<Membership> inheritedMemberships = getInheritableMemberships(excludedNamespaces, excludedTypes, excludeImplied);
+			removeRedefinedFeatures(inheritedMemberships);
+			return inheritedMemberships;
 		}
 	}
 	
-	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		Type target = getTarget();
-		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
-		membership.addAll(target.getOwnedMembership());
-		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
-		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, false));
-		return membership;
-	}	
+	/**
+	 * Compute all inheritedMemberships of the target Type and cache the result.
+	 */
+	public EList<Membership> getInheritedMembership() {
+		inheritedMembership = getInheritedMemberships(new HashSet<>(), new HashSet<>(), false);
+		return inheritedMembership;
+	}
 	
-	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
-		memberships.removeIf(membership->{
-			Element memberElement = membership.getMemberElement();
-			return memberElement instanceof Feature &&
-				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
-				   		anyMatch(redefinedFeatures::contains);
-		});		
+	/**
+	 * If redefinedFeatures have been cached, then return them. Otherwise, compute all the Features directly redefined by the owned
+	 * Features of the target Type and cache the result.
+	 */
+	protected Collection<Feature> getFeaturesRedefinedByType() {
+		if (redefinedFeatures == null) {
+			addAdditionalMembers();
+			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
+		}
+		return redefinedFeatures;		
 	}
 
-	// Overridden in ExpressionAdapter
-	protected Collection<Feature> getFeaturesRedefinedByType() {
-		return getTarget().getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
-				collect(Collectors.toSet());
-	}
-	
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;
+	private EList<Membership> nonPrivateMembership = null;
+	private Collection<Feature> redefinedFeatures = null;	
 	
-	public EList<Membership> getInheritedMembership() {
-		return inheritedMembership;
-	}
-	
-	public EList<Membership> setInheritedMembership(EList<Membership> inheritedMembership) {
-		this.inheritedMembership = inheritedMembership;
-		return inheritedMembership;
-	}
-		
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;
+		nonPrivateMembership = null;
+		redefinedFeatures = null;
 	}
 	
 	// Implicit Elements
@@ -186,7 +247,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public Collection<EClass> getImplicitGeneralTypeKinds() {
-		return implicitGeneralTypes.keySet();
+		// Sort keys, to ensure a deterministic ordering of implied specializations 
+		// for implicit general types.
+		List<EClass> keyList = new ArrayList<>(implicitGeneralTypes.keySet());
+		Collections.sort(keyList, new Comparator<EClass>() {
+			@Override
+			public int compare(EClass c1, EClass c2) {
+				return Integer.compare(c1.getClassifierID(), c2.getClassifierID());
+			}			
+		});
+		return keyList;
 	}
 	
 	public void forEachImplicitBindingConnector(Consumer<BindingConnector> consumer) {
@@ -209,13 +279,15 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public List<Type> getImplicitGeneralTypes() {
 		computeImplicitGeneralTypes();
-		return implicitGeneralTypes.values().stream().
+		
+		return getImplicitGeneralTypeKinds().stream().
+				map(implicitGeneralTypes::get).
 				flatMap(Collection::stream).
 				collect(Collectors.toList());
 	}
 	
 	public List<Type> getImplicitGeneralTypes(EClass eClass) {
-		return implicitGeneralTypes.keySet().stream().
+		return getImplicitGeneralTypeKinds().stream().
 				filter(eClass::isSuperTypeOf).
 				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
 				collect(Collectors.toList());
@@ -242,7 +314,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
 				map(Specialization.class::cast).
-				noneMatch(spec->spec.getSpecific() == type && TypeUtil.conforms(defaultGeneral, spec.getGeneral()));
+				noneMatch(spec->spec.getSpecific() == type && TypeUtil.specializes(defaultGeneral, spec.getGeneral()));
 	}
 
 	public void addImplicitGeneralType(EClass eClass, Type general) {
@@ -256,7 +328,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
+		for (EClass eClass : getImplicitGeneralTypeKinds()) {
 			for (Type supertype : implicitGeneralTypes.get(eClass)) {
 				action.accept(eClass, supertype);
 			}
@@ -291,8 +363,8 @@ public class TypeAdapter extends NamespaceAdapter {
 				implicitEClassGenerals.removeAll(redefinedFeatures);
 			} else {
 				implicitEClassGenerals.removeIf(gen->
-					generals.stream().anyMatch(type->conforms(type, gen)) ||
-					implicitGenerals.stream().anyMatch(type->type != gen && conforms(type, gen)));
+					generals.stream().anyMatch(type->specializesExcludingTarget(type, gen)) ||
+					implicitGenerals.stream().anyMatch(type->type != gen && specializesExcludingTarget(type, gen)));
 			}
 			if (implicitEClassGenerals.isEmpty()) {
 				implicitGeneralTypes.remove(eClass);
@@ -303,13 +375,13 @@ public class TypeAdapter extends NamespaceAdapter {
 		setIsAddImplicitGeneralTypes(false);
 	}
 	
-	protected boolean conforms(Type subtype, Type supertype) {
+	protected boolean specializesExcludingTarget(Type subtype, Type supertype) {
 		// NOTE: Treat target as already having been visited when checking conformance,
 		// to allow for the possibility of circular specialization. Otherwise, implicit
 		// specializations would get removed from all types in the circle.
 		Set<Type> visited = new HashSet<>();
 		visited.add(getTarget());
-		return TypeUtil.conforms(subtype, supertype, visited);
+		return TypeUtil.specializes(subtype, supertype, visited);
 	}
 	
 	// Implicit Specialization Computation
@@ -354,18 +426,6 @@ public class TypeAdapter extends NamespaceAdapter {
 		return SysMLLibraryUtil.getLibraryType(getTarget(), defaultNames);
 	}
 	
-	// Computed Redefinitions
-	
-	/**
-	 * This method returns those features from the target type that should be automatically overridden in its usages.
-	 * By default, there are none.
-	 * 
-	 * @return	Relevant features from the target type that should be redefined in usages.
-	 */
-	public List<? extends Feature> getRelevantFeatures() {
-		return Collections.emptyList();
-	}
-	
 	// Extension
 	
 	private boolean isGetBaseTypes = true;
@@ -377,7 +437,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
 				metadataFeature.getFeature().stream().
-						filter(f->TypeUtil.conforms(f, getBaseTypeFeature(metadataFeature))).
+						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
 						map(expr->expr.evaluate(target)).

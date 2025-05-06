@@ -51,7 +51,7 @@ package Import_Recursive {
 	}
 	
 	package Q {
-		import P::**; 
+		public import P::**; 
 
 		classifier a :> A,A1;   
 		classifier b :> A2; 

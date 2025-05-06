@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2022, 2023, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2022-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +26,7 @@ modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
 transformation PrepareMetamodel(in export: UML, in standard: UML, out prepared: UML);
 
-property version = "20240201";
+property version = "20250201";
 
 main() {
 	run()
@@ -46,7 +46,12 @@ helper run() {
 }
 
 helper mapModel(syntax : Package, model: Model) {
-	syntax.map Namespace(model);
+	var kermlSyntax := syntax.packagedElement[Package]![name = "KerML"];
+	assert fatal (kermlSyntax <> null) with log ("KerML abstract Syntax not found.");
+	var sysmlSyntax := syntax.packagedElement[Package]![name = "SysML"];
+	assert fatal (kermlSyntax <> null) with log ("SysML abstract Syntax not found.");
+	kermlSyntax.map Namespace(model);
+	sysmlSyntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
 }
 

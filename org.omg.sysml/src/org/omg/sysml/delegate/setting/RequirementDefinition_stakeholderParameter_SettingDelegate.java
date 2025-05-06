@@ -40,7 +40,7 @@ public class RequirementDefinition_stakeholderParameter_SettingDelegate extends 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
-		TypeUtil.addOwnedFeaturesByMembership((RequirementDefinition)owner, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
+		TypeUtil.addFeaturesByMembership((RequirementDefinition)owner, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
 		return stakeholderParameters;
 	}
 

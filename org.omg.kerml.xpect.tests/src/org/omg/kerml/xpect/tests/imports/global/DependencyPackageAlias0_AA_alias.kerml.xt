@@ -27,7 +27,7 @@ package test{
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
     	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
  --- */
-	import PackageAlias1::AA_alias;
+	public import PackageAlias1::AA_alias;
 }
 //*
 package PackageAlias1{

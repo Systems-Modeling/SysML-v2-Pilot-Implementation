@@ -19,7 +19,7 @@ END_SETUP
 
 
 package Test3{
-	import VisibilityPackage::c_clazz::*;
+	public import VisibilityPackage::c_clazz::*;
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect'." at "c_Protect"
 	classifier A specializes c_Protect{
 	}

@@ -50,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *             subSequence(2, relatedType->size())->
  *             asOrderedSet() 
  *     endif
+ * ownedEndFeature->forAll(type->size() = 1)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -183,8 +184,6 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>features</code> of the <code>Association</code> that identify the things that can be related by it. A concrete <code>Association</code> must have at least two <code>associationEnds</code>. When it has exactly two, the <code>Association</code> is called a <em>binary</em> <code>Association</code>.</p> 
-	 * 
-	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association End</em>' reference list.

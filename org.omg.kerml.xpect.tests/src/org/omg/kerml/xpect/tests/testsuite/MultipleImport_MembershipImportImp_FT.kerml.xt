@@ -21,7 +21,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	import OuterPackage2::*;
+	public import OuterPackage2::*;
 	//XPECT linkedName at C --> OuterPackage2.C
 	//* XPECT scope at C ---
 	B, B.b, B.b.a1, B.b.a1.self, B.b.a1.that, B.b.a1.that.self, B.b.self, B.b.that,

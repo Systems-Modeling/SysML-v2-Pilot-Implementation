@@ -70,7 +70,7 @@ class MOF2KerMLText {
 	
 	def generate(org.eclipse.uml2.uml.Package model) {
 		'''
-		import ScalarValues::*;
+		private import ScalarValues::*;
 		«model.toPackage»
 		'''
 	}
@@ -88,10 +88,10 @@ class MOF2KerMLText {
 		Collections.sort(members, new ElementNameComparator)
 		'''
 		«FOR import_: package_.elementImports»
-			import «import_.importedElement.qualifiedName»;
+			public import «import_.importedElement.qualifiedName»;
 		«ENDFOR»
 		«FOR import_: package_.packageImports»
-			import «import_.importedPackage.qualifiedName»::*;
+			public import «import_.importedPackage.qualifiedName»::*;
 		«ENDFOR»
 		«IF !package_.elementImports.empty || !package_.packageImports.empty»
 		
@@ -122,7 +122,7 @@ class MOF2KerMLText {
 	}
 	
 	def toMetaclass(org.eclipse.uml2.uml.Class class_) {
-		toMetaclass(class_, "metaclass")
+		class_.toMetaclass("metaclass")
 	}
 		
 	def toMetaclass(org.eclipse.uml2.uml.Class class_, String keyword) {
@@ -158,17 +158,18 @@ class MOF2KerMLText {
 	}
 	
 	def toFeature(org.eclipse.uml2.uml.Property property) {
-		toFeature(property, property.isComposite, "feature")
+		val keyword = '''«IF property.isComposite»composite «ENDIF»«IF property.readOnly»const «ELSE»var «ENDIF»feature'''
+		property.toFeature(keyword)
 	}
 	
-	def toFeature(org.eclipse.uml2.uml.Property property, boolean isComposite, String keyword) {
+	def toFeature(org.eclipse.uml2.uml.Property property, String keyword) {
 		'''
-		«IF property.derivedUnion»abstract «ENDIF»«IF isComposite»composite «ENDIF»«IF property.readOnly»readonly «ENDIF»«IF property.derived»derived «ENDIF»«keyword» «nameOf(property)» : «property.type.toTypeName»«property.toMultiplicity»«property.toSubsets»«property.toRedefines»;
+		«IF property.derived»derived «ENDIF»«IF property.derivedUnion»abstract «ENDIF»«keyword» «nameOf(property)» : «property.type.toTypeName»«property.toMultiplicity»«property.toSubsets»«property.toRedefines»;
 		'''
 	}
 	
 	def toMultiplicity(MultiplicityElement multiplicity) {
-		'''[«multiplicity.lower»..«multiplicity.upper==-1?"*":multiplicity.upper»]'''
+		'''[«multiplicity.lower»..«multiplicity.upper==-1?"*":multiplicity.upper»]«IF multiplicity.isOrdered» ordered«ENDIF»«IF !multiplicity.isUnique» nonunique«ENDIF»'''
 	}
 	
 	def toSubsets(org.eclipse.uml2.uml.Property property) {
@@ -194,16 +195,16 @@ class MOF2KerMLText {
 	
 	def String getReservedWords() {
 		// Note: Every word must be preceded and followed by a space.
-	   " about abstract alias all and as assign assoc behavior binding bool by chains 
-		 class classifier comment composite conjugate conjugates conjugation connector 
-		 datatype default derived differences disjoining disjoint doc element else end 
-		 expr false feature featured featuring filter first flow for from function 
-		 hastype if intersects implies import in inout interaction inv inverse 
-		 inverting istype language locale member metaclass metadata multiplicity namespace 
-		 nonunique not null of or ordered out package portion predicate private 
-		 protected public readonly references redefines redefinition relationship rep 
-		 return specialization specializes step struct subclassifier subset subsets 
-		 subtype succession then to true type typed typing unions xor "
+	   " about abstract alias all and as assoc behavior binding bool by chains class 
+		 classifier comment composite conjugate conjugates conjugation connector const 
+		 crosses datatype default dependency derived differences disjoining disjoint doc 
+		 else end expr false feature featured featuring filter first flow for from 
+		 function hastype if implies import in inout interaction intersects inv inverse 
+		 inverting istype language library locale member meta metaclass metadata 
+		 multiplicity namespace nonunique not null of or ordered out package portion 
+		 predicate private protected public redefines redefinition references rep return 
+		 specialization specializes standard step struct subclassifier subset subsets 
+		 subtype succession then to true type typed typing unions var xor "
 	}
 	
 	def toTypeName(Type type) {

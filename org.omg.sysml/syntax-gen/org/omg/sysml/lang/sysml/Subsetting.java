@@ -29,16 +29,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p><code>Subsetting</code> is <code>Specialization</code> in which the <code>specific</code> and <code>general</code> <code>Types</code> are <code>Features</code>. This means all values of the <code>subsettingFeature</code> (on instances of its domain, i.e., the intersection of its <code>featuringTypes</code>) are values of the <code>subsettedFeature</code> on instances of its domain. To support this the domain of the <code>subsettingFeature</code> must be the same or specialize (at least indirectly) the domain of the <code>subsettedFeature</code> (via <code>Specialization</code>), and the co-domain (intersection of the <code>types</code>) of the <code>subsettingFeature</code> must specialize the co-domain of the <code>subsettedFeature</code>.</p>
  * 
- * let subsettingFeaturingTypes: OrderedSet(Type) =
- *     subsettingFeature.featuringTypes in
- * let subsettedFeaturingTypes: OrderedSet(Type) =
- *     subsettedFeature.featuringTypes in
- * let anythingType: Element =
- *     subsettingFeature.resolveGlobal('Base::Anything').memberElement in 
- * subsettedFeaturingTypes->forAll(t |
- *     subsettingFeaturingTypes->isEmpty() and t = anythingType or
- *     subsettingFeaturingTypes->exists(specializes(t))
+ * subsettingFeature.canAccess(subsettedFeature)
  * subsettedFeature.isUnique implies subsettingFeature.isUnique
+ * subsettedFeature.isConstant implies subsettingFeature.isConstant
+ * subsettedFeature.isPortion implies subsettingFeature.isPortion
  * <!-- end-model-doc -->
  *
  * <p>

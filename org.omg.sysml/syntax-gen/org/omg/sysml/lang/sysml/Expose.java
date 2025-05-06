@@ -32,6 +32,7 @@ package org.omg.sysml.lang.sysml;
  * <p>An <code>Expose</code> is an <code>Import</code> of <code>Memberships</code> into a <code>ViewUsage</code> that provide the <code>Elements</code> to be included in a view. Visibility is always ignored for an <code>Expose</code> (i.e., <code>isImportAll = true</code>).</p>
  * isImportAll
  * importOwningNamespace.oclIsType(ViewUsage)
+ * visibility = VisibilityKind::protected
  * <!-- end-model-doc -->
  *
  *

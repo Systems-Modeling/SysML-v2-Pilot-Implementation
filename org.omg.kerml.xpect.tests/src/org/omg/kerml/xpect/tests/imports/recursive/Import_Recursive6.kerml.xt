@@ -31,13 +31,13 @@ package RecursiveImport {
 	}
   }
   
-  import P::C::**;
+  public import P::C::**;
   x1: C1;
   x2: C1::C2;
   x3: C2;
   x4: C;
   
-  import P::P3::**;
+  public import P::P3::**;
   x5: C5;
   x6: P3::P4::C5;
 	

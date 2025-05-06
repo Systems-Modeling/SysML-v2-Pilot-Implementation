@@ -56,8 +56,8 @@ package MetadataFeatureTest {
 	filter ~A::z;
 	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->ControlFunctions::collect {in x; x};"
 	filter A::y->ControlFunctions::collect {in x; x};
-	// XPECT errors --> "Must have a Boolean result" at "filter A(null, 1, "", false);"
-	filter A(null, 1, "", false);
+	// XPECT errors --> "Must have a Boolean result" at "filter new A(null, 1, "", false);"
+	filter new A(null, 1, "", false);
 	
 	feature bad;
 	

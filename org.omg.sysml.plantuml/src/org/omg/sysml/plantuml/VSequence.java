@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021-2022 Mgnite Inc.
+ * Copyright (c) 2021-2024 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
@@ -237,7 +237,7 @@ public class VSequence extends VDefault {
     }
     private final List<Message> messages;
 
-    private void addMessage(Pair p1, Pair p2, FlowConnectionUsage fcu) {
+    private void addMessage(Pair p1, Pair p2, FlowUsage fcu) {
         addParticipant(p1.participant);
         addParticipant(p2.participant);
         messages.add(new Message(makeInheritKey(fcu), p1, p2, fcu, fcu.getName()));
@@ -260,7 +260,7 @@ public class VSequence extends VDefault {
     }
 
     @Override
-    public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+    public String caseFlowUsage(FlowUsage fcu) {
         List<Feature> params = fcu.getParameter();
         int size = params.size();
         for (int i = 0; i < size; i++) {
@@ -312,7 +312,7 @@ public class VSequence extends VDefault {
 
     private static class FCMessage {
         public final boolean isSource;
-        public final FlowConnectionUsage fcu;
+        public final FlowUsage fcu;
         public final Feature[] chains;
         public final Type inheriting;
 
@@ -366,7 +366,7 @@ public class VSequence extends VDefault {
         }
 
         private FCMessage(boolean isSource,
-                          FlowConnectionUsage fcu,
+                          FlowUsage fcu,
                           Feature[] chains,
                           Type inheriting) {
             this.isSource = isSource;
@@ -401,8 +401,8 @@ public class VSequence extends VDefault {
 
             j--;
             Feature mf = fcs.get(j).getChainingFeature();
-            if (!(mf instanceof FlowConnectionUsage)) return null;
-            FlowConnectionUsage fcu = (FlowConnectionUsage) mf;
+            if (!(mf instanceof FlowUsage)) return null;
+            FlowUsage fcu = (FlowUsage) mf;
 
             Feature[] chains = new Feature[j];
             for (int i = 0; i < j; i++) {
@@ -488,7 +488,7 @@ public class VSequence extends VDefault {
     }
 
     public VSequence() {
-        setShowsMultiplicity(false);
+        setMultiplicityStyle(MultiplicityStyle.NONE);
         this.isInBox = false;
         this.messages = new ArrayList<Message>();
     }

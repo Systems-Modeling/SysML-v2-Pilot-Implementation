@@ -1,5 +1,5 @@
 package OuterPackage2{
-	import OuterPackage::B;
+	public import OuterPackage::B;
 	feature C : B{
 		feature c;
 	}

@@ -19,7 +19,7 @@ END_SETUP
 
 package Classes {
 	// XPECT errors --> "Couldn't resolve reference to Membership 'VisibilityPackage::c_Private'." at "VisibilityPackage::c_Private"
-	import VisibilityPackage::c_Private;
+	public import VisibilityPackage::c_Private;
 	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Private::c_private'." at "c_Private::c_private"
 	classifier try specializes c_Private::c_private{}
 	// XPECT errors --> "Couldn't resolve reference to Type 'c_Private::c_private'." at "c_Private::c_private"

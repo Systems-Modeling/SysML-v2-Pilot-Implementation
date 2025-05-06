@@ -1,6 +1,7 @@
 package ServerSequenceOutsideRealization_3 {
-	import ServerSequenceModelOutside::*;
-	import Configuration::*;
+	private import ScalarValues::String;
+	private import ServerSequenceModelOutside::*;
+	private import Configuration::*;
 	
 	package Configuration {
 		
@@ -33,7 +34,7 @@ package ServerSequenceOutsideRealization_3 {
 			
 			perform action producerBehavior {
 				action publish {
-					out ref request : Publish[1] = Publish(someTopic, somePublication);
+					out ref request : Publish[1] = new Publish(someTopic, somePublication);
 				}
 			}
 			
@@ -84,7 +85,7 @@ package ServerSequenceOutsideRealization_3 {
 				then action delivering {
 					in topic : String[1] = subscribing.topic;
 					in publication[1] = publishing.publication;
-					out ref response : Deliver = Deliver(publication);
+					out ref response : Deliver = new Deliver(publication);
 				}
 				then continuePublishing;
 				
@@ -111,7 +112,7 @@ package ServerSequenceOutsideRealization_3 {
 
 			perform action consumerBehavior {
 				action subscribe {
-					out ref request : Subscribe = Subscribe(myTopic);
+					out ref request : Subscribe = new Subscribe(myTopic);
 				}
 				then action delivery {
 					in ref response : Deliver;

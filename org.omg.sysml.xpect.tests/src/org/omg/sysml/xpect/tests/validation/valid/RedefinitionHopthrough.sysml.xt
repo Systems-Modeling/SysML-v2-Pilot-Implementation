@@ -1,0 +1,40 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+       ThisFile {}
+        File {from ="/library.kernel/Base.kerml"}
+        File {from ="/library.kernel/Occurrences.kerml"}
+        File {from ="/library.kernel/Objects.kerml"}
+        File {from ="/library.kernel/Performances.kerml"}
+        File {from ="/library.systems/Items.sysml"}
+        File {from ="/library.systems/Parts.sysml"}
+        File {from ="/library.systems/Ports.sysml"}
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+                ThisFile {}
+		            File {from ="/library.kernel/Base.kerml"}
+		            File {from ="/library.kernel/Occurrences.kerml"}
+		            File {from ="/library.kernel/Objects.kerml"}
+		            File {from ="/library.kernel/Performances.kerml"}
+		            File {from ="/library.systems/Items.sysml"}
+		            File {from ="/library.systems/Parts.sysml"}
+		            File {from ="/library.systems/Ports.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Hop-through' {
+	port p;
+	
+	part A {
+		p :>> p;
+	}
+	
+	part B :> A {
+// XPECT noErrors ---> ""
+		p :>> 'Hop-through'::p;
+	}
+}

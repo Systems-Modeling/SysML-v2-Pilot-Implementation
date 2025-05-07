@@ -344,9 +344,15 @@ public class VDefault extends VTraverser {
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
         if (rs == null) return false;
         Feature ref = rs.getReferencedFeature();
+
+        /* If the target is not rendered, we do not use a shorthand notation and render a distinct node.
+         * If the target is a feature chain, we only check the first chaining feature because the visualizer
+         * will render all of the features of the feature chain.
+         * However it assumes the current visualizer behavior and we should provide a better 'toBeRendered()' service
+         * by extending VPath */
         Feature tgt = FeatureUtil.getFirstChainingFeatureOf(ref);
         if (tgt == null) tgt = ref;
-        if (!toBeRendered(tgt)) return false; // If the target is not rendered, we render a distinct node.
+        if (!toBeRendered(tgt)) return false;
 
         if (!isEmpty(u)) return false;
 

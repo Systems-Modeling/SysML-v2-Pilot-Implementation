@@ -65,6 +65,7 @@ import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.FeatureUtil;
 
 public class VDefault extends VTraverser {
     protected void addConnector(Element rel, Connector c, String desc) {
@@ -317,14 +318,18 @@ public class VDefault extends VTraverser {
     }
 
     private static boolean isEmpty(Feature f) {
-        for (Membership ms: toOwnedMembershipArray(f)) {
-            if (!(ms instanceof OwningMembership)) continue;
-            if (ms instanceof SubjectMembership) {
-                if (isEmptySubject((SubjectMembership) ms)) continue;
+        for (Relationship rel: toOwnedRelationshipArray(f)) {
+        	if (rel instanceof Specialization) {
+        		if (rel instanceof ReferenceSubsetting) continue;
+        		return false;
+        	}
+            if (!(rel instanceof OwningMembership)) continue;
+            if (rel instanceof SubjectMembership) {
+                if (isEmptySubject((SubjectMembership) rel)) continue;
                 return false;
             }
-            if (ms instanceof ObjectiveMembership) {
-                if (isEmptyObjective((ObjectiveMembership) ms)) continue;
+            if (rel instanceof ObjectiveMembership) {
+                if (isEmptyObjective((ObjectiveMembership) rel)) continue;
                 return false;
             }
             return false;
@@ -338,8 +343,10 @@ public class VDefault extends VTraverser {
         if (u.getDeclaredShortName() != null) return false;
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
         if (rs == null) return false;
-        Feature tgt = rs.getReferencedFeature();
-        if (!checkId(tgt)) return false; // If the target does not exist, we render a distinct node.
+        Feature ref = rs.getReferencedFeature();
+        Feature tgt = FeatureUtil.getFirstChainingFeatureOf(ref);
+        if (tgt == null) tgt = ref;
+        if (!toBeRendered(tgt)) return false; // If the target is not rendered, we render a distinct node.
 
         if (!isEmpty(u)) return false;
 
@@ -349,7 +356,7 @@ public class VDefault extends VTraverser {
         if (!(owner instanceof Type)) return false;
         if (!checkId(owner)) return false;
 
-        addPRelation(owner, tgt, u, title);
+        addPRelation(owner, ref, u, title);
 
         return true;
     }

@@ -627,6 +627,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return checkId(e);
     }
 
+    protected boolean toBeRendered(Element e) {
+        return s2p.toBeRendered(e);
+    }
+
     private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, Collection<Element> nonPkgs) {
         String name = pkg.getQualifiedName();
         if (name == null) return;

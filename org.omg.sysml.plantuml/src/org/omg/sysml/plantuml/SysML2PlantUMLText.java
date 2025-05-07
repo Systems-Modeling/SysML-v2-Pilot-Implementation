@@ -474,6 +474,17 @@ public class SysML2PlantUMLText {
         sb.append('\n');
     }
 
+    private List<Element> topElements;
+
+    /* package */ boolean toBeRendered(EObject eObj) {
+        while (eObj != null) {
+            if (!(eObj instanceof Element)) return false;
+            if (topElements.contains((Element) eObj)) return true;
+            eObj = eObj.eContainer();
+        }
+        return false;
+    }
+
     public String sysML2PUML(List<? extends EObject> eObjs) {
         initStyle();
         this.vpath = new VPath();
@@ -487,9 +498,11 @@ public class SysML2PlantUMLText {
         init();
 
         numVisits = 0;
+        this.topElements = new ArrayList<>(eObjs.size());
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
+                topElements.add(e);
                 vpath.visit(e);
             }
         }

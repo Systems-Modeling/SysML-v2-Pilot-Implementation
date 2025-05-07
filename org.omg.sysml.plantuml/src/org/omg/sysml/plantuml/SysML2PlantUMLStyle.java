@@ -552,7 +552,11 @@ public class SysML2PlantUMLStyle {
 
         @Override
         public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
-            return " include use case>> ";
+            if (VStructure.hasRefSubsettingWithoutDeclaredName(iucu)) {
+                return " include>> ";
+            } else {
+                return " include use case>> ";
+            }
 		}
 
 		@Override
@@ -596,7 +600,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
-            return " event occurrence>> ";
+            if (VStructure.hasRefSubsettingWithoutDeclaredName(eou)) {
+                return " event>> ";
+            } else {
+                return " event occurrence>> ";
+            }
 		}
     }
 

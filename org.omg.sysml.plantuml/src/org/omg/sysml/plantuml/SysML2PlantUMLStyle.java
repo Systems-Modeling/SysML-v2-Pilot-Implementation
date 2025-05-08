@@ -538,7 +538,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(esu)) {
+            if (Visitor.getSpecialReference(esu) != null) {
                 return " exhibit>> ";
             } else {
                 return " exhibit state>> ";
@@ -547,12 +547,12 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-            return "<<requirement>> ";
+			return " requirement>> ";
 		}
 
         @Override
         public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(iucu)) {
+            if (Visitor.getSpecialReference(iucu) != null) {
                 return " include>> ";
             } else {
                 return " include use case>> ";
@@ -561,7 +561,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(pau)) {
+            if (Visitor.getSpecialReference(pau) != null) {
                 return " perform>> ";
             } else {
                 return " perform action>> ";
@@ -600,7 +600,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(eou)) {
+            if (Visitor.getSpecialReference(eou) != null) {
                 return " event>> ";
             } else {
                 return " event occurrence>> ";

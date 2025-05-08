@@ -229,13 +229,6 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    public static boolean hasRefSubsettingWithoutDeclaredName(Feature f) {
-        if (f.getOwnedReferenceSubsetting() == null) return false;
-        if (f.getDeclaredName() != null) return false;
-        if (f.getDeclaredShortName() != null) return false;
-        return true;
-    }
-
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
         StringBuilder sb = new StringBuilder();
@@ -254,7 +247,7 @@ public abstract class VStructure extends VDefault {
             }
             sb.append(' ');
             added = appendSubsettings(sb, f) || added;
-            if (!hasRefSubsettingWithoutDeclaredName(f)) {
+            if (Visitor.getSpecialReference(f) == null) {
                 sb.append(' ');
                 added = appendReferenceSubsetting(sb, f) || added;
             }
@@ -323,7 +316,7 @@ public abstract class VStructure extends VDefault {
         if ((ru != null) && (target != null)) {
             addPRelation(target, ru, sru, "<<satisfy>>");
         }
-        if (hasRefSubsettingWithoutDeclaredName(sru)) return "";
+        if (getSpecialReference(sru) != null) return "";
         return null;
     }
     

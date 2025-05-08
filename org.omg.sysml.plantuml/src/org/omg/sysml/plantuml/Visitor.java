@@ -34,17 +34,22 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -336,7 +341,28 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
+    /* Check if the feature comes from a special notation of
+     * <<perform>>, <<exhibit>>, <<event>>, <<include>>, and <<satisfy>> */
+    public static Feature getSpecialReference(Element e) {
+        if (!(e instanceof PerformActionUsage
+              || e instanceof ExhibitStateUsage
+              || e instanceof EventOccurrenceUsage
+              || e instanceof IncludeUseCaseUsage
+              || e instanceof SatisfyRequirementUsage)) return null;
+        Feature f = (Feature) e;
+        if (f.getDeclaredName() != null) return null;
+        if (f.getDeclaredShortName() != null) return null;
+        ReferenceSubsetting rs = f.getOwnedReferenceSubsetting();
+        if (rs == null) return null;
+        return rs.getReferencedFeature();
+    }
+
     protected int addNameWithId(Element e, String name, boolean force) {
+        Feature ref = getSpecialReference(e);
+        if (ref != null) {
+            String refName = getRefName(ref, null);
+            if (refName != null) name = refName;
+        }
         quote(name);
         append(" as ");
         int id = addIdStr(e, force);
@@ -539,6 +565,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private static String getNameWithNamespace(Feature f, org.omg.sysml.lang.sysml.Namespace enclosingNs) {
         String name = getFeatureName(f);
         if (name == null) return null;
+        if (enclosingNs == null) return name;
 
         org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
         if ((pkg == null) || pkg.equals(enclosingNs)) return name;

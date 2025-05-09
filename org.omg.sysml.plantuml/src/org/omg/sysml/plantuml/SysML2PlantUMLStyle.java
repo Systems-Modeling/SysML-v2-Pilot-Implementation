@@ -463,16 +463,6 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
-            return " ..> ";
-		}
-
-		@Override
-		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
-            return " ..> ";
-		}
-
-		@Override
 		public String caseBindingConnector(BindingConnector object) {
             return " -[thickness=5]- ";
 		}
@@ -505,6 +495,16 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseImport(Import imp) {
             return " ..> ";
+		}
+
+		@Override
+		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
+            return " --> ";
 		}
 
         @Override
@@ -547,7 +547,11 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-			return " requirement>> ";
+            if (Visitor.getSpecialReference(sru) != null) {
+                return " requirement>> ";
+            } else {
+                return " satisfy requirement>> ";
+            }
 		}
 
         @Override

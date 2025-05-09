@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
@@ -388,6 +389,12 @@ public class VDefault extends VTraverser {
     @Override
     public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iuc) {
         if (addShorthandRelation(iuc, "<<include>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+        if (addShorthandRelation(acu, "<<assert>>")) return "";
         return null;
     }
 

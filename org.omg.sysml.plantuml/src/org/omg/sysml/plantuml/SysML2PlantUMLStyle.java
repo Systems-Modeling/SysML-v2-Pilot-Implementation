@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -507,6 +508,11 @@ public class SysML2PlantUMLStyle {
             return " --> ";
 		}
 
+		@Override
+		public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+            return " --> ";
+		}
+
         @Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
             return " --> ";
@@ -534,6 +540,36 @@ public class SysML2PlantUMLStyle {
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
+		}
+
+		@Override
+		public String caseAcceptActionUsage(AcceptActionUsage aau) {
+            return " accept action>> ";
+		}
+
+		@Override
+		public String caseSendActionUsage(SendActionUsage sau) {
+            return " send action>> ";
+		}
+
+		@Override
+		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
+            return " analysis>> ";
+		}
+
+		@Override
+		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
+            return " analysis def>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseUsage(VerificationCaseUsage acu) {
+            return " verification>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseDefinition(VerificationCaseDefinition acd) {
+            return " verification def>> ";
 		}
 
 		@Override
@@ -573,34 +609,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseAcceptActionUsage(AcceptActionUsage aau) {
-            return " accept action>> ";
-		}
-
-		@Override
-		public String caseSendActionUsage(SendActionUsage sau) {
-            return " send action>> ";
-		}
-
-		@Override
-		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
-            return " analysis>> ";
-		}
-
-		@Override
-		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
-            return " analysis def>> ";
-		}
-
-		@Override
-		public String caseVerificationCaseUsage(VerificationCaseUsage acu) {
-            return " verification>> ";
-		}
-
-		@Override
-		public String caseVerificationCaseDefinition(VerificationCaseDefinition acd) {
-            return " verification def>> ";
-		}
+		public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+            if (Visitor.getSpecialReference(acu) != null) {
+                return " assert>> ";
+            } else {
+                return " assert constraint>> ";
+            }
+        }
 
 		@Override
 		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {

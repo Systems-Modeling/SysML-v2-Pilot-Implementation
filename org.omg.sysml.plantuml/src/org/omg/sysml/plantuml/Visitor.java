@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -348,6 +349,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
               || e instanceof ExhibitStateUsage
               || e instanceof EventOccurrenceUsage
               || e instanceof IncludeUseCaseUsage
+              || e instanceof AssertConstraintUsage
               || e instanceof SatisfyRequirementUsage)) return null;
         Feature f = (Feature) e;
         if (f.getDeclaredName() != null) return null;

@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -76,7 +76,7 @@ public class ConnectorUtil {
 		return endFeature;
 	}
 	
-	public static void transformConnectorEndsOf(ItemFlow flow) {
+	public static void transformConnectorEndsOf(Flow flow) {
 		Namespace owner = flow.getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Feature> ends = flow.getConnectorEnd();
@@ -171,12 +171,12 @@ public class ConnectorUtil {
 					int i = 0;
 					while (i < commonFeaturingTypes.size()) {
 						Type type = commonFeaturingTypes.get(i);
-						Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.conforms(f, type)).findFirst();
+						Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.isCompatible(f, type)).findFirst();
 						if (subtype.isPresent()) {
 							// If the featuringTypes of the next relatedFeature include a subtype of this type,
 							// then replace this type with the subtype in the list of commonFeaturingTypes.
 							commonFeaturingTypes.set(i, subtype.get());
-						} else if (featuringTypes.stream().noneMatch(f->TypeUtil.conforms(type, f))) {
+						} else if (featuringTypes.stream().noneMatch(f->TypeUtil.isCompatible(type, f))) {
 							// Otherwise, if this type doesn't conform to any of the featuringTypes of the
 							// next relatedFeature, remove it from the list of commonFeaturingTypes.
 							commonFeaturingTypes.remove(i);
@@ -186,10 +186,8 @@ public class ConnectorUtil {
 					}
 				}
 			}
-			// If any commonFeaturingTypes have been found across all relatedFeatures, then
-			// return the first (innermost) one.
-			return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
-					null: commonFeaturingTypes.get(0);
+			// If any commonFeaturingTypes have been found across all relatedFeatures, then return the first (innermost) one.
+			return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? null: commonFeaturingTypes.get(0);
 		}
 	}
 

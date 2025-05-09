@@ -34,10 +34,10 @@ package org.omg.sysml.lang.sysml;
  * 	<li>Can be distinguished when they are related to other things in different ways, even when they are intended to be about the same thing.</li>
  * </ul>
  * 
- * specializesFromLibrary('Base::DataValue')
  * ownedSpecialization.general->
  *     forAll(not oclIsKindOf(Class) and 
  *            not oclIsKindOf(Association))
+ * specializesFromLibrary('Base::DataValue')
  * <!-- end-model-doc -->
  *
  *

@@ -6,6 +6,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 		File {from ="/library/Links.kerml"}
 		File {from ="/library/Occurrences.kerml"}
 		File {from ="/library/Objects.kerml"}
+		File {from ="/library/Performances.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -15,6 +16,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 				File {from ="/library/Links.kerml"}
 				File {from ="/library/Occurrences.kerml"}
 				File {from ="/library/Objects.kerml"}
+				File {from ="/library/Performances.kerml"}
 			}
 		}
 	}
@@ -47,4 +49,10 @@ package Specialization_invalid {
 	abstract assoc A1;
 	abstract assoc struct A2 specializes C2, A1;
 	abstract interaction A3 specializes C2, A1;
+	
+	// XPECT errors--->"Cannot specialize behavior" at "B1"
+	struct S specializes B1;
+
+	// XPECT errors--->"Cannot specialize structure" at "S"
+	behavior B1 specializes S;
 }

@@ -48,6 +48,7 @@ public class MetadataUsageItemProvider extends ItemUsageItemProvider {
 			addAnnotatedElementPropertyDescriptor(object);
 			addOwnedAnnotatingRelationshipPropertyDescriptor(object);
 			addAnnotationPropertyDescriptor(object);
+			addOwningAnnotatingRelationshipPropertyDescriptor(object);
 			addMetaclassPropertyDescriptor(object);
 			addMetadataDefinitionPropertyDescriptor(object);
 		}
@@ -68,6 +69,28 @@ public class MetadataUsageItemProvider extends ItemUsageItemProvider {
 				 getString("_UI_AnnotatingElement_annotation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotatingElement_annotation_feature", "_UI_AnnotatingElement_type"),
 				 SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATION,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Annotating Relationship feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningAnnotatingRelationshipPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AnnotatingElement_owningAnnotatingRelationship_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AnnotatingElement_owningAnnotatingRelationship_feature", "_UI_AnnotatingElement_type"),
+				 SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNING_ANNOTATING_RELATIONSHIP,
 				 true,
 				 false,
 				 true,
@@ -239,10 +262,10 @@ public class MetadataUsageItemProvider extends ItemUsageItemProvider {
 
 		boolean qualify =
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP ||
-			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP ||
 			childFeature == SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION ||
 			childFeature == SysMLPackage.Literals.ANNOTATING_ELEMENT__OWNED_ANNOTATING_RELATIONSHIP ||
+			childFeature == SysMLPackage.Literals.TYPE__OWNED_SPECIALIZATION ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING ||
 			childFeature == SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING ||

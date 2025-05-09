@@ -43,6 +43,8 @@ package org.omg.sysml.lang.sysml;
  *     ownedMembership->reject(m | m.oclIsKindOf(ParameterMembership)) in
  * membership->notEmpty() and
  * membership->at(1).memberElement.oclIsKindOf(Feature)
+ * result.owningType() = self and result.specializes(referent)
+ * result.owningType = self
  * <!-- end-model-doc -->
  *
  * <p>

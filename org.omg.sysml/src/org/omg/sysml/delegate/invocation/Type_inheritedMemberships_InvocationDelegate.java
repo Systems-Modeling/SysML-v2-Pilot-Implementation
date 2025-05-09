@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -38,13 +38,14 @@ public class Type_inheritedMemberships_InvocationDelegate extends BasicInvocatio
 	}
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Type self = (Type) target;
-		@SuppressWarnings("unchecked")
-		EList<Type> excluded = (EList<Type>) arguments.get(0);
-		boolean excludeImplied = (boolean) arguments.get(1);
+		EList<Namespace> excludedNamespaces = (EList<Namespace>) arguments.get(0);
+		EList<Type> excludedTypes = (EList<Type>) arguments.get(1);
+		boolean excludeImplied = (boolean) arguments.get(2);
 		
-		return TypeUtil.getInheritedMembershipFor(self, new HashSet<Namespace>(), new HashSet<>(excluded), new HashSet<>(), true, excludeImplied);
+		return TypeUtil.getInheritedMembershipsFor(self, new HashSet<>(excludedNamespaces), new HashSet<>(excludedTypes), excludeImplied);
 	}
 
 }

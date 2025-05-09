@@ -45,16 +45,16 @@ import org.eclipse.emf.common.util.EList;
  *             binding.relatedFeature->includes(mem.ownedResultExpression.result)))
  * result =
  *     let resultParams : Sequence(Feature) =
- *         ownedFeatureMemberships->
+ *         featureMemberships->
  *             selectByKind(ReturnParameterMembership).
- *             ownedParameterMember in
+ *             ownedMemberParameter in
  *     if resultParams->notEmpty() then resultParams->first()
- *     else if function <> null then function.result
  *     else null
- *     endif endif
- * ownedFeatureMembership->
+ *     endif
+ * 
+ * featureMembership->
  *     selectByKind(ReturnParameterMembership)->
- *     size() <= 1
+ *     size() = 1
  * membership->selectByKind(ResultExpressionMembership)->size() <= 1
  * <!-- end-model-doc -->
  *
@@ -120,8 +120,8 @@ public interface Expression extends Step {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

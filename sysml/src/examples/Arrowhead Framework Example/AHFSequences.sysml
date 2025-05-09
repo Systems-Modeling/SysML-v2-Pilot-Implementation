@@ -82,40 +82,40 @@ package AHFNorwaySequences {
 			mqget ::> AHFNorway_LocalCloudDD.MQTTServer.getTopic,
 			mqgive ::> AHFNorway_LocalCloudDD.MQTTServer.giveTopic) {
 			
-			message publish_returnallitems of Publish
-			from apspm to mqget;
-			message subscribe_returnallitems of Subscribe
-			from apsc to mqgive;
-			message call_getItems of CallGiveItems[1]
-			from tlu to apsph;
-			message returnallitems of Return_AllItems
-			from apspm to mqget;
-			message sendallitems of Return_AllItems
-			from mqgive to apsc;
-			message returnack of ResultGiveItems
-			from apsph to tlu;
+			flow publish_returnallitems of Publish
+			from apspm.pub to mqget.APIS_MQTT.pub;
+			flow subscribe_returnallitems of Subscribe
+			from apsc.subscr to mqgive.APIS_MQTT.subscr;
+			flow call_getItems of CallGiveItems[1]
+			from tlu.cll to apsph.cll;
+			flow returnallitems of Return_AllItems
+			from apspm.retall to mqget.APIS_MQTT.retall;
+			flow sendallitems of Return_AllItems
+			from mqgive.APIS_MQTT.retall to apsc.retall;
+			flow returnack of ResultGiveItems
+			from apsph.retrn to tlu.retrn;
 			
 			// Successions on each lifetime
 			// tlu
-			succession first call_getItems.startShot
-			then returnack.endShot;	
+			succession first call_getItems.start
+			then returnack.done;	
 			// apisp (taking both ports)
-			succession first publish_returnallitems.startShot
-			then call_getItems.endShot;
-			succession first call_getItems.endShot
-			then returnallitems.startShot;
-			succession first returnallitems.startShot
-			then returnack.startShot;
+			succession first publish_returnallitems.start
+			then call_getItems.done;
+			succession first call_getItems.done
+			then returnallitems.start;
+			succession first returnallitems.start
+			then returnack.start;
 			// MQTTServer
-			succession first publish_returnallitems.endShot
-			then subscribe_returnallitems.endShot;
+			succession first publish_returnallitems.done
+			then subscribe_returnallitems.done;
 			succession first subscribe_returnallitems
-			then returnallitems.endShot;
-			succession first returnallitems.endShot
-			then sendallitems.startShot;
+			then returnallitems.done;
+			succession first returnallitems.done
+			then sendallitems.start;
 			// apisc
-			succession first subscribe_returnallitems.startShot
-			then sendallitems.endShot;
+			succession first subscribe_returnallitems.start
+			then sendallitems.done;
 		}
 		
 	}

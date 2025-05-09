@@ -51,8 +51,8 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	}
 	
 	@Override
-	protected void addDefaultMultiplicity() {
-		
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
 	}
 	
 	@Override

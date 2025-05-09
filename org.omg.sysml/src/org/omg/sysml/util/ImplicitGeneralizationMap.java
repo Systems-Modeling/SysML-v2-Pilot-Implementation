@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -44,123 +44,81 @@ public class ImplicitGeneralizationMap {
 		
 		// KerML
 		
-		//checkAssociationSpecialization
 		put(AssociationImpl.class, "base", "Links::Link");
-		//checkAssociationBinarySpecialization
 		put(AssociationImpl.class, "binary", "Links::BinaryLink");
 		
-		//checkAssociationStructureSpecialization
 		put(AssociationStructureImpl.class, "base", "Objects::LinkObject");
-		//checkAssociationStructureBinarySpecialization
 		put(AssociationStructureImpl.class, "binary", "Objects::BinaryLinkObject");
 		
-		//checkBehaviorSpecialization
 		put(BehaviorImpl.class, "base", "Performances::Performance");
 		
-		//checkBindingConnectorSpecialization
 		put(BindingConnectorImpl.class, "binary", "Links::selfLinks");
 		
-		//checkBooleanExpressionSpecialization
 		put(BooleanExpressionImpl.class, "base", "Performances::booleanEvaluations");
 		
-		//checkClassSpecialization
 		put(ClassImpl.class, "base", "Occurrences::Occurrence");
 		
 		put(ClassifierImpl.class, "base", "Base::Anything");
 		
-		//checkConnectorSpecialization
 		put(ConnectorImpl.class, "base", "Links::links");
-		//checkConnectorBinarySpecialization
 		put(ConnectorImpl.class, "binary", "Links::binaryLinks");
-		//checkConnectorObjectSpecialization
 		put(ConnectorImpl.class, "object", "Objects::linkObjects");
-		//checkConnectorBinaryObjectSpecialization
 		put(ConnectorImpl.class, "binaryObject", "Objects::binaryLinkObjects");
 		
-		//checkDataTypeSpecialization
+		put(ConstructorExpressionImpl.class, "base", "Performances::constructorEvaluations");
+
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
-		//checkExpressionSpecialization
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
-		//checkStepSubperformanceSpecialization
 		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
-		//checkFeatureSpecialization
 		put(FeatureImpl.class, "base", "Base::things");
-		//checkFeatureDataValueSpecialization
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
-		//checkFeatureOccurrenceSpecialization
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
-		
-		//checkFeatureSuboccurrenceSpecialization
 		put(FeatureImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
-		
-		//checkFeaturePortionSpecialization
 		put(FeatureImpl.class, "portion", "Occurrences::Occurrence::portions");
-		//checkFeatureObjectSpecialization
 		put(FeatureImpl.class, "object", "Objects::objects");
-		//checkFeatureSubobjectSpecialization
 		put(FeatureImpl.class, "subobject", "Objects::Object::subobjects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
-		//checkAssignmentActionUsageStartingAtRedefinition
 		put(FeatureImpl.class, "startingAt", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
-		//checkAssignmentActionUsageAccessedFeatureRedefinition
 		put(FeatureImpl.class, "accessedFeature", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
 		
-		//checkFeatureChainExpressionTargetRedefinition
 		put(FeatureChainExpressionImpl.class, "target", "ControlFunctions::'.'::source::target");
 		
-		//checkFunctionSpecialization
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
-		//checkInvariantSpecialization
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
-		//checkInvariantSpecialization
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
-		//checkItemFeatureRedefinition
-		put(ItemFeatureImpl.class, "payload", "Transfers::Transfer::item");
+		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
-		//checkItemFlowSpecialization
-		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
-		//checkStepEnclosedPerformanceSpecialization
-		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		//checkStepSubperformanceSpecialization
-		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
-		//checkStepOwnedPerformanceSpecialization
-		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowImpl.class, "base", "Transfers::flowTransfers");
+		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		put(FlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(FlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
-		put(ItemFlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
-		put(ItemFlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
+		put(FlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
+		put(FlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
 		
-		//checkLiteralBooleanSpecialization
 		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
 		
-		//checkLiteralExpressionSpecialization
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
-		//checkLiteralInfinitySpecialization
 		put(LiteralInfinityImpl.class, "base", "Performances::literalIntegerEvaluations");
 		
-		//checkLiteralIntegerSpecialization
 		put(LiteralIntegerImpl.class, "base", "Performances::literalIntegerEvaluations");
 		
-		//checkLiteralRationalSpecialization
 		put(LiteralRationalImpl.class, "base", "Performances::literalRationalEvaluations");
 		
-		//checkLiteralStringSpecialization
 		put(LiteralStringImpl.class, "base", "Performances::literalStringEvaluations");
 		
-		//checkMetaclassSpecialization
 		put(MetaclassImpl.class, "base", "Metaobjects::Metaobject");
-		//checkMetadataFeatureSpecialization
 		put(MetadataFeatureImpl.class, "base", "Metaobjects::metaobjects");
 		put(MetadataFeatureImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		put(MetadataFeatureImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
 		put(MetadataAccessExpressionImpl.class, "base", "Performances::metadataAccessEvaluations");
 
-		//checkMultiplicitySpecialization
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
@@ -168,371 +126,228 @@ public class ImplicitGeneralizationMap {
 		put(MultiplicityRangeImpl.class, "feature", "Base::naturals");
 		put(MultiplicityRangeImpl.class, "classifier", "Base::naturals");
 		
-		//checkNullExpressionSpecialization
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		
-		//checkPredicateSpecialization
 		put(PredicateImpl.class, "base", "Performances::BooleanEvaluation");
 		
-		//checkStepSpecialization
 		put(StepImpl.class, "base", "Performances::performances");
-		//checkStepEnclosedPerformanceSpecialization
 		put(StepImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		//checkStepSubperformanceSpecialization
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
-		//checkStepOwnedPerformanceSpecialization
 		put(StepImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		put(StepImpl.class, "incomingTransfer", "Occurrences::Occurrence::incomingTransfers");
 		put(StepImpl.class, "featureWrite", "FeatureReferencingPerformances::FeatureWritePerformance");
 		
-		//checkStructureSpecialization
 		put(StructureImpl.class, "base", "Objects::Object");
 		
-		//checkSuccessionSpecialization
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		//checkSuccessionItemFlowSpecialization
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
-		//checkStepEnclosedPerformanceSpecialization
-		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
-		//checkStepSubperformanceSpecialization
-		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
-		//checkStepOwnedPerformanceSpecialization
-		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		
-		//checkTypeSpecialization
+		put(SuccessionFlowImpl.class, "base", "Transfers::flowTransfersBefore");
+		put(SuccessionFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedPerformances");
+		put(SuccessionFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(SuccessionFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+
 		put(TypeImpl.class, "base", "Base::Anything");
 
 		// SysML
 		
-		//checkAcceptActionUsageSpecialization
 		put(AcceptActionUsageImpl.class, "base", "Actions::acceptActions");
-		//checkAcceptActionUsageSubactionSpecialization
 		put(AcceptActionUsageImpl.class, "subaction", "Actions::Action::acceptSubactions");
 		
-		//checkActionDefinitionSpecialization
-		put(ActionDefinitionImpl.class, "base", "Actions::Action");
-		
-		//checkActionUsageSpecialization
+		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
 		put(ActionUsageImpl.class, "base", "Actions::actions");
-		//checkActionUsageSubactionSpecialization
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
-		//checkActionUsageOwnedActionSpecialization
 		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
-		//checkStepEnclosedPerformanceSpecialization
+		put(ActionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		//checkStepOwnedPerformanceSpecialization
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		//checkActionUsageStateActionRedefinition
 		put(ActionUsageImpl.class, "entry", "States::StateAction::entryAction");
-		//checkActionUsageStateActionRedefinition
 		put(ActionUsageImpl.class, "do", "States::StateAction::doAction");
-		//checkActionUsageStateActionRedefinition
 		put(ActionUsageImpl.class, "exit", "States::StateAction::exitAction");
-		//checkTransitionUsageTransitionFeatureSpecialization
 		put(ActionUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
-		//checkTransitionUsageTransitionFeatureSpecialization
 		put(ActionUsageImpl.class, "guard", "Actions::TransitionAction::guard");
-		//checkTransitionUsageTransitionFeatureSpecialization
 		put(ActionUsageImpl.class, "effect", "Actions::TransitionAction::effect");
 		
-		//checkAllocationDefinitionSpecialization
 		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");
-		//checkAllocationDefinitionSpecialization
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");
-		//checkAllocationUsageSpecialization
 		put(AllocationUsageImpl.class, "base", "Allocations::allocations");
-		//checkAllocationUsageSpecialization
 		put(AllocationUsageImpl.class, "binary", "Allocations::allocations");
 		
-		//checkAnalysisCaseDefinitionSpecialization
 		put(AnalysisCaseDefinitionImpl.class, "base", "AnalysisCases::AnalysisCase");
-		//checkAnalysisCaseUsageSpecialization
 		put(AnalysisCaseUsageImpl.class, "base", "AnalysisCases::analysisCases");
-		//checkAnalysisCaseUsageSubAnalysisCaseSpecialization
 		put(AnalysisCaseUsageImpl.class, "subAnalysisCase", "AnalysisCases::AnalysisCase::subAnalysisCases");
 		
-		//checkAssertConstraintUsageSpecialization
 		put(AssertConstraintUsageImpl.class, "base", "Constraints::assertedConstraintChecks");
-		//checkAssertConstraintUsageSpecialization
 		put(AssertConstraintUsageImpl.class, "negated", "Constraints::negatedConstraintChecks");
 		
-		//checkAssignmentActionUsageSpecialization
 		put(AssignmentActionUsageImpl.class, "base", "Actions::assignmentActions");
-		//checkAssignmentActionUsageSpecialization
 		put(AssignmentActionUsageImpl.class, "subaction", "Actions::Action::assignments");
 		put(AssignmentActionUsageImpl.class, "featureWrite", "Actions::AssignmentAction");
 		
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
-		
-		//checkAttributeUsageSpecialization
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		
-		//checkConnectorSpecialization
-		put(BindingConnectorAsUsageImpl.class, "base", "Links::links");
-		//??
+		put(BindingConnectorAsUsageImpl.class, "base", "Links::selfLinks");
 		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
 		
-		//checkCalculationDefinitionSpecialization
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
-		//checkCalculationUsageSpecialization
 		put(CalculationUsageImpl.class, "base", "Calculations::calculations");
-		//checkCalculationUsageSubcalculationSpecialization
 		put(CalculationUsageImpl.class, "subcalculation", "Calculations::Calculation::subcalculations");
 		
-		//checkCaseDefinitionSpecialization
 		put(CaseDefinitionImpl.class, "base", "Cases::Case");
-		//checkCaseUsageSpecialization
 		put(CaseUsageImpl.class, "base", "Cases::cases");
-		//checkCaseUsageSubcaseSpecialization
 		put(CaseUsageImpl.class, "subcase", "Cases::Case::subcases");
 		
-		//checkConcernDefinitionSpecialization
 		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
-		//checkConcernUsageSpecialization
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
-		//checkConcernUsageFramedConcernSpecialization
 		put(ConcernUsageImpl.class, "concern", "Requirements::RequirementCheck::concerns");
 		
-		//checkConnectionDefinitionSpecializations
 		put(ConnectionDefinitionImpl.class, "base", "Connections::Connection");
-		//checkConnectionDefinitionBinarySpecialization
 		put(ConnectionDefinitionImpl.class, "binary", "Connections::BinaryConnection");
-		//checkConnectionUsageSpecialization
 		put(ConnectionUsageImpl.class, "base", "Connections::connections");
-		//checkConnectionUsageBinarySpecialization
 		put(ConnectionUsageImpl.class, "binary", "Connections::binaryConnections");
 		
-		//checkConstraintDefinitionSpecialization
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
-		//checkConstraintUsageSpecialization
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
-		//checkConstraintUsageCheckedConstraintSpecialization
 		put(ConstraintUsageImpl.class, "checkedConstraint", "Items::Item::checkedConstraints");
-		//checkStepEnclosedPerformanceSpecialization
 		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		//checkStepSubperformanceSpecialization
 		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
-		//checkStepOwnedPerformanceSpecialization
 		put(ConstraintUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		//checkConstraintUsageRequirementConstraintSpecialization
 		put(ConstraintUsageImpl.class, "assumption", "Requirements::RequirementCheck::assumptions");
-		//checkConstraintUsageRequirementConstraintSpecialization
 		put(ConstraintUsageImpl.class, "requirement", "Requirements::RequirementCheck::constraints");
 		
-		//checkDecisionNodeSpecialization
 		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
-		//checkEventOccurrenceUsageSpecialization
 		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::timeEnclosedOccurrences");
-		
-		//checkExhibitStateUsageSpecialization
+
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		//checkFlowConnectionDefinitionSpecialization
-		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");
-		//checkFlowConnectionUsageSpecialization
-		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
-		//checkFlowConnectionUsageSpecialization
-		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
+		put(FlowDefinitionImpl.class, "base", "Flows::MessageAction");		
+		put(FlowDefinitionImpl.class, "binary", "Flows::Message");		
+		put(FlowUsageImpl.class, "base", "Flows::flows");
+		put(FlowUsageImpl.class, "message", "Flows::messages");
+		put(FlowUsageImpl.class, "subaction", "Actions::Action::subactions");
+		put(FlowUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
+		put(FlowUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
+		put(FlowUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
+		put(FlowUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		put(FlowUsageImpl.class, "entry", "States::StateAction::entryAction");
+		put(FlowUsageImpl.class, "do", "States::StateAction::doAction");
+		put(FlowUsageImpl.class, "exit", "States::StateAction::exitAction");
+		put(FlowUsageImpl.class, "trigger", "Actions::TransitionAction::accepter");
+		put(FlowUsageImpl.class, "guard", "Actions::TransitionAction::guard");
+		put(FlowUsageImpl.class, "effect", "Actions::TransitionAction::effect");
+		put(FlowUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
+		put(FlowUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
-		//checkActionUsageSubactionSpecialization
-		put(FlowConnectionUsageImpl.class, "subaction", "Actions::Action::subactions");
-		//checkActionUsageOwnedActionSpecialization
-		put(FlowConnectionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
-		//checkStepEnclosedPerformanceSpecialization
-		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
-		//checkStepSubperformanceSpecialization
-		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
-		//checkStepOwnedPerformanceSpecialization
-		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		
-		//checkForLoopActionUsageSpecialization
 		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
-		//checkForLoopActionUsageSubactionSpecialization
 		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");
-		//checkForLoopActionUsageVarRedefinition
 		put(ForLoopActionUsageImpl.class, "loopVariable", "Actions::ForLoopAction::var");
 		
-		//checkForkNodeSpecialization
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
-		//checkIfActionUsageSpecialization
 		put(IfActionUsageImpl.class, "base", "Actions::ifThenActions");
-		//checkIfActionUsageSpecialization
 		put(IfActionUsageImpl.class, "ifThenElse", "Actions::ifThenElseActions");
-		//checkIfActionUsageSubactionSpecialization
 		put(IfActionUsageImpl.class, "subaction", "Actions::Action::ifSubactions");
 		
-		//checkIncludeUseCaseSpecialization
 		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
-		//checkPerformActionUsageSpecialization
 		put(IncludeUseCaseUsageImpl.class, "performedAction", "Parts::Part::performedActions");
 		
-		//checkInterfaceDefinitionSpecialization
 		put(InterfaceDefinitionImpl.class, "base", "Interfaces::Interface");
-		//checkInterfaceDefinitionBinarySpecialization
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::BinaryInterface");
-		//checkInterfaceDefinitionSpecialization
 		put(InterfaceUsageImpl.class, "base", "Interfaces::interfaces");
-		//checkInterfaceUsageBinarySpecialization
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::binaryInterfaces");
 		
-		//checkItemDefinitionSpecialization
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
-		
-		//checkItemUsageSpecialization
 		put(ItemUsageImpl.class, "base", "Items::items");
-		//checkItemUsageSubitemSpecialization
 		put(ItemUsageImpl.class, "subitem", "Items::Item::subitems");
 		
-		//checkJoinNodeSpecialization
 		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
 		
-		//checkLifeClassLifeSpecialization
-		put(LifeClassImpl.class, "base", "Occurrences::Life");
-		
-		//checkMetadataDefinitionSpecialization
 		put(MetadataDefinitionImpl.class, "base", "Metadata::MetadataItem");
-		//checkMetadataUsageSpecialization
 		put(MetadataUsageImpl.class, "base", "Metadata::metadataItems");
 		put(MetadataUsageImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		put(MetadataUsageImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
-		//checkMergeNodeSpecialization
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
-		//checkOccurrenceDefinitionSpecialization
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
-		
-		//checkOccurrenceUsageSpecialization
+		put(OccurrenceDefinitionImpl.class, "life", "Occurrences::Life");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
-		//checkPortioningFeatureRedefinition
 		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
-		//checkPortioningFeatureRedefinition
 		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
 		
-		//checkPartDefinitionSpecialization
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
-		//checkPartUsageSpecialization
 		put(PartUsageImpl.class, "base", "Parts::parts");
-		//checkPartUsageSubpartSpecialization
 		put(PartUsageImpl.class, "subitem", "Items::Item::subparts");
-		//checkPartUsageActorSpecialization
 		put(PartUsageImpl.class, "requirementActor", "Requirements::RequirementCheck::actors");
-		//checkPartUsageStakeholderSpecialization
 		put(PartUsageImpl.class, "requirementStakeholder", "Requirements::RequirementCheck::stakeholders");
-		//checkPartUsageActorSpecialization
 		put(PartUsageImpl.class, "caseActor", "Cases::Case::actors");
-		//checkPartUsageStakeholderSpecialization
-		put(PartUsageImpl.class, "requirementStakeholder", "Requirements::RequirementCheck::stakeholders");
 		
-		//checkPerformActionUsageSpecialization
 		put(PerformActionUsageImpl.class, "performedAction", "Parts::Part::performedActions");
 		
-		//checkPortDefinitionSpecialization
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
-		//checkPortUsageSpecialization
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		//checkPortUsageOwnedPortSpecialization
-		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPort");
-		//checkPortUsageSubportSpecialization
+		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPorts");
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
-		//checkRenderingDefinitionSpecialization
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
-		//checkRenderingUsageSpecialization
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
-		//checkRenderingUsageSubrenderingSpecialization
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
-		//checkRenderingUsageRedefinition
 		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
 		
-		//checkRequirementDefinitionSpecialization
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
-		//checkRequirementUsageSpecialization
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
-		//checkRequirementUsageSubrequirementSpecialization
 		put(RequirementUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::subrequirements");
-		//checkRequirementUsageRequirementVerificationSpecialization
 		put(RequirementUsageImpl.class, "verification", "Verifications::VerificationCase::obj::requirementVerifications");
 		
-		//Missing from specification
 		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
-		//Missing from specification
 		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");
 		
-		//checkSendActionUsageSpecialization
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
-		//checkSendActionUsageSubactionSpecialization
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		
-		//checkStateDefinitionSpecialization
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
-		//checkStateUsageSpecialization
 		put(StateUsageImpl.class, "base", "States::stateActions");
-		//checkStateUsageSubstateSpecialization
 		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
-		//checkStateUsageExclusiveStateSpecialization
 		put(StateUsageImpl.class, "exclusiveState", "States::StateAction::exclusiveStates");
-		//checkStateUsageOwnedStateSpecialization
 		put(StateUsageImpl.class, "ownedAction", "Parts::Part::ownedStates");
 		
-		//checkConnectorSpecialization
-		put(SuccessionAsUsageImpl.class, "base", "Links::links");
-		//checkSuccessionSpecialization
+		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		//checkSuccessionFlowConnectionUsageSpecialization
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
-		//checkSuccessionFlowConnectionUsageSpecialization
-		put(SuccessionFlowConnectionUsageImpl.class, "message", "Connections::successionFlowConnections");
+		put(SuccessionFlowUsageImpl.class, "base", "Flows::successionFlows");
+		put(SuccessionFlowUsageImpl.class, "message", "Flows::successionFlows");
+
+		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
+		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");
 		
-		//checkTransitionUsageSpecialization
+		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateWithResultSubactions");
+
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
-		//checkTransitionUsageActionSpecialization
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::decisionTransitions");
-		//checkTransitionUsageStateSpecialization
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
-		//checkTriggerInvocationExpressionSpecialization
 		put(TriggerInvocationExpressionImpl.class, "when", "Triggers::TriggerWhen");
-		//checkTriggerInvocationExpressionSpecialization
 		put(TriggerInvocationExpressionImpl.class, "at", "Triggers::TriggerAt");
-		//checkTriggerInvocationExpressionSpecialization
 		put(TriggerInvocationExpressionImpl.class, "after", "Triggers::TriggerAfter");
 		
-		//checkUseCaseDefinitionSpecialization
 		put(UseCaseDefinitionImpl.class, "base", "UseCases::UseCase");
-		//checkUseCaseUsageSpecialization
 		put(UseCaseUsageImpl.class, "base", "UseCases::useCases");
-		//checkUseCaseUsageSubUseCaseSpecialization
 		put(UseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::subUseCases");
 		
-		//checkVerificationCaseSpecialization
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
-		//checkVerificationCaseUsageSpecialization
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");
-		//checkVerificationCaseUsageSubVerification
 		put(VerificationCaseUsageImpl.class, "subVerificationCase", "VerificationCases::VerificationCase::subVerificationCases");
 		
-		//checkViewDefinitionSpecialization
 		put(ViewDefinitionImpl.class, "base", "Views::View");
-		//checkViewpointUsageSpecialization
 		put(ViewUsageImpl.class, "base", "Views::views");
-		//checkViewUsageSubviewSpecialization
 		put(ViewUsageImpl.class, "subview", "Views::View::subviews");
-		
-		//checkViewpointDefinitionSpecialization
+
 		put(ViewpointDefinitionImpl.class, "base", "Views::ViewpointCheck");
-		//checkViewpointUsageSpecialization
 		put(ViewpointUsageImpl.class, "base", "Views::viewpointChecks");
-		//checkViewpointUsageViewpointSatisfactionSpecialization
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
 		
-		//checkWhileLoopActionUsageSpecialization
 		put(WhileLoopActionUsageImpl.class, "base", "Actions::whileLoopActions");
-		//checkWhileLoopActionUsageSubactionSpecialization
 		put(WhileLoopActionUsageImpl.class, "subaction", "Actions::Action::whileLoops");
 		
 	}

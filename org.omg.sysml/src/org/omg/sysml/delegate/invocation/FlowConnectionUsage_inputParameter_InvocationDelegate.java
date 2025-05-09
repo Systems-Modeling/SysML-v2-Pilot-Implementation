@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 
 public class FlowConnectionUsage_inputParameter_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -38,7 +38,7 @@ public class FlowConnectionUsage_inputParameter_InvocationDelegate extends Basic
 	
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-		FlowConnectionUsage self = (FlowConnectionUsage) target;
+		FlowUsage self = (FlowUsage) target;
 		int i = (int) arguments.get(0);
 		
 		EList<Feature> parameters = self.inputParameters();

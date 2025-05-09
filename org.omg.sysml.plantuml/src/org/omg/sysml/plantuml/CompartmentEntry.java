@@ -35,13 +35,13 @@ import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
+import org.omg.sysml.lang.sysml.SuccessionFlowUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
@@ -77,10 +77,10 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
         public String caseBindingConnector(BindingConnector bc) {
             return "bindings";
         }
-        public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+        public String caseFlowUsage(FlowUsage fcu) {
             return "flows";
         }
-        public String caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage sfcu) {
+        public String caseSuccessionFlowUsage(SuccessionFlowUsage sfcu) {
             return "succession flows";
         }
     }

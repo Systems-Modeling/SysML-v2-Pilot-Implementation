@@ -33,11 +33,11 @@ package test{
 		classifier F {}
 	}
 	classifier D :> C {
-		// XPECT warnings --> "Duplicate of inherited member name" at "D"
+		// XPECT warnings --> "Duplicate of inherited member name D from C" at "D"
 		classifier D {}
 	}
 	classifier E :> D {
-		// XPECT warnings --> "Duplicate of inherited member name" at "F"
+		// XPECT warnings --> "Duplicate of inherited member name F from C" at "F"
 		classifier F {}
 	}	
 

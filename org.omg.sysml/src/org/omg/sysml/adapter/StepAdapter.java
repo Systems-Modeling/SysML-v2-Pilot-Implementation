@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,12 +21,8 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.util.TypeUtil;
 
 public class StepAdapter extends FeatureAdapter {
 	
@@ -58,12 +54,7 @@ public class StepAdapter extends FeatureAdapter {
 	}
 	
 	public boolean isIncomingTransfer() {
-		return getTarget().getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
+		return getTarget().getOwnedFeature().stream().anyMatch(PayloadFeature.class::isInstance);
 	}
 
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(getTarget());
-	}	
-	
 }

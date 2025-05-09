@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -46,14 +46,15 @@ public class ConnectorAdapter extends FeatureAdapter {
 		int numEnds = TypeUtil.getOwnedEndFeaturesOf(target).size();
 		return hasStructureType()?
 				numEnds != 2? 
-						//checkConnectorObjectSpecialization
 					getDefaultSupertype("object"):
-						//checkConnectorBinaryObjectSpecialization
 					getDefaultSupertype("binaryObject"):
 				numEnds != 2? 
 					getDefaultSupertype("base"):
-						//checkConnectorBinarySpecialization
 					getDefaultSupertype("binary");
+	}
+		
+	protected void addContextFeaturingType() {
+		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
 	}
 	
 	public static void addEndSubsetting(Connector target) {
@@ -75,8 +76,7 @@ public class ConnectorAdapter extends FeatureAdapter {
 	public void doTransform() {
 		Connector target = getTarget();
 		super.doTransform();
-		//checkConnectorTypeFeaturing
-		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
+		addContextFeaturingType();
 		addEndSubsetting(target);
 	}
 	

@@ -29,36 +29,47 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Invocation Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An <code>InvocationExpression</code> is an <code>Expression</code> each of whose input <code>parameters</code> are bound to the <code>result</code> of an <code>argument</code> Expression.</p>
+ * <p>An <code>InvocationExpression</code> is an <code>InstantiationExpression</code> whose <code>instantiatedType</code> must be a <code>Behavior</code> or a <code>Feature</code> typed by a single <code>Behavior</code> (such as a <code>Step</code>). Each of the input <code>parameters</code> of the <code>instantiatedType</code> are bound to the <code>result</code> of an <code>argument</code> <code>Expression</code>. If the <code>instantiatedType</code> is a <code>Function</code> or a <code>Feature</code> typed by a <code>Function</code>, then the <code>result</code> of the <code>InvocationExpression</code> is the <code>result</code> of the invoked <code>Function</code>. Otherwise, the <code>result</code> is an instance of the <code>instantiatedType</code> (essentially like a behavioral <code>ConstructorExpression</code>).</p>
  * 
- * not ownedTyping->exists(oclIsKindOf(Function)) and
- * not ownedSubsetting->reject(isImplied).subsettedFeature.type->
- *     exists(oclIsKindOf(Function)) implies
+ * not instantiatedType.oclIsKindOf(Function) and
+ * not (instantiatedType.oclIsKindOf(Feature) and 
+ *      instantiatedType.oclAsType(Feature).type->exists(oclIsKindOf(Function))) implies
  *     ownedFeature.selectByKind(BindingConnector)->exists(
  *         relatedFeature->includes(self) and
  *         relatedFeature->includes(result))
- *             
  * TBD
- * ownedFeature->
- *     select(direction = _'in').valuation->
+ * instantiatedType.input->collect(inp | 
+ *     ownedFeatures->select(redefines(inp)).valuation->
  *     select(v | v <> null).value
- * let features : Set(Feature) = type.feature->asSet() in
+ * )
+ * let parameters : OrderedSet(Feature) = instantiatedType.input in
  * input->forAll(inp | 
  *     inp.ownedRedefinition.redefinedFeature->
- *         intersection(features)->size() = 1)
- * let features : Set(Feature) = type.feature->asSet() in
+ *         intersection(parameters)->size() = 1)
+ * let features : OrderedSet(Feature) = instantiatedType.feature in
  * input->forAll(inp1 | input->forAll(inp2 |
  *     inp1 <> inp2 implies
  *         inp1.ownedRedefinition.redefinedFeature->
  *             intersection(inp2.ownedRedefinition.redefinedFeature)->
  *             intersection(features)->isEmpty()))
+ * not instantiatedType.oclIsKindOf(Function) and
+ * not (instantiatedType.oclIsKindOf(Feature) and 
+ *      instantiatedType.oclAsType(Feature).type->exists(oclIsKindOf(Function))) implies
+ *     result.specializes(instantiatedType)
+ * specializes(instantiatedType)
+ * instantiatedType.oclIsKindOf(Behavior) or
+ * instantiatedType.oclIsKindOf(Feature) and
+ *     instantiatedType.type->exists(oclIsKindOf(Behavior)) and
+ *     instantiatedType.type->size(1)
+ * ownedFeature->forAll(f |
+ *     f <> result implies 
+ *         f.direction = FeatureDirectionKind::_'in')
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.InvocationExpression#getArgument <em>Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.InvocationExpression#getOperand <em>Operand</em>}</li>
  * </ul>
  *
@@ -66,31 +77,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface InvocationExpression extends Expression {
-
-	/**
-	 * Returns the value of the '<em><b>Argument</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>value</code> <code>Expressions</code> of the <code>FeatureValues</code> of the owned input <code>parameters</code> of the <code>InvocationExpression</code>.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Argument</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression_Argument()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='invocation'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Expression> getArgument();
+public interface InvocationExpression extends InstantiationExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Operand</b></em>' containment reference list.

@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A <code>Namespace</code> is an <code>Element</code> that contains other <code>Elements</code>, known as its <code>members</code>, via <code>Membership</code> <code>Relationships</code> with those <code>Elements</code>. The <code>members</code> of a <code>Namespace</code> may be owned by the <code>Namespace</code>, aliased in the <code>Namespace</code>, or imported into the <code>Namespace</code> via <code>Import</code> <code>Relationships</code>.</p>
  * 
- * <p>A <code>Namespace</code> can provide names for its <code>members</code> via the <code>memberNames</code> and <code>memberShortNames</code> specified by the <code>Memberships</code> in the <code>Namespace</code>. If a <code>Membership</code> specifies a <code>memberName</code> and/or <code>memberShortName</code>, then those are names of the corresponding <code>memberElement</code> relative to the <code>Namespace</code>. For an <code>OwningMembership</code>, the <code>owningMemberName</code> and <code>owningMemberShortName</code> are given by the <code>Element</code> <code>name</code> and <code>shortName</code>. Note that the same <code>Element</code> may be the <code>memberElement</code> of multiple <code>Memberships</code> in a <code>Namespace</code> (though it may be owned at most once), each of which may define a separate alias for the <code>Element</code> relative to the <code>Namespace</code>.</p>
+ * <p>A <code>Namespace</code> can provide names for its <code>members</code> via the <code>memberNames</code> and <code>memberShortNames</code> specified by the <code>Memberships</code> in the <code>Namespace</code>. If a <code>Membership</code> specifies a <code>memberName</code> and/or <code>memberShortName</code>, then those are names of the corresponding <code>memberElement</code> relative to the <code>Namespace</code>. For an <code>OwningMembership</code>, the <code>ownedMemberName</code> and <code>ownedMemberShortName</code> are given by the <code>Element</code> <code>name</code> and <code>shortName</code>. Note that the same <code>Element</code> may be the <code>memberElement</code> of multiple <code>Memberships</code> in a <code>Namespace</code> (though it may be owned at most once), each of which may define a separate alias for the <code>Element</code> relative to the <code>Namespace</code>.</p>
  * 
  * membership->forAll(m1 | 
  *     membership->forAll(m2 | 
@@ -47,12 +47,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -157,22 +157,19 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If <code>includeAll = true</code>, then return all the <code>Memberships</code> of this <code>Namespace</code>. Otherwise, return only the publicly visible <code>Memberships</code> of this <code>Namespace</code> (which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>). If <code>isRecursive = true</code>, also recursively include all visible <code>Memberships</code> of any visible owned <code>Namespaces</code>.</p>
+	 * <p>If <code>includeAll = true</code>, then return all the <code>Memberships</code> of this <code>Namespace</code>. Otherwise, return only the publicly visible <code>Memberships</code> of this <code>Namespace</code>, including <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and <code>Memberships</code> imported with a <code>visibility</code> of <code>public</code>. If <code>isRecursive = true</code>, also recursively include all visible <code>Memberships</code> of any <code>public</code> owned <code>Namespaces</code>, or, if <code>IncludeAll = true</code>, all <code>Memberships</code> of all owned <code>Namespaces</code>. When computing imported <code>Memberships</code>, ignore this <code>Namespace</code> and any <code>Namespaces</code> in the given <code>excluded</code> set.</p>
 	 * 
-	 * let visibleMemberships : Sequence(Membership) =
-	 *     if includeAll then memberships
-	 *     else ownedMembership->
-	 *         select(visibility = VisibilityKind::public)->
-	 *         union(ownedImport->
-	 *             select(visibility = VisibilityKind::public).
-	 *             importedMemberships(excluded->including(self)))
+	 * let visibleMemberships : OrderedSet(Membership) = 
+	 *     if includeAll then membershipsOfVisibility(null, excluded)
+	 *     else membershipsOfVisibility(VisibilityKind::public, excluded)
 	 *     endif in
 	 * if not isRecursive then visibleMemberships
 	 * else visibleMemberships->union(ownedMember->
-	 *         select(owningMembership.visibility = VisibilityKind::public)->
-	 *         selectAsKind(Namespace).
-	 *         visibleMemberships(excluded->including(self), true, includeAll))
+	 *     selectAsKind(Namespace).
+	 *     select(includeAll or owningMembership.visibility = VisibilityKind::public)->
+	 *     visibleMemberships(excluded->including(self), true, includeAll))
 	 * endif
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false" isRecursiveDataType="org.omg.sysml.lang.types.Boolean" isRecursiveRequired="true" isRecursiveOrdered="false" includeAllDataType="org.omg.sysml.lang.types.Boolean" includeAllRequired="true" includeAllOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
@@ -198,11 +195,29 @@ public interface Namespace extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>If <code>visibility</code> is not null, return the <code>Memberships</code> of this <code>Namespace</code> with the given <code>visibility</code>, including <code>ownedMemberships</code> with the given <code>visibility</code> and <code>Memberships</code> imported with the given <code>visibility</code>. If <code>visibility</code> is null, return all <code>ownedMemberships</code> and imported <code>Memberships</code> regardless of visibility. When computing imported <code>Memberships</code>, ignore this <code>Namespace</code> and any <code>Namespaces</code> in the given <code>excluded</code> set.</p>
+	 * ownedMembership->
+	 *     select(mem | visibility = null or mem.visibility = visibility)->
+	 *     union(ownedImport->
+	 *         select(imp | visibility = null or imp.visibility = visibility).
+	 *         importedMemberships(excluded->including(self)))
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" visibilityOrdered="false" excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> membershipsOfVisibility(VisibilityKind visibility, EList<Namespace> excluded);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
 	 * <p>Resolve the given qualified name to the named <code>Membership</code> (if any), starting with this <code>Namespace</code> as the local scope. The qualified name string must conform to the concrete syntax of the KerML textual notation. According to the KerML name resolution rules every qualified name will resolve to either a single <code>Membership</code>, or to none.</p>
 	 * 
 	 * let qualification : String = qualificationOf(qualifiedName) in
 	 * let name : String = unqualifiedNameOf(qualifiedName) in
 	 * if qualification = null then resolveLocal(name)
+	 * else if qualification = '$' then  resolveGlobal(name)
 	 * else 
 	 *     let namespaceMembership : Membership = resolve(qualification) in
 	 *     if namespaceMembership = null or 
@@ -212,7 +227,7 @@ public interface Namespace extends Element {
 	 *         namespaceMembership.memberElement.oclAsType(Namespace).
 	 *         resolveVisible(name) 
 	 *     endif
-	 * endif
+	 * endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" qualifiedNameDataType="org.omg.sysml.lang.types.String" qualifiedNameRequired="true" qualifiedNameOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"

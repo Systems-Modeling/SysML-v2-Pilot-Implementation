@@ -50,7 +50,7 @@ package TimingForStructuresModelToBeExecuted2 {
 		feature rollsOn : Wheel [2];
 		feature holdsWheel : BikeFork [2];
 		feature allParts : Occurrence unions rollsOn, holdsWheel;
-		connector b_during_ap : HappensDuring from self [1] to allParts [*];
+		connector b_during_ap : HappensDuring from [1] self to [*] allParts;
 	}
 }
 
@@ -62,12 +62,13 @@ package TimingForStructuresExecution2 {
 	private import Atoms::*;
 	private import TimingForStructuresModelToBeExecuted2::*;
 	private import Occurrences::HappensDuring;
-	private import OneToOneConnectorsExecution::MyWheel1;
-	private import OneToOneConnectorsExecution::MyWheel2;
 	private import OneToOneConnectorsExecution::MyWheel;
-	private import OneToOneConnectorsExecution::MyBikeFork1;
-	private import OneToOneConnectorsExecution::MyBikeFork2;
 	private import OneToOneConnectorsExecution::MyBikeFork;
+	
+	struct MyWheel1 specializes OneToOneConnectorsExecution::MyWheel1;
+	struct MyWheel2 specializes OneToOneConnectorsExecution::MyWheel2;
+    struct MyBikeFork1 specializes OneToOneConnectorsExecution::MyBikeFork1;
+    struct MyBikeFork2 specializes OneToOneConnectorsExecution::MyBikeFork2;
 
 	#atom
 	assoc MyBike_During_Wheel1_Link specializes HappensDuring {
@@ -104,7 +105,7 @@ package TimingForStructuresExecution2 {
 
 		feature redefines self : MyBike;
 		connector redefines b_during_ap : MyBike_During_Parts_Link [4]
-			from self [1] to allParts [*];
+			from [1] self to [*] allParts;
 	}
 }
 
@@ -123,7 +124,7 @@ package TimingForStructuresModelToBeExecuted3 {
 		feature holdsWheel : BikeFork [2];
 		feature allParts : Occurrence unions rollsOn, holdsWheel;
 		feature redefines endShot : Bicycle;
-		connector be_while_pe : HappensWhile from endShot [1] to endShot.allParts.endShot[*];
+		connector be_while_pe : HappensWhile from [1] endShot to [*] endShot.allParts.endShot;
 	}
 }
 
@@ -195,6 +196,6 @@ package TimingForStructuresExecution3 {
 	struct MyBike specializes Bicycle {
 		feature redefines endShot : MyBikeEnd;
 		connector redefines be_while_pe : MyBikeEnd_While_PartsEnd_Link [4]
-			from endShot [1] to endShot.allParts.endShot[*];  
+			from [1] endShot to [*] endShot.allParts.endShot;  
 	}
 }

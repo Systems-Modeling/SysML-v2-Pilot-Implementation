@@ -35,7 +35,9 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
@@ -47,6 +49,36 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	public Usage getTarget() {
 		return (Usage)super.getTarget();
+	}
+	
+	// Post-processing
+	
+	@Override
+	protected void setIsVariableIfConstant() {
+	}
+	
+	// Caching
+	
+	private Boolean mayTimeVary = null;
+	
+	public boolean mayTimeVary() {
+		if (mayTimeVary == null) {
+			Usage target = getTarget();
+			Type owningType = target.getOwningType();
+			mayTimeVary = owningType != null &&
+					TypeUtil.specializes(owningType, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::Occurrence")) &&
+					!(target.isPortion() ||
+					  TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Links::SelfLink")) ||
+					  TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Occurrences::HappensLink")) ||
+					  target.isComposite() && TypeUtil.specializes(target, (Type)SysMLLibraryUtil.getLibraryElement(target, "Actions::Action")));
+		}
+		return mayTimeVary;
+	}
+	
+	@Override
+	public void clearCaches() {
+		super.clearCaches();
+		mayTimeVary = null;
 	}
 	
 	// Utility
@@ -117,15 +149,27 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	// Transformation
 	
-	protected void addDefaultMultiplicity() {
+	// Used to check for default multiplicity for AttributeUsages, ItemUsages and PortUsages.
+	protected boolean isAddDefaultMultiplicity() {
 		Usage target = getTarget();
-		if (target.getOwningType() != null &&
-			target.getOwnedSubsetting().stream().
-				map(Subsetting::getSubsettedFeature).
-				filter(f->f != null).
-				map(FeatureUtil::getBasicFeatureOf).
-				noneMatch(f->f != null && f.getOwningType() != null)) {
-			FeatureUtil.addMultiplicityTo(target);
+		return target.isEnd() ||
+			   target.getOwningType() != null &&
+			   target.getOwnedSubsetting().stream().
+					map(Subsetting::getSubsettedFeature).
+					filter(f->f != null).
+					map(FeatureUtil::getBasicFeatureOf).
+					noneMatch(f->f != null && f.getOwningType() != null);
+	}
+	
+	// Multiplicity of 1..1 is always the default for an end usage.
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
+	}
+	
+	@Override
+	public void addAdditionalMembers() {
+		if (isAddMultiplicity()) {
+			TypeUtil.addMultiplicityTo(getTarget());
 		}
 	}
 	
@@ -151,6 +195,14 @@ public class UsageAdapter extends FeatureAdapter {
 			}
 		} else {
 			super.computeValueConnector();
+		}
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		if (UsageUtil.isVariant(getTarget())) {
+			addImplicitFeaturingTypesIfNecessary();
 		}
 	}
 }

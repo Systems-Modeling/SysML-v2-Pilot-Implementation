@@ -37,7 +37,8 @@ package org.omg.sysml.lang.sysml;
  *     featureWithValue.ownedMember->
  *         selectByKind(BindingConnector)->exists(b |
  *             b.relatedFeature->includes(featureWithValue) and
- *             b.relatedFeature->includes(value.result) and
+ *             b.relatedFeature->exists(f | 
+ *                 f.chainingFeature = Sequence{value, value.result}) and
  *             if not isInitial then 
  *                 b.featuringType = featureWithValue.featuringType
  *             else 
@@ -55,6 +56,7 @@ package org.omg.sysml.lang.sysml;
  * featureWithValue.redefinition.redefinedFeature->
  *     closure(redefinition.redefinedFeature).valuation->
  *     forAll(isDefault)
+ * isInitial implies featureWithValue.isVariable
  * <!-- end-model-doc -->
  *
  * <p>
@@ -87,9 +89,9 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>The Expression that provides the value as a result.</p>
 	 * <p>The <code>Expression</code> that provides the value of the <code>featureWithValue</code> as its <code>result</code>.</p>
 	 * 
-	 * <p>The Expression that provides the value as a result.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Expression)
@@ -178,9 +180,9 @@ public interface FeatureValue extends OwningMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>The Feature to be provided a value.</p>
 	 * <p>The <code>Feature</code> to be provided a value.</p>
 	 * 
-	 * <p>The Feature to be provided a value.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature With Value</em>' reference.
 	 * @see #setFeatureWithValue(Feature)

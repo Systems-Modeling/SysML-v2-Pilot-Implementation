@@ -50,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *             subSequence(2, relatedType->size())->
  *             asOrderedSet() 
  *     endif
+ * ownedEndFeature->forAll(type->size() = 1)
  * <!-- end-model-doc -->
  *
  * <p>

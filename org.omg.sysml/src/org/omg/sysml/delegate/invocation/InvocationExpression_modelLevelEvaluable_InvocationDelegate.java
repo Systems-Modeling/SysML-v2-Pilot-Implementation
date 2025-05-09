@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,10 +28,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.util.ExpressionUtil;
 
 public class InvocationExpression_modelLevelEvaluable_InvocationDelegate extends Expression_modelLevelEvaluable_InvocationDelegate {
 
@@ -45,23 +42,9 @@ public class InvocationExpression_modelLevelEvaluable_InvocationDelegate extends
 		@SuppressWarnings("unchecked")
 		EList<Feature> visited = (EList<Feature>) arguments.get(0);
 
-		return functionIsModelLevelEvaluable(self) && argumentsAreModelLevelEvaluable(self, visited);
+		Function function = self.getFunction();
+		return function != null && function.isModelLevelEvaluable() && 
+			   self.getArgument().stream().allMatch(arg->arg.modelLevelEvaluable(visited));
 	}
 
-	protected static boolean functionIsModelLevelEvaluable(InvocationExpression self) {
-		Type type = ExpressionUtil.getExpressionTypeOf(self);
-		return type instanceof Function? 
-				((Function)type).isModelLevelEvaluable(): 
-				!(type instanceof Expression);
-	}
-	
-	public static boolean argumentsAreModelLevelEvaluable(InvocationExpression self, EList<Feature> visited) {
-		for (Expression argument: self.getArgument()) {
-			if (!argument.modelLevelEvaluable(visited)) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 }

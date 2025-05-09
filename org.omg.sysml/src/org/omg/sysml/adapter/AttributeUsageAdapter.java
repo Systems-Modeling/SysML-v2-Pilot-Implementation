@@ -34,10 +34,8 @@ public class AttributeUsageAdapter extends UsageAdapter {
 	}
 
 	@Override
-	public void doTransform() {
-		//checkAttributeUsageSpecialization -> TypeAdapter.computeImplicitGeneralTypes
-		super.doTransform();
-		addDefaultMultiplicity();
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
 	}
 	
 }

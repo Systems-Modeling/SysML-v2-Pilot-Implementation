@@ -22,13 +22,10 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -37,9 +34,9 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		Feature source = UsageUtil.getSourceFeatureOf((TransitionUsage)owner);
-		return source == null? null: FeatureUtil.getBasicFeatureOf(source);
+	protected Feature basicGet(InternalEObject owner) {
+		Feature source = ((TransitionUsage)owner).sourceFeature();
+		return source == null? null: source.getFeatureTarget();
 	}
 
 }

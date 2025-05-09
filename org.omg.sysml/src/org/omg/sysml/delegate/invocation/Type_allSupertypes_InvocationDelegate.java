@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
 
 public class Type_allSupertypes_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -43,25 +42,19 @@ public class Type_allSupertypes_InvocationDelegate extends BasicInvocationDelega
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Type self = (Type) target;
 		
-		return getAllSuperTypes(self, new HashSet<>());
+		return getAllSupertypes(self, new HashSet<>());
 	}
 	
-	protected EList<Type> getAllSuperTypes(Type self, Set<Type> visited) {
-		if (self.isConjugated()) {
-			Type originalType = self.getOwnedConjugator().getOriginalType();
-			return getAllSuperTypes(originalType, visited);
-		} else {
-			EList<Type> superTypes = new BasicEList<>();
-			TypeUtil.getSupertypesOf(self).stream().
-				forEachOrdered(superType->{
-					if (superType != null && !visited.contains(superType)) {
-						visited.add(superType);
-						superTypes.add(superType);
-						superTypes.addAll(getAllSuperTypes(superType, visited));
-					}
-				});
-			return superTypes;
+	protected EList<Type> getAllSupertypes(Type self, Set<Type> visited) {
+		EList<Type> allSupertypes = new BasicEList<>();
+		for (Type supertype: self.supertypes(false)) {
+			if (supertype != null && !visited.contains(supertype)) {
+				visited.add(supertype);
+				allSupertypes.add(supertype);
+				allSupertypes.addAll(getAllSupertypes(supertype, visited));
+			}
 		}
+		return allSupertypes;
 	}
 
 }

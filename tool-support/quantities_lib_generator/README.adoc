@@ -1,0 +1,70 @@
+= quantities_lib_generator
+
+Author: Hans Peter de Koning, DEKonsult.
+
+== Overview
+
+This is a generator tool written in Python, that auto-generates the SysML v2 standard library packages for the ISO/IEC 80000 quantities and measurement references, in particular measurement units and coordinate frames.
+
+The primary input is an Excel workbook (`data/iso-iec-80000/iso_iec_80000_quantities_and_units.xlsx`) that captures the ISQ quantities and as well as the SI measurement units defined in the ISO/IEC 80000 series of standards.
+
+Note. ISQ stands for "International System of Quantities", and SI stands for "International System of Units".
+
+A next release of the generator will also contain tools to generate the `USCustomaryUnits.sysml` standard library package based on the official definitions, including their official conversion factors, as defined in NIST SP 811 Annex B.
+
+== Mathematical notation
+
+In order to properly express symbols, definitions and remarks for quantities and measurement units, and stay close to the standards from which the definitions originate, it is highly desirable to support established mathematical notation.
+
+For the SysML source code in this library, the syntax and conventions as defined hereafter are adopted, striving for a balance between:
+
+* simplicity and user readability
+* compatibility with the expression syntax in the SysML language
+* representation in typical text / programming language editors
+* suitability for rendering of high-quality documentation through use of mathematical rendering engines like https://www.mathjax.org[MathJax].
+
+The selected notation for math and physics formulae is http://asciimath.org/[AsciiMath], inserted inside documentation comments between backticks, with the following additional conventions:
+
+[arabic]
+. Descriptive subscripts are enclosed between double quotes, e.g. `X_"r"`, `Y_"max"`.
+. Variable subscripts are ungrouped when they are a single letter or digit, or else grouped using curly brackets, e.g. `x_i`, `int_t`, `int_{t_1}`.
+. Descriptive superscripts are enclosed between double quotes, e.g. `X^"T"`, `Y^"*"` and `Z_"max"^"prime"`.
+. Variable superscripts are ungrouped when they are a single letter or digit, or else grouped using parentheses if they are subexpressions, or using curly brackets if they are compound names, e.g. `x^2`, `y^(1/2)`, `z^{i*exp(t/τ)}`, `int^t` , `int^{t_"max"}`.
+. Vector quantities are denoted with an overhead arrow using `vec{x}`.
+. Tensor quantities are denoted with a double overhead arrow using `vec{vec{x}}`.
+. Partial derivatives are denoted using the LaTeX term, i.e., `{partial a}/{partial t}` rather than the http://asciimath.org/[AsciiMath] notation `{del a}/{del t}`.
+. Greek letters and math characters like ∞ for infinity are written directly in Unicode. The source code file is assumed to support Unicode characters, and the typical encoding is expected to be UTF-8.
+
+== Development tools
+
+This Python package was developed using the PyCharm tool by JetBrains, configured with _conda_ with its own environment for the latest _python v3.11_ interpreter.
+
+Python version 3.11 was used. Since only vanilla Python is used it should run with any Python version 3.8 or higher.
+
+The generator has been tested with Windows 11, but should run also on any MacOS or Linux operating system.
+
+== Execution instructions
+
+Run the generator and update the standard domain libraries
+
+* Simplest is to run script `quantities_lib_generator.py` directly in the PyCharm IDE.
+** Before first use, configure PyCharm as follows:
+*** Via menu _File > Settings > Project > Python Interpreter_, select python v3.11 or higher using your favorite environment manager.
+*** Install module `openpyxl`, for interaction with Excel `.xlsx` files.
+** Open file `quantities_lib_generator.py` and run it by clicking the _run icon_ or selecting menu _Run_.
+* In case no IDE is used:
+** Ensure python v3.11 or higher is installed, and accessible via the command line.
+** Open a terminal and change the working directory to the `tool-support/quantities_lib_generator` folder.
+** Install module `openpyxl` e.g. using:
++
+....
+$ pip install openpyxl
+....
+** Run the following command:
++
+....
+$ python quantities_lib_generator.py
+....
+* The generated output will appear in folder `libs_generated`.
+* Inspect the generated `.sysml` standard library packages, and diff them against already existing packages in the `../../sysml.library/Domain Libraries/Quantities and Units` folder.
+* If found correct, then copy them to that target folder and commit to update the standard libraries.

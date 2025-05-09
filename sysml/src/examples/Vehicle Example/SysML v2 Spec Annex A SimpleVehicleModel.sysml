@@ -57,7 +57,7 @@ package SimpleVehicleModel{
                             first off
                             accept ignitionCmd:IgnitionCmd via ignitionCmdPort
                                 if ignitionCmd.ignitionOnOff==IgnitionOnOff::on and brakePedalDepressed
-                            do send StartSignal() to controller
+                            do send new StartSignal() to controller
                             then starting;
                         
                         transition starting_To_on
@@ -68,7 +68,7 @@ package SimpleVehicleModel{
                         transition on_To_off
                             first on
                             accept VehicleOffSignal
-                            do send OffSignal() to controller
+                            do send new OffSignal() to controller
                             then off;
                     }
 
@@ -92,7 +92,7 @@ package SimpleVehicleModel{
                         transition normal_To_degraded
                             first normal
                             accept when senseTemperature.temp > Tmax 
-                            do send OverTemp() to controller
+                            do send new OverTemp() to controller
                             then degraded;
 
                         transition maintenance_To_normal
@@ -637,9 +637,9 @@ package SimpleVehicleModel{
                         connect differential.rightDiffPort to rearAxle.rightHalfAxle.rightAxleToDiffPort;
                         
                         interface wheelToleftHalAxleInterface:WheelHubInterface 
-                            connect rearWheel1.lugNutCompositePort [1] to rearAxle.leftHalfAxle.shankCompositePort [1];
+                            connect [1] rearWheel1.lugNutCompositePort to [1] rearAxle.leftHalfAxle.shankCompositePort;
                         interface wheelTorightHalAxleInterface:WheelHubInterface
-                            connect rearWheel2.lugNutCompositePort [1] to rearAxle.rightHalfAxle.shankCompositePort [1];
+                            connect [1] rearWheel2.lugNutCompositePort to [1] rearAxle.rightHalfAxle.shankCompositePort;
                         
                     }
                     part starterMotor:StarterMotor;
@@ -950,7 +950,7 @@ package SimpleVehicleModel{
                     }
                 }
                 interface wheelHubInterface:WheelHubInterface
-                    connect wheel1.lugNutCompositePort [1] to hub1.shankCompositePort [1];
+                    connect [1] wheel1.lugNutCompositePort to [1] hub1.shankCompositePort;
             }
             // alternative 2 - w multiple nesxted interfaces
             part wheelHubAssy2{
@@ -965,9 +965,9 @@ package SimpleVehicleModel{
                     }
                 }
                 interface wheelHubInterface:WheelHubInterface
-                    connect lugNutCompositePort ::> wheel1.lugNutCompositePort [1] to shankCompositePort ::> hub1.shankCompositePort [1] {
+                    connect [1] lugNutCompositePort ::> wheel1.lugNutCompositePort to [1] shankCompositePort ::> hub1.shankCompositePort {
                         interface wheelFastenerInterface1 :> wheelFastenerInterface
-                            connect lugNutPort ::> lugNutCompositePort.lugNutPort [5] to shankPort ::> shankCompositePort.shankPort [5];
+                            connect [5] lugNutPort ::> lugNutCompositePort.lugNutPort to [5] shankPort ::> shankCompositePort.shankPort;
                         }
             }
             // alternative 3 - w explicit nesxted interfaces
@@ -996,7 +996,7 @@ package SimpleVehicleModel{
                     }
 }
                 interface wheelHubInterface:WheelHubInterface
-                    connect lugNutCompositePort ::> wheel1.lugNutCompositePort [1] to shankCompositePort ::> hub1.shankCompositePort [1] {
+                    connect [1] lugNutCompositePort ::> wheel1.lugNutCompositePort to [1] shankCompositePort ::> hub1.shankCompositePort {
                         interface wheelFastenerInterface1 :> wheelFastenerInterface
                             connect lugNutPort ::> lugNutCompositePort.lugNutPort1 to shankPort ::> shankCompositePort.shankPort1 {
                                 attribute :>> maxTorque = 90 * 1.356 [N*m];
@@ -1325,12 +1325,12 @@ package SimpleVehicleModel{
                     //ignition on
                     transition 'wait-wait-1'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) via handPort
+                        do send new IgnitionCmd (ignitionOnOff=IgnitionOnOff::on) via handPort
                         then wait;
                     // ignition off
                     transition 'wait-wait-2'
                         first wait
-                        do send IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) via handPort
+                        do send new IgnitionCmd (ignitionOnOff=IgnitionOnOff::off) via handPort
                         then wait;
                 }
             }

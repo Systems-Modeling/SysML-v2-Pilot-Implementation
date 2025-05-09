@@ -15,17 +15,17 @@ package ChangingFeatureValuesModelToBeExecuted {
 		step dry : Dry [*] {
 			redefines objectToDry = objectToFinish;
 		}
-		succession p_before_d first paint [1] then dry [1];
+		succession p_before_d first [1] paint then [1] dry;
 		step ship : Ship [*] {
 			redefines objectToShip = objectToFinish;
 		}
-		succession d_before_s first dry [1] then ship [1];
+		succession d_before_s first [1] dry then [1] ship;
 	}
 
 	struct Product {
-		feature isPainted : Boolean [1] := false;
-		feature isDry : Boolean [1] := true;
-		feature isShipped : Boolean [1] := false;
+		var feature isPainted : Boolean [1] := false;
+		var feature isDry : Boolean [1] := true;
+		var feature isShipped : Boolean [1] := false;
 	}
 
 	behavior Paint {
@@ -38,7 +38,7 @@ package ChangingFeatureValuesModelToBeExecuted {
 			in redefines replacementValues = false;
 		}
 
-		succession p_before_p first painting [1] then painted [1];
+		succession p_before_p first [1] painting then [1] painted;
 		step painted : FeatureWritePerformance [*] {
 			in redefines onOccurrence : Product = objectToPaint {
 				redefines startingAt : Product {
@@ -80,9 +80,9 @@ package ChangingFeatureValuesExecution {
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
 
 	struct ProductTimeSlice specializes Product {
-		readonly feature redefines isPainted;
-		readonly feature redefines isDry;
-		readonly feature redefines isShipped;
+		feature redefines isPainted;
+		feature redefines isDry;
+		feature redefines isShipped;
 	}
 
 	#atom

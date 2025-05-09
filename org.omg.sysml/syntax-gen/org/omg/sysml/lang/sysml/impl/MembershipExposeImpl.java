@@ -18,7 +18,7 @@ public class MembershipExposeImpl extends MembershipImportImpl implements Member
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected MembershipExposeImpl() {
 		super();

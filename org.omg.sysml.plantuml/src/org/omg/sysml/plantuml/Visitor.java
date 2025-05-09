@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public abstract class Visitor extends SysMLSwitch<String> {
     private SysML2PlantUMLText s2p = null;
@@ -410,7 +411,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (!(e instanceof Type)) return null;
         Type typ = (Type) e;
         if (showImplicitMultiplicity) {
-            Multiplicity m = FeatureUtil.getMultiplicityOf(typ);
+            Multiplicity m = TypeUtil.getMultiplicityOf(typ);
             return FeatureUtil.getMultiplicityRangeOf(m);
         } else {
             Multiplicity m = typ.getMultiplicity();

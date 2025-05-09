@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.omg.kerml.expressions.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext
-Bundle-Version: 0.46.0.qualifier
+Bundle-Version: 0.49.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.expressions.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

@@ -57,7 +57,7 @@ public class VMixed extends VTree {
 
     private String process(Visitor v, Element e) {
         v.visit(e);
-        addRel(e, e, null);
+        addRel(e, null);
         v.flush();
         return "";
     }
@@ -69,19 +69,13 @@ public class VMixed extends VTree {
     @Override
     public String caseActionDefinition(ActionDefinition ad) {
         VAction va = new VAction(this);
-        va.caseActionDefinition(ad);
-        addRel(ad, null);
-        va.flush();
-        return "";
+        return process(va, ad);
     }
 
     @Override
     public String caseActionUsage(ActionUsage au) {
         VAction va = new VAction(this);
-        va.caseActionUsage(au);
-        addRel(au, null);
-        va.flush();
-        return "";
+        return process(va, au);
     }
 
     /***************************************************

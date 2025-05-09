@@ -131,6 +131,7 @@ public class VTree extends VStructure {
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
+        if (isEmptyObjective(om)) return "";
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
         addRel(ru, om, "<<objective>>");
         addReq("comp usage ", ru);

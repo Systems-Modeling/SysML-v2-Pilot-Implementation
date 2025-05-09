@@ -59,6 +59,7 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -252,6 +253,11 @@ public class VCompartment extends VStructure {
     public String caseReferenceUsage(ReferenceUsage ru) {
         // ReferenceUsage should be processed by the parent VTree.
     	return null;
+    }
+
+    @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        return recCurrent(sru, true);
     }
 
     @Override

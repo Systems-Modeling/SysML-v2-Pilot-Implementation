@@ -338,7 +338,7 @@ public class VDefault extends VTraverser {
     }
 
     // Shorthand notation
-    private boolean addShorthandRelation(Usage u, String title) {
+    protected boolean addShorthandRelation(Usage u, String title) {
         if (u.getDeclaredName() != null) return false;
         if (u.getDeclaredShortName() != null) return false;
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();

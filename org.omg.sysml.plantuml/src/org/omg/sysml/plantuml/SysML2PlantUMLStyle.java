@@ -548,7 +548,7 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
             if (Visitor.getSpecialReference(sru) != null) {
-                return " requirement>> ";
+                return " satisfy>> ";
             } else {
                 return " satisfy requirement>> ";
             }

@@ -315,8 +315,10 @@ public abstract class VStructure extends VDefault {
         Feature target = sru.getSatisfyingFeature();
         if ((ru != null) && (target != null)) {
             addPRelation(target, ru, sru, "<<satisfy>>");
+            if (getSpecialReference(sru) != null) return "";
+        } else {
+            if (addShorthandRelation(sru, "<<satisfy>>")) return "";
         }
-        if (getSpecialReference(sru) != null) return "";
         return null;
     }
     

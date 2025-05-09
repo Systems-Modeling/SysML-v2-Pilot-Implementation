@@ -61,6 +61,8 @@ import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -339,7 +341,7 @@ public class VDefault extends VTraverser {
     }
 
     // Shorthand notation
-    protected boolean addShorthandRelation(Usage u, String title) {
+    private boolean addShorthandRelation(Usage u, String title) {
         if (u.getDeclaredName() != null) return false;
         if (u.getDeclaredShortName() != null) return false;
         ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
@@ -395,6 +397,19 @@ public class VDefault extends VTraverser {
     @Override
     public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
         if (addShorthandRelation(acu, "<<assert>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        RequirementUsage ru = sru.getSatisfiedRequirement();
+        Feature target = sru.getSatisfyingFeature();
+        if ((ru != null) && (target != null)) {
+            addPRelation(target, ru, sru, "<<satisfy>>");
+            if (getSpecialReference(sru) != null) return "";
+        } else {
+            if (addShorthandRelation(sru, "<<satisfy>>")) return "";
+        }
         return null;
     }
 

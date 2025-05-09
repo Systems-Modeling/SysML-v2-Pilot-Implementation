@@ -39,9 +39,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -309,19 +307,6 @@ public abstract class VStructure extends VDefault {
         return "";
     }
 
-    @Override
-    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-        RequirementUsage ru = sru.getSatisfiedRequirement();
-        Feature target = sru.getSatisfyingFeature();
-        if ((ru != null) && (target != null)) {
-            addPRelation(target, ru, sru, "<<satisfy>>");
-            if (getSpecialReference(sru) != null) return "";
-        } else {
-            if (addShorthandRelation(sru, "<<satisfy>>")) return "";
-        }
-        return null;
-    }
-    
     @Override
     public String caseConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
         // Do not show conjugated ports.

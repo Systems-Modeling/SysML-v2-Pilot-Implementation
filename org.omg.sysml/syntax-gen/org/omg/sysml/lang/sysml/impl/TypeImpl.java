@@ -1084,9 +1084,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void isCompatibleWith(Type otherType) {
+	public boolean isCompatibleWith(Type otherType) {
 		try {
-			IS_COMPATIBLE_WITH_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{otherType}));
+			return (Boolean)IS_COMPATIBLE_WITH_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{otherType}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1495,8 +1495,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE___SPECIALIZES_FROM_LIBRARY__STRING:
 				return specializesFromLibrary((String)arguments.get(0));
 			case SysMLPackage.TYPE___IS_COMPATIBLE_WITH__TYPE:
-				isCompatibleWith((Type)arguments.get(0));
-				return null;
+				return isCompatibleWith((Type)arguments.get(0));
 			case SysMLPackage.TYPE___MULTIPLICITIES:
 				return multiplicities();
 		}

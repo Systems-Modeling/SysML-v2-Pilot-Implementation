@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -88,9 +88,15 @@ public class UsageUtil {
 	// References
 	
 	public static boolean isComposite(Usage usage, boolean isComposite) {
-		return isComposite && !usage.getFeaturingType().isEmpty() && usage.getDirection() == null && !usage.isEnd();
+		return isComposite && (usage.getOwningType() != null || !usage.getFeaturingType().isEmpty()) && usage.getDirection() == null && !usage.isEnd();
 	}
 	
+	// Time Varying
+	
+	public static boolean mayTimeVary(Usage usage) {
+		return getUsageAdapter(usage).mayTimeVary();
+	}
+		
 	// Variants
 	
 	public static boolean isVariant(Usage usage) {
@@ -110,12 +116,6 @@ public class UsageUtil {
 	public static VariantMembership getOwningVariantMembershipFor(Usage usage) {
 		Membership owningMembership = usage.getOwningMembership();
 		return owningMembership instanceof VariantMembership? (VariantMembership)owningMembership: null;
-	}
-	
-	// Results
-	
-	public static void addResultParameterTo(Type type) {
-		TypeUtil.addResultParameterTo(type, SysMLFactory.eINSTANCE.createReferenceUsage());
 	}
 	
 	// Subjects

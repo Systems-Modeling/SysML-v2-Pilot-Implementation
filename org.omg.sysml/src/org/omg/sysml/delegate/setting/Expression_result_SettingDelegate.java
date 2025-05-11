@@ -34,7 +34,7 @@ public class Expression_result_SettingDelegate extends BasicDerivedPropertySetti
 
 	@Override
 	protected Object basicGet(InternalEObject owner) {
-		return TypeUtil.getOwnedResultParameterOf((Expression)owner);
+		return TypeUtil.getResultParameterOf((Expression)owner);
 	}
 
 }

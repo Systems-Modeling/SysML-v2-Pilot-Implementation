@@ -35,7 +35,7 @@ public class Function_result_SettingDelegate extends BasicDerivedObjectSettingDe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return TypeUtil.getOwnedResultParameterOf((Function)owner);
+		return TypeUtil.getResultParameterOf((Function)owner);
 	}
 
 }

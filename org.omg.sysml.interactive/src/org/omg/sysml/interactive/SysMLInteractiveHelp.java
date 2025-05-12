@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  * Copyright (c) 2022 Mgnite Inc.
  *    
@@ -42,7 +42,7 @@ public class SysMLInteractiveHelp {
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
-			+ "%load\tLoads a model from the repository and adds it to the Xtext index\n"
+			+ "%load\t\tLoad a model from the repository\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
 			+ "%projects\tList projects in the repository\n"
 			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
@@ -79,11 +79,15 @@ public class SysMLInteractiveHelp {
     	    + "   JSON\t\tComplete JSON representation of the tree\n";
 
 	private static final String PUBLISH_HELP_STRING =
-			  "Usage: %publish <NAME>\n\n"
+			  "Usage: %publish [-d] [--project=<PROJECT NAME>] [--branch=<BRANCH NAME>] <NAME>\n\n"
 			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n"
-			+ "Use the --project parameter to specify a project to create or update. If not specified, a new project is created with the name of the model element and a timestamp.\n"
-			+ "Use the -d flag to include derived properties\n"
-			+ "(Experimental) Use --branch to specify the target branch name. If not specified, the default branch is selected.\n";
+			+ "Use the -d flag to include derived properties.\n"
+			+ "If <PROJECT NAME> is given, it is used as the name of the project to create or update.\n"
+			+ "If <PROJECT NAME> is not given, the (simple) name of the model element is used.\n"
+			+ "    If no project exits with the given name, then a new project with that name is created.\n"
+			+ "    Otherwise, a new project is created with the given name.\n"
+			+ "If <BRANCH NAME> is given, then the model is written to this branch of the project.\n"
+			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
 
     private static final String VIZ_HELP_STRING =
     	      "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
@@ -123,15 +127,17 @@ public class SysMLInteractiveHelp {
 		    + "<NAME> must be fully qualified.\n";
 	
 	private static final String LOAD_HELP_STRING =
-			"Usage: %load [--branch=<BRANCH_NAME>] [--id=<PROJECT ID] [--name=<NAME>] [<NAME>]\n\n"
-			+ "Downloads previously published models from the repository. <NAME> must be the full name of the project.\n"
-			+ "Use --id=<PROJECT ID> to load projects by id. It is not supported to provide both id and name.\n"
-			+ "(Experimental) Use --branch=<BRANCH_NAME> to select the branch to load from. If not specified, the default branch is used.\n"
-			+ "Use %projects to view repository contents.\n";
+			"Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [--branch=<BRANCH_NAME>] [<NAME>]\n\n"
+			+ "Download previously published models from a project in the repository. <NAME> is the full name of the project.\n"
+			+ "Named elements of the downloaded models may then be referenced models in the notebook."
+			+ "(Use %projects to view repository contents.)\n"
+			+ "If <PROJECT ID> is given, then the project with that UUID is loaded. In this case, the <NAME> must not be given.\n"
+			+ "If <BRANCH NAME> is given, then the model is loaded from this branch of the project.\n"
+			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
 	
 	private static final String PROJECTS_HELP_STRING =
 			  "Usage: %projects\n\n"
-			+ "Returns the name and identifier from the repository for all publications\n";
+			+ "Print the name and identifier of all projects in the repository.\n";
  
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;

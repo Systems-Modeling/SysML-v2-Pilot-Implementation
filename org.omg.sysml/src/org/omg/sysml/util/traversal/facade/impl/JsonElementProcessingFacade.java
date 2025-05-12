@@ -27,6 +27,7 @@ package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -160,6 +161,9 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 				toList();
 	}
 
+	
+	private final Set<String> alwaysEnabledDerived = Set.of("importedElement", "owner");
+	
 	/**
 	 * Create an (API)Element for the given model (EMF)Element including the values of all its non-derived  
 	 * attributes (unless it is a library model element, in which case only its non-referential attribute values 
@@ -181,7 +185,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			String featureName = feature.getName();
 			//always add the importedElement derived field. This field is used for a workaround that addresses
 			//unstable library membership UUIDs in the EMFModelRefresher.
-			if ((this.isIncludeDerived() || !feature.isDerived() || "importedElement".equals(feature.getName())) && 
+			if ((this.isIncludeDerived() || !feature.isDerived() || alwaysEnabledDerived.contains(feature.getName())) && 
 					// Skip implementation-specific features.
 					!("isNonunique".equals(featureName) || 
 					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 

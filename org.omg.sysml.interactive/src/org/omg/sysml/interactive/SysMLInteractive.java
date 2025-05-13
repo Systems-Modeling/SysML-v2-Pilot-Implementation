@@ -419,7 +419,7 @@ public class SysMLInteractive extends SysMLUtil {
 			} else if (!this.isInputResource(element.eResource())) {
 				return "ERROR:'" + elementName + "' is a library element\n";
 			} else {
-				String remoteProjectName = projectName == null? element.getDeclaredName() + " " + new Date() : projectName;
+				String remoteProjectName = projectName == null? element.getDeclaredName() : projectName;
 				
 				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName, branchName, includeDerievd);
 				processingFacade.getTraversal().visit(element);

@@ -85,7 +85,7 @@ public class SysMLInteractiveHelp {
 			+ "If <PROJECT NAME> is given, it is used as the name of the project to create or update.\n"
 			+ "If <PROJECT NAME> is not given, the (simple) name of the model element is used.\n"
 			+ "    If no project exits with the given name, then a new project with that name is created.\n"
-			+ "    Otherwise, a new project is created with the given name.\n"
+			+ "    Otherwise, the existing project is updated with a new commit.\n"
 			+ "If <BRANCH NAME> is given, then the model is written to this branch of the project.\n"
 			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
 

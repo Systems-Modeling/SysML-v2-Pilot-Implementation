@@ -494,6 +494,10 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 
 	private String load(RemoteBranch branch) {
+		if (branch == null) {
+			return "ERROR:Branch doesn't exist";
+		}
+		
 		System.out.println("Selected branch " + branch.getName());
 		
 		if (!tracker.isLibraryTracked()) {

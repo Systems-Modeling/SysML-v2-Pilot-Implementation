@@ -122,6 +122,7 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	}
 	
 	public void load() throws UnsupportedOperationException, ApiException {
+		
 		ProjectRepository projectRepository = new ProjectRepository(repositoryURL);
 		RemoteProject repositoryProject =  isReferencedById? projectRepository.getProjectById(project):
 			projectRepository.getProjectByName(project);
@@ -137,11 +138,13 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		} else {
 			branch = repositoryProject.getBranch(branchName);
 		}
-		Revision headRevision = branch.getHeadRevision();
-		APIModel remote = headRevision.fetchRemote();
+		
+		if (branch == null) {
+			System.err.println("Branch does not exist.");
+			return;
+		}
 		
 		System.out.println("Reading library...");
-		
 		readAll(localLibraryPath, false);
 		
 		//collect ids from library
@@ -149,9 +152,10 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 		EObjectUUIDTracker tracker = new EObjectUUIDTracker();
 		tracker.trackLibraryUUIDs(getLibraryResources());
 		
-		
+		System.out.println("Downloading project...");
+		Revision headRevision = branch.getHeadRevision();
+		APIModel remote = headRevision.fetchRemote();
 		EMFModelRefresher modelRefresher = new EMFModelRefresher(remote, tracker);
-		System.out.println("Fetching project...");
 		EMFModelDelta delta = modelRefresher.create();
 		modelRefresher.getIssues().forEach(System.out::println);
 		ResourceSet resourceSet = getResourceSet();

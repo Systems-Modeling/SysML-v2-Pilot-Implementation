@@ -162,7 +162,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	
-	private final Set<String> alwaysEnabledDerived = Set.of("importedElement", "owner");
+	private final Set<String> alwaysEnabledDerived = Set.of("importedElement", "owner", "isLibraryElement");
 	
 	/**
 	 * Create an (API)Element for the given model (EMF)Element including the values of all its non-derived  

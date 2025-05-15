@@ -85,7 +85,17 @@ public class SysMLKernel extends BaseKernel {
         this.magics.registerMagics(Load.class);
         this.magics.registerMagics(ApiBasePath.class);
 
-		ServiceLoader.load(IMagicCommandRegistrator.class).forEach(reg -> reg.registerMagicCommand(this.magics));
+		ServiceLoader.load(IMagicCommandRegistrator.class).forEach(reg -> {
+			try {
+				reg.registerMagicCommand(this.magics);
+			} catch (Exception e) {
+				// Given there is no available logging mechanism and an exception thrown by the
+				// registrator would cause the Jupyter kernel not to start up correctly, errors
+				// are logged to the standard err output, but otherwise ignored.
+				System.err.printf("Error while running the command registrator %s: %s", reg.getClass().getTypeName(),
+						e.getMessage());
+			}
+		});
 
         this.magicParser = new MyMagicParser();
     }

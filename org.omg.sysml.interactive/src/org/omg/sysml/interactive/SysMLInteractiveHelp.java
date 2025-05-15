@@ -3,7 +3,7 @@
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  * Copyright (c) 2022 Mgnite Inc.
- *    
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,17 +13,17 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- *  
+ *
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
+ *
  * Contributors:
  *  Ed Seidewitz, MDS
  *  Ivan Gomes
  *  Hisashi Miyashita
- *  
+ *
  *******************************************************************************/
 
 package org.omg.sysml.interactive;
@@ -34,7 +34,7 @@ import java.util.Map;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
 
 public class SysMLInteractiveHelp {
-	
+
 	private static final String GENERAL_HELP_STRING =
 			  "The following SysML v2 magic commands are available.\n"
 			+ "For help on a specific command, use \"%help <COMMAND>\" or \"%<cmd> -h\".\n\n"
@@ -50,12 +50,12 @@ public class SysMLInteractiveHelp {
 			+ "%view\t\tRender the view specified by the named view usage\n"
 			+ "%viz\t\tVisualize the name model elements\n"
 			;
-	
+
 	private static final String HELP_HELP_STRING =
 			  "Usage: %help [<COMMAND>]\n\n"
 			+ "Print help information on the named SysML v2 magic <COMMAND>.\n"
 			+ "If no <COMMAND> is given, then list the available commands.\n";
-	
+
 	private static final String EVAL_HELP_STRING =
 			  "Usage: %eval [--target=<NAME>] <EXPR>\n\n"
 			+ "Print the results of evaluating <EXPR> on the target given by <NAME>, which must be fully qualified.\n"
@@ -69,7 +69,7 @@ public class SysMLInteractiveHelp {
 			+ "that is, one of the following:\n"
 			+ "    <NAME>\t\telement given by the fully qualified <NAME>\n"
 			+ "    <NAME>::*\t\tall members of the namespace <NAME>\n"
-			+ "    <NAME>::**\t\tall members of the namespace <NAME> and, recursively, members of owned namespaces.\n" 
+			+ "    <NAME>::**\t\tall members of the namespace <NAME> and, recursively, members of owned namespaces.\n"
 			+ "The last two forms may be optionally followed by a filter expression in square brackets.\n";
 
 	private static final String SHOW_HELP_STRING =
@@ -120,13 +120,13 @@ public class SysMLInteractiveHelp {
     	    + "   MIXED\t\tShow multiple views\n\n"
     	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
             + SysML2PlantUMLStyle.getStyleHelp();
-    
+
 
 	private static final String EXPORT_HELP_STRING =
 			  "Usage: %export <NAME>\n\n"
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
-	
+
 	private static final String LOAD_HELP_STRING =
 			"Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [--branch=<BRANCH_NAME>] [<NAME>]\n\n"
 			+ "Download previously published models from a project in the repository. <NAME> is the full name of the project.\n"
@@ -135,7 +135,7 @@ public class SysMLInteractiveHelp {
 			+ "If <PROJECT ID> is given, then the project with that UUID is loaded. In this case, the <NAME> must not be given.\n"
 			+ "If <BRANCH NAME> is given, then the model is loaded from this branch of the project.\n"
 			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
-	
+
 	private static final String PROJECTS_HELP_STRING =
 			  "Usage: %projects\n\n"
 			+ "Print the name and identifier of all projects in the repository.\n";
@@ -151,15 +151,15 @@ public class SysMLInteractiveHelp {
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;
 	}
- 
+
 	public static String getHelpHelp() {
 		return HELP_HELP_STRING;
 	}
- 
+
 	public static String getEvalHelp() {
 		return EVAL_HELP_STRING;
 	}
- 
+
 	public static String getListHelp() {
     	return LIST_HELP_STRING;
     }
@@ -175,46 +175,44 @@ public class SysMLInteractiveHelp {
     public static String getVizHelp() {
     	return VIZ_HELP_STRING;
     }
-    
+
     public static String getViewHelp() {
     	return VIEW_HELP_STRING;
     }
-    
+
     public static String getExportHelp() {
     	return EXPORT_HELP_STRING;
     }
-    
+
     public static String getProjectsHelp() {
     	return PROJECTS_HELP_STRING;
     }
-    
+
     public static String getLoadHelp() {
     	return LOAD_HELP_STRING;
     }
-	public static String getApiBasePathHelp() {
-		return API_BASE_PATH_HELP_STRING;
-	}
-    
+
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
-    
+
     private static Map<String, String> createCommandHelpMap() {
     	Map<String, String> map = new HashMap<>();
-    	map.put("%help", HELP_HELP_STRING);    	
-    	map.put("%eval", EVAL_HELP_STRING);    	
-    	map.put("%list", LIST_HELP_STRING);    	
-    	map.put("%show", SHOW_HELP_STRING);    	
-    	map.put("%publish", PUBLISH_HELP_STRING);    	
-    	map.put("%viz", VIZ_HELP_STRING);    	
-    	map.put("%view", VIEW_HELP_STRING);    	
+    	map.put("%help", HELP_HELP_STRING);
+    	map.put("%eval", EVAL_HELP_STRING);
+    	map.put("%list", LIST_HELP_STRING);
+    	map.put("%show", SHOW_HELP_STRING);
+    	map.put("%publish", PUBLISH_HELP_STRING);
+    	map.put("%viz", VIZ_HELP_STRING);
+    	map.put("%view", VIEW_HELP_STRING);
     	map.put("%export", EXPORT_HELP_STRING);
     	map.put("%load", LOAD_HELP_STRING);
     	map.put("%projects", PROJECTS_HELP_STRING);
     	map.put("%repo", API_BASE_PATH_HELP_STRING);
+
     	return map;
     }
-    
+
     public static String getHelpString(String command) {
     	return commandHelpMap.get(command);
     }
-	
+
 }

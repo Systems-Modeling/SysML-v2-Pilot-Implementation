@@ -16182,10 +16182,20 @@ ruleMergeNode returns [EObject current=null]
 			$current = $this_ControlNodePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='merge'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getMergeNodeAccess().getMergeKeyword_1());
-		}
+		(
+			(
+				lv_isComposite_1_0='merge'
+				{
+					newLeafNode(lv_isComposite_1_0, grammarAccess.getMergeNodeAccess().getIsCompositeMergeKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMergeNodeRule());
+					}
+					setWithLastConsumed($current, "isComposite", lv_isComposite_1_0 != null, "merge");
+				}
+			)
+		)
 		(
 			{
 				if ($current==null) {
@@ -16203,11 +16213,11 @@ ruleMergeNode returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getMergeNodeRule());
 			}
-			newCompositeNode(grammarAccess.getMergeNodeAccess().getActionNodeBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getMergeNodeAccess().getActionBodyParserRuleCall_3());
 		}
-		this_ActionNodeBody_3=ruleActionNodeBody[$current]
+		this_ActionBody_3=ruleActionBody[$current]
 		{
-			$current = $this_ActionNodeBody_3.current;
+			$current = $this_ActionBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -16240,10 +16250,20 @@ ruleDecisionNode returns [EObject current=null]
 			$current = $this_ControlNodePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='decide'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getDecisionNodeAccess().getDecideKeyword_1());
-		}
+		(
+			(
+				lv_isComposite_1_0='decide'
+				{
+					newLeafNode(lv_isComposite_1_0, grammarAccess.getDecisionNodeAccess().getIsCompositeDecideKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDecisionNodeRule());
+					}
+					setWithLastConsumed($current, "isComposite", lv_isComposite_1_0 != null, "decide");
+				}
+			)
+		)
 		(
 			{
 				if ($current==null) {
@@ -16261,11 +16281,11 @@ ruleDecisionNode returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getDecisionNodeRule());
 			}
-			newCompositeNode(grammarAccess.getDecisionNodeAccess().getActionNodeBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getDecisionNodeAccess().getActionBodyParserRuleCall_3());
 		}
-		this_ActionNodeBody_3=ruleActionNodeBody[$current]
+		this_ActionBody_3=ruleActionBody[$current]
 		{
-			$current = $this_ActionNodeBody_3.current;
+			$current = $this_ActionBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -16298,10 +16318,20 @@ ruleJoinNode returns [EObject current=null]
 			$current = $this_ControlNodePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='join'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getJoinNodeAccess().getJoinKeyword_1());
-		}
+		(
+			(
+				lv_isComposite_1_0='join'
+				{
+					newLeafNode(lv_isComposite_1_0, grammarAccess.getJoinNodeAccess().getIsCompositeJoinKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getJoinNodeRule());
+					}
+					setWithLastConsumed($current, "isComposite", lv_isComposite_1_0 != null, "join");
+				}
+			)
+		)
 		(
 			{
 				if ($current==null) {
@@ -16319,11 +16349,11 @@ ruleJoinNode returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getJoinNodeRule());
 			}
-			newCompositeNode(grammarAccess.getJoinNodeAccess().getActionNodeBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getJoinNodeAccess().getActionBodyParserRuleCall_3());
 		}
-		this_ActionNodeBody_3=ruleActionNodeBody[$current]
+		this_ActionBody_3=ruleActionBody[$current]
 		{
-			$current = $this_ActionNodeBody_3.current;
+			$current = $this_ActionBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -16356,10 +16386,20 @@ ruleForkNode returns [EObject current=null]
 			$current = $this_ControlNodePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='fork'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getForkNodeAccess().getForkKeyword_1());
-		}
+		(
+			(
+				lv_isComposite_1_0='fork'
+				{
+					newLeafNode(lv_isComposite_1_0, grammarAccess.getForkNodeAccess().getIsCompositeForkKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getForkNodeRule());
+					}
+					setWithLastConsumed($current, "isComposite", lv_isComposite_1_0 != null, "fork");
+				}
+			)
+		)
 		(
 			{
 				if ($current==null) {
@@ -16377,60 +16417,13 @@ ruleForkNode returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getForkNodeRule());
 			}
-			newCompositeNode(grammarAccess.getForkNodeAccess().getActionNodeBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getForkNodeAccess().getActionBodyParserRuleCall_3());
 		}
-		this_ActionNodeBody_3=ruleActionNodeBody[$current]
+		this_ActionBody_3=ruleActionBody[$current]
 		{
-			$current = $this_ActionNodeBody_3.current;
+			$current = $this_ActionBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
-	)
-;
-
-
-// Rule ActionNodeBody
-ruleActionNodeBody[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0=';'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getActionNodeBodyAccess().getSemicolonKeyword_0());
-		}
-		    |
-		(
-			otherlv_1='{'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getActionNodeBodyAccess().getLeftCurlyBracketKeyword_1_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getActionNodeBodyAccess().getOwnedRelationshipAnnotatingMemberParserRuleCall_1_1_0());
-					}
-					lv_ownedRelationship_2_0=ruleAnnotatingMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getActionNodeBodyRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_2_0,
-							"org.omg.sysml.xtext.SysML.AnnotatingMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-			otherlv_3='}'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getActionNodeBodyAccess().getRightCurlyBracketKeyword_1_2());
-			}
-		)
 	)
 ;
 

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -55,19 +55,22 @@ public class FeatureReferenceExpression_modelLevelEvaluable_InvocationDelegate e
 			return false;
 		} else {
 			visited.add(referent);
+			boolean result;
 			if (referent instanceof Expression && ((Expression) referent).modelLevelEvaluable(visited)) {
-				return true;
+				result = true;
 			} else {
 				Type owningType = referent.getOwningType();
 				if (owningType instanceof Metaclass || owningType instanceof MetadataFeature) {
-					return true;
+					result =  true;
 				} else if (!referent.getFeaturingType().isEmpty()) {
-					return false;
+					result =  false;
 				} else {
 					Expression valueExpression = FeatureUtil.getValueExpressionFor(referent);
-					return valueExpression == null || valueExpression.modelLevelEvaluable(visited);
+					result = valueExpression == null || valueExpression.modelLevelEvaluable(visited);
 				}
 			}
+			visited.remove(referent);
+			return result;
 		}
 	}
 

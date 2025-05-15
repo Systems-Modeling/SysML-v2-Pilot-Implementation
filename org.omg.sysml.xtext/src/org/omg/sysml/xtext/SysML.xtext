@@ -1657,27 +1657,27 @@ fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 ;
 
 MergeNode returns SysML::MergeNode :
-	ControlNodePrefix 'merge' UsageDeclaration?
-	ActionNodeBody
+	ControlNodePrefix 
+	isComposite ?= 'merge' UsageDeclaration?
+	ActionBody
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	ControlNodePrefix 'decide' UsageDeclaration?
-	ActionNodeBody
+	ControlNodePrefix 
+	isComposite ?= 'decide' UsageDeclaration?
+	ActionBody
 ;
 
 JoinNode returns SysML::JoinNode :
-	ControlNodePrefix 'join' UsageDeclaration?
-	ActionNodeBody
+	ControlNodePrefix 
+	isComposite ?= 'join' UsageDeclaration?
+	ActionBody
 ;
 
 ForkNode returns SysML::ForkNode :
-	ControlNodePrefix 'fork' UsageDeclaration?
-	ActionNodeBody
-;
-
-fragment ActionNodeBody returns SysML::ControlNode :
-	';' | '{' ( ownedRelationship += AnnotatingMember )* '}'
+	ControlNodePrefix 
+	isComposite ?= 'fork' UsageDeclaration?
+	ActionBody
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :

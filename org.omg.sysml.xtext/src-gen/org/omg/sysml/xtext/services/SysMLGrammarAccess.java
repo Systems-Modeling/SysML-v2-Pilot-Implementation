@@ -9458,157 +9458,145 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MergeNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cControlNodePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cMergeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsCompositeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsCompositeMergeKeyword_1_0 = (Keyword)cIsCompositeAssignment_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cActionNodeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cActionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//MergeNode returns SysML::MergeNode :
-		//    ControlNodePrefix 'merge' UsageDeclaration?
-		//    ActionNodeBody
+		//    ControlNodePrefix
+		//    isComposite ?= 'merge' UsageDeclaration?
+		//    ActionBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ControlNodePrefix 'merge' UsageDeclaration?
-		//ActionNodeBody
+		//ControlNodePrefix
+		//isComposite ?= 'merge' UsageDeclaration?
+		//ActionBody
 		public Group getGroup() { return cGroup; }
 		
 		//ControlNodePrefix
 		public RuleCall getControlNodePrefixParserRuleCall_0() { return cControlNodePrefixParserRuleCall_0; }
 		
+		//isComposite ?= 'merge'
+		public Assignment getIsCompositeAssignment_1() { return cIsCompositeAssignment_1; }
+		
 		//'merge'
-		public Keyword getMergeKeyword_1() { return cMergeKeyword_1; }
+		public Keyword getIsCompositeMergeKeyword_1_0() { return cIsCompositeMergeKeyword_1_0; }
 		
 		//UsageDeclaration?
 		public RuleCall getUsageDeclarationParserRuleCall_2() { return cUsageDeclarationParserRuleCall_2; }
 		
-		//ActionNodeBody
-		public RuleCall getActionNodeBodyParserRuleCall_3() { return cActionNodeBodyParserRuleCall_3; }
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3() { return cActionBodyParserRuleCall_3; }
 	}
 	public class DecisionNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DecisionNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cControlNodePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cDecideKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsCompositeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsCompositeDecideKeyword_1_0 = (Keyword)cIsCompositeAssignment_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cActionNodeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cActionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//DecisionNode returns SysML::DecisionNode :
-		//    ControlNodePrefix 'decide' UsageDeclaration?
-		//    ActionNodeBody
+		//    ControlNodePrefix
+		//    isComposite ?= 'decide' UsageDeclaration?
+		//    ActionBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ControlNodePrefix 'decide' UsageDeclaration?
-		//ActionNodeBody
+		//ControlNodePrefix
+		//isComposite ?= 'decide' UsageDeclaration?
+		//ActionBody
 		public Group getGroup() { return cGroup; }
 		
 		//ControlNodePrefix
 		public RuleCall getControlNodePrefixParserRuleCall_0() { return cControlNodePrefixParserRuleCall_0; }
 		
+		//isComposite ?= 'decide'
+		public Assignment getIsCompositeAssignment_1() { return cIsCompositeAssignment_1; }
+		
 		//'decide'
-		public Keyword getDecideKeyword_1() { return cDecideKeyword_1; }
+		public Keyword getIsCompositeDecideKeyword_1_0() { return cIsCompositeDecideKeyword_1_0; }
 		
 		//UsageDeclaration?
 		public RuleCall getUsageDeclarationParserRuleCall_2() { return cUsageDeclarationParserRuleCall_2; }
 		
-		//ActionNodeBody
-		public RuleCall getActionNodeBodyParserRuleCall_3() { return cActionNodeBodyParserRuleCall_3; }
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3() { return cActionBodyParserRuleCall_3; }
 	}
 	public class JoinNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.JoinNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cControlNodePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cJoinKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsCompositeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsCompositeJoinKeyword_1_0 = (Keyword)cIsCompositeAssignment_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cActionNodeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cActionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//JoinNode returns SysML::JoinNode :
-		//    ControlNodePrefix 'join' UsageDeclaration?
-		//    ActionNodeBody
+		//    ControlNodePrefix
+		//    isComposite ?= 'join' UsageDeclaration?
+		//    ActionBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ControlNodePrefix 'join' UsageDeclaration?
-		//ActionNodeBody
+		//ControlNodePrefix
+		//isComposite ?= 'join' UsageDeclaration?
+		//ActionBody
 		public Group getGroup() { return cGroup; }
 		
 		//ControlNodePrefix
 		public RuleCall getControlNodePrefixParserRuleCall_0() { return cControlNodePrefixParserRuleCall_0; }
 		
+		//isComposite ?= 'join'
+		public Assignment getIsCompositeAssignment_1() { return cIsCompositeAssignment_1; }
+		
 		//'join'
-		public Keyword getJoinKeyword_1() { return cJoinKeyword_1; }
+		public Keyword getIsCompositeJoinKeyword_1_0() { return cIsCompositeJoinKeyword_1_0; }
 		
 		//UsageDeclaration?
 		public RuleCall getUsageDeclarationParserRuleCall_2() { return cUsageDeclarationParserRuleCall_2; }
 		
-		//ActionNodeBody
-		public RuleCall getActionNodeBodyParserRuleCall_3() { return cActionNodeBodyParserRuleCall_3; }
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3() { return cActionBodyParserRuleCall_3; }
 	}
 	public class ForkNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ForkNode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cControlNodePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cForkKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsCompositeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIsCompositeForkKeyword_1_0 = (Keyword)cIsCompositeAssignment_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cActionNodeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cActionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//ForkNode returns SysML::ForkNode :
-		//    ControlNodePrefix 'fork' UsageDeclaration?
-		//    ActionNodeBody
+		//    ControlNodePrefix
+		//    isComposite ?= 'fork' UsageDeclaration?
+		//    ActionBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ControlNodePrefix 'fork' UsageDeclaration?
-		//ActionNodeBody
+		//ControlNodePrefix
+		//isComposite ?= 'fork' UsageDeclaration?
+		//ActionBody
 		public Group getGroup() { return cGroup; }
 		
 		//ControlNodePrefix
 		public RuleCall getControlNodePrefixParserRuleCall_0() { return cControlNodePrefixParserRuleCall_0; }
 		
+		//isComposite ?= 'fork'
+		public Assignment getIsCompositeAssignment_1() { return cIsCompositeAssignment_1; }
+		
 		//'fork'
-		public Keyword getForkKeyword_1() { return cForkKeyword_1; }
+		public Keyword getIsCompositeForkKeyword_1_0() { return cIsCompositeForkKeyword_1_0; }
 		
 		//UsageDeclaration?
 		public RuleCall getUsageDeclarationParserRuleCall_2() { return cUsageDeclarationParserRuleCall_2; }
 		
-		//ActionNodeBody
-		public RuleCall getActionNodeBodyParserRuleCall_3() { return cActionNodeBodyParserRuleCall_3; }
-	}
-	public class ActionNodeBodyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ActionNodeBody");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotatingMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//fragment ActionNodeBody returns SysML::ControlNode :
-		//    ';' | '{' ( ownedRelationship += AnnotatingMember )* '}'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//';' | '{' ( ownedRelationship += AnnotatingMember )* '}'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
-		
-		//'{' ( ownedRelationship += AnnotatingMember )* '}'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
-		
-		//( ownedRelationship += AnnotatingMember )*
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
-		
-		//AnnotatingMember
-		public RuleCall getOwnedRelationshipAnnotatingMemberParserRuleCall_1_1_0() { return cOwnedRelationshipAnnotatingMemberParserRuleCall_1_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
+		//ActionBody
+		public RuleCall getActionBodyParserRuleCall_3() { return cActionBodyParserRuleCall_3; }
 	}
 	public class EmptyParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyParameterMember");
@@ -14417,7 +14405,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final DecisionNodeElements pDecisionNode;
 	private final JoinNodeElements pJoinNode;
 	private final ForkNodeElements pForkNode;
-	private final ActionNodeBodyElements pActionNodeBody;
 	private final EmptyParameterMemberElements pEmptyParameterMember;
 	private final EmptyUsageElements pEmptyUsage;
 	private final ActionTargetSuccessionElements pActionTargetSuccession;
@@ -14870,7 +14857,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pDecisionNode = new DecisionNodeElements();
 		this.pJoinNode = new JoinNodeElements();
 		this.pForkNode = new ForkNodeElements();
-		this.pActionNodeBody = new ActionNodeBodyElements();
 		this.pEmptyParameterMember = new EmptyParameterMemberElements();
 		this.pEmptyUsage = new EmptyUsageElements();
 		this.pActionTargetSuccession = new ActionTargetSuccessionElements();
@@ -18670,8 +18656,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//MergeNode returns SysML::MergeNode :
-	//    ControlNodePrefix 'merge' UsageDeclaration?
-	//    ActionNodeBody
+	//    ControlNodePrefix
+	//    isComposite ?= 'merge' UsageDeclaration?
+	//    ActionBody
 	//;
 	public MergeNodeElements getMergeNodeAccess() {
 		return pMergeNode;
@@ -18682,8 +18669,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//DecisionNode returns SysML::DecisionNode :
-	//    ControlNodePrefix 'decide' UsageDeclaration?
-	//    ActionNodeBody
+	//    ControlNodePrefix
+	//    isComposite ?= 'decide' UsageDeclaration?
+	//    ActionBody
 	//;
 	public DecisionNodeElements getDecisionNodeAccess() {
 		return pDecisionNode;
@@ -18694,8 +18682,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//JoinNode returns SysML::JoinNode :
-	//    ControlNodePrefix 'join' UsageDeclaration?
-	//    ActionNodeBody
+	//    ControlNodePrefix
+	//    isComposite ?= 'join' UsageDeclaration?
+	//    ActionBody
 	//;
 	public JoinNodeElements getJoinNodeAccess() {
 		return pJoinNode;
@@ -18706,8 +18695,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ForkNode returns SysML::ForkNode :
-	//    ControlNodePrefix 'fork' UsageDeclaration?
-	//    ActionNodeBody
+	//    ControlNodePrefix
+	//    isComposite ?= 'fork' UsageDeclaration?
+	//    ActionBody
 	//;
 	public ForkNodeElements getForkNodeAccess() {
 		return pForkNode;
@@ -18715,17 +18705,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getForkNodeRule() {
 		return getForkNodeAccess().getRule();
-	}
-	
-	//fragment ActionNodeBody returns SysML::ControlNode :
-	//    ';' | '{' ( ownedRelationship += AnnotatingMember )* '}'
-	//;
-	public ActionNodeBodyElements getActionNodeBodyAccess() {
-		return pActionNodeBody;
-	}
-	
-	public ParserRule getActionNodeBodyRule() {
-		return getActionNodeBodyAccess().getRule();
 	}
 	
 	//EmptyParameterMember returns SysML::ParameterMembership :

@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
@@ -38,6 +39,8 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
@@ -45,19 +48,27 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Flow;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Specialization;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.FeatureUtil;
 
 public class VDefault extends VTraverser {
     protected void addConnector(Element rel, Connector c, String desc) {
@@ -293,6 +304,113 @@ public class VDefault extends VTraverser {
             }
         }
         return ret;
+    }
+
+    protected static boolean isEmptySubject(SubjectMembership sm) {
+        Usage u = sm.getOwnedSubjectParameter();
+        String name = u.getName();
+        if (name != null && !"subj".equals(u.getName())) return false;
+        return u.getOwnedRelationship().isEmpty();
+    }
+
+    protected static boolean isEmptyObjective(ObjectiveMembership om) {
+        Usage u = om.getOwnedObjectiveRequirement();
+        String name = u.getName();
+        if (name != null && !"obj".equals(u.getName())) return false;
+        return isEmpty(u);
+    }
+
+    private static boolean isEmpty(Feature f) {
+        for (Relationship rel: toOwnedRelationshipArray(f)) {
+        	if (rel instanceof Specialization) {
+        		if (rel instanceof ReferenceSubsetting) continue;
+        		return false;
+        	}
+            if (!(rel instanceof OwningMembership)) continue;
+            if (rel instanceof SubjectMembership) {
+                if (isEmptySubject((SubjectMembership) rel)) continue;
+                return false;
+            }
+            if (rel instanceof ObjectiveMembership) {
+                if (isEmptyObjective((ObjectiveMembership) rel)) continue;
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    // Shorthand notation
+    private boolean addShorthandRelation(Usage u, String title) {
+        if (u.getDeclaredName() != null) return false;
+        if (u.getDeclaredShortName() != null) return false;
+        ReferenceSubsetting rs = u.getOwnedReferenceSubsetting();
+        if (rs == null) return false;
+        Feature ref = rs.getReferencedFeature();
+
+        /* If the target is not rendered, we do not use a shorthand notation and render a distinct node.
+         * If the target is a feature chain, we only check the first chaining feature because the visualizer
+         * will render all of the features of the feature chain.
+         * However it assumes the current visualizer behavior and we should provide a better 'toBeRendered()' service
+         * by extending VPath */
+        Feature tgt = FeatureUtil.getFirstChainingFeatureOf(ref);
+        if (tgt == null) tgt = ref;
+        if (!toBeRendered(tgt)) return false;
+
+        if (!isEmpty(u)) return false;
+
+        if (isReferred(u)) return false;
+
+        Element owner = u.getOwner();
+        if (!(owner instanceof Type)) return false;
+        if (!checkId(owner)) return false;
+
+        addPRelation(owner, ref, u, title);
+
+        return true;
+    }
+
+    @Override
+    public String casePerformActionUsage(PerformActionUsage pau) {
+        if (addShorthandRelation(pau, "<<perform>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+        if (addShorthandRelation(esu, "<<exhibit>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
+        if (addShorthandRelation(eou, "<<event>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iuc) {
+        if (addShorthandRelation(iuc, "<<include>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+        if (addShorthandRelation(acu, "<<assert>>")) return "";
+        return null;
+    }
+
+    @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        RequirementUsage ru = sru.getSatisfiedRequirement();
+        Feature target = sru.getSatisfyingFeature();
+        if ((ru != null) && (target != null)) {
+            addPRelation(target, ru, sru, "<<satisfy>>");
+            if (getSpecialReference(sru) != null) return "";
+        } else {
+            if (addShorthandRelation(sru, "<<satisfy>>")) return "";
+        }
+        return null;
     }
 
     @Override

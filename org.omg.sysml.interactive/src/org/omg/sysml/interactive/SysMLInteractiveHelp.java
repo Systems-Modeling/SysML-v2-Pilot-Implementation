@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  * Copyright (c) 2022 Mgnite Inc.
  *    
@@ -32,22 +32,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
-import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 public class SysMLInteractiveHelp {
 	
 	private static final String GENERAL_HELP_STRING =
 			  "The following SysML v2 magic commands are available.\n"
 			+ "For help on a specific command, use \"%help <COMMAND>\" or \"%<cmd> -h\".\n\n"
-			+ "%repo\t Set the api base path for the repository"
 			+ "%eval\t\tEvaluate a given expression.\n"
 			+ "%export\t\tSave a file of the JSON representation of the abstract syntax tree rooted in the named element.\n"
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
+			+ "%load\t\tLoad a model from the repository\n"
+			+ "%repo\t Set the api base path for the repository\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
-			+ "%publish\tPublish to the repository the model elements rooted in a named element\n"
+			+ "%projects\tList projects in the repository\n"
+			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
 			+ "%view\t\tRender the view specified by the named view usage\n"
-			+ "%viz\t\tVisualize the name model elements\n";
+			+ "%viz\t\tVisualize the name model elements\n"
+			;
 	
 	private static final String HELP_HELP_STRING =
 			  "Usage: %help [<COMMAND>]\n\n"
@@ -78,8 +80,15 @@ public class SysMLInteractiveHelp {
     	    + "   JSON\t\tComplete JSON representation of the tree\n";
 
 	private static final String PUBLISH_HELP_STRING =
-			  "Usage: %publish <NAME>\n\n"
-			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n";
+			  "Usage: %publish [-d] [--project=<PROJECT NAME>] [--branch=<BRANCH NAME>] <NAME>\n\n"
+			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n"
+			+ "Use the -d flag to include derived properties.\n"
+			+ "If <PROJECT NAME> is given, it is used as the name of the project to create or update.\n"
+			+ "If <PROJECT NAME> is not given, the (simple) name of the model element is used.\n"
+			+ "    If no project exits with the given name, then a new project with that name is created.\n"
+			+ "    Otherwise, the existing project is updated with a new commit.\n"
+			+ "If <BRANCH NAME> is given, then the model is written to this branch of the project.\n"
+			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
 
     private static final String VIZ_HELP_STRING =
     	      "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
@@ -118,6 +127,19 @@ public class SysMLInteractiveHelp {
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
 	
+	private static final String LOAD_HELP_STRING =
+			"Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [--branch=<BRANCH_NAME>] [<NAME>]\n\n"
+			+ "Download previously published models from a project in the repository. <NAME> is the full name of the project.\n"
+			+ "Named elements of the downloaded models may then be referenced models in the notebook."
+			+ "(Use %projects to view repository contents.)\n"
+			+ "If <PROJECT ID> is given, then the project with that UUID is loaded. In this case, the <NAME> must not be given.\n"
+			+ "If <BRANCH NAME> is given, then the model is loaded from this branch of the project.\n"
+			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
+	
+	private static final String PROJECTS_HELP_STRING =
+			  "Usage: %projects\n\n"
+			+ "Print the name and identifier of all projects in the repository.\n";
+
 	private static final String API_BASE_PATH_HELP_STRING =
 			  "Usage: %repo [<BASE PATH>]\n\n"
 			+ "If <BASE PATH> is not given, print the current repository base path.\r\n"
@@ -162,6 +184,13 @@ public class SysMLInteractiveHelp {
     	return EXPORT_HELP_STRING;
     }
     
+    public static String getProjectsHelp() {
+    	return PROJECTS_HELP_STRING;
+    }
+    
+    public static String getLoadHelp() {
+    	return LOAD_HELP_STRING;
+    }
 	public static String getApiBasePathHelp() {
 		return API_BASE_PATH_HELP_STRING;
 	}
@@ -178,6 +207,8 @@ public class SysMLInteractiveHelp {
     	map.put("%viz", VIZ_HELP_STRING);    	
     	map.put("%view", VIEW_HELP_STRING);    	
     	map.put("%export", EXPORT_HELP_STRING);
+    	map.put("%load", LOAD_HELP_STRING);
+    	map.put("%projects", PROJECTS_HELP_STRING);
     	map.put("%repo", API_BASE_PATH_HELP_STRING);
     	return map;
     }
@@ -185,4 +216,5 @@ public class SysMLInteractiveHelp {
     public static String getHelpString(String command) {
     	return commandHelpMap.get(command);
     }
+	
 }

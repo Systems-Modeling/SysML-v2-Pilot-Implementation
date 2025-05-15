@@ -25,17 +25,17 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+import java.util.UUID;
 
-import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.api.CommitApi;
-import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.model.Commit;
-import org.omg.sysml.model.DataVersion;
-import okhttp3.OkHttpClient;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.APIModelDelta;
+import org.omg.sysml.util.repository.ProjectRepository;
+import org.omg.sysml.util.repository.ProjectRepository.RemoteException;
+import org.omg.sysml.util.repository.Revision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
@@ -52,31 +52,39 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
-	private final ApiClient apiClient = new ApiClient();
-	private final ProjectApi projectApi = new ProjectApi(apiClient);
-	private final CommitApi commitApi = new CommitApi(apiClient);
-
-	private org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
+	private ProjectRepository projectRepository;
+	private final String projectName;
+	private final String branchName;
+	private RemoteProject project;
 
 	/**
 	 * Create a facade for processing the Elements to be saved to the repository with the
 	 * given basePath. After all Elements are processed, they can be committed, at which point
-	 * they are written to a newly created project with the given projectName.
+	 * they are written to a newly created or existing project with the given projectName.
 	 * 
 	 * @param 	projectName			the name of the project for which Elements are being saved
-	 * @param	basePath			the base path to be used to access the REST end point.
+	 * @param	branchName			the name of the project branch for which Elements are being saved, if null the 'main' branch is used
+	 * @param	basePath			the base path to be used to access the REST end point
 	 */
-	public ApiElementProcessingFacade(String projectName, String basePath) {
-		this.apiClient.setBasePath(basePath);		
-		this.apiClient.setHttpClient(
-			new OkHttpClient.Builder().
-				connectTimeout(1, TimeUnit.HOURS).
-				readTimeout(1, TimeUnit.HOURS).
-				writeTimeout(1, TimeUnit.HOURS).
-				build());
-		
-		this.project.setName(projectName);
+	public ApiElementProcessingFacade(String projectName, String branchName, String basePath) {
+		this.projectRepository = new ProjectRepository(basePath);
+		this.projectName = projectName;
+		this.branchName = branchName;
 	}
+	
+	/**
+	 * Queries and returns project by {@link #projectName}. If project doesn't exit a new one is created.
+	 * 
+	 * @return	project for which Elements will be stored 
+	 */
+	public RemoteProject getOrCreateProject() {
+		project = projectRepository.getProjectByName(projectName);
+		if (project == null) {
+			project = projectRepository.createProject(projectName);
+		}
+		return project;
+	}
+	
 	
 	/**
 	 * Create a facade for processing the Elements of a model with the given name using the default base path.
@@ -85,16 +93,7 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	 * @throws 	ApiException
 	 */
 	public ApiElementProcessingFacade(String projectName) throws ApiException {
-		this(projectName, DEFAULT_BASE_PATH);
-	}
-	
-	/**
-	 * Get a string representation of the UUID of the project as it is saved in the repository.
-	 * 
-	 * @return	the UUID of the project saved in the repository
-	 */
-	public String getProjectId() {
-		return this.project.getAtId().toString();
+		this(projectName, null, DEFAULT_BASE_PATH);
 	}
 	
 	/**
@@ -114,27 +113,70 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	}
 	
 	/**
-	 * Create a new project in the repository, then create and post a commit to the project to save the 
-	 * ElementVersions constructed from the processed model Elements.
+	 * Create or update a project in the repository, then create and post a commit to the project to save the 
+	 * {@link APIModelDelta} constructed from the processed model Elements.
 	 * 
-	 * @return	whether the commit succeeded without an ApiException
+	 * @param element to force use as a project root in case of sub-models or null in case of full models
+	 * 
+	 * @return	whether the commit succeeded without an Exception
 	 */
-	public boolean commit() {
+	public boolean commit(Element useAsRoot) {
 		try {
-			this.project = projectApi.postProject(this.project);
+			RemoteProject project = getOrCreateProject();
 			
-			List<DataVersion> changes = this.getVersions();
-			Commit commit = new Commit().change(changes);
-//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
+			RemoteBranch branch = project.getDefaultBranch();
 			
-			int n = changes.size();
-			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);
-			System.out.println(commit.getAtId());
+			if (branchName != null) {
+				RemoteBranch defaultBranch = branch;
+				branch = project.getBranch(branchName);
+				if (branch == null) {
+					Revision headRevision = defaultBranch.getHeadRevision();
+					branch = project.createBranch(headRevision, branchName);
+				}
+			}
+			
+			if (branch == null) {
+				System.out.println();
+				System.out.println("Branch doesn't exist");
+				return false;
+			}
+			
+			Revision headRevision = branch.getHeadRevision();
+			
+			if (headRevision.isRemote()) {
+				headRevision.fetchRemote();
+			}
+			
+			APIModel localState = getLocalModel();
+			
+			if (useAsRoot != null) {
+				UUID rootUUID = UUID.fromString(useAsRoot.getElementId());
+				var root = localState.getElement(rootUUID);
+				//reinsert element as root, this unsets its owners turning it into a root element
+				localState.addModelRoot(rootUUID, root);
+			}
+			
+			localState.addOutOfScopeReferencesAsProxies();
+			headRevision.setLocalState(localState);
+			APIModelDelta localChanges = headRevision.getLocalChanges();
+			
+			int additions = localChanges.getAdditions().size();
+			int deletions = localChanges.getDeletions().size();
+			int modifiedElements = localChanges.getChanges().size();
+			
+			System.out.println();
+			System.out.println(String.format("Posting commit. Additions: %s, Deletions: %s, Modified elements: %s", additions, deletions, modifiedElements));
+			Revision nextRevision = headRevision.pushChanges(localChanges);
+			System.out.println(String.format("Successfully posted commit: %s on branch: (%s) %s", nextRevision.getRemoteId(), branch.getName(), branch.getRemoteId()));
 			return true;
-		} catch (ApiException e) {
-			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
+		} catch (RemoteException e) {
+			System.out.println();
+			System.err.println(e);
 			return false;
 		}
+	}
+
+	public String getProjectId() {
+		return getOrCreateProject().getRemoteId().toString();
 	}
 }

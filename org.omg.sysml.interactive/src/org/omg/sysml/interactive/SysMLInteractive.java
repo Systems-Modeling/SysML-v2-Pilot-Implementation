@@ -32,7 +32,7 @@ package org.omg.sysml.interactive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -548,9 +548,13 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
 
+		Comparator<String> projectNameComparator = Comparator.nullsFirst(Comparator.naturalOrder());
+		
 		String apiBasePathString = "API base path: " + apiBasePath;
 		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
-		String projectsListString = repositoryProjects.stream().map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
+		String projectsListString = repositoryProjects.stream()
+				.sorted((p1, p2) -> projectNameComparator.compare(p1.getProjectName(), p2.getProjectName()))
+				.map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
 		return apiBasePathString + "\n\n" + projectsListString;
 	}

@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -59,15 +59,15 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
+import org.omg.sysml.lang.sysml.SuccessionFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -190,7 +190,7 @@ public class VCompartment extends VStructure {
     }
     
     @Override
-    public String caseItemFlow(ItemFlow itf) {
+    public String caseFlow(Flow itf) {
     	addEntry(itf);
     	return "";
     }
@@ -256,6 +256,11 @@ public class VCompartment extends VStructure {
     }
 
     @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        return recCurrent(sru, true);
+    }
+
+    @Override
     public String caseRequirementUsage(RequirementUsage ru) {
         return recCurrent(ru, true);
     }
@@ -312,7 +317,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        //rec(om, om, true);
+        if (isEmptyObjective(om)) return "";
         recOrAddOwningMembership(om);
         return "";
     }
@@ -327,12 +332,6 @@ public class VCompartment extends VStructure {
     public String caseStakeholderMembership(StakeholderMembership sm) {
         recOrAddOwningMembership(sm);
         return "";
-    }
-
-    private boolean isEmptySubject(SubjectMembership sm) {
-        Usage u = sm.getOwnedSubjectParameter();
-        if (!"subj".equals(u.getName())) return false;
-        return u.getOwnedRelationship().isEmpty();
     }
 
     @Override
@@ -376,8 +375,8 @@ public class VCompartment extends VStructure {
         if (ends.size() == 2) {
             Feature f1 = ends.get(0);
             Feature f2 = ends.get(1);
-            if (c instanceof ItemFlow) {
-                ItemFlow itf = (ItemFlow) c;
+            if (c instanceof Flow) {
+                Flow itf = (Flow) c;
                 String desc = itemFlowDesc(itf);
                 if (desc != null) {
                     if (hasPrefix) {
@@ -391,7 +390,7 @@ public class VCompartment extends VStructure {
             if (hasPrefix) {
                 if (c instanceof BindingConnector) {
                     append(" bind ");
-                } else if (c instanceof ItemFlow) {
+                } else if (c instanceof Flow) {
                     append(" from ");
                 } else if (c instanceof Succession) {
                     append(" first ");
@@ -403,7 +402,7 @@ public class VCompartment extends VStructure {
             if (c instanceof BindingConnector) {
                 append(" = ");
             } else if ((c instanceof Succession)
-                       && !(c instanceof SuccessionItemFlow)) {
+                       && !(c instanceof SuccessionFlow)) {
                 append(" then ");
             } else {
                 append(" to ");

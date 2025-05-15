@@ -42,7 +42,7 @@ package Q {
   part f : F;
   
   part def A {
-    // XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "f::a"
+    // XPECT errors --> "Must be an accessible feature (use dot notation for nesting)" at "f::a"
     part g = f::a;
   }
   
@@ -58,7 +58,7 @@ package Q {
 	  	part aa subsets a;
 	}
 	
-    // XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "c::aa"
+    // XPECT errors --> "Must be an accessible feature (use dot notation for nesting)" at "c::aa"
 	connect b.f.a to c::aa;
   }
 	

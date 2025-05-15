@@ -83,8 +83,9 @@ public class SysMLKernel extends BaseKernel {
         this.magics.registerMagics(Export.class);
         this.magics.registerMagics(Projects.class);
         this.magics.registerMagics(Load.class);
-        
-        ServiceLoader.load(IMagicCommandRegistrator.class).forEach(reg -> reg.registerMagicCommand(this.magics));
+        this.magics.registerMagics(ApiBasePath.class);
+
+		ServiceLoader.load(IMagicCommandRegistrator.class).forEach(reg -> reg.registerMagicCommand(this.magics));
 
         this.magicParser = new MyMagicParser();
     }

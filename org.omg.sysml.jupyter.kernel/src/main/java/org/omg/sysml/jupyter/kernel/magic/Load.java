@@ -35,6 +35,7 @@ public class Load {
     		.keyword("id")
     		.keyword("name")
     		.optional("name")
+    		.keyword("branch")
             .flag("help", 'h', "true")
     		.build();
 
@@ -44,13 +45,15 @@ public class Load {
         List<String> help = vals.get("help");
         List<String> name = vals.get("name");
         List<String> id = vals.get("id");
+        List<String> branches = vals.get("branch");
+        String branch = branches.isEmpty()? null: branches.get(0);
         
         if (!name.isEmpty() && !id.isEmpty()) {
         	return "Name and id cannot be provided at the same time.";
         } else if (!name.isEmpty()) {
-        	return ISysML.getKernelInstance().getInteractive().loadByName(name.get(0), help);
+        	return ISysML.getKernelInstance().getInteractive().loadByName(name.get(0), branch, help);
         } else if (!id.isEmpty()) {
-        	return ISysML.getKernelInstance().getInteractive().loadById(id.get(0), help);
+        	return ISysML.getKernelInstance().getInteractive().loadById(id.get(0), branch, help);
         } else {
         	return ISysML.getKernelInstance().getInteractive().help("%load");
         }

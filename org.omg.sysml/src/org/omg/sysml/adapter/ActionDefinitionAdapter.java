@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.Feature;
 
 public class ActionDefinitionAdapter extends OccurrenceDefinitionAdapter {
 	
@@ -36,11 +32,6 @@ public class ActionDefinitionAdapter extends OccurrenceDefinitionAdapter {
 	@Override
 	public ActionDefinition getTarget() {
 		return (ActionDefinition)super.getTarget();
-	}
-
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return Collections.emptyList();
 	}
 
 }

@@ -29,14 +29,6 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p><code>Redefinition</code> is a kind of <code>Subsetting</code> that requires the <code>redefinedFeature</code> and the <code>redefiningFeature</code> to have the same values (on each instance of the domain of the <code>redefiningFeature</code>). This means any restrictions on the <code>redefiningFeature</code>, such as <code>type</code> or <code>multiplicity</code>, also apply to the <code>redefinedFeature</code> (on each instance of the domain of the <code>redefiningFeature</code>), and vice versa. The <code>redefinedFeature</code> might have values for instances of the domain of the <code>redefiningFeature</code>, but only as instances of the domain of the <code>redefinedFeature</code> that happen to also be instances of the domain of the <code>redefiningFeature</code>. This is supported by the constraints inherited from <code>Subsetting</code> on the domains of the <code>redefiningFeature</code> and <code>redefinedFeature</code>. However, these constraints are narrowed for <code>Redefinition</code> to require the <code>owningTypes</code> of the <code>redefiningFeature</code> and <code>redefinedFeature</code> to be different and the <code>redefinedFeature</code> to not be inherited into the <code>owningNamespace</code> of the <code>redefiningFeature</code>.This enables the <code>redefiningFeature</code> to have the same name as the <code>redefinedFeature</code>, if desired.</p>
  * 
- * featuringType->forAll(t |
- *     let direction : FeatureDirectionKind = t.directionOf(redefinedFeature) in
- *     ((direction = FeatureDirectionKind::_'in' or 
- *       direction = FeatureDirectionKind::out) implies
- *          redefiningFeature.direction = direction)
- *     and 
- *     (direction = FeatureDirectionKind::inout implies
- *         redefiningFeature.direction <> null))
  * let anythingType: Type =
  *     redefiningFeature.resolveGlobal('Base::Anything').modelElement.oclAsType(Type) in 
  * -- Including "Anything" accounts for implicit featuringType of Features
@@ -46,6 +38,15 @@ package org.omg.sysml.lang.sysml;
  * let redefinedFeaturingTypes: Set(Type) =
  *     redefinedFeature.featuringTypes->asSet()->including(anythingType) in
  * redefiningFeaturingTypes <> redefinedFeaturingType
+ * featuringType->forAll(t |
+ *     let direction : FeatureDirectionKind = t.directionOf(redefinedFeature) in
+ *     ((direction = FeatureDirectionKind::_'in' or 
+ *       direction = FeatureDirectionKind::out) implies
+ *          redefiningFeature.direction = direction)
+ *     and 
+ *     (direction = FeatureDirectionKind::inout implies
+ *         redefiningFeature.direction <> null))
+ * redefinedFeature.isEnd implies redefiningFeature.isEnd
  * <!-- end-model-doc -->
  *
  * <p>

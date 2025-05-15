@@ -1,7 +1,7 @@
-/*******************************************************************************
+/**
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
- *    
+ * Copyright (C) 2025 Model Driven Solutions, Inc.
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -11,14 +11,15 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- *  
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
- *******************************************************************************/
-
+ * 
+ * Contributors:
+ *   Laszlo Gati, MDS
+ */
 package org.omg.sysml.util.repository;
 
 import java.util.Collection;
@@ -43,12 +44,12 @@ import org.omg.sysml.util.traversal.facade.impl.ElementIdProcessingFacade;
  */
 public class EObjectUUIDTracker {
 	private Map<UUID, EObject> uuidToLibraryElement = new HashMap<>();
-	private Map<UUID, EObject> uuidToUserElement = new HashMap<>();
+	private Map<UUID, EObject> uuidToLocalElements = new HashMap<>();
 	
 	/**
 	 * Collects UUIDs from the given library resources
 	 * 
-	 * @param libraryResources resources containing standard library models
+	 * @param libraryResources resources containing (local) standard library models
 	 */
 	public void trackLibraryUUIDs(Collection<Resource> libraryResources) {
 		trackUUIDSFromResources(libraryResources, uuidToLibraryElement);
@@ -57,10 +58,10 @@ public class EObjectUUIDTracker {
 	/**
 	 * Collects UUIDs from non-standard library models.
 	 * 
-	 * @param userResources resources containing user models
+	 * @param userResources resources containing local models
 	 */
-	public void trackUserUUIDs(Collection<Resource> userResources) {
-		trackUUIDSFromResources(userResources, uuidToUserElement);
+	public void trackLocalUUIDs(Collection<Resource> userResources) {
+		trackUUIDSFromResources(userResources, uuidToLocalElements);
 	}
 	
 	private void trackUUIDSFromResources(Collection<Resource> resources,  Map<UUID, EObject> uuidToElementMap) {
@@ -91,13 +92,13 @@ public class EObjectUUIDTracker {
 	}
 	
 	/**
-	 * Used to track a user element by its UUID
+	 * Used to track a local element by its UUID
 	 *
 	 * @param uuid UUID to track
 	 * @param element element identified by the UUID
 	 */
-	public void trackUserElement(UUID uuid, EObject element) {
-		uuidToUserElement.put(uuid, element);
+	public void trackLocalElement(UUID uuid, EObject element) {
+		uuidToLocalElements.put(uuid, element);
 	}
 	
 	/**
@@ -108,7 +109,7 @@ public class EObjectUUIDTracker {
 	 * @param compute Function to compute the Element in case it's not tracked
 	 */
 	public EObject createIfMissingAndTrack(UUID uuid, Function<? super UUID, ? extends EObject> compute) {
-		return uuidToUserElement.computeIfAbsent(uuid, compute);
+		return uuidToLocalElements.computeIfAbsent(uuid, compute);
 	}
 	
 	/**
@@ -120,23 +121,23 @@ public class EObjectUUIDTracker {
 		if (uuidToLibraryElement.containsKey(uuid)) {
 			return uuidToLibraryElement.get(uuid);
 		} else {
-			return uuidToUserElement.get(uuid);
+			return uuidToLocalElements.get(uuid);
 		}
 	}
 
 	/**
-	 * Iterates user elements passing them to the provided consumer
+	 * Iterates stored local elements passing them to the provided consumer
 	 * 
 	 * @param consumer logic to execute on each element
 	 */
-	public void forEachTrackedUserElement(BiConsumer<? super UUID, ? super EObject> consumer) {
-		uuidToUserElement.forEach(consumer);
+	public void forEachTrackedLocalElement(BiConsumer<? super UUID, ? super EObject> consumer) {
+		uuidToLocalElements.forEach(consumer);
 	}
 	
 	/**
-	 * Removes all user element from the tracker
+	 * Removes all local element from the tracker
 	 */
-	public void clearTrackedUserElements() {
-		uuidToUserElement.clear();
+	public void clear() {
+		uuidToLocalElements.clear();
 	}
 }

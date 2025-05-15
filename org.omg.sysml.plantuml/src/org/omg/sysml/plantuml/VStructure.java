@@ -37,12 +37,9 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -230,13 +227,6 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    public static boolean hasRefSubsettingWithoutDeclaredName(Feature f) {
-        if (f.getOwnedReferenceSubsetting() == null) return false;
-        if (f.getDeclaredName() != null) return false;
-        if (f.getDeclaredShortName() != null) return false;
-        return true;
-    }
-
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
         StringBuilder sb = new StringBuilder();
@@ -255,7 +245,7 @@ public abstract class VStructure extends VDefault {
             }
             sb.append(' ');
             added = appendSubsettings(sb, f) || added;
-            if (!hasRefSubsettingWithoutDeclaredName(f)) {
+            if (Visitor.getSpecialReference(f) == null) {
                 sb.append(' ');
                 added = appendReferenceSubsetting(sb, f) || added;
             }
@@ -318,24 +308,8 @@ public abstract class VStructure extends VDefault {
     }
 
     @Override
-    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-        RequirementUsage ru = sru.getSatisfiedRequirement();
-        Feature target = sru.getSatisfyingFeature();
-        if ((ru != null) && (target != null)) {
-            addPRelation(target, ru, sru, "<<satisfy>>");
-        }
-        return "";
-    }
-    
-    @Override
     public String caseConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
         // Do not show conjugated ports.
-        return "";
-    }
-
-    @Override
-    public String caseLifeClass(LifeClass lc) {
-        // Do not show life classes
         return "";
     }
 

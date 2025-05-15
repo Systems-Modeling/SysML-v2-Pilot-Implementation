@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020, 2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020, 2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ public class ElementUtil {
 	}
 	
 	/**
-	 * Return a string that is the same as the input string,  but with escapable characters
+	 * Return a string that is the same as the input string, but with escapable characters
 	 * replaced by appropriate escape sequences.
 	 */
 	public static String escapeString(String str) {
@@ -114,12 +114,23 @@ public class ElementUtil {
 	}
 
 	public static String escapeName(String name) {
-		return (name == null || name.isEmpty() || isIdentifier(name))? name:
+		return (name == null || name.isEmpty() || isIdentifier(name) || isGlobalScopeSymbol(name))? name:
 			   "'" + escapeString(name) + "'";	
 	}
 
 	public static boolean isIdentifier(String name) {
 		return name.matches("[a-zA-Z_]\\w*");
+	}
+	
+	// Qualified Names
+	
+	/**
+	 * Specific string used to identify a segment as a global scope qualifier
+	 */
+	public static final String GLOBAL_SCOPE_SYMBOL = "$";
+	
+	public static boolean isGlobalScopeSymbol(String segment) {
+		return segment == GLOBAL_SCOPE_SYMBOL;
 	}
 	
 	public static List<String> parseQualifiedName(String qualifiedNameText) {
@@ -128,6 +139,15 @@ public class ElementUtil {
 			int j = 0;
 			int n = qualifiedNameText.length();
 			boolean isDelimitable = true;
+			
+			
+			if (qualifiedNameText.startsWith(GLOBAL_SCOPE_SYMBOL)) {
+				// Add the specific GLOBAL_SCOPE_SYMBOL string to identify 
+				// a global scope qualifier segment.
+				segments.add(GLOBAL_SCOPE_SYMBOL);
+				i = 3;
+				j = 3;
+			}
 			
 			while (j < n) {
 				char c = qualifiedNameText.charAt(j);
@@ -168,17 +188,9 @@ public class ElementUtil {
 			return builder.toString();
 		}
 	}
-
-	/**
-	 * Get documentation text for this element, as given by the body of the first documentation comment
-	 * annotating the element (if any).
-	 */
-	public static String getDocumentationTextFor(Element element) {
-		return element.getDocumentation().stream().
-				map(Comment::getBody).
-				findFirst().orElse(null);
-	}
 	
+	// Library Elements
+
 	public static boolean isStandardLibraryElement(Element element) {
 		Namespace libraryNamespace = element.libraryNamespace();
 		return libraryNamespace instanceof LibraryPackage && 
@@ -235,6 +247,16 @@ public class ElementUtil {
 		return metadataFeatures;
 	}
 
+	/**
+	 * Get documentation text for this element, as given by the body of the first documentation comment
+	 * annotating the element (if any).
+	 */
+	public static String getDocumentationTextFor(Element element) {
+		return element.getDocumentation().stream().
+				map(Comment::getBody).
+				findFirst().orElse(null);
+	}
+	
 	public static String processCommentBody(String body) {
 		if (body != null) {
 			body = body.replaceFirst("/\\*", "").replaceFirst("^\\s*", "");		

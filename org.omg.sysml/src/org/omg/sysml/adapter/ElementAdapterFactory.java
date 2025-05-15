@@ -203,6 +203,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseConstructorExpression(ConstructorExpression element) {
+			return new ConstructorExpressionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseDataType(DataType element) {
 			return new DataTypeAdapter(element);
 		}
@@ -278,13 +283,23 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseFlowConnectionDefinition(FlowConnectionDefinition element) {
-			return new FlowConnectionDefinitionAdapter(element);
+		public ElementAdapter caseFlow(Flow element) {
+			return new FlowAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseFlowDefinition(FlowDefinition element) {
+			return new FlowDefinitionAdapter(element);
 		}
 
 		@Override
-		public ElementAdapter caseFlowConnectionUsage(FlowConnectionUsage element) {
-			return new FlowConnectionUsageAdapter(element);
+		public ElementAdapter caseFlowEnd(FlowEnd element) {
+			return new FlowEndAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseFlowUsage(FlowUsage element) {
+			return new FlowUsageAdapter(element);
 		}
 		
 		@Override
@@ -333,28 +348,8 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseItemFeature(ItemFeature element) {
-			return new ItemFeatureAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseItemFlow(ItemFlow element) {
-			return new ItemFlowAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseItemFlowEnd(ItemFlowEnd element) {
-			return new ItemFlowEndAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseItemUsage(ItemUsage element) {
 			return new ItemUsageAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseLifeClass(LifeClass element) {
-			return new LifeClassAdapter(element);
 		}
 		
 		@Override
@@ -435,6 +430,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter casePartUsage(PartUsage element) {
 			return new PartUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePayloadFeature(PayloadFeature element) {
+			return new PayloadFeatureAdapter(element);
 		}
 		
 		@Override
@@ -523,13 +523,13 @@ public class ElementAdapterFactory {
 		}
 
 		@Override
-		public ElementAdapter caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage element) {
-			return new SuccessionFlowConnectionUsageAdapter(element);
+		public ElementAdapter caseSuccessionFlow(SuccessionFlow element) {
+			return new SuccessionFlowAdapter(element);
 		}
 
 		@Override
-		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
-			return new SuccessionItemFlowAdapter(element);
+		public ElementAdapter caseSuccessionFlowUsage(SuccessionFlowUsage element) {
+			return new SuccessionFlowUsageAdapter(element);
 		}
 
 		@Override

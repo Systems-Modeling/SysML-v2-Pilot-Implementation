@@ -41,7 +41,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.MetadataUsage;
@@ -76,8 +76,8 @@ import org.omg.sysml.util.UsageUtil;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isMayTimeVary <em>May Time Vary</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isVariation <em>Is Variation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
@@ -112,11 +112,21 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedMetadata <em>Nested Metadata</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isVariation <em>Is Variation</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UsageImpl extends FeatureImpl implements Usage {
+	/**
+	 * The cached setting delegate for the '{@link #isMayTimeVary() <em>May Time Vary</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMayTimeVary()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate MAY_TIME_VARY__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__MAY_TIME_VARY).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #isReference() <em>Is Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -126,24 +136,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IS_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__IS_REFERENCE).getSettingDelegate();
-	/**
-	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isVariation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_VARIATION_EDEFAULT = false;
-	/**
-	 * The cached value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isVariation()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 	/**
 	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -450,6 +442,24 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_METADATA__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_METADATA).getSettingDelegate();
+	/**
+	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_VARIATION_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isVariation()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -470,6 +480,35 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.USAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isMayTimeVary() {
+		return (Boolean)MAY_TIME_VARY__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMayTimeVary(boolean newMayTimeVary) {
+		MAY_TIME_VARY__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMayTimeVary);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSetMayTimeVary() {
+		return false;
 	}
 
 	/**
@@ -846,8 +885,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<FlowConnectionUsage> getNestedFlow() {
-		return (EList<FlowConnectionUsage>)NESTED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<FlowUsage> getNestedFlow() {
+		return (EList<FlowUsage>)NESTED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -978,6 +1017,33 @@ public class UsageImpl extends FeatureImpl implements Usage {
   		return false;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isVariable() {
+		return isMayTimeVary();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsVariable(boolean newIsVariable) {
+		setMayTimeVary(newIsVariable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetIsVariable() {
+  		return false;
+	}
+
 	// Additional overrides
 	
 	@Override
@@ -988,6 +1054,11 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public boolean isComposite() {
 		return UsageUtil.isComposite(this, isComposite);
+	}
+	
+	@Override
+	public boolean isConstant() {
+		return isConstant || isEnd() && isMayTimeVary();
 	}
 
 	//
@@ -1000,10 +1071,10 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				return isMayTimeVary();
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				return isReference();
-			case SysMLPackage.USAGE__IS_VARIATION:
-				return isVariation();
 			case SysMLPackage.USAGE__VARIANT:
 				return getVariant();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
@@ -1074,6 +1145,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedRendering();
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				return getNestedMetadata();
+			case SysMLPackage.USAGE__IS_VARIATION:
+				return isVariation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1087,11 +1160,11 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				setMayTimeVary((Boolean)newValue);
+				return;
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				setIsReference((Boolean)newValue);
-				return;
-			case SysMLPackage.USAGE__IS_VARIATION:
-				setIsVariation((Boolean)newValue);
 				return;
 			case SysMLPackage.USAGE__VARIANT:
 				getVariant().clear();
@@ -1157,7 +1230,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				getNestedFlow().clear();
-				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
+				getNestedFlow().addAll((Collection<? extends FlowUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
@@ -1227,6 +1300,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				getNestedMetadata().clear();
 				getNestedMetadata().addAll((Collection<? extends MetadataUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__IS_VARIATION:
+				setIsVariation((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1239,11 +1315,11 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				MAY_TIME_VARY__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				IS_REFERENCE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
-				return;
-			case SysMLPackage.USAGE__IS_VARIATION:
-				setIsVariation(IS_VARIATION_EDEFAULT);
 				return;
 			case SysMLPackage.USAGE__VARIANT:
 				getVariant().clear();
@@ -1347,6 +1423,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				getNestedMetadata().clear();
 				return;
+			case SysMLPackage.USAGE__IS_VARIATION:
+				setIsVariation(IS_VARIATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1359,12 +1438,14 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__IS_VARIABLE:
+				return isSetIsVariable();
 			case SysMLPackage.USAGE__TYPE:
 				return isSetType();
+			case SysMLPackage.USAGE__MAY_TIME_VARY:
+				return isSetMayTimeVary();
 			case SysMLPackage.USAGE__IS_REFERENCE:
 				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__IS_VARIATION:
-				return isVariation != IS_VARIATION_EDEFAULT;
 			case SysMLPackage.USAGE__VARIANT:
 				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
@@ -1433,6 +1514,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return NESTED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_METADATA:
 				return NESTED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__IS_VARIATION:
+				return isVariation != IS_VARIATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

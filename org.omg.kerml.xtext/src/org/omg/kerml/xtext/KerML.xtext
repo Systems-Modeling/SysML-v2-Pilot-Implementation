@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -31,7 +31,7 @@
 grammar org.omg.kerml.xtext.KerML with org.omg.kerml.expressions.xtext.KerMLExpressions
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
-import "https://www.omg.org/spec/SysML/20240201" as SysML
+import "https://www.omg.org/spec/SysML/20250201" as SysML
 
 /* ROOT NAMESPACE */
 
@@ -271,8 +271,8 @@ FeatureElement returns SysML::Feature :
 	| Connector
 	| BindingConnector
 	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
+	| Flow
+	| SuccessionFlow
 ;
 
 /* PACKAGES */
@@ -511,10 +511,10 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 fragment BasicFeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
+	( isDerived ?= 'derived' )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
-	( isReadOnly ?= 'readonly' )?
-	( isDerived ?= 'derived' )?
+	( isVariable ?= 'var' | isConstant ?= 'const' )?
 ;
 
 fragment FeaturePrefix returns SysML::Feature :
@@ -661,7 +661,6 @@ FeatureTyping returns SysML::FeatureTyping :
     RelationshipBody
 ;
 
-@Override
 OwnedFeatureTyping returns SysML::FeatureTyping :
 	FeatureType
 ;
@@ -984,53 +983,53 @@ Interaction returns SysML::Interaction :
 	ClassifierDeclaration TypeBody
 ;
 
-/* Item Flows */
+/* Flows */
 
-ItemFlow returns SysML::ItemFlow :
+Flow returns SysML::Flow :
 	FeaturePrefix 'flow' 
-	ItemFlowDeclaration TypeBody
+	FlowDeclaration TypeBody
 ;
 
-SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
+SuccessionFlow returns SysML::SuccessionFlow :
+	FeaturePrefix 'succession' 'flow' FlowDeclaration TypeBody
 ;
 
-fragment ItemFlowDeclaration returns SysML::ItemFlow :
+fragment FlowDeclaration returns SysML::Flow :
 	  FeatureDeclaration? ValuePart?
-      ( 'of'  ownedRelationship += ItemFeatureMember )?
-	  ( 'from' ownedRelationship += ItemFlowEndMember 
-	    'to' ownedRelationship += ItemFlowEndMember )?
+      ( 'of'  ownedRelationship += PayloadFeatureMember )?
+	  ( 'from' ownedRelationship += FlowEndMember 
+	    'to' ownedRelationship += FlowEndMember )?
     | ( isSufficient ?= 'all' )?
-      ownedRelationship += ItemFlowEndMember 'to'
-	  ownedRelationship += ItemFlowEndMember
+      ownedRelationship += FlowEndMember 'to'
+	  ownedRelationship += FlowEndMember
 ;
 
-ItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFeature 
+PayloadFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += PayloadFeature 
 ;
 
-ItemFeature returns SysML::ItemFeature :
-	  Identification? ItemFeatureSpecializationPart ValuePart?
+PayloadFeature returns SysML::PayloadFeature :
+	  Identification? PayloadFeatureSpecializationPart ValuePart?
 	| Identification? ValuePart
     | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
     | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-fragment ItemFeatureSpecializationPart returns SysML::Feature :
+fragment PayloadFeatureSpecializationPart returns SysML::Feature :
 	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
 	| MultiplicityPart FeatureSpecialization+
 ;
 
-ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ItemFlowEnd 
+FlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += FlowEnd 
 ;
 
-ItemFlowEnd returns SysML::ItemFlowEnd :
-	( ownedRelationship += ItemFlowEndSubsetting )?
-	ownedRelationship += ItemFlowFeatureMember
+FlowEnd returns SysML::FlowEnd :
+	( ownedRelationship += FlowEndSubsetting )?
+	ownedRelationship += FlowFeatureMember
 ;
 
-ItemFlowEndSubsetting returns SysML::ReferenceSubsetting :
+FlowEndSubsetting returns SysML::ReferenceSubsetting :
 	  referencedFeature = [SysML::Feature | QualifiedName] '.'
 	| ownedRelatedElement += FeatureChainPrefix
 ;
@@ -1040,15 +1039,15 @@ FeatureChainPrefix returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
-ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFlowFeature 
+FlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FlowFeature 
 ;
 
-ItemFlowFeature returns SysML::Feature :
-	ownedRelationship += ItemFlowRedefinition
+FlowFeature returns SysML::Feature :
+	ownedRelationship += FlowRedefinition
 ;
 
-ItemFlowRedefinition returns SysML::Redefinition :
+FlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 

@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -52,11 +53,11 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.Flow;
+import org.omg.sysml.lang.sysml.FlowUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -76,7 +77,7 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
+import org.omg.sysml.lang.sysml.SuccessionFlowUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
@@ -426,17 +427,17 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseItemFlow(ItemFlow itemFlow) {
+		public String caseFlow(Flow itemFlow) {
             return " --> ";
 		}
 
 		@Override
-		public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+		public String caseFlowUsage(FlowUsage fcu) {
             return " --> ";
 		}
 
         @Override
-        public String caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage sfcu) {
+        public String caseSuccessionFlowUsage(SuccessionFlowUsage sfcu) {
             return " ..> ";
         }
 
@@ -460,16 +461,6 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseDependency(Dependency dep) {
             return " ..>> ";
-		}
-
-		@Override
-		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
-            return " ..> ";
-		}
-
-		@Override
-		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
-            return " ..> ";
 		}
 
 		@Override
@@ -506,6 +497,42 @@ public class SysML2PlantUMLStyle {
 		public String caseImport(Import imp) {
             return " ..> ";
 		}
+
+		@Override
+		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+            return " --> ";
+		}
+
+        @Override
+		public String casePerformActionUsage(PerformActionUsage pau) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
+            return " --> ";
+		}
+
+        @Override
+		public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iuc) {
+            return " --> ";
+		}
+
     }
 
     public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
@@ -513,34 +540,6 @@ public class SysML2PlantUMLStyle {
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
-		}
-
-		@Override
-		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(esu)) {
-                return " exhibit>> ";
-            } else {
-                return " exhibit state>> ";
-            }
-		}
-
-		@Override
-		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-            return "<<requirement>> ";
-		}
-
-        @Override
-        public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
-            return " include use case>> ";
-		}
-
-		@Override
-		public String casePerformActionUsage(PerformActionUsage pau) {
-            if (VStructure.hasRefSubsettingWithoutDeclaredName(pau)) {
-                return " perform>> ";
-            } else {
-                return " perform action>> ";
-            }
 		}
 
 		@Override
@@ -574,8 +573,57 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+            if (Visitor.getSpecialReference(esu) != null) {
+                return " exhibit>> ";
+            } else {
+                return " exhibit state>> ";
+            }
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+            if (Visitor.getSpecialReference(sru) != null) {
+                return " satisfy>> ";
+            } else {
+                return " satisfy requirement>> ";
+            }
+		}
+
+        @Override
+        public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
+            if (Visitor.getSpecialReference(iucu) != null) {
+                return " include>> ";
+            } else {
+                return " include use case>> ";
+            }
+		}
+
+		@Override
+		public String casePerformActionUsage(PerformActionUsage pau) {
+            if (Visitor.getSpecialReference(pau) != null) {
+                return " perform>> ";
+            } else {
+                return " perform action>> ";
+            }
+		}
+
+		@Override
+		public String caseAssertConstraintUsage(AssertConstraintUsage acu) {
+            if (Visitor.getSpecialReference(acu) != null) {
+                return " assert>> ";
+            } else {
+                return " assert constraint>> ";
+            }
+        }
+
+		@Override
 		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
-            return " event occurrence>> ";
+            if (Visitor.getSpecialReference(eou) != null) {
+                return " event>> ";
+            } else {
+                return " event occurrence>> ";
+            }
 		}
     }
 

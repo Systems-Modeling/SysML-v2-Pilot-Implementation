@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,6 +33,7 @@ import org.omg.sysml.util.TypeUtil;
 public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 
 	public static final String ARRAY_TYPE = "Collections::Array";
+	public static final String SCALAR_VALUE_TYPE = "ScalarValues::ScalarValue";
 
 	public IndexExpressionAdapter(IndexExpression element) {
 		super(element);
@@ -51,7 +52,9 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			Expression seqArgument = arguments.get(0);
 			ElementUtil.transform(seqArgument);
 			Feature seqResult = seqArgument.getResult();
-			if (!hasArrayType(seqResult)) {
+			Type arrayType = getLibraryType(ARRAY_TYPE);
+			Type scalarValueType = getLibraryType(SCALAR_VALUE_TYPE);
+			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
 				Feature resultFeature = target.getResult();
 				if (resultFeature != null && seqResult != null) {
 					TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
@@ -60,10 +63,4 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 		}
 	}
 	
-	protected boolean hasArrayType(Feature feature) {
-		Type arrayType = getLibraryType(ARRAY_TYPE);
-		return arrayType != null && 
-			   feature.getType().stream().anyMatch(t->TypeUtil.conforms(t, arrayType));
-	}
-
 }

@@ -41,25 +41,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package 'Individuals and Roles' {
-	public import ScalarValues::*;
-	part def Vehicle {
-		attribute mass : Real;
-		attribute status : VehicleStatus;
-		
-		part eng : Engine;
-		
-		ref driver : Person;
-	}
-	
-	attribute def VehicleStatus {
-		gearSetting : Integer;
-		acceleratorPosition : Real;
-	}
-	
-	part def Engine;	
-	part def Person;
-	
+package IndividualUsage_Valid {
+	part def Vehicle;	
 	part def Wheel;
 	
 	individual def Vehicle_1 :> Vehicle {
@@ -71,11 +54,11 @@ package 'Individuals and Roles' {
 	
 	individual vehicle_1 : Vehicle_1 {
 		snapshot vehicle_1_t0 {
-			snapshot leftFrontWheel_t0 : Wheel_1 :>> leftFrontWheel;
+			individual leftFrontWheel_t0 : Wheel_1 :>> leftFrontWheel;
 		}
 		
-		snapshot vehicle_1_t1 {
-			snapshot rightFrontWheel_t1 : Wheel_1 :>> rightFrontWheel;
+		timeslice vehicle_1_t1 {
+			individual rightFrontWheel_t1 : Wheel_1 :>> rightFrontWheel;
 		}
 		
 		first vehicle_1_t0 then vehicle_1_t1;

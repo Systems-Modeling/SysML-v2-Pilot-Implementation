@@ -27,8 +27,10 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -43,6 +45,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -59,7 +62,6 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 import com.google.inject.Inject;
 
@@ -271,7 +273,8 @@ public class SysML2PlantUMLText {
             if (!u.isVariation()) return;
         } else if (typ instanceof Definition) {
             Definition d = (Definition) typ;
-            if (!d.isVariation()) return;
+            if (d instanceof EnumerationDefinition // Do not render <<variation>> for EnumerationDefinition
+            	|| !d.isVariation()) return;
         } else {
             return;
         }
@@ -471,6 +474,17 @@ public class SysML2PlantUMLText {
         sb.append('\n');
     }
 
+    private List<Element> topElements;
+
+    /* package */ boolean toBeRendered(EObject eObj) {
+        while (eObj != null) {
+            if (!(eObj instanceof Element)) return false;
+            if (topElements.contains((Element) eObj)) return true;
+            eObj = eObj.eContainer();
+        }
+        return false;
+    }
+
     public String sysML2PUML(List<? extends EObject> eObjs) {
         initStyle();
         this.vpath = new VPath();
@@ -484,9 +498,11 @@ public class SysML2PlantUMLText {
         init();
 
         numVisits = 0;
+        this.topElements = new ArrayList<>(eObjs.size());
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
+                topElements.add(e);
                 vpath.visit(e);
             }
         }
@@ -594,12 +610,29 @@ public class SysML2PlantUMLText {
         idMap = idMap.pop(keep);
     }
 
+    private Set<Element> assigned = new HashSet<Element>();
+
     Integer newId(Element e) {
-        return idMap.newId(e);
+        if (assigned.contains(e)) {
+            assigned.remove(e);
+            return idMap.getId(e);
+        } else {
+            return idMap.newId(e);
+        }
     }
 
     Integer getId(Element e) {
         return idMap.getId(e);
+    }
+
+    private Integer assignId(Element e) {
+        assigned.add(e);
+        return idMap.getId(e);
+    }
+
+    boolean isReferred(Element e) {
+        int pid = assignId(e);
+        return null != vpath.getPaths(pid);
     }
 
     private boolean inherited;

@@ -192,6 +192,10 @@ public class SysMLInteractiveHelp {
     	return LOAD_HELP_STRING;
     }
 
+    public static String getApiBasePathHelp() {
+    	return API_BASE_PATH_HELP_STRING;
+	}
+
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
 
     private static Map<String, String> createCommandHelpMap() {

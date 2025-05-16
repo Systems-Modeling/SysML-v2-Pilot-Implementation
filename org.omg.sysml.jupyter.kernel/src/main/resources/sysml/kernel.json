@@ -1,8 +1,9 @@
 {
     "argv": [
         "java",
-        "-jar",
-        "@KERNEL_INSTALL_DIRECTORY@/jupyter-sysml-kernel-${project.version}-all.jar",
+		"-cp",
+		"@KERNEL_INSTALL_DIRECTORY@/*",
+		"org.omg.sysml.jupyter.kernel.ISysML",
         "{connection_file}"
     ],
     "display_name": "SysML",

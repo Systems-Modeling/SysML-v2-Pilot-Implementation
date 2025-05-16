@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -95,6 +96,12 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class SysMLInteractive extends SysMLUtil {
+	
+	public static final String HELP_KEY = "help";
+	public static final String PROJECT_ID_KEY = "id";
+	public static final String PROJECT_NAME_KEY = "name";
+	public static final String BRANCH_ID_KEY = "branch-id";
+	public static final String BRANCH_NAME_KEY = "branch";
 	
 	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
@@ -438,61 +445,74 @@ public class SysMLInteractive extends SysMLUtil {
 				publish(name, null, null, false, Collections.emptyList());
 	}
 	
-	public String loadByName(String projectName, String branchName, List<String> help) {
-		if (Strings.isNullOrEmpty(projectName)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+	/**
+	 * Loads using the supplied parameters<br>
+	 * Possible parameters are:
+	 * <li> {@value SysMLInteractive#PROJECT_NAME_KEY}: name of the project</li>
+	 * <li> {@value SysMLInteractive#PROJECT_ID_KEY}: id of the project</li>
+	 * <li> {@value SysMLInteractive#BRANCH_NAME_KEY}: name of the project's branch</li>
+	 * <li> {@value SysMLInteractive#BRANCH_ID_KEY}: id of the project's branch </li>
+	 * <li>{@value SysMLInteractive#HELP_KEY}: request help string for the operation</li>
+	 * 
+	 * <br>
+	 * {@value SysMLInteractive#PROJECT_NAME_KEY} and {@value SysMLInteractive#PROJECT_ID_KEY} are mutually exclusive. It is mandatory to specify one of them.
+	 * <br>
+	 * {@value SysMLInteractive#BRANCH_NAME_KEY} and {@value SysMLInteractive#BRANCH_ID_KEY} are mutually exclusive. If neither is given the project's default branch is used.
+	 * <br>
+	 * If help {@value SysMLInteractive#HELP_KEY} is passed as a parameter (with any value) the help string is printed. Every other parameters are ignored.
+	 * 
+	 * <br>
+	 * <br>
+	 * @param parameters map containing the parameters and their values
+	 * @return output of the command
+	 */
+	public String load(Map<String, String> parameters) {
+		
+		if (parameters.containsKey(HELP_KEY)) {
+			return SysMLInteractiveHelp.getLoadHelp();
 		}
 		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RemoteProject repositoryProject = repository.getProjectByName(projectName);
+		if (parameters.containsKey(PROJECT_ID_KEY) && parameters.containsKey(PROJECT_NAME_KEY)) {
+			return "ERROR:Name and id cannot be provided at the same time.";
+		}
 		
-		if (repositoryProject == null) {
+		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
+			return "ERROR:Branch name and branch id cannot be provided at the same time";
+		}
+		
+		final ProjectRepository repository = new ProjectRepository(apiBasePath);
+		final RemoteProject project;
+		
+		if (parameters.containsKey(PROJECT_ID_KEY)) {
+			String projectId = parameters.get(PROJECT_ID_KEY);
+			project = repository.getProjectById(projectId);
+		} else if (parameters.containsKey(PROJECT_NAME_KEY)) {
+			String projectName = parameters.get(PROJECT_NAME_KEY);
+			project = repository.getProjectByName(projectName);
+		} else {
+			return SysMLInteractiveHelp.getLoadHelp();
+		}
+		
+		if (project == null) {
 			return "ERROR:Project doesn't exist.";
 		}
 		
-		return load(repositoryProject, branchName);
-	}
-	
-	public String loadById(String projectId, String branchId, List<String> help) {
-		if (Strings.isNullOrEmpty(projectId)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
-		}
-		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RemoteProject remoteProject = repository.getPRojectById(UUID.fromString(projectId));
-		
-		if (remoteProject == null) {
-			return "ERROR:Project doesn't exist.";
-		}
-		
-		if (branchId == null) {
-			return load(remoteProject, (UUID) null);
-		} else {
-			UUID branchUUID = UUID.fromString(branchId);
-			return load(remoteProject, branchUUID);
-		}
-	}
-	
-	private String load(RemoteProject remoteProject, String branchName) {
 		final RemoteBranch branch;
-		if (branchName == null) {
-			branch = remoteProject.getDefaultBranch();
+		
+		if (parameters.containsKey(BRANCH_NAME_KEY)) {
+			String branchName = parameters.get(BRANCH_NAME_KEY);
+			branch = project.getBranch(branchName);
+		} else if (parameters.containsKey(BRANCH_ID_KEY)) {
+			String branchIdString = parameters.get(BRANCH_ID_KEY);
+			UUID branchId = UUID.fromString(branchIdString);
+			branch = project.getBranch(branchId);
 		} else {
-			branch = remoteProject.getBranch(branchName);
+			branch = project.getDefaultBranch();
 		}
+		
 		return load(branch);
 	}
 	
-	private String load(RemoteProject remoteProject, UUID branchId) {
-		final RemoteBranch branch;
-		if (branchId == null) {
-			branch = remoteProject.getDefaultBranch();
-		} else {
-			branch = remoteProject.getBranch(branchId);
-		}
-		return load(branch);
-	}
-
 	private String load(RemoteBranch branch) {
 		if (branch == null) {
 			return "ERROR:Branch doesn't exist";
@@ -538,8 +558,8 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected String download(String name) {
 		return "-h".equals(name)?
-				loadByName(null, null, Collections.singletonList("true")):
-				loadByName(name, null, Collections.emptyList());
+				load(Map.of(HELP_KEY, "true")):
+				load(Map.of(PROJECT_NAME_KEY, name));
 	}
 	
 	public String projects(List<String> help) {

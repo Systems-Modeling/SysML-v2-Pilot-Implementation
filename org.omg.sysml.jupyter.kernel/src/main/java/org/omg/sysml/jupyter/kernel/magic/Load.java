@@ -22,10 +22,11 @@
  */
 package org.omg.sysml.jupyter.kernel.magic;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.omg.sysml.jupyter.kernel.ISysML;
+import org.omg.sysml.interactive.SysMLInteractive;
 
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
@@ -42,20 +43,36 @@ public class Load {
 	@LineMagic
 	public static String load(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
-        List<String> help = vals.get("help");
-        List<String> name = vals.get("name");
-        List<String> id = vals.get("id");
-        List<String> branches = vals.get("branch");
-        String branch = branches.isEmpty()? null: branches.get(0);
+        Map<String, String> parameters = new HashMap<>();
         
-        if (!name.isEmpty() && !id.isEmpty()) {
-        	return "Name and id cannot be provided at the same time.";
-        } else if (!name.isEmpty()) {
-        	return ISysML.getKernelInstance().getInteractive().loadByName(name.get(0), branch, help);
-        } else if (!id.isEmpty()) {
-        	return ISysML.getKernelInstance().getInteractive().loadById(id.get(0), branch, help);
-        } else {
-        	return ISysML.getKernelInstance().getInteractive().help("%load");
+        if (optionPassed(vals,"name")) {
+        	parameters.put(SysMLInteractive.PROJECT_NAME_KEY, getFirstValueOrNull(vals, "name"));
         }
+        
+        if (optionPassed(vals,"id")) {
+        	parameters.put(SysMLInteractive.PROJECT_ID_KEY, getFirstValueOrNull(vals, "id"));
+        }
+        
+        if (optionPassed(vals,"branch")) {
+        	parameters.put(SysMLInteractive.BRANCH_NAME_KEY, getFirstValueOrNull(vals, "branch"));
+        }
+        
+        if (optionPassed(vals,"help")) {
+        	parameters.put(SysMLInteractive.HELP_KEY, "true");
+        }
+        
+        return SysMLInteractive.getInstance().load(parameters);
+	}
+	
+	private static String getFirstValueOrNull(Map<String, List<String>> map, String key) {
+		if (map.containsKey(key)) {
+			List<String> values = map.get(key);
+			return values.isEmpty()? null: values.get(0);
+		}
+		return null;
+	}
+	
+	private static boolean optionPassed(Map<String, List<String>> map, String key) {
+		return map.containsKey(key) && map.get(key) != null && !map.get(key).isEmpty();
 	}
 }

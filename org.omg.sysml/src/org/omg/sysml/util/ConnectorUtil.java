@@ -67,6 +67,9 @@ public class ConnectorUtil {
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
 		ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
+		if (relatedFeature.getOwner() == null) {
+			subsetting.getOwnedRelatedElement().add(relatedFeature);
+		}
 		subsetting.setReferencedFeature(relatedFeature);
 		endFeature.getOwnedRelationship().add(subsetting);
 		endFeature.setIsEnd(true);

@@ -209,8 +209,11 @@ public class FeatureAdapter extends TypeAdapter {
 			Expression value = valuation.getValue();
 			if (value != null) {
 				ElementUtil.transform(value);
-				Feature result = FeatureUtil.chainFeatures(value, value.getResult());
-				return result;
+				Feature valueResult = value.getResult();
+				if (valueResult != null) {
+					Feature result = FeatureUtil.chainFeatures(value, value.getResult());
+					return result;
+				}
 			}
 		}
 		return null;

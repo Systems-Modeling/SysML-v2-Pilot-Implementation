@@ -37,6 +37,7 @@ public class Load {
     		.keyword("name")
     		.optional("name")
     		.keyword("branch")
+    		.keyword("branchid")
             .flag("help", 'h', "true")
     		.build();
 
@@ -55,6 +56,10 @@ public class Load {
         
         if (optionPassed(vals,"branch")) {
         	parameters.put(SysMLInteractive.BRANCH_NAME_KEY, getFirstValueOrNull(vals, "branch"));
+        }
+        
+        if (optionPassed(vals,"branchid")) {
+        	parameters.put(SysMLInteractive.BRANCH_ID_KEY, getFirstValueOrNull(vals, "branchid"));
         }
         
         if (optionPassed(vals,"help")) {

@@ -154,6 +154,10 @@ public class SysMLInteractive extends SysMLUtil {
 		this.apiBasePath = apiBasePath;
 	}
 	
+	public String getApiBasePath() {
+		return apiBasePath;
+	}
+	
 	public int next(String extension) {
 		this.resource = this.createResource(counter + extension);
 		this.addInputResource(this.resource);
@@ -267,6 +271,18 @@ public class SysMLInteractive extends SysMLUtil {
 		return "-h".equals(command)? 
 				help(null, Collections.singletonList("true")):
 				help(command, Collections.emptyList());
+	}
+	
+	public String apiBasePath(String apiBasePath, List<String> help) {
+		if (!help.isEmpty()) {
+			return SysMLInteractiveHelp.getApiBasePathHelp();
+		}
+		
+		if (!Strings.isNullOrEmpty(apiBasePath)) {
+			setApiBasePath(apiBasePath);
+		}
+		
+		return getApiBasePath();
 	}
 	
 	public String eval(String input, String targetName, List<String> help) {

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,6 +20,8 @@
  *******************************************************************************/
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.UUID;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -365,6 +368,31 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 */
 	public boolean isSetMemberName() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * If the OwningMembership is not itself a standard library Element, but its ownedMemberElement 
+	 * is a standard library Package, then give the OwningMembership a stable elementId anyway.
+	 * (This will give a stable elementID to the owningMembership of a top-level standard library Package.)
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getElementId() {
+		if (elementId == null) {
+			Element ownedMemberElement = getOwnedMemberElement();
+			if (!ElementUtil.isStandardLibraryElement(this) &&
+					ElementUtil.isStandardLibraryElement(ownedMemberElement) && 
+					ownedMemberElement.libraryNamespace() == ownedMemberElement) {
+				String path = path();
+				if (path != null) {
+					UUID namespaceUUID = UUID.fromString(ownedMemberElement.getElementId());
+					elementId = ElementUtil.constructNameUUID(namespaceUUID, path).toString();
+				}
+			}
+		}
+		return super.getElementId();
 	}
 
 	/**

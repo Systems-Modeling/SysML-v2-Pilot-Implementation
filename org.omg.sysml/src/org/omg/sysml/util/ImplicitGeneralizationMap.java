@@ -65,6 +65,8 @@ public class ImplicitGeneralizationMap {
 		put(ConnectorImpl.class, "object", "Objects::linkObjects");
 		put(ConnectorImpl.class, "binaryObject", "Objects::binaryLinkObjects");
 		
+		put(ConstructorExpressionImpl.class, "base", "Performances::constructorEvaluations");
+
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
@@ -88,7 +90,7 @@ public class ImplicitGeneralizationMap {
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
-		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::item");
+		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
 		put(FlowImpl.class, "base", "Transfers::flowTransfers");
 		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
@@ -219,10 +221,10 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowDefinitionImpl.class, "base", "FlowConnections::MessageConnection");		
-		put(FlowDefinitionImpl.class, "binary", "FlowConnections::MessageTransferConnection");		
-		put(FlowUsageImpl.class, "base", "FlowConnections::flowConnections");
-		put(FlowUsageImpl.class, "message", "FlowConnections::messageConnections");
+		put(FlowDefinitionImpl.class, "base", "Flows::MessageAction");		
+		put(FlowDefinitionImpl.class, "binary", "Flows::Message");		
+		put(FlowUsageImpl.class, "base", "Flows::flows");
+		put(FlowUsageImpl.class, "message", "Flows::messages");
 		put(FlowUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(FlowUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
 		put(FlowUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
@@ -269,6 +271,7 @@ public class ImplicitGeneralizationMap {
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
+		put(OccurrenceDefinitionImpl.class, "life", "Occurrences::Life");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
 		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
 		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
@@ -312,8 +315,8 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowUsageImpl.class, "base", "FlowConnections::successionFlowConnections");
-		put(SuccessionFlowUsageImpl.class, "message", "FlowConnections::successionFlowConnections");
+		put(SuccessionFlowUsageImpl.class, "base", "Flows::successionFlows");
+		put(SuccessionFlowUsageImpl.class, "message", "Flows::successionFlows");
 
 		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");

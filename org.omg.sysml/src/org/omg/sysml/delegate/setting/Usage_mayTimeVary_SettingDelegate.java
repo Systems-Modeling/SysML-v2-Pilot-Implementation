@@ -23,6 +23,10 @@ package org.omg.sysml.delegate.setting;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.BindingConnectorAsUsage;
+import org.omg.sysml.lang.sysml.SuccessionAsUsage;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.UsageUtil;
 
 public class Usage_mayTimeVary_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
@@ -32,6 +36,8 @@ public class Usage_mayTimeVary_SettingDelegate extends BasicDerivedPropertySetti
 
 	@Override
 	protected Boolean basicGet(InternalEObject owner) {
-		return false;
+		return !(owner instanceof SuccessionAsUsage || owner instanceof BindingConnectorAsUsage) &&
+				UsageUtil.mayTimeVary((Usage)owner);
 	}
+
 }

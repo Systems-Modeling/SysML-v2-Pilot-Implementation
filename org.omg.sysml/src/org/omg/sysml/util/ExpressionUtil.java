@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
-import org.omg.sysml.adapter.InvocationExpressionAdapter;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -79,18 +80,6 @@ public class ExpressionUtil {
 	
 	public static ExpressionAdapter getExpressionAdapter(Expression expression) {
 		return ((ExpressionAdapter)ElementUtil.getElementAdapter(expression));
-	}
-
-	public static Type getExpressionTypeOf(Expression expression) {
-		return getExpressionAdapter(expression).getExpressionType();
-	}
-
-	public static List<Feature> getTypeParametersOf(Expression expression) {
-		return getExpressionAdapter(expression).getTypeParameters();
-	}
-
-	public static List<Feature> getTypeFeaturesOf(InvocationExpression expression) {
-		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
 	}
 
 	public static Feature getSelfReferenceFeatureFor(FeatureReferenceExpression expression) {
@@ -189,4 +178,9 @@ public class ExpressionUtil {
 		return (Expression)TypeUtil.getFeatureByMembershipIn(type, ResultExpressionMembership.class);
 	}
 
+	public static boolean isConstructorResult(Type type) {
+		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
+				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
+	}
+	
 }

@@ -9233,7 +9233,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		op = initEOperation(getType__SpecializesFromLibrary__String(), theTypesPackage.getBoolean(), "specializesFromLibrary", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theTypesPackage.getString(), "libraryTypeName", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getType__IsCompatibleWith__Type(), null, "isCompatibleWith", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getType__IsCompatibleWith__Type(), theTypesPackage.getBoolean(), "isCompatibleWith", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getType(), "otherType", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEOperation(getType__Multiplicities(), this.getMultiplicity(), "multiplicities", 0, -1, IS_UNIQUE, IS_ORDERED);

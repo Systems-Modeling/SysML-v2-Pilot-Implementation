@@ -908,7 +908,7 @@
       </eAnnotations>
       <eParameters name="libraryTypeName" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     </eOperations>
-    <eOperations name="isCompatibleWith" ordered="false" lowerBound="1">
+    <eOperations name="isCompatibleWith" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>By default, this &lt;code>Type&lt;/code> is compatible with an &lt;code>otherType&lt;/code> if it directly or indirectly specializes the &lt;code>otherType&lt;/code>.&lt;/p>"/>
       </eAnnotations>

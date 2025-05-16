@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,9 +21,11 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class PayloadFeatureAdapter extends FeatureAdapter {
 
@@ -37,13 +39,9 @@ public class PayloadFeatureAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	protected EClass getSpecializationEClass() {
-		return SysMLPackage.eINSTANCE.getRedefinition();
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("payload");
+	public void addRedefinitions(Element skip) {
+		Feature redefinedFeature = (Feature)SysMLLibraryUtil.getLibraryType(getTarget(), getDefaultSupertype("payload"));
+		addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
 	}
 
 }

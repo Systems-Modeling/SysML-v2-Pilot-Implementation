@@ -32,8 +32,9 @@ package org.omg.sysml.interactive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -76,10 +77,13 @@ import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
-import org.omg.sysml.util.repository.RepositoryContentFetcher;
+import org.omg.sysml.util.repository.Revision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -92,6 +96,12 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class SysMLInteractive extends SysMLUtil {
+	
+	public static final String HELP_KEY = "help";
+	public static final String PROJECT_ID_KEY = "id";
+	public static final String PROJECT_NAME_KEY = "name";
+	public static final String BRANCH_ID_KEY = "branch-id";
+	public static final String BRANCH_NAME_KEY = "branch";
 	
 	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
@@ -360,7 +370,7 @@ public class SysMLInteractive extends SysMLUtil {
 			else if (matchStyle(styles, "JSON")) {
 				JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
 				processingFacade.getTraversal().visit(element);
-				return processingFacade.toJsonTree();
+				return processingFacade.toJsonTree(true);
 			}
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
 				return SysMLInteractiveUtil.formatTree(element);
@@ -384,7 +394,7 @@ public class SysMLInteractive extends SysMLUtil {
 			}
 			JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
 			processingFacade.getTraversal().visit(element);
-			return processingFacade.toJsonTree();
+			return processingFacade.toJsonTree(true);
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
 		}
@@ -404,24 +414,25 @@ public class SysMLInteractive extends SysMLUtil {
 				show(name, Collections.emptyList(), Collections.emptyList()));
 	}
 	
-	public String publish(String name, List<String> help) {
+	public String publish(String elementName, String projectName, String branchName, boolean includeDerievd, List<String> help) {
 		this.counter++;
-		if (Strings.isNullOrEmpty(name)) {
+		if (Strings.isNullOrEmpty(elementName)) {
 			return help.isEmpty()? "": SysMLInteractiveHelp.getPublishHelp();
 		}
 		try {
-			Element element = this.resolve(name);
+			Element element = this.resolve(elementName);
 			if (element == null) {
-				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+				return "ERROR:Couldn't resolve reference to Element '" + elementName + "'\n";
 			} else if (!this.isInputResource(element.eResource())) {
-				return "ERROR:'" + name + "' is a library element\n";
+				return "ERROR:'" + elementName + "' is a library element\n";
 			} else {
-				String modelName = element.getDeclaredName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(modelName);
+				String remoteProjectName = projectName == null? element.getDeclaredName() : projectName;
+				
+				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(remoteProjectName, branchName, includeDerievd);
 				processingFacade.getTraversal().visit(element);
-				processingFacade.commit();
+				processingFacade.commit(element);
 				System.out.println();
-				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
+				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -430,62 +441,104 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected String publish(String name) {
 		return "-h".equals(name)? 
-				publish(null, Collections.singletonList("true")):
-				publish(name, Collections.emptyList());
+				publish(null, null, null, false, Collections.singletonList("true")):
+				publish(name, null, null, false, Collections.emptyList());
 	}
 	
-	public String loadByName(String projectName, List<String> help) {
-		if (Strings.isNullOrEmpty(projectName)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+	/**
+	 * Loads using the supplied parameters<br>
+	 * Possible parameters are:
+	 * <li> {@value SysMLInteractive#PROJECT_NAME_KEY}: name of the project</li>
+	 * <li> {@value SysMLInteractive#PROJECT_ID_KEY}: id of the project</li>
+	 * <li> {@value SysMLInteractive#BRANCH_NAME_KEY}: name of the project's branch</li>
+	 * <li> {@value SysMLInteractive#BRANCH_ID_KEY}: id of the project's branch </li>
+	 * <li>{@value SysMLInteractive#HELP_KEY}: request help string for the operation</li>
+	 * 
+	 * <br>
+	 * {@value SysMLInteractive#PROJECT_NAME_KEY} and {@value SysMLInteractive#PROJECT_ID_KEY} are mutually exclusive. It is mandatory to specify one of them.
+	 * <br>
+	 * {@value SysMLInteractive#BRANCH_NAME_KEY} and {@value SysMLInteractive#BRANCH_ID_KEY} are mutually exclusive. If neither is given the project's default branch is used.
+	 * <br>
+	 * If help {@value SysMLInteractive#HELP_KEY} is passed as a parameter (with any value) the help string is printed. Every other parameters are ignored.
+	 * 
+	 * <br>
+	 * <br>
+	 * @param parameters map containing the parameters and their values
+	 * @return output of the command
+	 */
+	public String load(Map<String, String> parameters) {
+		
+		if (parameters.containsKey(HELP_KEY)) {
+			return SysMLInteractiveHelp.getLoadHelp();
 		}
 		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RepositoryProject repositoryProject = repository.getProjectByName(projectName);
+		if (parameters.containsKey(PROJECT_ID_KEY) && parameters.containsKey(PROJECT_NAME_KEY)) {
+			return "ERROR:Name and id cannot be provided at the same time.";
+		}
 		
-		if (repositoryProject == null) {
+		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
+			return "ERROR:Branch name and branch id cannot be provided at the same time";
+		}
+		
+		final ProjectRepository repository = new ProjectRepository(apiBasePath);
+		final RemoteProject project;
+		
+		if (parameters.containsKey(PROJECT_ID_KEY)) {
+			String projectId = parameters.get(PROJECT_ID_KEY);
+			project = repository.getProjectById(projectId);
+		} else if (parameters.containsKey(PROJECT_NAME_KEY)) {
+			String projectName = parameters.get(PROJECT_NAME_KEY);
+			project = repository.getProjectByName(projectName);
+		} else {
+			return SysMLInteractiveHelp.getLoadHelp();
+		}
+		
+		if (project == null) {
 			return "ERROR:Project doesn't exist.";
 		}
 		
-		return load(repositoryProject);
+		final RemoteBranch branch;
+		
+		if (parameters.containsKey(BRANCH_NAME_KEY)) {
+			String branchName = parameters.get(BRANCH_NAME_KEY);
+			branch = project.getBranch(branchName);
+		} else if (parameters.containsKey(BRANCH_ID_KEY)) {
+			String branchIdString = parameters.get(BRANCH_ID_KEY);
+			UUID branchId = UUID.fromString(branchIdString);
+			branch = project.getBranch(branchId);
+		} else {
+			branch = project.getDefaultBranch();
+		}
+		
+		return load(branch);
 	}
 	
-	public String loadById(String projectId, List<String> help) {
-		if (Strings.isNullOrEmpty(projectId)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+	private String load(RemoteBranch branch) {
+		if (branch == null) {
+			return "ERROR:Branch doesn't exist";
 		}
 		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RepositoryProject repositoryProject = repository.getPRojectById(UUID.fromString(projectId));
+		System.out.println("Selected branch " + branch.getName());
 		
-		if (repositoryProject == null) {
-			return "ERROR:Project doesn't exist.";
-		}
-		
-		return load(repositoryProject);
-	}
-
-	private String load(RepositoryProject repositoryProject) {
 		if (!tracker.isLibraryTracked()) {
 			System.out.println("Caching library UUIDs...");
 			tracker.trackLibraryUUIDs(getLibraryResources());
 		}
 		
-		tracker.clearTrackedUserElements();
+		tracker.clear();
 		List<Resource> inputResources = getInputResources();
 		//UUIDS coming from resources that were added later in time will shadow previous ones
-		tracker.trackUserUUIDs(inputResources);
+		tracker.trackLocalUUIDs(inputResources);
 		
 		System.out.println("Downloading model...");
-		boolean success = repositoryProject.loadRemote();
 		
-		if (!success) {
-			return "ERROR:Could not download the project.";
-		}
+		RemoteProject remoteProject = branch.getRemoteProject();
+		Revision headRevision = branch.getHeadRevision();
+		APIModel model = headRevision.fetchRemote();
 		
-		RepositoryContentFetcher fetcher = new RepositoryContentFetcher(repositoryProject, tracker);
-		
-		ProjectDelta delta = fetcher.fetch();
-		fetcher.getIssues().forEach(System.out::println);
+		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
+		EMFModelDelta delta = modelRefresher.create();
+		modelRefresher.getIssues().forEach(System.out::println);
 		
 		delta.getProjectRoots().forEach((eObject, dto) -> {
 			next(SYSMLX_EXTENSION);
@@ -500,13 +553,13 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Loaded Project " + repositoryProject.getProjectName() + " (" + repositoryProject.getProjectId().toString() + ")";
+		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")";
 	}
 	
 	protected String download(String name) {
 		return "-h".equals(name)?
-				loadByName(null, Collections.singletonList("true")):
-				loadByName(name, Collections.emptyList());
+				load(Map.of(HELP_KEY, "true")):
+				load(Map.of(PROJECT_NAME_KEY, name));
 	}
 	
 	public String projects(List<String> help) {
@@ -514,18 +567,22 @@ public class SysMLInteractive extends SysMLUtil {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
+
+		Comparator<String> projectNameComparator = Comparator.nullsFirst(Comparator.naturalOrder());
 		
 		String apiBasePathString = "API base path: " + apiBasePath;
-		List<RepositoryProject> repositoryProjects = projectRepository.getProjects();
-		String projectsListString = repositoryProjects.stream().map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getProjectId()))
+		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
+		String projectsListString = repositoryProjects.stream()
+				.sorted((p1, p2) -> projectNameComparator.compare(p1.getProjectName(), p2.getProjectName()))
+				.map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
 		return apiBasePathString + "\n\n" + projectsListString;
 	}
 	
-	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName) {
+	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {
 		System.out.println("API base path: " + this.apiBasePath);
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
-		processingFacade.setIsIncludeDerived(true);
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, branchName, this.apiBasePath);	
+		processingFacade.setIsIncludeDerived(includeDerived);
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}

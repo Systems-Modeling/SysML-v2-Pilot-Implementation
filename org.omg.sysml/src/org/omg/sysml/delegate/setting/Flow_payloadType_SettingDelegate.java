@@ -38,15 +38,15 @@ public class Flow_payloadType_SettingDelegate extends BasicDerivedListSettingDel
 
 	@Override
 	protected EList<Classifier> basicGet(InternalEObject owner) {
-		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, owner, eStructuralFeature.getFeatureID());
-		PayloadFeature itemFeature = ((Flow)owner).getPayloadFeature();
-		if (itemFeature != null) {
-			itemFeature.getType().stream().
+		EList<Classifier> payloadType = new NonNotifyingEObjectEList<>(Classifier.class, owner, eStructuralFeature.getFeatureID());
+		PayloadFeature payloadFeature = ((Flow)owner).getPayloadFeature();
+		if (payloadFeature != null) {
+			payloadFeature.getType().stream().
 				filter(Classifier.class::isInstance).
 				map(Classifier.class::cast).
-				forEachOrdered(itemType::add);
+				forEachOrdered(payloadType::add);
 		}
-		return itemType;
+		return payloadType;
 	}
 
 }

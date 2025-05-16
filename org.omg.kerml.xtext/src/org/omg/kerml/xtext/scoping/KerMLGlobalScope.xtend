@@ -38,6 +38,7 @@ import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Element
+import org.omg.kerml.xtext.naming.QualifiedNameUtil
 
 class KerMLGlobalScope extends AbstractScope {
 
@@ -78,25 +79,36 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	override getSingleElement(QualifiedName name) {
+		val qualifiedName = QualifiedNameUtil.getNonGlobalQualifiedName(name)							
 		var IEObjectDescription result = null
-		if (name.segmentCount > 0) {
-			val rootName = QualifiedName.create(name.firstSegment)
-			val root = outer.getSingleElement(rootName)
-			if (root !== null) {
-				if (name.segmentCount == 1) {
-					if (referenceType == SysMLPackage.eINSTANCE.membership) {
-						var eObject = EcoreUtil.resolve(root.EObjectOrProxy, resource)
-						result = if (eObject.eIsProxy) null 
-							else EObjectDescription.create(name, (eObject as Element).owningMembership)
-					} else if (referenceType.isInstance(root.EObjectOrProxy)) {
-						result = root;
+		
+		if (qualifiedName.segmentCount > 0) {
+			if (QualifiedNameUtil.isGlobalScopeQualification(name)) {
+				//search the context resource first
+				val rootNS = resource.contents.head as Namespace
+				result = scopeFor(rootNS).getSingleElement(qualifiedName)
+			}		
+			
+			if (result === null) {
+				val rootName = QualifiedName.create(qualifiedName.firstSegment)
+				val root = outer.getSingleElement(rootName)
+				if (root !== null) {
+					if (qualifiedName.segmentCount == 1) {
+						if (referenceType == SysMLPackage.eINSTANCE.membership) {
+							var eObject = EcoreUtil.resolve(root.EObjectOrProxy, resource)
+							result = if (eObject.eIsProxy) null 
+								else EObjectDescription.create(qualifiedName, (eObject as Element).owningMembership)
+						} else if (referenceType.isInstance(root.EObjectOrProxy)) {
+							result = root;
+						}
+					} else if (root.EObjectOrProxy instanceof Namespace) {
+						result = scopeFor(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Namespace).
+							getSingleElement(qualifiedName.skipFirst(1)).addQualification(qualifiedName.firstSegment)	
 					}
-				} else if (root.EObjectOrProxy instanceof Namespace) {
-					result = scopeFor(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Namespace).
-						getSingleElement(name.skipFirst(1)).addQualification(name.firstSegment)	
 				}
 			}
 		}
+		
 		return result.filter
 	}
 

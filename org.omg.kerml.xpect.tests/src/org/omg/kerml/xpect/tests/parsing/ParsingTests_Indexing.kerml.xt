@@ -9,6 +9,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 		File {from ="/library/ScalarValues.kerml"}
 		File {from ="/library/Collections.kerml"}
 		File {from ="/library/BaseFunctions.kerml"}
+		File {from ="/library/ControlFunctions.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -21,6 +22,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 				File {from ="/library/ScalarValues.kerml"}
 				File {from ="/library/Collections.kerml"}
 				File {from ="/library/BaseFunctions.kerml"}
+				File {from ="/library/ControlFunctions.kerml"}
 			}
 		}
 	}

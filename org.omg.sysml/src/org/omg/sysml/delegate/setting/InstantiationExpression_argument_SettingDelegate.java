@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,12 +21,17 @@
 
 package org.omg.sysml.delegate.setting;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InstantiationExpression;
-import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
@@ -41,11 +45,27 @@ public class InstantiationExpression_argument_SettingDelegate extends BasicDeriv
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<Expression> arguments = new NonNotifyingEObjectEList<Expression>(Expression.class, owner, eStructuralFeature.getFeatureID(), false);
-		TypeUtil.getOwnedFeaturesByMembershipIn((InstantiationExpression)owner, ParameterMembership.class).
-			filter(FeatureUtil::isInputParameter).
-			map(FeatureUtil::getValueExpressionFor).
-			forEachOrdered(arguments::add);
+		InstantiationExpression self = (InstantiationExpression)owner;
+		Type instantiatedType = self.instantiatedType();
+		if (instantiatedType != null) {
+			if (owner instanceof InvocationExpression) {
+				addArguments(arguments, instantiatedType.getInput(), self.getOwnedFeature());
+			} else if (owner instanceof ConstructorExpression) {
+				Feature result = TypeUtil.getOwnedResultParameterOf(self);
+				if (result != null) {
+					addArguments(arguments, instantiatedType.getFeature(), result.getOwnedFeature());
+				}
+			}
+		}
 		return arguments;
+	}
+	
+	protected void addArguments(List<Expression> arguments, List<Feature> instantiatedTypeFeatures, List<Feature> argumentFeatures) {
+		instantiatedTypeFeatures.stream().
+			flatMap(f->argumentFeatures.stream().filter(rf->rf.redefines(f))).
+			map(FeatureUtil::getValueExpressionFor).
+			filter(e->e != null).
+			forEachOrdered(arguments::add);		
 	}
 
 }

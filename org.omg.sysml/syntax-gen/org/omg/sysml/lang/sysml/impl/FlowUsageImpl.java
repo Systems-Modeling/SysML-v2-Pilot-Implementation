@@ -103,10 +103,10 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final PortionKind PORTION_KIND_EDEFAULT = PortionKind.TIMESLICE;
+	protected static final PortionKind PORTION_KIND_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->

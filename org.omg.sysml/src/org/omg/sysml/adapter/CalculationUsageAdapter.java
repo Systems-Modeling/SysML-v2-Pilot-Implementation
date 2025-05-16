@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,6 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
 
 public class CalculationUsageAdapter extends ActionUsageAdapter {
 
@@ -49,11 +48,6 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 		Type owningType = target.getOwningType();
 		return isNonEntryExitComposite() &&
 			   owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
-	}
-	
-	@Override
-	public void addAdditionalMembers() {
-		UsageUtil.addResultParameterTo(getTarget());
 	}
 	
 	@Override

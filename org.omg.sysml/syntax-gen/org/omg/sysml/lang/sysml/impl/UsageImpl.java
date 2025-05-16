@@ -1055,6 +1055,11 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	public boolean isComposite() {
 		return UsageUtil.isComposite(this, isComposite);
 	}
+	
+	@Override
+	public boolean isConstant() {
+		return isConstant || isEnd() && isMayTimeVary();
+	}
 
 	//
 	

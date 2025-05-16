@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,11 +26,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ExpressionUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -100,14 +97,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		operator = newOperator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
-	}
-	
-	@Override
-	public Function getFunction() {
-		String operator = getOperator();
-		return operator == null? super.getFunction():
-			   (Function)SysMLLibraryUtil.getLibraryType(this, 
-					   ExpressionUtil.getOperatorQualifiedNames(getOperator()));
 	}
 	
 	/**

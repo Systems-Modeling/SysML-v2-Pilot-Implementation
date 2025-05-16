@@ -45,7 +45,7 @@ public class IndexFunction extends BaseFunction {
 	protected boolean isArray(InvocationExpression invocation, EList<Element> seq) {
 		Type orderedCollectionType = ExpressionUtil.getArrayDataType(invocation);
 		return seq.size() == 1 && seq.get(0) instanceof Type && 
-			   TypeUtil.conforms((Type)seq.get(0), orderedCollectionType);
+			   TypeUtil.specializes((Type)seq.get(0), orderedCollectionType);
 	}
 	
 	protected EList<Element> indexArray(InvocationExpression invocation, Feature array, EList<Element> indexes, ModelLevelExpressionEvaluator evaluator) {
@@ -82,7 +82,7 @@ public class IndexFunction extends BaseFunction {
 	protected boolean isOrderedCollection(InvocationExpression invocation, EList<Element> seq) {
 		Type orderedCollectionType = ExpressionUtil.getOrderedCollectionDataType(invocation);
 		return seq.size() == 1 && seq.get(0) instanceof Type && 
-			   TypeUtil.conforms((Type)seq.get(0), orderedCollectionType);
+			   TypeUtil.specializes((Type)seq.get(0), orderedCollectionType);
 	}
 	
 	protected EList<Element> indexCollection(InvocationExpression invocation, Feature collection, int index, ModelLevelExpressionEvaluator evaluator) {

@@ -23,9 +23,7 @@ package org.omg.sysml.delegate.setting;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.InstantiationExpression;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Type;
 
 public class InstantiationExpression_instantiatedType_SettingDelegate extends BasicDerivedObjectSettingDelegate {
@@ -36,10 +34,7 @@ public class InstantiationExpression_instantiatedType_SettingDelegate extends Ba
 
 	@Override
 	protected Type basicGet(InternalEObject owner) {
-		return (Type)((InstantiationExpression)owner).getOwnedMembership().stream().
-			filter(m->!(m instanceof FeatureMembership)).
-			map(Membership::getMemberElement).findFirst().
-			filter(Type.class::isInstance).orElse(null);
+		return ((InstantiationExpression)owner).instantiatedType();
 	}
 
 }

@@ -43,9 +43,9 @@ public class SubsettingItemProvider extends SpecializationItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOwningFeaturePropertyDescriptor(object);
 			addSubsettedFeaturePropertyDescriptor(object);
 			addSubsettingFeaturePropertyDescriptor(object);
-			addOwningFeaturePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

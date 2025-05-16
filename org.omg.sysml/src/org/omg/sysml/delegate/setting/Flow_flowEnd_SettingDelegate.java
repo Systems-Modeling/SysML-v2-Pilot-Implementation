@@ -36,12 +36,12 @@ public class Flow_flowEnd_SettingDelegate extends Connector_connectorEnd_Setting
 
 	@Override
 	protected EList<FlowEnd> basicGet(InternalEObject owner) {
-		EList<FlowEnd> itemFlows = new NonNotifyingEObjectEList<>(FlowEnd.class, owner, eStructuralFeature.getFeatureID());
+		EList<FlowEnd> flowEnds = new NonNotifyingEObjectEList<>(FlowEnd.class, owner, eStructuralFeature.getFeatureID());
 		super.basicGet(owner).stream().
 			filter(FlowEnd.class::isInstance).
 			map(FlowEnd.class::cast).
-			forEachOrdered(itemFlows::add);
-		return itemFlows;
+			forEachOrdered(flowEnds::add);
+		return flowEnds;
 	}
 
 }

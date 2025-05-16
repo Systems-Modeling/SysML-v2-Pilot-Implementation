@@ -99,19 +99,19 @@ package BindingConnectorExample {
 				in ref myIn redefines B1::p1::myDefIn;
 			}
 		}
-		//* XPECT warnings --- 
-		    "Should be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
-		    "Should be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
+		//* XPECT errors --- 
+		    "Must be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
+		    "Must be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
 		    --- */
 		bind B0::p0.myDefIn = B0::p0.myDefIn;
-		//* XPECT warnings --- 
-		    "Should be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn" 
-		    "Should be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
+		//* XPECT errors --- 
+		    "Must be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn" 
+		    "Must be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
 		    --- */
 		bind b0::p0.myDefIn = b4::p1.myDefIn;
-		//* XPECT warnings --- 
-		    "Should be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
-		    "Should be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn"
+		//* XPECT errors --- 
+		    "Must be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
+		    "Must be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn"
 		    --- */
 		bind b4::p1.myDefIn = b0::p0.myDefIn;
 		bind b0.p0.myDefIn = b5.p1.myDefIn;

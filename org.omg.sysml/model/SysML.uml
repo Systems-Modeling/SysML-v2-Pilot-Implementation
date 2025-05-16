@@ -4420,6 +4420,9 @@ specializes(mem.memberElement.oclAsType(Type))</body>
         </specification>
       </ownedRule>
       <ownedParameter xmi:id="1871002f-9e6b-44dd-8e87-759c14da3cd2" name="otherType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7"/>
+      <ownedParameter xmi:id="_cqYMoCvCEfCJzut8qz2Csg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
     </ownedOperation>
     <ownedOperation xmi:id="75edcbb6-a75e-4709-911e-0cd1094a28f5" name="multiplicities" visibility="public" bodyCondition="9d09cc58-6842-4d74-a593-63afd30d4287">
       <ownedComment xmi:id="d60ff703-e548-406c-a961-d320510a590c" annotatedElement="75edcbb6-a75e-4709-911e-0cd1094a28f5">
@@ -5863,6 +5866,9 @@ redefines(mem.memberElement.oclAsType(Feature))</body>
         </specification>
       </ownedRule>
       <ownedParameter xmi:id="34116e2a-c79c-4277-b409-2f25e53abe18" name="otherType" visibility="public" type="a32ae34b-57c2-4f49-832c-00f8741d55e7"/>
+      <ownedParameter xmi:id="_qYAaQCvCEfCJzut8qz2Csg" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedParameter>
     </ownedOperation>
     <ownedOperation xmi:id="43a26f3f-ea82-488e-a0bc-904e16ed9c5e" name="typingFeatures" visibility="public" bodyCondition="3baa429e-0255-4f08-8c83-2a14bd084a1b">
       <ownedComment xmi:id="44a7b1ba-c0ab-40ce-a72a-4ce4bd05c0b9" annotatedElement="43a26f3f-ea82-488e-a0bc-904e16ed9c5e">

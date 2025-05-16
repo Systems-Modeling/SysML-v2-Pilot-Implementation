@@ -36,7 +36,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.InstantiationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -139,7 +139,7 @@ public class NamespaceUtil {
 		if (!(element instanceof Relationship)) {
 			element = element.getOwningMembership();
 		}
-		return element instanceof FeatureValue && owningNamespace instanceof InvocationExpression?
+		return element instanceof FeatureValue && owningNamespace instanceof InstantiationExpression?
 			owningNamespace: namespace;		
 	}
 	
@@ -149,7 +149,7 @@ public class NamespaceUtil {
 		} else {
 			Namespace namespace = getExpressionNamespaceOf(element);
 			while (element instanceof FeatureValue || 
-				   namespace instanceof InvocationExpression || 
+				   namespace instanceof InstantiationExpression || 
 				   namespace instanceof FeatureReferenceExpression
 			) {
 				element = namespace.getOwningMembership();

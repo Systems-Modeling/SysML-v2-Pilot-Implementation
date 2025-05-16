@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2024 Model Driven Solutions, Inc.
+ * Copyright (C) 2024,2025 Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -97,35 +97,35 @@ public class SysMLBinaryRelationTest extends SysMLSemanticTest {
 	}
 	
 	@Test
-	public void checkFlowConnectionUsageFlowSpecialization() {
-		//Succession flow connection is always binary, no base case
+	public void checkFlowUsageFlowSpecialization() {
+		// A FlowUsage is always binary, no base case
 		var resource = getResource();
-		var flowConnectionUsage = SysMLFactory.eINSTANCE.createFlowUsage();
+		var flowUsage = SysMLFactory.eINSTANCE.createFlowUsage();
 		
-		resource.getContents().add(flowConnectionUsage);
+		resource.getContents().add(flowUsage);
 		
-		addEndTo(flowConnectionUsage);
-		addEndTo(flowConnectionUsage);
+		addEndTo(flowUsage);
+		addEndTo(flowUsage);
 		
-		ElementUtil.transformAll(flowConnectionUsage, true);
+		ElementUtil.transformAll(flowUsage, true);
 		
-		assertTrue(specializes(flowConnectionUsage, "FlowConnections::flowConnections"));
+		assertTrue(specializes(flowUsage, "Flows::flows"));
 	}
 	
 	@Test
-	public void checkSuccessionFlowConnectionUsageSpecialization() {
-		//Succession flow connection is always binary, no base case
+	public void checkSuccessionFlowUsageSpecialization() {
+		// A SuccessionFlowUsag is always binary, no base case
 		var resource = getResource();
-		var interfaceDefinition = SysMLFactory.eINSTANCE.createSuccessionFlowUsage();
+		var successionFlowUsage = SysMLFactory.eINSTANCE.createSuccessionFlowUsage();
 		
-		resource.getContents().add(interfaceDefinition);
+		resource.getContents().add(successionFlowUsage);
 		
-		addEndTo(interfaceDefinition);
-		addEndTo(interfaceDefinition);
+		addEndTo(successionFlowUsage);
+		addEndTo(successionFlowUsage);
 		
-		ElementUtil.transformAll(interfaceDefinition, true);
+		ElementUtil.transformAll(successionFlowUsage, true);
 		
-		assertTrue(specializes(interfaceDefinition, "FlowConnections::successionFlowConnections"));
+		assertTrue(specializes(successionFlowUsage, "Flows::successionFlows"));
 	}
 	
 	//Utility methods

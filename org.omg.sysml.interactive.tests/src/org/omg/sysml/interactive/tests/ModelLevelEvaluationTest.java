@@ -300,6 +300,21 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	}
 	
 	@Test
+	public void testConstructorEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance,
+				"part def P { attribute a; attribute b; } " +
+				"part p1 = new P(1, 2); " +
+				"part p2 = new P(b = p1.b, a = p1.a);");
+		assertEquals(true, evaluateBooleanValue(instance, null, "p1 istype P"));
+		assertEquals(1, evaluateIntegerValue(instance, null, "p1.a"));
+		assertEquals(2, evaluateIntegerValue(instance, null, "p1.b"));
+		assertEquals(true, evaluateBooleanValue(instance, null, "p2 istype P"));
+		assertEquals(1, evaluateIntegerValue(instance, null, "p2.a"));
+		assertEquals(2, evaluateIntegerValue(instance, null, "p2.b"));
+	}
+	
+	@Test
 	public void testFeatureReferenceEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, 

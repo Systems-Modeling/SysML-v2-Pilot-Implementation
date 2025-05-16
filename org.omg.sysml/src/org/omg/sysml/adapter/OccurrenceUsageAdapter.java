@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,8 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class OccurrenceUsageAdapter extends UsageAdapter {
 
@@ -39,6 +34,20 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	public OccurrenceUsage getTarget() {
 		return (OccurrenceUsage)super.getTarget();
 	}
+	
+	// Post-processing
+	
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		
+		OccurrenceUsage self = getTarget();
+		if (self.getPortionKind() != null) {
+			self.setIsPortion(true);
+		}
+	}
+	
+	// Implicit Generalization
 
 	@Override
 	public void addDefaultGeneralType() {
@@ -66,39 +75,4 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
 	}
-	
-	protected void addOccurrenceTyping() {
-		OccurrenceUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		if (target.getPortionKind() != null && target.getOwnedTyping().isEmpty()) {
-			if (owningType instanceof OccurrenceDefinition) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
-			} else if (owningType instanceof OccurrenceUsage) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
-			}
-		}
-	}
-	
-	protected void addOccurrenceFeaturing() {
-		OccurrenceUsage target = getTarget();
-		if (target.getPortionKind() != null) {
-			EList<Type> featuringTypes = target.getFeaturingType();
-			target.getOwnedTyping().stream().
-				map(FeatureTyping::getType).
-				filter(OccurrenceDefinition.class::isInstance).
-				forEach(type->{
-					if (!(featuringTypes.contains(type))) {
-						addFeaturingType(type);
-					}
-				});
-		}
-	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addOccurrenceTyping();
-		addOccurrenceFeaturing();
-		super.computeImplicitGeneralTypes();
-	}
-	
 }

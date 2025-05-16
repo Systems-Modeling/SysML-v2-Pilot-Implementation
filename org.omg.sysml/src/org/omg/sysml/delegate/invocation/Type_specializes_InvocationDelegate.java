@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_specializes_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -40,7 +41,7 @@ public class Type_specializes_InvocationDelegate extends BasicInvocationDelegate
 		Type self = (Type) target;
 		Type supertype = (Type) arguments.get(0);
 		
-		return self.allSupertypes().contains(supertype);
+		return TypeUtil.specializes(self, supertype);
 	}
 
 }

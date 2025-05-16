@@ -34,7 +34,7 @@ standard library package Occurrences {
         
 		private import SequenceFunctions::*;
 
-		feature portionOfLife: Life[1] subsets portionOf;
+		feature portionOfLife: Life[1] subsets portionOf default self;
 
 		feature self: Occurrence[1] redefines Anything::self subsets timeSlices, spaceSlices, spaceTimeCoincidentOccurrences, sameLifeOccurrences;
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
@@ -292,8 +292,10 @@ standard library package Occurrences {
 			doc
 			/*
 			 * All spaceTimeEnclosedOccurrences that have the same portionOfLife (considered the same
-			 * thing occurring), see portionof.
+			 * thing occurring).
 			 */
+
+            portion redefines portionOfLife = (that as Occurrence).portionOfLife;
 		}
 
 		feature portionOf : Occurrence[1..*] inverse of portions {
@@ -302,13 +304,6 @@ standard library package Occurrences {
 			 * Occurrences of which this occurrence is a portion, including at
 			 * least this occurrence.
 			 */
-
-			feature portionOccurrence: Occurrence[1] subsets that;
-			feature portionedOccurrence: Occurrence[1] subsets self;
-			binding [1] portionOccurrence.portionOfLife = [1] portionedOccurrence.portionOfLife;
-
-			/* portionOf is transitive */
-			subset portionedOccurrence.portionOf subsets portionOccurrence.portionOf;
 		}
 
 		portion feature timeSlices: Occurrence[1..*] subsets portions {
@@ -622,7 +617,7 @@ standard library package Occurrences {
 		}
 		inv { isClosed == isEmpty((that as Occurrence).spaceBoundary) }
 
-		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+		var feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
 			/*
 			 * The incoming transfers received by this occurrence.
@@ -659,7 +654,7 @@ standard library package Occurrences {
 			 */
 		}
 
-		feature all incomingTransfersToSelf subsets incomingTransfers {
+		var feature all incomingTransfersToSelf subsets incomingTransfers {
 			doc
 			/*
 			 * The incoming transfers with this occurrence as the target.
@@ -669,7 +664,7 @@ standard library package Occurrences {
 			end feature redefines target = that;
 		}
 
-		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+		var feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			doc
 			/*
 			 * The outgoing transfers sent from this occurrence.
@@ -679,7 +674,7 @@ standard library package Occurrences {
 			end feature redefines target;
 		}
 
-		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
+		var feature all outgoingTransfersFromSelf subsets outgoingTransfers {
 			doc
 			/*
 			 * The outgoing transfers with this occurrence as the source.

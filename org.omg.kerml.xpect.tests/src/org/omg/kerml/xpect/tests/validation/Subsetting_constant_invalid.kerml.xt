@@ -1,0 +1,35 @@
+//*
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Objects.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Subsetting_constant_invalid {
+	
+	class A {
+		const feature f;
+		// XPECT errors--->"Subsetting/redefining feature must be constant if subsetted/redefined feature is constant" at "f"
+		var feature g :> f;
+	}
+	
+	class B :> A {
+		// XPECT errors--->"Subsetting/redefining feature must be constant if subsetted/redefined feature is constant" at "f"
+		var feature h :>> f;
+		var feature i :> g;
+	}
+
+}

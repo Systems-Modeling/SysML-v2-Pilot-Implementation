@@ -21,6 +21,7 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -40,8 +41,8 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	}
 	
 	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
+	public void addRedefinitions(Element skip) {
+		super.addRedefinitions(skip);
 		if (isViewRendering()) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getLibraryType(getDefaultSupertype("viewRendering")));
 		}

@@ -174,16 +174,16 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE = "validateEventOccurrenceUsageReferent"
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS = "validateOccurrenceDefinitionLifeClass"
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_1 = "Must have exactly one LifeClass."
-	public static val INVALID_OCCURRENCE_DEFINITION_LIFE_CLASS_MSG_2 = "Must not have a LifeClass."
-	
 	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
 	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "At most one individual definition is allowed."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG = "An individual must be typed by one individual definition."	
+	public static val INVALID_OCCURRENCE_USAGE_IS_PORTION = "validateOccurrenceUsageIsPortion"
+	public static val INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG = "Must be a portion."	
+	public static val INVALID_OCCURRENCE_USAGE_PORTION_KIND = "validateOccurrenceUsageIsPortion"
+	public static val INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG = "Must be owned by an occurrence definition or usage."	
 	
 	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION = "validateClassSpecialization"
 	public static val INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG = "Cannot specialize attribute definition"    	
@@ -214,11 +214,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONNECTION_USAGE_TYPE = "validateConnectionUsageType_"
 	public static val INVALID_CONNECTION_USAGE_TYPE_MSG = "A connection must be typed by connection definitions."
 	
-	public static val INVALID_FLOW_CONNECTION_DEFINITION_END = "validateFlowConnectionDefinitionConnectionEnds"
-	public static val INVALID_FLOW_CONNECTION_DEFINITION_END_MSG = "A flow connection definition can have at most two ends."
+	public static val INVALID_FLOW_DEFINITION_END = "validateFlowDefinitionConnectionEnds"
+	public static val INVALID_FLOW_DEFINITION_END_MSG = "A flow connection definition can have at most two ends."
 	
-	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE = "validateFlowConnectionUsageType_"
-	public static val INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG = "A flow connection must be typed by flow connection definitions."
+	public static val INVALID_FLOW_USAGE_TYPE = "validateFlowUsageType_"
+	public static val INVALID_FLOW_USAGE_TYPE_MSG = "A flow connection must be typed by flow connection definitions."
 
 	public static val INVALID_INTERFACE_DEFINITION_END = "validateInterfaceDefinitionEnd_"
 	public static val INVALID_INTERFACE_DEFINITION_END_MSG = "An interface definition end must be a port."
@@ -577,6 +577,18 @@ class SysMLValidator extends KerMLValidator {
 		} else if (usg.isIndividual && nIndividualDefs != 1) {
 			error (INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE)
 		}
+		
+		// validateOccurrenceUsageIsPortion
+		val portionKind = usg.portionKind
+		if (! (portionKind === null || usg.isPortion)) {
+			error(INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG, usg, null, INVALID_OCCURRENCE_USAGE_IS_PORTION_MSG)
+		}
+		
+		// validateOccurrenceUsagePortionKind
+		val owningType = usg.owningType;
+		if (!(portionKind === null || owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage)) {
+			error(INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG, usg, null, INVALID_OCCURRENCE_USAGE_PORTION_KIND_MSG)
+		}
 
 	}
 	
@@ -644,25 +656,25 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	@Check
-	def checkFlowConnectionDefinition(FlowDefinition cdef) {
+	def checkFlowDefinition(FlowDefinition cdef) {
 		// validateConnectionDefinitionConnectionEnds
 		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
 		if (ends.size > 2) {
 			val ownedEnds = cdef.ownedEndFeature
 			if (ownedEnds.size <= 2) {
-				error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, cdef, null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+				error(INVALID_FLOW_DEFINITION_END_MSG, cdef, null, INVALID_FLOW_DEFINITION_END)
 			} else {
 				for (var i = 2; i < ends.size; i++) {
-					error(INVALID_FLOW_CONNECTION_DEFINITION_END_MSG, ends.get(i), null, INVALID_FLOW_CONNECTION_DEFINITION_END)
+					error(INVALID_FLOW_DEFINITION_END_MSG, ends.get(i), null, INVALID_FLOW_DEFINITION_END)
 				}
 			}
 		}
 	}
 
 	@Check 
-	def checkFlowConnectionUsage(FlowUsage usg) {
+	def checkFlowUsage(FlowUsage usg) {
 		// All types must be Interactions
-		checkAllTypes(usg, Interaction, INVALID_FLOW_CONNECTION_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowUsage_FlowDefinition, INVALID_FLOW_CONNECTION_USAGE_TYPE)
+		checkAllTypes(usg, Interaction, INVALID_FLOW_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.flowUsage_FlowDefinition, INVALID_FLOW_USAGE_TYPE)
 	}
 
 	@Check

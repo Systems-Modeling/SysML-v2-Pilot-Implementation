@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -60,6 +61,8 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class FeatureUtil {
 	
@@ -171,7 +174,7 @@ public class FeatureUtil {
 	protected static void removeRedundantTypes(List<Type> types) {
 		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
 				types.remove(i);
 			}
 		}
@@ -251,7 +254,7 @@ public class FeatureUtil {
 	
 	public static List<Feature> getAllSubsettingFeaturesIn(Type type, Feature subsettedFeature) {
 		return type.getFeature().stream().
-				filter(f->TypeUtil.conforms(f, subsettedFeature)).
+				filter(f->TypeUtil.specializes(f, subsettedFeature)).
 				collect(Collectors.toList());
 	}
 	
@@ -334,7 +337,8 @@ public class FeatureUtil {
 					// in case this transformation has not been done yet.
 					feature = ((FeatureValue)owningMembership).getFeatureWithValue();
 				}
-				for (Type featuringType: feature.getFeaturingType()) {
+				EList<Type> featuringTypes = feature.getFeaturingType();
+				for (Type featuringType: featuringTypes) {
 					if (!allFeaturingTypes.contains(featuringType)) {
 						allFeaturingTypes.add(featuringType);
 						if (featuringType instanceof Feature) {
@@ -347,7 +351,7 @@ public class FeatureUtil {
 		}
 		return allFeaturingTypes;
 	}
-
+	
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
 		getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
 	}
@@ -384,6 +388,29 @@ public class FeatureUtil {
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});
+	}
+
+	public static Stream<Feature> getFeaturingFeaturesOf(Feature feature) {
+		ElementUtil.transform(feature);
+		return feature.getFeaturingType().stream().
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast);
+	}
+	
+	public static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature) {
+		return canAccess(subsettingFeature, subsettedFeature, new HashSet<>());
+	}	
+
+	private static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
+		visited.add(subsettingFeature);
+		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
+		return featuringTypes.isEmpty() && subsettedFeature == 
+				SysMLLibraryUtil.getLibraryType(subsettingFeature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+				featuringTypes.stream().anyMatch(featuringType-> 
+						subsettedFeature.isFeaturedWithin(featuringType) ||				
+						featuringType instanceof Feature &&
+						!visited.contains(featuringType) &&
+						canAccess(((Feature)featuringType), subsettedFeature, visited));
 	}
 	
 	// Feature Chaining

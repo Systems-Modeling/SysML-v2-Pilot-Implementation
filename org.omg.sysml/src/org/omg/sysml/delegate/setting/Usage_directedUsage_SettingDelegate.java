@@ -36,11 +36,11 @@ public class Usage_directedUsage_SettingDelegate extends BasicDerivedListSetting
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
+		EList<Usage> directedUsages = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
 		((Usage)owner).getUsage().stream().
 			filter(usage->usage.getDirection() != null).
-			forEachOrdered(flows::add);
-		return flows;
+			forEachOrdered(directedUsages::add);
+		return directedUsages;
 	}
 
 }

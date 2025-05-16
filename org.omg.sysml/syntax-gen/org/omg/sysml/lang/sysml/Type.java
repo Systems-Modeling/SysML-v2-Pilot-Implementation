@@ -265,11 +265,11 @@ public interface Type extends Namespace {
 	 * <p>By default, this <code>Type</code> is compatible with an <code>otherType</code> if it directly or indirectly specializes the <code>otherType</code>.</p>
 	 * specializes(otherType)
 	 * <!-- end-model-doc -->
-	 * @model otherTypeRequired="true" otherTypeOrdered="false"
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherTypeRequired="true" otherTypeOrdered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	void isCompatibleWith(Type otherType);
+	boolean isCompatibleWith(Type otherType);
 
 	/**
 	 * <!-- begin-user-doc -->

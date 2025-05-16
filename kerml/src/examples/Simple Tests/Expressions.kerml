@@ -56,7 +56,7 @@ package Expressions {
 	bb : Boolean = f.s(1);
 	
 	class C {
-		count : ScalarValues::Integer := 0;
+		var count : ScalarValues::Integer := 0;
 	}
 	
 	feature obj1 : C;
@@ -70,6 +70,6 @@ package Expressions {
 		feature count : ScalarValues::Integer =  c#(1).count;
 	}
 	
-	feature l = L();
+	feature l = new L();
 	feature w1 = w(xx);
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,9 +30,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocationDelegate {
@@ -47,15 +46,17 @@ public class Feature_isFeaturedWithin_InvocationDelegate extends BasicInvocation
 		Type type = (Type) arguments.get(0);
 		
 		List<Type> featuringTypes = self.getFeaturingType();
-		// TODO: Fix OCL for isFeaturedWithin
 		if (featuringTypes.isEmpty()) {
 			return true;
+		} else if (type == null) {
+			Type anythingType = SysMLLibraryUtil.getLibraryType(self, "Base::Anything");
+			return featuringTypes.stream().allMatch(featuringType->featuringType == anythingType);
 		} else {
-			Type effectiveType = type == null?
-				SysMLLibraryUtil.getLibraryType(self, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)):
-				type;
-			return featuringTypes.stream().allMatch(featuringType->
-				   		TypeUtil.conforms(effectiveType, featuringType));
+			Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(self);
+			return featuringTypes.stream().allMatch(featuringType->TypeUtil.isCompatible(type, featuringType)) ||
+				   self.isVariable() && TypeUtil.specializes(type, self.getOwningType()) ||
+				   firstChainingFeature != null && firstChainingFeature.isVariable() &&
+				   		TypeUtil.specializes(type, firstChainingFeature.getOwningType());
 		}
 	}
 

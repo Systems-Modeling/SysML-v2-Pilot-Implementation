@@ -49,7 +49,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 		if (function != null && function.isModelLevelEvaluable()) {
 			return super.evaluateInvocation(expression, target);
 		} else {
-			Type type = expression.getOwnedTyping().stream().map(FeatureTyping::getType).findFirst().orElse(null);
+			Type type = expression.instantiatedType();
 			Expression resultExpression = null;
 			if (type != null) {
 				resultExpression = ExpressionUtil.getResultExpressionOf(type);

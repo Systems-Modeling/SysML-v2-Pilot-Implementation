@@ -151,7 +151,7 @@ public class KerML2JSON extends KerMLTraversalUtil {
 	 */
 	public void write() throws IOException {
 		Files.newBufferedWriter(Path.of(this.outputPath)).
-			append(((JsonElementProcessingFacade)this.traversal.getFacade()).toJson()).
+			append(((JsonElementProcessingFacade)this.traversal.getFacade()).toJson(true)).
 			close();
 	}
 	

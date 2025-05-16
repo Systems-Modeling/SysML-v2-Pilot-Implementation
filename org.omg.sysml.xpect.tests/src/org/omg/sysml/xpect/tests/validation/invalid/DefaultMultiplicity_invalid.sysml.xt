@@ -82,11 +82,9 @@ package DefaultMultiplicity {
 		// These kinds of usages do not have default multiplicity.
 		action n1;
 		state s1;
-		connection c1 connect n1 to s1;
 		
 		action n2[*] :> n1;
 		state s2[*] :> s1;
-		connection c2[*] :> c1 connect n2 to s2;
 	}
 	
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
-import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintDefinitionAdapter extends OccurrenceDefinitionAdapter {
 
@@ -35,11 +34,6 @@ public class ConstraintDefinitionAdapter extends OccurrenceDefinitionAdapter {
 		return (ConstraintDefinition)super.getTarget();
 	}
 
-	@Override
-	public void addAdditionalMembers() {
-		UsageUtil.addResultParameterTo(getTarget());
-	}
-	
 	@Override
 	public void doTransform() {
 		super.doTransform();

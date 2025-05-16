@@ -1,0 +1,65 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+        ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+		        ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+
+            }
+    	}
+    }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package Scoping {
+    package P1 {
+        class A {
+            feature f;
+        }
+        package P2 {
+            class A {
+                feature g;
+            }
+            package P3 {
+                class B :> A {
+                    feature :>> g;
+                }
+            }
+        }
+        package Objects {
+            class Object {
+                feature test1;
+            }
+        }
+        package '$' {
+            class Objects {
+                class Object {
+                    feature test2;
+                }
+            }
+        }
+        package P4 {
+            class C :> Objects::Object {
+                feature :>> test1;
+            }
+            class D :> '$'::Objects::Object {
+                feature :>> test2;
+            }
+            class E :> $::Objects::Object {
+                feature :>> subobjects;
+            }
+        }
+    }
+}

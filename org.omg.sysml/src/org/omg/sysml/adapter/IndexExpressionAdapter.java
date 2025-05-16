@@ -54,7 +54,7 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			Feature seqResult = seqArgument.getResult();
 			Type arrayType = getLibraryType(ARRAY_TYPE);
 			Type scalarValueType = getLibraryType(SCALAR_VALUE_TYPE);
-			if (!TypeUtil.conforms(target, arrayType) || TypeUtil.conforms(target, scalarValueType)) {
+			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
 				Feature resultFeature = target.getResult();
 				if (resultFeature != null && seqResult != null) {
 					TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);

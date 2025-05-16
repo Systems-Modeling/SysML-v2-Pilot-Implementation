@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,6 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
 
 public class CaseUsageAdapter extends CalculationUsageAdapter {
 
@@ -57,16 +56,6 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 		Type owningType = target.getOwningType();
 		return isNonEntryExitComposite() &&
 			   (owningType instanceof CaseDefinition || owningType instanceof CaseUsage);
-	}
-	
-	// Transformation
-	
-	@Override 
-	public void addAdditionalMembers() {
-		CaseUsage usage = getTarget();
-		UsageUtil.addSubjectParameterTo(usage);
-		UsageUtil.addObjectiveRequirementTo(usage);
-		super.addAdditionalMembers();
 	}
 	
 }

@@ -230,7 +230,7 @@ public class SysMLInteractiveHelp {
     	registerHelpString("%export", EXPORT_HELP_SHORT_STRING, EXPORT_HELP_STRING);
     	registerHelpString("%load", LOAD_HELP_SHORT_STRING, LOAD_HELP_STRING);
     	registerHelpString("%projects", PROJECTS_HELP_SHORT_STRING, PROJECTS_HELP_STRING);
-		registerHelpString("%repo", API_BASE_PATH_HELP_SHORT_STRING, API_BASE_PATH_HELP_STRING);
+    	registerHelpString("%repo", API_BASE_PATH_HELP_SHORT_STRING, API_BASE_PATH_HELP_STRING);
     }
 
     /**

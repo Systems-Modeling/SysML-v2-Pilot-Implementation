@@ -467,7 +467,8 @@ public class SysMLInteractive extends SysMLUtil {
 	 * @return output of the command
 	 */
 	public String load(Map<String, String> parameters) {
-		this.counter++;
+		counter++;
+		
 		if (parameters.containsKey(HELP_KEY)) {
 			return SysMLInteractiveHelp.getLoadHelp();
 		}
@@ -541,16 +542,16 @@ public class SysMLInteractive extends SysMLUtil {
 		modelRefresher.getIssues().forEach(System.out::println);
 		
 		delta.getProjectRoots().forEach((eObject, dto) -> {
-			next(SYSMLX_EXTENSION);
-			Resource xmiResource = getResource();
+			Resource resource = this.createResource(eObject.toString() + SYSML_EXTENSION);
+			this.addInputResource(resource);
 			if (eObject instanceof Namespace) {
-				xmiResource.getContents().add(eObject);
+				resource.getContents().add(eObject);
 			} else {
 				Namespace root = SysMLFactory.eINSTANCE.createNamespace();
 				NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
-				xmiResource.getContents().add(root);
+				resource.getContents().add(root);
 			}
-			addResourceToIndex(xmiResource);
+			addResourceToIndex(resource);
 		});
 		
 		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")\n";

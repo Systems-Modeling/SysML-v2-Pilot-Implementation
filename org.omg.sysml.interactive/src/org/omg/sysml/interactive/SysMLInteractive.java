@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -467,7 +467,7 @@ public class SysMLInteractive extends SysMLUtil {
 	 * @return output of the command
 	 */
 	public String load(Map<String, String> parameters) {
-		
+		this.counter++;
 		if (parameters.containsKey(HELP_KEY)) {
 			return SysMLInteractiveHelp.getLoadHelp();
 		}
@@ -494,7 +494,7 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		if (project == null) {
-			return "ERROR:Project doesn't exist.";
+			return "ERROR:Project doesn't exist\n";
 		}
 		
 		final RemoteBranch branch;
@@ -515,7 +515,7 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	private String load(RemoteBranch branch) {
 		if (branch == null) {
-			return "ERROR:Branch doesn't exist";
+			return "ERROR:Branch doesn't exist\n";
 		}
 		
 		System.out.println("Selected branch " + branch.getName());
@@ -553,16 +553,17 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(xmiResource);
 		});
 		
-		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")";
+		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")\n";
 	}
 	
-	protected String download(String name) {
+	protected String load(String name) {
 		return "-h".equals(name)?
 				load(Map.of(HELP_KEY, "true")):
 				load(Map.of(PROJECT_NAME_KEY, name));
 	}
 	
 	public String projects(List<String> help) {
+		this.counter++;
 		if (help != null && !help.isEmpty()) {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
@@ -576,7 +577,13 @@ public class SysMLInteractive extends SysMLUtil {
 				.sorted((p1, p2) -> projectNameComparator.compare(p1.getProjectName(), p2.getProjectName()))
 				.map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
-		return apiBasePathString + "\n\n" + projectsListString;
+		return apiBasePathString + "\n\n" + projectsListString + "\n";
+	}
+	
+	protected String projects(String arg) {
+		return "-h".equals(arg)?
+				projects(Collections.singletonList("true")):
+				projects(Collections.emptyList());
 	}
 	
 	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {
@@ -759,9 +766,15 @@ public class SysMLInteractive extends SysMLUtil {
 								if (!"".equals(argument)) {
 									System.out.print(this.show(argument));
 								}
+							} else if ("%projects".equals(command)) {
+								System.out.print(this.projects(argument));
 							} else if ("%publish".equals(command)) {
 								if (!"".equals(argument)) {
 									System.out.print(this.publish(argument));
+								}
+							} else if ("%load".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.load(argument));
 								}
 							} else if ("%viz".equals(command)) {
 								if (!"".equals(argument)) {

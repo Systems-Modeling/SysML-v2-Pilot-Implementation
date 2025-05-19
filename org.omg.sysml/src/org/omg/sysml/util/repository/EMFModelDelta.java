@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *   Laszlo Gati, MDS
+ *   Ed Seidewitz, MDS
  */
 package org.omg.sysml.util.repository;
 
@@ -40,6 +41,7 @@ import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 
 public class EMFModelDelta {
+	private static final String NAME_PROPERTY = "declaredName";
 	private static final String EXTENSION = "sysmlx";
 	
 	private final Map<EObject, Element> projectRoots;
@@ -69,8 +71,11 @@ public class EMFModelDelta {
 	public void apply(ResourceSet resourceSet, URI baseUri) throws IOException {
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
-			Object object = dto.get("@id");
-			URI fileURI = baseUri.appendSegment(object.toString()).appendFileExtension(EXTENSION);
+			Object name = dto.get(NAME_PROPERTY);
+			if (name == null) {
+				name = dto.get("@id");
+			}
+			URI fileURI = baseUri.appendSegment(name.toString()).appendFileExtension(EXTENSION);
 			Resource resource = resourceSet.createResource(fileURI);
 			resource.getContents().add(wrapInNamespaceIfNotNamespace(root));
 			ElementUtil.transformAll(resource, false);

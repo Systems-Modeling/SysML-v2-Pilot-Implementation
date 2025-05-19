@@ -73,7 +73,6 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
-import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
@@ -375,7 +374,7 @@ public class SysMLInteractive extends SysMLUtil {
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
 				return SysMLInteractiveUtil.formatTree(element);
 			} else {
-				return "ERROR:Invalid style. Possible styles: TREE and JSON";
+				return "ERROR:Invalid style. Possible styles: TREE and JSON\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -474,11 +473,11 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 		
 		if (parameters.containsKey(PROJECT_ID_KEY) && parameters.containsKey(PROJECT_NAME_KEY)) {
-			return "ERROR:Name and id cannot be provided at the same time.";
+			return "ERROR:Project name and id cannot be provided at the same time\n";
 		}
 		
 		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
-			return "ERROR:Branch name and branch id cannot be provided at the same time";
+			return "ERROR:Branch name and id cannot be provided at the same time\n";
 		}
 		
 		final ProjectRepository repository = new ProjectRepository(apiBasePath);
@@ -519,7 +518,9 @@ public class SysMLInteractive extends SysMLUtil {
 			return "ERROR:Branch doesn't exist\n";
 		}
 		
-		System.out.println("Selected branch " + branch.getName());
+		System.out.println("API base path: " + apiBasePath);
+		System.out.println();
+		System.out.println("Selected branch " + branch.getName() + " (" + branch.getRemoteId().toString() + ")");
 		
 		if (!tracker.isLibraryTracked()) {
 			System.out.println("Caching library UUIDs...");

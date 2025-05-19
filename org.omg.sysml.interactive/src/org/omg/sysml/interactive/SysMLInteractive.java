@@ -541,16 +541,10 @@ public class SysMLInteractive extends SysMLUtil {
 		EMFModelDelta delta = modelRefresher.create();
 		modelRefresher.getIssues().forEach(System.out::println);
 		
-		delta.getProjectRoots().forEach((eObject, dto) -> {
-			Resource resource = this.createResource(eObject.toString() + SYSML_EXTENSION);
+		delta.getProjectRootsAsNamespaces().forEach(rootNs -> {
+			Resource resource = this.createResource(rootNs.toString() + SYSML_EXTENSION);
+			resource.getContents().add(rootNs);
 			this.addInputResource(resource);
-			if (eObject instanceof Namespace) {
-				resource.getContents().add(eObject);
-			} else {
-				Namespace root = SysMLFactory.eINSTANCE.createNamespace();
-				NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
-				resource.getContents().add(root);
-			}
 			addResourceToIndex(resource);
 		});
 		

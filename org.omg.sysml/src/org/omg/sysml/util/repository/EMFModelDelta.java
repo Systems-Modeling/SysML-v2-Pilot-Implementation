@@ -25,13 +25,19 @@ package org.omg.sysml.util.repository;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.model.Element;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class EMFModelDelta {
 	private static final String EXTENSION = "sysmlx";
@@ -46,13 +52,27 @@ public class EMFModelDelta {
 		return projectRoots;
 	}
 	
+	public Set<EObject> getProjectRootsAsNamespaces() {
+		return projectRoots.keySet().stream().map(this::wrapInNamespaceIfNotNamespace).collect(Collectors.toSet());
+	}
+	
+	private EObject wrapInNamespaceIfNotNamespace(EObject eObject) {
+		if (eObject.eClass() == SysMLPackage.eINSTANCE.getNamespace()) {
+			return eObject;
+		} else {
+			Namespace root = SysMLFactory.eINSTANCE.createNamespace();
+			NamespaceUtil.addOwnedMemberTo(root, (org.omg.sysml.lang.sysml.Element) eObject);
+			return root;
+		}
+	}
+	
 	public void apply(ResourceSet resourceSet, URI baseUri) throws IOException {
 		for (var root : projectRoots.keySet()) {
 			var dto = projectRoots.get(root);
 			Object object = dto.get("@id");
 			URI fileURI = baseUri.appendSegment(object.toString()).appendFileExtension(EXTENSION);
 			Resource resource = resourceSet.createResource(fileURI);
-			resource.getContents().add(root);
+			resource.getContents().add(wrapInNamespaceIfNotNamespace(root));
 			ElementUtil.transformAll(resource, false);
 			resource.save(Collections.EMPTY_MAP);
 		}

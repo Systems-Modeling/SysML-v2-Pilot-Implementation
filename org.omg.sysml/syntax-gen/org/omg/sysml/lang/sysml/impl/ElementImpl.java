@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -310,7 +310,9 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	
 	/**
 	 * <!-- begin-user-doc -->
-	 * If there is not elementId, set it to a random UUID.
+	 * If there is no elementId, and the Element is not a standard library Element, 
+	 * set the elementId to a random UUID. If the Element is a standard library Element,
+	 * create a name-based UUID using the Element's path.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -319,12 +321,12 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 		if (elementId == null) {
 			UUID uuid = UUID.randomUUID();
 			if (ElementUtil.isStandardLibraryElement(this)) {
-				String qualifiedName = getQualifiedName();
-				if (qualifiedName != null) {
+				String path = path();
+				if (path != null) {
 					Namespace libraryNamespace = libraryNamespace();
 					if (this != libraryNamespace) {
 						UUID namespaceUUID = UUID.fromString(libraryNamespace.getElementId());
-						uuid = ElementUtil.constructNameUUID(namespaceUUID, qualifiedName);
+						uuid = ElementUtil.constructNameUUID(namespaceUUID, path);
 					}
 				}
 			}

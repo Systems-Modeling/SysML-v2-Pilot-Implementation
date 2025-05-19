@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -49,10 +50,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
-import org.omg.sysml.util.repository.ProjectDelta;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.EMFModelDelta;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.ProjectRepository.RepositoryProject;
-import org.omg.sysml.util.repository.RepositoryContentFetcher;
+import org.omg.sysml.util.repository.Revision;
+import org.omg.sysml.util.repository.RemoteProject;
+import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
+import org.omg.sysml.util.repository.EMFModelRefresher;
 
 import com.google.inject.Inject;
 
@@ -62,6 +66,7 @@ public class PullRepositoryProject extends AbstractHandler {
 	
 	public static final String REPOSITORY_CONFIGURATION_FILE = ".settings/org.omg.sysml.remote.properties";
 	private static final String REPOSITORY_PROJECT_ID_PROPERTY = "remote.projectId";
+	private static final String REPOSITORY_BRANCH_ID_PROPERTY = "remote.branchId";
 	private static final String REPOSITORY_BASE_URL_PROPERTY = "base.url";
 	
 	@Inject
@@ -111,7 +116,8 @@ public class PullRepositoryProject extends AbstractHandler {
 				properties.load(repositoryPropertiesFile.getContents());
 				
 				String repositoryUrl = properties.getProperty(REPOSITORY_BASE_URL_PROPERTY);
-				String projectName = properties.getProperty(REPOSITORY_PROJECT_ID_PROPERTY);
+				String projectId = properties.getProperty(REPOSITORY_PROJECT_ID_PROPERTY);
+				String branchId = properties.getProperty(REPOSITORY_BRANCH_ID_PROPERTY);
 				String targetPath = project.getFullPath().toString();
 				
 				Set<IFile> libraryResources = new HashSet<>();
@@ -124,10 +130,19 @@ public class PullRepositoryProject extends AbstractHandler {
 				tracker.trackLibraryUUIDs(resourceSet.getResources());
 				
 				ProjectRepository projectRepository = new ProjectRepository(repositoryUrl);
-				RepositoryProject repositoryProject = projectRepository.getProjectById(projectName);
-				RepositoryContentFetcher repositoryFetcher = new RepositoryContentFetcher(repositoryProject, tracker);
-				ProjectDelta delta = repositoryFetcher.fetch();
-				delta.save(resourceSet, URI.createPlatformResourceURI(targetPath, false));
+				RemoteProject remoteProject = projectRepository.getProjectById(projectId);
+				
+				final RemoteBranch defaultBranch;
+				if (branchId == null) {
+					defaultBranch = remoteProject.getDefaultBranch();
+				} else {
+					defaultBranch = remoteProject.getBranch(UUID.fromString(branchId));
+				}
+				Revision headRevision = defaultBranch.getHeadRevision();
+				APIModel model = headRevision.fetchRemote();
+				EMFModelRefresher repositoryFetcher = new EMFModelRefresher(model, tracker);
+				EMFModelDelta delta = repositoryFetcher.create();
+				delta.apply(resourceSet, URI.createPlatformResourceURI(targetPath, false));
 			}
 		} catch (IOException | CoreException e) {
 			e.printStackTrace();

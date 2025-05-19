@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -44,7 +45,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
@@ -71,6 +72,22 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	public Feature getTarget() {
 		return (Feature)super.getTarget();
+	}
+	
+	// Post-processing
+	
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		setIsVariableIfConstant();
+	}
+	
+	// Note: Can be individually overridden.
+	protected void setIsVariableIfConstant() {
+		Feature target = getTarget();
+		if (target.isConstant()) {
+			target.setIsVariable(true);
+		}		
 	}
 	
 	// Caching
@@ -192,7 +209,7 @@ public class FeatureAdapter extends TypeAdapter {
 			Expression value = valuation.getValue();
 			if (value != null) {
 				ElementUtil.transform(value);
-				Feature result = value.getResult();
+				Feature result = FeatureUtil.chainFeatures(value, value.getResult());
 				return result;
 			}
 		}
@@ -203,9 +220,9 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		
-		addBoundValueSubsetting();		
-		addParticipantSubsetting();		
-		addCrossingSpecialization();		
+		addBoundValueSubsetting();
+		addParticipantSubsetting();
+		addCrossingSpecialization();
 		addOwnedCrossFeatureSpecialization();
 	}
 	
@@ -493,8 +510,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public boolean isComputeRedefinitions() {
 		Feature target = getTarget();
+		Type owningType = target.getOwningType();
 		return isAddImplicitGeneralTypes && isComputeRedefinitions &&
-				(!(target.getOwningType() instanceof InvocationExpression) ||
+				(!(owningType instanceof InvocationExpression || ExpressionUtil.isConstructorResult(owningType)) ||
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
@@ -553,15 +571,28 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	/**
 	 * Get the relevant Features that may be redefined from the given Type.
-	 * If this is an end Feature, return the end Features of the Type,
-	 * otherwise return the relevant features of the type.
+	 * This includes end features, owned features of constructor results, and
+	 * generally parameters.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
 		return type == null? Collections.emptyList():
 			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   ExpressionUtil.isConstructorResult(target.getOwningType())? getConstructorRelevantFeatures(type):
 			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
 			   Collections.emptyList();
+	}
+	
+	protected List<? extends Feature> getConstructorRelevantFeatures(Type type) {
+		Type owningType = getTarget().getOwningType();
+		if (type == owningType) {
+			return type.getOwnedFeature();
+		} else {
+			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
+			return type != instantiatedType? Collections.emptyList():
+				instantiatedType.getFeature().stream().filter(f->
+					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
+		}
 	}
 	
 	/**
@@ -585,12 +616,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
-		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
-			   owningType instanceof InvocationExpression && 
-			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
-			   		!(type instanceof Function || type instanceof Expression)? 
-			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
-			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
+		return filterIgnoredParameters(type == owningType? 
+					TypeUtil.getOwnedParametersOf(type): 
+					TypeUtil.getAllParametersOf(type, skip));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
@@ -605,6 +633,52 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
+	protected Type computeFeaturingType() {
+		Feature feature = getTarget();
+		Type owningType = feature.getOwningType();
+		if (owningType == null) {
+			return null;
+		} else if (!feature.isVariable()) {
+			addFeaturingType(owningType);
+			return owningType;
+		} else {
+			Element occurrenceClass = getLibraryType("Occurrences::Occurrence");
+			Feature snapshotsFeature = (Feature)getLibraryType("Occurrences::Occurrence::snapshots");
+			Feature featuringType;
+
+			if (owningType == occurrenceClass) {
+				featuringType = snapshotsFeature;
+			} else {
+				featuringType = SysMLFactory.eINSTANCE.createFeature();
+				
+				String name = owningType.getQualifiedName();
+				if (name == null) {
+					name = "";
+				} else {
+					int i = name.indexOf("::");
+					if (i >= 0) {
+						name = name.substring(i + 2);
+					}
+					name = name.replace("::", "_");
+				}
+				featuringType.setDeclaredName(name + "_snapshots");
+			
+				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				redefinition.setRedefinedFeature(snapshotsFeature);
+				redefinition.setRedefiningFeature(featuringType);
+				featuringType.getOwnedRelationship().add(redefinition);
+				
+				TypeFeaturing typeFeaturing = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				typeFeaturing.setFeaturingType(owningType);
+				typeFeaturing.setFeatureOfType(featuringType);
+				featuringType.getOwnedRelationship().add(typeFeaturing);
+			}
+			
+			addFeaturingType(featuringType);
+			return featuringType;
+		}
+	}
+	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {
 		Feature feature = getTarget();
 		if (featuringType != null && feature.getOwningType() == null && 
@@ -616,11 +690,9 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void addImplicitFeaturingTypesIfNecessary() {
 		Feature feature = getTarget();
 		Namespace owner = feature.getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (isImplicitFeaturingTypesEmpty()) {
-				addFeaturingTypes(ownerFeaturingTypes);
-			}
+		if (owner instanceof Feature && isImplicitFeaturingTypesEmpty()) {
+			ElementUtil.transform(owner);
+			addFeaturingTypes(((Feature)owner).getFeaturingType());
 		}
 	}
 	
@@ -734,6 +806,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
+		computeFeaturingType();
 		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();

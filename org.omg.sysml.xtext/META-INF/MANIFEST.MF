@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="9.3.0";resolution:=optional,
  org.apache.commons.cli
-Export-Package: org.omg.sysml.xmi,
+Export-Package: org.omg.sysml.xtext.xmi,
  org.omg.sysml.xtext,
  org.omg.sysml.xtext.generator,
  org.omg.sysml.xtext.library,

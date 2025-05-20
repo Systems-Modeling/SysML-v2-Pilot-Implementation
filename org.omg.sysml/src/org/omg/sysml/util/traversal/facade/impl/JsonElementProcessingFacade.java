@@ -25,9 +25,9 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -36,10 +36,10 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.model.DataIdentity;
-import org.omg.sysml.model.DataVersion;
-import org.omg.sysml.model.Identified;
+import org.omg.sysml.lang.sysml.LibraryPackage;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.repository.APIModel;
+import org.omg.sysml.util.repository.APIModelDelta;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -48,9 +48,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 /**
- * This is an element-processing facade that uses the SysML v2 REST API client to export Elements to JSON.
- * A list of DataVersions is constructed during traversal of the model. Once the traversal is
- * completed, this change set can be exported to JSON.
+ * This is an element-processing facade that uses the SysML v2 REST API client
+ * to export Elements to JSON. A list of Elements is constructed during
+ * traversal of the model. This list of elements is equivalent to the ones that
+ * the API server returns when serialized
  * 
  * @author Ed Seidewitz
  * @author Ivan Gomes
@@ -68,7 +69,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	protected int elementCount = 0;
 	protected int dotCount = 0;
 	
-	private final List<DataVersion> versions = new ArrayList<>();
+	private APIModel localModel = APIModel.createEmpty();
+	
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	/**
@@ -124,34 +126,16 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	public boolean isIncludeDerived() {
 		return this.isIncludeDerived;
 	}
-
-	/**
-	 * Return the collection of DataVersions that have been created from
-	 * processed model Elements.
-	 * 
-	 * @return	the collection of DataVersions that have been created 
-	 */
-	List<DataVersion> getVersions() {
-		return Collections.unmodifiableList(this.versions);
-	}
-	
-	/**
-	 * Add a DataVersion to the collection.
-	 * 
-	 * @param 	elementVersion	the DataVersion to be added to the collection
-	 */
-	protected void addVersion(DataVersion elementVersion) {
-		this.versions.add(elementVersion);
-	}
 	
 	/**
 	 * Create an Identified object with the given identifier.
 	 * 
 	 * @param 	identifier			the UUID of the object being identified
+	 * @param isLibraryElement		set to true if the element is part of the standard library
 	 * @return	an Identified object with the given identifier
 	 */
-	protected static Identified identified(UUID identifier) {
-		return new Identified().atId(identifier);
+	protected static Map<String, UUID> identified(UUID identifier, String type, boolean isLibraryElement) {
+		return new APIModel.LocalReference(identifier, type, isLibraryElement);
 	}
 	
 	/**
@@ -160,8 +144,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	element				the Element to be identified
 	 * @return	an Identified object for the given Element (or null if the input is null).
 	 */
-	protected Identified getIdentified(Element element) {
-		return element == null? null: identified(UUID.fromString(element.getElementId()));
+	protected Map<String, UUID> getIdentified(Element element) {
+		return element == null? null: identified(UUID.fromString(element.getElementId()), element.eClass().getName(), element.isLibraryElement());
 	}
 	
 	/**
@@ -170,34 +154,40 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	elements			the Elements being identified
 	 * @return	a list of Identified objects with the identifiers of the given elements
 	 */
-	protected List<Identified> getIdentified(List<Element> elements) {
+	protected List<Map<String, UUID>> getIdentified(List<Element> elements) {
 		return elements.stream().
 				map(this::getIdentified).
 				filter(id->id != null).
-				collect(Collectors.toList());
+				toList();
 	}
 
+	
+	private final Set<String> alwaysEnabledDerived = Set.of("importedElement", "owner", "isLibraryElement");
+	
 	/**
-	 * Create a DataVersion for the given model Element including the values of all its non-derived  
+	 * Create an (API)Element for the given model (EMF)Element including the values of all its non-derived  
 	 * attributes (unless it is a library model element, in which case only its non-referential attribute values 
 	 * are included). If isIncludeDerived is true, also include derived attributes. The ID for the DataVersion 
 	 * uses the identifier from the model Element.
 	 * 
 	 * @param 	element				the source model Element as it is represented in Ecore
-	 * @return	a DataVersion with the API representation of the given Element as its data
+	 * @return	API representation of the given Element
 	 */
 	@SuppressWarnings("unchecked")
-	protected org.omg.sysml.model.DataVersion createElementVersion(Element element) {
-		org.omg.sysml.model.Data apiElement = new org.omg.sysml.model.Data();
+	protected org.omg.sysml.model.Element createApiModelElement(Element element) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
+		apiElement.put("@id", element.getElementId());
 		boolean isLibraryElement = ElementUtil.isStandardLibraryElement(element);
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String className = eClass.getName();
 			String featureName = feature.getName();
-			if ((this.isIncludeDerived() || !feature.isDerived()) && 
+			//always add the importedElement derived field. This field is used for a workaround that addresses
+			//unstable library membership UUIDs in the EMFModelRefresher.
+			if ((this.isIncludeDerived() || !feature.isDerived() || alwaysEnabledDerived.contains(feature.getName())) && 
 					// Skip implementation-specific features.
-					!("Feature".equals(className) && "isNonunique".equals(featureName) || 
+					!("isNonunique".equals(featureName) || 
 					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 
 					  apiElement.containsKey(featureName))) {
 				Object value = element.eGet(feature);
@@ -220,8 +210,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 				apiElement.put(featureName, value);
 			}
 		}
-		return new DataVersion().payload(apiElement).
-				identity(new DataIdentity().atId(UUID.fromString(element.getElementId())));
+		return apiElement;
 	}
 	
 	/**
@@ -279,14 +268,37 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	@Override
 	public void postProcess(Element element) {
-		this.addVersion(this.createElementVersion(element));
+		org.omg.sysml.model.Element apiModelElement = this.createApiModelElement(element);
+		UUID id = UUID.fromString(apiModelElement.get("@id").toString());
+		
+		if (element.eContainer() == null || isStandardLibraryElement(element)) {
+			this.getLocalModel().addModelRoot(id, apiModelElement);
+		}
+		this.getLocalModel().addModelElement(id, apiModelElement);;
 	}
 	
-	public String toJson() {
-		return gson.toJson(versions);
+	boolean isStandardLibraryElement(Element element) {
+		return element.eResource().getContents().stream().filter(LibraryPackage.class::isInstance)
+				.map(LibraryPackage.class::cast).anyMatch(LibraryPackage::isStandard);
+	}
+
+	protected APIModel getLocalModel() {
+		return localModel;
 	}
 	
-	public JsonElement toJsonTree() {
-		return gson.toJsonTree(versions);
+	public String toJson(boolean asDelta) {
+		if (asDelta) {
+			return APIModelDelta.create(getLocalModel(), APIModel.createEmpty()).toJson(gson);
+		} else {
+			return getLocalModel().toJson(gson);
+		}
+	}
+	
+	public JsonElement toJsonTree(boolean asDelta) {
+		if (asDelta) {
+			return APIModelDelta.create(getLocalModel(), APIModel.createEmpty()).toJsonTree(gson);
+		} else {
+			return getLocalModel().toJsonTree(gson);
+		}
 	}
 }

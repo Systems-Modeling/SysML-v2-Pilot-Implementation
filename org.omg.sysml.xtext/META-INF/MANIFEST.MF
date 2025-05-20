@@ -31,5 +31,6 @@ Export-Package: org.omg.sysml.xmi,
  org.omg.sysml.xtext.serializer,
  org.omg.sysml.xtext.services,
  org.omg.sysml.xtext.util,
- org.omg.sysml.xtext.validation
+ org.omg.sysml.xtext.validation,
+ org.omg.sysml.xtext.xmi
 Import-Package: org.apache.log4j

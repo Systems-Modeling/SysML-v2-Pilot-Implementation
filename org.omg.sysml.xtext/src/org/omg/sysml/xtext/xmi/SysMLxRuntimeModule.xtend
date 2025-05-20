@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2025  Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,30 +17,32 @@
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
-package org.omg.kerml.xmi
+package org.omg.sysml.xtext.xmi
 
 import com.google.inject.Binder
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.IResourceDescriptions
 import org.eclipse.xtext.resource.generic.AbstractGenericResourceRuntimeModule
 import org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions
-import org.omg.kerml.xtext.library.KerMLLibraryProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.xtext.library.SysMLLibraryProvider
 
-class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
+class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
 	
-	public static val KERMLX_LANGUAGE_NAME = 'org.omg.kerml.kermlx'
+	public val EXTENSION = 'sysmlx'
+	public static val SYSMLX_LANGUAGE_NAME = 'org.omg.sysml.sysmlx'
 	
 	override protected getFileExtensions() {
-		'kermlx'
+		EXTENSION
 	}
 	
 	override protected getLanguageName() {
-		'org.omg.kerml.kermlx'
+		SYSMLX_LANGUAGE_NAME
 	}
 	
 	override configure(Binder binder) {
@@ -49,7 +51,7 @@ class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 		binder.bind(IResourceDescriptions).to(ResourceSetBasedResourceDescriptions)
 	}
 	
-	override bindIQualifiedNameProvider() {
+	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
 	}
 	
@@ -58,6 +60,6 @@ class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 	}
 	
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
-		KerMLLibraryProvider
+		SysMLLibraryProvider
 	}
 }

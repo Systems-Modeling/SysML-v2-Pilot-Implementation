@@ -25,7 +25,7 @@ package org.omg.sysml.xtext.ui.xmi
 import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory
 import org.osgi.framework.FrameworkUtil
 import org.omg.sysml.xtext.ui.SysMLActivator
-import org.omg.sysml.xmi.SysMLxRuntimeModule
+import org.omg.sysml.xtext.xmi.SysMLxRuntimeModule
 
 class SysMLxExecutableExtensionFactory  extends AbstractGuiceAwareExecutableExtensionFactory {
 	

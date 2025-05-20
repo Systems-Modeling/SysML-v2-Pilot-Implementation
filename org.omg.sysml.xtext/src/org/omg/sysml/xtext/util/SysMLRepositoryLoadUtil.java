@@ -46,8 +46,8 @@ import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
 import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
-import org.omg.sysml.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
+import org.omg.sysml.xtext.xmi.SysMLxStandaloneSetup;
 
 public class SysMLRepositoryLoadUtil extends SysMLUtil {
 	

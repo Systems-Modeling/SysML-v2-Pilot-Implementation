@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2025  Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,7 +17,7 @@
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
-package org.omg.sysml.xmi
+package org.omg.sysml.xtext.xmi
 
 import com.google.inject.Guice
 import com.google.inject.Inject

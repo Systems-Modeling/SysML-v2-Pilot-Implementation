@@ -55,8 +55,8 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.omg.kerml.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.kerml.xtext.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
@@ -86,7 +86,7 @@ import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
-import org.omg.sysml.xmi.SysMLxStandaloneSetup;
+import org.omg.sysml.xtext.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicates;

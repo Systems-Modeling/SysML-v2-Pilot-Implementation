@@ -23,7 +23,7 @@
 package org.omg.kerml.xtext.ui.xmi
 
 import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory
-import org.omg.kerml.xmi.KerMLxRuntimeModule
+import org.omg.kerml.xtext.xmi.KerMLxRuntimeModule
 import org.omg.kerml.xtext.ui.KerMLActivator
 import org.osgi.framework.FrameworkUtil
 

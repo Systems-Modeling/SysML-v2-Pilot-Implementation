@@ -32,7 +32,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.omg.sysml.StringUtil;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.model.Element;
 

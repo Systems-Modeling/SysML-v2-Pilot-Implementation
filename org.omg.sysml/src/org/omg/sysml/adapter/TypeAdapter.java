@@ -478,7 +478,8 @@ public class TypeAdapter extends NamespaceAdapter {
 
 	public BindingConnector addResultBinding(Expression sourceExpression, Feature target) {
 		ElementUtil.transform(sourceExpression);
-		return addBindingConnector(sourceExpression.getResult(), target);
+		Feature sourceResult = sourceExpression.getResult();
+		return sourceResult == null || target == null? null: addBindingConnector(sourceResult, target);
 	}
 	
 	public void createResultConnector(Feature result) {

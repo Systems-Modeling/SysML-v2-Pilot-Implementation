@@ -24,8 +24,8 @@ package org.omg.sysml.xtext.ui
 
 import org.omg.sysml.xtext.SysMLRuntimeModule
 import org.omg.sysml.xtext.ui.internal.XtextActivator
-import org.omg.sysml.xmi.SysMLxRuntimeModule
 import org.omg.sysml.xtext.ui.xmi.SysMLxUIModule
+import org.omg.sysml.xtext.xmi.SysMLxRuntimeModule
 
 class SysMLActivator extends XtextActivator {
 

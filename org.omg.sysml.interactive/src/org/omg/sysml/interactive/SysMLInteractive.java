@@ -538,6 +538,11 @@ public class SysMLInteractive extends SysMLUtil {
 		System.out.println();
 		System.out.println("Selected branch " + branch.getName() + " (" + branch.getRemoteId().toString() + ")");
 		
+		Revision headRevision = branch.getHeadRevision();
+		if (!headRevision.isRemote()) {
+			return "ERROR:Branch has no head commit\n";
+		}
+		
 		if (!tracker.isLibraryTracked()) {
 			System.out.println("Caching library UUIDs...");
 			tracker.trackLibraryUUIDs(getLibraryResources());
@@ -549,9 +554,6 @@ public class SysMLInteractive extends SysMLUtil {
 		tracker.trackLocalUUIDs(inputResources);
 		
 		System.out.println("Downloading model...");
-		
-		RemoteProject remoteProject = branch.getRemoteProject();
-		Revision headRevision = branch.getHeadRevision();
 		APIModel model = headRevision.fetchRemote();
 		
 		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
@@ -565,6 +567,7 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(resource);
 		});
 		
+		RemoteProject remoteProject = branch.getRemoteProject();
 		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")\n";
 	}
 	

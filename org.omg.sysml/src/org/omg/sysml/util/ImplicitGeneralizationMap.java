@@ -72,12 +72,18 @@ public class ImplicitGeneralizationMap {
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
 		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
+		//checkFeatureSpecialization
 		put(FeatureImpl.class, "base", "Base::things");
+		//checkFeatureDataValueSpecialization
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
+		//checkFeatureOccurrenceSpecialization
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
+		//checkFeatureSuboccurrenceSpecialization
 		put(FeatureImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 		put(FeatureImpl.class, "portion", "Occurrences::Occurrence::portions");
+		//checkFeatureObjectSpecialization
 		put(FeatureImpl.class, "object", "Objects::objects");
+		//checkFeatureSubobjectSpecialization
 		put(FeatureImpl.class, "subobject", "Objects::Object::subobjects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		put(FeatureImpl.class, "startingAt", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");

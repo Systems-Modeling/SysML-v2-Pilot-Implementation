@@ -54,6 +54,12 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 		super.computeImplicitGeneralTypes();
 	}
 	
+	
+	/**
+	 * @satisfies checkAcceptActionUsageReceiverBindingConnector
+	 * @satisfies checkSomething
+	 * @satisfies 
+	 */
 	public void addReceiverBinding() {
 		//checkAcceptActionUsageReceiverBindingConnector
 		TriggerInvocationExpression target = getTarget();

@@ -310,12 +310,19 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
+				//checkFeatureObjectSpecialization
+				//checkFeatureSubobjectSpecialization
 			hasStructureType()? isSubobject()? "subobject": "object":
-			hasClassType()? 
-					isSuboccurrence()? "suboccurrence": 
+				//checkFeatureSuboccurrenceSpecialization
+				//checkFeaturePortionSpecialization
+				//checkFeatureOccurrenceSpecialization
+			hasClassType()?
+					isSuboccurrence()? "suboccurrence":
 					isPortion()? "portion":
 					"occurrence":
+				//checkFeatureDataValueSpecialization
 			hasDataType()? "dataValue":
+				//checkFeatureSpecialization
 			"base");
 	}
 	
@@ -334,7 +341,7 @@ public class FeatureAdapter extends TypeAdapter {
 				(owningType instanceof org.omg.sysml.lang.sysml.Class ||
 				 owningType instanceof Feature && (hasClassType((Feature)owningType)));
 	}
-	
+		
 	public boolean hasClassType() {
 		return hasClassType(getTarget());
 	}

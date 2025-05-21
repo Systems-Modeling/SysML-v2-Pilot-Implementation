@@ -39,12 +39,15 @@ public class FlowAdapter extends ConnectorAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isStructureOwnedComposite()) {
+			//checkStepOwnedPerformanceSpecialization
 			addDefaultGeneralType("ownedPerformance");
 		}
 		if (isBehaviorOwnedComposite()) {
+			//checkStepSubperformanceSpecialization
 			addDefaultGeneralType("subperformance");
 		}
 		if (isBehaviorOwned()) {
+			//checkStepSubperformanceSpecialization
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}

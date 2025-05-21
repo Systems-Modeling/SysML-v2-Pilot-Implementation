@@ -54,6 +54,7 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		
 		String subactionType = getSubactionType();
 		if (subactionType != null) {
+			//checkAcceptActionUsageTriggerActionSpecialization
 			addDefaultGeneralType(subactionType);
 		}
 		

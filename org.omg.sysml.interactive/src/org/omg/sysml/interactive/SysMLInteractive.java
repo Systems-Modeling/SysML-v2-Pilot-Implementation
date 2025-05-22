@@ -279,7 +279,8 @@ public class SysMLInteractive extends SysMLUtil {
 				help(command, Collections.emptyList());
 	}
 	
-	public String apiBasePath(String apiBasePath, List<String> help) {
+	public String repo(String apiBasePath, List<String> help) {
+		this.counter++;
 		if (!help.isEmpty()) {
 			return SysMLInteractiveHelp.getApiBasePathHelp();
 		}
@@ -288,9 +289,15 @@ public class SysMLInteractive extends SysMLUtil {
 			setApiBasePath(apiBasePath);
 		}
 		
-		return getApiBasePath();
+		return getApiBasePath() + "\n";
 	}
 	
+	public String repo(String command) {
+		return "-h".equals(command)? 
+				repo(null, Collections.singletonList("true")):
+				repo(command, Collections.emptyList());
+	}
+
 	public String eval(String input, String targetName, List<String> help) {
 		if (Strings.isNullOrEmpty(input)) {
 			this.counter++;
@@ -783,6 +790,8 @@ public class SysMLInteractive extends SysMLUtil {
 								}
 							} else if ("%projects".equals(command)) {
 								System.out.print(this.projects(argument));
+							} else if ("%repo".equals(command)) {
+								System.out.print(this.repo(argument));
 							} else if ("%publish".equals(command)) {
 								if (!"".equals(argument)) {
 									System.out.print(this.publish(argument));

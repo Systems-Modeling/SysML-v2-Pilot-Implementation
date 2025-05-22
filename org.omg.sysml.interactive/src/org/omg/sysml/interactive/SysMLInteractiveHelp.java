@@ -21,8 +21,9 @@
  *
  * Contributors:
  *  Ed Seidewitz, MDS
- *  Ivan Gomes
- *  Hisashi Miyashita
+ *  Zoltan Ujhelyi, MDS
+ *  Ivan Gomes, Twingineer
+ *  Hisashi Miyashita, Mgnite
  *
  *******************************************************************************/
 
@@ -37,7 +38,6 @@ import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
 import com.google.common.base.Preconditions;
 
 public class SysMLInteractiveHelp {
-
 
 	private static final String GENERAL_HELP_STRING_PREFIX =
 			  "The following SysML v2 magic commands are available.\n"
@@ -78,7 +78,7 @@ public class SysMLInteractiveHelp {
     	    + "   JSON\t\tComplete JSON representation of the tree\n";
 
 	private static final String PUBLISH_HELP_SHORT_STRING =
-			"%publish\tPublish to the repository the modele elements rooted in a named element";
+			"%publish\tPublish to the repository the model elements rooted in a named element";
 	private static final String PUBLISH_HELP_STRING =
 			  "Usage: %publish [-d] [--project=<PROJECT NAME>] [--branch=<BRANCH NAME>] <NAME>\n\n"
 			+ "Publish the model elements rooted in <NAME> to the repository. <NAME> must be fully qualified.\n"
@@ -92,7 +92,7 @@ public class SysMLInteractiveHelp {
 
 
 	private static final String VIZ_HELP_SHORT_STRING =
-			"%viz\t\tVisualize the name model elements";
+			"%viz\t\tVisualize the named model elements";
     private static final String VIZ_HELP_STRING =
     	      "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
     	    + "Visualize model elements of <NAME>(s). <NAME>s must be fully qualified.\n\n"
@@ -134,29 +134,30 @@ public class SysMLInteractiveHelp {
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
 
-	private static final String LOAD_HELP_SHORT_STRING = "%load\t\tLoads a model from the repository";
+	private static final String LOAD_HELP_SHORT_STRING = "%load\t\tLoad models from the repository";
 	private static final String LOAD_HELP_STRING =
-			"Usage: %load [--id=<PROJECT ID] [--name=<NAME>] [--branch=<BRANCH_NAME>] [<NAME>]\n\n"
-			+ "Download previously published models from a project in the repository. <NAME> is the full name of the project.\n"
-			+ "Named elements of the downloaded models may then be referenced models in the notebook."
-			+ "(Use %projects to view repository contents.)\n"
+			"Usage: %load [--id=<PROJECT ID>] [--name=<NAME>] [--branch=<BRANCH_NAME>] [<NAME>]\n\n"
+			+ "Download previously published models from a project in the repository. (Use %projects to view repository contents.)\n"
+			+ "Named elements of the downloaded models may then be referenced by models in the notebook.\n"
+			+ "<NAME> is the full name of the project.\n"
 			+ "If <PROJECT ID> is given, then the project with that UUID is loaded. In this case, the <NAME> must not be given.\n"
-			+ "If <BRANCH NAME> is given, then the model is loaded from this branch of the project.\n"
-			+ "If <BRANCH NAME> is not given, the default branch is used.\n";
+			+ "If <BRANCH NAME> or <BRANCH ID> is given, then the model is loaded from this branch of the project.\n"
+			+ "If no <BRANCH NAME> or <BRANCH ID> is given, the default branch is used.\n"
+			+ "If <BRANCH ID> is given, then a <BRANCH NAME> must not be given.\n";
 
 	private static final String PROJECTS_HELP_SHORT_STRING = "%projects\tList projects in the repository";
 	private static final String PROJECTS_HELP_STRING =
 			  "Usage: %projects\n\n"
 			+ "Print the name and identifier of all projects in the repository.\n";
 
-	private static final String API_BASE_PATH_HELP_SHORT_STRING ="%repo\tSet the api base path for the repository";
-	private static final String API_BASE_PATH_HELP_STRING =
+	private static final String REPO_HELP_SHORT_STRING ="%repo\t\tSet the API base path for the repository";
+	private static final String REPO_HELP_STRING =
 			  "Usage: %repo [<BASE PATH>]\n\n"
-			+ "If <BASE PATH> is not given, print the current repository base path.\r\n"
-			+ "If <BASE PATH> is given, set the repository base path.\r\n"
-			+ "\r\n"
-			+ "<BASE PATH> is a URL giving the API base path for the repository access by the %projects, %publish and %load commands. \r\n"
-			+ "For example: https://my.domain.com/sysml_repo";
+			+ "Set the API base path for the repository accessed by the %projects, %publish and %load commands.\n"
+			+ "<BASE PATH> is a URL (possibly including port number), such as: https://my.domain.com/sysml_repo:9000.\n"
+			+ "If <BASE PATH> is not given, the current repository base path is printed.\n"
+			+ "If <BASE PATH> is given, the repository base path is set to this.\n"
+			;
 
 	private static String generalHelpCached;
 
@@ -213,8 +214,8 @@ public class SysMLInteractiveHelp {
     	return LOAD_HELP_STRING;
     }
 
-    public static String getApiBasePathHelp() {
-    	return API_BASE_PATH_HELP_STRING;
+    public static String getRepoPathHelp() {
+    	return REPO_HELP_STRING;
 	}
 
     private static Map<String, String> commandShortHelpMap = new TreeMap<>();
@@ -230,7 +231,7 @@ public class SysMLInteractiveHelp {
     	registerHelpString("%export", EXPORT_HELP_SHORT_STRING, EXPORT_HELP_STRING);
     	registerHelpString("%load", LOAD_HELP_SHORT_STRING, LOAD_HELP_STRING);
     	registerHelpString("%projects", PROJECTS_HELP_SHORT_STRING, PROJECTS_HELP_STRING);
-    	registerHelpString("%repo", API_BASE_PATH_HELP_SHORT_STRING, API_BASE_PATH_HELP_STRING);
+    	registerHelpString("%repo", REPO_HELP_SHORT_STRING, REPO_HELP_STRING);
     }
 
     /**

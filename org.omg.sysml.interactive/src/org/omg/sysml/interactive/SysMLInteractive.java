@@ -489,7 +489,7 @@ public class SysMLInteractive extends SysMLUtil {
 	 * @return output of the command
 	 */
 	public String load(Map<String, String> parameters) {
-		counter++;
+		this.counter++;
 		
 		if (parameters.containsKey(HELP_KEY)) {
 			return SysMLInteractiveHelp.getLoadHelp();
@@ -502,6 +502,9 @@ public class SysMLInteractive extends SysMLUtil {
 		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
 			return "ERROR:Branch name and id cannot be provided at the same time\n";
 		}
+		
+		System.out.println("API base path: " + apiBasePath);
+		System.out.println();
 		
 		final ProjectRepository repository = new ProjectRepository(apiBasePath);
 		final RemoteProject project;
@@ -541,8 +544,6 @@ public class SysMLInteractive extends SysMLUtil {
 			return "ERROR:Branch doesn't exist\n";
 		}
 		
-		System.out.println("API base path: " + apiBasePath);
-		System.out.println();
 		System.out.println("Selected branch " + branch.getName() + " (" + branch.getRemoteId().toString() + ")");
 		
 		Revision headRevision = branch.getHeadRevision();

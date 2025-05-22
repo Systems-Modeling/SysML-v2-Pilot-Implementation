@@ -43,6 +43,7 @@ public class SysMLInteractiveHelp {
 			+ "%help\t\tGet a list of available commands or help on a specific command\n"
 			+ "%list\t\tList loaded library packages or the results of a given query\n"
 			+ "%load\t\tLoad a model from the repository\n"
+			+ "%repo\t Set the api base path for the repository\n"
 			+ "%show\t\tPrint the abstract syntax tree rooted in a named element\n"
 			+ "%projects\tList projects in the repository\n"
 			+ "%publish\tPublish to the repository the modele elements rooted in a named element\n"
@@ -139,6 +140,14 @@ public class SysMLInteractiveHelp {
 			  "Usage: %projects\n\n"
 			+ "Print the name and identifier of all projects in the repository.\n";
 
+	private static final String API_BASE_PATH_HELP_STRING =
+			  "Usage: %repo [<BASE PATH>]\n\n"
+			+ "If <BASE PATH> is not given, print the current repository base path.\r\n"
+			+ "If <BASE PATH> is given, set the repository base path.\r\n"
+			+ "\r\n"
+			+ "<BASE PATH> is a URL giving the API base path for the repository access by the %projects, %publish and %load commands. \r\n"
+			+ "For example: https://my.domain.com/sysml_repo";
+ 
 	public static String getGeneralHelp() {
 		return GENERAL_HELP_STRING;
 	}
@@ -183,6 +192,10 @@ public class SysMLInteractiveHelp {
     	return LOAD_HELP_STRING;
     }
 
+    public static String getApiBasePathHelp() {
+    	return API_BASE_PATH_HELP_STRING;
+	}
+
     private static Map<String, String> commandHelpMap = createCommandHelpMap();
 
     private static Map<String, String> createCommandHelpMap() {
@@ -197,6 +210,7 @@ public class SysMLInteractiveHelp {
     	map.put("%export", EXPORT_HELP_STRING);
     	map.put("%load", LOAD_HELP_STRING);
     	map.put("%projects", PROJECTS_HELP_STRING);
+    	map.put("%repo", API_BASE_PATH_HELP_STRING);
 
     	return map;
     }

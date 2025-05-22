@@ -160,6 +160,10 @@ public class SysMLInteractive extends SysMLUtil {
 		this.apiBasePath = apiBasePath;
 	}
 	
+	public String getApiBasePath() {
+		return apiBasePath;
+	}
+	
 	public int next(String extension) {
 		this.resource = this.createResource(counter + extension);
 		this.addInputResource(this.resource);
@@ -275,6 +279,25 @@ public class SysMLInteractive extends SysMLUtil {
 				help(command, Collections.emptyList());
 	}
 	
+	public String repo(String apiBasePath, List<String> help) {
+		this.counter++;
+		if (!help.isEmpty()) {
+			return SysMLInteractiveHelp.getApiBasePathHelp();
+		}
+		
+		if (!Strings.isNullOrEmpty(apiBasePath)) {
+			setApiBasePath(apiBasePath);
+		}
+		
+		return getApiBasePath() + "\n";
+	}
+	
+	public String repo(String command) {
+		return "-h".equals(command)? 
+				repo(null, Collections.singletonList("true")):
+				repo(command, Collections.emptyList());
+	}
+
 	public String eval(String input, String targetName, List<String> help) {
 		if (Strings.isNullOrEmpty(input)) {
 			this.counter++;
@@ -466,7 +489,7 @@ public class SysMLInteractive extends SysMLUtil {
 	 * @return output of the command
 	 */
 	public String load(Map<String, String> parameters) {
-		counter++;
+		this.counter++;
 		
 		if (parameters.containsKey(HELP_KEY)) {
 			return SysMLInteractiveHelp.getLoadHelp();
@@ -479,6 +502,9 @@ public class SysMLInteractive extends SysMLUtil {
 		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
 			return "ERROR:Branch name and id cannot be provided at the same time\n";
 		}
+		
+		System.out.println("API base path: " + apiBasePath);
+		System.out.println();
 		
 		final ProjectRepository repository = new ProjectRepository(apiBasePath);
 		final RemoteProject project;
@@ -518,9 +544,12 @@ public class SysMLInteractive extends SysMLUtil {
 			return "ERROR:Branch doesn't exist\n";
 		}
 		
-		System.out.println("API base path: " + apiBasePath);
-		System.out.println();
 		System.out.println("Selected branch " + branch.getName() + " (" + branch.getRemoteId().toString() + ")");
+		
+		Revision headRevision = branch.getHeadRevision();
+		if (!headRevision.isRemote()) {
+			return "ERROR:Branch has no head commit\n";
+		}
 		
 		if (!tracker.isLibraryTracked()) {
 			System.out.println("Caching library UUIDs...");
@@ -533,9 +562,6 @@ public class SysMLInteractive extends SysMLUtil {
 		tracker.trackLocalUUIDs(inputResources);
 		
 		System.out.println("Downloading model...");
-		
-		RemoteProject remoteProject = branch.getRemoteProject();
-		Revision headRevision = branch.getHeadRevision();
 		APIModel model = headRevision.fetchRemote();
 		
 		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
@@ -549,6 +575,7 @@ public class SysMLInteractive extends SysMLUtil {
 			addResourceToIndex(resource);
 		});
 		
+		RemoteProject remoteProject = branch.getRemoteProject();
 		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")\n";
 	}
 	
@@ -764,6 +791,8 @@ public class SysMLInteractive extends SysMLUtil {
 								}
 							} else if ("%projects".equals(command)) {
 								System.out.print(this.projects(argument));
+							} else if ("%repo".equals(command)) {
+								System.out.print(this.repo(argument));
 							} else if ("%publish".equals(command)) {
 								if (!"".equals(argument)) {
 									System.out.print(this.publish(argument));

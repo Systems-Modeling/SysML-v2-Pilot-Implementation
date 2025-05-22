@@ -31,7 +31,7 @@ import org.omg.sysml.jupyter.kernel.ISysML;
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
 
-public class ApiBasePath {
+public class Repo {
 	
     private static final MagicsArgs REPO_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("basePath")
@@ -39,13 +39,13 @@ public class ApiBasePath {
     		.build();
 	
 	@LineMagic("repo")
-	public static String apiBasePath(List<String> args) {
+	public static String repo(List<String> args) {
 		Map<String, List<String>> vals = REPO_ARGS.parse(args);
 		List<String> basePaths = vals.get("basePath");
 		List<String> help = vals.get("help");
 		String basePath = basePaths.isEmpty()? null: basePaths.get(0);
 		
 		SysMLInteractive interactive = ISysML.getKernelInstance().getInteractive();
-		return interactive.apiBasePath(basePath, help);
+		return interactive.repo(basePath, help);
 	}
 }

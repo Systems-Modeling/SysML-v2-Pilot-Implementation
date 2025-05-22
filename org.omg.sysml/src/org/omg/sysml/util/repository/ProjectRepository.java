@@ -185,7 +185,11 @@ public class ProjectRepository {
 			Project projectById = getProjectApi().getProjectById(projectId);
 			return projectById == null? null: new RemoteProject(this, projectId, projectById.getName());
 		} catch (ApiException e) {
-			throw new RemoteException("Error occured while trying to query the project", e);
+			if (e.getCode() == 404) {
+				return null;
+			} else {
+				throw new RemoteException("Error occured while trying to query the project", e);
+			}
 		}
 	}
 	

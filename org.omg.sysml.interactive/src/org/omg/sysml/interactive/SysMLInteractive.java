@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -32,8 +32,9 @@ package org.omg.sysml.interactive;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -54,8 +55,8 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
-import org.omg.kerml.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.kerml.xtext.xmi.KerMLxStandaloneSetup;
 import org.omg.kerml.xtext.library.ILibraryIndexProvider;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
@@ -72,7 +73,6 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
-import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
@@ -86,7 +86,7 @@ import org.omg.sysml.util.repository.EMFModelRefresher;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
-import org.omg.sysml.xmi.SysMLxStandaloneSetup;
+import org.omg.sysml.xtext.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicates;
@@ -95,6 +95,12 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class SysMLInteractive extends SysMLUtil {
+	
+	public static final String HELP_KEY = "help";
+	public static final String PROJECT_ID_KEY = "id";
+	public static final String PROJECT_NAME_KEY = "name";
+	public static final String BRANCH_ID_KEY = "branch-id";
+	public static final String BRANCH_NAME_KEY = "branch";
 	
 	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
@@ -273,7 +279,8 @@ public class SysMLInteractive extends SysMLUtil {
 				help(command, Collections.emptyList());
 	}
 	
-	public String apiBasePath(String apiBasePath, List<String> help) {
+	public String repo(String apiBasePath, List<String> help) {
+		this.counter++;
 		if (!help.isEmpty()) {
 			return SysMLInteractiveHelp.getApiBasePathHelp();
 		}
@@ -282,9 +289,15 @@ public class SysMLInteractive extends SysMLUtil {
 			setApiBasePath(apiBasePath);
 		}
 		
-		return getApiBasePath();
+		return getApiBasePath() + "\n";
 	}
 	
+	public String repo(String command) {
+		return "-h".equals(command)? 
+				repo(null, Collections.singletonList("true")):
+				repo(command, Collections.emptyList());
+	}
+
 	public String eval(String input, String targetName, List<String> help) {
 		if (Strings.isNullOrEmpty(input)) {
 			this.counter++;
@@ -384,7 +397,7 @@ public class SysMLInteractive extends SysMLUtil {
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
 				return SysMLInteractiveUtil.formatTree(element);
 			} else {
-				return "ERROR:Invalid style. Possible styles: TREE and JSON";
+				return "ERROR:Invalid style. Possible styles: TREE and JSON\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -454,67 +467,89 @@ public class SysMLInteractive extends SysMLUtil {
 				publish(name, null, null, false, Collections.emptyList());
 	}
 	
-	public String loadByName(String projectName, String branchName, List<String> help) {
-		if (Strings.isNullOrEmpty(projectName)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+	/**
+	 * Loads using the supplied parameters<br>
+	 * Possible parameters are:
+	 * <li> {@value SysMLInteractive#PROJECT_NAME_KEY}: name of the project</li>
+	 * <li> {@value SysMLInteractive#PROJECT_ID_KEY}: id of the project</li>
+	 * <li> {@value SysMLInteractive#BRANCH_NAME_KEY}: name of the project's branch</li>
+	 * <li> {@value SysMLInteractive#BRANCH_ID_KEY}: id of the project's branch </li>
+	 * <li>{@value SysMLInteractive#HELP_KEY}: request help string for the operation</li>
+	 * 
+	 * <br>
+	 * {@value SysMLInteractive#PROJECT_NAME_KEY} and {@value SysMLInteractive#PROJECT_ID_KEY} are mutually exclusive. It is mandatory to specify one of them.
+	 * <br>
+	 * {@value SysMLInteractive#BRANCH_NAME_KEY} and {@value SysMLInteractive#BRANCH_ID_KEY} are mutually exclusive. If neither is given the project's default branch is used.
+	 * <br>
+	 * If help {@value SysMLInteractive#HELP_KEY} is passed as a parameter (with any value) the help string is printed. Every other parameters are ignored.
+	 * 
+	 * <br>
+	 * <br>
+	 * @param parameters map containing the parameters and their values
+	 * @return output of the command
+	 */
+	public String load(Map<String, String> parameters) {
+		this.counter++;
+		
+		if (parameters.containsKey(HELP_KEY)) {
+			return SysMLInteractiveHelp.getLoadHelp();
 		}
 		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RemoteProject repositoryProject = repository.getProjectByName(projectName);
-		
-		if (repositoryProject == null) {
-			return "ERROR:Project doesn't exist.";
+		if (parameters.containsKey(PROJECT_ID_KEY) && parameters.containsKey(PROJECT_NAME_KEY)) {
+			return "ERROR:Project name and id cannot be provided at the same time\n";
 		}
 		
-		return load(repositoryProject, branchName);
-	}
-	
-	public String loadById(String projectId, String branchId, List<String> help) {
-		if (Strings.isNullOrEmpty(projectId)) {
-			return help.isEmpty()? "": SysMLInteractiveHelp.getLoadHelp();
+		if (parameters.containsKey(BRANCH_ID_KEY) && parameters.containsKey(BRANCH_NAME_KEY)) {
+			return "ERROR:Branch name and id cannot be provided at the same time\n";
 		}
 		
-		ProjectRepository repository = new ProjectRepository(apiBasePath);
-		RemoteProject remoteProject = repository.getPRojectById(UUID.fromString(projectId));
+		System.out.println("API base path: " + apiBasePath);
+		System.out.println();
 		
-		if (remoteProject == null) {
-			return "ERROR:Project doesn't exist.";
-		}
+		final ProjectRepository repository = new ProjectRepository(apiBasePath);
+		final RemoteProject project;
 		
-		if (branchId == null) {
-			return load(remoteProject, (UUID) null);
+		if (parameters.containsKey(PROJECT_ID_KEY)) {
+			String projectId = parameters.get(PROJECT_ID_KEY);
+			project = repository.getProjectById(projectId);
+		} else if (parameters.containsKey(PROJECT_NAME_KEY)) {
+			String projectName = parameters.get(PROJECT_NAME_KEY);
+			project = repository.getProjectByName(projectName);
 		} else {
-			UUID branchUUID = UUID.fromString(branchId);
-			return load(remoteProject, branchUUID);
+			return SysMLInteractiveHelp.getLoadHelp();
 		}
-	}
-	
-	private String load(RemoteProject remoteProject, String branchName) {
+		
+		if (project == null) {
+			return "ERROR:Project doesn't exist\n";
+		}
+		
 		final RemoteBranch branch;
-		if (branchName == null) {
-			branch = remoteProject.getDefaultBranch();
+		
+		if (parameters.containsKey(BRANCH_NAME_KEY)) {
+			String branchName = parameters.get(BRANCH_NAME_KEY);
+			branch = project.getBranch(branchName);
+		} else if (parameters.containsKey(BRANCH_ID_KEY)) {
+			String branchIdString = parameters.get(BRANCH_ID_KEY);
+			UUID branchId = UUID.fromString(branchIdString);
+			branch = project.getBranch(branchId);
 		} else {
-			branch = remoteProject.getBranch(branchName);
+			branch = project.getDefaultBranch();
 		}
+		
 		return load(branch);
 	}
 	
-	private String load(RemoteProject remoteProject, UUID branchId) {
-		final RemoteBranch branch;
-		if (branchId == null) {
-			branch = remoteProject.getDefaultBranch();
-		} else {
-			branch = remoteProject.getBranch(branchId);
-		}
-		return load(branch);
-	}
-
 	private String load(RemoteBranch branch) {
 		if (branch == null) {
-			return "ERROR:Branch doesn't exist";
+			return "ERROR:Branch doesn't exist\n";
 		}
 		
-		System.out.println("Selected branch " + branch.getName());
+		System.out.println("Selected branch " + branch.getName() + " (" + branch.getRemoteId().toString() + ")");
+		
+		Revision headRevision = branch.getHeadRevision();
+		if (!headRevision.isRemote()) {
+			return "ERROR:Branch has no head commit\n";
+		}
 		
 		if (!tracker.isLibraryTracked()) {
 			System.out.println("Caching library UUIDs...");
@@ -527,48 +562,51 @@ public class SysMLInteractive extends SysMLUtil {
 		tracker.trackLocalUUIDs(inputResources);
 		
 		System.out.println("Downloading model...");
-		
-		RemoteProject remoteProject = branch.getRemoteProject();
-		Revision headRevision = branch.getHeadRevision();
 		APIModel model = headRevision.fetchRemote();
 		
 		EMFModelRefresher modelRefresher = new EMFModelRefresher(model, tracker);
 		EMFModelDelta delta = modelRefresher.create();
 		modelRefresher.getIssues().forEach(System.out::println);
 		
-		delta.getProjectRoots().forEach((eObject, dto) -> {
-			next(SYSMLX_EXTENSION);
-			Resource xmiResource = getResource();
-			if (eObject instanceof Namespace) {
-				xmiResource.getContents().add(eObject);
-			} else {
-				Namespace root = SysMLFactory.eINSTANCE.createNamespace();
-				NamespaceUtil.addOwnedMemberTo(root, (Element) eObject);
-				xmiResource.getContents().add(root);
-			}
-			addResourceToIndex(xmiResource);
+		delta.getProjectRootsAsNamespaces().forEach(rootNs -> {
+			Resource resource = this.createResource(rootNs.toString() + SYSML_EXTENSION);
+			resource.getContents().add(rootNs);
+			this.addInputResource(resource);
+			addResourceToIndex(resource);
 		});
 		
-		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")";
+		RemoteProject remoteProject = branch.getRemoteProject();
+		return "Loaded Project " + remoteProject.getProjectName() + " (" + remoteProject.getRemoteId().toString() + ")\n";
 	}
 	
-	protected String download(String name) {
+	protected String load(String name) {
 		return "-h".equals(name)?
-				loadByName(null, null, Collections.singletonList("true")):
-				loadByName(name, null, Collections.emptyList());
+				load(Map.of(HELP_KEY, "true")):
+				load(Map.of(PROJECT_NAME_KEY, name));
 	}
 	
 	public String projects(List<String> help) {
+		this.counter++;
 		if (help != null && !help.isEmpty()) {
 			return SysMLInteractiveHelp.getProjectsHelp();
 		}
 		ProjectRepository projectRepository = new ProjectRepository(apiBasePath);
 
+		Comparator<String> projectNameComparator = Comparator.nullsFirst(Comparator.naturalOrder());
+		
 		String apiBasePathString = "API base path: " + apiBasePath;
 		List<RemoteProject> repositoryProjects = projectRepository.getProjects();
-		String projectsListString = repositoryProjects.stream().map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
+		String projectsListString = repositoryProjects.stream()
+				.sorted((p1, p2) -> projectNameComparator.compare(p1.getProjectName(), p2.getProjectName()))
+				.map(p -> String.format("Project %s (%s)", p.getProjectName(), p.getRemoteId()))
 				.collect(Collectors.joining("\n"));
-		return apiBasePathString + "\n\n" + projectsListString;
+		return apiBasePathString + "\n\n" + projectsListString + "\n";
+	}
+	
+	protected String projects(String arg) {
+		return "-h".equals(arg)?
+				projects(Collections.singletonList("true")):
+				projects(Collections.emptyList());
 	}
 	
 	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName, String branchName, boolean includeDerived) {
@@ -751,9 +789,17 @@ public class SysMLInteractive extends SysMLUtil {
 								if (!"".equals(argument)) {
 									System.out.print(this.show(argument));
 								}
+							} else if ("%projects".equals(command)) {
+								System.out.print(this.projects(argument));
+							} else if ("%repo".equals(command)) {
+								System.out.print(this.repo(argument));
 							} else if ("%publish".equals(command)) {
 								if (!"".equals(argument)) {
 									System.out.print(this.publish(argument));
+								}
+							} else if ("%load".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.load(argument));
 								}
 							} else if ("%viz".equals(command)) {
 								if (!"".equals(argument)) {

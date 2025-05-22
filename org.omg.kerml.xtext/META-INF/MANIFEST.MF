@@ -19,8 +19,7 @@ Require-Bundle: org.eclipse.xtext,
  com.google.gson,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="9.3.0";resolution:=optional
-Export-Package: org.omg.kerml.xmi,
- org.omg.kerml.xtext,
+Export-Package: org.omg.kerml.xtext,
  org.omg.kerml.xtext.generator,
  org.omg.kerml.xtext.library,
  org.omg.kerml.xtext.linking,
@@ -31,6 +30,7 @@ Export-Package: org.omg.kerml.xmi,
  org.omg.kerml.xtext.serializer,
  org.omg.kerml.xtext.services,
  org.omg.kerml.xtext.util,
- org.omg.kerml.xtext.validation
+ org.omg.kerml.xtext.validation,
+ org.omg.kerml.xtext.xmi
 Import-Package: org.apache.log4j
 Bundle-Vendor: SysML v2 Submission Team

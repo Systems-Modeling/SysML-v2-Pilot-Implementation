@@ -21,7 +21,7 @@
  *   Laszlo Gati, MDS
  *   Zoltan Ujhelyi, MDS
  */
-package org.omg.sysml.xtext.ui.utilities;
+package org.omg.sysml.xtext.ui.util;
 
 import java.util.Objects;
 

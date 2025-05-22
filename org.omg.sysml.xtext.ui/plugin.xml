@@ -441,7 +441,7 @@
     <extension
           point="org.eclipse.core.expressions.propertyTesters">
        <propertyTester
-             class="org.omg.sysml.xtext.ui.utilities.RemoteRepositoryPropertyTester"
+             class="org.omg.sysml.xtext.ui.util.RemoteRepositoryPropertyTester"
              id="org.omg.sysml.xtext.ui.remoterepositoryproperties"
              namespace="org.omg.sysml.xtext.ui"
              properties="repository_descriptor"

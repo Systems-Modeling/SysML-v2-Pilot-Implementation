@@ -24,7 +24,7 @@ package org.omg.kerml.xtext.ui
 
 import org.omg.kerml.xtext.ui.internal.XtextActivator
 import org.omg.kerml.xtext.KerMLRuntimeModule
-import org.omg.kerml.xmi.KerMLxRuntimeModule
+import org.omg.kerml.xtext.xmi.KerMLxRuntimeModule
 import org.omg.kerml.xtext.ui.xmi.KerMLxUIModule
 
 class KerMLActivator extends XtextActivator {

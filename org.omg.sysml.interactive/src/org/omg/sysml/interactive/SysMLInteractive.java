@@ -282,7 +282,7 @@ public class SysMLInteractive extends SysMLUtil {
 	public String repo(String apiBasePath, List<String> help) {
 		this.counter++;
 		if (!help.isEmpty()) {
-			return SysMLInteractiveHelp.getApiBasePathHelp();
+			return SysMLInteractiveHelp.getRepoPathHelp();
 		}
 		
 		if (!Strings.isNullOrEmpty(apiBasePath)) {

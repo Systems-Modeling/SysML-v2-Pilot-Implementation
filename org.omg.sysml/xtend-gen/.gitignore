@@ -1,0 +1,4 @@
+#This file is used to keep the generated source folder in git (thus avoiding compile errors on checkout)
+# but avoids uploading any content from it.
+*
+!.gitignore

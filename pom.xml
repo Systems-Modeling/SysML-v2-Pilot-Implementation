@@ -5,7 +5,7 @@
 
   <properties>
 	<revision>0.50.0-SNAPSHOT</revision>
-    <tycho-version>4.0.7</tycho-version>
+    <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
@@ -21,15 +21,13 @@
     <frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
     <node.version>16.20.2</node.version>
     <yarn.version>1.22.19</yarn.version>
-    <maven.compiler.target>17</maven.compiler.target>
-    <maven.compiler.source>17</maven.compiler.source>
-    <xtext.version>2.34.0</xtext.version>
-    <junit.version>3.0.0-M7</junit.version>
-    <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
-    <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>
     <java.version>21</java.version>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.source>${java.version}</maven.compiler.source>
+    <xtext.version>2.38.0</xtext.version>
+    <junit.version>3.5.3</junit.version>
+    <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
+    <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -269,7 +267,9 @@
           	-->
             <resource>
               <directory>.</directory>
-              <exclude>**/**</exclude>
+              <excludes>
+	              <exclude>**/**</exclude>
+              </excludes>
             </resource>
           </resources>
         </configuration>

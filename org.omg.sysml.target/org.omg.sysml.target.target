@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target includeMode="feature" name="SysMLv2 2024-03 Target">
+<target includeMode="feature" name="SysMLv2 2025-03 Target">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/2024-03/"/>			
-			<unit id="org.eclipse.platform.feature.group" version="4.31.0.v20240229-1022"/>						
-			<unit id="org.eclipse.xtext.sdk.feature.group" version="2.34.0.v20240227-0940"/>
-			<unit id="org.eclipse.m2m.qvt.oml.runtime.feature.group" version="3.10.8.v20231126-0839"/>
-			<unit id="org.eclipse.emf.ecore.feature.group" version="2.37.0.v20240203-0859"/>
+			<repository location="https://download.eclipse.org/releases/2025-03/"/>
+			<unit id="org.eclipse.platform.feature.group" version="4.35.0.v20250228-0640"/>
+			<unit id="org.eclipse.xtext.sdk.feature.group" version="2.38.0.v20250226-0658"/>
+			<unit id="org.eclipse.m2m.qvt.oml.runtime.feature.group" version="3.11.0.v20240902-1403"/>
+			<unit id="org.eclipse.emf.ecore.feature.group" version="2.39.0.v20241018-1213"/>
 			<unit id="org.eclipse.uml2.feature.group" version="5.5.3.v20221116-1811"/>
-			<unit id="org.eclipse.egit.feature.group" version="6.9.0.202403050737-r"/>
-			<unit id="org.eclipse.jgit.feature.group" version="6.9.0.202403050737-r"/>
-			<unit id="com.google.gson" version="2.10.1.v20230109-0753"/>
+			<unit id="org.eclipse.egit.feature.group" version="7.2.0.202503040940-r"/>
+			<unit id="org.eclipse.jgit.feature.group" version="7.2.0.202503040940-r"/>
+			<unit id="com.google.gson" version="2.12.1"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates"/>
@@ -19,11 +19,11 @@
 			<unit id="net.sourceforge.plantuml.feature.feature.group" version="1.1.25.202211040339"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/xpect/updates/milestone/S202310150731"/>
-			<unit id="org.eclipse.xpect.sdk.feature.group" version="0.3.0.202310150731"/>
-			<unit id="org.eclipse.xpect.xtext.lib.feature.feature.group" version="0.3.0.202310150731"/>
-			<unit id="org.eclipse.xpect.xtext.xbase.lib.feature.feature.group" version="0.3.0.202310150731"/>
+			<repository location="https://download.eclipse.org/xpect/updates/nightly/N202505300357"/>
+			<unit id="org.eclipse.xpect.sdk.feature.group" version="0.3.0.202505300357"/>
+			<unit id="org.eclipse.xpect.xtext.lib.feature.feature.group" version="0.3.0.202505300357"/>
+			<unit id="org.eclipse.xpect.xtext.xbase.lib.feature.feature.group" version="0.3.0.202505300357"/>
 		</location>
 	</locations>
-	<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/temurin-17.0.10"/>
+	<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
 </target>

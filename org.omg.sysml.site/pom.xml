@@ -7,7 +7,6 @@
     <artifactId>org.omg.sysml.parent</artifactId>
     <version>${revision}</version>
   </parent>
-  <groupId>org.omg.sysml</groupId>
   <artifactId>org.omg.sysml.site</artifactId>
 
   <packaging>eclipse-repository</packaging>
@@ -36,7 +35,9 @@
           	-->
             <resource>
               <directory>.</directory>
-              <exclude>**/**</exclude>
+              <excludes>
+	              <exclude>**/**</exclude>
+              </excludes>
             </resource>
           </resources>
         </configuration>

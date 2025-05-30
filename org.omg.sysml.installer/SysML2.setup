@@ -16,9 +16,9 @@
     label="SysML2">
   <setupTask
       xsi:type="jdt:JRETask"
-      version="JavaSE-17"
-      location="${jre.location-17}"
-      name="JRE for JavaSE-17">
+      version="JavaSE-21"
+      location="${jre.location-21}"
+      name="JRE for JavaSE-21">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -42,10 +42,12 @@
         name="net.sourceforge.plantuml.ecore.feature.feature.group"/>
     <requirement
         name="org.eclipse.m2e.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.m2e.pde.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2024-03/"/>
+        url="http://download.eclipse.org/releases/2025-03/"/>
     <repository
-        url="https://download.eclipse.org/xpect/updates/milestone/S202310150731"/>
+        url="https://download.eclipse.org/xpect/updates/nightly/N202505300357"/>
     <repository
         url="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
@@ -81,7 +83,7 @@
   </setupTask>
   <setupTask
       xsi:type="pde:TargetPlatformTask"
-      name="SysMLv2 2024-03 Target"/>
+      name="SysMLv2 2025-03 Target"/>
   <stream name="master"
       label="Master"/>
   <logicalProjectContainer

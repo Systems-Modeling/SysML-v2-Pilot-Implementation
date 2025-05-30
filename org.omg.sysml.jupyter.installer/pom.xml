@@ -101,7 +101,9 @@
           	-->
             <resource>
               <directory>.</directory>
-              <exclude>**/**</exclude>
+              <excludes>
+	              <exclude>**/**</exclude>
+              </excludes>
             </resource>
           </resources>
         </configuration>

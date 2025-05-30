@@ -24,6 +24,7 @@
 package org.omg.sysml.xtext;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,8 +33,6 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.eclipse.xtext.xtext.generator.AbstractXtextGeneratorFragment;
-
-import com.google.common.base.Charsets;
 
 public class InternalParserSplitterFragment extends AbstractXtextGeneratorFragment {
 	
@@ -162,7 +161,7 @@ public class InternalParserSplitterFragment extends AbstractXtextGeneratorFragme
 		String inputPath = inputDirectory + "/" + originalClassName + ".java";
 		LOGGER.info("Reading " + inputPath);
 		try {
-			content = Files.readString(Paths.get(inputPath), Charsets.UTF_8);
+			content = Files.readString(Paths.get(inputPath), StandardCharsets.UTF_8);
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}
@@ -178,7 +177,7 @@ public class InternalParserSplitterFragment extends AbstractXtextGeneratorFragme
 		LOGGER.info("Writing " + outputPath);
 		Path outputFile = Paths.get(outputPath);
 		try {
-			Files.writeString(outputFile, output, Charsets.UTF_8);
+			Files.writeString(outputFile, output, StandardCharsets.UTF_8);
 		} catch (Exception e) {
 			LOGGER.error(e);
 			throw e;

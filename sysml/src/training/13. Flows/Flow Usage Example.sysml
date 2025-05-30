@@ -1,4 +1,4 @@
-package 'Flow Connection Interface Example' {
+package 'Flow Usage Example' {
 	private import 'Port Example'::*;
 	
 	part def Vehicle;

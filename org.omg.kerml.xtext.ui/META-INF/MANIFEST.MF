@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.omg.kerml.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: SysML v2 Submission Team
 Bundle-Version: 0.50.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.xtext.ui; singleton:=true

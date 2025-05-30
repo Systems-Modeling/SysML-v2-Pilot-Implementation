@@ -27,6 +27,9 @@
     <junit.version>3.0.0-M7</junit.version>
     <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>
+    <java.version>21</java.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -116,7 +119,7 @@
         <artifactId>target-platform-configuration</artifactId>
         <version>${tycho-version}</version>
         <configuration>
-        	<executionEnvironment>JavaSE-17</executionEnvironment>
+        	<executionEnvironment>JavaSE-${java.version}</executionEnvironment>
         	<target>
 				 <artifact>
 					<groupId>org.omg.sysml</groupId>

@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SysML 2 PlantUML visualization
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.omg.sysml.plantuml
 Automatic-Module-Name: org.omg.sysml.plantuml
 Bundle-Version: 0.50.0.qualifier

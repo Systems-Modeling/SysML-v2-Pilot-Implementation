@@ -29,6 +29,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
@@ -41,11 +47,22 @@ import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
  */
 public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
+	public static final String BASE_PATH_OPTION_LONG_NAME = "base-path-url";
+	public static final String LIBRARY_OPTION_LONG_NAME = "library-base-path";
+	public static final String BRANCH_OPTION = "Project branch to use. If none given the default branch of the project is used";
+	public static final String PROJECT_NAME_OPTION_DESCRIPTION = "project name to upload the model into. If not specified a unique name is generated based on the selected folders and the current timestamp";
+	public static final String DERIVED_OPTION_DESCRIPTION = "specifies that derived attributes should be included (the default is not to)";
+	public static final String IMPLICIT_GEN_OPTION_DESCRIPTION = "specifies that implicit generalizations should be generated (the default is not to)";
+	public static final String VERBOSE_MODE_OPTION_DESCRIPTION = "verbose mode";
+	public static final String BASE_PATH_OPTION_DESCRIPTION = "gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)";
+	public static final String LIBRARY_OPTION_DESCRIPTION = "gives the base path to used for reading model library resources";
+	
 	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
 	private boolean isAddDerivedElements = false;
 	private boolean isAddImplicitElements = false;
 	private String projectName;
+	private String branchName; 
 	private boolean isCommitted = false;
 	
 	public KerMLRepositorySaveUtil() {
@@ -116,30 +133,50 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 *          prepended to arguments for library model files.
 	 */
 	protected String[] processArgs(String[] args) {
-		int n = args.length;
-		if (n > 0) {
-			int i = 0;
-			while(("-b".equals(args[i]) || "-l".equals(args[i]) || "-d".equals(args[i]) ||
-				   "-g".equals(args[i]) || "-v".equals(args[i])) && 
-					i + 1 < n) {
-				if ("-b".equals(args[i])) {
-					this.basePath = args[++i];
-				} else if ("-l".equals(args[i])) {
-					this.libraryPath = args[++i];
-					if (!libraryPath.endsWith("/")) {
-						libraryPath += "/";
-					}
-				} else if ("-d".equals(args[i])) {
-					this.isAddDerivedElements = true;
-				} else if ("-g".equals(args[i])) {
-					this.isAddImplicitElements = true;
-				} else if ("-v".equals(args[i])) {
-					this.setVerbose(true);
-				}
-				i++;
+		var libraryPathOption = new Option("l", LIBRARY_OPTION_LONG_NAME, true, LIBRARY_OPTION_DESCRIPTION);
+		var basePathOption = new Option("b", BASE_PATH_OPTION_LONG_NAME, true, BASE_PATH_OPTION_DESCRIPTION);
+		var isVerboseOption = new Option("v", false, VERBOSE_MODE_OPTION_DESCRIPTION);
+		var addImplicitsOption = new Option("g", IMPLICIT_GEN_OPTION_DESCRIPTION);
+		var addDerivedOption = new Option("d", DERIVED_OPTION_DESCRIPTION);
+		var projectOption = new Option("p", true, PROJECT_NAME_OPTION_DESCRIPTION);
+		var branchOption = new Option(null, "branch", true, BRANCH_OPTION);
+		
+		libraryPathOption.setRequired(true);
+		basePathOption.setRequired(true);
+		isVerboseOption.setRequired(false);
+		addImplicitsOption.setRequired(false);
+		addDerivedOption.setRequired(false);
+		branchOption.setRequired(false);
+		projectOption.setRequired(false);
+		
+		Options options = new Options()
+				.addOption(libraryPathOption)
+				.addOption(basePathOption)
+				.addOption(isVerboseOption)
+				.addOption(addImplicitsOption)
+				.addOption(addDerivedOption)
+				.addOption(projectOption)
+				.addOption(branchOption);
+		
+		CommandLineParser parser = new DefaultParser(false);
+		
+		try {
+			CommandLine cli = parser.parse(options, args);
+			basePath = cli.getOptionValue(basePathOption);
+			libraryPath = cli.getOptionValue(libraryPathOption);
+			if (!libraryPath.endsWith("/")) {
+				libraryPath += "/";
 			}
-			if (i < n) {
-				args = Arrays.copyOfRange(args, i, n);
+			isAddImplicitElements = cli.hasOption(addImplicitsOption);
+			isAddDerivedElements = cli.hasOption(addDerivedOption);
+			setVerbose(cli.hasOption(isVerboseOption));
+			projectName = cli.getOptionValue(projectOption);
+			branchName = cli.getOptionValue(branchOption);
+			
+			args = cli.getArgs();
+			
+			if (args.length > 0) {
+				args = Arrays.copyOf(args, args.length);
 				
 				if (this.libraryPath != null) {
 					for (int k = 1; k < args.length; k++) {
@@ -149,7 +186,10 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				
 				return args;
 			}
+		} catch (ParseException e) {
+			System.err.println(e.getMessage());
 		}
+		
 		return null;
 	}
 	
@@ -166,14 +206,16 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			SysMLLibraryUtil.setModelLibraryDirectory(libraryPath);
 		}
 		
-		this.projectName = Paths.get(args[0]).getFileName().toString();
-		int j = this.projectName.indexOf('.');
-		if (j >= 0) {
-			this.projectName = this.projectName.substring(0, j);
+		if (this.projectName == null) {
+			this.projectName = Paths.get(args[0]).getFileName().toString();
+			int j = this.projectName.indexOf('.');
+			if (j >= 0) {
+				this.projectName = this.projectName.substring(0, j);
+			}
+			this.projectName += " " + new Date();
 		}
-		this.projectName += " " + new Date();
 		
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, branchName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(this.isVerbose());
 		processingFacade.setIsIncludeDerived(this.isAddDerivedElements);
@@ -185,7 +227,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	@Override
 	public void process() {
 		super.process();
-		this.isCommitted = ((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
+		this.isCommitted = ((ApiElementProcessingFacade)this.traversal.getFacade()).commit(null);
 	}
 	
 	/**
@@ -197,7 +239,6 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		args = this.processArgs(args);
 		
 		if (args != null) {
-			
 			System.out.println("Saving " + args[0] + "...");
 			
 			this.initialize(args);				
@@ -211,7 +252,12 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			System.out.println();
 			
 			this.process();
-			System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			
+			if (isCommitted()) {
+				System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			} else {
+				System.out.println("Failed to save Project (" + this.getProjectName() + ") ");
+			}
 			System.out.println();
 		}
 	}

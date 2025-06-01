@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Version: 0.48.0.qualifier
+Bundle-Version: 0.49.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
@@ -28,8 +28,8 @@ Require-Bundle: org.eclipse.xtext,
 Export-Package: org.omg.sysml,
  org.omg.sysml.adapter,
  org.omg.sysml.api,
- org.omg.sysml.delegate.setting,
  org.omg.sysml.delegate.invocation,
+ org.omg.sysml.delegate.setting,
  org.omg.sysml.expressions,
  org.omg.sysml.expressions.util,
  org.omg.sysml.lang.sysml,
@@ -40,6 +40,7 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.model,
  org.omg.sysml.qvt,
  org.omg.sysml.util,
+ org.omg.sysml.util.repository,
  org.omg.sysml.util.traversal,
  org.omg.sysml.util.traversal.facade,
  org.omg.sysml.util.traversal.facade.impl

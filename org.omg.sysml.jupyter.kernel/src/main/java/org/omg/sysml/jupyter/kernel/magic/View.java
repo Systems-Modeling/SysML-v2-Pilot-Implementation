@@ -63,6 +63,8 @@ public class View {
             break;
         case TEXT:
             dd.putText(vr.getText());
+		default:
+			break;
         }
         return dd;
     }

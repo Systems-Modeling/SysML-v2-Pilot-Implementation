@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.omg.sysml.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext.ui
-Bundle-Version: 0.48.0.qualifier
+Bundle-Version: 0.49.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml;bundle-version="0.2.0",
@@ -22,9 +22,11 @@ Require-Bundle: org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.expressions.xtext,
  org.omg.kerml.expressions.xtext.ide,
  org.omg.kerml.expressions.xtext.ui,
- com.google.gson
+ com.google.gson,
+ org.eclipse.emf.ecore.editor,
+ org.eclipse.core.expressions
 Import-Package: org.apache.log4j
 Export-Package: org.omg.sysml.xtext.ui,
  org.omg.sysml.xtext.ui.internal
-Bundle-Activator: org.omg.sysml.xtext.ui.internal.XtextActivator
+Bundle-Activator: org.omg.sysml.xtext.ui.SysMLActivator
 Bundle-Vendor: SysML v2 Submission Team

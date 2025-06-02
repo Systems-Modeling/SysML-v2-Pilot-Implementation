@@ -91,7 +91,7 @@ public interface InstantiationExpression extends Expression {
 	 * <p>Return the <code>Type</code> to act as the <code>instantiatedType</code> for this <code>InstantiationExpression</code>. By default, this is the <code>memberElement</code> of the first <code>ownedMembership</code> that is not a <code>FeatureMembership</code>, which must be a <code>Type</code>.</p>
 	 * 
 	 * <p><b>Note.</b> This operation is overridden in the subclass <code>OperatorExpression</code>.</p>
-	 * let members : Sequence(Type) = ownedMembership->
+	 * let members : Sequence(Element) = ownedMembership->
 	 *     reject(oclIsKindOf(FeatureMembership)).memberElement in
 	 * if members->isEmpty() or not members->first().oclIsKindOf(Type) then null
 	 * else typeMembers->first().oclAsType(Type)

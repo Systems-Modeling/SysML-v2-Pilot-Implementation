@@ -42,55 +42,21 @@
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="kerml.ecore#//FeatureDirectionKind/inout"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="kerml.ecore#//FeatureDirectionKind/out"/>
     </genEnums>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Namespace">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//TextualRepresentation">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//TextualRepresentation/representedElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//TextualRepresentation/language"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//TextualRepresentation/body"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//AnnotatingElement">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/annotation"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedMembership"/>
+          ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/ownedAnnotatingRelationship"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedMember"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
-          createChild="false" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/membership"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedImport"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/owningAnnotatingRelationship"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/member"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/importedMembership"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/namesOf">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/namesOf/element"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/visibilityOf">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibilityOf/mem"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/visibleMemberships">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/excluded"/>
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/isRecursive"/>
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/includeAll"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/importedMemberships">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/importedMemberships/excluded"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/membershipsOfVisibility">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/membershipsOfVisibility/visibility"/>
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/membershipsOfVisibility/excluded"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolve">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolve/qualifiedName"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveGlobal">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveGlobal/qualifiedName"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveLocal">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveLocal/name"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveVisible">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveVisible/name"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/qualificationOf">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/qualificationOf/qualifiedName"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/unqualifiedNameOf">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/unqualifiedNameOf/qualifiedName"/>
-      </genOperations>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/annotatedElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="kerml.ecore#//Element">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -134,9 +100,9 @@
           ecoreFeature="ecore:EReference kerml.ecore#//OwningMembership/ownedMemberElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Membership">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Membership/memberElementId"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Membership/membershipOwningNamespace"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Membership/memberElementId"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Membership/memberShortName"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Membership/memberElement"/>
@@ -159,41 +125,55 @@
           createChild="true" ecoreFeature="ecore:EReference kerml.ecore#//Relationship/ownedRelatedElement"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Relationship/isImplied"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Documentation">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Documentation/documentedElement"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Comment">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Comment/locale"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Comment/body"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//AnnotatingElement">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/annotatedElement"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Namespace">
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/membership"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/ownedAnnotatingRelationship"/>
+          ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedImport"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/annotation"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/member"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//AnnotatingElement/owningAnnotatingRelationship"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Annotation">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/annotatingElement"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/annotatedElement"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/owningAnnotatedElement"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedMember"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference kerml.ecore#//Annotation/ownedAnnotatingElement"/>
+          ecoreFeature="ecore:EReference kerml.ecore#//Namespace/ownedMembership"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/owningAnnotatingElement"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//TextualRepresentation">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//TextualRepresentation/language"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//TextualRepresentation/body"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//TextualRepresentation/representedElement"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Namespace/importedMembership"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/namesOf">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/namesOf/element"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/visibilityOf">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibilityOf/mem"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/visibleMemberships">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/excluded"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/isRecursive"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/visibleMemberships/includeAll"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/importedMemberships">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/importedMemberships/excluded"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/membershipsOfVisibility">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/membershipsOfVisibility/visibility"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/membershipsOfVisibility/excluded"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolve">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolve/qualifiedName"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveGlobal">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveGlobal/qualifiedName"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveLocal">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveLocal/name"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/resolveVisible">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/resolveVisible/name"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/qualificationOf">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/qualificationOf/qualifiedName"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Namespace/unqualifiedNameOf">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Namespace/unqualifiedNameOf/qualifiedName"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="kerml.ecore#//Import">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Import/visibility"/>
@@ -207,13 +187,33 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Import/importedMemberships/excluded"/>
       </genOperations>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//NamespaceImport">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Documentation">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//NamespaceImport/importedNamespace"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Documentation/documentedElement"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Comment">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Comment/locale"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Comment/body"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Annotation">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/annotatingElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/annotatedElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/owningAnnotatingElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference kerml.ecore#//Annotation/ownedAnnotatingElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Annotation/owningAnnotatedElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//MembershipImport">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MembershipImport/importedMembership"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//NamespaceImport">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//NamespaceImport/importedNamespace"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Dependency">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -221,13 +221,19 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Dependency/supplier"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Subclassification">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//CrossSubsetting">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/superclassifier"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//CrossSubsetting/crossingFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/owningClassifier"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//CrossSubsetting/crossedFeature"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Subsetting">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/subclassifier"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/owningFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/subsettedFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/subsettingFeature"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Specialization">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -410,14 +416,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Redefinition/redefinedFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Subsetting">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/subsettedFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/subsettingFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subsetting/owningFeature"/>
-    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureTyping">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureTyping/typedFeature"/>
@@ -454,12 +452,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ReferenceSubsetting/referencingFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//CrossSubsetting">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//CrossSubsetting/crossedFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//CrossSubsetting/crossingFeature"/>
-    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Conjugation">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Conjugation/originalType"/>
@@ -495,11 +487,34 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Differencing/typeDifferenced"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//EndFeatureMembership"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Classifier">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Classifier/ownedSubclassification"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//EndFeatureMembership"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Subclassification">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/superclassifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/subclassifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Subclassification/owningClassifier"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Succession"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Connector">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/relatedFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/association"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/connectorEnd"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/sourceFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/targetFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/defaultFeaturingType"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Association">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Association/relatedType"/>
@@ -510,34 +525,21 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Association/associationEnd"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//AssociationStructure"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Structure"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Class"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//DataType"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ParameterMembership">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//BindingConnector"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//MultiplicityRange">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ParameterMembership/ownedMemberParameter"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//ParameterMembership/parameterDirection"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Behavior">
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/lowerBound"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Behavior/step"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/upperBound"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Behavior/parameter"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Step">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Step/behavior"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Step/parameter"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureValue">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureValue/featureWithValue"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureValue/value"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//FeatureValue/isInitial"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//FeatureValue/isDefault"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/bound"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//MultiplicityRange/hasBounds">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/hasBounds/lower"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/hasBounds/upper"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//MultiplicityRange/valueOf">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/valueOf/bound"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Expression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -555,6 +557,19 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Expression/checkCondition/target"/>
       </genOperations>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Step">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Step/behavior"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Step/parameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Behavior">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Behavior/step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Behavior/parameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Class"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Function">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Function/expression"/>
@@ -562,45 +577,59 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Function/result"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Function/isModelLevelEvaluable"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//SuccessionFlow"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Succession"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Connector">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/relatedFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/association"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/connectorEnd"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/sourceFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/targetFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Connector/defaultFeaturingType"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Invariant">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Invariant/isNegated"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Flow">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//BooleanExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/payloadType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/targetInputFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/sourceOutputFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/flowEnd"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/payloadFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/interaction"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//BooleanExpression/predicate"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FlowEnd"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//PayloadFeature"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Interaction"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Predicate"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ReturnParameterMembership"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ParameterMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ParameterMembership/ownedMemberParameter"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//ParameterMembership/parameterDirection"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ResultExpressionMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ResultExpressionMembership/ownedResultExpression"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureValue">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureValue/featureWithValue"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureValue/value"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//FeatureValue/isInitial"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//FeatureValue/isDefault"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LibraryPackage">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LibraryPackage/isStandard"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Package">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Package/filterCondition"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Package/includeAsMember">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Package/includeAsMember/element"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ElementFilterMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ElementFilterMembership/condition"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//NullExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralInfinity"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralInteger">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralInteger/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralString">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralString/value"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralBoolean">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralBoolean/value"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//IndexExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//SelectExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//OperatorExpression">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//OperatorExpression/operator"/>
     </genClasses>
@@ -612,23 +641,12 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//InstantiationExpression/instantiatedType.1"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//InstantiationExpression/instantiatedType"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralInteger">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralInteger/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//SelectExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralString">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralString/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralRational">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralRational/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ConstructorExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureChainExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureChainExpression/targetFeature"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//FeatureChainExpression/sourceTargetFeature"/>
-    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//CollectExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureReferenceExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureReferenceExpression/referent"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//IndexExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//MetadataAccessExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MetadataAccessExpression/referencedElement"/>
@@ -645,53 +663,35 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//MetadataFeature/syntaxElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Metaclass"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralInfinity"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureReferenceExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureReferenceExpression/referent"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Structure"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ConstructorExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LiteralRational">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LiteralRational/value"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//MultiplicityRange">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FeatureChainExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/lowerBound"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//FeatureChainExpression/targetFeature"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//FeatureChainExpression/sourceTargetFeature"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//PayloadFeature"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Interaction"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//FlowEnd"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//SuccessionFlow"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Flow">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/upperBound"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/payloadType"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//MultiplicityRange/bound"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//MultiplicityRange/hasBounds">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/hasBounds/lower"/>
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/hasBounds/upper"/>
-      </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//MultiplicityRange/valueOf">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//MultiplicityRange/valueOf/bound"/>
-      </genOperations>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//BindingConnector"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Package">
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/targetInputFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Package/filterCondition"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="kerml.ecore#//Package/includeAsMember">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="kerml.ecore#//Package/includeAsMember/element"/>
-      </genOperations>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//LibraryPackage">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//LibraryPackage/isStandard"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ElementFilterMembership">
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/sourceOutputFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ElementFilterMembership/condition"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ReturnParameterMembership"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//BooleanExpression">
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/flowEnd"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//BooleanExpression/predicate"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Predicate"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//ResultExpressionMembership">
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/payloadFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//ResultExpressionMembership/ownedResultExpression"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference kerml.ecore#//Flow/interaction"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//Invariant">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute kerml.ecore#//Invariant/isNegated"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//AssociationStructure"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="kerml.ecore#//DataType"/>
   </genPackages>
 </genmodel:GenModel>

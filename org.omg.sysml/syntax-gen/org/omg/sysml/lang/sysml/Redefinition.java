@@ -34,11 +34,19 @@ package org.omg.sysml.lang.sysml;
  * -- Including "Anything" accounts for implicit featuringType of Features
  * -- with no explicit featuringType.
  * let redefiningFeaturingTypes: Set(Type) =
- *     redefiningFeature.featuringTypes->asSet()->including(anythingType) in
+ *     if redefiningFeature.isVariable then Set{redefiningFeature.owningType}
+ *     else redefiningFeature.featuringTypes->asSet()->including(anythingType) 
+ *     endif in
  * let redefinedFeaturingTypes: Set(Type) =
- *     redefinedFeature.featuringTypes->asSet()->including(anythingType) in
+ *     if redefinedFeature.isVariable then Set{redefinedFeature.owningType}
+ *     else redefinedFeature.featuringTypes->asSet()->including(anythingType)
+ *     endif in
  * redefiningFeaturingTypes <> redefinedFeaturingType
- * featuringType->forAll(t |
+ * let featuringTypes : Sequence(Type) =
+ *     if redefiningFeature.isVariable then Sequence{redefiningFeature.owningType}
+ *     else redefiningFeature.featuringType
+ *     endif in
+ * featuringTypes->forAll(t |
  *     let direction : FeatureDirectionKind = t.directionOf(redefinedFeature) in
  *     ((direction = FeatureDirectionKind::_'in' or 
  *       direction = FeatureDirectionKind::out) implies

@@ -22,7 +22,7 @@ package org.omg.sysml.lang.sysml;
  *             intersection(f2.ownedRedefinition.redefinedFeature)->
  *             intersection(features)->isEmpty()))
  * let features : OrderedSet(Feature) = instantiatedType.feature->
- *     select(visibility = VisibilityKind::public) in
+ *     select(owningMembership.visibility = VisibilityKind::public) in
  * result.ownedFeature->forAll(f | 
  *     f.ownedRedefinition.redefinedFeature->
  *         intersection(features)->size() = 1)

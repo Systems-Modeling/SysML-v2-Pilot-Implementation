@@ -1,12 +1,12 @@
 = Jupyter SysML Kernel
 
-A http://jupyter.org/[Jupyter] kernel for executing SysML v2 models. The kernel executes models via the new SysML textual language. Some of the additional commands should be supported as needed via a syntax similar to the IPython magics.
+A http://jupyter.org/[Jupyter] kernel for executing SysML v2 models. The kernel executes models via the new SysML textual language.
 
 Built on top of https://github.com/SpencerPark/jupyter-jvm-basekernel[jupyter-jvm-basekernel].
 
 == Requirements
 
-1.  http://www.oracle.com/technetwork/java/javase/downloads/index.html[Java >= 17].
+1.  http://www.oracle.com/technetwork/java/javase/downloads/index.html[Java >= 21].
 2.  Some Jupyter-like environment to use the kernel in. A non-exhaustive list of options:
     *   http://jupyter.org/install[Jupyter]
     *   http://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html[JupyterLab]
@@ -28,7 +28,7 @@ Get the latest _release_ of the software with no compilation needed. See <<Insta
 
 **Note:** if you have an old installation or a debug one from running `gradlew installKernel` it is suggested that it is first removed via `jupyter kernelspec remove sysml`.
 
-1.  Download the release from the [releases tab](.). A prepackaged distribution will be in an artifact named `sysml-jupyter-kernel-$version.zip`.
+1.  Download the release from the https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation/releases[releases tab]. A prepackaged distribution will be in an artifact named `sysml-jupyter-kernel-$version.zip`.
 
 2.  Unzip it into a temporary location. It should have at least the `install.py` and `sysml` folder extracted in there.
 
@@ -91,7 +91,7 @@ For example to set the heap size to `128m`:
 
 === Run
 
-This is where the documentation diverges as each environment has its own way of selecting a kernel. To test from command line with Jupyter's console application run:
+Each Jupyter environment has its own way of selecting a kernel. To test from the command line with Jupyter's console application run:
 
 [source,bash]
 ----

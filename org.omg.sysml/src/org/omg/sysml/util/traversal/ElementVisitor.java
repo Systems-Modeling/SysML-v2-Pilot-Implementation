@@ -52,17 +52,26 @@ public class ElementVisitor {
 	 */
 	private final ElementProcessingFacade facade;
 	
+	
+	/**
+	 * If true standard library elements will be visited as well.
+	 */
+	private boolean visitLibraryElements;
+	
 	/**
 	 * Create a visitor for the given Element, using the given traversal and facade objects.
 	 * 
 	 * @param 	element			the Element to be visited
 	 * @param 	traversal		the traversal object the be used to record a visit
 	 * @param 	facade			the facade to be used for Element processing
+	 * @param	visitLibraryElements	allow visiting standard library elements
+	 * @param visitLibraryElements 
 	 */
-	public ElementVisitor(Element element, Traversal traversal, ElementProcessingFacade facade) {
+	public ElementVisitor(Element element, Traversal traversal, ElementProcessingFacade facade, boolean visitLibraryElements) {
 		this.element = element;
 		this.traversal = traversal;
 		this.facade = facade;
+		this.visitLibraryElements = visitLibraryElements;
 	}
 
 	/**
@@ -131,7 +140,7 @@ public class ElementVisitor {
 	 */
 	protected void postProcess() {
 		Element element = this.getElement();
-		if (!ElementUtil.isStandardLibraryElement(element)) {
+		if (!ElementUtil.isStandardLibraryElement(element) || visitLibraryElements) {
 			Traversal traversal = this.getTraversal();
 			if (element instanceof Relationship) {
 				for (Element relatedElement: ((Relationship)element).getRelatedElement()) {

@@ -63,6 +63,10 @@
         </iterate>
      </activeWhen>
   </handler>
+  <handler
+        class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.omg.sysml.xtext.ui.handlers.PullRepositoryProject"
+        commandId="org.omg.sysml.xtext.ui.PullRepositoryProject">
+  </handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
 		<definition id="org.omg.sysml.xtext.SysML.Editor.opened">
@@ -151,6 +155,10 @@
   <command
         id="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
         name="Generate Library Index">
+  </command>
+  <command
+        id="org.omg.sysml.xtext.ui.PullRepositoryProject"
+        name="Pull Model from API">
   </command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -347,10 +355,33 @@
   <menuContribution
         allPopups="false"
         locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-     <command
-           commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
-           label="Generate Library Index"
-           style="push">
+     <menu
+           label="SysMLv2">
+        <command
+              commandId="org.omg.sysml.xtext.ui.GenerateLibraryIndex"
+              label="Generate Library Index"
+              style="push">
+        </command>
+        <separator
+              name="org.omg.sysml.xtext.ui.index.separator"
+              visible="true">
+        </separator>
+        <command
+              commandId="org.omg.sysml.xtext.ui.PullRepositoryProject"
+              label="Pull Model from API"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate>
+                 <adapt
+                       type="org.eclipse.core.resources.IProject">
+                    <test
+                          property="org.omg.sysml.xtext.ui.repository_descriptor">
+                    </test>
+                 </adapt>
+              </iterate>
+           </visibleWhen>
+        </command>
         <visibleWhen
               checkEnabled="false">
            <and>
@@ -360,11 +391,14 @@
               <iterate>
                  <adapt
                        type="org.eclipse.core.resources.IProject">
+                    <test
+                          property="org.eclipse.core.resources.open">
+                    </test>
                  </adapt>
               </iterate>
            </and>
         </visibleWhen>
-     </command>
+     </menu>
   </menuContribution>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
@@ -397,4 +431,21 @@
 			type="text">
 		</fileTypes>
 	</extension>
+   	<extension
+         point="org.eclipse.xtext.extension_resourceServiceProvider">
+	    <resourceServiceProvider
+	          class="org.omg.sysml.xtext.ui.xmi.SysMLxExecutableExtensionFactory:org.eclipse.xtext.ui.resource.generic.EmfResourceUIServiceProvider"
+	          uriExtension="sysmlx">
+	    </resourceServiceProvider>
+   	</extension>
+    <extension
+          point="org.eclipse.core.expressions.propertyTesters">
+       <propertyTester
+             class="org.omg.sysml.xtext.ui.util.RemoteRepositoryPropertyTester"
+             id="org.omg.sysml.xtext.ui.remoterepositoryproperties"
+             namespace="org.omg.sysml.xtext.ui"
+             properties="repository_descriptor"
+             type="org.eclipse.core.resources.IProject">
+       </propertyTester>
+    </extension>
 </plugin>

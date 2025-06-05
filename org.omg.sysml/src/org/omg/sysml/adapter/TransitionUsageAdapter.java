@@ -97,10 +97,12 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
 			// checkTransitionUsageSuccessionBindingConnector
-			transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
-			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
 			Succession succession = transition.getSuccession();
-			addBindingConnector(succession, transitionLinkFeature);		
+			if (succession != null) {
+				transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
+				TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
+				addBindingConnector(succession, transitionLinkFeature);
+			}
 			
 			// checkTransitionUsageSourceBindingConnector
 			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);

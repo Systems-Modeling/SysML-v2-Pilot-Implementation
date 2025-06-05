@@ -8,7 +8,7 @@
     <version>${revision}</version>
   </parent>
   <artifactId>jupyter-sysml-kernel</artifactId>
-  
+
     <dependencies>
         <dependency>
             <groupId>org.omg.sysml</groupId>
@@ -35,14 +35,14 @@
         		</exclusion>
     		</exclusions>
         </dependency>
-        <!-- 
-        Dependencies needed for m2e 
+        <!--
+        Dependencies needed for m2e
         we need to add these manually so the Eclipse IDE can see the classpath
         -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10</version>
+            <version>2.12.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -95,7 +95,9 @@
           	-->
             <resource>
               <directory>.</directory>
-              <exclude>**/**</exclude>
+              <excludes>
+	              <exclude>**/**</exclude>
+              </excludes>
             </resource>
           </resources>
         </configuration>
@@ -119,7 +121,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -138,7 +140,7 @@
            </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
@@ -201,25 +203,6 @@
             </executions>
         </plugin>
 
-        <!-- Needed for updating the version number in the kernel.json. This is used to copy the resources to the unzipped kernel.-->
-		<plugin>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>templating-maven-plugin</artifactId>
-			<version>3.0.0</version>
-			<executions>
-				<execution>
-					<phase>prepare-package</phase>
-					<goals>
-						<goal>filter-sources</goal>
-					</goals>
-				</execution>
-			</executions>
-			<configuration>
-				<sourceDirectory>src/main/resources</sourceDirectory>
-				<outputDirectory>target/kernel</outputDirectory>
-			</configuration>
-		</plugin>
-       
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -242,6 +225,9 @@
                   </includes>
                 </resource>
                 <resource>
+                  <directory>${basedir}/src/main/resources</directory>
+                </resource>
+                <resource>
                   <directory>..</directory>
                   <targetPath>sysml</targetPath>
                   <includes>
@@ -255,7 +241,7 @@
           </execution>
         </executions>
       </plugin>
-       
+
 	     <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-assembly-plugin</artifactId>

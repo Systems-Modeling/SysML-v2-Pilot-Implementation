@@ -404,8 +404,7 @@ public class FeatureUtil {
 	private static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
 		visited.add(subsettingFeature);
 		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
-		return featuringTypes.isEmpty() && subsettedFeature == 
-				SysMLLibraryUtil.getLibraryType(subsettingFeature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+		return featuringTypes.isEmpty() && subsettedFeature.isFeaturedWithin(null) ||
 				featuringTypes.stream().anyMatch(featuringType-> 
 						subsettedFeature.isFeaturedWithin(featuringType) ||				
 						featuringType instanceof Feature &&

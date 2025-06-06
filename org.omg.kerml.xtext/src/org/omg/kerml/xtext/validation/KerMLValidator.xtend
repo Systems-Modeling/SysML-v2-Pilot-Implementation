@@ -208,6 +208,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Featuring types of redefining feature and redefined feature cannot be the same"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
+  public static val INVALID_REDEFINITION_COVARIANCE = "validateRedefinitionCovariance"
+  public static val INVALID_REDEFINITION_COVARIANCE_MSG = "Redefining feature must be covariant with the redefined feature"
 
 	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE = "validateSubsettingConstantConformance"
 	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG = "Subsetting/redefining feature must be constant if subsetted/redefined feature is constant"
@@ -708,6 +710,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
 			}
+
+      // validateRefefinitionCovariance
+      // check that every type of the redefined feature is specialized by some type of the redefining feature
+      if (!redefinedFeature.type.forall[ a | redefiningFeature.type.exists[b | TypeUtil.specializes(b,a)]])
+        error(INVALID_REDEFINITION_COVARIANCE_MSG, redef, 
+            SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_COVARIANCE)
 		}		
 	}
 	

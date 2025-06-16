@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.UsageUtil;
 
@@ -44,13 +45,15 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkConstraintUsageRequirementConstraintSpecialization
+	 * @satisfies checkConstraintUsageCheckedConstraintSpecialization
+	 */
 	@Override
 	public void computeImplicitGeneralTypes() {
-		//checkConstraintUsageRequirementConstraintSpecialization
 		addRequirementConstraintSubsetting();
 		super.computeImplicitGeneralTypes();
 		if (isCheckedConstraint()) {
-			//checkConstraintUsageCheckedConstraintSpecialization
 			addDefaultGeneralType("checkedConstraint");
 		}
 		if (isStructureOwnedComposite()) {

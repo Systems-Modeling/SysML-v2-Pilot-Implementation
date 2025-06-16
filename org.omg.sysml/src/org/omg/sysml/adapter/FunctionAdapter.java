@@ -33,11 +33,13 @@ public class FunctionAdapter extends BehaviorAdapter {
 	public Function getTarget() {
 		return (Function)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkFunctionResultBindingConnector
+	 */
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		//checkFunctionResultBindingConnector
 		createResultConnector(getTarget().getResult());		
 	}
 	

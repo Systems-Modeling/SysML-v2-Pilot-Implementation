@@ -34,11 +34,13 @@ public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
 		return (AssignmentActionUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkAssignmentActionUsageReferentRedefinition
+	 * @satisfies checkAssignmentActionUsageAccessedFeatureRedefinition
+	 * @satisfies checkAssignmentActionUsageStartingAtRedefinition
+	 */
 	protected void addTargetRedefinitions() {
 		AssignmentActionUsage target = getTarget();
-		//checkAssignmentActionUsageAccessedFeatureRedefinition
-		//checkAssignmentActionUsageReferentRedefinition
-		//checkAssignmentActionUsageStartingAtRedefinition
 		addFeatureWriteTypes(TypeUtil.getOwnedParametersOf(target), target.getReferent());
 	}
 	

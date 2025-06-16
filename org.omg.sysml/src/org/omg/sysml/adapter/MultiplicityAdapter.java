@@ -42,7 +42,11 @@ public class MultiplicityAdapter extends FeatureAdapter {
 	public Multiplicity getTarget() {
 		return (Multiplicity)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkOccurrenceDefinitionMultiplicitySpecialization, Note: SysML grammar adds the empty multiplicity
+	 * @satisfies checkMultiplicitySpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		Element owner = getTarget().getOwner();
@@ -50,7 +54,6 @@ public class MultiplicityAdapter extends FeatureAdapter {
 					getDefaultSupertype("classifier"):
 			   owner instanceof Feature?
 					getDefaultSupertype("feature"):
-						//checkMultiplicitySpecialization
 					getDefaultSupertype("base");
 	}
 	

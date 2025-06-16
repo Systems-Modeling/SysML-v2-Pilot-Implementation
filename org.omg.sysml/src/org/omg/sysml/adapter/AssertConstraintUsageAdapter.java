@@ -36,9 +36,11 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 		return (AssertConstraintUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkAssertConstraintUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		//checkAssertConstraintUsageSpecialization
 		return getTarget().isNegated()?
 				getDefaultSupertype("negated"):
 				getDefaultSupertype("base");						

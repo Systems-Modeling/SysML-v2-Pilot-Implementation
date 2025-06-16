@@ -48,7 +48,12 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	}
 	
 	// Implicit Generalization
-
+	
+	/**
+	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
+	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

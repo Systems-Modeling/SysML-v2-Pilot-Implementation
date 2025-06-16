@@ -229,6 +229,9 @@ public class FeatureAdapter extends TypeAdapter {
 		addOwnedCrossFeatureSpecialization();
 	}
 	
+	/**
+	 * @satisfies checkFeatureValuationSpecialization
+	 */
 	protected void addBoundValueSubsetting() {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
@@ -310,22 +313,24 @@ public class FeatureAdapter extends TypeAdapter {
 		return crossFeature;
 	}
 	
+	/**
+	 * @satisfies checkFeatureObjectSpecialization
+	 * @satisfies checkFeatureSubobjectSpecialization
+	 * @satisfies checkFeatureSuboccurrenceSpecialization
+	 * @satisfies checkFeaturePortionSpecialization
+	 * @satisfies checkFeatureOccurrenceSpecialization
+	 * @satisfies checkFeatureDataValueSpecialization
+	 * @satisfies checkFeatureSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
-				//checkFeatureObjectSpecialization
-				//checkFeatureSubobjectSpecialization
 			hasStructureType()? isSubobject()? "subobject": "object":
-				//checkFeatureSuboccurrenceSpecialization
-				//checkFeaturePortionSpecialization
-				//checkFeatureOccurrenceSpecialization
 			hasClassType()?
 					isSuboccurrence()? "suboccurrence":
 					isPortion()? "portion":
 					"occurrence":
-				//checkFeatureDataValueSpecialization
 			hasDataType()? "dataValue":
-				//checkFeatureSpecialization
 			"base");
 	}
 	
@@ -544,6 +549,8 @@ public class FeatureAdapter extends TypeAdapter {
 	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
 	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
 	 * overriding getGeneralCategories and getRelevantFeatures.
+	 * 
+	 * @satisfies checkFeatureParameterRedefinition
 	 */
 	protected void addRedefinitions(Element skip) {
 		Feature target = getTarget();
@@ -593,6 +600,9 @@ public class FeatureAdapter extends TypeAdapter {
 			   Collections.emptyList();
 	}
 	
+	/**
+	 * @satisfies checkConstructorExpressionResultFeatureRedefinition
+	 */
 	protected List<? extends Feature> getConstructorRelevantFeatures(Type type) {
 		Type owningType = getTarget().getOwningType();
 		if (type == owningType) {
@@ -734,9 +744,13 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkFeatureValueBindingConnector
+	 */
 	protected void computeValueConnector() {
 		Feature target = getTarget();
+		//returns null if valuation isDefault is true
 		Feature result = getBoundValueResult();
 		if (result != null) {
 			List<Type> featuringTypes;
@@ -751,7 +765,9 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
-	// checkFeatureOwnedCrossFeatureTypeFeaturing
+	/**
+	 * @satisfies checkFeatureOwnedCrossFeatureTypeFeaturing
+	 */
 	public void addOwnedCrossFeatureTypeFeaturing() {
 		Feature target = getTarget();
 		if (FeatureUtil.isOwnedCrossFeature(target) && target.getOwnedTypeFeaturing().isEmpty() && isImplicitFeaturingTypesEmpty()) {

@@ -47,10 +47,13 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
 	}
+	
+	/**
+	 * @satisfies checkConcernUsageFramedConcernSpecialization
+	 */
 	@Override
 	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isFramedConcern(getTarget())) {
-			//checkConcernUsageFramedConcernSpecialization
 			addSubsetting(getDefaultSupertype("concern"));
 		} else {
 			super.addRequirementConstraintSubsetting();

@@ -43,7 +43,10 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 	public IndexExpression getTarget() {
 		return (IndexExpression)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkIndexExpressionResultSpecialization
+	 */
 	@Override
 	protected void addResultTyping() {
 		IndexExpression target = getTarget();

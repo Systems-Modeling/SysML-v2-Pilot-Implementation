@@ -47,10 +47,12 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkCaseUsageSpecialization
+	 * @satisfies checkCaseUsageSubcaseSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
-		//checkCaseUsageSpecialization
-		//checkCaseUsageSubcaseSpecialization
 		return isSubcase()? "subcase": super.getSubactionType();	
 	}
 		

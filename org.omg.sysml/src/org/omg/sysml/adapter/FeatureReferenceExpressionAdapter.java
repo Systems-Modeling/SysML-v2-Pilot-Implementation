@@ -59,6 +59,9 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		return root.getOwningMembership() instanceof ElementFilterMembership;
 	}
 	
+	/**
+	 * @satisfies checkFeatureReferenceExpressionBindingConnector
+	 */
 	protected void addReferenceConnector() {
 		if (!isInFilterExpression()) {
 			FeatureReferenceExpression target = getTarget();
@@ -69,9 +72,11 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 			}
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkFeatureFeatureReferenceResultSpecialization
+	 */
 	protected void addResultSubsetting() {
-		//checkFeatureFeatureReferenceResultSpecialization
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
 		// Note: Use getReferentFor here to avoid "self reference" default.

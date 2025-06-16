@@ -38,10 +38,12 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 		return (CalculationUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkCalculationUsageSpecialization
+	 * @satisfies checkCalculationUsageSubcalculationSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
-		//checkCalculationUsageSpecialization
-		//checkCalculationUsageSubcalculationSpecialization
 		return isSubcalculation()? "subcalculation": super.getSubactionType();	
 	}		
 		

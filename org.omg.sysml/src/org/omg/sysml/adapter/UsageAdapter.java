@@ -123,6 +123,10 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkUsageVariationDefinitionSpecialization
+	 * @satisfies checkUsageVariationUsageSpecialization
+	 */
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
 		if (UsageUtil.isVariant(usage)) {
@@ -183,13 +187,15 @@ public class UsageAdapter extends FeatureAdapter {
 			   UsageUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
+	/**
+	 * @satisfies checkSatisfyRequirementUsageBindingConnector
+	 */
 	@Override
 	protected void computeValueConnector() {
 		Usage usage = getTarget();
 		FeatureValue valuation = FeatureUtil.getValuationFor(usage);
 		if (valuation == null && UsageUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
-			//checkSatisfyRequirementUsageBindingConnector
 			if (subjectParameter != null) {
 				addBindingConnector(subjectParameter, usage);
 			}

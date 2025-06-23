@@ -38,16 +38,18 @@ public class PortUsageAdapter extends UsageAdapter {
 	}
 	
 	// Implicit Generalization
-
+	
+	/**
+	 * @satisfies checkPortUsageOwnedPortSpecialization
+	 * @satisfies checkPortUsageSubportSpecialization
+	 * @satisfies checkPortUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isOwnedPort()?
-					//checkPortUsageOwnedPortSpecialization
 					getDefaultSupertype("ownedPort"):
 			   isSubport()?
-					//checkPortUsageSubportSpecialization
 					getDefaultSupertype("subport"):
-					//checkPortUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

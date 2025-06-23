@@ -47,6 +47,9 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 		super.computeImplicitGeneralTypes();
 	}
 	
+	/**
+	 * @satisfies checkSatisfyRequirementUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getTarget().isNegated()?
@@ -54,6 +57,7 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 				getDefaultSupertype("base");						
 	}
 	
+	//TODO: check why this is needed
 	protected void addSatisfiedViewpointSubsetting() {
 		SatisfyRequirementUsage target = getTarget();
 		Type owningType = target.getOwningType();

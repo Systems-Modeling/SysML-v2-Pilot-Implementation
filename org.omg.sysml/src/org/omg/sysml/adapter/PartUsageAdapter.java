@@ -39,9 +39,11 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 		return (PartUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkPartUsageActorSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		//checkPartUsageActorSpecialization
 		//checkPartUsageStakeholderSpecialization
 		//checkPartUsageSubpartSpecialization
 		//checkPartUsageSpecialization

@@ -40,21 +40,25 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 		return (RenderingUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkRenderingUsageRedefinition
+	 */
 	@Override
 	public void addRedefinitions(Element skip) {
 		super.addRedefinitions(skip);
 		if (isViewRendering()) {
-			//checkRenderingUsageRedefinition
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getLibraryType(getDefaultSupertype("viewRendering")));
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkRenderingUsageSubrenderingSpecialization
+	 * @satisfies checkRenderingUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubrendering()?
-						//checkRenderingUsageSubrenderingSpecialization
 					getDefaultSupertype("subrendering"):
-						//checkRenderingUsageSpecialization
 					getDefaultSupertype("base");
 	}
 	

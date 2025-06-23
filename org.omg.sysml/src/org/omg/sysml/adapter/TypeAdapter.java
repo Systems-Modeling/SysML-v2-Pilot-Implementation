@@ -489,7 +489,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			addResultBinding(resultExpression, result);
 		}
 	}
-
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

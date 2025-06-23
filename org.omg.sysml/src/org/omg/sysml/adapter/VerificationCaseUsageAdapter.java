@@ -36,10 +36,12 @@ public class VerificationCaseUsageAdapter extends CaseUsageAdapter {
 		return (VerificationCaseUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkVerificationCaseUsageSubVerification
+	 * @satisfies checkVerificationCaseUsageSubVerification
+	 */
 	@Override
 	protected String getSubactionType() {
-		//checkVerificationCaseUsageSpecialization
-		//checkVerificationCaseUsageSubVerification
 		return isSubVerificationCase()? "subVerificationCase": super.getSubactionType();	
 	}
 		

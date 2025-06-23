@@ -33,15 +33,17 @@ public class AssociationAdapter extends ClassifierAdapter {
 	public Association getTarget() {
 		return (Association)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkAssociationSpecialization
+	 * @satisfies checkAssociationBinarySpecialization
+	 * @satisfies checkAssociationStructureSpecialization
+	 * @satisfies checkAssociationStructureBinarySpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getTarget().getOwnedEndFeature().size() != 2 ? 
-					//checkAssociationSpecialization
-					//checkAssociationStructureSpecialization
 				getDefaultSupertype("base") :
-					//checkAssociationBinarySpecialization
-					//checkAssociationStructureBinarySpecialization
 				getDefaultSupertype("binary");
 	}
 

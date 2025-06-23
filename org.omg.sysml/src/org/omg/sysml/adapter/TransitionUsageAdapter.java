@@ -50,18 +50,18 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkTransitionUsageStateSpecialization
+	 * @satisfies checkTransitionUsageActionSpecialization
+	 * @satisfies checkTransitionUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-					//checkTransitionUsageStateSpecialization
 		return isStateTransition()? getDefaultSupertype("stateTransition"):
-					//checkTransitionUsageActionSpecialization
 			   isActionTransition()? getDefaultSupertype("actionTransition"):
-				   //checkTransitionUsageSpecialization
 			   getDefaultSupertype("base");
 	}
 	
-	
-	// checkTransitionUsageActionSpecialization
 	protected boolean isActionTransition() {
 		TransitionUsage target = getTarget();
 		Type owningType = target.getOwningType();
@@ -70,7 +70,6 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 			   !(target.getSource() instanceof StateUsage);
 	}	
 	
-	// checkTransitionUsageStateSpecialization
 	protected boolean isStateTransition() {
 		TransitionUsage target = getTarget();
 		Type owningType = target.getOwningType();
@@ -92,11 +91,14 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkTransitionUsageSuccessionBindingConnector
+	 * @satisfies checkTransitionUsageSourceBindingConnector
+	 */
 	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
-			// checkTransitionUsageSuccessionBindingConnector
 			Succession succession = transition.getSuccession();
 			if (succession != null) {
 				transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
@@ -104,7 +106,6 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 				addBindingConnector(succession, transitionLinkFeature);
 			}
 			
-			// checkTransitionUsageSourceBindingConnector
 			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
 			if (!parameters.isEmpty()) {
 				Feature source = transition.getSource();

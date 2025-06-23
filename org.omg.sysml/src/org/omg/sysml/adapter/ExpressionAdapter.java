@@ -60,7 +60,7 @@ public class ExpressionAdapter extends StepAdapter {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
-
+	
 	@Override
 	protected String getDefaultSupertype() {
 		//checkExpressionSpecialization

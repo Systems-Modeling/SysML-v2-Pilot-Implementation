@@ -206,8 +206,14 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		if (UsageUtil.isVariant(getTarget())) {
+		Usage target = getTarget();
+		if (UsageUtil.isVariant(target)) {
 			addImplicitFeaturingTypesIfNecessary();
+		}
+		
+		// Note: This cannot be done in postProcess, because of mayTimeVary computation.
+		if (target.isEnd() && mayTimeVary()) {
+			target.setIsConstant(true);
 		}
 	}
 }

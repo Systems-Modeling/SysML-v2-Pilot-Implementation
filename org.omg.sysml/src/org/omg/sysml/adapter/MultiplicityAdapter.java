@@ -62,6 +62,9 @@ public class MultiplicityAdapter extends FeatureAdapter {
 		return Collections.emptyList();
 	}
 	
+	/**
+	 * @satisfies checkMultiplicityTypeFeaturing
+	 */
 	@Override
 	protected void addImplicitFeaturingTypesIfNecessary() {
 		Feature feature = getTarget();

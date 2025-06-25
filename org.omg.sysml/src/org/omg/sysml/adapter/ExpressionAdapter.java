@@ -61,9 +61,11 @@ public class ExpressionAdapter extends StepAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkExpressionSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		//checkExpressionSpecialization
 		return getDefaultSupertype("base");
 	}
 	
@@ -90,17 +92,19 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	// Transformation
-
+	
+	/**
+	 * @satisfies checkExpressionTypeFeaturing
+	 * @satisfies checkExpressionResultBindingConnector
+	 */
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();
 		super.doTransform();
 		if (expression.getOwningNamespace() instanceof Multiplicity || 
 				expression.getOwningMembership() instanceof FeatureValue) {
-			//checkExpressionTypeFeaturing
 			addImplicitFeaturingTypesIfNecessary();
 		}
-		////checkExpressionResultBindingConnector
 		createResultConnector(expression.getResult());
 	}
 		

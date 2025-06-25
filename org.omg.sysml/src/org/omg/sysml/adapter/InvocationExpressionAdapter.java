@@ -58,8 +58,10 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 	
 	// Transformation
 	
+	/**
+	 * @satisfies checkInvocationExpressionBehaviorBindingConnector
+	 */
 	protected void createSelfResultConnector() {
-		// checkInvocationExpressionBehaviorBindingConnector
 		InvocationExpression target = getTarget();
 		Type instantiatedType = target.getInstantiatedType();
 		if (instantiatedType != null && !isFunctionType(instantiatedType)) {
@@ -70,8 +72,10 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 		}		
 	}
 	
+	/**
+	 * @satisfies checkInvocationExpressionBehaviorResultSpecialization
+	 */
 	protected void addResultTyping() {
-		// checkInvocationExpressionBehaviorResultSpecialization
 		InvocationExpression target = getTarget();
 		Type instantiatedType = target.getInstantiatedType();
 		if (instantiatedType != null && !isFunctionType(instantiatedType)) {

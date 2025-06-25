@@ -69,6 +69,10 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureChainExpressionTargetRedefinition
+	 * @satisfies checkFeatureChainExpressionSourceTargetRedefinition
+	 */
 	protected void addTargetRedefinition() {
 		FeatureChainExpression target = getTarget();
 		Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
@@ -88,8 +92,6 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		//checkFeatureChainExpressionSourceTargetRedefinition
-		//checkFeatureChainExpressionTargetRedefinition
 		addTargetRedefinition();
 	}
 	

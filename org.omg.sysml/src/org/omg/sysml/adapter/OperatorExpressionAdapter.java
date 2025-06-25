@@ -36,12 +36,14 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return (OperatorExpression)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkOperatorExpressionSpecialization
+	 */
 	@Override
 	public void computeImplicitGeneralTypes() {
 		OperatorExpression target = getTarget();
 		String operator = target.getOperator();
 		if (operator != null) {
-			//checkOperatorExpressionSpecialization
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), ExpressionUtil.getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();

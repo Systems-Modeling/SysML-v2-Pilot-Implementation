@@ -80,6 +80,9 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	// Transformation
 	
+	/**
+	 * @satisfies checkTransitionUsageSuccessionSourceSpecialization
+	 */
 	protected void computeSource() {
 		TransitionUsage target = getTarget();
 		List<Membership> ownedMemberships = target.getOwnedMembership();

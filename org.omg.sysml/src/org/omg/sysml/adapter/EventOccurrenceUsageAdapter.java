@@ -36,7 +36,10 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 	public EventOccurrenceUsage getTarget() {
 		return (EventOccurrenceUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -46,6 +49,9 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isSuboccurrence()? 

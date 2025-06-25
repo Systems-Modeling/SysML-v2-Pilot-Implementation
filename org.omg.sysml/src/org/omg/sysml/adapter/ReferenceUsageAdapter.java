@@ -48,12 +48,14 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkTransitionUsagePayloadSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		ReferenceUsage target = getTarget();
 		Type type = target.getOwningType();
 		if (type instanceof TransitionUsage) {
-			//checkTransitionUsagePayloadSpecialization
 			if (target == UsageUtil.getPayloadParameterOf((TransitionUsage)type)) {
 				Feature accepterParameter = UsageUtil.getAccepterPayloadParameterOf((TransitionUsage)type);
 				if (accepterParameter != null) {
@@ -88,7 +90,6 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 		ReferenceUsage target = getTarget();
 		Type type = target.getOwningType();
 		if ((type instanceof TransitionUsage) && target == UsageUtil.getTransitionLinkFeatureOf((TransitionUsage)type)) {
-			//checkTransitionUsageSuccessionBindingConnector
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), 
 					(Feature)SysMLLibraryUtil.getLibraryType(getTarget(), TRANSITION_LINK_FEATURE));
 		} else {

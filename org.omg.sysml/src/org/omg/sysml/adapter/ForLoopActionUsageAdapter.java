@@ -38,6 +38,9 @@ public class ForLoopActionUsageAdapter extends LoopActionUsageAdapter {
 		return (ForLoopActionUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkForLoopActionUsageVarRedefinition
+	 */
 	public void transformLoopVariable() {
 		ForLoopActionUsage target = getTarget();
 		ReferenceUsage loopVariable = target.getLoopVariable();
@@ -59,7 +62,6 @@ public class ForLoopActionUsageAdapter extends LoopActionUsageAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		//checkForLoopActionUsageVarRedefinition
 		transformLoopVariable();
 	}
 

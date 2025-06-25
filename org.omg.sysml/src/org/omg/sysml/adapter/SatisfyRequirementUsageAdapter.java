@@ -57,7 +57,6 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 				getDefaultSupertype("base");						
 	}
 	
-	//TODO: check why this is needed
 	protected void addSatisfiedViewpointSubsetting() {
 		SatisfyRequirementUsage target = getTarget();
 		Type owningType = target.getOwningType();

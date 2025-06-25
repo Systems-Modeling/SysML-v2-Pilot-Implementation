@@ -41,12 +41,11 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 	
 	/**
 	 * @satisfies checkPartUsageActorSpecialization
+	 * @satisfies checkPartUsageStakeholderSpecialization
+	 * @satisfies checkPartUsageSubpartSpecialization
 	 */
 	@Override
 	protected String getDefaultSupertype() {
-		//checkPartUsageStakeholderSpecialization
-		//checkPartUsageSubpartSpecialization
-		//checkPartUsageSpecialization
 		return isRequirementActor()? getDefaultSupertype("requirementActor"):
 			   isRequirementStakeholder()? getDefaultSupertype("requirementStakeholder"):
 			   isCaseActor()? getDefaultSupertype("caseActor"):

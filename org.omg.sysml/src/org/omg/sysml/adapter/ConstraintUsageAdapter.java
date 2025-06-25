@@ -26,7 +26,6 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.UsageUtil;
 
@@ -48,6 +47,9 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	/**
 	 * @satisfies checkConstraintUsageRequirementConstraintSpecialization
 	 * @satisfies checkConstraintUsageCheckedConstraintSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
 	 */
 	@Override
 	public void computeImplicitGeneralTypes() {
@@ -74,6 +76,9 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkConstraintUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");

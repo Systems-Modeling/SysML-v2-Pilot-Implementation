@@ -76,6 +76,9 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 			   	target.getOwningType() instanceof OccurrenceUsage;
 	}
 	
+	/**
+	 * @satisfies checkOccurrenceUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");

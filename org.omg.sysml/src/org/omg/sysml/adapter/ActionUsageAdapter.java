@@ -48,13 +48,18 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkAcceptActionUsageTriggerActionSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		
 		String subactionType = getSubactionType();
 		if (subactionType != null) {
-			//checkAcceptActionUsageTriggerActionSpecialization
 			addDefaultGeneralType(subactionType);
 		}
 		
@@ -68,11 +73,13 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkAcceptActionUsageSpecialization
+	 * @satisfies checkSendActionUsageSpecialization
+	 * @satisfies checkWhileLoopActionUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		//checkAcceptActionUsageSpecialization
-		//checkSendActionUsageSpecialization
-		//checkWhileLoopActionUsageSpecialization
 		return getDefaultSupertype("base");
 	}
 	
@@ -81,21 +88,24 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		return super.isSuboccurrence() && !isActionOwnedComposite();
 	}
 	
+	/**
+	 * @satisfies checkActionUsageSubactionSpecialization
+	 * @satisfies checkAcceptActionUsageSubactionSpecialization
+	 * @satisfies checkDecisionNodeSpecialization
+	 * @satisfies checkForkNodeSpecialization
+	 * @satisfies checkForLoopActionUsageSubactionSpecialization
+	 * @satisfies checkIfActionUsageSubactionSpecialization
+	 * @satisfies checkJoinNodeSpecialization
+	 * @satisfies checkMergeNodeSpecialization
+	 * @satisfies checkAssignmentActionUsageSubactionSpecialization
+	 * @satisfies checkSendActionUsageSubactionSpecialization
+	 * @satisfies checkWhileLoopActionUsageSubactionSpecialization
+	 * @satisfies checkActionUsageOwnedActionSpecialization
+	 * @satisfies checkStateUsageOwnedStateSpecialization
+	 * 
+	 */
 	protected String getSubactionType() {
-		//checkAcceptActionUsageSubactionSpecialization
-		//checkActionUsageSubactionSpecialization
-		//checkDecisionNodeSpecialization
-		//checkForkNodeSpecialization
-		//checkForLoopActionUsageSubactionSpecialization
-		//checkIfActionUsageSubactionSpecialization
-		//checkJoinNodeSpecialization
-		//checkMergeNodeSpecialization
-		//checkAssignmentActionUsageSubactionSpecialization
-		//checkSendActionUsageSubactionSpecialization
-		//checkWhileLoopActionUsageSubactionSpecialization
 		return isActionOwnedComposite()? "subaction": 
-			//checkActionUsageOwnedActionSpecialization
-			//checkStateUsageOwnedStateSpecialization
 			   isPartOwnedComposite()? "ownedAction":
 			   null;	
 	}
@@ -128,8 +138,10 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 			   Collections.singletonList((Feature)getLibraryType(redefinedFeature));
 	}
 	
+	/**
+	 * @satisfies checkTransitionUsageTransitionFeatureSpecialization
+	 */
 	protected static String getRedefinedFeature(Feature target) {
-		//checkTransitionUsageTransitionFeatureSpecialization
 		FeatureMembership membership = target.getOwningFeatureMembership();
 		String kind = 
 				membership instanceof StateSubactionMembership?

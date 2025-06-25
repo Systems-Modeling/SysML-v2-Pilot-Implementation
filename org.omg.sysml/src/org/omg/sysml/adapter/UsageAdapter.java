@@ -144,8 +144,6 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	@Override
 	public void addDefaultGeneralType() {
-		//checkUsageVariationDefinitionSpecialization
-		//checkUsageVariationUsageSpecialization
 		addVariationTyping();
 		
 		super.addDefaultGeneralType();

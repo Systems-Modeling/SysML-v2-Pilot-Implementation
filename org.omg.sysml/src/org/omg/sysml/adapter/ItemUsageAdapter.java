@@ -39,8 +39,9 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 	
 	/**
 	 * @satisfies checkItemUsageSubitemSpecialization
-	 * @satisfies checkPartUsageSubpartSpecialization
 	 * @satisfies checkItemUsageSpecialization
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 * @satisfies checkPartUsageSpecialization
 	 */
 	@Override
 	protected String getDefaultSupertype() {

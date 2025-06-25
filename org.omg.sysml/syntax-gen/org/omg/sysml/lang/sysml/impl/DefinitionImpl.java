@@ -784,15 +784,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 		return (EList<VariantMembership>)VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
-	// Additional Overrides
-	
-	@Override
-	public boolean isAbstract() {
-		return isVariation() || super.isAbstract();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

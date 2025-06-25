@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -52,6 +52,15 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	// Post-processing
+	
+	@Override
+	public void postProcess () {
+		super.postProcess();
+		Usage target = getTarget();
+		if (target.isVariation()) {
+			target.setIsAbstract(true);
+		}
+	}
 	
 	@Override
 	protected void setIsVariableIfConstant() {
@@ -197,8 +206,14 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		if (UsageUtil.isVariant(getTarget())) {
+		Usage target = getTarget();
+		if (UsageUtil.isVariant(target)) {
 			addImplicitFeaturingTypesIfNecessary();
+		}
+		
+		// Note: This cannot be done in postProcess, because of mayTimeVary computation.
+		if (target.isEnd() && mayTimeVary()) {
+			target.setIsConstant(true);
 		}
 	}
 }

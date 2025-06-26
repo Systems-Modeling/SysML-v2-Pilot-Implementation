@@ -61,6 +61,17 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 	}
 
 	protected boolean isRequirementStakeholder() {
+		/*
+		 * TODO: ST6RI-843
+		 * 
+		 * checkPartUsageStakeholderSpecialization
+		 * 
+		 * owningFeatureMembership <> null and
+		 * owningFeatureMembership.oclIsKindOf(StakeholderMembership) implies
+		 * specializesFromLibrary('Requirements::RequirementCheck::stakeholders')
+		 *
+		 * OCL doesn't require the owningType to be ReqDef or ReqUsage 
+		 */
 		PartUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return UsageUtil.isStakeholderParameter(target) &&

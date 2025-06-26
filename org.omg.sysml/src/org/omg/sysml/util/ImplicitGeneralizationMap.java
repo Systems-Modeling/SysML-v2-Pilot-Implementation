@@ -133,6 +133,15 @@ public class ImplicitGeneralizationMap {
 		//checkStepOwnedPerformanceSpecialization
 		put(FlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
+		/*
+		 * TODO: ST6RI-843
+		 * checkFlowSpecialization
+		 * specializesFromLibrary('Transfers::transfers')
+		 * 
+		 * This case is missing from the implementation
+		 */
+		
+		
 		//checkFeatureFlowFeatureRedefinition
 		put(FlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
 		//checkFeatureFlowFeatureRedefinition
@@ -435,7 +444,7 @@ public class ImplicitGeneralizationMap {
 		put(OccurrenceUsageImpl.class, "timeslice", "Occurrences::Occurrence::timeSlices");
 		//checkOccurrenceUsageSnapshotSpecialization
 		put(OccurrenceUsageImpl.class, "snapshot", "Occurrences::Occurrence::snapshots");
-		
+				
 		//checkPartDefinitionSpecialization
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		//checkPartUsageSpecialization
@@ -555,6 +564,20 @@ public class ImplicitGeneralizationMap {
 		put(ViewpointUsageImpl.class, "base", "Views::viewpointChecks");
 		//checkViewpointUsageViewpointSatisfactionSpecialization
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
+		
+		/*
+		 * TODO: ST6RI-843
+		 * 
+		 * checkViewpointDefinitionSpecialization
+		 * specializesFromLibrary('Views::Viewpoint')
+		 * 
+		 * TODO: ST6RI-843
+		 * 
+		 * checkViewpointUsageSpecialization
+		 * specializesFromLibrary('Views::viewpoints')
+		 * 
+		 * OCL doesn't match with the implementation
+		 */
 		
 		//checkWhileLoopActionUsageSpecialization
 		put(WhileLoopActionUsageImpl.class, "base", "Actions::whileLoopActions");

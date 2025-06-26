@@ -63,6 +63,14 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	 * @satisfies checkFeatureReferenceExpressionBindingConnector
 	 */
 	protected void addReferenceConnector() {
+		/*
+		 * TODO: ST6RI-843
+		 * 
+		 * ownedMember->selectByKind(BindingConnector)->exists(b |
+		 * b.relatedFeatures->includes(targetFeature) and
+         * b.relatedFeatures->includes(result))
+		 * 
+		 */
 		if (!isInFilterExpression()) {
 			FeatureReferenceExpression target = getTarget();
 			Feature referent = target.getReferent();

@@ -31,10 +31,13 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		super(element);
 	}
 	
+	/**
+	 * @satisfies checkIncludeUseCaseSpecialization
+	 * @satisfies checkUseCaseUsageSpecialization
+	 * @satisfies checkUseCaseUsageSubUseCaseSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
-		//checkUseCaseUsageSpecialization
-		//checkUseCaseUsageSubUseCaseSpecialization
 		return isSubUseCase()? "subUseCase": super.getSubactionType();	
 	}
 		

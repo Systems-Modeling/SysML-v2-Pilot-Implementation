@@ -37,12 +37,13 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 		return (IncludeUseCaseUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkPerformActionUsageSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
-		//checkIncludeUseCaseSpecialization
 		super.addDefaultGeneralType();
 		if (isPerformedAction()) {
-			////checkPerformActionUsageSpecialization
 			addDefaultGeneralType("performedAction");
 		}
 	}

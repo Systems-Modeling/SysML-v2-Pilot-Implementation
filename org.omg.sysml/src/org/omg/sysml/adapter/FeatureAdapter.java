@@ -245,6 +245,9 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureEndSpecialization
+	 */
 	protected void addParticipantSubsetting() {
 		if (isAssociationEnd() && 
 				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
@@ -252,6 +255,9 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureCrossingSpecialization
+	 */
 	public void addCrossingSpecialization() {
 		Feature target = getTarget();
 		Feature ownedCrossFeature = FeatureUtil.getOwnedCrossFeatureOf(target);
@@ -659,6 +665,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
+	/**
+	 * @satisfies checkFeatureFeatureMembershipTypeFeaturing
+	 */
 	protected Type computeFeaturingType() {
 		Feature feature = getTarget();
 		Type owningType = feature.getOwningType();

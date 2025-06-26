@@ -32,7 +32,10 @@ public class MetadataUsageAdapter extends ItemUsageAdapter {
 	public MetadataUsage getTarget() {
 		return (MetadataUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkMetadataUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");

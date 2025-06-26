@@ -35,6 +35,11 @@ public class FlowAdapter extends ConnectorAdapter {
 		return (Flow)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

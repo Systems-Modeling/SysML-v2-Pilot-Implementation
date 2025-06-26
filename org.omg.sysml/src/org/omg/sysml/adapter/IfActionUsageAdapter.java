@@ -33,7 +33,10 @@ public class IfActionUsageAdapter extends ActionUsageAdapter {
 	public IfActionUsage getTarget() {
 		return (IfActionUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkIfActionUsageSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

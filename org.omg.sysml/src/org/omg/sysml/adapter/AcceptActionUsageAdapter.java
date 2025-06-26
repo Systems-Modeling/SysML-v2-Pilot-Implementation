@@ -45,7 +45,7 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		// Don't add a default type for a transition trigger action because such
-		// an action will always redefine TransitionAction::accepter anyway.
+		// an action will always redefine TransitionAction::accepter anyway: checkAcceptActionUsageTriggerActionSpecialization
 		if (!isTriggerAction()) {
 			super.addDefaultGeneralType();
 		}

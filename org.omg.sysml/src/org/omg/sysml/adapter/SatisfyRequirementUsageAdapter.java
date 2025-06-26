@@ -47,6 +47,9 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 		super.computeImplicitGeneralTypes();
 	}
 	
+	/**
+	 * @satisfies checkSatisfyRequirementUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getTarget().isNegated()?

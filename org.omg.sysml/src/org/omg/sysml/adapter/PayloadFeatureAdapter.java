@@ -38,6 +38,9 @@ public class PayloadFeatureAdapter extends FeatureAdapter {
 		return (PayloadFeature)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkPayloadFeatureRedefinition
+	 */
 	@Override
 	public void addRedefinitions(Element skip) {
 		Feature redefinedFeature = (Feature)SysMLLibraryUtil.getLibraryType(getTarget(), getDefaultSupertype("payload"));

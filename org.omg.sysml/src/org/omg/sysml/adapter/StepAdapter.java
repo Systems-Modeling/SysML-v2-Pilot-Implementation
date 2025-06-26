@@ -35,6 +35,12 @@ public class StepAdapter extends FeatureAdapter {
 		return (Step)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * @satisfies checkStepSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(

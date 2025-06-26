@@ -36,6 +36,9 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return (OperatorExpression)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkOperatorExpressionSpecialization
+	 */
 	@Override
 	public void computeImplicitGeneralTypes() {
 		OperatorExpression target = getTarget();

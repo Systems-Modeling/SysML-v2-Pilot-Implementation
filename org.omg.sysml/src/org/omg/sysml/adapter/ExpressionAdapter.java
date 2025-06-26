@@ -60,7 +60,10 @@ public class ExpressionAdapter extends StepAdapter {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkExpressionSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
@@ -89,7 +92,11 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	// Transformation
-
+	
+	/**
+	 * @satisfies checkExpressionTypeFeaturing
+	 * @satisfies checkExpressionResultBindingConnector
+	 */
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();

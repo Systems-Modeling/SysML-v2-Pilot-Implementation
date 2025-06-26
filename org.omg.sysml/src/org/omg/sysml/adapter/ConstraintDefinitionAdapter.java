@@ -33,7 +33,10 @@ public class ConstraintDefinitionAdapter extends OccurrenceDefinitionAdapter {
 	public ConstraintDefinition getTarget() {
 		return (ConstraintDefinition)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkFunctionResultBindingConnector
+	 */
 	@Override
 	public void doTransform() {
 		super.doTransform();

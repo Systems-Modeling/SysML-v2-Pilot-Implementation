@@ -39,6 +39,9 @@ public class SelectExpressionAdapter extends OperatorExpressionAdapter {
 		return (SelectExpression)super.getTarget();
 	}
 
+	/**
+	 * @satisfies checkSelectExpressionResultSpecialization
+	 */
 	@Override
 	protected void addResultTyping() {
 		SelectExpression target = getTarget();

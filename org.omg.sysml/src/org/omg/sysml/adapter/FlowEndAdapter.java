@@ -75,6 +75,9 @@ public class FlowEndAdapter extends FeatureAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureFlowFeatureRedefinition
+	 */
 	public void addItemFlowFeatureRedefinition() {
 		FlowEnd target = getTarget();
 		Element owner = target.getOwner();

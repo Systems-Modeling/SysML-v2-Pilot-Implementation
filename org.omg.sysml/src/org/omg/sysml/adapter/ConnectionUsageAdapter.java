@@ -35,11 +35,19 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	public ConnectionUsage getTarget() {
 		return (ConnectionUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkConnectionUsageSpecialization
+	 * @satisfies checkAllocationUsageSpecialization
+	 * @satisfies checkInterfaceDefinitionSpecialization
+	 * @satisfies checkConnectionUsageBinarySpecialization
+	 * @satisfies checkAllocationUsageSpecialization
+	 * @satisfies checkInterfaceDefinitionBinarySpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		int numEnds = TypeUtil.getOwnedEndFeaturesOf(getTarget()).size();
-		return numEnds != 2? 
+		return numEnds != 2?
 				getDefaultSupertype("base"):
 				getDefaultSupertype("binary");
 	}

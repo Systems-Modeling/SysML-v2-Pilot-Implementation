@@ -35,10 +35,14 @@ public class ViewUsageAdapter extends PartUsageAdapter {
 	public ViewUsage getTarget() {
 		return (ViewUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkViewUsageSubviewSpecialization
+	 * @satisfies checkViewpointUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubview()? 
+		return isSubview()?
 					getDefaultSupertype("subview"):
 					getDefaultSupertype("base");
 	}

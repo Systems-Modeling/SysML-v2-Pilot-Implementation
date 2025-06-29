@@ -47,12 +47,27 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkCaseUsageSpecialization
+	 * @satisfies checkCaseUsageSubcaseSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isSubcase()? "subcase": super.getSubactionType();	
 	}
 		
 	public boolean isSubcase() {
+		/*TODO: ST6RI-843
+		 * 
+		 * checkCaseUsageSubcaseSpecialization
+		 * 
+		 * isComposite and owningType <> null and 
+    	 * (owningType.oclIsKindOf(CaseDefinition) or
+         * owningType.oclIsKindOf(CaseUsage)) implies
+         * specializesFromLibrary('Cases::Case::subcases')
+		 * 
+		 * nonEntryExit part of the check is not reflected of the OCL
+		 */
 		CaseUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return isNonEntryExitComposite() &&

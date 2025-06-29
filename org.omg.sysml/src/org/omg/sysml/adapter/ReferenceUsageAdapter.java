@@ -48,6 +48,9 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkTransitionUsagePayloadSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		ReferenceUsage target = getTarget();

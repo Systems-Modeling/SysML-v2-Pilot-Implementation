@@ -34,6 +34,11 @@ public class OccurrenceDefinitionAdapter extends DefinitionAdapter {
 		return (OccurrenceDefinition)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkOccurrenceDefinitionIndividualSpecialization
+	 * @satisfies checkClassSpecialization
+	 * @satisfies checkCalculationDefinitionSpecialization
+	 */
 	protected String getDefaultSupertype() {
 		return getTarget().isIndividual()? getDefaultSupertype("life"):
 			getDefaultSupertype("base");

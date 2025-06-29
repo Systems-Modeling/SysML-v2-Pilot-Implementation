@@ -39,7 +39,13 @@ public class ConnectorAdapter extends FeatureAdapter {
 	public Connector getTarget() {
 		return (Connector)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkConnectorBinaryObjectSpecialization
+	 * @satisfies checkConnectorBinarySpecialization
+	 * @satisfies checkConnectorObjectSpecialization
+	 * @satisfies checkConnectorSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		Connector target = getTarget();
@@ -52,7 +58,10 @@ public class ConnectorAdapter extends FeatureAdapter {
 					getDefaultSupertype("base"):
 					getDefaultSupertype("binary");
 	}
-		
+	
+	/**
+	 * @satisfies checkConnectorTypeFeaturing
+	 */
 	protected void addContextFeaturingType() {
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
 	}
@@ -72,6 +81,9 @@ public class ConnectorAdapter extends FeatureAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkConnectorTypeFeaturing
+	 */
 	@Override
 	public void doTransform() {
 		Connector target = getTarget();

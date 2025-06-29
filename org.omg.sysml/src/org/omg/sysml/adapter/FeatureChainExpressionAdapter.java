@@ -69,14 +69,20 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureChainExpressionTargetRedefinition
+	 * @satisfies checkFeatureChainExpressionSourceTargetRedefinition
+	 */
 	protected void addTargetRedefinition() {
 		FeatureChainExpression target = getTarget();
 		Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
 		if (sourceParameter != null) {
 			Feature sourceTarget = target.sourceTargetFeature();
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
-					SysMLPackage.eINSTANCE.getRedefinition(), 
+					SysMLPackage.eINSTANCE.getRedefinition(),
+					//checkFeatureChainExpressionTargetRedefinition
 					getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(target.getClass(), "target")));
+			//checkFeatureChainExpressionSourceTargetRedefinition
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
 					SysMLPackage.eINSTANCE.getRedefinition(), target.getTargetFeature());
 			TypeUtil.setIsAddImplicitGeneralTypesFor(sourceTarget, false);

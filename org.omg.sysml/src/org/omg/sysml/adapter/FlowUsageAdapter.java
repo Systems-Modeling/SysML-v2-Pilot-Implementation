@@ -38,6 +38,16 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 		return (FlowUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkActionUsageOwnedActionSpecialization
+	 * @satisfies checkActionUsageSubactionSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
+	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
+	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -77,7 +87,11 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 				target.isComposite() && 
 			   	target.getOwningType() instanceof OccurrenceUsage;
 	}
-
+	
+	/**
+	 * @satisfies checkFlowUsageFlowSpecialization
+	 * @satisfies checkFlowUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return UsageUtil.isMessageConnection(getTarget())?

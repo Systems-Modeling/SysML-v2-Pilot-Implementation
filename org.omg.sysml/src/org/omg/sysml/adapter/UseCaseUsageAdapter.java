@@ -31,6 +31,11 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		super(element);
 	}
 	
+	/**
+	 * @satisfies checkIncludeUseCaseSpecialization
+	 * @satisfies checkUseCaseUsageSpecialization
+	 * @satisfies checkUseCaseUsageSubUseCaseSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isSubUseCase()? "subUseCase": super.getSubactionType();	
@@ -38,6 +43,21 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		
 	public boolean isSubUseCase() {		
 		Type owningType = getTarget().getOwningType();
+		
+		/*
+		 * TODO: ST6RI-843
+		 * 
+		 * checkIncludeUseCaseSpecialization
+		 * 
+		 * owningType <> null and
+		 * (owningType.oclIsKindOf(UseCaseDefinition) or
+		 * owningType.oclIsKindOf(UseCaseUsage) implies
+		 * specializesFromLibrary('UseCases::UseCase::includedUseCases')
+		 * 
+		 * the semantic constraint doens't require the IncludeUseCaseUsage to be composite, also
+		 * IncludeUseCaseUsageImpl overrides isComposite to always return false
+		 */
+		
 		return isNonEntryExitComposite() && 
 			   (owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage);
 	}

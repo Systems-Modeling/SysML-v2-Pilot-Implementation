@@ -38,12 +38,28 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 		return (CalculationUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkCalculationUsageSpecialization
+	 * @satisfies checkCalculationUsageSubcalculationSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isSubcalculation()? "subcalculation": super.getSubactionType();	
 	}		
 		
 	public boolean isSubcalculation() {
+		/*
+		 * TODO: ST6RI-843
+		 * 
+		 * checkCalculationUsageSubcalculationSpecialization
+		 * 
+		 * owningType <> null and
+		 * (owningType.oclIsKindOf(CalculationDefinition) or
+ 		 * owningType.oclIsKindOf(CalculationUsage)) implies
+    	 * specializesFromLibrary('Calculations::Calculation::subcalculations')
+    	 * 
+    	 * isNonEntryExitComposite check is not part of the OCL
+		 */
 		CalculationUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return isNonEntryExitComposite() &&

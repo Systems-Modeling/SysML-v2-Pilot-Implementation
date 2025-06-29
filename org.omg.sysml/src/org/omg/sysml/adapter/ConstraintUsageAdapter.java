@@ -86,14 +86,7 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	
 	protected boolean isCheckedConstraint() {
 		/*
-		 * TODO: ST6RI-843
-		 * 
-		 *  checkConstraintUsageCheckedConstraintSpecialization
-		 *  
-		 *  owningType <> null and
-		 *	(owningType.oclIsKindOf(ItemDefinition) or
-		 * owningType.oclIsKindOf(ItemUsage)) implies
-		 * specializesFromLibrary('Items::Item::checkedConstraints')
+		 * TODO: Update checkConstraintUsageCheckedConstraintSpecialization
 		 * 
 		 * OCL doesn't require composite
 		 *  

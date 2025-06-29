@@ -238,18 +238,6 @@ public class FeatureAdapter extends TypeAdapter {
 	
 
 	protected void addBoundValueSubsetting() {
-		/*
-		 * TODO: ST6RI-843
-		 * 
-		 * direction = null and
-		 * ownedSpecializations->forAll(isImplied) implies
-		 * ownedMembership->
-         * selectByKind(FeatureValue)->
-         * forAll(fv | specializes(fv.value.result))
-		 * 
-		 * 
-		 */
-		
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
 

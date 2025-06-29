@@ -124,6 +124,10 @@ public class ImplicitGeneralizationMap {
 		//checkPayloadFeatureRedefinition
 		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
+		/*
+		 * TODO: checkFlowSpecialization
+		 * specializesFromLibrary('Transfers::transfers')
+		 */		
 		//checkFlowWithEndsSpecialization
 		put(FlowImpl.class, "base", "Transfers::flowTransfers");
 		//checkStepEnclosedPerformanceSpecialization
@@ -132,15 +136,6 @@ public class ImplicitGeneralizationMap {
 		put(FlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		//checkStepOwnedPerformanceSpecialization
 		put(FlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
-		
-		/*
-		 * TODO: ST6RI-843
-		 * checkFlowSpecialization
-		 * specializesFromLibrary('Transfers::transfers')
-		 * 
-		 * This case is missing from the implementation
-		 */
-		
 		
 		//checkFeatureFlowFeatureRedefinition
 		put(FlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
@@ -566,17 +561,9 @@ public class ImplicitGeneralizationMap {
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
 		
 		/*
-		 * TODO: ST6RI-843
+		 * TODO: Update checkViewpointDefinitionSpecialization and checkViewpointUsageSpecialization
 		 * 
-		 * checkViewpointDefinitionSpecialization
-		 * specializesFromLibrary('Views::Viewpoint')
-		 * 
-		 * TODO: ST6RI-843
-		 * 
-		 * checkViewpointUsageSpecialization
-		 * specializesFromLibrary('Views::viewpoints')
-		 * 
-		 * OCL doesn't match with the implementation
+		 * See SYSML21-301
 		 */
 		
 		//checkWhileLoopActionUsageSpecialization

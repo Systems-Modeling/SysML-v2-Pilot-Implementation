@@ -64,11 +64,9 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	 */
 	protected void addReferenceConnector() {
 		/*
-		 * TODO: ST6RI-843
-		 * 
-		 * ownedMember->selectByKind(BindingConnector)->exists(b |
-		 * b.relatedFeatures->includes(targetFeature) and
-         * b.relatedFeatures->includes(result))
+		 * TODO: Update checkFeatureReferenceExpressionBindingConnector?
+         * 
+         * OCL does not include !isInFilterExpression check.
 		 * 
 		 */
 		if (!isInFilterExpression()) {

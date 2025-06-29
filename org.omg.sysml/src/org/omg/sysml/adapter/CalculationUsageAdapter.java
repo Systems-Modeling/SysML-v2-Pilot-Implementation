@@ -49,16 +49,10 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 		
 	public boolean isSubcalculation() {
 		/*
-		 * TODO: ST6RI-843
+		 * TODO: Update checkCalculationUsageSubcalculationSpecialization
 		 * 
-		 * checkCalculationUsageSubcalculationSpecialization
-		 * 
-		 * owningType <> null and
-		 * (owningType.oclIsKindOf(CalculationDefinition) or
- 		 * owningType.oclIsKindOf(CalculationUsage)) implies
-    	 * specializesFromLibrary('Calculations::Calculation::subcalculations')
-    	 * 
     	 * isNonEntryExitComposite check is not part of the OCL
+    	 * See SYSML12-298
 		 */
 		CalculationUsage target = getTarget();
 		Type owningType = target.getOwningType();

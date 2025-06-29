@@ -58,13 +58,10 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			Type arrayType = getLibraryType(ARRAY_TYPE);
 			Type scalarValueType = getLibraryType(SCALAR_VALUE_TYPE);
 			/*
-			 * TODO: ST6RI-843
-			 * checkIndexExpressionResultSpecialization:
-			 * arguments->notEmpty() and 
-			 * not arguments->first().result.specializesFromLibrary('Collections::Array') implies
-    		 * result.specializes(arguments->first().result)
+			 * TODO: Update checkIndexExpressionResultSpecialization
+			 * See KERML11-69.
     		 * 
-    		 * '|| TypeUtil.specializes(target, scalarValueType)' part is not reflected by the OCL 
+    		 * TODO: Generalize to handle all types other than Collection types?
 			 */
 			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
 				Feature resultFeature = target.getResult();

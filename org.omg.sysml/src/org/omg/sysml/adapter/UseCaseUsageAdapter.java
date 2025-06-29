@@ -45,17 +45,10 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		Type owningType = getTarget().getOwningType();
 		
 		/*
-		 * TODO: ST6RI-843
+		 * TODO: Update checkUseCaseSubUseCaseSpecialization
 		 * 
-		 * checkIncludeUseCaseSpecialization
-		 * 
-		 * owningType <> null and
-		 * (owningType.oclIsKindOf(UseCaseDefinition) or
-		 * owningType.oclIsKindOf(UseCaseUsage) implies
-		 * specializesFromLibrary('UseCases::UseCase::includedUseCases')
-		 * 
-		 * the semantic constraint doens't require the IncludeUseCaseUsage to be composite, also
-		 * IncludeUseCaseUsageImpl overrides isComposite to always return false
+		 * OCL does not include isNonEntryExitComposite.
+    	 * See SYSML21-298
 		 */
 		
 		return isNonEntryExitComposite() && 

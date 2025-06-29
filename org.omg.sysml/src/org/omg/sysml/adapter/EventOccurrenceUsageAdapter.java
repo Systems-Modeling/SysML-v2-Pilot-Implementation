@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,30 +37,8 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 		return (EventOccurrenceUsage)super.getTarget();
 	}
 	
-	/*
-	 * TODO: ST6RI-843
-	 * 
-	 * All general semantic constraints on an OccurrenceUsage
-	 * (see 8.4.5.2 ) also apply to an EventOccurrenceUsage.
-	 * 
-	 * addDefaultGeneralType and getDefaultSuperType overrides look redundant
-	 * as they both check for subOccurrence which is also done by OccurrenceUsageAdapter
-	 */
-	
 	/**
-	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isSuboccurrence()) {
-			addImplicitGeneralType(getSpecializationEClass(), 
-					getLibraryType(getDefaultSupertype("suboccurrence")));
-		}
-	}
-	
-	/**
-	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 * @satisfies checkEventOccurrenceUsageSpecialization
 	 */
 	@Override
 	protected String getDefaultSupertype() {

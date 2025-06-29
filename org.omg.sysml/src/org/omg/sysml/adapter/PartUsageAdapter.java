@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -62,13 +62,7 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 
 	protected boolean isRequirementStakeholder() {
 		/*
-		 * TODO: ST6RI-843
-		 * 
-		 * checkPartUsageStakeholderSpecialization
-		 * 
-		 * owningFeatureMembership <> null and
-		 * owningFeatureMembership.oclIsKindOf(StakeholderMembership) implies
-		 * specializesFromLibrary('Requirements::RequirementCheck::stakeholders')
+		 * TODO: Update checkPartUsageStakeholderSpecialization?
 		 *
 		 * OCL doesn't require the owningType to be ReqDef or ReqUsage 
 		 */

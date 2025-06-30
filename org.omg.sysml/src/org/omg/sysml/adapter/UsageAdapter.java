@@ -211,6 +211,9 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkUsageVariationUsageTypeFeaturing
+	 */
 	@Override
 	public void doTransform() {
 		super.doTransform();

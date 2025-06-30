@@ -395,6 +395,9 @@ public class TypeAdapter extends NamespaceAdapter {
  		}
 	}
 	
+	/**
+	 * @satisfies checkMetadataFeatureSemanticSpecialization
+	 */
 	public void addDefaultGeneralType() {
 		for (Type baseType: getBaseTypes()) {
 			addImplicitGeneralType(getSpecializationEClass(), baseType);

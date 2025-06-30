@@ -40,6 +40,9 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		return (FeatureChainExpression)super.getTarget();
 	}
 
+	/**
+	 * @satisfies checkFeatureChainExpressionResultSpecialization
+	 */
 	@Override
 	protected void addResultTyping() {
 		FeatureChainExpression target = getTarget();

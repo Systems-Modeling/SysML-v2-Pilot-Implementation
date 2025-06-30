@@ -237,6 +237,9 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 
+	/**
+	 * @satisfies checkFeatureValuationSpecialization
+	 */
 	protected void addBoundValueSubsetting() {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
@@ -562,8 +565,6 @@ public class FeatureAdapter extends TypeAdapter {
 	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
 	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
 	 * overriding getGeneralCategories and getRelevantFeatures.
-	 * 
-	 * @satisfies checkFeatureParameterRedefinition
 	 */
 	protected void addRedefinitions(Element skip) {
 		Feature target = getTarget();
@@ -603,6 +604,8 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Get the relevant Features that may be redefined from the given Type.
 	 * This includes end features, owned features of constructor results, and
 	 * generally parameters.
+	 * 
+	 * @satisfies checkFeatureEndRedefinition
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
@@ -632,6 +635,8 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Parameters redefine (owned) Parameters of general Types, with a result
 	 * Parameter always redefining the result Parameter of a general Function or
 	 * Expression.
+	 * 
+	 * @satisfies checkFeatureResultRedefinition
 	 */
 	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
 		if (type != null) {
@@ -647,6 +652,9 @@ public class FeatureAdapter extends TypeAdapter {
 		return Collections.emptyList();
 	}
 	
+	/**
+	 * @satisfies checkFeatureParameterRedefinition
+	 */
 	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
 		return filterIgnoredParameters(type == owningType? 

@@ -46,5 +46,10 @@ public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 			addFeaturingTypes(((TransitionUsage)owningNamespace).getFeaturingType());
 		}
 	}
+	
+	/**
+	 * TODO: checkDecisionNodeOutgoingSuccessionSpecialization
+	 * TODO: checkMergeNodeIncomingSuccessionSpecialization
+	 */
 
 }

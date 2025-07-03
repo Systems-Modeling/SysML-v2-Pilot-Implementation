@@ -84,9 +84,9 @@ public class ImplicitGeneralizationMap {
 		//checkDataTypeSpecialization
 		put(DataTypeImpl.class, "base", "Base::DataValue");
 		
-		//checkDataTypeSpecialization
+		//checkExpressionSpecialization
 		put(ExpressionImpl.class, "base", "Performances::evaluations");
-		//
+		//checkStepEnclosedPerformanceSpecialization
 		put(ExpressionImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		
 		//checkFeatureSpecialization
@@ -173,7 +173,8 @@ public class ImplicitGeneralizationMap {
 		
 		//checkMultiplicitySpecialization
 		put(MultiplicityImpl.class, "base", "Base::naturals");
-		// TODO: Update specification for SysML default multiplicities.
+		// TODO: Update SysML specification to formalize default multiplicities.
+		// See SYSML21-185
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		//checkOccurrenceDefinitionMultiplicitySpecialization
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");

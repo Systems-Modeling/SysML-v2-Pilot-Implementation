@@ -42,6 +42,8 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 
 	/**
 	 * @satisfies checkFeatureChainExpressionResultSpecialization
+	 * 
+	 * TODO: Revise to explicitly get first "in" parameter, to more closely match OCL.
 	 */
 	@Override
 	protected void addResultTyping() {

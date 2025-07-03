@@ -61,8 +61,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class FeatureUtil {
 	

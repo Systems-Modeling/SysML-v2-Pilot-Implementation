@@ -66,7 +66,7 @@ public class ImplicitGeneralizationMap {
 		//checkClassSpecialization
 		put(ClassImpl.class, "base", "Occurrences::Occurrence");
 		
-		//
+		//checkTypeSpcialization
 		put(ClassifierImpl.class, "base", "Base::Anything");
 		
 		//checkConnectorSpecialization
@@ -173,10 +173,10 @@ public class ImplicitGeneralizationMap {
 		
 		//checkMultiplicitySpecialization
 		put(MultiplicityImpl.class, "base", "Base::naturals");
+		// TODO: Update specification for SysML default multiplicities.
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		//checkOccurrenceDefinitionMultiplicitySpecialization
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
-		
 		
 		put(MultiplicityRangeImpl.class, "feature", "Base::naturals");
 		put(MultiplicityRangeImpl.class, "classifier", "Base::naturals");
@@ -277,7 +277,7 @@ public class ImplicitGeneralizationMap {
 		put(AssignmentActionUsageImpl.class, "subaction", "Actions::Action::assignments");
 		put(AssignmentActionUsageImpl.class, "featureWrite", "Actions::AssignmentAction");
 		
-		//
+		//checkDataTypeSpecialization (an AttributeDefinition is a DataType)
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		//checkAttributeUsageSpecialization
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
@@ -429,7 +429,7 @@ public class ImplicitGeneralizationMap {
 		//checkMergeNodeSpecialization
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
-		//
+		//checkClassSpecialization (an OccurrenceDefinition is a Class)
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		//checkOccurrenceDefinitionIndividualSpecialization
 		put(OccurrenceDefinitionImpl.class, "life", "Occurrences::Life");
@@ -519,6 +519,7 @@ public class ImplicitGeneralizationMap {
 		//checkTerminateActionUsageSubactionSpecialization
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");
 		
+		// TODO: Delete this.
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateWithResultSubactions");
 		
 		//checkTransitionUsageSpecialization
@@ -528,6 +529,7 @@ public class ImplicitGeneralizationMap {
 		//checkTransitionUsageStateSpecialization
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
+		//checkInvocationExpressionSpecialization (with appropriate insantiatedType)
 		put(TriggerInvocationExpressionImpl.class, "when", "Triggers::TriggerWhen");
 		put(TriggerInvocationExpressionImpl.class, "at", "Triggers::TriggerAt");
 		put(TriggerInvocationExpressionImpl.class, "after", "Triggers::TriggerAfter");

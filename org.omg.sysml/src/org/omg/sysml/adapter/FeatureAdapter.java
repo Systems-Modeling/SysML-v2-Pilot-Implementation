@@ -228,12 +228,14 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	@Override
 	public void addDefaultGeneralType() {
+		// Note: This must happen before call to super, because default supertype depends on ownedTyping.
+		addOwnedCrossFeatureSpecialization();
+
 		super.addDefaultGeneralType();
 		
 		addBoundValueSubsetting();
 		addParticipantSubsetting();
 		addCrossingSpecialization();
-		addOwnedCrossFeatureSpecialization();
 	}
 	
 

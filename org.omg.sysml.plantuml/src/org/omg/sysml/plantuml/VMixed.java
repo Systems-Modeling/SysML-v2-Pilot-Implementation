@@ -110,7 +110,7 @@ public class VMixed extends VTree {
     }
 
 
-    private VMixed(VTree vt, Namespace namespace, Membership membership) {
+    protected VMixed(Visitor vt, Namespace namespace, Membership membership) {
         super(vt, namespace, membership);
     }
 

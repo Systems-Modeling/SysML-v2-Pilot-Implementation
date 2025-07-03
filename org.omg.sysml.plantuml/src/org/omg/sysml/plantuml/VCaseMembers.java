@@ -27,7 +27,8 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
@@ -66,25 +67,20 @@ public class VCaseMembers extends VBehavior {
         rec(new VCase(this), e, inside);
     }
     
-    private String addCase(Type typ) {
+    private String addAction(Type typ) {
         recElement(typ, true);
         return "";
     }
 
     @Override
-    public String caseCaseUsage(CaseUsage ucu) {
-        return addCase(ucu);
-    }
-
-    @Override
-    public String caseCaseDefinition(CaseDefinition ucd) {
-        return addCase(ucd);
+    public String caseActionUsage(ActionUsage ucu) {
+        return addAction(ucu);
     }
 
     @Override
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
-        if ((e instanceof CaseUsage)
+        if ((e instanceof ActionUsage)  // Action-like elements are recursively rendered.
             || (e instanceof Relationship)) {
             return super.caseMembership(m);
         }

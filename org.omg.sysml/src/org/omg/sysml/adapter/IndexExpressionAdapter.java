@@ -62,6 +62,7 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			 * See KERML11-69.
     		 * 
     		 * TODO: Generalize to handle all types other than Collection types?
+    		 * TODO: Replace target with seqResult in specialization checks.
 			 */
 			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
 				Feature resultFeature = target.getResult();

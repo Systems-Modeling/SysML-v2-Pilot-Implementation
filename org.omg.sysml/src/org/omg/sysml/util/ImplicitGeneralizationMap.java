@@ -317,6 +317,8 @@ public class ImplicitGeneralizationMap {
 		put(ConnectionUsageImpl.class, "base", "Connections::connections");
 		//checkConnectionUsageBinarySpecialization
 		put(ConnectionUsageImpl.class, "binary", "Connections::binaryConnections");
+		//checkPartUsageSubpartSpecialization (a ConnectionUsage is a PartUsage)
+		put(ConnectionUsageImpl.class, "subpart", "Items::Item::subparts");
 		
 		//checkConstraintDefinitionSpecialization
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
@@ -474,6 +476,8 @@ public class ImplicitGeneralizationMap {
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
 		//checkRenderingUsageRedefinition
 		put(RenderingUsageImpl.class, "viewRendering", "Views::View::viewRendering");
+		//checkPartUsageSubpartSpecialization (a RenderingUsage is a PartUsage)
+		put(RenderingUsageImpl.class, "subpart", "Items::Item::subparts");
 		
 		//checkRequirementDefinitionSpecialization
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
@@ -555,6 +559,8 @@ public class ImplicitGeneralizationMap {
 		put(ViewUsageImpl.class, "base", "Views::views");
 		//checkViewUsageSubviewSpecialization
 		put(ViewUsageImpl.class, "subview", "Views::View::subviews");
+		//checkPartUsageSubpartSpecialization (a ViewUsage is a PartUsage)
+		put(ViewUsageImpl.class, "subpart", "Items::Item::subparts");
 		
 		//checkViewpointDefinitionSpecialization
 		put(ViewpointDefinitionImpl.class, "base", "Views::ViewpointCheck");

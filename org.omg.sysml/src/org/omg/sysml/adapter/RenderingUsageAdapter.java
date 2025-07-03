@@ -35,6 +35,17 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 		super(element);
 	}
 	
+	/**
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 */
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSubitem()) {
+			addDefaultGeneralType("subpart");
+		}
+	}
+	
 	@Override
 	public RenderingUsage getTarget() {
 		return (RenderingUsage)super.getTarget();

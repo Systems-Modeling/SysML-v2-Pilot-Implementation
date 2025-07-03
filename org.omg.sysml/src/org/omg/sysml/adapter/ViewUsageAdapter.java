@@ -37,6 +37,17 @@ public class ViewUsageAdapter extends PartUsageAdapter {
 	}
 	
 	/**
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 */
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSubitem()) {
+			addDefaultGeneralType("subpart");
+		}
+	}
+	
+	/**
 	 * @satisfies checkViewUsageSubviewSpecialization
 	 * @satisfies checkViewpointUsageSpecialization
 	 */

@@ -36,7 +36,10 @@ public class MetadataFeatureAdapter extends FeatureAdapter {
 	public MetadataFeature getTarget() {
 		return (MetadataFeature)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkMetadataFeatureSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");

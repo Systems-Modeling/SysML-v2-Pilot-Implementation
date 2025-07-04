@@ -264,6 +264,13 @@ public class UsageUtil {
 	
 	public static boolean isSubrequirement(RequirementUsage requirement) {
 		Type owningType = requirement.getOwningType();
+		/*
+		 * TODO: Update checkRequirementUsageSubrequirementSpecialization
+		 * 
+		 * !isAssumptionConstraint is not in the OCL
+		 * See SYSML21-300
+		 * 
+		 */
 		return !isAssumptionConstraint(requirement) && requirement.isComposite() &&
 			   (owningType instanceof RequirementDefinition || 
 			    owningType instanceof RequirementUsage);

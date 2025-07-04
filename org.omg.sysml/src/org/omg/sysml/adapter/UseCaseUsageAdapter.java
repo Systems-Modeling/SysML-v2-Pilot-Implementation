@@ -31,6 +31,11 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		super(element);
 	}
 	
+	/**
+	 * @satisfies checkIncludeUseCaseSpecialization
+	 * @satisfies checkUseCaseUsageSpecialization
+	 * @satisfies checkUseCaseUsageSubUseCaseSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isSubUseCase()? "subUseCase": super.getSubactionType();	
@@ -38,6 +43,14 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 		
 	public boolean isSubUseCase() {		
 		Type owningType = getTarget().getOwningType();
+		
+		/*
+		 * TODO: Update checkUseCaseSubUseCaseSpecialization
+		 * 
+		 * OCL does not include isNonEntryExitComposite.
+    	 * See SYSML21-298
+		 */
+		
 		return isNonEntryExitComposite() && 
 			   (owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage);
 	}

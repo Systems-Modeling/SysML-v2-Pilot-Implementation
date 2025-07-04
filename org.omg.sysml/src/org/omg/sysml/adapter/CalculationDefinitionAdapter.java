@@ -33,6 +33,9 @@ public class CalculationDefinitionAdapter extends ActionDefinitionAdapter {
 		return (CalculationDefinition)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkFunctionResultBindingConnector
+	 */
 	@Override
 	public void doTransform() {
 		super.doTransform();

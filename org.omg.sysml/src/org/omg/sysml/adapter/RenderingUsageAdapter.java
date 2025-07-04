@@ -35,11 +35,25 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 		super(element);
 	}
 	
+	/**
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 */
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSubitem()) {
+			addDefaultGeneralType("subpart");
+		}
+	}
+	
 	@Override
 	public RenderingUsage getTarget() {
 		return (RenderingUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkRenderingUsageRedefinition
+	 */
 	@Override
 	public void addRedefinitions(Element skip) {
 		super.addRedefinitions(skip);
@@ -47,10 +61,14 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getLibraryType(getDefaultSupertype("viewRendering")));
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkRenderingUsageSubrenderingSpecialization
+	 * @satisfies checkRenderingUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubrendering()? 
+		return isSubrendering()?
 					getDefaultSupertype("subrendering"):
 					getDefaultSupertype("base");
 	}

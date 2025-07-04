@@ -131,7 +131,11 @@ public class UsageAdapter extends FeatureAdapter {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkUsageVariationDefinitionSpecialization
+	 * @satisfies checkUsageVariationUsageSpecialization
+	 */
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
 		if (UsageUtil.isVariant(usage)) {
@@ -150,6 +154,7 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		addVariationTyping();
+		
 		super.addDefaultGeneralType();
 	}
 	
@@ -189,6 +194,9 @@ public class UsageAdapter extends FeatureAdapter {
 			   UsageUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
+	/**
+	 * @satisfies checkSatisfyRequirementUsageBindingConnector
+	 */
 	@Override
 	protected void computeValueConnector() {
 		Usage usage = getTarget();
@@ -203,6 +211,9 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkUsageVariationUsageTypeFeaturing
+	 */
 	@Override
 	public void doTransform() {
 		super.doTransform();

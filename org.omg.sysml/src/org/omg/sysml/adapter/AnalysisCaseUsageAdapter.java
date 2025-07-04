@@ -38,6 +38,8 @@ public class AnalysisCaseUsageAdapter extends CaseUsageAdapter {
 	
 	@Override
 	protected String getSubactionType() {
+		//checkAnalysisCaseUsageSpecialization
+		//checkAnalysisCaseUsageSubAnalysisCaseSpecialization
 		return isSubAnalysisCase()? "subAnalysisCase": super.getSubactionType();	
 	}
 		

@@ -291,7 +291,7 @@ public class TypeUtil {
 		getTypeAdapter(type).addAdditionalMembers();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
-			for (Type general: getSupertypesOf(type)) {
+			for (Type general: getGeneralTypesOf(type)) {
 				if (general != null && !visited.contains(general)) {
 					resultParameter = getResultParameterOf(general, visited);
 					if (resultParameter != null) {

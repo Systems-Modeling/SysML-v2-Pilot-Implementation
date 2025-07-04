@@ -43,7 +43,10 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 	public IndexExpression getTarget() {
 		return (IndexExpression)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkIndexExpressionResultSpecialization
+	 */
 	@Override
 	protected void addResultTyping() {
 		IndexExpression target = getTarget();
@@ -54,6 +57,13 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			Feature seqResult = seqArgument.getResult();
 			Type arrayType = getLibraryType(ARRAY_TYPE);
 			Type scalarValueType = getLibraryType(SCALAR_VALUE_TYPE);
+			/*
+			 * TODO: Update checkIndexExpressionResultSpecialization
+			 * See KERML11-69.
+    		 * 
+    		 * TODO: Generalize to handle all types other than Collection types?
+    		 * TODO: Replace target with seqResult in specialization checks.
+			 */
 			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
 				Feature resultFeature = target.getResult();
 				if (resultFeature != null && seqResult != null) {

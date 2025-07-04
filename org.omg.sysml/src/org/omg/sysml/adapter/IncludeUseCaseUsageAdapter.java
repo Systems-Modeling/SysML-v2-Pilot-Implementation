@@ -37,6 +37,16 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 		return (IncludeUseCaseUsage)super.getTarget();
 	}
 	
+	/**
+	 * TODO: checkIncludeUseCaseUsageSpecialization
+	 * 
+	 * TODO: Rename checkIncludeUseCaseSpecialization
+	 * See SYSML21-299
+	 */
+	
+	/**
+	 * @satisfies checkPerformActionUsageSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

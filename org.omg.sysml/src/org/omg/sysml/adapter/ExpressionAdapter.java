@@ -47,6 +47,14 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * 
+	 * Note: These are satisfied by getDefaultSupertype in StepAdapter, 
+	 * which is overridden in ExpressionAdapater.
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -60,7 +68,10 @@ public class ExpressionAdapter extends StepAdapter {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkExpressionSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
@@ -89,7 +100,12 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	// Transformation
-
+	
+	/**
+	 * @satisfies checkExpressionTypeFeaturing
+	 * @satisfies checkExpressionResultBindingConnector
+	 * @satisfies checkMultiplicityRangeExpressionTypeFeaturing
+	 */
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();

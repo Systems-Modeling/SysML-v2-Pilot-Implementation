@@ -34,6 +34,9 @@ public class InvariantAdapter extends BooleanExpressionAdapter {
 		return (Invariant)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkInvariantSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getTarget().isNegated()?

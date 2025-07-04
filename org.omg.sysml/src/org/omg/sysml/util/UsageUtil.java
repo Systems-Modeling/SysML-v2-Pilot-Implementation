@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -194,6 +195,17 @@ public class UsageUtil {
 	
 	// SuccessionAsUsages
 	
+	public static Feature getSourceOf(Feature succession) {
+		List<Feature> ends = succession.getOwnedEndFeature();
+		if (!ends.isEmpty()) {
+			ReferenceSubsetting referenceSubsetting = ends.get(0).getOwnedReferenceSubsetting();
+			if (referenceSubsetting != null) {
+				return referenceSubsetting.getReferencedFeature();
+			}
+		}
+		return getSourceFeature(succession);
+	}
+	
 	public static Feature getSourceFeature(Feature feature) {
 		Namespace owningNamespace = feature.getOwningNamespace();
 		if (owningNamespace instanceof TransitionUsage) {
@@ -205,6 +217,17 @@ public class UsageUtil {
 		return getPreviousFeature(feature);
 	}
 
+	public static Feature getTargetOf(Feature succession) {
+		List<Feature> ends = succession.getOwnedEndFeature();
+		if (ends.size() > 1) {
+			ReferenceSubsetting referenceSubsetting = ends.get(1).getOwnedReferenceSubsetting();
+			if (referenceSubsetting != null) {
+				return referenceSubsetting.getReferencedFeature();
+			}
+		}
+		return getTargetFeature(succession);
+	}
+	
 	public static Feature getTargetFeature(Feature feature) {
 		Type type = feature.getOwningType();
 		if (type == null) {

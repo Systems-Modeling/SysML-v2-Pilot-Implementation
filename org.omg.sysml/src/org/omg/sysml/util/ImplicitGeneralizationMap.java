@@ -511,6 +511,10 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		//checkSuccessionSpecialization
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		//checkDecisionNodeOutgoingSuccessionSpecialization
+		put(SuccessionAsUsageImpl.class, "decision", "ControlPerformances::DecisionPerformance::outgoingHBLink");
+		//checkMergeNodeIncomingSuccessionSpecialization
+		put(SuccessionAsUsageImpl.class, "merge", "ControlPerformances::MergePerformance::incomingHBLink");
 		
 		//checkSuccessionFlowUsageSpecialization
 		put(SuccessionFlowUsageImpl.class, "base", "Flows::successionFlows");

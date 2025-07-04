@@ -151,6 +151,11 @@ public class UsageUtil {
 	// Objectives
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		// TODO: Update checkRequirementUsageObjectiveRedefinition
+		// See SYSML21-309
+		if (type instanceof Feature) {
+			type = ((Feature)type).getFeatureTarget();
+		}
 		NamespaceUtil.addAdditionalMembersTo(type);
 		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
 			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():

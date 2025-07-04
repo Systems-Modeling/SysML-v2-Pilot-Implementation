@@ -124,12 +124,10 @@ public class ImplicitGeneralizationMap {
 		//checkPayloadFeatureRedefinition
 		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
-		/*
-		 * TODO: checkFlowSpecialization
-		 * specializesFromLibrary('Transfers::transfers')
-		 */		
+		//checkFlowSpecialization
+		put(FlowImpl.class, "base", "Transfers::transfers");
 		//checkFlowWithEndsSpecialization
-		put(FlowImpl.class, "base", "Transfers::flowTransfers");
+		put(FlowImpl.class, "flow", "Transfers::flowTransfers");
 		//checkStepEnclosedPerformanceSpecialization
 		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		//checkStepSubperformanceSpecialization

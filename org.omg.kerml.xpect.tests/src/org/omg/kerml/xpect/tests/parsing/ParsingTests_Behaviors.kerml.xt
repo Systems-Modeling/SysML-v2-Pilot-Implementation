@@ -5,7 +5,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 		File {from ="/library/Base.kerml"}
 		File {from ="/library/Links.kerml"}
 		File {from ="/library/Occurrences.kerml"}
+		File {from ="/library/Objects.kerml"}
 		File {from ="/library/Performances.kerml"}
+		File {from ="/library/Transfers.kerml"}
 		File {from ="/library/ControlFunctions.kerml"}
 	}
 	Workspace {
@@ -15,7 +17,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 				File {from ="/library/Base.kerml"}
 				File {from ="/library/Links.kerml"}
 				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
 				File {from ="/library/Performances.kerml"}
+				File {from ="/library/Transfers.kerml"}
 				File {from ="/library/ControlFunctions.kerml"}
 			}
 		}
@@ -34,6 +38,14 @@ package Behaviors {
     }
     behavior B specializes A {
         in x1;
-        out y1;
+        out var y1;
     }
+    class C {
+        var z = A().y;
+        step a : A;
+        step b : B;
+        binding z = a.y;
+        flow a.y to b.x1;
+    }
+    abstract flow msg of C;
 }

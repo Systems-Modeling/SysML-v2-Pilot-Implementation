@@ -524,9 +524,6 @@ public class ImplicitGeneralizationMap {
 		//checkTerminateActionUsageSubactionSpecialization
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");
 		
-		// TODO: Delete this.
-		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateWithResultSubactions");
-		
 		//checkTransitionUsageSpecialization
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		//checkTransitionUsageActionSpecialization

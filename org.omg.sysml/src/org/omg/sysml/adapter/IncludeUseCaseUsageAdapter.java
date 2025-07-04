@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,6 +25,8 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.UseCaseDefinition;
+import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 
@@ -38,11 +40,17 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 	}
 	
 	/**
-	 * TODO: checkIncludeUseCaseUsageSpecialization
-	 * 
 	 * TODO: Rename checkIncludeUseCaseSpecialization
 	 * See SYSML21-299
 	 */
+	
+	/**
+	 * @satisfies checkIncludeUseCaseUsageSpecialization
+	 */
+	public boolean isSubUseCase() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage;
+	}
 	
 	/**
 	 * @satisfies checkPerformActionUsageSpecialization

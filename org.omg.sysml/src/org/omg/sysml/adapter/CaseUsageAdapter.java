@@ -57,15 +57,9 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	}
 		
 	public boolean isSubcase() {
-		/*
-		 * TODO: Update checkCaseUsageSubcaseSpecialization
-		 * 
-		 * nonEntryExit part of the check is not reflected of the OCL
-    	 * See SYSML21-298
-		 */
 		CaseUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		return isNonEntryExitComposite() &&
+		return target.isComposite() &&
 			   (owningType instanceof CaseDefinition || owningType instanceof CaseUsage);
 	}
 	

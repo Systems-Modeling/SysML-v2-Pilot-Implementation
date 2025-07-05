@@ -48,16 +48,10 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	}		
 		
 	public boolean isSubcalculation() {
-		/*
-		 * TODO: Update checkCalculationUsageSubcalculationSpecialization
-		 * 
-    	 * isNonEntryExitComposite check is not part of the OCL
-    	 * See SYSML12-298
-		 */
 		CalculationUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		return isNonEntryExitComposite() &&
-			   owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
+		return target.isComposite() &&
+			   (owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage);
 	}
 	
 	@Override

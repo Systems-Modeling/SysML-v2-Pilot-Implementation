@@ -96,10 +96,6 @@ public class UsageAdapter extends FeatureAdapter {
 		return false;
 	}
 	
-	public boolean isNonEntryExitComposite() {
-		return getTarget().isComposite() && !isEntryExitAction();
-	}
-	
 	public boolean isActionOwnedComposite() {
 		Usage target = getTarget();
 		Type owningType = target.getOwningType();

@@ -83,6 +83,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAnalysisCaseUsage(AnalysisCaseUsage element) {
+			return new AnalysisCaseUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseAnnotatingElement(AnnotatingElement element) {
 			return new AnnotatingElementAdapter(element);
 		}
@@ -595,6 +600,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseUseCaseUsage(UseCaseUsage element) {
 			return new UseCaseUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseVerificationCaseUsage(VerificationCaseUsage element) {
+			return new VerificationCaseUsageAdapter(element);
 		}
 		
 		@Override

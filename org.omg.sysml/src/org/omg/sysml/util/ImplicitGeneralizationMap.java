@@ -124,12 +124,10 @@ public class ImplicitGeneralizationMap {
 		//checkPayloadFeatureRedefinition
 		put(PayloadFeatureImpl.class, "payload", "Transfers::Transfer::payload");
 		
-		/*
-		 * TODO: checkFlowSpecialization
-		 * specializesFromLibrary('Transfers::transfers')
-		 */		
+		//checkFlowSpecialization
+		put(FlowImpl.class, "base", "Transfers::transfers");
 		//checkFlowWithEndsSpecialization
-		put(FlowImpl.class, "base", "Transfers::flowTransfers");
+		put(FlowImpl.class, "flow", "Transfers::flowTransfers");
 		//checkStepEnclosedPerformanceSpecialization
 		put(FlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		//checkStepSubperformanceSpecialization
@@ -513,6 +511,10 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		//checkSuccessionSpecialization
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		//checkDecisionNodeOutgoingSuccessionSpecialization
+		put(SuccessionAsUsageImpl.class, "decision", "ControlPerformances::DecisionPerformance::outgoingHBLink");
+		//checkMergeNodeIncomingSuccessionSpecialization
+		put(SuccessionAsUsageImpl.class, "merge", "ControlPerformances::MergePerformance::incomingHBLink");
 		
 		//checkSuccessionFlowUsageSpecialization
 		put(SuccessionFlowUsageImpl.class, "base", "Flows::successionFlows");
@@ -523,9 +525,6 @@ public class ImplicitGeneralizationMap {
 		put(TerminateActionUsageImpl.class, "base", "Actions::terminateActions");
 		//checkTerminateActionUsageSubactionSpecialization
 		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateSubactions");
-		
-		// TODO: Delete this.
-		put(TerminateActionUsageImpl.class, "subaction", "Actions::Action::terminateWithResultSubactions");
 		
 		//checkTransitionUsageSpecialization
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");

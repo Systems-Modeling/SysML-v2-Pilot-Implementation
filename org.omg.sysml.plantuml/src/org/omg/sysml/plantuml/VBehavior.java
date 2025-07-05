@@ -45,11 +45,11 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 
 public abstract class VBehavior extends VDefault {
     protected boolean isDoneAction(Feature f) {
-        return "Actions::Action::done".equals(f.getQualifiedName());
+        return f != null && f.specializesFromLibrary("Actions::Action::done");
     }
 
     protected boolean isStartAction(Feature f) {
-        return "Actions::Action::start".equals(f.getQualifiedName());
+        return f != null && f.specializesFromLibrary("Actions::Action::start");
     }
 
     protected boolean isEntryAction(ActionUsage au) {

@@ -23,6 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
@@ -42,8 +43,6 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 
 	/**
 	 * @satisfies checkFeatureChainExpressionResultSpecialization
-	 * 
-	 * TODO: Revise to explicitly get first "in" parameter, to more closely match OCL.
 	 */
 	@Override
 	protected void addResultTyping() {
@@ -51,10 +50,14 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		Feature result = target.getResult();
 		Feature sourceTarget = target.sourceTargetFeature();
 		if (result != null && sourceTarget != null) {
-			Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
-			TypeUtil.addImplicitGeneralTypeTo(result,
-					SysMLPackage.eINSTANCE.getSubsetting(), 
-						FeatureUtil.chainFeatures(sourceParameter, sourceTarget));
+			Feature sourceParameter = target.getOwnedFeature().stream().
+					filter(param->param.getDirection() == FeatureDirectionKind.IN).
+					findFirst().orElse(null);
+			if (sourceParameter != null) {
+				TypeUtil.addImplicitGeneralTypeTo(result,
+						SysMLPackage.eINSTANCE.getSubsetting(), 
+							FeatureUtil.chainFeatures(sourceParameter, sourceTarget));
+			}
 		}
 	}
 	

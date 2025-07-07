@@ -62,9 +62,10 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 
 	protected boolean isRequirementStakeholder() {
 		/*
-		 * TODO: Update checkPartUsageStakeholderSpecialization?
-		 *
-		 * OCL doesn't require the owningType to be ReqDef or ReqUsage 
+		 * Note: checkPartUsageStakeholderSpecialization OCL doesn't explicitly require the owningType 
+		 * to be a RequirmentDefinition or RequirementUsage. However, a valid stakeholder must be owned
+		 * by a RequirementDefinition or RequirementUsage and, if it isn't the implied subsetting won't
+		 * be valid, so don't add it.
 		 */
 		PartUsage target = getTarget();
 		Type owningType = target.getOwningType();

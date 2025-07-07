@@ -54,9 +54,18 @@ public class FlowAdapter extends ConnectorAdapter {
 		}
 	}
 
+	/**
+	 * @satisfies checkFlowSpecialization
+	 * @satisfies checkFlowWithEndsSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+		return isFlowTransfer()? getDefaultSupertype("flow"):
+			   getDefaultSupertype("base");
+	}
+	
+	protected boolean isFlowTransfer() {
+		return !getTarget().getOwnedEndFeature().isEmpty();
 	}
 		
 	@Override

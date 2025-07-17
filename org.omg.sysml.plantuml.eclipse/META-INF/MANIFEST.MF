@@ -4,7 +4,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: SysML 2 PlantUML visualization for Eclipse
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.omg.sysml.plantuml.eclipse;singleton:=true
-Bundle-Version: 0.50.0.qualifier
+Bundle-Version: 0.51.0.qualifier
 Import-Package: net.sourceforge.plantuml.eclipse.utils;version="1.1.25.himi1",
  net.sourceforge.plantuml.ecore,
  net.sourceforge.plantuml.text,

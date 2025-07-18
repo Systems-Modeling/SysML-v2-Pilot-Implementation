@@ -26,13 +26,20 @@
 package org.omg.sysml.util;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -41,7 +48,25 @@ import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
+import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.CalculationUsage;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
+import org.omg.sysml.lang.sysml.LiteralRational;
+import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 import com.google.common.base.Predicates;
 
@@ -60,7 +85,7 @@ public abstract class SysMLUtil {
 
 	private final ResourceSet resourceSet;
 	private final List<Resource> inputResources = new LinkedList<>();
-	private final List<String> extensions = new ArrayList<String>();
+	private final Set<String> extensions = new HashSet<>();
 	private final ResourceDescriptionsData index;
 	
 	private boolean isVerbose = true;
@@ -230,21 +255,33 @@ public abstract class SysMLUtil {
 	 * 
 	 * @param 	file			the file from which the resources are be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @param	extensions		the allowed file extensions
+	 * @throws IOException 
 	 */
-	public void readAll(final File file, boolean isInput) {
-		if (file.isDirectory()) {
-			for (File nestedFile: file.listFiles()) {
-				this.readAll(nestedFile,  isInput);
-			}
-		} else {
-			final String path = file.getPath();
-			if (extensions.stream().anyMatch(path::endsWith)) {
-				Resource resource = this.readResource(file.getPath());
-				if (isInput) {
-					this.addInputResource(resource);
-				}
+	public void readAll(final File file, final boolean isInput, Set<String> extensions) throws IOException {
+		Files.walk(file.toPath()).forEach(path -> read(path, isInput, extensions));
+	}
+	
+	/**
+	 * If the given file has an allowable extension, then read it. Or, if the file is a directory, then
+	 * recursively read all the allowable files in it, directly or indirectly.
+	 * 
+	 * @param 	file			the file from which the resources are be read
+	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @throws IOException 
+	 */
+	public void readAll(final File file, final boolean isInput) throws IOException {
+		Files.walk(file.toPath()).forEach(path -> read(path, isInput, extensions));
+	}
+	
+	public void read(final Path path, boolean isInput, Set<String> extensions) {		
+		if (extensions.stream().anyMatch(path.toString()::endsWith)) {
+			Resource resource = this.readResource(path.toString());
+			if (isInput) {
+				this.addInputResource(resource);
 			}
 		}
+		
 	}
 	
 	/**
@@ -254,9 +291,10 @@ public abstract class SysMLUtil {
 	 * 
 	 * @param 	path			the path from which resources are to be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @throws IOException 
 	 */
-	public void readAll(final String path, boolean isInput) {
-		this.readAll(new File(path), isInput);
+	public void readAll(final String path, boolean isInput) throws IOException {
+		this.readAll(new File(path), isInput, this.extensions);
 	}
 	
 	/**
@@ -267,11 +305,10 @@ public abstract class SysMLUtil {
 	 * @param 	path			the path from which resources are to be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 * @param 	extension		the allowed file extension
+	 * @throws IOException 
 	 */
-	public void readAll(final String path, boolean isInput, String extension) {
-		this.extensions.clear();
-		this.addExtension(extension);
-		this.readAll(new File(path), isInput);
+	public void readAll(final String path, boolean isInput, String extension) throws IOException {
+		this.readAll(new File(path), isInput, Set.of(extension));
 	}
 	
 	/**
@@ -280,8 +317,9 @@ public abstract class SysMLUtil {
 	 * other paths are considered to be library resources.
 	 * 
 	 * @param 	paths			the paths from which resources are to be read
+	 * @throws IOException 
 	 */
-	public void read(final String... paths) {
+	public void read(final String... paths) throws IOException {
 		if (paths.length > 0) {
 			for (int i = 1; i < paths.length; i++) {
 				this.readAll(paths[i], false);
@@ -310,6 +348,153 @@ public abstract class SysMLUtil {
 		for (Resource resource: this.inputResources) {
 			EcoreUtil.resolveAll(resource);
 		}
+	}
+	
+	//Utility for printing out parts of the model in a human readable format
+	
+	public static final String INDENT = "  ";
+	
+	private static String formatRelationship(EClass kind, String shortName, String memberName) {
+		return "[" + kind.getName() + 
+				     (shortName == null? "": " <" + shortName + ">") + 
+				     (memberName == null? "": " " + memberName) +
+			   "] ";
+	}
+	
+	private static String formatRelationship(Relationship relationship) {
+		return relationship == null? "":
+			   relationship instanceof Membership && !(relationship instanceof OwningMembership)?
+					   formatRelationship(relationship.eClass(), 
+							   ((Membership)relationship).getMemberShortName(), 
+							   ((Membership)relationship).getMemberName()):
+			   formatRelationship(relationship.eClass(), null, null);
+	}
+	
+	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
+		buffer.append(indentation + relationshipTag + element.eClass().getName());		
+		if (EvaluationUtil.isMetaclassFeature(element)) {
+			formatElement(buffer, " ", ((MetadataFeature)element).getAnnotatedElement().get(0), "");
+		} else {		
+			String shortName = element.getDeclaredShortName();
+			String name = nameOf(element);
+			buffer.append(
+					(shortName == null? "": " <" + shortName + ">") +
+					(name == null? "": " " + name) + 
+					" (" + element.getElementId() + ")\n");
+		}
+	}
+	
+	public static String nameOf(Element element) {
+		if (element == null) {
+			return "";
+		} else if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
+			String name = "";
+			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
+				String nextName = chainingFeature.getName();
+				if (nextName == null) {
+					nextName = "";
+				}
+				if (name == "") {
+					name = nextName;
+				} else {
+					name += "." + nextName;
+				}
+			}
+			return name;
+		} else {
+			return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
+				   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
+				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
+				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
+				   element instanceof LiteralInfinity? "*":
+				   element instanceof FeatureReferenceExpression? nameOf(((FeatureReferenceExpression)element).getReferent()):
+				   element instanceof OperatorExpression? ((OperatorExpression)element).getOperator():
+				   element instanceof InvocationExpression? nameOf(((InvocationExpression)element).getFunction()):
+				   element.getName();
+		}
+	}
+
+	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
+		formatElement(buffer, indentation, element, formatRelationship(relationship));
+	}
+	
+	private static void formatImplicitElement(StringBuilder buffer, String indentation, Element element, EClass kind) {
+		formatElement(buffer, indentation, element, formatRelationship(kind, null, "(implicit)"));
+	}
+	
+	private static void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
+		formatExplicitElement(buffer, indentation, element, relationship);
+		if (element instanceof Expression && !(element instanceof CalculationUsage)) {
+			for (Element output: ((Expression)element).getOutput()) {
+				if (output.getOwner() == element) {
+					formatExplicitElement(buffer, indentation + SysMLUtil.INDENT, output, output.getOwningMembership());
+				}
+			}
+		} else {
+			if (element instanceof Type) {
+				TypeUtil.forEachImplicitGeneralTypeOf((Type)element, (kind, supertype)->
+					formatImplicitElement(buffer, indentation + SysMLUtil.INDENT, supertype, kind)
+				);
+			}
+			
+			for (Relationship subrelationship: element.getOwnedRelationship()) {
+				for (Element relatedElement: subrelationship.getRelatedElement()) {
+					if (relatedElement != element) {
+						if (relatedElement.getOwningRelationship() == subrelationship) {
+							formatTree(buffer, indentation + SysMLUtil.INDENT, relatedElement, subrelationship);
+						} else {
+							formatExplicitElement(buffer, indentation + SysMLUtil.INDENT, relatedElement, subrelationship);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public static String formatElement(Element element) {
+		StringBuilder buffer = new StringBuilder();
+		formatExplicitElement(buffer, "", element, null);
+		return buffer.toString();
+	}
+
+	public static String formatTree(Element element) {
+		StringBuilder buffer = new StringBuilder();
+		formatTree(buffer, "", element, null);
+		return buffer.toString();
+	}
+
+	public static <T extends Object> String formatList(List<T> list) {
+		StringBuilder buffer = new StringBuilder();
+		list.stream().map(x->x.toString() + "\n").forEachOrdered(buffer::append);
+		return buffer.toString();
+	}
+	
+	public static String formatException(Exception exception) {
+		StringWriter writer = new StringWriter();
+		exception.printStackTrace(new PrintWriter(writer));
+		return writer.toString();
+	}
+	
+	public static String formatMembershipList(List<Membership> membership) {
+		return membership.stream().
+			map(Membership::getMemberElement).
+			sorted(SysMLUtil::compare).
+			map(SysMLUtil::formatElement).
+			collect(Collectors.joining());
+	}
+	
+	public static int compare(Element element1, Element element2) {
+		String humanId1 = element1.getDeclaredShortName();
+		String humanId2 = element2.getDeclaredShortName();
+		String name1 = element1.getName();
+		String name2 = element2.getName();
+		return name1 != null && name2 != null? name1.compareToIgnoreCase(name2):
+			   name1 == null && name2 != null? -1:
+			   name1 != null && name2 == null? 1:
+			   humanId1 != null && humanId2 != null? humanId1.compareToIgnoreCase(humanId2):
+			   humanId1 == null && humanId2 != null? -1:
+			   humanId1 != null && humanId2 == null? 1:
+			   0;
 	}
 	
 }

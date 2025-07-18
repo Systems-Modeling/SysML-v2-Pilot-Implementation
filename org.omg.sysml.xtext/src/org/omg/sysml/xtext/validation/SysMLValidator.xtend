@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -143,11 +143,15 @@ import org.omg.sysml.lang.sysml.FlowUsage
  */
 class SysMLValidator extends KerMLValidator {
 
+	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT = "validateDefinitionVariationIsAbstract"
+	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
+	public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
+	public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
@@ -476,6 +480,11 @@ class SysMLValidator extends KerMLValidator {
 		// validateUsageIsReferential is satisfied automatically
 		
 		if (usage.isVariation) {
+			// validateUsageVariationIsAbstract			
+			if (!usage.isAbstract) {
+				error(INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG, usage, null, INVALID_USAGE_VARIATION_IS_ABSTRACT)
+			}
+			
 			// validateUsageVariationOwnedFeatureMembership
 			for (mem: usage.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.

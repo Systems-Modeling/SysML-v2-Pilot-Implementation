@@ -44,6 +44,7 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
+		//checkTriggerInvocationExpressionSpecialization
 		TriggerInvocationExpression target = getTarget();
 		TriggerKind kind = target.getKind();
 		if (kind != null) {
@@ -53,7 +54,12 @@ public class TriggerInvocationExpressionAdapter extends InvocationExpressionAdap
 		super.computeImplicitGeneralTypes();
 	}
 	
+	
+	/**
+	 * @satisfies checkAcceptActionUsageReceiverBindingConnector
+	 */
 	public void addReceiverBinding() {
+		//checkAcceptActionUsageReceiverBindingConnector
 		TriggerInvocationExpression target = getTarget();
 		Feature receiverParameter = TypeUtil.getOwnedParameterOf(target, 1, Feature.class);
 		if (receiverParameter != null) {

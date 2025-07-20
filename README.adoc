@@ -19,9 +19,11 @@ The project provides a configuration file for the https://wiki.eclipse.org/Eclip
 +
 image:installer-advanced.png[switch to advanced mode]
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2024-03.
+4. In the Products window, select "Eclipse Modeling Tools" with:
+   * Product Version: 2025-03
+   * Java VM: Java 21
 
-5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
+5. On the next page (Projects window), to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
    * **Note:** If you have installed the SysML v2 Pilot Implementation previously, this may already be pre-selected.
 
@@ -30,9 +32,9 @@ image:installer-advanced.png[switch to advanced mode]
 image:oomph-projects.png[oomph projects]
 
 7. On the next page, update the following variables, then press Next.
-   * Git clone location rule: Select "Located in specific absolute folder location" and browse to the directory for the SysML git repository.
-   * Root install folder: Change this if you wish the installation to be under a specific folder.
-   * Workspace location rule: Change this if you wish to place the workspace at a specific location.
+   * Installation folder name: Change this if you wish the installation to be under a specific folder.
+   * Workspace folder name: Change this if you wish to place the workspace at a specific location.
+   * Git clone location: Browse to the directory for the SysML git repository.
    
 8. On the Confirmation page, press Finish. 
 
@@ -42,12 +44,12 @@ image:oomph-projects.png[oomph projects]
 
 ==== Manual installation
 
-1. Install Eclipse 2024-03 (4.25) and Xtext.
+1. Install Eclipse 2025-03 (4.35) and Xtext.
    * Install the “Eclipse Modeling Tools” package.
-     ** `https://www.eclipse.org/downloads/packages/release/2024-03/r/eclipse-modeling-tools`
+     ** `https://www.eclipse.org/downloads/packages/release/2025-03/r/eclipse-modeling-tools`
       
    * To install Xtext, select Help > Install New Software, use the update site URL given below, and install “Xtext Complete SDK” (under General Purpose Tools).
-     ** `http://download.eclipse.org/releases/2024-03`
+     ** `http://download.eclipse.org/releases/2025-03`
 
    * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
      the update site of `https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates` with Help > Install New Software.
@@ -67,19 +69,14 @@ image:oomph-projects.png[oomph projects]
    * `org.sysml.xtext.ide`
    * `org.sysml.xtext.ui`
 
-**Note:** 
-
-   * https://gradle.org/[Gradle] is used to build project `org.omg.sysml.jupyter`.
-   * https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects (including packaging the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`). 
+4. https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects (including packaging the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`). 
         * To build the repository, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory.
         * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also launch a Maven build in Eclipse using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
 
 === Prototype SysML Implementation
 
 ==== Getting Started
-1. Find the file `org.omg.kerml.expressions.xtext/src/org.omg.kerml.expressions.xtext/KerMLExpressions.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.kerml.xtext/src/org.omg.kerml.xtext/KerML.xtext` and `org.omg.sysml.xtext/src/org.omg.sysml.xtext/SysML.xtext`.
-
-2. Once the generation is complete, right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
+1. Right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
 
 3. Add the SysML-v2-Pilot-Implementation Git repository (already cloned previously) to the runtime Eclipse instance.
 
@@ -138,7 +135,7 @@ Set up a Java code template as follows:
 ----
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2025 <Your organization name>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -161,7 +158,7 @@ Set up a Java code template as follows:
 
 === For existing code
 * When modifying existing code created by someone in a different organization, add a new copyright line, without changing anything else in the header.
-* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2021, "Copyright (C) 2020" becomes "Copyright (C) 2020-2021" and in 2022 it becomes "Copyright (C) 2020-2022".)
+* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2025, "Copyright (C) 2024" becomes "Copyright (C) 2024-2025" and in 2026 it becomes "Copyright (C) 2024-2026".)
 
 === Sources
 * https://www.gnu.org/licenses/gpl-3.0.en.html[GNU GPL v3.0 - How to Apply These Terms to Your New Programs]

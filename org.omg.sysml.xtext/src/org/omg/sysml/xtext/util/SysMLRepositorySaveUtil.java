@@ -41,7 +41,8 @@ public class SysMLRepositorySaveUtil extends KerMLRepositorySaveUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>SysMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-d] [-g] [-v] input-path [library-path library-path...]
+	 * <p>SysMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-d] [-g] [-v] [-p project-name] 
+	 *                            [--branch branch-name] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
@@ -49,7 +50,10 @@ public class SysMLRepositorySaveUtil extends KerMLRepositorySaveUtil {
 	 * <li>-b base-path-url       gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
 	 * <li>-l library-base-path   gives the base path to used for reading model library resources</li>
 	 * <li>-d                     specifies that derived attributes should be included (the default is not to)</li>
-	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
+	 * <li>-v                     specifies verbose mode (the default is non-verbose)</li>
+	 * <li>-p project-name        gives the name of the project to upload the model into (if none given, the last segment of the input path is used)</li>
+	 * <li>--branch branch-name   gives the project branch to use (if none given, the default branch of the project is used)</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 * </ul>

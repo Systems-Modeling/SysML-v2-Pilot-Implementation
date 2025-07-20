@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,6 @@ package org.omg.kerml.xtext.util;
 
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Date;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -49,8 +48,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
 	public static final String BASE_PATH_OPTION_LONG_NAME = "base-path-url";
 	public static final String LIBRARY_OPTION_LONG_NAME = "library-base-path";
-	public static final String BRANCH_OPTION = "Project branch to use. If none given the default branch of the project is used";
-	public static final String PROJECT_NAME_OPTION_DESCRIPTION = "project name to upload the model into. If not specified a unique name is generated based on the selected folders and the current timestamp";
+	public static final String BRANCH_OPTION = "gives the project branch to use (if none is given, the default branch of the project is used)";
+	public static final String PROJECT_NAME_OPTION_DESCRIPTION = "gives the name of the project to upload the model into (if none is given, the last segment of the input path is used)";
 	public static final String DERIVED_OPTION_DESCRIPTION = "specifies that derived attributes should be included (the default is not to)";
 	public static final String IMPLICIT_GEN_OPTION_DESCRIPTION = "specifies that implicit generalizations should be generated (the default is not to)";
 	public static final String VERBOSE_MODE_OPTION_DESCRIPTION = "verbose mode";
@@ -196,7 +195,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	/**
 	 * Initialize the traversal with an ApiElementProcessingFacade to write to a new repository Project.
 	 * Set the project name as the file name from the first argument after any options, stripped 
-	 * of its extension, with the current date/time appended.
+	 * of its extension.
 	 * 
 	 * @param 	args		the command line arguments after processing, with options removed
 	 */
@@ -208,11 +207,10 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		
 		if (this.projectName == null) {
 			this.projectName = Paths.get(args[0]).getFileName().toString();
-			int j = this.projectName.indexOf('.');
-			if (j >= 0) {
+			int j = this.projectName.lastIndexOf('.');
+			if (j > 0) {
 				this.projectName = this.projectName.substring(0, j);
 			}
-			this.projectName += " " + new Date();
 		}
 		
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, branchName, this.getBasePath());	
@@ -269,7 +267,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>KerMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-d] [-g] [-v] input-path [library-path library-path...]
+	 * <p>KerMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-d] [-g] [-v] [-p project-name] 
+	 *                            [--branch branch-name] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
@@ -279,6 +278,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <li>-d                     specifies that derived attributes should be included (the default is not to)</li>
 	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
 	 * <li>-v                     specifies verbose mode (the default is non-verbose)</li>
+	 * <li>-p project-name        gives the name of the project to upload the model into (if none given, the last segment of the input path is used)</li>
+	 * <li>--branch branch-name   gives the project branch to use (if none given, the default branch of the project is used)</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 * </ul>

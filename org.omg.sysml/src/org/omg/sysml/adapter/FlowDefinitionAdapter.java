@@ -32,7 +32,11 @@ public class FlowDefinitionAdapter extends ActionDefinitionAdapter {
 	public FlowDefinition getTarget() {
 		return (FlowDefinition)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkFlowDefinitionBinarySpecialization
+	 * @satisfies checkFlowDefinitionSpecialization
+	 */
 	// From AssociationAdapter
 	@Override
 	protected String getDefaultSupertype() {

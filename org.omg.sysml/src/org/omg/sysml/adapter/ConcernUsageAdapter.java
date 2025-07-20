@@ -35,6 +35,9 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 		return (ConcernUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkRequirementUsageSubrequirementSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -43,10 +46,17 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkConcernUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
 	}
+	
+	/**
+	 * @satisfies checkConcernUsageFramedConcernSpecialization
+	 */
 	@Override
 	public void addRequirementConstraintSubsetting() {
 		if (UsageUtil.isFramedConcern(getTarget())) {

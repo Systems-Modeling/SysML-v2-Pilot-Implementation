@@ -395,6 +395,9 @@ public class TypeAdapter extends NamespaceAdapter {
  		}
 	}
 	
+	/**
+	 * @satisfies checkMetadataFeatureSemanticSpecialization
+	 */
 	public void addDefaultGeneralType() {
 		for (Type baseType: getBaseTypes()) {
 			addImplicitGeneralType(getSpecializationEClass(), baseType);
@@ -489,7 +492,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			addResultBinding(resultExpression, result);
 		}
 	}
-
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

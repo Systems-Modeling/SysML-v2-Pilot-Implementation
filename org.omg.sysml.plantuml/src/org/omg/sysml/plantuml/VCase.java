@@ -26,7 +26,7 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -39,7 +39,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
-public class VCase extends VTree {
+public class VCase extends VMixed {
     private static final SysML2PlantUMLStyle style
     = new SysML2PlantUMLStyle
     ("VCase",
@@ -66,7 +66,7 @@ public class VCase extends VTree {
         return new VCase(this, namespace, membership);
     }
 
-    private String addCase(Type typ) {
+    private String addAction(Type typ) {
         String name = extractTitleName(typ);
         int id = addRecLine(name, typ, true);
         addSpecializations(id, typ);
@@ -104,13 +104,14 @@ public class VCase extends VTree {
     }
 
     @Override
-    public String caseCaseUsage(CaseUsage ucu) {
-        return addCase(ucu);
+    public String caseActionUsage(ActionUsage au) {
+        return addAction(au);
     }
 
     @Override
-    public String caseCaseDefinition(CaseDefinition ucd) {
-        return addCase(ucd);
+    public String caseCaseUsage(CaseUsage cu) {
+        // We MUST override VMixed.caseCaseUsage()
+        return addAction(cu);
     }
 
     VCase(Visitor vt, Namespace namespace, Membership membership) {

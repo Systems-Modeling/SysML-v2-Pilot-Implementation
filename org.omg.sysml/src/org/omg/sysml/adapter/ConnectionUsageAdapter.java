@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,11 +35,30 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	public ConnectionUsage getTarget() {
 		return (ConnectionUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 */
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSubitem()) {
+			addDefaultGeneralType("subpart");
+		}
+	}
+	
+	/**
+	 * @satisfies checkConnectionUsageSpecialization
+	 * @satisfies checkAllocationUsageSpecialization
+	 * @satisfies checkInterfaceDefinitionSpecialization
+	 * @satisfies checkConnectionUsageBinarySpecialization
+	 * @satisfies checkAllocationUsageSpecialization
+	 * @satisfies checkInterfaceDefinitionBinarySpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		int numEnds = TypeUtil.getOwnedEndFeaturesOf(getTarget()).size();
-		return numEnds != 2? 
+		return numEnds != 2?
 				getDefaultSupertype("base"):
 				getDefaultSupertype("binary");
 	}

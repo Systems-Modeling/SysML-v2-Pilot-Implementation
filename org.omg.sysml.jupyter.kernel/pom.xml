@@ -23,6 +23,18 @@
         		</exclusion>
     		</exclusions>
         </dependency>
+		<dependency>
+            <groupId>org.omg.sysml</groupId>
+            <artifactId>org.omg.sysml.xtext</artifactId>
+            <version>${project.version}</version>
+            <!-- Exclude transitive dependencies as they are included in the shaded jar -->
+			<exclusions>
+        		<exclusion>
+            		<groupId>*</groupId>
+            		<artifactId>*</artifactId>
+        		</exclusion>
+    		</exclusions>
+        </dependency>
         <dependency>
             <groupId>io.github.spencerpark</groupId>
             <artifactId>jupyter-jvm-basekernel</artifactId>

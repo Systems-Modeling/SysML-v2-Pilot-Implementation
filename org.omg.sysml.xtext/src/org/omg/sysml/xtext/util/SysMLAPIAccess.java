@@ -27,15 +27,28 @@ public class SysMLAPIAccess {
 	
 	private EObjectUUIDTracker tracker = new EObjectUUIDTracker();
 	
-	public SysMLAPIAccess(String apiBasePath, SysMLAccess sysmlAccess) {
+	/* package */ SysMLAPIAccess(String apiBasePath, SysMLAccess sysmlAccess) {
 		this.repositoryURL = apiBasePath;
 		this.sysmlAccess = sysmlAccess;
 	}
 	
+	/**
+	 * Sets the api base path for the repository
+	 * 
+	 * @param apiBasePath
+	 */
 	public void setApibasePath(String apiBasePath) {
 		this.repositoryURL = apiBasePath;
 	}
 	
+	/**
+	 * Publishes to the repository the model elements rooted in a named element
+	 * 
+	 * @param element			root element of the model
+	 * @param projectName		if null a new project is created named after the {@code element} otherwise it is used as the name of the project to create or update
+	 * @param branchName		if null the default branch is used otherwise the model is written to this branch of the project.
+	 * @param includeDerievd	include derived properties
+	 */
 	public void publish(Element element, String projectName, String branchName, boolean includeDerievd) {
 		assert repositoryURL != null: "ERROR: API base path is not set";
 		if (!sysmlAccess.isInputResource(element.eResource())) {
@@ -49,6 +62,14 @@ public class SysMLAPIAccess {
 		}
 	}
 	
+	/**
+	 * Publishes to the repository the resource's contents
+	 * 
+	 * @param element			resource to be published
+	 * @param projectName		if null a new project is created named after the {@code element} otherwise it is used as the name of the project to create or update
+	 * @param branchName		if null the default branch is used otherwise the model is written to this branch of the project.
+	 * @param includeDerievd	include derived properties
+	 */
 	public void publish(Resource resource, String projectName, String branchName, boolean includeDerievd) {
 		EObject first = resource.getContents().getFirst();
 		if (first instanceof Element) {
@@ -56,6 +77,14 @@ public class SysMLAPIAccess {
 		}
 	}
 	
+	/**
+	 *  Publishes to the repository the model elements rooted in a named element
+	 * 
+	 * @param element			qualified name of the root element
+	 * @param projectName		if null a new project is created named after the {@code element} otherwise it is used as the name of the project to create or update
+	 * @param branchName		if null the default branch is used otherwise the model is written to this branch of the project.
+	 * @param includeDerievd	include derived properties
+	 */
 	public void publish(String elementName, String projectName, String branchName, boolean includeDerievd) {
 		Element element = sysmlAccess.resolve(elementName);
 		
@@ -66,6 +95,13 @@ public class SysMLAPIAccess {
 		publish(element, projectName, branchName, includeDerievd);
 	}
 	
+	/**
+	 * Downloads previously published models from a project in the repository.
+	 * 
+	 * @param projectDescriptor		to specify the project and the branch to be used.
+	 * 
+	 * @return list of loaded resources
+	 */
 	public List<Resource> load(APIProjectDescriptor projectDescriptor) {
 		
 		final ProjectRepository repository = new ProjectRepository(repositoryURL);
@@ -132,6 +168,14 @@ public class SysMLAPIAccess {
 		return processingFacade;
 	}
 	
+	/**
+	 * Creates a JSON representation of the abstract syntax tree rooted in the named element.
+	 * 
+	 * @param root				root Element
+	 * @param includeDerived	include derived fields in the output	
+	 * @param asDelta			wrap the elements in a delta as additions for direct REST API use
+	 * @return					JSON representation of the model
+	 */
 	public String toJson(Element root, boolean includeDerived, boolean asDelta) {
 		JsonElementProcessingFacade jsonFacade = new JsonElementProcessingFacade();
 		jsonFacade.setIsIncludeDerived(includeDerived);
@@ -141,11 +185,22 @@ public class SysMLAPIAccess {
 		return jsonFacade.toJson(asDelta);
 	}
 	
+	/**
+	 * Queries projects stored in the repository
+	 * 
+	 * @return list of stored projects
+	 */
 	public List<RemoteProject> getProjects() {
 		final ProjectRepository repository = new ProjectRepository(repositoryURL);
 		return repository.getProjects();
 	}
 	
+	/**
+	 * Configuration for targeting a project and project branch in the repository.
+	 * 
+	 * The {@code projectName} and {@code projectId} are mutually exclusive.
+	 * The {@code branchName} and {@code branchId} are mutually exclusive.
+	 */
 	public static class APIProjectDescriptor {
 		private String projectName;
 		private String projectId;

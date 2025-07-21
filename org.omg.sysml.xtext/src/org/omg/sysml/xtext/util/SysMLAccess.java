@@ -58,6 +58,9 @@ import com.google.common.base.Predicates;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
+/**
+ * 
+ */
 public class SysMLAccess extends SysMLUtil {
 	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
@@ -93,11 +96,18 @@ public class SysMLAccess extends SysMLUtil {
 		super(resourceDescriptionData);
 	}
 	
+	/**
+	 * Provides access for the library index.
+	 * 
+	 * @return Library index provider
+	 */
 	public ILibraryIndexProvider getLibraryIndexCache() {
 		return libraryIndexCache;
 	}
 	
-	
+	/**
+	 * Initializes the language infrastructure for loading .kermlx and .sysmlx models.
+	 */
 	public void setupXMISupport() {
 		addExtension(KERMLX_EXTENSION);
 		addExtension(SYSMLX_EXTENSION);
@@ -105,15 +115,18 @@ public class SysMLAccess extends SysMLUtil {
 		SysMLxStandaloneSetup.doSetup();
 	}
 	
+	/**
+	 * Loads the library from the specified directory.
+	 * Use {@link SysMLAccess#setModelLibraryDirectory(String)} to set the directory path.
+	 * 
+	 * @throws IOException
+	 */
 	public void loadLibrary() throws IOException {
-		loadLibrary(getModelLibraryDirectory());
+		doLoadLibrary(getModelLibraryDirectory());
 	}
 	
-	protected void loadLibrary(String path) throws IOException {
+	protected void doLoadLibrary(String path) throws IOException {
 		if (path != null) {
-			if (!path.endsWith("/")) {
-				path += "/";
-			}
 			this.readAll(path + KERNEL_LIBRARIES_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
@@ -128,6 +141,12 @@ public class SysMLAccess extends SysMLUtil {
 		return this.dummyResource;
 	}
 	
+	/**
+	 * Returns the root element from a resource
+	 * 
+	 * @param resource		resource with the root element
+	 * @return				root element
+	 */
 	public Element getRootElement(Resource resource) {
 		if (resource instanceof XtextResource xtextResource) {
 			final IParseResult result = xtextResource.getParseResult();
@@ -138,6 +157,12 @@ public class SysMLAccess extends SysMLUtil {
 		}
 	}
 	
+	/**
+	 * Resolves the given name from the loaded resources.
+	 * 
+	 * @param name		name to resolve
+	 * @return			resolved {@link Element} or null if name cannot be resolved
+	 */
 	public Element resolve(String name) {
 		IScope scope = scopeProvider.getScope(
 				this.getDummyResource(), 
@@ -153,15 +178,40 @@ public class SysMLAccess extends SysMLUtil {
 		}
 	}
 	
+	/**
+	 * Loads, parses and validates a model file or a directory (recursively) with a set of model files.
+	 * 
+	 * @param file			file to parse or directory containing model files
+	 * @param isInput		whether the file(s) read are to be considered input resources
+	 * @return				result of the parsing/validation
+	 * @throws IOException
+	 */
 	public List<SysMLParseResult> parseFiles(File file, boolean isInput) throws IOException {
 		List<Resource> resources = this.readAll(file, isInput);
 		return  validateResources(resources);
 	}
 	
+	
+	/**
+	 * Loads, parses and validates a model file or a directory (recursively) with a set of model files.
+	 * 
+	 * @param file			file to parse or directory containing model files
+	 * @param isInput		whether the file(s) read are to be considered input resources
+	 * @return				result of the parsing/validation
+	 * @throws IOException
+	 */
 	public List<SysMLParseResult> parseFile(String file, boolean isInput) throws IOException {
 		return parseFiles(new File(file), isInput);
 	}
-
+	
+	
+	/**
+	 * Validates the given resources
+	 * 
+	 * @param resources		resources to validate
+	 * @return				list of results
+	 * @throws OperationCanceledError
+	 */
 	public List<SysMLParseResult> validateResources(List<Resource> resources) throws OperationCanceledError {
 		final List<SysMLParseResult> results = new LinkedList<>();
 		for (var resource: resources) {
@@ -171,12 +221,22 @@ public class SysMLAccess extends SysMLUtil {
 		return results;
 	}
 	
+	/**
+	 * Parses a string that contains a sysml or kerml model.
+	 * The {@code resourceURI} identifies the loaded model in the {@code SysMLAccess}.
+	 * It is mandatory to use either .sysml or .kerml extension {@code resourceURI}
+	 * depending on the input to be parsed.
+	 * 
+	 * @param resourceURI		identifier of the parsed model in the {@code SysMLAccess}
+	 * @param input				string to be parsed
+	 * @return					results of the parsing
+	 * @throws IOException
+	 */
 	public SysMLParseResult parse(String resourceURI, String input) throws IOException {
 		assert resourceURI.endsWith(".kerml") || resourceURI.endsWith(".sysml"): "resourceName must use .kerml or .sysml file extension";
 		
 		Resource resource = this.createResource(resourceURI);
 		if (resource instanceof XtextResource xtextResource) {
-			addResourceToIndex(resource);
 			xtextResource.reparse(input);
 		} else {
 			//TODO: add warning when resource is not meant to be parsed
@@ -186,15 +246,33 @@ public class SysMLAccess extends SysMLUtil {
 		return new SysMLParseResult(getRootElement(resource), issues);
 	}
 	
+	/**
+	 * Changes the model library directory
+	 * 
+	 * @param directory		directory with the standard sysml library
+	 */
 	public void setModelLibraryDirectory(String directory) {
+		if (!directory.endsWith("/")) {
+			directory += "/";
+		}
 		SysMLLibraryUtil.setModelLibraryDirectory(directory);
 	}
 	
+	/**
+	 * @return path to set sysml standard library
+	 */
 	public String getModelLibraryDirectory() {
 		return SysMLLibraryUtil.getModelLibraryPath();
 	}
 	
-	public SysMLAPIAccess getAPIAccess(String apiBasePath) {
+	/**
+	 * Returns the {@link SysMLAPIAccess}: a utility for accessing the SysML REST API. With basic read and write functionality.
+	 * The instance is lazily created and stored on the first call further calls only modify the {@code apiBasePath}.
+	 * 
+	 * @param apiBasePath		API base path for the repository
+	 * @return					utility for writing/loading the repository
+	 */
+	public SysMLAPIAccess getOrCreateAPIAccess(String apiBasePath) {
 		if (apiAccess == null) {
 			this.apiAccess = new SysMLAPIAccess(apiBasePath, this);
 		} else {
@@ -203,14 +281,32 @@ public class SysMLAccess extends SysMLUtil {
 		return this.apiAccess;
 	}
 	
+	/**
+	 * Returns the stored {@link SysMLAPIAccess}. Use {@link SysMLAccess#getOrCreateAPIAccess(String)}
+	 * for initialization. 
+	 * 
+	 * @return		stored {@code SysMLAPIAccess} or null if it isn't initialized
+	 */
 	public SysMLAPIAccess getAPIAccess() {
 		return this.apiAccess;
 	}
 	
+	/**
+	 * Returns a builder for the {@link SysMLAccess}. With more initialization options.
+	 * 
+	 * @return builder
+	 */
 	public static Builder builder() {
 		return new Builder();
 	}
 	
+	/**
+	 * Creates a {@link SysMLAccess} instance and initializes the language infrastructure as well as the API Access.
+	 * 
+	 * @param modelLibraryDirectory		directory with the standard sysml library
+	 * @param apiBasePath				API base path for the repository
+	 * @return configured SysMLAccess instance
+	 */
 	public static SysMLAccess createFullyFeaturedWithAPIAccess(String modelLibraryDirectory, String apiBasePath) {
 		return builder()
 				.libraryPath(modelLibraryDirectory)
@@ -220,6 +316,12 @@ public class SysMLAccess extends SysMLUtil {
 				.build();
 	}
 	
+	/**
+	 * Creates a {@link SysMLAccess} instance and initializes the language infrastructure.
+	 * 
+	 * @param modelLibraryDirectory		directory with the standard sysml library
+	 * @return configured SysMLAccess instance
+	 */
 	public static SysMLAccess createFullyFeatured(String modelLibraryDirectory) {
 		return builder()
 				.libraryPath(modelLibraryDirectory)
@@ -263,6 +365,13 @@ public class SysMLAccess extends SysMLUtil {
 			return this;
 		}
 		
+		/**
+		 * Sets the api base path. This option also turns on {@link Builder#xmiSupport()}
+		 * as it is needed for api usage.
+		 * 
+		 * @param apiBasePath
+		 * @return the builder
+		 */
 		public Builder apiBasePath(String apiBasePath) {
 			this.apiBasePath = apiBasePath;
 			return this;
@@ -288,7 +397,8 @@ public class SysMLAccess extends SysMLUtil {
 			
 			access.setModelLibraryDirectory(modelLibraryDirectory);
 			access.setVerbose(verbose);
-			access.getAPIAccess(apiBasePath);
+			//to create an instance
+			access.getOrCreateAPIAccess(apiBasePath);
 			
 			if (withXMISupport || apiBasePath != null) {
 				access.setupXMISupport();

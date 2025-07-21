@@ -22,7 +22,9 @@
  */
 package org.omg.sysml.xtext.util;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -35,6 +37,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -149,11 +152,30 @@ public class SysMLAccess extends SysMLUtil {
 		}
 	}
 	
+	public List<SysMLParseResult> parseFiles(File file, boolean isInput) throws IOException {
+		List<Resource> resources = this.readAll(file, isInput);
+		return  validateResources(resources);
+	}
+	
+	public List<SysMLParseResult> parseFile(String file, boolean isInput) throws IOException {
+		return parseFiles(new File(file), isInput);
+	}
+
+	public List<SysMLParseResult> validateResources(List<Resource> resources) throws OperationCanceledError {
+		final List<SysMLParseResult> results = new LinkedList<>();
+		for (var resource: resources) {
+			List<Issue> issues = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
+			results.add(new SysMLParseResult(getRootElement(resource), issues));
+		}
+		return results;
+	}
+	
 	public SysMLParseResult parse(String resourceURI, String input) throws IOException {
 		assert resourceURI.endsWith(".kerml") || resourceURI.endsWith(".sysml"): "resourceName must use .kerml or .sysml file extension";
 		
 		Resource resource = this.createResource(resourceURI);
 		if (resource instanceof XtextResource xtextResource) {
+			addResourceToIndex(resource);
 			xtextResource.reparse(input);
 		} else {
 			//TODO: add warning when resource is not meant to be parsed
@@ -235,6 +257,9 @@ public class SysMLAccess extends SysMLUtil {
 			} else {
 				access = injector.getInstance(SysMLAccess.class);
 			}
+			
+			access.addExtension(SYSML_EXTENSION);
+			access.addExtension(KERML_EXTENSION);
 			
 			access.setModelLibraryDirectory(modelLibraryDirectory);
 			access.setVerbose(verbose);

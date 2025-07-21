@@ -5,7 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -60,5 +64,31 @@ public class SysMLAccessTest {
 		
 		SysMLParseResult result = sysmlAccess.parse("myres.sysml", "package P { part b; ");
 		assertFalse(result.getSyntaxErrors().isEmpty());
+	}
+	
+	@Test
+	public void testParseFile() throws IOException, URISyntaxException {
+		SysMLAccess sysmlAccess = SysMLAccess.createFullyFeatured(getLibraryPath());
+		sysmlAccess.setVerbose(false);
+		sysmlAccess.loadLibrary();
+		
+		URL testFileURL = getClass().getResource("parseTest.sysml");
+		File testFile = new File(testFileURL.toURI());
+		List<SysMLParseResult> results = sysmlAccess.parseFiles(testFile, true);
+		
+		assertTrue(results.getFirst().getSyntaxErrors().isEmpty());
+	}
+	
+	@Test
+	public void testParseFileWithError() throws IOException, URISyntaxException {
+		SysMLAccess sysmlAccess = SysMLAccess.createFullyFeatured(getLibraryPath());
+		sysmlAccess.setVerbose(false);
+		sysmlAccess.loadLibrary();
+		
+		URL testFileURL = getClass().getResource("parseTestWithError.sysml");
+		File testFile = new File(testFileURL.toURI());
+		List<SysMLParseResult> results = sysmlAccess.parseFiles(testFile, true);
+		
+		assertFalse(results.getFirst().getSyntaxErrors().isEmpty());
 	}
 }

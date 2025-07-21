@@ -256,10 +256,13 @@ public abstract class SysMLUtil {
 	 * @param 	file			the file from which the resources are be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 * @param	extensions		the allowed file extensions
+	 * @return 
 	 * @throws IOException 
 	 */
-	public void readAll(final File file, final boolean isInput, Set<String> extensions) throws IOException {
-		Files.walk(file.toPath()).forEach(path -> read(path, isInput, extensions));
+	public List<Resource> readAll(final File file, final boolean isInput, Set<String> extensions) throws IOException {
+		List<Resource> resources = new LinkedList<>();
+		Files.walk(file.toPath()).forEach(path -> resources.add(read(path, isInput, extensions)));
+		return resources;
 	}
 	
 	/**
@@ -268,20 +271,24 @@ public abstract class SysMLUtil {
 	 * 
 	 * @param 	file			the file from which the resources are be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @return 
 	 * @throws IOException 
 	 */
-	public void readAll(final File file, final boolean isInput) throws IOException {
-		Files.walk(file.toPath()).forEach(path -> read(path, isInput, extensions));
+	public List<Resource> readAll(final File file, final boolean isInput) throws IOException {
+		return readAll(file, isInput, extensions);
 	}
 	
-	public void read(final Path path, boolean isInput, Set<String> extensions) {		
+	public Resource read(final Path path, boolean isInput, Set<String> extensions) {
+		final Resource resource;
 		if (extensions.stream().anyMatch(path.toString()::endsWith)) {
-			Resource resource = this.readResource(path.toString());
+			 resource = this.readResource(path.toString());
 			if (isInput) {
 				this.addInputResource(resource);
 			}
+		} else {
+			resource = null;
 		}
-		
+		return resource;
 	}
 	
 	/**
@@ -291,10 +298,11 @@ public abstract class SysMLUtil {
 	 * 
 	 * @param 	path			the path from which resources are to be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
+	 * @return 
 	 * @throws IOException 
 	 */
-	public void readAll(final String path, boolean isInput) throws IOException {
-		this.readAll(new File(path), isInput, this.extensions);
+	public List<Resource> readAll(final String path, boolean isInput) throws IOException {
+		return this.readAll(new File(path), isInput, this.extensions);
 	}
 	
 	/**
@@ -305,10 +313,11 @@ public abstract class SysMLUtil {
 	 * @param 	path			the path from which resources are to be read
 	 * @param 	isInput			whether the resources read are to be considered input resources
 	 * @param 	extension		the allowed file extension
+	 * @return 
 	 * @throws IOException 
 	 */
-	public void readAll(final String path, boolean isInput, String extension) throws IOException {
-		this.readAll(new File(path), isInput, Set.of(extension));
+	public List<Resource> readAll(final String path, boolean isInput, String extension) throws IOException {
+		return this.readAll(new File(path), isInput, Set.of(extension));
 	}
 	
 	/**

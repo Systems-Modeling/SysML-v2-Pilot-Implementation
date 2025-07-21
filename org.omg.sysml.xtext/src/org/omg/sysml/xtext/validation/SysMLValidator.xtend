@@ -1079,7 +1079,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateRequirementDefinitionSubjectParameterPosition
-		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(defn, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}	
 	
 	@Check 
@@ -1091,7 +1091,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
 		// validateRequirementUsageSubjectParameterPosition
-		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(usg, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
@@ -1129,7 +1129,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateCaseDefinitionSubjectParameterPosition
-		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(defn, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}
 
 	@Check 
@@ -1145,7 +1145,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT)
 		
 		// validateCaseUsageSubjectParameterPosition
-		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(usg, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
@@ -1390,9 +1390,11 @@ class SysMLValidator extends KerMLValidator {
 		return true
 	}
 	
-	protected def boolean checkSubjectParameter(Type type, Feature subjectParameter, Iterable<Feature> inputs, String msg, String eId) {
-		if (subjectParameter !== null && (inputs.empty || inputs.get(0) !== subjectParameter)) {
-			if (subjectParameter.owningType === type) {
+	protected def boolean checkSubjectParameter(Type type, String msg, String eId) {
+		val inputs = type.input
+		if (inputs.empty || !UsageUtil.isSubjectParameter(inputs.get(0))) {
+			val subjectParameter = UsageUtil.getOwnedSubjectParameterOf(type)
+			if (subjectParameter !== null) {
 				error(msg, subjectParameter, null, eId)
 			} else {
 				error(msg, type, null, eId)

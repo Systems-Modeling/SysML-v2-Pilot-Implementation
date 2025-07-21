@@ -82,8 +82,12 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	 */
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
+		RequirementUsage target = getTarget();
 		return UsageUtil.isObjective(getTarget())?
-				Collections.singletonList(UsageUtil.getObjectiveRequirementOf(type)):
+				Collections.singletonList(
+						type == target.getOwningType()? 
+						UsageUtil.getOwnedObjectiveRequirementOf(type):
+						UsageUtil.getObjectiveRequirementOf(type)):
 			    super.getRelevantFeatures(type, skip);
 	}
 	

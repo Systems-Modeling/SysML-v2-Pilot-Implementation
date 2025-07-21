@@ -120,13 +120,16 @@ public class UsageUtil {
 	
 	// Subjects
 
-	public static boolean isSubjectParameter(Usage usage) {
-		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
+	public static boolean isSubjectParameter(Feature feature) {
+		return feature != null && feature.getOwningFeatureMembership() instanceof SubjectMembership;
+	}
+
+	public static Usage getOwnedSubjectParameterOf(Type type) {
+		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
 	public static Usage getSubjectParameterOf(Type type) {
-		NamespaceUtil.addAdditionalMembersTo(type);
-		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
+		return (Usage)TypeUtil.getFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
 	public static boolean hasRelevantSubjectParameter(Usage usage) {
@@ -134,11 +137,18 @@ public class UsageUtil {
 	}
 
 	public static FeatureValue getSatisfyingFeatureValueOf(SatisfyRequirementUsage usage) {
-		Feature subject = usage.getSubjectParameter();
+		Feature subject = UsageUtil.getOwnedSubjectParameterOf(usage);
 		return subject == null? null: FeatureUtil.getValuationFor(subject);
 	}
 	
 	// Objectives
+
+	public static RequirementUsage getOwnedObjectiveRequirementOf(Type type) {
+		if (type instanceof Feature) {
+			type = ((Feature)type).getFeatureTarget();
+		}
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(type, ObjectiveMembership.class);
+	}
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
 		// TODO: Update checkRequirementUsageObjectiveRedefinition
@@ -146,10 +156,8 @@ public class UsageUtil {
 		if (type instanceof Feature) {
 			type = ((Feature)type).getFeatureTarget();
 		}
-		NamespaceUtil.addAdditionalMembersTo(type);
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
+		return !(type instanceof CaseDefinition || type instanceof CaseUsage)? null:
+			(RequirementUsage)TypeUtil.getFeatureByMembershipIn(type, ObjectiveMembership.class);
 	}
 
 	// Actors

@@ -82,6 +82,7 @@ public class SysMLAccess extends SysMLUtil {
 	
 	@Inject
 	protected IResourceValidator validator;
+	private SysMLAPIAccess apiAccess;
 	
 	@Inject
 	public SysMLAccess() {
@@ -193,20 +194,38 @@ public class SysMLAccess extends SysMLUtil {
 		return SysMLLibraryUtil.getModelLibraryPath();
 	}
 	
+	public SysMLAPIAccess getAPIAccess(String apiBasePath) {
+		if (apiAccess == null) {
+			this.apiAccess = new SysMLAPIAccess(apiBasePath, this);
+		} else {
+			this.apiAccess.setApibasePath(apiBasePath);
+		}
+		return this.apiAccess;
+	}
+	
+	public SysMLAPIAccess getAPIAccess() {
+		return this.apiAccess;
+	}
+	
 	public static Builder builder() {
 		return new Builder();
 	}
 	
-	public static SysMLAccess createFullyFeatured(String modelLibraryDirectory, boolean interactiveShadowing) {
+	public static SysMLAccess createFullyFeaturedWithAPIAccess(String modelLibraryDirectory, String apiBasePath) {
 		return builder()
 				.libraryPath(modelLibraryDirectory)
+				.apiBasePath(apiBasePath)
 				.xmiSupport()
 				.verbose()
 				.build();
 	}
 	
 	public static SysMLAccess createFullyFeatured(String modelLibraryDirectory) {
-		return createFullyFeatured(modelLibraryDirectory, false);
+		return builder()
+				.libraryPath(modelLibraryDirectory)
+				.xmiSupport()
+				.verbose()
+				.build();
 	}
 		
 	protected static class SysMLInteractiveAccess extends SysMLAccess {
@@ -222,6 +241,7 @@ public class SysMLAccess extends SysMLUtil {
 		private String modelLibraryDirectory = SysMLLibraryUtil.DEFAULT_MODEL_LIBRARY_PATH;
 		private boolean withXMISupport = false;
 		private boolean verbose;
+		private String apiBasePath;
 		
 		public Builder libraryPath(String modelLibraryDirectory) {
 			this.modelLibraryDirectory = modelLibraryDirectory;
@@ -240,6 +260,11 @@ public class SysMLAccess extends SysMLUtil {
 		
 		public Builder verbose() {
 			this.verbose = true;
+			return this;
+		}
+		
+		public Builder apiBasePath(String apiBasePath) {
+			this.apiBasePath = apiBasePath;
 			return this;
 		}
 		
@@ -263,8 +288,9 @@ public class SysMLAccess extends SysMLUtil {
 			
 			access.setModelLibraryDirectory(modelLibraryDirectory);
 			access.setVerbose(verbose);
+			access.getAPIAccess(apiBasePath);
 			
-			if (withXMISupport) {
+			if (withXMISupport || apiBasePath != null) {
 				access.setupXMISupport();
 			}
 			

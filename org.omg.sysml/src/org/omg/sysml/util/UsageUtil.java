@@ -168,8 +168,7 @@ public class UsageUtil {
 	
 	public static EList<Feature> getOwnedInputParametersOf(ActionUsage action) {
 		EList<Feature> inputParameters = new BasicEList<>();
-		action.getInput().stream().
-			filter(f->f.getOwner() == action).
+		action.getOwnedFeature().stream().filter(FeatureUtil::isInputDirected).
 			forEachOrdered(inputParameters::add);
 		return inputParameters;
 	}

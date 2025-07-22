@@ -31,6 +31,7 @@ import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.util.SysMLUtil;
 
 public class SysMLInteractiveResult {
 	
@@ -87,18 +88,18 @@ public class SysMLInteractiveResult {
 		Element rootElement = this.getRootElement();
 		return rootElement == null? "":
 			!(rootElement instanceof Namespace) || rootElement.getOwner() != null? 
-				SysMLInteractiveUtil.formatElement(rootElement):
+					SysMLUtil.formatElement(rootElement):
 		    ((Namespace)rootElement).getOwnedMember().stream().
-				map(SysMLInteractiveUtil::formatElement).
+				map(SysMLUtil::formatElement).
 				collect(Collectors.joining());
 	}
 	
 	public String formatIssues() {
-		return SysMLInteractiveUtil.formatList(this.issues);
+		return SysMLUtil.formatList(this.issues);
 	}
 	
 	public String formatException() {
-		return SysMLInteractiveUtil.formatException(this.exception);
+		return SysMLUtil.formatException(this.exception);
 	}
 	
 	@Override
@@ -108,11 +109,11 @@ public class SysMLInteractiveResult {
 		} else {
 			List<Issue> syntaxErrors = this.getSyntaxErrors();
 			if (!syntaxErrors.isEmpty()) {
-				return SysMLInteractiveUtil.formatList(syntaxErrors);
+				return SysMLUtil.formatList(syntaxErrors);
 			} else {
 				List<Issue> semanticErrors = this.getSemanticErrors();
 				List<Issue> warnings = this.getWarnings();
-				String msgs = SysMLInteractiveUtil.formatList(semanticErrors) + SysMLInteractiveUtil.formatList(warnings);
+				String msgs = SysMLUtil.formatList(semanticErrors) + SysMLUtil.formatList(warnings);
 				return semanticErrors.isEmpty()? msgs + this.formatRootElement(): msgs;
 			}
 		}

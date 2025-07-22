@@ -63,6 +63,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
+import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelDelta;
@@ -258,7 +259,7 @@ public class SysMLInteractive extends SysMLAccess {
 			List<Element> elements = ExpressionEvaluator.INSTANCE.evaluate(expr, target);
 			this.removeResource();
 			return elements == null? "": 
-				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());
+				elements.stream().map(SysMLUtil::formatElement).collect(Collectors.joining());
 		}
 	}
 	
@@ -277,9 +278,9 @@ public class SysMLInteractive extends SysMLAccess {
 					filter(Namespace.class::isInstance).
 					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
 					collect(Collectors.toList());
-			return SysMLInteractiveUtil.formatMembershipList(globalMemberships);
+			return SysMLUtil.formatMembershipList(globalMemberships);
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	
@@ -293,7 +294,7 @@ public class SysMLInteractive extends SysMLAccess {
 		} else {
 			List<Membership> memberships = ((Namespace)result.getRootElement()).getImportedMembership();
 			this.removeResource();
-			return SysMLInteractiveUtil.formatMembershipList(memberships);
+			return SysMLUtil.formatMembershipList(memberships);
 		}
 	}
 	
@@ -326,12 +327,12 @@ public class SysMLInteractive extends SysMLAccess {
 				return processingFacade.toJsonTree(true);
 			}
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
-				return SysMLInteractiveUtil.formatTree(element);
+				return SysMLUtil.formatTree(element);
 			} else {
 				return "ERROR:Invalid style. Possible styles: TREE and JSON\n";
 			}
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 
@@ -349,7 +350,7 @@ public class SysMLInteractive extends SysMLAccess {
 			processingFacade.getTraversal().visit(element);
 			return processingFacade.toJsonTree(true);
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	
@@ -388,7 +389,7 @@ public class SysMLInteractive extends SysMLAccess {
 				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	

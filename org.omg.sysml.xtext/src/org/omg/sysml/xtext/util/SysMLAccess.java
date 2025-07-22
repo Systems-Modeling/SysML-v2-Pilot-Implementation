@@ -236,8 +236,10 @@ public class SysMLAccess extends SysMLUtil {
 		assert resourceURI.endsWith(".kerml") || resourceURI.endsWith(".sysml"): "resourceName must use .kerml or .sysml file extension";
 		
 		Resource resource = this.createResource(resourceURI);
+		addInputResource(resource);
 		if (resource instanceof XtextResource xtextResource) {
 			xtextResource.reparse(input);
+			addResourceToIndex(xtextResource);
 		} else {
 			//TODO: add warning when resource is not meant to be parsed
 		}

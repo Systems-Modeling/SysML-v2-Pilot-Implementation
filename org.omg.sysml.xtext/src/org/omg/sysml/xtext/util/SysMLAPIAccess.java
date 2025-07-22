@@ -113,7 +113,7 @@ public class SysMLAPIAccess {
 		
 		final RemoteBranch branch;
 		
-		if (projectDescriptor.getBranchId() == null && projectDescriptor.getBranchName() == null) {
+		if (projectDescriptor.getBranchId().isEmpty() && projectDescriptor.getBranchName().isEmpty()) {
 			branch = project.getDefaultBranch();
 			if (branch == null) {
 				throw new NoSuchElementException("ERROR:Project has no default branch");
@@ -215,7 +215,7 @@ public class SysMLAPIAccess {
 		
 		public APIProjectDescriptor projectName(String projectName) {
 			assert projectId == null: "ERROR:Project name and id cannot be provided at the same time";
-			this.projectName = projectId;
+			this.projectName = projectName;
 			return this;
 		}
 		

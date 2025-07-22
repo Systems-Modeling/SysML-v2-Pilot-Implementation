@@ -185,7 +185,7 @@ public class TypeUtil {
 		if (specializes(subtype, supertype)) {
 			return true;
 		} else if (subtype instanceof Feature && supertype instanceof Feature &&
-				   (subtype.getOwnedFeature().isEmpty() || supertype.getOwnedFeature().isEmpty())) {
+				   subtype.getOwnedFeature().isEmpty() && supertype.getOwnedFeature().isEmpty()) {
 			Set<Feature> subtypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)subtype);
 			Set<Feature> supertypeRedefined = FeatureUtil.getAllRedefinedFeaturesOf((Feature)supertype);
 			if (subtypeRedefined.stream().anyMatch(supertypeRedefined::contains)) {
@@ -291,7 +291,7 @@ public class TypeUtil {
 		getTypeAdapter(type).addAdditionalMembers();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
-			for (Type general: getSupertypesOf(type)) {
+			for (Type general: getGeneralTypesOf(type)) {
 				if (general != null && !visited.contains(general)) {
 					resultParameter = getResultParameterOf(general, visited);
 					if (resultParameter != null) {

@@ -101,19 +101,24 @@ import org.eclipse.emf.common.util.EList;
  *             redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
  *                  
  * owningType <> null and
+ * not owningFeatureMembership.
+ *     oclIsKindOf(ReturnParameterMembership) and
  * (owningType.oclIsKindOf(Behavior) or
- *  owningType.oclIsKindOf(Step) and 
- *     not owningType.oclIsKindOf(InvocationExpression)) implies
- *     let i : Integer = 
+ *  owningType.oclIsKindOf(Step) and
+ *     (owningType.oclIsKindOf(InvocationExpression) implies
+ *       not ownedRedefinition->exists(not isImplied)) 
+ * implies
+ *     let i : Integer =
  *         owningType.ownedFeature->select(direction <> null)->
  *             reject(owningFeatureMembership.
- *                 oclIsKindOf(ReturnParameterMembership) in
+ *                 oclIsKindOf(ReturnParameterMembership))->
+ *             indexOf(self) in
  *     owningType.ownedSpecialization.general->
  *         forAll(supertype |
- *             let ownedParameters : Sequence(Feature) = 
+ *             let ownedParameters : Sequence(Feature) =
  *                 supertype.ownedFeature->select(direction <> null)->
  *                      reject(owningFeatureMembership.
- *                          oclIsKindOf(ReturnParameterMembership) in
+ *                          oclIsKindOf(ReturnParameterMembership)) in
  *             ownedParameters->size() >= i implies
  *                 redefines(ownedParameters->at(i))
  * ownedTyping.type->exists(selectByKind(Structure)) implies
@@ -221,7 +226,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
@@ -229,7 +236,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -245,7 +251,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getCrossFeature <em>Cross Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *

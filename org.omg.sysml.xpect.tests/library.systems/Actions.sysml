@@ -60,7 +60,7 @@ standard library package Actions {
 			 * The subperformances of this Action that are Actions. 
 			 */
 		
-			ref occurrence :>> this = (that as Action).this {
+			ref occurrence :>> Action::this, actions::this, subperformances::this = (that as Action).this {
 				doc
 				/*
 				 * The "this" reference of a subaction is always the same as that of
@@ -330,7 +330,7 @@ standard library package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageAction :>> trigger;
+		ref acceptedMessage : MessageTransfer, MessageAction :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 

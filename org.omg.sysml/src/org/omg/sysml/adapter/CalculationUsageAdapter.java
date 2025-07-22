@@ -38,6 +38,10 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 		return (CalculationUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkCalculationUsageSpecialization
+	 * @satisfies checkCalculationUsageSubcalculationSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isSubcalculation()? "subcalculation": super.getSubactionType();	
@@ -46,8 +50,8 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	public boolean isSubcalculation() {
 		CalculationUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		return isNonEntryExitComposite() &&
-			   owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
+		return target.isComposite() &&
+			   (owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage);
 	}
 	
 	@Override

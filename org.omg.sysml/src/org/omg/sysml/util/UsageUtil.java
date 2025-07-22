@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -140,6 +141,11 @@ public class UsageUtil {
 	// Objectives
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		// TODO: Update checkRequirementUsageObjectiveRedefinition
+		// See SYSML21-309
+		if (type instanceof Feature) {
+			type = ((Feature)type).getFeatureTarget();
+		}
 		NamespaceUtil.addAdditionalMembersTo(type);
 		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
 			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
@@ -175,6 +181,17 @@ public class UsageUtil {
 	
 	// SuccessionAsUsages
 	
+	public static Feature getSourceOf(Feature succession) {
+		List<Feature> ends = succession.getOwnedEndFeature();
+		if (!ends.isEmpty()) {
+			ReferenceSubsetting referenceSubsetting = ends.get(0).getOwnedReferenceSubsetting();
+			if (referenceSubsetting != null) {
+				return referenceSubsetting.getReferencedFeature();
+			}
+		}
+		return getSourceFeature(succession);
+	}
+	
 	public static Feature getSourceFeature(Feature feature) {
 		Namespace owningNamespace = feature.getOwningNamespace();
 		if (owningNamespace instanceof TransitionUsage) {
@@ -186,6 +203,17 @@ public class UsageUtil {
 		return getPreviousFeature(feature);
 	}
 
+	public static Feature getTargetOf(Feature succession) {
+		List<Feature> ends = succession.getOwnedEndFeature();
+		if (ends.size() > 1) {
+			ReferenceSubsetting referenceSubsetting = ends.get(1).getOwnedReferenceSubsetting();
+			if (referenceSubsetting != null) {
+				return referenceSubsetting.getReferencedFeature();
+			}
+		}
+		return getTargetFeature(succession);
+	}
+	
 	public static Feature getTargetFeature(Feature feature) {
 		Type type = feature.getOwningType();
 		if (type == null) {
@@ -245,6 +273,13 @@ public class UsageUtil {
 	
 	public static boolean isSubrequirement(RequirementUsage requirement) {
 		Type owningType = requirement.getOwningType();
+		/*
+		 * TODO: Update checkRequirementUsageSubrequirementSpecialization
+		 * 
+		 * !isAssumptionConstraint is not in the OCL
+		 * See SYSML21-300
+		 * 
+		 */
 		return !isAssumptionConstraint(requirement) && requirement.isComposite() &&
 			   (owningType instanceof RequirementDefinition || 
 			    owningType instanceof RequirementUsage);

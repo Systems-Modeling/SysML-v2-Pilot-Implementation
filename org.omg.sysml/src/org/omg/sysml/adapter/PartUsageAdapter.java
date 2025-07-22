@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -39,6 +39,11 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 		return (PartUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkPartUsageActorSpecialization
+	 * @satisfies checkPartUsageStakeholderSpecialization
+	 * @satisfies checkPartUsageSubpartSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isRequirementActor()? getDefaultSupertype("requirementActor"):
@@ -56,6 +61,12 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 	}
 
 	protected boolean isRequirementStakeholder() {
+		/*
+		 * Note: checkPartUsageStakeholderSpecialization OCL doesn't explicitly require the owningType 
+		 * to be a RequirmentDefinition or RequirementUsage. However, a valid stakeholder must be owned
+		 * by a RequirementDefinition or RequirementUsage and, if it isn't the implied subsetting won't
+		 * be valid, so don't add it.
+		 */
 		PartUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return UsageUtil.isStakeholderParameter(target) &&

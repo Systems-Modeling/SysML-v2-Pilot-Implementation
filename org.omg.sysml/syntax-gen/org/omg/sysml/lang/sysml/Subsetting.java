@@ -31,8 +31,9 @@ package org.omg.sysml.lang.sysml;
  * 
  * subsettingFeature.canAccess(subsettedFeature)
  * subsettedFeature.isUnique implies subsettingFeature.isUnique
- * subsettedFeature.isConstant implies subsettingFeature.isConstant
- * subsettedFeature.isPortion implies subsettingFeature.isPortion
+ * subsettedFeature.isConstant and subsettingFeature.isVariable implies 
+ *     subsettingFeature.isConstant
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

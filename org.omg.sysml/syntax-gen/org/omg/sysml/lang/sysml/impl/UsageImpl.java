@@ -1047,20 +1047,10 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	// Additional overrides
 	
 	@Override
-	public boolean isAbstract() {
-		return isVariation() || super.isAbstract();
-	}
-
-	@Override
 	public boolean isComposite() {
 		return UsageUtil.isComposite(this, isComposite);
 	}
 	
-	@Override
-	public boolean isConstant() {
-		return isConstant || isEnd() && isMayTimeVary();
-	}
-
 	//
 	
 	/**

@@ -61,8 +61,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.ClassifierImpl;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class FeatureUtil {
 	
@@ -404,8 +402,7 @@ public class FeatureUtil {
 	private static boolean canAccess(Feature subsettingFeature, Feature subsettedFeature, Set<Feature> visited) {
 		visited.add(subsettingFeature);
 		List<Type> featuringTypes = subsettingFeature.getFeaturingType();
-		return featuringTypes.isEmpty() && subsettedFeature == 
-				SysMLLibraryUtil.getLibraryType(subsettingFeature, ImplicitGeneralizationMap.getDefaultSupertypeFor(ClassifierImpl.class)) ||
+		return featuringTypes.isEmpty() && subsettedFeature.isFeaturedWithin(null) ||
 				featuringTypes.stream().anyMatch(featuringType-> 
 						subsettedFeature.isFeaturedWithin(featuringType) ||				
 						featuringType instanceof Feature &&

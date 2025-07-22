@@ -59,7 +59,16 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		return root.getOwningMembership() instanceof ElementFilterMembership;
 	}
 	
+	/**
+	 * @satisfies checkFeatureReferenceExpressionBindingConnector
+	 */
 	protected void addReferenceConnector() {
+		/*
+		 * TODO: Update checkFeatureReferenceExpressionBindingConnector?
+         * 
+         * OCL does not include !isInFilterExpression check.
+		 * 
+		 */
 		if (!isInFilterExpression()) {
 			FeatureReferenceExpression target = getTarget();
 			Feature referent = target.getReferent();
@@ -69,7 +78,10 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 			}
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkFeatureFeatureReferenceResultSpecialization
+	 */
 	protected void addResultSubsetting() {
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
@@ -89,6 +101,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
+		//checkFeatureReferenceExpressionBindingConnector
 		addReferenceConnector();
 		// Add subsetting in order to inherit typing of referent.
 		addResultSubsetting();

@@ -1548,6 +1548,7 @@ package SimpleVehicleModel{
             part def SafetyEngineer;
             concern def VehicleSafety {
                 doc /* identify system safety features */
+                subject;
                 stakeholder se:SafetyEngineer;
             }
         }

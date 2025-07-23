@@ -20,6 +20,10 @@ import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
 
+/**
+ * This API is used to publish or load models from the standard
+ * SysML REST and for JSON serialization of sysml models.
+ */
 public class SysMLAPIAccess {
 	
 	private SysMLAccess sysmlAccess;

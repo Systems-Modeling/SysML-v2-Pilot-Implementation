@@ -59,7 +59,12 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 /**
- * 
+ * This is an API that enables building batch applications
+ * for parsing and validation of sysml and kerml models
+ * by setting up the language infrastructure and reading the library.
+ * The API provides access to the underlying EMF infrastructure as well to enable
+ * model processing. {@link SysMLAccess#getAPIAccess() } can be used to construct an
+ * interface for reading and writing models from/to the standard SysML REST API.
  */
 public class SysMLAccess extends SysMLUtil {
 	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";

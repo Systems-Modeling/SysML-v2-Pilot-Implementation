@@ -86,6 +86,7 @@ package SemanticMetadata_valid {
 	
 	requirement r1;
 	#g requirement r2 {
+		subject;
 		actor #B a;
 		assume #g constraint b;
 		require #g r1;

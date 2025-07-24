@@ -1152,7 +1152,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val result = TypeUtil.getOwnedResultParameterOf(e)
 		if (type !== null && result !== null) {
 			val typeFeatures = type.feature.filter[f | f.owningMembership.visibility == VisibilityKind.PUBLIC]
-			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeFeatures, resultFeatures,
 				INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION,
 				INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION
@@ -1191,8 +1191,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			// validateInvocationExpressionParameterRedefinition
 			// validateInvocationExpressionNoDuplicateParameterRedefinition
-			val typeParams = type.feature.filter[p | FeatureUtil.isInputParameter(p)]
-			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val typeParams = type.input
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeParams, exprParams,
 				INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION,
 				INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION

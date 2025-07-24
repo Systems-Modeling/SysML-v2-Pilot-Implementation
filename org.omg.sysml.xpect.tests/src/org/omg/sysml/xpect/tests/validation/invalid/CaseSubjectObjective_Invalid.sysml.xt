@@ -60,6 +60,7 @@ package 'Case Subjects and Objectives' {
 		// XPECT errors --> "Only one subject is allowed." at "subject s4;"
 		subject s4;
 
+		// XPECT errors --> "Only one objective is allowed." at "objective o3;"
 		objective o3;
 		
 		// XPECT errors --> "Only one objective is allowed." at "objective o4;"
@@ -72,10 +73,18 @@ package 'Case Subjects and Objectives' {
 		// XPECT errors --> "Subject must be first parameter." at "subject s5;"
 		subject s5;
 		
+		// XPECT errors --> "Only one objective is allowed." at "objective o5;"
 		objective o5;
 	}
 	
-	case c1 : C1 {
+	//* XPECT errors ---
+		"Only one objective is allowed." at "case c1 : C1;"
+		"Subject must be first parameter." at "case c1 : C1;"
+	   ---
+	*/
+	case c1 : C1;
+	
+	case c2 {
 		in y;
 		
 		// XPECT errors --> "Subject must be first parameter." at "subject s6;"

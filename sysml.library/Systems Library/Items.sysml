@@ -72,12 +72,14 @@ standard library package Items {
 		}
 		
 		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
-		doc
+            doc
 			/*
 			 * envelopingShapes that are structured space objects with every face or every edge
 			 * intersecting this Item.
 			 */		
-
+            
+            attribute :>> StructuredSpaceObject::innerSpaceDimension, envelopingShapes::innerSpaceDimension;
+            
 			item boundingShape: Item :>> self;
 
 			item :>> faces {

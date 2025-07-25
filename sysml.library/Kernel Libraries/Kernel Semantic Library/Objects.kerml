@@ -165,12 +165,13 @@ standard library package Objects {
 		 * inner space dimension of structured space object is the highest of their cells.
 		 */
 
-		abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices
+        abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices
 		  { feature cellOrientation : Integer [0..1];
 		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
 		  }
 
 		portion feature faces : Surface[0..*] ordered subsets structuredSpaceObjectCells {
+		    feature redefines Surface::innerSpaceDimension, structuredSpaceObjectCells::innerSpaceDimension;
 			feature redefines edges subsets StructuredSpaceObject::edges;
 			feature redefines vertices subsets StructuredSpaceObject::vertices;
 			derived feature redefines spaceBoundary; 
@@ -179,13 +180,16 @@ standard library package Objects {
 		}
 
 		portion feature edges : Curve[0..*] ordered subsets structuredSpaceObjectCells {
+            feature redefines Curve::innerSpaceDimension, structuredSpaceObjectCells::innerSpaceDimension;
 			feature redefines vertices subsets StructuredSpaceObject::vertices;
 			derived feature redefines spaceBoundary;
 			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
 		}
 
-		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells;
+		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells{
+            feature redefines Point::innerSpaceDimension, structuredSpaceObjectCells::innerSpaceDimension;		    
+		}
 		
 		derived feature redefines innerSpaceDimension = 
 			if notEmpty(faces) ? 2 else if notEmpty(edges) ? 1 else 0;

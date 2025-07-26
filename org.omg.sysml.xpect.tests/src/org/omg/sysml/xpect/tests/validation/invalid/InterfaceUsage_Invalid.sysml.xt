@@ -78,6 +78,7 @@ package 'Interface Example' {
 		interface opposite1 : fi connect eng.engineFuelPort to tankAssy.fuelTankPort; 
 		interface bad {
 			//XPECT errors --> "An interface end must be a port." at "end part ::> tankAssy.fuel;"
+			// XPECT warnings ---> "Duplicate of inherited member name 'self' from Part, Port" at "end part ::> tankAssy.fuel;"
 			end part ::> tankAssy.fuel;
 			end port ::> eng.engineFuelPort;
 		}

@@ -419,9 +419,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				for (mem: ownedMemberships) {
 					checkDistinguishibility(namesp, mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
-				for (mem: inheritedMemberships) {
-					checkDistinguishibility(namesp, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
-				}
+				checkDistinguishibility(namesp, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 			}
 		}		
 	}
@@ -488,19 +486,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def identifyDuplicates(String msg, Namespace memNs, String name, Iterable<Membership> dups) {
-		var nsNames = ""
-		for (dup: dups) {
-			val ns = dup.membershipOwningNamespace
-			if (ns !== memNs) {
-				val nsName = ns.name
-				if (nsName !== null) {
-					if (!nsNames.empty) {
-						nsNames += ", "
-					}
-					nsNames += nsName
-				}
-			}
-		}
+		val nsNames = dups.map[membershipOwningNamespace].filter[ns | ns !== memNs].
+						map[getName].map[n | if (n === null) "" else n].sort.
+						map[n | ElementUtil.escapeName(n)].join(", ");
 		if (nsNames.empty) msg
 		else msg + " '" + ElementUtil.escapeString(name) + "' from " + nsNames;
 	}

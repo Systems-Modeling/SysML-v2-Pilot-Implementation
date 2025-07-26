@@ -12,6 +12,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
 		File {from ="/library.systems/Interfaces.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -27,6 +29,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
 				File {from ="/library.systems/Interfaces.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
 			}
 		}
 	}
@@ -45,8 +49,8 @@ package 'Interface Example' {
 	
 	port def FuelInPort {
 		attribute temperature : Temp;
-		out ref fuelSupply : Fuel;
-		in ref fuelReturn : Fuel;
+		in ref fuelSupply : Fuel;
+		out ref fuelReturn : Fuel;
 	}
 	
 	part def FuelTankAssembly {
@@ -62,6 +66,8 @@ package 'Interface Example' {
 	interface def FuelInterface {
 		end supplierPort : FuelOutPort;
 		end consumerPort : FuelInPort;
+		flow supplierPort.fuelSupply to consumerPort.fuelSupply;
+		flow consumerPort.fuelReturn to supplierPort.fuelReturn;
 	}
 	
 	part vehicle : Vehicle {	
@@ -72,12 +78,8 @@ package 'Interface Example' {
 		part eng : Engine {
 			port redefines engineFuelPort;
 		}
-		interface original: FuelInterface connect 
+		interface FuelInterface connect 
 			supplierPort ::> tankAssy.fuelTankPort to 
 			consumerPort ::> eng.engineFuelPort;
-		
-		interface opposite : FuelInterface connect 
-			consumerPort ::> eng.engineFuelPort to
-			supplierPort ::> tankAssy.fuelTankPort; 
 	} 
 }

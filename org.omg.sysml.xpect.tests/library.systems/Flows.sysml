@@ -81,7 +81,7 @@ standard library package Flows {
          * It is the base type for FlowUsages that identify their source output and
          * target input.
          */
-        
+         
         end occurrence source: Occurrence :>> Message::source, FlowTransfer::source;
         end occurrence target: Occurrence :>> Message::target, FlowTransfer::target;
     }
@@ -92,6 +92,8 @@ standard library package Flows {
          * SuccessionFlow is a subclass of flowss that appen after their source and 
          * before their target. It is the base type for all SuccessionFlowUsages.
          */
+         
+        ref self : SuccessionFlow :>> Flow::self, FlowTransferBefore::self;
     
         end occurrence source: Occurrence :>> Flow::source, FlowTransferBefore::source;
         end occurrence target: Occurrence :>> Flow::target, FlowTransferBefore::target;

@@ -38,8 +38,10 @@ package 'Port Example' {
 	port def pd2;
 	part def FA {
 		// XPECT errors --> "A port must be typed by port definitions." at "port p1 : B;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from Part, Port" at "port p1 : B;"
 		port p1 : B;
 		// XPECT errors --> "A port must be typed by port definitions." at "port p2 : Vt;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Port" at "port p2 : Vt;"
 		port p2 : Vt;
 
 		port two_port_def_types: pd1, pd2 {
@@ -51,6 +53,7 @@ package 'Port Example' {
 	}
 	part f: FA {
 		// XPECT errors --> "A port must be typed by port definitions." at "port pp redefines p1;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from Part, Port" at "port pp redefines p1;"
 		port pp redefines p1;
 	}
 	port def OutPort {

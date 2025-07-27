@@ -1,0 +1,69 @@
+= bnf_grammar_extractor
+
+Tool to extract concrete KerML and SysML v2 concrete language grammars from their respective specifications and check them for correctness.
+
+== Usage of the Tool
+
+=== Obtain a Complete KerML or SysML Specification in HTML Format
+
+Instructions on how to export a selected version of the specification from View Editor to a self-standing HTML file.
+
+> Note: These instructions are for use of View Editor with the FireFox browser. Tested with FireFox v130.0.1 on Windows 11. In other browsers the menu or key to inspect the source code
+
+1. Open the selected spec in View Editor.
+2. Load the full document by clicking the "Full Document" icon (image:VE-full-document-icon.png[]) at the top of the left panel. This may take several minutes.
+3. Click the print icon, image:VE-print-icon.png[] left next to the EXPORT icon at the top of the document panel.
+4. Wait for a new browser tab to appear with the complete HTML document and a popup print dialog. Again, be patient, this may take several minutes.
+5. Cancel the popup print dialog.
+6. In the complete HTML document tab, open a Developer / Inspector panel via menu *More tools > Web Developer Tools* or by hitting `Ctrl+Shift+I`. (Note: a direct *Save page as ...* or `Ctlr+S` does not work, as it saves a script.)
+7. In the Inspector tab of the Developer panel, right-click the top level `<html ...>` element, and select *Copy > Outer HTML* from the context menu.
+8. Open a new, appropriately named `.html` file in a text editor, paste the contents and save.
+9. Close the complete HTML document tab.
+
+=== Run the bnf_grammar_extraxtor
+
+Ensure that python version 3.8 or higher is installed on your machine. For exammple:
+
+[source,shell]
+----
+    $ python --version
+    Python 3.12.7
+----
+
+Also ensure that the following two packages are installed. You can use `pip` or `conda`.
+
+[source,shell]
+----
+    $ pip install beautifulsoup4
+    $ pip install lark
+----
+
+Package https://pypi.org/project/beautifulsoup4/[beautifulsoup4] is used to parse the HTML input file.
+
+Package https://pypi.org/project/lark/[lark] is used to parse and verify the extracted BNF source.
+
+The usage info from the tool is as follows, and is also given by the `-h` or `--help` option.
+
+[source,shell]
+----
+Usage: python bnf_grammar_extractor.py [options] {<spec_path> <bnf_clause_id> <mode>}+
+
+    Extract textual and/or graphical grammars from given KerML or SysML specifications
+    and generate txt and html files.
+
+    Arguments:
+    There must be one or more triples of arguments, consisting of:
+    spec_path     : .html file specification exported from View Editor
+    bnf_clause_id : clause identifier that specifies a BNF grammar
+    mode          : "textual" or "graphical"
+
+    The argument triples should be ordered from least to most dependent grammars,
+    as in the second example below.
+
+    Options:
+    -h or --help: Display this message and exit.
+
+    Examples:
+    1. python bnf_grammar_extractor.py SysML-spec-r2025-xx.html 8.2.2 textual
+    2. python bnf_grammar_extractor.py KerML-spec-r2025-xx.html 8.2 textual SysML-spec-r2025-xx.html 8.2.2 textual SysML-spec-r2025-xx.html 8.2.3 graphical
+----

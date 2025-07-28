@@ -353,14 +353,11 @@ public class ElementUtil {
 				transformAll(element, addImplicitElements);
 			}
 		}
-		if (addImplicitElements) {
-			root.setIsImpliedIncluded(true);
-			if (root instanceof Type) {
-				TypeUtil.insertImplicitBindingConnectors((Type)root);
-				TypeUtil.insertImplicitSpecializations((Type)root);
-				if (root instanceof Feature) {
-					FeatureUtil.insertImplicitTypeFeaturings((Feature)root);
-				}
+		if (addImplicitElements && root instanceof Type) {
+			TypeUtil.insertImplicitBindingConnectors((Type)root);
+			TypeUtil.insertImplicitSpecializations((Type)root);
+			if (root instanceof Feature) {
+				FeatureUtil.insertImplicitTypeFeaturings((Feature)root);
 			}
 		}
 	}

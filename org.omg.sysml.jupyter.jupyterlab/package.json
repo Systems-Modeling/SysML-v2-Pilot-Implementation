@@ -12,8 +12,7 @@
     "jupyterlab-extension"
   ],
   "dependencies": {
-    "@jupyterlab/application": "4.x",
-    "yarn": "^1.22.22"
+    "@jupyterlab/application": "4.x"
   },
   "devDependencies": {
     "@codemirror/legacy-modes": "^6.3.2",

@@ -24,74 +24,54 @@
  */
 
 // tslint:disable-next-line
-import 'codemirror/addon/mode/simple';
 
-import * as CodeMirror from 'codemirror';
-
-const SI_MODE = 'sysml';
-const P_MIME = 'text/x-sysml'
+import {StringStream} from "@codemirror/language"
+import { clike } from '@codemirror/legacy-modes/mode/clike';
 
 const f_wordify = (h: any, s: string) => ({...h, [s]: true});
-
-export function defineSysMLv2Mode(): void {
-    CodeMirror.defineMode(SI_MODE, (gc_mode, gc_parser) => {
-        return CodeMirror.getMode(gc_mode, {
-            name: 'clike',
-            keywords: [
-                "$KEYWORDS"
-            ].reduce(f_wordify, {}),
-            defKeywords: [
-                "$DEF_KEYWORDS"
-            ].reduce(f_wordify, {}),
-            typeFirstDefinitions: true,
-            atoms: ['true', 'false', 'null'].reduce(f_wordify),
-            number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
-            modeProps: {
-                fold: ['brace'],
+export const sysmlparser = clike({
+        name: 'clike',
+        keywords: [
+           "$KEYWORDS"
+        ].reduce(f_wordify, {}),
+        types: [
+            "$DEF_KEYWORDS"
+        ].reduce(f_wordify, {}),
+        atoms: ['true', 'false', 'null'].reduce(f_wordify, {}),
+        number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i, 
+        hooks: {
+            "'": function(stream: StringStream) {
+                let b_escaped = false;
+                let s_next;
+                while(s_next = stream.next()) {
+                    if(s_next === "'" && !b_escaped) break;
+                    b_escaped = !b_escaped && s_next === '\\';
+                }
+                return 'variable';
             },
-            hooks: {
-                "'": function(stream: CodeMirror.StringStream) {
-                    let b_escaped = false;
-                    let s_next;
-                    while(s_next = stream.next()) {
-                        if(s_next === "'" && !b_escaped) break;
-                        b_escaped = !b_escaped && s_next === '\\';
+            '/': function(stream: StringStream) {
+                if(stream.match('/*', false)) stream.next();
+                return false;
+            },
+            "#": function(stream: StringStream) {
+                let b_first = true;
+                do {
+                    if (stream.match("'", true)) { 
+                        let b_escaped = false;
+                        let s_next;
+                        while(s_next = stream.next()) {
+                            if(s_next === "'" && !b_escaped) break;
+                            b_escaped = !b_escaped && s_next === '\\';
+                        }
+                    } else if (stream.match(/\w/, true)) {
+                        stream.eatWhile(/\w/);
+                    } else if (b_first) {
+                        return 'operator';
                     }
-                    return 'variable';
-                },
-                '/': function(stream: CodeMirror.StringStream) {
-                    if(stream.match('/*', false)) stream.next();
-                    return false;
-                },
-                "#": function(stream: CodeMirror.StringStream) {
-                	let b_first = true;
-                 	do {
-                 		if (stream.match("'", true)) { 
-                    		let b_escaped = false;
-                    		let s_next;
-                    		while(s_next = stream.next()) {
-                        		if(s_next === "'" && !b_escaped) break;
-                        		b_escaped = !b_escaped && s_next === '\\';
-                    		}
-                		} else if (stream.match(/\w/, true)) {
-                			stream.eatWhile(/\w/);
-                		} else if (b_first) {
-                			return 'operator';
-                		}
-                		b_first = false;
-                	} while (stream.match('::', true))
-                    return 'keyword';
-                },
+                    b_first = false;
+                } while (stream.match('::', true))
+                return 'keyword';
             },
-        });
-    });
-
-    CodeMirror.defineMIME(P_MIME, SI_MODE);
-
-    (CodeMirror as any).modeInfo.push({
-        ext: ['sysml'],
-        mime: P_MIME,
-        mode: SI_MODE,
-        name: 'sysml',
-    });
-}
+        },
+    }
+);

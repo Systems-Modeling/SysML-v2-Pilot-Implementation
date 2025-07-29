@@ -5,31 +5,24 @@
   "repository": "github:Systems-Modeling/SysML-v2-Pilot-Implementation",
   "author": "SysML v2 Submission Team",
   "license": "LGPL-3.0-or-later",
+  "main": "build/plugin.js",
   "keywords": [
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
   ],
   "dependencies": {
-    "@jupyterlab/application": "3.x"
+    "@jupyterlab/application": "4.x",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "@types/codemirror": "^0.0.98",
+    "@codemirror/legacy-modes": "^6.3.2",
+    "@jupyterlab/codemirror": ">=4.0",
     "@types/json-schema": "*",
-    "typescript": "<4.4.0"
+    "typescript": "~5.8.3"
   },
-  "resolutions": {
-    "@lumino/coreutils": "^1.11.0",
-    "@lumino/widgets": "^1.37.2"
-  },
-  "peerDependencies": {
-    "codemirror": "^5.58.1"
-  },
-  "files": [
-    "build/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
-  ],
   "jupyterlab": {
-    "extension": "build/plugin.js"
+    "extension": true
   },
   "scripts": {
     "build": "tsc",

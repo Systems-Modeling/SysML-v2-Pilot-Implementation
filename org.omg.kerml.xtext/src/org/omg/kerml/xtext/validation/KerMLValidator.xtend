@@ -405,19 +405,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			val owningMembershipMap = owningMemberships.nameMap
 			for (mem: owningMemberships) {
-				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
+				checkDistinguishibility(namesp, mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
 			}
 			
 			val aliasMembershipMap = aliasMemberships.nameMap
 			for (mem: aliasMemberships) {
-				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
-				checkDistinguishibility(mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
+				checkDistinguishibility(namesp, mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
+				checkDistinguishibility(namesp, mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				val inheritedMembershipMap = namesp.inheritedMembership.nameMap
+				val inheritedMemberships = namesp.inheritedMembership
+				val inheritedMembershipMap = inheritedMemberships.nameMap
 				for (mem: ownedMemberships) {
-					checkDistinguishibility(mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
+					checkDistinguishibility(namesp, mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
+				checkDistinguishibility(namesp, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 			}
 		}		
 	}
@@ -447,7 +449,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		return nameMap;	
 	}
 	
-	def checkDistinguishibility(Membership mem, Map<String, Set<Membership>> nameMap, String msg) {
+	def checkDistinguishibility(Namespace namesp, Membership mem, Map<String, Set<Membership>> nameMap, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
 		val memElement = mem.memberElement
@@ -455,7 +457,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (memShortName !== null) {
 			var dups = nameMap.get(memShortName)?.filter[m | m.memberElement != memElement]
 			if (dups !== null && !dups.empty) {
-				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memShortName, dups)		
+				val msgDups = msg.identifyDuplicates(namesp, memShortName, dups)
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
@@ -466,7 +468,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (memName !== null) {
 			val dups = nameMap.get(memName)?.filter[m | m.memberElement != memElement]
 			if (dups !== null && !dups.empty) {
-				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memName, dups)			
+				val msgDups = msg.identifyDuplicates(namesp, memName, dups)			
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
@@ -476,22 +478,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
+	def checkDistinguishibility(Namespace namesp, Map<String, Set<Membership>> nameMap, String msg) {
+		nameMap.filter[name, dups | dups.size > 1 && dups.map[memberElement].toSet.size > 1].forEach[name, dups |
+			val msgDups = msg.identifyDuplicates(namesp, name, dups)
+			warning(msgDups, namesp, null, INVALID_NAMESPACE_DISTINGUISHABILITY)
+		]		
+	}
+	
 	def identifyDuplicates(String msg, Namespace memNs, String name, Iterable<Membership> dups) {
-		var nsNames = ""
-		for (dup: dups) {
-			val ns = dup.membershipOwningNamespace
-			if (ns !== memNs) {
-				val nsName = ns.name
-				if (nsName !== null) {
-					if (!nsNames.empty) {
-						nsNames += ", "
-					}
-					nsNames += nsName
-				}
-			}
-		}
+		val nsNames = dups.map[membershipOwningNamespace].filter[ns | ns !== memNs].
+						map[getName].map[n | if (n === null) "" else n].sort.
+						map[n | ElementUtil.escapeName(n)].join(", ");
 		if (nsNames.empty) msg
-		else msg + " " + ElementUtil.escapeName(name) + " from " + nsNames;
+		else msg + " '" + ElementUtil.escapeString(name) + "' from " + nsNames;
 	}
 	
 	@Check

@@ -346,10 +346,6 @@ public class ElementUtil {
 	}
 	
 	public static void transformAll(Element root, boolean addImplicitElements) {
-		if (addImplicitElements && root instanceof Type) {
-			root.setIsImpliedIncluded(true);
-			TypeUtil.insertImplicitBindingConnectors((Type) root);
-		}
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
 			// transformAll(relationship, addImplicitElements);
@@ -358,10 +354,11 @@ public class ElementUtil {
 			}
 		}
 		if (addImplicitElements && root instanceof Type) {
+			TypeUtil.insertImplicitBindingConnectors((Type)root);
 			TypeUtil.insertImplicitSpecializations((Type)root);
-		}
-		if (addImplicitElements && root instanceof Feature) {
-			FeatureUtil.insertImplicitTypeFeaturings((Feature)root);
+			if (root instanceof Feature) {
+				FeatureUtil.insertImplicitTypeFeaturings((Feature)root);
+			}
 		}
 	}
 	

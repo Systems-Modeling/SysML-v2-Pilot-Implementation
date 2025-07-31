@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,8 +32,8 @@ import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_directionOf_InvocationDelegate extends BasicInvocationDelegate {
 
@@ -65,8 +65,7 @@ public class Type_directionOf_InvocationDelegate extends BasicInvocationDelegate
 					   originalDirection;
 			}
 		} else {
-			for (Specialization specialization: type.getOwnedSpecialization()) {
-				Type general = specialization.getGeneral();
+			for (Type general: TypeUtil.getGeneralTypesOf(type)) {
 				if (general != null && !visited.contains(general)) {
 					FeatureDirectionKind direction = directionOf(feature, general, visited);
 					if (direction != null) {

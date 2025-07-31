@@ -38,21 +38,31 @@ package pkg {
 	public import ScalarValues::*;
 	part def A {
 		// XPECT errors --> "A part must be typed by item definitions." at "part p1: Real;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Part" at "part p1: Real;"
 		part p1: Real;
 		// XPECT errors --> "A part must be typed by item definitions." at "part p2: att;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Part" at "part p2: att;"
 		part p2: att;
 		// XPECT errors --> "A part must be typed by item definitions." at "part p3: act;"
+		//* XPECT warnings ---
+		 "Duplicate of inherited member name 'self' from Action, Part" at "part p3: act;"
+		 "Duplicate of inherited member name 'start' from Action, Part" at "part p3: act;"
+		 "Duplicate of inherited member name 'done' from Action, Part" at "part p3: act;"
+		--- */
 		part p3: act;
 		// XPECT errors --> "A part must be typed by item definitions." at "part p4: AttDef;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Part" at "part p4: AttDef;"
 		part p4: AttDef;
 		// XPECT errors --> "A part must be typed by item definitions." at "part p5: PartDef::aPort;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from Part, Port" at "part p5: PartDef::aPort;"
 		part p5: PartDef::aPort;
-		/* XPECT errors ---
+		//* XPECT errors ---
 		 "A part must be typed by item definitions." at "part p6: PartDef::aPart;"
 		 "Features must have at least one type" at "part p6: PartDef::aPart;"
 		--- */
 		part p6: PartDef::aPart;
 		// XPECT errors --> "A part must be typed by item definitions." at "part p7: PartDef, AttDef;"
+		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Part" at "part p7: PartDef, AttDef;"
 		part p7: PartDef, AttDef;
 	}
 	attribute def AttDef;

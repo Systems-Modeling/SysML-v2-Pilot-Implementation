@@ -103,7 +103,7 @@ standard library package Flows {
          */
     }
     
-    abstract message flows: Flow[0..*] nonunique :> messages, flowTransfers {
+    abstract flow flows: Flow[0..*] nonunique :> messages, flowTransfers {
         doc
         /*
          * flows is the base feature for FlowUsages that identify their source output
@@ -114,7 +114,7 @@ standard library package Flows {
         end occurrence target: Occurrence :>> Flow::target, messages::target, flowTransfers::target;
     }
     
-    abstract message successionFlows: SuccessionFlow[0..*] nonunique :> flows, flowTransfersBefore {
+    abstract flow successionFlows: SuccessionFlow[0..*] nonunique :> flows, flowTransfersBefore {
         doc
         /*
          * successionFlows is the base feature of all SuccessionFlowUsages.

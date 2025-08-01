@@ -42,9 +42,6 @@ standard library package Flows {
          * a transfer of objects or values between two occurrences. It is 
          * the base type of all FlowUsages.
          */
-    
-        end occurrence source: Occurrence :>> Transfer::source;
-        end occurrence target: Occurrence :>> Transfer::target;
         
         ref payload :>> MessageAction::payload, Transfer::payload;
         
@@ -104,12 +101,9 @@ standard library package Flows {
         /*
          * messages is the base feature of all FlowUsages.
          */
-    
-        end occurrence source: Occurrence :>> Message::source, transfers::source;
-        end occurrence target: Occurrence :>> Message::target, transfers::target;
     }
     
-    abstract message flows: Flow[0..*] nonunique :> messages, flowTransfers {
+    abstract flow flows: Flow[0..*] nonunique :> messages, flowTransfers {
         doc
         /*
          * flows is the base feature for FlowUsages that identify their source output
@@ -120,7 +114,7 @@ standard library package Flows {
         end occurrence target: Occurrence :>> Flow::target, messages::target, flowTransfers::target;
     }
     
-    abstract message successionFlows: SuccessionFlow[0..*] nonunique :> flows, flowTransfersBefore {
+    abstract flow successionFlows: SuccessionFlow[0..*] nonunique :> flows, flowTransfersBefore {
         doc
         /*
          * successionFlows is the base feature of all SuccessionFlowUsages.

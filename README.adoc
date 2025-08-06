@@ -62,12 +62,12 @@ image:oomph-projects.png[oomph projects]
    * `org.omg.kerml.expressions.xtext`
    * `org.omg.kerml.expressions.xtext.ide`
    * `org.omg.kerml.expressions.xtext.ui`
-   * `org.kerml.xtext`
-   * `org.kerml.xtext.ide`
-   * `org.kerml.xtext.ui`
-   * `org.sysml.xtext`
-   * `org.sysml.xtext.ide`
-   * `org.sysml.xtext.ui`
+   * `org.omg.kerml.xtext`
+   * `org.omg.kerml.xtext.ide`
+   * `org.omg.kerml.xtext.ui`
+   * `org.omg.sysml.xtext`
+   * `org.omg.sysml.xtext.ide`
+   * `org.omg.sysml.xtext.ui`
 
 4. https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects (including packaging the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`). 
         * To build the repository, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory.

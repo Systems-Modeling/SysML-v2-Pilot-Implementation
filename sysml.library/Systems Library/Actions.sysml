@@ -144,6 +144,8 @@ standard library package Actions {
 			/*
 			 * The subactions of this Action that are AssignmentActions.
 			 */
+			 
+			 in target;
 		}
 		
 		abstract action ifSubactions : IfThenAction[0..*] :> subactions, ifThenActions {

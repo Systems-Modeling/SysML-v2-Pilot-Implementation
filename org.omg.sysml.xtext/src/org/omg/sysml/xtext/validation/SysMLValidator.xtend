@@ -25,6 +25,7 @@
  *****************************************************************************/
 package org.omg.sysml.xtext.validation
 
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
@@ -88,8 +89,6 @@ import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.UseCaseDefinition
 import org.omg.sysml.lang.sysml.MetadataUsage
 import org.omg.sysml.lang.sysml.Metaclass
-import org.omg.sysml.util.FeatureUtil
-import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.Interaction
 import org.omg.sysml.lang.sysml.SendActionUsage
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
@@ -122,7 +121,6 @@ import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.AttributeDefinition
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ActionDefinition
-import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.TransitionFeatureKind
 import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.RequirementConstraintKind
@@ -131,10 +129,11 @@ import org.omg.sysml.lang.sysml.ReferenceUsage
 import org.omg.sysml.lang.sysml.IfActionUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
 import org.omg.sysml.lang.sysml.TriggerKind
-import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.lang.sysml.FlowDefinition
 import org.omg.sysml.lang.sysml.FlowUsage
 import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.UsageUtil
 
 /**
  * This class contains custom validation rules. 
@@ -667,7 +666,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkFlowDefinition(FlowDefinition cdef) {
 		// validateConnectionDefinitionConnectionEnds
-		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
+		val ends = cdef.endFeature
 		if (ends.size > 2) {
 			val ownedEnds = cdef.ownedEndFeature
 			if (ownedEnds.size <= 2) {

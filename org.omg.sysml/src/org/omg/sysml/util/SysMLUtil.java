@@ -261,7 +261,12 @@ public abstract class SysMLUtil {
 	 */
 	public List<Resource> readAll(final File file, final boolean isInput, Set<String> extensions) throws IOException {
 		List<Resource> resources = new LinkedList<>();
-		Files.walk(file.toPath()).forEach(path -> resources.add(read(path, isInput, extensions)));
+		Files.walk(file.toPath()).forEach(path -> {
+			Resource res = read(path, isInput, extensions);
+			if (res != null) {
+				resources.add(res);
+			}
+		});
 		return resources;
 	}
 	

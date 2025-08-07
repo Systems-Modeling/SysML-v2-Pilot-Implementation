@@ -44,17 +44,21 @@ image:oomph-projects.png[oomph projects]
 
 ==== Manual installation
 
-1. Install Eclipse 2025-03 (4.35) and Xtext.
+1. Install Eclipse 2025-03 (4.35).
    * Install the “Eclipse Modeling Tools” package.
      ** `https://www.eclipse.org/downloads/packages/release/2025-03/r/eclipse-modeling-tools`
       
-   * To install Xtext, select Help > Install New Software, use the update site URL given below, and install “Xtext Complete SDK” (under General Purpose Tools).
-     ** `http://download.eclipse.org/releases/2025-03`
+   * Install additional release packages in Eclipse.
+     ** Select Help > Install New Software.
+     ** Enter the update site URL `http://download.eclipse.org/releases/2025-03`.
+     ** Install “Xtext Complete SDK” (under General Purpose Tools) and "QVT Operational SDK" (under Modeling).
 
-   * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
-     the update site of `https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates` with Help > Install New Software.
+   * (Optional) For PlantUML visualization, install PlantUML-Eclipse with SysMLv2 extensions.
+     ** Select Help > Install New Software
+     ** Enter the update site URL `https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates`.
+     ** Install "PlantUML Eclipse support".
 
-2. Clone our GitHub repository from the URL below.
+2. Clone the GitHub repository from the URL below.
    * `https://github.com/Systems-Modeling/SySML-v2-Pilot-Implementation.git`
 
 3. Import projects from the repository into your Eclipse workspace. This should include at least the projects:

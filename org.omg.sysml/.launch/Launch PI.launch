@@ -10,7 +10,7 @@
     <booleanAttribute key="clearConfig" value="false"/>
     <booleanAttribute key="clearws" value="false"/>
     <booleanAttribute key="clearwslog" value="false"/>
-    <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Launch Runtime Eclipse"/>
+    <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Launch PI"/>
     <booleanAttribute key="default" value="true"/>
     <setAttribute key="deselected_workspace_bundles">
         <setEntry value="org.omg.sysml.interactive.tests"/>

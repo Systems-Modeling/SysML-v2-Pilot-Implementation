@@ -3,6 +3,7 @@
 	<name>sysml.library</name>
 	<comment></comment>
 	<projects>
+		<project>AADL-Library</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

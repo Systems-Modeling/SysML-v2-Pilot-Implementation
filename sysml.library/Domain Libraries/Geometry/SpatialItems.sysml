@@ -10,8 +10,7 @@ standard library package SpatialItems {
 	private import Quantities::VectorQuantityValue;
 	private import MeasurementReferences::ThreeDCoordinateFrame;
 	private import MeasurementReferences::nullTransformation;
-	private import Time::Clock;
-	private import Time::TimeInstantValue;
+	private import Clocks::Clock;
 	private import ScalarValues::Natural;
 	private import ISQ::universalCartesianSpatial3dCoordinateFrame;
 	private import ISQ::Position3dVector;
@@ -19,14 +18,15 @@ standard library package SpatialItems {
 	private import VectorFunctions::isZeroVector;
 	private import SequenceFunctions::isEmpty;
 	private import ControlFunctions::forAll;
-	
+  private import Clocks::TimeOf;
+
 	item def SpatialItem :> SpatialFrame {
 		doc
 		/*
 		 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 		 */
 	
-		ref item :>> localClock : Clock[1] default Time::universalClock {
+		ref item :>> localClock : Clock[1] default Clocks::universalClock {
 			doc
 			/*
 			 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
@@ -108,7 +108,7 @@ standard library package SpatialItems {
 		 */
 	
 		in point : Point[1];
-		in timeInstant : TimeInstantValue[1];
+		in timeInstant : TimeOf[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : Position3dVector[1] {
@@ -141,7 +141,7 @@ standard library package SpatialItems {
 	
 		in point1 : Point[1];
 		in point2 : Point[1];
-		in timeInstant : TimeInstantValue[1];
+		in timeInstant : TimeOf[1];
 		in spatialItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default spatialItem.localClock;
 		return displacementVector : Displacement3dVector[1] {

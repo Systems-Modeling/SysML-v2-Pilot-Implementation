@@ -23,60 +23,71 @@ library package Time {
   }
 
 	// SFS:  Allen's Intervals
-	abstract predicate precedes specializes BooleanEvaluation {
+	predicate precedes specializes BooleanEvaluation {
 		doc /* SFS: precedes(X,Y) := death(X) < birth(Y) */
 		in x : Occurrence;
 		in y : Occurrence;
 		x.endShot < y.startShot
 	}
 	
-	abstract predicate meets specializes BooleanEvaluation {
+	predicate meets specializes BooleanEvaluation {
 		doc /* SFS: meets(X,Y) := (death(X) = birth(Y)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		x.endShot == y.startShot
 	}
 
-	abstract predicate overlaps specializes BooleanEvaluation {
+	predicate overlaps specializes BooleanEvaluation {
 		doc /* SFS: overlaps(X,Y) :=  birth(Y) < death(X) */
 		in x : Occurrence;
 		in y : Occurrence;
 		y.startShot < x.endShot 
 	}
 
-	abstract predicate starts specializes BooleanEvaluation {
+	predicate starts specializes BooleanEvaluation {
 		doc /* SFS: starts(X,Y) :=  (birth(X) = birth(Y)) and (death(Y) < death(X)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		(x.startShot == y.startShot) and (y.endShot < x.endShot)
 	}
 
-	abstract predicate during specializes BooleanEvaluation {
+	predicate during specializes BooleanEvaluation {
 		doc /* SFS: during(X,Y) :=  (birth(Y) <= birth(X)) and (death(X) <= death(Y)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		(y.startShot <= x.startShot) and (x.endShot <= y.endShot)
 	}
 
-	abstract predicate finishes specializes BooleanEvaluation {
+	predicate finishes specializes BooleanEvaluation {
 		doc /* SFS: finishes(X,Y) :=  (birth(Y) < birth(X)) and (death(X) = death(Y)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		(y.startShot < x.startShot) and (x.endShot == y.endShot)
 	}
 
-	abstract predicate coincident specializes BooleanEvaluation {
+	predicate coincident specializes BooleanEvaluation {
 		doc /* SFS: coincident(X,Y) :=  (birth(Y) = birth(X)) and (death(X) = death(Y)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		(y.startShot == x.startShot) and (x.endShot == y.endShot)
 	}
 
-	abstract predicate nonoverlaps specializes BooleanEvaluation {
+	predicate nonoverlaps specializes BooleanEvaluation {
 		doc /* SFS: nonoverlaps(X,Y) :=  (birth(Y) > death(X)) or (birth(X) > death(Y)) */
 		in x : Occurrence;
 		in y : Occurrence;
 		(y.startShot > x.endShot) and (x.startShot > y.endShot)
 	}
+	
+	abstract predicate nearlyMeets specializes BooleanEvaluation {
+    doc /* SFS: don't meet, but no instants between 
+     * the end-shot of x and the start-shot of y
+     * "abstract" because this can't be executed
+     */
+    in x : Occurrence;
+    in y : Occurrence;
+    @Assert{f="precedes(x,y) and not exists t:time in x.endShot ,, y.startShot that true";}
+  }
+	
 
 }

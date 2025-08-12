@@ -11,28 +11,28 @@ library package Regions {
 	private import Assertion::Assert;
     private import Performances::BooleanEvaluation;
 
-    abstract type Region specializes Base::Anything {
+    type Region specializes Base::Anything {
         doc
         /*
         *  SFS:  Region is a metaphysical three-dimensional volume.
         */
     }
 
-    abstract type Point specializes Base::Anything {
+    type Point specializes Base::Anything {
         doc
         /*
         *  SFS:  Point is a metaphysical 0-dimensional entity.
         */
     }
 
-    abstract type Surface specializes Base::Anything {
+    type Surface specializes Base::Anything {
         doc
         /*
         *  SFS:  Surface is the set of points at the boundary of a Region.
         */
     }
  
-    abstract function Location {
+    function Location {
         doc
         /*
         * SFS:  The Location function relates spatial occurrences to their region.
@@ -47,21 +47,21 @@ library package Regions {
     }
 
 
-    abstract predicate In specializes BooleanEvaluation {
+    predicate In specializes BooleanEvaluation {
         doc /* SFS: Point is contained in Region */
         in point : Point;
         in region : Region;
         @Assert{f="result iff point in region";}
     }
 
-    abstract predicate On specializes BooleanEvaluation {
+    predicate On specializes BooleanEvaluation {
         doc /* SFS: Point is on a Surface */
         in point : Point;
         in surface : Surface;
         @Assert{f="result iff point in surface";}
     }
 
-    abstract predicate RegionOverlap specializes BooleanEvaluation {
+    predicate RegionOverlap specializes BooleanEvaluation {
         doc /* SFS:  Two regions containing the same point overlap. 
             * This is the "O" relation (df-rov).
             * Regions are disjoint if they don't overlap */
@@ -75,7 +75,7 @@ library package Regions {
         }
     }
 
-    abstract predicate RegionContainment specializes BooleanEvaluation {
+    predicate RegionContainment specializes BooleanEvaluation {
         doc /* SFS:  A region contains another, when it contains all of its points. 
             * This is the "C" relation (df-rco). */
         in r1 : Region;
@@ -88,24 +88,20 @@ library package Regions {
         }
     }
 
-    abstract predicate AtomicRegion specializes BooleanEvaluation {
+    predicate AtomicRegion specializes BooleanEvaluation {
         doc /* SFS:  A region is atomic, Ar , when it contains no other regions (in the location relation).
          * This is the "A" operator (df-rat). */
         @Assert{
           doc /* Atomic regions are disjoint. */
           n="df-rdi";f="forall r1~Region r2~Region are "+
             "( (AtomicRegion(r1) and AtomicRegion(r2)) implies"+
-            " (not RegionOverlap(r1,r2) or r1=r2) )";
-    }
+            " (not RegionOverlap(r1,r2) or r1=r2) )"; }
         in r : Region;
         @Assert{n="df-rat";f="result iff forall r1~Region are "+
             "( RegionContainment(r,r1) implies r = r1 )";}
     }    
     
-
-
-
-    abstract function RegionInterior {
+    function RegionInterior {
         doc /* SFS:  The interior of a region includes all the points in a region 
           * not on its surface */
         in region : Region;
@@ -114,7 +110,7 @@ library package Regions {
           "(In(p,region) and not On(p,RegionSurface(region))) )";}
     }
 
-    abstract function RegionSurface {
+    function RegionSurface {
         doc /* SFS: The surface of a region is all the points on its boundary */
         in region : Region;
         return result : Surface;
@@ -122,7 +118,7 @@ library package Regions {
           "(In(p,region) and not In(p,RegionInterior(region))) )";}
     }
 
-    abstract function RegionFilm {
+    function RegionFilm {
         doc /* SFS: The film of a region is a surface of which it's the interior */
         in region : Region;
         return result : Surface;
@@ -130,14 +126,14 @@ library package Regions {
           "(RegionInterior(r1)=region and RegionSurface(r1)=result)";}
     }
 
-    abstract predicate ExternallyConnected specializes BooleanEvaluation {
+    predicate ExternallyConnected specializes BooleanEvaluation {
         doc /* SFS:  This is the externally connected (EC) relation  of Region Connection Calculus */
         in r1 : Region;
         in r2 : Region;
         @Assert{n="df-ec";f="exists p~Point that ( On(p,RegionSurface(r1)) and On(p,RegionSurface(r2)) )";}
     }
 
-     abstract predicate FilmConnected specializes BooleanEvaluation {
+     predicate FilmConnected specializes BooleanEvaluation {
         doc /* SFS:  This is neeeded for Occurences::JustOutsideOf. */
         in r1 : Region;
         in r2 : Region;

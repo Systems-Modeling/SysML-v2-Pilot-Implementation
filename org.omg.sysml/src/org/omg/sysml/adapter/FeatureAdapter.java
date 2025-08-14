@@ -572,10 +572,10 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Type type = target.getOwningType();
 		if (type != null) {
-			int i = getRelevantFeatures(type, skip).indexOf(target);
+			int i = getRelevantFeatures(type).indexOf(target);
 			if (i >= 0) {
 				for (Type general: getGeneralTypes(type, skip)) {
-					List<? extends Feature> features = getRelevantFeatures(general, skip);
+					List<? extends Feature> features = getRelevantFeatures(general);
 					if (i < features.size()) {
 						Feature redefinedFeature = features.get(i);
 						if (redefinedFeature != null && redefinedFeature != target) {
@@ -606,16 +606,21 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Get the relevant Features that may be redefined from the given Type.
 	 * This includes end features, owned features of constructor results, and
 	 * generally parameters.
-	 * 
-	 * @satisfies checkFeatureEndRedefinition
 	 */
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Feature target = getTarget();
 		return type == null? Collections.emptyList():
-			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   target.isEnd()? getEndRelevantFeatures(type):
 			   ExpressionUtil.isConstructorResult(target.getOwningType())? getConstructorRelevantFeatures(type):
-			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
+			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type):
 			   Collections.emptyList();
+	}
+	
+	/**
+	 * @satisfies checkFeatureEndRedefinition
+	 */
+	protected List<? extends Feature> getEndRelevantFeatures(Type type) {
+		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): type.getEndFeature();
 	}
 	
 	/**
@@ -640,7 +645,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 * 
 	 * @satisfies checkFeatureResultRedefinition
 	 */
-	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
 		if (type != null) {
 			if (FeatureUtil.isResultParameter(getTarget())) {
 				Feature resultParameter = TypeUtil.getResultParameterOf(type);
@@ -648,7 +653,7 @@ public class FeatureAdapter extends TypeAdapter {
 					return Collections.singletonList(resultParameter);
 				}
 			} else {
-				return getRelevantParameters(type, skip);
+				return getRelevantParameters(type);
 			}
 		}
 		return Collections.emptyList();
@@ -657,11 +662,11 @@ public class FeatureAdapter extends TypeAdapter {
 	/**
 	 * @satisfies checkFeatureParameterRedefinition
 	 */
-	protected List<Feature> getRelevantParameters(Type type, Element skip) {
+	protected List<Feature> getRelevantParameters(Type type) {
 		Type owningType = getTarget().getOwningType();
 		return filterIgnoredParameters(type == owningType? 
 					TypeUtil.getOwnedParametersOf(type): 
-					TypeUtil.getAllParametersOf(type, skip));
+					TypeUtil.getAllParametersOf(type));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {

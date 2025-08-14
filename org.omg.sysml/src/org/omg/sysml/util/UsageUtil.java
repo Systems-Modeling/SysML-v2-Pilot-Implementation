@@ -65,7 +65,6 @@ import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -121,13 +120,16 @@ public class UsageUtil {
 	
 	// Subjects
 
-	public static boolean isSubjectParameter(Usage usage) {
-		return usage.getOwningFeatureMembership() instanceof SubjectMembership;
+	public static boolean isSubjectParameter(Feature feature) {
+		return feature != null && feature.getOwningFeatureMembership() instanceof SubjectMembership;
+	}
+
+	public static Usage getOwnedSubjectParameterOf(Type type) {
+		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
 	public static Usage getSubjectParameterOf(Type type) {
-		NamespaceUtil.addAdditionalMembersTo(type);
-		return (Usage)TypeUtil.getOwnedFeatureByMembershipIn(type, SubjectMembership.class);
+		return (Usage)TypeUtil.getFeatureByMembershipIn(type, SubjectMembership.class);
 	}
 
 	public static boolean hasRelevantSubjectParameter(Usage usage) {
@@ -135,20 +137,18 @@ public class UsageUtil {
 	}
 
 	public static FeatureValue getSatisfyingFeatureValueOf(SatisfyRequirementUsage usage) {
-		Feature subject = usage.getSubjectParameter();
+		Feature subject = UsageUtil.getOwnedSubjectParameterOf(usage);
 		return subject == null? null: FeatureUtil.getValuationFor(subject);
 	}
 	
-	public static void addSubjectParameterTo(Type type) {
-		if (type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
-			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-			membership.setOwnedSubjectParameter(parameter);
-			type.getOwnedRelationship().add(0, membership);
-		}
-	}
-	
 	// Objectives
+
+	public static RequirementUsage getOwnedObjectiveRequirementOf(Type type) {
+		if (type instanceof Feature) {
+			type = ((Feature)type).getFeatureTarget();
+		}
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(type, ObjectiveMembership.class);
+	}
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
 		// TODO: Update checkRequirementUsageObjectiveRedefinition
@@ -156,19 +156,8 @@ public class UsageUtil {
 		if (type instanceof Feature) {
 			type = ((Feature)type).getFeatureTarget();
 		}
-		NamespaceUtil.addAdditionalMembersTo(type);
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
-	}
-
-	public static void addObjectiveRequirementTo(Type type) {
-		if (type.getOwnedRelationship().stream().noneMatch(ObjectiveMembership.class::isInstance)) {
-			RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
-			ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
-			membership.setOwnedObjectiveRequirement(objective);
-			type.getOwnedRelationship().add(membership);
-		}
+		return !(type instanceof CaseDefinition || type instanceof CaseUsage)? null:
+			(RequirementUsage)TypeUtil.getFeatureByMembershipIn(type, ObjectiveMembership.class);
 	}
 
 	// Actors
@@ -187,8 +176,7 @@ public class UsageUtil {
 	
 	public static EList<Feature> getOwnedInputParametersOf(ActionUsage action) {
 		EList<Feature> inputParameters = new BasicEList<>();
-		action.getInput().stream().
-			filter(f->f.getOwner() == action).
+		action.getOwnedFeature().stream().filter(FeatureUtil::isInputDirected).
 			forEachOrdered(inputParameters::add);
 		return inputParameters;
 	}

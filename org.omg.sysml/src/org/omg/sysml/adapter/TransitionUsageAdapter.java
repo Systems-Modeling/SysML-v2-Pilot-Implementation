@@ -86,11 +86,15 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	protected void computeSource() {
 		TransitionUsage target = getTarget();
 		List<Membership> ownedMemberships = target.getOwnedMembership();
-		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof ParameterMembership) {
+		if (ownedMemberships.isEmpty() || 
+				ownedMemberships.get(0) instanceof ParameterMembership) {
 			Feature source = UsageUtil.getPreviousFeature(target);
 			Membership membership = SysMLFactory.eINSTANCE.createMembership();
 			membership.setMemberElement(source);
 			target.getOwnedRelationship().add(0, membership);
+		} else if (ownedMemberships.get(0).getMemberElement() == null) {
+			Feature source = UsageUtil.getPreviousFeature(target);
+			ownedMemberships.get(0).setMemberElement(source);
 		}
 	}
 	

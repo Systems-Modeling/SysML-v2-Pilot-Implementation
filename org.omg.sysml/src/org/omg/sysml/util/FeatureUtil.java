@@ -83,24 +83,25 @@ public class FeatureUtil {
 		return feature.getOwningMembership() instanceof ReturnParameterMembership;
 	}
 	
-	public static boolean isInputParameter(Feature feature) {
-		FeatureDirectionKind direction = getDirection(feature);
+	public static boolean isInputParameter(Feature feature, Type type) {
+		FeatureDirectionKind direction = type.directionOf(feature);
 		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
 	}
 	
-	public static boolean isOutputParameter(Feature feature) {
-		FeatureDirectionKind direction = getDirection(feature);
+	public static boolean isInputDirected(Feature feature) {
+		FeatureDirectionKind direction = feature.getDirection();
+		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public static boolean isOutputParameter(Feature feature, Type type) {
+		FeatureDirectionKind direction = type.directionOf(feature);
 		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
 	}
 	
-	public static FeatureDirectionKind getDirection(Feature feature) {
-		Type owningType = feature.getOwningType();
-		if (owningType == null) {
-			return null;
-		} else {
-			return feature.directionFor(owningType);
-		}
-	}	
+	public static boolean isOutputDirected(Feature feature) {
+		FeatureDirectionKind direction = feature.getDirection();
+		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
+	}
 	
 	public static boolean checkIsOrdered(Feature feature, Set<Feature> visited) {
 		if (feature.isOrdered()) {

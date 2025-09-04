@@ -43,11 +43,17 @@ package StateUsage_invalid {
 	part def A;
 	attribute def VT;
 	action ac;
-	//XPECT errors --> "A state must be typed by state definitions." at "state s1 : A;"	
+	// XPECT errors --> "A state must be typed by state definitions." at "state s1 : A;"
+	//* XPECT warnings ---
+	   "Duplicate of inherited member name 'self' from Part, StateAction" at "state s1 : A;"
+	   "Duplicate of inherited member name 'start' from Part, StateAction" at "state s1 : A;"
+	   "Duplicate of inherited member name 'done' from Part, StateAction" at "state s1 : A;"
+	--- */
 	state s1 : A;
-	//XPECT errors --> "A state must be typed by state definitions." at "state s2 : VT;"
+	// XPECT errors --> "A state must be typed by state definitions." at "state s2 : VT;"
+	// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, StateAction" at "state s2 : VT;"
 	state s2 : VT;
-	//XPECT errors --> "A state must be typed by state definitions." at "state s3 : ac;"
+	// XPECT errors --> "A state must be typed by state definitions." at "state s3 : ac;"
 	state s3 : ac;
 	
 	state s4 {
@@ -64,6 +70,11 @@ package StateUsage_invalid {
   		exit action c2;
   		
 		//XPECT errors --> "A state must be typed by state definitions." at "state sa : A;"
+		//* XPECT warnings ---
+		   "Duplicate of inherited member name 'self' from Part, StateAction" at "state sa : A;"
+		   "Duplicate of inherited member name 'start' from Part, StateAction" at "state sa : A;"
+		   "Duplicate of inherited member name 'done' from Part, StateAction" at "state sa : A;"
+		--- */
 		state sa : A;
 	}
 	
@@ -73,6 +84,14 @@ package StateUsage_invalid {
 	exhibit s;
 	
 	//XPECT errors --> "A state must be typed by state definitions." at "exhibit s.sa;"
+	//* XPECT warnings ---
+	   "Duplicate of inherited member name 'self' from Part, StateAction" at "exhibit s.sa;"
+	   "Duplicate of inherited member name 'start' from Part, StateAction" at "exhibit s.sa;"
+	   "Duplicate of inherited member name 'done' from Part, StateAction" at "exhibit s.sa;"
+	   "Duplicate of inherited member name 'self' from Part, StateAction" at "s.sa"
+	   "Duplicate of inherited member name 'start' from Part, StateAction" at "s.sa"
+	   "Duplicate of inherited member name 'done' from Part, StateAction" at "s.sa"
+	--- */
 	exhibit s.sa;
 	
 }

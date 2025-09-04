@@ -46,7 +46,8 @@ public class SysMLInteractiveParsingProfiler {
 			System.out.println("Usage: ");
 			System.out.println("SysMLInteractiveParsingProfiler <LIBRARY FOLDER> <FILENAME>");
 		}
-		instance.loadLibrary(args[0]);
+		instance.setModelLibraryDirectory(args[0]);
+		instance.loadLibrary();
 		
 		initWatch.stop();
 		System.out.println("Libraries loaded in " + initWatch.elapsed(TimeUnit.MILLISECONDS) + " ms");

@@ -22,7 +22,7 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.interactive;
+package org.omg.sysml.xtext.util;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

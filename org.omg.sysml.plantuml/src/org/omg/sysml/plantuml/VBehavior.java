@@ -263,9 +263,13 @@ public abstract class VBehavior extends VDefault {
                 return "";
             }
         };
-        for (Feature f: s.getParameter()) {
-            v.visit(f);
-        }
+        List<Feature> ps = s.getParameter();
+
+        // We render the first parameter only because the second parameter of
+        // AcceptActionUsage is receiver, which should not be rendered.
+        if (ps.isEmpty()) return "";
+        v.visit(ps.get(0));
+
         String str = v.getString();
         if (str.isEmpty()) {
             return getText(s);

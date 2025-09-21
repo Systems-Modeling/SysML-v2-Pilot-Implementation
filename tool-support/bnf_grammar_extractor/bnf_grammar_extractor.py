@@ -1,3 +1,5 @@
+#!python
+
 """
 EBNF and GBNF Grammar Extractor for KerML and SysML specifications in HTML format
 
@@ -6,8 +8,11 @@ EBNF and GBNF Grammar Extractor for KerML and SysML specifications in HTML forma
 Note: Needs package beautifulsoup4 (See https://pypi.org/project/beautifulsoup4/)
 
 """
+import os
 import sys
+import json
 import re
+import argparse
 from datetime import datetime, timezone
 from dataclasses import dataclass
 from enum import Enum, auto
@@ -20,10 +25,31 @@ from lark import Lark, Transformer, Tree, UnexpectedInput
 
 # Create logger for debug, info, warning, error, critical messages
 import logging
-logging.basicConfig(level=logging.INFO, format="%(levelname)-8s: %(message)s")
 LOGGER = logging.getLogger()
 
-LINE_COMMENT_MARKER = "//"  # Can be changed to e.g. "#"
+# Marker denoting start of a line comment in generated output
+LINE_COMMENT_MARKER = "//"
+
+# Images directory to hold SVG images as part of graphical BNF productions
+IMAGES_DIR = "images"
+
+
+class DATA:
+    """Collection of HTML5 data templates"""
+    HTML_HEAD = """\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{doc_title}</title>  
+<link rel="stylesheet" type="text/css" href="bnf_styles.css">
+</head>
+<body>
+"""
+    HTML_TAIL = """\
+</body>
+</html>
+"""
 
 
 def line_comment(text: str, add_newline: bool = True):
@@ -67,7 +93,7 @@ def clean_text_content(text: Optional[str], correct_comma_dot: bool = False) -> 
 
 
 def clean_line(line: str) -> str:
-    """ Replace non-braking space with regular space and strip tail end """
+    """Replace special whitespace with regular space and strip tail end"""
     line = line.replace(" ", " ").replace("​", " ")
     return line.rstrip()
 
@@ -108,7 +134,7 @@ class Token:
 @dataclass
 class Grammar:
     name: str
-    prod_names: set[str]
+    production_names: set[str]
 
 
 @dataclass
@@ -134,12 +160,12 @@ class Heading(GrammarElement):
     def get_html(self, extractor: "GrammarExtractor") -> str:
         assert len(self.lines) == 1
         if self.clause_id:
-            anchor = f'<a id="{self.clause_id}"/>\n'
+            anchor = f'<a id="c{self.clause_id}"></a>'
             level = self.clause_id.count(".") + 1
         else:
             anchor = ""
             level = 1
-        html_string = f'{anchor}<h{level}>{LINE_COMMENT_MARKER} {self.lines[0]}</h{level}>\n'
+        html_string = f'<h{level}>{anchor}{LINE_COMMENT_MARKER} {self.lines[0]}</h{level}>\n'
         return html_string
 
 
@@ -147,6 +173,7 @@ class Heading(GrammarElement):
 class Production(GrammarElement):
     name: str
     abstract_syntax_type: str
+    is_partial: bool = False
 
     def get_txt(self) -> str:
         rendered_lines = "\n".join(self.lines)
@@ -169,7 +196,7 @@ class Production(GrammarElement):
                     else:
                         # Try to resolve hyperlink to identifier in reverse order of known grammars
                         for grammar in reversed(extractor.grammars):
-                            if token.text in grammar.prod_names:
+                            if token.text in grammar.production_names:
                                 # Production declaration found, so add hyperlink to declaration anchor
                                 # The hyperlink works if other HTML grammar files are in the same directory
                                 html_path = "" if grammar.name == extractor.bnf_path else f"{grammar.name}.html"
@@ -181,13 +208,21 @@ class Production(GrammarElement):
                 if not is_hyperlink_resolved:
                     pieces.append(token.text)
             html_lines.append("".join(pieces))
-        rendered_lines = "\n".join(html_lines)
+        # HACK
+        formatted_html_lines: list[str] = []
+        for line in html_lines:
+            if "<img" in line:
+                line = f"    {line.lstrip()}"
+            formatted_html_lines.append(line)
+        rendered_lines = "\n".join(formatted_html_lines)
         # Append "_" to all uppercase tokens because anchor id is not case-sensitive
         # so to avoid name collisions between PascalCase and UPPER_SNAKE_CASE identifiers
-        anchor_id = f"{self.name}_" if self.name.isupper() else self.name
-        production_anchor = f'<a id="{anchor_id}" />'
-        return f"{production_anchor}<pre>\n{rendered_lines}\n</pre>\n"
-
+        if self.is_partial:
+            production_anchor = ""
+        else:
+            anchor_id = f"{self.name}_" if self.name.isupper() else self.name
+            production_anchor = f'<a id="{anchor_id}"></a>'
+        return f"<pre>{production_anchor}\n{rendered_lines}\n</pre>\n"
 
 
 @dataclass
@@ -231,13 +266,15 @@ class NoteList(GrammarElement):
 class GrammarExtractor:
     def __init__(self):
         self.start_timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+        self.input_dir = ""
+        self.output_dir = ""
         self.spec_path: str = ""
         self.spec_path_previous: Optional[str] = None
         self.soup: Optional[BeautifulSoup] = None
         self.spec_title = ""
         self.bnf_clause_id: str = ""
         self.bnf_path: str = ""
-        self.bnf_mode: str = ""
+        self.syntax_kind: str = ""
         self.elements: list[GrammarElement] = []
         self.grammars: list[Grammar] = []
         self.reserved_keyword_set: set[str] = set()
@@ -245,22 +282,31 @@ class GrammarExtractor:
         self.reserved_symbol_set: set[str] = set()
         self.extracted_symbol_set: set[str] = set()
         self.parser: Optional[Lark] = None
+        self.partial_productions: dict[str, list[str]] = dict()
+        self.missing_svgs: list[str] = []
+        self.image_map: dict[str, str] = dict()
 
-    def extract_bnf(self, spec_path: str, bnf_clause_id: str, bnf_mode: str):
-        if bnf_mode == "textual":
-            self.bnf_mode = bnf_mode
-            self.bnf_path = spec_path.replace(".html", "-ebnf")
+    def extract_bnf(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
+        self.input_dir = input_dir
+        self.output_dir = output_dir
+        if syntax_kind == "textual-bnf":
+            self.syntax_kind = syntax_kind
+            spec_file_name = os.path.basename(input_file)
+            self.bnf_path = input_file.replace("-spec.html", "-textual-bnf")
             self.parser = Lark.open("kerml_sysml_textual_grammar.lark", rel_to=__file__, parser="lalr")
-        elif bnf_mode == "graphical":
-            self.bnf_mode = bnf_mode
-            self.bnf_path = spec_path.replace(".html", "-gbnf")
+        elif syntax_kind == "graphical-bnf":
+            self.syntax_kind = syntax_kind
+            self.bnf_path = input_file.replace("-spec.html", "-graphical-bnf")
             self.parser = Lark.open("sysml_graphical_grammar.lark", rel_to=__file__, parser="lalr")
+        elif syntax_kind == "kerml-library":
+            raise NotImplementedError
+        elif syntax_kind == "sysml-library":
+            raise NotImplementedError
         else:
-            LOGGER.critical(f"Unsupported BNF mode: {bnf_mode}, terminating ...\n")
-            usage()
+            LOGGER.critical(f"Unsupported BNF mode: {syntax_kind}, terminating ...\n")
             sys.exit(1)
 
-        self.spec_path = spec_path
+        self.spec_path = os.path.join(self.input_dir, input_file)
         self.bnf_clause_id = bnf_clause_id
         self.spec_title = ""
         self.elements = []
@@ -269,13 +315,18 @@ class GrammarExtractor:
         self.extracted_keyword_set = set()
         self.reserved_symbol_set = set()
         self.extracted_symbol_set = set()
+        self.partial_productions = dict()
+        self.image_map = dict()
 
         LOGGER.info(20 * "=")
-        LOGGER.info(f"Extract BNF from {self.spec_path} clause={self.bnf_clause_id} mode={bnf_mode} at {self.start_timestamp}")
+        LOGGER.info(f"Extract BNF from {self.spec_path} syntax-kind={syntax_kind} clause={self.bnf_clause_id} at {self.start_timestamp}")
         LOGGER.info(20 * "=")
 
+        # Regular expression patterns
         KEYWORD_PATTERN = re.compile(r"('[a-z]{2,}')")
         SYMBOL_PATTERN = re.compile(r"('[^A-Za-z\s]+')")
+        SEE_NOTE_PATTERN = re.compile(r"^\s*[(]?\s*See Note.*$", flags=re.IGNORECASE)
+        GRAPHICAL_GRAMMAR_NOTE_PATTERN = re.compile(r"^\s*Note(\.|:).+$", flags=re.IGNORECASE)
 
         if self.spec_path == self.spec_path_previous:
             # Skip reparsing the HTML spec and reuse self.soup
@@ -295,10 +346,16 @@ class GrammarExtractor:
         # Walk through all HTML elements (tags) and extract
         # - clause headings
         # - grammar productions and notes from the given textual or graphical notation clause
+        is_first = True
         for tag in self.soup.find_all(name=["h1", "pre", "p", "ol"], recursive=True):
             count += 1
             LOGGER.debug(f"Visit tag #{count} {tag.name}")
-            sys.stdout.flush()
+            for h in LOGGER.handlers:
+                if is_first:
+                    print(f"logging handlers = {LOGGER.handlers}")
+                    print(f"Flushing handler {h.name}")
+                    is_first = False
+                h.flush()
 
             if tag.name == "h1":
                 # Process clause heading
@@ -330,7 +387,9 @@ class GrammarExtractor:
                         LOGGER.info(f"PROCESSING {clause_string}")
                         self.elements.append(Heading(clause_id, [clause_string]))
 
-            elif tag.name == "pre" and inside_bnf_clause and tag.parent.name != "li":
+            # TODO: Properly check for <pre> elements in notes lists, i.e. contained in <li> element
+            # elif tag.name == "pre" and inside_bnf_clause and tag.parent.name != "li":
+            elif tag.name == "pre" and inside_bnf_clause:
                 # Process a <pre> element that contains BNF grammar lines
                 LOGGER.debug(f"tag#{count}:\n{tag}")
                 contains_pre_tag = True
@@ -342,10 +401,10 @@ class GrammarExtractor:
                         alt_attr = child.attrs.get("alt")
                         height_attr = child.attrs.get("height")
                         width_attr = child.attrs.get("width")
-                        src_attr = child.attrs.get("src")
-                        # Strip the query parameter ?token=...
-                        src_attr = src_attr.split("?", 1)[0]
-                        child_strings.append(f'<img alt="{alt_attr}" height="{height_attr}" width="{width_attr}" src="SRC_VALUE"/> {LINE_COMMENT_MARKER} orig_src="{src_attr}"')
+                        # Retain src attribute with stripped query parameter ?token=...
+                        src_attr = child.attrs.get("src").split("?", 1)[0]
+                        # child_strings.append(f'<img alt="{alt_attr}" height="{height_attr}" width="{width_attr}" src="{src_attr}">')
+                        child_strings.append(f'<img src="{src_attr}">')
                     elif child.string is not None:
                         child_strings.append(child.string)
                     else:
@@ -353,9 +412,13 @@ class GrammarExtractor:
                 child_contents = "".join(child_strings)
                 child_contents = "\n".join([clean_line(x) for x in child_contents.split("\n")])
 
+                # Replace two or more newlines with a single newline
+                MULTIPLE_NL_PATTERN = re.compile(r"\n{2,}", re.MULTILINE)
+                child_contents = MULTIPLE_NL_PATTERN.sub(r"\n", child_contents)
+
                 # Replace double newline with single newline before <img> elements
-                NL_NL_IMG_PATTERN = re.compile(r"(\n)(\n *\<img)", re.MULTILINE)
-                child_contents = NL_NL_IMG_PATTERN.sub(r"\2", child_contents)
+                # NL_NL_IMG_PATTERN = re.compile(r"(\n)(\n *\<img)", re.MULTILINE)
+                # child_contents = NL_NL_IMG_PATTERN.sub(r"\2", child_contents)
 
                 if "KerML" in self.spec_title and clause_title == "Reserved Words":
                     # Rewrite KerML "Reserved Words" production
@@ -386,7 +449,7 @@ class GrammarExtractor:
                         child_contents = f"RESERVED_KEYWORD = \n{keyword_block}"
 
                 # Productions should start in column 1, be separated by double newlines and continue with indented lines
-                # An incorrect production separator is a single newline followed by a non-whitespace character
+                # An incorrect production separation is a single newline followed by a non-whitespace character
                 INCORRECT_PRODUCTION_SEPARATOR_PATTERN = re.compile(r"(?<!\n)(\n[^ \n\t])", re.MULTILINE)
                 # Separate candidate productions by double newlines if needed
                 child_contents = INCORRECT_PRODUCTION_SEPARATOR_PATTERN.sub(r"\n\1", child_contents)
@@ -394,13 +457,10 @@ class GrammarExtractor:
                 NL_NL_SEE_NOTE_PATTERN = re.compile(r"(\n)(\n[(]?\s*See Note)", re.MULTILINE + re.IGNORECASE)
                 child_contents = NL_NL_SEE_NOTE_PATTERN.sub(r"\2", child_contents)
 
-                SEE_NOTE_PATTERN = re.compile(r"^\s*[(]?\s*See Note.*$", flags=re.IGNORECASE)
-
                 # Get candidate productions and strip possible trailing newline(s)
                 candidate_productions = child_contents.split("\n\n")
                 candidate_productions[-1] = candidate_productions[-1].rstrip()
 
-                current_production: Optional[Production] = None
                 for candidate_prod in candidate_productions:
                     img_count = candidate_prod.count("<img ")
                     img_index = 0
@@ -413,7 +473,11 @@ class GrammarExtractor:
                         for matched_symbol in matched_symbols:
                             self.extracted_symbol_set.add(matched_symbol[1:-1])
                     lines = candidate_prod.split("\n")
+
                     line_number = 0
+                    current_note_ref: Optional[NoteRef] = None
+                    current_production: Optional[Production] = None
+                    production_name = None
                     for line in lines:
                         if line == "":
                             LOGGER.error(f"Unexpected empty line in candidate production: {candidate_prod}")
@@ -421,33 +485,60 @@ class GrammarExtractor:
                         line_number += 1
                         if line_number == 1:
                             # Should be the start of a new production
-                            lhs1 = line.split("=")[0].strip()
-                            lhs2 = lhs1.split(":", 1)
-                            name = lhs2[0].strip()
-                            if len(lhs2) == 2:
-                                abstract_type = lhs2[1].strip()
-                            elif is_pascal_case(name):
-                                abstract_type = name
+                            if GRAPHICAL_GRAMMAR_NOTE_PATTERN.match(line):
+                                note = line.strip().replace("note", "Note").replace("Note:", "Note.")
+                                current_note_ref = NoteRef(clause_id, lines=[note])
+                                self.elements.append(current_note_ref)
                             else:
-                                abstract_type = ""
-                            current_production = Production(clause_id, [line], name, abstract_type)
-                            self.elements.append(current_production)
-                            if name in self.grammars[-1].prod_names:
-                                LOGGER.error(f"Non-unique production name: {name} in {self.grammars[-1].name}")
-                            else:
-                                self.grammars[-1].prod_names.add(name)
-                            if line.startswith(" "):
-                                LOGGER.error(f"Production start line starts with a space: {line}")
-                                line = line.strip()
-                            if line.count("=") != 1:
-                                LOGGER.error(f"Production start line does not contain exactly one '=': {line}")
+                                if line.find("=|") >= 0:
+                                    is_partial = True
+                                    lhs, rhs = line.split("=|", 1)
+                                    production_name = lhs.strip()
+                                    abstract_type = ""
+                                    if not production_name in self.partial_productions:
+                                        self.partial_productions[production_name] = []
+                                    for term in [x.strip() for x in rhs.split("|")]:
+                                        if term:
+                                            self.partial_productions[production_name].append(term)
+                                else:
+                                    is_partial = False
+                                    lhs1 = line.split("=")[0].strip()
+                                    lhs2 = lhs1.split(":", 1)
+                                    production_name = lhs2[0].strip()
+                                    if len(lhs2) == 2:
+                                        abstract_type = lhs2[1].strip()
+                                    elif is_pascal_case(production_name):
+                                        abstract_type = production_name
+                                    else:
+                                        abstract_type = ""
+                                    if production_name in self.grammars[-1].production_names:
+                                        LOGGER.error(f"Non-unique production name: {production_name} in {self.grammars[-1].production_names}")
+                                    else:
+                                        self.grammars[-1].production_names.add(production_name)
+
+                                current_production = Production(clause_id, [line], production_name, abstract_type, is_partial)
+                                self.elements.append(current_production)
+
+                                if line.startswith(" "):
+                                    LOGGER.error(f"Production start line starts with a space: {line}")
+                                    line = line.strip()
+                                if line.count("=") != 1:
+                                    LOGGER.warning(f"Production start line does not contain exactly one '=': {line}")
+                        elif current_note_ref:
+                            current_note_ref.lines.append(line)
                         elif "<img" in line:
-                            # Rewrite the <img .../> src attribute value to .svg file with same name as production
+                            # Rewrite the <img .../> src attribute value to .svg file with the same name as the production
                             img_postfix = ""
                             if img_count > 1:
                                 img_index += 1
                                 img_postfix = f"-{img_index}"
-                            line = line.replace("SRC_VALUE", f"_svg/{current_production.name}{img_postfix}.svg")
+                            svg_file_path = f"{IMAGES_DIR}/{current_production.name}{img_postfix}.svg"
+                            if not os.path.exists(f"{self.output_dir}/{svg_file_path}"):
+                                self.missing_svgs.append(svg_file_path)
+                            SRC_ATTRIBUTE_PATTERN = re.compile(r'src="([^"]+)"')
+                            original_url = SRC_ATTRIBUTE_PATTERN.search(line).group(1)
+                            self.image_map[original_url] = svg_file_path
+                            line = SRC_ATTRIBUTE_PATTERN.sub(f'src="{svg_file_path}"', line)
                             current_production.lines.append(line)
                         elif SEE_NOTE_PATTERN.match(line):
                             see_note = line.strip().replace("see", "See")
@@ -459,17 +550,23 @@ class GrammarExtractor:
                             self.elements.append(NoteRef(clause_id, lines=[see_note]))
                             contains_note_reference = True
                         else:
+                            if production_name in self.partial_productions:
+                                for term in [x.strip() for x in line.split("|")]:
+                                    if term:
+                                        self.partial_productions[production_name].append(term)
+
                             current_production.lines.append(line)
 
-                    # Check with Lark parser
-                    current_production_text = "\n".join(current_production.lines)
-                    try:
-                        parse_tree = self.parser.parse(current_production_text)
-                    except UnexpectedInput as e:
-                        LOGGER.error(f"Parser found error in {clause_id}:\n{current_production_text}\n{e}")
-                    else:
-                        # LOGGER.info(f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty(indent_str='  ')}")
-                        pass
+                    if current_production:
+                        # Check production for correct syntax with Lark parser
+                        current_production_text = "\n".join(current_production.lines) + "\n"
+                        try:
+                            parse_tree = self.parser.parse(current_production_text)
+                        except UnexpectedInput as e:
+                            LOGGER.error(f"Parse error in {self.spec_path} {clause_id} in production:\n{current_production_text}\n{e}")
+                        else:
+                            log_level = logging.INFO if clause_id in ("8.2.3.6",) else logging.DEBUG
+                            LOGGER.log(log_level, f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
 
                 for subtag in tag:
                     if not subtag.name in (None, "em", "strong", "img"):
@@ -479,6 +576,12 @@ class GrammarExtractor:
                 # LOGGER.debug(f"note <p> tag={tag}")
                 if tag.string == "Notes":
                     contains_notes_section = True
+                elif (tag.contents and tag.contents[0].name == "strong"
+                      and tag.contents[0].string and tag.contents[0].string.strip() == "Note."):
+                    # Note in graphical BNF
+                    text_content = clean_text_content(" ".join(tag.stripped_strings), True)
+                    self.elements.append(NoteRef(clause_id, lines=[text_content]))
+
 
             # elif tag.name == "ol" and inside_bnf_clause and contains_notes_section:
             elif tag.name == "ol" and inside_bnf_clause and contains_pre_tag and tag.parent.name != "li":
@@ -502,7 +605,7 @@ class GrammarExtractor:
 
         # End main visit tag loop
 
-        if self.bnf_mode == "textual":
+        if self.syntax_kind == "textual-bnf":
             self.report_checks()
 
         self.spec_path_previous = self.spec_path
@@ -523,7 +626,7 @@ class GrammarExtractor:
                 if xref_clause_id.startswith(self.bnf_clause_id):
                     # Subclause ref can be resolved within current BNF clause
                     new_tag = self.soup.new_tag("a")
-                    new_tag["href"] = f"#{xref_clause_id}"
+                    new_tag["href"] = f"#c{xref_clause_id}"
                     new_tag.string = xref_clause_id
                     pe.replace_with(new_tag)
                 else:
@@ -589,6 +692,7 @@ class GrammarExtractor:
                     LOGGER.warning(f"Tokenize: Unexpected character '{ch}' in state {state} at position {pos} in line: {line} ")
             elif ch == "'":
                 if state == TokenKind.TERMINAL:
+                    # end of terminal token
                     token_text += ch
                     tokens.append(Token(TokenKind.TERMINAL, token_text))
                     if " " in token_text:
@@ -626,15 +730,17 @@ class GrammarExtractor:
             tokens.append(Token(TokenKind.NONTERMINAL, token_text))
         elif state == TokenKind.TERMINAL:
             tokens.append(Token(TokenKind.TERMINAL, token_text))
-            LOGGER.warning(f"Tokenize: Missing single quote -> incomplete LEXICAL in line: {line}")
+            LOGGER.warning(f"Tokenize: Missing single quote -> incomplete TERMINAL in line: {line}")
         elif state == TokenKind.IMAGE:
             tokens.append(Token(TokenKind.IMAGE, token_text))
             LOGGER.warning(f"Tokenize: Missing '/>' -> incomplete IMAGE element in line: {line}")
+        elif state is not None:
+            LOGGER.error(f"Tokenize: Final state is not None but {state}")
 
         return tokens
 
     def report_checks(self) -> None:
-        LOGGER.info("Start of Textual Notation Grammar Checks")
+        LOGGER.info("===== Start of Textual Notation Grammar Checks")
 
         # Check declared and extracted keywords
         extracted_keywords_block = self.wrap_sorted(self.extracted_keyword_set)
@@ -654,11 +760,21 @@ class GrammarExtractor:
         extracted_set_diff_block = self.wrap_sorted(extracted_set_diff_reserved)
         LOGGER.log(log_level, f"Extracted keywords not in declared reserved keywords:\n{extracted_set_diff_block}")
 
-        # TODO: add check for symbols
+        LOGGER.info("===== End of Textual Notation Grammar Checks")
 
-        LOGGER.info("End of Textual Notation Grammar Checks")
+        if self.syntax_kind == "graphical-bnf":
+            LOGGER.info("===== Start of Graphical Notation Grammar Checks")
+            if self.missing_svgs:
+                missing_svgs_string = "\n".join(sorted(self.missing_svgs))
+                LOGGER.warning(f"The following {len(self.missing_svgs)} SVG images are missing:\n{missing_svgs_string}")
 
-    def wrap_sorted(self, words: Iterable[str], sep: str = " ", reverse: bool = False) -> str:
+            if self.image_map:
+                map_string = "\n".join([f"{k} {v}" for k, v in sorted(self.image_map.items())])
+                LOGGER.info(f"Map from {len(self.image_map)} original to new SVG  images:\n{map_string}")
+
+            LOGGER.info("===== End of Graphical Notation Grammar Checks")
+
+    def wrap_sorted(self, words: Iterable[str], sep: str = " ", reverse: bool = False, width: int=120) -> str:
         lead_char = ""
         trail_char = ""
         if len(sep) > 1:
@@ -667,13 +783,13 @@ class GrammarExtractor:
             if sep.startswith("'"):
                 trail_char = "'"
         sorted_words_string = f"{lead_char}{sep.join(sorted(words, reverse=reverse))}{trail_char}"
-        wrapped_block = "\n".join(wrap(sorted_words_string, width=120, initial_indent="    ", subsequent_indent="    "))
+        wrapped_block = "\n".join(wrap(sorted_words_string, width=width, initial_indent="    ", subsequent_indent="    ", break_on_hyphens=False))
         if "|" in sep:
             wrapped_block = wrapped_block.replace(" |\n    ", "\n    | ")
         return wrapped_block
 
     def dump_bnf_grammar_elements(self):
-        bnf_elements_path = self.bnf_path + "-elements.txt"
+        bnf_elements_path = os.path.join(self.output_dir, self.bnf_path + "-elements.txt")
         LOGGER.info(f"Dumping BNF grammar elements into {bnf_elements_path}")
         with open(bnf_elements_path, mode="w", encoding="utf-8") as bnf_elements_file:
             for elem in self.elements:
@@ -681,7 +797,7 @@ class GrammarExtractor:
                 bnf_elements_file.write(f"{repr(elem)}\n")
 
     def export_txt(self):
-        bnf_txt_path = self.bnf_path + ".txt"
+        bnf_txt_path = os.path.join(self.output_dir, self.bnf_path + ".txt")
         LOGGER.info(f"Writing BNF text file {bnf_txt_path}")
         with open(bnf_txt_path, mode="w", encoding="utf-8") as bnf_txt_file:
             bnf_txt_file.write(line_comment(f"Source document: {self.spec_path}\n"))
@@ -690,72 +806,88 @@ class GrammarExtractor:
                 bnf_txt_file.write(elem.get_txt())
             bnf_txt_file.write(line_comment("End of BNF"))
 
+            if self.partial_productions:
+                bnf_txt_file.write(f"\n{line_comment('Consolidated partial productions:')}\n")
+                for name, term_list in sorted(self.partial_productions.items()):
+                    term_list_lines = f"{name} =\n{self.wrap_sorted(term_list, sep=' | ')}".split("\n")
+                    bnf_txt_file.write(block_comment(term_list_lines, add_newline=True))
+
     def export_html(self):
-        HTML_HEAD = """\
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>{doc_title}</title>  
-<link rel="stylesheet" type="text/css" href="bnf_styles.css">
-</head>
-<body>
-"""
-        bnf_html_path = self.bnf_path + ".html"
+        bnf_html_path = os.path.join(self.output_dir, self.bnf_path + ".html")
         LOGGER.info(f"Writing BNF HTML file {bnf_html_path}")
         with open(bnf_html_path, mode="w", encoding="utf-8") as bnf_html_file:
-            bnf_html_file.write(HTML_HEAD.format(doc_title=self.bnf_path))
+            bnf_html_file.write(DATA.HTML_HEAD.format(doc_title=self.bnf_path))
+
             bnf_html_file.write(f"<p>\n{LINE_COMMENT_MARKER} Source document: {self.spec_path}<br>\n"
                                 f"{LINE_COMMENT_MARKER} Generated by bnf_grammar_extractor at: {self.start_timestamp}\n</p>\n")
+
             for elem in self.elements:
                 bnf_html_file.write(elem.get_html(self))
-            bnf_html_file.write("</body>\n</html>\n")
+
+            if self.partial_productions:
+                bnf_html_file.write(f"<h2>{line_comment('Consolidated partial productions:')}</h2>")
+                for name, term_list in sorted(self.partial_productions.items()):
+                    html_term_list = [f'<axhref="#{term}">{term}</a>' for term in sorted(term_list)]
+                    term_list_lines = f'{name} =\n{self.wrap_sorted(html_term_list, sep=' | ', width=300)}'.replace("<axhref=", "<a href=").split("\n")
+                    bnf_html_file.write(f'<pre><a id="{name}"></a>\n{block_comment(term_list_lines, add_newline=False)}\n</pre>\n')
+
+            bnf_html_file.write(DATA.HTML_TAIL)
 
 
-def main(argv: list[str]) -> None:
-    if len(argv) < 4 or ((len(argv) - 1) % 3 != 0) or argv[1] == "-h" or argv[1] == "--help":
-        # The number of arguments must be a multiple of 3
-        usage()
-        return
+def main() -> None:
+    # Initialize logging
+    LOGGER.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("%(levelname)-8s: %(message)s")
 
-    # Create a GrammarExtractor, then extract BNF and run backend exporters for each of the given triples
+    console_handler = logging.StreamHandler()
+    console_handler.set_name("console")
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(formatter)
+    LOGGER.addHandler(console_handler)
+
+    file_handler = logging.FileHandler("bnf_grammar_extractor.log", mode="w", encoding="utf-8")
+    file_handler.set_name("logfile")
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+    LOGGER.addHandler(file_handler)
+
+    # Parse command line
+    parser = argparse.ArgumentParser(
+        prog="bnf_grammar_extractor",
+        allow_abbrev=False,
+        description="Extract textual and/or graphical grammars from given KerML or SysML specifications and generate txt and html BNF grammar files.",
+        epilog="For an example see ...")
+    parser.add_argument("source_data", metavar="SOURCE_DATA", type=str, help="JSON file defining source data")
+    parser.add_argument("-i", "--input-dir", metavar="INPUT_DIR", type=str, nargs="?", default="sources", help="input directory path")
+    parser.add_argument("-o", "--output-dir", metavar="OUTPUT_DIR", type=str, nargs="?", default=".", help="output directory path")
+
+    args = parser.parse_args()
+    LOGGER.debug(f"args={args}")
+
+    input_dir = args.input_dir
+    output_dir = args.output_dir
+
     grammar_extractor = GrammarExtractor()
 
-    for index in range(1, len(argv), 3):
-        spec_path = argv[index]
-        bnf_clause_id = argv[index + 1]
-        bnf_mode = argv[index + 2]
+    # Extract BNF from each of the given inputs and run backend processors
+    source_json = os.path.join(args.input_dir, args.source_data)
+    with open(source_json, mode="r", encoding="utf-8") as source_json_file:
+        source_list = json.load(source_json_file)
 
-        grammar_extractor.extract_bnf(spec_path, bnf_clause_id, bnf_mode)
-        grammar_extractor.dump_bnf_grammar_elements()
-        grammar_extractor.export_txt()
-        grammar_extractor.export_html()
+        for source in source_list:
+            file_name = source["file"]
+            syntax_kind = source["syntax_kind"]
+            clause_id = source.get("clause_id")
 
-
-def usage():
-    print("""\
-Usage: python bnf_grammar_extractor.py [options] {<spec_path> <bnf_clause_id> <mode>}+
-
-    Extract textual and/or graphical grammars from given KerML or SysML specifications
-    and generate txt and html files.
-
-    Arguments:
-    There must be one or more triples of arguments, consisting of:
-    spec_path     : .html file specification exported from View Editor
-    bnf_clause_id : clause identifier that specifies a BNF grammar
-    mode          : "textual" or "graphical"
-
-    The argument triples should be ordered from least to most dependent grammars,
-    as in the second example below.
-
-    Options:
-    -h or --help: Display this message and exit.
-
-    Examples:
-    1. python bnf_grammar_extractor.py SysML-spec-r2025-xx.html 8.2.2 textual
-    2. python bnf_grammar_extractor.py KerML-spec-r2025-xx.html 8.2 textual SysML-spec-r2025-xx.html 8.2.2 textual SysML-spec-r2025-xx.html 8.2.3 graphical
-""")
+            if syntax_kind in ("kerml-library", "sysml-library"):
+                LOGGER.warning(f"Processing syntax_kind={syntax_kind} for {file_name} clause={clause_id} is not yet implemented")
+            else:
+                grammar_extractor.extract_bnf(input_dir, output_dir, file_name, syntax_kind, clause_id)
+                grammar_extractor.report_checks()
+                grammar_extractor.dump_bnf_grammar_elements()
+                grammar_extractor.export_txt()
+                grammar_extractor.export_html()
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

@@ -21,7 +21,8 @@ standard library package StatePerformances {
 	
 	behavior StatePerformance specializes DecisionPerformance {
 		feature isTriggerDuring: Boolean default true;
-
+		
+    
 		abstract step middle[1..*] {
 			doc
 			/*

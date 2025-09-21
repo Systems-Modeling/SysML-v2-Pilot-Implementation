@@ -42,6 +42,15 @@ standard library package Occurrences {
 		private import SequenceFunctions::*;
 		
     @Assert{f="startShot <= endShot";}    
+    
+    var feature openLeft : Boolean := false {
+      doc /* open-left does not include startShot in Occurrence 
+       * redefine as true if occurrence is open-left. */
+    }
+    var feature openRight :  Boolean := false {
+      doc /* open-right does not include endShot in Occurrence 
+       * redefine as true if occurrence is open-right. */
+    }
 
 		feature portionOfLife: Life[1] subsets portionOf default self;
 
@@ -52,8 +61,11 @@ standard library package Occurrences {
 //}
 
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things {
-      doc /* SFS:  sameLifeOccurrences are coincident */
-      @Assert{f="forall o in sameLifeOccurrences are coincident(life(self),life(o))";} 		  
+      doc /* SFS:  sameLifeOccurrences are coincident
+       * including being open-left or open-right
+       */
+      @Assert{f="forall o in sameLifeOccurrences are ( coincident(life(self),life(o)) and"+
+        "o.openLeft==openLeft and o.openRight=openRight";} 		  
 		}
 		
 

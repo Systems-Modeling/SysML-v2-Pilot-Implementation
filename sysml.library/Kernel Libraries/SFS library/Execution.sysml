@@ -29,7 +29,7 @@ library package Execution {
 	}
 	
 	occurrence def ValueSlice {
-		:>> startShot = valueStart;
+	//	:>> startShot = valueStart;
 		ref snapshot valueStart;
 		ref snapshot valueEnd;
 		

@@ -9,18 +9,22 @@ package IPI {
    *   The value of an Item (if any) must be information, specialization of Base::DataValue.
    *   Interfaces are used to connect ports.  (Interfaces have been adopted by AADL.sysml, but differently.)
    *   The biggest difference is the methodology of specializing Item/Port/Interface definitions rather than usages.
-   * 
-   *
-   * 
    */
 
-  private import AADL::Feature;
+//  private import AADL::Feature;
   private import Interfaces::BinaryInterface;
   private import Flows::Flow;
+  private import Assertion::Assert;
 
 // Items
 
   item def AadlEvent;
+  item def AadlFeature;
+  part def Thread;
+  part def System;
+  part def Process;
+  part def Device;
+  port def BusAccess;
   
   abstract item def AadlData {
     doc 
@@ -40,11 +44,11 @@ package IPI {
 
 // Ports
 
-  port def EventPort :> Feature {
+  port def EventPort :> AadlFeature {
     out item itm : AadlEvent; 
   }
 
-  abstract port def DataPort :> Feature {
+  abstract port def DataPort :> AadlFeature {
     doc
     /*
      * Specialize DataPort for the specialized item
@@ -56,7 +60,7 @@ package IPI {
     attribute Base_Address : Memory_Properties::Base_Address;
   }
   
-  abstract port def EventDataPort :> Feature {
+  abstract port def EventDataPort :> AadlFeature {
     doc
     /*
      * Specialize EventDataPort for the specialized item
@@ -119,5 +123,41 @@ package IPI {
       }
   }
 
+  state def <IS> InitialState {
+    doc /* Every AADL state machine must have exactly one initial state */
+  }
+  
+  state def <CS> CompleteState {
+    doc /* Entering a complete state suspends execution until the next dispatch.
+     * Transitions leaving complete states must have dispatch condition guards.
+     */
+  }
+  
+  state def <ES> ExecutionState {
+    doc /* Execution states are transitory and are occupied for negligible
+     * or zero time durations.  Transitions leaving execution states may have
+     * guards with (almost) any boolean expression.  Some transition from
+     * an execution state must have true guard for it to be transitory.
+     */
+  }
+  
+  state def <FS> FinalState {
+    doc /* Final states have no outgoing transitions.  Thread halts. */
+  }
+  
+  state def <ASM> AADLStateMachine {
+    doc /* AADL state machines have exactly one initial state. 
+     * Specialize the initial state to initialize attributes.
+     * Insert "var" attributes to hold persistent values.
+     */
+     
+    entry; then init;
     
+    state init : InitialState {
+      doc /* "init" is the unique initial state. 
+       * Sphecialize "init" to initialize variable attributes. */
+      @Assert{f="true";}
+    }
+    
+  }
 }

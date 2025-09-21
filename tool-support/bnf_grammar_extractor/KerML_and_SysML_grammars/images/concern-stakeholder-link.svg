@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="248"
+   height="30.719999"
+   viewBox="0 0 248 30.719999"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2">
+      <path
+         d="M 0,0 H 774.02344 V 95.996094 H 0 Z"
+         transform="scale(0.31999999)"
+         clip-rule="evenodd"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <path
+         d="M 56.25,6.25 H 715.625 V 90.625 H 56.25 Z"
+         transform="matrix(0.3952941,0,0,0.3952941,56.00781,1385.7941)"
+         clip-rule="evenodd"
+         id="path4" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5">
+      <path
+         d="M 56.25,6.25 H 715.625 V 90.625 H 56.25 Z"
+         transform="matrix(0.3952941,0,0,0.3952941,-178.61718,-22.705993)"
+         clip-rule="evenodd"
+         id="path5" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6">
+      <path
+         d="M 56.25,6.25 H 715.625 V 90.625 H 56.25 Z"
+         transform="matrix(0.3952941,0,0,0.3952941,-24.63281,-22.705993)"
+         clip-rule="evenodd"
+         id="path6" />
+    </clipPath>
+  </defs>
+  <g
+     id="g1">
+    <path
+       id="path1"
+       d="M 0,0 H 248 V 31 H 0 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       clip-path="url(#clipPath2)" />
+    <path
+       id="path3"
+       d="M 134.05,1405 H 232"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0.80952381,0,0,0.80952381,-45.339656,-1121.8333)"
+       clip-path="url(#clipPath4)" />
+    <text
+       id="text4"
+       xml:space="preserve"
+       transform="matrix(0.80952381,0,0,0.80952381,144.59486,18.381042)"
+       clip-path="url(#clipPath5)"><tspan
+         id="tspan4"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">&amp;stakeholder-node</tspan></text>
+    <text
+       id="text5"
+       xml:space="preserve"
+       transform="matrix(0.80952381,0,0,0.80952381,19.940846,18.381042)"
+       clip-path="url(#clipPath6)"><tspan
+         id="tspan5"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">&amp;concern</tspan></text>
+  </g>
+</svg>

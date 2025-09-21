@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="517.44"
+   height="66.559998"
+   viewBox="0 0 517.44 66.559998"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2">
+      <path
+         d="M 0,0 H 1616.9922 V 206.98242 H 0 Z"
+         transform="scale(0.31999999)"
+         clip-rule="evenodd"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,78.037002,1436.1208)"
+         clip-rule="evenodd"
+         id="path4" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,-30.416126,-34.379267)"
+         clip-rule="evenodd"
+         id="path5" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,-381.44738,-22.379266)"
+         clip-rule="evenodd"
+         id="path6" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath7">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,-382.79113,-42.379267)"
+         clip-rule="evenodd"
+         id="path7" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,-375.7755,-59.379267)"
+         clip-rule="evenodd"
+         id="path8" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath9">
+      <path
+         d="M 56.25,6.25 H 1559.375 V 203.125 H 56.25 Z"
+         transform="matrix(0.36045221,0,0,0.36045221,-473.75988,-32.379267)"
+         clip-rule="evenodd"
+         id="path9" />
+    </clipPath>
+  </defs>
+  <g
+     id="g1">
+    <path
+       id="path1"
+       d="M 0,0 H 517 V 66 H 0 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       clip-path="url(#clipPath2)" />
+    <path
+       id="path3"
+       d="M 523,1466.6899 263,1467"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0.88777369,0,0,0.88777369,-69.279197,-1274.9503)"
+       clip-path="url(#clipPath4)" />
+    <text
+       id="text4"
+       xml:space="preserve"
+       transform="matrix(0.88777369,0,0,0.88777369,27.002636,30.521009)"
+       clip-path="url(#clipPath5)"><tspan
+         id="tspan4"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">&amp;n-ary-def- connection-dot</tspan></text>
+    <text
+       id="text5"
+       xml:space="preserve"
+       transform="matrix(0.88777369,0,0,0.88777369,338.63895,19.867724)"
+       clip-path="url(#clipPath6)"><tspan
+         id="tspan5"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">rolename</tspan></text>
+    <text
+       id="text6"
+       xml:space="preserve"
+       transform="matrix(0.88777369,0,0,0.88777369,339.83189,37.623198)"
+       clip-path="url(#clipPath7)"><tspan
+         id="tspan6"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">multiplicity</tspan></text>
+    <text
+       id="text7"
+       xml:space="preserve"
+       transform="matrix(0.88777369,0,0,0.88777369,333.6036,52.715351)"
+       clip-path="url(#clipPath8)"><tspan
+         id="tspan7"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">c-adornment</tspan></text>
+    <text
+       id="text8"
+       xml:space="preserve"
+       transform="matrix(0.88777369,0,0,0.88777369,420.59156,28.745461)"
+       clip-path="url(#clipPath9)"><tspan
+         id="tspan8"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">&amp;type-node</tspan></text>
+  </g>
+</svg>

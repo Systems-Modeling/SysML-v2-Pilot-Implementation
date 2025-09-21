@@ -5,17 +5,17 @@
 // Author: Hans Peter de Koning (DEKonsult)
 //
 
-start: (_rule? _NL)* _rule?
+start: _rule+
 
-_rule: lexical | nonterminal | note
+_rule: lexical_rule _NON_CONTINUATION_LINE | nonterminal_rule _NON_CONTINUATION_LINE | line_comment
 
-lexical: LEXICAL_NAME "=" alternation
+lexical_rule: LEXICAL_NAME "=" alternation
 
-nonterminal: NONTERMINAL_NAME abstract_element? "=" alternation
+nonterminal_rule: NONTERMINAL_NAME ( ":" abstract_element )? "=" alternation
 
-note: NOTE
+line_comment: LINE_COMMENT _NL+
 
-abstract_element: ":" NONTERMINAL_NAME
+abstract_element: NONTERMINAL_NAME
 
 ?alternation: sequence ( "|" sequence )*
 
@@ -52,24 +52,27 @@ nonparsing_empty_value: "{" "}"
 ?prop_value: atom | BOOLEAN_VALUE
 ?nonparsing_prop_value: terminal | PROPERTY_NAME | BOOLEAN_VALUE | THIS
 
-TERMINAL: /'[^']+'/
-NONTERMINAL_NAME: /[A-Z]([a-z0-9]+[A-Z]?)+/
-LEXICAL_NAME: /[A-Z][A-Z0-9_]+/
+// TERMINAL is any string containing one or more printable ASCII characters between two single quotes.
+// A single quote itself must be escaped.
+TERMINAL: "'" /(\\'|[ -&(-~])+/ "'"
+NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
+LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
 QUALIFIED_NAME: "[QualifiedName]"
-PROPERTY_NAME: /[a-z][A-Za-z0-9.]+/
+PROPERTY_NAME: /[a-z][A-Za-z.]+/
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
 THIS: "this"
-NOTE: /\/\/[^\n]*/
-_NL: /(\r?\n)+\s*/
 
-// %import common.ESCAPED_STRING -> _STRING
-// %import common.SIGNED_INT -> NUMBER
-// %import common.WS_INLINE
-%import common.WS
+_CR: "\r"
+_LF: "\n"
+_NL: _CR? _LF
+WS_INLINE: " " | "\t"
+LINE_COMMENT: "//" /[^\r\n]*/
 
-//COMMENT: /\s*/ "//" /[^\n]*/
+// A _NON_CONTINUATION_LINE is a line that does not start with a space or tab
+// Use negative lookahead assertion re pattern (?!...) to not consume the possible match
+_NON_CONTINUATION_LINE: ( _NL /(?![ \t])/ )+
 
-%ignore WS
-//%ignore WS_INLINE
-//%ignore COMMENT
+// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with inline whitespace
+%ignore WS_INLINE
+%ignore _NL WS_INLINE+

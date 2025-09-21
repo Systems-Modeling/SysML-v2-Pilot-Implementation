@@ -5,17 +5,15 @@
 // Author: Hans Peter de Koning (DEKonsult)
 //
 
-start: (_rule? _NL)* _rule?
+start: _rule+
 
-_rule: lexical | nonterminal | note
+_rule: lexical_rule _NON_CONTINUATION_LINE | nonterminal_rule _NON_CONTINUATION_LINE | line_comment
 
-lexical: LEXICAL_NAME "=" alternation
+lexical_rule: LEXICAL_NAME "=" alternation
 
-nonterminal: GRAPHICAL_NAME ( "=" | "=|" ) alternation
+nonterminal_rule: GRAPHICAL_NAME ( "=" | "=|" ) alternation
 
-note: NOTE
-
-abstract_element: ":" NONTERMINAL_NAME
+line_comment: LINE_COMMENT _NL+
 
 ?alternation: sequence ( "|" sequence )*
 
@@ -23,11 +21,6 @@ abstract_element: ":" NONTERMINAL_NAME
 
 ?expression: atom repetition?
            | "(" alternation ")" repetition?
-           | prop_assign
-           | prop_list_append
-           | boolean_prop_assign
-           | nonparsing_prop_assign
-           | nonparsing_prop_list_append
            | nonparsing_empty_value
            | image
 
@@ -37,44 +30,38 @@ abstract_element: ":" NONTERMINAL_NAME
 
 repetition: REPETITION_SYMBOL
 
-name: LEXICAL_NAME | NONTERMINAL_NAME
+name: LEXICAL_NAME | NONTERMINAL_NAME | GRAPHICAL_NAME
 
 qualified_name: QUALIFIED_NAME
 
 terminal: TERMINAL
 
-prop_assign: PROPERTY_NAME "=" prop_value
-prop_list_append: PROPERTY_NAME "+=" prop_value
-boolean_prop_assign: PROPERTY_NAME "?=" prop_value
-nonparsing_prop_assign: "{" PROPERTY_NAME "=" nonparsing_prop_value "}"
-nonparsing_prop_list_append: "{" PROPERTY_NAME "+=" nonparsing_prop_value "}"
 nonparsing_empty_value: "{" "}"
-
-?prop_value: atom | BOOLEAN_VALUE
-?nonparsing_prop_value: terminal | PROPERTY_NAME | BOOLEAN_VALUE | THIS
 
 image: IMAGE
 
-TERMINAL: /'[^']+'/
-GRAPHICAL_NAME: /[a-z][a-z\-]+/
-NONTERMINAL_NAME: /[A-Za-z][A-Za-z\-]+/
-LEXICAL_NAME: /[A-Z][A-Z0-9_]+/
+// TERMINAL is any string containing one or more printable ASCII characters or «»… between two single quotes.
+// A single quote itself must be escaped.
+TERMINAL: "'" /(\\'|[ -&(-~«»…])+/ "'"
+NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
+GRAPHICAL_NAME: /[a-z&](-?[a-z]+)+/
+LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
 QUALIFIED_NAME: "[QualifiedName]"
-PROPERTY_NAME: /[a-z][A-Za-z0-9.]+/
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
 THIS: "this"
-NOTE: /\/\/[^\n]*/
-_NL: /(\r?\n)+\s*/
 IMAGE: /\<img.+\/\>/
 
-// %import common.ESCAPED_STRING -> _STRING
-// %import common.SIGNED_INT -> NUMBER
-// %import common.WS_INLINE
-%import common.WS
+_CR: "\r"
+_LF: "\n"
+_NL: _CR? _LF
+WS_INLINE: " " | "\t"
+LINE_COMMENT: "//" /[^\r\n]*/
 
-//COMMENT: /\s*/ "//" /[^\n]*/
+// A _NON_CONTINUATION_LINE is a line that does not start with a space or tab
+// Use negative lookahead assertion re pattern (?!...) to not consume the possible match
+_NON_CONTINUATION_LINE: ( _NL /(?![ \t])/ )+
 
-%ignore WS
-//%ignore WS_INLINE
-//%ignore COMMENT
+// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with inline whitespace
+%ignore WS_INLINE
+%ignore _NL WS_INLINE+

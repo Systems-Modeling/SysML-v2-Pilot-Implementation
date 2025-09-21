@@ -1,6 +1,6 @@
 = bnf_grammar_extractor
 
-Tool to extract concrete KerML and SysML v2 concrete language grammars from their respective specifications and check them for correctness.
+Tool that extracts KerML and SysML2 concrete language grammars from their respective specifications, checks them for correctness and generates two kinds of grammar listings: (1) machine-readable .txt files and (2) human-readable hyperlinked .html files.
 
 == Usage of the Tool
 
@@ -8,7 +8,7 @@ Tool to extract concrete KerML and SysML v2 concrete language grammars from thei
 
 Instructions on how to export a selected version of the specification from View Editor to a self-standing HTML file.
 
-> Note: These instructions are for use of View Editor with the FireFox browser. Tested with FireFox v130.0.1 on Windows 11. In other browsers the menu or key to inspect the source code
+> Note: These instructions are tested with View Editor version 4 with the FireFox browser v130.0.1 on Windows 11. In other browsers the menu or key to inspect the source code may be different.
 
 1. Open the selected spec in View Editor.
 2. Load the full document by clicking the "Full Document" icon (image:VE-full-document-icon.png[]) at the top of the left panel. This may take several minutes.

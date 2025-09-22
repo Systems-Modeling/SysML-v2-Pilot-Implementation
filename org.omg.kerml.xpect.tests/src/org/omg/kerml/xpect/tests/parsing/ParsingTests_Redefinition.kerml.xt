@@ -1,0 +1,44 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+								File {from ="/library/Links.kerml"}
+								File {from ="/library/Occurrences.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package Redefinition {
+	
+	classifier A {
+	    feature f;
+	}
+	
+	classifier B specializes A {
+	    feature redefines f {
+	        feature g;
+	    }
+	}
+	
+	classifier C specializes A, B {
+	    feature subsets f {
+	        feature redefines g;
+	    }
+	}
+
+	class X {
+		feature redefines startShot;
+		feature redefines endShot;
+	}
+}

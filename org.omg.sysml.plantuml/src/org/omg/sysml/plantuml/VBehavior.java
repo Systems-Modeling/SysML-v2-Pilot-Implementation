@@ -134,14 +134,14 @@ public abstract class VBehavior extends VDefault {
         if (f == null) return false;
         String name = getName(f);
 
-        boolean flag = false;
         if (name != null) {
             if (defaultName == null || !name.equals(defaultName)) {
                 sb.append(name);
-                flag = true;
+                appendFeatureType(sb, ": ", f);
+                return true;
             }
         }
-        return appendFeatureType(sb, ": ", f) || flag;
+        return appendFeatureType(sb, "", f);
     }
 
     private boolean addSendActionUsage(SendActionUsage sau) {
@@ -263,12 +263,7 @@ public abstract class VBehavior extends VDefault {
             sb.append(getText(payload));
         } else {
             ReferenceUsage ru = aau.getPayloadParameter();
-            String name = ru.getDeclaredName();
-            if (name == null) {
-            	appendFeatureType(sb, "", ru);
-            } else {
-            	appendNameAndType(sb, ru, "");
-            }
+            appendNameAndType(sb, ru, "payload");
         }
 
         Expression receiver = aau.getReceiverArgument();

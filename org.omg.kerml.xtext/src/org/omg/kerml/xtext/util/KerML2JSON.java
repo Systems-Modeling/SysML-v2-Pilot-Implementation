@@ -165,24 +165,23 @@ public class KerML2JSON extends KerMLTraversalUtil {
 		args = this.processArgs(args);
 		
 		if (args != null) {
-			
-			System.out.println("Saving " + args[0] + "...");
-			
-			this.initialize(args);				
-			this.read(args);
-			
-			System.out.println("Transforming" + 
-					(this.isAddImplicitElements? " (adding implicit elements)... ": "..."));
-			this.transformAll(this.isAddImplicitElements);
-			
-			if (!this.isVerbose()) {
-				System.out.print("Processing");
-			}
-			this.process();
-			System.out.println();
-			
-			System.out.println("Writing " + this.outputPath + "...");
 			try {
+				System.out.println("Saving " + args[0] + "...");
+				
+				this.initialize(args);				
+				this.read(args);
+				
+				System.out.println("Transforming" + 
+						(this.isAddImplicitElements? " (adding implicit elements)... ": "..."));
+				this.transformAll(this.isAddImplicitElements);
+				
+				if (!this.isVerbose()) {
+					System.out.print("Processing");
+				}
+				this.process();
+				System.out.println();
+				
+				System.out.println("Writing " + this.outputPath + "...");
 				this.write();
 			} catch (IOException e) {
 				throw new RuntimeException(e);

@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.omg.kerml.xtext.library.LibraryIndex;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.xtext.util.SysMLAccess;
 
 import com.google.gson.GsonBuilder;
 
@@ -52,10 +53,10 @@ public class SysMLInteractiveLibraryIndexGenerator {
 		//disable EMF reference clearing to prevent InterruptedException on early JVM shutdown
 		System.setProperty("org.eclipse.emf.common.util.ReferenceClearingQueue", "false");
 		
-		SysMLInteractive instance = SysMLInteractive.getInstance();
-		instance.getLibraryIndexCache().setIndexDisabled(true);
 		
-		instance.loadLibrary(args[0]);
+		SysMLAccess instance = SysMLAccess.builder().libraryPath(args[0]).build();
+		instance.getLibraryIndexCache().setIndexDisabled(true);
+		instance.loadLibrary();
 
 		ResourceSet rs = instance.getResourceSet();
 

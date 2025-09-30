@@ -25,6 +25,8 @@
  *****************************************************************************/
 package org.omg.sysml.interactive;
 
+import org.omg.sysml.util.SysMLUtil;
+
 public class VizResult {
     public static enum Kind {
     	EXCEPTION,
@@ -62,7 +64,7 @@ public class VizResult {
         return this.exception == null? "":
         	   this.exception instanceof VizException? this.exception.getMessage():
         	   this.exception instanceof IllegalArgumentException? "ERROR:" + this.exception.getMessage():
-        	   SysMLInteractiveUtil.formatException(exception);
+        		   SysMLUtil.formatException(exception);
     }
 
     public String getPlantUML() {

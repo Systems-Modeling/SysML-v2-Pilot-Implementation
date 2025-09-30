@@ -826,7 +826,7 @@ package SimpleVehicleModel{
                         }
                         part redefines speedSensor{
                             port redefines speedSensorPort{
-                                event sendSensedSpeed.source;
+                                event sendSensedSpeed.sourceEvent;
                             }
                         }
                         part redefines vehicleSoftware{
@@ -838,17 +838,17 @@ package SimpleVehicleModel{
                                     }
                                     port redefines speedSensorPort{
                                         event occurrence setSpeedReceived=setSpeedPort.setSpeedReceived;
-                                        then event sendSensedSpeed.target;
+                                        then event sendSensedSpeed.targetEvent;
                                     }
                                     port redefines cruiseControlPort{             
-                                        event sendFuelCmd.source;
+                                        event sendFuelCmd.sourceEvent;
                                     }
                                 }
                             }
                         }
                         part redefines engine{
                             port redefines fuelCmdPort{
-                                event sendFuelCmd.target;
+                                event sendFuelCmd.targetEvent;
                             }
                         }
                         message sendSensedSpeed of SensedSpeed;

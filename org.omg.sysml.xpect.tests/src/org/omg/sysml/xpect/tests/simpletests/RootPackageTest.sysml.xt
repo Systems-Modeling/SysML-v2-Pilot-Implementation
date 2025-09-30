@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+ 		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Parts.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package P1 {
+	part def A;
+}
+
+package P2 {
+	private import P1::*;
+	part a : A;
+}
+
+private import P2::*;
+
+package P3 {
+	part b subsets a;
+}

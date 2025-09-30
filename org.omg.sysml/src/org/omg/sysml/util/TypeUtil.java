@@ -208,63 +208,15 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getAllEndFeaturesOf(Type type) {
-		return getAllEndFeaturesOf(type, new HashSet<>());
-	}
-	
-	private static List<Feature> getAllEndFeaturesOf(Type type, Set<Type> visited) {
-		visited.add(type);
-		List<Feature> ends = getOwnedEndFeaturesOf(type);
-		int n = ends.size();
-		for (Type general: getGeneralTypesOf(type)) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedEnds = getAllEndFeaturesOf(general, visited);
-				if (inheritedEnds.size() > n) {
-					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
-				}
-			}
-		}
-		return ends;
+		return type == null? Collections.emptyList(): type.getEndFeature();
 	}
 	
 	public static List<Feature> getOwnedEndFeaturesOf(Type type) {
-		return type == null? Collections.emptyList():
-			   	type.getOwnedFeature().stream().
-			   		filter(Feature::isEnd).
-			   		collect(Collectors.toList());
+		return type == null? Collections.emptyList(): type.getOwnedEndFeature();
 	}
 	
 	public static List<Feature> getAllParametersOf(Type type) {
-		return getAllParametersOf(type, null);
-	}
-	
-	public static List<Feature> getAllParametersOf(Type type, Element skip) {
-		return getAllParametersOf(type, new HashSet<>(), skip);
-	}
-	
-	private static List<Feature> getAllParametersOf(Type type, Set<Type> visited, Element skip) {
-		visited.add(type);
-		List<Feature> parameters = getOwnedParametersOf(type);
-		parameters.removeIf(FeatureUtil::isResultParameter);
-		int n = parameters.size();
-		Feature resultParameter = getOwnedResultParameterOf(type);
-		for (Type general: TypeUtil.getGeneralTypesOf(type, false, skip)) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = getAllParametersOf(general, visited, skip);
-				if (resultParameter == null) {
-					resultParameter = inheritedParameters.stream().
-							filter(FeatureUtil::isResultParameter).
-							findFirst().orElse(null);
-				}
-				inheritedParameters.removeIf(FeatureUtil::isResultParameter);
-				if (inheritedParameters.size() > n) {
-					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
-				}
-			}
-		}
-		if (resultParameter != null) {
-			parameters.add(resultParameter);
-		}
-		return parameters;
+		return type.getDirectedFeature();
 	}
 	
 	public static List<Feature> getOwnedParametersOf(Type type) {

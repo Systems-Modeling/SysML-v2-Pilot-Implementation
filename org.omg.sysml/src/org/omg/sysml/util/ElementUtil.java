@@ -354,6 +354,7 @@ public class ElementUtil {
 			}
 		}
 		if (addImplicitElements && root instanceof Type) {
+			root.setIsImpliedIncluded(true);
 			TypeUtil.insertImplicitBindingConnectors((Type)root);
 			TypeUtil.insertImplicitSpecializations((Type)root);
 			if (root instanceof Feature) {

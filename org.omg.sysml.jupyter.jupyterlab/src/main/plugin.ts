@@ -17,26 +17,26 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
 
-import {
-	JupyterLab,
-	JupyterFrontEndPlugin,
-} from '@jupyterlab/application';
+import { JupyterFrontEndPlugin, JupyterFrontEnd} from '@jupyterlab/application';
+import { IEditorLanguageRegistry, EditorLanguageRegistry} from "@jupyterlab/codemirror";
+import { sysmlparser } from './mode';
 
-import {
-	defineSysMLv2Mode,
-} from './mode';
+const plugin: JupyterFrontEndPlugin<void> = {
+  id: 'jupyterlab-sysml:plugin',
+  description: 'A JupyterLab extension adding a syntax highlight for SysMLv2 language.',
+  autoStart: true,
+  requires: [IEditorLanguageRegistry],
+  activate: (app: JupyterFrontEnd, languages: IEditorLanguageRegistry) => {
 
-function activate(app: JupyterLab) {
-	defineSysMLv2Mode();
-}
+	languages.addLanguage({
+		name: 'sysml',
+		displayName: 'sysml',
+		mime: 'text/x-sysml',
+		extensions: ['sysml'],
+		load: async () => {
+			return EditorLanguageRegistry.legacy(sysmlparser)
+		}
+	})
+  }}
 
-/**
- * Initialization data for extension
- */
-const extension: JupyterFrontEndPlugin<void> = {
-	activate,
-	autoStart: true,
-	id: 'jupyterlab-sysml:plugin',
-};
-
-export default extension;
+export default plugin;

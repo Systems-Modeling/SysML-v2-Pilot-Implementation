@@ -443,7 +443,8 @@ public class TypeAdapter extends NamespaceAdapter {
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
-						map(expr->expr.evaluate(target)).
+						map(expr->
+						expr.evaluate(metadataFeature)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
 						map(EvaluationUtil::getMetaclassReferenceOf).
@@ -456,7 +457,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		return baseTypes;
 	}
 	
-	protected Feature getBaseTypeFeature(Element element) {
+	protected static Feature getBaseTypeFeature(Element element) {
 		return (Feature)SysMLLibraryUtil.getLibraryType(element, 
 				ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "baseType"));
 	}

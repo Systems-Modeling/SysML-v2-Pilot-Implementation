@@ -544,9 +544,12 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public EList<Type> getAllTypes() {
 		if (types == null) {
-			types = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)getTarget(), SysMLPackage.FEATURE__TYPE);
-			getTypes(types, new HashSet<Feature>());
-			removeRedundantTypes(types);
+			EList<Type> allTypes = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)getTarget(), SysMLPackage.FEATURE__TYPE);
+			getTypes(allTypes, new HashSet<Feature>());
+			removeRedundantTypes(allTypes);
+			// Note: Cache must be set only after completion of computation of types, in order to correctly
+			// a possible circular recursive call back to this method.
+			types = allTypes;
 		}
 		return types;
 	}

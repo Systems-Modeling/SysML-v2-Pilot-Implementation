@@ -25,6 +25,7 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.util;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
@@ -237,26 +238,30 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		args = this.processArgs(args);
 		
 		if (args != null) {
-			System.out.println("Saving " + args[0] + "...");
-			
-			this.initialize(args);				
-			this.read(args);
-			
-			System.out.println("Transforming" + 
-					(this.isAddImplicitElements? " (adding implicit generalizations)... ": "..."));
-			this.transformAll(this.isAddImplicitElements);
-			
-			System.out.println("\nBase path is " + this.getBasePath());
-			System.out.println();
-			
-			this.process();
-			
-			if (isCommitted()) {
-				System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
-			} else {
-				System.out.println("Failed to save Project (" + this.getProjectName() + ") ");
+			try {
+				System.out.println("Saving " + args[0] + "...");
+				
+				this.initialize(args);				
+				this.read(args);
+				
+				System.out.println("Transforming" + 
+						(this.isAddImplicitElements? " (adding implicit generalizations)... ": "..."));
+				this.transformAll(this.isAddImplicitElements);
+				
+				System.out.println("\nBase path is " + this.getBasePath());
+				System.out.println();
+				
+				this.process();
+				
+				if (isCommitted()) {
+					System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+				} else {
+					System.out.println("Failed to save Project (" + this.getProjectName() + ") ");
+				}
+				System.out.println();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
 			}
-			System.out.println();
 		}
 	}
 

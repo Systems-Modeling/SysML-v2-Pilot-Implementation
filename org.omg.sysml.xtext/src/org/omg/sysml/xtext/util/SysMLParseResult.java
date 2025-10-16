@@ -21,7 +21,7 @@
  *  Ed Seidewitz
  * 
  *****************************************************************************/
-package org.omg.sysml.interactive;
+package org.omg.sysml.xtext.util;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,18 +33,18 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.util.SysMLUtil;
 
-public class SysMLInteractiveResult {
+public class SysMLParseResult {
 	
 	private Element rootElement = null;
 	private List<Issue> issues = null;
 	private Exception exception = null;
 	
-	public SysMLInteractiveResult(Element rootElement, List<Issue> issues) {
+	public SysMLParseResult(Element rootElement, List<Issue> issues) {
 		this.rootElement = rootElement;
 		this.issues = issues;
 	}
 	
-	public SysMLInteractiveResult(Exception exception) {
+	public SysMLParseResult(Exception exception) {
 		this.exception = exception;
 	}
 	

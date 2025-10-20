@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.omg.sysml.edit;singleton:=true
 Automatic-Module-Name: org.omg.sysml.edit
-Bundle-Version: 0.52.0.qualifier
+Bundle-Version: 0.52.1.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.omg.sysml.lang.sysml.provider.SysMLEditPlugin$Implementation
 Bundle-Vendor: %providerName

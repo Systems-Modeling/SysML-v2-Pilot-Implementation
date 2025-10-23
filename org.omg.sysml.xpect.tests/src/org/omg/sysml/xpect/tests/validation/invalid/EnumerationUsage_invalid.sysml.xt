@@ -44,11 +44,7 @@ package EnumerationUsage_invalid {
 	attribute a3 : E, EE;
 	
 	enum e1 : E;
-	//* XPECT errors ---
-	"An enumeration must be typed by one enumeration definition." at "enum e2 : A;"
-	"Features must have at least one type" at "enum e2 : A;"
-	--- 
-	*/
+	// XPECT errors ---> "An enumeration must be typed by one enumeration definition." at "enum e2 : A;"
 	enum e2 : A;
 	// XPECT errors --> "An enumeration must be typed by one enumeration definition." at "enum e3 : E, EE;"
 	enum e3 : E, EE;

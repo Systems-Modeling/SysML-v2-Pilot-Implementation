@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
@@ -61,6 +62,7 @@ import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
@@ -110,15 +112,6 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public String getEffectiveShortName() {
 		return storedEffectiveShortName;
-	}
-	
-	public EList<Type> getTypes() {
-		return types;
-	}
-	
-	public EList<Type> setTypes(EList<Type> types) {
-		this.types = types;
-		return types;
 	}
 	
 	Set<Feature> allRedefinedFeatures = null;
@@ -549,6 +542,48 @@ public class FeatureAdapter extends TypeAdapter {
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
+	public EList<Type> getAllTypes() {
+		if (types == null) {
+			EList<Type> allTypes = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)getTarget(), SysMLPackage.FEATURE__TYPE);
+			getTypes(allTypes, new HashSet<Feature>());
+			removeRedundantTypes(allTypes);
+			// Note: Cache must be set only after completion of computation of types, in order to correctly
+			// handle a possible circular recursive call back to this method.
+			types = allTypes;
+		}
+		return types;
+	}
+	
+	public void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		visitedFeatures.add(feature);
+		computeImplicitGeneralTypes();
+		getFeatureTypes(types, visitedFeatures);
+		for (Feature typingFeature : feature.typingFeatures()) {
+			if (!visitedFeatures.contains(typingFeature)) {
+				FeatureUtil.getTypesOf(typingFeature, types, visitedFeatures);
+			}
+		}
+	}
+	
+	public void getFeatureTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		feature.getOwnedTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				forEachOrdered(types::add);
+		types.addAll(getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
+			Type type = types.get(i);
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
+				types.remove(i);
+			}
+		}
+	}
+		
 	/**
 	 * Compute relevant implicit Redefinitions, as appropriate.
 	 */

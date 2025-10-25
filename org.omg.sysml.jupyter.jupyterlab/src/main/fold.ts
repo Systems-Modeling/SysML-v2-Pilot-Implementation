@@ -22,17 +22,19 @@ import { EditorState, Extension } from '@codemirror/state';
 import { foldService, syntaxTree } from '@codemirror/language';
 import { SyntaxNode } from '@lezer/common';
 
-function isInStringOrComment(state: EditorState, pos: number): boolean {
+function isInStringCommentOrVariable(state: EditorState, pos: number): boolean {
     const tree = syntaxTree(state);
     let node: SyntaxNode | null = tree.resolveInner(pos, 1);
     
     while (node) {
         const nodeType = node.type.name;
         // Check if we're in a string, comment, or other non-code context
+        // Note that 'variableName' correesponds to a quoted name
         if (nodeType === 'String' || 
             nodeType === 'Comment' || 
             nodeType === 'BlockComment' ||
             nodeType === 'LineComment' ||
+            nodeType === 'variableName' ||
             nodeType.toLowerCase().includes('string') ||
             nodeType.toLowerCase().includes('comment')) {
             return true;
@@ -49,9 +51,8 @@ function findMatchingCloseBrace(state: EditorState, openPos: number): number | n
     
     while (pos < docLength && nest > 0) {
         const char = state.sliceDoc(pos, pos + 1);
-        
-        // Skip if we're in a string or comment
-        if (!isInStringOrComment(state, pos)) {
+        // Skip if we're in a string, comment, or variable
+        if (!isInStringCommentOrVariable(state, pos)) {
             if (char === '{') {
                 nest++;
             } else if (char === '}') {
@@ -75,8 +76,8 @@ function computeFoldRange(state: EditorState, lineStart: number, lineEnd: number
         if (char === '{') {
             const absolutePos = lineStart + i;
             
-            // Check if this brace is in a string or comment
-            if (isInStringOrComment(state, absolutePos)) {
+            // Check if this brace is in a string, comment, or variable
+            if (isInStringCommentOrVariable(state, absolutePos)) {
                 continue;
             }
             

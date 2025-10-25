@@ -1,6 +1,8 @@
 /*
  * SysML 2 Pilot Implementation
  * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2025  Model Driven Solutions, Inc.
+ * Copyright (C) 2025  Mgnite Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by

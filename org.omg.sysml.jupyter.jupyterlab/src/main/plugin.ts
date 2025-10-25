@@ -18,15 +18,19 @@
  */
 
 import { JupyterFrontEndPlugin, JupyterFrontEnd} from '@jupyterlab/application';
-import { IEditorLanguageRegistry, EditorLanguageRegistry} from "@jupyterlab/codemirror";
+import { IEditorLanguageRegistry, EditorLanguageRegistry,
+         IEditorExtensionRegistry, EditorExtensionRegistry,
+         IEditorExtensionFactory } from "@jupyterlab/codemirror";
+
 import { sysmlparser } from './mode';
+import { sysmlFoldServiceSelection } from './fold';
 
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-sysml:plugin',
   description: 'A JupyterLab extension adding a syntax highlight for SysMLv2 language.',
   autoStart: true,
-  requires: [IEditorLanguageRegistry],
-  activate: (app: JupyterFrontEnd, languages: IEditorLanguageRegistry) => {
+  requires: [IEditorLanguageRegistry, IEditorExtensionRegistry],
+  activate: (app: JupyterFrontEnd, languages: IEditorLanguageRegistry, ext: IEditorExtensionRegistry) => {
 
 	languages.addLanguage({
 		name: 'sysml',
@@ -37,6 +41,15 @@ const plugin: JupyterFrontEndPlugin<void> = {
 			return EditorLanguageRegistry.legacy(sysmlparser)
 		}
 	})
+
+    const sysmlFoldExtension = Object.freeze({
+        name: 'sysml-fold-extension',
+        default: true,
+        factory: (options: IEditorExtensionFactory.IOptions) =>
+        EditorExtensionRegistry.createConditionalExtension(sysmlFoldServiceSelection(options))
+
+    });
+    ext.addExtension(sysmlFoldExtension);
   }}
 
 export default plugin;

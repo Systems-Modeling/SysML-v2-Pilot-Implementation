@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.expressions.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Bundle-Version: 0.52.1.qualifier
+Bundle-Version: 0.53.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.expressions.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

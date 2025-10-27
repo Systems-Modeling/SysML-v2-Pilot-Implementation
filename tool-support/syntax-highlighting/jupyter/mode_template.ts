@@ -23,8 +23,6 @@
  *   $TEMPLATE_FILE
  */
 
-// tslint:disable-next-line
-
 import {StringStream} from "@codemirror/language"
 import { clike } from '@codemirror/legacy-modes/mode/clike';
 
@@ -32,7 +30,7 @@ const f_wordify = (h: any, s: string) => ({...h, [s]: true});
 export const sysmlparser = clike({
         name: 'clike',
         keywords: [
-           "$KEYWORDS"
+            "$KEYWORDS"
         ].reduce(f_wordify, {}),
         types: [
             "$DEF_KEYWORDS"

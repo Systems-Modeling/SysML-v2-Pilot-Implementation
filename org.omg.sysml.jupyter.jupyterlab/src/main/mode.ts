@@ -23,9 +23,6 @@
  *   $GIT_REPO_DIR/tool-support/syntax-highlighting/jupyter/mode_template.ts
  */
 
-// tslint:disable-next-line
-//import 'codemirror/addon/mode/simple';
-
 import {StringStream} from "@codemirror/language"
 import { clike } from '@codemirror/legacy-modes/mode/clike';
 

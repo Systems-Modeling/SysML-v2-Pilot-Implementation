@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.interactive
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.omg.sysml.interactive
-Bundle-Version: 0.52.1.qualifier
+Bundle-Version: 0.53.0.qualifier
 Export-Package: org.omg.sysml.interactive
 Require-Bundle: org.eclipse.emf.ecore,
  com.google.inject,

@@ -31,7 +31,7 @@ import { clike } from '@codemirror/legacy-modes/mode/clike';
 
 const f_wordify = (h: any, s: string) => ({...h, [s]: true});
 export const sysmlparser = clike({
-        name: 'clike',
+        name: 'sysml',
         keywords: [
             "about", "abstract", "accept", "action", "actor", "after", "alias", "all", "allocate", "allocation",
             "analysis", "and", "as", "assert", "assign", "assume", "at", "attribute", "bind", "binding", "by",

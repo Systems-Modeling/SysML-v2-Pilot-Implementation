@@ -19,7 +19,7 @@
 
 import { IEditorExtensionFactory } from "@jupyterlab/codemirror";
 import { EditorState, Extension } from '@codemirror/state';
-import { foldService, syntaxTree } from '@codemirror/language';
+import { foldService, syntaxTree, language } from '@codemirror/language';
 import { SyntaxNode } from '@lezer/common';
 
 function isInStringCommentOrVariable(state: EditorState, pos: number): boolean {
@@ -69,6 +69,10 @@ function findMatchingCloseBrace(state: EditorState, openPos: number): number | n
 }
 
 function computeFoldRange(state: EditorState, lineStart: number, lineEnd: number) {
+    // Check the language first
+    const lang = state.facet(language);
+    if (!lang || lang.name !== 'sysml') return null;
+
     const lineText = state.sliceDoc(lineStart, lineEnd);
     
     for (let i = 0; i < lineText.length; i++) {
@@ -104,7 +108,11 @@ function computeFoldRange(state: EditorState, lineStart: number, lineEnd: number
 }
 
 export function sysmlFoldServiceSelection(options: IEditorExtensionFactory.IOptions): Extension {
-    if (options.model.mimeType === 'text/x-sysml') {
+    const mimeType = options.model.mimeType;
+    if (mimeType === 'text/x-sysml'
+        // In the newly created notebook, the first cell is initialized as 'text/plain'
+        // We check the language in the foldService as well to avoid misapplication.
+        || mimeType === 'text/plain') {
         return [ foldService.of(computeFoldRange) ];
     } else {
         return [];

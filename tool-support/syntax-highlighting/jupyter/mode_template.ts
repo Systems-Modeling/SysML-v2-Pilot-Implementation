@@ -28,7 +28,7 @@ import { clike } from '@codemirror/legacy-modes/mode/clike';
 
 const f_wordify = (h: any, s: string) => ({...h, [s]: true});
 export const sysmlparser = clike({
-        name: 'clike',
+        name: 'sysml',
         keywords: [
             "$KEYWORDS"
         ].reduce(f_wordify, {}),

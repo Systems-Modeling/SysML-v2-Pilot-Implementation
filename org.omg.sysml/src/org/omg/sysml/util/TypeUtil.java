@@ -477,10 +477,7 @@ public class TypeUtil {
 	// Multiplicity
 
 	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
+		if (NamespaceUtil.getOwnedMembersOf(type).noneMatch(Multiplicity.class::isInstance)) {
 			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
 			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 			membership.setOwnedMemberElement(multiplicity);

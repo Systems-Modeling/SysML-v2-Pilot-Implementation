@@ -1,0 +1,65 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package UsageDefinition_invalid {
+    attribute def A;
+    attribute a;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref a1 : a, A;"
+    ref a1 : a, A;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref a2 : a;"
+    ref a2 : a;
+    // XPECT errors ---> "An attribute must be typed by attribute definitions." at "attribute a3 : a;"
+    attribute a3 : a;
+    
+    item def I;
+    item i;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref i1 : i, I;"
+    ref i1 : i, I;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref i2 : i;"
+    ref i2 : i;
+    // XPECT errors ---> "An item must be typed by item definitions." at "item i3 : i;"
+    item i3 : i;
+    
+    part def P;
+    part p;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref p1 : p, P;"
+    ref p1 : p, P;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref p2 : p;"
+    ref p2 : p;
+    // XPECT errors ---> "A part must be typed by item definitions." at "part p3 : p;"
+    part p3 : p;
+    
+    action def Ac;
+    action ac;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref ac1 : ac, Ac;"
+    ref ac1 : ac, Ac;
+    // XPECT errors ---> "A usage must be typed by definitions." at "ref ac2 : ac;"
+    ref ac2 : ac;
+    // XPECT errors ---> "An action must be typed by action definitions." at "action ac3 : ac;"
+    action ac3 : ac;
+}

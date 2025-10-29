@@ -56,10 +56,7 @@ package pkg {
 		// XPECT errors ---> "An item must be typed by item definitions." at "item i5: PartDef::aPort;"
 		// XPECT warnings --> "Duplicate of inherited member name 'self' from Item, Port" at "item i5: PartDef::aPort;"
 		item i5: PartDef::aPort;
-		/* XPECT errors ---
-		 "An item must be typed by item definitions." at "item i6: PartDef::aPart;"
-		 "Features must have at least one type" at "item i6: PartDef::aPart;"
-		--- */
+		// XPECT errors ---> "An item must be typed by item definitions." at "item i6: PartDef::aPart;"
 		item i6: PartDef::aPart;
 		// XPECT errors --> "An item must be typed by item definitions." at "item i7: PartDef, AttDef;"
 		// XPECT warnings --> "Duplicate of inherited member name 'self' from DataValue, Part" at "item i7: PartDef, AttDef;"

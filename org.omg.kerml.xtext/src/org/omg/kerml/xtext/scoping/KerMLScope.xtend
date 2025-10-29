@@ -214,7 +214,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			ns.gen(QualifiedName.create(), newHashSet, null, true, true)
 		} else {
 			val includeAll = referenceType === SysMLPackage.eINSTANCE.membership && element instanceof Import && (element as Import).isImportAll
-			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, true, true, includeAll)
+			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, isInsideScope, true, includeAll)
 		}
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.removeVisited(skip)

@@ -35,3 +35,5 @@ dependency-reduced-pom.xml
 # MacOS Finder
 .DS_Store
 
+# Built libraries
+*.kpar

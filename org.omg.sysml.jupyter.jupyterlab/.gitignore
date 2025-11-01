@@ -6,3 +6,4 @@ data
 log
 scrap
 .gradle
+yarn.lock

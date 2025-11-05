@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,14 +18,26 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+package org.omg.sysml.execution.expressions.functions;
 
-package org.omg.sysml.expressions.functions;
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public abstract class SequenceFunction implements LibraryFunction {
+public class SizeFunction extends SequenceFunction {
 
 	@Override
-	public String getPackageName() {
-		return "SequenceFunctions";
+	public String getOperatorName() {
+		return "size";
+	}
+
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
+		return list == null? EvaluationUtil.singletonList(invocation): 
+			EvaluationUtil.integerResult(list.size());
 	}
 
 }

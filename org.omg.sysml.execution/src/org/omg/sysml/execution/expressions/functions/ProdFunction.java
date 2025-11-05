@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.expressions.functions;
+package org.omg.sysml.execution.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
@@ -29,16 +29,11 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 
-public class SumFunction implements LibraryFunction {
+public class ProdFunction extends NumericalFunction {
 
 	@Override
-	public String getPackageName() {
-		return "NumericalFunctions";
-	}
-	
-	@Override
 	public String getOperatorName() {
-		return "sum";
+		return "product";
 	}
 
 	@Override
@@ -47,21 +42,21 @@ public class SumFunction implements LibraryFunction {
 		if (list == null) {
 			return EvaluationUtil.singletonList(invocation);
 		} else {
-			int intResult = 0;
+			int intResult = 1;
 			Double realResult = null;
 			for (Element element: list) {
 				if (element instanceof LiteralInteger) {
 					int value = ((LiteralInteger)element).getValue();
 					if (realResult != null) {
-						realResult += value;
+						realResult *= value;
 					} else {
-						intResult += value;
+						intResult *= value;
 					}
 				} else if (element instanceof LiteralRational) {
 					if (realResult == null) {
 						realResult = (double) intResult;
 					}
-					realResult += ((LiteralRational)element).getValue();
+					realResult *= ((LiteralRational)element).getValue();
 				} else {
 					return EvaluationUtil.singletonList(invocation);
 				}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-
-package org.omg.sysml.expressions.functions;
+package org.omg.sysml.execution.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
@@ -27,26 +26,20 @@ import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class StringSubstringFunction implements LibraryFunction {
-
-	@Override
-	public String getPackageName() {
-		return "StringFunctions";
-	}
+public class ExcludesFunction extends SequenceFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "Substring";
+		return "excludes";
 	}
-
+	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		String x = evaluator.stringValue(invocation, 0, target);
-		Integer lower = evaluator.integerValue(invocation, 1, target);
-		Integer upper = evaluator.integerValue(invocation, 2, target);
-		return x == null || lower == null || upper == null? EvaluationUtil.singletonList(invocation):
-			   lower < 1 || upper > x.length() || lower > upper + 1 ? EvaluationUtil.nullList(): 
-			   EvaluationUtil.stringResult(x.substring(lower - 1, upper));
+		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
+		Element value = evaluator.argumentValue(invocation, 1, target);
+		Boolean result = list == null && value == null? null: list.stream().noneMatch(x->EvaluationUtil.equal(x, value));
+		return result == null? EvaluationUtil.singletonList(invocation): 
+			EvaluationUtil.booleanResult(result);
 	}
 
 }

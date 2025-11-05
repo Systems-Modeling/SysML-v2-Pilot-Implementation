@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,9 +27,9 @@ import java.util.Map;
 import org.omg.sysml.expressions.functions.*;
 import org.omg.sysml.lang.sysml.Function;
 
-public class LibraryFunctionFactory {
+public class ModelLevelLibraryFunctionFactory {
 	
-	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+	public static final ModelLevelLibraryFunctionFactory INSTANCE = new ModelLevelLibraryFunctionFactory();
 
 	private Map<String, LibraryFunction> functionMap = null;
 
@@ -41,11 +41,6 @@ public class LibraryFunctionFactory {
 		put(new SameFunction());
 		put(new NotSameFunction());
 		
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
 		put(new ListConcatFunction());
 		put(new ListRangeFunction());
 		put(new IndexFunction());
@@ -65,9 +60,6 @@ public class LibraryFunctionFactory {
 		put(new PowerFunction());
 		put(new RemainderFunction());
 		
-		put(new SumFunction());
-		put(new ProdFunction());
-		
 		put(new NotFunction());
 		put(new OrFunction());
 		put(new XorFunction());
@@ -84,9 +76,6 @@ public class LibraryFunctionFactory {
 		put(new ConditionalOrFunction());
 		put(new ConditionalImpliesFunction());
 		put(new NullCoalescingFunction());
-		
-		put(new StringLengthFunction());
-		put(new StringSubstringFunction());
 	}
 
 	protected void put(LibraryFunction functionImpl) {
@@ -104,12 +93,11 @@ public class LibraryFunctionFactory {
 
 	public LibraryFunction getLibraryFunction(Function function) {
 		return function == null? null: 
-			INSTANCE.getFunctionMap().get(function.getQualifiedName());
+			getFunctionMap().get(function.getQualifiedName());
 	}
 
-	public boolean isModelLevelEvaluable(Function function) {
-		LibraryFunction fn = getLibraryFunction(function);
-		return fn != null && fn.isModelLevelEvaluable();
+	public static boolean isModelLevelEvaluable(Function function) {
+		return INSTANCE.getLibraryFunction(function) != null;
 	}
 
 }

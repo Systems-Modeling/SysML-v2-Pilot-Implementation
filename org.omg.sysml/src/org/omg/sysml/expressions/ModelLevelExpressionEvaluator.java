@@ -54,13 +54,13 @@ public class ModelLevelExpressionEvaluator {
 	
 	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
-	protected LibraryFunctionFactory libraryFunctionFactory = LibraryFunctionFactory.INSTANCE;
+	protected ModelLevelLibraryFunctionFactory libraryFunctionFactory = ModelLevelLibraryFunctionFactory.INSTANCE;
 	
-	public LibraryFunctionFactory getLibraryFunctionFactory() {
+	public ModelLevelLibraryFunctionFactory getLibraryFunctionFactory() {
 		return libraryFunctionFactory;
 	}
 	
-	public void setLibraryFunctionFactory(LibraryFunctionFactory libraryFunctionFactory) {
+	public void setLibraryFunctionFactory(ModelLevelLibraryFunctionFactory libraryFunctionFactory) {
 		this.libraryFunctionFactory = libraryFunctionFactory;
 	}
 	

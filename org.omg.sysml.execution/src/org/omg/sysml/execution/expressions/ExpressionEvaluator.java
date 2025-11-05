@@ -23,6 +23,7 @@ package org.omg.sysml.execution.expressions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -43,11 +44,17 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 	
 	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
 	
+	public ExpressionEvaluator() {
+		super();
+		setLibraryFunctionFactory(new LibraryFunctionFactory());
+	}
+	
 	@Override
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
 		Function function = expression.getFunction();
-		if (function != null && function.isModelLevelEvaluable()) {
-			return super.evaluateInvocation(expression, target);
+		LibraryFunction libraryFunction = libraryFunctionFactory.getLibraryFunction(function);
+		if (libraryFunction != null) {
+			return libraryFunction.invoke(expression, target, this);
 		} else {
 			Type type = expression.instantiatedType();
 			Expression resultExpression = null;

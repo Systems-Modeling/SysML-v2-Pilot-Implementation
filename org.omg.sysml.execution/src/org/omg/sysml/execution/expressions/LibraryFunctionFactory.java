@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,34 +18,30 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-package org.omg.sysml.expressions.functions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
+package org.omg.sysml.execution.expressions;
 
-public interface LibraryFunction {
-	
-	abstract public String getPackageName();
+import org.omg.sysml.execution.expressions.functions.*;
 
-	public default String getOperatorName() {
-		return null;
-	}
+public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
 	
-	public default String[] getOperatorNames() {
-		String op = getOperatorName();
-		return op == null? new String[] {}: new String[] {op};
+	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+
+	@Override
+	protected void initializeFunctionMap() {
+		super.initializeFunctionMap();
+		
+		put(new SizeFunction());
+		put(new IsEmptyFunction());
+		put(new NotEmptyFunction());
+		put(new IncludesFunction());
+		put(new ExcludesFunction());
+		
+		put(new SumFunction());
+		put(new ProdFunction());
+		
+		put(new StringLengthFunction());
+		put(new StringSubstringFunction());
 	}
-	
-	public default String[] getFunctionNames() {
-		String[] names = getOperatorNames();
-		for (int i = 0; i < names.length; i++) {
-			names[i] = getPackageName() + "::" + names[i];
-		}
-		return names;
-	}
-	
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator);
 
 }

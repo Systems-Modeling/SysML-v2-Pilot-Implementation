@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -12,40 +12,31 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-package org.omg.sysml.expressions.functions;
+package org.omg.sysml.execution.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public interface LibraryFunction {
-	
-	abstract public String getPackageName();
+public class IsEmptyFunction extends SequenceFunction {
 
-	public default String getOperatorName() {
-		return null;
+	@Override
+	public String getOperatorName() {
+		return "isEmpty";
 	}
-	
-	public default String[] getOperatorNames() {
-		String op = getOperatorName();
-		return op == null? new String[] {}: new String[] {op};
+
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
+		return list == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(list.isEmpty());
 	}
-	
-	public default String[] getFunctionNames() {
-		String[] names = getOperatorNames();
-		for (int i = 0; i < names.length; i++) {
-			names[i] = getPackageName() + "::" + names[i];
-		}
-		return names;
-	}
-	
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator);
 
 }

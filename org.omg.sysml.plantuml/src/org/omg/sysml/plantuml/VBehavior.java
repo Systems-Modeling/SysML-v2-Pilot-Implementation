@@ -259,8 +259,9 @@ public abstract class VBehavior extends VDefault {
         StringBuilder sb = new StringBuilder();
 
         Expression payload = aau.getPayloadArgument();
-        if (payload != null) {
-            sb.append(getText(payload));
+        String payloadText = getText(payload);
+        if (payloadText != null) {
+            sb.append(payloadText);
         } else {
             ReferenceUsage ru = aau.getPayloadParameter();
             appendNameAndType(sb, ru, "payload");
@@ -281,31 +282,31 @@ public abstract class VBehavior extends VDefault {
         
         List<AcceptActionUsage> triggerActions = tu.getTriggerAction();
         if (!triggerActions.isEmpty()) {
-            String triggerString = triggerToText(triggerActions.get(0)).trim();
-            if (!(triggerString.isEmpty())) {
-                ls.append(triggerString);
+            String triggerString = triggerToText(triggerActions.get(0));
+            if (triggerString != null && !(triggerString.isEmpty())) {
+                ls.append(triggerString.trim());
                 ls.append(' ');
             }
         }
         
         List<Expression> guardExpressions = tu.getGuardExpression();
         if (!guardExpressions.isEmpty()) {
-            String guardString = getText(guardExpressions.get(0)).trim();
-            if (!guardString.isEmpty()) {
+            String guardString = getText(guardExpressions.get(0));
+            if (guardString != null && !guardString.isEmpty()) {
                 ls.fold();
                 ls.append('[');
-                ls.append(guardString);
+                ls.append(guardString.trim());
                 ls.append(']');
             }
         }
         
         List<ActionUsage> effectActions = tu.getEffectAction();
         if (!effectActions.isEmpty()) {
-            String effectString = getText(effectActions.get(0)).trim();
-            if (!effectString.isEmpty()) {
+            String effectString = getText(effectActions.get(0));
+            if (effectString != null && !effectString.isEmpty()) {
                 ls.fold();
                 ls.append('/');
-                ls.append(effectString);
+                ls.append(effectString.trim());
             }
         }
 

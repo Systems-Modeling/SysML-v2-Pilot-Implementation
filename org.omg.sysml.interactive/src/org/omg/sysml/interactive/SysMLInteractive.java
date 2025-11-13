@@ -40,25 +40,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
-import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
-import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.xmi.KerMLxStandaloneSetup;
-import org.omg.kerml.xtext.library.ILibraryIndexProvider;
-import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -66,50 +58,40 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelDelta;
+import org.omg.sysml.util.repository.EMFModelRefresher;
+import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.ProjectRepository;
-import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.repository.RemoteProject;
 import org.omg.sysml.util.repository.RemoteProject.RemoteBranch;
-import org.omg.sysml.util.repository.EMFModelRefresher;
+import org.omg.sysml.util.repository.Revision;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
-import org.omg.sysml.xtext.xmi.SysMLxStandaloneSetup;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
+import org.omg.sysml.xtext.util.StrictShadowingResourceDescriptionData;
+import org.omg.sysml.xtext.util.SysMLAccess;
+import org.omg.sysml.xtext.xmi.SysMLxStandaloneSetup;
 
-import com.google.common.base.Predicates;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
-public class SysMLInteractive extends SysMLUtil {
+public class SysMLInteractive extends SysMLAccess {
 	
 	public static final String HELP_KEY = "help";
 	public static final String PROJECT_ID_KEY = "id";
 	public static final String PROJECT_NAME_KEY = "name";
 	public static final String BRANCH_ID_KEY = "branch-id";
 	public static final String BRANCH_NAME_KEY = "branch";
-	
-	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
-	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
-	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
-
-	public static final String KERML_EXTENSION = ".kerml";
-	public static final String SYSML_EXTENSION = ".sysml";
-	public static final String KERMLX_EXTENSION = ".kermlx";
-	public static final String SYSMLX_EXTENSION = ".sysmlx";
 	
 	protected static Injector injector;
 	protected static SysMLInteractive instance = null;
@@ -123,39 +105,13 @@ public class SysMLInteractive extends SysMLUtil {
 	
     protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
     
-    private Resource dummyResource;
-
-    @Inject
-	private IGlobalScopeProvider scopeProvider;
-	
-	@Inject
-	private KerMLQualifiedNameConverter qualifiedNameConverter;
-	
-	@Inject
-	private IResourceValidator validator;
-	
-	@Inject
-	private ILibraryIndexProvider libraryIndexCache;
-	
 	private EObjectUUIDTracker tracker = new EObjectUUIDTracker();
 	
 	@Inject
 	private SysMLInteractive() {
 		super(new StrictShadowingResourceDescriptionData());
 	}
-	
-	public void loadLibrary(String path) {
-		if (path != null) {
-			if (!path.endsWith("/")) {
-				path += "/";
-			}
-			SysMLLibraryUtil.setModelLibraryDirectory(path);
-			this.readAll(path + KERNEL_LIBRARIES_DIRECTORY, false, KERML_EXTENSION);
-			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
-			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
-		}
-	}
-	
+		
 	public void setApiBasePath(String apiBasePath) {
 		this.apiBasePath = apiBasePath;
 	}
@@ -174,10 +130,6 @@ public class SysMLInteractive extends SysMLUtil {
 		return this.resource;
 	}
 	
-	public ILibraryIndexProvider getLibraryIndexCache() {
-		return libraryIndexCache;
-	}
-	
 	public void removeResource() {
 		if (this.resource != null) {
 			try {
@@ -191,13 +143,7 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public Element getRootElement() {
 		Resource resource = this.getResource();
-		if (resource instanceof XtextResource xtextResource) {
-			final IParseResult result = xtextResource.getParseResult();
-			return result == null? null: (Element)result.getRootASTElement();
-		} else {
-			EList<EObject> contents = resource.getContents();
-			return contents.isEmpty()? null: (Element)contents.get(0);
-		}
+		return getRootElement(resource);
 	}
 	
 	public void parse(String input) throws IOException {
@@ -213,29 +159,6 @@ public class SysMLInteractive extends SysMLUtil {
 		Resource resource = this.getResource();
 		return resource == null? Collections.emptyList():
 			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-	}
-	
-	private Resource getDummyResource() {
-		if (this.dummyResource == null) {
-			this.dummyResource = this.createResource("dummy" + SYSML_EXTENSION);
-			this.dummyResource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
-		}
-		return this.dummyResource;
-	}
-	
-	public Element resolve(String name) {
-		IScope scope = scopeProvider.getScope(
-				this.getDummyResource(), 
-				SysMLPackage.eINSTANCE.getNamespace_Member(), 
-				Predicates.alwaysTrue());
-		IEObjectDescription description = scope.getSingleElement(
-				this.qualifiedNameConverter.toQualifiedName(name));
-		if (description == null) {
-			return null;
-		} else {
-			EObject object = description.getEObjectOrProxy();
-			return object instanceof Element? (Element)object: null;
-		}
 	}
 	
 	public SysMLInteractiveResult process(String input) {
@@ -277,6 +200,15 @@ public class SysMLInteractive extends SysMLUtil {
 		return "-h".equals(command)? 
 				help(null, Collections.singletonList("true")):
 				help(command, Collections.emptyList());
+	}
+	
+	public void loadLibrary(String path) {
+		try {
+			setModelLibraryDirectory(path);
+			loadLibrary();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String repo(String apiBasePath, List<String> help) {
@@ -327,7 +259,7 @@ public class SysMLInteractive extends SysMLUtil {
 			List<Element> elements = ExpressionEvaluator.INSTANCE.evaluate(expr, target);
 			this.removeResource();
 			return elements == null? "": 
-				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());
+				elements.stream().map(SysMLUtil::formatElement).collect(Collectors.joining());
 		}
 	}
 	
@@ -346,9 +278,9 @@ public class SysMLInteractive extends SysMLUtil {
 					filter(Namespace.class::isInstance).
 					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
 					collect(Collectors.toList());
-			return SysMLInteractiveUtil.formatMembershipList(globalMemberships);
+			return SysMLUtil.formatMembershipList(globalMemberships);
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	
@@ -362,7 +294,7 @@ public class SysMLInteractive extends SysMLUtil {
 		} else {
 			List<Membership> memberships = ((Namespace)result.getRootElement()).getImportedMembership();
 			this.removeResource();
-			return SysMLInteractiveUtil.formatMembershipList(memberships);
+			return SysMLUtil.formatMembershipList(memberships);
 		}
 	}
 	
@@ -395,12 +327,12 @@ public class SysMLInteractive extends SysMLUtil {
 				return processingFacade.toJsonTree(true);
 			}
 			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
-				return SysMLInteractiveUtil.formatTree(element);
+				return SysMLUtil.formatTree(element);
 			} else {
 				return "ERROR:Invalid style. Possible styles: TREE and JSON\n";
 			}
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 
@@ -418,7 +350,7 @@ public class SysMLInteractive extends SysMLUtil {
 			processingFacade.getTraversal().visit(element);
 			return processingFacade.toJsonTree(true);
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	
@@ -457,7 +389,7 @@ public class SysMLInteractive extends SysMLUtil {
 				return "Saved to Project " + remoteProjectName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
+			return SysMLUtil.formatException(e);
 		}
 	}
 	
@@ -854,7 +786,7 @@ public class SysMLInteractive extends SysMLUtil {
 		return instance;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("SysML v2 Pilot Implementation");
 		SysMLInteractive instance = getInstance();
 		if (args.length > 0) {

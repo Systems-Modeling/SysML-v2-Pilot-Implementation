@@ -144,23 +144,23 @@ public class SysMLRepositoryLoadUtil extends SysMLUtil {
 			return;
 		}
 		
-		System.out.println("Reading library...");
-		readAll(localLibraryPath, false);
-		
-		//collect ids from library
-		System.out.println("Tracking library UUIDs...");
-		EObjectUUIDTracker tracker = new EObjectUUIDTracker();
-		tracker.trackLibraryUUIDs(getLibraryResources());
-		
-		System.out.println("Downloading project...");
-		Revision headRevision = branch.getHeadRevision();
-		APIModel remote = headRevision.fetchRemote();
-		EMFModelRefresher modelRefresher = new EMFModelRefresher(remote, tracker);
-		EMFModelDelta delta = modelRefresher.create();
-		modelRefresher.getIssues().forEach(System.out::println);
-		ResourceSet resourceSet = getResourceSet();
-		
 		try {
+			System.out.println("Reading library...");
+			readAll(localLibraryPath, false);
+			
+			//collect ids from library
+			System.out.println("Tracking library UUIDs...");
+			EObjectUUIDTracker tracker = new EObjectUUIDTracker();
+			tracker.trackLibraryUUIDs(getLibraryResources());
+			
+			System.out.println("Downloading project...");
+			Revision headRevision = branch.getHeadRevision();
+			APIModel remote = headRevision.fetchRemote();
+			EMFModelRefresher modelRefresher = new EMFModelRefresher(remote, tracker);
+			EMFModelDelta delta = modelRefresher.create();
+			modelRefresher.getIssues().forEach(System.out::println);
+			ResourceSet resourceSet = getResourceSet();
+		
 			System.out.println("Saving resources...");
 			delta.apply(resourceSet, URI.createFileURI(targetLocation));
 			System.out.println("Done.");

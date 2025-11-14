@@ -1,0 +1,41 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package RedefinitionScoping {
+	
+    classifier A {
+        feature x { 
+            feature y;
+        }
+    }
+    
+    classifier B specializes A {
+        feature x redefines x {
+            // Should redefine A::x::y.
+            feature redefines x::y;
+        }
+    }
+    
+    classifier C {
+        feature x;
+        feature y {
+            // Should redefine C::x.
+            feature redefines x;
+        }
+    }
+
+}

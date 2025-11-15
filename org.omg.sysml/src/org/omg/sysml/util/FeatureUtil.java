@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
@@ -195,8 +194,8 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getRedefinedFeatures();
 	}
 	
-	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature, Element skip) {
-		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed(skip);
+	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature) {
+		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed();
 	}
 	
 	public static void forceComputeRedefinitionsFor(Feature feature) {

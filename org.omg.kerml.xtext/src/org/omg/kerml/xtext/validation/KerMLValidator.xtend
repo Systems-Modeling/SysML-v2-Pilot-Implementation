@@ -599,7 +599,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
 		val ownedCrossFeature = f.ownedCrossFeature()
 		if (crossFeature !== null) {
-			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f);
 			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
 				exists[cf | cf !== null && !TypeUtil.specializes(crossFeature, cf)]) {
 				if (f.ownedCrossSubsetting === null) {

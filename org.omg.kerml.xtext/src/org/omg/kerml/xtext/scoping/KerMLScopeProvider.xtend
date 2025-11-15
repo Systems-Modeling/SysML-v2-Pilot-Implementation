@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.kerml.xtext.library.LibraryNamespaces
+import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -93,9 +94,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    else
 				(context.eContainer as Element).scope_owningNamespace(context, reference)
 		} else if (context instanceof FeatureTyping)
-			(context.eContainer as Element).scope_nonExpressionNamespace(context, reference)
+            if (context.owningType === null) context.scope_owningNamespace(context, reference)
+            else context.owningType.scope_nonExpressionNamespace(context, reference)
 		else if (context instanceof Specialization)
-			(context.eContainer as Element).scope_owningNamespace(context, reference)
+		    (if (context.owningType === null) context else context.owningType).
+			scope_owningNamespace(context, reference)
 		else if (context instanceof FeatureChaining)
 			context.scope_featureChaining(reference)
 		else if (context instanceof Membership)
@@ -103,7 +106,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		else if (context instanceof Import)
 			context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
-			context.scopeFor(reference, null, true, true, false, null)
+			context.scopeFor(reference, null, true, true, context, null)
 		else if (context instanceof Element)
 			context.scope_owningNamespace(context, reference)
 		else
@@ -142,8 +145,15 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			super.getScope(element, reference)		
 		else 
 			namespace.scopeFor(reference, element, isInsideScope, true,
-				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, 
+				context.isOwnedRedefinition(reference)? namespace: null, 
 				if (context instanceof Element) context else null)
+	}
+	
+	def isOwnedRedefinition(EObject context, EReference reference) {
+	    context instanceof Redefinition &&
+	    (context as Redefinition).owningFeature !== null &&
+	    (context as Redefinition).owningFeature.owningType !== null &&
+	    reference === SysMLPackage.eINSTANCE.redefinition_RedefinedFeature
 	}
 	
 	def scope_relativeNamespace(Element element, Namespace ns, EObject context, EReference reference) {
@@ -155,7 +165,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 	}
 
-	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element skip) {
+	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isInsideScope, boolean isFirstScope, Namespace redefinitionNs, Element skip) {
 		var outerscope = IScope.NULLSCOPE;
 		if (isInsideScope) {
 			val parent = NamespaceUtil.getParentNamespaceOf(pack)
@@ -163,10 +173,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				if (parent === null) // Root Package
 					globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
 				else
-					parent.scopeFor(reference, element, true, false, false, skip)
+					parent.scopeFor(reference, element, true, false, redefinitionNs, skip)
 		}	
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, redefinitionNs, element, skip)
 	}
 	
 }

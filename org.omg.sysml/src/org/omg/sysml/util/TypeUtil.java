@@ -97,9 +97,9 @@ public class TypeUtil {
 				collect(Collectors.toSet());
 	}
 	
-	public static List<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+	public static List<Feature> getFeaturesRedefinedBy(Type type) {
 		return type.getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
+				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature).stream()).
 				toList();
 	}
 

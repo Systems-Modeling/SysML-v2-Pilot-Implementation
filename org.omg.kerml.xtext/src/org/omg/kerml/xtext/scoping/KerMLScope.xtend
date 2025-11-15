@@ -93,9 +93,10 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected val boolean isFirstScope
 	
 	/**
-	 * Whether this is the scope for the target of a Redefinition.
+	 * A namespace to be treated as the initial scope for the resolution of the target 
+	 * of a redefinition.
 	 */
-	protected val boolean isRedefinition
+	protected val Namespace redefinitionNs
 	
 	/**
 	 * An Element to be skipped during searching in this scope.
@@ -143,14 +144,14 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	 */
 	protected boolean isShadowing = false;
 
-	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, Namespace redefinitionNs, Element element, Element skip) {
 		super(parent, false)
 		this.ns = ns
 		this.referenceType = referenceType
 		this.scopeProvider = scopeProvider
 		this.isInsideScope = isInsideScope
 		this.isFirstScope = isFirstScope
-		this.isRedefinition = isRedefinition
+		this.redefinitionNs = redefinitionNs
 		this.element = element
 		this.skip = skip
 	}
@@ -209,13 +210,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.addVisited(skip)
 		}
-		if (ns instanceof Type && isRedefinition) {
-			// For a redefinition within a type, start resolution search with inherited members.
-			ns.gen(QualifiedName.create(), newHashSet, null, true, true)
-		} else {
-			val includeAll = referenceType === SysMLPackage.eINSTANCE.membership && element instanceof Import && (element as Import).isImportAll
-			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, isInsideScope, true, includeAll)
-		}
+        val includeAll = referenceType === SysMLPackage.eINSTANCE.membership && element instanceof Import && (element as Import).isImportAll
+        ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, isInsideScope, true, includeAll)
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.removeVisited(skip)
 		}
@@ -258,7 +254,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean owned(Namespace ns, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined, 
 		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {		
-		if (!ownedvisited.contains(ns)) {
+		if (ns !== redefinitionNs && !ownedvisited.contains(ns)) {
 			if (targetqn === null) {
 				ownedvisited.add(ns)		
 			}
@@ -369,9 +365,9 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				}
 			}
 			val newRedefined = new HashSet()
-			if (redefined !== null) {
+			if (ns !== redefinitionNs) {
 				newRedefined.addAll(redefined)
-				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, skip))
+				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns))
 			}
 			
 			// Note: All specializations are traversed, even if a resolution is found, in order to check for possible redefinitions inherited
@@ -412,23 +408,25 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean isInsideScope, boolean includeImplicitGen, boolean includeAll) {
-		for (e: ns.ownedImport) {
-			if (!scopeProvider.visited.contains(e)) {
-				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
-					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
-						if (!ns.filterCondition.isEmpty) {
-							importingPackages.add(ns)
-						}
-					}
-					// NOTE: Exclude the import e to avoid possible circular name resolution
-					// when resolving a proxy for e.importedNamespace.
-					scopeProvider.addVisited(e)
-					val found = e.resolveImport(qn, visited, includeImplicitGen)
-					scopeProvider.removeVisited(e)
-					importingPackages.remove(ns)
-					if (found) return true
-				}
-			}
+	    if (ns !== redefinitionNs) {
+    		for (e: ns.ownedImport) {
+    			if (!scopeProvider.visited.contains(e)) {
+    				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
+    					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
+    						if (!ns.filterCondition.isEmpty) {
+    							importingPackages.add(ns)
+    						}
+    					}
+    					// NOTE: Exclude the import e to avoid possible circular name resolution
+    					// when resolving a proxy for e.importedNamespace.
+    					scopeProvider.addVisited(e)
+    					val found = e.resolveImport(qn, visited, includeImplicitGen)
+    					scopeProvider.removeVisited(e)
+    					importingPackages.remove(ns)
+    					if (found) return true
+    				}
+    			}
+    		}
 		}
 		return false
 	}

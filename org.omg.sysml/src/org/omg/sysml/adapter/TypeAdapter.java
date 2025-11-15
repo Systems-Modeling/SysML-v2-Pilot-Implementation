@@ -198,7 +198,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected Collection<Feature> getFeaturesRedefinedByType() {
 		if (redefinedFeatures == null) {
 			addAdditionalMembers();
-			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
+			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget());
 		}
 		return redefinedFeatures;		
 	}

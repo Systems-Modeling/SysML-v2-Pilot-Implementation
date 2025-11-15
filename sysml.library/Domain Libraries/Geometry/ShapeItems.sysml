@@ -472,7 +472,7 @@ standard library package ShapeItems {
 		attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> base : CircularDisc {
-		    ref :>> base::edges, CircularDisc::edges;
+		    ref :>> Cone::base::edges, CircularDisc::edges;
 		}
 	}
 
@@ -521,10 +521,10 @@ standard library package ShapeItems {
 		attribute :>> semiMinorAxis [1] = radius;
 
 		item :>> base : CircularDisc {
-            ref :>> base::edges, CircularDisc::edges;
+            ref :>> Cylinder::base::edges, CircularDisc::edges;
         }
 		item :>> af : CircularDisc {
-            ref :>> af::edges, CircularDisc::edges;
+            ref :>> Cylinder::af::edges, CircularDisc::edges;
         }
 	}
 

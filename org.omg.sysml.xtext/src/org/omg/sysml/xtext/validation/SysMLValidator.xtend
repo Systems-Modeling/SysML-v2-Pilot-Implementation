@@ -134,6 +134,7 @@ import org.omg.sysml.lang.sysml.FlowUsage
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.Classifier
 
 /**
  * This class contains custom validation rules. 
@@ -149,8 +150,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
-	public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
-	public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
+    public static val INVALID_USAGE_TYPE = "validateUsageType_"
+    public static val INVALID_USAGE_TYPE_MSG = "A usage must be typed by definitions."
+    public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
+    public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
@@ -476,6 +479,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkUsage(Usage usage) {
+	    // All types must be Classifiers
+        if (!(usage instanceof AttributeUsage || usage instanceof OccurrenceUsage))   
+            checkAllTypes(usage, Classifier, INVALID_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.usage_Definition, INVALID_USAGE_TYPE)
+	    
 		// validateUsageIsReferential is satisfied automatically
 		
 		if (usage.isVariation) {

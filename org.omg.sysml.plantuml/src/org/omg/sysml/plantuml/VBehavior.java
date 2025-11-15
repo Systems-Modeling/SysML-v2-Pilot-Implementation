@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2024 Mgnite Inc.
+ * Copyright (c) 2020-2025 Mgnite Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -32,15 +34,12 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 
 public abstract class VBehavior extends VDefault {
@@ -135,14 +134,14 @@ public abstract class VBehavior extends VDefault {
         if (f == null) return false;
         String name = getName(f);
 
-        boolean flag = false;
         if (name != null) {
             if (defaultName == null || !name.equals(defaultName)) {
                 sb.append(name);
-                flag = true;
+                appendFeatureType(sb, ": ", f);
+                return true;
             }
         }
-        return appendFeatureType(sb, ": ", f) || flag;
+        return appendFeatureType(sb, "", f);
     }
 
     private boolean addSendActionUsage(SendActionUsage sau) {
@@ -256,70 +255,58 @@ public abstract class VBehavior extends VDefault {
         }
     }
 
-    private String triggerToText(Step s) {
-        Visitor v = new Visitor(this) {
-            public String caseFeature(Feature f) {
-                addFeatureTypeText("", f);
-                return "";
-            }
-        };
-        for (Feature f: s.getParameter()) {
-            v.visit(f);
-        }
-        String str = v.getString();
-        if (str.isEmpty()) {
-            return getText(s);
+    private String triggerToText(AcceptActionUsage aau) {
+        StringBuilder sb = new StringBuilder();
+
+        Expression payload = aau.getPayloadArgument();
+        String payloadText = getText(payload);
+        if (payloadText != null) {
+            sb.append(payloadText);
         } else {
-            return str;
+            ReferenceUsage ru = aau.getPayloadParameter();
+            appendNameAndType(sb, ru, "payload");
         }
+
+        Expression receiver = aau.getReceiverArgument();
+        if (receiver != null) {
+            sb.append(" <b>via</b>");
+            sb.append(getText(receiver));
+        }
+        
+        return sb.toString();
     }
 
     private String convertToDescription(TransitionUsage tu) {
-        String triggerString = null;
-        String guardString = null;
-        String effectString = null;
 
-        for (FeatureMembership fm: toOwnedFeatureMembershipArray(tu)) {
-            if (!(fm instanceof TransitionFeatureMembership)) continue;
-            TransitionFeatureMembership tfm = (TransitionFeatureMembership) fm;
-            Step s = tfm.getTransitionFeature();
-            if (s == null) continue;
-            switch (tfm.getKind()) {
-            case TRIGGER:
-                triggerString = triggerToText(s);
-                break;
-            case GUARD:
-                guardString = getText(s);
-                break;
-            case EFFECT:
-                effectString = getText(s);
-                break;
-            }
-        }
-
-        LineFoldStringBuilder ls = new LineFoldStringBuilder();
-        if (triggerString != null) {
-            triggerString = triggerString.trim();
-            if (!(triggerString.isEmpty())) {
-                ls.append(triggerString);
+    	LineFoldStringBuilder ls = new LineFoldStringBuilder();
+        
+        List<AcceptActionUsage> triggerActions = tu.getTriggerAction();
+        if (!triggerActions.isEmpty()) {
+            String triggerString = triggerToText(triggerActions.get(0));
+            if (triggerString != null && !(triggerString.isEmpty())) {
+                ls.append(triggerString.trim());
                 ls.append(' ');
             }
         }
-        if (guardString != null) {
-            guardString = guardString.trim();
-            if (!guardString.isEmpty()) {
+        
+        List<Expression> guardExpressions = tu.getGuardExpression();
+        if (!guardExpressions.isEmpty()) {
+            String guardString = getText(guardExpressions.get(0));
+            if (guardString != null && !guardString.isEmpty()) {
                 ls.fold();
                 ls.append('[');
-                ls.append(guardString);
+                ls.append(guardString.trim());
                 ls.append(']');
             }
         }
-        if (effectString != null) {
-            effectString = effectString.trim();
-            if (!effectString.isEmpty()) {
+        
+        List<ActionUsage> effectActions = tu.getEffectAction();
+        if (!effectActions.isEmpty()) {
+            String effectString = getText(effectActions.get(0));
+            if (effectString != null && !effectString.isEmpty()) {
                 ls.fold();
                 ls.append('/');
-                ls.append(effectString);
+                ls.append(effectString.trim());
             }
         }
 

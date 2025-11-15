@@ -562,8 +562,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeature(Feature f){
-		// TODO: Remove?
-		val types = f.type;
+		// Note: Use utility method to ensure types are not filtered out by redefinitions of getType.
+		val types = FeatureUtil.getAllTypesOf(f);
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE_HAS_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_HAS_TYPE)
 			

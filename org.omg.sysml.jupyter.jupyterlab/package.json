@@ -1,36 +1,30 @@
 {
   "name": "@systems-modeling/jupyterlab-sysml",
-  "version": "0.51.0-SNAPSHOT",
+  "version": "0.53.0-SNAPSHOT",
   "description": "A JupyterLab extension for system modeling using SysML",
   "repository": "github:Systems-Modeling/SysML-v2-Pilot-Implementation",
   "author": "SysML v2 Submission Team",
   "license": "LGPL-3.0-or-later",
+  "main": "build/plugin.js",
   "keywords": [
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
   ],
   "dependencies": {
-    "@jupyterlab/application": "3.x"
+    "@jupyterlab/application": "4.x"
   },
   "devDependencies": {
-    "@types/codemirror": "^0.0.98",
+    "@codemirror/legacy-modes": "^6.3.2",
+    "@jupyterlab/codemirror": ">=4.0",
     "@types/json-schema": "*",
-    "typescript": "<4.4.0"
-  },
-  "resolutions": {
-    "@lumino/coreutils": "^1.11.0",
-    "@lumino/widgets": "^1.37.2",
-	"lib0": "0.2.108"
-  },
-  "peerDependencies": {
-    "codemirror": "^5.58.1"
+    "typescript": "~5.8.3"
   },
   "files": [
     "build/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
   ],
   "jupyterlab": {
-    "extension": "build/plugin.js"
+    "extension": true
   },
   "scripts": {
     "build": "tsc",

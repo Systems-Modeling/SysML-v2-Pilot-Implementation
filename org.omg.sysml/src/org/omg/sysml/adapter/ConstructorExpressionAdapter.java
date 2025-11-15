@@ -40,8 +40,10 @@ public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter
 		
 	// Transformation
 	
+	/**
+	 * @satisifies checkConstructorExpressionResultSpecialization
+	 */
 	protected void addResultTyping() {
-		// checkConstructorExpressionResultSpecialization
 		ConstructorExpression target = getTarget();
 		Type instantiatedType = target.getInstantiatedType();
 		if (instantiatedType != null) {
@@ -59,11 +61,6 @@ public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter
 	@Override
 	public void addAdditionalMembers() {
 		TypeUtil.addResultParameterTo(getTarget());
-	}
-	
-	@Override
-	public void doTransform() {
-		super.doTransform();
 		addResultTyping();
 	}
 	

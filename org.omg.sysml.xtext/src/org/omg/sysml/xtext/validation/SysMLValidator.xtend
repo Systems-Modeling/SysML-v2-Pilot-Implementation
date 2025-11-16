@@ -30,111 +30,107 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
 import org.omg.kerml.xtext.validation.KerMLValidator
+import org.omg.sysml.lang.sysml.AcceptActionUsage
+import org.omg.sysml.lang.sysml.ActionDefinition
 import org.omg.sysml.lang.sysml.ActionUsage
+import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.AllocationDefinition
 import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage
+import org.omg.sysml.lang.sysml.AssertConstraintUsage
+import org.omg.sysml.lang.sysml.AssignmentActionUsage
 import org.omg.sysml.lang.sysml.Association
+import org.omg.sysml.lang.sysml.AttributeDefinition
 import org.omg.sysml.lang.sysml.AttributeUsage
 import org.omg.sysml.lang.sysml.Behavior
 import org.omg.sysml.lang.sysml.CalculationUsage
 import org.omg.sysml.lang.sysml.CaseDefinition
 import org.omg.sysml.lang.sysml.CaseUsage
+import org.omg.sysml.lang.sysml.Classifier
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition
 import org.omg.sysml.lang.sysml.ConnectionUsage
 import org.omg.sysml.lang.sysml.ConstraintUsage
+import org.omg.sysml.lang.sysml.ControlNode
 import org.omg.sysml.lang.sysml.DataType
+import org.omg.sysml.lang.sysml.DecisionNode
 import org.omg.sysml.lang.sysml.Definition
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage
+import org.omg.sysml.lang.sysml.ExhibitStateUsage
+import org.omg.sysml.lang.sysml.Expose
+import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.FlowDefinition
+import org.omg.sysml.lang.sysml.FlowUsage
+import org.omg.sysml.lang.sysml.ForLoopActionUsage
+import org.omg.sysml.lang.sysml.ForkNode
+import org.omg.sysml.lang.sysml.FramedConcernMembership
 import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.IfActionUsage
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
+import org.omg.sysml.lang.sysml.Interaction
 import org.omg.sysml.lang.sysml.InterfaceDefinition
 import org.omg.sysml.lang.sysml.InterfaceUsage
-import org.omg.sysml.lang.sysml.ItemUsage
+import org.omg.sysml.lang.sysml.JoinNode
+import org.omg.sysml.lang.sysml.MergeNode
+import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.MetadataUsage
+import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.ParameterMembership
-import org.omg.sysml.lang.sysml.PartDefinition
-import org.omg.sysml.lang.sysml.PartUsage
+import org.omg.sysml.lang.sysml.PerformActionUsage
 import org.omg.sysml.lang.sysml.PortDefinition
 import org.omg.sysml.lang.sysml.PortUsage
 import org.omg.sysml.lang.sysml.Predicate
+import org.omg.sysml.lang.sysml.ReferenceUsage
+import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.RenderingDefinition
 import org.omg.sysml.lang.sysml.RenderingUsage
+import org.omg.sysml.lang.sysml.RequirementConstraintKind
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership
 import org.omg.sysml.lang.sysml.RequirementDefinition
 import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage
+import org.omg.sysml.lang.sysml.SendActionUsage
+import org.omg.sysml.lang.sysml.StakeholderMembership
+import org.omg.sysml.lang.sysml.StateDefinition
+import org.omg.sysml.lang.sysml.StateSubactionKind
+import org.omg.sysml.lang.sysml.StateSubactionMembership
 import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.Step
-import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.SubjectMembership
+import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.TransitionFeatureKind
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership
+import org.omg.sysml.lang.sysml.TransitionUsage
+import org.omg.sysml.lang.sysml.TriggerInvocationExpression
+import org.omg.sysml.lang.sysml.TriggerKind
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Usage
+import org.omg.sysml.lang.sysml.UseCaseDefinition
+import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.VariantMembership
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition
 import org.omg.sysml.lang.sysml.VerificationCaseUsage
 import org.omg.sysml.lang.sysml.ViewDefinition
+import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.ViewUsage
 import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
-import org.omg.sysml.lang.sysml.TransitionUsage
-import org.omg.sysml.lang.sysml.Succession
-import org.omg.sysml.lang.sysml.StateDefinition
-import org.omg.sysml.lang.sysml.Type
-import org.omg.sysml.lang.sysml.StateSubactionKind
-import org.omg.sysml.lang.sysml.UseCaseUsage
-import org.omg.sysml.lang.sysml.UseCaseDefinition
-import org.omg.sysml.lang.sysml.MetadataUsage
-import org.omg.sysml.lang.sysml.Metaclass
-import org.omg.sysml.lang.sysml.Interaction
-import org.omg.sysml.lang.sysml.SendActionUsage
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression
-import org.omg.sysml.lang.sysml.FeatureChainExpression
-import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.omg.sysml.lang.sysml.Expression
-import org.omg.sysml.lang.sysml.EventOccurrenceUsage
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition
-import org.omg.sysml.lang.sysml.AssignmentActionUsage
-import org.omg.sysml.lang.sysml.TriggerInvocationExpression
-import org.omg.sysml.lang.sysml.ControlNode
-import org.omg.sysml.lang.sysml.DecisionNode
-import org.omg.sysml.lang.sysml.ForkNode
-import org.omg.sysml.lang.sysml.JoinNode
-import org.omg.sysml.lang.sysml.MergeNode
-import org.omg.sysml.lang.sysml.PerformActionUsage
-import org.omg.sysml.lang.sysml.ExhibitStateUsage
-import org.omg.sysml.lang.sysml.StateSubactionMembership
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership
-import org.omg.sysml.lang.sysml.AssertConstraintUsage
-import org.omg.sysml.lang.sysml.FramedConcernMembership
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage
-import org.omg.sysml.lang.sysml.StakeholderMembership
-import org.omg.sysml.lang.sysml.AcceptActionUsage
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
-import org.omg.sysml.lang.sysml.Expose
-import org.omg.sysml.lang.sysml.ViewRenderingMembership
-import org.omg.sysml.lang.sysml.AttributeDefinition
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.ActionDefinition
-import org.omg.sysml.lang.sysml.TransitionFeatureKind
-import org.omg.sysml.lang.sysml.ActorMembership
-import org.omg.sysml.lang.sysml.RequirementConstraintKind
-import org.omg.sysml.lang.sysml.ForLoopActionUsage
-import org.omg.sysml.lang.sysml.ReferenceUsage
-import org.omg.sysml.lang.sysml.IfActionUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
-import org.omg.sysml.lang.sysml.TriggerKind
-import org.omg.sysml.lang.sysml.FlowDefinition
-import org.omg.sysml.lang.sysml.FlowUsage
-import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
-import org.omg.sysml.lang.sysml.Classifier
 
 /**
  * This class contains custom validation rules. 
@@ -181,7 +177,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
 	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
-	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
+	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence, item or part must be typed by occurrence definitions."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "At most one individual definition is allowed."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
@@ -580,7 +576,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check 
 	def checkOccurrenceUsage(OccurrenceUsage usg) {
 		// All types must be Classes
-		if (!(usg instanceof ItemUsage || usg instanceof PortUsage || usg instanceof Step))	
+		if (!(usg instanceof PortUsage || usg instanceof ConnectionUsage || usg instanceof MetadataUsage || usg instanceof Step))	
 			checkAllTypes(usg, org.omg.sysml.lang.sysml.Class, INVALID_OCCURRENCE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_TYPE)
 
 		// validateOccurrenceUsageIndividualDefinition
@@ -607,20 +603,13 @@ class SysMLValidator extends KerMLValidator {
 
 	}
 	
-	@Check
-	def checkItemUsage(ItemUsage iu) {
-		// All types must be Structures
-		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
-			checkAllTypes(iu, Structure, INVALID_ITEM_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_ITEM_USAGE_TYPE)
-	}
+//	@Check
+//	def checkItemUsage(ItemUsage iu) {
+//	}
 	
-	@Check
-	def checkPartUsage(PartUsage pu){
-		if (!(pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, Structure, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_PART_USAGE_TYPE))
-				// validatePartUsagePartDefinition
-				checkAtLeastOneType(pu, PartDefinition, INVALID_PART_USAGE_PART_DEFINITION_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, INVALID_PART_USAGE_PART_DEFINITION)
-	}
+//	@Check
+//	def checkPartUsage(PartUsage pu){
+//	}
 	
 	@Check
 	def checkConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
@@ -868,7 +857,7 @@ class SysMLValidator extends KerMLValidator {
 		if ((featureMembership instanceof StateSubactionMembership || 
 			 featureMembership instanceof TransitionFeatureMembership) && 
 			usg.payloadArgument === null) {
-			error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
+			error(SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
 		} 
 	}
 	

@@ -42,7 +42,7 @@ package UsageDefinition_invalid {
     ref i1 : i, I;
     // XPECT errors ---> "A usage must be typed by definitions." at "ref i2 : i;"
     ref i2 : i;
-    // XPECT errors ---> "An item must be typed by item definitions." at "item i3 : i;"
+    // XPECT errors ---> "An occurrence, item or part must be typed by occurrence definitions." at "item i3 : i;"
     item i3 : i;
     
     part def P;
@@ -51,7 +51,7 @@ package UsageDefinition_invalid {
     ref p1 : p, P;
     // XPECT errors ---> "A usage must be typed by definitions." at "ref p2 : p;"
     ref p2 : p;
-    // XPECT errors ---> "A part must be typed by item definitions." at "part p3 : p;"
+    // XPECT errors ---> "An occurrence, item or part must be typed by occurrence definitions." at "part p3 : p;"
     part p3 : p;
     
     action def Ac;

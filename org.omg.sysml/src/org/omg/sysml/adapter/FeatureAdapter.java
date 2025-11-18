@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
@@ -302,7 +301,7 @@ public class FeatureAdapter extends TypeAdapter {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 			}
 			
-			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner, null)) {
+			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner)) {
 				if (redefinedFeature.isEnd()) {
 					Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 					if (crossFeature != null) {
@@ -500,7 +499,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(getTarget());
-		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
+		getRedefinedFeaturesWithComputed().stream().forEach(redefinedFeature->{
 			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
 				FeatureUtil.addAllRedefinedFeaturesTo(redefinedFeature, redefinedFeatures);
 			}
@@ -509,15 +508,15 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Computed Redefinition
 	
-	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
+	public List<Feature> getRedefinedFeaturesWithComputed() {
 		Feature target = getTarget();
 		
-		addComputedRedefinitions(skip);
+		addComputedRedefinitions(null);
 		EList<Redefinition> redefinitions = target.getOwnedRedefinition();
 		
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
-			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			map(Redefinition::getRedefinedFeature).
 			filter(f->f != null).
 			forEachOrdered(redefinedFeatures::add);
 		
@@ -877,7 +876,7 @@ public class FeatureAdapter extends TypeAdapter {
 					
 					addFeaturingType(cartesianProductFeature);
 
-					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
+					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature)) {
 						if (redefinedFeature.isEnd()) {
 							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 							if (crossFeature != null) {

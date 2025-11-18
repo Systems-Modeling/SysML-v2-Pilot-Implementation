@@ -57,6 +57,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.kerml.xtext.naming.QualifiedNameUtil
+import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -265,7 +266,9 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			
 			NamespaceUtil.addAdditionalMembersTo(ns)
 			for (mem: ns.ownedMembership.clone) { // Clone to avoid any possible ConcurrentModificationException.
-				if (!scopeProvider.visited.contains(mem)) {
+				if (!(scopeProvider.visited.contains(mem) || 
+				     mem instanceof OwningMembership && skip instanceof Redefinition && 
+				     (skip as Redefinition).owningType == mem.memberElement)) {
 					if (includeAll || isInsideScope || mem.visibility == VisibilityKind.PUBLIC || 
 						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {
 
@@ -371,7 +374,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
 				newRedefined.addAll(redefined)
-				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, skip))
+				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, if (skip instanceof Redefinition) skip.owningFeature else null))
 			}
 			
 			// Note: All specializations are traversed, even if a resolution is found, in order to check for possible redefinitions inherited

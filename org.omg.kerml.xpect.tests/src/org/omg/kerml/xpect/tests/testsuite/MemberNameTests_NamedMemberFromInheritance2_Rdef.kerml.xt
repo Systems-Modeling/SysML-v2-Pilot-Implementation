@@ -41,15 +41,15 @@ package test{
 		   A, A.a, A.a.self, A.a.that, A.a.that.self, A.aa, A.aa.self, A.aa.that,
 		   A.aa.that.self, A.self, A.that, A.that.self, AA, AA.a, AA.a.self, AA.a.that, AA.a.that.self,
 		   AA.aa, AA.aa.self, AA.aa.that, AA.aa.that.self, AA.self, AA.that, AA.that.self, B,
-		   B.b, B.b.self, B.b.that, B.b.that.self, B.b_alias, B.b_alias.self, B.b_alias.that,
-		   B.b_alias.that.self, B.self, B.that, B.that.self, a, a.self, a.that, a.that.self, aa, aa.self,
-		   aa.that, aa.that.self, self, test.A, test.A.a, test.A.a.self, test.A.a.that,
-		   test.A.a.that.self, test.A.aa, test.A.aa.self, test.A.aa.that, test.A.aa.that.self, test.A.self,
-		   test.A.that, test.A.that.self, test.AA, test.AA.a, test.AA.a.self, test.AA.a.that,
-		   test.AA.a.that.self, test.AA.aa, test.AA.aa.self, test.AA.aa.that, test.AA.aa.that.self,
-		   test.AA.self, test.AA.that, test.AA.that.self, test.B, test.B.b, test.B.b.self,
-		   test.B.b.that, test.B.b.that.self, test.B.b_alias, test.B.b_alias.self, test.B.b_alias.that,
-		   test.B.b_alias.that.self, test.B.self, test.B.that, test.B.that.self, that, that.self
+           B.a, B.a.self, B.a.that, B.a.that.self, B.aa, B.aa.self, B.aa.that, B.aa.that.self,
+           B.self, B.that, B.that.self, a, a.self, a.that, a.that.self, aa, aa.self, aa.that,
+           aa.that.self, self, test.A, test.A.a, test.A.a.self, test.A.a.that, test.A.a.that.self,
+           test.A.aa, test.A.aa.self, test.A.aa.that, test.A.aa.that.self, test.A.self, test.A.that,
+           test.A.that.self, test.AA, test.AA.a, test.AA.a.self, test.AA.a.that, test.AA.a.that.self,
+           test.AA.aa, test.AA.aa.self, test.AA.aa.that, test.AA.aa.that.self, test.AA.self,
+           test.AA.that, test.AA.that.self, test.B, test.B.a, test.B.a.self, test.B.a.that,
+           test.B.a.that.self, test.B.aa, test.B.aa.self, test.B.aa.that, test.B.aa.that.self, test.B.self,
+           test.B.that, test.B.that.self, that, that.self
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;

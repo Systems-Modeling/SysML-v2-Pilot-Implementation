@@ -20,11 +20,9 @@ package test {
 	private alias k for something;
 	feature hello {
 		//* XPECT scope at k ---
-		hello, hello.self, hello.test, hello.test.self, hello.test.that,
-		hello.test.that.self, hello.that, hello.that.self, k, k.self, k.that, k.that.self, self, something,
-		something.self, something.that, something.that.self, test.hello, test.hello.self,
-		test.hello.test, test.hello.test.self, test.hello.test.that, test.hello.test.that.self,
-		test.hello.that, test.hello.that.self, that, that.self
+        hello, hello.self, hello.that, hello.that.self, k, k.self, k.that, k.that.self,
+        self, something, something.self, something.that, something.that.self, test.hello,
+        test.hello.self, test.hello.that, test.hello.that.self, that, that.self
 		--- */
 		//XPECT linkedName at k --> test.something
 		feature test redefines k{}

@@ -23,18 +23,16 @@ package test{
 	//XPECT linkedName at aliass --> OuterPackage.A
 	feature C {
 		//* XPECT scope at aliass---
-		   C, C.c, C.c.a1, C.c.a1.self, C.c.a1.that, C.c.a1.that.self, C.c.self, C.c.that,
-		   C.c.that.self, C.self, C.that, C.that.self, OuterPackage.A, OuterPackage.A.a1,
-		   OuterPackage.A.a1.self, OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self,
-		   OuterPackage.A.that, OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b,
-		   OuterPackage.B.b.a1, OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that,
-		   OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self, OuterPackage.B.b.that, OuterPackage.B.b.that.self,
-		   OuterPackage.B.self, OuterPackage.B.that, OuterPackage.B.that.self, aliass, aliass.a1,
-		   aliass.a1.self, aliass.a1.that, aliass.a1.that.self, aliass.self, aliass.that,
-		   aliass.that.self, self, test.C, test.C.c, test.C.c.a1, test.C.c.a1.self, test.C.c.a1.that,
-		   test.C.c.a1.that.self, test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that,
-		   test.C.that.self, test.aliass, test.aliass.a1, test.aliass.a1.self, test.aliass.a1.that,
-		   test.aliass.a1.that.self, test.aliass.self, test.aliass.that, test.aliass.that.self, that, that.self
+           C, C.self, C.that, C.that.self, OuterPackage.A, OuterPackage.A.a1,
+           OuterPackage.A.a1.self, OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self,
+           OuterPackage.A.that, OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b,
+           OuterPackage.B.b.a1, OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that,
+           OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self, OuterPackage.B.b.that, OuterPackage.B.b.that.self,
+           OuterPackage.B.self, OuterPackage.B.that, OuterPackage.B.that.self, aliass, aliass.a1,
+           aliass.a1.self, aliass.a1.that, aliass.a1.that.self, aliass.self, aliass.that,
+           aliass.that.self, self, test.C, test.C.self, test.C.that, test.C.that.self, test.aliass,
+           test.aliass.a1, test.aliass.a1.self, test.aliass.a1.that, test.aliass.a1.that.self,
+           test.aliass.self, test.aliass.that, test.aliass.that.self, that, that.self
 		--- */
 		feature c redefines aliass;
 	}

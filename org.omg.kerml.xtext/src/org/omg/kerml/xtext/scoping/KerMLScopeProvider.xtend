@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.kerml.xtext.library.LibraryNamespaces
+import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -124,7 +125,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			    	featureChained = owningNamespace as Connector
 			    }
 			}
-			featureChained.scope_relativeNamespace(owningNamespace, ch, reference)
+			featureChained.scope_relativeNamespace(owningNamespace, owningRelationship, reference)
 		} else
 			ch.scope_Namespace(ownedFeatureChainings.get(i-1).chainingFeature, ch, reference, false)
 	}
@@ -142,7 +143,9 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			super.getScope(element, reference)		
 		else 
 			namespace.scopeFor(reference, element, isInsideScope, true,
-				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, 
+			    context instanceof Redefinition &&
+				(reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature ||
+				 reference == SysMLPackage.eINSTANCE.featureChaining_ChainingFeature), 
 				if (context instanceof Element) context else null)
 	}
 	

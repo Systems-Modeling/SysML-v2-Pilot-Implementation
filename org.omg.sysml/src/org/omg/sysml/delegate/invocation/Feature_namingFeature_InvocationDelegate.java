@@ -40,7 +40,7 @@ public class Feature_namingFeature_InvocationDelegate extends BasicInvocationDel
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Feature self = (Feature) target;
 		
-		return FeatureUtil.getRedefinedFeaturesWithComputedOf(self, null).stream().
+		return FeatureUtil.getRedefinedFeaturesWithComputedOf(self).stream().
 				findFirst().orElse(null);
 	}
 

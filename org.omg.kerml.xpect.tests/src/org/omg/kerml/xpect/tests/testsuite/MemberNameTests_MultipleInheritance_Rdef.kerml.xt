@@ -47,14 +47,14 @@ package test{
 	--- */
 	feature C subsets B{
 		//* XPECT scope at b ---
-		A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.b,
-		B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.c, C.c.self,
-		C.c.that, C.c.that.self, C.self, C.that, C.that.self, D, D.self, D.that, D.that.self, b,
-		b.self, b.that, b.that.self, self, test.A, test.A.a, test.A.a.self, test.A.a.that,
-		test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.b, test.B.b.self,
-		test.B.b.that, test.B.b.that.self, test.B.self, test.B.that, test.B.that.self, test.C,
-		test.C.c, test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that,
-		test.C.that.self, test.D, test.D.self, test.D.that, test.D.that.self, that, that.self
+        A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.b,
+        B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.b, C.b.self,
+        C.b.that, C.b.that.self, C.self, C.that, C.that.self, D, D.self, D.that, D.that.self, b,
+        b.self, b.that, b.that.self, self, test.A, test.A.a, test.A.a.self, test.A.a.that,
+        test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.b, test.B.b.self,
+        test.B.b.that, test.B.b.that.self, test.B.self, test.B.that, test.B.that.self, test.C,
+        test.C.b, test.C.b.self, test.C.b.that, test.C.b.that.self, test.C.self, test.C.that,
+        test.C.that.self, test.D, test.D.self, test.D.that, test.D.that.self, that, that.self
 		--- */
 		feature c redefines b {}
 	}

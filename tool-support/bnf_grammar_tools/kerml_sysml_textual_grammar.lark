@@ -38,19 +38,21 @@ repetition: REPETITION_SYMBOL
 
 name: LEXICAL_NAME | NONTERMINAL_NAME
 
-qualified_name: QUALIFIED_NAME
+qualified_name: QUALIFIED_NAME | "~" QUALIFIED_NAME
 
 terminal: TERMINAL
 
-prop_assign: PROPERTY_NAME "=" prop_value
-prop_list_append: PROPERTY_NAME "+=" prop_value
-boolean_prop_assign: PROPERTY_NAME "?=" prop_value
-nonparsing_prop_assign: "{" PROPERTY_NAME "=" nonparsing_prop_value "}"
-nonparsing_prop_list_append: "{" PROPERTY_NAME "+=" nonparsing_prop_value "}"
+prop_name: PROPERTY_NAME ( "." PROPERTY_NAME )*
+
+prop_assign: prop_name "=" prop_value
+prop_list_append: prop_name "+=" prop_value
+boolean_prop_assign: prop_name "?=" prop_value
+nonparsing_prop_assign: "{" prop_name "=" nonparsing_prop_value "}"
+nonparsing_prop_list_append: "{" prop_name "+=" nonparsing_prop_value "}"
 nonparsing_empty_value: "{" "}"
 
-?prop_value: atom | BOOLEAN_VALUE
-?nonparsing_prop_value: terminal | PROPERTY_NAME | BOOLEAN_VALUE | THIS
+?prop_value: atom | BOOLEAN_VALUE | "(" atom ( "|" atom )+ ")"
+?nonparsing_prop_value: terminal | prop_name | BOOLEAN_VALUE | THIS
 
 // TERMINAL is any string containing one or more printable ASCII characters between two single quotes.
 // A single quote itself must be escaped.
@@ -58,7 +60,7 @@ TERMINAL: "'" /(\\'|[ -&(-~])+/ "'"
 NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
 LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
 QUALIFIED_NAME: "[QualifiedName]"
-PROPERTY_NAME: /[a-z][A-Za-z.]+/
+PROPERTY_NAME: /[a-z][A-Za-z]*/
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
 THIS: "this"

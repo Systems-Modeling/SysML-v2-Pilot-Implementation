@@ -50,7 +50,8 @@ QUALIFIED_NAME: "[QualifiedName]"
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
 THIS: "this"
-IMAGE: /\<img.+\/\>/
+//IMAGE: /\<img.+\/\>/
+IMAGE: /\<img.+\>/
 
 _CR: "\r"
 _LF: "\n"

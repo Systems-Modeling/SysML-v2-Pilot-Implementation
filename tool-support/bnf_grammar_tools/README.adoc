@@ -46,24 +46,27 @@ The usage info from the tool is as follows, and is also given by the `-h` or `--
 
 [source,shell]
 ----
-Usage: python bnf_grammar_extractor.py [options] {<spec_path> <bnf_clause_id> <mode>}+
+usage: bnf_grammar_extractor [-h] [-i [INPUT_DIR]] [-o [OUTPUT_DIR]] SOURCE_DATA
 
-    Extract textual and/or graphical grammars from given KerML or SysML specifications
-    and generate txt and html files.
+Extract textual and/or graphical grammars from given KerML or SysML specifications and generate txt and html BNF grammar files.
 
-    Arguments:
-    There must be one or more triples of arguments, consisting of:
-    spec_path     : .html file specification exported from View Editor
-    bnf_clause_id : clause identifier that specifies a BNF grammar
-    mode          : "textual" or "graphical"
+positional arguments:
+  SOURCE_DATA           JSON file defining source data
 
-    The argument triples should be ordered from least to most dependent grammars,
-    as in the second example below.
+options:
+  -h, --help            show this help message and exit
+  -i [INPUT_DIR], --input-dir [INPUT_DIR]
+                        input directory path
+  -o [OUTPUT_DIR], --output-dir [OUTPUT_DIR]
+                        output directory path
 
-    Options:
-    -h or --help: Display this message and exit.
+For an example see TBD
 
-    Examples:
-    1. python bnf_grammar_extractor.py SysML-spec-r2025-xx.html 8.2.2 textual
-    2. python bnf_grammar_extractor.py KerML-spec-r2025-xx.html 8.2 textual SysML-spec-r2025-xx.html 8.2.2 textual SysML-spec-r2025-xx.html 8.2.3 graphical
 ----
+
+Temporarily, example input and output directories with files can be found in repository
+https://github.com/Systems-Modeling/Graphical-Specification-WG, as follows:
+
+- `INPUT_DIR`: `KerML_and_SysML_spec_sources`
+- `OUTPUT-DIR`: `KerML_and_SysML_grammars`
+- `SOURCE_DATA`: `KerML_and_SysML_spec_sources/sources.json`

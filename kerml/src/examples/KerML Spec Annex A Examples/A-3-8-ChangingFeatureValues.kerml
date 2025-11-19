@@ -153,7 +153,7 @@ package ChangingFeatureValuesExecution {
 
 
 		step redefines paint : MyPaint {
-		    feature redefines paint::objectToPaint, MyPaint::objectToPaint;
+		    feature redefines Manufacture::paint::objectToPaint, MyPaint::objectToPaint;
 		}
 		feature subsets objectToFinish.beforePaint.immediateSuccessors,
 				objectToFinish.whilePainting.startShot.timeCoincidentOccurrences
@@ -172,7 +172,7 @@ package ChangingFeatureValuesExecution {
 
 
 		step redefines dry : MyDry {
-            feature redefines dry::objectToDry, MyDry::objectToDry;
+            feature redefines Manufacture::dry::objectToDry, MyDry::objectToDry;
         }
 		succession redefines p_before_d : MyPaint_Before_Dry_Link [1] first paint then dry;
 		feature subsets objectToFinish.afterPaint.immediateSuccessors,
@@ -184,7 +184,7 @@ package ChangingFeatureValuesExecution {
 
 
 		step redefines ship : MyShip {
-            feature redefines ship::objectToShip, MyShip::objectToShip;
+            feature redefines Manufacture::ship::objectToShip, MyShip::objectToShip;
         }
 		succession redefines d_before_s : MyDry_Before_Ship_Link [1] first dry then ship;
 		feature subsets objectToFinish.afterDry.immediateSuccessors,

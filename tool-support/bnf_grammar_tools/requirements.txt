@@ -1,0 +1,11 @@
+altgraph==0.17.4
+beautifulsoup4 @ file:///C:/b/abs_d5wytg_p0w/croot/beautifulsoup4-split_1718029833749/work
+lark @ file:///C:/b/abs_33i94ykipr/croot/lark_1748352819952/work
+packaging==25.0
+pefile==2023.2.7
+pyinstaller==6.14.2
+pyinstaller-hooks-contrib==2025.8
+pywin32-ctypes==0.2.3
+setuptools==78.1.1
+soupsieve @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/soupsieve_1699496611169/work
+wheel==0.45.1

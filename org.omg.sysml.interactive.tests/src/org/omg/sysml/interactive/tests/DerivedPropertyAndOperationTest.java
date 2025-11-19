@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -172,4 +173,52 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertEquals("TopLevel/3/1/1/1", TopLevel_3_1_1.getOwnedRelatedElement().get(0).path());
 	}
 
+	public final String directedUsageTest =
+			  "package Test {\n"
+			+ "    item def I {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "    action def A {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "    constraint def C {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "}";
+	
+	@Test
+	public void testDirectedUsage() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(directedUsageTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		List<Feature> directedFeatures = ((Definition)ownedMembers.get(0)).getDirectedFeature();
+		List<Usage> directedUsages = ((Definition)ownedMembers.get(0)).getDirectedUsage();
+		assertEquals("item def (directedFeatures.size)", 2, directedFeatures.size());
+		assertEquals("item def (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("item def (directedUsages)", directedFeatures, directedUsages);
+		
+		// Check that getting directedFeatures and directedUsages work for ActionDefinitions and
+		// ConstraintDefinitions, even though they are kinds of Behaviors, and Behavior redefines
+		// directedFeature as parameter.
+		
+		directedFeatures = ((Definition)ownedMembers.get(1)).getDirectedFeature();
+		directedUsages = ((Definition)ownedMembers.get(1)).getDirectedUsage();
+		assertEquals("action def (directedFeatures.size)", 2, directedFeatures.size());
+		assertEquals("action def (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("action def (directedUsages)", directedFeatures, directedUsages);
+		
+		// The ConstraintDefinition "C" has three directedFeatures, including its return parameter,
+		// but only the first two are Usages.
+		directedFeatures = ((Definition)ownedMembers.get(2)).getDirectedFeature();
+		directedUsages = ((Definition)ownedMembers.get(2)).getDirectedUsage();
+		assertEquals("constraint def (directedFeatures.size)", 3, directedFeatures.size());
+		assertEquals("constraint def (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("constraint def (directedUsages)", directedFeatures.subList(0, 2), directedUsages);
+	}
+	
 }

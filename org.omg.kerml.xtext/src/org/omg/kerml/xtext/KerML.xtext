@@ -509,6 +509,10 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
+fragment EndFeaturePrefix returns SysML::Feature :
+    ( isConstant ?= 'const')? isEnd ?= 'end'
+;
+
 fragment BasicFeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
 	( isDerived ?= 'derived' )?
@@ -518,7 +522,7 @@ fragment BasicFeaturePrefix returns SysML::Feature :
 ;
 
 fragment FeaturePrefix returns SysML::Feature :
-	( isEnd ?= 'end' ( ownedRelationship += OwnedCrossingFeatureMember )?
+	( EndFeaturePrefix ( ownedRelationship += OwnedCrossingFeatureMember )?
 	| BasicFeaturePrefix
 	)
 	( ownedRelationship += PrefixMetadataMember )*
@@ -536,7 +540,7 @@ Feature returns SysML::Feature :
 	( FeaturePrefix
 	  ( 'feature' | ownedRelationship += PrefixMetadataMember ) 
 	  FeatureDeclaration?
-	| ( isEnd ?= 'end' | BasicFeaturePrefix )
+	| ( EndFeaturePrefix | BasicFeaturePrefix )
 	  FeatureDeclaration
 	)
 	ValuePart? TypeBody

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="61.439999"
+   height="22.719999"
+   viewBox="0 0 61.439999 22.719999"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2">
+      <path
+         d="M 0,0 H 191.99219 V 72 H 0 Z"
+         transform="scale(0.31999999)"
+         clip-rule="evenodd"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <path
+         d="m 56.25,18.75 h 78.125 V 53.125 H 56.25 Z"
+         transform="matrix(0,0.88244159,-0.88244159,0,111.8034,69.05609)"
+         clip-rule="evenodd"
+         id="path4" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5">
+      <path
+         d="m 56.25,18.75 h 78.125 V 53.125 H 56.25 Z"
+         transform="matrix(0.88244159,0,0,0.88244159,-52.943897,-30.303409)"
+         clip-rule="evenodd"
+         id="path5" />
+    </clipPath>
+  </defs>
+  <g
+     id="g1">
+    <path
+       id="path1"
+       d="M 0,0 H 61 V 23 H 0 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       clip-path="url(#clipPath2)" />
+    <path
+       id="path3"
+       d="m 76,153 c -8e-6,0.82842 -0.2929,1.53552 -0.878685,2.12131 C 74.53553,155.70709 73.828423,155.99998 73,156 c -0.82843,-2e-5 -1.535538,-0.29291 -2.121323,-0.87869 C 70.292885,154.53552 69.999992,153.82842 70,153 c -8e-6,-0.82845 0.292885,-1.53555 0.878677,-2.12134 C 71.464462,150.29289 72.17157,150 73,150 c 0.828423,0 1.53553,0.29289 2.121315,0.87866 C 75.7071,151.46445 75.999992,152.17155 76,153 Z"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0,-0.36263022,0.36263022,0,-25.041825,40.543292)"
+       clip-path="url(#clipPath4)" />
+    <text
+       id="text4"
+       xml:space="preserve"
+       transform="matrix(0.36263022,0,0,0.36263022,19.199057,10.988932)"
+       clip-path="url(#clipPath5)"><tspan
+         id="tspan4"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         y="0">(rel-name)?</tspan></text>
+  </g>
+</svg>

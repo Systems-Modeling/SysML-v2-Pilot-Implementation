@@ -64,8 +64,7 @@ For an example see TBD
 
 ----
 
-Temporarily, example input and output directories with files can be found in repository
-https://github.com/Systems-Modeling/Graphical-Specification-WG, as follows:
+Temporarily, example input and output directories with files can be found under the tests folder, as follows:
 
 - `INPUT_DIR`: `KerML_and_SysML_spec_sources`
 - `OUTPUT-DIR`: `KerML_and_SysML_grammars`

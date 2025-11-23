@@ -23,7 +23,7 @@ class BnfParser:
 
     def parse(self, bnf_filepath: str) -> None:
         self.bnf_filepath = bnf_filepath
-        self.parser = Lark.open("kerml_sysml_textual_grammar.lark", rel_to=__file__, parser="lalr")
+        self.parser = Lark.open("kebnf_textual_grammar.lark", rel_to=__file__, parser="lalr")
 
         bnf_file = open(bnf_filepath, "r", encoding="utf-8")
         bnf_input = bnf_file.read()

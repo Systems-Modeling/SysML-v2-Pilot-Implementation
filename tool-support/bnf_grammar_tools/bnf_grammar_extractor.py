@@ -166,6 +166,16 @@ class GrammarElement:
         self_as_dict["@type"] = self.__class__.__name__
         return self_as_dict
 
+    @staticmethod
+    def get_safe_anchor_id(candidate_anchor_id: str) -> str:
+        """
+        Return safe anchor id for given candidate string.
+
+        To avoid name collisions between PascalCase and UPPER_SNAKE_CASE identifiers,
+        append "_" to all uppercase tokens because the anchor id attribute is not case-sensitive
+        """
+        return f"{candidate_anchor_id}_" if candidate_anchor_id.isupper() else candidate_anchor_id
+
 
 @dataclass
 class Info(GrammarElement):
@@ -219,9 +229,9 @@ class Production(GrammarElement):
 
     def get_html(self, extractor: "GrammarExtractor") -> str:
         html_lines: list[str] = []
-        for line in self.lines:
+        for html_line in self.lines:
             pieces = []
-            tokens = extractor.tokenize(line)
+            tokens = extractor.tokenize(html_line)
             for token in tokens:
                 is_hyperlink_resolved = False
                 if token.kind == TokenKind.NONTERMINAL:
@@ -230,37 +240,35 @@ class Production(GrammarElement):
                         pass
                     elif token.text == self.abstract_syntax_type:
                         # Do not link to abstract syntax term
+                        # TODO: Link abstract syntax term to declaration in KERML.kerml or SYSML.sysml standard library
                         pass
                     else:
                         # Try to resolve hyperlink to identifier in reverse order of known grammars
                         for grammar in reversed(extractor.grammars):
                             if token.text in grammar.production_names:
                                 # Production declaration found, so add hyperlink to declaration anchor
-                                # The hyperlink works if other HTML grammar files are in the same directory
+                                # The hyperlink works if other HTML grammar files are in the same directory as the current one
                                 html_path = "" if grammar.name == extractor.bnf_path else f"{grammar.name}.html"
-                                # Append "_" to all uppercase tokens because anchor id is not case-sensitive
-                                anchor_id = f"{token.text}_" if token.text.isupper() else token.text
+                                anchor_id = self.get_safe_anchor_id(token.text)
                                 pieces.append(f'<a href="{html_path}#{anchor_id}">{token.text}</a>')
                                 is_hyperlink_resolved = True
                                 break
                 if not is_hyperlink_resolved:
                     pieces.append(token.text)
             html_lines.append("".join(pieces))
-        # HACK
+        # Ensure 6-space indentation of lines with an <img...> element
         formatted_html_lines: list[str] = []
-        for line in html_lines:
-            if "<img" in line:
-                line = f"    {line.lstrip()}"
-            formatted_html_lines.append(line)
+        for html_line in html_lines:
+            if "<img" in html_line:
+                html_line = f"      {html_line.lstrip()}"
+            formatted_html_lines.append(html_line)
         rendered_lines = "\n".join(formatted_html_lines)
-        # Append "_" to all uppercase tokens because anchor id is not case-sensitive
-        # so to avoid name collisions between PascalCase and UPPER_SNAKE_CASE identifiers
         if self.is_partial:
             production_anchor = ""
         else:
-            anchor_id = f"{self.name}_" if self.name.isupper() else self.name
-            production_anchor = f'<a id="{anchor_id}"></a>'
-        return f"<pre>{production_anchor}\n{rendered_lines}\n</pre>\n"
+            anchor_id = self.get_safe_anchor_id(self.name)
+            production_anchor = f'<a id="{anchor_id}"></a>\n'
+        return f"{production_anchor}<pre>{rendered_lines}\n</pre>\n"
 
 
 @dataclass
@@ -386,7 +394,7 @@ class GrammarExtractor:
         # Regular expression patterns
         KEYWORD_PATTERN = re.compile(r"('[a-z]{2,}')")
         SYMBOL_PATTERN = re.compile(r"('[^A-Za-z\s]+')")
-        SEE_NOTE_PATTERN = re.compile(r"^\s*[(]?\s*See Note.*$", flags=re.IGNORECASE)
+        SEE_NOTE_PATTERN = re.compile(r"^[ \t]*[(]?[ \t]*See Note.*$", flags=re.IGNORECASE)
 
         if self.spec_path == self.spec_path_previous:
             # Skip reparsing the HTML spec and reuse self.soup
@@ -443,10 +451,10 @@ class GrammarExtractor:
             # TODO: Properly check for <pre> elements in notes lists, i.e. contained in <li> element
             # elif tag.name == "pre" and inside_bnf_clause and tag.parent.name != "li":
             elif tag.name == "pre" and inside_bnf_clause:
+                # Process a <pre> element that contains BNF grammar lines
                 if tag.parent.name == "li":
                     LOGGER.warning(f"<pre> appearing inside <li> element:\n{tag}")
 
-                # Process a <pre> element that contains BNF grammar lines
                 LOGGER.debug(f"tag#{count}:\n{tag}")
                 contains_pre_tag = True
 
@@ -462,10 +470,12 @@ class GrammarExtractor:
                         LOGGER.error(f"Unexpected child={child} in tag={tag}")
                 child_contents = "".join(child_strings)
 
-                # Clean each line and replace any two or more newlines with a single newline
+                # Clean each line
                 child_contents = "\n".join([clean_line(x) for x in child_contents.split("\n")])
-                MULTIPLE_NL_PATTERN = re.compile(r"\n{2,}", re.MULTILINE)
-                child_contents = MULTIPLE_NL_PATTERN.sub(r"\n", child_contents)
+
+                # Replace any two or more newlines with a single newline
+                # MULTIPLE_NL_PATTERN = re.compile(r"\n{2,}")
+                # child_contents = MULTIPLE_NL_PATTERN.sub(r"\n", child_contents)
 
                 # Pre-process lexical clauses in KerML and SysML specifications
                 if "KerML" in self.spec_title and clause_title == "Reserved Words":
@@ -498,19 +508,33 @@ class GrammarExtractor:
 
                 # Productions should start in column 1 and (if needed) continue with whitespace indented lines,
                 # i.e., an incorrect production separation is a single newline followed by a non-whitespace character
-                INCORRECT_PRODUCTION_SEPARATOR_PATTERN = re.compile(r"(?<!\n)(\n[^ \n\t])", re.MULTILINE)
+                # INCORRECT_PRODUCTION_SEPARATOR_PATTERN = re.compile(r"(?<!\n)(\n[^ \n\t])")
                 # Separate candidate productions by double newlines if needed
-                child_contents = INCORRECT_PRODUCTION_SEPARATOR_PATTERN.sub(r"\n\1", child_contents)
-                # Replace double newline followed by SEE_NOTE with single newline
-                NL_NL_SEE_NOTE_PATTERN = re.compile(r"(\n)(\n[(]?\s*See Note)", re.MULTILINE + re.IGNORECASE)
-                child_contents = NL_NL_SEE_NOTE_PATTERN.sub(r"\2", child_contents)
+                # child_contents = INCORRECT_PRODUCTION_SEPARATOR_PATTERN.sub(r"\n\1", child_contents)
+
+                # Replace double newline followed by "See Note" or similar with single newline and 4-space indent
+                MULTI_NL_SEE_NOTE_PATTERN = re.compile(r"[ \t\n]+(\(?)[ \t]*See Note", re.IGNORECASE)
+                child_contents = MULTI_NL_SEE_NOTE_PATTERN.sub(r"\n    \1See Note", child_contents)
+
+                # Replace one or more newline followed by <img...> element with single newline and 6-space indent
+                if self.syntax_kind == "graphical-bnf":
+                    if child_contents.find("\n<img") >= 0:
+                        LOGGER.error(f"<img...> element appears at start of line:\n{tag}")
+                    MULTI_NL_WS_IMG_PATTERN = re.compile(r"[ \t\n]+<img")
+                    child_contents = MULTI_NL_WS_IMG_PATTERN.sub("\n      <img", child_contents)
 
                 # Get candidate productions
-                candidate_productions = child_contents.split("\n\n")
+                ### A NON_CONTINUATION_LINE is a line that does not start with a space or tab
+                ### Use a negative lookahead assertion re pattern (?!...) to not consume the possible match
+                NON_CONTINUATION_LINE_PATTERN = re.compile(r"\n+(?![ \t])")
+                candidate_productions = NON_CONTINUATION_LINE_PATTERN.split(child_contents)
+                # candidate_productions = child_contents.split("\n\n")
                 # Strip possible trailing newline(s) from last candidate production
                 candidate_productions[-1] = candidate_productions[-1].rstrip()
 
                 for candidate_prod in candidate_productions:
+                    if candidate_prod == "":
+                        continue
 
                     # Collect keywords and symbols
                     if clause_id.startswith(self.bnf_clause_id):
@@ -522,7 +546,7 @@ class GrammarExtractor:
                         for matched_symbol in matched_symbols:
                             self.extracted_symbol_set.add(matched_symbol[1:-1])
 
-                    # Initialize count and index for multi-img productions
+                    # Initialize count and index for productions with multiple <img...> terms
                     img_count = candidate_prod.count("<img ")
                     img_index = 0
 
@@ -539,7 +563,7 @@ class GrammarExtractor:
                         line_number += 1
                         if line_number == 1:
                             # Should be the start of a new production
-                            GRAPHICAL_GRAMMAR_NOTE_PATTERN = re.compile(r"^\s*Note(\.|:).+", flags=re.IGNORECASE)
+                            GRAPHICAL_GRAMMAR_NOTE_PATTERN = re.compile(r"^[ \t]*Note[.:].+", flags=re.IGNORECASE)
                             if GRAPHICAL_GRAMMAR_NOTE_PATTERN.match(line):
                                 LOGGER.warning(f"Graphical note found in <pre>, but should be <p> element: {candidate_prod}")
                                 current_note_ref = NoteRef(clause_id, lines=[line])
@@ -576,8 +600,8 @@ class GrammarExtractor:
                                 current_production = Production(clause_id, [line], production_name, abstract_type, is_partial)
                                 self.elements.append(current_production)
 
-                                if line.startswith(" "):
-                                    LOGGER.error(f"Production start line starts with a space: {line}")
+                                if line[0] in (" ", "\t"):
+                                    LOGGER.error(f"Production start line starts with a space or tab: {line}")
                                     line = line.strip()
                                 ONE_EQUALS_PATTERN = re.compile(r"( = | =$)")
                                 if not ONE_EQUALS_PATTERN.search(line):
@@ -928,6 +952,9 @@ class GrammarExtractor:
 
 
 def main() -> None:
+    """
+    Main CLI program entry point
+    """
     # Initialize logging
     LOGGER.setLevel(logging.DEBUG)
     formatter = logging.Formatter("%(levelname)-8s: %(message)s")
@@ -944,7 +971,7 @@ def main() -> None:
     file_handler.setFormatter(formatter)
     LOGGER.addHandler(file_handler)
 
-    # Parse command line
+    # Initialize command line arguments parser
     parser = argparse.ArgumentParser(
         prog="bnf_grammar_extractor",
         allow_abbrev=False,
@@ -960,9 +987,10 @@ def main() -> None:
     input_dir = args.input_dir
     output_dir = args.output_dir
 
+    # Construct the GrammarExtractor and execute
     grammar_extractor = GrammarExtractor()
 
-    # Extract BNF from each of the given inputs and run backend processors
+    # Extract the requested BNF grammars from each of the given input file / clause combinations and run the backend processors
     source_json = os.path.join(args.input_dir, args.source_data)
     with open(source_json, mode="r", encoding="utf-8") as source_json_file:
         source_list = json.load(source_json_file)

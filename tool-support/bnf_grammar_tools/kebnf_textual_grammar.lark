@@ -1,4 +1,4 @@
-// Lark grammar for KerML and SysML EBNF
+// Lark grammar for KerML and SysML EBNF (textual notation)
 //
 // Copyright (c) 2025: DEKonsult
 //
@@ -54,12 +54,16 @@ nonparsing_empty_value: "{" "}"
 ?prop_value: atom | BOOLEAN_VALUE | "(" atom ( "|" atom )+ ")"
 ?nonparsing_prop_value: terminal | prop_name | BOOLEAN_VALUE | THIS
 
-// TERMINAL is any string containing one or more printable ASCII characters between two single quotes.
-// A single quote itself must be escaped.
+// TERMINAL is any string containing one or more printable ASCII characters, except single quote, between two single quotes.
+// The ASCII character range is defined as regex [ -&(-~] i.e. union of space-to-ampersand and left-parenthesis-to-tilda.
+// A single quote itself must be escaped with a backslash.
 TERMINAL: "'" /(\\'|[ -&(-~])+/ "'"
+// NONTERMINAL_NAME is a PascalCase identifier containing alphas
 NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
+// LEXICAL_NAME is UPPER_SNAKE_CASE identifier containing alphas
 LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
 QUALIFIED_NAME: "[QualifiedName]"
+// PROPERTY_NAME is a camelCase identifier containing alphas
 PROPERTY_NAME: /[a-z][A-Za-z]*/
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
@@ -75,6 +79,6 @@ LINE_COMMENT: "//" /[^\r\n]*/
 // Use negative lookahead assertion re pattern (?!...) to not consume the possible match
 _NON_CONTINUATION_LINE: ( _NL /(?![ \t])/ )+
 
-// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with inline whitespace
+// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with leading whitespace
 %ignore WS_INLINE
 %ignore _NL WS_INLINE+

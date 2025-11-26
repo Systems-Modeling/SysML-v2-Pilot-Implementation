@@ -1,4 +1,4 @@
-// Lark grammar for SysML Graphical BNF
+// Lark grammar for KerML and SysML GBNF (graphical notation)
 //
 // Copyright (c) 2025: DEKonsult
 //
@@ -40,17 +40,20 @@ nonparsing_empty_value: "{" "}"
 
 image: IMAGE
 
-// TERMINAL is any string containing one or more printable ASCII characters or «»… between two single quotes.
-// A single quote itself must be escaped.
+// TERMINAL is any string containing one or more printable ASCII characters or « » …, except single quote, between two single quotes.
+// The ASCII character range is defined as regex [ -&(-~«»…] i.e. union of space-to-ampersand, left-parenthesis-to-tilda, left guillemet, right guillemet, ellipsis.
+// A single quote itself must be escaped with a backslash.
 TERMINAL: "'" /(\\'|[ -&(-~«»…])+/ "'"
+// NONTERMINAL_NAME is a PascalCase identifier containing alphas
 NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
+// GRAPHICAL_NAME is a dash-case identifier containing alphas - it may start with an ampersand
 GRAPHICAL_NAME: /[a-z&](-?[a-z]+)+/
+// LEXICAL_NAME is UPPER_SNAKE_CASE identifier containing alphas
 LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
 QUALIFIED_NAME: "[QualifiedName]"
 REPETITION_SYMBOL: "?" | "+" | "*"
 BOOLEAN_VALUE: "false" | "true"
 THIS: "this"
-//IMAGE: /\<img.+\/\>/
 IMAGE: /\<img.+\>/
 
 _CR: "\r"
@@ -63,6 +66,6 @@ LINE_COMMENT: "//" /[^\r\n]*/
 // Use negative lookahead assertion re pattern (?!...) to not consume the possible match
 _NON_CONTINUATION_LINE: ( _NL /(?![ \t])/ )+
 
-// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with inline whitespace
+// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with leading whitespace
 %ignore WS_INLINE
 %ignore _NL WS_INLINE+

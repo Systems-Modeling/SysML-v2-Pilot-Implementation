@@ -23,7 +23,16 @@ class BnfParser:
 
     def parse(self, bnf_filepath: str) -> None:
         self.bnf_filepath = bnf_filepath
-        self.parser = Lark.open("kebnf_textual_grammar.lark", rel_to=__file__, parser="lalr")
+        basename, ext = os.path.splitext(bnf_filepath)
+        grammar_file = None
+        if ext == ".kebnf":
+            grammar_file = "kebnf_textual_grammar.lark"
+        elif ext == ".kgbnf":
+            grammar_file = "kgbnf_graphical_grammar.lark"
+        else:
+            LOGGER.critical(f"Unrecognized file extension for BNF_PATH {bnf_filepath}")
+
+        self.parser = Lark.open(grammar_file, rel_to=__file__, parser="lalr")
 
         bnf_file = open(bnf_filepath, "r", encoding="utf-8")
         bnf_input = bnf_file.read()
@@ -60,10 +69,10 @@ def main() -> None:
         prog="kerml_sysml_bnf_parser",
         allow_abbrev=False,
         description="Parse textual and/or graphical KerML or SysML BNF grammars.")
-    parser.add_argument("bnf_path", metavar="BNF_PATH", type=str, help="Path to BNF text file")
+    parser.add_argument("bnf_path", metavar="BNF_PATH", type=str, help="Path to plain text BNF file with extension .kebnf or .kgbnf")
     args = parser.parse_args()
     LOGGER.debug(f"args={args}")
-    LOGGER.info(f"cwd={os.getcwd()}")
+    LOGGER.debug(f"cwd={os.getcwd()}")
 
     bnf_parser = BnfParser()
     bnf_parser.parse(args.bnf_path)

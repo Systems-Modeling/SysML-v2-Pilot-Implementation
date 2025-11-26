@@ -201,6 +201,15 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		checkExpressionIsModelLevelEvaluable(instance, "(1, 2, 3)");
 		checkExpressionIsModelLevelEvaluable(instance, "1..3");
 	}
+	
+	@Test
+	public void testControlOpsModelLevelEvaluability() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		checkExpressionIsModelLevelEvaluable(instance, "null.{in x; 1}");
+		checkExpressionIsModelLevelEvaluable(instance, "null.?{in x; true}");
+		checkExpressionIsModelLevelEvaluable(instance, "ControlFunctions::collect(null, {in x; 1})");
+		checkExpressionIsModelLevelEvaluable(instance, "ControlFunctions::select(null, {in x; true})");
+	}
 
 	@Test
 	public void testNonModelLevelEvaluability() throws Exception {
@@ -305,6 +314,16 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 //		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty(1)"));
 //		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty((1,2,3))"));
 	}
+	
+// Note: These collect and select expressions are currently not model-level evaluable, because the feature references 
+// to parameters of the body expressions are considered non-model-level evaluable (currently per the specification).
+//	@Test
+//	public void testControlOpEvaluation() throws Exception {
+//		assertArrayEquals(new Object[] {2, 4, 6}, evaluateListValue(null, null, "(1,2,3).{in x : ScalarValues::Integer; x * 2}"));
+//		assertArrayEquals(new Object[] {1, 2}, evaluateListValue(null, null, "(1,2,3).?{in x : ScalarValues::Integer; x < 3}"));
+//		assertArrayEquals(new Object[] {2, 4, 6}, evaluateListValue(null, null, "(1,2,3)->ControlFunctions::collect{in x : ScalarValues::Integer; x * 2}"));
+//		assertArrayEquals(new Object[] {1, 2}, evaluateListValue(null, null, "(1,2,3)->ControlFunctions::select{in x : ScalarValues::Integer; x < 3}"));
+//	}
 	
 	@Test
 	public void testConstructorEvaluation() throws Exception {

@@ -78,7 +78,7 @@ public class ModelLevelExpressionEvaluator {
 		} else if (expression instanceof ConstructorExpression) {
 			return evaluateConstructor((ConstructorExpression)expression, target);
 		} else {
-			return new BasicEList<>();
+			return evaluateExpression(expression, target);
 		}		
 	}
 	
@@ -115,6 +115,18 @@ public class ModelLevelExpressionEvaluator {
 	public EList<Element> evaluateConstructor(ConstructorExpression expression, Element target) {
 		Feature resultParameter = TypeUtil.getResultParameterOf(expression);
 		return resultParameter == null? null: EvaluationUtil.singletonList(resultParameter);
+	}
+	
+	public EList<Element> evaluateExpression(Expression expression, Element target, Element... arguments) {
+		Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
+		if (resultExpression == null) {
+			return EvaluationUtil.singletonList(expression);
+		} else {
+			Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
+			Expression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
+			EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
+			return results == null? EvaluationUtil.singletonList(resultExpression): results;
+		}
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {

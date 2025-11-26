@@ -76,6 +76,9 @@ public class ModelLevelLibraryFunctionFactory {
 		put(new ConditionalOrFunction());
 		put(new ConditionalImpliesFunction());
 		put(new NullCoalescingFunction());
+		
+		put(new CollectFunction());
+		put(new SelectFunction());
 	}
 
 	protected void put(LibraryFunction functionImpl) {

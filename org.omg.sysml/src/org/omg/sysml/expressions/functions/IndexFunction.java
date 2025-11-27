@@ -26,12 +26,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 

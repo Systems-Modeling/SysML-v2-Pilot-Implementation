@@ -30,7 +30,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Element;
@@ -44,6 +43,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {

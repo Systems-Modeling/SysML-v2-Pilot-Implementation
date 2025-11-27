@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.expressions.util;
+package org.omg.sysml.util;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,12 +48,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class EvaluationUtil {
 

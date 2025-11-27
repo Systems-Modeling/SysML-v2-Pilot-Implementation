@@ -24,7 +24,6 @@ package org.omg.sysml.execution.expressions;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.functions.LibraryFunction;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -36,6 +35,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 

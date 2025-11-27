@@ -23,9 +23,9 @@ package org.omg.sysml.execution.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.EvaluationUtil;
 
 public class StringLengthFunction extends StringFunction {
 	

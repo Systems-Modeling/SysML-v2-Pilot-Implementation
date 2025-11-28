@@ -2,17 +2,18 @@
 
 """
 bnf_grammar_extractor is a command line tool to extract the
-textual and graphical BNF grammars from the KerML and SysML specifications
+textual and graphical BNF grammars from dumps of
+the KerML and SysML specifications in raw HTML format
 
 Its usage is described below in the main() function.
 
-Its usage can also be obtained by running:
-
-    python bnf_grammar_extractor.py --help
-
 @author: Hans Peter de Koning (DEKonsult)
 
-Note: Needs package beautifulsoup4 (See https://pypi.org/project/beautifulsoup4/)
+Requirements:
+
+This tool requires installation of the following packages:
+- beautifulsoup4 (See https://pypi.org/project/beautifulsoup4/)
+- lark (See https://pypi.org/project/lark)
 
 """
 
@@ -24,17 +25,17 @@ import argparse
 from datetime import datetime, timezone
 from dataclasses import dataclass, asdict
 from enum import Enum, auto
+from logging import Logger
 from textwrap import wrap
-from typing import Optional, Iterable, Union, Any
+from typing import Any, ClassVar, Iterable, Optional
 
-from bs4 import BeautifulSoup, Tag, NavigableString, PageElement
+from bs4 import BeautifulSoup, Tag, PageElement
 
 from lark import Lark, Transformer, Tree, UnexpectedInput
 
-# Create logger for debug, info, warning, error, critical messages
+# Create logger for diagnostic messages at debug, info, warning, error and critical levels
 import logging
-
-LOGGER = logging.getLogger()
+LOGGER: Logger = logging.getLogger()
 
 # Marker denoting start of a line comment in generated output
 LINE_COMMENT_MARKER = "//"
@@ -42,91 +43,13 @@ LINE_COMMENT_MARKER = "//"
 # Images directory to hold SVG images as part of graphical BNF productions
 IMAGES_DIR = "images"
 
-# Scale multiplication factor for SVG images in graphical BNF productions
-SVG_SCALE_FACTOR = 1.5
-
-class DATA:
-    """Collection of HTML5 data templates"""
-    HTML_HEAD = """\
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>{doc_title}</title>  
-<link rel="stylesheet" type="text/css" href="bnf_styles.css">
-</head>
-<body>
-"""
-    HTML_TAIL = """\
-</body>
-</html>
-"""
-
-
-def line_comment(text: str, add_newline: bool = True):
-    newline = "\n" if add_newline else ""
-    return f"{LINE_COMMENT_MARKER} {text}{newline}"
-
-
-def block_comment(texts: list[str], add_newline: bool = True):
-    formatted_text = f'\n{LINE_COMMENT_MARKER} '.join(texts)
-    text = f"{LINE_COMMENT_MARKER} {formatted_text}\n"
-    if add_newline:
-        text += "\n"
-    return text
-
-
-def report_non_ascii(text: str):
-    is_ascii = text is None or text.isascii()
-    if not is_ascii:
-        non_ascii_chars: set[str] = set()
-        for ch in text:
-            if not ch.isascii():
-                non_ascii_chars.add(ch)
-        LOGGER.warning(f"Found non-ASCII characters: {sorted(non_ascii_chars)}")
-
-
-def clean_text_content(text: Optional[str], correct_comma_dot: bool = False) -> str:
-    """Replace non-braking space and zero-width space with regular space and strip tail end"""
-    if text is None:
-        text = ""
-    text = text.replace(" ", " ").replace("​", " ")
-    if correct_comma_dot:
-        text = text.replace(" ,", ",")
-        text = text.replace(" .", ".")
-    # text = text.rstrip()
-
-    # Replace leading space(s) followed by newline(s) with a single newline
-    LEADING_SPACES_NEWLINES_PATTERN = re.compile(r"^ +\n+")
-    text = LEADING_SPACES_NEWLINES_PATTERN.sub("\n", text)
-
-    return text
-
-
-def clean_line(line: str) -> str:
-    """Replace special whitespace with regular space and strip tail end"""
-    line = line.replace(" ", " ").replace("​", " ")
-    return line.rstrip()
-
-
-def is_pascal_case(text: str) -> bool:
-    pascal_PATTERN = re.compile(r"^[A-Z][a-z][A-Za-z]*$")
-    return len(text) > 1 and pascal_PATTERN.fullmatch(text)
-
-
-def is_upper_snake_case(text: str) -> bool:
-    upper_snake_PATTERN = re.compile(r"^[A-Z][A-Z_]+$")
-    return len(text) > 1 and upper_snake_PATTERN.fullmatch(text)
-
-
-def is_lower_kebab_case(text: str) -> bool:
-    lower_kebab_PATTERN = re.compile(r"^[a-z][a-z0-9-]+$")
-    return len(text) > 1 and lower_kebab_PATTERN.fullmatch(text)
+# Scaling factor for right-sizing SVG images in graphical BNF productions
+SVG_SCALING_FACTOR = 1.5
 
 
 class TokenKind(Enum):
     TERMINAL = auto()
-    NONTERMINAL = auto()
+    NON_TERMINAL = auto()
     NOTE = auto()
     EQUALS = auto()
     COLON = auto()
@@ -150,14 +73,19 @@ class Grammar:
 
 @dataclass
 class GrammarElement:
+    extractor: ClassVar["GrammarExtractor"]
     clause_id: str
     lines: list[str]
 
-    def get_txt(self) -> str:
-        assert len(self.lines) == 0
-        return f"{line_comment(self.lines[0])}\n"
+    def get_marked_up_txt(self) -> str:
+        LOGGER.error(f"GrammarElement.get_marked_up_txt() should be overridden in subclass {self.__class__.__name__}, never called.")
+        return ""
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_txt(self) -> str:
+        LOGGER.error(f"GrammarElement.get_txt() should be overridden in subclass {self.__class__.__name__}, never called.")
+        return ""
+
+    def get_html(self) -> str:
         rendered_lines = "\n".join(self.lines)
         return f"<pre>\n{rendered_lines}\n\n</pre>\n"
 
@@ -172,7 +100,7 @@ class GrammarElement:
         Return safe anchor id for given candidate string.
 
         To avoid name collisions between PascalCase and UPPER_SNAKE_CASE identifiers,
-        append "_" to all uppercase tokens because the anchor id attribute is not case-sensitive
+        append "_" to all uppercase tokens because the HTML anchor id attribute is not case-sensitive
         """
         return f"{candidate_anchor_id}_" if candidate_anchor_id.isupper() else candidate_anchor_id
 
@@ -182,6 +110,9 @@ class Info(GrammarElement):
     source: str
     timestamp: str
 
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
     def get_txt(self) -> str:
         rendered_lines = [
             line_comment(f"Source document: {self.source}"),
@@ -190,7 +121,7 @@ class Info(GrammarElement):
         rendered_string = "\n".join(rendered_lines)
         return f"{rendered_string}\n\n"
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         rendered_lines = [
             f"{LINE_COMMENT_MARKER} Source document: {self.source}",
             f"{LINE_COMMENT_MARKER} Generated by bnf_grammar_extractor at: {self.timestamp}"
@@ -201,11 +132,14 @@ class Info(GrammarElement):
 
 @dataclass
 class Heading(GrammarElement):
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
     def get_txt(self) -> str:
         assert len(self.lines) == 1
         return f"{line_comment(self.lines[0])}\n"
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         assert len(self.lines) == 1
         if self.clause_id:
             anchor = f'<a id="c{self.clause_id}"></a>'
@@ -223,18 +157,21 @@ class Production(GrammarElement):
     abstract_syntax_type: str
     is_partial: bool = False
 
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
     def get_txt(self) -> str:
         rendered_lines = "\n".join(self.lines)
         return f"{rendered_lines}\n\n"
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         html_lines: list[str] = []
         for html_line in self.lines:
             pieces = []
-            tokens = extractor.tokenize(html_line)
+            tokens = GrammarExtractor.tokenize(html_line)
             for token in tokens:
                 is_hyperlink_resolved = False
-                if token.kind == TokenKind.NONTERMINAL:
+                if token.kind == TokenKind.NON_TERMINAL:
                     if token.text == self.name:
                         # Do not link to own production
                         pass
@@ -244,11 +181,11 @@ class Production(GrammarElement):
                         pass
                     else:
                         # Try to resolve hyperlink to identifier in reverse order of known grammars
-                        for grammar in reversed(extractor.grammars):
+                        for grammar in reversed(self.extractor.grammars):
                             if token.text in grammar.production_names:
                                 # Production declaration found, so add hyperlink to declaration anchor
                                 # The hyperlink works if other HTML grammar files are in the same directory as the current one
-                                html_path = "" if grammar.name == extractor.bnf_path else f"{grammar.name}.html"
+                                html_path = "" if grammar.name == self.extractor.bnf_path else f"{grammar.name}.html"
                                 anchor_id = self.get_safe_anchor_id(token.text)
                                 pieces.append(f'<a href="{html_path}#{anchor_id}">{token.text}</a>')
                                 is_hyperlink_resolved = True
@@ -256,13 +193,8 @@ class Production(GrammarElement):
                 if not is_hyperlink_resolved:
                     pieces.append(token.text)
             html_lines.append("".join(pieces))
-        # Ensure 6-space indentation of lines with an <img...> element
-        formatted_html_lines: list[str] = []
-        for html_line in html_lines:
-            if "<img" in html_line:
-                html_line = f"      {html_line.lstrip()}"
-            formatted_html_lines.append(html_line)
-        rendered_lines = "\n".join(formatted_html_lines)
+
+        rendered_lines = "\n".join(html_lines)
         if self.is_partial:
             production_anchor = ""
         else:
@@ -273,22 +205,28 @@ class Production(GrammarElement):
 
 @dataclass
 class Image(GrammarElement):
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
     def get_txt(self) -> str:
         rendered_lines = "\n".join(self.lines)
         return f"{rendered_lines}\n"
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         rendered_lines = "\n".join(self.lines)
         return f"{rendered_lines}\n"
 
 
 @dataclass
 class NoteRef(GrammarElement):
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
     def get_txt(self) -> str:
         rendered_lines = "".join(self.lines)
         return f"{line_comment(rendered_lines)}\n"
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         rendered_lines = "".join(self.lines)
         return f"<p>{line_comment(rendered_lines, False)}</p>\n"
 
@@ -296,13 +234,16 @@ class NoteRef(GrammarElement):
 @dataclass
 class NoteList(GrammarElement):
     html_snippets: list[str]
-    # html_snippets: list[PageElement]
+
+    def get_marked_up_txt(self) -> str:
+        rendered_lines = block_comment(self.get_html().strip().split("\n"))
+        return rendered_lines
 
     def get_txt(self) -> str:
         rendered_lines = ["Notes:"] + self.lines
         return block_comment(rendered_lines)
 
-    def get_html(self, extractor: "GrammarExtractor") -> str:
+    def get_html(self) -> str:
         html_lines = [f"<p>{LINE_COMMENT_MARKER} <strong>Notes</strong></p>"]
         html_lines.extend([str(x) for x in self.html_snippets])
         rendered_lines = "\n".join(html_lines)
@@ -347,6 +288,9 @@ class GrammarExtractor:
         self.partial_productions: dict[str, list[str]] = dict()
         self.missing_svgs: list[str] = []
         self.image_map: dict[str, str] = dict()
+
+        # Provide a backlink to this GrammarExtractor inside the GrammarElements
+        GrammarElement.extractor = self
 
     def extract_bnf(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
         """
@@ -415,6 +359,7 @@ class GrammarExtractor:
         # - clause headings
         # - grammar productions and their notes from the given textual or graphical notation clause
         for tag in self.soup.find_all(name=["h1", "pre", "p", "ol"], recursive=True):
+            assert isinstance(tag, Tag)
             count += 1
             LOGGER.debug(f"Visit tag #{count} {tag.name}")
 
@@ -506,11 +451,6 @@ class GrammarExtractor:
                         keyword_block = self.wrap_sorted(self.reserved_keyword_set, sep="' | '")
                         child_contents = f"RESERVED_KEYWORD = \n{keyword_block}"
 
-                # Productions should start in column 1 and (if needed) continue with whitespace indented lines,
-                # i.e., an incorrect production separation is a single newline followed by a non-whitespace character
-                # INCORRECT_PRODUCTION_SEPARATOR_PATTERN = re.compile(r"(?<!\n)(\n[^ \n\t])")
-                # Separate candidate productions by double newlines if needed
-                # child_contents = INCORRECT_PRODUCTION_SEPARATOR_PATTERN.sub(r"\n\1", child_contents)
 
                 # Replace double newline followed by "See Note" or similar with single newline and 4-space indent
                 MULTI_NL_SEE_NOTE_PATTERN = re.compile(r"[ \t\n]+(\(?)[ \t]*See Note", re.IGNORECASE)
@@ -523,13 +463,14 @@ class GrammarExtractor:
                     MULTI_NL_WS_IMG_PATTERN = re.compile(r"[ \t\n]+<img")
                     child_contents = MULTI_NL_WS_IMG_PATTERN.sub("\n      <img", child_contents)
 
-                # Get candidate productions
-                ### A NON_CONTINUATION_LINE is a line that does not start with a space or tab
-                ### Use a negative lookahead assertion re pattern (?!...) to not consume the possible match
+                # Get candidate productions.
+                # Productions should start in column 1 and optionally continue with whitespace-indented lines.
+                # Find the candidates by splitting the cleaned-up content of the <pre> element at non-continuation line locations.
+                # A non-continuation line is a line that does not start with a space or tab.
+                # Use a negative lookahead assertion pattern (?!...) to not consume the matched whitespace.
                 NON_CONTINUATION_LINE_PATTERN = re.compile(r"\n+(?![ \t])")
                 candidate_productions = NON_CONTINUATION_LINE_PATTERN.split(child_contents)
-                # candidate_productions = child_contents.split("\n\n")
-                # Strip possible trailing newline(s) from last candidate production
+                # Strip possibly trailing whitespace from the last candidate production
                 candidate_productions[-1] = candidate_productions[-1].rstrip()
 
                 for candidate_prod in candidate_productions:
@@ -562,7 +503,7 @@ class GrammarExtractor:
                             continue
                         line_number += 1
                         if line_number == 1:
-                            # Should be the start of a new production
+                            # Should be the start line of a production
                             GRAPHICAL_GRAMMAR_NOTE_PATTERN = re.compile(r"^[ \t]*Note[.:].+", flags=re.IGNORECASE)
                             if GRAPHICAL_GRAMMAR_NOTE_PATTERN.match(line):
                                 LOGGER.warning(f"Graphical note found in <pre>, but should be <p> element: {candidate_prod}")
@@ -640,11 +581,12 @@ class GrammarExtractor:
                             LOGGER.log(log_level, f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
 
                 for subtag in tag:
+                    assert isinstance(subtag, Tag)
                     if not subtag.name in (None, "em", "strong", "img"):
                         LOGGER.error(f"Unexpected tag inside <pre> element: tag={subtag}")
 
             elif tag.name == "p" and inside_bnf_clause and contains_pre_tag:
-                # LOGGER.debug(f"note <p> tag={tag}")
+                LOGGER.debug(f"note <p> tag={tag}")
                 if tag.string == "Notes":
                     contains_notes_section = True
                 elif (tag.contents and tag.contents[0].name == "strong"
@@ -654,9 +596,8 @@ class GrammarExtractor:
                     self.elements.append(NoteRef(clause_id, lines=[text_content]))
 
 
-            # elif tag.name == "ol" and inside_bnf_clause and contains_notes_section:
             elif tag.name == "ol" and inside_bnf_clause and contains_pre_tag and tag.parent.name != "li":
-                # LOGGER.debug(f"note <ol> tag={tag}")
+                LOGGER.debug(f"note <ol> tag={tag}")
                 list_item_count = 0
                 note_list = NoteList(clause_id, [], [])
                 for subtag in tag:
@@ -692,7 +633,7 @@ class GrammarExtractor:
             img_index += 1
             img_postfix = f"-{img_index}"
         svg_file_path = f"{IMAGES_DIR}/{current_production.name}{img_postfix}.svg"
-        # Check whether the target SVG file exists, if so compute update width scale
+        # Check whether the target SVG file exists, if so compute and update its width scale
         width_value: float = -1.0
         if os.path.exists(f"{self.output_dir}/{svg_file_path}"):
             with open(f"{self.output_dir}/{svg_file_path}", "r") as svg_file:
@@ -703,7 +644,7 @@ class GrammarExtractor:
                     LOGGER.debug(f"SVG tag: {svg_tag}")
                     width_attr = svg_tag.attrs.get("width")
                     if width_attr:
-                        width_value = float(width_attr) * SVG_SCALE_FACTOR
+                        width_value = float(width_attr) * SVG_SCALING_FACTOR
         else:
             self.missing_svgs.append(svg_file_path)
         SRC_ATTRIBUTE_PATTERN = re.compile(r'src="([^"]+)"')
@@ -742,9 +683,10 @@ class GrammarExtractor:
                 # Replace a tag with its contents
                 pe.unwrap()
 
-    def tokenize(self, line: str) -> list[Token]:
+    @staticmethod
+    def tokenize(line: str) -> list[Token]:
         """
-        Basic hand-written (forgiving) KerML and SysML grammar tokenizer
+        Basic handwritten, relaxed, fault-tolerant KerML and SysML grammar tokenizer
 
         Tokenizes one line at a time.
         """
@@ -755,7 +697,7 @@ class GrammarExtractor:
         while pos < len(line):
             ch = line[pos]
             if state == TokenKind.IMAGE:
-                if line[pos:pos + 1] == ">":
+                if ch == ">":
                     token_text += line[pos:pos + 1]
                     tokens.append(Token(TokenKind.IMAGE, token_text))
                     token_text = ""
@@ -775,17 +717,17 @@ class GrammarExtractor:
                 token_text = line[pos:pos + 4]
                 pos += 3
             elif ch.isalpha():
-                if state == TokenKind.NONTERMINAL:
+                if state == TokenKind.NON_TERMINAL:
                     token_text += ch
                 elif state == TokenKind.TERMINAL:
                     token_text += ch
                 elif state == TokenKind.IMAGE:
                     token_text += ch
                 else:
-                    state = TokenKind.NONTERMINAL
+                    state = TokenKind.NON_TERMINAL
                     token_text = ch
             elif ch.isdigit() or ch == "_" or ch == "-":
-                if state == TokenKind.NONTERMINAL:
+                if state == TokenKind.NON_TERMINAL:
                     token_text += ch
                 elif state == TokenKind.TERMINAL:
                     token_text += ch
@@ -808,8 +750,8 @@ class GrammarExtractor:
                 else:
                     LOGGER.warning(f"Tokenize: Unexpected character '{ch}' in state {state} at position {pos} in line: {line}")
             else:
-                if state == TokenKind.NONTERMINAL:
-                    tokens.append(Token(TokenKind.NONTERMINAL, token_text))
+                if state == TokenKind.NON_TERMINAL:
+                    tokens.append(Token(TokenKind.NON_TERMINAL, token_text))
                     token_text = ""
                     state = None
 
@@ -829,8 +771,9 @@ class GrammarExtractor:
                     tokens.append(Token(TokenKind.INTERPUNCTION, ch))
             pos += 1
 
-        if state == TokenKind.NONTERMINAL:
-            tokens.append(Token(TokenKind.NONTERMINAL, token_text))
+        # Process final state
+        if state == TokenKind.NON_TERMINAL:
+            tokens.append(Token(TokenKind.NON_TERMINAL, token_text))
         elif state == TokenKind.TERMINAL:
             tokens.append(Token(TokenKind.TERMINAL, token_text))
             LOGGER.warning(f"Tokenize: Missing single quote -> incomplete TERMINAL in line: {line}")
@@ -838,15 +781,15 @@ class GrammarExtractor:
             tokens.append(Token(TokenKind.IMAGE, token_text))
             LOGGER.warning(f"Tokenize: Missing '/>' -> incomplete IMAGE element in line: {line}")
         elif state is not None:
-            LOGGER.error(f"Tokenize: Final state is not None but {state}")
+            LOGGER.error(f"Tokenize: Expected final state None but got {state}")
 
         return tokens
 
     def wrap_sorted(self, words: Iterable[str], sep: str = " ", reverse: bool = False, width: int = 120) -> str:
         """
-        Return a text block, of a given maximum character width, for words sorted in ascending (or descending) alphabetical order.
+        Return a text block, of a given maximum character width, for words sorted in ascending (or descending for reverse==True) alphabetical order.
 
-        If the separator string contains the pipe symbol (|) it will be moved consistently to line ends.
+        If the separator string contains the pipe symbol (|) it will be moved consistently from line end to first character on the next line.
         """
         lead_char = ""
         trail_char = ""
@@ -858,6 +801,7 @@ class GrammarExtractor:
         sorted_words_string = f"{lead_char}{sep.join(sorted(words, reverse=reverse))}{trail_char}"
         wrapped_block = "\n".join(wrap(sorted_words_string, width=width, initial_indent="    ", subsequent_indent="    ", break_on_hyphens=False))
         if "|" in sep:
+            # Move | at line ends to indented start of next line
             wrapped_block = wrapped_block.replace(" |\n    ", "\n    | ")
         return wrapped_block
 
@@ -911,6 +855,22 @@ class GrammarExtractor:
             json.dump([x.get_as_dict() for x in self.elements], bnf_elements_json_file, default=lambda obj: obj.__dict__, indent=2, sort_keys=True, ensure_ascii=False)
 
 
+    def export_marked_up_bnf(self):
+        """
+        Export BNF grammar elements into a marked-up BNF text file
+        that is ready for manual corrections and re-processing
+
+        Note: The difference with export_plain_bnf is that Notes blocks are emitted
+        with embedded HTML markup instead of plain text.
+        """
+        bnf_extension = ".kebnf" if self.syntax_kind == "textual-bnf" else ".kgbnf"
+        marked_up_bnf_path = os.path.join(self.output_dir, self.bnf_path + "-marked_up" + bnf_extension)
+        LOGGER.info(f"Writing BNF grammar file {marked_up_bnf_path}")
+        with open(marked_up_bnf_path, mode="w", encoding="utf-8") as marked_up_bnf_file:
+            for elem in self.elements:
+                marked_up_bnf_file.write(elem.get_marked_up_txt())
+            marked_up_bnf_file.write(line_comment("End of BNF"))
+
     def export_plain_bnf(self):
         """
         Export BNF grammar elements into a plain BNF text file.
@@ -939,7 +899,7 @@ class GrammarExtractor:
             bnf_html_file.write(DATA.HTML_HEAD.format(doc_title=self.bnf_path))
 
             for elem in self.elements:
-                bnf_html_file.write(elem.get_html(self))
+                bnf_html_file.write(elem.get_html())
 
             if self.partial_productions:
                 bnf_html_file.write(f"<h2>{line_comment('Consolidated partial productions:')}</h2>")
@@ -949,6 +909,85 @@ class GrammarExtractor:
                     bnf_html_file.write(f'<pre><a id="{name}"></a>\n{block_comment(term_list_lines, add_newline=False)}\n</pre>\n')
 
             bnf_html_file.write(DATA.HTML_TAIL)
+
+
+class DATA:
+    """Collection of HTML5 data templates"""
+    HTML_HEAD = """\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{doc_title}</title>  
+<link rel="stylesheet" type="text/css" href="bnf_styles.css">
+</head>
+<body>
+"""
+    HTML_TAIL = """\
+</body>
+</html>
+"""
+
+
+def line_comment(text: str, add_newline: bool = True):
+    newline = "\n" if add_newline else ""
+    return f"{LINE_COMMENT_MARKER} {text}{newline}"
+
+
+def block_comment(texts: list[str], add_newline: bool = True):
+    formatted_text = f'\n{LINE_COMMENT_MARKER} '.join(texts)
+    text = f"{LINE_COMMENT_MARKER} {formatted_text}\n"
+    if add_newline:
+        text += "\n"
+    return text
+
+
+def report_non_ascii(text: str):
+    is_ascii = text is None or text.isascii()
+    if not is_ascii:
+        non_ascii_chars: set[str] = set()
+        for ch in text:
+            if not ch.isascii():
+                non_ascii_chars.add(ch)
+        LOGGER.warning(f"Found non-ASCII characters: {sorted(non_ascii_chars)}")
+
+
+def clean_text_content(text: Optional[str], correct_comma_dot: bool = False) -> str:
+    """Replace non-braking space and zero-width space with regular space and strip tail end"""
+    if text is None:
+        text = ""
+    text = text.replace(" ", " ").replace("​", " ")
+    if correct_comma_dot:
+        text = text.replace(" ,", ",")
+        text = text.replace(" .", ".")
+    # text = text.rstrip()
+
+    # Replace leading space(s) followed by newline(s) with a single newline
+    LEADING_SPACES_NEWLINES_PATTERN = re.compile(r"^ +\n+")
+    text = LEADING_SPACES_NEWLINES_PATTERN.sub("\n", text)
+
+    return text
+
+
+def clean_line(line: str) -> str:
+    """Replace special whitespace with regular space and strip tail end"""
+    line = line.replace(" ", " ").replace("​", " ")
+    return line.rstrip()
+
+
+def is_pascal_case(text: str) -> bool:
+    pascal_pattern = re.compile(r"^[A-Z][a-z][A-Za-z]*$")
+    return len(text) > 1 and pascal_pattern.fullmatch(text)
+
+
+def is_upper_snake_case(text: str) -> bool:
+    upper_snake_pattern = re.compile(r"^[A-Z][A-Z_]+$")
+    return len(text) > 1 and upper_snake_pattern.fullmatch(text)
+
+
+def is_lower_kebab_case(text: str) -> bool:
+    lower_kebab_pattern = re.compile(r"^[a-z][a-z0-9-]+$")
+    return len(text) > 1 and lower_kebab_pattern.fullmatch(text)
 
 
 def main() -> None:
@@ -1006,6 +1045,7 @@ def main() -> None:
                 grammar_extractor.extract_bnf(input_dir, output_dir, file_name, syntax_kind, clause_id)
                 grammar_extractor.report_checks()
                 grammar_extractor.dump_bnf_grammar_elements()
+                grammar_extractor.export_marked_up_bnf()
                 grammar_extractor.export_plain_bnf()
                 grammar_extractor.export_html()
 

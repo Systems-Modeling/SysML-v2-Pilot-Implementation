@@ -27,6 +27,7 @@ from dataclasses import dataclass, asdict
 from enum import Enum, auto
 from logging import Logger
 from textwrap import wrap
+from types import NoneType
 from typing import Any, ClassVar, Iterable, Optional
 
 from bs4 import BeautifulSoup, Tag, PageElement
@@ -581,8 +582,7 @@ class GrammarExtractor:
                             LOGGER.log(log_level, f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
 
                 for subtag in tag:
-                    assert isinstance(subtag, Tag)
-                    if not subtag.name in (None, "em", "strong", "img"):
+                    if isinstance(subtag, Tag) and subtag.name in ("em", "strong", "img"):
                         LOGGER.error(f"Unexpected tag inside <pre> element: tag={subtag}")
 
             elif tag.name == "p" and inside_bnf_clause and contains_pre_tag:

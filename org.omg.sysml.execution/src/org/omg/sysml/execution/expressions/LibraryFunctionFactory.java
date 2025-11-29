@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,27 +18,30 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-package org.omg.sysml.expressions.functions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.util.EvaluationUtil;
+package org.omg.sysml.execution.expressions;
 
-public class ConditionalFunction extends ControlFunction {
+import org.omg.sysml.execution.expressions.functions.*;
 
-	@Override
-	public String getOperatorName() {
-		return "if";
-	}
+public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
+	
+	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		Boolean test = evaluator.booleanValue(invocation, 0, target);
-		return test == null? EvaluationUtil.singletonList(invocation):
-			   test? evaluator.expressionValue(invocation, 1, target):
-			   evaluator.expressionValue(invocation, 2, target);
+	protected void initializeFunctionMap() {
+		super.initializeFunctionMap();
+		
+		put(new SizeFunction());
+		put(new IsEmptyFunction());
+		put(new NotEmptyFunction());
+		put(new IncludesFunction());
+		put(new ExcludesFunction());
+		
+		put(new SumFunction());
+		put(new ProdFunction());
+		
+		put(new StringLengthFunction());
+		put(new StringSubstringFunction());
 	}
 
 }

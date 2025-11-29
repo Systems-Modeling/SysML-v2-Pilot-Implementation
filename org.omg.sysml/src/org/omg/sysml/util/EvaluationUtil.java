@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.expressions.util;
+package org.omg.sysml.util;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,8 +31,10 @@ import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
@@ -41,18 +43,11 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.TypeUtil;
-
-import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
@@ -145,7 +140,7 @@ public class EvaluationUtil {
 		if (object instanceof List) {
 			((List<?>)object).stream().
 				map(EvaluationUtil::elementFor).
-				filter(Predicates.notNull()).
+				filter(e->e != null).
 				forEachOrdered(results::add);
 		} else if (object != null) {
 			Element element = elementFor(object);
@@ -258,6 +253,20 @@ public class EvaluationUtil {
 				filter(f->FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
 				findFirst().orElse(null);
 	}
+	
+	public static Expression getResultExpressionFor(Type type) {
+		Expression resultExpression = null;
+		if (type != null) {
+			resultExpression = ExpressionUtil.getResultExpressionOf(type);
+			if (resultExpression == null) {
+				Feature resultParameter = TypeUtil.getResultParameterOf(type);
+				if (resultParameter != null) {
+					resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
+				}
+			}
+		}
+		return resultExpression;
+	}
 
 	public static boolean isMetaclassFeature(Element element) {
 		return getMetaclassReferenceOf(element) != null;
@@ -298,6 +307,44 @@ public class EvaluationUtil {
 
 	public static boolean isMetatype(Element element, Type targetType) {
 		return TypeUtil.specializes(ElementUtil.getMetaclassOf(element), targetType);
+	}
+	
+	public static void instantiateArguments(Feature target, List<Feature> parameters, Element[] arguments) {
+		for (int i = 0; i < arguments.length && i < parameters.size(); i++) {
+			Element argument = arguments[i];
+			Feature parameter = parameters.get(i);
+			if (argument instanceof Feature) {
+				Feature actual = SysMLFactory.eINSTANCE.createFeature();
+				actual.setDirection(FeatureDirectionKind.IN);
+				TypeUtil.addOwnedFeatureTo(target, actual);
+				
+				Expression valueExpr;
+				if (argument instanceof Expression) {
+					valueExpr = (Expression)argument;
+				} else {
+					valueExpr = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
+					NamespaceUtil.addMemberTo(valueExpr, argument);
+				}
+				
+				FeatureValue featureValue = SysMLFactory.eINSTANCE.createFeatureValue();
+				featureValue.setValue(valueExpr);
+				actual.getOwnedRelationship().add(featureValue);
+				
+				Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				redefinition.setRedefinedFeature(parameter);
+				redefinition.setRedefiningFeature(actual);
+				actual.getOwnedRelationship().add(redefinition);
+			}
+		}
+	}
+	
+	public static Expression createInvocationOf(Expression expression, Element... arguments) {
+		Expression invocation = SysMLFactory.eINSTANCE.createExpression();
+		FeatureUtil.addSubsettingTo(invocation).setSubsettedFeature(expression);
+
+		List<Feature> parameters = TypeUtil.getAllParametersOf(expression);
+		instantiateArguments(invocation, parameters, arguments);		
+		return invocation;
 	}
 
 }

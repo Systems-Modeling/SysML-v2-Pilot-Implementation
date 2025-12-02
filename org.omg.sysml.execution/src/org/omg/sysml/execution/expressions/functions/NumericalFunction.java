@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,26 +18,16 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-package org.omg.sysml.expressions.functions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
+package org.omg.sysml.execution.expressions.functions;
 
-public class NotEmptyFunction extends SequenceFunction {
+import org.omg.sysml.expressions.functions.LibraryFunction;
+
+public abstract class NumericalFunction implements LibraryFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "notEmpty";
-	}
-
-	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
-		return list == null? EvaluationUtil.singletonList(invocation): 
-			EvaluationUtil.booleanResult(!list.isEmpty());
+	public String getPackageName() {
+		return "NumericalFunctions";
 	}
 
 }

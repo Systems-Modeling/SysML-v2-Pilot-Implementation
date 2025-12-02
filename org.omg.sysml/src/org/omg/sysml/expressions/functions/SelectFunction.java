@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -12,41 +12,40 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-
 package org.omg.sysml.expressions.functions;
+
+import java.util.function.BiFunction;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.EvaluationUtil;
 
-public class StringSubstringFunction implements LibraryFunction {
-
-	@Override
-	public String getPackageName() {
-		return "StringFunctions";
-	}
+public class SelectFunction extends ControlFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "Substring";
+		return "select";
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		String x = evaluator.stringValue(invocation, 0, target);
-		Integer lower = evaluator.integerValue(invocation, 1, target);
-		Integer upper = evaluator.integerValue(invocation, 2, target);
-		return x == null || lower == null || upper == null? EvaluationUtil.singletonList(invocation):
-			   lower < 1 || upper > x.length() || lower > upper + 1 ? EvaluationUtil.nullList(): 
-			   EvaluationUtil.stringResult(x.substring(lower - 1, upper));
+	public EList<Element> invoke(InvocationExpression invocation, Element target,
+			ModelLevelExpressionEvaluator evaluator) {
+		return collectSelected(invocation, target, evaluator, new BiFunction<>() {
+			@Override
+			public EList<Element> apply(Element value, EList<Element> exprValue) {
+				return exprValue != null && exprValue.size() == 1 && Boolean.TRUE.equals(EvaluationUtil.valueOf(exprValue.get(0)))?
+						EvaluationUtil.singletonList(value):
+						EvaluationUtil.nullList();
+			}			
+		});
 	}
 
 }

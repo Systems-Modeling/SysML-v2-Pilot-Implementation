@@ -21,12 +21,27 @@
 
 package org.omg.sysml.delegate.setting;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ConstraintDefinition;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 
-public class ConnectorAsUsage_defaultFeaturingType_SettingDelegate extends Connector_defaultFeaturingType_SettingDelegate {
+public class Definition_directedUsage_SettingDelegate extends DefaultDerivedPropertySettingDelegate {
 
-	public ConnectorAsUsage_defaultFeaturingType_SettingDelegate(EStructuralFeature eStructuralFeature) {
-		super(eStructuralFeature);
+	public Definition_directedUsage_SettingDelegate(EStructuralFeature eStructuralFeature) {
+		super(eStructuralFeature);		
 	}
 
+	@Override
+	protected EList<?> basicGet(InternalEObject owner) {
+		return owner instanceof ActionDefinition?
+				new DerivedEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID(), new int[] {SysMLPackage.ACTION_DEFINITION__PARAMETER}):
+			   owner instanceof ConstraintDefinition?
+				new DerivedEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID(), new int[] {SysMLPackage.CONSTRAINT_DEFINITION__PARAMETER}):
+				super.basicGet(owner);
+	}
 }

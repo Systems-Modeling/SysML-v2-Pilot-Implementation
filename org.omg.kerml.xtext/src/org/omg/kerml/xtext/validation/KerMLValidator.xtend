@@ -88,21 +88,21 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.CrossSubsetting
 import org.omg.sysml.lang.sysml.Annotation
+import org.omg.sysml.lang.sysml.InstantiationExpression
+import org.omg.sysml.lang.sysml.ConstructorExpression
 
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.EvaluationUtil
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 
-import org.omg.sysml.expressions.util.EvaluationUtil
 import java.util.Collections
 import java.util.HashMap
 import java.util.Set
 import java.util.Map
-import org.omg.sysml.lang.sysml.InstantiationExpression
-import org.omg.sysml.lang.sysml.ConstructorExpression
 
 /**
  * This class contains custom validation rules. 
@@ -599,7 +599,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
 		val ownedCrossFeature = f.ownedCrossFeature()
 		if (crossFeature !== null) {
-			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f);
 			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
 				exists[cf | cf !== null && !TypeUtil.specializes(crossFeature, cf)]) {
 				if (f.ownedCrossSubsetting === null) {

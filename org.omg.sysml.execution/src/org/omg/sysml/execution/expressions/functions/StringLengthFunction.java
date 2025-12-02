@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,25 +18,31 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-package org.omg.sysml.expressions.functions;
+
+package org.omg.sysml.execution.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.EvaluationUtil;
 
-public class IsEmptyFunction extends SequenceFunction {
+public class StringLengthFunction extends StringFunction {
+	
+	@Override
+	public String getPackageName() {
+		return "StringFunctions";
+	}
 
 	@Override
 	public String getOperatorName() {
-		return "isEmpty";
+		return "Length";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
-		return list == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(list.isEmpty());
+		String x = evaluator.stringValue(invocation, 0, target);
+		return x == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.integerResult(x.length());
 	}
 
 }

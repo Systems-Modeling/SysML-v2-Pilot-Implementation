@@ -22,6 +22,7 @@
 
 package org.omg.sysml.interactive.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -29,8 +30,21 @@ import org.omg.sysml.interactive.SysMLInteractive;
 
 public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 
+	protected void assertElement(String message, String expected, String actual) {
+		message = message == null? "": message + " ";
+		assertTrue(message + "expected: " + expected + " actual: " + actual, actual.startsWith(expected));
+	}
+	
 	protected void assertElement(String expected, String actual) {
-		assertTrue("expected: " + expected + " actual: " + actual, actual.startsWith(expected));
+		assertElement(null, expected, actual);
+	}
+	
+	protected void assertList(String[] expecteds, String actual) {
+		String[] actuals = actual.isEmpty()? new String[] {}: actual.split("\n");
+		assertEquals("length", expecteds.length, actuals.length);
+		for (int i = 0; i < expecteds.length; i++) {
+			assertElement("[" + i + "]", expecteds[i], actuals[i]);
+		}
 	}
 	
 	public final String evalTest1 =
@@ -357,4 +371,39 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralRational 4.0", instance.eval("2.0 ^ 2", null));
 	}
 
+	@Test
+	public void testListOpsExpression() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertList(new String[] {}, instance.eval("null", null));
+		assertList(new String[] {}, instance.eval("()", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("(1, 2, 3)", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("1..3", null));
+		assertElement("LiteralInteger 3", instance.eval("SequenceFunctions::size((1, 2, 3))", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), 1)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), 5)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::excludes((1, 2, 3), 1)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::excludes((1, 2, 3), 5)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::isEmpty(null)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty(1)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty((1,2,3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::notEmpty(null)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty(1)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty((1,2,3))", null));
+	}
+	
+	@Test
+	public void testNumericalFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
+	}
+	
+	@Test
+	public void testControlOpEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3).{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3).?{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::collect{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::select{in x : ScalarValues::Integer; x < 3}", null));
+	}
 }

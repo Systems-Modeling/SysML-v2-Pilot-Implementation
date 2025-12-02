@@ -6,4 +6,5 @@ h5 {font-size:14pt;}
 h6 {font-size:14pt;}
 /*img {margin-left:0pt;}*/
 p, li {font-family: "Times New Roman", Times, serif; font-size: 14pt;}
+ol, ul {list-style-type: none; list-style-position: inside;}
 code, pre, tt {font-family: "Courier New", Courier, monospace; font-size: 12pt; background-color: #e0eeee}

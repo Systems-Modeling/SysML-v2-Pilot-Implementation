@@ -30,7 +30,7 @@ from textwrap import wrap
 from types import NoneType
 from typing import Any, ClassVar, Iterable, Optional
 
-from bs4 import BeautifulSoup, Tag, PageElement
+from bs4 import BeautifulSoup, Tag, PageElement, NavigableString
 
 from lark import Lark, Transformer, Tree, UnexpectedInput
 
@@ -60,10 +60,21 @@ class TokenKind(Enum):
     LINE_COMMENT = auto()
 
 
+class RenderMode(Enum):
+    HTML = auto()
+    TXT = auto()
+
 @dataclass
 class Token:
     kind: TokenKind = None
     text: str = ""
+
+
+@dataclass
+class ListStackItem:
+    kind: str = ""
+    level: int = 0
+    item_count: int = 0
 
 
 @dataclass
@@ -74,7 +85,9 @@ class Grammar:
 
 @dataclass
 class GrammarElement:
-    extractor: ClassVar["GrammarExtractor"]
+    """Abstract superclass for any element of the internal grammar metamodel"""
+    processor: ClassVar["GrammarProcessor"]
+    """the activated GrammarProcessor instance"""
     clause_id: str
     lines: list[str]
 
@@ -104,6 +117,23 @@ class GrammarElement:
         append "_" to all uppercase tokens because the HTML anchor id attribute is not case-sensitive
         """
         return f"{candidate_anchor_id}_" if candidate_anchor_id.isupper() else candidate_anchor_id
+
+
+#dataclass
+class Comment(GrammarElement):
+    def get_marked_up_txt(self) -> str:
+        return self.get_txt()
+
+    def get_txt(self) -> str:
+        rendered_string = "\n".join(self.lines)
+        return f"{rendered_string}\n\n"
+
+    def get_html(self) -> str:
+        if self.lines[0].startswith("<"):
+            rendered_string = "".join(self.lines)
+        else:
+            rendered_string = "<br>\n".join(self.lines)
+        return f"<p>{rendered_string}\n</p>\n"
 
 
 @dataclass
@@ -169,7 +199,7 @@ class Production(GrammarElement):
         html_lines: list[str] = []
         for html_line in self.lines:
             pieces = []
-            tokens = GrammarExtractor.tokenize(html_line)
+            tokens = GrammarProcessor.tokenize(html_line)
             for token in tokens:
                 is_hyperlink_resolved = False
                 if token.kind == TokenKind.NON_TERMINAL:
@@ -182,11 +212,11 @@ class Production(GrammarElement):
                         pass
                     else:
                         # Try to resolve hyperlink to identifier in reverse order of known grammars
-                        for grammar in reversed(self.extractor.grammars):
+                        for grammar in reversed(self.processor.grammars):
                             if token.text in grammar.production_names:
                                 # Production declaration found, so add hyperlink to declaration anchor
                                 # The hyperlink works if other HTML grammar files are in the same directory as the current one
-                                html_path = "" if grammar.name == self.extractor.bnf_path else f"{grammar.name}.html"
+                                html_path = "" if grammar.name == self.processor.bnf_path else f"{grammar.name}.html"
                                 anchor_id = self.get_safe_anchor_id(token.text)
                                 pieces.append(f'<a href="{html_path}#{anchor_id}">{token.text}</a>')
                                 is_hyperlink_resolved = True
@@ -237,43 +267,43 @@ class NoteList(GrammarElement):
     html_snippets: list[str]
 
     def get_marked_up_txt(self) -> str:
-        rendered_lines = block_comment(self.get_html().strip().split("\n"))
-        return rendered_lines
+        rendered_lines = ["Notes:"] + self.lines
+        rendered_string = block_comment(rendered_lines)
+        return rendered_string
 
     def get_txt(self) -> str:
-        rendered_lines = ["Notes:"] + self.lines
-        return block_comment(rendered_lines)
+        rendered_lines = ["Notes:"] + [remove_html_tags(x) for x in self.lines]
+        rendered_string = block_comment(rendered_lines)
+        return rendered_string
 
     def get_html(self) -> str:
-        html_lines = [f"<p>{LINE_COMMENT_MARKER} <strong>Notes</strong></p>"]
-        html_lines.extend([str(x) for x in self.html_snippets])
-        rendered_lines = "\n".join(html_lines)
-        rendered_lines = rendered_lines.replace(" ", " ").replace("​", " ")
-        return f"{rendered_lines}\n"
+        rendered_lines = [f"<p>\n{LINE_COMMENT_MARKER} <strong>Notes:</strong></p>"]
+        for html_snippet in self.html_snippets:
+            rendered_lines.extend(self.processor.render_nested_lists(html_snippet, mode=RenderMode.HTML, apply_line_comment=True).split("\n"))
+        rendered_string = "\n".join(rendered_lines)
+        return rendered_string
 
 
-class GrammarExtractor:
+class GrammarProcessor:
     """
-    Grammar extractor that scans a given HTML source file for KerML or SysML BNF snippets, extracts them
-    and validates all BNF productions.
-    Mistakes or ambiguous productions are reported in the form of WARNING or ERROR messages.
+    Grammar processor that handles KerML and SysML2 BNF grammars
 
-    The extractor processes two kinds of grammars:
-    - concrete textual notation;
-    - concrete graphical notation.
+    The processor has two main methods:
+    - extract_bnf_from_spec(...): extracts BNF grammar snippets from a given KerML or SysML spec file in raw (View Editor) HTML format
+    - process_marked_up_bnf(...): processes a (corrected) BNF grammar from a given KerML or SysML marked_up text file
 
-    The extractor produces the following outputs:
-    - a plain text file containing a machine-readable version of each BNF grammar,
-      with extension .kebnf for a textual EBNF source and extension .kgbnf for a graphical EBNF source;
-    - an HTML file containing a human-readable version of each BNF grammar, in which all references to terms are hyperlinked to their declaration;
-    - a log file containing diagnostic information (DEBUG, INFO, WARNING, ERROR messages) about the processed grammars.
+    Both can process two kinds of grammars:
+    - concrete textual notation
+    - concrete graphical notation
+
+    Mistakes or ambiguous productions and notes are logged in the form of WARNING or ERROR messages.
     """
     def __init__(self):
         self.start_timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
         self.input_dir = ""
         self.output_dir = ""
-        self.spec_path: str = ""
-        self.spec_path_previous: Optional[str] = None
+        self.input_path: str = ""
+        self.input_path_previous: Optional[str] = None
         self.soup: Optional[BeautifulSoup] = None
         self.spec_title = ""
         self.bnf_clause_id: str = ""
@@ -291,19 +321,26 @@ class GrammarExtractor:
         self.image_map: dict[str, str] = dict()
 
         # Provide a backlink to this GrammarExtractor inside the GrammarElements
-        GrammarElement.extractor = self
+        GrammarElement.processor = self
 
-    def extract_bnf(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
+    def extract_bnf_from_spec(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
         """
         extract BNF productions and notes from raw HTML dump of a KerML or SysML specification
+
+        This method produces the following outputs:
+        - a plain text file containing a machine-readable version of each BNF grammar,
+          with extension .kebnf for a textual EBNF source and extension .kgbnf for a graphical EBNF source;
+        - an HTML file containing a human-readable version of each BNF grammar, in which all references to terms are hyperlinked to their declaration;
+        - a log file containing diagnostic information (DEBUG, INFO, WARNING, ERROR messages) about the processed grammars.
 
         This method uses heuristics to process the raw HTML input, which may contain format and content errors.
         """
         self.input_dir = input_dir
         self.output_dir = output_dir
+        self.input_path = os.path.join(self.input_dir, input_file)
+
         if syntax_kind == "textual-bnf":
             self.syntax_kind = syntax_kind
-            spec_file_name = os.path.basename(input_file)
             self.bnf_path = input_file.replace("-spec.html", "-textual-bnf")
             self.parser = Lark.open("kebnf_textual_grammar.lark", rel_to=__file__, parser="lalr")
         elif syntax_kind == "graphical-bnf":
@@ -318,7 +355,6 @@ class GrammarExtractor:
             LOGGER.critical(f"Unsupported BNF mode: {syntax_kind}, terminating ...\n")
             sys.exit(1)
 
-        self.spec_path = os.path.join(self.input_dir, input_file)
         self.bnf_clause_id = bnf_clause_id
         self.spec_title = ""
         self.elements = []
@@ -331,21 +367,21 @@ class GrammarExtractor:
         self.image_map = dict()
 
         LOGGER.info(20 * "=")
-        LOGGER.info(f"Extract BNF from {self.spec_path} syntax-kind={syntax_kind} clause={self.bnf_clause_id} at {self.start_timestamp}")
+        LOGGER.info(f"Extract BNF from {self.input_path} syntax-kind={syntax_kind} clause={self.bnf_clause_id} at {self.start_timestamp}")
         LOGGER.info(20 * "=")
 
-        self.elements.append(Info("", [], source=self.spec_path.replace("\\", "/"), timestamp=self.start_timestamp ))
+        self.elements.append(Info("", [], source=self.input_path.replace("\\", "/"), timestamp=self.start_timestamp))
 
         # Regular expression patterns
         KEYWORD_PATTERN = re.compile(r"('[a-z]{2,}')")
         SYMBOL_PATTERN = re.compile(r"('[^A-Za-z\s]+')")
         SEE_NOTE_PATTERN = re.compile(r"^[ \t]*[(]?[ \t]*See Note.*$", flags=re.IGNORECASE)
 
-        if self.spec_path == self.spec_path_previous:
+        if self.input_path == self.input_path_previous:
             # Skip reparsing the HTML spec and reuse self.soup
             pass
         else:
-            with open(self.spec_path, mode="r", encoding="utf-8") as html_spec:
+            with open(self.input_path, mode="r", encoding="utf-8") as html_spec:
                 self.soup = BeautifulSoup(html_spec, "html.parser")
 
         inside_bnf_clause = False
@@ -576,7 +612,7 @@ class GrammarExtractor:
                         try:
                             parse_tree = self.parser.parse(current_production_text)
                         except UnexpectedInput as e:
-                            LOGGER.error(f"Parse error in {self.spec_path} {clause_id} in production:\n{current_production_text}\n{e}")
+                            LOGGER.error(f"Parse error in {self.input_path} {clause_id} in production:\n{current_production_text}\n{e}")
                         else:
                             log_level = logging.INFO if clause_id in ("8.2.3.6",) else logging.DEBUG
                             LOGGER.log(log_level, f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
@@ -600,29 +636,125 @@ class GrammarExtractor:
                 LOGGER.debug(f"note <ol> tag={tag}")
                 list_item_count = 0
                 note_list = NoteList(clause_id, [], [])
-                for subtag in tag:
-                    if subtag.name == "li":
-                        list_item_count += 1
-                        text_content = clean_text_content(" ".join(subtag.stripped_strings), True)
-                        note_content = f"  {list_item_count}. {text_content}"
-                        note_list.lines.append(note_content)
 
-                        # Update the contents of <li> within the HTML tree
-                        self.cleanup_note_html(subtag)
+                # Update the contents of <ol> within the HTML tree
+                self.cleanup_note_html(tag)
 
-                note_list.html_snippets.append(str(tag))
+                # Store marked up text and html versions
+                html_snippet = clean_text_content(normalize_whitespace(str(tag)))
+                marked_up_text = self.render_nested_lists(html_snippet, mode=RenderMode.TXT, apply_line_comment=False).split("\n")
+                note_list.lines.extend(marked_up_text)
+                note_list.html_snippets.append(html_snippet)
                 self.elements.append(note_list)
+
                 contains_note_reference = False
                 contains_notes_section = False
 
         # End main visit tag loop
 
+        self.elements.append(Comment(clause_id="", lines=[line_comment("End of BNF")]))
+
         if self.syntax_kind == "textual-bnf":
             self.report_checks()
 
-        self.spec_path_previous = self.spec_path
+        self.input_path_previous = self.input_path
 
         # End def extract_bnf()
+
+    def parse_marked_up_bnf(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
+        """
+        process a (corrected) marked_up BNF grammar file, verify the grammar and generate plain text and hyperlinked HTML output
+
+        This method produces the following outputs:
+        - a plain text file containing a machine-readable version of each BNF grammar,
+          with extension .kebnf for a textual EBNF source and extension .kgbnf for a graphical EBNF source;
+        - an HTML file containing a human-readable version of each BNF grammar, in which all references to terms are hyperlinked to their declaration;
+        - a log file containing diagnostic information (DEBUG, INFO, WARNING, ERROR messages) about the processed grammars.
+        """
+        self.input_dir = input_dir
+        self.output_dir = output_dir
+        self.input_path = os.path.join(self.input_dir, input_file)
+
+        if syntax_kind == "textual-bnf":
+            self.syntax_kind = syntax_kind
+            if input_file.endswith("-marked_up.kebnf"):
+                self.bnf_path = input_file.replace("-marked_up.kebnf", "")
+                self.parser = Lark.open("kebnf_textual_grammar.lark", rel_to=__file__, parser="lalr")
+            else:
+                LOGGER.critical(f"Unsupported input file for process_marked_up_bnf: filename must end with -marked-up.kebnf, terminating ...\n")
+                sys.exit(1)
+        elif syntax_kind == "graphical-bnf":
+            self.syntax_kind = syntax_kind
+            self.bnf_path = input_file.replace("-spec.html", "-graphical-bnf")
+            if input_file.endswith("-marked_up.kgbnf"):
+                self.bnf_path = input_file.replace("-marked_up.kgbnf", "")
+                self.parser = Lark.open("kgbnf_graphical_grammar.lark", rel_to=__file__, parser="lalr")
+            else:
+                LOGGER.critical(f"Unsupported input file for process_marked_up_bnf: filename must end with -marked-up.kgbnf, terminating ...\n")
+                sys.exit(1)
+        elif syntax_kind == "kerml-library":
+            raise NotImplementedError
+        elif syntax_kind == "sysml-library":
+            raise NotImplementedError
+        else:
+            LOGGER.critical(f"Unsupported BNF mode: {syntax_kind}, terminating ...\n")
+            sys.exit(1)
+
+        self.bnf_clause_id = bnf_clause_id
+        self.spec_title = ""
+        self.elements = []
+        self.grammars.append(Grammar(self.bnf_path, set()))
+        self.reserved_keyword_set = set()
+        self.extracted_keyword_set = set()
+        self.reserved_symbol_set = set()
+        self.extracted_symbol_set = set()
+        self.partial_productions = dict()
+        self.image_map = dict()
+
+        LOGGER.info(20 * "=")
+        LOGGER.info(f"Process BNF from {self.input_path} syntax-kind={syntax_kind} clause={self.bnf_clause_id} at {self.start_timestamp}")
+        LOGGER.info(20 * "=")
+
+        self.elements.append(Info("", [], source=self.input_path.replace("\\", "/"), timestamp=self.start_timestamp))
+
+        candidate_productions = []
+        marked_up_file = open(self.input_path, mode="r", encoding="utf-8")
+
+        for candidate_production in marked_up_file.read().split("\n\n"):
+            candidate_productions.append(candidate_production)
+
+        inside_bnf_clause = False
+        contains_note_reference = False
+        contains_notes_section = False
+        contains_pre_tag = False
+        count = 0
+        clause_id = ""
+        clause_title = ""
+
+        comment_clause_pattern = re.compile(r"^(// )(Clause )([0-9.]+) (.+)")
+
+        # Walk through all candidate productions (including comments) and build internal model
+        for candidate_production in candidate_productions:
+            if candidate_production.startswith(LINE_COMMENT_MARKER):
+                # process comment
+                clause_match = comment_clause_pattern.match(candidate_production)
+                if clause_match:
+                    clause_id = clause_match.group(3)
+                    clause_title = clause_match.group(4)
+                    self.elements.append(Heading(clause_id=clause_id, lines=[candidate_production[3:]]))
+                else:
+                    self.elements.append(Comment(clause_id=clause_id, lines=candidate_production.split("\n")))
+            else:
+                # This should be a proper BNF production
+                name = candidate_production.split(" ", 1)[0].strip()
+                pieces = candidate_production.split("=", 1)[0].split(":", 1)
+                if len(pieces) == 2:
+                    abstract_syntax_type = pieces[1].strip()
+                else:
+                    abstract_syntax_type = name
+                self.elements.append(Production(clause_id=clause_id, lines=candidate_production.split("\n"), name=name, abstract_syntax_type=abstract_syntax_type))
+                pass
+        LOGGER.info(f"Completed parsing {self.input_path}")
 
     def rewrite_img_element(self, current_production: Production, img_count: int, img_index: int, line: str) -> (str, int):
         # Rewrite the <img .../> element
@@ -635,8 +767,9 @@ class GrammarExtractor:
         svg_file_path = f"{IMAGES_DIR}/{current_production.name}{img_postfix}.svg"
         # Check whether the target SVG file exists, if so compute and update its width scale
         width_value: float = -1.0
-        if os.path.exists(f"{self.output_dir}/{svg_file_path}"):
-            with open(f"{self.output_dir}/{svg_file_path}", "r") as svg_file:
+        full_svg_file_path = os.path.join(self.output_dir, svg_file_path)
+        if os.path.exists(full_svg_file_path):
+            with open(full_svg_file_path, "r") as svg_file:
                 svg_soup = BeautifulSoup(svg_file, "lxml-xml")
                 LOGGER.debug(f"Read {svg_file_path} into soup")
                 svg_tag = svg_soup.find("svg:svg")
@@ -663,6 +796,7 @@ class GrammarExtractor:
                 # Recurse depth-first
                 self.cleanup_note_html(child)
             if pe.name in ("ol", "ul", "li", "em", "strong", "code"):
+                # Do nothing
                 pass
             elif pe.name == "mms-view-link":
                 # MMS VE cross-reference: remove any tags and extract cross-ref clause id only
@@ -785,11 +919,117 @@ class GrammarExtractor:
 
         return tokens
 
-    def wrap_sorted(self, words: Iterable[str], sep: str = " ", reverse: bool = False, width: int = 120) -> str:
+    @staticmethod
+    def render_nested_lists(html_snippet: str, mode: RenderMode, apply_line_comment: bool) -> str:
+        """
+        Return
+
+        :param html_snippet: string in HTML format that contains nested ol and/or ul lists
+        :param mode: output render mode
+        :param apply_line_comment: whether to apply BNF line comment markers
+        :return: rendered HTML snippet
+        """
+        # Remove all whitespace, including newlines, surrounding ol, ul and li elements
+        LOGGER.debug(f"original html_snippet=\n{html_snippet}")
+        list_start_pattern = re.compile(r"\s*(<(ol|ul|li)>)\s*")
+        list_end_pattern = re.compile(r"\s*(</(ol|ul|li)>)\s*")
+        html_snippet = list_start_pattern.sub(r"\1", html_snippet)
+        html_snippet = list_end_pattern.sub(r"\1", html_snippet)
+        LOGGER.debug(f"cleaned  html_snippet=\n{html_snippet}")
+
+        indent = 2*" "
+        bullet = chr(0x2022)
+        line_break_pattern = re.compile(r"<(br|br/|/ul|/ol)>\n*")
+
+        level = 0
+        stack: list[ListStackItem] = []
+        buffer: list[str] = []
+        pos: int = 0
+
+        while pos < len(html_snippet):
+            if html_snippet[pos:pos + 4] == "<ol>":
+                level += 1
+                if buffer and buffer[-1][-1] != "\n":
+                    buffer.append("\n")
+                if level == 1:
+                    stack.append(ListStackItem("ol", level, 0))
+                    if mode == RenderMode.HTML:
+                        buffer.append("<ol>\n")
+                    elif mode == RenderMode.TXT:
+                        pass
+                else:
+                    # Change level 2+ lists to ul, since it improves readability
+                    stack.append(ListStackItem("ul", level, 0))
+                    if mode == RenderMode.HTML:
+                        buffer.append("<ul>\n")
+                    elif mode == RenderMode.TXT:
+                        pass
+                pos += 4
+            elif html_snippet[pos:pos + 5] == "</ol>":
+                if mode == RenderMode.HTML:
+                    buffer.append(f"</{stack[-1].kind}>\n")
+                elif mode == RenderMode.TXT:
+                    pass
+                stack.pop()
+                level -= 1
+                pos += 5
+            elif html_snippet[pos:pos + 4] == "<ul>":
+                level += 1
+                stack.append(ListStackItem("ul", level, 0))
+                if buffer and buffer[-1][-1] != "\n":
+                    buffer.append("\n")
+                if mode == RenderMode.HTML:
+                    buffer.append("<ul>\n")
+                elif mode == RenderMode.TXT:
+                    pass
+                pos += 4
+            elif html_snippet[pos:pos + 5] == "</ul>":
+                if mode == RenderMode.HTML:
+                    buffer.append(f"</{stack[-1].kind}>\n")
+                elif mode == RenderMode.TXT:
+                    pass
+                stack.pop()
+                level -= 1
+                pos += 5
+            elif html_snippet[pos:pos + 4] == "<li>":
+                comment_mark = f"{LINE_COMMENT_MARKER} " if apply_line_comment else ""
+                if stack[-1].kind == "ol":
+                    stack[-1].item_count += 1
+                    if mode == RenderMode.HTML:
+                        buffer.append(f"<li>{comment_mark}{stack[-1].item_count}. ")
+                    elif mode == RenderMode.TXT:
+                        buffer.append(f"{comment_mark}{stack[-1].level*indent}{stack[-1].item_count}. ")
+                elif stack[-1].kind == "ul":
+                    if mode == RenderMode.HTML:
+                        buffer.append(f"<li>{comment_mark}{bullet} ")
+                    elif mode == RenderMode.TXT:
+                        buffer.append(f"{comment_mark}{stack[-1].level*indent}{bullet} ")
+                pos += 4
+            elif html_snippet[pos:pos + 5] == "</li>":
+                if mode == RenderMode.HTML:
+                    buffer.append("</li>\n")
+                elif mode == RenderMode.TXT:
+                    if buffer[-1][-1] != "\n":
+                        buffer.append("\n")
+                pos += 5
+            else:
+                if mode == RenderMode.HTML and apply_line_comment and line_break_pattern.match(buffer[-1]):
+                    buffer.append(f"{LINE_COMMENT_MARKER} ")
+                buffer.append(html_snippet[pos])
+                pos += 1
+            # end while loop
+
+        if mode == RenderMode.TXT and buffer[-1] == "\n":
+            buffer.pop()
+        rendered_string = "".join(buffer)
+        return rendered_string
+
+    @staticmethod
+    def wrap_sorted(words: Iterable[str], sep: str = " ", reverse: bool = False, width: int = 120) -> str:
         """
         Return a text block, of a given maximum character width, for words sorted in ascending (or descending for reverse==True) alphabetical order.
 
-        If the separator string contains the pipe symbol (|) it will be moved consistently from line end to first character on the next line.
+        If the separator string contains the pipe symbol (|) it will be moved consistently from line end to the first character on the next line.
         """
         lead_char = ""
         trail_char = ""
@@ -869,7 +1109,6 @@ class GrammarExtractor:
         with open(marked_up_bnf_path, mode="w", encoding="utf-8") as marked_up_bnf_file:
             for elem in self.elements:
                 marked_up_bnf_file.write(elem.get_marked_up_txt())
-            marked_up_bnf_file.write(line_comment("End of BNF"))
 
     def export_plain_bnf(self):
         """
@@ -881,7 +1120,6 @@ class GrammarExtractor:
         with open(plain_bnf_path, mode="w", encoding="utf-8") as plain_bnf_file:
             for elem in self.elements:
                 plain_bnf_file.write(elem.get_txt())
-            plain_bnf_file.write(line_comment("End of BNF"))
 
             if self.partial_productions:
                 plain_bnf_file.write(f"\n{line_comment('Consolidated partial productions:')}\n")
@@ -975,6 +1213,20 @@ def clean_line(line: str) -> str:
     return line.rstrip()
 
 
+def normalize_whitespace(text: str) -> str:
+    """Return string in which all sequences of 2 or more whitespace chars are replaced with a single space"""
+    multi_ws_pattern = re.compile(r"\s{2,}")
+    normalized_ws_text = multi_ws_pattern.sub(" ", text)
+    return normalized_ws_text
+
+
+def remove_html_tags(text: str) -> str:
+    """Return string with HTML tags removed"""
+    tag_pattern = re.compile(r"<[^>]+>")
+    text_without_tags = tag_pattern.sub("", text)
+    return text_without_tags
+
+
 def is_pascal_case(text: str) -> bool:
     pascal_pattern = re.compile(r"^[A-Z][a-z][A-Za-z]*$")
     return len(text) > 1 and pascal_pattern.fullmatch(text)
@@ -1027,7 +1279,7 @@ def main() -> None:
     output_dir = args.output_dir
 
     # Construct the GrammarExtractor and execute
-    grammar_extractor = GrammarExtractor()
+    grammar_processor = GrammarProcessor()
 
     # Extract the requested BNF grammars from each of the given input file / clause combinations and run the backend processors
     source_json = os.path.join(args.input_dir, args.source_data)
@@ -1042,12 +1294,17 @@ def main() -> None:
             if syntax_kind in ("kerml-library", "sysml-library"):
                 LOGGER.warning(f"Processing syntax_kind={syntax_kind} for {file_name} clause={clause_id} is not yet implemented")
             else:
-                grammar_extractor.extract_bnf(input_dir, output_dir, file_name, syntax_kind, clause_id)
-                grammar_extractor.report_checks()
-                grammar_extractor.dump_bnf_grammar_elements()
-                grammar_extractor.export_marked_up_bnf()
-                grammar_extractor.export_plain_bnf()
-                grammar_extractor.export_html()
+                if file_name.endswith("-marked_up.kebnf") or file_name.endswith("-marked_up.kgbnf"):
+                    grammar_processor.parse_marked_up_bnf(input_dir, output_dir, file_name, syntax_kind, clause_id)
+                    grammar_processor.export_plain_bnf()
+                    grammar_processor.export_html()
+                else:
+                    grammar_processor.extract_bnf_from_spec(input_dir, output_dir, file_name, syntax_kind, clause_id)
+                    grammar_processor.report_checks()
+                    grammar_processor.dump_bnf_grammar_elements()
+                    grammar_processor.export_marked_up_bnf()
+                    grammar_processor.export_plain_bnf()
+                    grammar_processor.export_html()
 
 
 if __name__ == "__main__":

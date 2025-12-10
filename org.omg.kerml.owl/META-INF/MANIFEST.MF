@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.owl
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Vendor: My Company
-Bundle-Version: 0.54.0.qualifier
+Bundle-Version: 0.55.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.owl;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

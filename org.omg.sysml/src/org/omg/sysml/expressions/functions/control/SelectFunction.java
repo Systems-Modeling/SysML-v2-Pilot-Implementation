@@ -18,35 +18,34 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+package org.omg.sysml.expressions.functions.control;
 
-package org.omg.sysml.execution.expressions;
+import java.util.function.BiFunction;
 
-import org.omg.sysml.execution.expressions.functions.numerical.*;
-import org.omg.sysml.execution.expressions.functions.sequence.*;
-import org.omg.sysml.execution.expressions.functions.string.*;
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.EvaluationUtil;
 
-public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
-	
-	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+public class SelectFunction extends ControlFunction {
 
 	@Override
-	protected void initializeFunctionMap() {
-		super.initializeFunctionMap();
-		
-		// NumericalFunctions
-		put(new SumFunction());
-		put(new ProdFunction());
-		
-		// SequenceFunctions
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
-		
-		// StringFunctions
-		put(new StringLengthFunction());
-		put(new StringSubstringFunction());
+	public String getOperatorName() {
+		return "select";
+	}
+
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target,
+			ModelLevelExpressionEvaluator evaluator) {
+		return collectSelected(invocation, target, evaluator, new BiFunction<>() {
+			@Override
+			public EList<Element> apply(Element value, EList<Element> exprValue) {
+				return exprValue != null && exprValue.size() == 1 && Boolean.TRUE.equals(EvaluationUtil.valueOf(exprValue.get(0)))?
+						EvaluationUtil.singletonList(value):
+						EvaluationUtil.nullList();
+			}			
+		});
 	}
 
 }

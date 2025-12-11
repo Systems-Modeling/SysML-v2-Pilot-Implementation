@@ -18,35 +18,31 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+package org.omg.sysml.expressions.functions.control;
 
-package org.omg.sysml.execution.expressions;
+import java.util.function.BiFunction;
 
-import org.omg.sysml.execution.expressions.functions.numerical.*;
-import org.omg.sysml.execution.expressions.functions.sequence.*;
-import org.omg.sysml.execution.expressions.functions.string.*;
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
-	
-	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+public class CollectFunction extends ControlFunction {
 
 	@Override
-	protected void initializeFunctionMap() {
-		super.initializeFunctionMap();
-		
-		// NumericalFunctions
-		put(new SumFunction());
-		put(new ProdFunction());
-		
-		// SequenceFunctions
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
-		
-		// StringFunctions
-		put(new StringLengthFunction());
-		put(new StringSubstringFunction());
+	public String getOperatorName() {
+		return "collect";
+	}
+
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target,
+			ModelLevelExpressionEvaluator evaluator) {
+		return collectSelected(invocation, target, evaluator, new BiFunction<>() {
+			@Override
+			public EList<Element> apply(Element value, EList<Element> exprValue) {
+				return exprValue;
+			}			
+		});
 	}
 
 }

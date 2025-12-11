@@ -24,7 +24,11 @@ package org.omg.sysml.expressions;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.omg.sysml.expressions.functions.*;
+import org.omg.sysml.expressions.functions.LibraryFunction;
+import org.omg.sysml.expressions.functions.base.*;
+import org.omg.sysml.expressions.functions.bool.*;
+import org.omg.sysml.expressions.functions.control.*;
+import org.omg.sysml.expressions.functions.data.*;
 import org.omg.sysml.lang.sysml.Function;
 
 public class ModelLevelLibraryFunctionFactory {
@@ -36,47 +40,46 @@ public class ModelLevelLibraryFunctionFactory {
 	protected void initializeFunctionMap() {
 		functionMap = new HashMap<>();
 		
+		// BaseFunctions
 		put(new EqualsFunction());
 		put(new NotEqualsFunction());
 		put(new SameFunction());
 		put(new NotSameFunction());
-		
-		put(new ListConcatFunction());
-		put(new ListRangeFunction());
-		put(new IndexFunction());
-		
 		put(new IsTypeFunction());
 		put(new HasTypeFunction());
 		put(new AtFunction());
 		put(new AtAtFunction());
-
 		put(new AsFunction());
 		put(new MetaFunction());
-
+		put(new ListConcatFunction());
+		put(new IndexFunction());
+		
+		// DataFunctions
+		put(new ListRangeFunction());		
 		put(new PlusFunction());
 		put(new MinusFunction());
 		put(new TimesFunction());
 		put(new DivideFunction());
 		put(new PowerFunction());
 		put(new RemainderFunction());
-		
-		put(new NotFunction());
-		put(new OrFunction());
-		put(new XorFunction());
-		put(new AndFunction());
-		
 		put(new LessThanFunction());
 		put(new LessThanOrEqualFunction());
 		put(new GreaterThanFunction());
 		put(new GreaterThanOrEqualFunction());
 		
+		// BooleanFunctions
+		put(new NotFunction());
+		put(new OrFunction());
+		put(new XorFunction());
+		put(new AndFunction());
+		
+		// ControlFunctions
 		put(new DotFunction());
 		put(new ConditionalFunction());
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
 		put(new ConditionalImpliesFunction());
-		put(new NullCoalescingFunction());
-		
+		put(new NullCoalescingFunction());		
 		put(new CollectFunction());
 		put(new SelectFunction());
 	}

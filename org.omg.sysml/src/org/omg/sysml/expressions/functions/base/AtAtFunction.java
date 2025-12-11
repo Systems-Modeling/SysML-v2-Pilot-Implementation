@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,34 +19,13 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.execution.expressions;
+package org.omg.sysml.expressions.functions.base;
 
-import org.omg.sysml.execution.expressions.functions.numerical.*;
-import org.omg.sysml.execution.expressions.functions.sequence.*;
-import org.omg.sysml.execution.expressions.functions.string.*;
-
-public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
-	
-	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+public class AtAtFunction extends AtFunction {
 
 	@Override
-	protected void initializeFunctionMap() {
-		super.initializeFunctionMap();
-		
-		// NumericalFunctions
-		put(new SumFunction());
-		put(new ProdFunction());
-		
-		// SequenceFunctions
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
-		
-		// StringFunctions
-		put(new StringLengthFunction());
-		put(new StringSubstringFunction());
+	public String getOperatorName() {
+		return "'@@'";
 	}
 
 }

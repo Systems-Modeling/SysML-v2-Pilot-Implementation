@@ -12,41 +12,22 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
 
-package org.omg.sysml.execution.expressions;
+package org.omg.sysml.execution.expressions.functions.string;
 
-import org.omg.sysml.execution.expressions.functions.numerical.*;
-import org.omg.sysml.execution.expressions.functions.sequence.*;
-import org.omg.sysml.execution.expressions.functions.string.*;
+import org.omg.sysml.expressions.functions.LibraryFunction;
 
-public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
-	
-	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
+public abstract class StringFunction implements LibraryFunction {
 
 	@Override
-	protected void initializeFunctionMap() {
-		super.initializeFunctionMap();
-		
-		// NumericalFunctions
-		put(new SumFunction());
-		put(new ProdFunction());
-		
-		// SequenceFunctions
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
-		
-		// StringFunctions
-		put(new StringLengthFunction());
-		put(new StringSubstringFunction());
+	public String getPackageName() {
+		return "StringFunctions";
 	}
 
 }

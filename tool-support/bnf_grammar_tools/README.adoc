@@ -127,8 +127,8 @@ The bnf_grammar_processor with produces the following outputs (see directory `te
 | `SysML-textual-bnf.html`              | generated browsable, hyperlinked HTML SysML textual grammar file
 | `SysML-graphical-bnf-elements.json`   | dump of the processed intermediate data model(s)
 | `SysML-graphical-bnf.kgbnf`           | generated plain text SysML graphical grammar file
-| `SysML-graphical-bnf-marked_up.kgbnf` | generated editable marked up SysML textual grammar file
-| `SysML-graphical-bnf.html`            | generated browsable, hyperlinked HTML SysML textual grammar file (See Note)
+| `SysML-graphical-bnf-marked_up.kgbnf` | generated editable marked up SysML graphical grammar file
+| `SysML-graphical-bnf.html`            | generated browsable, hyperlinked HTML SysML graphical grammar file (See Note)
 |===
 
 Note. The SVG images for the graphical BNF productions reside in `tests/KerML_and_SysML_grammars/images`. They are copied from the source in https://github.com/Systems-Modeling/Graphical-Specification-WG/tree/main/src/Graphical-BNF/_svg[Graphical-Specification-WG github repo].

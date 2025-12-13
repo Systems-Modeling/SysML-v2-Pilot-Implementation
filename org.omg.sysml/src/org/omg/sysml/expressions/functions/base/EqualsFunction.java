@@ -38,8 +38,9 @@ public class EqualsFunction extends BaseFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> x = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> y = evaluator.evaluateArgument(invocation, 1, target);
-		Boolean result = x == null || y == null? null: EvaluationUtil.equal(x, y);
-		return result == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(result);
+		return x == null || y == null? EvaluationUtil.singletonList(invocation): 
+			// Note: This allows comparison of arbitrary lists, even though the '==' function args have multiplicity 0..1.
+			EvaluationUtil.booleanResult(EvaluationUtil.equal(x, y));
 	}
 
 }

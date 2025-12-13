@@ -38,11 +38,24 @@ public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevel
 		put(new ProdFunction());
 		
 		// SequenceFunctions
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
 		put(new ExcludesFunction());
+		put(new ExcludingAtFunction());
+		put(new ExcludingFunction());
+		put(new HeadFunction());
+		put(new IncludesFunction());
+		put(new IncludesOnlyFunction());
+		put(new IncludingAtFunction());
+		put(new IncludingFunction());
+		put(new IntersectionFunction());
+		put(new IsEmptyFunction());
+		put(new LastFunction());
+		put(new NotEmptyFunction());
+		put(new SequenceEqualsFunction());
+		put(new SequenceSameFunction());
+		put(new SizeFunction());
+		put(new SubsequenceFunction());
+		put(new TailFunction());
+		put(new UnionFunction());
 		
 		// StringFunctions
 		put(new StringLengthFunction());

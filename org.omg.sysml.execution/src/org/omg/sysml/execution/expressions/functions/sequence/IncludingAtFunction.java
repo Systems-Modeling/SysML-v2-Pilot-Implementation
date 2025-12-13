@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,25 +20,42 @@
  *******************************************************************************/
 package org.omg.sysml.execution.expressions.functions.sequence;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
 
-public class ExcludesFunction extends SequenceFunction {
+public class IncludingAtFunction extends SequenceFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "excludes";
+		return "includingAt";
 	}
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> list1 = evaluator.evaluateArgument(invocation, 0, target);
-		EList<Element> list2 = evaluator.evaluateArgument(invocation, 1, target);
-		return list1 == null || list2 == null? EvaluationUtil.singletonList(invocation): 
-			EvaluationUtil.booleanResult(list2.stream().allMatch(e2->list1.stream().noneMatch(e1->EvaluationUtil.equal(e1, e2))));
+		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
+		EList<Element> values = evaluator.evaluateArgument(invocation, 1, target);
+		Element index = evaluator.argumentValue(invocation, 2, target);
+		if (seq == null || values == null || index == null) {
+			return EvaluationUtil.singletonList(invocation);
+		} else {
+			Object indexValue = EvaluationUtil.valueOf(index);
+			if (!(indexValue == null || indexValue instanceof Integer)) {
+				return EvaluationUtil.singletonList(invocation);
+			} else {
+				int i = indexValue == null? seq.size(): ((Integer)indexValue) - 1;
+				if (i < 0) {
+					i = 0;
+				}
+				EList<Element> result = new BasicEList<>(seq.subList(0, i));
+				result.addAll(values);
+				result.addAll(seq.subList(i, seq.size()));
+				return result;
+			}
+		}
 	}
 
 }

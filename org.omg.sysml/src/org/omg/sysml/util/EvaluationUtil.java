@@ -220,7 +220,7 @@ public class EvaluationUtil {
 			   x_value.equals(y_value);
 	}
 
-	public static Boolean equal(List<Element> x, List<Element> y) {
+	public static boolean equal(List<Element> x, List<Element> y) {
 		if (x.size() != y.size()) {
 			return false;
 		} else {

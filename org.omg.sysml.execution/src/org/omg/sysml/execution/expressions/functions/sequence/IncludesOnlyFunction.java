@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,11 +26,11 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
 
-public class ExcludesFunction extends SequenceFunction {
+public class IncludesOnlyFunction extends IncludesFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "excludes";
+		return "includesOnly";
 	}
 	
 	@Override
@@ -38,7 +38,9 @@ public class ExcludesFunction extends SequenceFunction {
 		EList<Element> list1 = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> list2 = evaluator.evaluateArgument(invocation, 1, target);
 		return list1 == null || list2 == null? EvaluationUtil.singletonList(invocation): 
-			EvaluationUtil.booleanResult(list2.stream().allMatch(e2->list1.stream().noneMatch(e1->EvaluationUtil.equal(e1, e2))));
+			list2.isEmpty()? EvaluationUtil.booleanResult(list1.isEmpty()):
+			list1.isEmpty()? EvaluationUtil.booleanResult(false):
+			EvaluationUtil.booleanResult(includes(list1, list2) && includes(list2, list1));
 	}
 
 }

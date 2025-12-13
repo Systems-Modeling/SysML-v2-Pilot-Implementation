@@ -35,11 +35,16 @@ public class IncludesFunction extends SequenceFunction {
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
-		Element value = evaluator.argumentValue(invocation, 1, target);
-		Boolean result = list == null && value == null? null: list.stream().anyMatch(x->EvaluationUtil.equal(x, value));
-		return result == null? EvaluationUtil.singletonList(invocation): 
-			EvaluationUtil.booleanResult(result);
+		EList<Element> list1 = evaluator.evaluateArgument(invocation, 0, target);
+		EList<Element> list2 = evaluator.evaluateArgument(invocation, 1, target);
+		return list1 == null || list2 == null? EvaluationUtil.singletonList(invocation):
+			list2.isEmpty()? EvaluationUtil.booleanResult(true):
+			list1.isEmpty()? EvaluationUtil.booleanResult(false):
+			EvaluationUtil.booleanResult(includes(list1, list2));
+	}
+	
+	protected static boolean includes(EList<Element> list1, EList<Element> list2) {
+		return list2.stream().allMatch(x->list1.stream().anyMatch(y->EvaluationUtil.equal(x, y)));
 	}
 
 }

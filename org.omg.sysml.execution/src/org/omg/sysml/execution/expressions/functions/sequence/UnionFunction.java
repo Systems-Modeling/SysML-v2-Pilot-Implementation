@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,25 +20,18 @@
  *******************************************************************************/
 package org.omg.sysml.execution.expressions.functions.sequence;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.util.EvaluationUtil;
+import org.omg.sysml.expressions.functions.base.ListConcatFunction;
 
-public class ExcludesFunction extends SequenceFunction {
+public class UnionFunction extends ListConcatFunction {
+	
+	@Override
+	public String getPackageName() {
+		return "SequenceFunctions";
+	}
 
 	@Override
 	public String getOperatorName() {
-		return "excludes";
-	}
-	
-	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> list1 = evaluator.evaluateArgument(invocation, 0, target);
-		EList<Element> list2 = evaluator.evaluateArgument(invocation, 1, target);
-		return list1 == null || list2 == null? EvaluationUtil.singletonList(invocation): 
-			EvaluationUtil.booleanResult(list2.stream().allMatch(e2->list1.stream().noneMatch(e1->EvaluationUtil.equal(e1, e2))));
+		return "union";
 	}
 
 }

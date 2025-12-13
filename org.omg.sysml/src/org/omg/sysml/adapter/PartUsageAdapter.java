@@ -82,12 +82,4 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 				 owningType instanceof CaseUsage);
 	}
 
-	@Override
-	public boolean isIgnoredParameter() {
-		PartUsage target = getTarget();
-		return super.isIgnoredParameter() || 
-				UsageUtil.isActorParameter(target) ||
-				UsageUtil.isStakeholderParameter(target);
-	}
-	
 }

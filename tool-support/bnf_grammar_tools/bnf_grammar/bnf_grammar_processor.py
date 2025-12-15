@@ -679,9 +679,6 @@ class GrammarProcessor:
 
         self.elements.append(Comment(clause_id="", lines=[line_comment("End of BNF")]))
 
-        if self.syntax_kind == "textual-bnf":
-            self.report_checks()
-
         self.input_path_previous = self.input_path
 
         # End def extract_bnf()
@@ -1018,27 +1015,28 @@ class GrammarProcessor:
         - Mismatches from the comparison of declared reserved keywords w.r.t. extracted keywords
         - Mismatches from the comparison of extracted keywords w.r.t. declared reserved keywords
         """
-        LOGGER.info("===== Start of Textual Notation Grammar Checks")
+        if self.syntax_kind == "textual-bnf":
+            LOGGER.info("===== Start of Textual Notation Grammar Checks")
 
-        # Check declared and extracted keywords
-        extracted_keywords_block = self.wrap_sorted(self.extracted_keyword_set)
-        LOGGER.info(f"Keywords extracted from textual BNF grammar scan:\n{extracted_keywords_block}")
+            # Check declared and extracted keywords
+            extracted_keywords_block = self.wrap_sorted(self.extracted_keyword_set)
+            LOGGER.info(f"Keywords extracted from textual BNF grammar scan:\n{extracted_keywords_block}")
 
-        reserved_set_diff_extracted = self.reserved_keyword_set - self.extracted_keyword_set
+            reserved_set_diff_extracted = self.reserved_keyword_set - self.extracted_keyword_set
 
-        extracted_set_diff_reserved = self.extracted_keyword_set - self.reserved_keyword_set
+            extracted_set_diff_reserved = self.extracted_keyword_set - self.reserved_keyword_set
 
-        LOGGER.info("Comparison of declared reserved keywords versus extracted keywords")
+            LOGGER.info("Comparison of declared reserved keywords versus extracted keywords")
 
-        log_level = logging.WARNING if len(reserved_set_diff_extracted) > 0 else logging.INFO
-        reserved_set_diff_block = self.wrap_sorted(reserved_set_diff_extracted)
-        LOGGER.log(log_level, f"Declared reserved keywords not in extracted keywords:\n{reserved_set_diff_block}")
+            log_level = logging.WARNING if len(reserved_set_diff_extracted) > 0 else logging.INFO
+            reserved_set_diff_block = self.wrap_sorted(reserved_set_diff_extracted)
+            LOGGER.log(log_level, f"Declared reserved keywords not in extracted keywords:\n{reserved_set_diff_block}")
 
-        log_level = logging.WARNING if len(extracted_set_diff_reserved) > 0 else logging.INFO
-        extracted_set_diff_block = self.wrap_sorted(extracted_set_diff_reserved)
-        LOGGER.log(log_level, f"Extracted keywords not in declared reserved keywords:\n{extracted_set_diff_block}")
+            log_level = logging.WARNING if len(extracted_set_diff_reserved) > 0 else logging.INFO
+            extracted_set_diff_block = self.wrap_sorted(extracted_set_diff_reserved)
+            LOGGER.log(log_level, f"Extracted keywords not in declared reserved keywords:\n{extracted_set_diff_block}")
 
-        LOGGER.info("===== End of Textual Notation Grammar Checks")
+            LOGGER.info("===== End of Textual Notation Grammar Checks")
 
         if self.syntax_kind == "graphical-bnf":
             LOGGER.info("===== Start of Graphical Notation Grammar Checks")

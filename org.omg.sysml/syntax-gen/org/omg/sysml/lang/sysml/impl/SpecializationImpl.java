@@ -281,14 +281,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new UniqueEList<Element>();
-		// TODO: Remove this?
-		// NOTE: The "general" object must NOT be resolved here, in order to avoid Xtext lazy linking errors.
-		Element general = basicGetGeneral();
+		Element general = getGeneral();
 		if (general != null) {
 			target.add(general);
 		}
@@ -307,13 +305,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> source = new UniqueEList<Element>();
-		// TODO: Remove this difference?
-		Type specific = basicGetSpecific();
+		Type specific = getSpecific();
 		if (specific != null) {
 			source.add(specific);
 		}

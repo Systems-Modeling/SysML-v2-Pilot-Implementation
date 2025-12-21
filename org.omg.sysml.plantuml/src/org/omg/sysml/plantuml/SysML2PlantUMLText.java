@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
@@ -62,6 +61,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.FeatureUtil;
 
 import com.google.inject.Inject;

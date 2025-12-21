@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Element;
@@ -46,6 +45,7 @@ import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -54,13 +54,13 @@ public class ModelLevelExpressionEvaluator {
 	
 	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
-	protected LibraryFunctionFactory libraryFunctionFactory = LibraryFunctionFactory.INSTANCE;
+	protected ModelLevelLibraryFunctionFactory libraryFunctionFactory = ModelLevelLibraryFunctionFactory.INSTANCE;
 	
-	public LibraryFunctionFactory getLibraryFunctionFactory() {
+	public ModelLevelLibraryFunctionFactory getLibraryFunctionFactory() {
 		return libraryFunctionFactory;
 	}
 	
-	public void setLibraryFunctionFactory(LibraryFunctionFactory libraryFunctionFactory) {
+	public void setLibraryFunctionFactory(ModelLevelLibraryFunctionFactory libraryFunctionFactory) {
 		this.libraryFunctionFactory = libraryFunctionFactory;
 	}
 	
@@ -78,7 +78,7 @@ public class ModelLevelExpressionEvaluator {
 		} else if (expression instanceof ConstructorExpression) {
 			return evaluateConstructor((ConstructorExpression)expression, target);
 		} else {
-			return new BasicEList<>();
+			return evaluateExpression(expression, target);
 		}		
 	}
 	
@@ -115,6 +115,18 @@ public class ModelLevelExpressionEvaluator {
 	public EList<Element> evaluateConstructor(ConstructorExpression expression, Element target) {
 		Feature resultParameter = TypeUtil.getResultParameterOf(expression);
 		return resultParameter == null? null: EvaluationUtil.singletonList(resultParameter);
+	}
+	
+	public EList<Element> evaluateExpression(Expression expression, Element target, Element... arguments) {
+		Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
+		if (resultExpression == null) {
+			return EvaluationUtil.singletonList(expression);
+		} else {
+			Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
+			Expression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
+			EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
+			return results == null? EvaluationUtil.singletonList(resultExpression): results;
+		}
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {

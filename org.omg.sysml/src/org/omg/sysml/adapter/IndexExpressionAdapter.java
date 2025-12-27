@@ -32,8 +32,7 @@ import org.omg.sysml.util.TypeUtil;
 
 public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 
-	public static final String ARRAY_TYPE = "Collections::Array";
-	public static final String SCALAR_VALUE_TYPE = "ScalarValues::ScalarValue";
+	public static final String COLLECTIONS_TYPE = "Collections::Collection";
 
 	public IndexExpressionAdapter(IndexExpression element) {
 		super(element);
@@ -43,7 +42,10 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 	public IndexExpression getTarget() {
 		return (IndexExpression)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkIndexExpressionResultSpecialization
+	 */
 	@Override
 	protected void addResultTyping() {
 		IndexExpression target = getTarget();
@@ -52,9 +54,14 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			Expression seqArgument = arguments.get(0);
 			ElementUtil.transform(seqArgument);
 			Feature seqResult = seqArgument.getResult();
-			Type arrayType = getLibraryType(ARRAY_TYPE);
-			Type scalarValueType = getLibraryType(SCALAR_VALUE_TYPE);
-			if (!TypeUtil.specializes(target, arrayType) || TypeUtil.specializes(target, scalarValueType)) {
+			Type collectionType = getLibraryType(COLLECTIONS_TYPE);
+			/*
+			 * TODO: Update checkIndexExpressionResultSpecialization
+			 * 
+			 * OCL currently only checks for Array type, not any Collection type.
+			 * See KERML11-69
+ 			 */
+			if (!TypeUtil.specializes(seqResult, collectionType)) {
 				Feature resultFeature = target.getResult();
 				if (resultFeature != null && seqResult != null) {
 					TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);

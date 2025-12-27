@@ -65,7 +65,7 @@ standard library package TradeStudies {
 			 */
 		}
 		
-		out attribute best : ScalarValue {
+		attribute best : ScalarValue {
 			doc
 			/*
 			 * Out of the evaluation results of all the given alternatives, the one that is considered 
@@ -85,17 +85,13 @@ standard library package TradeStudies {
 		 * given alternatives.
 		 */
 		 
-		subject :>> selectedAlternative;
-		in ref :>> alternatives;
-		in calc :>> eval;
-	
-		out attribute :>> best = alternatives->minimize {
+		attribute :>> best = alternatives->minimize {
 			doc
 			/*
 			 * For a MinimizeObjective, the best value is the minimum one.
 			 */
 		
-			in x; fn(x)
+			in x; eval(x)
 		};
 	}
 	
@@ -107,17 +103,13 @@ standard library package TradeStudies {
 		 * given alternatives.
 		 */
 	
-        subject :>> selectedAlternative;
-        in ref :>> alternatives;
-        in calc :>> eval;
-    
-		out attribute :>> best = alternatives->maximize {
+		attribute :>> best = alternatives->maximize {
 			doc
 			/*
 			 * For a MinimizeObjective, the best value is the maximum one.
 			 */
 		
-			in x; fn(x)
+			in x; eval(x)
 		};
 	}
 	

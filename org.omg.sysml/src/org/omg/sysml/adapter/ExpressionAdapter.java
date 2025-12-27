@@ -47,6 +47,14 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * 
+	 * Note: These are satisfied by getDefaultSupertype in StepAdapter, 
+	 * which is overridden in ExpressionAdapater.
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -60,7 +68,10 @@ public class ExpressionAdapter extends StepAdapter {
 			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkExpressionSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
@@ -69,14 +80,14 @@ public class ExpressionAdapter extends StepAdapter {
 	// Computed Redefinition
 
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Expression target = getTarget();
 		Type owningType = target.getOwningType();
 		return ExpressionUtil.isTransitionGuard(target)?
 					type == owningType? Collections.singletonList(target):
 					Collections.singletonList((Feature)getLibraryType(EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
-			   super.getRelevantFeatures(type, skip);
+			   super.getRelevantFeatures(type);
 	}
 	
 	@Override
@@ -89,7 +100,12 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	// Transformation
-
+	
+	/**
+	 * @satisfies checkExpressionTypeFeaturing
+	 * @satisfies checkExpressionResultBindingConnector
+	 * @satisfies checkMultiplicityRangeExpressionTypeFeaturing
+	 */
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();

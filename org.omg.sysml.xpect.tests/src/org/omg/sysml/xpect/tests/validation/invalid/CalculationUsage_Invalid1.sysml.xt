@@ -45,24 +45,24 @@ package pkg {
 	 	/* XPECT errors --- 
 	 	   "A calculation must be typed by one calculation definition." at "calc f2 : A;"
 		--- */ 
+		//* XPECT warnings ---
+		   "Duplicate of inherited member name 'self' from Calculation, Part" at "calc f2 : A;"
+		   "Duplicate of inherited member name 'start' from Action, Part" at "calc f2 : A;"
+		   "Duplicate of inherited member name 'done' from Action, Part" at "calc f2 : A;"
+		--- */
     	calc f2: A;
-    	/* XPECT errors --- 
-    	   "A calculation must be typed by one calculation definition." at "calc f3 : f2;"
-    		"Features must have at least one type" at "calc f3 : f2;"
-		--- */ 
+    	// XPECT errors ---> "A calculation must be typed by one calculation definition." at "calc f3 : f2;"
+		//* XPECT warnings ---
+		   "Duplicate of inherited member name 'self' from Calculation, Part" at "calc f3 : f2;"
+		   "Duplicate of inherited member name 'start' from Action, Part" at "calc f3 : f2;"
+		   "Duplicate of inherited member name 'done' from Action, Part" at "calc f3 : f2;"
+		--- */
     	calc f3: f2;
-    	/* XPECT errors --- 
-    	   "A calculation must be typed by one calculation definition." at "calc f4 : A::f1;"
-    		"Features must have at least one type" at "calc f4 : A::f1;"
-		--- */ 
+    	// XPECT errors ---> "A calculation must be typed by one calculation definition." at "calc f4 : A::f1;"
     	calc f4: A::f1;
-    	/* XPECT errors --- 
-    	   "A calculation must be typed by one calculation definition." at "calc f5 : B;"
-		--- */ 
+    	// XPECT errors ---> "A calculation must be typed by one calculation definition." at "calc f5 : B;"
     	calc f5: B;
-    	/* XPECT errors --- 
-    	   	"A calculation must be typed by one calculation definition." at "calc f6 : bb;"
-		--- */ 
+    	// XPECT errors ---> "A calculation must be typed by one calculation definition." at "calc f6 : bb;"
     	calc f6: bb;
    	}
 }

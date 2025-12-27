@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-	<revision>0.50.0-SNAPSHOT</revision>
+	<revision>0.55.0-SNAPSHOT</revision>
     <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
@@ -28,6 +28,7 @@
     <junit.version>3.5.3</junit.version>
     <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
+    <sysand-maven-plugin.version>0.0.6</sysand-maven-plugin.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -292,6 +293,23 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.sensmetry</groupId>
+        <artifactId>sysand-maven-plugin</artifactId>
+        <version>${sysand-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build-kpar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <workspacePath>${maven.multiModuleProjectDirectory}/sysml.library</workspacePath>
+          <outputPath>${maven.multiModuleProjectDirectory}/sysml.library/output</outputPath>
+        </configuration>
       </plugin>
     </plugins>
     <pluginManagement>

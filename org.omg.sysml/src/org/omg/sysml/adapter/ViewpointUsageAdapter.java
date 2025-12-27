@@ -36,7 +36,11 @@ public class ViewpointUsageAdapter extends RequirementUsageAdapter {
 	public ViewpointUsage getTarget() {
 		return (ViewpointUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkViewpointUsageViewpointSatisfactionSpecialization
+	 * @satisfies checkViewpointUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isSatisfiedViewpoint()?

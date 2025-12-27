@@ -41,7 +41,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
@@ -56,6 +55,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -395,6 +395,9 @@ public class TypeAdapter extends NamespaceAdapter {
  		}
 	}
 	
+	/**
+	 * @satisfies checkMetadataFeatureSemanticSpecialization
+	 */
 	public void addDefaultGeneralType() {
 		for (Type baseType: getBaseTypes()) {
 			addImplicitGeneralType(getSpecializationEClass(), baseType);
@@ -440,7 +443,8 @@ public class TypeAdapter extends NamespaceAdapter {
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
-						map(expr->expr.evaluate(target)).
+						map(expr->
+						expr.evaluate(metadataFeature)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
 						map(EvaluationUtil::getMetaclassReferenceOf).
@@ -453,7 +457,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		return baseTypes;
 	}
 	
-	protected Feature getBaseTypeFeature(Element element) {
+	protected static Feature getBaseTypeFeature(Element element) {
 		return (Feature)SysMLLibraryUtil.getLibraryType(element, 
 				ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "baseType"));
 	}
@@ -489,7 +493,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			addResultBinding(resultExpression, result);
 		}
 	}
-
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

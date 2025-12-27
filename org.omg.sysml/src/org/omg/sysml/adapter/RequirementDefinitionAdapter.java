@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.util.UsageUtil;
 
 public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 
@@ -32,14 +31,6 @@ public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 	
 	public RequirementDefinition getTarget() {
 		return (RequirementDefinition)super.getTarget();
-	}
-
-	// Transformation
-	
-	@Override
-	public void addAdditionalMembers() {
-		UsageUtil.addSubjectParameterTo(getTarget());
-		super.addAdditionalMembers();
 	}
 
 }

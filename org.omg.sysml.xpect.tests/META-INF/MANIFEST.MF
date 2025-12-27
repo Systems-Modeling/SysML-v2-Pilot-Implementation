@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xpect.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.omg.sysml.xpect.tests;singleton:=true
-Bundle-Version: 0.50.0.qualifier
+Bundle-Version: 0.55.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.xpect.xtext.lib;bundle-version="0.3.0",
  org.eclipse.xpect.xtext.xbase.lib;bundle-version="[0.3.0,0.4.0)",

@@ -71,13 +71,11 @@ package 'Interface Example' {
 		interface opposite : Fuel connect 
 			x ::> tankAssy.fuelTankPort to
 			y ::> eng.engineFuelPort;
-		//*XPECT errors ---
-			"An interface must be typed by interface definitions." at "interface opposite1 : fi connect eng.engineFuelPort to tankAssy.fuelTankPort;"
-			"Features must have at least one type" at "interface opposite1 : fi connect eng.engineFuelPort to tankAssy.fuelTankPort;"
-		---*/
+		//XPECT errors ---> "An interface must be typed by interface definitions." at "interface opposite1 : fi connect eng.engineFuelPort to tankAssy.fuelTankPort;"
 		interface opposite1 : fi connect eng.engineFuelPort to tankAssy.fuelTankPort; 
 		interface bad {
 			//XPECT errors --> "An interface end must be a port." at "end part ::> tankAssy.fuel;"
+			// XPECT warnings ---> "Duplicate of inherited member name 'self' from Part, Port" at "end part ::> tankAssy.fuel;"
 			end part ::> tankAssy.fuel;
 			end port ::> eng.engineFuelPort;
 		}

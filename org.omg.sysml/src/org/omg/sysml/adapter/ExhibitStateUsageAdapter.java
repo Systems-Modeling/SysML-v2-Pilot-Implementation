@@ -33,7 +33,10 @@ public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 	public ExhibitStateUsage getTarget() {
 		return (ExhibitStateUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkExhibitStateUsageSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

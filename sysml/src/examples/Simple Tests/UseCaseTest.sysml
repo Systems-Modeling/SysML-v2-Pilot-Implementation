@@ -23,6 +23,7 @@ package UseCaseTest {
 	part user : User;
 	
 	use case uc2 {
+	    subject;
 		actor :>> user;
 	}
 	
@@ -31,6 +32,12 @@ package UseCaseTest {
 	part system : System {
 		include uc2;
 		perform u;
+		use case uc1 : UC1;
+	}
+	
+	use case uc3 {
+	    include u;
+	    include system.uc1;
 	}
 	
 }

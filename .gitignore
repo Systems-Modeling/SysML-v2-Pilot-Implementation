@@ -37,3 +37,6 @@ dependency-reduced-pom.xml
 
 # Generated Python files
 *.pyc
+
+# Built libraries
+*.kpar

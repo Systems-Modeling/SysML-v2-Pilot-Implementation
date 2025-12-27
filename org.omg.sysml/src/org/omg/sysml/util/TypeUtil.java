@@ -97,9 +97,10 @@ public class TypeUtil {
 				collect(Collectors.toSet());
 	}
 	
-	public static List<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+	public static List<Feature> getFeaturesRedefinedBy(Type type, Feature skip) {
 		return type.getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
+				filter(feature->feature != skip).
+				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature).stream()).
 				toList();
 	}
 
@@ -208,63 +209,15 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getAllEndFeaturesOf(Type type) {
-		return getAllEndFeaturesOf(type, new HashSet<>());
-	}
-	
-	private static List<Feature> getAllEndFeaturesOf(Type type, Set<Type> visited) {
-		visited.add(type);
-		List<Feature> ends = getOwnedEndFeaturesOf(type);
-		int n = ends.size();
-		for (Type general: getGeneralTypesOf(type)) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedEnds = getAllEndFeaturesOf(general, visited);
-				if (inheritedEnds.size() > n) {
-					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
-				}
-			}
-		}
-		return ends;
+		return type == null? Collections.emptyList(): type.getEndFeature();
 	}
 	
 	public static List<Feature> getOwnedEndFeaturesOf(Type type) {
-		return type == null? Collections.emptyList():
-			   	type.getOwnedFeature().stream().
-			   		filter(Feature::isEnd).
-			   		collect(Collectors.toList());
+		return type == null? Collections.emptyList(): type.getOwnedEndFeature();
 	}
 	
 	public static List<Feature> getAllParametersOf(Type type) {
-		return getAllParametersOf(type, null);
-	}
-	
-	public static List<Feature> getAllParametersOf(Type type, Element skip) {
-		return getAllParametersOf(type, new HashSet<>(), skip);
-	}
-	
-	private static List<Feature> getAllParametersOf(Type type, Set<Type> visited, Element skip) {
-		visited.add(type);
-		List<Feature> parameters = getOwnedParametersOf(type);
-		parameters.removeIf(FeatureUtil::isResultParameter);
-		int n = parameters.size();
-		Feature resultParameter = getOwnedResultParameterOf(type);
-		for (Type general: TypeUtil.getGeneralTypesOf(type, false, skip)) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = getAllParametersOf(general, visited, skip);
-				if (resultParameter == null) {
-					resultParameter = inheritedParameters.stream().
-							filter(FeatureUtil::isResultParameter).
-							findFirst().orElse(null);
-				}
-				inheritedParameters.removeIf(FeatureUtil::isResultParameter);
-				if (inheritedParameters.size() > n) {
-					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
-				}
-			}
-		}
-		if (resultParameter != null) {
-			parameters.add(resultParameter);
-		}
-		return parameters;
+		return type.getDirectedFeature();
 	}
 	
 	public static List<Feature> getOwnedParametersOf(Type type) {
@@ -291,7 +244,7 @@ public class TypeUtil {
 		getTypeAdapter(type).addAdditionalMembers();
 		Feature resultParameter = getOwnedResultParameterOf(type);
 		if (resultParameter == null) {
-			for (Type general: getSupertypesOf(type)) {
+			for (Type general: getGeneralTypesOf(type)) {
 				if (general != null && !visited.contains(general)) {
 					resultParameter = getResultParameterOf(general, visited);
 					if (resultParameter != null) {
@@ -525,10 +478,7 @@ public class TypeUtil {
 	// Multiplicity
 
 	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
+		if (NamespaceUtil.getOwnedMembersOf(type).noneMatch(Multiplicity.class::isInstance)) {
 			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
 			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 			membership.setOwnedMemberElement(multiplicity);

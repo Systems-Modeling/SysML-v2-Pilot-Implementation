@@ -25,7 +25,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
@@ -48,6 +47,12 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkAcceptActionUsageTriggerActionSpecialization
+	 * @satisfies checkStepEnclosedPerformanceSpecialization
+	 * @satisfies checkStepOwnedPerformanceSpecialization
+	 * @satisfies checkStepSubperformanceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -67,6 +72,11 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		}
 	}
 	
+	/**
+	 * @satisfies checkAcceptActionUsageSpecialization
+	 * @satisfies checkSendActionUsageSpecialization
+	 * @satisfies checkWhileLoopActionUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
@@ -77,6 +87,22 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		return super.isSuboccurrence() && !isActionOwnedComposite();
 	}
 	
+	/**
+	 * @satisfies checkActionUsageSubactionSpecialization
+	 * @satisfies checkAcceptActionUsageSubactionSpecialization
+	 * @satisfies checkDecisionNodeSpecialization
+	 * @satisfies checkForkNodeSpecialization
+	 * @satisfies checkForLoopActionUsageSubactionSpecialization
+	 * @satisfies checkIfActionUsageSubactionSpecialization
+	 * @satisfies checkJoinNodeSpecialization
+	 * @satisfies checkMergeNodeSpecialization
+	 * @satisfies checkAssignmentActionUsageSubactionSpecialization
+	 * @satisfies checkSendActionUsageSubactionSpecialization
+	 * @satisfies checkWhileLoopActionUsageSubactionSpecialization
+	 * @satisfies checkActionUsageOwnedActionSpecialization
+	 * @satisfies checkStateUsageOwnedStateSpecialization
+	 * 
+	 */
 	protected String getSubactionType() {
 		return isActionOwnedComposite()? "subaction": 
 			   isPartOwnedComposite()? "ownedAction":
@@ -96,20 +122,24 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	 */
 	@Override
 	public boolean isComputeRedefinitions() {
+		//checkActionUsageStateActionRedefinition
 		String redefinedFeature = getRedefinedFeature(getTarget());
 		return redefinedFeature != null? isComputeRedefinitions:
 				super.isComputeRedefinitions();
 	}
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		ActionUsage target = getTarget();
 		String redefinedFeature = getRedefinedFeature(target);
-		return redefinedFeature == null? super.getRelevantFeatures(type, skip):
+		return redefinedFeature == null? super.getRelevantFeatures(type):
 			   type == target.getOwningType()? Collections.singletonList(target):
 			   Collections.singletonList((Feature)getLibraryType(redefinedFeature));
 	}
 	
+	/**
+	 * @satisfies checkTransitionUsageTransitionFeatureSpecialization
+	 */
 	protected static String getRedefinedFeature(Feature target) {
 		FeatureMembership membership = target.getOwningFeatureMembership();
 		String kind = 

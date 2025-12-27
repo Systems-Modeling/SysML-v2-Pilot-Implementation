@@ -1,0 +1,57 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
+        File {from ="/library/Performances.kerml"}
+        File {from ="/library/Objects.kerml"}
+        File {from ="/library/Metaobjects.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Performances.kerml"}
+				File {from ="/library/Objects.kerml"}
+                File {from ="/library/Metaobjects.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Associations {
+    datatype X;
+    class Y;
+    
+    assoc A {
+        end x_cross [1..1] feature x : X; 
+        end y_cross [1..*] feature y : Y;
+    }
+    
+    assoc B specializes A {
+        end x1;
+        end [0..*] feature y1 redefines y;
+    }
+    
+    assoc struct C {
+        const end [1] feature a;
+        const end feature b;
+    }
+    
+    metaclass M;    
+    assoc XY {
+        // Ensure that the owned cross feature is typed correctly,
+        // even though getting type of end feature requires resolving
+        // metadata nam to check if it is SemanticMetadata, which 
+        // requires getting supertypes of end feature, including its types.
+        end [0..1] #M feature x : X;
+        end [0..1] #M feature y : Y;
+    }
+}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,12 +47,12 @@ public class Membership_isDistinguishableFrom_InvocationDelegate extends BasicIn
 		String otherShortName = other.getMemberShortName();
 		String otherName = other.getMemberName();
 		if (memberShortName != null) {
-			if (memberShortName == otherShortName || memberShortName == otherName) {
+			if (memberShortName.equals(otherShortName) || memberShortName.equals(otherName)) {
 				return false;
 			}
 		}
-		if (memberName == null) {
-			if (memberName == otherShortName || memberName == otherName) {
+		if (memberName != null) {
+			if (memberName.equals(otherShortName) || memberName.equals(otherName)) {
 				return false;
 			}
 		}

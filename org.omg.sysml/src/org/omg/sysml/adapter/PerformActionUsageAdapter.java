@@ -34,6 +34,9 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 		return (PerformActionUsage)super.getTarget();
 	}
 	
+	/**
+	 * @satisfies checkPerformActionUsageSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();

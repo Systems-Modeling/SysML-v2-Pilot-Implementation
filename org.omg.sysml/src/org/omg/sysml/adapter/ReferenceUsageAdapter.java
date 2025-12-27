@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -48,15 +49,20 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
+	/**
+	 * @satisfies checkTransitionUsagePayloadSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		ReferenceUsage target = getTarget();
 		Type type = target.getOwningType();
 		if (type instanceof TransitionUsage) {
+			// checkTransitionUsagePayloadSpecialization
 			if (target == UsageUtil.getPayloadParameterOf((TransitionUsage)type)) {
 				Feature accepterParameter = UsageUtil.getAccepterPayloadParameterOf((TransitionUsage)type);
 				if (accepterParameter != null) {
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), accepterParameter);
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), 
+							FeatureUtil.chainFeatures((Feature)accepterParameter.getOwningType(), accepterParameter));
 					target.setDeclaredName(accepterParameter.getDeclaredName());
 					return;
 				}

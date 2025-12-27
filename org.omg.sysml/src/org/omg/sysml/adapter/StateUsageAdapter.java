@@ -33,7 +33,11 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 	public StateUsage getTarget() {
 		return (StateUsage)super.getTarget();
 	}
-
+	
+	/**
+	 * @satisfies checkStateUsageExclusiveStateSpecialization
+	 * @satisfies checkStateUsageSubstateSpecialization
+	 */
 	@Override
 	protected String getSubactionType() {
 		return isExclusiveState()? "exclusiveState":

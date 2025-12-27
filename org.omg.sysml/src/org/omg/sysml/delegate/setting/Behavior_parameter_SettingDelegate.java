@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,25 +22,12 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
-public class Behavior_parameter_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Behavior_parameter_SettingDelegate extends Type_directedFeature_SettingDelegate {
 
 	public Behavior_parameter_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
-		parameters.addAll(TypeUtil.getAllParametersOf((Behavior)owner));
-		return parameters;
 	}
 
 }

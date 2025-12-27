@@ -88,21 +88,21 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.CrossSubsetting
 import org.omg.sysml.lang.sysml.Annotation
+import org.omg.sysml.lang.sysml.InstantiationExpression
+import org.omg.sysml.lang.sysml.ConstructorExpression
 
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.EvaluationUtil
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 
-import org.omg.sysml.expressions.util.EvaluationUtil
 import java.util.Collections
 import java.util.HashMap
 import java.util.Set
 import java.util.Map
-import org.omg.sysml.lang.sysml.InstantiationExpression
-import org.omg.sysml.lang.sysml.ConstructorExpression
 
 /**
  * This class contains custom validation rules. 
@@ -405,19 +405,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			val owningMembershipMap = owningMemberships.nameMap
 			for (mem: owningMemberships) {
-				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
+				checkDistinguishibility(namesp, mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG)				
 			}
 			
 			val aliasMembershipMap = aliasMemberships.nameMap
 			for (mem: aliasMemberships) {
-				checkDistinguishibility(mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
-				checkDistinguishibility(mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
+				checkDistinguishibility(namesp, mem, owningMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_0)
+				checkDistinguishibility(namesp, mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				val inheritedMembershipMap = namesp.inheritedMembership.nameMap
+				val inheritedMemberships = namesp.inheritedMembership
+				val inheritedMembershipMap = inheritedMemberships.nameMap
 				for (mem: ownedMemberships) {
-					checkDistinguishibility(mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
+					checkDistinguishibility(namesp, mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
+				checkDistinguishibility(namesp, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 			}
 		}		
 	}
@@ -447,7 +449,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		return nameMap;	
 	}
 	
-	def checkDistinguishibility(Membership mem, Map<String, Set<Membership>> nameMap, String msg) {
+	def checkDistinguishibility(Namespace namesp, Membership mem, Map<String, Set<Membership>> nameMap, String msg) {
 		val memShortName = mem.memberShortName
 		val memName = mem.memberName
 		val memElement = mem.memberElement
@@ -455,7 +457,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (memShortName !== null) {
 			var dups = nameMap.get(memShortName)?.filter[m | m.memberElement != memElement]
 			if (dups !== null && !dups.empty) {
-				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memShortName, dups)		
+				val msgDups = msg.identifyDuplicates(namesp, memShortName, dups)
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredShortName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
@@ -466,7 +468,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (memName !== null) {
 			val dups = nameMap.get(memName)?.filter[m | m.memberElement != memElement]
 			if (dups !== null && !dups.empty) {
-				val msgDups = msg.identifyDuplicates(mem.membershipOwningNamespace, memName, dups)			
+				val msgDups = msg.identifyDuplicates(namesp, memName, dups)			
 				if (mem instanceof OwningMembership) {
 					warning(msgDups, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_DeclaredName, INVALID_NAMESPACE_DISTINGUISHABILITY)
 				} else {
@@ -476,22 +478,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
+	def checkDistinguishibility(Namespace namesp, Map<String, Set<Membership>> nameMap, String msg) {
+		nameMap.filter[name, dups | dups.size > 1 && dups.map[memberElement].toSet.size > 1].forEach[name, dups |
+			val msgDups = msg.identifyDuplicates(namesp, name, dups)
+			warning(msgDups, namesp, null, INVALID_NAMESPACE_DISTINGUISHABILITY)
+		]		
+	}
+	
 	def identifyDuplicates(String msg, Namespace memNs, String name, Iterable<Membership> dups) {
-		var nsNames = ""
-		for (dup: dups) {
-			val ns = dup.membershipOwningNamespace
-			if (ns !== memNs) {
-				val nsName = ns.name
-				if (nsName !== null) {
-					if (!nsNames.empty) {
-						nsNames += ", "
-					}
-					nsNames += nsName
-				}
-			}
-		}
+		val nsNames = dups.map[membershipOwningNamespace].filter[ns | ns !== memNs].
+						map[getName].map[n | if (n === null) "" else n].sort.
+						map[n | ElementUtil.escapeName(n)].join(", ");
 		if (nsNames.empty) msg
-		else msg + " " + ElementUtil.escapeName(name) + " from " + nsNames;
+		else msg + " '" + ElementUtil.escapeString(name) + "' from " + nsNames;
 	}
 	
 	@Check
@@ -563,8 +562,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeature(Feature f){
-		// TODO: Remove?
-		val types = f.type;
+		// Note: Use utility method to ensure types are not filtered out by redefinitions of getType.
+		val types = FeatureUtil.getAllTypesOf(f);
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE_HAS_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_HAS_TYPE)
 			
@@ -600,7 +599,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
 		val ownedCrossFeature = f.ownedCrossFeature()
 		if (crossFeature !== null) {
-			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f);
 			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
 				exists[cf | cf !== null && !TypeUtil.specializes(crossFeature, cf)]) {
 				if (f.ownedCrossSubsetting === null) {
@@ -958,7 +957,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
-		val connectorEnds = TypeUtil.getAllEndFeaturesOf(c)
+		val connectorEnds = c.connectorEnd
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
@@ -1152,7 +1151,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val result = TypeUtil.getOwnedResultParameterOf(e)
 		if (type !== null && result !== null) {
 			val typeFeatures = type.feature.filter[f | f.owningMembership.visibility == VisibilityKind.PUBLIC]
-			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeFeatures, resultFeatures,
 				INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION,
 				INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION
@@ -1191,8 +1190,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			// validateInvocationExpressionParameterRedefinition
 			// validateInvocationExpressionNoDuplicateParameterRedefinition
-			val typeParams = type.feature.filter[p | FeatureUtil.isInputParameter(p)]
-			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val typeParams = type.input
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeParams, exprParams,
 				INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION,
 				INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_NO_DUPLICATE_PARAMETER_REDEFINITION

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,116 +25,112 @@
  *****************************************************************************/
 package org.omg.sysml.xtext.validation
 
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
 import org.omg.kerml.xtext.validation.KerMLValidator
+import org.omg.sysml.lang.sysml.AcceptActionUsage
+import org.omg.sysml.lang.sysml.ActionDefinition
 import org.omg.sysml.lang.sysml.ActionUsage
+import org.omg.sysml.lang.sysml.ActorMembership
 import org.omg.sysml.lang.sysml.AllocationDefinition
 import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage
+import org.omg.sysml.lang.sysml.AssertConstraintUsage
+import org.omg.sysml.lang.sysml.AssignmentActionUsage
 import org.omg.sysml.lang.sysml.Association
+import org.omg.sysml.lang.sysml.AttributeDefinition
 import org.omg.sysml.lang.sysml.AttributeUsage
 import org.omg.sysml.lang.sysml.Behavior
 import org.omg.sysml.lang.sysml.CalculationUsage
 import org.omg.sysml.lang.sysml.CaseDefinition
 import org.omg.sysml.lang.sysml.CaseUsage
+import org.omg.sysml.lang.sysml.Classifier
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition
 import org.omg.sysml.lang.sysml.ConnectionUsage
 import org.omg.sysml.lang.sysml.ConstraintUsage
+import org.omg.sysml.lang.sysml.ControlNode
 import org.omg.sysml.lang.sysml.DataType
+import org.omg.sysml.lang.sysml.DecisionNode
 import org.omg.sysml.lang.sysml.Definition
-import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage
+import org.omg.sysml.lang.sysml.ExhibitStateUsage
+import org.omg.sysml.lang.sysml.Expose
+import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.FlowDefinition
+import org.omg.sysml.lang.sysml.FlowUsage
+import org.omg.sysml.lang.sysml.ForLoopActionUsage
+import org.omg.sysml.lang.sysml.ForkNode
+import org.omg.sysml.lang.sysml.FramedConcernMembership
 import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.IfActionUsage
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
+import org.omg.sysml.lang.sysml.Interaction
 import org.omg.sysml.lang.sysml.InterfaceDefinition
 import org.omg.sysml.lang.sysml.InterfaceUsage
-import org.omg.sysml.lang.sysml.ItemUsage
+import org.omg.sysml.lang.sysml.JoinNode
+import org.omg.sysml.lang.sysml.MergeNode
+import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.MetadataUsage
+import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.lang.sysml.ParameterMembership
-import org.omg.sysml.lang.sysml.PartDefinition
-import org.omg.sysml.lang.sysml.PartUsage
+import org.omg.sysml.lang.sysml.PerformActionUsage
 import org.omg.sysml.lang.sysml.PortDefinition
 import org.omg.sysml.lang.sysml.PortUsage
 import org.omg.sysml.lang.sysml.Predicate
+import org.omg.sysml.lang.sysml.ReferenceUsage
+import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.RenderingDefinition
 import org.omg.sysml.lang.sysml.RenderingUsage
+import org.omg.sysml.lang.sysml.RequirementConstraintKind
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership
 import org.omg.sysml.lang.sysml.RequirementDefinition
 import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage
+import org.omg.sysml.lang.sysml.SendActionUsage
+import org.omg.sysml.lang.sysml.StakeholderMembership
+import org.omg.sysml.lang.sysml.StateDefinition
+import org.omg.sysml.lang.sysml.StateSubactionKind
+import org.omg.sysml.lang.sysml.StateSubactionMembership
 import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.Step
-import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.SubjectMembership
+import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.TransitionFeatureKind
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership
+import org.omg.sysml.lang.sysml.TransitionUsage
+import org.omg.sysml.lang.sysml.TriggerInvocationExpression
+import org.omg.sysml.lang.sysml.TriggerKind
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Usage
+import org.omg.sysml.lang.sysml.UseCaseDefinition
+import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.VariantMembership
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition
 import org.omg.sysml.lang.sysml.VerificationCaseUsage
 import org.omg.sysml.lang.sysml.ViewDefinition
+import org.omg.sysml.lang.sysml.ViewRenderingMembership
 import org.omg.sysml.lang.sysml.ViewUsage
 import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
-import org.omg.sysml.lang.sysml.TransitionUsage
-import org.omg.sysml.lang.sysml.Succession
-import org.omg.sysml.lang.sysml.StateDefinition
-import org.omg.sysml.lang.sysml.Type
-import org.omg.sysml.lang.sysml.StateSubactionKind
-import org.omg.sysml.lang.sysml.UseCaseUsage
-import org.omg.sysml.lang.sysml.UseCaseDefinition
-import org.omg.sysml.lang.sysml.MetadataUsage
-import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.lang.sysml.WhileLoopActionUsage
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
-import org.omg.sysml.lang.sysml.Interaction
-import org.omg.sysml.lang.sysml.SendActionUsage
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression
-import org.omg.sysml.lang.sysml.FeatureChainExpression
-import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.omg.sysml.lang.sysml.Expression
-import org.omg.sysml.lang.sysml.EventOccurrenceUsage
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition
-import org.omg.sysml.lang.sysml.AssignmentActionUsage
-import org.omg.sysml.lang.sysml.TriggerInvocationExpression
-import org.omg.sysml.lang.sysml.ControlNode
-import org.omg.sysml.lang.sysml.DecisionNode
-import org.omg.sysml.lang.sysml.ForkNode
-import org.omg.sysml.lang.sysml.JoinNode
-import org.omg.sysml.lang.sysml.MergeNode
-import org.omg.sysml.lang.sysml.PerformActionUsage
-import org.omg.sysml.lang.sysml.ExhibitStateUsage
-import org.omg.sysml.lang.sysml.StateSubactionMembership
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership
-import org.omg.sysml.lang.sysml.AssertConstraintUsage
-import org.omg.sysml.lang.sysml.FramedConcernMembership
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage
-import org.omg.sysml.lang.sysml.StakeholderMembership
-import org.omg.sysml.lang.sysml.AcceptActionUsage
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage
-import org.omg.sysml.lang.sysml.Expose
-import org.omg.sysml.lang.sysml.ViewRenderingMembership
-import org.omg.sysml.lang.sysml.AttributeDefinition
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.ActionDefinition
-import org.eclipse.emf.ecore.EObject
-import org.omg.sysml.lang.sysml.TransitionFeatureKind
-import org.omg.sysml.lang.sysml.ActorMembership
-import org.omg.sysml.lang.sysml.RequirementConstraintKind
-import org.omg.sysml.lang.sysml.ForLoopActionUsage
-import org.omg.sysml.lang.sysml.ReferenceUsage
-import org.omg.sysml.lang.sysml.IfActionUsage
-import org.omg.sysml.lang.sysml.WhileLoopActionUsage
-import org.omg.sysml.lang.sysml.TriggerKind
-import org.omg.sysml.util.TypeUtil
-import org.omg.sysml.lang.sysml.FlowDefinition
-import org.omg.sysml.lang.sysml.FlowUsage
 
 /**
  * This class contains custom validation rules. 
@@ -143,11 +139,17 @@ import org.omg.sysml.lang.sysml.FlowUsage
  */
 class SysMLValidator extends KerMLValidator {
 
+	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT = "validateDefinitionVariationIsAbstract"
+	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION = "validateDefinitionVariationSpecialization"
 	public static val INVALID_DEFINITION_VARIATION_SPECIALIZATION_MSG = "A variation must not specialize another variation."
 	
+    public static val INVALID_USAGE_TYPE = "validateUsageType_"
+    public static val INVALID_USAGE_TYPE_MSG = "A usage must be typed by definitions."
+    public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
+    public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP_MSG = "An owned usage of a variation must be a variant."
 	public static val INVALID_USAGE_VARIATION_SPECIALIZATION = "validateUsageVariationSpecialization"
@@ -175,7 +177,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
 	public static val INVALID_OCCURRENCE_USAGE_TYPE = "validateOccurrenceUsageType_"
-	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence must be typed by occurrence definitions."
+	public static val INVALID_OCCURRENCE_USAGE_TYPE_MSG = "An occurrence, item or part must be typed by occurrence definitions."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION = "validateOccurrenceUsageIndividualDefinition"
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_DEFINITION_MSG = "At most one individual definition is allowed."
 	public static val INVALID_OCCURRENCE_USAGE_INDIVIDUAL_USAGE = "validateOccurrenceUsageIndividualUsage"
@@ -473,9 +475,18 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkUsage(Usage usage) {
+	    // All types must be Classifiers
+        if (!(usage instanceof AttributeUsage || usage instanceof OccurrenceUsage))   
+            checkAllTypes(usage, Classifier, INVALID_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.usage_Definition, INVALID_USAGE_TYPE)
+	    
 		// validateUsageIsReferential is satisfied automatically
 		
 		if (usage.isVariation) {
+			// validateUsageVariationIsAbstract			
+			if (!usage.isAbstract) {
+				error(INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG, usage, null, INVALID_USAGE_VARIATION_IS_ABSTRACT)
+			}
+			
 			// validateUsageVariationOwnedFeatureMembership
 			for (mem: usage.ownedFeatureMembership) {
 				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
@@ -565,7 +576,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check 
 	def checkOccurrenceUsage(OccurrenceUsage usg) {
 		// All types must be Classes
-		if (!(usg instanceof ItemUsage || usg instanceof PortUsage || usg instanceof Step))	
+		if (!(usg instanceof PortUsage || usg instanceof ConnectionUsage || usg instanceof MetadataUsage || usg instanceof Step))	
 			checkAllTypes(usg, org.omg.sysml.lang.sysml.Class, INVALID_OCCURRENCE_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, INVALID_OCCURRENCE_USAGE_TYPE)
 
 		// validateOccurrenceUsageIndividualDefinition
@@ -592,20 +603,13 @@ class SysMLValidator extends KerMLValidator {
 
 	}
 	
-	@Check
-	def checkItemUsage(ItemUsage iu) {
-		// All types must be Structures
-		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
-			checkAllTypes(iu, Structure, INVALID_ITEM_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_ITEM_USAGE_TYPE)
-	}
+//	@Check
+//	def checkItemUsage(ItemUsage iu) {
+//	}
 	
-	@Check
-	def checkPartUsage(PartUsage pu){
-		if (!(pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, Structure, INVALID_PART_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, INVALID_PART_USAGE_TYPE))
-				// validatePartUsagePartDefinition
-				checkAtLeastOneType(pu, PartDefinition, INVALID_PART_USAGE_PART_DEFINITION_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, INVALID_PART_USAGE_PART_DEFINITION)
-	}
+//	@Check
+//	def checkPartUsage(PartUsage pu){
+//	}
 	
 	@Check
 	def checkConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
@@ -658,7 +662,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkFlowDefinition(FlowDefinition cdef) {
 		// validateConnectionDefinitionConnectionEnds
-		val ends = TypeUtil.getAllEndFeaturesOf(cdef)
+		val ends = cdef.endFeature
 		if (ends.size > 2) {
 			val ownedEnds = cdef.ownedEndFeature
 			if (ownedEnds.size <= 2) {
@@ -853,7 +857,7 @@ class SysMLValidator extends KerMLValidator {
 		if ((featureMembership instanceof StateSubactionMembership || 
 			 featureMembership instanceof TransitionFeatureMembership) && 
 			usg.payloadArgument === null) {
-			error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
+			error(SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG, usg, null, SysMLValidator.INVALID_SEND_ACTION_USAGE_PAYLOAD_ARGUMENT_MSG)
 		} 
 	}
 	
@@ -923,9 +927,9 @@ class SysMLValidator extends KerMLValidator {
 	
 	protected def checkStateSubactions(Type type) {
 		val errorId = type instanceof Definition? INVALID_STATE_DEFINITION_SUBACTION_KIND: INVALID_STATE_USAGE_SUBACTION_KIND
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
 	}
 	
 	@Check
@@ -1070,7 +1074,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateRequirementDefinitionSubjectParameterPosition
-		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(defn, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}	
 	
 	@Check 
@@ -1082,7 +1086,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_REQUIREMENT_USAGE_ONLY_ONE_SUBJECT)
 		
 		// validateRequirementUsageSubjectParameterPosition
-		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(usg, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_REQUIREMENT_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
@@ -1120,7 +1124,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(defn, SubjectMembership, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_DEFINITION_ONLY_ONE_SUBJECT)
 		
 		// validateCaseDefinitionSubjectParameterPosition
-		checkSubjectParameter(defn, defn.subjectParameter, defn.input, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(defn, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_DEFINITION_SUBJECT_PARAMETER_POSITION)
 	}
 
 	@Check 
@@ -1136,7 +1140,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneFeature(usg, SubjectMembership, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT_MSG, INVALID_CASE_USAGE_ONLY_ONE_SUBJECT)
 		
 		// validateCaseUsageSubjectParameterPosition
-		checkSubjectParameter(usg, usg.subjectParameter, usg.input, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
+		checkSubjectParameter(usg, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION_MSG, INVALID_CASE_USAGE_SUBJECT_PARAMETER_POSITION)
 	}
 	
 	@Check
@@ -1312,17 +1316,26 @@ class SysMLValidator extends KerMLValidator {
 		return check
 	}
 	
-	protected def boolean checkAtMostOneFeature(Type owningType, Class<? extends FeatureMembership> kind, String msg, String eId) {
-		var mems = owningType.ownedFeatureMembership.filter[m | kind.isInstance(m)]
-		checkAtMostOneElement(mems, msg, eId);
+	protected def boolean checkAtMostOneFeature(Type featuringType, Class<? extends FeatureMembership> kind, String msg, String eId) {
+		var mems = featuringType.featureMembership.filter[m | kind.isInstance(m)]
+		checkAtMostOneRelationship(featuringType, mems, msg, eId)
 	}
 	
-	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
-		if (elements.size <= 1) {
+	protected def boolean checkAtMostOneRelationship(Type type, Iterable<? extends Relationship> relationships, String msg, String eId) {
+		if (relationships.size <= 1) {
 			return true;
 		} else {
-			for (var i = 1; i < elements.size; i++) {
-				error(msg, elements.get(i), null, eId);			
+			val ownedRelationships = relationships.filter[owningRelatedElement === type]
+			if (ownedRelationships.empty) {
+				error(msg, type, null, eId);	
+			} else if (ownedRelationships.size == relationships.size) {
+				for (var i = 1; i < ownedRelationships.size; i++) {
+					error(msg, ownedRelationships.get(i), null, eId);
+				}
+			} else {
+				for (mem: ownedRelationships) {
+					error(msg, mem, null, eId);
+				}
 			}
 			return false;
 		}
@@ -1372,9 +1385,11 @@ class SysMLValidator extends KerMLValidator {
 		return true
 	}
 	
-	protected def boolean checkSubjectParameter(Type type, Feature subjectParameter, Iterable<Feature> inputs, String msg, String eId) {
-		if (subjectParameter !== null && (inputs.empty || inputs.get(0) !== subjectParameter)) {
-			if (subjectParameter.owningType === type) {
+	protected def boolean checkSubjectParameter(Type type, String msg, String eId) {
+		val inputs = type.input
+		if (inputs.empty || !UsageUtil.isSubjectParameter(inputs.get(0))) {
+			val subjectParameter = UsageUtil.getOwnedSubjectParameterOf(type)
+			if (subjectParameter !== null) {
 				error(msg, subjectParameter, null, eId)
 			} else {
 				error(msg, type, null, eId)

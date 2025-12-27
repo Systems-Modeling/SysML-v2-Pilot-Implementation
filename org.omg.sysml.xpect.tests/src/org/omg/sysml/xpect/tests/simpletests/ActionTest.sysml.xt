@@ -103,7 +103,7 @@ package ActionTest {
 		}
 		flow aa.target to snd1.receiver;
 		action snd1 send { 
-			:>> payload = s;
+			in :>> payload = s;
 		}
 		action snd2 send via this to aa.target;
 		bind s = snd2.payload;

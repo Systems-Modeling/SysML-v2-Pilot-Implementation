@@ -8,6 +8,8 @@
        	File {from ="/library/Performances.kerml"}
       	File {from ="/library/Metaobjects.kerml"}
         File {from ="/library/KerML.kerml"}
+        File {from ="/library/BaseFunctions.kerml"}
+        File {from ="/library/ControlFunctions.kerml"}
     }
     Workspace {
         JavaProject {
@@ -20,6 +22,8 @@
 		       	File {from ="/library/Performances.kerml"}
 		      	File {from ="/library/Metaobjects.kerml"}
 		        File {from ="/library/KerML.kerml"}
+                File {from ="/library/BaseFunctions.kerml"}
+                File {from ="/library/ControlFunctions.kerml"}
             }
     	}
 	}
@@ -54,4 +58,19 @@ package Metadata {
 		#A #B metadata C;
 		#A #B @C;
 	}
+	
+    class CC;
+    struct SS {
+        feature cc : CC;
+    }
+    
+    metaclass M :> Metaobjects::SemanticMetadata {
+      :>> annotatedElement : KerML::Class;
+      :>> baseType = if annotatedElement istype KerML::Structure ? 
+                         SS meta KerML::Type else CC meta KerML::Class;
+    }
+    
+    #M struct T {
+        feature :>> cc;
+    }
 }

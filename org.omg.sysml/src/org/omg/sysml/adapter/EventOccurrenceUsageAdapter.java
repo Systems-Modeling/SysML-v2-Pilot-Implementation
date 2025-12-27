@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,16 +36,10 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 	public EventOccurrenceUsage getTarget() {
 		return (EventOccurrenceUsage)super.getTarget();
 	}
-
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isSuboccurrence()) {
-			addImplicitGeneralType(getSpecializationEClass(), 
-					getLibraryType(getDefaultSupertype("suboccurrence")));;
-		}
-	}
-
+	
+	/**
+	 * @satisfies checkEventOccurrenceUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return isSuboccurrence()? 

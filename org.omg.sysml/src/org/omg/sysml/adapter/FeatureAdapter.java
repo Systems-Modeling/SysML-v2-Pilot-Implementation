@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
@@ -56,11 +57,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
@@ -110,15 +111,6 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public String getEffectiveShortName() {
 		return storedEffectiveShortName;
-	}
-	
-	public EList<Type> getTypes() {
-		return types;
-	}
-	
-	public EList<Type> setTypes(EList<Type> types) {
-		this.types = types;
-		return types;
 	}
 	
 	Set<Feature> allRedefinedFeatures = null;
@@ -219,24 +211,41 @@ public class FeatureAdapter extends TypeAdapter {
 		return null;
 	}
 	
+	/**
+	 * @satisfies checkFeatureValuationSpecialization
+	 * @satisfies checkFeatureCrossingSpecialization
+	 * @satisfies checkFeatureOwnedCrossFeatureSpecialization
+	 * @satisfies checkFeatureOwnedCrossFeatureRedefinitionSpecialization
+	 * 
+	 */
 	@Override
 	public void addDefaultGeneralType() {
+		// Note: This must happen before call to super, because default supertype depends on ownedTyping.
+		addOwnedCrossFeatureSpecialization();
+
 		super.addDefaultGeneralType();
 		
 		addBoundValueSubsetting();
 		addParticipantSubsetting();
 		addCrossingSpecialization();
-		addOwnedCrossFeatureSpecialization();
 	}
 	
+
+	/**
+	 * @satisfies checkFeatureValuationSpecialization
+	 */
 	protected void addBoundValueSubsetting() {
 		Feature target = getTarget();
 		Feature result = getBoundValueResult();
+
 		if (result != null && target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 		}
 	}
 	
+	/**
+	 * @satisfies checkFeatureEndSpecialization
+	 */
 	protected void addParticipantSubsetting() {
 		if (isAssociationEnd() && 
 				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
@@ -244,7 +253,9 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
-	// checkFeatureCrossingSpecialization 
+	/**
+	 * @satisfies checkFeatureCrossingSpecialization
+	 */
 	public void addCrossingSpecialization() {
 		Feature target = getTarget();
 		Feature ownedCrossFeature = FeatureUtil.getOwnedCrossFeatureOf(target);
@@ -277,18 +288,20 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 		}
 	}
-	 
+	
+	/**
+	 * @satisfies checkFeatureOwnedCrossFeatureSpecialization
+	 * @satisfies checkFeatureOwnedCrossFeatureRedefinitionSpecialization
+	 */
 	protected void addOwnedCrossFeatureSpecialization() {
 		Feature target = getTarget();
 		Namespace owner = target.getOwningNamespace();
 		if (FeatureUtil.isOwnedCrossFeature(target)) {
-			// checkFeatureOwnedCrossFeatureSpecialization
 			for (Type type: ((Feature)owner).getType()) {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 			}
 			
-			// checkFeatureOwnedCrossFeatureRedefinitionSpecialization
-			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner, null)) {
+			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner)) {
 				if (redefinedFeature.isEnd()) {
 					Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 					if (crossFeature != null) {
@@ -310,12 +323,21 @@ public class FeatureAdapter extends TypeAdapter {
 		return crossFeature;
 	}
 	
+	/**
+	 * @satisfies checkFeatureObjectSpecialization
+	 * @satisfies checkFeatureSubobjectSpecialization
+	 * @satisfies checkFeatureSuboccurrenceSpecialization
+	 * @satisfies checkFeaturePortionSpecialization
+	 * @satisfies checkFeatureOccurrenceSpecialization
+	 * @satisfies checkFeatureDataValueSpecialization
+	 * @satisfies checkFeatureSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
 			hasStructureType()? isSubobject()? "subobject": "object":
-			hasClassType()? 
-					isSuboccurrence()? "suboccurrence": 
+			hasClassType()?
+					isSuboccurrence()? "suboccurrence":
 					isPortion()? "portion":
 					"occurrence":
 			hasDataType()? "dataValue":
@@ -337,7 +359,7 @@ public class FeatureAdapter extends TypeAdapter {
 				(owningType instanceof org.omg.sysml.lang.sysml.Class ||
 				 owningType instanceof Feature && (hasClassType((Feature)owningType)));
 	}
-	
+		
 	public boolean hasClassType() {
 		return hasClassType(getTarget());
 	}
@@ -477,7 +499,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(getTarget());
-		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
+		getRedefinedFeaturesWithComputed().stream().forEach(redefinedFeature->{
 			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
 				FeatureUtil.addAllRedefinedFeaturesTo(redefinedFeature, redefinedFeatures);
 			}
@@ -486,15 +508,15 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Computed Redefinition
 	
-	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
+	public List<Feature> getRedefinedFeaturesWithComputed() {
 		Feature target = getTarget();
 		
-		addComputedRedefinitions(skip);
+		addComputedRedefinitions(null);
 		EList<Redefinition> redefinitions = target.getOwnedRedefinition();
 		
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
-			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			map(Redefinition::getRedefinedFeature).
 			filter(f->f != null).
 			forEachOrdered(redefinedFeatures::add);
 		
@@ -519,6 +541,48 @@ public class FeatureAdapter extends TypeAdapter {
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
+	public EList<Type> getAllTypes() {
+		if (types == null) {
+			EList<Type> allTypes = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)getTarget(), SysMLPackage.FEATURE__TYPE);
+			getTypes(allTypes, new HashSet<Feature>());
+			removeRedundantTypes(allTypes);
+			// Note: Cache must be set only after completion of computation of types, in order to correctly
+			// handle a possible circular recursive call back to this method.
+			types = allTypes;
+		}
+		return types;
+	}
+	
+	public void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		visitedFeatures.add(feature);
+		computeImplicitGeneralTypes();
+		getFeatureTypes(types, visitedFeatures);
+		for (Feature typingFeature : feature.typingFeatures()) {
+			if (!visitedFeatures.contains(typingFeature)) {
+				FeatureUtil.getTypesOf(typingFeature, types, visitedFeatures);
+			}
+		}
+	}
+	
+	public void getFeatureTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		feature.getOwnedTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				forEachOrdered(types::add);
+		types.addAll(getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
+			Type type = types.get(i);
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
+				types.remove(i);
+			}
+		}
+	}
+		
 	/**
 	 * Compute relevant implicit Redefinitions, as appropriate.
 	 */
@@ -542,10 +606,10 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Type type = target.getOwningType();
 		if (type != null) {
-			int i = getRelevantFeatures(type, skip).indexOf(target);
+			int i = getRelevantFeatures(type).indexOf(target);
 			if (i >= 0) {
 				for (Type general: getGeneralTypes(type, skip)) {
-					List<? extends Feature> features = getRelevantFeatures(general, skip);
+					List<? extends Feature> features = getRelevantFeatures(general);
 					if (i < features.size()) {
 						Feature redefinedFeature = features.get(i);
 						if (redefinedFeature != null && redefinedFeature != target) {
@@ -577,15 +641,25 @@ public class FeatureAdapter extends TypeAdapter {
 	 * This includes end features, owned features of constructor results, and
 	 * generally parameters.
 	 */
-	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Feature target = getTarget();
 		return type == null? Collections.emptyList():
-			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   target.isEnd()? getEndRelevantFeatures(type):
 			   ExpressionUtil.isConstructorResult(target.getOwningType())? getConstructorRelevantFeatures(type):
-			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
+			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type):
 			   Collections.emptyList();
 	}
 	
+	/**
+	 * @satisfies checkFeatureEndRedefinition
+	 */
+	protected List<? extends Feature> getEndRelevantFeatures(Type type) {
+		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): type.getEndFeature();
+	}
+	
+	/**
+	 * @satisfies checkConstructorExpressionResultFeatureRedefinition
+	 */
 	protected List<? extends Feature> getConstructorRelevantFeatures(Type type) {
 		Type owningType = getTarget().getOwningType();
 		if (type == owningType) {
@@ -602,8 +676,10 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Parameters redefine (owned) Parameters of general Types, with a result
 	 * Parameter always redefining the result Parameter of a general Function or
 	 * Expression.
+	 * 
+	 * @satisfies checkFeatureResultRedefinition
 	 */
-	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
 		if (type != null) {
 			if (FeatureUtil.isResultParameter(getTarget())) {
 				Feature resultParameter = TypeUtil.getResultParameterOf(type);
@@ -611,17 +687,20 @@ public class FeatureAdapter extends TypeAdapter {
 					return Collections.singletonList(resultParameter);
 				}
 			} else {
-				return getRelevantParameters(type, skip);
+				return getRelevantParameters(type);
 			}
 		}
 		return Collections.emptyList();
 	}
 	
-	protected List<Feature> getRelevantParameters(Type type, Element skip) {
+	/**
+	 * @satisfies checkFeatureParameterRedefinition
+	 */
+	protected List<Feature> getRelevantParameters(Type type) {
 		Type owningType = getTarget().getOwningType();
 		return filterIgnoredParameters(type == owningType? 
 					TypeUtil.getOwnedParametersOf(type): 
-					TypeUtil.getAllParametersOf(type, skip));
+					TypeUtil.getAllParametersOf(type));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
@@ -636,6 +715,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
+	/**
+	 * @satisfies checkFeatureFeatureMembershipTypeFeaturing
+	 */
 	protected Type computeFeaturingType() {
 		Feature feature = getTarget();
 		Type owningType = feature.getOwningType();
@@ -727,9 +809,13 @@ public class FeatureAdapter extends TypeAdapter {
 			}
 		}
 	}
-
+	
+	/**
+	 * @satisfies checkFeatureValueBindingConnector
+	 */
 	protected void computeValueConnector() {
 		Feature target = getTarget();
+		//returns null if valuation isDefault is true
 		Feature result = getBoundValueResult();
 		if (result != null) {
 			List<Type> featuringTypes;
@@ -744,7 +830,9 @@ public class FeatureAdapter extends TypeAdapter {
 		}
 	}
 	
-	// checkFeatureOwnedCrossFeatureTypeFeaturing
+	/**
+	 * @satisfies checkFeatureOwnedCrossFeatureTypeFeaturing
+	 */
 	public void addOwnedCrossFeatureTypeFeaturing() {
 		Feature target = getTarget();
 		if (FeatureUtil.isOwnedCrossFeature(target) && target.getOwnedTypeFeaturing().isEmpty() && isImplicitFeaturingTypesEmpty()) {
@@ -788,7 +876,7 @@ public class FeatureAdapter extends TypeAdapter {
 					
 					addFeaturingType(cartesianProductFeature);
 
-					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
+					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature)) {
 						if (redefinedFeature.isEnd()) {
 							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 							if (crossFeature != null) {

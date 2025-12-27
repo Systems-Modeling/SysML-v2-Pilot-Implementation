@@ -48,7 +48,12 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	}
 	
 	// Implicit Generalization
-
+	
+	/**
+	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
+	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
+	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
+	 */
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
@@ -71,6 +76,9 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 			   	target.getOwningType() instanceof OccurrenceUsage;
 	}
 	
+	/**
+	 * @satisfies checkOccurrenceUsageSpecialization
+	 */
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");

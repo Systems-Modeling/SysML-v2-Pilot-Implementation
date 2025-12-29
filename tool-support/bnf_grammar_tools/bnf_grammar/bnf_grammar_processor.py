@@ -1108,7 +1108,7 @@ class GrammarProcessor:
                 bnf_html_file.write(f"<h2>{line_comment('Consolidated partial productions:')}</h2>")
                 for name, term_list in sorted(self.partial_productions.items()):
                     html_term_list = [f'<a_href="#{term}">{term}</a>' for term in sorted(term_list)]
-                    term_list_lines = f'{name} =\n{self.wrap_sorted(html_term_list, sep=' | ', width=300)}'.replace("<a_href=", "<a href=").split("\n")
+                    term_list_lines = f'{name} =\n{self.wrap_sorted(html_term_list, sep=" | ", width=300)}'.replace("<a_href=", "<a href=").split("\n")
                     bnf_html_file.write(f'<pre><a id="{name}"></a>\n{block_comment(term_list_lines, add_newline=False)}\n</pre>\n')
 
             bnf_html_file.write(DATA.HTML_TAIL)

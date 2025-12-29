@@ -12,8 +12,9 @@ and also be obtained by running the tool with the --help option.
 @author: Hans Peter de Koning (DEKonsult)
 
 Requirements:
-This tool requires installation of the following packages:
+This tool requires Python v3.9 or higher and installation of the following packages:
 - beautifulsoup4 (See https://pypi.org/project/beautifulsoup4/)
+- lxml (See https://pypi.org/project/lxml/)
 - lark (See https://pypi.org/project/lark)
 """
 
@@ -28,12 +29,11 @@ from dataclasses import dataclass, asdict
 from enum import Enum, auto
 from logging import Logger
 from textwrap import wrap
-from types import NoneType
 from typing import Any, ClassVar, Iterable, Optional
 
-from bs4 import BeautifulSoup, Tag, PageElement, NavigableString
+from bs4 import BeautifulSoup, Tag, PageElement
 
-from lark import Lark, Transformer, Tree, UnexpectedInput
+from lark import Lark, UnexpectedInput
 
 # Create logger for diagnostic messages at debug, info, warning, error and critical levels
 import logging
@@ -661,7 +661,7 @@ class GrammarProcessor:
             elif tag.name == "ol" and inside_bnf_clause and contains_pre_tag and tag.parent.name != "li":
                 LOGGER.debug(f"note <ol> tag={tag}")
                 list_item_count = 0
-                note_list = NoteList(clause_id, [], [])
+                note_list = NoteList(clause_id, [], "")
 
                 # Update the contents of <ol> within the HTML tree
                 self.cleanup_note_html(tag)
@@ -1225,7 +1225,7 @@ def is_lower_kebab_case(text: str) -> bool:
 
 def render_nested_lists(html_snippet: str, mode: RenderMode, apply_line_comment: bool) -> str:
     """
-    Return
+    Return nested note lists, rendered as comments in HTML or TXT format.
 
     :param html_snippet: string in HTML format that contains nested ol and/or ul lists
     :param mode: output render mode
@@ -1386,6 +1386,7 @@ Via diff'ing of the extracted and corrected .kebnf and/or .kgbnf files a list of
     args = parser.parse_args()
     LOGGER.debug(f"args={args}")
     LOGGER.debug(f"bnf_grammar_processor started in {os.getcwd()}")
+    LOGGER.info(f"Running Python {sys.version}")
 
     input_dir = args.input_dir
     output_dir = args.output_dir

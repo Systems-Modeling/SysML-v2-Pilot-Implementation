@@ -22,7 +22,7 @@ Instructions on how to export a selected version of the specification from View 
 
 === Install the Python Environment
 
-Ensure that Python version 3.8 or higher is installed on your machine. The most convenient way is to use the https://www.jetbrains.com/pycharm/[PyCharm] tool. Create a dedicated `conda` or `venv` development environment and activate it. The best tool to install a Python base environment is https://github.com/conda-forge/miniforge[miniforge].
+Ensure that Python version 3.9 or higher is installed on your machine. The most convenient way is to use the https://www.jetbrains.com/pycharm/[PyCharm] tool. Create a dedicated `conda` or `venv` development environment and activate it. The best tool to install a Python base environment is https://github.com/conda-forge/miniforge[miniforge].
 
 After installation check the active Python version, e.g.:
 
@@ -35,6 +35,7 @@ After installation check the active Python version, e.g.:
 Also ensure that the latest version of the following packages are installed. You can use `pip` or `conda` or `mamba`.
 
 * Package https://pypi.org/project/beautifulsoup4/[beautifulsoup4] is used to parse the HTML input file.
+* Package https://pypi.org/project/lxml/[lxml] is used to assist beautifulsoup4 with processing SVG/XML files.
 * Package https://pypi.org/project/lark/[lark] is used to parse and verify the extracted BNF source.
 * Package https://pypi.org/project/pytest/[pytest] is used to run unit tests.
 
@@ -43,6 +44,7 @@ for example with the following commands:
 [source,shell]
 ----
     $ pip install beautifulsoup4
+    $ pip install lxml
     $ pip install lark
     $ pip install pytest
 ----

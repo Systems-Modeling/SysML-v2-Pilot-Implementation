@@ -38,8 +38,6 @@ from lark import Lark, Transformer, Tree, UnexpectedInput
 # Create logger for diagnostic messages at debug, info, warning, error and critical levels
 import logging
 
-from lxml.html.defs import list_tags
-
 LOGGER: Logger = logging.getLogger()
 
 # Marker denoting start of a line comment in generated output

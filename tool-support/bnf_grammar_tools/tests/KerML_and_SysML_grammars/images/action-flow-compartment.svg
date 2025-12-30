@@ -24,8 +24,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
       <path
-         d="M 56.25,0 H 790.625 V 50 H 56.25 Z"
-         transform="matrix(0.38914214,0,0,0.38914214,95.792109,1237.7839)"
+         d="m 9.375,0 h 831.25 V 50.976563 H 9.375 Z"
+         transform="matrix(0.34362407,0,0,0.34362407,114.57554,1238.9999)"
          clip-rule="evenodd"
          id="path4" />
     </clipPath>
@@ -33,8 +33,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath6">
       <path
-         d="M 56.25,0 H 790.625 V 50 H 56.25 Z"
-         transform="matrix(0.38914214,0,0,0.38914214,96.29211,1238.2839)"
+         d="m 9.375,0 h 831.25 V 50.976563 H 9.375 Z"
+         transform="matrix(0.34362407,0,0,0.34362407,115.07553,1239.5)"
          clip-rule="evenodd"
          id="path6" />
     </clipPath>
@@ -42,8 +42,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath7">
       <path
-         d="M 56.25,0 H 790.625 V 50 H 56.25 Z"
-         transform="matrix(0.38914214,0,0,0.38914214,-133.56727,-13.716087)"
+         d="m 9.375,0 h 831.25 V 50.976563 H 9.375 Z"
+         transform="matrix(0.34362407,0,0,0.34362407,-114.78386,-12.500001)"
          clip-rule="evenodd"
          id="path7" />
     </clipPath>
@@ -51,8 +51,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath8">
       <path
-         d="M 56.25,0 H 790.625 V 50 H 56.25 Z"
-         transform="matrix(0.38914214,0,0,0.38914214,-135.86414,-13.716087)"
+         d="m 9.375,0 h 831.25 V 50.976563 H 9.375 Z"
+         transform="matrix(0.34362407,0,0,0.34362407,-117.08073,-12.500001)"
          clip-rule="evenodd"
          id="path8" />
     </clipPath>
@@ -60,8 +60,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath9">
       <path
-         d="M 56.25,0 H 790.625 V 50 H 56.25 Z"
-         transform="matrix(0.38914214,0,0,0.38914214,-192.56728,-13.716087)"
+         d="m 9.375,0 h 831.25 V 50.976563 H 9.375 Z"
+         transform="matrix(0.34362407,0,0,0.34362407,-173.78386,-12.500001)"
          clip-rule="evenodd"
          id="path9" />
     </clipPath>
@@ -77,18 +77,18 @@
        id="path3"
        d="m 120,1240 280,1"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.8223216,0,0,0.8223216,-78.77192,-1017.8564)"
+       transform="matrix(0.9312502,0,0,0.9312502,-106.69849,-1153.8189)"
        clip-path="url(#clipPath4)" />
     <path
        id="path5"
        d="m 230,1241 h 61 v 14 h -61 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(0.8223216,0,0,0.8223216,-79.183082,-1018.2676)"
+       transform="matrix(0.9312502,0,0,0.9312502,-107.16411,-1154.2846)"
        clip-path="url(#clipPath6)" />
     <text
        id="text6"
        xml:space="preserve"
-       transform="matrix(0.8223216,0,0,0.8223216,109.83525,11.279035)"
+       transform="matrix(0.9312502,0,0,0.9312502,106.89249,11.640628)"
        clip-path="url(#clipPath7)"><tspan
          id="tspan6"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -97,7 +97,7 @@
     <text
        id="text7"
        xml:space="preserve"
-       transform="matrix(0.8223216,0,0,0.8223216,111.72402,11.279035)"
+       transform="matrix(0.9312502,0,0,0.9312502,109.03145,11.640628)"
        clip-path="url(#clipPath8)"><tspan
          id="tspan7"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -106,7 +106,7 @@
     <text
        id="text8"
        xml:space="preserve"
-       transform="matrix(0.8223216,0,0,0.8223216,158.35223,11.279035)"
+       transform="matrix(0.9312502,0,0,0.9312502,161.83625,11.640628)"
        clip-path="url(#clipPath9)"><tspan
          id="tspan8"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"

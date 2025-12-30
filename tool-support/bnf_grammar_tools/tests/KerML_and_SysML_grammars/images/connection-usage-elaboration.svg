@@ -24,8 +24,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
       <path
-         d="M 56.25,56.25 H 375 V 365.625 H 56.25 Z"
-         transform="matrix(0.45990987,0,0,0.45990987,367.68303,361.69287)"
+         d="m 3.125,3.125 h 425 V 418.75 h -425 z"
+         transform="matrix(0.34161904,0,0,0.34161904,392.86318,386.86488)"
          clip-rule="evenodd"
          id="path4" />
     </clipPath>
@@ -33,8 +33,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath5">
       <path
-         d="M 56.25,56.25 H 375 V 365.625 H 56.25 Z"
-         transform="matrix(0.45990987,0,0,0.45990987,-32.59822,-55.307139)"
+         d="m 3.125,3.125 h 425 V 418.75 h -425 z"
+         transform="matrix(0.34161904,0,0,0.34161904,-7.4180612,-30.135119)"
          clip-rule="evenodd"
          id="path5" />
     </clipPath>
@@ -42,8 +42,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath6">
       <path
-         d="M 56.25,56.25 H 375 V 365.625 H 56.25 Z"
-         transform="matrix(0.45990987,0,0,0.45990987,-61.61385,-148.30714)"
+         d="m 3.125,3.125 h 425 V 418.75 h -425 z"
+         transform="matrix(0.34161904,0,0,0.34161904,-36.433691,-123.13511)"
          clip-rule="evenodd"
          id="path6" />
     </clipPath>
@@ -59,12 +59,12 @@
        id="path3"
        d="m 465,496 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2 m -2,-8 v -2 h 2 v 2"
        style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(0.69578848,0,0,0.69578848,-255.82962,-251.66173)"
+       transform="matrix(0.9367159,0,0,0.9367159,-368.00119,-362.38248)"
        clip-path="url(#clipPath4)" />
     <text
        id="text4"
        xml:space="preserve"
-       transform="matrix(0.69578848,0,0,0.69578848,22.681466,38.48207)"
+       transform="matrix(0.9367159,0,0,0.9367159,6.9486159,28.228045)"
        clip-path="url(#clipPath5)"><tspan
          id="tspan4"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -73,7 +73,7 @@
     <text
        id="text5"
        xml:space="preserve"
-       transform="matrix(0.69578848,0,0,0.69578848,42.870207,103.1904)"
+       transform="matrix(0.9367159,0,0,0.9367159,34.128018,115.34262)"
        clip-path="url(#clipPath6)"><tspan
          id="tspan5"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"

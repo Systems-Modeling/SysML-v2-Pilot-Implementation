@@ -26,7 +26,7 @@
        x2="0"
        y2="1"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(177.00001,0,0,20.000001,80.000003,1562.0001)"
+       gradientTransform="matrix(177.00001,0,0,20.000001,80.000001,1562)"
        spreadMethod="pad"
        id="linearGradient4">
       <stop
@@ -42,8 +42,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
       <path
-         d="m 56.25,15.625 h 550 v 162.5 h -550 z"
-         transform="matrix(0.40614618,0,0,-0.40614618,54.852906,1630.6153)"
+         d="m 3.125,0 h 656.25 V 191.99219 H 3.125 Z"
+         transform="matrix(0.3387549,0,0,-0.3387549,76.855499,1624.0586)"
          clip-rule="evenodd"
          id="path4" />
     </clipPath>
@@ -51,8 +51,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath5">
       <path
-         d="m 56.25,15.625 h 550 v 162.5 h -550 z"
-         transform="matrix(0.40614618,0,0,0.40614618,-26.647091,-62.1151)"
+         d="m 3.125,0 h 656.25 V 191.99219 H 3.125 Z"
+         transform="matrix(0.3387549,0,0,0.3387549,-4.6444948,-55.558513)"
          clip-rule="evenodd"
          id="path5" />
     </clipPath>
@@ -60,8 +60,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath7">
       <path
-         d="m 56.25,15.625 h 550 v 162.5 h -550 z"
-         transform="matrix(0.40614618,0,0,0.40614618,54.852906,1513.3849)"
+         d="m 3.125,0 h 656.25 V 191.99219 H 3.125 Z"
+         transform="matrix(0.3387549,0,0,0.3387549,76.855499,1519.9414)"
          clip-rule="evenodd"
          id="path7" />
     </clipPath>
@@ -69,8 +69,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath9">
       <path
-         d="m 56.25,15.625 h 550 v 162.5 h -550 z"
-         transform="matrix(0.40614618,0,0,0.40614618,54.852906,1513.3849)"
+         d="m 3.125,0 h 656.25 V 191.99219 H 3.125 Z"
+         transform="matrix(0.3387549,0,0,0.3387549,76.855499,1519.9414)"
          clip-rule="evenodd"
          id="path9" />
     </clipPath>
@@ -86,12 +86,12 @@
        id="path3"
        d="M 85.040001,1562 H 257 v 14.96 c 0,2.78 -2.25999,5.04 -5.03999,5.04 H 80 v -14.96 c 0,-2.78 2.260002,-5.04 5.040001,-5.04 z"
        style="fill:url(#linearGradient4);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.78789363,0,0,-0.78789363,-43.218255,1284.7514)"
+       transform="matrix(0.94463574,0,0,-0.94463574,-72.600451,1534.1438)"
        clip-path="url(#clipPath4)" />
     <text
        id="text4"
        xml:space="preserve"
-       transform="matrix(0.78789363,0,0,0.78789363,20.995073,48.940092)"
+       transform="matrix(0.94463574,0,0,0.94463574,4.3873558,52.482557)"
        clip-path="url(#clipPath5)"><tspan
          id="tspan4"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -101,13 +101,13 @@
        id="path6"
        d="m 257,1582 h 40"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.78789363,0,0,0.78789363,-43.218255,-1192.3863)"
+       transform="matrix(0.94463574,0,0,0.94463574,-72.600451,-1435.791)"
        clip-path="url(#clipPath7)" />
     <path
        id="path8"
        d="m 80,1562 v -40"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.78789363,0,0,0.78789363,-43.218255,-1192.3863)"
+       transform="matrix(0.94463574,0,0,0.94463574,-72.600451,-1435.791)"
        clip-path="url(#clipPath9)" />
   </g>
 </svg>

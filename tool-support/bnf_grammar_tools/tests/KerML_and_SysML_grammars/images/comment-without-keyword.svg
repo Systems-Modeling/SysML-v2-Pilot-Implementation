@@ -24,8 +24,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
       <path
-         d="m 56.25,21.875 h 375 V 168.75 h -375 z"
-         transform="matrix(0.44046803,0,0,0.44046803,9.8214034,-982.01177)"
+         d="M 3.125,0 H 487.5 V 189 H 3.125 Z"
+         transform="matrix(0.34069736,0,0,0.34069736,33.85567,-972.06472)"
          clip-rule="evenodd"
          id="path4" />
     </clipPath>
@@ -33,8 +33,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath6">
       <path
-         d="m 56.25,21.875 h 375 V 168.75 h -375 z"
-         transform="matrix(0.44046803,0,0,0.44046803,9.8214034,-982.01177)"
+         d="M 3.125,0 H 487.5 V 189 H 3.125 Z"
+         transform="matrix(0.34069736,0,0,0.34069736,33.85567,-972.06472)"
          clip-rule="evenodd"
          id="path6" />
     </clipPath>
@@ -42,8 +42,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath7">
       <path
-         d="m 56.25,21.875 h 375 V 168.75 h -375 z"
-         transform="matrix(0.44046803,0,0,0.44046803,-28.678594,-48.511706)"
+         d="M 3.125,0 H 487.5 V 189 H 3.125 Z"
+         transform="matrix(0.34069736,0,0,0.34069736,-4.6443317,-38.564649)"
          clip-rule="evenodd"
          id="path7" />
     </clipPath>
@@ -59,20 +59,20 @@
        id="path3"
        d="m 37,-970 h 141 l 19,19 v 41 H 37 Z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.72649991,0,0,0.72649991,-7.1352487,713.43146)"
+       transform="matrix(0.93924998,0,0,0.93924998,-31.798937,913.01177)"
        clip-path="url(#clipPath4)" />
     <path
        id="path5"
        d="m 178,-970 v 19 h 19"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(0.72649991,0,0,0.72649991,-7.1352487,713.43146)"
+       transform="matrix(0.93924998,0,0,0.93924998,-31.798937,913.01177)"
        clip-path="url(#clipPath6)" />
     <g
        id="g6" />
     <text
        id="text6"
        xml:space="preserve"
-       transform="matrix(0.72649991,0,0,0.72649991,20.834996,35.24375)"
+       transform="matrix(0.93924998,0,0,0.93924998,4.3621885,36.221846)"
        clip-path="url(#clipPath7)"><tspan
          id="tspan6"
          style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Arial;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"

@@ -20,6 +20,24 @@
          clip-rule="evenodd"
          id="path2" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <path
+         d="m 3.125,9.375 h 56.25 v 100 H 3.125 Z"
+         transform="matrix(0.42111402,0,0,0.42111402,547.36402,94.736076)"
+         clip-rule="evenodd"
+         id="path4" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath6">
+      <path
+         d="m 3.125,9.375 h 56.25 v 100 H 3.125 Z"
+         transform="matrix(0.42111402,0,0,0.42111402,547.36402,94.736076)"
+         clip-rule="evenodd"
+         id="path6" />
+    </clipPath>
   </defs>
   <g
      id="g1">
@@ -28,5 +46,17 @@
        d="M 0,0 H 20 V 38 H 0 Z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
        clip-path="url(#clipPath2)" />
+    <path
+       id="path3"
+       d="M 560,128 V 112.24"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0.75988918,0,0,0.75988918,-415.936,-71.988919)"
+       clip-path="url(#clipPath4)" />
+    <path
+       id="path5"
+       d="m 564.5,120.12 -4.5,-9 -4.5,9"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0.75988918,0,0,0.75988918,-415.936,-71.988919)"
+       clip-path="url(#clipPath6)" />
   </g>
 </svg>

@@ -24,8 +24,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath4">
       <path
-         d="M 56.25,0 H 787.5 V 62.5 H 56.25 Z"
-         transform="matrix(0.38966372,0,0,0.38966372,96.241149,68.282301)"
+         d="M 6.25,0 H 837.5 V 62.988281 H 6.25 Z"
+         transform="matrix(0.34133333,0,0,0.34133333,116.3,69.5)"
          clip-rule="evenodd"
          id="path4" />
     </clipPath>
@@ -33,8 +33,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath6">
       <path
-         d="M 56.25,0 H 787.5 V 62.5 H 56.25 Z"
-         transform="matrix(0.38966372,0,0,0.38966372,96.241149,68.282301)"
+         d="M 6.25,0 H 837.5 V 62.988281 H 6.25 Z"
+         transform="matrix(0.34133333,0,0,0.34133333,116.3,69.5)"
          clip-rule="evenodd"
          id="path6" />
     </clipPath>
@@ -42,8 +42,8 @@
        clipPathUnits="userSpaceOnUse"
        id="clipPath8">
       <path
-         d="M 56.25,0 H 787.5 V 62.5 H 56.25 Z"
-         transform="matrix(0.38966372,0,0,0.38966372,96.241149,68.282301)"
+         d="M 6.25,0 H 837.5 V 62.988281 H 6.25 Z"
+         transform="matrix(0.34133333,0,0,0.34133333,116.3,69.5)"
          clip-rule="evenodd"
          id="path8" />
     </clipPath>
@@ -59,19 +59,19 @@
        id="path3"
        d="M 123,70 H 397 V 90 H 123 Z"
        style="fill:#e6e6e6;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(0.82122089,0,0,0.82122089,-79.035242,-56.074852)"
+       transform="matrix(0.93749996,0,0,0.93749996,-109.03125,-65.156247)"
        clip-path="url(#clipPath4)" />
     <path
        id="path5"
        d="m 120,70 h 3 v 20 h -3 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(0.82122089,0,0,0.82122089,-79.035242,-56.074852)"
+       transform="matrix(0.93749996,0,0,0.93749996,-109.03125,-65.156247)"
        clip-path="url(#clipPath6)" />
     <path
        id="path7"
        d="m 397,70 h 3 v 20 h -3 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(0.82122089,0,0,0.82122089,-79.035242,-56.074852)"
+       transform="matrix(0.93749996,0,0,0.93749996,-109.03125,-65.156247)"
        clip-path="url(#clipPath8)" />
   </g>
 </svg>

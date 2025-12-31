@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Usage_directedUsage_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Usage_directedUsage_SettingDelegate extends Type_directedFeature_SettingDelegate {
 
 	public Usage_directedUsage_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
@@ -37,8 +37,9 @@ public class Usage_directedUsage_SettingDelegate extends BasicDerivedListSetting
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<Usage> directedUsages = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
-		((Usage)owner).getUsage().stream().
-			filter(usage->usage.getDirection() != null).
+		super.basicGet(owner).stream().
+			filter(Usage.class::isInstance).
+			map(Usage.class::cast).
 			forEachOrdered(directedUsages::add);
 		return directedUsages;
 	}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,6 +36,8 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
+import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -173,7 +175,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertEquals("TopLevel/3/1/1/1", TopLevel_3_1_1.getOwnedRelatedElement().get(0).path());
 	}
 
-	public final String directedUsageTest =
+	public final String directedUsageTest1 =
 			  "package Test {\n"
 			+ "    item def I {\n"
 			+ "        in x;\n"
@@ -190,9 +192,9 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 			+ "}";
 	
 	@Test
-	public void testDirectedUsage() throws Exception {
+	public void testDirectedUsage1() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		SysMLInteractiveResult result = instance.process(directedUsageTest);
+		SysMLInteractiveResult result = instance.process(directedUsageTest1);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
 		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
@@ -220,5 +222,83 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertEquals("constraint def (directedUsages.size)", 2, directedUsages.size());
 		assertEquals("constraint def (directedUsages)", directedFeatures.subList(0, 2), directedUsages);
 	}
+	public final String directedUsageTest2 =
+			  "package Test {\n"
+			+ "    item I {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "    action A {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "    constraint C {\n"
+			+ "        in x;\n"
+			+ "        in y;\n"
+			+ "    }"
+			+ "}";
 	
+	@Test
+	public void testDirectedUsage2() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(directedUsageTest2);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		List<Feature> directedFeatures = ((Usage)ownedMembers.get(0)).getDirectedFeature();
+		List<Usage> directedUsages = ((Usage)ownedMembers.get(0)).getDirectedUsage();
+		assertEquals("item (directedFeatures.size)", 2, directedFeatures.size());
+		assertEquals("item (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("item (directedUsages)", directedFeatures, directedUsages);
+		
+		// Check that getting directedFeatures and directedUsages work for ActionUsages and
+		// ConstraintUsages, even though they are kinds of Steps, and Step redefines
+		// directedFeature as parameter.
+		
+		directedFeatures = ((Usage)ownedMembers.get(1)).getDirectedFeature();
+		directedUsages = ((Usage)ownedMembers.get(1)).getDirectedUsage();
+		assertEquals("action (directedFeatures.size)", 2, directedFeatures.size());
+		assertEquals("action (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("action (directedUsages)", directedFeatures, directedUsages);
+		
+		// The ConstraintUsage "C" has three directedFeatures, including its return parameter,
+		// but only the first two are Usages.
+		directedFeatures = ((Usage)ownedMembers.get(2)).getDirectedFeature();
+		directedUsages = ((Usage)ownedMembers.get(2)).getDirectedUsage();
+		assertEquals("constraint (directedFeatures.size)", 3, directedFeatures.size());
+		assertEquals("constraint (directedUsages.size)", 2, directedUsages.size());
+		assertEquals("constraint (directedUsages)", directedFeatures.subList(0, 2), directedUsages);
+	}
+	
+	public final String enumeratedValueTest =
+			  "package Test {\n"
+			+ "    variation item def I {\n"
+			+ "        variant item i1;\n"
+			+ "        variant item i2;\n"
+			+ "    }"
+			+ "    enum def A {\n"
+			+ "        enum a1;\n"
+			+ "        enum a2;\n"
+			+ "    }"
+			+ "}";
+	
+	@Test
+	public void testEnumeratedValue() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(enumeratedValueTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		List<Usage> variants = ((Definition)ownedMembers.get(0)).getVariant();
+		assertEquals("item def (variants.size)", 2, variants.size());
+		
+		// Check that getting variant and enumeratedValue work for EnumerationDefinitions, 
+		// even though EnumerationDefinition::enumeratedValue redefines Definition::variant.
+		
+		variants = ((Definition)ownedMembers.get(1)).getVariant();
+		List<EnumerationUsage> enumeratedValues = ((EnumerationDefinition)ownedMembers.get(1)).getEnumeratedValue();
+		assertEquals("enum def (variants.size)", 2, variants.size());
+		assertEquals("enuim def (enumeratedValues.size)", 2, enumeratedValues.size());
+		assertEquals("enum def (enumeratedValues)", variants, enumeratedValues);
+	}
 }

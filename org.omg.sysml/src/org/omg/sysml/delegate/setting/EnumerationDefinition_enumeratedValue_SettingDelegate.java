@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022, 2025 Siemens AG
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,11 +24,10 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class EnumerationDefinition_enumeratedValue_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class EnumerationDefinition_enumeratedValue_SettingDelegate extends Definition_variant_SettingDelegate {
 
 	public EnumerationDefinition_enumeratedValue_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
@@ -36,7 +35,12 @@ public class EnumerationDefinition_enumeratedValue_SettingDelegate extends Basic
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return new DerivedEObjectEList<>(EnumerationUsage.class, owner, SysMLPackage.ENUMERATION_DEFINITION__ENUMERATED_VALUE, new int[] {SysMLPackage.DEFINITION__VARIANT});
+		EList<EnumerationUsage> enumeratedValues = new NonNotifyingEObjectEList<>(EnumerationUsage.class, owner, eStructuralFeature.getFeatureID());
+		super.basicGet(owner).stream().
+			filter(EnumerationUsage.class::isInstance).
+			map(EnumerationUsage.class::cast).
+			forEachOrdered(enumeratedValues::add);
+		return enumeratedValues;
 	}
 
 }

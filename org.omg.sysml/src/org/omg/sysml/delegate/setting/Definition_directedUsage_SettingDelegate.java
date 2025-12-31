@@ -24,13 +24,10 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ConstraintDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Definition_directedUsage_SettingDelegate extends DefaultDerivedPropertySettingDelegate {
+public class Definition_directedUsage_SettingDelegate extends Type_directedFeature_SettingDelegate {
 
 	public Definition_directedUsage_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);		
@@ -38,10 +35,11 @@ public class Definition_directedUsage_SettingDelegate extends DefaultDerivedProp
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return owner instanceof ActionDefinition?
-				new DerivedEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID(), new int[] {SysMLPackage.ACTION_DEFINITION__PARAMETER}):
-			   owner instanceof ConstraintDefinition?
-				new DerivedEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID(), new int[] {SysMLPackage.CONSTRAINT_DEFINITION__PARAMETER}):
-				super.basicGet(owner);
+		EList<Usage> directedUsages = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
+		super.basicGet(owner).stream().
+			filter(Usage.class::isInstance).
+			map(Usage.class::cast).
+			forEachOrdered(directedUsages::add);
+		return directedUsages;
 	}
 }

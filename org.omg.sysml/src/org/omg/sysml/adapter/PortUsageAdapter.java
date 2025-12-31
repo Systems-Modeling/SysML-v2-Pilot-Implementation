@@ -39,6 +39,14 @@ public class PortUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isStructureOwnedComposite()) {
+			addDefaultGeneralType("subobject");
+		}
+	}
+	
 	/**
 	 * @satisfies checkPortUsageOwnedPortSpecialization
 	 * @satisfies checkPortUsageSubportSpecialization

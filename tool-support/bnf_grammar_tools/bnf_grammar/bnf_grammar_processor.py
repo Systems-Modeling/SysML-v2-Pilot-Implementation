@@ -228,7 +228,7 @@ class Production(GrammarElement):
                                 is_hyperlink_resolved = True
                                 break
                         if not is_hyperlink_resolved:
-                            # Record unresolved non-terminal and line where it occurred
+                            # Record unresolved non-terminal and clause plus line where it occurred
                             if token.text not in self.processor.unresolved_non_terminals_dict:
                                 self.processor.unresolved_non_terminals_dict[token.text] = []
                             self.processor.unresolved_non_terminals_dict[token.text].append(f"{self.clause_id}: {html_line}")
@@ -320,7 +320,7 @@ class GrammarProcessor:
     - concrete textual notation
     - concrete graphical notation
 
-    Mistakes or ambiguous productions and notes are logged in the form of WARNING or ERROR messages.
+    Mistakes or ambiguous productions and notes are logged in the form of ERROR or WARNING messages respectively.
     """
     def __init__(self):
         self.start_timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -345,7 +345,7 @@ class GrammarProcessor:
         self.image_map: dict[str, str] = dict()
         self.unresolved_non_terminals_dict: dict[str, list[str]] = dict()
 
-        # Provide a backlink to this GrammarExtractor inside the GrammarElements
+        # Provide a backlink to this GrammarProcessor inside the GrammarElement classes
         GrammarElement.processor = self
 
     def extract_bnf_from_spec(self, input_dir: str, output_dir: str, input_file: str, syntax_kind: str, bnf_clause_id: str):
@@ -536,40 +536,40 @@ class GrammarProcessor:
                 # Strip possibly trailing whitespace from the last candidate production
                 candidate_productions[-1] = candidate_productions[-1].rstrip()
 
-                for candidate_prod in candidate_productions:
-                    if candidate_prod == "":
+                for candidate_production in candidate_productions:
+                    if candidate_production == "":
                         continue
 
                     # Collect keywords and symbols
                     if clause_id.startswith(self.bnf_clause_id):
                         # Store keywords and symbols appearing in textual notation productions
-                        matched_keywords = KEYWORD_PATTERN.findall(candidate_prod)
+                        matched_keywords = KEYWORD_PATTERN.findall(candidate_production)
                         for matched_keyword in matched_keywords:
                             self.extracted_keyword_set.add(matched_keyword[1:-1])
-                        matched_symbols = SYMBOL_PATTERN.findall(candidate_prod)
+                        matched_symbols = SYMBOL_PATTERN.findall(candidate_production)
                         for matched_symbol in matched_symbols:
                             self.extracted_symbol_set.add(matched_symbol[1:-1])
 
                     # Initialize count and index for productions with multiple <img...> terms
-                    img_count = candidate_prod.count("<img ")
+                    img_count = candidate_production.count("<img ")
                     img_index = 0
 
                     # Process lines in each candidate production
-                    lines = candidate_prod.split("\n")
+                    lines = candidate_production.split("\n")
                     line_number = 0
                     current_note_ref: Optional[NoteRef] = None
                     current_production: Optional[Production] = None
                     production_name = None
                     for line in lines:
                         if line == "":
-                            LOGGER.error(f"Unexpected empty line in candidate production: {candidate_prod}")
+                            LOGGER.error(f"Unexpected empty line in candidate production: {candidate_production}")
                             continue
                         line_number += 1
                         if line_number == 1:
                             # Should be the start line of a production
                             GRAPHICAL_GRAMMAR_NOTE_PATTERN = re.compile(r"^[ \t]*Note[.:].+", flags=re.IGNORECASE)
                             if GRAPHICAL_GRAMMAR_NOTE_PATTERN.match(line):
-                                LOGGER.warning(f"Graphical note found in <pre>, but should be <p> element: {candidate_prod}")
+                                LOGGER.warning(f"Graphical note found in <pre>, but should be <p> element: {candidate_production}")
                                 current_note_ref = NoteRef(clause_id, lines=[line])
                                 self.elements.append(current_note_ref)
                             else:
@@ -597,7 +597,7 @@ class GrammarProcessor:
                                     else:
                                         abstract_type = ""
                                     if production_name in self.grammars[-1].production_names:
-                                        LOGGER.error(f"Non-unique production name: {production_name} in {self.grammars[-1].production_names}")
+                                        LOGGER.error(f"Non-unique production name: {production_name} in {clause_id}:\n{candidate_production}")
                                     else:
                                         self.grammars[-1].production_names.add(production_name)
 
@@ -607,9 +607,14 @@ class GrammarProcessor:
                                 if line[0] in (" ", "\t"):
                                     LOGGER.error(f"Production start line starts with a space or tab: {line}")
                                     line = line.strip()
-                                ONE_EQUALS_PATTERN = re.compile(r"( = | =$)")
-                                if not ONE_EQUALS_PATTERN.search(line):
-                                    LOGGER.warning(f"Production start line does not contain exactly one '=': {line}")
+                                if self.syntax_kind == "textual-bnf":
+                                    TEXTUAL_EQUALS_PATTERN = re.compile(r"( = | =$)")
+                                    if not TEXTUAL_EQUALS_PATTERN.search(line):
+                                        LOGGER.warning(f"Production start line does not contain exactly one '=': {line}")
+                                elif self.syntax_kind == "graphical-bnf":
+                                    GRAPHICAL_EQUALS_PATTERN = re.compile(r"( = | =$| =\| | =\|$)")
+                                    if not GRAPHICAL_EQUALS_PATTERN.search(line):
+                                        LOGGER.warning(f"Production start line does not contain exactly one '=' or '=|': {line}")
                         elif current_note_ref:
                             current_note_ref.lines.append(line)
                         elif "<img" in line:
@@ -640,8 +645,7 @@ class GrammarProcessor:
                         except UnexpectedInput as e:
                             LOGGER.error(f"Parse error in {self.input_path} {clause_id} in production:\n{current_production_text}\n{e}")
                         else:
-                            log_level = logging.INFO if clause_id in ("8.2.3.6",) else logging.DEBUG
-                            LOGGER.log(log_level, f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
+                            LOGGER.debug(f"Parsed successfully {clause_id}:\n{current_production_text}\n{parse_tree.pretty()}")
 
                 for subtag in tag:
                     if isinstance(subtag, Tag) and subtag.name in ("em", "strong", "img"):
@@ -815,7 +819,7 @@ class GrammarProcessor:
                     production_name = candidate_production.split(" ", 1)[0].strip()
 
                 if production_name in self.grammars[-1].production_names and not is_partial:
-                    LOGGER.error(f"Non-unique production name: {production_name} in {self.grammars[-1].production_names}")
+                    LOGGER.error(f"Non-unique production name: {production_name} in {clause_id}:\n{candidate_production}")
                 else:
                     self.grammars[-1].production_names.add(production_name)
                 self.elements.append(Production(clause_id=clause_id, lines=candidate_production.split("\n"), name=production_name, abstract_syntax_type=abstract_syntax_type, is_partial=is_partial))
@@ -1044,7 +1048,7 @@ class GrammarProcessor:
 
             if self.image_map:
                 map_string = "\n".join([f"{k} {v}" for k, v in sorted(self.image_map.items())])
-                LOGGER.info(f"Map from {len(self.image_map)} original to new SVG  images:\n{map_string}")
+                LOGGER.info(f"Map from {len(self.image_map)} original to new image href attribute values:\n{map_string}")
 
             LOGGER.info("===== End of Graphical Notation Grammar Checks")
 

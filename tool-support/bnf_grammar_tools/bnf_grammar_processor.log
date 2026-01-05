@@ -1,0 +1,274 @@
+INFO    : Running Python 3.9.23 | packaged by conda-forge | (main, Jun  4 2025, 17:49:16) [MSC v.1929 64 bit (AMD64)]
+WARNING : Processing syntax_kind=kerml-library for ../../sysml.library/Kernel Libraries/Kernel Semantic Library/KerML.kerml clause=None is not yet implemented
+WARNING : Processing syntax_kind=sysml-library for ../../sysml.library/Systems Library/SysML.sysml clause=None is not yet implemented
+INFO    : ====================
+INFO    : Processing BNF from tests\KerML_and_SysML_grammars\KerML-textual-bnf-corrected-marked_up.kebnf syntax-kind=textual-bnf clause=8.2 at 2026-01-05T21:13:58Z
+INFO    : ====================
+INFO    : Processing clause id= title=- Kernel Modeling Language (KerML)
+INFO    : Processing clause id=8.2 title=Concrete Syntax
+INFO    : Processing clause id=8.2.1 title=Concrete Syntax Overview
+INFO    : Processing clause id=8.2.2 title=Lexical Structure
+INFO    : Processing clause id=8.2.2.1 title=Line Terminators and White Space
+INFO    : Processing clause id=8.2.2.2 title=Notes and Comments
+INFO    : Processing clause id=8.2.2.3 title=Names
+INFO    : Processing clause id=8.2.2.4 title=Numeric Values
+INFO    : Processing clause id=8.2.2.5 title=String Value
+INFO    : Processing clause id=8.2.2.6 title=Reserved Words
+INFO    : Processing clause id=8.2.2.7 title=Symbols
+INFO    : Processing clause id=8.2.3 title=Root Concrete Syntax
+INFO    : Processing clause id=8.2.3.1 title=Elements and Relationships Concrete Syntax
+INFO    : Processing clause id=8.2.3.2 title=Dependencies Concrete Syntax
+INFO    : Processing clause id=8.2.3.3 title=Annotations Concrete Syntax
+INFO    : Processing clause id=8.2.3.3.1 title=Annotations
+INFO    : Processing clause id=8.2.3.3.2 title=Comments and Documentation
+INFO    : Processing clause id=8.2.3.3.3 title=Textual Representation
+INFO    : Processing clause id=8.2.3.4 title=Namespaces Concrete Syntax
+INFO    : Processing clause id=8.2.3.4.1 title=Namespaces
+INFO    : Processing clause id=8.2.3.4.2 title=Imports
+INFO    : Processing clause id=8.2.3.4.3 title=Namespace Elements
+INFO    : Processing clause id=8.2.3.5 title=Name Resolution
+INFO    : Processing clause id=8.2.3.5.1 title=Name Resolution Overview
+INFO    : Processing clause id=8.2.3.5.2 title=Local and Global Namespaces
+INFO    : Processing clause id=8.2.3.5.3 title=Local and Visible Resolution
+INFO    : Processing clause id=8.2.3.5.4 title=Full Resolution
+INFO    : Processing clause id=8.2.4 title=Core Concrete Syntax
+INFO    : Processing clause id=8.2.4.1 title=Types Concrete Syntax
+INFO    : Processing clause id=8.2.4.1.1 title=Types
+INFO    : Processing clause id=8.2.4.1.2 title=Specialization
+INFO    : Processing clause id=8.2.4.1.3 title=Conjugation
+INFO    : Processing clause id=8.2.4.1.4 title=Disjoining
+INFO    : Processing clause id=8.2.4.1.5 title=Unioning, Intersecting and Differencing
+INFO    : Processing clause id=8.2.4.1.6 title=Feature Membership
+INFO    : Processing clause id=8.2.4.2 title=Classifiers Concrete Syntax
+INFO    : Processing clause id=8.2.4.2.1 title=Classifiers
+INFO    : Processing clause id=8.2.4.2.2 title=Subclassification
+INFO    : Processing clause id=8.2.4.3 title=Features Concrete Syntax
+INFO    : Processing clause id=8.2.4.3.1 title=Features
+INFO    : Processing clause id=8.2.4.3.2 title=Feature Typing
+INFO    : Processing clause id=8.2.4.3.3 title=Subsetting
+INFO    : Processing clause id=8.2.4.3.4 title=Redefinition
+INFO    : Processing clause id=8.2.4.3.5 title=Feature Chaining
+INFO    : Processing clause id=8.2.4.3.6 title=Feature Inverting
+INFO    : Processing clause id=8.2.4.3.7 title=Type Featuring
+INFO    : Processing clause id=8.2.5 title=Kernel Concrete Syntax
+INFO    : Processing clause id=8.2.5.1 title=Data Types Concrete Syntax
+INFO    : Processing clause id=8.2.5.2 title=Classes Concrete Syntax
+INFO    : Processing clause id=8.2.5.3 title=Structures Concrete Syntax
+INFO    : Processing clause id=8.2.5.4 title=Associations Concrete Syntax
+INFO    : Processing clause id=8.2.5.5 title=Connectors Concrete Syntax
+INFO    : Processing clause id=8.2.5.5.1 title=Connectors
+INFO    : Processing clause id=8.2.5.5.2 title=Binding Connectors
+INFO    : Processing clause id=8.2.5.5.3 title=Successions
+INFO    : Processing clause id=8.2.5.6 title=Behaviors Concrete Syntax
+INFO    : Processing clause id=8.2.5.6.1 title=Behaviors
+INFO    : Processing clause id=8.2.5.6.2 title=Steps
+INFO    : Processing clause id=8.2.5.7 title=Functions Concrete Syntax
+INFO    : Processing clause id=8.2.5.7.1 title=Functions
+INFO    : Processing clause id=8.2.5.7.2 title=Expressions
+INFO    : Processing clause id=8.2.5.7.3 title=Predicates
+INFO    : Processing clause id=8.2.5.7.4 title=Boolean Expressions and Invariants
+INFO    : Processing clause id=8.2.5.8 title=Expressions Concrete Syntax
+INFO    : Processing clause id=8.2.5.8.1 title=Operator Expressions
+INFO    : Processing clause id=8.2.5.8.2 title=Primary Expressions
+INFO    : Processing clause id=8.2.5.8.3 title=Base Expressions
+INFO    : Processing clause id=8.2.5.8.4 title=Literal Expressions
+INFO    : Processing clause id=8.2.5.9 title=Interactions Concrete Syntax
+INFO    : Processing clause id=8.2.5.9.1 title=Interactions
+INFO    : Processing clause id=8.2.5.9.2 title=Flows
+INFO    : Processing clause id=8.2.5.10 title=Feature Values Concrete Syntax
+INFO    : Processing clause id=8.2.5.11 title=Multiplicities Concrete Syntax
+INFO    : Processing clause id=8.2.5.12 title=Metadata Concrete Syntax
+INFO    : Processing clause id=8.2.5.13 title=Packages Concrete Syntax
+INFO    : Completed parsing tests\KerML_and_SysML_grammars\KerML-textual-bnf-corrected-marked_up.kebnf
+INFO    : Dumping BNF grammar elements into tests\KerML_and_SysML_grammars\KerML-textual-bnf-corrected-elements.json
+INFO    : Writing BNF grammar file tests\KerML_and_SysML_grammars\KerML-textual-bnf-corrected.kebnf
+INFO    : Writing BNF HTML file tests\KerML_and_SysML_grammars\KerML-textual-bnf-corrected.html
+WARNING : Tokenize: Space inside TERMINAL ' ' in line     ' ' | '\t' | '\f' | LINE_TERMINATOR
+WARNING : Tokenize: Space inside TERMINAL 'any printable character other than backslash or single_quote' in line     'any printable character other than backslash or single_quote'
+WARNING : Tokenize: Space inside TERMINAL 'any printable character other than backslash or "' in line     'any printable character other than backslash or "'
+WARNING : Grammar KerML-textual-bnf-corrected contains 1 unresolved non-terminal(s) ...
+ERROR   : Cannot resolve InvocationTypeMember in
+    8.2.5.8.2:     ownedRelationship += InvocationTypeMember
+INFO    : ====================
+INFO    : Processing BNF from tests\KerML_and_SysML_grammars\SysML-textual-bnf-corrected-marked_up.kebnf syntax-kind=textual-bnf clause=8.2.2 at 2026-01-05T21:13:58Z
+INFO    : ====================
+INFO    : Processing clause id= title=- Systems Modeling Language (SysML)
+INFO    : Processing clause id=8.2.2 title=Textual Notation
+INFO    : Processing clause id=8.2.2.1 title=Textual Notation Overview
+INFO    : Processing clause id=8.2.2.1.1 title=EBNF Conventions
+INFO    : Processing clause id=8.2.2.1.2 title=Lexical Structure
+INFO    : Processing clause id=8.2.2.2 title=Elements and Relationships Textual Notation
+INFO    : Processing clause id=8.2.2.3 title=Dependencies Textual Notation
+INFO    : Processing clause id=8.2.2.4 title=Annotations Textual Notation
+INFO    : Processing clause id=8.2.2.4.1 title=Annotations
+INFO    : Processing clause id=8.2.2.4.2 title=Comments and Documentation
+INFO    : Processing clause id=8.2.2.4.3 title=Textual Representation
+INFO    : Processing clause id=8.2.2.5 title=Namespaces and Packages Textual Notation
+INFO    : Processing clause id=8.2.2.5.1 title=Packages
+INFO    : Processing clause id=8.2.2.5.2 title=Package Elements
+INFO    : Processing clause id=8.2.2.6 title=Definition and Usage Textual Notation
+INFO    : Processing clause id=8.2.2.6.1 title=Definitions
+INFO    : Processing clause id=8.2.2.6.2 title=Usages
+INFO    : Processing clause id=8.2.2.6.3 title=Reference Usages
+INFO    : Processing clause id=8.2.2.6.4 title=Body Elements
+INFO    : Processing clause id=8.2.2.6.5 title=Specialization
+INFO    : Processing clause id=8.2.2.6.6 title=Multiplicity
+INFO    : Processing clause id=8.2.2.7 title=Attributes Textual Notation
+INFO    : Processing clause id=8.2.2.8 title=Enumerations Textual Notation
+INFO    : Processing clause id=8.2.2.9 title=Occurrences Textual Notation
+INFO    : Processing clause id=8.2.2.9.1 title=Occurrence Definitions
+INFO    : Processing clause id=8.2.2.9.2 title=Occurrence Usages
+INFO    : Processing clause id=8.2.2.9.3 title=Occurrence Successions
+INFO    : Processing clause id=8.2.2.10 title=Items Textual Notation
+INFO    : Processing clause id=8.2.2.11 title=Parts Textual Notation
+INFO    : Processing clause id=8.2.2.12 title=Ports Textual Notation
+INFO    : Processing clause id=8.2.2.13 title=Connections Textual Notation
+INFO    : Processing clause id=8.2.2.13.1 title=Connection Definition and Usage
+INFO    : Processing clause id=8.2.2.13.2 title=Binding Connectors
+INFO    : Processing clause id=8.2.2.13.3 title=Successions
+INFO    : Processing clause id=8.2.2.14 title=Interfaces Textual Notation
+INFO    : Processing clause id=8.2.2.14.1 title=Interface Definitions
+INFO    : Processing clause id=8.2.2.14.2 title=Interface Usages
+INFO    : Processing clause id=8.2.2.15 title=Allocations Textual Notation
+INFO    : Processing clause id=8.2.2.16 title=Flows Textual Notation
+INFO    : Processing clause id=8.2.2.17 title=Actions Textual Notation
+INFO    : Processing clause id=8.2.2.17.1 title=Action Definitions
+INFO    : Processing clause id=8.2.2.17.2 title=Action Usages
+INFO    : Processing clause id=8.2.2.17.3 title=Control Nodes
+INFO    : Processing clause id=8.2.2.17.4 title=Send and Accept Action Usages
+INFO    : Processing clause id=8.2.2.17.5 title=Assignment Action Usages
+INFO    : Processing clause id=8.2.2.17.6 title=Terminate Action Usages
+INFO    : Processing clause id=8.2.2.17.7 title=Structured Control Action Usages
+INFO    : Processing clause id=8.2.2.17.8 title=Action Successions
+INFO    : Processing clause id=8.2.2.18 title=States Textual Notation
+INFO    : Processing clause id=8.2.2.18.1 title=State Definitions
+INFO    : Processing clause id=8.2.2.18.2 title=State Usages
+INFO    : Processing clause id=8.2.2.18.3 title=Transition Usages
+INFO    : Processing clause id=8.2.2.19 title=Calculations Textual Notation
+INFO    : Processing clause id=8.2.2.20 title=Constraints Textual Notation
+INFO    : Processing clause id=8.2.2.21 title=Requirements Textual Notation
+INFO    : Processing clause id=8.2.2.21.1 title=Requirement Definitions
+INFO    : Processing clause id=8.2.2.21.2 title=Requirement Usages
+INFO    : Processing clause id=8.2.2.21.3 title=Concerns
+INFO    : Processing clause id=8.2.2.22 title=Cases Textual Notation
+INFO    : Processing clause id=8.2.2.23 title=Analysis Cases Textual Notation
+INFO    : Processing clause id=8.2.2.24 title=Verification Cases Textual Notation
+INFO    : Processing clause id=8.2.2.25 title=Use Cases Textual Notation
+INFO    : Processing clause id=8.2.2.26 title=Views and Viewpoints Textual Notation
+INFO    : Processing clause id=8.2.2.26.1 title=View Definitions
+INFO    : Processing clause id=8.2.2.26.2 title=View Usages
+INFO    : Processing clause id=8.2.2.26.3 title=Viewpoints
+INFO    : Processing clause id=8.2.2.26.4 title=Renderings
+INFO    : Processing clause id=8.2.2.27 title=Metadata Textual Notation
+INFO    : Completed parsing tests\KerML_and_SysML_grammars\SysML-textual-bnf-corrected-marked_up.kebnf
+INFO    : Dumping BNF grammar elements into tests\KerML_and_SysML_grammars\SysML-textual-bnf-corrected-elements.json
+INFO    : Writing BNF grammar file tests\KerML_and_SysML_grammars\SysML-textual-bnf-corrected.kebnf
+INFO    : Writing BNF HTML file tests\KerML_and_SysML_grammars\SysML-textual-bnf-corrected.html
+WARNING : Grammar SysML-textual-bnf-corrected contains 2 unresolved non-terminal(s) ...
+ERROR   : Cannot resolve CalculationUsageDeclaration in
+    8.2.2.21.1:       CalculationUsageDeclaration CalculationBody
+ERROR   : Cannot resolve FilterPackageImport in
+    8.2.2.5.1:     ownedRelationship += FilterPackageImport
+INFO    : ====================
+INFO    : Processing BNF from tests\KerML_and_SysML_grammars\SysML-graphical-bnf-corrected-marked_up.kgbnf syntax-kind=graphical-bnf clause=8.2.3 at 2026-01-05T21:13:58Z
+INFO    : ====================
+INFO    : Processing clause id= title=- Systems Modeling Language (SysML)
+INFO    : Processing clause id=8.2.3 title=Graphical Notation
+INFO    : Processing clause id=8.2.3.1 title=Graphical Notation Overview
+INFO    : Processing clause id=8.2.3.2 title=Elements and Relationships Graphical Notation
+INFO    : Processing clause id=8.2.3.3 title=Dependencies Graphical Notation
+INFO    : Processing clause id=8.2.3.4 title=Annotations Graphical Notation
+INFO    : Processing clause id=8.2.3.5 title=Namespaces and Packages Graphical Notation
+INFO    : Processing clause id=8.2.3.6 title=Definition and Usage Graphical Notation
+INFO    : Processing clause id=8.2.3.7 title=Attributes Graphical Notation
+INFO    : Processing clause id=8.2.3.8 title=Enumerations Graphical Notation
+INFO    : Processing clause id=8.2.3.9 title=Occurrences Graphical Notation
+ERROR   : Non-unique production name: succession-label in 8.2.3.9:
+succession-label = Identification
+INFO    : Processing clause id=8.2.3.10 title=Items Graphical Notation
+INFO    : Processing clause id=8.2.3.11 title=Parts Graphical Notation
+INFO    : Processing clause id=8.2.3.12 title=Ports Graphical Notation
+INFO    : Processing clause id=8.2.3.13 title=Connections Graphical Notation
+INFO    : Processing clause id=8.2.3.14 title=Interfaces Graphical Notation
+INFO    : Processing clause id=8.2.3.15 title=Allocations Graphical Notation
+INFO    : Processing clause id=8.2.3.16 title=Flows Graphical Notation
+ERROR   : Non-unique production name: flow-node in 8.2.3.16:
+flow-node =
+      flow-node-r
+    | flow-node-l
+    | sflow-node-r
+    | sflow-node-l
+    | message-node-r
+    | message-node-l
+ERROR   : Non-unique production name: flow-label in 8.2.3.16:
+flow-label =
+    Identification | FlowPayloadFeatureMember
+INFO    : Processing clause id=8.2.3.17 title=Actions Graphical Notation
+INFO    : Processing clause id=8.2.3.18 title=States Graphical Notation
+INFO    : Processing clause id=8.2.3.19 title=Calculations Graphical Notation
+INFO    : Processing clause id=8.2.3.20 title=Constraints Graphical Notation
+ERROR   : Non-unique production name: usage-node in 8.2.3.20:
+usage-node =
+      constraint
+    | assert-constraint-node
+INFO    : Processing clause id=8.2.3.21 title=Requirements Graphical Notation
+ERROR   : Non-unique production name: usage-node in 8.2.3.21:
+usage-node =
+      requirement
+    | satisfy-requirement-usage
+    | concern
+INFO    : Processing clause id=8.2.3.22 title=Cases Graphical Notation
+INFO    : Processing clause id=8.2.3.23 title=Analysis Cases Graphical Notation
+INFO    : Processing clause id=8.2.3.24 title=Verification Cases Graphical Notation
+INFO    : Processing clause id=8.2.3.25 title=Use Cases Graphical Notation
+INFO    : Processing clause id=8.2.3.26 title=Views and Viewpoints Graphical Notation
+INFO    : Processing clause id=8.2.3.27 title=Metadata Graphical Notation
+INFO    : Completed parsing tests\KerML_and_SysML_grammars\SysML-graphical-bnf-corrected-marked_up.kgbnf
+INFO    : Dumping BNF grammar elements into tests\KerML_and_SysML_grammars\SysML-graphical-bnf-corrected-elements.json
+INFO    : Writing BNF grammar file tests\KerML_and_SysML_grammars\SysML-graphical-bnf-corrected.kgbnf
+INFO    : Writing BNF HTML file tests\KerML_and_SysML_grammars\SysML-graphical-bnf-corrected.html
+WARNING : Tokenize: Space inside TERMINAL 'defined by' in line       'defines' | 'defined by' | 'specializes' | 'specialized by' | 'connect to'
+WARNING : Tokenize: Space inside TERMINAL 'specialized by' in line       'defines' | 'defined by' | 'specializes' | 'specialized by' | 'connect to'
+WARNING : Tokenize: Space inside TERMINAL 'connect to' in line       'defines' | 'defined by' | 'specializes' | 'specialized by' | 'connect to'
+WARNING : Tokenize: Space inside TERMINAL 'subsetted by' in line     | 'subsets' | 'subsetted by' | 'performs' | 'performed by' | 'allocated' | 'allocated to'
+WARNING : Tokenize: Space inside TERMINAL 'performed by' in line     | 'subsets' | 'subsetted by' | 'performs' | 'performed by' | 'allocated' | 'allocated to'
+WARNING : Tokenize: Space inside TERMINAL 'allocated to' in line     | 'subsets' | 'subsetted by' | 'performs' | 'performed by' | 'allocated' | 'allocated to'
+WARNING : Tokenize: Space inside TERMINAL 'satisfied by' in line     | 'satisfy' | 'satisfied by'
+WARNING : Tokenize: Space inside TERMINAL '«assert constraint»' in line        '«assert constraint»'
+WARNING : Tokenize: Space inside TERMINAL '«satisfy requirement»' in line        '«satisfy requirement»'
+WARNING : Tokenize: Space inside TERMINAL '«include use case»' in line        '«include use case»'
+WARNING : Grammar SysML-graphical-bnf-corrected contains 16 unresolved non-terminal(s) ...
+ERROR   : Cannot resolve ActionUsageParameterList in
+    8.2.3.25:       ( ValuePart | ActionUsageParameterList )? CaseBody
+ERROR   : Cannot resolve CalculationUsageParameterPart in
+    8.2.3.20:       CalculationUsageParameterPart CalculationBody
+ERROR   : Cannot resolve ValueOrFlowPart in
+    8.2.3.17:       el-prefix? FeatureDirection UsageDeclaration ValueOrFlowPart? DefinitionBodyItem*
+    8.2.3.26:       el-prefix? OccurrenceUsagePrefix UsageDeclaration? ValueOrFlowPart? ViewBody
+ERROR   : Cannot resolve analysis-case in
+    8.2.3.16:     | use-case | verification-case | analysis-case | proxy
+ERROR   : Cannot resolve comp-prefix in
+    8.2.3.22:       comp-prefix? MemberPrefix ConstraintUsageDeclaration RequirementBody
+ERROR   : Cannot resolve concerns-compartment-contents in
+    8.2.3.21:       concerns-compartment-contents
+ERROR   : Cannot resolve element-in-textual-compartment in
+    8.2.3.15:     | element-in-textual-compartment
+ERROR   : Cannot resolve exhibit-state-scompartment-element in
+    8.2.3.18: exhibit-states-compartment-contents = exhibit-state-scompartment-element* '…'?
+ERROR   : Cannot resolve include-actions-compartment in
+    8.2.3.25:     | include-actions-compartment
+ERROR   : Cannot resolve keyword in
+    8.2.3.27:     '«' BasicUsagePrefix? keyword* 'metadata' 'def' '»'
+ERROR   : Cannot resolve message-connection in
+    8.2.3.16:       message-connection
+ERROR   : Cannot resolve perform-action-swimlanes in
+    8.2.3.17:      (perform-action-swimlanes)?
+ERROR   : Cannot resolve port in
+    8.2.3.16:       occurrence| sq-l-node| item | part | port | action | state
+ERROR   : Cannot resolve proxy in
+    8.2.3.16:     | use-case | verification-case | analysis-case | proxy
+    8.2.3.16:     parameter | proxy
+ERROR   : Cannot resolve succession in
+    8.2.3.17: usage-edge =| succession perform-edge
+ERROR   : Cannot resolve verification-case in
+    8.2.3.16:     | use-case | verification-case | analysis-case | proxy

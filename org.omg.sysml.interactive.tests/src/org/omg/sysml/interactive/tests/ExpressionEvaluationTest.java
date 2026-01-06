@@ -387,6 +387,8 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		
 		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), 1)", null));
 		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), 5)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), (1, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), (1, 5))", null));
 		
 		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includesOnly((1, 2, 3), (3, 2, 1))", null));
 		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includesOnly((1, 2, 3), (1, 5))", null));
@@ -446,6 +448,52 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertList(new String[]{}, instance.eval("SequenceFunctions::intersection((1, 2, 3), (4, 5))", null));
 		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 3"}, instance.eval("SequenceFunctions::intersection((1, 2, 3), (1, 3, 4))", null));
 		assertList(new String[]{}, instance.eval("SequenceFunctions::intersection((), (4, 5))", null));
+	}
+	
+	public final String collectionTest =
+			"package CollectionTest {\n"
+			+ "	   private import Collections::*;\n"
+			+ "    attribute empty = new OrderedCollection(elements = null);\n"
+			+ "	   attribute collection1 = new OrderedCollection(elements = 1);\n"
+			+ "	   attribute collection5 = new OrderedCollection(elements = 5);\n"
+			+ "	   attribute collection15 = new OrderedCollection(elements = (1, 5));\n"
+			+ "	   attribute collection123 = new OrderedCollection(elements = (1, 2, 3));\n"
+			+ "	   attribute collection321 = new OrderedCollection(elements = (3, 2, 1));\n"
+			+ "}";
+	
+	@Test
+	public void testCollectionFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, collectionTest);
+		
+		assertElement("LiteralInteger 3", instance.eval("CollectionFunctions::size(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::contains(collection123, 1)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::contains(collection123, 5)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::contains(collection123, (1, 3))", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::contains(collection123, (1, 5))", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::containsAll(collection123, collection321)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::containsAll(collection123, collection15)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::isEmpty(empty)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::isEmpty(collection1)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::isEmpty(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::notEmpty(empty)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection1)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::'=='(collection123, collection123)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection321)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection15)", "CollectionTest"));
+		
+		assertList(new String[]{"LiteralInteger 1"}, instance.eval("CollectionFunctions::head(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::head(empty)", "CollectionTest"));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("CollectionFunctions::tail(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::tail(empty)", "CollectionTest"));
+		assertList(new String[]{"LiteralInteger 3"}, instance.eval("CollectionFunctions::last(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::last(empty)", "CollectionTest"));
 	}
 	
 	@Test

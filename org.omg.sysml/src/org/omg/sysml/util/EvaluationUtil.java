@@ -98,7 +98,7 @@ public class EvaluationUtil {
 	public static Expression expressionFor(EList<Element> results, Element context) {
 		if (!results.stream().allMatch(
 				elm->elm instanceof Feature && 
-				(!(elm instanceof Expression) || elm instanceof LiteralExpression))) {
+				(!(elm instanceof Expression) || elm instanceof LiteralExpression || elm.eClass() == SysMLPackage.eINSTANCE.getExpression()))) {
 			return null;
 		} else if (results.isEmpty()) {
 			return SysMLFactory.eINSTANCE.createNullExpression();
@@ -107,12 +107,16 @@ public class EvaluationUtil {
 			if (results.size() > 1) {
 				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
 				for (int i = 1; i < results.size(); i++) {
+					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					TypeUtil.addOwnedParameterTo(listExpr, expression);
+					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));					
+					NamespaceUtil.addMemberTo(listExpr, listOp);
+					
 					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
 					typing.setType(listOp);
-					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					typing.setTypedFeature(listExpr);
 					listExpr.getOwnedRelationship().add(typing);
-					TypeUtil.addOwnedParameterTo(listExpr, expression);
-					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));
+					
 					expression = listExpr;
 				}
 			}
@@ -250,7 +254,8 @@ public class EvaluationUtil {
 	public static Feature getTypeFeatureFor(Feature feature, Type type) {
 		return type == null? null :
 			type.getFeature().stream().
-				filter(f->FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
+				filter(f->
+				FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
 				findFirst().orElse(null);
 	}
 	

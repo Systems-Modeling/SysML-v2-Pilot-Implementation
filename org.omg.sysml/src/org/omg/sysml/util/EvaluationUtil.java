@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,6 +21,7 @@
 
 package org.omg.sysml.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -235,6 +236,13 @@ public class EvaluationUtil {
 			}
 			return true;
 		}
+	}
+	
+	public static EList<Element> getElementsOf(Feature collection) {
+		List<Feature> elementsChain = new ArrayList<>();
+		elementsChain.add(collection);
+		elementsChain.add(ExpressionUtil.getCollectionElementsFeature(collection));
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureChain(elementsChain, collection);		
 	}
 
 	public static Feature getTargetFeatureFor(Element target) {

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -86,10 +86,7 @@ public class IndexFunction extends BaseFunction {
 	}
 	
 	protected EList<Element> indexCollection(InvocationExpression invocation, Feature collection, int index, ModelLevelExpressionEvaluator evaluator) {
-		List<Feature> elementsChain = new ArrayList<>();
-		elementsChain.add(collection);
-		elementsChain.add(ExpressionUtil.getCollectionElementsFeature(collection));
-		EList<Element> elements = evaluator.evaluateFeatureChain(elementsChain, collection);
+		EList<Element> elements = EvaluationUtil.getElementsOf(collection);
 		return elements == null? EvaluationUtil.singletonList(invocation): 
 			   indexSequence(elements, index);
 	}

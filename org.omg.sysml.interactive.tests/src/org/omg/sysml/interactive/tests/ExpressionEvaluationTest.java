@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Mgnite, Inc.
- * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -458,6 +458,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	   attribute collection5 = new OrderedCollection(elements = 5);\n"
 			+ "	   attribute collection15 = new OrderedCollection(elements = (1, 5));\n"
 			+ "	   attribute collection123 = new OrderedCollection(elements = (1, 2, 3));\n"
+			+ "	   attribute collection123a = new OrderedCollection(elements = (1, 2, 3));\n"
 			+ "	   attribute collection321 = new OrderedCollection(elements = (3, 2, 1));\n"
 			+ "}";
 	
@@ -484,9 +485,12 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection1)", "CollectionTest"));
 		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection123)", "CollectionTest"));
 		
-		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::'=='(collection123, collection123)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::'=='(collection123, collection123a)", "CollectionTest"));
 		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection321)", "CollectionTest"));
 		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection15)", "CollectionTest"));
+		
+		assertElement("LiteralInteger 2", instance.eval("CollectionFunctions::'#'(collection123, 2)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::'#'(collection123, 4)", "CollectionTest"));
 		
 		assertList(new String[]{"LiteralInteger 1"}, instance.eval("CollectionFunctions::head(collection123)", "CollectionTest"));
 		assertList(new String[]{}, instance.eval("CollectionFunctions::head(empty)", "CollectionTest"));

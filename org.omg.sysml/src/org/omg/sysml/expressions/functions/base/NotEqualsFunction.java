@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,12 +22,10 @@
 package org.omg.sysml.expressions.functions.base;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
 
-public class NotEqualsFunction extends BaseFunction {
+public class NotEqualsFunction extends EqualsFunction {
 
 	@Override
 	public String getOperatorName() {
@@ -35,11 +33,10 @@ public class NotEqualsFunction extends BaseFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> x = evaluator.evaluateArgument(invocation, 0, target);
-		EList<Element> y = evaluator.evaluateArgument(invocation, 1, target);
-		Boolean result = x == null || y == null? null: !EvaluationUtil.equal(x, y);
-		return result == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(result);
+	protected boolean compare(EList<Element> x, EList<Element> y) {
+		// Note: This allows comparison of arbitrary lists, even though the !==' function args have multiplicity 0..1.
+		return !EvaluationUtil.equal(x, y);
 	}
+	
 
 }

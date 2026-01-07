@@ -380,6 +380,46 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("1..3", null));
 	}
 	
+	
+	@Test
+	public void testControlOpEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3).{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3).?{in x : ScalarValues::Integer; x < 3}", null));
+	}
+	
+	@Test
+	public void testDataFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(1,2)", null));
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(2,1)", null));
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(2,2)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(1,2.0)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(2,1.0)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(2.0,2.0)", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"a\", \"b\")", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"b\", \"a\")", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"b\", \"b\")", null));
+		
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(1,2)", null));
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(2,1)", null));
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(1,1)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(1,2.0)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(2,1.0)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(1.0,1.0)", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"a\", \"b\")", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"b\", \"a\")", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"a\", \"a\")", null));
+	}
+
+	@Test
+	public void testNumericalFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
+	}
+
 	@Test
 	public void testSequenceFunctionEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
@@ -501,18 +541,28 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	}
 	
 	@Test
-	public void testNumericalFunctionEvaluation() throws Exception {
+	public void testControlFunctionEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
-		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
-	}
-	
-	@Test
-	public void testControlOpEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
-		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3).{in x : ScalarValues::Integer; x * 2}", null));
-		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3).?{in x : ScalarValues::Integer; x < 3}", null));
 		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::collect{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::select{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 1"}, instance.eval("(1,2,3)->ControlFunctions::selectOne{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 3"}, instance.eval("(1,2,3)->ControlFunctions::reject{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::reduce{in x : ScalarValues::Integer; in y : ScalarValues::Integer; x * y}", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::reduce DataFunctions::'*'", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::reduce DataFunctions::'*'", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(1,2,3)->ControlFunctions::forAll{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(1,2,3)->ControlFunctions::forAll{in x : ScalarValues::Integer; x < 4}", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(1,2,3)->ControlFunctions::exists{in x : ScalarValues::Integer; x < 0}", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(1,2,3)->ControlFunctions::exists{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(false,false,false)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(true,false,true)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(true,true,true)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(false,false,false)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(false,true,false)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(true,true,true)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::maximize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::maximize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {"LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
 	}
 }

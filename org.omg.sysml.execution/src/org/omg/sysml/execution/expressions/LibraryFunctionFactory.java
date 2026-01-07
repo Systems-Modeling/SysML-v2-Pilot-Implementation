@@ -21,6 +21,8 @@
 
 package org.omg.sysml.execution.expressions;
 
+import org.omg.sysml.execution.expressions.functions.data.*;
+import org.omg.sysml.execution.expressions.functions.control.*;
 import org.omg.sysml.execution.expressions.functions.numerical.*;
 import org.omg.sysml.execution.expressions.functions.sequence.*;
 import org.omg.sysml.execution.expressions.functions.string.*;
@@ -32,6 +34,19 @@ public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevel
 	@Override
 	protected void initializeFunctionMap() {
 		super.initializeFunctionMap();
+		
+		// ControlFunctions
+		put(new ExistsFunction());
+		put(new ForAllFunction());
+		put(new MinimizeFunction());
+		put(new MaximizeFunction());
+		put(new ReduceFunction());
+		put(new RejectFunction());
+		put(new SelectOneFunction());
+		
+		// DataFunctions
+		put(new MaxFunction());
+		put(new MinFunction());
 		
 		// NumericalFunctions
 		put(new SumFunction());

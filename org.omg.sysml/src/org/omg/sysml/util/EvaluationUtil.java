@@ -45,6 +45,7 @@ import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -262,8 +263,7 @@ public class EvaluationUtil {
 	public static Feature getTypeFeatureFor(Feature feature, Type type) {
 		return type == null? null :
 			type.getFeature().stream().
-				filter(f->
-				FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
+				filter(f->FeatureUtil.getAllRedefinedFeaturesOf(f).contains(feature)).
 				findFirst().orElse(null);
 	}
 	
@@ -351,11 +351,16 @@ public class EvaluationUtil {
 		}
 	}
 	
-	public static Expression createInvocationOf(Expression expression, Element... arguments) {
-		Expression invocation = SysMLFactory.eINSTANCE.createExpression();
-		FeatureUtil.addSubsettingTo(invocation).setSubsettedFeature(expression);
+	public static InvocationExpression createInvocationOf(Type type, Element... arguments) {
+		InvocationExpression invocation = SysMLFactory.eINSTANCE.createInvocationExpression();
+		NamespaceUtil.addMemberTo(invocation, type);
+		
+		Specialization specialization = SysMLFactory.eINSTANCE.createSpecialization();
+		specialization.setGeneral(type);
+		specialization.setSpecific(invocation);
+		invocation.getOwnedRelationship().add(specialization);
 
-		List<Feature> parameters = TypeUtil.getAllParametersOf(expression);
+		List<Feature> parameters = TypeUtil.getAllParametersOf(type);
 		instantiateArguments(invocation, parameters, arguments);		
 		return invocation;
 	}

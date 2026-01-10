@@ -58,9 +58,9 @@ public class MinimizeFunction extends ReduceFunction {
 					} else if (result == null) {
 						return exprValue.get(0);
 					} else {
-						Type maxFunction = SysMLLibraryUtil.getLibraryType(expr, MIN_FUNCTION);
-						InvocationExpression maxInvocation = EvaluationUtil.createInvocationOf(maxFunction, result, exprValue.get(0));
-						EList<Element> newResult = evaluator.evaluateInvocation(maxInvocation, target);
+						Type minFunction = SysMLLibraryUtil.getLibraryType(expr, MIN_FUNCTION);
+						InvocationExpression minInvocation = EvaluationUtil.createInvocationOf(minFunction, result, exprValue.get(0));
+						EList<Element> newResult = evaluator.evaluateInvocation(minInvocation, target);
 						return newResult == null || newResult.size() != 1? null: newResult.get(0);
 					}
 				}			

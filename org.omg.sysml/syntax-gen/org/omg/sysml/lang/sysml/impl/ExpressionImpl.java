@@ -29,13 +29,11 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -163,33 +161,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public boolean isSetBehavior() {
   		return false;
 	}
-	
-	@Override 
-	public EList<Feature> getInput() {
-		// Only owned inputs
-		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
-		// Note: Using directionOf causes an infinite recursion.
-		getOwnedFeature().stream().
-			filter(feature->
-				FeatureDirectionKind.IN == feature.getDirection() || 
-				FeatureDirectionKind.INOUT == feature.getDirection()).
-			forEachOrdered(inputs::add);
-		return inputs;
-	}
-	
-	@Override
-	public EList<Feature> getOutput() {
-		// Only owned outputs
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
-		// Note: Using directionOf causes an infinite recursion.
-		getOwnedFeature().stream().
-			filter(feature->
-				FeatureDirectionKind.OUT == feature.getDirection() || 
-				FeatureDirectionKind.INOUT == feature.getDirection()).
-				forEachOrdered(outputs::add);
-		return outputs;
-	}
-	
+		
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

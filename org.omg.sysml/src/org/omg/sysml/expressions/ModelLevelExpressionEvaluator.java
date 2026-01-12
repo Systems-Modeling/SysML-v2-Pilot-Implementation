@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -118,14 +118,19 @@ public class ModelLevelExpressionEvaluator {
 	}
 	
 	public EList<Element> evaluateExpression(Expression expression, Element target, Element... arguments) {
-		Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
-		if (resultExpression == null) {
-			return EvaluationUtil.singletonList(expression);
+		InvocationExpression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
+		LibraryFunction libraryFunction = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
+		if (libraryFunction != null) {
+			return libraryFunction.invoke(invocation, target, this);
 		} else {
-			Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
-			Expression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
-			EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
-			return results == null? EvaluationUtil.singletonList(resultExpression): results;
+			Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
+			if (resultExpression == null) {
+				return EvaluationUtil.singletonList(expression);
+			} else {
+				Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
+				EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
+				return results == null? EvaluationUtil.singletonList(resultExpression): results;
+			}
 		}
 	}
 	

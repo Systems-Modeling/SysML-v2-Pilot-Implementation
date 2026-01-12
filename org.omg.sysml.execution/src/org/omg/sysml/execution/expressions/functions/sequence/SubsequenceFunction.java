@@ -1,0 +1,70 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
+package org.omg.sysml.execution.expressions.functions.sequence;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.EvaluationUtil;
+
+public class SubsequenceFunction extends SequenceFunction {
+
+	@Override
+	public String getOperatorName() {
+		return "subsequence";
+	}
+	
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
+		Element startIndex = evaluator.argumentValue(invocation, 1, target);
+		Element endIndex = evaluator.argumentValue(invocation, 2, target);
+		if (seq == null || startIndex == null) {
+			return EvaluationUtil.singletonList(invocation);
+		} else {
+			Object startIndexValue = EvaluationUtil.valueOf(startIndex);
+			Object endIndexValue = endIndex == null? null: EvaluationUtil.valueOf(endIndex);
+			if (!((startIndexValue == null || startIndexValue instanceof Integer) &&
+				  (endIndexValue == null || endIndexValue instanceof Integer))) {
+				return EvaluationUtil.singletonList(invocation);
+			} else if (startIndexValue == null) {
+				return EvaluationUtil.nullList();
+			} else {
+				int i = ((Integer)startIndexValue) - 1;
+				if (i < 0) {
+					i = 0;
+				}
+				int j = endIndexValue == null? seq.size(): ((Integer)endIndexValue);
+				if (j < 0) {
+					j = 0;
+				}
+				if (j < i) {
+					return EvaluationUtil.nullList();
+				} else {
+					return new BasicEList<>(seq.subList(i, j));
+				}
+			}
+		}
+	}
+
+}

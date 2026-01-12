@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +21,11 @@
 
 package org.omg.sysml.execution.expressions;
 
-import org.omg.sysml.execution.expressions.functions.*;
+import org.omg.sysml.execution.expressions.functions.data.*;
+import org.omg.sysml.execution.expressions.functions.control.*;
+import org.omg.sysml.execution.expressions.functions.numerical.*;
+import org.omg.sysml.execution.expressions.functions.sequence.*;
+import org.omg.sysml.execution.expressions.functions.string.*;
 
 public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
 	
@@ -31,15 +35,44 @@ public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevel
 	protected void initializeFunctionMap() {
 		super.initializeFunctionMap();
 		
-		put(new SizeFunction());
-		put(new IsEmptyFunction());
-		put(new NotEmptyFunction());
-		put(new IncludesFunction());
-		put(new ExcludesFunction());
+		// ControlFunctions
+		put(new ExistsFunction());
+		put(new ForAllFunction());
+		put(new MinimizeFunction());
+		put(new MaximizeFunction());
+		put(new ReduceFunction());
+		put(new RejectFunction());
+		put(new SelectOneFunction());
 		
+		// DataFunctions
+		put(new MaxFunction());
+		put(new MinFunction());
+		
+		// NumericalFunctions
 		put(new SumFunction());
 		put(new ProdFunction());
 		
+		// SequenceFunctions
+		put(new ExcludesFunction());
+		put(new ExcludingAtFunction());
+		put(new ExcludingFunction());
+		put(new HeadFunction());
+		put(new IncludesFunction());
+		put(new IncludesOnlyFunction());
+		put(new IncludingAtFunction());
+		put(new IncludingFunction());
+		put(new IntersectionFunction());
+		put(new IsEmptyFunction());
+		put(new LastFunction());
+		put(new NotEmptyFunction());
+		put(new SequenceEqualsFunction());
+		put(new SequenceSameFunction());
+		put(new SizeFunction());
+		put(new SubsequenceFunction());
+		put(new TailFunction());
+		put(new UnionFunction());
+		
+		// StringFunctions
 		put(new StringLengthFunction());
 		put(new StringSubstringFunction());
 	}

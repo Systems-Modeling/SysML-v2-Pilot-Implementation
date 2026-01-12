@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Mgnite, Inc.
- * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -125,7 +125,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 15", instance.eval("p12.a2", "EvalTest3"));
 	}
 
-	// Tests inherited context with a redefined (bound) outer features.
+	// Tests inherited context with redefined (bound) outer features.
 	public final String evalTest4 =
 			"package EvalTest4 {\n"
 			+ "	part p1 {\n"
@@ -355,8 +355,8 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	public void testInvocationEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, invocationTest);
-//		assertElement("LiteralInteger 1", instance.eval("Test(1, 2)", "InvocationTest"));
-//		assertElement("LiteralInteger 1", instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
+		assertElement("LiteralInteger 1", instance.eval("Test(1, 2)", "InvocationTest"));
+		assertElement("LiteralInteger 1", instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
 		assertElement("LiteralInteger 1", instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
 	}
 	
@@ -378,32 +378,191 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertList(new String[] {}, instance.eval("()", null));
 		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("(1, 2, 3)", null));
 		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("1..3", null));
-		assertElement("LiteralInteger 3", instance.eval("SequenceFunctions::size((1, 2, 3))", null));
-		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), 1)", null));
-		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), 5)", null));
-		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::excludes((1, 2, 3), 1)", null));
-		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::excludes((1, 2, 3), 5)", null));
-		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::isEmpty(null)", null));
-		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty(1)", null));
-		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty((1,2,3))", null));
-		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::notEmpty(null)", null));
-		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty(1)", null));
-		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty((1,2,3))", null));
 	}
 	
-	@Test
-	public void testNumericalFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
-		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
-		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
-	}
 	
 	@Test
 	public void testControlOpEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3).{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3).?{in x : ScalarValues::Integer; x < 3}", null));
+	}
+	
+	@Test
+	public void testDataFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(1,2)", null));
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(2,1)", null));
+		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(2,2)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(1,2.0)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(2,1.0)", null));
+		assertElement("LiteralRational 2.0", instance.eval("DataFunctions::max(2.0,2.0)", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"a\", \"b\")", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"b\", \"a\")", null));
+		assertElement("LiteralString b", instance.eval("DataFunctions::max(\"b\", \"b\")", null));
+		
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(1,2)", null));
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(2,1)", null));
+		assertElement("LiteralInteger 1", instance.eval("DataFunctions::min(1,1)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(1,2.0)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(2,1.0)", null));
+		assertElement("LiteralRational 1.0", instance.eval("DataFunctions::min(1.0,1.0)", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"a\", \"b\")", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"b\", \"a\")", null));
+		assertElement("LiteralString a", instance.eval("DataFunctions::min(\"a\", \"a\")", null));
+	}
+
+	@Test
+	public void testNumericalFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
+		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
+	}
+
+	@Test
+	public void testSequenceFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralInteger 3", instance.eval("SequenceFunctions::size((1, 2, 3))", null));
+		
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), 1)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), 5)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), (1, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includes((1, 2, 3), (1, 5))", null));
+		
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includesOnly((1, 2, 3), (3, 2, 1))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::includesOnly((1, 2, 3), (1, 5))", null));
+		
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::excludes((1, 2, 3), 1)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::excludes((1, 2, 3), 5)", null));
+		
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::isEmpty(null)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty(1)", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::isEmpty((1,2,3))", null));
+		
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::notEmpty(null)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty(1)", null));
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::notEmpty((1,2,3))", null));
+		
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::equals((1, 2, 3), (1, 2, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::equals((1, 2, 3), (2, 1, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::equals((1, 2, 3), (1, 5))", null));
+		
+		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::same((1, 2, 3), (1, 2, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::same((1, 2, 3), (2, 1, 3))", null));
+		assertElement("LiteralBoolean false", instance.eval("SequenceFunctions::same((1, 2, 3), (1, 5))", null));
+		
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3", "LiteralInteger 4"}, instance.eval("SequenceFunctions::including((1, 2, 3), 4)", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3", "LiteralInteger 4", "LiteralInteger 5"}, instance.eval("SequenceFunctions::including((1, 2, 3), (4,5))", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::including((1, 2, 3), ())", null));
+		
+		assertList(new String[]{"LiteralInteger 4", "LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::includingAt((1, 2, 3), 4, 1)", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 4", "LiteralInteger 5", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::includingAt((1, 2, 3), (4,5), 2)", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3", "LiteralInteger 4"}, instance.eval("SequenceFunctions::includingAt((1, 2, 3), 4, *)", null));
+		
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::excluding((1, 2, 3), 1)", null));
+		assertList(new String[]{"LiteralInteger 2"}, instance.eval("SequenceFunctions::excluding((1, 2, 3), (1,3))", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::excluding((1, 2, 3), ())", null));
+		
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::excludingAt((1, 2, 3), 1)", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 4"}, instance.eval("SequenceFunctions::excludingAt((1, 2, 3, 4), 2, 3)", null));
+		assertList(new String[]{"LiteralInteger 1"}, instance.eval("SequenceFunctions::excludingAt((1, 2, 3), 2, *)", null));
+		
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::subsequence((1, 2, 3), 1)", null));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::subsequence((1, 2, 3), 2)", null));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::subsequence((1, 2, 3, 4), 2, 3)", null));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::subsequence((1, 2, 3), 2, *)", null));
+		
+		assertList(new String[]{"LiteralInteger 1"}, instance.eval("SequenceFunctions::head((1, 2, 3))", null));
+		assertList(new String[]{}, instance.eval("SequenceFunctions::head(())", null));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::tail((1, 2, 3))", null));
+		assertList(new String[]{}, instance.eval("SequenceFunctions::tail(())", null));
+		assertList(new String[]{"LiteralInteger 3"}, instance.eval("SequenceFunctions::last((1, 2, 3))", null));
+		assertList(new String[]{}, instance.eval("SequenceFunctions::last(())", null));
+		
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("SequenceFunctions::union((1, 2, 3), ())", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3", "LiteralInteger 4", "LiteralInteger 5"}, instance.eval("SequenceFunctions::union((1, 2, 3), (4, 5))", null));
+		assertList(new String[]{"LiteralInteger 4", "LiteralInteger 5"}, instance.eval("SequenceFunctions::union((), (4, 5))", null));
+		
+		assertList(new String[]{}, instance.eval("SequenceFunctions::intersection((1, 2, 3), ())", null));
+		assertList(new String[]{}, instance.eval("SequenceFunctions::intersection((1, 2, 3), (4, 5))", null));
+		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 3"}, instance.eval("SequenceFunctions::intersection((1, 2, 3), (1, 3, 4))", null));
+		assertList(new String[]{}, instance.eval("SequenceFunctions::intersection((), (4, 5))", null));
+	}
+	
+	public final String collectionTest =
+			"package CollectionTest {\n"
+			+ "	   private import Collections::*;\n"
+			+ "    attribute empty = new OrderedCollection(elements = null);\n"
+			+ "	   attribute collection1 = new OrderedCollection(elements = 1);\n"
+			+ "	   attribute collection5 = new OrderedCollection(elements = 5);\n"
+			+ "	   attribute collection15 = new OrderedCollection(elements = (1, 5));\n"
+			+ "	   attribute collection123 = new OrderedCollection(elements = (1, 2, 3));\n"
+			+ "	   attribute collection123a = new OrderedCollection(elements = (1, 2, 3));\n"
+			+ "	   attribute collection321 = new OrderedCollection(elements = (3, 2, 1));\n"
+			+ "}";
+	
+	@Test
+	public void testCollectionFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, collectionTest);
+		
+		assertElement("LiteralInteger 3", instance.eval("CollectionFunctions::size(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::contains(collection123, 1)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::contains(collection123, 5)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::contains(collection123, (1, 3))", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::contains(collection123, (1, 5))", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::containsAll(collection123, collection321)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::containsAll(collection123, collection15)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::isEmpty(empty)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::isEmpty(collection1)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::isEmpty(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::notEmpty(empty)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection1)", "CollectionTest"));
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::notEmpty(collection123)", "CollectionTest"));
+		
+		assertElement("LiteralBoolean true", instance.eval("CollectionFunctions::'=='(collection123, collection123a)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection321)", "CollectionTest"));
+		assertElement("LiteralBoolean false", instance.eval("CollectionFunctions::'=='(collection123, collection15)", "CollectionTest"));
+		
+		assertElement("LiteralInteger 2", instance.eval("CollectionFunctions::'#'(collection123, 2)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::'#'(collection123, 4)", "CollectionTest"));
+		
+		assertList(new String[]{"LiteralInteger 1"}, instance.eval("CollectionFunctions::head(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::head(empty)", "CollectionTest"));
+		assertList(new String[]{"LiteralInteger 2", "LiteralInteger 3"}, instance.eval("CollectionFunctions::tail(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::tail(empty)", "CollectionTest"));
+		assertList(new String[]{"LiteralInteger 3"}, instance.eval("CollectionFunctions::last(collection123)", "CollectionTest"));
+		assertList(new String[]{}, instance.eval("CollectionFunctions::last(empty)", "CollectionTest"));
+	}
+	
+	@Test
+	public void testControlFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
 		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::collect{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::select{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 1"}, instance.eval("(1,2,3)->ControlFunctions::selectOne{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 3"}, instance.eval("(1,2,3)->ControlFunctions::reject{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::reduce{in x : ScalarValues::Integer; in y : ScalarValues::Integer; x * y}", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::reduce DataFunctions::'*'", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::reduce DataFunctions::'*'", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(1,2,3)->ControlFunctions::forAll{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(1,2,3)->ControlFunctions::forAll{in x : ScalarValues::Integer; x < 4}", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(1,2,3)->ControlFunctions::exists{in x : ScalarValues::Integer; x < 0}", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(1,2,3)->ControlFunctions::exists{in x : ScalarValues::Integer; x < 3}", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(false,false,false)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(true,false,true)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(true,true,true)->ControlFunctions::allTrue()", null));
+		assertList(new String[] {"LiteralBoolean false"}, instance.eval("(false,false,false)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(false,true,false)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralBoolean true"}, instance.eval("(true,true,true)->ControlFunctions::anyTrue()", null));
+		assertList(new String[] {"LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::maximize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::maximize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {"LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
+		assertList(new String[] {}, instance.eval("()->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
 	}
 }

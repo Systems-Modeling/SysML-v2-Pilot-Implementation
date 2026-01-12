@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,6 +21,7 @@
 
 package org.omg.sysml.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,6 +45,7 @@ import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -98,7 +100,7 @@ public class EvaluationUtil {
 	public static Expression expressionFor(EList<Element> results, Element context) {
 		if (!results.stream().allMatch(
 				elm->elm instanceof Feature && 
-				(!(elm instanceof Expression) || elm instanceof LiteralExpression))) {
+				(!(elm instanceof Expression) || elm instanceof LiteralExpression || elm.eClass() == SysMLPackage.eINSTANCE.getExpression()))) {
 			return null;
 		} else if (results.isEmpty()) {
 			return SysMLFactory.eINSTANCE.createNullExpression();
@@ -107,12 +109,16 @@ public class EvaluationUtil {
 			if (results.size() > 1) {
 				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
 				for (int i = 1; i < results.size(); i++) {
+					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					TypeUtil.addOwnedParameterTo(listExpr, expression);
+					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));					
+					NamespaceUtil.addMemberTo(listExpr, listOp);
+					
 					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
 					typing.setType(listOp);
-					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					typing.setTypedFeature(listExpr);
 					listExpr.getOwnedRelationship().add(typing);
-					TypeUtil.addOwnedParameterTo(listExpr, expression);
-					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));
+					
 					expression = listExpr;
 				}
 			}
@@ -220,7 +226,7 @@ public class EvaluationUtil {
 			   x_value.equals(y_value);
 	}
 
-	public static Boolean equal(List<Element> x, List<Element> y) {
+	public static boolean equal(List<Element> x, List<Element> y) {
 		if (x.size() != y.size()) {
 			return false;
 		} else {
@@ -231,6 +237,13 @@ public class EvaluationUtil {
 			}
 			return true;
 		}
+	}
+	
+	public static EList<Element> getElementsOf(Feature collection) {
+		List<Feature> elementsChain = new ArrayList<>();
+		elementsChain.add(collection);
+		elementsChain.add(ExpressionUtil.getCollectionElementsFeature(collection));
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureChain(elementsChain, collection);		
 	}
 
 	public static Feature getTargetFeatureFor(Element target) {
@@ -338,11 +351,16 @@ public class EvaluationUtil {
 		}
 	}
 	
-	public static Expression createInvocationOf(Expression expression, Element... arguments) {
-		Expression invocation = SysMLFactory.eINSTANCE.createExpression();
-		FeatureUtil.addSubsettingTo(invocation).setSubsettedFeature(expression);
+	public static InvocationExpression createInvocationOf(Type type, Element... arguments) {
+		InvocationExpression invocation = SysMLFactory.eINSTANCE.createInvocationExpression();
+		NamespaceUtil.addMemberTo(invocation, type);
+		
+		Specialization specialization = SysMLFactory.eINSTANCE.createSpecialization();
+		specialization.setGeneral(type);
+		specialization.setSpecific(invocation);
+		invocation.getOwnedRelationship().add(specialization);
 
-		List<Feature> parameters = TypeUtil.getAllParametersOf(expression);
+		List<Feature> parameters = TypeUtil.getAllParametersOf(type);
 		instantiateArguments(invocation, parameters, arguments);		
 		return invocation;
 	}

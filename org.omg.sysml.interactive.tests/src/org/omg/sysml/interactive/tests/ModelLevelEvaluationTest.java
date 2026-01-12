@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -302,6 +302,10 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertArrayEquals(new Object[] {1, 2, 3}, evaluateListValue(null, null, "1..3"));
 		assertArrayEquals(new Object[] {-1, 0, 1, 2}, evaluateListValue(null, null, "-1..2"));
 		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "5..3"));
+		
+		assertEquals(2, evaluateIntegerValue(null, null, "(1, 2, 3)#(2)"));
+		assertArrayEquals(new Object[] {}, evaluateListValue(null, null, "(1, 2, 3)#(4)"));
+		
 //		assertEquals(3, evaluateIntegerValue(null, null, "SequenceFunctions::size((1, 2, 3))"));
 //		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 1)"));
 //		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 5)"));
@@ -313,6 +317,24 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 //		assertEquals(false, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty(null)"));
 //		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty(1)"));
 //		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::notEmpty((1,2,3))"));
+	}
+	
+	@Test
+	public void testCollectionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance,
+				  "attribute collection15 = new Collections::OrderedCollection(elements = (1, 5));\n"
+				+ "attribute collection123 = new Collections::OrderedCollection(elements = (1, 2, 3));\n"
+				+ "attribute collection123a = new Collections::OrderedCollection(elements = (1, 2, 3));\n"
+				+ "attribute collection321 = new Collections::OrderedCollection(elements = (3, 2, 1));");
+		assertEquals(true, evaluateBooleanValue(instance, null, "collection123 == collection123a"));
+		assertEquals(false, evaluateBooleanValue(instance, null, "collection123 == collection321"));
+		assertEquals(false, evaluateBooleanValue(instance, null, "collection123 == collection15"));
+		assertEquals(false, evaluateBooleanValue(instance, null, "collection123 != collection123a"));
+		assertEquals(true, evaluateBooleanValue(instance, null, "collection123 != collection321"));
+		assertEquals(true, evaluateBooleanValue(instance, null, "collection123 != collection15"));
+		assertEquals(2, evaluateIntegerValue(instance, null, "collection123#(2)"));
+		assertArrayEquals(new Object[] {}, evaluateListValue(instance, null, "collection123#(4)"));
 	}
 	
 // Note: These collect and select expressions are currently not model-level evaluable, because the feature references 

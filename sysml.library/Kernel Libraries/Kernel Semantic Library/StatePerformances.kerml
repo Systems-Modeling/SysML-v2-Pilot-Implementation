@@ -78,7 +78,7 @@ standard library package StatePerformances {
 			inv { isDispatch implies
 				     allSubstatePerformances(dispatchScope)->forAll{in oSP : StatePerformance;						
 						  oSP == thatSP | isEmpty(oSP.accepted) |
-	   					  includes(thatSP.exit.startShot.successors, oSP.exit.startShot) |
+//SFS:	   					  includes(thatSP.exit.startShot.successors, oSP.exit.startShot) |
 						  ( oSP.accepted != accableT & 
 							( incomingTransferSort(oSP.accepted, accableT) |
 							  includes(oSP.deferrable, accableT) ) ) } }

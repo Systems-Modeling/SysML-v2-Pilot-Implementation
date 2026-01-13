@@ -1,7 +1,7 @@
 standard library package Occurrences {
   doc
   /*
-   * EDITED FOR SFS:  August 12, 2025 brl
+   * EDITED FOR SFS:  December 16, 2025 brl
    * 
    * This package defines modeling constructs for anything existing or occurring in time and space, with
    * associations between them that assert temporal and spatial relationships.
@@ -27,7 +27,7 @@ standard library package Occurrences {
   private import Time::*;
   private import Regions::*;
 
-	abstract class Occurrence specializes Anything disjoint from DataValue {
+	abstract class Occurrence specializes Anything, Time::Interval disjoint from DataValue {
         doc
         /*
          * Occurrence is the most general classifier of entities that have identity and
@@ -43,11 +43,11 @@ standard library package Occurrences {
 		
     @Assert{f="startShot <= endShot";}    
     
-    var feature openLeft : Boolean := false {
+    feature :>> openLeft default false {
       doc /* open-left does not include startShot in Occurrence 
        * redefine as true if occurrence is open-left. */
     }
-    var feature openRight :  Boolean := false {
+    feature :>> openRight default false {
       doc /* open-right does not include endShot in Occurrence 
        * redefine as true if occurrence is open-right. */
     }
@@ -65,7 +65,7 @@ standard library package Occurrences {
        * including being open-left or open-right
        */
       @Assert{f="forall o in sameLifeOccurrences are ( coincident(life(self),life(o)) and"+
-        "o.openLeft==openLeft and o.openRight=openRight";} 		  
+        "o.openLeft=openLeft and o.openRight=openRight";} 		  
 		}
 		
 
@@ -93,7 +93,7 @@ standard library package Occurrences {
 			 * Composite suboccurrences of this Occurrence.
 			 */
 
-      @Assert{f="forall s in suboccurrences are during(s,self)";}
+      @Assert{f="forall s in suboccurrences are during(life(s),life(self))";}
         			 
 			 feature redefines localClock default (that as Occurrence).localClock {
 			 	doc
@@ -127,7 +127,7 @@ standard library package Occurrences {
     predicate withoutOccurrence :> BooleanEvaluation {
       doc /* SFS:  replaces feature withoutOccurrences */
       in o : Occurrence;
-      Time::nonoverlaps(o,self) or not Regions::RegionsOverlap(Location(o),Location(self)) 
+      Time::nonoverlaps(o,self) or not regionOverlap(Location(o),Location(self)) 
     }
 
 //SFS replace
@@ -165,7 +165,7 @@ standard library package Occurrences {
       Time::precedes(self,o)
     }
 
-		feature immediatePredecessors: Occurrence[0..*] //subsets predecessors 
+		feature immediatePredecessors: Occurrence[0..*] subsets predecessors 
 		{
 			doc
 			/*
@@ -175,7 +175,7 @@ standard library package Occurrences {
       @Assert{f="forall i in immediatePredecessors are nearlyMeets(i,self)";}
 		}
 
-		feature immediateSuccessors: Occurrence[0..*] //subsets successors inverse of immediatePredecessors 
+		feature immediateSuccessors: Occurrence[0..*] subsets successors inverse of immediatePredecessors 
 		{
 			doc
 			/*
@@ -194,6 +194,7 @@ standard library package Occurrences {
 			 * Occurrences that start no earlier than and end no later than
 			 * this occurrence, including at least this occurrence.
 			 */
+      @Assert{f="forall teo in timeEnclosedOccurrences are during(teo,self)";}
 
 			/*
 			 * timeEnclosedOccurrences and successors constrain each other. All successors of
@@ -218,12 +219,14 @@ standard library package Occurrences {
       Time::during(o,self)
     }
 
+//SFS replace with coincident
 		feature all timeCoincidentOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences inverse of timeCoincidentOccurrences {
 			doc
 			/*
 			 * Occurrences that start at the same time and end at the same time as this occurrence,
 			 * including at least this occurrence.
 			 */
+      @Assert{f="forall tco in timeCoincidentOccurrences are coincident(tco,self)";}
 
 			feature thatOccurrence: Occurrence[1] subsets longerOccurrence;
 			feature thisOccurrence: Occurrence[1] subsets shorterOccurrence;
@@ -406,7 +409,7 @@ standard library package Occurrences {
 			 */
 			binding [1] startShot = [1] endShot;
 		}
-		inv { snapshots == union(startShot, union(middleTimeSlice.snapshots, endShot)) }
+//		inv { snapshots == union(startShot, union(middleTimeSlice.snapshots, endShot)) }
 
 		feature snapshotOf : Occurrence[0..*] subsets timeSliceOf inverse of snapshots {
 			doc
@@ -415,14 +418,14 @@ standard library package Occurrences {
 			 */
 		}
 
-		portion feature startShot: Time::Instant[1] {
+		portion feature startShot: Time::Instant[1] :>> lowerBound {
 			doc
 			/*
 			 * The snapshot representing the start of the occurrence in time.
 			 */
 		}
 
-		portion feature middleTimeSlice: Time::Interval[0..1] subsets timeSlices {
+		portion feature middleTimeSlice: Time::Interval[0..1] {
 			doc
 			/*
 			 * A time slice that takes all the time between the start shot and end shot. There
@@ -439,16 +442,16 @@ standard library package Occurrences {
 		}
 		inv { isEmpty((that as Occurrence).middleTimeSlice) == ((that as Occurrence).startShot == (that as Occurrence).endShot) }
 
-		connector :HappensJustBefore
-			from [1] earlierOccurrence references startShot
-			to [0..1] laterOccurrence references middleTimeSlice {
-			doc
-			/*
-			 * The startShot happens immediately before the middle time slice.
-			 */
-		}
+//		connector :HappensJustBefore
+//			from [1] earlierOccurrence references startShot
+//			to [0..1] laterOccurrence references middleTimeSlice {
+//			doc
+//			/*
+//			 * The startShot happens immediately before the middle time slice.
+//			 */
+//		}
 
-		portion feature endShot: Time::Instant[1] subsets snapshots {
+		portion feature endShot: Time::Instant[1] :>> upperBound { // subsets snapshots {
 			doc
 			/*
 			 * The snapshot at the end of the occurrence in time.
@@ -460,14 +463,14 @@ standard library package Occurrences {
 //				  subset superendshot subsets self.timeCoincidentOccurrences; }
 		}
 
-		 connector :HappensJustBefore
-			from [0..1] earlierOccurrence references middleTimeSlice
-			to [1] laterOccurrence references endShot {
-			doc
-			/*
-			 * The endShot happens after the middle time slice.
-			 */
-		}
+//		 connector :HappensJustBefore
+//			from [0..1] earlierOccurrence references middleTimeSlice
+//			to [1] laterOccurrence references endShot {
+//			doc
+//			/*
+//			 * The endShot happens after the middle time slice.
+//			 */
+//		}
 
 		portion feature spaceSlices: Occurrence[1..*] subsets portions {
 			doc
@@ -781,7 +784,7 @@ standard library package Occurrences {
 	}
 
 	bool earlierFirstIncomingTransferSort : IncomingTransferSort {
-		return t1First = includes(t1.endShot.successors, t2.endShot);
+//		return t1First = includes(t1.endShot.successors, t2.endShot);
 	}
 
 	assoc all SelfSameLifeLink specializes BinaryLink {

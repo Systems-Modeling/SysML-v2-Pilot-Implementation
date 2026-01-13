@@ -2,7 +2,7 @@
 
 package IPI {
   doc /*
-   * This package implments AADL-style port comunication differently than AADL.sysml
+   * This package implements AADL-style port comunication differently than AADL.sysml
    * 
    * The differences are:
    *   Items are exchanged between components through ports instead of Parts.
@@ -14,12 +14,12 @@ package IPI {
 //  private import AADL::Feature;
   private import Interfaces::BinaryInterface;
   private import Flows::Flow;
-  private import Assertion::Assert;
+//  private import Assertion::Assert;
 
 // Items
 
   item def AadlEvent;
-  item def AadlFeature;
+  port def AadlFeature;
   part def Thread;
   part def System;
   part def Process;
@@ -156,7 +156,6 @@ package IPI {
     state init : InitialState {
       doc /* "init" is the unique initial state. 
        * Sphecialize "init" to initialize variable attributes. */
-      @Assert{f="true";}
     }
     
   }

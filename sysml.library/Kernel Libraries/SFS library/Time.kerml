@@ -6,20 +6,23 @@ library package Time {
 //need to switch from performance to instantaneous predicate  
  	private import Performances::BooleanEvaluation;
  
-  type Instant specializes Real {
+  datatype Time specializes Real;
+  
+  type Instant specializes Time {
     doc /* an instant of time */
   }
   
-  type Interval specializes DataValue {
+  classifier Interval  
+  {
     doc /* an interval between instants
      * is empty if lowerBound = upperBound
      * and openLeft or openRight
      */
-    @Assert{f="lowerBound <= upperBound";}
     feature lowerBound : Instant;
     feature upperBound : Instant;
     feature openLeft : Boolean;
-    feature openRight : Boolean;    
+    feature openRight : Boolean; 
+    inv {lowerBound <= upperBound}   
   }
 
 	// SFS:  Allen's Intervals

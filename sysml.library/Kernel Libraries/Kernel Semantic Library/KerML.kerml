@@ -314,7 +314,7 @@ standard library package KerML {
 		metaclass BindingConnector specializes Connector;		
 		
 		metaclass BooleanExpression specializes Expression {
-			derived var feature 'predicate' : Predicate[0..1] redefines 'function';
+//			derived var feature 'predicate' : Predicate[0..1] redefines 'function';
 		}		
 		
 		metaclass Class specializes Classifier;		
@@ -334,17 +334,17 @@ standard library package KerML {
 		
 		metaclass ConstructorExpression specializes InstantiationExpression;		
 		
-		metaclass DataType specializes Classifier;		
+		metaclass DataType specializes Type;		
 		
 		metaclass ElementFilterMembership specializes OwningMembership {
 			derived composite var feature condition : Expression[1..1] redefines ownedMemberElement;
 		}		
 		
-		metaclass Expression specializes Step {
+		metaclass Expression specializes Classifier {  //Step {
 			derived var feature isModelLevelEvaluable : Boolean[1..1];
-			
-			derived var feature 'function' : Function[0..1] redefines 'behavior';
-			derived var feature result : Feature[1..1] subsets output, parameter;
+			derived var feature parameter : Feature[0..*] subsets input;
+//			derived var feature 'function' : Function[0..1];  // redefines 'behavior';
+			derived var feature result : Value[1..1] subsets output; //, parameter;
 		}		
 		
 		metaclass FeatureChainExpression specializes OperatorExpression {
@@ -379,7 +379,7 @@ standard library package KerML {
 		metaclass Function specializes Behavior {
 			derived var feature isModelLevelEvaluable : Boolean[1..1];
 			
-			derived var feature expression : Expression[0..*] subsets 'step';
+			derived var feature expression : Expression[0..*] subsets 'member'; //subsets 'step';
 			derived var feature result : Feature[1..1] subsets output, parameter;
 		}		
 		
@@ -456,10 +456,16 @@ standard library package KerML {
 		
 		metaclass PayloadFeature specializes Feature;		
 		
-		metaclass Predicate specializes Function;		
+		
+		//does not match abstract syntax in Fig 30 of 8.3.4.7.1
+		// Boolean[1..1] gives some duplicate def'n of self warning
+		metaclass Predicate specializes Function {
+      derived var feature :>> expression : BooleanExpression[0..*];
+      derived var feature :>> result : Feature[1..1]; //Boolean[1..1] 
+		}		
 		
 		metaclass ResultExpressionMembership specializes FeatureMembership {
-			derived composite var feature ownedResultExpression : Expression[1..1] redefines ownedMemberFeature;
+			derived composite var feature ownedResultExpression : Expression[1..1]; // redefines ownedMemberFeature;
 		}		
 		
 		metaclass ReturnParameterMembership specializes ParameterMembership;		
@@ -478,6 +484,8 @@ standard library package KerML {
 		metaclass Succession specializes Connector;		
 		
 		metaclass SuccessionFlow specializes Succession, Flow;		
+		
+		metaclass Value specializes Element;
 		
 	}
 }

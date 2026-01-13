@@ -47,21 +47,21 @@ library package Regions {
     }
 
 
-    predicate In specializes BooleanEvaluation {
+    predicate pointInRegion specializes BooleanEvaluation {
         doc /* SFS: Point is contained in Region */
         in point : Point;
         in region : Region;
         @Assert{f="result iff point in region";}
     }
 
-    predicate On specializes BooleanEvaluation {
+    predicate pointOnSurface specializes BooleanEvaluation {
         doc /* SFS: Point is on a Surface */
         in point : Point;
         in surface : Surface;
         @Assert{f="result iff point in surface";}
     }
 
-    predicate RegionOverlap specializes BooleanEvaluation {
+    predicate regionOverlap specializes BooleanEvaluation {
         doc /* SFS:  Two regions containing the same point overlap. 
             * This is the "O" relation (df-rov).
             * Regions are disjoint if they don't overlap */
@@ -75,7 +75,7 @@ library package Regions {
         }
     }
 
-    predicate RegionContainment specializes BooleanEvaluation {
+    predicate regionContainment specializes BooleanEvaluation {
         doc /* SFS:  A region contains another, when it contains all of its points. 
             * This is the "C" relation (df-rco). */
         in r1 : Region;
@@ -88,7 +88,7 @@ library package Regions {
         }
     }
 
-    predicate AtomicRegion specializes BooleanEvaluation {
+    predicate atomicRegion specializes BooleanEvaluation {
         doc /* SFS:  A region is atomic, Ar , when it contains no other regions (in the location relation).
          * This is the "A" operator (df-rat). */
         @Assert{

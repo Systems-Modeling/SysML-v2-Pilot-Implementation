@@ -22,6 +22,7 @@
 package org.omg.sysml.validation;
 
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
+import org.omg.sysml.validation.check.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,33 @@ public class ValidationCheckerFactory extends SysMLSwitch<ValidationChecker> {
 	
 	public ValidationChecker createValidationChecker(Element element) {
 		return doSwitch(element);
+	}
+	
+	// Root
+	
+	@Override
+	public ValidationChecker caseElement(Element element) {
+		return new ElementValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRelationship(Relationship element) {
+		return new RelationshipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAnnotation(Annotation element) {
+		return new AnnotationValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseNamespace(Namespace element) {
+		return new NamespaceValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseImport(Import element) {
+		return new ImportValidationChecker();
 	}
 
 }

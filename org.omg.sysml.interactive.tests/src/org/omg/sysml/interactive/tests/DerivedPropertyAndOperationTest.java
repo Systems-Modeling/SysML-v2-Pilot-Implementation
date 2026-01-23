@@ -21,6 +21,7 @@
 
 package org.omg.sysml.interactive.tests;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -41,6 +42,7 @@ import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
@@ -298,7 +300,34 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		variants = ((Definition)ownedMembers.get(1)).getVariant();
 		List<EnumerationUsage> enumeratedValues = ((EnumerationDefinition)ownedMembers.get(1)).getEnumeratedValue();
 		assertEquals("enum def (variants.size)", 2, variants.size());
-		assertEquals("enuim def (enumeratedValues.size)", 2, enumeratedValues.size());
+		assertEquals("enum def (enumeratedValues.size)", 2, enumeratedValues.size());
 		assertEquals("enum def (enumeratedValues)", variants, enumeratedValues);
+	}
+	
+	public final String circularRecursiveImportTest =
+			  "package Test {\n"
+			+ "    package P1 {\n"
+			+ "        public import Test::**;\n"
+			+ "        item def X;"
+			+ "    }\n"
+			+ "    package P2 {\n"
+			+ "        public import Test::*::**;\n"
+			+ "        item def Y;"
+			+ "    }\n"
+			+ "}";
+	
+	@Test
+	public void testCircularRecursiveImport() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(circularRecursiveImportTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		List<Membership> importedMemberships = ((Namespace)ownedMembers.get(0)).getImportedMembership();
+		assertArrayEquals("P1.importedMembers", new String[] {"Test", "P1", "P2", "X", "Y"}, 
+				importedMemberships.stream().map(Membership::getMemberElement).map(Element::getName).toArray());
+		importedMemberships = ((Namespace)ownedMembers.get(1)).getImportedMembership();
+		assertArrayEquals("P2.importedMembers", new String[] {"P1", "P2", "X", "Test", "Y"}, 
+				importedMemberships.stream().map(Membership::getMemberElement).map(Element::getName).toArray());
 	}
 }

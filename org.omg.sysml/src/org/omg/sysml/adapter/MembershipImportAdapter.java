@@ -49,7 +49,7 @@ public class MembershipImportAdapter extends ImportAdapter {
 			importedMemberships.add(importedMembership);
 			if (target.isRecursive()) {
 				Element importedElement = importedMembership.getMemberElement();
-				if (importedElement instanceof Namespace) {
+				if (importedElement instanceof Namespace && !excluded.contains(importedElement)) {
 					Collection<Membership> namespaceMembership = 
 							NamespaceUtil.getVisibleMembershipsFor((Namespace)importedElement, excluded, true, target.isImportAll());
 					importedMemberships.addAll(namespaceMembership);

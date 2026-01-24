@@ -23,7 +23,7 @@ package org.omg.sysml.execution.expressions.functions.control;
 import java.util.function.BiFunction;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -41,7 +41,7 @@ public class MaximizeFunction extends ReduceFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Element expr = evaluator.argumentValue(invocation, 1, target);
 		if (list == null || !(expr instanceof Expression)) {

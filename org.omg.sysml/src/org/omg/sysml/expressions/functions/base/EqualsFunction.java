@@ -22,7 +22,7 @@
 package org.omg.sysml.expressions.functions.base;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -50,12 +50,12 @@ public class EqualsFunction extends BaseFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		EList<Element> x = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> y = evaluator.evaluateArgument(invocation, 1, target);
 		if (isCollection(invocation, x) && isCollection(invocation, y)) {
-			x = EvaluationUtil.getElementsOf((Feature)x.get(0));
-			y = EvaluationUtil.getElementsOf((Feature)y.get(0));
+			x = EvaluationUtil.getElementsOf((Feature)x.get(0), evaluator);
+			y = EvaluationUtil.getElementsOf((Feature)y.get(0), evaluator);
 		}
 		return x == null || y == null? EvaluationUtil.singletonList(invocation): 			
 			EvaluationUtil.booleanResult(compare(x, y));

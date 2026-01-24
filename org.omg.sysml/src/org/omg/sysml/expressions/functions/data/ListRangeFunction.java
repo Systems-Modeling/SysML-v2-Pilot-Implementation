@@ -23,7 +23,7 @@ package org.omg.sysml.expressions.functions.data;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -36,7 +36,7 @@ public class ListRangeFunction extends DataFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		Object x = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 0, target));
 		Object y = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 1, target));
 		if (x instanceof Integer && y instanceof Integer) {

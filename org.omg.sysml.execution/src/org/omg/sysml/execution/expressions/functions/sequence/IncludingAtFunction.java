@@ -22,7 +22,7 @@ package org.omg.sysml.execution.expressions.functions.sequence;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -35,7 +35,7 @@ public class IncludingAtFunction extends SequenceFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> values = evaluator.evaluateArgument(invocation, 1, target);
 		Element index = evaluator.argumentValue(invocation, 2, target);

@@ -21,7 +21,7 @@
 package org.omg.sysml.execution.expressions.functions.sequence;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -34,7 +34,7 @@ public class LastFunction extends SequenceFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
 		return seq == null? EvaluationUtil.singletonList(invocation):
 			   seq.isEmpty()? EvaluationUtil.nullList():

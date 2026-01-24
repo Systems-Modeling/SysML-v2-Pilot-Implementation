@@ -22,7 +22,7 @@
 package org.omg.sysml.execution.expressions.functions.string;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -40,7 +40,7 @@ public class StringLengthFunction extends StringFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		String x = evaluator.stringValue(invocation, 0, target);
 		return x == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.integerResult(x.length());
 	}

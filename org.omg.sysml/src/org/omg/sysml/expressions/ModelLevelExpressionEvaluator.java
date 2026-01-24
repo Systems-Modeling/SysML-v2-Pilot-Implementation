@@ -36,11 +36,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralRational;
-import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.NullExpression;
@@ -51,7 +47,7 @@ import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class ModelLevelExpressionEvaluator {
+public class ModelLevelExpressionEvaluator implements ExpressionEvaluator {
 	
 	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
@@ -65,6 +61,7 @@ public class ModelLevelExpressionEvaluator {
 		this.libraryFunctionFactory = libraryFunctionFactory;
 	}
 	
+	@Override
 	public EList<Element> evaluate(Expression expression, Element target) {
 		if (expression instanceof NullExpression) {
 			return evaluateNull((NullExpression)expression, target);
@@ -221,51 +218,4 @@ public class ModelLevelExpressionEvaluator {
 		}
 	}
 	
-	// Utility methods
-	
-	public EList<Element> evaluateArgument(InvocationExpression invocation, int i, Element target) {
-		EList<Expression> arguments = invocation.getArgument();
-		return i >= arguments.size()? new BasicEList<>(): evaluate(arguments.get(i), target);
-	}
-
-	public Element argumentValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> argumentValues = evaluateArgument(invocation, i, target);
-		return argumentValues == null || argumentValues.size() != 1? null: argumentValues.get(0);
-	}
-
-	public EList<Element> expressionValue(InvocationExpression invocation, int i, Element target) {
-		Element value = argumentValue(invocation, i, target);
-		return value instanceof Expression? evaluate((Expression)value, target): null;
-	}
-
-	public Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> values = expressionValue(invocation, i, target);
-		if (values == null || values.size() != 1) {
-			return null;
-		} else {
-			Element value = values.get(0);
-			return value instanceof LiteralBoolean? ((LiteralBoolean)value).isValue(): null;
-		}
-	}
-
-	public Boolean booleanValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralBoolean? ((LiteralBoolean)argument).isValue(): null;
-	}
-
-	public String stringValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralString? ((LiteralString)argument).getValue(): null;
-	}
-
-	public Integer integerValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralInteger? ((LiteralInteger)argument).getValue(): null;
-	}
-
-	public Double realValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralRational? ((LiteralRational)argument).getValue(): null;
-	}
-
 }

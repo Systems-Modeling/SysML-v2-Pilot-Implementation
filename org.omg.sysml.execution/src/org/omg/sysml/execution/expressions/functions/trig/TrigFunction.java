@@ -22,7 +22,7 @@
 package org.omg.sysml.execution.expressions.functions.trig;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -38,7 +38,7 @@ public abstract class TrigFunction implements LibraryFunction {
 	protected abstract EList<Element> realFunction(double x);
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		Object x = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 0, target));
 		return x instanceof Integer? realFunction((double)(int)x):
 			   x instanceof Double? realFunction((double)x):

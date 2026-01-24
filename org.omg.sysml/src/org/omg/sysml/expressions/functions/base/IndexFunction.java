@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -48,7 +48,7 @@ public class IndexFunction extends BaseFunction {
 			   TypeUtil.specializes((Type)seq.get(0), orderedCollectionType);
 	}
 	
-	protected EList<Element> indexArray(InvocationExpression invocation, Feature array, EList<Element> indexes, ModelLevelExpressionEvaluator evaluator) {
+	protected EList<Element> indexArray(InvocationExpression invocation, Feature array, EList<Element> indexes, ExpressionEvaluator evaluator) {
 		List<Feature> dimensionsChain = new ArrayList<>();
 		dimensionsChain.add(array);
 		dimensionsChain.add(ExpressionUtil.getArrayDimensionsFeature(invocation));
@@ -85,8 +85,8 @@ public class IndexFunction extends BaseFunction {
 			   TypeUtil.specializes((Type)seq.get(0), orderedCollectionType);
 	}
 	
-	protected EList<Element> indexCollection(InvocationExpression invocation, Feature collection, int index, ModelLevelExpressionEvaluator evaluator) {
-		EList<Element> elements = EvaluationUtil.getElementsOf(collection);
+	protected EList<Element> indexCollection(InvocationExpression invocation, Feature collection, int index, ExpressionEvaluator evaluator) {
+		EList<Element> elements = EvaluationUtil.getElementsOf(collection, evaluator);
 		return elements == null? EvaluationUtil.singletonList(invocation): 
 			   indexSequence(elements, index);
 	}
@@ -97,7 +97,7 @@ public class IndexFunction extends BaseFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> indexes = evaluator.evaluateArgument(invocation, 1, target);
 		if (seq != null && indexes != null) {

@@ -22,7 +22,7 @@
 package org.omg.sysml.execution.expressions.functions.sequence;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -36,7 +36,7 @@ public class SequenceSameFunction extends SequenceEqualsFunction {
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		EList<Element> list1 = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> list2 = evaluator.evaluateArgument(invocation, 1, target);
 		return list1 == null || list2 == null? EvaluationUtil.singletonList(invocation):

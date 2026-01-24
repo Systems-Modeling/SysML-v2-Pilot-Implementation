@@ -30,7 +30,7 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class CollectFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "collect";
 	}
 

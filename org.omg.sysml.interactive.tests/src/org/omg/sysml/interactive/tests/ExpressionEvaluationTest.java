@@ -587,6 +587,9 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralRational " + Math.toDegrees(2.5), instance.eval("TrigFunctions::deg(2.5)", null));
 		assertElement("LiteralRational " + Math.toRadians(90), instance.eval("TrigFunctions::rad(90)", null));
 		assertElement("LiteralRational " + Math.toRadians(90.5), instance.eval("TrigFunctions::rad(90.5)", null));
+		
+		assertElement("LiteralRational " + 90.0, instance.eval("TrigFunctions::deg(TrigFunctions::pi/2)", null));
+		assertElement("LiteralRational " + Math.PI/2, instance.eval("TrigFunctions::rad(90)", null));
 	}
 
 }

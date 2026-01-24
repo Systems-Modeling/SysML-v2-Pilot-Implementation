@@ -30,7 +30,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class AtanFunction extends TrigFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "arctan";
 	}
 

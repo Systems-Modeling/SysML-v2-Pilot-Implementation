@@ -38,7 +38,7 @@ import org.omg.sysml.util.TypeUtil;
 public class IndexFunction extends BaseFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "'#'";
 	}
 	

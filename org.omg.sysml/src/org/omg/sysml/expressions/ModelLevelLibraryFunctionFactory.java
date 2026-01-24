@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,11 +24,14 @@ package org.omg.sysml.expressions;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.omg.sysml.expressions.functions.LibraryFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.expressions.functions.base.*;
 import org.omg.sysml.expressions.functions.bool.*;
 import org.omg.sysml.expressions.functions.control.*;
 import org.omg.sysml.expressions.functions.data.*;
+import org.omg.sysml.expressions.functions.trig.*;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 
 public class ModelLevelLibraryFunctionFactory {
@@ -36,9 +39,11 @@ public class ModelLevelLibraryFunctionFactory {
 	public static final ModelLevelLibraryFunctionFactory INSTANCE = new ModelLevelLibraryFunctionFactory();
 
 	private Map<String, LibraryFunction> functionMap = null;
+	private Map<String, LibraryFeature> featureMap = null;
 
-	protected void initializeFunctionMap() {
+	protected void initialize() {
 		functionMap = new HashMap<>();
+		featureMap = new HashMap<>();
 		
 		// BaseFunctions
 		put(new EqualsFunction());
@@ -82,17 +87,20 @@ public class ModelLevelLibraryFunctionFactory {
 		put(new NullCoalescingFunction());		
 		put(new CollectFunction());
 		put(new SelectFunction());
+		
+		//TrigFunctions
+		put(new PiFeature());
 	}
 
 	protected void put(LibraryFunction functionImpl) {
-		for (String name: functionImpl.getFunctionNames()) {
+		for (String name: functionImpl.getQualifiedNames()) {
 			functionMap.put(name, functionImpl);
 		}
 	}
 
 	public Map<String, LibraryFunction> getFunctionMap() {
 		if (functionMap == null) {
-			initializeFunctionMap();
+			initialize();
 		}
 		return functionMap;
 	}
@@ -104,6 +112,22 @@ public class ModelLevelLibraryFunctionFactory {
 
 	public static boolean isModelLevelEvaluable(Function function) {
 		return INSTANCE.getLibraryFunction(function) != null;
+	}
+	
+	protected void put(LibraryFeature featureImpl) {
+		featureMap.put(featureImpl.getQualifiedName(), featureImpl);
+	}
+	
+	public Map<String, LibraryFeature> getFeatureMap() {
+		if (featureMap == null) {
+			initialize();
+		}
+		return featureMap;
+	}
+	
+	public LibraryFeature getLibraryFeature(Feature feature) {
+		return feature == null? null:
+			getFeatureMap().get(feature.getQualifiedName());
 	}
 
 }

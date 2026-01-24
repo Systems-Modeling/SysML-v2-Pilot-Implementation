@@ -30,7 +30,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class AsinFunction extends TrigFunction {
 	
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "arcsin";
 	}
 

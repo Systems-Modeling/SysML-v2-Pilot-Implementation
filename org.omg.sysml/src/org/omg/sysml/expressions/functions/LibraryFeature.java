@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,32 +19,20 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.expressions.functions.data;
+package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.EvaluationUtil;
 
-public class LessThanFunction extends ArithmeticFunction {
+public interface LibraryFeature {
 
-	@Override
-	public String getFunctionName() {
-		return "'<'";
+	public String getPackageName();
+	public String getFeatureName();
+	
+	default public String getQualifiedName() {
+		return getPackageName() + "::" + getFeatureName();
 	}
 	
-	@Override
-	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return EvaluationUtil.booleanResult(x < y);
-	}
+	public EList<Element> getValue();
 	
-	@Override
-	protected EList<Element> binaryRealOp(double x, double y) {
-		return EvaluationUtil.booleanResult(x < y);
-	}
-
-	@Override
-	protected EList<Element> binaryStringOp(String x, String y) {
-		return EvaluationUtil.booleanResult(x.compareTo(y) < 0);
-	}
-
 }

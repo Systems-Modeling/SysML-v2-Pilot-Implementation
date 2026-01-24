@@ -33,8 +33,8 @@ public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevel
 	public static final LibraryFunctionFactory INSTANCE = new LibraryFunctionFactory();
 
 	@Override
-	protected void initializeFunctionMap() {
-		super.initializeFunctionMap();
+	protected void initialize() {
+		super.initialize();
 		
 		// ControlFunctions
 		put(new ExistsFunction());

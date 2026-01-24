@@ -29,7 +29,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class HeadFunction extends SequenceFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "head";
 	}
 	

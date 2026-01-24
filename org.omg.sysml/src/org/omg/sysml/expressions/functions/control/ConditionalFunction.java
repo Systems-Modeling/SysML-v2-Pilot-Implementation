@@ -29,7 +29,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ConditionalFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "if";
 	}
 

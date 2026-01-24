@@ -35,7 +35,7 @@ public class StringLengthFunction extends StringFunction {
 	}
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "Length";
 	}
 

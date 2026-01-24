@@ -31,7 +31,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class AtFunction extends BaseFunction {
 	
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "'@'";
 	}
 

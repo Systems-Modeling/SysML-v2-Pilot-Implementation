@@ -27,6 +27,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.omg.sysml.expressions.functions.LibraryFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
@@ -135,7 +136,10 @@ public class ModelLevelExpressionEvaluator {
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {
-		if (type != null && TypeUtil.specializes(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
+		LibraryFeature libraryFeature = libraryFunctionFactory.getLibraryFeature(feature);
+		if (libraryFeature != null) {
+			return libraryFeature.getValue();
+		} else if (type != null && TypeUtil.specializes(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
 			// Evaluate "self" feature. (Note: Must be checked before test for feature chain because "self" has chaining features.)
 			return EvaluationUtil.singletonList(EvaluationUtil.getTargetFeatureFor(type));
 			

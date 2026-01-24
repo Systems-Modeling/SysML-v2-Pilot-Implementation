@@ -30,7 +30,7 @@ public class UnionFunction extends ListConcatFunction {
 	}
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "union";
 	}
 

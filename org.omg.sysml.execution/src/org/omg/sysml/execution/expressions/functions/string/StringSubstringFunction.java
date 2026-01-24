@@ -35,7 +35,7 @@ public class StringSubstringFunction extends StringFunction {
 	}
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "Substring";
 	}
 

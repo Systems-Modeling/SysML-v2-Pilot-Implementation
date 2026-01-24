@@ -30,7 +30,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class IncludingAtFunction extends SequenceFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "includingAt";
 	}
 	

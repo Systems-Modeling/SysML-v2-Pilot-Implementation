@@ -32,7 +32,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class RejectFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "reject";
 	}
 

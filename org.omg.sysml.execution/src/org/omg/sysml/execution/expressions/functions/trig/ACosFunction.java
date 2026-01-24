@@ -30,7 +30,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ACosFunction extends TrigFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "arccos";
 	}
 

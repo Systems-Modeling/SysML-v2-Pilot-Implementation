@@ -34,7 +34,7 @@ import org.omg.sysml.util.ExpressionUtil;
 public class DotFunction extends ControlFunction {
 
 	@Override
-	public String[] getOperatorNames() {
+	public String[] getFunctionNames() {
 		return new String[]{"'.'"};
 	}
 

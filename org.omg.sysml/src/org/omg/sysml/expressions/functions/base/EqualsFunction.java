@@ -34,7 +34,7 @@ import org.omg.sysml.util.TypeUtil;
 public class EqualsFunction extends BaseFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "'=='";
 	}
 

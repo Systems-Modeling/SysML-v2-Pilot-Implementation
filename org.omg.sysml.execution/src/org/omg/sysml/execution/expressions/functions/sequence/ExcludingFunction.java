@@ -30,7 +30,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ExcludingFunction extends SequenceFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "excluding";
 	}
 	

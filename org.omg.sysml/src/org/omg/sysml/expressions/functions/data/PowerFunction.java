@@ -28,7 +28,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class PowerFunction extends ArithmeticFunction {
 
 	@Override
-	public String[] getOperatorNames() {
+	public String[] getFunctionNames() {
 		return new String[]{"'**'", "'^'"};
 	}
 	

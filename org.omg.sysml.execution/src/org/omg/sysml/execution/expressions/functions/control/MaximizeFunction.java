@@ -35,7 +35,7 @@ public class MaximizeFunction extends ReduceFunction {
 	private static final String MAX_FUNCTION = "DataFunctions::max";
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "maximize";
 	}
 

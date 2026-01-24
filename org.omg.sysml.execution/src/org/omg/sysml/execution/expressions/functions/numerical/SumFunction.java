@@ -32,7 +32,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class SumFunction extends NumericalFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "sum";
 	}
 

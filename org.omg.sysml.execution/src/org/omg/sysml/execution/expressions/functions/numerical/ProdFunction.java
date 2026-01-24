@@ -32,7 +32,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ProdFunction extends NumericalFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "product";
 	}
 

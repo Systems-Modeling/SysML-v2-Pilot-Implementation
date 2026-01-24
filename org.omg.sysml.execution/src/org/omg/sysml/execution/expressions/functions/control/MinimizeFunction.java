@@ -35,7 +35,7 @@ public class MinimizeFunction extends ReduceFunction {
 	private static final String MIN_FUNCTION = "DataFunctions::min";
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "minimize";
 	}
 

@@ -26,6 +26,7 @@ import org.omg.sysml.execution.expressions.functions.control.*;
 import org.omg.sysml.execution.expressions.functions.numerical.*;
 import org.omg.sysml.execution.expressions.functions.sequence.*;
 import org.omg.sysml.execution.expressions.functions.string.*;
+import org.omg.sysml.execution.expressions.functions.trig.*;
 
 public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory {
 	
@@ -75,6 +76,17 @@ public class LibraryFunctionFactory extends org.omg.sysml.expressions.ModelLevel
 		// StringFunctions
 		put(new StringLengthFunction());
 		put(new StringSubstringFunction());
+		
+		// TrigFunctions
+		put(new ACosFunction());
+		put(new AsinFunction());
+		put(new AtanFunction());
+		put(new CosFunction());
+		put(new CotFunction());
+		put(new DegFunction());
+		put(new RadFunction());
+		put(new SinFunction());
+		put(new TanFunction());
 	}
 
 }

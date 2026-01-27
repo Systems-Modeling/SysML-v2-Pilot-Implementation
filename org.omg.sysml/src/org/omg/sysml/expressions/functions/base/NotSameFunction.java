@@ -24,7 +24,7 @@ package org.omg.sysml.expressions.functions.base;
 public class NotSameFunction extends NotEqualsFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "'!=='";
 	}
 

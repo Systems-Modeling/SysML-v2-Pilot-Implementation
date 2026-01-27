@@ -28,7 +28,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class LessThanFunction extends ArithmeticFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "'<'";
 	}
 	

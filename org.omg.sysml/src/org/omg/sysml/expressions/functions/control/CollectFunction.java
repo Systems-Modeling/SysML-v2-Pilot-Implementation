@@ -23,20 +23,20 @@ package org.omg.sysml.expressions.functions.control;
 import java.util.function.BiFunction;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
 public class CollectFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "collect";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		return collectSelected(invocation, target, evaluator, new BiFunction<>() {
 			@Override
 			public EList<Element> apply(Element value, EList<Element> exprValue) {

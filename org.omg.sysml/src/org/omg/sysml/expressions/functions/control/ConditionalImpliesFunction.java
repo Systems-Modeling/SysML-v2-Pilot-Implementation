@@ -23,7 +23,7 @@ package org.omg.sysml.expressions.functions.control;
 public class ConditionalImpliesFunction extends ConditionalLogicalFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "implies";
 	}
 

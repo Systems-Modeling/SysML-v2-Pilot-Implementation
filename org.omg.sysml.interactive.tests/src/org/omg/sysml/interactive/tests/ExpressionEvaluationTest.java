@@ -347,7 +347,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	   calc def Test {"
 			+ "        in x;"
 			+ "        in y;"
-			+ "        x"
+			+ "        (x, y)"
 			+ "     }"
 			+ "}";
 	
@@ -355,9 +355,11 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	public void testInvocationEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, invocationTest);
-		assertElement("LiteralInteger 1", instance.eval("Test(1, 2)", "InvocationTest"));
-		assertElement("LiteralInteger 1", instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
-		assertElement("LiteralInteger 1", instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(1, 2)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1"}, instance.eval("Test(1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 2"}, instance.eval("Test(null, 2)", "InvocationTest"));
 	}
 	
 	@Test
@@ -419,7 +421,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
 		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
 	}
-
+	
 	@Test
 	public void testSequenceFunctionEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
@@ -565,4 +567,31 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertList(new String[] {"LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {}, instance.eval("()->ControlFunctions::minimize{in x : ScalarValues::Integer; x * 2}", null));
 	}
+	
+	@Test
+	public void testTrigFunctionEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		assertElement("LiteralRational " + Math.sin(2), instance.eval("TrigFunctions::sin(2)", null));
+		assertElement("LiteralRational " + Math.sin(2.5), instance.eval("TrigFunctions::sin(2.5)", null));
+		assertElement("LiteralRational " + Math.cos(2), instance.eval("TrigFunctions::cos(2)", null));
+		assertElement("LiteralRational " + Math.cos(2.5), instance.eval("TrigFunctions::cos(2.5)", null));
+		assertElement("LiteralRational " + Math.tan(2), instance.eval("TrigFunctions::tan(2)", null));
+		assertElement("LiteralRational " + Math.tan(2.5), instance.eval("TrigFunctions::tan(2.5)", null));
+		assertElement("LiteralRational " + 1.0/Math.tan(2), instance.eval("TrigFunctions::cot(2)", null));
+		assertElement("LiteralRational " + 1.0/Math.tan(2.5), instance.eval("TrigFunctions::cot(2.5)", null));
+		assertElement("LiteralRational " + Math.asin(0), instance.eval("TrigFunctions::arcsin(0)", null));
+		assertElement("LiteralRational " + Math.asin(0.5), instance.eval("TrigFunctions::arcsin(0.5)", null));
+		assertElement("LiteralRational " + Math.acos(0), instance.eval("TrigFunctions::arccos(0)", null));
+		assertElement("LiteralRational " + Math.acos(0.5), instance.eval("TrigFunctions::arccos(0.5)", null));
+		assertElement("LiteralRational " + Math.atan(10), instance.eval("TrigFunctions::arctan(10)", null));
+		assertElement("LiteralRational " + Math.atan(10.5), instance.eval("TrigFunctions::arctan(10.5)", null));
+		assertElement("LiteralRational " + Math.toDegrees(2), instance.eval("TrigFunctions::deg(2)", null));
+		assertElement("LiteralRational " + Math.toDegrees(2.5), instance.eval("TrigFunctions::deg(2.5)", null));
+		assertElement("LiteralRational " + Math.toRadians(90), instance.eval("TrigFunctions::rad(90)", null));
+		assertElement("LiteralRational " + Math.toRadians(90.5), instance.eval("TrigFunctions::rad(90.5)", null));
+		
+		assertElement("LiteralRational " + 90.0, instance.eval("TrigFunctions::deg(TrigFunctions::pi/2)", null));
+		assertElement("LiteralRational " + Math.PI/2, instance.eval("TrigFunctions::rad(90)", null));
+	}
+	
 }

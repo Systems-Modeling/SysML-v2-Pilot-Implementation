@@ -21,7 +21,7 @@
 package org.omg.sysml.expressions.functions.control;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -32,7 +32,7 @@ public abstract class ConditionalLogicalFunction extends ControlFunction {
 	protected abstract boolean firstValueResult();
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		Boolean firstValue = evaluator.booleanValue(invocation, 0, target);
 		if (firstValueTest(firstValue)) {
 			return EvaluationUtil.booleanResult(firstValueResult());

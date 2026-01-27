@@ -28,7 +28,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class NotFunction extends BooleanFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "not";
 	}
 	

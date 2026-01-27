@@ -28,6 +28,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -239,11 +240,11 @@ public class EvaluationUtil {
 		}
 	}
 	
-	public static EList<Element> getElementsOf(Feature collection) {
+	public static EList<Element> getElementsOf(Feature collection, ExpressionEvaluator evaluator) {
 		List<Feature> elementsChain = new ArrayList<>();
 		elementsChain.add(collection);
 		elementsChain.add(ExpressionUtil.getCollectionElementsFeature(collection));
-		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureChain(elementsChain, collection);		
+		return evaluator.evaluateFeatureChain(elementsChain, collection);		
 	}
 
 	public static Feature getTargetFeatureFor(Element target) {

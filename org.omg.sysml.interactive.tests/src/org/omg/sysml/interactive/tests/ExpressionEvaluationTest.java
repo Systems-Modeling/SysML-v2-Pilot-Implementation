@@ -347,7 +347,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	   calc def Test {"
 			+ "        in x;"
 			+ "        in y;"
-			+ "        x"
+			+ "        (x, y)"
 			+ "     }"
 			+ "}";
 	
@@ -355,9 +355,11 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	public void testInvocationEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, invocationTest);
-		assertElement("LiteralInteger 1", instance.eval("Test(1, 2)", "InvocationTest"));
-		assertElement("LiteralInteger 1", instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
-		assertElement("LiteralInteger 1", instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(1, 2)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(y = 2, x = 1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 1"}, instance.eval("Test(1)", "InvocationTest"));
+		assertList(new String[] {"LiteralInteger 2"}, instance.eval("Test(null, 2)", "InvocationTest"));
 	}
 	
 	@Test
@@ -591,5 +593,5 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		assertElement("LiteralRational " + 90.0, instance.eval("TrigFunctions::deg(TrigFunctions::pi/2)", null));
 		assertElement("LiteralRational " + Math.PI/2, instance.eval("TrigFunctions::rad(90)", null));
 	}
-
+	
 }

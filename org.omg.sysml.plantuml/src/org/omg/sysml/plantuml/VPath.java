@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020-2024 Mgnite Inc.
+ * Copyright (c) 2020-2026 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -327,29 +327,38 @@ public class VPath extends VTraverser {
 
     // Make an InheritKey for ref, which is either a connector end or FeatureReferenceExpression or FeatureChainExpression.
     // These are (indirectly) owned by the innermost feature, which effectively determines the target scope.
-    private InheritKey makeInheritKeyForReferer(PC pc) {
+    private RefPC makeRefPCForReferer(PC pc) {
     	if (pc == null) return null;
         Element e = pc.getTarget();
         if (!(e instanceof Feature)) return null;
         Feature ref = (Feature) e;
 
-        Namespace ns = getCurrentNamespace();
+        Namespace ns = getCurrentNamespace(); // the namespace owning a connector
         if (!(ns instanceof Type)) return null;
 
         if (ns instanceof Feature) {
-            Feature tgt = (Feature) ns;
-            InheritKey ik = makeInheritKey(tgt);
+            //Feature tgt = (Feature) ns;
+            InheritKey ik = makeInheritKey(ref);
             if (ik != null) {
                 // Make the inherit key indirect in order to refer to redefined targets as well as inherited ones.
                 ik = InheritKey.makeIndirect(ik);
-                ik = InheritKey.findTop(ik, ref);
-                if (ik != null) return ik;
+                InheritKey ik2 = InheritKey.findTop(ik, ref);
+                if (ik2 != null) {
+                    // This is overspecifying case.
+                    return createRefPC(ik2, pc);
+                }
+                // This is underspecifying case and we need to add a PCNamespace to capture ns/tgt
+                PCNamespace pcn = new PCNamespace(ns, pc);
+                return createRefPC(ik, pcn);
             }
         }
 
         // In case that tgt inherits ref, we need to make an InheritKey for tgt.
-        Type tgt = (Type) ns;
-        return InheritKey.makeTargetKey(tgt, ref);
+        {
+            Type tgt = (Type) ns;
+            InheritKey ik = InheritKey.makeTargetKey(tgt, ref);
+            return createRefPC(ik, pc);
+        }
     }
 
 
@@ -359,27 +368,36 @@ public class VPath extends VTraverser {
            iff : Feature :>> ioTarget: ReferenceUsage;
       }
     */
+
+    private static Feature getRootRedefinedFeature(Feature f) {
+            for (Redefinition rd: f.getOwnedRedefinition()) {
+                Feature rf =  rd.getRedefinedFeature();
+                Feature rrf = getRootRedefinedFeature(rf);
+                if (rrf == null) return rf;
+                return rrf;
+            }
+            return null;
+    }
+
     private static Feature getIOTarget(FlowEnd ife) {
         for (FeatureMembership fm: toOwnedFeatureMembershipArray(ife)) {
             Feature f = fm.getOwnedMemberFeature();
-            for (Redefinition rd: f.getOwnedRedefinition()) {
-                return rd.getRedefinedFeature();
-            }
+            return getRootRedefinedFeature(f);
         }
         return null;
     }
     
-    private class PCItemFlowEnd extends PC {
+    private class PCFlowEnd extends PC {
         private final Feature ioTarget;
         private final PC basePC;
 
-        public PCItemFlowEnd(FlowEnd ife, PC basePC, Feature ioTarget) {
+        public PCFlowEnd(FlowEnd ife, PC basePC, Feature ioTarget) {
             super(ife, false);
             this.basePC = basePC;
             this.ioTarget = ioTarget;
         }
 
-        private PCItemFlowEnd(PCItemFlowEnd prev, PC basePC) {
+        private PCFlowEnd(PCFlowEnd prev, PC basePC) {
             super(prev);
             this.basePC = basePC;
             this.ioTarget = prev.ioTarget;
@@ -406,12 +424,12 @@ public class VPath extends VTraverser {
             if (basePC == null) return new PCTerminal(this);
             PC ret = basePC.getNext();
             if (!ret.isTerminal()) {
-                return new PCItemFlowEnd(this, ret);
+                return new PCFlowEnd(this, ret);
             }
             if (ioTarget == null) {
                 return new PCTerminal(this);
             } else {
-                return new PCItemFlowEnd(this, null);
+                return new PCFlowEnd(this, null);
             }
         }
     }
@@ -444,6 +462,37 @@ public class VPath extends VTraverser {
         @Override
         protected Element getTarget() {
             throw new UnsupportedOperationException();
+        }
+    }
+
+    private class PCNamespace extends PC {
+        public final Namespace ns;
+        private final PC pc;
+
+        @Override
+        protected PC getNext() {
+            return pc;
+        }
+
+        @Override
+        public PC enter(Namespace ns) {
+            if (ns.equals(this.ns)) {
+                return pc;
+            } else {
+                return this;
+            }
+        }
+
+        public PCNamespace(Namespace ns, PC pc) {
+            super((Element) null, true);
+            this.ns = ns;
+            this.pc = pc;
+            pc.setPrev(this);
+        }
+
+        @Override
+        protected Element getTarget() {
+            return null;
         }
     }
 
@@ -542,28 +591,25 @@ public class VPath extends VTraverser {
 
     private String addContextForEnd(Feature f) {
         if (f instanceof FlowEnd) {
-            return addContextForItemFlowEnd((FlowEnd) f);
+            return addContextForFlowEnd((FlowEnd) f);
         }
         PC pc = makeEndFeaturePC(f);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        if (createRefPC(ik, pc) == null) return null;
+        if (makeRefPCForReferer(pc) == null) return null;
         return "";
     }
 
-    private String addContextForItemFlowEnd(FlowEnd ife) {
+    private String addContextForFlowEnd(FlowEnd ife) {
         PC pc = makeEndFeaturePC(ife);
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
-        pc = new PCItemFlowEnd(ife, pc, ioTarget);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        if (createRefPC(ik, pc) == null) return null;
+        pc = new PCFlowEnd(ife, pc, ioTarget);
+        if (makeRefPCForReferer(pc) == null) return null;
         return "";
     }
 
     private String addContextForFeatureChainExpression(FeatureChainExpression fce) {
         PC pc = new PCFeatureChainExpression(fce);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        createRefPC(ik, pc);
+        makeRefPCForReferer(pc);
         return "";
     }
 
@@ -571,8 +617,7 @@ public class VPath extends VTraverser {
         Feature f = fre.getReferent();
         if (f == null) return "";
         PC pc = new PCFeature(fre, f, false);
-        InheritKey ik = makeInheritKeyForReferer(pc);
-        createRefPC(ik, pc);
+        makeRefPCForReferer(pc);
         return "";
     }
 
@@ -666,7 +711,7 @@ public class VPath extends VTraverser {
 
     @Override
     public String caseFlowEnd(FlowEnd ife) {
-        return addContextForItemFlowEnd(ife);
+        return addContextForFlowEnd(ife);
     }
 
     @Override

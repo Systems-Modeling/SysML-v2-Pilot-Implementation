@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,8 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -36,7 +35,6 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,17 +131,12 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 		return language;
 	}
 	
-	@Override
-	public void setLanguage(String newLanguage) {
-		setLanguageGen(ElementUtil.unescapeString(newLanguage));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguageGen(String newLanguage) {
+	public void setLanguage(String newLanguage) {
 		String oldLanguage = language;
 		language = newLanguage;
 		if (eNotificationRequired())
@@ -160,17 +153,12 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 		return body;
 	}
 	
-	@Override
-	public void setBody(String newBody) {
-		setBodyGen(ElementUtil.processCommentBody(newBody));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBodyGen(String newBody) {
+	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
 		if (eNotificationRequired())

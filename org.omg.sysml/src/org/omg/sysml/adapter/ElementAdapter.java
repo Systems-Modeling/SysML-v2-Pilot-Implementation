@@ -74,7 +74,9 @@ public class ElementAdapter extends AdapterImpl {
 	// Parse post-processing
 	
 	public void postProcess() {
-		
+		Element target = getTarget();
+		target.setDeclaredName(ElementUtil.unescapeString(target.getDeclaredName()));
+		target.setDeclaredShortName(ElementUtil.unescapeString(target.getDeclaredShortName()));
 	}
 		
 	// Transformation

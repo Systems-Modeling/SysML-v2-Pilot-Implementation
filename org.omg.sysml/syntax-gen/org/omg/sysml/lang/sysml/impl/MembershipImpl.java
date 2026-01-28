@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -232,17 +231,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		return memberName;
 	}
 	
-	@Override
-	public void setMemberName(String newMemberName) {
-		setMemberNameGen(ElementUtil.unescapeString(newMemberName));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMemberNameGen(String newMemberName) {
+	public void setMemberName(String newMemberName) {
 		String oldMemberName = memberName;
 		memberName = newMemberName;
 		if (eNotificationRequired())
@@ -393,17 +387,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		return memberShortName;
 	}
 
-	@Override
-	public void setMemberShortName(String newMemberShortName) {
-		setMemberShortNameGen(ElementUtil.unescapeString(newMemberShortName));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMemberShortNameGen(String newMemberShortName) {
+	public void setMemberShortName(String newMemberShortName) {
 		String oldMemberShortName = memberShortName;
 		memberShortName = newMemberShortName;
 		if (eNotificationRequired())

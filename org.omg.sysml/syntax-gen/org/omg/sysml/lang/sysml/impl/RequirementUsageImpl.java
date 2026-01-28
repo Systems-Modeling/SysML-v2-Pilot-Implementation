@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -282,17 +281,12 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return reqId;
 	}
 
-	@Override
-	public void setReqId(String newReqId) {
-		setReqIdGen(ElementUtil.unescapeString(newReqId));
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReqIdGen(String newReqId) {
+	public void setReqId(String newReqId) {
 		String oldReqId = reqId;
 		reqId = newReqId;
 		if (eNotificationRequired())

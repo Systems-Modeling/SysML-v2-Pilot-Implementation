@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -165,6 +165,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseClassifier(Classifier element) {
 			return new ClassifierAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseComment(Comment element) {
+			return new CommentAdapter(element);
 		}
 		
 		@Override
@@ -355,6 +360,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseItemUsage(ItemUsage element) {
 			return new ItemUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseLiteralString(LiteralString element) {
+			return new LiteralStringAdapter(element);
 		}
 		
 		@Override
@@ -565,6 +575,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseTerminateActionUsage(TerminateActionUsage element) {
 			return new TerminateActionUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseTextualRepresentation(TextualRepresentation element) {
+			return new TextualRepresentationAdapter(element);
 		}
 		
 		@Override

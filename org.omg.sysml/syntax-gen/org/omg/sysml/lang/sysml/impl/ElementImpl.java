@@ -484,7 +484,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-		@Override
+	@Override
 	public EList<Element> getOwnedElement() {
 		return (EList<Element>)OWNED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -497,19 +497,14 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public String getDeclaredName() {
 		return declaredName;
-	}
-	
-	@Override
-	public void setDeclaredName(String newName) {
-		setDeclaredNameGen(ElementUtil.unescapeString(newName));
-	}
+	}	
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeclaredNameGen(String newDeclaredName) {
+	public void setDeclaredName(String newDeclaredName) {
 		String oldDeclaredName = declaredName;
 		declaredName = newDeclaredName;
 		if (eNotificationRequired())
@@ -616,17 +611,12 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 		return declaredShortName;
 	}
 
-	@Override
-	public void setDeclaredShortName(String shortName) {
-		setDeclaredShortNameGen(ElementUtil.unescapeString(shortName));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeclaredShortNameGen(String newDeclaredShortName) {
+	public void setDeclaredShortName(String newDeclaredShortName) {
 		String oldDeclaredShortName = declaredShortName;
 		declaredShortName = newDeclaredShortName;
 		if (eNotificationRequired())

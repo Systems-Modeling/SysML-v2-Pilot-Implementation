@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,18 +230,12 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return reqId;
 	}
 	
-	@Override
-	public void setReqId(String newReqId) {
-		setReqIdGen(ElementUtil.unescapeString(newReqId));
-	}
-	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReqIdGen(String newReqId) {
+	public void setReqId(String newReqId) {
 		String oldReqId = reqId;
 		reqId = newReqId;
 		if (eNotificationRequired())

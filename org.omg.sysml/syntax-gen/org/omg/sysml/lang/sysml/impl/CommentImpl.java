@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -135,21 +134,10 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Process the comment body per specification rules.
-	 * <!-- end-user-doc -->
-	 * @generated NOT 
-	 */
-	@Override
-	public void setBody(String newBody) {
-		setBodyGen(ElementUtil.processCommentBody(newBody));
-	}
-	
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBodyGen(String newBody) {
+	public void setBody(String newBody) {
 		String oldBody = body;
 		body = newBody;
 		if (eNotificationRequired())

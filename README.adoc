@@ -20,7 +20,7 @@ The project provides a configuration file for the https://wiki.eclipse.org/Eclip
 image:installer-advanced.png[switch to advanced mode]
 
 4. In the Products window, select "Eclipse Modeling Tools" with:
-   * Product Version: 2025-03
+   * Product Version: 2025-12
    * Java VM: Java 21
 
 5. On the next page (Projects window), to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
@@ -44,13 +44,13 @@ image:oomph-projects.png[oomph projects]
 
 ==== Manual installation
 
-1. Install Eclipse 2025-03 (4.35).
+1. Install Eclipse 2025-12 (4.38).
    * Install the “Eclipse Modeling Tools” package.
-     ** `https://www.eclipse.org/downloads/packages/release/2025-03/r/eclipse-modeling-tools`
+     ** `https://www.eclipse.org/downloads/packages/release/2025-12/r/eclipse-modeling-tools`
       
    * Install additional release packages in Eclipse.
      ** Select Help > Install New Software.
-     ** Enter the update site URL `http://download.eclipse.org/releases/2025-03`.
+     ** Enter the update site URL `http://download.eclipse.org/releases/2025-12`.
      ** Install “Xtext Complete SDK” (under General Purpose Tools) and "QVT Operational SDK" (under Modeling).
 
    * (Optional) For PlantUML visualization, install PlantUML-Eclipse with SysMLv2 extensions.
@@ -139,7 +139,7 @@ Set up a Java code template as follows:
 ----
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2025 <Your organization name>
+ * Copyright (C) 2026 <Your organization name>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -162,7 +162,7 @@ Set up a Java code template as follows:
 
 === For existing code
 * When modifying existing code created by someone in a different organization, add a new copyright line, without changing anything else in the header.
-* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2025, "Copyright (C) 2024" becomes "Copyright (C) 2024-2025" and in 2026 it becomes "Copyright (C) 2024-2026".)
+* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2026, "Copyright (C) 2024" becomes "Copyright (C) 2024-2026" and in 2027 it becomes "Copyright (C) 2024-2027".)
 
 === Sources
 * https://www.gnu.org/licenses/gpl-3.0.en.html[GNU GPL v3.0 - How to Apply These Terms to Your New Programs]

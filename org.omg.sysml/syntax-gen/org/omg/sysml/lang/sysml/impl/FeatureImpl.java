@@ -496,9 +496,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	/**
 	 * <!-- begin-user-doc -->
-	 * Force the Feature to be ordered if any subsetted Feature is ordered.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isOrdered() {

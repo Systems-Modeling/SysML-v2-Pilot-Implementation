@@ -46,9 +46,6 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureInverting;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.FlowEnd;
-import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -686,13 +683,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * <!-- begin-user-doc -->
 	 * Mark a feature as an end if it is owned via an EndFeatureMembership.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isEnd() {
-		if (getOwningMembership() instanceof EndFeatureMembership) {
-			isEnd = true;
-		}
 		return isEnd;
 	}
 
@@ -711,30 +705,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Feature is owned via a ParameterMembership, the direction is given by
-	 * the parameterDirection operation of the relationship.
-	 * If the feature is owned by an ItemFlowEnd, the direction is that of the
-	 * redefined feature of its owned Redefinition.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public FeatureDirectionKind getDirection() {
-		FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
-		if (owningFeatureMembership instanceof ParameterMembership) {
-			direction = ((ParameterMembership)owningFeatureMembership).parameterDirection();
-		} else if (owningFeatureMembership != null) {
-			Type owningType = owningFeatureMembership.getOwningType();
-			if (owningType instanceof FlowEnd) {
-				EList<Redefinition> redefinitions = getOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Feature redefinedFeature = redefinitions.get(0).getRedefinedFeature();
-					if (redefinedFeature != null) {
-						direction = owningType.directionOf(redefinedFeature);
-					}
-				}
-			}
-		}
 		return direction;
 	}
 

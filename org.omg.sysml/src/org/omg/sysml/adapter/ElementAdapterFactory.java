@@ -248,6 +248,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseEndFeatureMembership(EndFeatureMembership element) {
+			return new EndFeatureMembershipAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseEventOccurrenceUsage(EventOccurrenceUsage element) {
 			return new EventOccurrenceUsageAdapter(element);
 		}
@@ -435,6 +440,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter casePackage(Package element) {
 			return new PackageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseParameterMembership(ParameterMembership element) {
+			return new ParameterMembershipAdapter(element);
 		}
 		
 		@Override

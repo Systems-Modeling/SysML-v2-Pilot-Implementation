@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -54,10 +54,11 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EventOccurrenceUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -99,18 +100,6 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 		EVENT_OCCURRENCE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEventOccurrence);
 	}
 
-	// Additional overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

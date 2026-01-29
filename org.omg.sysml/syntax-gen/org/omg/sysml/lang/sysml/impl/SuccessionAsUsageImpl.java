@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,10 +36,11 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SuccessionAsUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -52,14 +53,4 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 		return SysMLPackage.Literals.SUCCESSION_AS_USAGE;
 	}
 	
-	// Additional overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-
 } //SuccessionAsUsageImpl

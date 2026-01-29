@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,10 +37,11 @@ public class BindingConnectorAsUsageImpl extends ConnectorAsUsageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected BindingConnectorAsUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -52,17 +53,5 @@ public class BindingConnectorAsUsageImpl extends ConnectorAsUsageImpl implements
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.BINDING_CONNECTOR_AS_USAGE;
 	}
-
-	// Additional overrides	
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-	
-	//
 
 } //BindingConnectorAsUsageImpl

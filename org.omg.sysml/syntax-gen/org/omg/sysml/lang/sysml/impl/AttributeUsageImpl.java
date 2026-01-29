@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -59,10 +59,11 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected AttributeUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -114,18 +115,6 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	public boolean isSetDefinition() {
   		return false;
 	}
-
-	// Additional overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -59,10 +59,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected PerformActionUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -151,18 +152,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public boolean isSetEventOccurrence() {
   		return false;
 	}
-
-	// Additional overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

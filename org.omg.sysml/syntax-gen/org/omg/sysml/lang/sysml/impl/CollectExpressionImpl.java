@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,8 +17,7 @@
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -35,15 +34,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class CollectExpressionImpl extends OperatorExpressionImpl implements CollectExpression {
 
-	private static final String COLLECT_FUNCTION = "collect";
+	private static final String COLLECT_OPERATOR = "collect";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CollectExpressionImpl() {
 		super();
+		operator = OPERATOR_EDEFAULT = COLLECT_OPERATOR;
 	}
 
 	/**
@@ -54,11 +54,6 @@ public class CollectExpressionImpl extends OperatorExpressionImpl implements Col
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.COLLECT_EXPRESSION;
-	}
-
-	@Override
-	public String getOperator() {
-		return COLLECT_FUNCTION;
 	}
 
 } //CollectExpressionImpl

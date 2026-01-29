@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -53,14 +53,4 @@ public abstract class ExposeImpl extends ImportImpl implements Expose {
 		return SysMLPackage.Literals.EXPOSE;
 	}
 	
-	// Additional overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isImportAll() {
-		return true;
-	}
-
 } //ExposeImpl

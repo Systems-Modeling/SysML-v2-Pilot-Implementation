@@ -59,7 +59,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final RequirementConstraintKind KIND_EDEFAULT = null;
+	protected RequirementConstraintKind KIND_EDEFAULT = null;
 	
 	/**
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.

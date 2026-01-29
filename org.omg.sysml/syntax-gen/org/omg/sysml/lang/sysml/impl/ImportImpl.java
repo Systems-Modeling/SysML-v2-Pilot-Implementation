@@ -18,8 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
@@ -105,10 +104,10 @@ public abstract class ImportImpl extends RelationshipImpl implements Import {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isImportAll()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final boolean IS_IMPORT_ALL_EDEFAULT = false;
+	protected boolean IS_IMPORT_ALL_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #isImportAll() <em>Is Import All</em>}' attribute.

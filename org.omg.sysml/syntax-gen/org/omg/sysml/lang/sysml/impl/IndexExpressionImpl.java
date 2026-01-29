@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,6 +17,7 @@
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
+
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -33,15 +34,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class IndexExpressionImpl extends OperatorExpressionImpl implements IndexExpression {
 
-	private static final String INDEX_FUNCTION = "#";
+	private static final String INDEX_OPERATOR= "#";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IndexExpressionImpl() {
 		super();
+		operator = OPERATOR_EDEFAULT = INDEX_OPERATOR;
 	}
 
 	/**
@@ -52,14 +54,6 @@ public class IndexExpressionImpl extends OperatorExpressionImpl implements Index
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.INDEX_EXPRESSION;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public String getOperator() {
-		return INDEX_FUNCTION;
 	}
 
 } //IndexExpressionImpl

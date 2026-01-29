@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022-2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2022-2023, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureChainExpressionImpl extends OperatorExpressionImpl implements FeatureChainExpression {
 
-	private static final String FEATURE_CHAIN_FUNCTION = ".";
+	private static final String FEATURE_CHAIN_OPERATOR = ".";
 
 	/**
 	 * The cached setting delegate for the '{@link #getTargetFeature() <em>Target Feature</em>}' reference.
@@ -62,10 +62,11 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected FeatureChainExpressionImpl() {
 		super();
+		operator = OPERATOR_EDEFAULT = FEATURE_CHAIN_OPERATOR;
 	}
 
 	/**
@@ -76,14 +77,6 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public String getOperator() {
-		return FEATURE_CHAIN_FUNCTION;
 	}
 
 	/**

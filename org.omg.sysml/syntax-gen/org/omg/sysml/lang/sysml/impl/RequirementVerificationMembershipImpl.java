@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -68,10 +68,11 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected RequirementVerificationMembershipImpl() {
 		super();
+		kind = KIND_EDEFAULT = RequirementConstraintKind.REQUIREMENT;
 	}
 
 	/**
@@ -242,29 +243,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
   		return false;
 	}
 	
-	// Additional Overrides
-	
-	@Override
-	/**
-	 * @generated NOT
-	 */
-	public RequirementConstraintKind getKind() {
-		return RequirementConstraintKind.REQUIREMENT;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Consider the "kind" property to never be explicitly "set". 
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		return featureID != SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND && eIsSetGen(featureID);
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,7 +302,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();

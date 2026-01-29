@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,8 +17,7 @@
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -66,10 +65,11 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected FramedConcernMembershipImpl() {
 		super();
+		kind = KIND_EDEFAULT = RequirementConstraintKind.REQUIREMENT;
 	}
 
 	/**
@@ -158,29 +158,6 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 		return basicGetReferencedConcern() != null;
 	}
 
-	// Additional Overrides
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public RequirementConstraintKind getKind() {
-		return RequirementConstraintKind.REQUIREMENT;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Consider the "kind" property to never be explicitly "set". 
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		return featureID != SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND && eIsSetGen(featureID);
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,7 +217,7 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();

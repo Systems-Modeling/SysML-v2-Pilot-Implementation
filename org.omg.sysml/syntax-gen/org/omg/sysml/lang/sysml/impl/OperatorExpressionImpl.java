@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,10 +47,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getOperator()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final String OPERATOR_EDEFAULT = null;
+	protected String OPERATOR_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.

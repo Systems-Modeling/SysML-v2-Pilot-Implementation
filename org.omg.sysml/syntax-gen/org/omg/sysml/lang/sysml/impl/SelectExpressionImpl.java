@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,8 +17,7 @@
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -35,15 +34,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class SelectExpressionImpl extends OperatorExpressionImpl implements SelectExpression {
 
-	private static final String SELECT_FUNCTION = "select";
+	private static final String SELECT_OPERATOR = "select";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected SelectExpressionImpl() {
 		super();
+		operator = OPERATOR_EDEFAULT = SELECT_OPERATOR;
 	}
 
 	/**
@@ -54,11 +54,6 @@ public class SelectExpressionImpl extends OperatorExpressionImpl implements Sele
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SELECT_EXPRESSION;
-	}
-
-	@Override
-	public String getOperator() {
-		return SELECT_FUNCTION;
 	}
 
 } //SelectExpressionImpl

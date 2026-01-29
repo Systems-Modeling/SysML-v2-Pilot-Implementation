@@ -49,6 +49,7 @@ package 'Streaming Example' {
 			"Cannot identify flow end (use dot notation)" at "C::myIn"
 			"Must be an accessible feature (use dot notation for nesting)" at "B::myOut"
 			"Must be an accessible feature (use dot notation for nesting)" at "C::myIn"
+			"Must have at least two related elements" at "flow XXX from B::myOut to C::myIn;"
 		    --- */
 		flow XXX from B::myOut to C::myIn;	
 	} 

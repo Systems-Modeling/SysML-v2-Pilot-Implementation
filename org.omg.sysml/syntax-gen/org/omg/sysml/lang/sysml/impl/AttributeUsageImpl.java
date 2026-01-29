@@ -117,6 +117,9 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

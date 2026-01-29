@@ -639,6 +639,9 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isAbstract() {
 		if (getRelatedFeature().size() < 2) {

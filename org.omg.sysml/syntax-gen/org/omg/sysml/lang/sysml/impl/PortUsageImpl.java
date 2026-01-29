@@ -117,6 +117,9 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 
 	// Additional overrides	
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		Type owningType = getOwningType();

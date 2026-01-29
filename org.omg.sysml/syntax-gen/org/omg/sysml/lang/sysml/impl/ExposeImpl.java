@@ -55,6 +55,9 @@ public abstract class ExposeImpl extends ImportImpl implements Expose {
 	
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isImportAll() {
 		return true;

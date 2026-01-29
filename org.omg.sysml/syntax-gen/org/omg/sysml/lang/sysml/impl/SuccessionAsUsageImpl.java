@@ -54,6 +54,9 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

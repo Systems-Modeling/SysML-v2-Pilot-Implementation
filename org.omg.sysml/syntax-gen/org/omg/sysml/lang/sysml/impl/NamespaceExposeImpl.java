@@ -36,6 +36,9 @@ public class NamespaceExposeImpl extends NamespaceImportImpl implements Namespac
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isImportAll() {
 		return true;

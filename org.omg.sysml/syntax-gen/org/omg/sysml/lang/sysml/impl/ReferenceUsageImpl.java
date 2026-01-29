@@ -55,6 +55,9 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

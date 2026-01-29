@@ -101,6 +101,9 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

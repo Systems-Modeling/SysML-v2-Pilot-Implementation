@@ -55,6 +55,9 @@ public class BindingConnectorAsUsageImpl extends ConnectorAsUsageImpl implements
 
 	// Additional overrides	
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

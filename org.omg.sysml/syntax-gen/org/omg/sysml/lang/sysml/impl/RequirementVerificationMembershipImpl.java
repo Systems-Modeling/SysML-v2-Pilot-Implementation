@@ -245,6 +245,9 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	// Additional Overrides
 	
 	@Override
+	/**
+	 * @generated NOT
+	 */
 	public RequirementConstraintKind getKind() {
 		return RequirementConstraintKind.REQUIREMENT;
 	}

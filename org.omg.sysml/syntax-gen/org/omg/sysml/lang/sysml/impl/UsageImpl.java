@@ -1046,6 +1046,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return UsageUtil.isComposite(this, isComposite);

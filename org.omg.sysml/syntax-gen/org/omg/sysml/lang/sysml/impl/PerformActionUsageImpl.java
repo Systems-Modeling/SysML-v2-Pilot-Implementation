@@ -154,6 +154,9 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isComposite() {
 		return false;

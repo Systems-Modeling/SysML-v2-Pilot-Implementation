@@ -36,6 +36,9 @@ public class MembershipExposeImpl extends MembershipImportImpl implements Member
 
 	// Additional overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public boolean isImportAll() {
 		return true;

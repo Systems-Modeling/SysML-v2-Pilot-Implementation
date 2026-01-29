@@ -160,6 +160,9 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 
 	// Additional Overrides
 	
+	/**
+	 * @generated NOT
+	 */
 	@Override
 	public RequirementConstraintKind getKind() {
 		return RequirementConstraintKind.REQUIREMENT;

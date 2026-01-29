@@ -123,7 +123,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetRedefiningFeature() {
 		return redefiningFeature != null;

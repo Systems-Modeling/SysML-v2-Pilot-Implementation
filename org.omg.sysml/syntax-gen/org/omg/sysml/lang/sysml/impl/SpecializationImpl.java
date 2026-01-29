@@ -193,17 +193,13 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SPECIALIZATION__SPECIFIC, oldSpecific, specific));
 	}
 	
-	public void basicSetSpecific(Type newSpecific) {
-		setSpecific(newSpecific);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean isSetSpecific() {
-		return basicGetSpecific() != null;
+		return specific != null;
 	}
 
 	/**

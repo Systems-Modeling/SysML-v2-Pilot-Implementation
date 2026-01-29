@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,22 +113,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	public boolean isSetOccurrenceDefinition() {
   		return false;
 	}
-
-	// Additional overrides	
-	
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isComposite() {
-		Type owningType = getOwningType();
-		return owningType != null &&
-			   (owningType instanceof PortDefinition ||
-			    owningType instanceof PortUsage) &&
-			   super.isComposite();
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

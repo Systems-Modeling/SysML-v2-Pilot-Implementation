@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,13 +28,10 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,25 +115,6 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 		return basicGetRenderingDefinition() != null;
 	}
 	
-	// Additional overrides
-	
-	/**
-	 * TODO: Update RenderingUsage with namingFeature redefinition.
-	 * 
-	 * See SYSML21-302
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public Feature namingFeature() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof ViewRenderingMembership?
-				((ViewRenderingMembership)membership).getReferencedRendering():
-				super.namingFeature();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

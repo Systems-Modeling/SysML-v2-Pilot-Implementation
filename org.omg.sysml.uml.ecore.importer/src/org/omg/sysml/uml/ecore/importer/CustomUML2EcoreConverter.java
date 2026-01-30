@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
@@ -45,22 +46,28 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			if (element instanceof Property && ((Property)element).isDerived() && !((Property)element).isDerivedUnion() && modelElement instanceof EStructuralFeature ||
 				element instanceof Operation && modelElement instanceof EOperation) {
 				String qualifiedName = ((NamedElement)element).getQualifiedName();
-				System.out.println("Add annotation: " + qualifiedName.substring(qualifiedName.indexOf("::") + 2));
-				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				annotation.setSource(ANNOTATION_SYSML);
-				modelElement.getEAnnotations().add(annotation);
+				addSysMLAnnotation(qualifiedName.substring(qualifiedName.indexOf("::") + 2), modelElement);
 			} else if (element instanceof org.eclipse.uml2.uml.Class && modelElement instanceof EClass) {
 				String name = ((org.eclipse.uml2.uml.Class)element).getName();
 				EClass eClass = (EClass)modelElement;
 				if ("Feature".equals(name)) {
 					EClassifier booleanType = eClass.getEStructuralFeature("isUnique").getEType();
-					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEAttribute(), "isNonunique", booleanType, 1, 1, "false", false);
+					EAttribute isNonUniqueAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+					addStructuralFeature(eClass, isNonUniqueAttribute, "isNonunique", booleanType, 1, 1, "false", false);
+					addSysMLAnnotation("Feature::isNonUnique", isNonUniqueAttribute);
 				} else if ("InvocationExpression".equals(name)) {
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
 					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEReference(), "operand", expressionClass, 0, -1, null, true);
 				}
 			}
 		}
+	}
+	
+	private void addSysMLAnnotation(String qualifiedName, EModelElement modelElement) {
+		System.out.println("Add annotation: " + qualifiedName);
+		EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		annotation.setSource(ANNOTATION_SYSML);		
+		modelElement.getEAnnotations().add(annotation);
 	}
 	
 	private void addStructuralFeature(EClass eClass, EStructuralFeature feature, String name, EClassifier type, int lower, int upper, String defaultValue, boolean isContainment) {

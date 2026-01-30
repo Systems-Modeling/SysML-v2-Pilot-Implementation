@@ -11376,6 +11376,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getFeature_IsNonunique(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getType__InheritedMemberships__EList_EList_boolean(),
 		   source,
 		   new String[] {

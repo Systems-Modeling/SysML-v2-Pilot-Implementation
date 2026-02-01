@@ -59,7 +59,9 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 					addSysMLAnnotation("Feature::isNonUnique", isNonUniqueAttribute);
 				} else if ("InvocationExpression".equals(name)) {
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
-					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEReference(), "operand", expressionClass, 0, -1, null, true);
+					EReference operandReference = EcoreFactory.eINSTANCE.createEReference();
+					addStructuralFeature(eClass, operandReference, "operand", expressionClass, 0, -1, null, true);
+					addSysMLAnnotation("InvocationExpression::operand", operandReference);
 				}
 			}
 		}

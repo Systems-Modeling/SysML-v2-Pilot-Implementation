@@ -91,7 +91,9 @@ public interface InvocationExpression extends InstantiationExpression {
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression_Operand()
 	 * @model containment="true" transient="true" volatile="true" derived="true"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
+	@Deprecated
 	EList<Expression> getOperand();
 } // InvocationExpression

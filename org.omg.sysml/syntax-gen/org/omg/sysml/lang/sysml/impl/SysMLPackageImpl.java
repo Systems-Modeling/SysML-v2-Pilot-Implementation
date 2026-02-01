@@ -11171,6 +11171,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	protected void createSysMLAnnotations() {
 		String source = "http://www.omg.org/spec/SysML";
 		addAnnotation
+		  (getInvocationExpression_Operand(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getInstantiationExpression__InstantiatedType(),
 		   source,
 		   new String[] {

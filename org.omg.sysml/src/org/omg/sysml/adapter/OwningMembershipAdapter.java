@@ -48,7 +48,7 @@ public class OwningMembershipAdapter extends MembershipAdapter {
 		OwningMembership target = getTarget();
 		
 		Element ownedMemberElement = target.getOwnedMemberElement();
-		if (!ElementUtil.isStandardLibraryElement(target) &&
+		if (!ElementUtil.isStandardLibraryElement(target) && ownedMemberElement != null &&
 			ElementUtil.isStandardLibraryElement(ownedMemberElement) && 
 			ownedMemberElement.libraryNamespace() == ownedMemberElement) {
 			String path = target.path();

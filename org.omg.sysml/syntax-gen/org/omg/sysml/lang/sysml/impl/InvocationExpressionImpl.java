@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2023, 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,26 +22,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EClassImpl;
-import org.eclipse.emf.ecore.util.EContentsEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 
 /**
@@ -59,6 +45,16 @@ import org.omg.sysml.util.TypeUtil;
 public class InvocationExpressionImpl extends InstantiationExpressionImpl implements InvocationExpression {
 	
 	/**
+	 * The cached setting delegate for the '{@link #getOperand() <em>Operand</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperand()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OPERAND__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INVOCATION_EXPRESSION__OPERAND).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -75,162 +71,17 @@ public class InvocationExpressionImpl extends InstantiationExpressionImpl implem
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 	
-	// Operand mechanism
-	
 	/**
-	 * Xtext workaround:
-	 * "operand" is an additional property not in the normative abstract syntax, but added to the Ecore.
-	 * It contains a list of direct containment references to arguments of this InvocationExpression.
-	 * It allows for tractable parsing in Xtext of expressions with left-recursive syntax 
-	 * (particularly operator expressions).
-	 * 
-	 * @generated NOT
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
-	protected EList<Expression> operand = null;
-	
-	/**
-	 * Filter operands from the eContents of the InvocationExpression, because the referenced arguments will
-	 * already be including via owning FeatureMemberships. 
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public EList<EObject> eContents() {
-		EClass eClass = eClass();
-		EStructuralFeature[] containmentFeatures = ((EClassImpl.FeatureSubsetSupplier)eClass.getEAllStructuralFeatures()).containments();
-		EStructuralFeature operandFeature = eClass.getEStructuralFeature(SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
-		EStructuralFeature[] nonOperandFeatures = new EStructuralFeature[containmentFeatures.length - 1];
-		int i = 0;
-		for (EStructuralFeature feature: containmentFeatures) {
-			if (feature != operandFeature) {
-				nonOperandFeatures[i] = feature;
-				i++;
-			}
-		}
-		return new EContentsEList<>(this, nonOperandFeatures);
-	}
-
-	/**
-	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
-	 * as owned features.
-	 * 
-	 * @generated NOT
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getOperand() {
-		if (operand == null) {
-			operand = new OperandEList();
-		}
-		return operand;
-	}
-	
-	private class OperandEList extends DelegatingEList<Expression> implements InternalEList<Expression> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		protected List<Expression> delegateList() {
-			return TypeUtil.getOwnedParametersOf(InvocationExpressionImpl.this).stream().
-						filter(param->param.getDirection() == FeatureDirectionKind.IN).
-						map(FeatureUtil::getValueExpressionFor).
-						toList();
-		}
-
-		@Override
-		protected void delegateAdd(Expression object) {
-			TypeUtil.addOwnedParameterTo(InvocationExpressionImpl.this, object).
-				setVisibility(VisibilityKind.PRIVATE);
-		}
-
-		@Override
-		protected void delegateAdd(int i, Expression object) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public Expression remove(int i) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public boolean remove(Object object) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void clear() {
-
-		}
-
-		@Override
-		public Object[] basicToArray() {
-			return delegateToArray();
-		}
-
-		@Override
-		public <T> T[] basicToArray(T[] array) {
-			return delegateToArray(array);
-		}
-
-		@Override
-		public int basicIndexOf(Object object) {
-			return delegateIndexOf(object);
-		}
-
-		@Override
-		public int basicLastIndexOf(Object object) {
-			return delegateLastIndexOf(object);
-		}
-
-		@Override
-		public boolean basicContains(Object object) {
-			return delegateContains(object);
-		}
-
-		@Override
-		public boolean basicContainsAll(Collection<?> collection) {
-			return delegateContainsAll(collection);
-		}
-
-		@Override
-		public NotificationChain basicRemove(Object object, NotificationChain notifications) {
-			remove(object);
-			return notifications;
-		}
-
-		@Override
-		public NotificationChain basicAdd(Expression object, NotificationChain notifications) {
-			add(object);
-			return notifications;
-		}
-
-		@Override
-		public Expression basicGet(int i) {
-			return super.basicGet(i);
-		}
-
-		@Override
-		public List<Expression> basicList() {
-			return super.basicList();
-		}
-
-		@Override
-		public Iterator<Expression> basicIterator() {
-			return super.basicIterator();
-		}
-
-		@Override
-		public ListIterator<Expression> basicListIterator() {
-			return super.basicListIterator();
-		}
-
-		@Override
-		public ListIterator<Expression> basicListIterator(int i) {
-			return super.basicListIterator(i);
-		}
+		return (EList<Expression>)OPERAND__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,7 +137,7 @@ public class InvocationExpressionImpl extends InstantiationExpressionImpl implem
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.INVOCATION_EXPRESSION__OPERAND:
-				return !getOperand().isEmpty();
+				return OPERAND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

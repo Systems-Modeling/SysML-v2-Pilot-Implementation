@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2023, 2026 Model Driven Solutions, Inc.
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,30 +21,22 @@
 
 package org.omg.sysml.delegate.setting;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.util.ExpressionUtil;
 
-public class Element_elementId_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class InvocationExpression_operand_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Element_elementId_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public InvocationExpression_operand_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object basicGet(InternalEObject owner) {
-		return ElementUtil.getElementIdOf((Element) owner);
-	}
-	
-	@Override
-	public void set(InternalEObject owner, Object elementId) {
-		ElementUtil.setElementIdOf((Element)owner, (String)elementId);
-	}
-	
-	@Override
-	public boolean isSet(InternalEObject owner) {
-		return true;
+	protected EList<Expression> basicGet(InternalEObject owner) {
+		return ExpressionUtil.getOperandsOf((InvocationExpression)owner);
 	}
 
 }

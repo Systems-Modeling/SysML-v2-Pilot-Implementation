@@ -979,6 +979,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
         eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/ownedElement">

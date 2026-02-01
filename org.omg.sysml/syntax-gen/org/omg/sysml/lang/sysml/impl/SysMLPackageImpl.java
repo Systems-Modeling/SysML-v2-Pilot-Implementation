@@ -11671,6 +11671,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getElement_ElementId(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getElement_Owner(),
 		   source,
 		   new String[] {

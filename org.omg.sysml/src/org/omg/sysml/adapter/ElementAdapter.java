@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.UUID;
+
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
@@ -36,6 +39,8 @@ public class ElementAdapter extends AdapterImpl {
 	protected boolean isTransformed = false;
 	
 	private MetadataFeature metaclassFeature = null;
+	
+	private String elementId;
 	
 	public ElementAdapter(Element element) {
 		super();
@@ -49,6 +54,39 @@ public class ElementAdapter extends AdapterImpl {
 	@Override
 	public boolean isAdapterForType(Object object) {
 		return kind.isInstance(object);
+	}
+	
+	// Element IDs
+	
+	public String getElementId() {
+		if (elementId == null) {
+			elementId = createElementId();
+		}
+		return elementId;
+	}
+	
+	public void setElementId(String elementId) {
+		this.elementId = elementId;
+	}
+
+	/**
+	 * If the Element is not a standard library Element, create a random UUID. 
+	 * If the Element is a standard library Element, create a name-based UUID using the Element's path.
+	 */
+	protected String createElementId() {
+		Element target = getTarget();
+		UUID uuid = UUID.randomUUID();
+		if (ElementUtil.isStandardLibraryElement(target)) {
+			String path = target.path();
+			if (path != null) {				
+				Namespace libraryNamespace = target.libraryNamespace();
+				if (target != libraryNamespace) {
+					UUID namespaceUUID = UUID.fromString(libraryNamespace.getElementId());
+					uuid = ElementUtil.constructNameUUID(namespaceUUID, path);
+				}
+			}
+		}					
+		return uuid.toString();
 	}
 	
 	// Metaclass Feature
@@ -78,14 +116,15 @@ public class ElementAdapter extends AdapterImpl {
 		target.setDeclaredName(ElementUtil.unescapeString(target.getDeclaredName()));
 		target.setDeclaredShortName(ElementUtil.unescapeString(target.getDeclaredShortName()));
 	}
-		
+	
 	// Transformation
-
+		
 	public boolean isTransformed() {
 		return isTransformed;
 	}
 	
 	public void clearCaches() {
+		elementId = null;
 	}
 	
 	public void transform() {

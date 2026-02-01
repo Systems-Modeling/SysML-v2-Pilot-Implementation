@@ -43,7 +43,9 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 		for (Entry<Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
-			if (element instanceof Property && ((Property)element).isDerived() && !((Property)element).isDerivedUnion() && modelElement instanceof EStructuralFeature ||
+			if (element instanceof Property && modelElement instanceof EStructuralFeature && 
+					(((Property)element).isDerived() && !((Property)element).isDerivedUnion() || 
+					"elementId".equals(((Property)element).getName())) ||
 				element instanceof Operation && modelElement instanceof EOperation) {
 				String qualifiedName = ((NamedElement)element).getQualifiedName();
 				addSysMLAnnotation(qualifiedName.substring(qualifiedName.indexOf("::") + 2), modelElement);

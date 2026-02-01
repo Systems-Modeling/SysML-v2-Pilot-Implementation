@@ -368,6 +368,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseLibraryPackage(LibraryPackage element) {
+			return new LibraryPackageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseLiteralString(LiteralString element) {
 			return new LiteralStringAdapter(element);
 		}
@@ -435,6 +440,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseOperatorExpression(OperatorExpression element) {
 			return new OperatorExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseOwningMembership(OwningMembership element) {
+			return new OwningMembershipAdapter(element);
 		}
 		
 		@Override

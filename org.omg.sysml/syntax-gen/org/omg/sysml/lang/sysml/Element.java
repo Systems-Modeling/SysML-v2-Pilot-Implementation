@@ -206,6 +206,7 @@ public interface Element extends EObject {
 	 * @see #setElementId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ElementId()
 	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getElementId();

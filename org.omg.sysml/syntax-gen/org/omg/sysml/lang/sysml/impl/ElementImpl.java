@@ -22,7 +22,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.UUID;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -46,7 +45,6 @@ import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,24 +108,14 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNING_NAMESPACE).getSettingDelegate();
 
 	/**
-	 * The default value of the '{@link #getElementId() <em>Element Id</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getElementId() <em>Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getElementId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ELEMENT_ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getElementId() <em>Element Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String elementId = ELEMENT_ID_EDEFAULT;
+	protected EStructuralFeature.Internal.SettingDelegate ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__ELEMENT_ID).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getOwner() <em>Owner</em>}' reference.
@@ -310,29 +298,12 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	
 	/**
 	 * <!-- begin-user-doc -->
-	 * If there is no elementId, and the Element is not a standard library Element, 
-	 * set the elementId to a random UUID. If the Element is a standard library Element,
-	 * create a name-based UUID using the Element's path.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getElementId() {
-		if (elementId == null) {
-			UUID uuid = UUID.randomUUID();
-			if (ElementUtil.isStandardLibraryElement(this)) {
-				String path = path();
-				if (path != null) {
-					Namespace libraryNamespace = libraryNamespace();
-					if (this != libraryNamespace) {
-						UUID namespaceUUID = UUID.fromString(libraryNamespace.getElementId());
-						uuid = ElementUtil.constructNameUUID(namespaceUUID, path);
-					}
-				}
-			}
-			elementId = uuid.toString();
-		}
-		return elementId;
+		return (String)ELEMENT_ID__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -342,10 +313,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	public void setElementId(String newElementId) {
-		String oldElementId = elementId;
-		elementId = newElementId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__ELEMENT_ID, oldElementId, elementId));
+		ELEMENT_ID__ESETTING_DELEGATE.dynamicSet(this, null, 0, newElementId);
 	}
 
 	/**
@@ -504,6 +472,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeclaredName(String newDeclaredName) {
 		String oldDeclaredName = declaredName;
 		declaredName = newDeclaredName;
@@ -616,6 +585,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeclaredShortName(String newDeclaredShortName) {
 		String oldDeclaredShortName = declaredShortName;
 		declaredShortName = newDeclaredShortName;
@@ -1025,7 +995,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 				setOwningNamespace((Namespace)null);
 				return;
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
-				setElementId(ELEMENT_ID_EDEFAULT);
+				ELEMENT_ID__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__OWNER:
 				setOwner((Element)null);
@@ -1087,7 +1057,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
-				return ELEMENT_ID_EDEFAULT == null ? elementId != null : !ELEMENT_ID_EDEFAULT.equals(elementId);
+				return ELEMENT_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNER:
 				return OWNER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
@@ -1150,9 +1120,7 @@ public abstract class ElementImpl extends MinimalEObjectImpl.Container implement
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (elementId: ");
-		result.append(elementId);
-		result.append(", aliasIds: ");
+		result.append(" (aliasIds: ");
 		result.append(aliasIds);
 		result.append(", declaredShortName: ");
 		result.append(declaredShortName);

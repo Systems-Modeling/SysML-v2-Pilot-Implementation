@@ -22,7 +22,7 @@
 package org.omg.sysml.expressions.functions.bool;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -44,7 +44,7 @@ public abstract class BooleanFunction implements LibraryFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		Boolean x_bool = evaluator.booleanValue(invocation, 0, target);
 		Boolean y_bool = evaluator.booleanValue(invocation, 1, target);
 		EList<Element> results = EvaluationUtil.numberOfArgs(invocation) == 1? unaryBooleanOp(x_bool):

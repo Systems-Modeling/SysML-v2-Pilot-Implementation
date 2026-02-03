@@ -22,7 +22,7 @@ package org.omg.sysml.execution.expressions.functions.sequence;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -30,12 +30,12 @@ import org.omg.sysml.util.EvaluationUtil;
 public class SubsequenceFunction extends SequenceFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "subsequence";
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		EList<Element> seq = evaluator.evaluateArgument(invocation, 0, target);
 		Element startIndex = evaluator.argumentValue(invocation, 1, target);
 		Element endIndex = evaluator.argumentValue(invocation, 2, target);

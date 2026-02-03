@@ -21,7 +21,7 @@
 package org.omg.sysml.execution.expressions.functions.control;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.control.ControlFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -31,12 +31,12 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ForAllFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "forAll";
 	}
 
 	public Boolean forAll(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator, Boolean test) {
+			ExpressionEvaluator evaluator, Boolean test) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Element expr = evaluator.argumentValue(invocation, 1, target);
 		if (list == null || !(expr instanceof Expression)) {
@@ -60,7 +60,7 @@ public class ForAllFunction extends ControlFunction {
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		Boolean result = forAll(invocation, target, evaluator, true);
 		return result == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(result);
 	}

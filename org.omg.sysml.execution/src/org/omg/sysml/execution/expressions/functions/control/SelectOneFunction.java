@@ -21,7 +21,7 @@
 package org.omg.sysml.execution.expressions.functions.control;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.control.SelectFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -30,13 +30,13 @@ import org.omg.sysml.util.EvaluationUtil;
 public class SelectOneFunction extends SelectFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "selectOne";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		EList<Element> list = super.invoke(invocation, target, evaluator);
 		return list.isEmpty()? EvaluationUtil.nullList():
 			   EvaluationUtil.singletonList(list.get(0));

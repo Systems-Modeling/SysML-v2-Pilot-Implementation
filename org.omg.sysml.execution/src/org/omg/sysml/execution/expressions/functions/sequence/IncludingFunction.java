@@ -23,7 +23,7 @@ package org.omg.sysml.execution.expressions.functions.sequence;
 public class IncludingFunction extends UnionFunction {
 	
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "including";
 	}
 

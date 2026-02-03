@@ -489,5 +489,10 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(1, evaluateIntegerValue(instance, null, "(P.metadata as M1).a"));
 		assertEquals(1, evaluateIntegerValue(instance, null, "(P meta M1).a"));
 	}
+	
+	@Test
+	public void testLibraryFeatureReference() throws Exception {
+		assertEquals(Math.PI, evaluateRealValue(null, null, "TrigFunctions::pi"), 0);
+	}
 
 }

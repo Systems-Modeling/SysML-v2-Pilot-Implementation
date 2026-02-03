@@ -23,7 +23,7 @@ package org.omg.sysml.expressions.functions.base;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
@@ -32,12 +32,12 @@ import org.omg.sysml.util.EvaluationUtil;
 public class AsFunction extends BaseFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "as";
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
 		Type targetType = EvaluationUtil.getTypeArgument(invocation);
 		if (targetType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);

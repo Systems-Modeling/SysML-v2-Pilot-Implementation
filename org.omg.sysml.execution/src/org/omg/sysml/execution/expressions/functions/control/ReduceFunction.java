@@ -23,7 +23,7 @@ package org.omg.sysml.execution.expressions.functions.control;
 import java.util.function.BiFunction;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.control.ControlFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -33,7 +33,7 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ReduceFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "reduce";
 	}
 
@@ -55,7 +55,7 @@ public class ReduceFunction extends ControlFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Element expr = evaluator.argumentValue(invocation, 1, target);
 		if (list == null || !(expr instanceof Expression)) {

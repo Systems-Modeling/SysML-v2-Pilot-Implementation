@@ -1,34 +1,37 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -52,7 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
-
 	/**
 	 * The cached setting delegate for the '{@link #getState() <em>State</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -62,6 +64,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__STATE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getEntryAction() <em>Entry Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -71,6 +74,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ENTRY_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__ENTRY_ACTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getDoAction() <em>Do Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -80,6 +84,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate DO_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__DO_ACTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getExitAction() <em>Exit Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -89,6 +94,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate EXIT_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__EXIT_ACTION).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,6 +104,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @ordered
 	 */
 	protected static final boolean IS_PARALLEL_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->

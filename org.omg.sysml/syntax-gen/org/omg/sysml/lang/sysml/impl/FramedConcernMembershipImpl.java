@@ -1,36 +1,38 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
-
+/**
+ */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.lang.sysml.FramedConcernMembership;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
+
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Addressed Concern Membership</b></em>'.
+ * An implementation of the model object '<em><b>Framed Concern Membership</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -52,6 +54,7 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONCERN).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getReferencedConcern() <em>Referenced Concern</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -163,6 +166,86 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ConstraintUsage getOwnedConstraint() {
+		return getOwnedConcern();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage basicGetOwnedConstraint() {
+		return basicGetOwnedConcern();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
+		if (newOwnedConstraint != null && !(newOwnedConstraint instanceof ConcernUsage)) {
+			throw new IllegalArgumentException("newOwnedConstraint must be an instance of ConcernUsage");
+		}
+		setOwnedConcern((ConcernUsage) newOwnedConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedConstraint() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstraintUsage getReferencedConstraint() {
+		return getReferencedConcern();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage basicGetReferencedConstraint() {
+		return basicGetReferencedConcern();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferencedConstraint(ConstraintUsage newReferencedConstraint) {
+		if (newReferencedConstraint != null && !(newReferencedConstraint instanceof ConcernUsage)) {
+			throw new IllegalArgumentException("newReferencedConstraint must be an instance of ConcernUsage");
+		}
+		setReferencedConcern((ConcernUsage) newReferencedConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencedConstraint() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -217,6 +300,7 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONSTRAINT:
@@ -231,86 +315,4 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage getOwnedConstraint() {
-		return getOwnedConcern();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage basicGetOwnedConstraint() {
-		return basicGetOwnedConcern();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
-		if (newOwnedConstraint != null && !(newOwnedConstraint instanceof ConcernUsage)) {
-			throw new IllegalArgumentException("newOwnedConstraint must be an instance of ConcernUsage");
-		}
-		setOwnedConcern((ConcernUsage) newOwnedConstraint);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedConstraint() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage getReferencedConstraint() {
-		return getReferencedConcern();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage basicGetReferencedConstraint() {
-		return basicGetReferencedConcern();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReferencedConstraint(ConstraintUsage newReferencedConstraint) {
-		if (newReferencedConstraint != null && !(newReferencedConstraint instanceof ConcernUsage)) {
-			throw new IllegalArgumentException("newReferencedConstraint must be an instance of ConcernUsage");
-		}
-		setReferencedConcern((ConcernUsage) newReferencedConstraint);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetReferencedConstraint() {
-  		return false;
-	}
-
-} //AddressedConcernMembershipImpl
+} //FramedConcernMembershipImpl

@@ -1,35 +1,37 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -41,7 +43,7 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Transition Step</b></em>'.
+ * An implementation of the model object '<em><b>Transition Usage</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -58,7 +60,6 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
  * @generated
  */
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -137,7 +138,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.TRANSITION_USAGE;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,7 +258,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public void setSuccession(Succession newSuccession) {
 		SUCCESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSuccession);
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #triggerPayloadParameter() <em>Trigger Payload Parameter</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -268,8 +269,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	protected static final EOperation.Internal.InvocationDelegate TRIGGER_PAYLOAD_PARAMETER__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.TRANSITION_USAGE___TRIGGER_PAYLOAD_PARAMETER).getInvocationDelegate();
 
-	// Operations
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,7 +282,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 			throw new WrappedException(ite);
 		}
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #sourceFeature() <em>Source Feature</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -307,8 +306,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 			throw new WrappedException(ite);
 		}
 	}
-
-	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -441,4 +438,4 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //TransitionStepImpl
+} //TransitionUsageImpl

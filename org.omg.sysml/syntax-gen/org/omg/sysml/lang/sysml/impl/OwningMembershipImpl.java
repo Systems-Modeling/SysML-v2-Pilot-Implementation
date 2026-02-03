@@ -1,26 +1,28 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025, 2026 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
+/**
+ */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -61,6 +63,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +73,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +83,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberElement() <em>Owned Member Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -88,6 +93,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,43 +221,6 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getMemberElement() {
-		return getOwnedMemberElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element basicGetMemberElement() {
-		return basicGetOwnedMemberElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMemberElement(Element newMemberElement) {
-		setOwnedMemberElement(newMemberElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMemberElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Element getOwnedMemberElement() {
 		return (Element)OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
@@ -278,14 +247,13 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Generation with setting delegate was not executed properly, therefore code was edited manually
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwnedMemberElement() {
 		return basicGetOwnedMemberElement() != null;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,6 +332,43 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @generated
 	 */
 	public boolean isSetMemberName() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Element getMemberElement() {
+		return getOwnedMemberElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element basicGetMemberElement() {
+		return basicGetOwnedMemberElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberElement(Element newMemberElement) {
+		setOwnedMemberElement(newMemberElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMemberElement() {
   		return false;
 	}
 

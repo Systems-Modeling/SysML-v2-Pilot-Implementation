@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -260,6 +259,331 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Feature extends Type {
 	/**
+	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningMembership() <em>Owning Membership</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>FeatureMembership</code> that owns this <code>Feature</code> as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
+	 * @see #setOwningFeatureMembership(FeatureMembership)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
+	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	FeatureMembership getOwningFeatureMembership();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Feature Membership</em>' reference.
+	 * @see #getOwningFeatureMembership()
+	 * @generated
+	 */
+	void setOwningFeatureMembership(FeatureMembership value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType() <em>Featuring Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Type</code> that is the <code>owningType</code> of the <code>owningFeatureMembership</code> of this <code>Feature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @see #setOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeature
+	 * @model opposite="ownedFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Type getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Type</code> that is related to this <code>Feature</code> by an <code>EndFeatureMembership</code> in which the <code>Feature</code> is an <code>ownedMemberFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>End Owning Type</em>' reference.
+	 * @see #setEndOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedEndFeature
+	 * @model opposite="ownedEndFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Type getEndOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Owning Type</em>' reference.
+	 * @see #getEndOwningType()
+	 * @generated
+	 */
+	void setEndOwningType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Unique</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not values for this <code>Feature</code> must have no duplicates or not.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Unique</em>' attribute.
+	 * @see #setIsUnique(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
+	 * @model default="true" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isUnique();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Unique</em>' attribute.
+	 * @see #isUnique()
+	 * @generated
+	 */
+	void setIsUnique(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Ordered</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether an order exists for the values of this <code>Feature</code> or not.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Ordered</em>' attribute.
+	 * @see #setIsOrdered(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsOrdered()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isOrdered();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Ordered</em>' attribute.
+	 * @see #isOrdered()
+	 * @generated
+	 */
+	void setIsOrdered(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p><code>Types</code> that restrict the values of this <code>Feature</code>, such that the values must be instances of all the <code>types</code>. The types of a <code>Feature</code> are derived from its <code>typings</code> and the <code>types</code> of its <code>subsettings</code>. If the <code>Feature</code> is chained, then the <code>types</code> of the last <code>Feature</code> in the chain are also <code>types</code> of the chained <code>Feature</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> getType();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Redefinition}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedSubsettings</code> of this <code>Feature</code> that are <code>Redefinitions</code>, for which the <code>Feature</code> is the <code>redefiningFeature</code>.</p>
+	 * 
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Redefinition> getOwnedRedefinition();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subsetting}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization() <em>Owned Specialization</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>Subsettings</code>, for which the <code>Feature</code> is the <code>subsettingFeature</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
+	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Subsetting> getOwnedSubsetting();
+
+	/**
+	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the <code>Feature</code> is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the <code>Feature</code> cannot exist after its featuring instance no longer does and cannot be values of another composite feature that is not on the same featuring instance.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Composite</em>' attribute.
+	 * @see #setIsComposite(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isComposite();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Composite</em>' attribute.
+	 * @see #isComposite()
+	 * @generated
+	 */
+	void setIsComposite(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not this <code>Feature</code> is an end <code>Feature</code>. An end <code>Feature</code> always has multiplicity 1, mapping each of its domain instances to a single co-domain instance. However, it may have a <code>crossFeature</code>, in which case values of the <code>crossFeature</code> must be the same as those found by navigation across instances of the <code>owningType</code> from values of other end <code>Features</code> to values of this Feature. If the <code>owningType</code> has <em>n</em> end <code>Features</code>, then the multiplicity, ordering, and uniqueness declared for the <code>crossFeature</code> of any one of these end <code>Features</code> constrains the cardinality, ordering, and uniqueness of the collection of values of that <code>Feature</code> reached by navigation when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is End</em>' attribute.
+	 * @see #setIsEnd(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsEnd()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isEnd();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is End</em>' attribute.
+	 * @see #isEnd()
+	 * @generated
+	 */
+	void setIsEnd(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Typing</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization() <em>Owned Specialization</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>FeatureTypings</code>, for which the <code>Feature</code> is the <code>typedFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Typing</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
+	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<FeatureTyping> getOwnedTyping();
+
+	/**
+	 * Returns the value of the '<em><b>Featuring Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p><code>Types</code> that feature this <code>Feature</code>, such that any instance in the domain of the <code>Feature</code> must be classified by all of these <code>Types</code>, including at least all the <code>featuringTypes</code> of its <code>typeFeaturings</code>.  If the <code>Feature</code> is chained, then the <code>featuringTypes</code> of the first <code>Feature</code> in the chain are also <code>featuringTypes</code> of the chained <code>Feature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Featuring Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureOfType'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> getFeaturingType();
+
+	/**
 	 * Returns the value of the '<em><b>Owned Type Featuring</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TypeFeaturing}.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType <em>Owning Feature Of Type</em>}'.
@@ -283,6 +607,33 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<TypeFeaturing> getOwnedTypeFeaturing();
+
+	/**
+	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the values of this <code>Feature</code> can always be computed from the values of other <code>Features</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Derived</em>' attribute.
+	 * @see #setIsDerived(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsDerived()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isDerived();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isDerived <em>Is Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Derived</em>' attribute.
+	 * @see #isDerived()
+	 * @generated
+	 */
+	void setIsDerived(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Chaining Feature</b></em>' reference list.
@@ -350,332 +701,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<FeatureChaining> getOwnedFeatureChaining();
-
-	/**
-	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether the values of this <code>Feature</code> can always be computed from the values of other <code>Features</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Derived</em>' attribute.
-	 * @see #setIsDerived(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsDerived()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isDerived();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isDerived <em>Is Derived</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Derived</em>' attribute.
-	 * @see #isDerived()
-	 * @generated
-	 */
-	void setIsDerived(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType() <em>Featuring Type</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Type</code> that is the <code>owningType</code> of the <code>owningFeatureMembership</code> of this <code>Feature</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' reference.
-	 * @see #setOwningType(Type)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeature
-	 * @model opposite="ownedFeature" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	Type getOwningType();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' reference.
-	 * @see #getOwningType()
-	 * @generated
-	 */
-	void setOwningType(Type value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Unique</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Unique</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether or not values for this <code>Feature</code> must have no duplicates or not.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Unique</em>' attribute.
-	 * @see #setIsUnique(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
-	 * @model default="true" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isUnique();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Unique</em>' attribute.
-	 * @see #isUnique()
-	 * @generated
-	 */
-	void setIsUnique(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Ordered</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Ordered</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether an order exists for the values of this <code>Feature</code> or not.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Ordered</em>' attribute.
-	 * @see #setIsOrdered(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsOrdered()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isOrdered();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Ordered</em>' attribute.
-	 * @see #isOrdered()
-	 * @generated
-	 */
-	void setIsOrdered(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p><code>Types</code> that restrict the values of this <code>Feature</code>, such that the values must be instances of all the <code>types</code>. The types of a <code>Feature</code> are derived from its <code>typings</code> and the <code>types</code> of its <code>subsettings</code>. If the <code>Feature</code> is chained, then the <code>types</code> of the last <code>Feature</code> in the chain are also <code>types</code> of the chained <code>Feature</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Type> getType();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Redefinition}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Redefinition</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedSubsettings</code> of this <code>Feature</code> that are <code>Redefinitions</code>, for which the <code>Feature</code> is the <code>redefiningFeature</code>.</p>
-	 * 
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Redefinition> getOwnedRedefinition();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subsetting}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization() <em>Owned Specialization</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Subsetting</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>Subsettings</code>, for which the <code>Feature</code> is the <code>subsettingFeature</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
-	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
-	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Subsetting> getOwnedSubsetting();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Typing</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization() <em>Owned Specialization</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Typing</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedSpecializations</code> of this <code>Feature</code> that are <code>FeatureTypings</code>, for which the <code>Feature</code> is the <code>typedFeature</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Typing</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
-	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
-	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<FeatureTyping> getOwnedTyping();
-
-	/**
-	 * Returns the value of the '<em><b>Featuring Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p><code>Types</code> that feature this <code>Feature</code>, such that any instance in the domain of the <code>Feature</code> must be classified by all of these <code>Types</code>, including at least all the <code>featuringTypes</code> of its <code>typeFeaturings</code>.  If the <code>Feature</code> is chained, then the <code>featuringTypes</code> of the first <code>Feature</code> in the chain are also <code>featuringTypes</code> of the chained <code>Feature</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Featuring Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureOfType'"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Type> getFeaturingType();
-
-	/**
-	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningMembership() <em>Owning Membership</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Feature Membership</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>FeatureMembership</code> that owns this <code>Feature</code> as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
-	 * @see #setOwningFeatureMembership(FeatureMembership)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
-	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	FeatureMembership getOwningFeatureMembership();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature Membership</em>' reference.
-	 * @see #getOwningFeatureMembership()
-	 * @generated
-	 */
-	void setOwningFeatureMembership(FeatureMembership value);
-
-	/**
-	 * Returns the value of the '<em><b>Is Composite</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is Composite</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether the <code>Feature</code> is a composite <code>feature</code> of its <code>featuringType</code>. If so, the values of the <code>Feature</code> cannot exist after its featuring instance no longer does and cannot be values of another composite feature that is not on the same featuring instance.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Composite</em>' attribute.
-	 * @see #setIsComposite(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isComposite();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Composite</em>' attribute.
-	 * @see #isComposite()
-	 * @generated
-	 */
-	void setIsComposite(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Portion</b></em>' attribute.
@@ -758,66 +783,6 @@ public interface Feature extends Type {
 	void setIsConstant(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is End</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether or not this <code>Feature</code> is an end <code>Feature</code>. An end <code>Feature</code> always has multiplicity 1, mapping each of its domain instances to a single co-domain instance. However, it may have a <code>crossFeature</code>, in which case values of the <code>crossFeature</code> must be the same as those found by navigation across instances of the <code>owningType</code> from values of other end <code>Features</code> to values of this Feature. If the <code>owningType</code> has <em>n</em> end <code>Features</code>, then the multiplicity, ordering, and uniqueness declared for the <code>crossFeature</code> of any one of these end <code>Features</code> constrains the cardinality, ordering, and uniqueness of the collection of values of that <code>Feature</code> reached by navigation when the values of the other <em>n-1</em> end <code>Features</code> are held fixed.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is End</em>' attribute.
-	 * @see #setIsEnd(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsEnd()
-	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isEnd();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is End</em>' attribute.
-	 * @see #isEnd()
-	 * @generated
-	 */
-	void setIsEnd(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.FeatureDirectionKind}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Indicates how values of this <code>Feature</code> are determined or used (as specified for the <code>FeatureDirectionKind</code>).</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Direction</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
-	 * @see #setDirection(FeatureDirectionKind)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Direction()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	FeatureDirectionKind getDirection();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Direction</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
-	 * @see #getDirection()
-	 * @generated
-	 */
-	void setDirection(FeatureDirectionKind value);
-
-	/**
 	 * Returns the value of the '<em><b>Owned Reference Subsetting</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ReferenceSubsetting#getReferencingFeature <em>Referencing Feature</em>}'.
 	 * <p>
@@ -853,6 +818,33 @@ public interface Feature extends Type {
 	void setOwnedReferenceSubsetting(ReferenceSubsetting value);
 
 	/**
+	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The last of the <code>chainingFeatures</code> of this <code>Feature</code>, if it has any. Otherwise, this <code>Feature</code> itself.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Feature Target</em>' reference.
+	 * @see #setFeatureTarget(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeatureTarget()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='baseFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getFeatureTarget();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Feature Target</em>' reference.
+	 * @see #getFeatureTarget()
+	 * @generated
+	 */
+	void setFeatureTarget(Feature value);
+
+	/**
 	 * Returns the value of the '<em><b>Cross Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -879,6 +871,35 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setCrossFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.FeatureDirectionKind}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates how values of this <code>Feature</code> are determined or used (as specified for the <code>FeatureDirectionKind</code>).</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Direction</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
+	 * @see #setDirection(FeatureDirectionKind)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Direction()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	FeatureDirectionKind getDirection();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Direction</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
+	 * @see #getDirection()
+	 * @generated
+	 */
+	void setDirection(FeatureDirectionKind value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Cross Subsetting</b></em>' reference.
@@ -914,72 +935,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setOwnedCrossSubsetting(CrossSubsetting value);
-
-	/**
-	 * Returns the value of the '<em><b>Feature Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The last of the <code>chainingFeatures</code> of this <code>Feature</code>, if it has any. Otherwise, this <code>Feature</code> itself.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Feature Target</em>' reference.
-	 * @see #setFeatureTarget(Feature)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeatureTarget()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='baseFeature'"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	Feature getFeatureTarget();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getFeatureTarget <em>Feature Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Target</em>' reference.
-	 * @see #getFeatureTarget()
-	 * @generated
-	 */
-	void setFeatureTarget(Feature value);
-
-	/**
-	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>End Owning Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Type</code> that is related to this <code>Feature</code> by an <code>EndFeatureMembership</code> in which the <code>Feature</code> is an <code>ownedMemberFeature</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>End Owning Type</em>' reference.
-	 * @see #setEndOwningType(Type)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedEndFeature
-	 * @model opposite="ownedEndFeature" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	Type getEndOwningType();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End Owning Type</em>' reference.
-	 * @see #getEndOwningType()
-	 * @generated
-	 */
-	void setEndOwningType(Type value);
 
 	/**
 	 * Returns the value of the '<em><b>Is Nonunique</b></em>' attribute.
@@ -1021,73 +976,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	FeatureDirectionKind directionFor(Type type);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Return if the <code>featuringTypes</code> of this <code>Feature</code> are compatible with the given <code>type</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>. If this <code>Feature</code> has <code>isVariable = true</code>, then also consider it to be featured within its <code>owningType</code>. If this <code>Feature</code> is a feature chain whose first <code>chainingFeature</code> has <code>isVariable = true</code>, then also consider it to be featured within the <code>owningType</code> of its first <code>chainingFeature</code>.</p>
-	 * if type = null then
-	 *     featuringType->forAll(f | f = resolveGlobal('Base::Anything').memberElement)
-	 * else
-	 *     featuringType->forAll(f | type.isCompatibleWith(f)) or
-	 *     isVariable and type.specializes(owningType) or
-	 *     chainingFeature->notEmpty() and chainingFeature->first().isVariable and
-	 *         type.specializes(chainingFeature->first().owningType)
-	 * endif
-	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	boolean isFeaturedWithin(Type type);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>A <code>Feature</code> can access another <code>feature</code> if the other <code>feature</code> is featured within one of the direct or indirect <code>featuringTypes</code> of this <code>Feature</code>.</p>
-	 * let anythingType: Element =
-	 *     subsettingFeature.resolveGlobal('Base::Anything').memberElement in
-	 * let allFeaturingTypes : Sequence(Type) =
-	 *     featuringTypes->closure(t |
-	 *         if not t.oclIsKindOf(Feature) then Sequence{}
-	 *         else
-	 *             let featuringTypes : OrderedSet(Type) = t.oclAsType(Feature).featuringType in
-	 *             if featuringTypes->isEmpty() then Sequence{anythingType}
-	 *             else featuringTypes
-	 *             endif 
-	 *         endif) in
-	 * allFeaturingTypes->exists(t | feature.isFeaturedWithin(t))
-	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" featureRequired="true" featureOrdered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	boolean canAccess(Feature feature);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Return whether the given <code>type</code> must be a <code>featuringType</code> of this <code>Feature</code>. If this <code>Feature</code> has <code>isVariable = false</code>, then return true if the <code>type</code> is the <code>owningType</code> of the <code>Feature</code>. If <code>isVariable = true</code>, then return true if the <code>type</code> is a <code>Feature</code> representing the <em><code>snapshots</code></em> of the <code>owningType</code> of this <code>Feature</code>.</p>
-	 * owningType <> null and
-	 * if not isVariable then type = owningType
-	 * else if owningType = resolveGlobal('Occurrences::Occurrence').memberElement then
-	 *     type = resolveGlobal('Occurrences::Occurrence::snapshots').memberElement 
-	 * else 
-	 *     type.oclIsKindOf(Feature) and
-	 *     let feature : Feature = type.oclAsType(Feature) in
-	 *     feature.featuringType->includes(owningType) and
-	 *     feature.redefinesFromLibrary('Occurrences::Occurrence::snapshots')
-	 * endif
-	 * 
-	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeRequired="true" typeOrdered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	boolean isFeaturingType(Type type);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1264,5 +1152,72 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<Feature> allRedefinedFeatures();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return if the <code>featuringTypes</code> of this <code>Feature</code> are compatible with the given <code>type</code>. If <code>type</code> is null, then check if this <code>Feature</code> is explicitly or implicitly featured by <em><code>Base::Anything</code></em>. If this <code>Feature</code> has <code>isVariable = true</code>, then also consider it to be featured within its <code>owningType</code>. If this <code>Feature</code> is a feature chain whose first <code>chainingFeature</code> has <code>isVariable = true</code>, then also consider it to be featured within the <code>owningType</code> of its first <code>chainingFeature</code>.</p>
+	 * if type = null then
+	 *     featuringType->forAll(f | f = resolveGlobal('Base::Anything').memberElement)
+	 * else
+	 *     featuringType->forAll(f | type.isCompatibleWith(f)) or
+	 *     isVariable and type.specializes(owningType) or
+	 *     chainingFeature->notEmpty() and chainingFeature->first().isVariable and
+	 *         type.specializes(chainingFeature->first().owningType)
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isFeaturedWithin(Type type);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A <code>Feature</code> can access another <code>feature</code> if the other <code>feature</code> is featured within one of the direct or indirect <code>featuringTypes</code> of this <code>Feature</code>.</p>
+	 * let anythingType: Element =
+	 *     subsettingFeature.resolveGlobal('Base::Anything').memberElement in
+	 * let allFeaturingTypes : Sequence(Type) =
+	 *     featuringTypes->closure(t |
+	 *         if not t.oclIsKindOf(Feature) then Sequence{}
+	 *         else
+	 *             let featuringTypes : OrderedSet(Type) = t.oclAsType(Feature).featuringType in
+	 *             if featuringTypes->isEmpty() then Sequence{anythingType}
+	 *             else featuringTypes
+	 *             endif 
+	 *         endif) in
+	 * allFeaturingTypes->exists(t | feature.isFeaturedWithin(t))
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" featureRequired="true" featureOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean canAccess(Feature feature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return whether the given <code>type</code> must be a <code>featuringType</code> of this <code>Feature</code>. If this <code>Feature</code> has <code>isVariable = false</code>, then return true if the <code>type</code> is the <code>owningType</code> of the <code>Feature</code>. If <code>isVariable = true</code>, then return true if the <code>type</code> is a <code>Feature</code> representing the <em><code>snapshots</code></em> of the <code>owningType</code> of this <code>Feature</code>.</p>
+	 * owningType <> null and
+	 * if not isVariable then type = owningType
+	 * else if owningType = resolveGlobal('Occurrences::Occurrence').memberElement then
+	 *     type = resolveGlobal('Occurrences::Occurrence::snapshots').memberElement 
+	 * else 
+	 *     type.oclIsKindOf(Feature) and
+	 *     let feature : Feature = type.oclAsType(Feature) in
+	 *     feature.featuringType->includes(owningType) and
+	 *     feature.redefinesFromLibrary('Occurrences::Occurrence::snapshots')
+	 * endif
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeRequired="true" typeOrdered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isFeaturingType(Type type);
 
 } // Feature

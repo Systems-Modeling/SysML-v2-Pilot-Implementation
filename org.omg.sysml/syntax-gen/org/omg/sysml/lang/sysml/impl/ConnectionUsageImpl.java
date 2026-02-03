@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022, 2025 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -25,10 +24,14 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -44,7 +47,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Connector Usage</b></em>'.
+ * An implementation of the model object '<em><b>Connection Usage</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -62,7 +65,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements ConnectionUsage {
-
 	/**
 	 * The cached setting delegate for the '{@link #getOccurrenceDefinition() <em>Occurrence Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -295,7 +297,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Association> getAssociation() {
 		@SuppressWarnings("unchecked")
 		EList<Association> connectionDefinition = (EList<Association>)((EList<?>)getConnectionDefinition());
@@ -350,7 +351,7 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	public boolean isSetDefinition() {
   		return false;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,4 +560,4 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		return result.toString();
 	}
 
-} //ConnectUsageImpl
+} //ConnectionUsageImpl

@@ -1,20 +1,20 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2024, 2026 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
 /**
@@ -22,35 +22,41 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FlowUsage;
-import org.omg.sysml.lang.sysml.Interaction;
-import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.FlowEnd;
+import org.omg.sysml.lang.sysml.FlowUsage;
+import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Flow Connection Usage</b></em>'.
+ * An implementation of the model object '<em><b>Flow Usage</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -80,6 +86,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate INDIVIDUAL_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,6 +96,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected static final boolean IS_INDIVIDUAL_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,6 +106,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected boolean isIndividual = IS_INDIVIDUAL_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -116,6 +125,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected PortionKind portionKind = PORTION_KIND_EDEFAULT;
+
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -125,6 +135,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getPayloadType() <em>Payload Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -134,6 +145,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__PAYLOAD_TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -143,6 +155,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_INPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__TARGET_INPUT_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -152,6 +165,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__SOURCE_OUTPUT_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getFlowEnd() <em>Flow End</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -161,6 +175,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FLOW_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__FLOW_END).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getPayloadFeature() <em>Payload Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -170,6 +185,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__PAYLOAD_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getFlowDefinition() <em>Flow Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -179,6 +195,7 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FLOW_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW_USAGE__FLOW_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,25 +295,6 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Behavior> getBehavior() {
-		return getActionDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
 		@SuppressWarnings("unchecked")
 		EList<org.omg.sysml.lang.sysml.Class> actionDefinition = (EList<org.omg.sysml.lang.sysml.Class>)((EList<?>)getActionDefinition());
@@ -317,6 +315,42 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getBehavior() {
+		return getActionDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Behavior> getActionDefinition() {
 		@SuppressWarnings("unchecked")
 		EList<Behavior> flowDefinition = (EList<Behavior>)((EList<?>)getFlowDefinition());
@@ -329,6 +363,44 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 * @generated
 	 */
 	public boolean isSetActionDefinition() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getAssociation() {
+		@SuppressWarnings("unchecked")
+		EList<Association> interaction = (EList<Association>)((EList<?>)getInteraction());
+		return interaction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssociation() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Interaction> getInteraction() {
+		return getFlowDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInteraction() {
   		return false;
 	}
 
@@ -482,25 +554,6 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Interaction> getInteraction() {
-		return getFlowDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInteraction() {
-  		return false;
-	}
-
-	/**
 	 * The cached invocation delegate for the '{@link #inputParameters() <em>Input Parameters</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -510,46 +563,6 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 	 */
 	protected static final EOperation.Internal.InvocationDelegate INPUT_PARAMETERS__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.ACTION_USAGE___INPUT_PARAMETERS).getInvocationDelegate();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getDirectedFeature() {
-		return getParameter();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDirectedFeature() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Association> getAssociation() {
-		@SuppressWarnings("unchecked")
-		EList<Association> interaction = (EList<Association>)((EList<?>)getInteraction());
-		return interaction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAssociation() {
-  		return false;
-	}
-
-	// Operations
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,6 +648,26 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
+		return occurrenceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinition() {
+  		return false;
 	}
 
 	/**
@@ -1002,24 +1035,4 @@ public class FlowUsageImpl extends ConnectorAsUsageImpl implements FlowUsage {
 		return result.toString();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Classifier> getDefinition() {
-		@SuppressWarnings("unchecked")
-		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
-		return occurrenceDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDefinition() {
-  		return false;
-	}
-
-} //FlowConnectionUsageImpl
+} //FlowUsageImpl

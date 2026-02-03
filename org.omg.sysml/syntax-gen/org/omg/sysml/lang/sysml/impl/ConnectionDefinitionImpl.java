@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -26,17 +25,22 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
@@ -49,7 +53,7 @@ import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Association Block</b></em>'.
+ * An implementation of the model object '<em><b>Connection Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -67,7 +71,6 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class ConnectionDefinitionImpl extends PartDefinitionImpl implements ConnectionDefinition {
-
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -107,6 +110,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate RELATED_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__RELATED_TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getSourceType() <em>Source Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -116,6 +120,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate SOURCE_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__SOURCE_TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getTargetType() <em>Target Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -125,6 +130,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getConnectionEnd() <em>Connection End</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -159,7 +165,36 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EList<Element> getRelatedElement() {
+		@SuppressWarnings("unchecked")
+		EList<Element> relatedType = (EList<Element>)((EList<?>)getRelatedType());
+		return relatedType;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_DEFINITION__TARGET, SysMLPackage.CONNECTION_DEFINITION__SOURCE, SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetRelatedElement() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Element> getTarget() {
 		@SuppressWarnings("unchecked")
 		EList<Element> targetType = (EList<Element>)((EList<?>)getTargetType());
@@ -180,7 +215,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Element> getSource() {
 		EList<Element> source = new UniqueEList<Element>();
 		Type sourceType = getSourceType();
@@ -196,6 +230,44 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @generated
 	 */
 	public boolean isSetSource() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getEndFeature() {
+		return getAssociationEnd();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getAssociationEnd() {
+		@SuppressWarnings("unchecked")
+		EList<Feature> connectionEnd = (EList<Feature>)((EList<?>)getConnectionEnd());
+		return connectionEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssociationEnd() {
   		return false;
 	}
 
@@ -346,7 +418,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	public EList<Type> getTargetType() {
 		return (EList<Type>)TARGET_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -374,76 +446,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	public boolean isSetConnectionEnd() {
 		return !getConnectionEnd().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getAssociationEnd() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> connectionEnd = (EList<Feature>)((EList<?>)getConnectionEnd());
-		return connectionEnd;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAssociationEnd() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getRelatedElement() {
-		@SuppressWarnings("unchecked")
-		EList<Element> relatedType = (EList<Element>)((EList<?>)getRelatedType());
-		return relatedType;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_DEFINITION__TARGET, SysMLPackage.CONNECTION_DEFINITION__SOURCE, SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getEndFeature() {
-		return getAssociationEnd();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEndFeature() {
-  		return false;
 	}
 
 	/**

@@ -470,11 +470,7 @@ class SysMLValidator extends KerMLValidator {
 		if (definition.isVariation) {
 			// validateDefinitionVariationOwnedFeatureMembership
 			for (mem: definition.ownedFeatureMembership) {
-				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
-				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
-				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
-					error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)							
-				}
+				error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)					
 			}
 			
 			// validateDefinitionVariationSpecialization

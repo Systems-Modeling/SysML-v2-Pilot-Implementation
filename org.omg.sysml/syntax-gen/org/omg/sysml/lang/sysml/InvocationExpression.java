@@ -83,8 +83,8 @@ public interface InvocationExpression extends InstantiationExpression {
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operand</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * This is a workaround used in the parsing of operator expressions. Do not call
+	 * it otherwise. Use getArgument instead.
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference list.
@@ -93,6 +93,7 @@ public interface InvocationExpression extends InstantiationExpression {
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
+	@Deprecated
 	EList<Expression> getOperand();
 
 } // InvocationExpression

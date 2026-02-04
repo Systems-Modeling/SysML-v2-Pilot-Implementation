@@ -37,6 +37,7 @@ public class CommentAdapter extends AnnotatingElementAdapter {
 	public void postProcess() {
 		super.postProcess();
 		Comment target = getTarget();
+		target.setLocale(ElementUtil.unescapeString(target.getLocale()));
 		target.setBody(ElementUtil.processCommentBody(target.getBody()));
 	}
 }

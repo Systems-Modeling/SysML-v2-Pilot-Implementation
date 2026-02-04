@@ -34,7 +34,9 @@ import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
@@ -298,7 +300,26 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		variants = ((Definition)ownedMembers.get(1)).getVariant();
 		List<EnumerationUsage> enumeratedValues = ((EnumerationDefinition)ownedMembers.get(1)).getEnumeratedValue();
 		assertEquals("enum def (variants.size)", 2, variants.size());
-		assertEquals("enuim def (enumeratedValues.size)", 2, enumeratedValues.size());
+		assertEquals("enum def (enumeratedValues.size)", 2, enumeratedValues.size());
 		assertEquals("enum def (enumeratedValues)", variants, enumeratedValues);
+	}
+	
+	public final String localeTest =
+			  "package Test {\n"
+			+ "    comment locale \"en_US\" /* doc */\n"
+			+ "    doc locale \"en_US\" /* doc */\\n"
+			+ "}";
+	
+	@Test
+	public void testLocale() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(localeTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		Comment comment = (Comment)ownedMembers.get(0);
+		Documentation doc = (Documentation)ownedMembers.get(1);
+		assertEquals("comment.locale", "en_US", comment.getLocale());
+		assertEquals("doc.locale", "en_US", doc.getLocale());
 	}
 }

@@ -124,7 +124,6 @@ public class ElementAdapter extends AdapterImpl {
 	}
 	
 	public void clearCaches() {
-		elementId = null;
 	}
 	
 	public void transform() {

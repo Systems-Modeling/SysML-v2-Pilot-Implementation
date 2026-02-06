@@ -210,7 +210,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Element Id</em>' attribute.
 	 * @see #setElementId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ElementId()
-	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

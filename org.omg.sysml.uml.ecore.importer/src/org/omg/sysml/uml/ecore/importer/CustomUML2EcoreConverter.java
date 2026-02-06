@@ -47,17 +47,25 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 					(((Property)element).isDerived() && !((Property)element).isDerivedUnion() || 
 					"elementId".equals(((Property)element).getName())) ||
 				element instanceof Operation && modelElement instanceof EOperation) {
+				// Add SysML EAnnotation to derived properties (but not derived unions) and all operations
 				String qualifiedName = ((NamedElement)element).getQualifiedName();
 				addSysMLAnnotation(qualifiedName.substring(qualifiedName.indexOf("::") + 2), modelElement);
+				if (element instanceof Property && "elementId".equals(((Property)element).getName())) {
+					// Since elementId is to be treated as effectively derived, don't use it as an ID
+					// internally to Eclipse.
+					((EAttribute)modelElement).setID(false);
+				}
 			} else if (element instanceof org.eclipse.uml2.uml.Class && modelElement instanceof EClass) {
 				String name = ((org.eclipse.uml2.uml.Class)element).getName();
 				EClass eClass = (EClass)modelElement;
 				if ("Feature".equals(name)) {
+					// Add the "isNonunique" attribute as the effective logical inverse of "isUnique".
 					EClassifier booleanType = eClass.getEStructuralFeature("isUnique").getEType();
 					EAttribute isNonUniqueAttribute = EcoreFactory.eINSTANCE.createEAttribute();
 					addStructuralFeature(eClass, isNonUniqueAttribute, "isNonunique", booleanType, 1, 1, "false", false);
 					addSysMLAnnotation("Feature::isNonUnique", isNonUniqueAttribute);
 				} else if ("InvocationExpression".equals(name)) {
+					// Add the "operand" reference as a workaround for parsing operator expression arguments.
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
 					EReference operandReference = EcoreFactory.eINSTANCE.createEReference();
 					addStructuralFeature(eClass, operandReference, "operand", expressionClass, 0, -1, null, true);

@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths; 
 
 /** 
  * BasicValidationMessageMap is an implementation of ValidationMessageMap using a map
@@ -34,11 +38,35 @@ import java.util.Map;
 public class BasicValidationMessageMap implements ValidationMessageMap {
 	
 	private List<String> messages = new ArrayList<>();
-	private Map<String, Integer> messageMap = new HashMap<>();
+	private Map<String, String> messageMap = new HashMap<>();
+	
+	private Map<String, String> kermlMessageMap = new HashMap<>(); 
+	private Map<String, String> sysmlMessageMap = new HashMap<>(); 
+	
+	// TODO: Create two message property files - SysML and KerML (do KerML first)
+	Path kermlFilePath = Paths.get("KerMLValidationMessages.properties");
+	Path sysmlFilePath = Paths.get("SysMLValidationMessages.properties");
+	List<String> kermlMessages = Files.readAllLines(kermlFilePath);
+	List<String> sysmlMessages = Files.readAllLines(sysmlFilePath);
 
-	public BasicValidationMessageMap() {
-		// TODO: Initialize message map using a configuration file.
+	public BasicValidationMessageMap() throws IOException {
 		
+		//initialize KerML Message Map
+		for (String msg : kermlMessages) {
+			if (msg.isBlank()) continue;
+			String[] valPair = msg.split("=");
+			String msgCode = valPair[0].trim();
+			String msgVal = valPair[1].trim();
+			kermlMessageMap.put(msgCode, msgVal);
+		}
+		//initialize SysML Message Map
+		for (String message : sysmlMessages) {
+			if (message.isBlank()) continue; 
+			String[] valPair = message.split("=");
+			String msgCode = valPair[0].trim(); 
+			String msgVal = valPair[1].trim();
+			sysmlMessageMap.put(msgCode, msgVal);
+		}
 		// Root
 		
 		put("validateElementIsImpliedIncluded", "Element cannot have implied relationships included");
@@ -53,6 +81,7 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 		put("validateNamespaceDistinguishablity_4", "Duplicate of inherited member name$0");
 		
 		put("validateImportTopLevelVisibility", "Top level import must be private");
+		
 	}
 	
 	protected void put(String messageCode, String message) {
@@ -72,7 +101,8 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 	
 	@Override
 	public int getDiagnosticCode(String messageCode) {
-		return messageMap.get(messageCode);
+		return messages.get(messageCode);
 	}
+	
 
 }

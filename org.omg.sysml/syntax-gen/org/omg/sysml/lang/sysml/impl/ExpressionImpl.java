@@ -1,35 +1,39 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
-
+/**
+ */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -53,7 +57,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ExpressionImpl extends StepImpl implements Expression {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getFunction() <em>Function</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -63,6 +66,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FUNCTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__FUNCTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -72,6 +76,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__RESULT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +86,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,7 +149,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<Behavior> getBehavior() {
 		EList<Behavior> behavior = new UniqueEList<Behavior>();
 		Function function = getFunction();
@@ -161,7 +166,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public boolean isSetBehavior() {
   		return false;
 	}
-		
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,7 +176,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public Feature getResult() {
 		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,7 +185,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public Feature basicGetResult() {
 		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,7 +195,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public void setResult(Feature newResult) {
 		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,7 +215,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
 		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #modelLevelEvaluable(org.eclipse.emf.common.util.EList) <em>Model Level Evaluable</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -220,14 +225,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST).getInvocationDelegate();
-	// Operations
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public boolean modelLevelEvaluable(EList<Feature> visited) {
 		try {
 			return (Boolean)MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{visited}));
@@ -246,13 +249,13 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate EVALUATE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___EVALUATE__ELEMENT).getInvocationDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<Element> evaluate(Element target) {
 		try {
 			return (EList<Element>)EVALUATE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{target}));
@@ -261,7 +264,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			throw new WrappedException(ite);
 		}
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element) <em>Check Condition</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -271,6 +274,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate CHECK_CONDITION_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___CHECK_CONDITION__ELEMENT).getInvocationDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

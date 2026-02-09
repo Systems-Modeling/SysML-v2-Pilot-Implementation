@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -47,46 +46,6 @@ package org.omg.sysml.lang.sysml;
  */
 public interface FeatureMembership extends OwningMembership {
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Type</code> that owns this <code>FeatureMembership</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' reference.
-	 * @see #setOwningType(Type)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
-	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	Type getOwningType();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' reference.
-	 * @see #getOwningType()
-	 * @generated
-	 */
-	void setOwningType(Type value);
-
-	/**
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
 	 * <p>
@@ -96,10 +55,6 @@ public interface FeatureMembership extends OwningMembership {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Member Feature</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>Feature</code> that this <code>FeatureMembership</code> relates to its <code>owningType</code>, making it an <code>ownedFeature</code> of the <code>owningType</code>.</p>
@@ -125,5 +80,41 @@ public interface FeatureMembership extends OwningMembership {
 	 * @generated
 	 */
 	void setOwnedMemberFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Type</code> that owns this <code>FeatureMembership</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @see #setOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
+	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Type getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(Type value);
 
 } // FeatureMembership

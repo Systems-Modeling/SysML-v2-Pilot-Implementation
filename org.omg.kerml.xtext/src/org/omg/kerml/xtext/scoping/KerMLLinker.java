@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021, 2024, 2026 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -48,14 +48,6 @@ public class KerMLLinker extends LazyLinker {
 	private OnChangeEvictingCache cache;
 	
 	@Override
-	protected void clearReferences(EObject obj) {
-		super.clearReferences(obj);
-		if (obj instanceof Element) {
-			ElementUtil.clean((Element)obj);
-		}
-	}
-	
-	@Override
 	protected void clearReference(EObject obj, EReference ref) {
 		if (
 			// The Relationship#source and #target features are overridden
@@ -72,10 +64,10 @@ public class KerMLLinker extends LazyLinker {
 	@Override
 	protected void doLinkModel(EObject model, IDiagnosticConsumer consumer) {
 		super.doLinkModel(model, consumer);
-		postProcessAllCrossReferences(model);
+		postProcessAll(model);
 	}
 	
-	protected void postProcessAllCrossReferences(EObject model) {
+	protected void postProcessAll(EObject model) {
 		cache.execWithoutCacheClear(model.eResource(), new IUnitOfWork.Void<Resource>() {
 			@Override
 			public void process(Resource state) throws Exception {

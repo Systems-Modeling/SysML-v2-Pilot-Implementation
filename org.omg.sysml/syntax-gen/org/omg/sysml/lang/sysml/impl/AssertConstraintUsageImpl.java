@@ -1,33 +1,34 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -47,7 +48,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
-
 	/**
 	 * The default value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -57,6 +57,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @ordered
 	 */
 	protected static final boolean IS_NEGATED_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -66,6 +67,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @ordered
 	 */
 	protected boolean isNegated = IS_NEGATED_EDEFAULT;
+
 	/**
 	 * The cached setting delegate for the '{@link #getAssertedConstraint() <em>Asserted Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,11 +77,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ASSERTED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT).getSettingDelegate();
-	/**
-	 * The cached value of the BindingConnector from the result of the
-	 * this ConstraintUsage to the result of a LiteralBoolean true.
-	 */
-	protected BindingConnector assertionConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,7 +138,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	public ConstraintUsage basicGetAssertedConstraint() {
 		return (ConstraintUsage)ASSERTED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

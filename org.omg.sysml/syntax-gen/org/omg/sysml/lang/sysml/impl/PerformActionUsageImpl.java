@@ -1,30 +1,29 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -45,7 +44,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
-
 	/**
 	 * The cached setting delegate for the '{@link #getPerformedAction() <em>Performed Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -59,10 +57,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected PerformActionUsageImpl() {
 		super();
+		isComposite = false;
 	}
 
 	/**
@@ -151,15 +150,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public boolean isSetEventOccurrence() {
   		return false;
 	}
-
-	// Additional overrides
-	
-	@Override
-	public boolean isComposite() {
-		return false;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

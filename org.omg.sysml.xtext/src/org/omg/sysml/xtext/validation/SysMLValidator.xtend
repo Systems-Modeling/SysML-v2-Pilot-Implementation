@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -148,6 +148,10 @@ class SysMLValidator extends KerMLValidator {
 	
     public static val INVALID_USAGE_TYPE = "validateUsageType_"
     public static val INVALID_USAGE_TYPE_MSG = "A usage must be typed by definitions."
+    public static val INVALID_USAGE_IS_REFERENTIAL = "validateUsageIsReferential"
+    public static val INVALID_USAGE_IS_REFERENTIAL_MSG_1 = "A directed usage must be referential."
+    public static val INVALID_USAGE_IS_REFERENTIAL_MSG_2 = "An end usage must be referential."
+    public static val INVALID_USAGE_IS_REFERENTIAL_MSG_3 = "A package-lebel usage must be referential."
     public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
     public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"
@@ -158,6 +162,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE = "validateVariationMembershipOwningNamespace"
 	public static val INVALID_VARIANT_MEMBERSHIP_OWNING_NAMESPACE_MSG = "A variant must be an owned member of a variation."
 	
+    public static val INVALID_REFERENCE_USAGE_IS_REFERENCE = "validateReferenceUsageIsReference"
+    public static val INVALID_REFERENCE_USAGE_IS_REFERENCE_MSG = "An attribute usage must be referential."
+
 	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES = "validateAttributeDefinitionFeatures"
 	public static val INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG = "Features of an attribute definition must be referential."
 	public static val INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION = "validateDataTypeSpecialization"
@@ -165,14 +172,24 @@ class SysMLValidator extends KerMLValidator {
 		
 	public static val INVALID_ATTRIBUTE_USAGE_FEATURES = "validateAttributeUsageFeatures"
 	public static val INVALID_ATTRIBUTE_USAGE_FEATURES_MSG = "Features of an attribute usage must be referential."
+    public static val INVALID_ATTRIBUTE_USAGE_IS_REFERENTIAL = "validateAttributeUsageIsReferential"
+    public static val INVALID_ATTRIBUTE_USAGE_IS_REFERENTIAL_MSG = "An attribute usage must be referential."
 	public static val INVALID_ATTRIBUTE_USAGE_TYPE = "validateAttributeUsageType_"
 	public static val INVALID_ATTRIBUTE_USAGE_MSG = "An attribute must be typed by attribute definitions."
 	public static val INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE = "validateAttributeUsageEnumerationType_"
 	public static val INVALID_ATTRIBUTE_USAGE_ENUMERATION_TYPE_MSG = "An enumeration attribute cannot have more than one type."
 	
+    public static val INVALID_ENUMERATION_DEFINITION_IS_VARIATION = "validateEnumerationDefinitionIsVariation"
+    public static val INVALID_ENUMERATION_DEFINITION_IS_VARIATION_MSG = "An enumeration definition must be a variation."
+
 	public static val INVALID_ENUMERATION_USAGE_TYPE = "validateEnumerationUsageType_"
 	public static val INVALID_ENUMERATION_USAGE_TYPE_MSG = "An enumeration must be typed by one enumeration definition."
 	
+    public static val INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE = "validateEventOccurrenceUsageIsReference"
+    public static val INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_0 = "An event occurrence usage must be referential."
+    public static val INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_1 = "An exhibit state usage must be referential."
+    public static val INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_2 = "An include use case usage must be referential."
+    public static val INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_3 = "A perform action usage must be referential."
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE = "validateEventOccurrenceUsageReferent"
 	public static val INVALID_EVENT_OCCURRENCE_USAGE_REFERENCE_MSG = "Must reference an occurrence."
 	
@@ -210,8 +227,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_PORT_USAGE_TYPE = "validatePortUsageType_"
 	public static val INVALID_PORT_USAGE_TYPE_MSG = "A port must be typed by port definitions."
+	public static val INVALID_PORT_USAGE_IS_REFERENCE = "validatePortUsageIsReference"
+	public static val INVALID_PORT_USAGE_IS_REFERENCE_MSG = "A port usage must be referential."
 	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE = "validatePortUsageNestedUsagesNotComposite"
-	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG = "Nested usages of a port usage (other than ports) must be referential."
+	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG = "Nested usages in a port usage (other than ports) must be referential."
 	
 	public static val INVALID_CONNECTION_USAGE_TYPE = "validateConnectionUsageType_"
 	public static val INVALID_CONNECTION_USAGE_TYPE_MSG = "A connection must be typed by connection definitions."
@@ -420,8 +439,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL = "validateExposeIsImportAll"
 	public static val INVALID_EXPOSE_IS_IMPORT_ALL_MSG = "An expose must import all."
-	public static val INVALID_EXPOSE_IS_OWNING_NAMESPACE = "validateExposeIsImportAll"
-	public static val INVALID_EXPOSE_IS_OWNING_NAMESPACE_MSG = "Only view usages can expose elements."
+	public static val INVALID_EXPOSE_OWNING_NAMESPACE = "validateExposeOwningNamespace"
+	public static val INVALID_EXPOSE_OWNING_NAMESPACE_MSG = "Only view usages can expose elements."
 	
 	public static val INVALID_RENDERING_USAGE_TYPE = "validateRenderingUsageType_"
 	public static val INVALID_RENDERING_USAGE_TYPE_MSG = "A rendering must be typed by one rendering definition."
@@ -451,11 +470,7 @@ class SysMLValidator extends KerMLValidator {
 		if (definition.isVariation) {
 			// validateDefinitionVariationOwnedFeatureMembership
 			for (mem: definition.ownedFeatureMembership) {
-				// NOTE: Need to allow parameters and objectives because they are currently physically inserted by transform implementation.
-				// TODO: Add allowance of parameters and objectives in variations to spec? Or remove when possible?
-				if (!(mem instanceof ParameterMembership || mem instanceof ObjectiveMembership)) {
-					error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)							
-				}
+				error(INVALID_DEFINITION_VARIATION_MEMBERSHIP_MSG, mem, null, INVALID_DEFINITION_VARIATION_MEMBERSHIP)					
 			}
 			
 			// validateDefinitionVariationSpecialization
@@ -467,11 +482,13 @@ class SysMLValidator extends KerMLValidator {
 		}	
 	}
 	
-//	@Check
-//	def checkReferenceUsage(ReferenceUsage usage) {
-//		// validateReferenceUsageIsReferential is satisfied automatically		
-//	}
-	
+	@Check
+	def checkReferenceUsage(ReferenceUsage usage) {
+		// validateReferenceUsageIsReferential
+		if (!usage.isReference) {
+			error(INVALID_ATTRIBUTE_USAGE_IS_REFERENTIAL_MSG, usage, null, INVALID_ATTRIBUTE_USAGE_IS_REFERENTIAL)
+		}		
+	}
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -479,8 +496,17 @@ class SysMLValidator extends KerMLValidator {
         if (!(usage instanceof AttributeUsage || usage instanceof OccurrenceUsage))   
             checkAllTypes(usage, Classifier, INVALID_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.usage_Definition, INVALID_USAGE_TYPE)
 	    
-		// validateUsageIsReferential is satisfied automatically
-		
+		// validateUsageIsReferential
+		if (!usage.isReference) {
+			if (usage.direction !== null) {
+				error(INVALID_USAGE_IS_REFERENTIAL_MSG_1, usage, null, INVALID_USAGE_IS_REFERENTIAL)
+			} else if (usage.isEnd) {
+				error(INVALID_USAGE_IS_REFERENTIAL_MSG_2, usage, null, INVALID_USAGE_IS_REFERENTIAL)
+			} else if (usage.featuringType.empty) {
+				error(INVALID_USAGE_IS_REFERENTIAL_MSG_3, usage, null, INVALID_USAGE_IS_REFERENTIAL)
+			}
+		}
+				
 		if (usage.isVariation) {
 			// validateUsageVariationIsAbstract			
 			if (!usage.isAbstract) {
@@ -539,7 +565,10 @@ class SysMLValidator extends KerMLValidator {
 			}
 		}
 		
-		// validateAttributeUsageIsReference is satisfied automatically			
+		// validateAttributeUsageIsReference
+		if (!usg.isReference) {
+			error(INVALID_REFERENCE_USAGE_IS_REFERENCE_MSG, usg, null, INVALID_REFERENCE_USAGE_IS_REFERENCE)
+		}		
 		
 		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KerML-4.)
 		// TODO: Check validateAttributeUsageFeatures
@@ -548,10 +577,13 @@ class SysMLValidator extends KerMLValidator {
 		// checkAllNotComposite(usg.ownedFeature, INVALID_ATTRIBUTE_USAGE_FEATURES_MSG, INVALID_ATTRIBUTE_USAGE_FEATURES)
 	}
 	
-//	@Check
-//	def checkEnumerationDefinition(EnumerationDefinition defn) {
-//		// validateEnumerationDefinitionIsVariation is satisfied automatically
-//	}
+	@Check
+	def checkEnumerationDefinition(EnumerationDefinition defn) {
+		// validateEnumerationDefinitionIsVariation
+		if (!defn.isVariation) {
+			error(INVALID_ENUMERATION_DEFINITION_IS_VARIATION_MSG, defn, null, INVALID_ENUMERATION_DEFINITION_IS_VARIATION)
+		}		
+	}
 	
 	@Check 
 	def checkEnumerationUsage(EnumerationUsage usg) {
@@ -561,7 +593,18 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkEventOccurrenceUsage(EventOccurrenceUsage usg) {
-		// validateEventOccurrenceUsageIsReference is satisfied automatically
+		// validateEventOccurrenceUsageIsReference
+		if (!usg.isReference) {
+			if (usg instanceof ExhibitStateUsage) {
+				error(INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_1, usg, null, INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE)
+			} else if (usg instanceof IncludeUseCaseUsage) {
+				error(INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_2, usg, null, INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE)
+			} else if (usg instanceof PerformActionUsage) {
+				error(INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_3, usg, null, INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE)
+			} else {
+				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE_MSG_0, usg, null, INVALID_EVENT_OCCURRENCE_USAGE_IS_REFERENCE)
+			}
+		}		
 		
 		// validateEventOccurrenceUsageReference
 		if (!(usg instanceof PerformActionUsage || usg instanceof IncludeUseCaseUsage)) {
@@ -645,7 +688,11 @@ class SysMLValidator extends KerMLValidator {
 		// All types must be PortDefinitions
 		checkAllTypes(usg, PortDefinition, INVALID_PORT_USAGE_TYPE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, INVALID_PORT_USAGE_TYPE)
 
-		// validatePortUsageIsReference is satisfied automatically
+		// validatePortUsageIsReference
+		val owningType = usg.owningType
+		if (!(owningType instanceof PortDefinition || owningType instanceof PortUsage || usg.isReference)) {
+			error(INVALID_PORT_USAGE_IS_REFERENCE_MSG, usg, null, INVALID_PORT_USAGE_IS_REFERENCE)
+		}		
 
 		// validatePortUsageNestedUsagesNotComposite
 		val usages = usg.nestedUsage.filter[u | !(u instanceof PortUsage)]
@@ -1197,7 +1244,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkExpose(Expose exp) {
-		// validateExposeIsImportAll is automatically satisfied
+		// validateExposeIsImportAll
+		if (!exp.isImportAll) {
+			error(INVALID_EXPOSE_IS_IMPORT_ALL_MSG, exp, null, INVALID_EXPOSE_IS_IMPORT_ALL)
+		}		
 		
 		// validateExposeOwningNamespace
 		if (!(exp.importOwningNamespace instanceof ViewUsage)) {

@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -29,9 +28,10 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc --> A representation of the literals of the enumeration
- * '<em><b>Feature Direction Kind</b></em>', and utility methods for working
- * with them. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the literals of the enumeration '<em><b>Feature Direction Kind</b></em>',
+ * and utility methods for working with them.
+ * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * <p><code>FeatureDirectionKind</code> enumerates the possible kinds of <code>direction</code> that a <code>Feature</code> may be given as a member of a <code>Type</code>.</p>
  * 
@@ -43,8 +43,8 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum FeatureDirectionKind implements Enumerator {
 	/**
 	 * The '<em><b>In</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined externally to that instance and used internally.</p>
 	 * 
@@ -57,8 +57,8 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * The '<em><b>Inout</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance are determined either as <em>in</em> or <em>out</em> directions, or both.</p>
 	 * 
@@ -68,10 +68,11 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * @ordered
 	 */
 	INOUT(1, "inout", "inout"),
+
 	/**
 	 * The '<em><b>Out</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined internally to that instance and used externally.</p>
 	 * 
@@ -85,10 +86,6 @@ public enum FeatureDirectionKind implements Enumerator {
 	/**
 	 * The '<em><b>In</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>In</b></em>' literal object isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined externally to that instance and used internally.</p>
@@ -104,10 +101,6 @@ public enum FeatureDirectionKind implements Enumerator {
 	/**
 	 * The '<em><b>Inout</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Inout</b></em>' literal object isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance are determined either as <em>in</em> or <em>out</em> directions, or both.</p>
@@ -123,10 +116,6 @@ public enum FeatureDirectionKind implements Enumerator {
 	/**
 	 * The '<em><b>Out</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Out</b></em>' literal object isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Values of the <code>Feature</code> on each instance of its domain are determined internally to that instance and used externally.</p>
@@ -141,10 +130,12 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * An array of all the '<em><b>Feature Direction Kind</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final FeatureDirectionKind[] VALUES_ARRAY = new FeatureDirectionKind[] {
+	private static final FeatureDirectionKind[] VALUES_ARRAY =
+		new FeatureDirectionKind[] {
 			IN,
 			INOUT,
 			OUT,
@@ -152,14 +143,16 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * A public read-only list of all the '<em><b>Feature Direction Kind</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final List<FeatureDirectionKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Feature Direction Kind</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
@@ -176,7 +169,8 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * Returns the '<em><b>Feature Direction Kind</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
@@ -193,7 +187,8 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * Returns the '<em><b>Feature Direction Kind</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
@@ -208,27 +203,30 @@ public enum FeatureDirectionKind implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private FeatureDirectionKind(int value, String name, String literal) {
@@ -238,7 +236,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -247,7 +246,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -256,7 +256,8 @@ public enum FeatureDirectionKind implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -266,12 +267,13 @@ public enum FeatureDirectionKind implements Enumerator {
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-
-} // FeatureDirectionKind
+	
+} //FeatureDirectionKind

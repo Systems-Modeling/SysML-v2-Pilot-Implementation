@@ -1,31 +1,33 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
@@ -46,7 +48,6 @@ import org.omg.sysml.lang.sysml.VerificationCaseUsage;
  * @generated
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getVerificationCaseDefinition() <em>Verification Case Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -56,6 +57,7 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -124,7 +126,6 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	public EList<RequirementUsage> getVerifiedRequirement() {
 		return (EList<RequirementUsage>)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
-
 
 	/**
 	 * <!-- begin-user-doc -->

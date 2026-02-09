@@ -170,7 +170,7 @@ public class VPath extends VTraverser {
         private final FeatureChainExpression fce;
 
         private Expression getTargetExp() {
-            List<Expression> ops = fce.getOperand();
+            List<Expression> ops = fce.getArgument();
             if (ops.isEmpty()) {
             	return null;
             } else {

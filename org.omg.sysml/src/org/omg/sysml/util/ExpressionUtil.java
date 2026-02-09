@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
+import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -186,6 +187,10 @@ public class ExpressionUtil {
 	public static boolean isConstructorResult(Type type) {
 		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
 				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
+	}
+	
+	public static EList<Expression> getOperandsOf(InvocationExpression expression) {
+		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getOperand();
 	}
 	
 }

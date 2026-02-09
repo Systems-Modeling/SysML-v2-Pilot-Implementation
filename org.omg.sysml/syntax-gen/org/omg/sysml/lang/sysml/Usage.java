@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -178,73 +177,78 @@ public interface Usage extends Feature {
 	void setMayTimeVary(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Nested Usage</b></em>' reference list.
+	 * Returns the value of the '<em><b>Is Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this <code>Usage</code> is a referential <code>Usage</code>, that is, it has <code>isComposite = false</code>.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Reference</em>' attribute.
+	 * @see #setIsReference(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsReference()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isReference();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Reference</em>' attribute.
+	 * @see #isReference()
+	 * @generated
+	 */
+	void setIsReference(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Variant</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Usage</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Usages</code> that are <code>ownedFeatures</code> of this <code>Usage</code>.</p>
+	 * <p>The <code>Usages</code> which represent the variants of this <code>Usage</code> as a variation point <code>Usage</code>, if <code>isVariation = true</code>. If <code>isVariation = false</code>, then there must be no <code>variants</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Usage</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUsage()
-	 * @see org.omg.sysml.lang.sysml.Usage#getOwningUsage
-	 * @model opposite="owningUsage" transient="true" volatile="true" derived="true"
+	 * @return the value of the '<em>Variant</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Variant()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Usage> getNestedUsage();
+	EList<Usage> getVariant();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Usage</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}'.
+	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Usage</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>Usage</code> in which this <code>Usage</code> is nested (if any).</p>
+	 * <p>The <code>ownedMemberships</code> of this <code>Usage</code> that are <code>VariantMemberships</code>. If <code>isVariation = true</code>, then this must be all <code>memberships</code> of the <code>Usage</code>. If <code>isVariation = false</code>, then <code>variantMembership</code>must be empty.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Usage</em>' reference.
-	 * @see #setOwningUsage(Usage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningUsage()
-	 * @see org.omg.sysml.lang.sysml.Usage#getNestedUsage
-	 * @model opposite="nestedUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 * @return the value of the '<em>Variant Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	Usage getOwningUsage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Usage</em>' reference.
-	 * @see #getOwningUsage()
-	 * @generated
-	 */
-	void setOwningUsage(Usage value);
+	EList<VariantMembership> getVariantMembership();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Definition</b></em>' reference.
@@ -256,10 +260,6 @@ public interface Usage extends Feature {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owning Definition</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>Definition</code> that owns this <code>Usage</code> (if any).</p>
@@ -286,226 +286,113 @@ public interface Usage extends Feature {
 	void setOwningDefinition(Definition value);
 
 	/**
-	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
+	 * Returns the value of the '<em><b>Owning Usage</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwningType() <em>Owning Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Variant Membership</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this <code>Usage</code> that are <code>VariantMemberships</code>. If <code>isVariation = true</code>, then this must be all <code>memberships</code> of the <code>Usage</code>. If <code>isVariation = false</code>, then <code>variantMembership</code>must be empty.</p>
+	 * <p>The <code>Usage</code> in which this <code>Usage</code> is nested (if any).</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Variant Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
+	 * @return the value of the '<em>Owning Usage</em>' reference.
+	 * @see #setOwningUsage(Usage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningUsage()
+	 * @see org.omg.sysml.lang.sysml.Usage#getNestedUsage
+	 * @model opposite="nestedUsage" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<VariantMembership> getVariantMembership();
+	Usage getOwningUsage();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Port</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Usage</em>' reference.
+	 * @see #getOwningUsage()
+	 * @generated
+	 */
+	void setOwningUsage(Usage value);
+
+	/**
+	 * Returns the value of the '<em><b>Nested Usage</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Port</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>PortUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <p>The <code>Usages</code> that are <code>ownedFeatures</code> of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Port</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
+	 * @return the value of the '<em>Nested Usage</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUsage()
+	 * @see org.omg.sysml.lang.sysml.Usage#getOwningUsage
+	 * @model opposite="owningUsage" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Usage> getNestedUsage();
+
+	/**
+	 * Returns the value of the '<em><b>Definition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Classifier}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Classifiers</code> that are the types of this <code>Usage</code>. Nominally, these are <code>Definitions</code>, but other kinds of Kernel <code>Classifiers</code> are also allowed, to permit use of <code>Classifiers</code> from the Kernel Model Libraries.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Definition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portOwningUsage'"
-	 *        annotation="subsets"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUsage'"
+	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<PortUsage> getNestedPort();
+	EList<Classifier> getDefinition();
 
 	/**
-	 * Returns the value of the '<em><b>Nested State</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StateUsage}.
+	 * Returns the value of the '<em><b>Usage</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAction() <em>Nested Action</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested State</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>StateUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
+	 * <p>The <code>Usages</code> that are <code>features</code> of this <code>Usage</code> (not necessarily owned).</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested State</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedState()
+	 * @return the value of the '<em>Usage</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Usage()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateOwningUsage'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<StateUsage> getNestedState();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Constraint</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Constraint</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ConstraintUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Constraint</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ConstraintUsage> getNestedConstraint();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Transition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TransitionUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Transition</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>TransitionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Transition</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedTransition()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='transitionOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<TransitionUsage> getNestedTransition();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Requirement</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RequirementUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint() <em>Nested Constraint</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Requirement</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>RequirementUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Requirement</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<RequirementUsage> getNestedRequirement();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Calculation</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CalculationUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAction() <em>Nested Action</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>CalculationUsage</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Calculation</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCalculation()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='calculationOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<CalculationUsage> getNestedCalculation();
-
-	/**
-	 * Returns the value of the '<em><b>Is Variation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether this <code>Usage</code> is for a variation point or not. If true, then all the <code>memberships</code> of the <code>Usage</code> must be <code>VariantMemberships</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Variation</em>' attribute.
-	 * @see #setIsVariation(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsVariation()
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isVariation();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Variation</em>' attribute.
-	 * @see #isVariation()
-	 * @generated
-	 */
-	void setIsVariation(boolean value);
+	EList<Usage> getUsage();
 
 	/**
 	 * Returns the value of the '<em><b>Directed Usage</b></em>' reference list.
@@ -534,104 +421,6 @@ public interface Usage extends Feature {
 	EList<Usage> getDirectedUsage();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Case</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CaseUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation() <em>Nested Calculation</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>CaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Case</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCase()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='caseOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<CaseUsage> getNestedCase();
-
-	/**
-	 * Returns the value of the '<em><b>Variant</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Usages</code> which represent the variants of this <code>Usage</code> as a variation point <code>Usage</code>, if <code>isVariation = true</code>. If <code>isVariation = false</code>, then there must be no <code>variants</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Variant</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Variant()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Usage> getVariant();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Analysis Case</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AnalysisCaseUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>AnalysisCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Analysis Case</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAnalysisCase()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCaseOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<AnalysisCaseUsage> getNestedAnalysisCase();
-
-	/**
-	 * Returns the value of the '<em><b>Usage</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Usages</code> that are <code>features</code> of this <code>Usage</code> (not necessarily owned).</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Usage</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Usage()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Usage> getUsage();
-
-	/**
 	 * Returns the value of the '<em><b>Nested Reference</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ReferenceUsage}.
 	 * <p>
@@ -641,10 +430,6 @@ public interface Usage extends Feature {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Reference</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>ReferenceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
@@ -661,8 +446,8 @@ public interface Usage extends Feature {
 	EList<ReferenceUsage> getNestedReference();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Connection</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorAsUsage}.
+	 * Returns the value of the '<em><b>Nested Attribute</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AttributeUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -672,17 +457,66 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code>, <code>SuccessionAsUsages</code>, and <code>FlowConnectionUsages</code> because these are <code>ConnectorAsUsages</code> even though they are not <code>ConnectionUsages</code>.</p>
+	 * <p>The code>AttributeUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Connection</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
+	 * @return the value of the '<em>Nested Attribute</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAttribute()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionOwningUsage'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='attributeOwningUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<ConnectorAsUsage> getNestedConnection();
+	EList<AttributeUsage> getNestedAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Enumeration</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EnumerationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute() <em>Nested Attribute</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The code>EnumerationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Enumeration</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedEnumeration()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<EnumerationUsage> getNestedEnumeration();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Occurrence</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>OccurrenceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Occurrence</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedOccurrence()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<OccurrenceUsage> getNestedOccurrence();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Item</b></em>' reference list.
@@ -733,6 +567,78 @@ public interface Usage extends Feature {
 	EList<PartUsage> getNestedPart();
 
 	/**
+	 * Returns the value of the '<em><b>Nested Port</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>PortUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Port</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<PortUsage> getNestedPort();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Connection</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorAsUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code>, <code>SuccessionAsUsages</code>, and <code>FlowConnectionUsages</code> because these are <code>ConnectorAsUsages</code> even though they are not <code>ConnectionUsages</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Connection</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<ConnectorAsUsage> getNestedConnection();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Flow</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The code>FlowUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Flow</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFlow()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='flowOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<FlowUsage> getNestedFlow();
+
+	/**
 	 * Returns the value of the '<em><b>Nested Interface</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.InterfaceUsage}.
 	 * <p>
@@ -757,8 +663,82 @@ public interface Usage extends Feature {
 	EList<InterfaceUsage> getNestedInterface();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Attribute</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AttributeUsage}.
+	 * Returns the value of the '<em><b>Nested Allocation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AllocationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>AllocationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Allocation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<AllocationUsage> getNestedAllocation();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ActionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Action</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<ActionUsage> getNestedAction();
+
+	/**
+	 * Returns the value of the '<em><b>Nested State</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StateUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAction() <em>Nested Action</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>StateUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested State</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedState()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<StateUsage> getNestedState();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Transition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TransitionUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -768,18 +748,218 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The code>AttributeUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * <p>The <code>TransitionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Attribute</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAttribute()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='attributeOwningUsage'"
+	 * @return the value of the '<em>Nested Transition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedTransition()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='transitionOwningUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<AttributeUsage> getNestedAttribute();
+	EList<TransitionUsage> getNestedTransition();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Calculation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CalculationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAction() <em>Nested Action</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>CalculationUsage</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Calculation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCalculation()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='calculationOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<CalculationUsage> getNestedCalculation();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Constraint</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ConstraintUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Constraint</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<ConstraintUsage> getNestedConstraint();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Requirement</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RequirementUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint() <em>Nested Constraint</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>RequirementUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Requirement</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<RequirementUsage> getNestedRequirement();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Concern</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ConcernUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConcern()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='concernOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<ConcernUsage> getNestedConcern();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation() <em>Nested Calculation</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>CaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='caseOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<CaseUsage> getNestedCase();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Analysis Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AnalysisCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>AnalysisCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Analysis Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAnalysisCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCaseOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<AnalysisCaseUsage> getNestedAnalysisCase();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Verification Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VerificationCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>VerificationCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedVerificationCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<VerificationCaseUsage> getNestedVerificationCase();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Use Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.UseCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>UseCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Use Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUseCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='useCaseOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<UseCaseUsage> getNestedUseCase();
 
 	/**
 	 * Returns the value of the '<em><b>Nested View</b></em>' reference list.
@@ -857,227 +1037,6 @@ public interface Usage extends Feature {
 	EList<RenderingUsage> getNestedRendering();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Verification Case</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VerificationCaseUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>VerificationCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p> 
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedVerificationCase()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<VerificationCaseUsage> getNestedVerificationCase();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Enumeration</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EnumerationUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute() <em>Nested Attribute</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The code>EnumerationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.<p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Enumeration</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedEnumeration()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<EnumerationUsage> getNestedEnumeration();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Allocation</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AllocationUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>AllocationUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Allocation</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<AllocationUsage> getNestedAllocation();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Concern</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ConcernUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Concern</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConcern()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='concernOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ConcernUsage> getNestedConcern();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Occurrence</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>OccurrenceUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Occurrence</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedOccurrence()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<OccurrenceUsage> getNestedOccurrence();
-
-	/**
-	 * Returns the value of the '<em><b>Definition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Classifier}.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Classifiers</code> that are the types of this <code>Usage</code>. Nominally, these are <code>Definitions</code>, but other kinds of Kernel <code>Classifiers</code> are also allowed, to permit use of <code>Classifiers</code> from the Kernel Model Libraries.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Definition</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUsage'"
-	 *        annotation="redefines"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Classifier> getDefinition();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Use Case</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.UseCaseUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>UseCaseUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Use Case</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUseCase()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='useCaseOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<UseCaseUsage> getNestedUseCase();
-
-	/**
-	 * Returns the value of the '<em><b>Is Reference</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Whether this <code>Usage</code> is a referential <code>Usage</code>, that is, it has <code>isComposite = false</code>.<p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Is Reference</em>' attribute.
-	 * @see #setIsReference(boolean)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsReference()
-	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	boolean isReference();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Reference</em>' attribute.
-	 * @see #isReference()
-	 * @generated
-	 */
-	void setIsReference(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Nested Flow</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The code>FlowUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Flow</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFlow()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='flowOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<FlowUsage> getNestedFlow();
-
-	/**
 	 * Returns the value of the '<em><b>Nested Metadata</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.MetadataUsage}.
 	 * <p>
@@ -1102,6 +1061,31 @@ public interface Usage extends Feature {
 	EList<MetadataUsage> getNestedMetadata();
 
 	/**
+	 * Returns the value of the '<em><b>Is Variation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this <code>Usage</code> is for a variation point or not. If true, then all the <code>memberships</code> of the <code>Usage</code> must be <code>VariantMemberships</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Variation</em>' attribute.
+	 * @see #setIsVariation(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsVariation()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isVariation();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Variation</em>' attribute.
+	 * @see #isVariation()
+	 * @generated
+	 */
+	void setIsVariation(boolean value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -1115,34 +1099,5 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	Feature referencedFeatureTarget();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Nested Action</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ActionUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Action</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionOwningUsage'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ActionUsage> getNestedAction();
 
 } // Usage

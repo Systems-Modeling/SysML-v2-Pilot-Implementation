@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -33,9 +32,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
@@ -131,7 +132,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ANNOTATION;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,7 +162,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Do not set owningAnnotatedElement using annotatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -181,7 +181,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public boolean isSetAnnotatedElement() {
 		return annotatedElement != null;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,7 +256,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public AnnotatingElement basicGetAnnotatingElement() {
 		return (AnnotatingElement)ANNOTATING_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -369,7 +368,29 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		AnnotatingElement annotatingElement = getAnnotatingElement();
+		if (annotatingElement != null) {
+			source.add(annotatingElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Element> getTarget() {
 		EList<Element> target = new UniqueEList<Element>();
 		Element annotatedElement = getAnnotatedElement();
@@ -388,30 +409,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
   		return false;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		AnnotatingElement annotatingElement = getAnnotatingElement();
-		if (annotatingElement != null) {
-			source.add(annotatingElement);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

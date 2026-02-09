@@ -57,7 +57,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertFalse("'" + text + "': No filter conditions", filterConditions.isEmpty());
 		Expression filterCondition = filterConditions.get(0);
 		assertTrue("'" + text + "': Not operator expression", filterCondition instanceof OperatorExpression);
-		List<Expression> operands = ((OperatorExpression)filterCondition).getOperand();
+		List<Expression> operands = ((OperatorExpression)filterCondition).getArgument();
 		assertFalse("'" + text + "': No operands", operands.isEmpty());
 		return operands.get(0);
 	}

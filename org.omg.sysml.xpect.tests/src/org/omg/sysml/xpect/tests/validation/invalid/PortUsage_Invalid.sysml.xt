@@ -47,7 +47,7 @@ package 'Port Example' {
 		port two_port_def_types: pd1, pd2 {
 			port p2 : pd2;
 			ref b3 : B;		
-			// XPECT errors --> "Nested usages of a port usage (other than ports) must be referential." at "part b4 : B;"
+			// XPECT errors --> "Nested usages in a port usage (other than ports) must be referential." at "part b4 : B;"
 			part b4 : B;		
 		}
 	}

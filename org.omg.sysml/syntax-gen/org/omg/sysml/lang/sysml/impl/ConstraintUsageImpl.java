@@ -1,38 +1,41 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -61,7 +64,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConstraintUsageImpl extends OccurrenceUsageImpl implements ConstraintUsage {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -71,6 +73,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -80,6 +83,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__RESULT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,6 +93,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getConstraintDefinition() <em>Constraint Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -98,6 +103,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate CONSTRAINT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,6 +149,55 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @generated
 	 */
 	@Override
+	public Feature getResult() {
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetResult() {
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setResult(Feature newResult) {
+		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return (Boolean)IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Predicate getConstraintDefinition() {
 		return (Predicate)CONSTRAINT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -175,15 +230,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		return basicGetConstraintDefinition() != null;
 	}
 
-	/**
-	 * The cached invocation delegate for the '{@link #modelLevelEvaluable(org.eclipse.emf.common.util.EList) <em>Model Level Evaluable</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #modelLevelEvaluable(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST).getInvocationDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -301,56 +347,15 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #modelLevelEvaluable(org.eclipse.emf.common.util.EList) <em>Model Level Evaluable</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #modelLevelEvaluable(org.eclipse.emf.common.util.EList)
 	 * @generated
+	 * @ordered
 	 */
-	@Override
-	public Feature getResult() {
-		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetResult() {
-		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
+	protected static final EOperation.Internal.InvocationDelegate MODEL_LEVEL_EVALUABLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST).getInvocationDelegate();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setResult(Feature newResult) {
-		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isModelLevelEvaluable() {
-		return (Boolean)IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
-	}
-
-	// Operations
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -374,6 +379,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate EVALUATE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___EVALUATE__ELEMENT).getInvocationDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -398,6 +404,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @ordered
 	 */
 	protected static final EOperation.Internal.InvocationDelegate CHECK_CONDITION_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.EXPRESSION___CHECK_CONDITION__ELEMENT).getInvocationDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,20 +1,20 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
 /**
@@ -22,6 +22,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,19 +31,21 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
@@ -83,6 +86,7 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedAnnotatingRelationship() <em>Owned Annotating Relationship</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -147,10 +151,8 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Annotation> getAnnotation() {
-		return (EList<Annotation>)ANNOTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public Metaclass getMetaclass() {
+		return getMetadataDefinition();
 	}
 
 	/**
@@ -158,9 +160,8 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Annotation getOwningAnnotatingRelationship() {
-		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public Metaclass basicGetMetaclass() {
+		return basicGetMetadataDefinition();
 	}
 
 	/**
@@ -168,8 +169,8 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Annotation basicGetOwningAnnotatingRelationship() {
-		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	public void setMetaclass(Metaclass newMetaclass) {
+		setMetadataDefinition(newMetaclass);
 	}
 
 	/**
@@ -177,9 +178,31 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setOwningAnnotatingRelationship(Annotation newOwningAnnotatingRelationship) {
-		OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningAnnotatingRelationship);
+	public boolean isSetMetaclass() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Structure> getItemDefinition() {
+		EList<Structure> itemDefinition = new UniqueEList<Structure>();
+		Metaclass metadataDefinition = getMetadataDefinition();
+		if (metadataDefinition != null) {
+			itemDefinition.add(metadataDefinition);
+		}
+		return new UnionEObjectEList<Structure>(this, SysMLPackage.Literals.ITEM_USAGE__ITEM_DEFINITION, itemDefinition.size(), itemDefinition.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItemDefinition() {
+  		return false;
 	}
 
 	/**
@@ -275,6 +298,46 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Annotation> getAnnotation() {
+		return (EList<Annotation>)ANNOTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation getOwningAnnotatingRelationship() {
+		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation basicGetOwningAnnotatingRelationship() {
+		return (Annotation)OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningAnnotatingRelationship(Annotation newOwningAnnotatingRelationship) {
+		OWNING_ANNOTATING_RELATIONSHIP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningAnnotatingRelationship);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Metaclass getMetadataDefinition() {
 		return (Metaclass)METADATA_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
@@ -318,67 +381,6 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 */
 	protected static final EOperation.Internal.InvocationDelegate EVALUATE_FEATURE_FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.METADATA_FEATURE___EVALUATE_FEATURE__FEATURE).getInvocationDelegate();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Metaclass getMetaclass() {
-		return getMetadataDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Metaclass basicGetMetaclass() {
-		return basicGetMetadataDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetaclass(Metaclass newMetaclass) {
-		setMetadataDefinition(newMetaclass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMetaclass() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Structure> getItemDefinition() {
-		EList<Structure> itemDefinition = new UniqueEList<Structure>();
-		Metaclass metadataDefinition = getMetadataDefinition();
-		if (metadataDefinition != null) {
-			itemDefinition.add(metadataDefinition);
-		}
-		return new UnionEObjectEList<Structure>(this, SysMLPackage.Literals.ITEM_USAGE__ITEM_DEFINITION, itemDefinition.size(), itemDefinition.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetItemDefinition() {
-  		return false;
-	}
-	
-	// Operations
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -465,8 +467,6 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			throw new WrappedException(ite);
 		}
 	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

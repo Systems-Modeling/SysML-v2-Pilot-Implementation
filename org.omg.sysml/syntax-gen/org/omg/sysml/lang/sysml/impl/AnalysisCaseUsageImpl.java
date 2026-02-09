@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -24,6 +23,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCaseUsage {
-
 	/**
 	 * The cached setting delegate for the '{@link #getAnalysisCaseDefinition() <em>Analysis Case Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -90,18 +89,8 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Expression getResultExpression() {
-		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Expression basicGetResultExpression() {
-		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	public CaseDefinition getCaseDefinition() {
+		return getAnalysisCaseDefinition();
 	}
 
 	/**
@@ -110,8 +99,29 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * @generated
 	 */
 	@Override
-	public void setResultExpression(Expression newResultExpression) {
-		RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResultExpression);
+	public CaseDefinition basicGetCaseDefinition() {
+		return basicGetAnalysisCaseDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCaseDefinition(CaseDefinition newCaseDefinition) {
+		if (newCaseDefinition != null && !(newCaseDefinition instanceof AnalysisCaseDefinition)) {
+			throw new IllegalArgumentException("newCaseDefinition must be an instance of AnalysisCaseDefinition");
+		}
+		setAnalysisCaseDefinition((AnalysisCaseDefinition) newCaseDefinition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCaseDefinition() {
+  		return false;
 	}
 
 	/**
@@ -158,8 +168,17 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * @generated
 	 */
 	@Override
-	public CaseDefinition getCaseDefinition() {
-		return getAnalysisCaseDefinition();
+	public Expression getResultExpression() {
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression basicGetResultExpression() {
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -168,29 +187,8 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * @generated
 	 */
 	@Override
-	public CaseDefinition basicGetCaseDefinition() {
-		return basicGetAnalysisCaseDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCaseDefinition(CaseDefinition newCaseDefinition) {
-		if (newCaseDefinition != null && !(newCaseDefinition instanceof AnalysisCaseDefinition)) {
-			throw new IllegalArgumentException("newCaseDefinition must be an instance of AnalysisCaseDefinition");
-		}
-		setAnalysisCaseDefinition((AnalysisCaseDefinition) newCaseDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetCaseDefinition() {
-  		return false;
+	public void setResultExpression(Expression newResultExpression) {
+		RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResultExpression);
 	}
 
 	/**

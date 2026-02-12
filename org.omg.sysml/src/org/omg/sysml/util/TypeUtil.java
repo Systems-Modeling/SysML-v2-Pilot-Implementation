@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
@@ -265,6 +266,7 @@ public class TypeUtil {
 			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter(resultParameter);
 			type.getOwnedRelationship().add(membership);
+			resultParameter.setDirection(FeatureDirectionKind.OUT);
 		}
 	}
 	
@@ -364,7 +366,9 @@ public class TypeUtil {
 	}
 	
 	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
-		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
+		ParameterMembership membership = addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
+		membership.getOwnedMemberParameter().setDirection(FeatureDirectionKind.IN);
+		return membership;
 	}
 	
 	// Implicit general types

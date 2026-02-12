@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,24 +18,25 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
-package org.omg.sysml.lang.sysml;
 
+package org.omg.sysml.execution.expressions.functions.trig;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Part Property</b></em>'.
- * <!-- end-user-doc -->
- *
- * <!-- begin-model-doc -->
- * <p>A PartProperty is a usage of a Block to represent a composite part of a system. Any FeatureMembership of a PartProperty must be composite, which means a PartProperty cannot be a feature of ValueType or a nested feature of a ReferenceProperty or a ValueProperty.</p>
- * <!-- end-model-doc -->
- *
- *
- * @see org.omg.sysml.lang.sysml.SysMLPackage#getPartProperty()
- * @model
- * @generated
- */
-public interface PartProperty extends PartUsage {
-} // PartProperty
+import java.lang.Math;
+
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.util.EvaluationUtil;
+
+public class RadFunction extends TrigFunction {
+
+	@Override
+	public String getFunctionName() {
+		return "rad";
+	}
+
+	@Override
+	protected EList<Element> realFunction(double x) {
+		return EvaluationUtil.realResult(Math.toRadians(x));
+	}
+
+}

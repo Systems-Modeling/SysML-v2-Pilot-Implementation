@@ -21,7 +21,7 @@
 package org.omg.sysml.execution.expressions.functions.control;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.util.EvaluationUtil;
@@ -29,13 +29,13 @@ import org.omg.sysml.util.EvaluationUtil;
 public class ExistsFunction extends ForAllFunction {
 
 	@Override
-	public String getOperatorName() {
+	public String getFunctionName() {
 		return "exists";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator) {
+			ExpressionEvaluator evaluator) {
 		Boolean result = forAll(invocation, target, evaluator, false);
 		return result == null? EvaluationUtil.singletonList(invocation): EvaluationUtil.booleanResult(!result);
 	}

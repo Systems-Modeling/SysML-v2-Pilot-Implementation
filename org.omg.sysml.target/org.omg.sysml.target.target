@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target includeMode="feature" name="SysMLv2 2025-03 Target">
+<target includeMode="feature" name="SysMLv2 2025-12 Target">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/2025-03/"/>
-			<unit id="org.eclipse.platform.feature.group" version="4.35.0.v20250228-0640"/>
-			<unit id="org.eclipse.xtext.sdk.feature.group" version="2.38.0.v20250226-0658"/>
-			<unit id="org.eclipse.m2m.qvt.oml.runtime.feature.group" version="3.11.0.v20240902-1403"/>
-			<unit id="org.eclipse.emf.ecore.feature.group" version="2.39.0.v20241018-1213"/>
+			<repository location="https://download.eclipse.org/releases/2025-12/"/>
+			<unit id="org.eclipse.platform.feature.group" version="4.38.0.v20251201-0920"/>
+			<unit id="org.eclipse.xtext.sdk.feature.group" version="2.41.0.v20251124-0739"/>
+			<unit id="org.eclipse.m2m.qvt.oml.runtime.feature.group" version="3.11.1.v20251124-1059"/>
+			<unit id="org.eclipse.emf.ecore.feature.group" version="2.42.0.v20251025-0946"/>
 			<unit id="org.eclipse.uml2.feature.group" version="5.5.3.v20221116-1811"/>
-			<unit id="org.eclipse.egit.feature.group" version="7.2.0.202503040940-r"/>
-			<unit id="org.eclipse.jgit.feature.group" version="7.2.0.202503040940-r"/>
-			<unit id="com.google.gson" version="2.12.1"/>
+			<unit id="org.eclipse.egit.feature.group" version="7.5.0.202512021534-r"/>
+			<unit id="org.eclipse.jgit.feature.group" version="7.5.0.202512021534-r"/>
+			<unit id="com.google.gson" version="2.13.2"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates"/>

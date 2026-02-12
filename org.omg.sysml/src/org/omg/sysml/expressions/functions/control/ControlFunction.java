@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,7 @@ import java.util.function.BiFunction;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -40,7 +40,7 @@ public abstract class ControlFunction implements LibraryFunction {
 	}
 
 	protected EList<Element> collectSelected(InvocationExpression invocation, Element target,
-			ModelLevelExpressionEvaluator evaluator,
+			ExpressionEvaluator evaluator,
 			BiFunction<Element, EList<Element>, EList<Element>> select) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Element expr = evaluator.argumentValue(invocation, 1, target);

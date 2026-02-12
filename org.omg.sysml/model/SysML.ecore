@@ -26,7 +26,9 @@
       <details key="documentation" value="&lt;p>An &lt;code>InvocationExpression&lt;/code> is an &lt;code>InstantiationExpression&lt;/code> whose &lt;code>instantiatedType&lt;/code> must be a &lt;code>Behavior&lt;/code> or a &lt;code>Feature&lt;/code> typed by a single &lt;code>Behavior&lt;/code> (such as a &lt;code>Step&lt;/code>). Each of the input &lt;code>parameters&lt;/code> of the &lt;code>instantiatedType&lt;/code> are bound to the &lt;code>result&lt;/code> of an &lt;code>argument&lt;/code> &lt;code>Expression&lt;/code>. If the &lt;code>instantiatedType&lt;/code> is a &lt;code>Function&lt;/code> or a &lt;code>Feature&lt;/code> typed by a &lt;code>Function&lt;/code>, then the &lt;code>result&lt;/code> of the &lt;code>InvocationExpression&lt;/code> is the &lt;code>result&lt;/code> of the invoked &lt;code>Function&lt;/code>. Otherwise, the &lt;code>result&lt;/code> is an instance of the &lt;code>instantiatedType&lt;/code> (essentially like a behavioral &lt;code>ConstructorExpression&lt;/code>).&lt;/p>&#xA;&#xA;not instantiatedType.oclIsKindOf(Function) and&#xA;not (instantiatedType.oclIsKindOf(Feature) and &#xA;     instantiatedType.oclAsType(Feature).type->exists(oclIsKindOf(Function))) implies&#xA;    ownedFeature.selectByKind(BindingConnector)->exists(&#xA;        relatedFeature->includes(self) and&#xA;        relatedFeature->includes(result))&#xA;TBD&#xA;instantiatedType.input->collect(inp | &#xA;    ownedFeatures->select(redefines(inp)).valuation->&#xA;    select(v | v &lt;> null).value&#xA;)&#xA;let parameters : OrderedSet(Feature) = instantiatedType.input in&#xA;input->forAll(inp | &#xA;    inp.ownedRedefinition.redefinedFeature->&#xA;        intersection(parameters)->size() = 1)&#xA;let features : OrderedSet(Feature) = instantiatedType.feature in&#xA;input->forAll(inp1 | input->forAll(inp2 |&#xA;    inp1 &lt;> inp2 implies&#xA;        inp1.ownedRedefinition.redefinedFeature->&#xA;            intersection(inp2.ownedRedefinition.redefinedFeature)->&#xA;            intersection(features)->isEmpty()))&#xA;not instantiatedType.oclIsKindOf(Function) and&#xA;not (instantiatedType.oclIsKindOf(Feature) and &#xA;     instantiatedType.oclAsType(Feature).type->exists(oclIsKindOf(Function))) implies&#xA;    result.specializes(instantiatedType)&#xA;specializes(instantiatedType)&#xA;instantiatedType.oclIsKindOf(Behavior) or&#xA;instantiatedType.oclIsKindOf(Feature) and&#xA;    instantiatedType.type->exists(oclIsKindOf(Behavior)) and&#xA;    instantiatedType.type->size(1)&#xA;ownedFeature->forAll(f |&#xA;    f &lt;> result implies &#xA;        f.direction = FeatureDirectionKind::_'in')"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
-        eType="#//Expression" volatile="true" transient="true" derived="true" containment="true"/>
+        eType="#//Expression" volatile="true" transient="true" derived="true" containment="true">
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstantiationExpression" abstract="true"
       eSuperTypes="#//Expression">
@@ -443,7 +445,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
-        transient="true" defaultValueLiteral="false" derived="true"/>
+        transient="true" defaultValueLiteral="false" derived="true">
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -973,10 +977,11 @@
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementId" ordered="false"
-        lowerBound="1" eType="ecore:EDataType types.ecore#//String" iD="true">
+        lowerBound="1" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
         eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/ownedElement">

@@ -66,12 +66,14 @@ public class ConnectorUtil {
 	
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
-		ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
-		if (relatedFeature.getOwner() == null) {
-			subsetting.getOwnedRelatedElement().add(relatedFeature);
+		if (relatedFeature != null) {
+			ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
+			if (relatedFeature.getOwner() == null) {
+				subsetting.getOwnedRelatedElement().add(relatedFeature);
+			}
+			subsetting.setReferencedFeature(relatedFeature);
+			endFeature.getOwnedRelationship().add(subsetting);
 		}
-		subsetting.setReferencedFeature(relatedFeature);
-		endFeature.getOwnedRelationship().add(subsetting);
 		endFeature.setIsEnd(true);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
 		membership.setOwnedMemberFeature(endFeature);

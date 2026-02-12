@@ -1,38 +1,42 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2023 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -56,7 +60,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
-
 	/**
 	 * The cached setting delegate for the '{@link #getStateDefinition() <em>State Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -66,6 +69,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate STATE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__STATE_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getEntryAction() <em>Entry Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,6 +79,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ENTRY_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__ENTRY_ACTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getDoAction() <em>Do Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -84,6 +89,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate DO_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__DO_ACTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getExitAction() <em>Exit Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -93,6 +99,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate EXIT_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__EXIT_ACTION).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,6 +109,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @ordered
 	 */
 	protected static final boolean IS_PARALLEL_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -260,7 +268,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_USAGE__IS_PARALLEL, oldIsParallel, isParallel));
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #isSubstateUsage(boolean) <em>Is Substate Usage</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -289,8 +297,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
   		return false;
 	}
 
-	// Operations
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,8 +310,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 			throw new WrappedException(ite);
 		}
 	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

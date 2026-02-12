@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -25,8 +24,9 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object
- * '<em><b>Namespace</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Namespace</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * <p>A <code>Namespace</code> is an <code>Element</code> that contains other <code>Elements</code>, known as its <code>members</code>, via <code>Membership</code> <code>Relationships</code> with those <code>Elements</code>. The <code>members</code> of a <code>Namespace</code> may be owned by the <code>Namespace</code>, aliased in the <code>Namespace</code>, or imported into the <code>Namespace</code> via <code>Import</code> <code>Relationships</code>.</p>
@@ -61,14 +61,63 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Namespace extends Element {
 	/**
+	 * Returns the value of the '<em><b>Owned Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMembership() <em>Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this <code>Namespace</code> that are <code>Memberships</code>, for which the <code>Namespace</code> is the <code>membershipOwningNamespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMembership()
+	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
+	 * @model opposite="membershipOwningNamespace" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> getOwnedMembership();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Member</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned <code>members</code> of this <code>Namespace</code>, which are the <cpde><code>ownedMemberElements</code> of the <code>ownedMemberships</code> of the <code>Namespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Member</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMember()
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningNamespace
+	 * @model opposite="owningNamespace" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Element> getOwnedMember();
+
+	/**
 	 * Returns the value of the '<em><b>Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
 	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Membership</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>All <code>Memberships</code> in this <code>Namespace</code>, including (at least) the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
@@ -94,10 +143,6 @@ public interface Namespace extends Element {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Import</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>ownedRelationships</code> of this <code>Namespace</code> that are <code>Imports</code>, for which the <code>Namespace</code> is the <code>importOwningNamespace</code>.</p>
@@ -112,6 +157,49 @@ public interface Namespace extends Element {
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
+
+	/**
+	 * Returns the value of the '<em><b>Member</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The set of all member <code>Elements</code> of this <code>Namespace</code>, which are the <code>memberElements</code> of all <code>memberships</code> of the <code>Namespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Member</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_Member()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='namespace'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Element> getMember();
+
+	/**
+	 * Returns the value of the '<em><b>Imported Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMembership() <em>Membership</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Memberships</code> in this <code>Namespace</code> that result from the <code>ownedImports</code> of this <code>Namespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Imported Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_ImportedMembership()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='importingNamespace'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Membership> getImportedMembership();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -314,114 +402,5 @@ public interface Namespace extends Element {
 	 * @generated
 	 */
 	String unqualifiedNameOf(String qualifiedName);
-
-	/**
-	 * Returns the value of the '<em><b>Member</b></em>' reference list. The list
-	 * contents are of type {@link org.omg.sysml.lang.sysml.Element}. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Member</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Member</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_Member()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
-	 *        body='namespace'"
-	 * @generated
-	 */
-	EList<Element> getMember();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Member</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Member</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The owned <code>members</code> of this <code>Namespace</code>, which are the <cpde><code>ownedMemberElements</code> of the <code>ownedMemberships</code> of the <code>Namespace</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Member</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMember()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwningNamespace
-	 * @model opposite="owningNamespace" transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Element> getOwnedMember();
-
-	/**
-	 * Returns the value of the '<em><b>Imported Membership</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMembership() <em>Membership</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imported Membership</em>' reference list isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>Memberships</code> in this <code>Namespace</code> that result from the <code>ownedImports</code> of this <code>Namespace</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Imported Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_ImportedMembership()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='importingNamespace'"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Membership> getImportedMembership();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Membership</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMembership() <em>Membership</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Membership</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this <code>Namespace</code> that are <code>Memberships</code>, for which the <code>Namespace</code> is the <code>membershipOwningNamespace</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Membership</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMembership()
-	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
-	 * @model opposite="membershipOwningNamespace" transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<Membership> getOwnedMembership();
 
 } // Namespace

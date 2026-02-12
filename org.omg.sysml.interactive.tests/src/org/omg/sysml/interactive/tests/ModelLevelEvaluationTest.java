@@ -57,7 +57,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertFalse("'" + text + "': No filter conditions", filterConditions.isEmpty());
 		Expression filterCondition = filterConditions.get(0);
 		assertTrue("'" + text + "': Not operator expression", filterCondition instanceof OperatorExpression);
-		List<Expression> operands = ((OperatorExpression)filterCondition).getOperand();
+		List<Expression> operands = ((OperatorExpression)filterCondition).getArgument();
 		assertFalse("'" + text + "': No operands", operands.isEmpty());
 		return operands.get(0);
 	}
@@ -488,6 +488,11 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals("P", evaluateStringValue(instance, null, "P.metadata.annotatedElement.name#(1)"));
 		assertEquals(1, evaluateIntegerValue(instance, null, "(P.metadata as M1).a"));
 		assertEquals(1, evaluateIntegerValue(instance, null, "(P meta M1).a"));
+	}
+	
+	@Test
+	public void testLibraryFeatureReference() throws Exception {
+		assertEquals(Math.PI, evaluateRealValue(null, null, "TrigFunctions::pi"), 0);
 	}
 
 }

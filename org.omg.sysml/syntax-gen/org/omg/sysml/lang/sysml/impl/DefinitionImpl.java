@@ -1,37 +1,45 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
-
+/**
+ */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.CalculationUsage;
+import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.ConcernUsage;
+import org.omg.sysml.lang.sysml.ConnectorAsUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
@@ -41,10 +49,6 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.ConcernUsage;
-import org.omg.sysml.lang.sysml.ConnectorAsUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -69,7 +73,6 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#isVariation <em>Is Variation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariant <em>Variant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getDirectedUsage <em>Directed Usage</em>}</li>
@@ -99,6 +102,7 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRendering <em>Owned Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMetadata <em>Owned Metadata</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -109,10 +113,11 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isVariation()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final boolean IS_VARIATION_EDEFAULT = false;
+	protected boolean IS_VARIATION_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -122,6 +127,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
+
 	/**
 	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -131,15 +137,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -149,6 +147,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VARIANT_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getUsage() <em>Usage</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -158,6 +157,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__USAGE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getDirectedUsage() <em>Directed Usage</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -167,6 +167,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__DIRECTED_USAGE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedReference() <em>Owned Reference</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -176,6 +177,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_REFERENCE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -185,6 +187,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ATTRIBUTE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedEnumeration() <em>Owned Enumeration</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -194,6 +197,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ENUMERATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ENUMERATION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedOccurrence() <em>Owned Occurrence</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -203,6 +207,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_OCCURRENCE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedItem() <em>Owned Item</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -212,6 +217,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ITEM__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ITEM).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedPart() <em>Owned Part</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -221,6 +227,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_PART__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_PART).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedPort() <em>Owned Port</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -230,6 +237,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_PORT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_PORT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedConnection() <em>Owned Connection</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -239,6 +247,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONNECTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONNECTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedFlow() <em>Owned Flow</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -248,6 +257,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_FLOW).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedInterface() <em>Owned Interface</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -257,6 +267,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_INTERFACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_INTERFACE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedAllocation() <em>Owned Allocation</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -266,6 +277,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ALLOCATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ALLOCATION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedAction() <em>Owned Action</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -275,6 +287,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ACTION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedState() <em>Owned State</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -284,6 +297,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_STATE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedTransition() <em>Owned Transition</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -293,6 +307,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_TRANSITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_TRANSITION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedCalculation() <em>Owned Calculation</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -302,6 +317,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CALCULATION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -311,6 +327,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONSTRAINT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedRequirement() <em>Owned Requirement</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -320,6 +337,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_REQUIREMENT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedConcern() <em>Owned Concern</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -329,6 +347,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONCERN).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedCase() <em>Owned Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -338,6 +357,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CASE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedAnalysisCase() <em>Owned Analysis Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -347,6 +367,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANALYSIS_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ANALYSIS_CASE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedVerificationCase() <em>Owned Verification Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -356,6 +377,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_VERIFICATION_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VERIFICATION_CASE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedUseCase() <em>Owned Use Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -365,6 +387,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USE_CASE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedView() <em>Owned View</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -374,6 +397,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_VIEW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VIEW).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedViewpoint() <em>Owned Viewpoint</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -383,6 +407,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VIEWPOINT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedRendering() <em>Owned Rendering</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -392,6 +417,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_RENDERING).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMetadata() <em>Owned Metadata</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -401,6 +427,17 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_METADATA__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_METADATA).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -425,10 +462,22 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public EList<Usage> getUsage() {
-		return (EList<Usage>)USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public boolean isVariation() {
+		return isVariation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsVariation(boolean newIsVariation) {
+		boolean oldIsVariation = isVariation;
+		isVariation = newIsVariation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DEFINITION__IS_VARIATION, oldIsVariation, isVariation));
 	}
 
 	/**
@@ -438,8 +487,30 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<PortUsage> getOwnedPort() {
-		return (EList<PortUsage>)OWNED_PORT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<Usage> getVariant() {
+		return (EList<Usage>)VARIANT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<VariantMembership> getVariantMembership() {
+		return (EList<VariantMembership>)VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Usage> getUsage() {
+		return (EList<Usage>)USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -460,8 +531,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<ActionUsage> getOwnedAction() {
-		return (EList<ActionUsage>)OWNED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<ReferenceUsage> getOwnedReference() {
+		return (EList<ReferenceUsage>)OWNED_REFERENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -471,8 +542,30 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<ConnectorAsUsage> getOwnedConnection() {
-		return (EList<ConnectorAsUsage>)OWNED_CONNECTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<AttributeUsage> getOwnedAttribute() {
+		return (EList<AttributeUsage>)OWNED_ATTRIBUTE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<EnumerationUsage> getOwnedEnumeration() {
+		return (EList<EnumerationUsage>)OWNED_ENUMERATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<OccurrenceUsage> getOwnedOccurrence() {
+		return (EList<OccurrenceUsage>)OWNED_OCCURRENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -504,6 +597,39 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	public EList<PortUsage> getOwnedPort() {
+		return (EList<PortUsage>)OWNED_PORT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<ConnectorAsUsage> getOwnedConnection() {
+		return (EList<ConnectorAsUsage>)OWNED_CONNECTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<FlowUsage> getOwnedFlow() {
+		return (EList<FlowUsage>)OWNED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public EList<InterfaceUsage> getOwnedInterface() {
 		return (EList<InterfaceUsage>)OWNED_INTERFACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -515,8 +641,129 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<AttributeUsage> getOwnedAttribute() {
-		return (EList<AttributeUsage>)OWNED_ATTRIBUTE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<AllocationUsage> getOwnedAllocation() {
+		return (EList<AllocationUsage>)OWNED_ALLOCATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<ActionUsage> getOwnedAction() {
+		return (EList<ActionUsage>)OWNED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<StateUsage> getOwnedState() {
+		return (EList<StateUsage>)OWNED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<TransitionUsage> getOwnedTransition() {
+		return (EList<TransitionUsage>)OWNED_TRANSITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<CalculationUsage> getOwnedCalculation() {
+		return (EList<CalculationUsage>)OWNED_CALCULATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<ConstraintUsage> getOwnedConstraint() {
+		return (EList<ConstraintUsage>)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<RequirementUsage> getOwnedRequirement() {
+		return (EList<RequirementUsage>)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<ConcernUsage> getOwnedConcern() {
+		return (EList<ConcernUsage>)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<CaseUsage> getOwnedCase() {
+		return (EList<CaseUsage>)OWNED_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<AnalysisCaseUsage> getOwnedAnalysisCase() {
+		return (EList<AnalysisCaseUsage>)OWNED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
+		return (EList<VerificationCaseUsage>)OWNED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<UseCaseUsage> getOwnedUseCase() {
+		return (EList<UseCaseUsage>)OWNED_USE_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -559,196 +806,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
-		return (EList<VerificationCaseUsage>)OWNED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<EnumerationUsage> getOwnedEnumeration() {
-		return (EList<EnumerationUsage>)OWNED_ENUMERATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<AllocationUsage> getOwnedAllocation() {
-		return (EList<AllocationUsage>)OWNED_ALLOCATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<ConcernUsage> getOwnedConcern() {
-		return (EList<ConcernUsage>)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<OccurrenceUsage> getOwnedOccurrence() {
-		return (EList<OccurrenceUsage>)OWNED_OCCURRENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<UseCaseUsage> getOwnedUseCase() {
-		return (EList<UseCaseUsage>)OWNED_USE_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<FlowUsage> getOwnedFlow() {
-		return (EList<FlowUsage>)OWNED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	public EList<MetadataUsage> getOwnedMetadata() {
 		return (EList<MetadataUsage>)OWNED_METADATA__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<StateUsage> getOwnedState() {
-		return (EList<StateUsage>)OWNED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<ConstraintUsage> getOwnedConstraint() {
-		return (EList<ConstraintUsage>)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<TransitionUsage> getOwnedTransition() {
-		return (EList<TransitionUsage>)OWNED_TRANSITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<RequirementUsage> getOwnedRequirement() {
-		return (EList<RequirementUsage>)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<CalculationUsage> getOwnedCalculation() {
-		return (EList<CalculationUsage>)OWNED_CALCULATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isVariation() {
-		return isVariation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsVariation(boolean newIsVariation) {
-		boolean oldIsVariation = isVariation;
-		isVariation = newIsVariation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DEFINITION__IS_VARIATION, oldIsVariation, isVariation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<AnalysisCaseUsage> getOwnedAnalysisCase() {
-		return (EList<AnalysisCaseUsage>)OWNED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<CaseUsage> getOwnedCase() {
-		return (EList<CaseUsage>)OWNED_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<ReferenceUsage> getOwnedReference() {
-		return (EList<ReferenceUsage>)OWNED_REFERENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -767,28 +826,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Usage> getVariant() {
-		return (EList<Usage>)VARIANT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<VariantMembership> getVariantMembership() {
-		return (EList<VariantMembership>)VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -796,8 +833,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return isVariation();
 			case SysMLPackage.DEFINITION__VARIANT:
 				return getVariant();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 			case SysMLPackage.DEFINITION__USAGE:
@@ -856,6 +891,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return getOwnedRendering();
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				return getOwnedMetadata();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -875,10 +912,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__VARIANT:
 				getVariant().clear();
 				getVariant().addAll((Collection<? extends Usage>)newValue);
-				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -996,6 +1029,10 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				getOwnedMetadata().clear();
 				getOwnedMetadata().addAll((Collection<? extends MetadataUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1013,9 +1050,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return;
 			case SysMLPackage.DEFINITION__VARIANT:
 				getVariant().clear();
-				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
 				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -1104,6 +1138,9 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				getOwnedMetadata().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1120,8 +1157,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return isVariation != IS_VARIATION_EDEFAULT;
 			case SysMLPackage.DEFINITION__VARIANT:
 				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__USAGE:
@@ -1180,6 +1215,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return OWNED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_METADATA:
 				return OWNED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

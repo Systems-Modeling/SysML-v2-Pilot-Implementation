@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.OperandEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class InvocationExpressionAdapter extends InstantiationExpressionAdapter {
@@ -37,6 +40,28 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 	@Override
 	public InvocationExpression getTarget() {
 		return (InvocationExpression)super.getTarget();
+	}
+	
+	// Operand mechanism
+	
+	/**
+	 * Xtext workaround:
+	 * "operand" is an additional property not in the normative abstract syntax, but added to the Ecore.
+	 * It contains a list of direct containment references to arguments of this InvocationExpression.
+	 * It allows for tractable parsing in Xtext of expressions with left-recursive syntax 
+	 * (particularly operator expressions).
+	 */
+	protected EList<Expression> operand = null;
+	
+	/**
+	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
+	 * as owned features.
+	 */
+	public EList<Expression> getOperand() {
+		if (operand == null) {
+			operand = new OperandEList(getTarget());
+		}
+		return operand;
 	}
 	
 	// Implicit generalization

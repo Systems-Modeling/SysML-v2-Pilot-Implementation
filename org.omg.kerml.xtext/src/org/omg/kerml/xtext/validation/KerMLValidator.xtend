@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -88,21 +88,25 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.CrossSubsetting
 import org.omg.sysml.lang.sysml.Annotation
+import org.omg.sysml.lang.sysml.InstantiationExpression
+import org.omg.sysml.lang.sysml.ConstructorExpression
 
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.EvaluationUtil
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 
-import org.omg.sysml.expressions.util.EvaluationUtil
 import java.util.Collections
 import java.util.HashMap
 import java.util.Set
 import java.util.Map
-import org.omg.sysml.lang.sysml.InstantiationExpression
-import org.omg.sysml.lang.sysml.ConstructorExpression
+import org.omg.sysml.lang.sysml.EndFeatureMembership
+import org.omg.sysml.lang.sysml.CollectExpression
+import org.omg.sysml.lang.sysml.SelectExpression
+import org.omg.sysml.lang.sysml.IndexExpression
 
 /**
  * This class contains custom validation rules. 
@@ -160,6 +164,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN = "validateClassifierMultiplicityDomain"
 	public static val INVALID_CLASSIFIER_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must not have a featuring type"
+	
+	public static val INVALID_END_FEATURE_MEMBERSHIP_IS_END = "validateEndFeatureMembershpIsEnd"
+	public static val INVALID_END_FEATURE_MEMBERSHIP_IS_END_MSG = "Must be an end feature"
 
 	// Note: validateFeatureHasType is not in the spec, but it is implied by semantic constraints on features.
 	public static val INVALID_FEATURE_HAS_TYPE = 'validateFeatureHasType_'
@@ -264,6 +271,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_BEHAVIOR_SPECIALIZATION = "validateBehaviorSpecialization"
 	public static val INVALID_BEHAVIOR_SPECIALIZATION_MSG = "Cannot specialize structure"    
 	
+	public static val INVALID_PARAMETER_MEMBERSHIP_DIRECTION = "validateParameterMembershipDirection"
+	public static val INVALID_PARAMETER_MEMBERSHIP_DIRECTION_MSG = "Must have direction '{direction}'"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
 		
@@ -319,9 +328,23 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR = "validateOperatorExpressionBracketOperator_"
 	public static val INVALID_OPERATOR_EXPRESSION_BRACKET_OPERATOR_MSG = "Use #(...) for indexing"
 	
+	public static val INVALID_COLLECT_EXPRESSION_OPERATOR = "validateCollectExpressionOperator"
+	public static val INVALID_COLLECT_EXPRESSION_OPERATOR_MSG = "Operator must be 'collect'"
+
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION_OPERATOR = "validateFeatureChainExpressionOperator"
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION_OPERATOR_MSG = "Operator must be '.'"
+
+	public static val INVALID_INDEX_EXPRESSION_OPERATOR = "validateIndexExpressionOperator"
+	public static val INVALID_INDEX_EXPRESSION_OPERATOR_MSG = "Operator must be '#'"
+
+	public static val INVALID_SELECT_EXPRESSION_OPERATOR = "validateSelectExpressionOperator"
+	public static val INVALID_SELECT_EXPRESSION_OPERATOR_MSG = "Operator must be 'select'"
+
 	public static val INVALID_FLOW_ITEM_FEATURE = "validateFlowItemFeature"
 	public static val INVALID_FLOW_ITEM_FEATURE_MSG = "Only one item feature is allowed"	
 		
+	public static val INVALID_FLOW_END_IS_END = "validateFlowEndIsEnd"
+	public static val INVALID_FLOW_END_IS_END_MSG = "Must be an end feature"
 	public static val INVALID_FLOW_END_OWNING_TYPE = "validateFlowEndOwningType"
 	public static val INVALID_FLOW_END_OWNING_TYPE_MSG = "Flow end not allowed"
 	public static val INVALID_FLOW_END_NESTED_FEATURE = "validateFlowEndNestedFeature"
@@ -555,15 +578,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
-	// @Check
-	// def checkEndFeatureMembership(EndFeatureMembership m) {
-	//    // validateEndFeatureMembershipIsEnd is automatically satisfied
-	// }
+	@Check
+	def checkEndFeatureMembership(EndFeatureMembership m) {
+	    // validateEndFeatureMembershipIsEnd
+	    var ownedMemberFeature = m.ownedMemberFeature
+	    if (ownedMemberFeature !== null && !ownedMemberFeature.isEnd) {
+	    	error(INVALID_END_FEATURE_MEMBERSHIP_IS_END_MSG, ownedMemberFeature, null, INVALID_END_FEATURE_MEMBERSHIP_IS_END)
+	    }
+	}
 	
 	@Check
 	def checkFeature(Feature f){
-		// TODO: Remove?
-		val types = f.type;
+		// Note: Use utility method to ensure types are not filtered out by redefinitions of getType.
+		val types = FeatureUtil.getAllTypesOf(f);
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE_HAS_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_HAS_TYPE)
 			
@@ -599,7 +626,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossFeature = FeatureUtil.getCrossFeatureOf(f)
 		val ownedCrossFeature = f.ownedCrossFeature()
 		if (crossFeature !== null) {
-			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f, null);
+			val redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(f);
 			if (redefinedFeatures.map[rf | FeatureUtil.getCrossFeatureOf(rf)].
 				exists[cf | cf !== null && !TypeUtil.specializes(crossFeature, cf)]) {
 				if (f.ownedCrossSubsetting === null) {
@@ -1026,9 +1053,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 				  ExpressionUtil.isConstructorResult(owningType))) {
 				error(INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE)
 			}
-			
-			// validateParameterMembershipParameterHasDirection is automatically satisfied
 		}
+		// validateParameterMembershipParameterDirection
+		var ownedMemberParameter = m.ownedMemberParameter
+	    if (ownedMemberParameter !== null && ownedMemberParameter.direction != m.parameterDirection) {
+	    	error(INVALID_PARAMETER_MEMBERSHIP_DIRECTION_MSG.replace("{direction}", m.parameterDirection.toString.toLowerCase), ownedMemberParameter, null, INVALID_PARAMETER_MEMBERSHIP_DIRECTION)
+	    }			
 	}
 	
 	@Check
@@ -1074,8 +1104,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(owningType instanceof Function || owningType instanceof Expression)) {
 			error(INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_RETURN_PARAMETER_MEMBERSHIP_OWNING_TYPE)
 		}
-		
-		// validateReturnParameterMembershipParameterHasDirectionOut is automatically satisfied
 	}
 	
 	@Check
@@ -1085,19 +1113,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(owningType instanceof Function || owningType instanceof Expression)) {
 			error(INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE_MSG, m, SysMLPackage.eINSTANCE.parameterMembership_OwnedMemberParameter, INVALID_RESULT_EXPRESSION_MEMBERSHIP_OWNING_TYPE)
 		}
-		
-		// validateReturnParameterMembershipParameterHasDirectionOut is automatically satisfied
 	}
 	
-	// @Check
-	// def checkReturnParameterMembership(ReturnParameterMembership m) {
-	//     // validateReturnParameterMembershipParameterHasDirection is automatically satisfied
-	// }
-	
-	// @Check
-	// def checkCollectExpression(CollectExpression e) {
-	//     // validateCollectExpressionOperator is automatically satisfied
-	// }
+	 @Check
+	 def checkCollectExpression(CollectExpression e) {
+	     // validateCollectExpressionOperator
+	     if (e.operator != "collect") {
+	     	error(INVALID_COLLECT_EXPRESSION_OPERATOR_MSG, e, null, INVALID_COLLECT_EXPRESSION_OPERATOR);
+	     }
+	 }
 	
 	@Check
 	def checkFeatureChainExpression(FeatureChainExpression e) {
@@ -1112,7 +1136,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION_FEATURE_CONFORMANCE)
 		}
 		
-		// validateFeatureChainExpressionOperator is automatically satisfied
+		// validateFeatureChainExpressionOperator
+		if (e.operator != ".") {
+			error(INVALID_FEATURE_CHAIN_EXPRESSION_OPERATOR_MSG, e, null, INVALID_FEATURE_CHAIN_EXPRESSION_OPERATOR);
+		}
 	}
 	
 	@Check
@@ -1235,15 +1262,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
-	// @Check
-	// def checkSelectExpression(SelectExpression e) {
-	//     // validateSelectExpressionOperator is automatically satisfied
-	// }
+	 @Check
+	 def checkSelectExpression(SelectExpression e) {
+	     // validateSelectExpressionOperator
+	     if (e.operator != "select") {
+	     	error(INVALID_SELECT_EXPRESSION_OPERATOR_MSG, e, null, INVALID_SELECT_EXPRESSION_OPERATOR);
+	     }
+	 }
 	
-	// @Check
-	// def checkIndexExpression(IndexExpression e) {
-	//     // validateIndexExpressionOperator is automatically satisfied
-	// }
+	 @Check
+	 def checkIndexExpression(IndexExpression e) {
+	     // validateIndexExpressionOperator
+	     if (e.operator != "#") {
+	     	error(INVALID_INDEX_EXPRESSION_OPERATOR_MSG, e, null, INVALID_INDEX_EXPRESSION_OPERATOR);
+	     }
+	 }
 	
 	@Check
 	def checkFlow(Flow flow) {
@@ -1254,7 +1287,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFlowEnd(FlowEnd flowEnd) {
-		// validateFlowEndIsEnd is automatically satisfied
+		// validateFlowEndIsEnd
+		if (!flowEnd.isEnd) {
+			error(INVALID_FLOW_END_IS_END_MSG, flowEnd, null, INVALID_FLOW_END_IS_END)
+		}
 		
 		// validateFlowEndNestedFeature
 		if (flowEnd.ownedFeature.size != 1) {

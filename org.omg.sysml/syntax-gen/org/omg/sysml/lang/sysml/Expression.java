@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -25,8 +24,9 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object
- * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Expression</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * <p>An <code>Expression</code> is a <code>Step</code> that is typed by a <code>Function</code>. An <code>Expression</code> that also has a <code>Function</code> as its <code>featuringType</code> is a computational step within that <code>Function</code>. An <code>Expression</code> always has a single <code>result</code> parameter, which redefines the <code>result</code> parameter of its defining <code>function</code>. This allows <code>Expressions</code> to be interconnected in tree structures, in which inputs to each <code>Expression</code> in the tree are determined as the results of other <code>Expression</code> in the tree.</p>
@@ -72,7 +72,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Expression extends Step {
-
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' reference.
 	 * <p>
@@ -82,10 +81,6 @@ public interface Expression extends Step {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getBehavior() <em>Behavior</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Function</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>Function</code> that types this <code>Expression</code>.</p>
@@ -124,10 +119,6 @@ public interface Expression extends Step {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Result</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p><p>An <code>output</code> <code>parameter</code> of the <code>Expression</code> whose value is the result of the <code>Expression</code>. The result of an <code>Expression</code> is either inherited from its <code>function</code> or it is related to the <code>Expression</code> via a <code>ReturnParameterMembership</code>, in which case it redefines the <code>result</code> <code>parameter</code> of its <code>function</code>.</p>
@@ -237,4 +228,5 @@ public interface Expression extends Step {
 	 * @generated
 	 */
 	boolean checkCondition(Element target);
+
 } // Expression

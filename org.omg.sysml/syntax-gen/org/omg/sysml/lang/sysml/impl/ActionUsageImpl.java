@@ -1,35 +1,38 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Expression;
@@ -39,7 +42,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Action</b></em>'.
+ * An implementation of the model object '<em><b>Action Usage</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -52,7 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -62,6 +64,7 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getActionDefinition() <em>Action Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -197,8 +200,6 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
   		return false;
 	}
 
-	// Operations
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -261,7 +262,7 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 			throw new WrappedException(ite);
 		}
 	}
-	
+
 	/**
 	 * The cached invocation delegate for the '{@link #isSubactionUsage() <em>Is Subaction Usage</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -285,8 +286,6 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 			throw new WrappedException(ite);
 		}
 	}
-
-	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -428,4 +427,4 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ActionImpl
+} //ActionUsageImpl

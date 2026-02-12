@@ -36,12 +36,13 @@ public class OccurrenceDefinitionAdapter extends DefinitionAdapter {
 	
 	/**
 	 * @satisfies checkOccurrenceDefinitionIndividualSpecialization
-	 * @satisfies checkClassSpecialization
-	 * @satisfies checkCalculationDefinitionSpecialization
 	 */
-	protected String getDefaultSupertype() {
-		return getTarget().isIndividual()? getDefaultSupertype("life"):
-			getDefaultSupertype("base");
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		
+		if (getTarget().isIndividual()) {
+			addDefaultGeneralType("life");
+		}
 	}
-
 }

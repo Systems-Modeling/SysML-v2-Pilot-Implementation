@@ -1,0 +1,192 @@
+= bnf_grammar_tools
+
+Tools that process KerML and SysML2 concrete language grammars from their respective specifications, check them for correctness and generates two kinds of grammar listings: (1) machine-readable plain text BNF files and (2) human-readable hyperlinked BNF files in HTML format.
+
+== Usage of the Tools
+
+=== Obtain a Complete KerML or SysML Specification in HTML Source Format
+
+Instructions on how to export a selected version of the specification from View Editor to a self-standing HTML file.
+
+> Note: These instructions are tested with View Editor version 4 with the FireFox browser v130.0.1 on Windows 11. In other browsers the menu or key to inspect the source code may be different.
+
+1. Open the selected spec in View Editor.
+2. Load the full document by clicking the "Full Document" icon (image:VE-full-document-icon.png[]) at the top of the left panel. This may take several minutes.
+3. Click the print icon, image:VE-print-icon.png[] left next to the EXPORT icon at the top of the document panel.
+4. Wait for a new browser tab to appear with the complete HTML document and a popup print dialog. Again, be patient, this may take several minutes.
+5. Cancel the popup print dialog.
+6. In the complete HTML document tab, open a Developer / Inspector panel via menu *More tools > Web Developer Tools* or by hitting `Ctrl+Shift+I`. (Note: a direct *Save page as ...* or `Ctlr+S` does not work, as it saves a script.)
+7. In the Inspector tab of the Developer panel, right-click the top level `<html ...>` element, and select *Copy > Outer HTML* from the context menu.
+8. Open a new, appropriately named `.html` file in a text editor, paste the contents and save.
+9. Close the complete HTML document tab.
+
+=== Install the Python Environment
+
+Ensure that Python version 3.9 or higher is installed on your machine. The most convenient way is to use the https://www.jetbrains.com/pycharm/[PyCharm] tool. Create a dedicated `conda` or `venv` development environment and activate it. The best tool to install a Python base environment is https://github.com/conda-forge/miniforge[miniforge].
+
+After installation check the active Python version, e.g.:
+
+[source,shell]
+----
+    $ python --version
+    Python 3.12.12
+----
+
+Also ensure that the latest version of the following packages are installed. You can use `pip` or `conda` or `mamba`.
+
+* Package https://pypi.org/project/beautifulsoup4/[beautifulsoup4] is used to parse the HTML input file.
+* Package https://pypi.org/project/lxml/[lxml] is used to assist beautifulsoup4 with processing SVG/XML files.
+* Package https://pypi.org/project/lark/[lark] is used to parse and verify the extracted BNF source.
+* Package https://pypi.org/project/pytest/[pytest] is used to run unit tests.
+
+for example with the following commands:
+
+[source,shell]
+----
+    $ pip install beautifulsoup4
+    $ pip install lxml
+    $ pip install lark
+    $ pip install pytest
+----
+
+=== Run the bnf_grammar_processor
+
+The usage info for the `bnf_grammar_processor` is as below, as usual obtained with the `-h` or `--help` option.
+Go to the `tool-support/bnf_grammar_tools` directory and run `python .\bnf_grammar\bnf_grammar_processor.py -h`.
+
+[source,shell]
+----
+usage: python bnf_grammar_processor [-h] [-i [INPUT_DIR]] [-o [OUTPUT_DIR]] SOURCE_DATA
+
+Extract or parse textual and/or graphical grammars from given KerML or SysML specifications and generate plain text and html BNF grammar files.
+
+positional arguments:
+  SOURCE_DATA           JSON file defining source data - see examples under
+                        the tests directory
+
+options:
+  -h, --help            show this help message and exit
+  -i [INPUT_DIR], --input-dir [INPUT_DIR]
+                        input directory path
+  -o [OUTPUT_DIR], --output-dir [OUTPUT_DIR]
+                        output directory path
+
+The processor supports to two main capabilities:
+1) Extract the KerML or SysML grammar(s)
+   from provided raw .html file(s) exported from KerML and SysML specifications in the View Editor tool,
+   and then validate the extracted grammars, report possible errors, and generate these outputs:
+   - .json dumps of the processed intermediate data model(s),
+   - .kebnf and/or .kgbnf plain text files,
+   - -marked_up.kebnf and/or -marked_up.kgbnf marked up text files, that can be used as a basis for corrected grammars,
+   - .html files with hyperlinked, human-readable versions of the grammars.
+2) Validate corrected -marked_up.kebnf or -marked_up.kgbnf input files
+   and generate the same files as under 1), but now for the corrected grammars.
+
+Option 2) is selected when the input filename(s) end on '-marked_up.kebnf' or '-marked_up.kgbnf', otherwise option 1).
+Both options will produce a log file named 'bnf_grammar_processor.log' in the working directory.
+In SOURCE_DATA the input files should be given in reverse dependendy order, i.e., first KerML textual, then SysML textual, then SysML graphical notation.
+Via diff'ing of the extracted and corrected .kebnf and/or .kgbnf files a list of corrections to be fed into the OMG issue trackers can be compiled.
+----
+
+Note. The file extensions `.kebnf` and `.kgbnf` are inspired by the `.kpar` extension for the KerML archive files.
+
+The BNF grammars are defined in the format of the https://github.com/lark-parser/lark[Lark] parsing toolkit for Python. The definitions are in:
+
+* `bnf_grammar/kebnf_textual_grammar.lark`, and,
+* `bnf_grammar/kgbnf_graphical_grammar.lark`.
+
+Inside the `bnf_grammar_processer` Lark is used to check each production individually. Some additional heuristic validation is also performed to permit processing of incorrect grammar or note fragments. All diagnostics are reported in the `bnf_grammar_processor.log` file. For the graphical grammar this includes a mapping table between the existing (PNG) images in the specs from the View Editor source and the new SVG images in `images` subdirectory.
+
+.Example command line arguments
+For the time being, example input and output directories with `SOURCE_DATA` files can be found under the `tests` folder.
+
+For option 1):
+
+- `INPUT_DIR` = `tests/KerML_and_SysML_spec_sources`
+- `OUTPUT-DIR` = `tests/KerML_and_SysML_grammars`
+- `SOURCE_DATA` = `source_specs.json` (in `INPUT_DIR`)
+
+The style information for the generated HTML outputs resides in `tests/KerML_and_SysML_grammars/bnf_styles.css`.
+
+For option 2):
+
+- `INPUT_DIR` = `tests/KerML_and_SysML_grammars`
+- `OUTPUT-DIR` = `tests/KerML_and_SysML_grammars`
+- `SOURCE_DATA` = `source_marked_ups.json` (in `INPUT_DIR`)
+
+.Example generated outputs for option 1) (extract)
+The bnf_grammar_processor with produces the following outputs (see directory `tests/KerML_and_SysML_grammars`):
+
+[cols="2,3"]
+|===
+| `KerML-textual-bnf-elements.json`     | dump of the processed intermediate data model(s)
+| `KerML-textual-bnf.kebnf`             | generated plain text KerML textual grammar file
+| `KerML-textual-bnf-marked_up.kebnf`   | generated editable marked up KerML textual grammar file
+| `KerML-textual-bnf.html`              | generated browsable, hyperlinked HTML KerML textual grammar file
+| `SysML-textual-bnf-elements.json`     | dump of the processed intermediate data model(s)
+| `SysML-textual-bnf.kebnf`             | generated plain text SysML textual grammar file
+| `SysML-textual-bnf-marked_up.kebnf`   | generated editable marked up SysML textual grammar file
+| `SysML-textual-bnf.html`              | generated browsable, hyperlinked HTML SysML textual grammar file
+| `SysML-graphical-bnf-elements.json`   | dump of the processed intermediate data model(s)
+| `SysML-graphical-bnf.kgbnf`           | generated plain text SysML graphical grammar file
+| `SysML-graphical-bnf-marked_up.kgbnf` | generated editable marked up SysML graphical grammar file
+| `SysML-graphical-bnf.html`            | generated browsable, hyperlinked HTML SysML graphical grammar file (See Note)
+|===
+
+Note. The SVG images for the graphical BNF productions reside in `tests/KerML_and_SysML_grammars/images`. They are copied from the source in https://github.com/Systems-Modeling/Graphical-Specification-WG/tree/main/src/Graphical-BNF/_svg[Graphical-Specification-WG github repo].
+
+Each run of the `bnf_grammar_processor` produces a log on the console and in file `bnf_grammar_processor.log`. The log of the previous run is saved in `bnf_grammar_processor.log.backup`, which can be used to detect differences between runs.
+
+=== Correct the Extracted Grammar Files and Reprocess with the bnf_grammar_processor
+
+If there are errors in the grammar files, the following workflow can be used to apply bulk corrections.
+
+. Copy `KerML-textual-bnf-marked_up.kebnf` to `KerML-textual-bnf-corrected-marked_up.kebnf`
+. Copy `SysML-textual-bnf-marked_up.kebnf` to `SysML-textual-bnf-corrected-marked_up.kebnf`
+. Copy `SysML-graphical-bnf-marked_up.kgbnf` to `SysML-graphical-bnf-corrected-marked_up.kgbnf`
+. Check the errors in the log files, and modify the `...-corrected-marked_up.k*bnf` files in a text editor to correct the errors.
+. After every couple of corrections, run the `bnf_grammar_processor` with the option 2) arguments. This will validate the corrected `.kebnf` and `.kgbnf` and generate the set of files described in the table below, similar to option 1)
+. Iterate the steps 4 and 5, until satisfied.
+. By making a diff between pairs of original (`...-bnf-marked_up.k*bnf`) and corrected (`...-bnf-corrected-marked_up.k*bnf`) files the required changes to be raised in OMG issues can be systematically compiled.
+
+.Example generated files for option 2)
+[cols="2,3"]
+|===
+| `KerML-textual-bnf-corrected-elements.json`     | dump of the corrected intermediate data model(s)
+| `KerML-textual-bnf-corrected.kebnf`             | generated corrected plain text KerML textual grammar file
+| `KerML-textual-bnf-corrected.html`              | generated corrected browsable, hyperlinked HTML KerML textual grammar file
+| `SysML-textual-bnf-corrected-elements.json`     | dump of the processed intermediate corrected data model(s)
+| `SysML-textual-bnf-corrected.kebnf`             | generated corrected plain text SysML textual grammar file
+| `SysML-textual-bnf-corrected.html`              | generated corrected browsable, hyperlinked HTML SysML textual grammar file
+| `SysML-graphical-bnf-corrected-elements.json`   | dump of the corrected intermediate data model(s)
+| `SysML-graphical-bnf-corrected.kgbnf`           | generated corrected plain text SysML graphical grammar file
+| `SysML-graphical-bnf-corrected.html`            | generated corrected browsable, hyperlinked HTML SysML textual grammar file
+|===
+
+=== Use the bnf_file_parser for Final Checks
+
+As a final check the `bnf_file_parser` can be used to validate complete, corrected BNF grammar files.
+
+The usage info for the `bnf_file_parser` is as below, as usual obtained with the `-h` or `--help` option.
+Go to the `tool-support/bnf_grammar_tools` directory and run `python .\bnf_grammar\bnf_file_parser.py -h`.
+
+[source,shell]
+----
+usage: bnf_file_parser [-h] BNF_PATH
+
+Parse KerML or SysML grammar files in textual or graphical BNF format.
+
+positional arguments:
+  BNF_PATH    Path to plain text BNF file with extension .kebnf or .kgbnf
+
+options:
+  -h, --help  show this help message and exit
+----
+
+Run `bnf_file_parser` on the following files:
+
+* `KerML-textual-bnf-corrected.kebnf`
+* `SysML-textual-bnf-corrected.kebnf`
+* `SysML-graphical-bnf-corrected.kgbnf`
+
+The console and the log file `bnf_file_parser.log` will list any errors still present. Otherwise, if the parse is completely successful, a dump of the resulting abstract syntax tree (in Lark's pretty print format) will be listed.

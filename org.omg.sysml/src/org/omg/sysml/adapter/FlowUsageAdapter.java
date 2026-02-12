@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -99,9 +99,22 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 				getDefaultSupertype("base");
 	}
 		
+	/**
+	 * @satisfies validateConnectorRelatedFeatures
+	 * (For a FlowUsage that is a message.)
+	 */
+	protected void makeMessageAbstract() {
+		super.postProcess();
+		FlowUsage target = getTarget();
+		if (UsageUtil.isMessageConnection(target) && target.getRelatedFeature().size() < 2) {
+			target.setIsAbstract(true);
+		}
+	}
+	
 	@Override
 	public void doTransform() {
 		ConnectorUtil.transformConnectorEndsOf(getTarget());
+		makeMessageAbstract();
 		super.doTransform();
 	}
 	

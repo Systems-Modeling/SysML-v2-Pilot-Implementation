@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
@@ -97,9 +98,10 @@ public class TypeUtil {
 				collect(Collectors.toSet());
 	}
 	
-	public static List<Feature> getFeaturesRedefinedBy(Type type, Element skip) {
+	public static List<Feature> getFeaturesRedefinedBy(Type type, Feature skip) {
 		return type.getOwnedFeature().stream().
-				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip).stream()).
+				filter(feature->feature != skip).
+				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature).stream()).
 				toList();
 	}
 
@@ -264,6 +266,7 @@ public class TypeUtil {
 			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter(resultParameter);
 			type.getOwnedRelationship().add(membership);
+			resultParameter.setDirection(FeatureDirectionKind.OUT);
 		}
 	}
 	
@@ -363,7 +366,9 @@ public class TypeUtil {
 	}
 	
 	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
-		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
+		ParameterMembership membership = addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
+		membership.getOwnedMemberParameter().setDirection(FeatureDirectionKind.IN);
+		return membership;
 	}
 	
 	// Implicit general types
@@ -477,10 +482,7 @@ public class TypeUtil {
 	// Multiplicity
 
 	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
+		if (NamespaceUtil.getOwnedMembersOf(type).noneMatch(Multiplicity.class::isInstance)) {
 			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
 			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 			membership.setOwnedMemberElement(multiplicity);

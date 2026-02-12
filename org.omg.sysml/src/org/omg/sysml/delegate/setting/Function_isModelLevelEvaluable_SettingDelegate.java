@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +24,7 @@ package org.omg.sysml.delegate.setting;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.expressions.LibraryFunctionFactory;
+import org.omg.sysml.expressions.ModelLevelLibraryFunctionFactory;
 import org.omg.sysml.lang.sysml.Function;
 
 public class Function_isModelLevelEvaluable_SettingDelegate extends BasicDerivedPropertySettingDelegate {
@@ -34,7 +35,7 @@ public class Function_isModelLevelEvaluable_SettingDelegate extends BasicDerived
 
 	@Override
 	protected Boolean basicGet(InternalEObject owner) {
-		return LibraryFunctionFactory.INSTANCE.isModelLevelEvaluable((Function)owner);
+		return ModelLevelLibraryFunctionFactory.isModelLevelEvaluable((Function)owner);
 	}
 
 }

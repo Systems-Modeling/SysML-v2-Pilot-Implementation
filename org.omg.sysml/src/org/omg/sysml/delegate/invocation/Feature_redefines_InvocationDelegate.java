@@ -41,7 +41,7 @@ public class Feature_redefines_InvocationDelegate extends BasicInvocationDelegat
 		Feature self = (Feature) target;
 		Feature redefinedFeature = (Feature) arguments.get(0);
 		
-		return FeatureUtil.getRedefinedFeaturesWithComputedOf(self, null).
+		return FeatureUtil.getRedefinedFeaturesWithComputedOf(self).
 				contains(redefinedFeature);
 	}
 

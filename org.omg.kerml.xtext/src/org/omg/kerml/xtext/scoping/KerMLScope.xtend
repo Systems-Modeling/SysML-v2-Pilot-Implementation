@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2022,2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018-2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.kerml.xtext.naming.QualifiedNameUtil
+import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -123,9 +124,9 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected QualifiedName targetqn;
 	
 	/**
-	 * A map of Elements to the QualifiedNames found for them in the scope.
+	 * A map of QualifiedNames to the Elements resolved for them in the scope.
 	 */
-	protected Map<Element, Set<QualifiedName>> elements
+	protected Map<QualifiedName, Set<Element>> elements
 	
 	/**
 	 * The QualifiedNames that have already been seen during a resolution search.
@@ -200,8 +201,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		this.elements = newHashMap
 		this.visitedqns = newHashSet
 		resolve()
-		elements.keySet.flatMap[key |
-			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
+		elements.keySet.flatMap[qn |
+			elements.get(qn).map[elm | EObjectDescription.create(qn, elm)]
 		]
 	}
 	
@@ -214,7 +215,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			ns.gen(QualifiedName.create(), newHashSet, null, true, true)
 		} else {
 			val includeAll = referenceType === SysMLPackage.eINSTANCE.membership && element instanceof Import && (element as Import).isImportAll
-			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, true, true, includeAll)
+			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, isInsideScope, true, includeAll)
 		}
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.removeVisited(skip)
@@ -231,18 +232,22 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean addName(QualifiedName qn, Membership mem, Element elm) {
-		var el = elm
-		if (referenceType !== SysMLPackage.eINSTANCE.membership && !referenceType.isInstance(el)) {
+		if (referenceType !== SysMLPackage.eINSTANCE.membership && !referenceType.isInstance(elm)) {
 			return false
 		} else {
-			if (findFirst && referenceType === SysMLPackage.eINSTANCE.membership) {
-				el = mem
-			}
-			val qns = elements.get(el)
-			if (qns === null) {
-				elements.put(el, newHashSet(qn))
+			val el = if (findFirst && referenceType === SysMLPackage.eINSTANCE.membership) mem else elm
+			val elms = elements.get(qn)
+			if (elms === null) {
+				elements.put(qn, newHashSet(el))
+			} else if (findFirst && el instanceof Feature) {
+				// If findFirst = true then the only time multiple elements will be added for the same qualified
+				// name is during the traversal of general types. In this case, the chosen element should be one
+				// that is not redefined by any other element for the qualified name.
+				if (elms.exists[old | FeatureUtil.getAllRedefinedFeaturesOf(el as Feature).contains(old)]) {
+					elements.put(qn, newHashSet(el))
+				}
 			} else {
-				qns.add(qn)
+				elms.add(el)
 			}
 			return true
 		}
@@ -261,7 +266,9 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			
 			NamespaceUtil.addAdditionalMembersTo(ns)
 			for (mem: ns.ownedMembership.clone) { // Clone to avoid any possible ConcurrentModificationException.
-				if (!scopeProvider.visited.contains(mem)) {
+				if (!(scopeProvider.visited.contains(mem) || 
+				     mem instanceof OwningMembership && skip instanceof Redefinition && 
+				     (skip as Redefinition).owningType == mem.memberElement)) {
 					if (includeAll || isInsideScope || mem.visibility == VisibilityKind.PUBLIC || 
 						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {
 
@@ -326,13 +333,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def addQualifiedName(QualifiedName elementqn, Membership mem, Element memberElement) {
 		visitedqns.add(elementqn)
 		if (targetqn === null || targetqn == elementqn) {
-			if (addName(elementqn, mem, memberElement)) {
-				if (targetqn != elementqn && memberElement instanceof Namespace) {
-					isShadowing = true
-				}
-				if (findFirst && targetqn == elementqn) {
-					return true
-				}
+			if (addName(elementqn, mem, memberElement) && findFirst && targetqn !== null) {
+				return true;
 			}
 		}
 		false
@@ -358,6 +360,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	}
 	
 	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean isInheriting, boolean includeImplicit) {
+		var isFound = false
 		if (ns instanceof Type) {
 			val conjugator = ns.ownedConjugator
 			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
@@ -371,17 +374,21 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			val newRedefined = new HashSet()
 			if (redefined !== null) {
 				newRedefined.addAll(redefined)
-				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, skip))
+				newRedefined.addAll(TypeUtil.getFeaturesRedefinedBy(ns, if (skip instanceof Redefinition) skip.owningFeature else null))
 			}
+			
+			// Note: All specializations are traversed, even if a resolution is found, in order to check for possible redefinitions inherited
+			// from subsequent specializations. If findFirst = true, the selection of a single element is handled in addName.
+			
 			for (e: ns.ownedSpecialization) {
 				if (!scopeProvider.visited.contains(e)) {
-					// NOTE: Exclude the generalization e to avoid possible circular name resolution
+					// NOTE: Exclude the specialization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
 					val found = e.general.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, includeImplicit, false)
 					scopeProvider.removeVisited(e)
 					if (found) {
-						return true
+						isFound = true
 					}
 				}
 			}
@@ -392,7 +399,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				for (type : implicitTypes) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
 					if (found) {
-						return true
+						isFound = true
 					}
 				}
 			}
@@ -400,11 +407,11 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
 				if (chainingFeature !== null && 
 					chainingFeature.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)) {
-					return true;
+					isFound = true;
 				}
 			}
 		}
-		return false
+		return isFound
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean isInsideScope, boolean includeImplicitGen, boolean includeAll) {

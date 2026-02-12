@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.util.EvaluationUtil;
 
 public class MetadataFeature_syntaxElement_InvocationDelegate extends BasicInvocationDelegate {
 

@@ -34,6 +34,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
@@ -56,11 +57,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
@@ -110,15 +111,6 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public String getEffectiveShortName() {
 		return storedEffectiveShortName;
-	}
-	
-	public EList<Type> getTypes() {
-		return types;
-	}
-	
-	public EList<Type> setTypes(EList<Type> types) {
-		this.types = types;
-		return types;
 	}
 	
 	Set<Feature> allRedefinedFeatures = null;
@@ -309,7 +301,7 @@ public class FeatureAdapter extends TypeAdapter {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 			}
 			
-			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner, null)) {
+			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf((Feature)owner)) {
 				if (redefinedFeature.isEnd()) {
 					Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 					if (crossFeature != null) {
@@ -507,7 +499,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(getTarget());
-		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
+		getRedefinedFeaturesWithComputed().stream().forEach(redefinedFeature->{
 			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
 				FeatureUtil.addAllRedefinedFeaturesTo(redefinedFeature, redefinedFeatures);
 			}
@@ -516,15 +508,15 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Computed Redefinition
 	
-	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
+	public List<Feature> getRedefinedFeaturesWithComputed() {
 		Feature target = getTarget();
 		
-		addComputedRedefinitions(skip);
+		addComputedRedefinitions(null);
 		EList<Redefinition> redefinitions = target.getOwnedRedefinition();
 		
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
-			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			map(Redefinition::getRedefinedFeature).
 			filter(f->f != null).
 			forEachOrdered(redefinedFeatures::add);
 		
@@ -549,6 +541,48 @@ public class FeatureAdapter extends TypeAdapter {
 				  target.getOwnedRedefinition().isEmpty());
 	}
 	
+	public EList<Type> getAllTypes() {
+		if (types == null) {
+			EList<Type> allTypes = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)getTarget(), SysMLPackage.FEATURE__TYPE);
+			getTypes(allTypes, new HashSet<Feature>());
+			removeRedundantTypes(allTypes);
+			// Note: Cache must be set only after completion of computation of types, in order to correctly
+			// handle a possible circular recursive call back to this method.
+			types = allTypes;
+		}
+		return types;
+	}
+	
+	public void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		visitedFeatures.add(feature);
+		computeImplicitGeneralTypes();
+		getFeatureTypes(types, visitedFeatures);
+		for (Feature typingFeature : feature.typingFeatures()) {
+			if (!visitedFeatures.contains(typingFeature)) {
+				FeatureUtil.getTypesOf(typingFeature, types, visitedFeatures);
+			}
+		}
+	}
+	
+	public void getFeatureTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		Feature feature = getTarget();
+		feature.getOwnedTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				forEachOrdered(types::add);
+		types.addAll(getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
+			Type type = types.get(i);
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
+				types.remove(i);
+			}
+		}
+	}
+		
 	/**
 	 * Compute relevant implicit Redefinitions, as appropriate.
 	 */
@@ -842,7 +876,7 @@ public class FeatureAdapter extends TypeAdapter {
 					
 					addFeaturingType(cartesianProductFeature);
 
-					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature, null)) {
+					for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(owningFeature)) {
 						if (redefinedFeature.isEnd()) {
 							Feature crossFeature = getCrossFeatureOf(redefinedFeature);
 							if (crossFeature != null) {

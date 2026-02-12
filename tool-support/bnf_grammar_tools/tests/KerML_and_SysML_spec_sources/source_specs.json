@@ -1,0 +1,25 @@
+[
+  {
+    "file": "../../sysml.library/Kernel Libraries/Kernel Semantic Library/KerML.kerml",
+    "syntax_kind": "kerml-library"
+  },
+  {
+    "file": "../../sysml.library/Systems Library/SysML.sysml",
+    "syntax_kind": "sysml-library"
+  },
+  {
+    "file": "KerML-spec.html",
+    "syntax_kind": "textual-bnf",
+    "clause_id": "8.2"
+  },
+  {
+    "file": "SysML-spec.html",
+    "syntax_kind": "textual-bnf",
+    "clause_id": "8.2.2"
+  },
+  {
+    "file": "SysML-spec.html",
+    "syntax_kind": "graphical-bnf",
+    "clause_id": "8.2.3"
+  }
+]

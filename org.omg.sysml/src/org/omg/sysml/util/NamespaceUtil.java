@@ -175,7 +175,7 @@ public class NamespaceUtil {
 				return getResultNamespaceFor(target);		
 			}
 		} else if (ns instanceof FeatureChainExpression) {
-			EList<Expression> ops = ((FeatureChainExpression)ns).getOperand();
+			EList<Expression> ops = ((FeatureChainExpression)ns).getArgument();
 			if (!ops.isEmpty()) {
 				return getResultNamespaceFor(ops.get(0));
 			}

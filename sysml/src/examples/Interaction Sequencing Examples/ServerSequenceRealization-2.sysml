@@ -76,17 +76,17 @@ package ServerSequenceRealization_2 {
 			event consumerBehavior.delivery[1] :>> deliver_target_event;
 		}
 
-		message :>> publish_message: Transfers::MessageTransfer {
- 			end :>> source = producer.publicationPort;
- 			end :>> target = server.publicationPort;
+		flow :>> publish_message: Transfers::MessageTransfer {
+ 			end :>> source ::> producer.publicationPort;
+ 			end :>> target ::> server.publicationPort;
  		}
-		message :>> subscribe_message: Transfers::MessageTransfer {
- 			end :>> source = consumer.subscriptionPort;
- 			end :>> target = server.subscriptionPort;
+		flow :>> subscribe_message: Transfers::MessageTransfer {
+ 			end :>> source ::> consumer.subscriptionPort;
+ 			end :>> target ::> server.subscriptionPort;
  		}
-		message :>> deliver_message: Transfers::MessageTransfer {
- 			end :>> source = server;
- 			end :>> target = consumer;
+		flow :>> deliver_message: Transfers::MessageTransfer {
+ 			end :>> source ::> server;
+ 			end :>> target ::> consumer;
  		}
  		
  		/* Binding sent/accept messages to specification model messages. */

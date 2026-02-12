@@ -8,9 +8,11 @@ Supported editors are:
 - JupyterLab and Jupyter Notebook
 
 Copyright (c) 2020-2021 DEKonsult
+Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
 
 Contributor(s):
 - Hans Peter de Koning (DEKonsult)
+- Ed Seidewitz (MDS)
 """
 
 import sys
@@ -321,16 +323,11 @@ class Converter(object):
     def export_jupyter_syntax_highlighting_files(
             self,
             working_folder: str,
-            jupyter_lab_target_folder: str,
-            jupyter_kernel_target_folder: str):
+            jupyter_lab_target_folder: str):
 
         mode_template_path = os.path.join(working_folder, "mode_template.ts")
         with open(mode_template_path, mode="r") as mode_template_file:
             mode_template = mode_template_file.read()
-
-        kernel_template_path = os.path.join(working_folder, "kernel_template.js")
-        with open(kernel_template_path, mode="r") as kernel_template_file:
-            kernel_template = kernel_template_file.read()
 
         additional_def_keywords_path = os.path.join(working_folder, "additional_def_keywords.txt")
         with open(additional_def_keywords_path, mode="r") as additional_def_keywords_file:
@@ -358,7 +355,7 @@ class Converter(object):
                               f"is not in the list of keywords obtained from the xtext grammar")
 
         four_spaces = "    "
-        indent = 4 * four_spaces
+        indent = 3 * four_spaces
         keywords_block = f"\n{indent}".join(textwrap.wrap('", "'.join(keywords_minus_atoms), 104))
         def_keywords_block = f"\n{indent}".join(textwrap.wrap('", "'.join(self.def_keywords), 104))
 
@@ -378,22 +375,6 @@ class Converter(object):
         with open(mode_content_path, mode="w") as output_file:
             output_file.write(mode_content)
         logging.info(f"Saved generated CodeMirror language definition for JupyterLab in {mode_content_path}")
-
-        # Create and save generated kernel.js files
-        kernel_content = kernel_template.replace('$SCRIPT', script_path)
-        kernel_content = kernel_content.replace('$TEMPLATE_FILE', self.get_relative_repo_path(kernel_template_path))
-        kernel_content = kernel_content.replace('$KEYWORDS', keywords_block)
-        kernel_content = kernel_content.replace('$DEF_KEYWORDS', def_keywords_block)
-
-        kernel_content_path = os.path.join(working_folder, "kernel.js")
-        with open(kernel_content_path, mode="w") as output_file:
-            output_file.write(kernel_content)
-        logging.info(f"Saved generated CodeMirror language definition for Jupyter kernel in {kernel_content_path}")
-
-        kernel_content_path = os.path.join(jupyter_kernel_target_folder, "kernel.js")
-        with open(kernel_content_path, mode="w") as output_file:
-            output_file.write(kernel_content)
-        logging.info(f"Saved generated CodeMirror language definition for Jupyter kernel in {kernel_content_path}")
 
     def get_relative_repo_path(self, abspath: str):
         return "$GIT_REPO_DIR/" + os.path.relpath(abspath, start=self.repo_dir_path).replace("\\", "/")
@@ -463,8 +444,7 @@ if __name__ == "__main__":
         target_path="./jetbrains/SysML.xml")
     converter.export_jupyter_syntax_highlighting_files(
         working_folder="./jupyter",
-        jupyter_lab_target_folder="../../org.omg.sysml.jupyter.jupyterlab/src/main",
-        jupyter_kernel_target_folder="../../org.omg.sysml.jupyter.kernel/src/main/resources/sysml")
+        jupyter_lab_target_folder="../../org.omg.sysml.jupyter.jupyterlab/src/main")
 
     end_timestamp = datetime.datetime.now()
     elapsed_time = end_timestamp - start_timestamp

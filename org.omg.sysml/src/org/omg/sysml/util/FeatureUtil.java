@@ -29,7 +29,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,7 +37,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
@@ -58,7 +56,6 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 
@@ -120,12 +117,6 @@ public class FeatureUtil {
 
 	// Typing
 	
-	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
-		FeatureAdapter adapter = getFeatureAdapter(feature);
-		EList<Type> types = adapter.getTypes();
-		return types == null? adapter.setTypes(supplier.get()): types;
-	}
-	
 	public static <T> T getFirstTypeOf(Feature feature, Class<T> kind) {
 		return FeatureUtil.getAllTypesOf(feature).stream().
 				filter(kind::isInstance).
@@ -144,39 +135,11 @@ public class FeatureUtil {
 	}
 	
 	public static EList<Type> getAllTypesOf(Feature feature) {
-		return FeatureUtil.cacheTypesOf(feature, ()->{
-			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)feature, SysMLPackage.FEATURE__TYPE);
-			getTypesOf(feature, types, new HashSet<Feature>());
-			removeRedundantTypes(types);
-			return types;
-		});
+		return getFeatureAdapter(feature).getAllTypes();
 	}
 	
-	private static void getTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
-		visitedFeatures.add(feature);
-		getFeatureTypesOf(feature, types, visitedFeatures);
-		for (Feature typingFeature : feature.typingFeatures()) {
-			if (!visitedFeatures.contains(typingFeature)) {
-				getTypesOf(typingFeature, types, visitedFeatures);
-			}
-		}
-	}
-	
-	private static void getFeatureTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
-		feature.getOwnedTyping().stream().
-				map(typing->typing.getType()).
-				filter(type->type != null).
-				forEachOrdered(types::add);
-		types.addAll(TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.eINSTANCE.getFeatureTyping()));
-	}
-	
-	protected static void removeRedundantTypes(List<Type> types) {
-		for (int i = types.size() - 1; i >= 0 ; i--) {
-			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.specializes(otherType, type))) {
-				types.remove(i);
-			}
-		}
+	public static void getTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
+		getFeatureAdapter(feature).getTypes(types, visitedFeatures);
 	}
 	
 	public static FeatureTyping addFeatureTypingTo(Feature feature) {
@@ -231,8 +194,8 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getRedefinedFeatures();
 	}
 	
-	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature, Element skip) {
-		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed(skip);
+	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature) {
+		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed();
 	}
 	
 	public static void forceComputeRedefinitionsFor(Feature feature) {

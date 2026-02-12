@@ -1,20 +1,20 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
 /**
@@ -23,14 +23,20 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.Disjoining;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -101,7 +107,99 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.DISJOINING;
 	}
-	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getTypeDisjoined() {
+		if (typeDisjoined != null && typeDisjoined.eIsProxy()) {
+			InternalEObject oldTypeDisjoined = (InternalEObject)typeDisjoined;
+			typeDisjoined = (Type)eResolveProxy(oldTypeDisjoined);
+			if (typeDisjoined != oldTypeDisjoined) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.DISJOINING__TYPE_DISJOINED, oldTypeDisjoined, typeDisjoined));
+			}
+		}
+		return typeDisjoined;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type basicGetTypeDisjoined() {
+		return typeDisjoined;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTypeDisjoined(Type newTypeDisjoined) {
+		Type oldTypeDisjoined = typeDisjoined;
+		typeDisjoined = newTypeDisjoined;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DISJOINING__TYPE_DISJOINED, oldTypeDisjoined, typeDisjoined));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTypeDisjoined() {
+		return typeDisjoined != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwningRelatedElement() {
+		if (eContainerFeatureID() != SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRelatedElement(Element newOwningRelatedElement) {
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelatedElement != null)
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +283,52 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Element> getSource() {
+		EList<Element> source = new UniqueEList<Element>();
+		Type typeDisjoined = getTypeDisjoined();
+		if (typeDisjoined != null) {
+			source.add(typeDisjoined);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> getTarget() {
+		EList<Element> target = new UniqueEList<Element>();
+		Type disjoiningType = getDisjoiningType();
+		if (disjoiningType != null) {
+			target.add(disjoiningType);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -222,144 +366,6 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getTypeDisjoined() {
-		if (typeDisjoined != null && typeDisjoined.eIsProxy()) {
-			InternalEObject oldTypeDisjoined = (InternalEObject)typeDisjoined;
-			typeDisjoined = (Type)eResolveProxy(oldTypeDisjoined);
-			if (typeDisjoined != oldTypeDisjoined) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.DISJOINING__TYPE_DISJOINED, oldTypeDisjoined, typeDisjoined));
-			}
-		}
-		return typeDisjoined;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetTypeDisjoined() {
-		return typeDisjoined;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTypeDisjoined(Type newTypeDisjoined) {
-		Type oldTypeDisjoined = typeDisjoined;
-		typeDisjoined = newTypeDisjoined;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DISJOINING__TYPE_DISJOINED, oldTypeDisjoined, typeDisjoined));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTypeDisjoined() {
-		return typeDisjoined != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Type disjoiningType = getDisjoiningType();
-		if (disjoiningType != null) {
-			target.add(disjoiningType);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwningRelatedElement() {
-		if (eContainerFeatureID() != SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT) return null;
-		return (Element)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DISJOINING__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Type typeDisjoined = getTypeDisjoined();
-		if (typeDisjoined != null) {
-			source.add(typeDisjoined);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
 	}
 
 	/**

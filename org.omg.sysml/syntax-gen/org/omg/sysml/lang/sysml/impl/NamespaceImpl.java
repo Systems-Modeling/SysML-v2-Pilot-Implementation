@@ -1,42 +1,46 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2024 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
-import java.util.UUID;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
@@ -44,7 +48,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,6 +149,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMembership() {
+		return eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP)
+			|| eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
+	}
+
+	/**
 	 * The array of subset feature identifiers for the '{@link #getMembership() <em>Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -174,9 +187,30 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-		@Override
-	public EList<Element> getMember() {
-		return (EList<Element>)MEMBER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	@Override
+	public EList<Membership> getOwnedMembership() {
+		return (EList<Membership>)OWNED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Element> getOwnedMember() {
+		return (EList<Element>)OWNED_MEMBER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -191,59 +225,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Element> getOwnedMember() {
-		return (EList<Element>)OWNED_MEMBER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-		@Override
-	public EList<Membership> getImportedMembership() {
-		return (EList<Membership>)IMPORTED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Membership> getOwnedMembership() {
-		return (EList<Membership>)OWNED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMembership() {
-		return eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP)
-			|| eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
-
-	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,6 +233,28 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Element> getMember() {
+		return (EList<Element>)MEMBER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Membership> getImportedMembership() {
+		return (EList<Membership>)IMPORTED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
 
 	/**
 	 * The cached invocation delegate for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' operation.
@@ -263,15 +266,12 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	protected static final EOperation.Internal.InvocationDelegate NAMES_OF_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)SysMLPackage.Literals.NAMESPACE___NAMES_OF__ELEMENT).getInvocationDelegate();
 
-	// Operations
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<String> namesOf(Element element) {
 		try {
 			return (EList<String>)NAMES_OF_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{element}));
@@ -321,7 +321,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public EList<Membership> visibleMemberships(EList<Namespace> excluded, boolean isRecursive, boolean includeAll) {
 		try {
 			return (EList<Membership>)VISIBLE_MEMBERSHIPS_ELIST_BOOLEAN_BOOLEAN__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{excluded, isRecursive, includeAll}));
@@ -329,7 +328,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
-	}	
+	}
 
 	/**
 	 * The cached invocation delegate for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
@@ -524,32 +523,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 			throw new WrappedException(ite);
 		}
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * If the Namespace is the root Namespace of a standard library package, then give it a stable elementId.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public String getElementId() {
-		if (elementId == null && getOwningRelationship() == null) {
-			EList<Element> ownedMembers = getOwnedMember();
-			if (!ownedMembers.isEmpty()) {
-				Element firstOwnedMember = ownedMembers.get(0);
-				if (ElementUtil.isStandardLibraryElement(firstOwnedMember) && 
-						firstOwnedMember.libraryNamespace() == firstOwnedMember) {
-					String qualifiedName = firstOwnedMember.getQualifiedName();
-					if (qualifiedName != null) {
-						UUID namespaceUUID = UUID.fromString(firstOwnedMember.getElementId());
-						elementId = ElementUtil.constructNameUUID(namespaceUUID, qualifiedName + "/owner").toString();
-					}
-				}
-			}
-		}
-		return super.getElementId();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -694,6 +667,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		}
 		return super.eInvoke(operationID, arguments);
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -323,6 +323,16 @@ public class ElementUtil {
 		return element == null? null: getElementAdapter(element).getMetaclassFeature();
 	}
 	
+	// Element ID
+	
+	public static String getElementIdOf(Element element) {
+		return getElementAdapter(element).getElementId();
+	}
+	
+	public static void setElementIdOf(Element element, String elementId) {
+		getElementAdapter(element).setElementId(elementId);
+	}
+	
 	// Parse post-processing
 	
 	public static void postProcess(Element element) {

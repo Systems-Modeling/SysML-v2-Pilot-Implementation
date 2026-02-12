@@ -110,7 +110,7 @@ public class VSequence extends VDefault {
     }
 
     private Element next(FeatureChainExpression fce, boolean first) {
-            List<Expression> ops = fce.getOperand();
+            List<Expression> ops = fce.getArgument();
             int size = ops.size();
             if (size == 0) return null;
             Expression ex = ops.get(0);

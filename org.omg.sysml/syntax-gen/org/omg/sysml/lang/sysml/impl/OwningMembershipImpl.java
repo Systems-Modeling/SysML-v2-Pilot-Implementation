@@ -1,28 +1,28 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
+/**
+ */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.UUID;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,6 +63,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,6 +73,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -82,6 +83,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedMemberElement() <em>Owned Member Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -91,6 +93,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,43 +221,6 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getMemberElement() {
-		return getOwnedMemberElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element basicGetMemberElement() {
-		return basicGetOwnedMemberElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMemberElement(Element newMemberElement) {
-		setOwnedMemberElement(newMemberElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMemberElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Element getOwnedMemberElement() {
 		return (Element)OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
@@ -281,14 +247,13 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Generation with setting delegate was not executed properly, therefore code was edited manually
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwnedMemberElement() {
 		return basicGetOwnedMemberElement() != null;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -372,27 +337,39 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the OwningMembership is not itself a standard library Element, but its ownedMemberElement 
-	 * is a standard library Package, then give the OwningMembership a stable elementId anyway.
-	 * (This will give a stable elementID to the owningMembership of a top-level standard library Package.)
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
+	 */
+	public Element getMemberElement() {
+		return getOwnedMemberElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
-	public String getElementId() {
-		if (elementId == null) {
-			Element ownedMemberElement = getOwnedMemberElement();
-			if (!ElementUtil.isStandardLibraryElement(this) &&
-					ElementUtil.isStandardLibraryElement(ownedMemberElement) && 
-					ownedMemberElement.libraryNamespace() == ownedMemberElement) {
-				String path = path();
-				if (path != null) {
-					UUID namespaceUUID = UUID.fromString(ownedMemberElement.getElementId());
-					elementId = ElementUtil.constructNameUUID(namespaceUUID, path).toString();
-				}
-			}
-		}
-		return super.getElementId();
+	public Element basicGetMemberElement() {
+		return basicGetOwnedMemberElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberElement(Element newMemberElement) {
+		setOwnedMemberElement(newMemberElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMemberElement() {
+  		return false;
 	}
 
 	/**

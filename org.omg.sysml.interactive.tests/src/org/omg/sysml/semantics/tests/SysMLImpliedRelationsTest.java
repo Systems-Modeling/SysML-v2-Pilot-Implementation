@@ -1,6 +1,6 @@
 /**
  * SysML 2 Pilot Implementation
- * Copyright (C) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (C) 2024-2026 Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +27,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.util.ElementUtil;
@@ -104,10 +103,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		var targetParam = SysMLFactory.eINSTANCE.createFeature();
 		targetParam.setDirection(FeatureDirectionKind.IN);
-		
-		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
-		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setOwnedMemberParameter(targetParam);
+		TypeUtil.addOwnedFeatureTo(assignment, targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);
@@ -136,10 +132,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		var targetParam = SysMLFactory.eINSTANCE.createFeature();
 		targetParam.setDirection(FeatureDirectionKind.IN);
-		
-		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
-		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setOwnedMemberParameter(targetParam);
+		TypeUtil.addOwnedFeatureTo(assignment, targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);
@@ -163,10 +156,7 @@ public class SysMLImpliedRelationsTest extends SysMLSemanticTest {
 		
 		var targetParam = SysMLFactory.eINSTANCE.createFeature();
 		targetParam.setDirection(FeatureDirectionKind.IN);
-		
-		ParameterMembership parameterMembership = SysMLFactory.eINSTANCE.createParameterMembership();
-		assignment.getOwnedRelationship().add(parameterMembership);
-		parameterMembership.setOwnedMemberParameter(targetParam);
+		TypeUtil.addOwnedFeatureTo(assignment, targetParam);
 		
 		var firstOfTarget = SysMLFactory.eINSTANCE.createFeature();
 		TypeUtil.addOwnedFeatureTo(targetParam, firstOfTarget);

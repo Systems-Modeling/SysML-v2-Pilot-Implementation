@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -25,8 +24,9 @@ package org.omg.sysml.lang.sysml;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object
- * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Connector</b></em>'.
+ * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * <p>A <code>Connector</code> is a usage of <code>Associations</code>, with links restricted according to instances of the <code>Type</code> in which they are used (domain of the <code>Connector</code>). The <code>associations</code> of the <code>Connector</code> restrict what kinds of things might be linked. The <code>Connector</code> further restricts these links to be between values of <code>Features</code> on instances of its domain.</p>
@@ -100,10 +100,6 @@ public interface Connector extends Feature, Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Related Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>Features</code> that are related by this <code>Connector</code> considered as a <code>Relationship</code> and that restrict the links it identifies, given by the referenced <code>Features</code> of the <code>connectorEnds</code> of the <code>Connector</code>.</p>
@@ -129,10 +125,6 @@ public interface Connector extends Feature, Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Association</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>Associations</code> that type the <code>Connector</code>.</p>
@@ -158,10 +150,6 @@ public interface Connector extends Feature, Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Connector End</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>endFeatures</code> of a <code>Connector</code>, which redefine the <code>endFeatures</code> of the <code>associations</code> of the <code>Connector</code>. The <code>connectorEnds</code> determine via <code>ReferenceSubsetting</code> <code>Relationships</code> which <code>Features</code> are related by the <code>Connector</code>.</p>

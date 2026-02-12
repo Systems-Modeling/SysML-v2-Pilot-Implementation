@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2022-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,11 +23,10 @@ package org.omg.sysml.execution.expressions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -35,31 +34,29 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.EvaluationUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 	
 	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
 	
+	public ExpressionEvaluator() {
+		super();
+		setLibraryFunctionFactory(new LibraryFunctionFactory());
+	}
+	
 	@Override
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
 		Function function = expression.getFunction();
-		if (function != null && function.isModelLevelEvaluable()) {
-			return super.evaluateInvocation(expression, target);
+		LibraryFunction libraryFunction = libraryFunctionFactory.getLibraryFunction(function);
+		if (libraryFunction != null) {
+			return libraryFunction.invoke(expression, target, this);
 		} else {
 			Type type = expression.instantiatedType();
-			Expression resultExpression = null;
-			if (type != null) {
-				resultExpression = ExpressionUtil.getResultExpressionOf(type);
-				if (resultExpression == null) {
-					Feature resultParameter = TypeUtil.getResultParameterOf(type);
-					if (resultParameter != null) {
-						resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
-					}
-				}
-			}
+			Expression resultExpression = EvaluationUtil.getResultExpressionFor(type);
 			if (resultExpression == null) {
 				return EvaluationUtil.singletonList(expression);
 			} else {
@@ -77,13 +74,9 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 	protected InvocationExpression instantiateInvocation(InvocationExpression expression, Element target) {
 		InvocationExpression instantiation = SysMLFactory.eINSTANCE.createInvocationExpression();
 		
-		// Copy typing from original expression.
-		for (FeatureTyping typing: expression.getOwnedTyping()) {
-			FeatureTyping newTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
-			newTyping.setType(typing.getType());
-			newTyping.setTypedFeature(instantiation);
-			instantiation.getOwnedRelationship().add(newTyping);
-		}
+		// Copy instantiatedType from original expression.
+		Type instantiatedType = expression.getInstantiatedType();
+		NamespaceUtil.addMemberTo(instantiation, instantiatedType);
 		
 		// Add implicit generalization.
 		ElementUtil.transform(instantiation);
@@ -97,7 +90,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 				TypeUtil.addOwnedFeatureTo(instantiation, newParameter);
 				
 				newParameter.setDirection(parameter.getDirection());
-				for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter, null)) {
+				for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter)) {
 					Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
 					newRedefinition.setRedefinedFeature(redefinedFeature);
 					newRedefinition.setRedefiningFeature(newParameter);
@@ -122,4 +115,15 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 		
 		return instantiation;
 	}
+	
+	@Override
+	public EList<Element> evaluateFeature(Feature feature, Type type) {
+		EList<Element> results = super.evaluateFeature(feature, type);
+		Element result = results == null || results.size() != 1? null: results.get(0);
+		
+		// Treat an unbound input parameter as if it was null.
+		return type != null && result instanceof Feature && !(result instanceof Expression) &&
+			   FeatureUtil.isInputParameter((Feature)results.get(0), type)? EvaluationUtil.nullList(): results;
+	}
+	
 }

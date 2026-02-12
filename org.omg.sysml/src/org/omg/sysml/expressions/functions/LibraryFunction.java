@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,35 +21,31 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
 public interface LibraryFunction {
 	
-	public default boolean isModelLevelEvaluable() {
-		return true;
-	}
-	
 	abstract public String getPackageName();
 
-	public default String getOperatorName() {
+	public default String getFunctionName() {
 		return null;
 	}
 	
-	public default String[] getOperatorNames() {
-		String op = getOperatorName();
+	public default String[] getFunctionNames() {
+		String op = getFunctionName();
 		return op == null? new String[] {}: new String[] {op};
 	}
 	
-	public default String[] getFunctionNames() {
-		String[] names = getOperatorNames();
+	public default String[] getQualifiedNames() {
+		String[] names = getFunctionNames();
 		for (int i = 0; i < names.length; i++) {
 			names[i] = getPackageName() + "::" + names[i];
 		}
 		return names;
 	}
 	
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator);
 
 }

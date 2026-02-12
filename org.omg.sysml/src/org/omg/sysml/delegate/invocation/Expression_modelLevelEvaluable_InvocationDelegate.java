@@ -48,8 +48,10 @@ public class Expression_modelLevelEvaluable_InvocationDelegate extends BasicInvo
 		EList<Feature> visited = (EList<Feature>) arguments.get(0);
 
 		List<Feature> parameters = TypeUtil.getAllParametersOf(self);
-		if (!parameters.stream().allMatch(
-				param->self.directionOf(param) == FeatureDirectionKind.IN && 
+		Feature result = self.getResult();
+		if (!parameters.stream().allMatch(param->
+				(self.directionOf(param) == FeatureDirectionKind.IN || param == result) && 
+				param.getOwnedFeature().isEmpty() &&
 				FeatureUtil.getValuationFor(param) == null)) {
 			return false;
 		} else {

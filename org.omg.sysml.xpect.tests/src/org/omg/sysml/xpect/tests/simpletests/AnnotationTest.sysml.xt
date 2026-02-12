@@ -5,14 +5,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Metaobjects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/ControlPerformances.kerml"}
-		File {from ="/library.kernel/TransitionPerformances.kerml"}
-		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
-		File {from ="/library.systems/Parts.sysml"}
-		File {from ="/library.systems/Ports.sysml"}
+        File {from ="/library.systems/Metadata.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.domain/Analysis/AnalysisTooling.sysml"}
 	}
@@ -23,14 +20,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Metaobjects.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/ControlPerformances.kerml"}
-				File {from ="/library.kernel/TransitionPerformances.kerml"}
-				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
-				File {from ="/library.systems/Parts.sysml"}
-				File {from ="/library.systems/Ports.sysml"}
+                File {from ="/library.systems/Metadata.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.domain/Analysis/AnalysisTooling.sysml"}
 			}
@@ -52,8 +46,8 @@ package AnalysisAnnotation {
 		in dt : Real          { @ToolVariable { name = "deltaT"; } }
 		in whlpwr : Real      { @ToolVariable { name = "power"; } }
 		in Cd : Real          { @ToolVariable { name = "C_D"; } }
-		in Cf: Real           { @ToolVariable { name = "C_F"; } }
-		in tm :Real           { @ToolVariable { name = "mass"; } }
+		in Cf : Real          { @ToolVariable { name = "C_F"; } }
+		in tm : Real          { @ToolVariable { name = "mass"; } }
 		in v_in : Real        { @ToolVariable { name = "v0"; } }
 		in x_in : Real        { @ToolVariable { name = "x0"; } }
 		

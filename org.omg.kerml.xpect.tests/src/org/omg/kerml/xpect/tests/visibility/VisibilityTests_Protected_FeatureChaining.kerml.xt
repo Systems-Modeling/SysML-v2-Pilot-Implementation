@@ -1,0 +1,48 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+		File {from = "/library/Base.kerml"}
+        File {from = "/library/Occurrences.kerml"}
+        File {from = "/library/Performances.kerml"}
+        File {from = "/library/ControlFunctions.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from = "/library/Base.kerml"}
+				File {from = "/library/Occurrences.kerml"}
+                File {from = "/library/Performances.kerml"}
+                File {from = "/library/ControlFunctions.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Visibility_Protected_FeatureChaining {
+    feature x {
+        feature a;
+        protected feature b;
+        private feature c;
+    }
+    
+    feature y subsets x {
+        feature redefines a;
+        feature redefines b;
+        // XPECT errors --> "Couldn't resolve reference to Feature 'c'." at "c"        
+        feature redefines c;
+    }
+    
+    feature redefines x.a;
+    // XPECT errors --> "Couldn't resolve reference to Feature 'b'." at "b"        
+    feature redefines x.b;
+    // XPECT errors --> "Couldn't resolve reference to Feature 'c'." at "c"
+    feature redefines x.c;
+    
+    feature x1 = x.a;
+    // XPECT errors --> "Couldn't resolve reference to Element 'b'." at "b"
+    feature x2 = x.b;
+    // XPECT errors --> "Couldn't resolve reference to Element 'c'." at "c"
+    feature x3 = x.c;
+}

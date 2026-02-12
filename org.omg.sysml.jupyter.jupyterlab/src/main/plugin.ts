@@ -1,6 +1,8 @@
 /*
  * SysML 2 Pilot Implementation
  * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2025  Model Driven Solutions, Inc.
+ * Copyright (C) 2025  Mgnite Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -17,26 +19,39 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
 
-import {
-	JupyterLab,
-	JupyterFrontEndPlugin,
-} from '@jupyterlab/application';
+import { JupyterFrontEndPlugin, JupyterFrontEnd} from '@jupyterlab/application';
+import { IEditorLanguageRegistry, EditorLanguageRegistry,
+         IEditorExtensionRegistry, EditorExtensionRegistry,
+         IEditorExtensionFactory } from "@jupyterlab/codemirror";
 
-import {
-	defineSysMLv2Mode,
-} from './mode';
+import { sysmlparser } from './mode';
+import { sysmlFoldServiceSelection } from './fold';
 
-function activate(app: JupyterLab) {
-	defineSysMLv2Mode();
-}
+const plugin: JupyterFrontEndPlugin<void> = {
+  id: 'jupyterlab-sysml:plugin',
+  description: 'A JupyterLab extension adding a syntax highlight for SysMLv2 language.',
+  autoStart: true,
+  requires: [IEditorLanguageRegistry, IEditorExtensionRegistry],
+  activate: (app: JupyterFrontEnd, languages: IEditorLanguageRegistry, ext: IEditorExtensionRegistry) => {
 
-/**
- * Initialization data for extension
- */
-const extension: JupyterFrontEndPlugin<void> = {
-	activate,
-	autoStart: true,
-	id: 'jupyterlab-sysml:plugin',
-};
+	languages.addLanguage({
+		name: 'sysml',
+		displayName: 'sysml',
+		mime: 'text/x-sysml',
+		extensions: ['sysml'],
+		load: async () => {
+			return EditorLanguageRegistry.legacy(sysmlparser)
+		}
+	})
 
-export default extension;
+    const sysmlFoldExtension = Object.freeze({
+        name: 'sysml-fold-extension',
+        default: true,
+        factory: (options: IEditorExtensionFactory.IOptions) =>
+        EditorExtensionRegistry.createConditionalExtension(sysmlFoldServiceSelection(options))
+
+    });
+    ext.addExtension(sysmlFoldExtension);
+  }}
+
+export default plugin;

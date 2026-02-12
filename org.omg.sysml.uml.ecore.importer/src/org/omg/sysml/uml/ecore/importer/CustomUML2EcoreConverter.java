@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
@@ -42,25 +43,43 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 		for (Entry<Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
-			if (element instanceof Property && ((Property)element).isDerived() && !((Property)element).isDerivedUnion() && modelElement instanceof EStructuralFeature ||
+			if (element instanceof Property && modelElement instanceof EStructuralFeature && 
+					(((Property)element).isDerived() && !((Property)element).isDerivedUnion() || 
+					"elementId".equals(((Property)element).getName())) ||
 				element instanceof Operation && modelElement instanceof EOperation) {
+				// Add SysML EAnnotation to derived properties (but not derived unions) and all operations
 				String qualifiedName = ((NamedElement)element).getQualifiedName();
-				System.out.println("Add annotation: " + qualifiedName.substring(qualifiedName.indexOf("::") + 2));
-				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				annotation.setSource(ANNOTATION_SYSML);
-				modelElement.getEAnnotations().add(annotation);
+				addSysMLAnnotation(qualifiedName.substring(qualifiedName.indexOf("::") + 2), modelElement);
+				if (element instanceof Property && "elementId".equals(((Property)element).getName())) {
+					// Since elementId is to be treated as effectively derived, don't use it as an ID
+					// internally to Eclipse.
+					((EAttribute)modelElement).setID(false);
+				}
 			} else if (element instanceof org.eclipse.uml2.uml.Class && modelElement instanceof EClass) {
 				String name = ((org.eclipse.uml2.uml.Class)element).getName();
 				EClass eClass = (EClass)modelElement;
 				if ("Feature".equals(name)) {
+					// Add the "isNonunique" attribute as the effective logical inverse of "isUnique".
 					EClassifier booleanType = eClass.getEStructuralFeature("isUnique").getEType();
-					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEAttribute(), "isNonunique", booleanType, 1, 1, "false", false);
+					EAttribute isNonUniqueAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+					addStructuralFeature(eClass, isNonUniqueAttribute, "isNonunique", booleanType, 1, 1, "false", false);
+					addSysMLAnnotation("Feature::isNonUnique", isNonUniqueAttribute);
 				} else if ("InvocationExpression".equals(name)) {
+					// Add the "operand" reference as a workaround for parsing operator expression arguments.
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
-					addStructuralFeature(eClass, EcoreFactory.eINSTANCE.createEReference(), "operand", expressionClass, 0, -1, null, true);
+					EReference operandReference = EcoreFactory.eINSTANCE.createEReference();
+					addStructuralFeature(eClass, operandReference, "operand", expressionClass, 0, -1, null, true);
+					addSysMLAnnotation("InvocationExpression::operand", operandReference);
 				}
 			}
 		}
+	}
+	
+	private void addSysMLAnnotation(String qualifiedName, EModelElement modelElement) {
+		System.out.println("Add annotation: " + qualifiedName);
+		EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		annotation.setSource(ANNOTATION_SYSML);		
+		modelElement.getEAnnotations().add(annotation);
 	}
 	
 	private void addStructuralFeature(EClass eClass, EStructuralFeature feature, String name, EClassifier type, int lower, int upper, String defaultValue, boolean isContainment) {

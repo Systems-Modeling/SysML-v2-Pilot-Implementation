@@ -1,0 +1,71 @@
+// Lark grammar for KerML and SysML GBNF (graphical notation)
+//
+// Copyright (c) 2025: DEKonsult
+//
+// Author: Hans Peter de Koning (DEKonsult)
+//
+
+start: _rule+
+
+_rule: lexical_rule _NON_CONTINUATION_LINE | nonterminal_rule _NON_CONTINUATION_LINE | line_comment
+
+lexical_rule: LEXICAL_NAME "=" alternation
+
+nonterminal_rule: GRAPHICAL_NAME ( "=" | "=|" ) alternation
+
+line_comment: LINE_COMMENT _NL+
+
+?alternation: sequence ( "|" sequence )*
+
+?sequence: expression+
+
+?expression: atom repetition?
+           | "(" alternation ")" repetition?
+           | nonparsing_empty_value
+           | image
+
+?atom: name
+     | qualified_name
+     | terminal
+
+repetition: REPETITION_SYMBOL
+
+name: LEXICAL_NAME | NONTERMINAL_NAME | GRAPHICAL_NAME
+
+qualified_name: QUALIFIED_NAME
+
+terminal: TERMINAL
+
+nonparsing_empty_value: "{" "}"
+
+image: IMAGE
+
+// TERMINAL is any string containing one or more printable ASCII characters or « » …, except single quote, between two single quotes.
+// The ASCII character range is defined as regex [ -&(-~«»…] i.e. union of space-to-ampersand, left-parenthesis-to-tilda, left guillemet, right guillemet, ellipsis.
+// A single quote itself must be escaped with a backslash.
+TERMINAL: "'" /(\\'|[ -&(-~«»…])+/ "'"
+// NONTERMINAL_NAME is a PascalCase identifier containing alphas
+NONTERMINAL_NAME: /[A-Z]([a-z]+[A-Z]?)+/
+// GRAPHICAL_NAME is a dash-case identifier containing alphas - it may start with an ampersand
+GRAPHICAL_NAME: /[a-z&](-?[a-z]+)+/
+// LEXICAL_NAME is UPPER_SNAKE_CASE identifier containing alphas
+LEXICAL_NAME: /[A-Z](_?[A-Z]+)+/
+QUALIFIED_NAME: "[QualifiedName]"
+REPETITION_SYMBOL: "?" | "+" | "*"
+BOOLEAN_VALUE: "false" | "true"
+THIS: "this"
+IMAGE: /\<img.+\>/
+
+_CR: "\r"
+_LF: "\n"
+_NL: _CR? _LF
+WS_INLINE: " " | "\t"
+LINE_COMMENT: "//" /[^\r\n]*/
+
+// A _NON_CONTINUATION_LINE is a line that does not start with a space or tab
+// Use negative lookahead assertion re pattern (?!...) to not consume the possible match
+_NON_CONTINUATION_LINE: ( _NL /(?![ \t])/ )+
+
+// Ignore inline whitespace (space and tab) as well as continuation lines where next line starts with leading whitespace
+%ignore WS_INLINE
+%ignore _NL WS_INLINE+

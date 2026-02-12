@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -25,22 +24,24 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Interaction;
-import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.FlowEnd;
+import org.omg.sysml.lang.sysml.Interaction;
+import org.omg.sysml.lang.sysml.PayloadFeature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Item Flow</b></em>'.
+ * An implementation of the model object '<em><b>Flow</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -58,7 +59,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FlowImpl extends ConnectorImpl implements Flow {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -68,6 +68,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getPayloadType() <em>Payload Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -77,6 +78,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__PAYLOAD_TYPE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -86,6 +88,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_INPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__TARGET_INPUT_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -95,6 +98,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__SOURCE_OUTPUT_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getFlowEnd() <em>Flow End</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -104,6 +108,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FLOW_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__FLOW_END).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getPayloadFeature() <em>Payload Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -113,6 +118,7 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW__PAYLOAD_FEATURE).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getInteraction() <em>Interaction</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -140,27 +146,6 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FLOW;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Behavior> getBehavior() {
-		@SuppressWarnings("unchecked")
-		EList<Behavior> interaction = (EList<Behavior>)((EList<?>)getInteraction());
-		return interaction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-  		return false;
 	}
 
 	/**
@@ -200,10 +185,39 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @generated
 	 */
 	@Override
+	public Feature getTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTargetInputFeature(Feature newTargetInputFeature) {
+		TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetInputFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Feature getSourceOutputFeature() {
 		return (Feature)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -288,35 +302,6 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getTargetInputFeature() {
-		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetTargetInputFeature() {
-		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTargetInputFeature(Feature newTargetInputFeature) {
-		TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetInputFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Feature> getDirectedFeature() {
 		return getParameter();
 	}
@@ -327,6 +312,26 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 	 * @generated
 	 */
 	public boolean isSetDirectedFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getBehavior() {
+		@SuppressWarnings("unchecked")
+		EList<Behavior> interaction = (EList<Behavior>)((EList<?>)getInteraction());
+		return interaction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
   		return false;
 	}
 
@@ -525,4 +530,4 @@ public class FlowImpl extends ConnectorImpl implements Flow {
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-} //ItemFlowImpl
+} //FlowImpl

@@ -1,3 +1,22 @@
+/*******************************************************************************
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -62,6 +81,40 @@ public interface Subclassification extends Specialization {
 	void setSuperclassifier(Classifier value);
 
 	/**
+	 * Returns the value of the '<em><b>Subclassifier</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Specialization#getSpecific() <em>Specific</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The more specific <code>Classifier</code> in this <code>Subclassification</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Subclassifier</em>' reference.
+	 * @see #setSubclassifier(Classifier)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubclassification_Subclassifier()
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subclassification'"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	Classifier getSubclassifier();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Subclassification#getSubclassifier <em>Subclassifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Subclassifier</em>' reference.
+	 * @see #getSubclassifier()
+	 * @generated
+	 */
+	void setSubclassifier(Classifier value);
+
+	/**
 	 * Returns the value of the '<em><b>Owning Classifier</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSubclassification <em>Owned Subclassification</em>}'.
 	 * <p>
@@ -96,39 +149,5 @@ public interface Subclassification extends Specialization {
 	 * @generated
 	 */
 	void setOwningClassifier(Classifier value);
-
-	/**
-	 * Returns the value of the '<em><b>Subclassifier</b></em>' reference.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Specialization#getSpecific() <em>Specific</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The more specific <code>Classifier</code> in this <code>Subclassification</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Subclassifier</em>' reference.
-	 * @see #setSubclassifier(Classifier)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubclassification_Subclassifier()
-	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subclassification'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Classifier getSubclassifier();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Subclassification#getSubclassifier <em>Subclassifier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Subclassifier</em>' reference.
-	 * @see #getSubclassifier()
-	 * @generated
-	 */
-	void setSubclassifier(Classifier value);
 
 } // Subclassification

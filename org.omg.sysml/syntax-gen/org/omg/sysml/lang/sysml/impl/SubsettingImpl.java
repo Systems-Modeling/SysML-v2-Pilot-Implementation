@@ -1,42 +1,43 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Subsetting</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -51,7 +52,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	/**
 	 * The cached value of the '{@link #getSubsettingFeature() <em>Subsetting Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSubsettingFeature()
 	 * @generated
 	 * @ordered
@@ -60,7 +62,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * The cached value of the '{@link #getSubsettedFeature() <em>Subsetted Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getSubsettedFeature()
 	 * @generated
 	 * @ordered
@@ -78,7 +81,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBSETTING__OWNING_FEATURE).getSettingDelegate();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SubsettingImpl() {
@@ -86,7 +90,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,54 +100,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getSubsettedFeature() {
-		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
-			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
-			subsettedFeature = (Feature)eResolveProxy(oldSubsettedFeature);
-			if (subsettedFeature != oldSubsettedFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUBSETTING__SUBSETTED_FEATURE, oldSubsettedFeature, subsettedFeature));
-			}
-		}
-		return subsettedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature basicGetSubsettedFeature() {
-		return subsettedFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setSubsettedFeature(Feature newSubsettedFeature) {
-		Feature oldSubsettedFeature = subsettedFeature;
-		subsettedFeature = newSubsettedFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUBSETTING__SUBSETTED_FEATURE, oldSubsettedFeature, subsettedFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSubsettedFeature() {
-		return subsettedFeature != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -160,7 +118,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -169,7 +127,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -181,7 +140,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSubsettingFeature() {
@@ -189,7 +149,57 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSubsettedFeature() {
+		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
+			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
+			subsettedFeature = (Feature)eResolveProxy(oldSubsettedFeature);
+			if (subsettedFeature != oldSubsettedFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.SUBSETTING__SUBSETTED_FEATURE, oldSubsettedFeature, subsettedFeature));
+			}
+		}
+		return subsettedFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetSubsettedFeature() {
+		return subsettedFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSubsettedFeature(Feature newSubsettedFeature) {
+		Feature oldSubsettedFeature = subsettedFeature;
+		subsettedFeature = newSubsettedFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SUBSETTING__SUBSETTED_FEATURE, oldSubsettedFeature, subsettedFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSubsettedFeature() {
+		return subsettedFeature != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -207,7 +217,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -216,7 +227,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
@@ -224,16 +236,17 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Type getGeneral() {
 		return getSubsettedFeature();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -242,7 +255,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -253,7 +267,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
@@ -261,16 +276,17 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Type getSpecific() {
 		return getSubsettingFeature();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -279,7 +295,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSpecific(Type newSpecific) {
@@ -290,7 +307,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
@@ -298,10 +316,10 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Type getOwningType() {
 		return getOwningFeature();
 	}
@@ -317,7 +335,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setOwningType(Type newOwningType) {
@@ -328,7 +347,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetOwningType() {
@@ -336,7 +356,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -356,7 +377,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -376,7 +398,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -396,7 +419,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -418,4 +442,4 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 		return super.eIsSet(featureID);
 	}
 
-} // SubsettingImpl
+} //SubsettingImpl

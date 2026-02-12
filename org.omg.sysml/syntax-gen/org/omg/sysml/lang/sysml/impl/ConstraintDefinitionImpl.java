@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -28,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 import org.omg.sysml.lang.sysml.Expression;
@@ -55,7 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implements ConstraintDefinition {
-	
 	/**
 	 * The cached setting delegate for the '{@link #getStep() <em>Step</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -65,6 +64,7 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__STEP).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -74,6 +74,7 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__PARAMETER).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getExpression() <em>Expression</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -83,6 +84,7 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__EXPRESSION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -92,6 +94,7 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__RESULT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -101,6 +104,7 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,7 +130,18 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-		@Override
+	@Override
+	public EList<Step> getStep() {
+		return (EList<Step>)STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Feature> getParameter() {
 		return (EList<Feature>)PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -141,7 +156,8 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -197,17 +213,6 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
 		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-		@Override
-	public EList<Step> getStep() {
-		return (EList<Step>)STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

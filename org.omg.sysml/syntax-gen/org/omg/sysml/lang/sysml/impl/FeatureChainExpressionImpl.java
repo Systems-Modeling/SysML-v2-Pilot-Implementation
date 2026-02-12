@@ -1,20 +1,20 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2022-2023 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *******************************************************************************/
 /**
@@ -22,12 +22,14 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -47,7 +49,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureChainExpressionImpl extends OperatorExpressionImpl implements FeatureChainExpression {
 
-	private static final String FEATURE_CHAIN_FUNCTION = ".";
+	private static final String FEATURE_CHAIN_OPERATOR = ".";
 
 	/**
 	 * The cached setting delegate for the '{@link #getTargetFeature() <em>Target Feature</em>}' reference.
@@ -62,10 +64,11 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected FeatureChainExpressionImpl() {
 		super();
+		operator = OPERATOR_EDEFAULT = FEATURE_CHAIN_OPERATOR;
 	}
 
 	/**
@@ -76,14 +79,6 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION;
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public String getOperator() {
-		return FEATURE_CHAIN_FUNCTION;
 	}
 
 	/**

@@ -1,22 +1,21 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
@@ -24,6 +23,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class RequirementVerificationMembershipImpl extends RequirementConstraintMembershipImpl implements RequirementVerificationMembership {
-
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedRequirement() <em>Owned Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -55,6 +54,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -68,10 +68,11 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected RequirementVerificationMembershipImpl() {
 		super();
+		kind = KIND_EDEFAULT = RequirementConstraintKind.REQUIREMENT;
 	}
 
 	/**
@@ -82,6 +83,44 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.REQUIREMENT_VERIFICATION_MEMBERSHIP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementUsage getOwnedRequirement() {
+		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementUsage basicGetOwnedRequirement() {
+		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwnedRequirement(RequirementUsage newOwnedRequirement) {
+		OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedRequirement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedRequirement() {
+		return basicGetOwnedRequirement() != null;
 	}
 
 	/**
@@ -127,45 +166,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public RequirementUsage getOwnedRequirement() {
-		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RequirementUsage basicGetOwnedRequirement() {
-		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setOwnedRequirement(RequirementUsage newOwnedRequirement) {
-		OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedRequirement);
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedRequirement() {
-		return basicGetOwnedRequirement() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ConstraintUsage getOwnedConstraint() {
 		return getOwnedRequirement();
 	}
@@ -206,7 +206,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ConstraintUsage getReferencedConstraint() {
 		return getVerifiedRequirement();
 	}
@@ -241,26 +240,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	public boolean isSetReferencedConstraint() {
   		return false;
 	}
-	
-	// Additional Overrides
-	
-	@Override
-	public RequirementConstraintKind getKind() {
-		return RequirementConstraintKind.REQUIREMENT;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * Consider the "kind" property to never be explicitly "set". 
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		return featureID != SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND && eIsSetGen(featureID);
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -321,7 +300,8 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(int featureID) {
+	@Override
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();

@@ -1,41 +1,43 @@
 /*******************************************************************************
- * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
- *    
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *  SysML 2 Pilot Implementation
+ *  Copyright (c) 2026 Model Driven Solutions, Inc.
+ *   
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
  *  
  * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *  
+ *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- *  
  *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Type;
+
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
- * Typing</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Feature Typing</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -50,7 +52,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FeatureTypingImpl extends SpecializationImpl implements FeatureTyping {
 	/**
 	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getTypedFeature()
 	 * @generated
 	 * @ordered
@@ -58,9 +61,9 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	protected Feature typedFeature;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -78,7 +81,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_TYPING__OWNING_FEATURE).getSettingDelegate();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FeatureTypingImpl() {
@@ -86,7 +90,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,7 +100,56 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getTypedFeature() {
+		if (typedFeature != null && typedFeature.eIsProxy()) {
+			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
+			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
+			if (typedFeature != oldTypedFeature) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
+			}
+		}
+		return typedFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetTypedFeature() {
+		return typedFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTypedFeature(Feature newTypedFeature) {
+		Feature oldTypedFeature = typedFeature;
+		typedFeature = newTypedFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTypedFeature() {
+		return typedFeature != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -113,7 +167,7 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -122,7 +176,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -134,7 +189,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetType() {
@@ -180,63 +236,57 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getSpecific() {
+		return getTypedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Feature getTypedFeature() {
-		if (typedFeature != null && typedFeature.eIsProxy()) {
-			InternalEObject oldTypedFeature = (InternalEObject)typedFeature;
-			typedFeature = (Feature)eResolveProxy(oldTypedFeature);
-			if (typedFeature != oldTypedFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
-			}
+	public Type basicGetSpecific() {
+		return basicGetTypedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSpecific(Type newSpecific) {
+		if (newSpecific != null && !(newSpecific instanceof Feature)) {
+			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
 		}
-		return typedFeature;
+		setTypedFeature((Feature) newSpecific);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> 
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetTypedFeature() {
-		return typedFeature;
+	public boolean isSetSpecific() {
+  		return false;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setTypedFeature(Feature newTypedFeature) {
-		Feature oldTypedFeature = typedFeature;
-		typedFeature = newTypedFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTypedFeature() {
-		return typedFeature != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Type getGeneral() {
 		return getType();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -245,7 +295,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setGeneral(Type newGeneral) {
@@ -253,7 +304,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetGeneral() {
@@ -265,7 +317,6 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Type getOwningType() {
 		return getOwningFeature();
 	}
@@ -302,44 +353,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getSpecific() {
-		return getTypedFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetSpecific() {
-		return basicGetTypedFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSpecific(Type newSpecific) {
-		if (newSpecific != null && !(newSpecific instanceof Feature)) {
-			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
-		}
-		setTypedFeature((Feature) newSpecific);
-	}
-	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSpecific() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -359,7 +374,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -379,7 +395,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -399,7 +416,8 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -421,4 +439,4 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return super.eIsSet(featureID);
 	}
 
-} // FeatureTypingImpl
+} //FeatureTypingImpl

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +27,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.omg.sysml.expressions.functions.LibraryFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
@@ -35,11 +36,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralRational;
-import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.NullExpression;
@@ -50,7 +47,7 @@ import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class ModelLevelExpressionEvaluator {
+public class ModelLevelExpressionEvaluator implements ExpressionEvaluator {
 	
 	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
@@ -64,6 +61,7 @@ public class ModelLevelExpressionEvaluator {
 		this.libraryFunctionFactory = libraryFunctionFactory;
 	}
 	
+	@Override
 	public EList<Element> evaluate(Expression expression, Element target) {
 		if (expression instanceof NullExpression) {
 			return evaluateNull((NullExpression)expression, target);
@@ -118,19 +116,27 @@ public class ModelLevelExpressionEvaluator {
 	}
 	
 	public EList<Element> evaluateExpression(Expression expression, Element target, Element... arguments) {
-		Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
-		if (resultExpression == null) {
-			return EvaluationUtil.singletonList(expression);
+		InvocationExpression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
+		LibraryFunction libraryFunction = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
+		if (libraryFunction != null) {
+			return libraryFunction.invoke(invocation, target, this);
 		} else {
-			Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
-			Expression invocation = EvaluationUtil.createInvocationOf(expression, arguments);
-			EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
-			return results == null? EvaluationUtil.singletonList(resultExpression): results;
+			Expression resultExpression = EvaluationUtil.getResultExpressionFor(expression);
+			if (resultExpression == null) {
+				return EvaluationUtil.singletonList(expression);
+			} else {
+				Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
+				EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, invocation));
+				return results == null? EvaluationUtil.singletonList(resultExpression): results;
+			}
 		}
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {
-		if (type != null && TypeUtil.specializes(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
+		LibraryFeature libraryFeature = libraryFunctionFactory.getLibraryFeature(feature);
+		if (libraryFeature != null) {
+			return libraryFeature.getValue();
+		} else if (type != null && TypeUtil.specializes(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
 			// Evaluate "self" feature. (Note: Must be checked before test for feature chain because "self" has chaining features.)
 			return EvaluationUtil.singletonList(EvaluationUtil.getTargetFeatureFor(type));
 			
@@ -212,51 +218,4 @@ public class ModelLevelExpressionEvaluator {
 		}
 	}
 	
-	// Utility methods
-	
-	public EList<Element> evaluateArgument(InvocationExpression invocation, int i, Element target) {
-		EList<Expression> arguments = invocation.getArgument();
-		return i >= arguments.size()? new BasicEList<>(): evaluate(arguments.get(i), target);
-	}
-
-	public Element argumentValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> argumentValues = evaluateArgument(invocation, i, target);
-		return argumentValues == null || argumentValues.size() != 1? null: argumentValues.get(0);
-	}
-
-	public EList<Element> expressionValue(InvocationExpression invocation, int i, Element target) {
-		Element value = argumentValue(invocation, i, target);
-		return value instanceof Expression? evaluate((Expression)value, target): null;
-	}
-
-	public Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> values = expressionValue(invocation, i, target);
-		if (values == null || values.size() != 1) {
-			return null;
-		} else {
-			Element value = values.get(0);
-			return value instanceof LiteralBoolean? ((LiteralBoolean)value).isValue(): null;
-		}
-	}
-
-	public Boolean booleanValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralBoolean? ((LiteralBoolean)argument).isValue(): null;
-	}
-
-	public String stringValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralString? ((LiteralString)argument).getValue(): null;
-	}
-
-	public Integer integerValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralInteger? ((LiteralInteger)argument).getValue(): null;
-	}
-
-	public Double realValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralRational? ((LiteralRational)argument).getValue(): null;
-	}
-
 }

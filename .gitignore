@@ -35,5 +35,8 @@ dependency-reduced-pom.xml
 # MacOS Finder
 .DS_Store
 
+# Generated Python files
+*.pyc
+
 # Built libraries
 *.kpar

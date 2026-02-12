@@ -1,0 +1,29 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+        ResourceSet {
+            ThisFile {}
+            File {from ="/library/Base.kerml"}
+        }
+        Workspace {
+            JavaProject {
+                SrcFolder {
+                    ThisFile {}
+                    File {from ="/library/Base.kerml"}
+                }
+            }
+        }
+END_SETUP 
+*/
+package Feature_nonunique_invalid {
+	classifier A {
+		feature x; // "unique" by default
+	}
+	classifier B specializes A {
+		// XPECT errors --> "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique" at "x"
+		feature x1 nonunique subsets x;
+	}
+	classifier C specializes A {
+		// XPECT errors --> "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique" at "x"
+		feature x2 nonunique redefines x;
+	}
+}

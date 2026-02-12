@@ -11,8 +11,8 @@ package 'Use Case Usage Example' {
 		
 		then include use case 'enter vehicle' : 'Enter Vehicle' {
 		    subject vehicle;
-			actor :>> driver = 'provide transportation'::driver;
-			actor :>> passengers = 'provide transportation'::passengers;
+			actor driver = 'provide transportation'::driver;
+			actor passengers = 'provide transportation'::passengers;
 		}
 		
 		then use case 'drive vehicle' {
@@ -22,14 +22,14 @@ package 'Use Case Usage Example' {
 			
 			include 'add fuel'[0..*] { 
                 subject vehicle;
-				actor :>> fueler = driver;
+				actor fueler = driver;
 			}
 		}
 		
 		then include use case 'exit vehicle' : 'Exit Vehicle' {
             subject vehicle;
-			actor :>> driver = 'provide transportation'::driver;
-			actor :>> passengers = 'provide transportation'::passengers;
+			actor driver = 'provide transportation'::driver;
+			actor passengers = 'provide transportation'::passengers;
 		}
 		
 		then done;		

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2023, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2023, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
+import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -51,12 +52,17 @@ public class ExpressionUtil {
 	private ExpressionUtil() {
 	}
 	
+	public static final String COLLECTION_DATA_TYPE = "Collections::Collection";
 	public static final String ORDERED_COLLECTION_DATA_TYPE = "Collections::OrderedCollection";
 	public static final String ARRAY_DATA_TYPE = "Collections::Array";
 
 	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
 	public static final String COLLECTION_ELEMENTS_FEATURE = "Collections::Collection::elements";
 	public static final String ARRAY_DIMENSIONS_FEATURE = "Collections::Array::dimensions";
+	
+	public static DataType getCollectionDataType(Element context) {
+		return (DataType)SysMLLibraryUtil.getLibraryType(context, COLLECTION_DATA_TYPE);
+	}
 	
 	public static DataType getOrderedCollectionDataType(Element context) {
 		return (DataType)SysMLLibraryUtil.getLibraryType(context, ORDERED_COLLECTION_DATA_TYPE);
@@ -181,6 +187,10 @@ public class ExpressionUtil {
 	public static boolean isConstructorResult(Type type) {
 		return type instanceof Feature && ((Feature)type).getOwningType() instanceof ConstructorExpression &&
 				((Feature)type).getOwningFeatureMembership() instanceof ReturnParameterMembership;
+	}
+	
+	public static EList<Expression> getOperandsOf(InvocationExpression expression) {
+		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getOperand();
 	}
 	
 }

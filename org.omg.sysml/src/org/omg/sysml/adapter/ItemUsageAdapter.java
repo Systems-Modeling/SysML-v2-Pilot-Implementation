@@ -55,6 +55,11 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 		return super.isSuboccurrence() && !isSubitem();
 	}
 	
+	@Override
+	protected boolean isSubobject() {
+		return super.isSubobject() && !isSubitem();
+	}
+	
 	public boolean isSubitem() {
 		ItemUsage target = getTarget();
 		Type owningType = target.getOwningType();

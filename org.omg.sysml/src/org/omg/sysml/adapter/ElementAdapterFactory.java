@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -168,6 +168,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseComment(Comment element) {
+			return new CommentAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseConcernUsage(ConcernUsage element) {
 			return new ConcernUsageAdapter(element);
 		}
@@ -240,6 +245,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseElement(Element element) {
 			return new ElementAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseEndFeatureMembership(EndFeatureMembership element) {
+			return new EndFeatureMembershipAdapter(element);
 		}
 		
 		@Override
@@ -358,6 +368,16 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseLibraryPackage(LibraryPackage element) {
+			return new LibraryPackageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseLiteralString(LiteralString element) {
+			return new LiteralStringAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseMembership(Membership element) {
 			return new MembershipAdapter(element);
 		}
@@ -423,8 +443,18 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseOwningMembership(OwningMembership element) {
+			return new OwningMembershipAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter casePackage(Package element) {
 			return new PackageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseParameterMembership(ParameterMembership element) {
+			return new ParameterMembershipAdapter(element);
 		}
 		
 		@Override
@@ -565,6 +595,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseTerminateActionUsage(TerminateActionUsage element) {
 			return new TerminateActionUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseTextualRepresentation(TextualRepresentation element) {
+			return new TextualRepresentationAdapter(element);
 		}
 		
 		@Override

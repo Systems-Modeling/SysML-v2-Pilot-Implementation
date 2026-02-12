@@ -50,6 +50,9 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	// Implicit Generalization
 	
 	/**
+	 * @satisfies checkFeatureObjectSpecialization
+	 * @satisfies checkFeatureSubobjectSpecialization
+	 * @satisfies checkFeatureDataValueSpecialization
 	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
 	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
 	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
@@ -57,7 +60,13 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isSuboccurrence()) {
+		if (hasDataType()) {
+			addDefaultGeneralType("dataValue");
+		}
+		if (hasStructureType()) {
+			addDefaultGeneralType(isSubobject()? "subobject": "object");
+		}
+		else if (isSuboccurrence()) {
 			addDefaultGeneralType("suboccurrence");
 		}
 		PortionKind portionKind = getTarget().getPortionKind();

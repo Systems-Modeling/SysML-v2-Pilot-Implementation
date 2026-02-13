@@ -13,6 +13,7 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.eclipse.xtext.validation.CompositeEValidator
 import org.eclipse.xtext.validation.IResourceValidator
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
+import org.omg.kerml.xtext.conversion.KerMLValueConverterService
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
@@ -23,12 +24,17 @@ import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.kerml.xtext.library.ILibraryIndexProvider
 import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
 import com.google.inject.Provides
+import org.eclipse.xtext.conversion.IValueConverterService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	
+	override Class<? extends IValueConverterService> bindIValueConverterService() {
+    	return KerMLValueConverterService;
+	}
+
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
 		SysMLQualifiedNameConverter
 	}

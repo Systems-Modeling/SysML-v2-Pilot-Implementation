@@ -216,6 +216,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				}
 			}
 		}
+		if (feature.ordered) {
+			idText += " ordered"
+		}
+		if (!feature.unique) {
+			idText += " nonunique"
+		}
 		idText
 	}
 	

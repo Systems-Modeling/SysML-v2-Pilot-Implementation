@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -102,17 +103,17 @@ public class OperandEList implements InternalEList<Expression> {
 
 	@Override
 	public int basicLastIndexOf(Object object) {
-		throw new UnsupportedOperationException();
+		return -1;
 	}
 
 	@Override
 	public boolean basicContains(Object object) {
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	@Override
 	public boolean basicContainsAll(Collection<?> collection) {
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	@Override
@@ -127,22 +128,22 @@ public class OperandEList implements InternalEList<Expression> {
 
 	@Override
 	public List<Expression> basicList() {
-		throw new UnsupportedOperationException();
+		return Collections.emptyList();
 	}
 
 	@Override
 	public Iterator<Expression> basicIterator() {
-		throw new UnsupportedOperationException();
+		return Collections.emptyIterator();
 	}
 
 	@Override
 	public ListIterator<Expression> basicListIterator() {
-		throw new UnsupportedOperationException();
+		return Collections.emptyListIterator();
 	}
 
 	@Override
 	public ListIterator<Expression> basicListIterator(int i) {
-		throw new UnsupportedOperationException();
+		return Collections.emptyListIterator();
 	}
 
 	@Override
@@ -176,43 +177,53 @@ public class OperandEList implements InternalEList<Expression> {
 
 	@Override
 	public Iterator<Expression> iterator() {
-		throw new UnsupportedOperationException();	}
+		return Collections.emptyIterator();
+	}
 
 	@Override
 	public Object[] toArray() {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public <T> T[] toArray(T[] a) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public boolean add(Expression e) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		throw new UnsupportedOperationException();	}
+		return false;
+	}
 
 	@Override
 	public boolean addAll(Collection<? extends Expression> c) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends Expression> c) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public Expression set(int index, Expression element) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public void add(int index, Expression element) {
@@ -231,17 +242,21 @@ public class OperandEList implements InternalEList<Expression> {
 
 	@Override
 	public ListIterator<Expression> listIterator() {
-		throw new UnsupportedOperationException();	}
+		return Collections.emptyListIterator();
+	}
 
 	@Override
 	public ListIterator<Expression> listIterator(int index) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public List<Expression> subList(int fromIndex, int toIndex) {
-		throw new UnsupportedOperationException();	}
+		return Collections.emptyList();
+	}
 
 	@Override
 	public Expression basicGet(int index) {
-		throw new UnsupportedOperationException();	}
+		throw new UnsupportedOperationException();
+	}
 }

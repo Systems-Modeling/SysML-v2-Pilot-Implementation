@@ -59,6 +59,7 @@ public class ImplicitGeneralizationMap {
 		
 		//checkBindingConnectorSpecialization
 		put(BindingConnectorImpl.class, "binary", "Links::selfLinks");
+		put(BindingConnectorImpl.class, "binaryObject", "Links::selfLinks");
 		
 		//checkBooleanExpressionSpecialization
 		put(BooleanExpressionImpl.class, "base", "Performances::booleanEvaluations");
@@ -202,6 +203,7 @@ public class ImplicitGeneralizationMap {
 		
 		//checkSuccessionSpecialization
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		put(SuccessionImpl.class, "binaryObject", "Occurrences::happensBeforeLinks");
 		
 		//checkSuccessionSpecialization
 		put(SuccessionFlowImpl.class, "base", "Transfers::flowTransfersBefore");
@@ -285,6 +287,7 @@ public class ImplicitGeneralizationMap {
 		put(BindingConnectorAsUsageImpl.class, "base", "Links::selfLinks");
 		//checkBindingConnectorSpecialization
 		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
+		put(BindingConnectorAsUsageImpl.class, "binaryObject", "Links::selfLinks");
 		
 		//checkCalculationDefinitionSpecialization
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
@@ -511,6 +514,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Occurrences::happensBeforeLinks");
 		//checkSuccessionSpecialization
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		put(SuccessionAsUsageImpl.class, "binaryObject", "Occurrences::happensBeforeLinks");
 		//checkDecisionNodeOutgoingSuccessionSpecialization
 		put(SuccessionAsUsageImpl.class, "decision", "ControlPerformances::DecisionPerformance::outgoingHBLink");
 		//checkMergeNodeIncomingSuccessionSpecialization

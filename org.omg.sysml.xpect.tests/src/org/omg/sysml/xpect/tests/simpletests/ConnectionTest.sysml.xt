@@ -54,9 +54,21 @@ package ConnectionTest {
 	
 		connect p1.x to y;
 		connect p1.x.x1 to y;
+		
+		part a;
+		part b;
+		
+		bind a = b;
+		binding ab bind a = b;
+		binding ab1 : AB bind a = b;
+		
+		first a then b;
+		succession s first a then b;
+		succession s1 : AB first a then b;
 	}
 
 	abstract connection def C {
+		part p;
 		end end1;
 		end end2;
 		end end3;
@@ -77,7 +89,7 @@ package ConnectionTest {
 	
 	connection {
 		part q;
-		end [2] ref end1 ::> d1 :> q;
+		end ref end1 ::> d1 :> q;
 		end end2 ::> d2;
 	}
 	
@@ -92,7 +104,8 @@ package ConnectionTest {
 	part def B;
 	
 	connection def AB {
-	    end a : A;
-	    end b : B crosses a.b;
+	    end [1] item a : A;
+	    end b : B;
 	}
+	
 }

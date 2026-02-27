@@ -1,0 +1,2474 @@
+/**
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ */
+package org.omg.sysml.model.sysml.impl;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.omg.sysml.model.sysml.AcceptActionUsage;
+import org.omg.sysml.model.sysml.ActionDefinition;
+import org.omg.sysml.model.sysml.ActionUsage;
+import org.omg.sysml.model.sysml.ActorMembership;
+import org.omg.sysml.model.sysml.AllocationDefinition;
+import org.omg.sysml.model.sysml.AllocationUsage;
+import org.omg.sysml.model.sysml.AnalysisCaseDefinition;
+import org.omg.sysml.model.sysml.AnalysisCaseUsage;
+import org.omg.sysml.model.sysml.AnnotatingElement;
+import org.omg.sysml.model.sysml.Annotation;
+import org.omg.sysml.model.sysml.AssertConstraintUsage;
+import org.omg.sysml.model.sysml.AssignmentActionUsage;
+import org.omg.sysml.model.sysml.Association;
+import org.omg.sysml.model.sysml.AssociationStructure;
+import org.omg.sysml.model.sysml.AttributeDefinition;
+import org.omg.sysml.model.sysml.AttributeUsage;
+import org.omg.sysml.model.sysml.Behavior;
+import org.omg.sysml.model.sysml.BindingConnector;
+import org.omg.sysml.model.sysml.BindingConnectorAsUsage;
+import org.omg.sysml.model.sysml.BooleanExpression;
+import org.omg.sysml.model.sysml.CalculationDefinition;
+import org.omg.sysml.model.sysml.CalculationUsage;
+import org.omg.sysml.model.sysml.CaseDefinition;
+import org.omg.sysml.model.sysml.CaseUsage;
+import org.omg.sysml.model.sysml.Classifier;
+import org.omg.sysml.model.sysml.CollectExpression;
+import org.omg.sysml.model.sysml.Comment;
+import org.omg.sysml.model.sysml.ConcernDefinition;
+import org.omg.sysml.model.sysml.ConcernUsage;
+import org.omg.sysml.model.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.model.sysml.ConjugatedPortTyping;
+import org.omg.sysml.model.sysml.Conjugation;
+import org.omg.sysml.model.sysml.ConnectionDefinition;
+import org.omg.sysml.model.sysml.ConnectionUsage;
+import org.omg.sysml.model.sysml.Connector;
+import org.omg.sysml.model.sysml.ConstraintDefinition;
+import org.omg.sysml.model.sysml.ConstraintUsage;
+import org.omg.sysml.model.sysml.ConstructorExpression;
+import org.omg.sysml.model.sysml.CrossSubsetting;
+import org.omg.sysml.model.sysml.DataType;
+import org.omg.sysml.model.sysml.DecisionNode;
+import org.omg.sysml.model.sysml.Definition;
+import org.omg.sysml.model.sysml.Dependency;
+import org.omg.sysml.model.sysml.Differencing;
+import org.omg.sysml.model.sysml.Disjoining;
+import org.omg.sysml.model.sysml.Documentation;
+import org.omg.sysml.model.sysml.ElementFilterMembership;
+import org.omg.sysml.model.sysml.EndFeatureMembership;
+import org.omg.sysml.model.sysml.EnumerationDefinition;
+import org.omg.sysml.model.sysml.EnumerationUsage;
+import org.omg.sysml.model.sysml.EventOccurrenceUsage;
+import org.omg.sysml.model.sysml.ExhibitStateUsage;
+import org.omg.sysml.model.sysml.Expression;
+import org.omg.sysml.model.sysml.Feature;
+import org.omg.sysml.model.sysml.FeatureChainExpression;
+import org.omg.sysml.model.sysml.FeatureChaining;
+import org.omg.sysml.model.sysml.FeatureDirectionKind;
+import org.omg.sysml.model.sysml.FeatureInverting;
+import org.omg.sysml.model.sysml.FeatureMembership;
+import org.omg.sysml.model.sysml.FeatureReferenceExpression;
+import org.omg.sysml.model.sysml.FeatureTyping;
+import org.omg.sysml.model.sysml.FeatureValue;
+import org.omg.sysml.model.sysml.Flow;
+import org.omg.sysml.model.sysml.FlowDefinition;
+import org.omg.sysml.model.sysml.FlowEnd;
+import org.omg.sysml.model.sysml.FlowUsage;
+import org.omg.sysml.model.sysml.ForLoopActionUsage;
+import org.omg.sysml.model.sysml.ForkNode;
+import org.omg.sysml.model.sysml.FramedConcernMembership;
+import org.omg.sysml.model.sysml.Function;
+import org.omg.sysml.model.sysml.IfActionUsage;
+import org.omg.sysml.model.sysml.IncludeUseCaseUsage;
+import org.omg.sysml.model.sysml.IndexExpression;
+import org.omg.sysml.model.sysml.Interaction;
+import org.omg.sysml.model.sysml.InterfaceDefinition;
+import org.omg.sysml.model.sysml.InterfaceUsage;
+import org.omg.sysml.model.sysml.Intersecting;
+import org.omg.sysml.model.sysml.Invariant;
+import org.omg.sysml.model.sysml.InvocationExpression;
+import org.omg.sysml.model.sysml.ItemDefinition;
+import org.omg.sysml.model.sysml.ItemUsage;
+import org.omg.sysml.model.sysml.JoinNode;
+import org.omg.sysml.model.sysml.LibraryPackage;
+import org.omg.sysml.model.sysml.LiteralBoolean;
+import org.omg.sysml.model.sysml.LiteralExpression;
+import org.omg.sysml.model.sysml.LiteralInfinity;
+import org.omg.sysml.model.sysml.LiteralInteger;
+import org.omg.sysml.model.sysml.LiteralRational;
+import org.omg.sysml.model.sysml.LiteralString;
+import org.omg.sysml.model.sysml.Membership;
+import org.omg.sysml.model.sysml.MembershipExpose;
+import org.omg.sysml.model.sysml.MembershipImport;
+import org.omg.sysml.model.sysml.MergeNode;
+import org.omg.sysml.model.sysml.Metaclass;
+import org.omg.sysml.model.sysml.MetadataAccessExpression;
+import org.omg.sysml.model.sysml.MetadataDefinition;
+import org.omg.sysml.model.sysml.MetadataFeature;
+import org.omg.sysml.model.sysml.MetadataUsage;
+import org.omg.sysml.model.sysml.Multiplicity;
+import org.omg.sysml.model.sysml.MultiplicityRange;
+import org.omg.sysml.model.sysml.Namespace;
+import org.omg.sysml.model.sysml.NamespaceExpose;
+import org.omg.sysml.model.sysml.NamespaceImport;
+import org.omg.sysml.model.sysml.NullExpression;
+import org.omg.sysml.model.sysml.ObjectiveMembership;
+import org.omg.sysml.model.sysml.OccurrenceDefinition;
+import org.omg.sysml.model.sysml.OccurrenceUsage;
+import org.omg.sysml.model.sysml.OperatorExpression;
+import org.omg.sysml.model.sysml.OwningMembership;
+import org.omg.sysml.model.sysml.ParameterMembership;
+import org.omg.sysml.model.sysml.PartDefinition;
+import org.omg.sysml.model.sysml.PartUsage;
+import org.omg.sysml.model.sysml.PayloadFeature;
+import org.omg.sysml.model.sysml.PerformActionUsage;
+import org.omg.sysml.model.sysml.PortConjugation;
+import org.omg.sysml.model.sysml.PortDefinition;
+import org.omg.sysml.model.sysml.PortUsage;
+import org.omg.sysml.model.sysml.PortionKind;
+import org.omg.sysml.model.sysml.Predicate;
+import org.omg.sysml.model.sysml.Redefinition;
+import org.omg.sysml.model.sysml.ReferenceSubsetting;
+import org.omg.sysml.model.sysml.ReferenceUsage;
+import org.omg.sysml.model.sysml.RenderingDefinition;
+import org.omg.sysml.model.sysml.RenderingUsage;
+import org.omg.sysml.model.sysml.RequirementConstraintKind;
+import org.omg.sysml.model.sysml.RequirementConstraintMembership;
+import org.omg.sysml.model.sysml.RequirementDefinition;
+import org.omg.sysml.model.sysml.RequirementUsage;
+import org.omg.sysml.model.sysml.RequirementVerificationMembership;
+import org.omg.sysml.model.sysml.ResultExpressionMembership;
+import org.omg.sysml.model.sysml.ReturnParameterMembership;
+import org.omg.sysml.model.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.model.sysml.SelectExpression;
+import org.omg.sysml.model.sysml.SendActionUsage;
+import org.omg.sysml.model.sysml.Specialization;
+import org.omg.sysml.model.sysml.StakeholderMembership;
+import org.omg.sysml.model.sysml.StateDefinition;
+import org.omg.sysml.model.sysml.StateSubactionKind;
+import org.omg.sysml.model.sysml.StateSubactionMembership;
+import org.omg.sysml.model.sysml.StateUsage;
+import org.omg.sysml.model.sysml.Step;
+import org.omg.sysml.model.sysml.Structure;
+import org.omg.sysml.model.sysml.Subclassification;
+import org.omg.sysml.model.sysml.SubjectMembership;
+import org.omg.sysml.model.sysml.Subsetting;
+import org.omg.sysml.model.sysml.Succession;
+import org.omg.sysml.model.sysml.SuccessionAsUsage;
+import org.omg.sysml.model.sysml.SuccessionFlow;
+import org.omg.sysml.model.sysml.SuccessionFlowUsage;
+import org.omg.sysml.model.sysml.SysMLFactory;
+import org.omg.sysml.model.sysml.SysMLPackage;
+import org.omg.sysml.model.sysml.TerminateActionUsage;
+import org.omg.sysml.model.sysml.TextualRepresentation;
+import org.omg.sysml.model.sysml.TransitionFeatureKind;
+import org.omg.sysml.model.sysml.TransitionFeatureMembership;
+import org.omg.sysml.model.sysml.TransitionUsage;
+import org.omg.sysml.model.sysml.TriggerInvocationExpression;
+import org.omg.sysml.model.sysml.TriggerKind;
+import org.omg.sysml.model.sysml.Type;
+import org.omg.sysml.model.sysml.TypeFeaturing;
+import org.omg.sysml.model.sysml.Unioning;
+import org.omg.sysml.model.sysml.Usage;
+import org.omg.sysml.model.sysml.UseCaseDefinition;
+import org.omg.sysml.model.sysml.UseCaseUsage;
+import org.omg.sysml.model.sysml.VariantMembership;
+import org.omg.sysml.model.sysml.VerificationCaseDefinition;
+import org.omg.sysml.model.sysml.VerificationCaseUsage;
+import org.omg.sysml.model.sysml.ViewDefinition;
+import org.omg.sysml.model.sysml.ViewRenderingMembership;
+import org.omg.sysml.model.sysml.ViewUsage;
+import org.omg.sysml.model.sysml.ViewpointDefinition;
+import org.omg.sysml.model.sysml.ViewpointUsage;
+import org.omg.sysml.model.sysml.VisibilityKind;
+import org.omg.sysml.model.sysml.WhileLoopActionUsage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Factory</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SysMLFactory init() {
+		try {
+			SysMLFactory theSysMLFactory = (SysMLFactory)EPackage.Registry.INSTANCE.getEFactory(SysMLPackage.eNS_URI);
+			if (theSysMLFactory != null) {
+				return theSysMLFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SysMLFactoryImpl();
+	}
+
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SysMLFactoryImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE: return createAcceptActionUsage();
+			case SysMLPackage.ACTION_DEFINITION: return createActionDefinition();
+			case SysMLPackage.ACTION_USAGE: return createActionUsage();
+			case SysMLPackage.ACTOR_MEMBERSHIP: return createActorMembership();
+			case SysMLPackage.ALLOCATION_DEFINITION: return createAllocationDefinition();
+			case SysMLPackage.ALLOCATION_USAGE: return createAllocationUsage();
+			case SysMLPackage.ANALYSIS_CASE_DEFINITION: return createAnalysisCaseDefinition();
+			case SysMLPackage.ANALYSIS_CASE_USAGE: return createAnalysisCaseUsage();
+			case SysMLPackage.ANNOTATING_ELEMENT: return createAnnotatingElement();
+			case SysMLPackage.ANNOTATION: return createAnnotation();
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE: return createAssertConstraintUsage();
+			case SysMLPackage.ASSIGNMENT_ACTION_USAGE: return createAssignmentActionUsage();
+			case SysMLPackage.ASSOCIATION: return createAssociation();
+			case SysMLPackage.ASSOCIATION_STRUCTURE: return createAssociationStructure();
+			case SysMLPackage.ATTRIBUTE_DEFINITION: return createAttributeDefinition();
+			case SysMLPackage.ATTRIBUTE_USAGE: return createAttributeUsage();
+			case SysMLPackage.BEHAVIOR: return createBehavior();
+			case SysMLPackage.BINDING_CONNECTOR: return createBindingConnector();
+			case SysMLPackage.BINDING_CONNECTOR_AS_USAGE: return createBindingConnectorAsUsage();
+			case SysMLPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
+			case SysMLPackage.CALCULATION_DEFINITION: return createCalculationDefinition();
+			case SysMLPackage.CALCULATION_USAGE: return createCalculationUsage();
+			case SysMLPackage.CASE_DEFINITION: return createCaseDefinition();
+			case SysMLPackage.CASE_USAGE: return createCaseUsage();
+			case SysMLPackage.CLASS: return createClass();
+			case SysMLPackage.CLASSIFIER: return createClassifier();
+			case SysMLPackage.COLLECT_EXPRESSION: return createCollectExpression();
+			case SysMLPackage.COMMENT: return createComment();
+			case SysMLPackage.CONCERN_DEFINITION: return createConcernDefinition();
+			case SysMLPackage.CONCERN_USAGE: return createConcernUsage();
+			case SysMLPackage.CONJUGATED_PORT_DEFINITION: return createConjugatedPortDefinition();
+			case SysMLPackage.CONJUGATED_PORT_TYPING: return createConjugatedPortTyping();
+			case SysMLPackage.CONJUGATION: return createConjugation();
+			case SysMLPackage.CONNECTION_DEFINITION: return createConnectionDefinition();
+			case SysMLPackage.CONNECTION_USAGE: return createConnectionUsage();
+			case SysMLPackage.CONNECTOR: return createConnector();
+			case SysMLPackage.CONSTRAINT_DEFINITION: return createConstraintDefinition();
+			case SysMLPackage.CONSTRAINT_USAGE: return createConstraintUsage();
+			case SysMLPackage.CONSTRUCTOR_EXPRESSION: return createConstructorExpression();
+			case SysMLPackage.CROSS_SUBSETTING: return createCrossSubsetting();
+			case SysMLPackage.DATA_TYPE: return createDataType();
+			case SysMLPackage.DECISION_NODE: return createDecisionNode();
+			case SysMLPackage.DEFINITION: return createDefinition();
+			case SysMLPackage.DEPENDENCY: return createDependency();
+			case SysMLPackage.DIFFERENCING: return createDifferencing();
+			case SysMLPackage.DISJOINING: return createDisjoining();
+			case SysMLPackage.DOCUMENTATION: return createDocumentation();
+			case SysMLPackage.ELEMENT_FILTER_MEMBERSHIP: return createElementFilterMembership();
+			case SysMLPackage.END_FEATURE_MEMBERSHIP: return createEndFeatureMembership();
+			case SysMLPackage.ENUMERATION_DEFINITION: return createEnumerationDefinition();
+			case SysMLPackage.ENUMERATION_USAGE: return createEnumerationUsage();
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE: return createEventOccurrenceUsage();
+			case SysMLPackage.EXHIBIT_STATE_USAGE: return createExhibitStateUsage();
+			case SysMLPackage.EXPRESSION: return createExpression();
+			case SysMLPackage.FEATURE: return createFeature();
+			case SysMLPackage.FEATURE_CHAIN_EXPRESSION: return createFeatureChainExpression();
+			case SysMLPackage.FEATURE_CHAINING: return createFeatureChaining();
+			case SysMLPackage.FEATURE_INVERTING: return createFeatureInverting();
+			case SysMLPackage.FEATURE_MEMBERSHIP: return createFeatureMembership();
+			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION: return createFeatureReferenceExpression();
+			case SysMLPackage.FEATURE_TYPING: return createFeatureTyping();
+			case SysMLPackage.FEATURE_VALUE: return createFeatureValue();
+			case SysMLPackage.FLOW: return createFlow();
+			case SysMLPackage.FLOW_DEFINITION: return createFlowDefinition();
+			case SysMLPackage.FLOW_END: return createFlowEnd();
+			case SysMLPackage.FLOW_USAGE: return createFlowUsage();
+			case SysMLPackage.FORK_NODE: return createForkNode();
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE: return createForLoopActionUsage();
+			case SysMLPackage.FRAMED_CONCERN_MEMBERSHIP: return createFramedConcernMembership();
+			case SysMLPackage.FUNCTION: return createFunction();
+			case SysMLPackage.IF_ACTION_USAGE: return createIfActionUsage();
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE: return createIncludeUseCaseUsage();
+			case SysMLPackage.INDEX_EXPRESSION: return createIndexExpression();
+			case SysMLPackage.INTERACTION: return createInteraction();
+			case SysMLPackage.INTERFACE_DEFINITION: return createInterfaceDefinition();
+			case SysMLPackage.INTERFACE_USAGE: return createInterfaceUsage();
+			case SysMLPackage.INTERSECTING: return createIntersecting();
+			case SysMLPackage.INVARIANT: return createInvariant();
+			case SysMLPackage.INVOCATION_EXPRESSION: return createInvocationExpression();
+			case SysMLPackage.ITEM_DEFINITION: return createItemDefinition();
+			case SysMLPackage.ITEM_USAGE: return createItemUsage();
+			case SysMLPackage.JOIN_NODE: return createJoinNode();
+			case SysMLPackage.LIBRARY_PACKAGE: return createLibraryPackage();
+			case SysMLPackage.LITERAL_BOOLEAN: return createLiteralBoolean();
+			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
+			case SysMLPackage.LITERAL_INFINITY: return createLiteralInfinity();
+			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
+			case SysMLPackage.LITERAL_RATIONAL: return createLiteralRational();
+			case SysMLPackage.LITERAL_STRING: return createLiteralString();
+			case SysMLPackage.MEMBERSHIP: return createMembership();
+			case SysMLPackage.MEMBERSHIP_EXPOSE: return createMembershipExpose();
+			case SysMLPackage.MEMBERSHIP_IMPORT: return createMembershipImport();
+			case SysMLPackage.MERGE_NODE: return createMergeNode();
+			case SysMLPackage.METACLASS: return createMetaclass();
+			case SysMLPackage.METADATA_ACCESS_EXPRESSION: return createMetadataAccessExpression();
+			case SysMLPackage.METADATA_DEFINITION: return createMetadataDefinition();
+			case SysMLPackage.METADATA_FEATURE: return createMetadataFeature();
+			case SysMLPackage.METADATA_USAGE: return createMetadataUsage();
+			case SysMLPackage.MULTIPLICITY: return createMultiplicity();
+			case SysMLPackage.MULTIPLICITY_RANGE: return createMultiplicityRange();
+			case SysMLPackage.NAMESPACE: return createNamespace();
+			case SysMLPackage.NAMESPACE_EXPOSE: return createNamespaceExpose();
+			case SysMLPackage.NAMESPACE_IMPORT: return createNamespaceImport();
+			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP: return createObjectiveMembership();
+			case SysMLPackage.OCCURRENCE_DEFINITION: return createOccurrenceDefinition();
+			case SysMLPackage.OCCURRENCE_USAGE: return createOccurrenceUsage();
+			case SysMLPackage.OPERATOR_EXPRESSION: return createOperatorExpression();
+			case SysMLPackage.OWNING_MEMBERSHIP: return createOwningMembership();
+			case SysMLPackage.PACKAGE: return createPackage();
+			case SysMLPackage.PARAMETER_MEMBERSHIP: return createParameterMembership();
+			case SysMLPackage.PART_DEFINITION: return createPartDefinition();
+			case SysMLPackage.PART_USAGE: return createPartUsage();
+			case SysMLPackage.PAYLOAD_FEATURE: return createPayloadFeature();
+			case SysMLPackage.PERFORM_ACTION_USAGE: return createPerformActionUsage();
+			case SysMLPackage.PORT_CONJUGATION: return createPortConjugation();
+			case SysMLPackage.PORT_DEFINITION: return createPortDefinition();
+			case SysMLPackage.PORT_USAGE: return createPortUsage();
+			case SysMLPackage.PREDICATE: return createPredicate();
+			case SysMLPackage.REDEFINITION: return createRedefinition();
+			case SysMLPackage.REFERENCE_SUBSETTING: return createReferenceSubsetting();
+			case SysMLPackage.REFERENCE_USAGE: return createReferenceUsage();
+			case SysMLPackage.RENDERING_DEFINITION: return createRenderingDefinition();
+			case SysMLPackage.RENDERING_USAGE: return createRenderingUsage();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP: return createRequirementConstraintMembership();
+			case SysMLPackage.REQUIREMENT_DEFINITION: return createRequirementDefinition();
+			case SysMLPackage.REQUIREMENT_USAGE: return createRequirementUsage();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP: return createRequirementVerificationMembership();
+			case SysMLPackage.RESULT_EXPRESSION_MEMBERSHIP: return createResultExpressionMembership();
+			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP: return createReturnParameterMembership();
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE: return createSatisfyRequirementUsage();
+			case SysMLPackage.SELECT_EXPRESSION: return createSelectExpression();
+			case SysMLPackage.SEND_ACTION_USAGE: return createSendActionUsage();
+			case SysMLPackage.SPECIALIZATION: return createSpecialization();
+			case SysMLPackage.STAKEHOLDER_MEMBERSHIP: return createStakeholderMembership();
+			case SysMLPackage.STATE_DEFINITION: return createStateDefinition();
+			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP: return createStateSubactionMembership();
+			case SysMLPackage.STATE_USAGE: return createStateUsage();
+			case SysMLPackage.STEP: return createStep();
+			case SysMLPackage.STRUCTURE: return createStructure();
+			case SysMLPackage.SUBCLASSIFICATION: return createSubclassification();
+			case SysMLPackage.SUBJECT_MEMBERSHIP: return createSubjectMembership();
+			case SysMLPackage.SUBSETTING: return createSubsetting();
+			case SysMLPackage.SUCCESSION: return createSuccession();
+			case SysMLPackage.SUCCESSION_AS_USAGE: return createSuccessionAsUsage();
+			case SysMLPackage.SUCCESSION_FLOW: return createSuccessionFlow();
+			case SysMLPackage.SUCCESSION_FLOW_USAGE: return createSuccessionFlowUsage();
+			case SysMLPackage.TERMINATE_ACTION_USAGE: return createTerminateActionUsage();
+			case SysMLPackage.TEXTUAL_REPRESENTATION: return createTextualRepresentation();
+			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP: return createTransitionFeatureMembership();
+			case SysMLPackage.TRANSITION_USAGE: return createTransitionUsage();
+			case SysMLPackage.TRIGGER_INVOCATION_EXPRESSION: return createTriggerInvocationExpression();
+			case SysMLPackage.TYPE: return createType();
+			case SysMLPackage.TYPE_FEATURING: return createTypeFeaturing();
+			case SysMLPackage.UNIONING: return createUnioning();
+			case SysMLPackage.USAGE: return createUsage();
+			case SysMLPackage.USE_CASE_DEFINITION: return createUseCaseDefinition();
+			case SysMLPackage.USE_CASE_USAGE: return createUseCaseUsage();
+			case SysMLPackage.VARIANT_MEMBERSHIP: return createVariantMembership();
+			case SysMLPackage.VERIFICATION_CASE_DEFINITION: return createVerificationCaseDefinition();
+			case SysMLPackage.VERIFICATION_CASE_USAGE: return createVerificationCaseUsage();
+			case SysMLPackage.VIEW_DEFINITION: return createViewDefinition();
+			case SysMLPackage.VIEWPOINT_DEFINITION: return createViewpointDefinition();
+			case SysMLPackage.VIEWPOINT_USAGE: return createViewpointUsage();
+			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP: return createViewRenderingMembership();
+			case SysMLPackage.VIEW_USAGE: return createViewUsage();
+			case SysMLPackage.WHILE_LOOP_ACTION_USAGE: return createWhileLoopActionUsage();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case SysMLPackage.FEATURE_DIRECTION_KIND:
+				return createFeatureDirectionKindFromString(eDataType, initialValue);
+			case SysMLPackage.PORTION_KIND:
+				return createPortionKindFromString(eDataType, initialValue);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
+				return createRequirementConstraintKindFromString(eDataType, initialValue);
+			case SysMLPackage.STATE_SUBACTION_KIND:
+				return createStateSubactionKindFromString(eDataType, initialValue);
+			case SysMLPackage.TRANSITION_FEATURE_KIND:
+				return createTransitionFeatureKindFromString(eDataType, initialValue);
+			case SysMLPackage.TRIGGER_KIND:
+				return createTriggerKindFromString(eDataType, initialValue);
+			case SysMLPackage.VISIBILITY_KIND:
+				return createVisibilityKindFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case SysMLPackage.FEATURE_DIRECTION_KIND:
+				return convertFeatureDirectionKindToString(eDataType, instanceValue);
+			case SysMLPackage.PORTION_KIND:
+				return convertPortionKindToString(eDataType, instanceValue);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_KIND:
+				return convertRequirementConstraintKindToString(eDataType, instanceValue);
+			case SysMLPackage.STATE_SUBACTION_KIND:
+				return convertStateSubactionKindToString(eDataType, instanceValue);
+			case SysMLPackage.TRANSITION_FEATURE_KIND:
+				return convertTransitionFeatureKindToString(eDataType, instanceValue);
+			case SysMLPackage.TRIGGER_KIND:
+				return convertTriggerKindToString(eDataType, instanceValue);
+			case SysMLPackage.VISIBILITY_KIND:
+				return convertVisibilityKindToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AcceptActionUsage createAcceptActionUsage() {
+		AcceptActionUsageImpl acceptActionUsage = new AcceptActionUsageImpl();
+		return acceptActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionDefinition createActionDefinition() {
+		ActionDefinitionImpl actionDefinition = new ActionDefinitionImpl();
+		return actionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionUsage createActionUsage() {
+		ActionUsageImpl actionUsage = new ActionUsageImpl();
+		return actionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActorMembership createActorMembership() {
+		ActorMembershipImpl actorMembership = new ActorMembershipImpl();
+		return actorMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AllocationDefinition createAllocationDefinition() {
+		AllocationDefinitionImpl allocationDefinition = new AllocationDefinitionImpl();
+		return allocationDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AllocationUsage createAllocationUsage() {
+		AllocationUsageImpl allocationUsage = new AllocationUsageImpl();
+		return allocationUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnalysisCaseDefinition createAnalysisCaseDefinition() {
+		AnalysisCaseDefinitionImpl analysisCaseDefinition = new AnalysisCaseDefinitionImpl();
+		return analysisCaseDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnalysisCaseUsage createAnalysisCaseUsage() {
+		AnalysisCaseUsageImpl analysisCaseUsage = new AnalysisCaseUsageImpl();
+		return analysisCaseUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnotatingElement createAnnotatingElement() {
+		AnnotatingElementImpl annotatingElement = new AnnotatingElementImpl();
+		return annotatingElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AssertConstraintUsage createAssertConstraintUsage() {
+		AssertConstraintUsageImpl assertConstraintUsage = new AssertConstraintUsageImpl();
+		return assertConstraintUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AssignmentActionUsage createAssignmentActionUsage() {
+		AssignmentActionUsageImpl assignmentActionUsage = new AssignmentActionUsageImpl();
+		return assignmentActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Association createAssociation() {
+		AssociationImpl association = new AssociationImpl();
+		return association;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AssociationStructure createAssociationStructure() {
+		AssociationStructureImpl associationStructure = new AssociationStructureImpl();
+		return associationStructure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeDefinition createAttributeDefinition() {
+		AttributeDefinitionImpl attributeDefinition = new AttributeDefinitionImpl();
+		return attributeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeUsage createAttributeUsage() {
+		AttributeUsageImpl attributeUsage = new AttributeUsageImpl();
+		return attributeUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Behavior createBehavior() {
+		BehaviorImpl behavior = new BehaviorImpl();
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BindingConnector createBindingConnector() {
+		BindingConnectorImpl bindingConnector = new BindingConnectorImpl();
+		return bindingConnector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BindingConnectorAsUsage createBindingConnectorAsUsage() {
+		BindingConnectorAsUsageImpl bindingConnectorAsUsage = new BindingConnectorAsUsageImpl();
+		return bindingConnectorAsUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BooleanExpression createBooleanExpression() {
+		BooleanExpressionImpl booleanExpression = new BooleanExpressionImpl();
+		return booleanExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CalculationDefinition createCalculationDefinition() {
+		CalculationDefinitionImpl calculationDefinition = new CalculationDefinitionImpl();
+		return calculationDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CalculationUsage createCalculationUsage() {
+		CalculationUsageImpl calculationUsage = new CalculationUsageImpl();
+		return calculationUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CaseDefinition createCaseDefinition() {
+		CaseDefinitionImpl caseDefinition = new CaseDefinitionImpl();
+		return caseDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CaseUsage createCaseUsage() {
+		CaseUsageImpl caseUsage = new CaseUsageImpl();
+		return caseUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public org.omg.sysml.model.sysml.Class createClass() {
+		ClassImpl class_ = new ClassImpl();
+		return class_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Classifier createClassifier() {
+		ClassifierImpl classifier = new ClassifierImpl();
+		return classifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CollectExpression createCollectExpression() {
+		CollectExpressionImpl collectExpression = new CollectExpressionImpl();
+		return collectExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Comment createComment() {
+		CommentImpl comment = new CommentImpl();
+		return comment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConcernDefinition createConcernDefinition() {
+		ConcernDefinitionImpl concernDefinition = new ConcernDefinitionImpl();
+		return concernDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConcernUsage createConcernUsage() {
+		ConcernUsageImpl concernUsage = new ConcernUsageImpl();
+		return concernUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConjugatedPortDefinition createConjugatedPortDefinition() {
+		ConjugatedPortDefinitionImpl conjugatedPortDefinition = new ConjugatedPortDefinitionImpl();
+		return conjugatedPortDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConjugatedPortTyping createConjugatedPortTyping() {
+		ConjugatedPortTypingImpl conjugatedPortTyping = new ConjugatedPortTypingImpl();
+		return conjugatedPortTyping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Conjugation createConjugation() {
+		ConjugationImpl conjugation = new ConjugationImpl();
+		return conjugation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConnectionDefinition createConnectionDefinition() {
+		ConnectionDefinitionImpl connectionDefinition = new ConnectionDefinitionImpl();
+		return connectionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConnectionUsage createConnectionUsage() {
+		ConnectionUsageImpl connectionUsage = new ConnectionUsageImpl();
+		return connectionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Connector createConnector() {
+		ConnectorImpl connector = new ConnectorImpl();
+		return connector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintDefinition createConstraintDefinition() {
+		ConstraintDefinitionImpl constraintDefinition = new ConstraintDefinitionImpl();
+		return constraintDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage createConstraintUsage() {
+		ConstraintUsageImpl constraintUsage = new ConstraintUsageImpl();
+		return constraintUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstructorExpression createConstructorExpression() {
+		ConstructorExpressionImpl constructorExpression = new ConstructorExpressionImpl();
+		return constructorExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CrossSubsetting createCrossSubsetting() {
+		CrossSubsettingImpl crossSubsetting = new CrossSubsettingImpl();
+		return crossSubsetting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DataType createDataType() {
+		DataTypeImpl dataType = new DataTypeImpl();
+		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DecisionNode createDecisionNode() {
+		DecisionNodeImpl decisionNode = new DecisionNodeImpl();
+		return decisionNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition createDefinition() {
+		DefinitionImpl definition = new DefinitionImpl();
+		return definition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Dependency createDependency() {
+		DependencyImpl dependency = new DependencyImpl();
+		return dependency;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Differencing createDifferencing() {
+		DifferencingImpl differencing = new DifferencingImpl();
+		return differencing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Disjoining createDisjoining() {
+		DisjoiningImpl disjoining = new DisjoiningImpl();
+		return disjoining;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Documentation createDocumentation() {
+		DocumentationImpl documentation = new DocumentationImpl();
+		return documentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ElementFilterMembership createElementFilterMembership() {
+		ElementFilterMembershipImpl elementFilterMembership = new ElementFilterMembershipImpl();
+		return elementFilterMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EndFeatureMembership createEndFeatureMembership() {
+		EndFeatureMembershipImpl endFeatureMembership = new EndFeatureMembershipImpl();
+		return endFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EnumerationDefinition createEnumerationDefinition() {
+		EnumerationDefinitionImpl enumerationDefinition = new EnumerationDefinitionImpl();
+		return enumerationDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EnumerationUsage createEnumerationUsage() {
+		EnumerationUsageImpl enumerationUsage = new EnumerationUsageImpl();
+		return enumerationUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EventOccurrenceUsage createEventOccurrenceUsage() {
+		EventOccurrenceUsageImpl eventOccurrenceUsage = new EventOccurrenceUsageImpl();
+		return eventOccurrenceUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ExhibitStateUsage createExhibitStateUsage() {
+		ExhibitStateUsageImpl exhibitStateUsage = new ExhibitStateUsageImpl();
+		return exhibitStateUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression createExpression() {
+		ExpressionImpl expression = new ExpressionImpl();
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature createFeature() {
+		FeatureImpl feature = new FeatureImpl();
+		return feature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureChainExpression createFeatureChainExpression() {
+		FeatureChainExpressionImpl featureChainExpression = new FeatureChainExpressionImpl();
+		return featureChainExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureChaining createFeatureChaining() {
+		FeatureChainingImpl featureChaining = new FeatureChainingImpl();
+		return featureChaining;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureInverting createFeatureInverting() {
+		FeatureInvertingImpl featureInverting = new FeatureInvertingImpl();
+		return featureInverting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureMembership createFeatureMembership() {
+		FeatureMembershipImpl featureMembership = new FeatureMembershipImpl();
+		return featureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureReferenceExpression createFeatureReferenceExpression() {
+		FeatureReferenceExpressionImpl featureReferenceExpression = new FeatureReferenceExpressionImpl();
+		return featureReferenceExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureTyping createFeatureTyping() {
+		FeatureTypingImpl featureTyping = new FeatureTypingImpl();
+		return featureTyping;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureValue createFeatureValue() {
+		FeatureValueImpl featureValue = new FeatureValueImpl();
+		return featureValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Flow createFlow() {
+		FlowImpl flow = new FlowImpl();
+		return flow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FlowDefinition createFlowDefinition() {
+		FlowDefinitionImpl flowDefinition = new FlowDefinitionImpl();
+		return flowDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FlowEnd createFlowEnd() {
+		FlowEndImpl flowEnd = new FlowEndImpl();
+		return flowEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FlowUsage createFlowUsage() {
+		FlowUsageImpl flowUsage = new FlowUsageImpl();
+		return flowUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ForkNode createForkNode() {
+		ForkNodeImpl forkNode = new ForkNodeImpl();
+		return forkNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ForLoopActionUsage createForLoopActionUsage() {
+		ForLoopActionUsageImpl forLoopActionUsage = new ForLoopActionUsageImpl();
+		return forLoopActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FramedConcernMembership createFramedConcernMembership() {
+		FramedConcernMembershipImpl framedConcernMembership = new FramedConcernMembershipImpl();
+		return framedConcernMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Function createFunction() {
+		FunctionImpl function = new FunctionImpl();
+		return function;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IfActionUsage createIfActionUsage() {
+		IfActionUsageImpl ifActionUsage = new IfActionUsageImpl();
+		return ifActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IncludeUseCaseUsage createIncludeUseCaseUsage() {
+		IncludeUseCaseUsageImpl includeUseCaseUsage = new IncludeUseCaseUsageImpl();
+		return includeUseCaseUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IndexExpression createIndexExpression() {
+		IndexExpressionImpl indexExpression = new IndexExpressionImpl();
+		return indexExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Interaction createInteraction() {
+		InteractionImpl interaction = new InteractionImpl();
+		return interaction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InterfaceDefinition createInterfaceDefinition() {
+		InterfaceDefinitionImpl interfaceDefinition = new InterfaceDefinitionImpl();
+		return interfaceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InterfaceUsage createInterfaceUsage() {
+		InterfaceUsageImpl interfaceUsage = new InterfaceUsageImpl();
+		return interfaceUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Intersecting createIntersecting() {
+		IntersectingImpl intersecting = new IntersectingImpl();
+		return intersecting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Invariant createInvariant() {
+		InvariantImpl invariant = new InvariantImpl();
+		return invariant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InvocationExpression createInvocationExpression() {
+		InvocationExpressionImpl invocationExpression = new InvocationExpressionImpl();
+		return invocationExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ItemDefinition createItemDefinition() {
+		ItemDefinitionImpl itemDefinition = new ItemDefinitionImpl();
+		return itemDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ItemUsage createItemUsage() {
+		ItemUsageImpl itemUsage = new ItemUsageImpl();
+		return itemUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public JoinNode createJoinNode() {
+		JoinNodeImpl joinNode = new JoinNodeImpl();
+		return joinNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LibraryPackage createLibraryPackage() {
+		LibraryPackageImpl libraryPackage = new LibraryPackageImpl();
+		return libraryPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralBoolean createLiteralBoolean() {
+		LiteralBooleanImpl literalBoolean = new LiteralBooleanImpl();
+		return literalBoolean;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralExpression createLiteralExpression() {
+		LiteralExpressionImpl literalExpression = new LiteralExpressionImpl();
+		return literalExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralInfinity createLiteralInfinity() {
+		LiteralInfinityImpl literalInfinity = new LiteralInfinityImpl();
+		return literalInfinity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralInteger createLiteralInteger() {
+		LiteralIntegerImpl literalInteger = new LiteralIntegerImpl();
+		return literalInteger;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralRational createLiteralRational() {
+		LiteralRationalImpl literalRational = new LiteralRationalImpl();
+		return literalRational;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LiteralString createLiteralString() {
+		LiteralStringImpl literalString = new LiteralStringImpl();
+		return literalString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Membership createMembership() {
+		MembershipImpl membership = new MembershipImpl();
+		return membership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MembershipExpose createMembershipExpose() {
+		MembershipExposeImpl membershipExpose = new MembershipExposeImpl();
+		return membershipExpose;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MembershipImport createMembershipImport() {
+		MembershipImportImpl membershipImport = new MembershipImportImpl();
+		return membershipImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MergeNode createMergeNode() {
+		MergeNodeImpl mergeNode = new MergeNodeImpl();
+		return mergeNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Metaclass createMetaclass() {
+		MetaclassImpl metaclass = new MetaclassImpl();
+		return metaclass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MetadataAccessExpression createMetadataAccessExpression() {
+		MetadataAccessExpressionImpl metadataAccessExpression = new MetadataAccessExpressionImpl();
+		return metadataAccessExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MetadataDefinition createMetadataDefinition() {
+		MetadataDefinitionImpl metadataDefinition = new MetadataDefinitionImpl();
+		return metadataDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MetadataFeature createMetadataFeature() {
+		MetadataFeatureImpl metadataFeature = new MetadataFeatureImpl();
+		return metadataFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MetadataUsage createMetadataUsage() {
+		MetadataUsageImpl metadataUsage = new MetadataUsageImpl();
+		return metadataUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Multiplicity createMultiplicity() {
+		MultiplicityImpl multiplicity = new MultiplicityImpl();
+		return multiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiplicityRange createMultiplicityRange() {
+		MultiplicityRangeImpl multiplicityRange = new MultiplicityRangeImpl();
+		return multiplicityRange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Namespace createNamespace() {
+		NamespaceImpl namespace = new NamespaceImpl();
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamespaceExpose createNamespaceExpose() {
+		NamespaceExposeImpl namespaceExpose = new NamespaceExposeImpl();
+		return namespaceExpose;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NamespaceImport createNamespaceImport() {
+		NamespaceImportImpl namespaceImport = new NamespaceImportImpl();
+		return namespaceImport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NullExpression createNullExpression() {
+		NullExpressionImpl nullExpression = new NullExpressionImpl();
+		return nullExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ObjectiveMembership createObjectiveMembership() {
+		ObjectiveMembershipImpl objectiveMembership = new ObjectiveMembershipImpl();
+		return objectiveMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OccurrenceDefinition createOccurrenceDefinition() {
+		OccurrenceDefinitionImpl occurrenceDefinition = new OccurrenceDefinitionImpl();
+		return occurrenceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OccurrenceUsage createOccurrenceUsage() {
+		OccurrenceUsageImpl occurrenceUsage = new OccurrenceUsageImpl();
+		return occurrenceUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OperatorExpression createOperatorExpression() {
+		OperatorExpressionImpl operatorExpression = new OperatorExpressionImpl();
+		return operatorExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public OwningMembership createOwningMembership() {
+		OwningMembershipImpl owningMembership = new OwningMembershipImpl();
+		return owningMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public org.omg.sysml.model.sysml.Package createPackage() {
+		PackageImpl package_ = new PackageImpl();
+		return package_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ParameterMembership createParameterMembership() {
+		ParameterMembershipImpl parameterMembership = new ParameterMembershipImpl();
+		return parameterMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PartDefinition createPartDefinition() {
+		PartDefinitionImpl partDefinition = new PartDefinitionImpl();
+		return partDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PartUsage createPartUsage() {
+		PartUsageImpl partUsage = new PartUsageImpl();
+		return partUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PayloadFeature createPayloadFeature() {
+		PayloadFeatureImpl payloadFeature = new PayloadFeatureImpl();
+		return payloadFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PerformActionUsage createPerformActionUsage() {
+		PerformActionUsageImpl performActionUsage = new PerformActionUsageImpl();
+		return performActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PortConjugation createPortConjugation() {
+		PortConjugationImpl portConjugation = new PortConjugationImpl();
+		return portConjugation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PortDefinition createPortDefinition() {
+		PortDefinitionImpl portDefinition = new PortDefinitionImpl();
+		return portDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PortUsage createPortUsage() {
+		PortUsageImpl portUsage = new PortUsageImpl();
+		return portUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Predicate createPredicate() {
+		PredicateImpl predicate = new PredicateImpl();
+		return predicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Redefinition createRedefinition() {
+		RedefinitionImpl redefinition = new RedefinitionImpl();
+		return redefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ReferenceSubsetting createReferenceSubsetting() {
+		ReferenceSubsettingImpl referenceSubsetting = new ReferenceSubsettingImpl();
+		return referenceSubsetting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ReferenceUsage createReferenceUsage() {
+		ReferenceUsageImpl referenceUsage = new ReferenceUsageImpl();
+		return referenceUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderingDefinition createRenderingDefinition() {
+		RenderingDefinitionImpl renderingDefinition = new RenderingDefinitionImpl();
+		return renderingDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderingUsage createRenderingUsage() {
+		RenderingUsageImpl renderingUsage = new RenderingUsageImpl();
+		return renderingUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementConstraintMembership createRequirementConstraintMembership() {
+		RequirementConstraintMembershipImpl requirementConstraintMembership = new RequirementConstraintMembershipImpl();
+		return requirementConstraintMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementDefinition createRequirementDefinition() {
+		RequirementDefinitionImpl requirementDefinition = new RequirementDefinitionImpl();
+		return requirementDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementUsage createRequirementUsage() {
+		RequirementUsageImpl requirementUsage = new RequirementUsageImpl();
+		return requirementUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementVerificationMembership createRequirementVerificationMembership() {
+		RequirementVerificationMembershipImpl requirementVerificationMembership = new RequirementVerificationMembershipImpl();
+		return requirementVerificationMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResultExpressionMembership createResultExpressionMembership() {
+		ResultExpressionMembershipImpl resultExpressionMembership = new ResultExpressionMembershipImpl();
+		return resultExpressionMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ReturnParameterMembership createReturnParameterMembership() {
+		ReturnParameterMembershipImpl returnParameterMembership = new ReturnParameterMembershipImpl();
+		return returnParameterMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SatisfyRequirementUsage createSatisfyRequirementUsage() {
+		SatisfyRequirementUsageImpl satisfyRequirementUsage = new SatisfyRequirementUsageImpl();
+		return satisfyRequirementUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SelectExpression createSelectExpression() {
+		SelectExpressionImpl selectExpression = new SelectExpressionImpl();
+		return selectExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SendActionUsage createSendActionUsage() {
+		SendActionUsageImpl sendActionUsage = new SendActionUsageImpl();
+		return sendActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Specialization createSpecialization() {
+		SpecializationImpl specialization = new SpecializationImpl();
+		return specialization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StakeholderMembership createStakeholderMembership() {
+		StakeholderMembershipImpl stakeholderMembership = new StakeholderMembershipImpl();
+		return stakeholderMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateDefinition createStateDefinition() {
+		StateDefinitionImpl stateDefinition = new StateDefinitionImpl();
+		return stateDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateSubactionMembership createStateSubactionMembership() {
+		StateSubactionMembershipImpl stateSubactionMembership = new StateSubactionMembershipImpl();
+		return stateSubactionMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public StateUsage createStateUsage() {
+		StateUsageImpl stateUsage = new StateUsageImpl();
+		return stateUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Step createStep() {
+		StepImpl step = new StepImpl();
+		return step;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Structure createStructure() {
+		StructureImpl structure = new StructureImpl();
+		return structure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Subclassification createSubclassification() {
+		SubclassificationImpl subclassification = new SubclassificationImpl();
+		return subclassification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SubjectMembership createSubjectMembership() {
+		SubjectMembershipImpl subjectMembership = new SubjectMembershipImpl();
+		return subjectMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Subsetting createSubsetting() {
+		SubsettingImpl subsetting = new SubsettingImpl();
+		return subsetting;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Succession createSuccession() {
+		SuccessionImpl succession = new SuccessionImpl();
+		return succession;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SuccessionAsUsage createSuccessionAsUsage() {
+		SuccessionAsUsageImpl successionAsUsage = new SuccessionAsUsageImpl();
+		return successionAsUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SuccessionFlow createSuccessionFlow() {
+		SuccessionFlowImpl successionFlow = new SuccessionFlowImpl();
+		return successionFlow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SuccessionFlowUsage createSuccessionFlowUsage() {
+		SuccessionFlowUsageImpl successionFlowUsage = new SuccessionFlowUsageImpl();
+		return successionFlowUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TerminateActionUsage createTerminateActionUsage() {
+		TerminateActionUsageImpl terminateActionUsage = new TerminateActionUsageImpl();
+		return terminateActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TextualRepresentation createTextualRepresentation() {
+		TextualRepresentationImpl textualRepresentation = new TextualRepresentationImpl();
+		return textualRepresentation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TransitionFeatureMembership createTransitionFeatureMembership() {
+		TransitionFeatureMembershipImpl transitionFeatureMembership = new TransitionFeatureMembershipImpl();
+		return transitionFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TransitionUsage createTransitionUsage() {
+		TransitionUsageImpl transitionUsage = new TransitionUsageImpl();
+		return transitionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TriggerInvocationExpression createTriggerInvocationExpression() {
+		TriggerInvocationExpressionImpl triggerInvocationExpression = new TriggerInvocationExpressionImpl();
+		return triggerInvocationExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type createType() {
+		TypeImpl type = new TypeImpl();
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TypeFeaturing createTypeFeaturing() {
+		TypeFeaturingImpl typeFeaturing = new TypeFeaturingImpl();
+		return typeFeaturing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Unioning createUnioning() {
+		UnioningImpl unioning = new UnioningImpl();
+		return unioning;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage createUsage() {
+		UsageImpl usage = new UsageImpl();
+		return usage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UseCaseDefinition createUseCaseDefinition() {
+		UseCaseDefinitionImpl useCaseDefinition = new UseCaseDefinitionImpl();
+		return useCaseDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UseCaseUsage createUseCaseUsage() {
+		UseCaseUsageImpl useCaseUsage = new UseCaseUsageImpl();
+		return useCaseUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VariantMembership createVariantMembership() {
+		VariantMembershipImpl variantMembership = new VariantMembershipImpl();
+		return variantMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VerificationCaseDefinition createVerificationCaseDefinition() {
+		VerificationCaseDefinitionImpl verificationCaseDefinition = new VerificationCaseDefinitionImpl();
+		return verificationCaseDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VerificationCaseUsage createVerificationCaseUsage() {
+		VerificationCaseUsageImpl verificationCaseUsage = new VerificationCaseUsageImpl();
+		return verificationCaseUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ViewDefinition createViewDefinition() {
+		ViewDefinitionImpl viewDefinition = new ViewDefinitionImpl();
+		return viewDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ViewpointDefinition createViewpointDefinition() {
+		ViewpointDefinitionImpl viewpointDefinition = new ViewpointDefinitionImpl();
+		return viewpointDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ViewpointUsage createViewpointUsage() {
+		ViewpointUsageImpl viewpointUsage = new ViewpointUsageImpl();
+		return viewpointUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ViewRenderingMembership createViewRenderingMembership() {
+		ViewRenderingMembershipImpl viewRenderingMembership = new ViewRenderingMembershipImpl();
+		return viewRenderingMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ViewUsage createViewUsage() {
+		ViewUsageImpl viewUsage = new ViewUsageImpl();
+		return viewUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public WhileLoopActionUsage createWhileLoopActionUsage() {
+		WhileLoopActionUsageImpl whileLoopActionUsage = new WhileLoopActionUsageImpl();
+		return whileLoopActionUsage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureDirectionKind createFeatureDirectionKindFromString(EDataType eDataType, String initialValue) {
+		FeatureDirectionKind result = FeatureDirectionKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertFeatureDirectionKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PortionKind createPortionKindFromString(EDataType eDataType, String initialValue) {
+		PortionKind result = PortionKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPortionKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementConstraintKind createRequirementConstraintKindFromString(EDataType eDataType, String initialValue) {
+		RequirementConstraintKind result = RequirementConstraintKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRequirementConstraintKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateSubactionKind createStateSubactionKindFromString(EDataType eDataType, String initialValue) {
+		StateSubactionKind result = StateSubactionKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStateSubactionKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TransitionFeatureKind createTransitionFeatureKindFromString(EDataType eDataType, String initialValue) {
+		TransitionFeatureKind result = TransitionFeatureKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTransitionFeatureKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TriggerKind createTriggerKindFromString(EDataType eDataType, String initialValue) {
+		TriggerKind result = TriggerKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTriggerKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
+		VisibilityKind result = VisibilityKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SysMLPackage getSysMLPackage() {
+		return (SysMLPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static SysMLPackage getPackage() {
+		return SysMLPackage.eINSTANCE;
+	}
+
+} //SysMLFactoryImpl

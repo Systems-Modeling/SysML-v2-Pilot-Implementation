@@ -1,0 +1,73 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *
+ *******************************************************************************/
+package org.omg.sysml.logic.delegate.setting;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.model.sysml.SysMLPackage;
+import org.omg.sysml.model.sysml.PartUsage;
+import org.omg.sysml.logic.delegate.AbstractSettingDelegate;
+
+/**
+ * Generated setting delegate for {@code StakeholderMembership.ownedStakeholderParameter}.
+ */
+public class StakeholderMembership_ownedStakeholderParameter_SettingDelegate extends AbstractSettingDelegate {
+
+    public StakeholderMembership_ownedStakeholderParameter_SettingDelegate(EStructuralFeature feature) {
+        super(feature);
+    }
+
+    @Override
+    protected String delegateId() {
+        return "StakeholderMembership.ownedStakeholderParameter";
+    }
+
+    @Override
+    protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+        /*
+         * redefines fallback for StakeholderMembership.ownedStakeholderParameter
+         * redefines Membership.memberElement
+         * redefines Relationship.ownedRelatedElement
+         */
+        Object resolvedValue = null;
+        var candidate0 = owner.eGet(SysMLPackage.eINSTANCE.getMembership_MemberElement(), resolve);
+        if (candidate0 instanceof PartUsage) {
+            resolvedValue = candidate0;
+        }
+        if (resolvedValue == null) {
+            var candidate1 = owner.eGet(SysMLPackage.eINSTANCE.getRelationship_OwnedRelatedElement(), resolve);
+            if (candidate1 instanceof Iterable<?> iterable) {
+                for (var item : iterable) {
+                    if (item instanceof PartUsage) {
+                        resolvedValue = item;
+                        break;
+                    }
+                }
+            } else if (candidate1 instanceof PartUsage) {
+                resolvedValue = candidate1;
+            }
+        }
+        if (resolvedValue == null) {
+            resolvedValue = super.get(owner, resolve, coreType);
+        }
+        return resolvedValue;
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.emf.ecore.setting_delegate">
+    <factory
+          uri="http://www.omg.org/spec/SysML"
+          class="org.omg.sysml.model.eclipse.delegate.EclipseSysMLSettingDelegateFactory"/>
+  </extension>
+  <extension point="org.eclipse.emf.ecore.invocation_delegate">
+    <factory
+          uri="http://www.omg.org/spec/SysML"
+          class="org.omg.sysml.model.eclipse.delegate.EclipseSysMLInvocationDelegateFactory"/>
+  </extension>
+</plugin>

@@ -1,0 +1,67 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *
+ *******************************************************************************/
+package org.omg.sysml.logic.delegate.setting;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.model.sysml.SysMLPackage;
+import org.omg.sysml.model.sysml.Function;
+import org.omg.sysml.logic.delegate.AbstractSettingDelegate;
+
+/**
+ * Generated setting delegate for {@code CalculationUsage.calculationDefinition}.
+ */
+public class CalculationUsage_calculationDefinition_SettingDelegate extends AbstractSettingDelegate {
+
+    public CalculationUsage_calculationDefinition_SettingDelegate(EStructuralFeature feature) {
+        super(feature);
+    }
+
+    @Override
+    protected String delegateId() {
+        return "CalculationUsage.calculationDefinition";
+    }
+
+    @Override
+    protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+        /*
+         * inferred fallback for CalculationUsage.calculationDefinition
+         * inferred source Feature.type
+         * The  Function  that is the  type  of this  CalculationUsage . Nominally, this would be a  CalculationDefinition , but a kernel  Function  is also allowed, to permit use of  Functions  from the Kernel Model Libraries.
+         */
+        Object resolvedValue = null;
+        var candidate = owner.eGet(SysMLPackage.eINSTANCE.getFeature_Type(), resolve);
+        if (candidate instanceof Iterable<?> iterable) {
+            for (var item : iterable) {
+                if (item instanceof Function) {
+                    resolvedValue = item;
+                    break;
+                }
+            }
+        } else if (candidate instanceof Function) {
+            resolvedValue = candidate;
+        }
+        if (resolvedValue == null) {
+            resolvedValue = super.get(owner, resolve, coreType);
+        }
+        return resolvedValue;
+    }
+}

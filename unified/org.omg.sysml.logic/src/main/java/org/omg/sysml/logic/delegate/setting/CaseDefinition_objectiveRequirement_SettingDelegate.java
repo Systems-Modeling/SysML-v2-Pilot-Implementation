@@ -1,0 +1,71 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *
+ *******************************************************************************/
+package org.omg.sysml.logic.delegate.setting;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.logic.delegate.AbstractSettingDelegate;
+import org.omg.sysml.model.sysml.CaseDefinition;
+import org.omg.sysml.model.sysml.ObjectiveMembership;
+
+/**
+ * Generated setting delegate for {@code CaseDefinition.objectiveRequirement}.
+ */
+public class CaseDefinition_objectiveRequirement_SettingDelegate extends AbstractSettingDelegate {
+
+    public CaseDefinition_objectiveRequirement_SettingDelegate(EStructuralFeature feature) {
+        super(feature);
+    }
+
+    @Override
+    protected String delegateId() {
+        return "CaseDefinition.objectiveRequirement";
+    }
+
+    /**
+     * @generated NOT
+     */
+    @Override
+    protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+        /*
+         * OCL2.0 deriveCaseDefinitionObjectiveRequirement
+         * objectiveRequirement = 
+         *     let objectives: OrderedSet(RequirementUsage) = 
+         *         featureMembership->
+         *             selectByKind(ObjectiveMembership).
+         *             ownedRequirement in
+         *     if objectives->isEmpty() then null
+         *     else objectives->first().ownedObjectiveRequirement
+         *     endif
+         */
+        Object result = null;
+        if (owner instanceof CaseDefinition self) {
+            for (var featureMembership : self.getFeatureMembership()) {
+                if (featureMembership instanceof ObjectiveMembership objectiveMembership
+                        && objectiveMembership.getOwnedObjectiveRequirement() != null) {
+                    result = objectiveMembership.getOwnedObjectiveRequirement();
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+}

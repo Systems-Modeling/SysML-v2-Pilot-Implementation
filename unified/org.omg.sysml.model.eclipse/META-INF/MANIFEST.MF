@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-Version: 0.1.0.qualifier
+Bundle-SymbolicName: org.omg.sysml.model.eclipse;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Export-Package: org.omg.sysml.model.eclipse.delegate
+Automatic-Module-Name: org.omg.sysml.model.eclipse

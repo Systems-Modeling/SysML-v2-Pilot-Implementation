@@ -1,0 +1,75 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *
+ *******************************************************************************/
+package org.omg.sysml.logic.delegate.invocation;
+
+import org.eclipse.emf.ecore.EOperation;
+import org.omg.sysml.logic.delegate.AbstractInvocationDelegate;
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.model.sysml.Element;
+
+/**
+ * Generated invocation delegate for {@code Element::escapedName}.
+ */
+public class Element_escapedName_InvocationDelegate extends AbstractInvocationDelegate {
+
+    public Element_escapedName_InvocationDelegate(EOperation operation) {
+        super(operation);
+    }
+
+    @Override
+    protected String delegateId() {
+        return "Element::escapedName";
+    }
+
+    /**
+     * @generated NOT
+     */
+    @Override
+    public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+        /*
+         * OCL2.0 unnamed1
+         * let name : String = 
+         *     if self.name = null then self.shortName
+         *     else self.name in
+         * if name = null then null
+         * else if name.matches('[A-Za-z_][A-Za-z0-9_]*') then name
+         * else '\'' + name.escapeSpecialCharacters() + '\''
+         * endif endif
+         */
+        String result = null;
+        if (target instanceof Element self) {
+            var candidate = self.getName();
+            if (candidate == null) {
+                candidate = self.getShortName();
+            }
+            if (candidate != null) {
+                if (candidate.matches("[A-Za-z_][A-Za-z0-9_]*")) {
+                    result = candidate;
+                } else {
+                    result = "'" + candidate.replace("\\", "\\\\").replace("'", "\\'") + "'";
+                }
+            }
+        }
+        return result;
+    }
+}

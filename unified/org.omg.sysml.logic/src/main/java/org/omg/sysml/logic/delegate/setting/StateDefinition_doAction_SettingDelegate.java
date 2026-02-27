@@ -1,0 +1,72 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *
+ *******************************************************************************/
+package org.omg.sysml.logic.delegate.setting;
+
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.logic.delegate.AbstractSettingDelegate;
+import org.omg.sysml.model.sysml.StateDefinition;
+import org.omg.sysml.model.sysml.StateSubactionKind;
+import org.omg.sysml.model.sysml.StateSubactionMembership;
+
+/**
+ * Generated setting delegate for {@code StateDefinition.doAction}.
+ */
+public class StateDefinition_doAction_SettingDelegate extends AbstractSettingDelegate {
+
+    public StateDefinition_doAction_SettingDelegate(EStructuralFeature feature) {
+        super(feature);
+    }
+
+    @Override
+    protected String delegateId() {
+        return "StateDefinition.doAction";
+    }
+
+    /**
+     * @generated NOT
+     */
+    @Override
+    protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+        /*
+         * OCL2.0 deriveStateDefinitionDoAction
+         * doAction =
+         *     let doMemberships : Sequence(StateSubactionMembership) =
+         *         ownedMembership->
+         *             selectByKind(StateSubactionMembership)->
+         *             select(kind = StateSubactionKind::do) in
+         *     if doMemberships->isEmpty() then null
+         *     else doMemberships->at(1)
+         *     endif
+         */
+        Object result = null;
+        if (owner instanceof StateDefinition self) {
+            for (var ownedMembership : self.getOwnedMembership()) {
+                if (ownedMembership instanceof StateSubactionMembership stateSubactionMembership
+                        && stateSubactionMembership.getKind() == StateSubactionKind.DO) {
+                    result = stateSubactionMembership.getAction();
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+}

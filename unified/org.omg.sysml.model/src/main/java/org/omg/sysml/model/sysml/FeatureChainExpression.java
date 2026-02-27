@@ -1,0 +1,115 @@
+/**
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ */
+package org.omg.sysml.model.sysml;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Feature Chain Expression</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * <p>A <code>FeatureChainExpression</code> is an <code>OperatorExpression</code> whose operator is <code>"."</code>, which resolves to the <code>Function</code> <em><code>ControlFunctions::'.'</code></em> from the Kernel Functions Library. It evaluates to the result of chaining the <code>result</code> <code>Feature</code> of its single <code>argument</code> <code>Expression</code> with its <code>targetFeature</code>.</p>
+ * let sourceParameter : Feature = sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * sourceTargetFeature.redefinesFromLibrary('ControlFunctions::\'.\'::source::target')
+ * let sourceParameter : Feature = sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * sourceTargetFeature.redefines(targetFeature)
+ * targetFeature =
+ *     let nonParameterMemberships : Sequence(Membership) = ownedMembership->
+ *         reject(oclIsKindOf(ParameterMembership)) in
+ *     if nonParameterMemberships->isEmpty() or
+ *        not nonParameterMemberships->first().memberElement.oclIsKindOf(Feature)
+ *     then null
+ *     else nonParameterMemberships->first().memberElement.oclAsType(Feature)
+ *     endif
+ * argument->notEmpty() implies
+ *     targetFeature.isFeaturedWithin(argument->first().result)
+ * operator = '.'
+ * let inputParameters : Sequence(Feature) = 
+ *     ownedFeatures->select(direction = _'in') in
+ * let sourceTargetFeature : Feature = 
+ *     owningExpression.sourceTargetFeature() in
+ * sourceTargetFeature <> null and
+ * result.subsetsChain(inputParameters->first(), sourceTargetFeature) and
+ * result.owningType = self
+ * <!-- end-model-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.model.sysml.FeatureChainExpression#getTargetFeature <em>Target Feature</em>}</li>
+ * </ul>
+ *
+ * @see org.omg.sysml.model.sysml.SysMLPackage#getFeatureChainExpression()
+ * @model
+ * @generated
+ */
+public interface FeatureChainExpression extends OperatorExpression {
+	/**
+	 * Returns the value of the '<em><b>Target Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Feature</code> that is accessed by this <code>FeatureChainExpression<code>, which is its first non-<code>parameter</code> <code>member</code>.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Target Feature</em>' reference.
+	 * @see #setTargetFeature(Feature)
+	 * @see org.omg.sysml.model.sysml.SysMLPackage#getFeatureChainExpression_TargetFeature()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='chainExpression'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getTargetFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.model.sysml.FeatureChainExpression#getTargetFeature <em>Target Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Feature</em>' reference.
+	 * @see #getTargetFeature()
+	 * @generated
+	 */
+	void setTargetFeature(Feature value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the first <code>ownedFeature</code> of the first owned input <code>parameter</code> of this <code>FeatureChainExpression</code> (if any).</p>
+	 * let inputParameters : Feature = ownedFeatures->
+	 *     select(direction = _'in') in
+	 * if inputParameters->isEmpty() or 
+	 *    inputParameters->first().ownedFeature->isEmpty()
+	 * then null
+	 * else inputParameters->first().ownedFeature->first()
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature sourceTargetFeature();
+
+} // FeatureChainExpression

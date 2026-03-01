@@ -24,12 +24,18 @@ import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.kerml.xtext.library.ILibraryIndexProvider
 import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
 import com.google.inject.Provides
+import org.eclipse.xtext.conversion.IValueConverterService
+import org.omg.kerml.xtext.conversion.KerMLValueConverterService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	
+	override Class<? extends IValueConverterService> bindIValueConverterService() {
+    	return KerMLValueConverterService;
+	}
+
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
 		KerMLQualifiedNameConverter
 	}
@@ -70,4 +76,5 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	def Class<? extends LibraryNamespaces> bindLibraryNamespaces(){
 	    LibraryNamespaces
 	}
+	
 }

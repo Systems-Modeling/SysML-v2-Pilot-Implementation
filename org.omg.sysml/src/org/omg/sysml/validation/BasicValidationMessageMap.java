@@ -25,10 +25,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths; 
+import java.util.Properties;
+import java.io.InputStream;
 
 /** 
  * BasicValidationMessageMap is an implementation of ValidationMessageMap using a map
@@ -38,10 +41,11 @@ import java.nio.file.Paths;
 public class BasicValidationMessageMap implements ValidationMessageMap {
 	
 	private List<String> messages = new ArrayList<>();
-	private Map<String, String> messageMap = new HashMap<>();
+
+	private Map<String, Integer> messageMap = new HashMap<>();
 	
-	private Map<String, String> kermlMessageMap = new HashMap<>(); 
-	private Map<String, String> sysmlMessageMap = new HashMap<>(); 
+//	private Map<String, String> kermlMessageMap = new HashMap<>(); 
+//	private Map<String, String> sysmlMessageMap = new HashMap<>(); 
 	
 	// TODO: Create two message property files - SysML and KerML (do KerML first)
 	Path kermlFilePath = Paths.get("KerMLValidationMessages.properties");
@@ -50,7 +54,27 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 	List<String> sysmlMessages = Files.readAllLines(sysmlFilePath);
 
 	public BasicValidationMessageMap() throws IOException {
+		Properties kermlValidationMsg = new Properties();
+		Properties sysmlValidationMsg = new Properties(); 
 		
+		 try (InputStream input = new FileInputStream("KerMLValidationMessages.properties")) {
+	            
+	            // Load the properties file
+	            kermlValidationMsg.load(input);
+
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+		 try (InputStream input = new FileInputStream("SysMLValidationMessages.properties")) {
+	            
+	            // Load the properties file
+	            sysmlValidationMsg.load(input);
+
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+		 
+		/*	
 		//initialize KerML Message Map
 		for (String msg : kermlMessages) {
 			if (msg.isBlank()) continue;
@@ -59,6 +83,9 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 			String msgVal = valPair[1].trim();
 			kermlMessageMap.put(msgCode, msgVal);
 		}
+		
+		//load KerML Properties file
+		
 		//initialize SysML Message Map
 		for (String message : sysmlMessages) {
 			if (message.isBlank()) continue; 
@@ -67,7 +94,8 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 			String msgVal = valPair[1].trim();
 			sysmlMessageMap.put(msgCode, msgVal);
 		}
-		// Root
+		*/
+		// Root ???
 		
 		put("validateElementIsImpliedIncluded", "Element cannot have implied relationships included");
 

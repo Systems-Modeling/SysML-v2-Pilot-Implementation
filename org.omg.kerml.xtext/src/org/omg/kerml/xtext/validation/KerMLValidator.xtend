@@ -143,18 +143,25 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_TYPE_AT_MOST_ONE_CONJUGATOR = "validateTypeAtMostOneConjugator"
 	public static val INVALID_TYPE_AT_MOST_ONE_CONJUGATOR_MSG = "Cannot have more than one conjugator"
+	
 	public static val INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF = "validateTypeDifferencingTypesNotSelf"
-	public static val INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF_MSG = "Type cannot difference with itself"		
+	public static val INVALID_TYPE_DIFFERENCING_TYPES_NOT_SELF_MSG = "Type cannot difference with itself"
+			
 	public static val INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF = "validateTypeIntersectingTypesNotSelf"
 	public static val INVALID_TYPE_INTERSECTING_TYPES_NOT_SELF_MSG = "Type cannot intersect with itself"
+	
 	public static val INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE = 'validateOwnedDifferencingNotOne'
 	public static val INVALID_TYPE_OWNED_DIFFERENCING_NOT_ONE_MSG = 'Cannot have only one differencing'
+	
 	public static val INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE = 'validateOwnedIntersectingNotOne'
 	public static val INVALID_TYPE_OWNED_INTERSECTING_NOT_ONE_MSG = 'Cannot have only one intersecting'
+	
 	public static val INVALID_TYPE_OWNED_MULTIPLICITY = "validateTypeOwnedMultiplicity"
 	public static val INVALID_TYPE_OWNED_MULTIPLICITY_MSG = "Only one multiplicity is allowed"
+	
 	public static val INVALID_TYPE_OWNED_UNIONING_NOT_ONE = 'validateOwnedUnioningNotOne'
 	public static val INVALID_TYPE_OWNED_UNIONING_NOT_ONE_MSG = 'Cannot have only one unioning'
+	
 	public static val INVALID_TYPE_UNIONING_TYPES_NOT_SELF = "validateTypeUnioningTypesNotSelf"
 	public static val INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG = "Type cannot union with itself"	
 
@@ -174,32 +181,46 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF = "validateFeatureChainingFeaturesNotSelf"
 	public static val INVALID_FEATURE_CHAINING_FEATURES_NOT_SELF_MSG = "Feature cannot have itself in a feature chain"
+	
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE = "validateFeatureChainingFeatureNotOne"
 	public static val INVALID_FEATURE_CHAINING_FEATURE_NOT_ONE_MSG = "Cannot have only one chaining feature"
+	
 	public static val INVALID_FEATURE_CONSTANT_IS_VARIABLE = "validateFeatureConstantIsVariable"
 	public static val INVALID_FEATURE_CONSTANT_IS_VARIABLE_MSG = "Only a variable feature can be constant"
+	
 	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION = "validateFeatureCrossFeatureSpecialization"
 	public static val INVALID_FEATURE_CROSS_FEATURE_SPECIALIZATION_MSG = "Cross feature must specialized redefined-end cross features"
+	
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE = "validateFeatureCrossFeatureType"
 	public static val INVALID_FEATURE_CROSS_FEATURE_TYPE_MSG = "Cross feature must have same type as feature"
+	
 	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION = "checkFeatureCrossingSpecialization"
 	public static val INVALID_FEATURE_CROSSING_SPECIALIZATION_MSG = "Must be the cross feature"
+	
 	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY = "validateFeatureEndFeatureMultiplicity"
 	public static val INVALID_FEATURE_END_FEATURE_MULTIPLICITY_MSG = "End feature must have multiplicity 1"
+	
 	public static val INVALID_FEATURE_END_IS_CONSTANT = "validateFeatureEndIsConstant"
 	public static val INVALID_FEATURE_END_IS_CONSTANT_MSG = "End feature must be constant"
+	
 	public static val INVALID_FEATURE_END_NO_DIRECTION = "validateFeatureEndNoDirection"
 	public static val INVALID_FEATURE_END_NO_DIRECTION_MSG = "End feature cannot have direction"
+	
 	public static val INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION = "validateFeatureEndNotDerivedAbstractCompositeOrPortion"
 	public static val INVALID_FEATURE_END_NOT_DERIVED_ABSTRACT_COMPOSITE_OR_PORTION_MSG = "End feature cannot be derived, abstract, composite or portion"
+	
 	public static val INVALID_FEATURE_IS_VARIABLE = "validateFeatureIsVariable"
 	public static val INVALID_FEATURE_IS_VARIABLE_MSG = "Must be owned by an occurrence type"
+	
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN = "validateFeatureMultiplicityDomain"
 	public static val INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG = "Multiplicity must have same featuring types as it feature"
+	
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING = "validateFeatureOwnedReferenceSubsetting"
 	public static val INVALID_FEATURE_OWNED_REFERENCE_SUBSETTING_MSG = "At most one reference subsetting is allowed"
+	
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING = "validateFeatureOwnedCrossSubsetting"
 	public static val INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG = "At most one cross subsetting is allowed"
+	
 	public static val INVALID_FEATURE_PORTION_NOT_VARIABLE = "validateFeaturePortionNotVariable"
 	public static val INVALID_FEATURE_PORTION_NOT_VARIABLE_MSG = "A portion cannot be variable"
 
@@ -208,27 +229,35 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE = "validateRedefinitionDirectionConformance"
 	public static val INVALID_REDEFINITION_DIRECTION_CONFORMANCE_MSG = "Redefining feature must have a compatible direction"
+	
 	public static val INVALID_REDEFINITION_END_CONFORMANCE = "validateRedefinitionEndConformance"
 	public static val INVALID_REDEFINITION_END_CONFORMANCE_MSG = "Redefining feature must be an end feature"
+	
 	public static val INVALID_REDEFINITION_FEATURING_TYPES = 'validateRedefinitionFeaturingTypes'
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_1 = "A package-level feature cannot be redefined"
 	public static val INVALID_REDEFINITION_FEATURING_TYPES_MSG_2 = "Featuring types of redefining feature and redefined feature cannot be the same"
+	
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE = "validateRedefinitionMultiplicityConformance"
 	public static val INVALID_REDEFINITION_MULTIPLICITY_CONFORMANCE_MSG = "Redefining feature should not have smaller multiplicity lower bound"
 
 	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE = "validateSubsettingConstantConformance"
 	public static val INVALID_SUBSETTING_CONSTANT_CONFORMANCE_MSG = "Subsetting/redefining feature must be constant if subsetted/redefined feature is constant"
+	
 	public static val INVALID_SUBSETTING_FEATURING_TYPES = "validateSubsettingFeaturingTypes"
 	public static val INVALID_SUBSETTING_FEATURING_TYPES_MSG = "Must be an accessible feature (use dot notation for nesting)"
+	
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE = "validateSubsettingMultiplicityConformance"
 	public static val INVALID_SUBSETTING_MULTIPLICITY_CONFORMANCE_MSG = "Subsetting/redefining feature should not have larger multiplicity upper bound"
+	
 	public static val INVALID_SUBSETTING_PORTION_CONFORMANCE = "validateSubsettingPortionConformance"
 	public static val INVALID_SUBSETTING_PORTION_CONFORMANCE_MSG = "Subsetting/redefining feature must be portion if subsetted/redefined feature is portion"
+	
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = "validateSubsettingUniquenessConformance"
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE_MSG = "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique"
 	
 	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE = "validateCrossSubsettingCrossingFeature"
 	public static val INVALID_CROSS_SUBSETTING_CROSSING_FEATURE_MSG = "Cross subsetting must be owned by one of two or more end features"
+	
 	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE = "validateCrossSubsettingCrossedFeature"
 	public static val INVALID_CROSS_SUBSETTING_CROSSED_FEATURE_MSG = "Cross subsetting must chain through an opposite end feature"
 	
@@ -245,15 +274,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION = "validateAssociationBinarySpecialization"
 	public static val INVALID_ASSOCIATION_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
+	
 	public static val INVALID_ASSOCIATION_END_TYPES = "validateAssociationEndTypes"
 	public static val INVALID_ASSOCIATION_END_TYPES_MSG = "An association end must have exactly one type"
+	
 	public static val INVALID_ASSOCIATION_RELATED_TYPES = "validateAssociationRelatedTypes"
 	public static val INVALID_ASSOCIATION_RELATED_TYPES_MSG = "Must have at least two related elements"
+	
 	public static val INVALID_ASSOCIATION_STRUCTURE_INTERSECTION = "validateAssociationStructureIntersection"
 	public static val INVALID_ASSOCIATION_STRUCTURE_INTERSECTION_MSG = "Must be an association structure"
 		
 	public static val INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE = "validateBindingConnectorTypeConformance"
 	public static val INVALID_BINDING_CONNECTOR_TYPE_CONFORMANCE_MSG = "Bound features should have conforming types"
+	
 	public static val INVALID_BINDING_CONNECTOR_IS_BINARY = "validateBindingConnectorIsBinary"
 	public static val INVALID_BINDING_CONNECTOR_IS_BINARY_MSG = "Binding connector must be binary"
 
@@ -263,8 +296,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_CONNECTOR_BINARY_SPECIALIZATION = "validateConnectorBinarySpecialization"
 	public static val INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG = "Cannot have more than two ends"
+	
 	public static val INVALID_CONNECTOR_RELATED_FEATURES = "validateConnectorRelatedFeatures"
 	public static val INVALID_CONNECTOR_RELATED_FEATURES_MSG = "Must have at least two related elements"
+	
 	public static val INVALID_CONNECTOR_TYPE_FEATURING = "validateConnectorTypeFeaturing"
 	public static val INVALID_CONNECTOR_TYPE_FEATURING_MSG = "Must be an accessible feature (use dot notation for nesting)"
 	
@@ -273,16 +308,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_PARAMETER_MEMBERSHIP_DIRECTION = "validateParameterMembershipDirection"
 	public static val INVALID_PARAMETER_MEMBERSHIP_DIRECTION_MSG = "Must have direction '{direction}'"
+	
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE = "validateParameterMembershipOwningType"
 	public static val INVALID_PARAMETER_MEMBERSHIP_OWNING_TYPE_MSG = "Parameter membership not allowed"	
 		
 	public static val INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP = "validateExpressionResultExpressionMembership"
-	public static val INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG = "Only one (owned or inherited) result expression is allowed"	
+	public static val INVALID_EXPRESSION_RESULT_EXPRESSION_MEMBERSHIP_MSG = "Only one (owned or inherited) result expression is allowed"
+		
 	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP = "validateExpressionResultParameterMembership"
 	public static val INVALID_EXPRESSION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
 		
 	public static val INVALID_FUNCTION_RESULT_EXPRESSION_MEMBERSHIP = "validateFunctionResultExpressionMembership"
 	public static val INVALID_FUNCTION_RESULT_EXPRESSION_MEMBERSHIP_MSG = "Only one (owned or inherited) result expression is allowed"	
+	
 	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP = "validateFunctionResultParameterMembership"
 	public static val INVALID_FUNCTION_RESULT_PARAMETER_MEMBERSHIP_MSG = "Only one return parameter is allowed"	
 		
@@ -294,8 +332,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION = "checkConstructorExpressionResultFeatureRedefinition"
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG = "Must correspond to one feature of the instantiated type"
+	
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION = "validateConstructorExpressionNoDuplicateFeatureRedefinition"
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_NO_DUPLICATE_FEATURE_REDEFINITION_MSG = "Feature already bound"
+	
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES = "validateConstructorExpressionOwnedFeatures"
 	public static val INVALID_CONSTRUCTOR_EXPRESSION_OWNED_FEATURES_MSG = "Owned feature not allowed"
 
@@ -304,11 +344,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE = "validateFeatureReferenceExpressionReferentIsFeature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_REFERENT_IS_FEATURE_MSG = "Must be a valid feature"
+	
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT = "validateFeatureReferenceExpressionResult"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION_RESULT_MSG = "Must own its result parameter"
 
 	public static val INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE = "validateInstantiationExpressionInstantiatedType"
 	public static val INVALID_INSTANTIATION_EXPRESSION_INSTANTIATED_TYPE_MSG = "Must have an invoked/instantiated type"
+	
 	public static val INVALID_INSTANTIATION_EXPRESSION_RESULT = "validateInstantiationExpressionResult"
 	public static val INVALID_INSTANTIATION_EXPRESSION_RESULT_MSG = "Must own its result parameter"
 
@@ -345,37 +387,47 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	public static val INVALID_FLOW_END_IS_END = "validateFlowEndIsEnd"
 	public static val INVALID_FLOW_END_IS_END_MSG = "Must be an end feature"
+	
 	public static val INVALID_FLOW_END_OWNING_TYPE = "validateFlowEndOwningType"
 	public static val INVALID_FLOW_END_OWNING_TYPE_MSG = "Flow end not allowed"
+	
 	public static val INVALID_FLOW_END_NESTED_FEATURE = "validateFlowEndNestedFeature"
 	public static val INVALID_FLOW_END_NESTED_FEATURE_MSG = "Flow end must have a nested input or output feature"
+	
 	public static val INVALID_FLOW_END_SUBSETTING = "validateFlowEndSubsetting"
 	public static val INVALID_FLOW_END_SUBSETTING_MSG = "Cannot identify flow end (use dot notation)"
+	
 	public static val INVALID_FLOW_END_IMPLICIT_SUBSETTING = "validateFlowEndImplicitSubsetting"
 	public static val INVALID_FLOW_END_IMPLICIT_SUBSETTING_MSG = "Flow ends should use dot notation"
 	
 	public static val INVALID_FEATURE_VALUE_IS_INITIAL = "validateFeatureValueIsInitial"
 	public static val INVALID_FEATURE_VALUE_IS_INITIAL_MSG = "Initialized feature must be variable"
+	
 	public static val INVALID_FEATURE_VALUE_OVERRIDING = "validateFeatureValueOverriding"
 	public static val INVALID_FEATURE_VALUE_OVERRIDING_MSG = "Cannot override a binding feature value"
 	
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES = "validateMultiplicityRangeResultTypes"
 	public static val INVALID_MULTIPLICITY_RANGE_BOUND_RESULT_TYPES_MSG = "Must have a Natural value"
+	
 	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS = "validateMultiplicityRangeBounds"
 	public static val INVALID_MULTIPLICITY_RANGE_BOUNDS_MSG = "Bound expressions must be first two owned members"
 
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT = "validateMetadataFeatureAnnotatedElement"
 	public static val INVALID_METADATA_FEATURE_ANNOTATED_ELEMENT_MSG = "Cannot annotate {metaclass}"
+	
 	public static val INVALID_METADATA_FEATURE_BODY = "invalidateMetadataFeatureBody"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_1 = "Must redefine an owning-type feature"
 	public static val INVALID_METADATA_FEATURE_BODY_MSG_2 = "Must be model-level evaluable"
+	
 	public static val INVALID_METADATA_FEATURE_METACLASS = "validateMetadataFeatureMetadata"
 	public static val INVALID_METADATA_FEATURE_METACLASS_MSG = "Must have exactly one metaclass"
+	
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT = "validateMetadataFeatureMetadataNotAbstract"
 	public static val INVALID_METADATA_FEATURE_METACLASS_NOT_ABSTRACT_MSG = "Must have a concrete type"
 
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN = "validateElementFilterMembershipIsBoolean"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_BOOLEAN_MSG = "Must have a Boolean result"
+	
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE = "validateElementFilterMembershipIsModelLevelEvaluable"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP_IS_MODEL_LEVEL_EVALUABLE_MSG = "Must be model-level evaluable"
 

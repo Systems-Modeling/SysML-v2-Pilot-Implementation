@@ -321,6 +321,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS = "validateStateDefinitionParallelSubactions"
 	public static val INVALID_STATE_DEFINITION_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
+	
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND = "validateStateDefinitionSubactionKind"
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_1 = INVALID_STATE_SUBACTION_KIND_ENTRY_MSG
 	public static val INVALID_STATE_DEFINITION_SUBACTION_KIND_MSG_2 = INVALID_STATE_SUBACTION_KIND_DO_MSG
@@ -331,6 +332,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_STATE_USAGE_TYPE = "validateStateUsageType_"
 	public static val INVALID_STATE_USAGE_TYPE_MSG = "A state must be typed by state definitions."
+	
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS = "validateStateUsageParallelSubactions"
 	public static val INVALID_STATE_USAGE_PARALLEL_SUBACTIONS_MSG = "A parallel state cannot have successions or transitions."
 	public static val INVALID_STATE_USAGE_SUBACTION_KIND = "validateStateUsageSubactionKind"
@@ -340,16 +342,20 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION = "validateTransitionFeatureMembershipEffectAction"
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_EFFECT_ACTION_MSG = "Must be an action."	
+	
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION = "validateTransitionFeatureMembershipGuardExpression"
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION_MSG = "Must be a Boolean expression."	
+	
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE = "validateTransitionFeatureMembershipOwningType"
-	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE_MSG = "Transition feature membership not allowed."	
+	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_OWNING_TYPE_MSG = "Transition feature membership not allowed."
+		
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION = "validateTransitionFeatureMembershipTriggerAction"
 	public static val INVALID_TRANSITION_FEATURE_MEMBERSHIP_TRIGGER_ACTION_MSG = "Must be an accept action."
 	
 	public static val INVALID_TRANSITION_USAGE_PARAMETERS = "validateTransitionUsageParameters"
 	public static val INVALID_TRANSITION_USAGE_PARAMETERS_MSG_1 = "Must have an input parameter."
 	public static val INVALID_TRANSITION_USAGE_PARAMETERS_MSG_2 = "Must have two input parameters."
+	
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION = "validateTransitionUsageSuccession"
 	public static val INVALID_TRANSITION_USAGE_SUCCESSION_MSG = "A transition must own a succession to its target."
 	public static val INVALID_TRANSITION_USAGE_TRIGGER_ACTIONS = "validateTransitionUsageTriggerActions"

@@ -21,6 +21,7 @@
 
 package org.omg.sysml.validation;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -43,7 +44,7 @@ public class SysMLEValidator implements EValidator {
 	protected ValidationCheckerFactory factory;
 	protected ValidationMessageMap messageMap;
 	
-	public SysMLEValidator() {
+	public SysMLEValidator() throws IOException {
 		this(new ValidationCheckerFactory(), new BasicValidationMessageMap());
 	}
 

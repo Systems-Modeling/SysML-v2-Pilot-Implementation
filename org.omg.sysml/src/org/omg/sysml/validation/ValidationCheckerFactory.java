@@ -23,6 +23,7 @@ package org.omg.sysml.validation;
 
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 import org.omg.sysml.validation.kerml.*;
+import org.omg.sysml.validation.sysml.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -466,6 +467,473 @@ public class ValidationCheckerFactory extends SysMLSwitch<ValidationChecker> {
 	@Override
 	public ValidationChecker caseUnioning(Unioning element) {
 		return new UnioningValidationChecker();
+	}
+	
+	// SysML
+	
+	@Override
+	public ValidationChecker caseAcceptActionUsage(AcceptActionUsage element) {
+		return new AcceptActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseActionDefinition(ActionDefinition element) {
+		return new ActionDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseActionUsage(ActionUsage element) {
+		return new ActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseActorMembership(ActorMembership element) {
+		return new ActorMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAllocationDefinition(AllocationDefinition element) {
+		return new AllocationDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAllocationUsage(AllocationUsage element) {
+		return new AllocationUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAnalysisCaseDefinition(AnalysisCaseDefinition element) {
+		return new AnalysisCaseDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAnalysisCaseUsage(AnalysisCaseUsage element) {
+		return new AnalysisCaseUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAssertConstraintUsage(AssertConstraintUsage element) {
+		return new AssertConstraintUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAssignmentActionUsage(AssignmentActionUsage element) {
+		return new AssignmentActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAttributeDefinition(AttributeDefinition element) {
+		return new AttributeDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseAttributeUsage(AttributeUsage element) {
+		return new AttributeUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseBindingConnectorAsUsage(BindingConnectorAsUsage element) {
+		return new BindingConnectorAsUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseCalculationDefinition(CalculationDefinition element) {
+		return new CalculationDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseCalculationUsage(CalculationUsage element) {
+		return new CalculationUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseCaseDefinition(CaseDefinition element) {
+		return new CaseDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseCaseUsage(CaseUsage element) {
+		return new CaseUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConcernDefinition(ConcernDefinition element) {
+		return new ConcernDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConcernUsage(ConcernUsage element) {
+		return new ConcernUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConjugatedPortDefinition(ConjugatedPortDefinition element) {
+		return new ConjugatedPortDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConjugatedPortTyping(ConjugatedPortTyping element) {
+		return new ConjugatedPortTypingValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConnectionDefinition(ConnectionDefinition element) {
+		return new ConnectionDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConnectionUsage(ConnectionUsage element) {
+		return new ConnectionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConnectorAsUsage(ConnectorAsUsage element) {
+		return new ConnectorAsUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConstraintDefinition(ConstraintDefinition element) {
+		return new ConstraintDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseConstraintUsage(ConstraintUsage element) {
+		return new ConstraintUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseControlNode(ControlNode element) {
+		return new ControlNodeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseDecisionNode(DecisionNode element) {
+		return new DecisionNodeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseDefinition(Definition element) {
+		return new DefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseEnumerationDefinition(EnumerationDefinition element) {
+		return new EnumerationDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseEnumerationUsage(EnumerationUsage element) {
+		return new EnumerationUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseEventOccurrenceUsage(EventOccurrenceUsage element) {
+		return new EventOccurrenceUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseExhibitStateUsage(ExhibitStateUsage element) {
+		return new ExhibitStateUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseExpose(Expose element) {
+		return new ExposeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseFlowDefinition(FlowDefinition element) {
+		return new FlowDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseFlowUsage(FlowUsage element) {
+		return new FlowUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseForLoopActionUsage(ForLoopActionUsage element) {
+		return new ForLoopActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseForkNode(ForkNode element) {
+		return new ForkNodeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseFramedConcernMembership(FramedConcernMembership element) {
+		return new FramedConcernMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseIfActionUsage(IfActionUsage element) {
+		return new IfActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseIncludeUseCaseUsage(IncludeUseCaseUsage element) {
+		return new IncludeUseCaseUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseInterfaceDefinition(InterfaceDefinition element) {
+		return new InterfaceDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseInterfaceUsage(InterfaceUsage element) {
+		return new InterfaceUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseItemDefinition(ItemDefinition element) {
+		return new ItemDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseItemUsage(ItemUsage element) {
+		return new ItemUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseJoinNode(JoinNode element) {
+		return new JoinNodeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseLoopActionUsage(LoopActionUsage element) {
+		return new LoopActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseMembershipExpose(MembershipExpose element) {
+		return new MembershipExposeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseMergeNode(MergeNode element) {
+		return new MergeNodeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseMetadataDefinition(MetadataDefinition element) {
+		return new MetadataDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseMetadataUsage(MetadataUsage element) {
+		return new MetadataUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseNamespaceExpose(NamespaceExpose element) {
+		return new NamespaceExposeValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseObjectiveMembership(ObjectiveMembership element) {
+		return new ObjectiveMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseOccurrenceDefinition(OccurrenceDefinition element) {
+		return new OccurrenceDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseOccurrenceUsage(OccurrenceUsage element) {
+		return new OccurrenceUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePartDefinition(PartDefinition element) {
+		return new PartDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePartUsage(PartUsage element) {
+		return new PartUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePerformActionUsage(PerformActionUsage element) {
+		return new PerformActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePortConjugation(PortConjugation element) {
+		return new PortConjugationValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePortDefinition(PortDefinition element) {
+		return new PortDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker casePortUsage(PortUsage element) {
+		return new PortUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseReferenceUsage(ReferenceUsage element) {
+		return new ReferenceUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRenderingDefinition(RenderingDefinition element) {
+		return new RenderingDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRenderingUsage(RenderingUsage element) {
+		return new RenderingUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRequirementConstraintMembership(RequirementConstraintMembership element) {
+		return new RequirementConstraintMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRequirementDefinition(RequirementDefinition element) {
+		return new RequirementDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRequirementUsage(RequirementUsage element) {
+		return new RequirementUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseRequirementVerificationMembership(RequirementVerificationMembership element) {
+		return new RequirementVerificationMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseSatisfyRequirementUsage(SatisfyRequirementUsage element) {
+		return new SatisfyRequirementUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseSendActionUsage(SendActionUsage element) {
+		return new SendActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseStakeholderMembership(StakeholderMembership element) {
+		return new StakeholderMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseStateDefinition(StateDefinition element) {
+		return new StateDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseStateSubactionMembership(StateSubactionMembership element) {
+		return new StateSubactionMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseStateUsage(StateUsage element) {
+		return new StateUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseSubjectMembership(SubjectMembership element) {
+		return new SubjectMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseSuccessionAsUsage(SuccessionAsUsage element) {
+		return new SuccessionAsUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseSuccessionFlowUsage(SuccessionFlowUsage element) {
+		return new SuccessionFlowUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseTerminateActionUsage(TerminateActionUsage element) {
+		return new TerminateActionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseTransitionFeatureMembership(TransitionFeatureMembership element) {
+		return new TransitionFeatureMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseTransitionUsage(TransitionUsage element) {
+		return new TransitionUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseTriggerInvocationExpression(TriggerInvocationExpression element) {
+		return new TriggerInvocationExpressionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseUsage(Usage element) {
+		return new UsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseUseCaseDefinition(UseCaseDefinition element) {
+		return new UseCaseDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseUseCaseUsage(UseCaseUsage element) {
+		return new UseCaseUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseVariantMembership(VariantMembership element) {
+		return new VariantMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseVerificationCaseDefinition(VerificationCaseDefinition element) {
+		return new VerificationCaseDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseVerificationCaseUsage(VerificationCaseUsage element) {
+		return new VerificationCaseUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseViewDefinition(ViewDefinition element) {
+		return new ViewDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseViewRenderingMembership(ViewRenderingMembership element) {
+		return new ViewRenderingMembershipValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseViewUsage(ViewUsage element) {
+		return new ViewUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseViewpointDefinition(ViewpointDefinition element) {
+		return new ViewpointDefinitionValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseViewpointUsage(ViewpointUsage element) {
+		return new ViewpointUsageValidationChecker();
+	}
+
+	@Override
+	public ValidationChecker caseWhileLoopActionUsage(WhileLoopActionUsage element) {
+		return new WhileLoopActionUsageValidationChecker();
 	}
 
 }

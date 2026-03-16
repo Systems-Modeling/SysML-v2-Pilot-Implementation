@@ -1,0 +1,91 @@
+----------------------------------
+Linking Vehicle[superclassifier] in 2.sysml:6 took 0ms {
+ Scope 'Individuals and Roles' looking for Vehicle[Classifier] took 0ms {
+  Linking 'Part Definition Example'[importedNamespace] in 2.sysml:2 took 0ms {
+   Scope 'Individuals and Roles' looking for Part Definition Example[Namespace] took 0ms {
+    Scope null looking for Part Definition Example[Namespace] took 0ms {
+     GLOBAL scope Part Definition Example took 0ms {
+      Found: Part Definition Example[Package]
+     }
+     Found Part Definition Example[Package]
+    }
+    Found Part Definition Example[Package]
+   }
+   Linked QN: 'Part Definition Example', eClass: Package
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: 'Part Definition Example'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking Wheel[type] in 2.sysml:7 took 0ms {
+ Scope 'Individuals and Roles'::Vehicle_1 looking for Wheel[Type] took 0ms {
+  Scope 'Individuals and Roles' looking for Wheel[Type] took 0ms {
+   Found Wheel[PartDefinition]
+  }
+  Found Wheel[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Wheel, eClass: PartDefinition
+}
+----------------------------------
+Linking Wheel[type] in 2.sysml:8 took 0ms {
+ Scope 'Individuals and Roles'::Vehicle_1 looking for Wheel[Type] took 0ms {
+  Scope 'Individuals and Roles' looking for Wheel[Type] took 0ms {
+   Found Wheel[PartDefinition]
+  }
+  Found Wheel[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Wheel, eClass: PartDefinition
+}
+----------------------------------
+Linking Wheel[superclassifier] in 2.sysml:11 took 0ms {
+ Scope 'Individuals and Roles' looking for Wheel[Classifier] took 0ms {
+  Found Wheel[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Wheel, eClass: PartDefinition
+}
+----------------------------------
+Linking Vehicle_1[type] in 2.sysml:13 took 0ms {
+ Scope 'Individuals and Roles' looking for Vehicle_1[Type] took 0ms {
+  Found Vehicle_1[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Vehicle_1, eClass: PartDefinition
+}
+----------------------------------
+Linking Wheel_1[type] in 2.sysml:15 took 1ms {
+ Scope 'Individuals and Roles'::vehicle_1::vehicle_1_t0 looking for Wheel_1[Type] took 1ms {
+  Linking leftFrontWheel[redefinedFeature] in 2.sysml:15 took 1ms {
+   Scope 'Individuals and Roles'::vehicle_1::vehicle_1_t0 looking for leftFrontWheel[Feature] took 1ms {
+    Found leftFrontWheel[PartUsage]
+   }
+   Linked QN: 'Individuals and Roles'::Vehicle_1::leftFrontWheel, eClass: PartUsage
+  }
+  Scope 'Individuals and Roles'::vehicle_1 looking for Wheel_1[Type] took 0ms {
+   Scope 'Individuals and Roles' looking for Wheel_1[Type] took 0ms {
+    Found Wheel_1[PartDefinition]
+   }
+   Found Wheel_1[PartDefinition]
+  }
+  Found Wheel_1[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Wheel_1, eClass: PartDefinition
+}
+----------------------------------
+Linking Wheel_1[type] in 2.sysml:19 took 0ms {
+ Scope 'Individuals and Roles'::vehicle_1::vehicle_1_t1 looking for Wheel_1[Type] took 0ms {
+  Linking rightFrontWheel[redefinedFeature] in 2.sysml:19 took 0ms {
+   Scope 'Individuals and Roles'::vehicle_1::vehicle_1_t1 looking for rightFrontWheel[Feature] took 0ms {
+    Found rightFrontWheel[PartUsage]
+   }
+   Linked QN: 'Individuals and Roles'::Vehicle_1::rightFrontWheel, eClass: PartUsage
+  }
+  Scope 'Individuals and Roles'::vehicle_1 looking for Wheel_1[Type] took 0ms {
+   Scope 'Individuals and Roles' looking for Wheel_1[Type] took 0ms {
+    Found Wheel_1[PartDefinition]
+   }
+   Found Wheel_1[PartDefinition]
+  }
+  Found Wheel_1[PartDefinition]
+ }
+ Linked QN: 'Individuals and Roles'::Wheel_1, eClass: PartDefinition
+}

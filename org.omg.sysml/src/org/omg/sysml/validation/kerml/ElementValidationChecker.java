@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.validation.check;
+package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;

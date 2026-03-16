@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.validation.check;
+package org.omg.sysml.validation.kerml;
 
 import java.util.HashMap;
 import java.util.HashSet;

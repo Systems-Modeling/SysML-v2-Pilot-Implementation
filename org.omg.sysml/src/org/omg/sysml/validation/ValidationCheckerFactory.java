@@ -22,7 +22,7 @@
 package org.omg.sysml.validation;
 
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
-import org.omg.sysml.validation.check.*;
+import org.omg.sysml.validation.kerml.*;
 
 import java.util.HashMap;
 import java.util.Map;

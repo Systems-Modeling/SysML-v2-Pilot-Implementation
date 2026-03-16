@@ -19,29 +19,8 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.validation.check;
+package org.omg.sysml.validation.kerml;
 
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.validation.ValidationMessageAccepter;
-
-public class ImportValidationChecker extends RelationshipValidationChecker {
-
-	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
-		validateImportTopLevelVisibility(element, messageAccepter);
-	}
-	
-	public void validateImportTopLevelVisibility(Element element, ValidationMessageAccepter messageAccepter) {
-		if (element instanceof Import import_) {
-			var owningNamespace = import_.getImportOwningNamespace();
-			if (owningNamespace != null && owningNamespace.getOwner() == null && 
-				import_.getVisibility() != VisibilityKind.PRIVATE) {
-				messageAccepter.error(import_, null, "validateImportTopLevelVisibility");			
-			}
-		}
-	}
+public class RelationshipValidationChecker extends ElementValidationChecker {
 
 }

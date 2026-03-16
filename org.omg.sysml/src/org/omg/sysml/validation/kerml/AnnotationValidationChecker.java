@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.validation.check;
+package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;

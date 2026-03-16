@@ -91,7 +91,6 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getCrossFeature <em>Cross Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedCrossSubsetting <em>Owned Cross Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @generated
@@ -436,16 +435,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_CROSS_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_CROSS_SUBSETTING).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNonunique()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate IS_NONUNIQUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__IS_NONUNIQUE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1019,26 +1008,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isNonunique() {
-		return (Boolean)IS_NONUNIQUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsNonunique(boolean newIsNonunique) {
-		IS_NONUNIQUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsNonunique);
-	}
-
-	/**
 	 * The cached invocation delegate for the '{@link #directionFor(org.omg.sysml.lang.sysml.Type) <em>Direction For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1471,8 +1440,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_CROSS_SUBSETTING:
 				if (resolve) return getOwnedCrossSubsetting();
 				return basicGetOwnedCrossSubsetting();
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1570,9 +1537,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_CROSS_SUBSETTING:
 				setOwnedCrossSubsetting((CrossSubsetting)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				setIsNonunique((Boolean)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1660,9 +1624,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_CROSS_SUBSETTING:
 				setOwnedCrossSubsetting((CrossSubsetting)null);
 				return;
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				IS_NONUNIQUE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1727,8 +1688,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_CROSS_SUBSETTING:
 				return OWNED_CROSS_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return IS_NONUNIQUE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

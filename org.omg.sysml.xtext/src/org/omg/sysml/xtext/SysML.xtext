@@ -372,9 +372,14 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 fragment MultiplicityPart returns SysML::Feature :
 	  ownedRelationship += OwnedMultiplicity 
 	| ( ownedRelationship += OwnedMultiplicity )?
-	  ( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
-	  | isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	  ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
+	  | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 	  )
+;
+
+Nonunique returns Ecore::EBoolean :
+	// Note: A value converter converts the value of this keyword to "false".
+	'nonunique'
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :

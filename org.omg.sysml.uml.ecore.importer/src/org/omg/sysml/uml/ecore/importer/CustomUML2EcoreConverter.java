@@ -58,13 +58,7 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			} else if (element instanceof org.eclipse.uml2.uml.Class && modelElement instanceof EClass) {
 				String name = ((org.eclipse.uml2.uml.Class)element).getName();
 				EClass eClass = (EClass)modelElement;
-				if ("Feature".equals(name)) {
-					// Add the "isNonunique" attribute as the effective logical inverse of "isUnique".
-					EClassifier booleanType = eClass.getEStructuralFeature("isUnique").getEType();
-					EAttribute isNonUniqueAttribute = EcoreFactory.eINSTANCE.createEAttribute();
-					addStructuralFeature(eClass, isNonUniqueAttribute, "isNonunique", booleanType, 1, 1, "false", false);
-					addSysMLAnnotation("Feature::isNonUnique", isNonUniqueAttribute);
-				} else if ("InvocationExpression".equals(name)) {
+				if ("InvocationExpression".equals(name)) {
 					// Add the "operand" reference as a workaround for parsing operator expression arguments.
 					EClassifier expressionClass = eClass.getEStructuralFeature("argument").getEType();
 					EReference operandReference = EcoreFactory.eINSTANCE.createEReference();

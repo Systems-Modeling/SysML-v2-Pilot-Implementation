@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -44,7 +44,7 @@ public class SysMLEValidator implements EValidator {
 	protected ValidationMessageMap messageMap;
 	
 	public SysMLEValidator() {
-		this(new ValidationCheckerFactory(), new BasicValidationMessageMap());
+		this(new SysMLValidationCheckerFactory(), new BasicValidationMessageMap());
 	}
 
 	public SysMLEValidator(ValidationCheckerFactory factory, ValidationMessageMap messageMap) {

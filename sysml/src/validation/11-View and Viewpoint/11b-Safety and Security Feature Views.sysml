@@ -54,11 +54,11 @@ package '11b-Safety and Security Feaure Views' {
 		
 		view vehicleMandatorySafetyFeatureView :> vehicleSafetyFeatureView {
 		    expose vehicle::*::**;
-			filter Safety::isMandatory;
+			filter (as Safety).isMandatory;
 		}
 		
 		view vehicleMandatorySafetyFeatureViewStandalone {
-			expose vehicle::**[@Safety and Safety::isMandatory];
+			expose vehicle::**[(as Safety).isMandatory];
 			render asElementTable;
 		}	
 	}

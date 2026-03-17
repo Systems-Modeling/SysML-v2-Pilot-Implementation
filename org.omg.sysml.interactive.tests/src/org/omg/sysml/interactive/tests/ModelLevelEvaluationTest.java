@@ -371,7 +371,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		
 		assertEquals(1, evaluateIntegerValue(instance, 
 				checkAnnotatingFeature(instance, "Annotation", "x"), 
-				"Annotation::a"));		
+				"(as Annotation).a"));		
 	}
 	
 	@Test
@@ -385,7 +385,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(instance.resolve("E::e"), 
 				evaluateSingleValue(instance, 
 						checkAnnotatingFeature(instance, "Annotation", "x"), 
-						"Annotation::a"));		
+						"(as Annotation).a"));		
 	}
 	
 	@Test
@@ -408,8 +408,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		        "attribute x {@Annotation{a = E::e; b = 2;}}");
 		
 		MetadataFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
-		assertTrue(evaluateBooleanValue(instance, feature, "Annotation::a istype E"));		
-		assertTrue(evaluateBooleanValue(instance, feature, "Annotation::b istype ScalarValues::Integer"));		
+		assertTrue(evaluateBooleanValue(instance, feature, "(as Annotation).a istype E"));		
+		assertTrue(evaluateBooleanValue(instance, feature, "(as Annotation).b istype ScalarValues::Integer"));		
 	}
 	
 	@Test

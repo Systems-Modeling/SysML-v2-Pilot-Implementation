@@ -56,7 +56,7 @@ public abstract class ValidationCheckerFactory {
 	protected ValidationChecker createValidationChecker(Element element, String packageSuffix) {
 		EClass eClass = element.eClass();
 		try {
-			Class<?> validationChecker = Class.forName(VALIDATION_CHECKER_PACKAGE +"." + packageSuffix + "." + eClass.getName());
+			Class<?> validationChecker = Class.forName(VALIDATION_CHECKER_PACKAGE +"." + packageSuffix + "." + eClass.getName() + "ValidationChecker");
 			Constructor<?> constructor = validationChecker.getConstructor();
 			return (ValidationChecker)constructor.newInstance();
 		} catch (ClassNotFoundException e) {

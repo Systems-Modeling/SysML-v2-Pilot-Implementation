@@ -1,0 +1,1022 @@
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:6 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Linking ScalarValues[importedNamespace] in 4.sysml:2 took 0ms {
+   Scope HSUVDynamics looking for ScalarValues[Namespace] took 0ms {
+    Linking SequenceFunctions::size[importedMembership] in 4.sysml:3 took 0ms {
+     Scope HSUVDynamics looking for SequenceFunctions.size[Membership] took 0ms {
+      Linking ControlFunctions[importedNamespace] in 4.sysml:4 took 0ms {
+       Scope HSUVDynamics looking for ControlFunctions[Namespace] took 0ms {
+        Scope null looking for ControlFunctions[Namespace] took 0ms {
+         GLOBAL scope ControlFunctions took 0ms {
+          Found: ControlFunctions[LibraryPackage]
+         }
+         Found ControlFunctions[LibraryPackage]
+        }
+        Found ControlFunctions[LibraryPackage]
+       }
+       Linked QN: ControlFunctions, eClass: LibraryPackage
+      }
+      Scope null looking for SequenceFunctions.size[Membership] took 0ms {
+       GLOBAL scope SequenceFunctions.size took 0ms {
+        Found: SequenceFunctions.size[OwningMembership]
+       }
+       Found SequenceFunctions.size[OwningMembership]
+      }
+      Found SequenceFunctions.size[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for ScalarValues[Namespace] took 0ms {
+     GLOBAL scope ScalarValues took 0ms {
+      Found: ScalarValues[LibraryPackage]
+     }
+     Found ScalarValues[LibraryPackage]
+    }
+    Found ScalarValues[LibraryPackage]
+   }
+   Linked QN: ScalarValues, eClass: LibraryPackage
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:7 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:8 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:9 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:10 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[superclassifier] in 4.sysml:11 took 0ms {
+ Scope HSUVDynamics looking for Real[Classifier] took 0ms {
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Horsepwr[type] in 4.sysml:14 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Horsepwr[Type] took 0ms {
+  Scope HSUVDynamics looking for Horsepwr[Type] took 0ms {
+   Found Horsepwr[AttributeDefinition]
+  }
+  Found Horsepwr[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Horsepwr, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Real[type] in 4.sysml:15 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Real[Type] took 0ms {
+  Scope HSUVDynamics looking for Real[Type] took 0ms {
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[type] in 4.sysml:16 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Real[Type] took 0ms {
+  Scope HSUVDynamics looking for Real[Type] took 0ms {
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Weight[type] in 4.sysml:17 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Weight[Type] took 0ms {
+  Scope HSUVDynamics looking for Weight[Type] took 0ms {
+   Found Weight[AttributeDefinition]
+  }
+  Found Weight[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Weight, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Horsepwr[type] in 4.sysml:18 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Horsepwr[Type] took 0ms {
+  Scope HSUVDynamics looking for Horsepwr[Type] took 0ms {
+   Found Horsepwr[AttributeDefinition]
+  }
+  Found Horsepwr[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Horsepwr, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Vel[type] in 4.sysml:19 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Vel[Type] took 0ms {
+  Scope HSUVDynamics looking for Vel[Type] took 0ms {
+   Found Vel[AttributeDefinition]
+  }
+  Found Vel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Vel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking tp[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for tp[Element] took 0ms {
+  Found tp[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::tp, eClass: AttributeUsage
+}
+----------------------------------
+Linking whlpwr[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for whlpwr[Element] took 0ms {
+  Found whlpwr[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::whlpwr, eClass: AttributeUsage
+}
+----------------------------------
+Linking Cd[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Cd[Element] took 0ms {
+  Found Cd[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::Cd, eClass: AttributeUsage
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for v[Element] took 0ms {
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking Cf[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for Cf[Element] took 0ms {
+  Found Cf[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::Cf, eClass: AttributeUsage
+}
+----------------------------------
+Linking tw[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for tw[Element] took 0ms {
+  Found tw[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::tw, eClass: AttributeUsage
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:21 took 0ms {
+ Scope HSUVDynamics::PowerEquation looking for v[Element] took 0ms {
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PowerEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking forAll[type] in 4.sysml:29 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for forAll[Type] took 0ms {
+  Scope HSUVDynamics looking for forAll[Type] took 0ms {
+   Found forAll[Function]
+  }
+  Found forAll[Function]
+ }
+ Linked QN: ControlFunctions::forAll, eClass: Function
+}
+----------------------------------
+Linking Time[type] in 4.sysml:25 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for Time[Type] took 0ms {
+  Scope HSUVDynamics looking for Time[Type] took 0ms {
+   Found Time[AttributeDefinition]
+  }
+  Found Time[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Time, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Vel[type] in 4.sysml:26 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for Vel[Type] took 0ms {
+  Scope HSUVDynamics looking for Vel[Type] took 0ms {
+   Found Vel[AttributeDefinition]
+  }
+  Found Vel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Vel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Dist[type] in 4.sysml:27 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for Dist[Type] took 0ms {
+  Scope HSUVDynamics looking for Dist[Type] took 0ms {
+   Found Dist[AttributeDefinition]
+  }
+  Found Dist[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Dist, eClass: AttributeDefinition
+}
+----------------------------------
+Linking size[type] in 4.sysml:29 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for size[Type] took 0ms {
+  Scope HSUVDynamics looking for size[Type] took 0ms {
+   Found size[Function]
+  }
+  Found size[Function]
+ }
+ Linked QN: SequenceFunctions::size, eClass: Function
+}
+----------------------------------
+Linking x[memberElement] in 4.sysml:29 took 0ms {
+ Scope HSUVDynamics::PositionEquation looking for x[Element] took 0ms {
+  Found x[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PositionEquation::x, eClass: AttributeUsage
+}
+----------------------------------
+Linking Natural[type] in 4.sysml:29 took 0ms {
+ Scope null looking for Natural[Type] took 0ms {
+  Scope null looking for Natural[Type] took 0ms {
+   Scope test looking for Natural[Type] took 0ms {
+    Scope null looking for Natural[Type] took 0ms {
+     Scope HSUVDynamics::PositionEquation looking for Natural[Type] took 0ms {
+      Scope HSUVDynamics looking for Natural[Type] took 0ms {
+       Found Natural[DataType]
+      }
+      Found Natural[DataType]
+     }
+     Found Natural[DataType]
+    }
+    Found Natural[DataType]
+   }
+   Found Natural[DataType]
+  }
+  Found Natural[DataType]
+ }
+ Linked QN: ScalarValues::Natural, eClass: DataType
+}
+----------------------------------
+Linking x[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for x[Element] took 0ms {
+  Scope null looking for x[Element] took 0ms {
+   Scope test looking for x[Element] took 0ms {
+    Scope null looking for x[Element] took 0ms {
+     Scope HSUVDynamics::PositionEquation looking for x[Element] took 0ms {
+      Found x[AttributeUsage]
+     }
+     Found x[AttributeUsage]
+    }
+    Found x[AttributeUsage]
+   }
+   Found x[AttributeUsage]
+  }
+  Found x[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PositionEquation::x, eClass: AttributeUsage
+}
+----------------------------------
+Linking n[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for n[Element] took 0ms {
+  Found n[ReferenceUsage]
+ }
+ Linked QN: null, eClass: ReferenceUsage
+}
+----------------------------------
+Linking x[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for x[Element] took 0ms {
+  Scope null looking for x[Element] took 0ms {
+   Scope test looking for x[Element] took 0ms {
+    Scope null looking for x[Element] took 0ms {
+     Scope HSUVDynamics::PositionEquation looking for x[Element] took 0ms {
+      Found x[AttributeUsage]
+     }
+     Found x[AttributeUsage]
+    }
+    Found x[AttributeUsage]
+   }
+   Found x[AttributeUsage]
+  }
+  Found x[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PositionEquation::x, eClass: AttributeUsage
+}
+----------------------------------
+Linking n[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for n[Element] took 0ms {
+  Found n[ReferenceUsage]
+ }
+ Linked QN: null, eClass: ReferenceUsage
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for v[Element] took 0ms {
+  Scope null looking for v[Element] took 0ms {
+   Scope test looking for v[Element] took 0ms {
+    Scope null looking for v[Element] took 0ms {
+     Scope HSUVDynamics::PositionEquation looking for v[Element] took 0ms {
+      Found v[AttributeUsage]
+     }
+     Found v[AttributeUsage]
+    }
+    Found v[AttributeUsage]
+   }
+   Found v[AttributeUsage]
+  }
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PositionEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking n[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for n[Element] took 0ms {
+  Found n[ReferenceUsage]
+ }
+ Linked QN: null, eClass: ReferenceUsage
+}
+----------------------------------
+Linking dt[memberElement] in 4.sysml:29 took 0ms {
+ Scope null looking for dt[Element] took 0ms {
+  Scope null looking for dt[Element] took 0ms {
+   Scope test looking for dt[Element] took 0ms {
+    Scope null looking for dt[Element] took 0ms {
+     Scope HSUVDynamics::PositionEquation looking for dt[Element] took 0ms {
+      Found dt[AttributeUsage]
+     }
+     Found dt[AttributeUsage]
+    }
+    Found dt[AttributeUsage]
+   }
+   Found dt[AttributeUsage]
+  }
+  Found dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::PositionEquation::dt, eClass: AttributeUsage
+}
+----------------------------------
+Linking forAll[type] in 4.sysml:37 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for forAll[Type] took 0ms {
+  Scope HSUVDynamics looking for forAll[Type] took 0ms {
+   Found forAll[Function]
+  }
+  Found forAll[Function]
+ }
+ Linked QN: ControlFunctions::forAll, eClass: Function
+}
+----------------------------------
+Linking Time[type] in 4.sysml:33 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for Time[Type] took 0ms {
+  Scope HSUVDynamics looking for Time[Type] took 0ms {
+   Found Time[AttributeDefinition]
+  }
+  Found Time[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Time, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Vel[type] in 4.sysml:34 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for Vel[Type] took 0ms {
+  Scope HSUVDynamics looking for Vel[Type] took 0ms {
+   Found Vel[AttributeDefinition]
+  }
+  Found Vel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Vel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Accel[type] in 4.sysml:35 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for Accel[Type] took 0ms {
+  Scope HSUVDynamics looking for Accel[Type] took 0ms {
+   Found Accel[AttributeDefinition]
+  }
+  Found Accel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Accel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking size[type] in 4.sysml:37 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for size[Type] took 0ms {
+  Scope HSUVDynamics looking for size[Type] took 0ms {
+   Found size[Function]
+  }
+  Found size[Function]
+ }
+ Linked QN: SequenceFunctions::size, eClass: Function
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:37 took 0ms {
+ Scope HSUVDynamics::VelocityEquation looking for v[Element] took 0ms {
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::VelocityEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking Natural[type] in 4.sysml:37 took 0ms {
+ Scope null looking for Natural[Type] took 0ms {
+  Scope null looking for Natural[Type] took 0ms {
+   Scope test looking for Natural[Type] took 0ms {
+    Scope null looking for Natural[Type] took 0ms {
+     Scope HSUVDynamics::VelocityEquation looking for Natural[Type] took 0ms {
+      Scope HSUVDynamics looking for Natural[Type] took 0ms {
+       Found Natural[DataType]
+      }
+      Found Natural[DataType]
+     }
+     Found Natural[DataType]
+    }
+    Found Natural[DataType]
+   }
+   Found Natural[DataType]
+  }
+  Found Natural[DataType]
+ }
+ Linked QN: ScalarValues::Natural, eClass: DataType
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for v[Element] took 0ms {
+  Scope null looking for v[Element] took 0ms {
+   Scope test looking for v[Element] took 0ms {
+    Scope null looking for v[Element] took 0ms {
+     Scope HSUVDynamics::VelocityEquation looking for v[Element] took 0ms {
+      Found v[AttributeUsage]
+     }
+     Found v[AttributeUsage]
+    }
+    Found v[AttributeUsage]
+   }
+   Found v[AttributeUsage]
+  }
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::VelocityEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking n[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for n[Element] took 0ms {
+  Found n[ReferenceUsage]
+ }
+ Linked QN: null, eClass: ReferenceUsage
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for v[Element] took 0ms {
+  Scope null looking for v[Element] took 0ms {
+   Scope test looking for v[Element] took 0ms {
+    Scope null looking for v[Element] took 0ms {
+     Scope HSUVDynamics::VelocityEquation looking for v[Element] took 0ms {
+      Found v[AttributeUsage]
+     }
+     Found v[AttributeUsage]
+    }
+    Found v[AttributeUsage]
+   }
+   Found v[AttributeUsage]
+  }
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::VelocityEquation::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking n[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for n[Element] took 0ms {
+  Found n[ReferenceUsage]
+ }
+ Linked QN: null, eClass: ReferenceUsage
+}
+----------------------------------
+Linking a[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for a[Element] took 0ms {
+  Scope null looking for a[Element] took 0ms {
+   Scope test looking for a[Element] took 0ms {
+    Scope null looking for a[Element] took 0ms {
+     Scope HSUVDynamics::VelocityEquation looking for a[Element] took 0ms {
+      Found a[AttributeUsage]
+     }
+     Found a[AttributeUsage]
+    }
+    Found a[AttributeUsage]
+   }
+   Found a[AttributeUsage]
+  }
+  Found a[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::VelocityEquation::a, eClass: AttributeUsage
+}
+----------------------------------
+Linking dt[memberElement] in 4.sysml:37 took 0ms {
+ Scope null looking for dt[Element] took 0ms {
+  Scope null looking for dt[Element] took 0ms {
+   Scope test looking for dt[Element] took 0ms {
+    Scope null looking for dt[Element] took 0ms {
+     Scope HSUVDynamics::VelocityEquation looking for dt[Element] took 0ms {
+      Found dt[AttributeUsage]
+     }
+     Found dt[AttributeUsage]
+    }
+    Found dt[AttributeUsage]
+   }
+   Found dt[AttributeUsage]
+  }
+  Found dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::VelocityEquation::dt, eClass: AttributeUsage
+}
+----------------------------------
+Linking Weight[type] in 4.sysml:41 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for Weight[Type] took 0ms {
+  Scope HSUVDynamics looking for Weight[Type] took 0ms {
+   Found Weight[AttributeDefinition]
+  }
+  Found Weight[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Weight, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Time[type] in 4.sysml:42 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for Time[Type] took 0ms {
+  Scope HSUVDynamics looking for Time[Type] took 0ms {
+   Found Time[AttributeDefinition]
+  }
+  Found Time[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Time, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Horsepwr[type] in 4.sysml:43 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for Horsepwr[Type] took 0ms {
+  Scope HSUVDynamics looking for Horsepwr[Type] took 0ms {
+   Found Horsepwr[AttributeDefinition]
+  }
+  Found Horsepwr[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Horsepwr, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Accel[type] in 4.sysml:44 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for Accel[Type] took 0ms {
+  Scope HSUVDynamics looking for Accel[Type] took 0ms {
+   Found Accel[AttributeDefinition]
+  }
+  Found Accel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Accel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking a[memberElement] in 4.sysml:46 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for a[Element] took 0ms {
+  Found a[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::AccelerationEquation::a, eClass: AttributeUsage
+}
+----------------------------------
+Linking tp[memberElement] in 4.sysml:46 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for tp[Element] took 0ms {
+  Found tp[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::AccelerationEquation::tp, eClass: AttributeUsage
+}
+----------------------------------
+Linking dt[memberElement] in 4.sysml:46 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for dt[Element] took 0ms {
+  Found dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::AccelerationEquation::dt, eClass: AttributeUsage
+}
+----------------------------------
+Linking tw[memberElement] in 4.sysml:46 took 0ms {
+ Scope HSUVDynamics::AccelerationEquation looking for tw[Element] took 0ms {
+  Found tw[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::AccelerationEquation::tw, eClass: AttributeUsage
+}
+----------------------------------
+Linking Time[type] in 4.sysml:50 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Time[Type] took 0ms {
+  Scope HSUVDynamics looking for Time[Type] took 0ms {
+   Found Time[AttributeDefinition]
+  }
+  Found Time[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Time, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Horsepwr[type] in 4.sysml:51 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Horsepwr[Type] took 0ms {
+  Scope HSUVDynamics looking for Horsepwr[Type] took 0ms {
+   Found Horsepwr[AttributeDefinition]
+  }
+  Found Horsepwr[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Horsepwr, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Real[type] in 4.sysml:52 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Real[Type] took 0ms {
+  Scope HSUVDynamics looking for Real[Type] took 0ms {
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[type] in 4.sysml:53 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Real[Type] took 0ms {
+  Scope HSUVDynamics looking for Real[Type] took 0ms {
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Weight[type] in 4.sysml:54 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Weight[Type] took 0ms {
+  Scope HSUVDynamics looking for Weight[Type] took 0ms {
+   Found Weight[AttributeDefinition]
+  }
+  Found Weight[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Weight, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Accel[type] in 4.sysml:55 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Accel[Type] took 0ms {
+  Scope HSUVDynamics looking for Accel[Type] took 0ms {
+   Found Accel[AttributeDefinition]
+  }
+  Found Accel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Accel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Vel[type] in 4.sysml:56 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Vel[Type] took 0ms {
+  Scope HSUVDynamics looking for Vel[Type] took 0ms {
+   Found Vel[AttributeDefinition]
+  }
+  Found Vel[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Vel, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Dist[type] in 4.sysml:57 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for Dist[Type] took 0ms {
+  Scope HSUVDynamics looking for Dist[Type] took 0ms {
+   Found Dist[AttributeDefinition]
+  }
+  Found Dist[AttributeDefinition]
+ }
+ Linked QN: HSUVDynamics::Dist, eClass: AttributeDefinition
+}
+----------------------------------
+Linking PowerEquation[type] in 4.sysml:59 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for PowerEquation[Type] took 0ms {
+  Scope HSUVDynamics looking for PowerEquation[Type] took 0ms {
+   Found PowerEquation[ConstraintDefinition]
+  }
+  Found PowerEquation[ConstraintDefinition]
+ }
+ Linked QN: HSUVDynamics::PowerEquation, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::whlpwr[memberElement] in 4.sysml:60 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for StraightLineVehicleDynamics.whlpwr[Element] took 0ms {
+  Linking whlpwr[redefinedFeature] in 4.sysml:60 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for whlpwr[Feature] took 0ms {
+    Found whlpwr[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::whlpwr, eClass: AttributeUsage
+  }
+  Linking Cd[redefinedFeature] in 4.sysml:61 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for Cd[Feature] took 0ms {
+    Found Cd[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::Cd, eClass: AttributeUsage
+  }
+  Linking Cf[redefinedFeature] in 4.sysml:62 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for Cf[Feature] took 0ms {
+    Found Cf[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::Cf, eClass: AttributeUsage
+  }
+  Linking tw[redefinedFeature] in 4.sysml:63 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for tw[Feature] took 0ms {
+    Found tw[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::tw, eClass: AttributeUsage
+  }
+  Linking v[redefinedFeature] in 4.sysml:64 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for v[Feature] took 0ms {
+    Found v[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::v, eClass: AttributeUsage
+  }
+  Linking tp[redefinedFeature] in 4.sysml:65 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for tp[Feature] took 0ms {
+    Found tp[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::PowerEquation::tp, eClass: AttributeUsage
+  }
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.whlpwr[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.whlpwr[Element] took 0ms {
+    Found StraightLineVehicleDynamics.whlpwr[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.whlpwr[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.whlpwr[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::whlpwr, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::Cd[memberElement] in 4.sysml:61 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for StraightLineVehicleDynamics.Cd[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.Cd[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.Cd[Element] took 0ms {
+    Found StraightLineVehicleDynamics.Cd[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.Cd[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.Cd[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::Cd, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::Cf[memberElement] in 4.sysml:62 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for StraightLineVehicleDynamics.Cf[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.Cf[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.Cf[Element] took 0ms {
+    Found StraightLineVehicleDynamics.Cf[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.Cf[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.Cf[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::Cf, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::tw[memberElement] in 4.sysml:63 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+    Found StraightLineVehicleDynamics.tw[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.tw[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.tw[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::tw, eClass: AttributeUsage
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:64 took 1ms {
+ Linking vel[memberElement] in 4.sysml:64 took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics::pwr looking for vel[Element] took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics looking for vel[Element] took 0ms {
+    Found vel[ConstraintUsage]
+   }
+   Found vel[ConstraintUsage]
+  }
+  Linked QN: HSUVDynamics::StraightLineVehicleDynamics::vel, eClass: ConstraintUsage
+ }
+ Scope result looking for v[Element] took 0ms {
+  Linking a[redefinedFeature] in 4.sysml:76 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for a[Feature] took 0ms {
+    Linking VelocityEquation[type] in 4.sysml:75 took 0ms {
+     Scope HSUVDynamics::StraightLineVehicleDynamics looking for VelocityEquation[Type] took 0ms {
+      Scope HSUVDynamics looking for VelocityEquation[Type] took 0ms {
+       Found VelocityEquation[ConstraintDefinition]
+      }
+      Found VelocityEquation[ConstraintDefinition]
+     }
+     Linked QN: HSUVDynamics::VelocityEquation, eClass: ConstraintDefinition
+    }
+    Found a[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::VelocityEquation::a, eClass: AttributeUsage
+  }
+  Linking v[redefinedFeature] in 4.sysml:77 took 0ms {
+   Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for v[Feature] took 0ms {
+    Found v[AttributeUsage]
+   }
+   Linked QN: HSUVDynamics::VelocityEquation::v, eClass: AttributeUsage
+  }
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::vel::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking AccelerationEquation[type] in 4.sysml:68 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for AccelerationEquation[Type] took 0ms {
+  Scope HSUVDynamics looking for AccelerationEquation[Type] took 0ms {
+   Found AccelerationEquation[ConstraintDefinition]
+  }
+  Found AccelerationEquation[ConstraintDefinition]
+ }
+ Linked QN: HSUVDynamics::AccelerationEquation, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking tp[memberElement] in 4.sysml:69 took 1ms {
+ Linking pwr[memberElement] in 4.sysml:69 took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for pwr[Element] took 0ms {
+   Linking tp[redefinedFeature] in 4.sysml:69 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for tp[Feature] took 0ms {
+     Found tp[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::AccelerationEquation::tp, eClass: AttributeUsage
+   }
+   Linking tw[redefinedFeature] in 4.sysml:70 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for tw[Feature] took 0ms {
+     Found tw[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::AccelerationEquation::tw, eClass: AttributeUsage
+   }
+   Linking dt[redefinedFeature] in 4.sysml:71 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for dt[Feature] took 0ms {
+     Found dt[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::AccelerationEquation::dt, eClass: AttributeUsage
+   }
+   Linking a[redefinedFeature] in 4.sysml:72 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for a[Feature] took 0ms {
+     Found a[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::AccelerationEquation::a, eClass: AttributeUsage
+   }
+   Scope HSUVDynamics::StraightLineVehicleDynamics looking for pwr[Element] took 0ms {
+    Found pwr[ConstraintUsage]
+   }
+   Found pwr[ConstraintUsage]
+  }
+  Linked QN: HSUVDynamics::StraightLineVehicleDynamics::pwr, eClass: ConstraintUsage
+ }
+ Scope result looking for tp[Element] took 0ms {
+  Found tp[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::pwr::tp, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::tw[memberElement] in 4.sysml:70 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.tw[Element] took 0ms {
+    Found StraightLineVehicleDynamics.tw[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.tw[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.tw[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::tw, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::dt[memberElement] in 4.sysml:71 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+    Found StraightLineVehicleDynamics.dt[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.dt[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::dt, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::a[memberElement] in 4.sysml:72 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::acc looking for StraightLineVehicleDynamics.a[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.a[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.a[Element] took 0ms {
+    Found StraightLineVehicleDynamics.a[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.a[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.a[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::a, eClass: AttributeUsage
+}
+----------------------------------
+Linking a[memberElement] in 4.sysml:76 took 1ms {
+ Linking acc[memberElement] in 4.sysml:76 took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for acc[Element] took 0ms {
+   Linking dt[redefinedFeature] in 4.sysml:78 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for dt[Feature] took 0ms {
+     Found dt[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::VelocityEquation::dt, eClass: AttributeUsage
+   }
+   Scope HSUVDynamics::StraightLineVehicleDynamics looking for acc[Element] took 0ms {
+    Found acc[ConstraintUsage]
+   }
+   Found acc[ConstraintUsage]
+  }
+  Linked QN: HSUVDynamics::StraightLineVehicleDynamics::acc, eClass: ConstraintUsage
+ }
+ Scope result looking for a[Element] took 0ms {
+  Found a[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::acc::a, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::v[memberElement] in 4.sysml:77 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for StraightLineVehicleDynamics.v[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.v[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.v[Element] took 0ms {
+    Found StraightLineVehicleDynamics.v[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.v[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::dt[memberElement] in 4.sysml:78 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::vel looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+    Found StraightLineVehicleDynamics.dt[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.dt[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::dt, eClass: AttributeUsage
+}
+----------------------------------
+Linking PositionEquation[type] in 4.sysml:81 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics looking for PositionEquation[Type] took 0ms {
+  Scope HSUVDynamics looking for PositionEquation[Type] took 0ms {
+   Found PositionEquation[ConstraintDefinition]
+  }
+  Found PositionEquation[ConstraintDefinition]
+ }
+ Linked QN: HSUVDynamics::PositionEquation, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking v[memberElement] in 4.sysml:82 took 1ms {
+ Linking vel[memberElement] in 4.sysml:82 took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for vel[Element] took 0ms {
+   Linking v[redefinedFeature] in 4.sysml:82 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for v[Feature] took 0ms {
+     Found v[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::PositionEquation::v, eClass: AttributeUsage
+   }
+   Linking x[redefinedFeature] in 4.sysml:83 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for x[Feature] took 0ms {
+     Found x[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::PositionEquation::x, eClass: AttributeUsage
+   }
+   Linking dt[redefinedFeature] in 4.sysml:84 took 0ms {
+    Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for dt[Feature] took 0ms {
+     Found dt[AttributeUsage]
+    }
+    Linked QN: HSUVDynamics::PositionEquation::dt, eClass: AttributeUsage
+   }
+   Scope HSUVDynamics::StraightLineVehicleDynamics looking for vel[Element] took 0ms {
+    Found vel[ConstraintUsage]
+   }
+   Found vel[ConstraintUsage]
+  }
+  Linked QN: HSUVDynamics::StraightLineVehicleDynamics::vel, eClass: ConstraintUsage
+ }
+ Scope result looking for v[Element] took 0ms {
+  Found v[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::vel::v, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::x[memberElement] in 4.sysml:83 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for StraightLineVehicleDynamics.x[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.x[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.x[Element] took 0ms {
+    Found StraightLineVehicleDynamics.x[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.x[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.x[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::x, eClass: AttributeUsage
+}
+----------------------------------
+Linking StraightLineVehicleDynamics::dt[memberElement] in 4.sysml:84 took 0ms {
+ Scope HSUVDynamics::StraightLineVehicleDynamics::pos looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+  Scope HSUVDynamics::StraightLineVehicleDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+   Scope HSUVDynamics looking for StraightLineVehicleDynamics.dt[Element] took 0ms {
+    Found StraightLineVehicleDynamics.dt[AttributeUsage]
+   }
+   Found StraightLineVehicleDynamics.dt[AttributeUsage]
+  }
+  Found StraightLineVehicleDynamics.dt[AttributeUsage]
+ }
+ Linked QN: HSUVDynamics::StraightLineVehicleDynamics::dt, eClass: AttributeUsage
+}

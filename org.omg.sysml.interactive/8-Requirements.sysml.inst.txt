@@ -1,0 +1,2853 @@
+----------------------------------
+Linking MassValue[type] in 3.sysml:10 took 5ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Vehicle looking for MassValue[Type] took 5ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for MassValue[Type] took 4ms {
+   Scope '8-Requirements' looking for MassValue[Type] took 4ms {
+    Linking ScalarValues::Real[importedMembership] in 3.sysml:2 took 1ms {
+     Scope '8-Requirements' looking for ScalarValues.Real[Membership] took 1ms {
+      Linking ISQ[importedNamespace] in 3.sysml:3 took 1ms {
+       Scope '8-Requirements' looking for ISQ[Namespace] took 0ms {
+        Linking SI[importedNamespace] in 3.sysml:4 took 0ms {
+         Scope '8-Requirements' looking for SI[Namespace] took 0ms {
+          Linking 'Vehicle Usages'[importedNamespace] in 3.sysml:5 took 0ms {
+           Scope '8-Requirements' looking for Vehicle Usages[Namespace] took 0ms {
+            Found Vehicle Usages[Package]
+           }
+           Linked QN: '8-Requirements'::'Vehicle Usages', eClass: Package
+          }
+          Linking 'Vehicle Definitions'[importedNamespace] in 3.sysml:36 took 0ms {
+           Scope '8-Requirements'::'Vehicle Usages' looking for Vehicle Definitions[Namespace] took 0ms {
+            Scope '8-Requirements' looking for Vehicle Definitions[Namespace] took 0ms {
+             Found Vehicle Definitions[Package]
+            }
+            Found Vehicle Definitions[Package]
+           }
+           Linked QN: '8-Requirements'::'Vehicle Definitions', eClass: Package
+          }
+          Linking 'Vehicle Requirements'[importedNamespace] in 3.sysml:6 took 0ms {
+           Scope '8-Requirements' looking for Vehicle Requirements[Namespace] took 0ms {
+            Found Vehicle Requirements[Package]
+           }
+           Linked QN: '8-Requirements'::'Vehicle Requirements', eClass: Package
+          }
+          Linking 'Vehicle Definitions'[importedNamespace] in 3.sysml:66 took 0ms {
+           Scope '8-Requirements'::'Vehicle Requirements' looking for Vehicle Definitions[Namespace] took 0ms {
+            Scope '8-Requirements' looking for Vehicle Definitions[Namespace] took 0ms {
+             Found Vehicle Definitions[Package]
+            }
+            Found Vehicle Definitions[Package]
+           }
+           Linked QN: '8-Requirements'::'Vehicle Definitions', eClass: Package
+          }
+          Scope null looking for SI[Namespace] took 0ms {
+           GLOBAL scope SI took 0ms {
+            Found: SI[LibraryPackage]
+           }
+           Found SI[LibraryPackage]
+          }
+          Found SI[LibraryPackage]
+         }
+         Linked QN: SI, eClass: LibraryPackage
+        }
+        Scope null looking for ISQ[Namespace] took 0ms {
+         GLOBAL scope ISQ took 0ms {
+          Found: ISQ[LibraryPackage]
+         }
+         Found ISQ[LibraryPackage]
+        }
+        Found ISQ[LibraryPackage]
+       }
+       Linked QN: ISQ, eClass: LibraryPackage
+      }
+      Scope null looking for ScalarValues.Real[Membership] took 0ms {
+       GLOBAL scope ScalarValues.Real took 0ms {
+        Found: ScalarValues.Real[OwningMembership]
+       }
+       Found ScalarValues.Real[OwningMembership]
+      }
+      Found ScalarValues.Real[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Linking ISQBase[importedNamespace] in ISQ.sysml:11 took 3ms {
+     Scope ISQ looking for ISQBase[Namespace] took 3ms {
+      Linking ScalarValues::Real[importedMembership] in ISQ.sysml:7 took 2ms {
+       Scope ISQ looking for ScalarValues.Real[Membership] took 2ms {
+        Linking Quantities[importedNamespace] in ISQ.sysml:8 took 2ms {
+         Scope ISQ looking for Quantities[Namespace] took 2ms {
+          Linking MeasurementReferences[importedNamespace] in ISQ.sysml:9 took 2ms {
+           Scope ISQ looking for MeasurementReferences[Namespace] took 2ms {
+            Linking ISQSpaceTime[importedNamespace] in ISQ.sysml:12 took 2ms {
+             Scope ISQ looking for ISQSpaceTime[Namespace] took 2ms {
+              Linking ISQMechanics[importedNamespace] in ISQ.sysml:13 took 2ms {
+               Scope ISQ looking for ISQMechanics[Namespace] took 2ms {
+                Linking ISQThermodynamics[importedNamespace] in ISQ.sysml:14 took 1ms {
+                 Scope ISQ looking for ISQThermodynamics[Namespace] took 1ms {
+                  Linking ISQElectromagnetism[importedNamespace] in ISQ.sysml:15 took 1ms {
+                   Scope ISQ looking for ISQElectromagnetism[Namespace] took 1ms {
+                    Linking ISQLight[importedNamespace] in ISQ.sysml:16 took 1ms {
+                     Scope ISQ looking for ISQLight[Namespace] took 1ms {
+                      Linking ISQAcoustics[importedNamespace] in ISQ.sysml:17 took 1ms {
+                       Scope ISQ looking for ISQAcoustics[Namespace] took 1ms {
+                        Linking ISQChemistryMolecular[importedNamespace] in ISQ.sysml:18 took 1ms {
+                         Scope ISQ looking for ISQChemistryMolecular[Namespace] took 1ms {
+                          Linking ISQAtomicNuclear[importedNamespace] in ISQ.sysml:19 took 1ms {
+                           Scope ISQ looking for ISQAtomicNuclear[Namespace] took 0ms {
+                            Linking ISQCharacteristicNumbers[importedNamespace] in ISQ.sysml:20 took 0ms {
+                             Scope ISQ looking for ISQCharacteristicNumbers[Namespace] took 0ms {
+                              Linking ISQCondensedMatter[importedNamespace] in ISQ.sysml:21 took 0ms {
+                               Scope ISQ looking for ISQCondensedMatter[Namespace] took 0ms {
+                                Linking ISQInformation[importedNamespace] in ISQ.sysml:22 took 0ms {
+                                 Scope ISQ looking for ISQInformation[Namespace] took 0ms {
+                                  Scope null looking for ISQInformation[Namespace] took 0ms {
+                                   GLOBAL scope ISQInformation took 0ms {
+                                    Found: ISQInformation[LibraryPackage]
+                                   }
+                                   Found ISQInformation[LibraryPackage]
+                                  }
+                                  Found ISQInformation[LibraryPackage]
+                                 }
+                                 Linked QN: ISQInformation, eClass: LibraryPackage
+                                }
+                                Scope null looking for ISQCondensedMatter[Namespace] took 0ms {
+                                 GLOBAL scope ISQCondensedMatter took 0ms {
+                                  Found: ISQCondensedMatter[LibraryPackage]
+                                 }
+                                 Found ISQCondensedMatter[LibraryPackage]
+                                }
+                                Found ISQCondensedMatter[LibraryPackage]
+                               }
+                               Linked QN: ISQCondensedMatter, eClass: LibraryPackage
+                              }
+                              Scope null looking for ISQCharacteristicNumbers[Namespace] took 0ms {
+                               GLOBAL scope ISQCharacteristicNumbers took 0ms {
+                                Found: ISQCharacteristicNumbers[LibraryPackage]
+                               }
+                               Found ISQCharacteristicNumbers[LibraryPackage]
+                              }
+                              Found ISQCharacteristicNumbers[LibraryPackage]
+                             }
+                             Linked QN: ISQCharacteristicNumbers, eClass: LibraryPackage
+                            }
+                            Scope null looking for ISQAtomicNuclear[Namespace] took 0ms {
+                             GLOBAL scope ISQAtomicNuclear took 0ms {
+                              Found: ISQAtomicNuclear[LibraryPackage]
+                             }
+                             Found ISQAtomicNuclear[LibraryPackage]
+                            }
+                            Found ISQAtomicNuclear[LibraryPackage]
+                           }
+                           Linked QN: ISQAtomicNuclear, eClass: LibraryPackage
+                          }
+                          Scope null looking for ISQChemistryMolecular[Namespace] took 0ms {
+                           GLOBAL scope ISQChemistryMolecular took 0ms {
+                            Found: ISQChemistryMolecular[LibraryPackage]
+                           }
+                           Found ISQChemistryMolecular[LibraryPackage]
+                          }
+                          Found ISQChemistryMolecular[LibraryPackage]
+                         }
+                         Linked QN: ISQChemistryMolecular, eClass: LibraryPackage
+                        }
+                        Scope null looking for ISQAcoustics[Namespace] took 0ms {
+                         GLOBAL scope ISQAcoustics took 0ms {
+                          Found: ISQAcoustics[LibraryPackage]
+                         }
+                         Found ISQAcoustics[LibraryPackage]
+                        }
+                        Found ISQAcoustics[LibraryPackage]
+                       }
+                       Linked QN: ISQAcoustics, eClass: LibraryPackage
+                      }
+                      Scope null looking for ISQLight[Namespace] took 0ms {
+                       GLOBAL scope ISQLight took 0ms {
+                        Found: ISQLight[LibraryPackage]
+                       }
+                       Found ISQLight[LibraryPackage]
+                      }
+                      Found ISQLight[LibraryPackage]
+                     }
+                     Linked QN: ISQLight, eClass: LibraryPackage
+                    }
+                    Scope null looking for ISQElectromagnetism[Namespace] took 0ms {
+                     GLOBAL scope ISQElectromagnetism took 0ms {
+                      Found: ISQElectromagnetism[LibraryPackage]
+                     }
+                     Found ISQElectromagnetism[LibraryPackage]
+                    }
+                    Found ISQElectromagnetism[LibraryPackage]
+                   }
+                   Linked QN: ISQElectromagnetism, eClass: LibraryPackage
+                  }
+                  Scope null looking for ISQThermodynamics[Namespace] took 0ms {
+                   GLOBAL scope ISQThermodynamics took 0ms {
+                    Found: ISQThermodynamics[LibraryPackage]
+                   }
+                   Found ISQThermodynamics[LibraryPackage]
+                  }
+                  Found ISQThermodynamics[LibraryPackage]
+                 }
+                 Linked QN: ISQThermodynamics, eClass: LibraryPackage
+                }
+                Scope null looking for ISQMechanics[Namespace] took 0ms {
+                 GLOBAL scope ISQMechanics took 0ms {
+                  Found: ISQMechanics[LibraryPackage]
+                 }
+                 Found ISQMechanics[LibraryPackage]
+                }
+                Found ISQMechanics[LibraryPackage]
+               }
+               Linked QN: ISQMechanics, eClass: LibraryPackage
+              }
+              Scope null looking for ISQSpaceTime[Namespace] took 0ms {
+               GLOBAL scope ISQSpaceTime took 0ms {
+                Found: ISQSpaceTime[LibraryPackage]
+               }
+               Found ISQSpaceTime[LibraryPackage]
+              }
+              Found ISQSpaceTime[LibraryPackage]
+             }
+             Linked QN: ISQSpaceTime, eClass: LibraryPackage
+            }
+            Scope null looking for MeasurementReferences[Namespace] took 0ms {
+             GLOBAL scope MeasurementReferences took 0ms {
+              Found: MeasurementReferences[LibraryPackage]
+             }
+             Found MeasurementReferences[LibraryPackage]
+            }
+            Found MeasurementReferences[LibraryPackage]
+           }
+           Linked QN: MeasurementReferences, eClass: LibraryPackage
+          }
+          Scope null looking for Quantities[Namespace] took 0ms {
+           GLOBAL scope Quantities took 0ms {
+            Found: Quantities[LibraryPackage]
+           }
+           Found Quantities[LibraryPackage]
+          }
+          Found Quantities[LibraryPackage]
+         }
+         Linked QN: Quantities, eClass: LibraryPackage
+        }
+        Scope null looking for ScalarValues.Real[Membership] took 0ms {
+         GLOBAL scope ScalarValues.Real took 0ms {
+          Found: ScalarValues.Real[OwningMembership]
+         }
+         Found ScalarValues.Real[OwningMembership]
+        }
+        Found ScalarValues.Real[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for ISQBase[Namespace] took 0ms {
+       GLOBAL scope ISQBase took 0ms {
+        Found: ISQBase[LibraryPackage]
+       }
+       Found ISQBase[LibraryPackage]
+      }
+      Found ISQBase[LibraryPackage]
+     }
+     Linked QN: ISQBase, eClass: LibraryPackage
+    }
+    Found MassValue[AttributeDefinition]
+   }
+   Found MassValue[AttributeDefinition]
+  }
+  Found MassValue[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking ScalarQuantityValue[superclassifier] in ISQBase.sysml:66 took 0ms {
+ Scope ISQBase looking for ScalarQuantityValue[Classifier] took 0ms {
+  Linking ScalarValues::Real[importedMembership] in ISQBase.sysml:11 took 0ms {
+   Scope ISQBase looking for ScalarValues.Real[Membership] took 0ms {
+    Linking Quantities[importedNamespace] in ISQBase.sysml:12 took 0ms {
+     Scope ISQBase looking for Quantities[Namespace] took 0ms {
+      Linking MeasurementReferences[importedNamespace] in ISQBase.sysml:13 took 0ms {
+       Scope ISQBase looking for MeasurementReferences[Namespace] took 0ms {
+        Scope null looking for MeasurementReferences[Namespace] took 0ms {
+         GLOBAL scope MeasurementReferences took 0ms {
+          Found: MeasurementReferences[LibraryPackage]
+         }
+         Found MeasurementReferences[LibraryPackage]
+        }
+        Found MeasurementReferences[LibraryPackage]
+       }
+       Linked QN: MeasurementReferences, eClass: LibraryPackage
+      }
+      Scope null looking for Quantities[Namespace] took 0ms {
+       GLOBAL scope Quantities took 0ms {
+        Found: Quantities[LibraryPackage]
+       }
+       Found Quantities[LibraryPackage]
+      }
+      Found Quantities[LibraryPackage]
+     }
+     Linked QN: Quantities, eClass: LibraryPackage
+    }
+    Scope null looking for ScalarValues.Real[Membership] took 0ms {
+     GLOBAL scope ScalarValues.Real took 0ms {
+      Found: ScalarValues.Real[OwningMembership]
+     }
+     Found ScalarValues.Real[OwningMembership]
+    }
+    Found ScalarValues.Real[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found ScalarQuantityValue[AttributeDefinition]
+ }
+ Linked QN: Quantities::ScalarQuantityValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking VectorQuantityValue[superclassifier] in Quantities.sysml:44 took 0ms {
+ Scope Quantities looking for VectorQuantityValue[Classifier] took 0ms {
+  Found VectorQuantityValue[AttributeDefinition]
+ }
+ Linked QN: Quantities::VectorQuantityValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking NumericalValue[superclassifier] in Quantities.sysml:44 took 1ms {
+ Scope Quantities looking for NumericalValue[Classifier] took 1ms {
+  Linking Collections[importedNamespace] in Quantities.sysml:7 took 1ms {
+   Scope Quantities looking for Collections[Namespace] took 1ms {
+    Linking ScalarValues::NumericalValue[importedMembership] in Quantities.sysml:8 took 1ms {
+     Scope Quantities looking for ScalarValues.NumericalValue[Membership] took 1ms {
+      Linking ScalarValues::Number[importedMembership] in Quantities.sysml:9 took 1ms {
+       Scope Quantities looking for ScalarValues.Number[Membership] took 1ms {
+        Linking ScalarValues::Real[importedMembership] in Quantities.sysml:10 took 0ms {
+         Scope Quantities looking for ScalarValues.Real[Membership] took 0ms {
+          Linking ScalarValues::Natural[importedMembership] in Quantities.sysml:11 took 0ms {
+           Scope Quantities looking for ScalarValues.Natural[Membership] took 0ms {
+            Linking ScalarValues::Boolean[importedMembership] in Quantities.sysml:12 took 0ms {
+             Scope Quantities looking for ScalarValues.Boolean[Membership] took 0ms {
+              Linking ScalarValues::String[importedMembership] in Quantities.sysml:13 took 0ms {
+               Scope Quantities looking for ScalarValues.String[Membership] took 0ms {
+                Linking VectorValues::NumericalVectorValue[importedMembership] in Quantities.sysml:14 took 0ms {
+                 Scope Quantities looking for VectorValues.NumericalVectorValue[Membership] took 0ms {
+                  Linking VectorValues::ThreeVectorValue[importedMembership] in Quantities.sysml:15 took 0ms {
+                   Scope Quantities looking for VectorValues.ThreeVectorValue[Membership] took 0ms {
+                    Scope null looking for VectorValues.ThreeVectorValue[Membership] took 0ms {
+                     GLOBAL scope VectorValues.ThreeVectorValue took 0ms {
+                      Found: VectorValues.ThreeVectorValue[OwningMembership]
+                     }
+                     Found VectorValues.ThreeVectorValue[OwningMembership]
+                    }
+                    Found VectorValues.ThreeVectorValue[OwningMembership]
+                   }
+                   Linked QN: null, eClass: OwningMembership
+                  }
+                  Scope null looking for VectorValues.NumericalVectorValue[Membership] took 0ms {
+                   GLOBAL scope VectorValues.NumericalVectorValue took 0ms {
+                    Found: VectorValues.NumericalVectorValue[OwningMembership]
+                   }
+                   Found VectorValues.NumericalVectorValue[OwningMembership]
+                  }
+                  Found VectorValues.NumericalVectorValue[OwningMembership]
+                 }
+                 Linked QN: null, eClass: OwningMembership
+                }
+                Scope null looking for ScalarValues.String[Membership] took 0ms {
+                 GLOBAL scope ScalarValues.String took 0ms {
+                  Found: ScalarValues.String[OwningMembership]
+                 }
+                 Found ScalarValues.String[OwningMembership]
+                }
+                Found ScalarValues.String[OwningMembership]
+               }
+               Linked QN: null, eClass: OwningMembership
+              }
+              Scope null looking for ScalarValues.Boolean[Membership] took 0ms {
+               GLOBAL scope ScalarValues.Boolean took 0ms {
+                Found: ScalarValues.Boolean[OwningMembership]
+               }
+               Found ScalarValues.Boolean[OwningMembership]
+              }
+              Found ScalarValues.Boolean[OwningMembership]
+             }
+             Linked QN: null, eClass: OwningMembership
+            }
+            Scope null looking for ScalarValues.Natural[Membership] took 0ms {
+             GLOBAL scope ScalarValues.Natural took 0ms {
+              Found: ScalarValues.Natural[OwningMembership]
+             }
+             Found ScalarValues.Natural[OwningMembership]
+            }
+            Found ScalarValues.Natural[OwningMembership]
+           }
+           Linked QN: null, eClass: OwningMembership
+          }
+          Scope null looking for ScalarValues.Real[Membership] took 0ms {
+           GLOBAL scope ScalarValues.Real took 0ms {
+            Found: ScalarValues.Real[OwningMembership]
+           }
+           Found ScalarValues.Real[OwningMembership]
+          }
+          Found ScalarValues.Real[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for ScalarValues.Number[Membership] took 0ms {
+         GLOBAL scope ScalarValues.Number took 0ms {
+          Found: ScalarValues.Number[OwningMembership]
+         }
+         Found ScalarValues.Number[OwningMembership]
+        }
+        Found ScalarValues.Number[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for ScalarValues.NumericalValue[Membership] took 0ms {
+       GLOBAL scope ScalarValues.NumericalValue took 0ms {
+        Found: ScalarValues.NumericalValue[OwningMembership]
+       }
+       Found ScalarValues.NumericalValue[OwningMembership]
+      }
+      Found ScalarValues.NumericalValue[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Collections[Namespace] took 0ms {
+     GLOBAL scope Collections took 0ms {
+      Found: Collections[LibraryPackage]
+     }
+     Found Collections[LibraryPackage]
+    }
+    Found Collections[LibraryPackage]
+   }
+   Linked QN: Collections, eClass: LibraryPackage
+  }
+  Found NumericalValue[DataType]
+ }
+ Linked QN: ScalarValues::NumericalValue, eClass: DataType
+}
+----------------------------------
+Linking TensorQuantityValue[superclassifier] in Quantities.sysml:40 took 0ms {
+ Scope Quantities looking for TensorQuantityValue[Classifier] took 0ms {
+  Found TensorQuantityValue[AttributeDefinition]
+ }
+ Linked QN: Quantities::TensorQuantityValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking NumericalVectorValue[superclassifier] in Quantities.sysml:40 took 0ms {
+ Scope Quantities looking for NumericalVectorValue[Classifier] took 0ms {
+  Found NumericalVectorValue[DataType]
+ }
+ Linked QN: VectorValues::NumericalVectorValue, eClass: DataType
+}
+----------------------------------
+Linking Array[superclassifier] in Quantities.sysml:17 took 0ms {
+ Scope Quantities looking for Array[Classifier] took 0ms {
+  Found Array[DataType]
+ }
+ Linked QN: Collections::Array, eClass: DataType
+}
+----------------------------------
+Linking Real[type] in 3.sysml:11 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Vehicle looking for Real[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for Real[Type] took 0ms {
+   Scope '8-Requirements' looking for Real[Type] took 0ms {
+    Found Real[DataType]
+   }
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking Real[type] in 3.sysml:12 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Vehicle looking for Real[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for Real[Type] took 0ms {
+   Scope '8-Requirements' looking for Real[Type] took 0ms {
+    Found Real[DataType]
+   }
+   Found Real[DataType]
+  }
+  Found Real[DataType]
+ }
+ Linked QN: ScalarValues::Real, eClass: DataType
+}
+----------------------------------
+Linking DrivePwrPort[type] in 3.sysml:16 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Engine looking for DrivePwrPort[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for DrivePwrPort[Type] took 0ms {
+   Found DrivePwrPort[PortDefinition]
+  }
+  Found DrivePwrPort[PortDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::DrivePwrPort, eClass: PortDefinition
+}
+----------------------------------
+Linking Object[superclassifier] in Ports.sysml:11 took 0ms {
+ Scope Ports looking for Object[Classifier] took 0ms {
+  Linking Objects::Object[importedMembership] in Ports.sysml:8 took 0ms {
+   Scope Ports looking for Objects.Object[Membership] took 0ms {
+    Linking Objects::objects[importedMembership] in Ports.sysml:9 took 0ms {
+     Scope Ports looking for Objects.objects[Membership] took 0ms {
+      Scope null looking for Objects.objects[Membership] took 0ms {
+       GLOBAL scope Objects.objects took 0ms {
+        Found: Objects.objects[OwningMembership]
+       }
+       Found Objects.objects[OwningMembership]
+      }
+      Found Objects.objects[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Objects.Object[Membership] took 0ms {
+     GLOBAL scope Objects.Object took 0ms {
+      Found: Objects.Object[OwningMembership]
+     }
+     Found Objects.Object[OwningMembership]
+    }
+    Found Objects.Object[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found Object[Structure]
+ }
+ Linked QN: Objects::Object, eClass: Structure
+}
+----------------------------------
+Linking 'Generate Torque'[type] in 3.sysml:17 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Engine looking for Generate Torque[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for Generate Torque[Type] took 0ms {
+   Found Generate Torque[ActionDefinition]
+  }
+  Found Generate Torque[ActionDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::'Generate Torque', eClass: ActionDefinition
+}
+----------------------------------
+Linking Performance[superclassifier] in Actions.sysml:32 took 3ms {
+ Scope Actions looking for Performance[Classifier] took 3ms {
+  Linking Base::Anything[importedMembership] in Actions.sysml:8 took 3ms {
+   Scope Actions looking for Base.Anything[Membership] took 3ms {
+    Linking ScalarValues::Positive[importedMembership] in Actions.sysml:9 took 2ms {
+     Scope Actions looking for ScalarValues.Positive[Membership] took 2ms {
+      Linking ScalarValues::Natural[importedMembership] in Actions.sysml:10 took 2ms {
+       Scope Actions looking for ScalarValues.Natural[Membership] took 2ms {
+        Linking SequenceFunctions::size[importedMembership] in Actions.sysml:11 took 2ms {
+         Scope Actions looking for SequenceFunctions.size[Membership] took 2ms {
+          Linking SequenceFunctions::isEmpty[importedMembership] in Actions.sysml:12 took 2ms {
+           Scope Actions looking for SequenceFunctions.isEmpty[Membership] took 2ms {
+            Linking Occurrences::Occurrence[importedMembership] in Actions.sysml:13 took 2ms {
+             Scope Actions looking for Occurrences.Occurrence[Membership] took 2ms {
+              Linking Occurrences::HappensWhile[importedMembership] in Actions.sysml:14 took 2ms {
+               Scope Actions looking for Occurrences.HappensWhile[Membership] took 2ms {
+                Linking Performances::Performance[importedMembership] in Actions.sysml:15 took 2ms {
+                 Scope Actions looking for Performances.Performance[Membership] took 2ms {
+                  Linking Performances::performances[importedMembership] in Actions.sysml:16 took 2ms {
+                   Scope Actions looking for Performances.performances[Membership] took 2ms {
+                    Linking Transfers::SendPerformance[importedMembership] in Actions.sysml:17 took 1ms {
+                     Scope Actions looking for Transfers.SendPerformance[Membership] took 1ms {
+                      Linking Transfers::sendPerformances[importedMembership] in Actions.sysml:18 took 1ms {
+                       Scope Actions looking for Transfers.sendPerformances[Membership] took 1ms {
+                        Linking Transfers::AcceptPerformance[importedMembership] in Actions.sysml:19 took 1ms {
+                         Scope Actions looking for Transfers.AcceptPerformance[Membership] took 1ms {
+                          Linking Transfers::acceptPerformances[importedMembership] in Actions.sysml:20 took 1ms {
+                           Scope Actions looking for Transfers.acceptPerformances[Membership] took 1ms {
+                            Linking FeatureReferencingPerformances::FeatureWritePerformance[importedMembership] in Actions.sysml:21 took 1ms {
+                             Scope Actions looking for FeatureReferencingPerformances.FeatureWritePerformance[Membership] took 1ms {
+                              Linking ControlPerformances::MergePerformance[importedMembership] in Actions.sysml:22 took 1ms {
+                               Scope Actions looking for ControlPerformances.MergePerformance[Membership] took 1ms {
+                                Linking ControlPerformances::DecisionPerformance[importedMembership] in Actions.sysml:23 took 1ms {
+                                 Scope Actions looking for ControlPerformances.DecisionPerformance[Membership] took 1ms {
+                                  Linking ControlPerformances::IfThenPerformance[importedMembership] in Actions.sysml:24 took 0ms {
+                                   Scope Actions looking for ControlPerformances.IfThenPerformance[Membership] took 0ms {
+                                    Linking ControlPerformances::IfThenElsePerformance[importedMembership] in Actions.sysml:25 took 0ms {
+                                     Scope Actions looking for ControlPerformances.IfThenElsePerformance[Membership] took 0ms {
+                                      Linking ControlPerformances::LoopPerformance[importedMembership] in Actions.sysml:26 took 0ms {
+                                       Scope Actions looking for ControlPerformances.LoopPerformance[Membership] took 0ms {
+                                        Linking TransitionPerformances::TransitionPerformance[importedMembership] in Actions.sysml:27 took 0ms {
+                                         Scope Actions looking for TransitionPerformances.TransitionPerformance[Membership] took 0ms {
+                                          Linking TransitionPerformances::NonStateTransitionPerformance[importedMembership] in Actions.sysml:28 took 0ms {
+                                           Scope Actions looking for TransitionPerformances.NonStateTransitionPerformance[Membership] took 0ms {
+                                            Linking Transfers::MessageTransfer[importedMembership] in Actions.sysml:29 took 0ms {
+                                             Scope Actions looking for Transfers.MessageTransfer[Membership] took 0ms {
+                                              Linking Connections::MessageConnection[importedMembership] in Actions.sysml:30 took 0ms {
+                                               Scope Actions looking for Connections.MessageConnection[Membership] took 0ms {
+                                                Scope null looking for Connections.MessageConnection[Membership] took 0ms {
+                                                 GLOBAL scope Connections.MessageConnection took 0ms {
+                                                  Found: Connections.MessageConnection[OwningMembership]
+                                                 }
+                                                 Found Connections.MessageConnection[OwningMembership]
+                                                }
+                                                Found Connections.MessageConnection[OwningMembership]
+                                               }
+                                               Linked QN: null, eClass: OwningMembership
+                                              }
+                                              Scope null looking for Transfers.MessageTransfer[Membership] took 0ms {
+                                               GLOBAL scope Transfers.MessageTransfer took 0ms {
+                                                Found: Transfers.MessageTransfer[OwningMembership]
+                                               }
+                                               Found Transfers.MessageTransfer[OwningMembership]
+                                              }
+                                              Found Transfers.MessageTransfer[OwningMembership]
+                                             }
+                                             Linked QN: null, eClass: OwningMembership
+                                            }
+                                            Scope null looking for TransitionPerformances.NonStateTransitionPerformance[Membership] took 0ms {
+                                             GLOBAL scope TransitionPerformances.NonStateTransitionPerformance took 0ms {
+                                              Found: TransitionPerformances.NonStateTransitionPerformance[OwningMembership]
+                                             }
+                                             Found TransitionPerformances.NonStateTransitionPerformance[OwningMembership]
+                                            }
+                                            Found TransitionPerformances.NonStateTransitionPerformance[OwningMembership]
+                                           }
+                                           Linked QN: null, eClass: OwningMembership
+                                          }
+                                          Scope null looking for TransitionPerformances.TransitionPerformance[Membership] took 0ms {
+                                           GLOBAL scope TransitionPerformances.TransitionPerformance took 0ms {
+                                            Found: TransitionPerformances.TransitionPerformance[OwningMembership]
+                                           }
+                                           Found TransitionPerformances.TransitionPerformance[OwningMembership]
+                                          }
+                                          Found TransitionPerformances.TransitionPerformance[OwningMembership]
+                                         }
+                                         Linked QN: null, eClass: OwningMembership
+                                        }
+                                        Scope null looking for ControlPerformances.LoopPerformance[Membership] took 0ms {
+                                         GLOBAL scope ControlPerformances.LoopPerformance took 0ms {
+                                          Found: ControlPerformances.LoopPerformance[OwningMembership]
+                                         }
+                                         Found ControlPerformances.LoopPerformance[OwningMembership]
+                                        }
+                                        Found ControlPerformances.LoopPerformance[OwningMembership]
+                                       }
+                                       Linked QN: null, eClass: OwningMembership
+                                      }
+                                      Scope null looking for ControlPerformances.IfThenElsePerformance[Membership] took 0ms {
+                                       GLOBAL scope ControlPerformances.IfThenElsePerformance took 0ms {
+                                        Found: ControlPerformances.IfThenElsePerformance[OwningMembership]
+                                       }
+                                       Found ControlPerformances.IfThenElsePerformance[OwningMembership]
+                                      }
+                                      Found ControlPerformances.IfThenElsePerformance[OwningMembership]
+                                     }
+                                     Linked QN: null, eClass: OwningMembership
+                                    }
+                                    Scope null looking for ControlPerformances.IfThenPerformance[Membership] took 0ms {
+                                     GLOBAL scope ControlPerformances.IfThenPerformance took 0ms {
+                                      Found: ControlPerformances.IfThenPerformance[OwningMembership]
+                                     }
+                                     Found ControlPerformances.IfThenPerformance[OwningMembership]
+                                    }
+                                    Found ControlPerformances.IfThenPerformance[OwningMembership]
+                                   }
+                                   Linked QN: null, eClass: OwningMembership
+                                  }
+                                  Scope null looking for ControlPerformances.DecisionPerformance[Membership] took 0ms {
+                                   GLOBAL scope ControlPerformances.DecisionPerformance took 0ms {
+                                    Found: ControlPerformances.DecisionPerformance[OwningMembership]
+                                   }
+                                   Found ControlPerformances.DecisionPerformance[OwningMembership]
+                                  }
+                                  Found ControlPerformances.DecisionPerformance[OwningMembership]
+                                 }
+                                 Linked QN: null, eClass: OwningMembership
+                                }
+                                Scope null looking for ControlPerformances.MergePerformance[Membership] took 0ms {
+                                 GLOBAL scope ControlPerformances.MergePerformance took 0ms {
+                                  Found: ControlPerformances.MergePerformance[OwningMembership]
+                                 }
+                                 Found ControlPerformances.MergePerformance[OwningMembership]
+                                }
+                                Found ControlPerformances.MergePerformance[OwningMembership]
+                               }
+                               Linked QN: null, eClass: OwningMembership
+                              }
+                              Scope null looking for FeatureReferencingPerformances.FeatureWritePerformance[Membership] took 0ms {
+                               GLOBAL scope FeatureReferencingPerformances.FeatureWritePerformance took 0ms {
+                                Found: FeatureReferencingPerformances.FeatureWritePerformance[OwningMembership]
+                               }
+                               Found FeatureReferencingPerformances.FeatureWritePerformance[OwningMembership]
+                              }
+                              Found FeatureReferencingPerformances.FeatureWritePerformance[OwningMembership]
+                             }
+                             Linked QN: null, eClass: OwningMembership
+                            }
+                            Scope null looking for Transfers.acceptPerformances[Membership] took 0ms {
+                             GLOBAL scope Transfers.acceptPerformances took 0ms {
+                              Found: Transfers.acceptPerformances[OwningMembership]
+                             }
+                             Found Transfers.acceptPerformances[OwningMembership]
+                            }
+                            Found Transfers.acceptPerformances[OwningMembership]
+                           }
+                           Linked QN: null, eClass: OwningMembership
+                          }
+                          Scope null looking for Transfers.AcceptPerformance[Membership] took 0ms {
+                           GLOBAL scope Transfers.AcceptPerformance took 0ms {
+                            Found: Transfers.AcceptPerformance[OwningMembership]
+                           }
+                           Found Transfers.AcceptPerformance[OwningMembership]
+                          }
+                          Found Transfers.AcceptPerformance[OwningMembership]
+                         }
+                         Linked QN: null, eClass: OwningMembership
+                        }
+                        Scope null looking for Transfers.sendPerformances[Membership] took 0ms {
+                         GLOBAL scope Transfers.sendPerformances took 0ms {
+                          Found: Transfers.sendPerformances[OwningMembership]
+                         }
+                         Found Transfers.sendPerformances[OwningMembership]
+                        }
+                        Found Transfers.sendPerformances[OwningMembership]
+                       }
+                       Linked QN: null, eClass: OwningMembership
+                      }
+                      Scope null looking for Transfers.SendPerformance[Membership] took 0ms {
+                       GLOBAL scope Transfers.SendPerformance took 0ms {
+                        Found: Transfers.SendPerformance[OwningMembership]
+                       }
+                       Found Transfers.SendPerformance[OwningMembership]
+                      }
+                      Found Transfers.SendPerformance[OwningMembership]
+                     }
+                     Linked QN: null, eClass: OwningMembership
+                    }
+                    Scope null looking for Performances.performances[Membership] took 0ms {
+                     GLOBAL scope Performances.performances took 0ms {
+                      Found: Performances.performances[OwningMembership]
+                     }
+                     Found Performances.performances[OwningMembership]
+                    }
+                    Found Performances.performances[OwningMembership]
+                   }
+                   Linked QN: null, eClass: OwningMembership
+                  }
+                  Scope null looking for Performances.Performance[Membership] took 0ms {
+                   GLOBAL scope Performances.Performance took 0ms {
+                    Found: Performances.Performance[OwningMembership]
+                   }
+                   Found Performances.Performance[OwningMembership]
+                  }
+                  Found Performances.Performance[OwningMembership]
+                 }
+                 Linked QN: null, eClass: OwningMembership
+                }
+                Scope null looking for Occurrences.HappensWhile[Membership] took 0ms {
+                 GLOBAL scope Occurrences.HappensWhile took 0ms {
+                  Found: Occurrences.HappensWhile[OwningMembership]
+                 }
+                 Found Occurrences.HappensWhile[OwningMembership]
+                }
+                Found Occurrences.HappensWhile[OwningMembership]
+               }
+               Linked QN: null, eClass: OwningMembership
+              }
+              Scope null looking for Occurrences.Occurrence[Membership] took 0ms {
+               GLOBAL scope Occurrences.Occurrence took 0ms {
+                Found: Occurrences.Occurrence[OwningMembership]
+               }
+               Found Occurrences.Occurrence[OwningMembership]
+              }
+              Found Occurrences.Occurrence[OwningMembership]
+             }
+             Linked QN: null, eClass: OwningMembership
+            }
+            Scope null looking for SequenceFunctions.isEmpty[Membership] took 0ms {
+             GLOBAL scope SequenceFunctions.isEmpty took 0ms {
+              Found: SequenceFunctions.isEmpty[OwningMembership]
+             }
+             Found SequenceFunctions.isEmpty[OwningMembership]
+            }
+            Found SequenceFunctions.isEmpty[OwningMembership]
+           }
+           Linked QN: null, eClass: OwningMembership
+          }
+          Scope null looking for SequenceFunctions.size[Membership] took 0ms {
+           GLOBAL scope SequenceFunctions.size took 0ms {
+            Found: SequenceFunctions.size[OwningMembership]
+           }
+           Found SequenceFunctions.size[OwningMembership]
+          }
+          Found SequenceFunctions.size[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for ScalarValues.Natural[Membership] took 0ms {
+         GLOBAL scope ScalarValues.Natural took 0ms {
+          Found: ScalarValues.Natural[OwningMembership]
+         }
+         Found ScalarValues.Natural[OwningMembership]
+        }
+        Found ScalarValues.Natural[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for ScalarValues.Positive[Membership] took 0ms {
+       GLOBAL scope ScalarValues.Positive took 0ms {
+        Found: ScalarValues.Positive[OwningMembership]
+       }
+       Found ScalarValues.Positive[OwningMembership]
+      }
+      Found ScalarValues.Positive[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Base.Anything[Membership] took 0ms {
+     GLOBAL scope Base.Anything took 0ms {
+      Found: Base.Anything[OwningMembership]
+     }
+     Found Base.Anything[OwningMembership]
+    }
+    Found Base.Anything[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found Performance[Behavior]
+ }
+ Linked QN: Performances::Performance, eClass: Behavior
+}
+----------------------------------
+Linking Action[type] in Parts.sysml:38 took 0ms {
+ Scope Parts::Part looking for Action[Type] took 0ms {
+  Scope Parts looking for Action[Type] took 0ms {
+   Found Action[ActionDefinition]
+  }
+  Found Action[ActionDefinition]
+ }
+ Linked QN: Actions::Action, eClass: ActionDefinition
+}
+----------------------------------
+Linking actions[subsettedFeature] in Parts.sysml:38 took 0ms {
+ Scope Parts::Part looking for actions[Feature] took 0ms {
+  Scope Parts looking for actions[Feature] took 0ms {
+   Found actions[ActionUsage]
+  }
+  Found actions[ActionUsage]
+ }
+ Linked QN: Actions::actions, eClass: ActionUsage
+}
+----------------------------------
+Linking enactedPerformances[subsettedFeature] in Parts.sysml:38 took 0ms {
+ Scope Parts::Part looking for enactedPerformances[Feature] took 0ms {
+  Found enactedPerformances[Step]
+ }
+ Linked QN: Objects::Object::enactedPerformances, eClass: Step
+}
+----------------------------------
+Linking Action[type] in Actions.sysml:170 took 0ms {
+ Scope Actions looking for Action[Type] took 0ms {
+  Found Action[ActionDefinition]
+ }
+ Linked QN: Actions::Action, eClass: ActionDefinition
+}
+----------------------------------
+Linking performances[subsettedFeature] in Actions.sysml:170 took 0ms {
+ Scope Actions looking for performances[Feature] took 0ms {
+  Found performances[Step]
+ }
+ Linked QN: Performances::performances, eClass: Step
+}
+----------------------------------
+Linking ClutchPort[type] in 3.sysml:21 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::Transmission looking for ClutchPort[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for ClutchPort[Type] took 0ms {
+   Found ClutchPort[PortDefinition]
+  }
+  Found ClutchPort[PortDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::ClutchPort, eClass: PortDefinition
+}
+----------------------------------
+Linking Interface[superclassifier] in Interfaces.sysml:22 took 0ms {
+ Scope Interfaces looking for Interface[Classifier] took 0ms {
+  Found Interface[InterfaceDefinition]
+ }
+ Linked QN: Interfaces::Interface, eClass: InterfaceDefinition
+}
+----------------------------------
+Linking BinaryConnection[superclassifier] in Interfaces.sysml:22 took 0ms {
+ Scope Interfaces looking for BinaryConnection[Classifier] took 0ms {
+  Linking Connections::Connection[importedMembership] in Interfaces.sysml:7 took 0ms {
+   Scope Interfaces looking for Connections.Connection[Membership] took 0ms {
+    Linking Connections::connections[importedMembership] in Interfaces.sysml:8 took 0ms {
+     Scope Interfaces looking for Connections.connections[Membership] took 0ms {
+      Linking Connections::BinaryConnection[importedMembership] in Interfaces.sysml:9 took 0ms {
+       Scope Interfaces looking for Connections.BinaryConnection[Membership] took 0ms {
+        Linking Connections::binaryConnections[importedMembership] in Interfaces.sysml:10 took 0ms {
+         Scope Interfaces looking for Connections.binaryConnections[Membership] took 0ms {
+          Linking Ports::Port[importedMembership] in Interfaces.sysml:11 took 0ms {
+           Scope Interfaces looking for Ports.Port[Membership] took 0ms {
+            Scope null looking for Ports.Port[Membership] took 0ms {
+             GLOBAL scope Ports.Port took 0ms {
+              Found: Ports.Port[OwningMembership]
+             }
+             Found Ports.Port[OwningMembership]
+            }
+            Found Ports.Port[OwningMembership]
+           }
+           Linked QN: null, eClass: OwningMembership
+          }
+          Scope null looking for Connections.binaryConnections[Membership] took 0ms {
+           GLOBAL scope Connections.binaryConnections took 0ms {
+            Found: Connections.binaryConnections[OwningMembership]
+           }
+           Found Connections.binaryConnections[OwningMembership]
+          }
+          Found Connections.binaryConnections[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for Connections.BinaryConnection[Membership] took 0ms {
+         GLOBAL scope Connections.BinaryConnection took 0ms {
+          Found: Connections.BinaryConnection[OwningMembership]
+         }
+         Found Connections.BinaryConnection[OwningMembership]
+        }
+        Found Connections.BinaryConnection[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for Connections.connections[Membership] took 0ms {
+       GLOBAL scope Connections.connections took 0ms {
+        Found: Connections.connections[OwningMembership]
+       }
+       Found Connections.connections[OwningMembership]
+      }
+      Found Connections.connections[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Connections.Connection[Membership] took 0ms {
+     GLOBAL scope Connections.Connection took 0ms {
+      Found: Connections.Connection[OwningMembership]
+     }
+     Found Connections.Connection[OwningMembership]
+    }
+    Found Connections.Connection[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found BinaryConnection[ConnectionDefinition]
+ }
+ Linked QN: Connections::BinaryConnection, eClass: ConnectionDefinition
+}
+----------------------------------
+Linking Connection[superclassifier] in Interfaces.sysml:13 took 0ms {
+ Scope Interfaces looking for Connection[Classifier] took 0ms {
+  Found Connection[ConnectionDefinition]
+ }
+ Linked QN: Connections::Connection, eClass: ConnectionDefinition
+}
+----------------------------------
+Linking LinkObject[superclassifier] in Connections.sysml:27 took 1ms {
+ Scope Connections looking for LinkObject[Classifier] took 1ms {
+  Linking Base::Anything[importedMembership] in Connections.sysml:8 took 1ms {
+   Scope Connections looking for Base.Anything[Membership] took 1ms {
+    Linking Occurrences::Occurrence[importedMembership] in Connections.sysml:9 took 1ms {
+     Scope Connections looking for Occurrences.Occurrence[Membership] took 1ms {
+      Linking Occurrences::HappensDuring[importedMembership] in Connections.sysml:10 took 1ms {
+       Scope Connections looking for Occurrences.HappensDuring[Membership] took 1ms {
+        Linking Objects::LinkObject[importedMembership] in Connections.sysml:11 took 1ms {
+         Scope Connections looking for Objects.LinkObject[Membership] took 1ms {
+          Linking Objects::linkObjects[importedMembership] in Connections.sysml:12 took 1ms {
+           Scope Connections looking for Objects.linkObjects[Membership] took 1ms {
+            Linking Objects::BinaryLinkObject[importedMembership] in Connections.sysml:13 took 1ms {
+             Scope Connections looking for Objects.BinaryLinkObject[Membership] took 1ms {
+              Linking Objects::binaryLinkObjects[importedMembership] in Connections.sysml:14 took 0ms {
+               Scope Connections looking for Objects.binaryLinkObjects[Membership] took 0ms {
+                Linking Transfers::Transfer[importedMembership] in Connections.sysml:15 took 0ms {
+                 Scope Connections looking for Transfers.Transfer[Membership] took 0ms {
+                  Linking Transfers::transfers[importedMembership] in Connections.sysml:16 took 0ms {
+                   Scope Connections looking for Transfers.transfers[Membership] took 0ms {
+                    Linking Transfers::FlowTransfer[importedMembership] in Connections.sysml:17 took 0ms {
+                     Scope Connections looking for Transfers.FlowTransfer[Membership] took 0ms {
+                      Linking Transfers::flowTransfers[importedMembership] in Connections.sysml:18 took 0ms {
+                       Scope Connections looking for Transfers.flowTransfers[Membership] took 0ms {
+                        Linking Transfers::FlowTransferBefore[importedMembership] in Connections.sysml:19 took 0ms {
+                         Scope Connections looking for Transfers.FlowTransferBefore[Membership] took 0ms {
+                          Linking Transfers::flowTransfersBefore[importedMembership] in Connections.sysml:20 took 0ms {
+                           Scope Connections looking for Transfers.flowTransfersBefore[Membership] took 0ms {
+                            Linking ScalarValues::Natural[importedMembership] in Connections.sysml:21 took 0ms {
+                             Scope Connections looking for ScalarValues.Natural[Membership] took 0ms {
+                              Linking Parts::Part[importedMembership] in Connections.sysml:22 took 0ms {
+                               Scope Connections looking for Parts.Part[Membership] took 0ms {
+                                Linking Parts::parts[importedMembership] in Connections.sysml:23 took 0ms {
+                                 Scope Connections looking for Parts.parts[Membership] took 0ms {
+                                  Linking Actions::Action[importedMembership] in Connections.sysml:24 took 0ms {
+                                   Scope Connections looking for Actions.Action[Membership] took 0ms {
+                                    Linking Actions::actions[importedMembership] in Connections.sysml:25 took 0ms {
+                                     Scope Connections looking for Actions.actions[Membership] took 0ms {
+                                      Scope null looking for Actions.actions[Membership] took 0ms {
+                                       GLOBAL scope Actions.actions took 0ms {
+                                        Found: Actions.actions[OwningMembership]
+                                       }
+                                       Found Actions.actions[OwningMembership]
+                                      }
+                                      Found Actions.actions[OwningMembership]
+                                     }
+                                     Linked QN: null, eClass: OwningMembership
+                                    }
+                                    Scope null looking for Actions.Action[Membership] took 0ms {
+                                     GLOBAL scope Actions.Action took 0ms {
+                                      Found: Actions.Action[OwningMembership]
+                                     }
+                                     Found Actions.Action[OwningMembership]
+                                    }
+                                    Found Actions.Action[OwningMembership]
+                                   }
+                                   Linked QN: null, eClass: OwningMembership
+                                  }
+                                  Scope null looking for Parts.parts[Membership] took 0ms {
+                                   GLOBAL scope Parts.parts took 0ms {
+                                    Found: Parts.parts[OwningMembership]
+                                   }
+                                   Found Parts.parts[OwningMembership]
+                                  }
+                                  Found Parts.parts[OwningMembership]
+                                 }
+                                 Linked QN: null, eClass: OwningMembership
+                                }
+                                Scope null looking for Parts.Part[Membership] took 0ms {
+                                 GLOBAL scope Parts.Part took 0ms {
+                                  Found: Parts.Part[OwningMembership]
+                                 }
+                                 Found Parts.Part[OwningMembership]
+                                }
+                                Found Parts.Part[OwningMembership]
+                               }
+                               Linked QN: null, eClass: OwningMembership
+                              }
+                              Scope null looking for ScalarValues.Natural[Membership] took 0ms {
+                               GLOBAL scope ScalarValues.Natural took 0ms {
+                                Found: ScalarValues.Natural[OwningMembership]
+                               }
+                               Found ScalarValues.Natural[OwningMembership]
+                              }
+                              Found ScalarValues.Natural[OwningMembership]
+                             }
+                             Linked QN: null, eClass: OwningMembership
+                            }
+                            Scope null looking for Transfers.flowTransfersBefore[Membership] took 0ms {
+                             GLOBAL scope Transfers.flowTransfersBefore took 0ms {
+                              Found: Transfers.flowTransfersBefore[OwningMembership]
+                             }
+                             Found Transfers.flowTransfersBefore[OwningMembership]
+                            }
+                            Found Transfers.flowTransfersBefore[OwningMembership]
+                           }
+                           Linked QN: null, eClass: OwningMembership
+                          }
+                          Scope null looking for Transfers.FlowTransferBefore[Membership] took 0ms {
+                           GLOBAL scope Transfers.FlowTransferBefore took 0ms {
+                            Found: Transfers.FlowTransferBefore[OwningMembership]
+                           }
+                           Found Transfers.FlowTransferBefore[OwningMembership]
+                          }
+                          Found Transfers.FlowTransferBefore[OwningMembership]
+                         }
+                         Linked QN: null, eClass: OwningMembership
+                        }
+                        Scope null looking for Transfers.flowTransfers[Membership] took 0ms {
+                         GLOBAL scope Transfers.flowTransfers took 0ms {
+                          Found: Transfers.flowTransfers[OwningMembership]
+                         }
+                         Found Transfers.flowTransfers[OwningMembership]
+                        }
+                        Found Transfers.flowTransfers[OwningMembership]
+                       }
+                       Linked QN: null, eClass: OwningMembership
+                      }
+                      Scope null looking for Transfers.FlowTransfer[Membership] took 0ms {
+                       GLOBAL scope Transfers.FlowTransfer took 0ms {
+                        Found: Transfers.FlowTransfer[OwningMembership]
+                       }
+                       Found Transfers.FlowTransfer[OwningMembership]
+                      }
+                      Found Transfers.FlowTransfer[OwningMembership]
+                     }
+                     Linked QN: null, eClass: OwningMembership
+                    }
+                    Scope null looking for Transfers.transfers[Membership] took 0ms {
+                     GLOBAL scope Transfers.transfers took 0ms {
+                      Found: Transfers.transfers[OwningMembership]
+                     }
+                     Found Transfers.transfers[OwningMembership]
+                    }
+                    Found Transfers.transfers[OwningMembership]
+                   }
+                   Linked QN: null, eClass: OwningMembership
+                  }
+                  Scope null looking for Transfers.Transfer[Membership] took 0ms {
+                   GLOBAL scope Transfers.Transfer took 0ms {
+                    Found: Transfers.Transfer[OwningMembership]
+                   }
+                   Found Transfers.Transfer[OwningMembership]
+                  }
+                  Found Transfers.Transfer[OwningMembership]
+                 }
+                 Linked QN: null, eClass: OwningMembership
+                }
+                Scope null looking for Objects.binaryLinkObjects[Membership] took 0ms {
+                 GLOBAL scope Objects.binaryLinkObjects took 0ms {
+                  Found: Objects.binaryLinkObjects[OwningMembership]
+                 }
+                 Found Objects.binaryLinkObjects[OwningMembership]
+                }
+                Found Objects.binaryLinkObjects[OwningMembership]
+               }
+               Linked QN: null, eClass: OwningMembership
+              }
+              Scope null looking for Objects.BinaryLinkObject[Membership] took 0ms {
+               GLOBAL scope Objects.BinaryLinkObject took 0ms {
+                Found: Objects.BinaryLinkObject[OwningMembership]
+               }
+               Found Objects.BinaryLinkObject[OwningMembership]
+              }
+              Found Objects.BinaryLinkObject[OwningMembership]
+             }
+             Linked QN: null, eClass: OwningMembership
+            }
+            Scope null looking for Objects.linkObjects[Membership] took 0ms {
+             GLOBAL scope Objects.linkObjects took 0ms {
+              Found: Objects.linkObjects[OwningMembership]
+             }
+             Found Objects.linkObjects[OwningMembership]
+            }
+            Found Objects.linkObjects[OwningMembership]
+           }
+           Linked QN: null, eClass: OwningMembership
+          }
+          Scope null looking for Objects.LinkObject[Membership] took 0ms {
+           GLOBAL scope Objects.LinkObject took 0ms {
+            Found: Objects.LinkObject[OwningMembership]
+           }
+           Found Objects.LinkObject[OwningMembership]
+          }
+          Found Objects.LinkObject[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for Occurrences.HappensDuring[Membership] took 0ms {
+         GLOBAL scope Occurrences.HappensDuring took 0ms {
+          Found: Occurrences.HappensDuring[OwningMembership]
+         }
+         Found Occurrences.HappensDuring[OwningMembership]
+        }
+        Found Occurrences.HappensDuring[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for Occurrences.Occurrence[Membership] took 0ms {
+       GLOBAL scope Occurrences.Occurrence took 0ms {
+        Found: Occurrences.Occurrence[OwningMembership]
+       }
+       Found Occurrences.Occurrence[OwningMembership]
+      }
+      Found Occurrences.Occurrence[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Base.Anything[Membership] took 0ms {
+     GLOBAL scope Base.Anything took 0ms {
+      Found: Base.Anything[OwningMembership]
+     }
+     Found Base.Anything[OwningMembership]
+    }
+    Found Base.Anything[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found LinkObject[AssociationStructure]
+ }
+ Linked QN: Objects::LinkObject, eClass: AssociationStructure
+}
+----------------------------------
+Linking Part[superclassifier] in Connections.sysml:27 took 0ms {
+ Scope Connections looking for Part[Classifier] took 0ms {
+  Found Part[PartDefinition]
+ }
+ Linked QN: Parts::Part, eClass: PartDefinition
+}
+----------------------------------
+Linking Connection[superclassifier] in Connections.sysml:35 took 0ms {
+ Scope Connections looking for Connection[Classifier] took 0ms {
+  Found Connection[ConnectionDefinition]
+ }
+ Linked QN: Connections::Connection, eClass: ConnectionDefinition
+}
+----------------------------------
+Linking BinaryLinkObject[superclassifier] in Connections.sysml:35 took 0ms {
+ Scope Connections looking for BinaryLinkObject[Classifier] took 0ms {
+  Found BinaryLinkObject[AssociationStructure]
+ }
+ Linked QN: Objects::BinaryLinkObject, eClass: AssociationStructure
+}
+----------------------------------
+Linking DrivePwrPort[type] in 3.sysml:28 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::EngineToTransmissionInterface looking for DrivePwrPort[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for DrivePwrPort[Type] took 0ms {
+   Found DrivePwrPort[PortDefinition]
+  }
+  Found DrivePwrPort[PortDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::DrivePwrPort, eClass: PortDefinition
+}
+----------------------------------
+Linking Port[type] in Interfaces.sysml:30 took 0ms {
+ Scope Interfaces::BinaryInterface looking for Port[Type] took 0ms {
+  Linking BinaryConnection::source[redefinedFeature] in Interfaces.sysml:30 took 0ms {
+   Scope Interfaces::BinaryInterface looking for BinaryConnection.source[Feature] took 0ms {
+    Scope Interfaces looking for BinaryConnection.source[Feature] took 0ms {
+     Found BinaryConnection.source[ReferenceUsage]
+    }
+    Found BinaryConnection.source[ReferenceUsage]
+   }
+   Linked QN: Connections::BinaryConnection::source, eClass: ReferenceUsage
+  }
+  Linking BinaryConnection::target[redefinedFeature] in Interfaces.sysml:31 took 0ms {
+   Scope Interfaces::BinaryInterface looking for BinaryConnection.target[Feature] took 0ms {
+    Scope Interfaces looking for BinaryConnection.target[Feature] took 0ms {
+     Found BinaryConnection.target[ReferenceUsage]
+    }
+    Found BinaryConnection.target[ReferenceUsage]
+   }
+   Linked QN: Connections::BinaryConnection::target, eClass: ReferenceUsage
+  }
+  Scope Interfaces looking for Port[Type] took 0ms {
+   Found Port[PortDefinition]
+  }
+  Found Port[PortDefinition]
+ }
+ Linked QN: Ports::Port, eClass: PortDefinition
+}
+----------------------------------
+Linking Anything[type] in Connections.sysml:43 took 0ms {
+ Scope Connections::BinaryConnection looking for Anything[Type] took 0ms {
+  Linking BinaryLinkObject::source[redefinedFeature] in Connections.sysml:43 took 0ms {
+   Scope Connections::BinaryConnection looking for BinaryLinkObject.source[Feature] took 0ms {
+    Scope Connections looking for BinaryLinkObject.source[Feature] took 0ms {
+     Found BinaryLinkObject.source[Feature]
+    }
+    Found BinaryLinkObject.source[Feature]
+   }
+   Linked QN: Links::BinaryLink::source, eClass: Feature
+  }
+  Linking BinaryLinkObject::target[redefinedFeature] in Connections.sysml:44 took 0ms {
+   Scope Connections::BinaryConnection looking for BinaryLinkObject.target[Feature] took 0ms {
+    Scope Connections looking for BinaryLinkObject.target[Feature] took 0ms {
+     Found BinaryLinkObject.target[Feature]
+    }
+    Found BinaryLinkObject.target[Feature]
+   }
+   Linked QN: Links::BinaryLink::target, eClass: Feature
+  }
+  Scope Connections looking for Anything[Type] took 0ms {
+   Found Anything[Classifier]
+  }
+  Found Anything[Classifier]
+ }
+ Linked QN: Base::Anything, eClass: Classifier
+}
+----------------------------------
+Linking ClutchPort[type] in 3.sysml:29 took 0ms {
+ Scope '8-Requirements'::'Vehicle Definitions'::EngineToTransmissionInterface looking for ClutchPort[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Definitions' looking for ClutchPort[Type] took 0ms {
+   Found ClutchPort[PortDefinition]
+  }
+  Found ClutchPort[PortDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::ClutchPort, eClass: PortDefinition
+}
+----------------------------------
+Linking Port[type] in Interfaces.sysml:31 took 0ms {
+ Scope Interfaces::BinaryInterface looking for Port[Type] took 0ms {
+  Scope Interfaces looking for Port[Type] took 0ms {
+   Found Port[PortDefinition]
+  }
+  Found Port[PortDefinition]
+ }
+ Linked QN: Ports::Port, eClass: PortDefinition
+}
+----------------------------------
+Linking Anything[type] in Connections.sysml:44 took 0ms {
+ Scope Connections::BinaryConnection looking for Anything[Type] took 0ms {
+  Scope Connections looking for Anything[Type] took 0ms {
+   Found Anything[Classifier]
+  }
+  Found Anything[Classifier]
+ }
+ Linked QN: Base::Anything, eClass: Classifier
+}
+----------------------------------
+Linking Action[type] in Actions.sysml:56 took 1ms {
+ Scope Actions::Action looking for Action[Type] took 1ms {
+  Linking Performance::self[redefinedFeature] in Actions.sysml:39 took 0ms {
+   Scope Actions::Action looking for Performance.self[Feature] took 0ms {
+    Scope Actions looking for Performance.self[Feature] took 0ms {
+     Found Performance.self[Feature]
+    }
+    Found Performance.self[Feature]
+   }
+   Linked QN: Performances::Performance::self, eClass: Feature
+  }
+  Linking Performance::incomingTransfers[redefinedFeature] in Actions.sysml:40 took 0ms {
+   Scope Actions::Action looking for Performance.incomingTransfers[Feature] took 0ms {
+    Scope Actions looking for Performance.incomingTransfers[Feature] took 0ms {
+     Found Performance.incomingTransfers[Feature]
+    }
+    Found Performance.incomingTransfers[Feature]
+   }
+   Linked QN: Occurrences::Occurrence::incomingTransfers, eClass: Feature
+  }
+  Linking startShot[redefinedFeature] in Actions.sysml:42 took 0ms {
+   Scope Actions::Action looking for startShot[Feature] took 0ms {
+    Found startShot[Feature]
+   }
+   Linked QN: Occurrences::Occurrence::startShot, eClass: Feature
+  }
+  Linking endShot[redefinedFeature] in Actions.sysml:49 took 0ms {
+   Scope Actions::Action looking for endShot[Feature] took 0ms {
+    Found endShot[Feature]
+   }
+   Linked QN: Occurrences::Occurrence::endShot, eClass: Feature
+  }
+  Scope Actions looking for Action[Type] took 0ms {
+   Found Action[ActionDefinition]
+  }
+  Found Action[ActionDefinition]
+ }
+ Linked QN: Actions::Action, eClass: ActionDefinition
+}
+----------------------------------
+Linking actions[subsettedFeature] in Actions.sysml:56 took 0ms {
+ Scope Actions::Action looking for actions[Feature] took 0ms {
+  Scope Actions looking for actions[Feature] took 0ms {
+   Found actions[ActionUsage]
+  }
+  Found actions[ActionUsage]
+ }
+ Linked QN: Actions::actions, eClass: ActionUsage
+}
+----------------------------------
+Linking subperformances[subsettedFeature] in Actions.sysml:56 took 0ms {
+ Scope Actions::Action looking for subperformances[Feature] took 0ms {
+  Found subperformances[Step]
+ }
+ Linked QN: Performances::Performance::subperformances, eClass: Step
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:43 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages' looking for Vehicle[Type] took 0ms {
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking mass[redefinedFeature] in 3.sysml:44 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for mass[Feature] took 0ms {
+  Found mass[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::mass, eClass: AttributeUsage
+}
+----------------------------------
+Linking kg[memberElement] in 3.sysml:44 took 1ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for kg[Element] took 1ms {
+  Linking 'provide power'[referencedFeature] in 3.sysml:45 took 0ms {
+   Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for provide power[Feature] took 0ms {
+    Scope '8-Requirements'::'Vehicle Usages' looking for provide power[Feature] took 0ms {
+     Found provide power[ActionUsage]
+    }
+    Found provide power[ActionUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Usages'::'provide power', eClass: ActionUsage
+  }
+  Scope '8-Requirements'::'Vehicle Usages' looking for kg[Element] took 0ms {
+   Scope '8-Requirements' looking for kg[Element] took 0ms {
+    Found kg[AttributeUsage]
+   }
+   Found kg[AttributeUsage]
+  }
+  Found kg[AttributeUsage]
+ }
+ Linked QN: SI::kilogram, eClass: AttributeUsage
+}
+----------------------------------
+Linking Engine[type] in 3.sysml:47 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for Engine[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Usages' looking for Engine[Type] took 0ms {
+   Found Engine[PartDefinition]
+  }
+  Found Engine[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine, eClass: PartDefinition
+}
+----------------------------------
+Linking drivePwrPort[redefinedFeature] in 3.sysml:48 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1 looking for drivePwrPort[Feature] took 0ms {
+  Found drivePwrPort[PortUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine::drivePwrPort, eClass: PortUsage
+}
+----------------------------------
+Linking 'generate torque'[redefinedFeature] in 3.sysml:49 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1 looking for generate torque[Feature] took 0ms {
+  Found generate torque[PerformActionUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine::'generate torque', eClass: PerformActionUsage
+}
+----------------------------------
+Linking 'generate torque'[chainingFeature] in 3.sysml:49 took 0ms {
+ Linking 'provide power'[chainingFeature] in 3.sysml:49 took 0ms {
+  Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1 looking for provide power[Feature] took 0ms {
+   Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for provide power[Feature] took 0ms {
+    Found provide power[PerformActionUsage]
+   }
+   Found provide power[PerformActionUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::'provide power', eClass: PerformActionUsage
+ }
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::'provide power' looking for generate torque[Feature] took 0ms {
+  Found generate torque[ActionUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::'provide power'::'generate torque', eClass: ActionUsage
+}
+----------------------------------
+Linking Transmission[type] in 3.sysml:52 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for Transmission[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Usages' looking for Transmission[Type] took 0ms {
+   Found Transmission[PartDefinition]
+  }
+  Found Transmission[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Transmission, eClass: PartDefinition
+}
+----------------------------------
+Linking clutchPort[redefinedFeature] in 3.sysml:53 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::transmission looking for clutchPort[Feature] took 0ms {
+  Found clutchPort[PortUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Transmission::clutchPort, eClass: PortUsage
+}
+----------------------------------
+Linking EngineToTransmissionInterface[type] in 3.sysml:56 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for EngineToTransmissionInterface[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Usages' looking for EngineToTransmissionInterface[Type] took 0ms {
+   Found EngineToTransmissionInterface[InterfaceDefinition]
+  }
+  Found EngineToTransmissionInterface[InterfaceDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::EngineToTransmissionInterface, eClass: InterfaceDefinition
+}
+----------------------------------
+Linking BinaryInterface[type] in Interfaces.sysml:41 took 0ms {
+ Scope Interfaces looking for BinaryInterface[Type] took 0ms {
+  Found BinaryInterface[InterfaceDefinition]
+ }
+ Linked QN: Interfaces::BinaryInterface, eClass: InterfaceDefinition
+}
+----------------------------------
+Linking interfaces[subsettedFeature] in Interfaces.sysml:41 took 0ms {
+ Scope Interfaces looking for interfaces[Feature] took 0ms {
+  Found interfaces[InterfaceUsage]
+ }
+ Linked QN: Interfaces::interfaces, eClass: InterfaceUsage
+}
+----------------------------------
+Linking binaryConnections[subsettedFeature] in Interfaces.sysml:41 took 0ms {
+ Scope Interfaces looking for binaryConnections[Feature] took 0ms {
+  Found binaryConnections[ConnectionUsage]
+ }
+ Linked QN: Connections::binaryConnections, eClass: ConnectionUsage
+}
+----------------------------------
+Linking Interface[type] in Interfaces.sysml:34 took 0ms {
+ Scope Interfaces looking for Interface[Type] took 0ms {
+  Found Interface[InterfaceDefinition]
+ }
+ Linked QN: Interfaces::Interface, eClass: InterfaceDefinition
+}
+----------------------------------
+Linking connections[subsettedFeature] in Interfaces.sysml:34 took 0ms {
+ Scope Interfaces looking for connections[Feature] took 0ms {
+  Found connections[ConnectionUsage]
+ }
+ Linked QN: Connections::connections, eClass: ConnectionUsage
+}
+----------------------------------
+Linking Connection[type] in Connections.sysml:109 took 0ms {
+ Scope Connections looking for Connection[Type] took 0ms {
+  Found Connection[ConnectionDefinition]
+ }
+ Linked QN: Connections::Connection, eClass: ConnectionDefinition
+}
+----------------------------------
+Linking linkObjects[subsettedFeature] in Connections.sysml:109 took 0ms {
+ Scope Connections looking for linkObjects[Feature] took 0ms {
+  Found linkObjects[Feature]
+ }
+ Linked QN: Objects::linkObjects, eClass: Feature
+}
+----------------------------------
+Linking parts[subsettedFeature] in Connections.sysml:109 took 0ms {
+ Scope Connections looking for parts[Feature] took 0ms {
+  Found parts[PartUsage]
+ }
+ Linked QN: Parts::parts, eClass: PartUsage
+}
+----------------------------------
+Linking Connection[type] in Connections.sysml:116 took 0ms {
+ Scope Connections looking for Connection[Type] took 0ms {
+  Found Connection[ConnectionDefinition]
+ }
+ Linked QN: Connections::Connection, eClass: ConnectionDefinition
+}
+----------------------------------
+Linking connections[subsettedFeature] in Connections.sysml:116 took 0ms {
+ Scope Connections looking for connections[Feature] took 0ms {
+  Found connections[ConnectionUsage]
+ }
+ Linked QN: Connections::connections, eClass: ConnectionUsage
+}
+----------------------------------
+Linking binaryLinkObjects[subsettedFeature] in Connections.sysml:116 took 0ms {
+ Scope Connections looking for binaryLinkObjects[Feature] took 0ms {
+  Found binaryLinkObjects[Feature]
+ }
+ Linked QN: Objects::binaryLinkObjects, eClass: Feature
+}
+----------------------------------
+Linking transmission[chainingFeature] in 3.sysml:57 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for transmission[Feature] took 0ms {
+  Found transmission[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::transmission, eClass: PartUsage
+}
+----------------------------------
+Linking engine_v1[chainingFeature] in 3.sysml:57 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for engine_v1[Feature] took 0ms {
+  Found engine_v1[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1, eClass: PartUsage
+}
+----------------------------------
+Linking drivePwrPort[chainingFeature] in 3.sysml:57 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1 looking for drivePwrPort[Feature] took 0ms {
+  Found drivePwrPort[PortUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1::drivePwrPort, eClass: PortUsage
+}
+----------------------------------
+Linking clutchPort[chainingFeature] in 3.sysml:57 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1::transmission looking for clutchPort[Feature] took 0ms {
+  Found clutchPort[PortUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::transmission::clutchPort, eClass: PortUsage
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:60 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages' looking for Vehicle[Type] took 0ms {
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking mass[redefinedFeature] in 3.sysml:61 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c2 looking for mass[Feature] took 0ms {
+  Found mass[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::mass, eClass: AttributeUsage
+}
+----------------------------------
+Linking kg[memberElement] in 3.sysml:61 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c2 looking for kg[Element] took 0ms {
+  Scope '8-Requirements'::'Vehicle Usages' looking for kg[Element] took 0ms {
+   Scope '8-Requirements' looking for kg[Element] took 0ms {
+    Found kg[AttributeUsage]
+   }
+   Found kg[AttributeUsage]
+  }
+  Found kg[AttributeUsage]
+ }
+ Linked QN: SI::kilogram, eClass: AttributeUsage
+}
+----------------------------------
+Linking RequirementConstraintCheck[superclassifier] in Requirements.sysml:49 took 0ms {
+ Scope Requirements looking for RequirementConstraintCheck[Classifier] took 0ms {
+  Found RequirementConstraintCheck[ConstraintDefinition]
+ }
+ Linked QN: Requirements::RequirementConstraintCheck, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking BooleanEvaluation[superclassifier] in Constraints.sysml:13 took 0ms {
+ Scope Constraints looking for BooleanEvaluation[Classifier] took 0ms {
+  Linking Performances::BooleanEvaluation[importedMembership] in Constraints.sysml:8 took 0ms {
+   Scope Constraints looking for Performances.BooleanEvaluation[Membership] took 0ms {
+    Linking Performances::booleanEvaluations[importedMembership] in Constraints.sysml:9 took 0ms {
+     Scope Constraints looking for Performances.booleanEvaluations[Membership] took 0ms {
+      Linking Performances::trueEvaluations[importedMembership] in Constraints.sysml:10 took 0ms {
+       Scope Constraints looking for Performances.trueEvaluations[Membership] took 0ms {
+        Linking Performances::falseEvaluations[importedMembership] in Constraints.sysml:11 took 0ms {
+         Scope Constraints looking for Performances.falseEvaluations[Membership] took 0ms {
+          Scope null looking for Performances.falseEvaluations[Membership] took 0ms {
+           GLOBAL scope Performances.falseEvaluations took 0ms {
+            Found: Performances.falseEvaluations[OwningMembership]
+           }
+           Found Performances.falseEvaluations[OwningMembership]
+          }
+          Found Performances.falseEvaluations[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for Performances.trueEvaluations[Membership] took 0ms {
+         GLOBAL scope Performances.trueEvaluations took 0ms {
+          Found: Performances.trueEvaluations[OwningMembership]
+         }
+         Found Performances.trueEvaluations[OwningMembership]
+        }
+        Found Performances.trueEvaluations[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for Performances.booleanEvaluations[Membership] took 0ms {
+       GLOBAL scope Performances.booleanEvaluations took 0ms {
+        Found: Performances.booleanEvaluations[OwningMembership]
+       }
+       Found Performances.booleanEvaluations[OwningMembership]
+      }
+      Found Performances.booleanEvaluations[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Performances.BooleanEvaluation[Membership] took 0ms {
+     GLOBAL scope Performances.BooleanEvaluation took 0ms {
+      Found: Performances.BooleanEvaluation[OwningMembership]
+     }
+     Found Performances.BooleanEvaluation[OwningMembership]
+    }
+    Found Performances.BooleanEvaluation[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found BooleanEvaluation[Predicate]
+ }
+ Linked QN: Performances::BooleanEvaluation, eClass: Predicate
+}
+----------------------------------
+Linking Anything[type] in Requirements.sysml:58 took 2ms {
+ Scope Requirements::RequirementCheck looking for Anything[Type] took 2ms {
+  Linking self[redefinedFeature] in Requirements.sysml:56 took 0ms {
+   Scope Requirements::RequirementCheck looking for self[Feature] took 0ms {
+    Found self[ConstraintUsage]
+   }
+   Linked QN: Constraints::ConstraintCheck::self, eClass: ConstraintUsage
+  }
+  Linking RequirementConstraintCheck::assumptions[redefinedFeature] in Requirements.sysml:87 took 0ms {
+   Scope Requirements::RequirementCheck looking for RequirementConstraintCheck.assumptions[Feature] took 0ms {
+    Scope Requirements looking for RequirementConstraintCheck.assumptions[Feature] took 0ms {
+     Found RequirementConstraintCheck.assumptions[ConstraintUsage]
+    }
+    Found RequirementConstraintCheck.assumptions[ConstraintUsage]
+   }
+   Linked QN: Requirements::RequirementConstraintCheck::assumptions, eClass: ConstraintUsage
+  }
+  Linking RequirementConstraintCheck::constraints[redefinedFeature] in Requirements.sysml:88 took 0ms {
+   Scope Requirements::RequirementCheck looking for RequirementConstraintCheck.constraints[Feature] took 0ms {
+    Scope Requirements looking for RequirementConstraintCheck.constraints[Feature] took 0ms {
+     Found RequirementConstraintCheck.constraints[ConstraintUsage]
+    }
+    Found RequirementConstraintCheck.constraints[ConstraintUsage]
+   }
+   Linked QN: Requirements::RequirementConstraintCheck::constraints, eClass: ConstraintUsage
+  }
+  Scope Requirements looking for Anything[Type] took 1ms {
+   Linking Base::Anything[importedMembership] in Requirements.sysml:7 took 1ms {
+    Scope Requirements looking for Base.Anything[Membership] took 1ms {
+     Linking ScalarValues::String[importedMembership] in Requirements.sysml:8 took 1ms {
+      Scope Requirements looking for ScalarValues.String[Membership] took 1ms {
+       Linking ControlFunctions::allTrue[importedMembership] in Requirements.sysml:9 took 1ms {
+        Scope Requirements looking for ControlFunctions.allTrue[Membership] took 1ms {
+         Linking Constraints::constraintChecks[importedMembership] in Requirements.sysml:10 took 0ms {
+          Scope Requirements looking for Constraints.constraintChecks[Membership] took 0ms {
+           Linking Constraints::assertedConstraintChecks[importedMembership] in Requirements.sysml:11 took 0ms {
+            Scope Requirements looking for Constraints.assertedConstraintChecks[Membership] took 0ms {
+             Linking Constraints::negatedConstraintChecks[importedMembership] in Requirements.sysml:12 took 0ms {
+              Scope Requirements looking for Constraints.negatedConstraintChecks[Membership] took 0ms {
+               Linking Parts::Part[importedMembership] in Requirements.sysml:13 took 0ms {
+                Scope Requirements looking for Parts.Part[Membership] took 0ms {
+                 Linking Parts::parts[importedMembership] in Requirements.sysml:14 took 0ms {
+                  Scope Requirements looking for Parts.parts[Membership] took 0ms {
+                   Linking Actions::Action[importedMembership] in Requirements.sysml:15 took 0ms {
+                    Scope Requirements looking for Actions.Action[Membership] took 0ms {
+                     Linking Interfaces::Interface[importedMembership] in Requirements.sysml:16 took 0ms {
+                      Scope Requirements looking for Interfaces.Interface[Membership] took 0ms {
+                       Linking Attributes::AttributeValue[importedMembership] in Requirements.sysml:17 took 0ms {
+                        Scope Requirements looking for Attributes.AttributeValue[Membership] took 0ms {
+                         Scope null looking for Attributes.AttributeValue[Membership] took 0ms {
+                          GLOBAL scope Attributes.AttributeValue took 0ms {
+                           Linking DataValue[memberElement] in Attributes.sysml:11 took 0ms {
+                            Scope Attributes looking for DataValue[Element] took 0ms {
+                             Linking Base::DataValue[importedMembership] in Attributes.sysml:8 took 0ms {
+                              Scope Attributes looking for Base.DataValue[Membership] took 0ms {
+                               Linking Base::dataValues[importedMembership] in Attributes.sysml:9 took 0ms {
+                                Scope Attributes looking for Base.dataValues[Membership] took 0ms {
+                                 Scope null looking for Base.dataValues[Membership] took 0ms {
+                                  GLOBAL scope Base.dataValues took 0ms {
+                                   Found: Base.dataValues[OwningMembership]
+                                  }
+                                  Found Base.dataValues[OwningMembership]
+                                 }
+                                 Found Base.dataValues[OwningMembership]
+                                }
+                                Linked QN: null, eClass: OwningMembership
+                               }
+                               Scope null looking for Base.DataValue[Membership] took 0ms {
+                                GLOBAL scope Base.DataValue took 0ms {
+                                 Found: Base.DataValue[OwningMembership]
+                                }
+                                Found Base.DataValue[OwningMembership]
+                               }
+                               Found Base.DataValue[OwningMembership]
+                              }
+                              Linked QN: null, eClass: OwningMembership
+                             }
+                             Found DataValue[DataType]
+                            }
+                            Linked QN: Base::DataValue, eClass: DataType
+                           }
+                           Found: Attributes.AttributeValue[Membership]
+                          }
+                          Found Attributes.AttributeValue[Membership]
+                         }
+                         Found Attributes.AttributeValue[Membership]
+                        }
+                        Linked QN: null, eClass: Membership
+                       }
+                       Scope null looking for Interfaces.Interface[Membership] took 0ms {
+                        GLOBAL scope Interfaces.Interface took 0ms {
+                         Found: Interfaces.Interface[OwningMembership]
+                        }
+                        Found Interfaces.Interface[OwningMembership]
+                       }
+                       Found Interfaces.Interface[OwningMembership]
+                      }
+                      Linked QN: null, eClass: OwningMembership
+                     }
+                     Scope null looking for Actions.Action[Membership] took 0ms {
+                      GLOBAL scope Actions.Action took 0ms {
+                       Found: Actions.Action[OwningMembership]
+                      }
+                      Found Actions.Action[OwningMembership]
+                     }
+                     Found Actions.Action[OwningMembership]
+                    }
+                    Linked QN: null, eClass: OwningMembership
+                   }
+                   Scope null looking for Parts.parts[Membership] took 0ms {
+                    GLOBAL scope Parts.parts took 0ms {
+                     Found: Parts.parts[OwningMembership]
+                    }
+                    Found Parts.parts[OwningMembership]
+                   }
+                   Found Parts.parts[OwningMembership]
+                  }
+                  Linked QN: null, eClass: OwningMembership
+                 }
+                 Scope null looking for Parts.Part[Membership] took 0ms {
+                  GLOBAL scope Parts.Part took 0ms {
+                   Found: Parts.Part[OwningMembership]
+                  }
+                  Found Parts.Part[OwningMembership]
+                 }
+                 Found Parts.Part[OwningMembership]
+                }
+                Linked QN: null, eClass: OwningMembership
+               }
+               Scope null looking for Constraints.negatedConstraintChecks[Membership] took 0ms {
+                GLOBAL scope Constraints.negatedConstraintChecks took 0ms {
+                 Found: Constraints.negatedConstraintChecks[OwningMembership]
+                }
+                Found Constraints.negatedConstraintChecks[OwningMembership]
+               }
+               Found Constraints.negatedConstraintChecks[OwningMembership]
+              }
+              Linked QN: null, eClass: OwningMembership
+             }
+             Scope null looking for Constraints.assertedConstraintChecks[Membership] took 0ms {
+              GLOBAL scope Constraints.assertedConstraintChecks took 0ms {
+               Found: Constraints.assertedConstraintChecks[OwningMembership]
+              }
+              Found Constraints.assertedConstraintChecks[OwningMembership]
+             }
+             Found Constraints.assertedConstraintChecks[OwningMembership]
+            }
+            Linked QN: null, eClass: OwningMembership
+           }
+           Scope null looking for Constraints.constraintChecks[Membership] took 0ms {
+            GLOBAL scope Constraints.constraintChecks took 0ms {
+             Found: Constraints.constraintChecks[OwningMembership]
+            }
+            Found Constraints.constraintChecks[OwningMembership]
+           }
+           Found Constraints.constraintChecks[OwningMembership]
+          }
+          Linked QN: null, eClass: OwningMembership
+         }
+         Scope null looking for ControlFunctions.allTrue[Membership] took 0ms {
+          GLOBAL scope ControlFunctions.allTrue took 0ms {
+           Found: ControlFunctions.allTrue[OwningMembership]
+          }
+          Found ControlFunctions.allTrue[OwningMembership]
+         }
+         Found ControlFunctions.allTrue[OwningMembership]
+        }
+        Linked QN: null, eClass: OwningMembership
+       }
+       Scope null looking for ScalarValues.String[Membership] took 0ms {
+        GLOBAL scope ScalarValues.String took 0ms {
+         Found: ScalarValues.String[OwningMembership]
+        }
+        Found ScalarValues.String[OwningMembership]
+       }
+       Found ScalarValues.String[OwningMembership]
+      }
+      Linked QN: null, eClass: OwningMembership
+     }
+     Scope null looking for Base.Anything[Membership] took 0ms {
+      GLOBAL scope Base.Anything took 0ms {
+       Found: Base.Anything[OwningMembership]
+      }
+      Found Base.Anything[OwningMembership]
+     }
+     Found Base.Anything[OwningMembership]
+    }
+    Linked QN: null, eClass: OwningMembership
+   }
+   Found Anything[Classifier]
+  }
+  Found Anything[Classifier]
+ }
+ Linked QN: Base::Anything, eClass: Classifier
+}
+----------------------------------
+Linking MassValue[type] in 3.sysml:77 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement looking for MassValue[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for MassValue[Type] took 0ms {
+   Scope '8-Requirements' looking for MassValue[Type] took 0ms {
+    Found MassValue[AttributeDefinition]
+   }
+   Found MassValue[AttributeDefinition]
+  }
+  Found MassValue[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking MassValue[type] in 3.sysml:78 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement looking for MassValue[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for MassValue[Type] took 0ms {
+   Scope '8-Requirements' looking for MassValue[Type] took 0ms {
+    Found MassValue[AttributeDefinition]
+   }
+   Found MassValue[AttributeDefinition]
+  }
+  Found MassValue[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking ConstraintCheck[type] in Constraints.sysml:23 took 0ms {
+ Scope Constraints looking for ConstraintCheck[Type] took 0ms {
+  Found ConstraintCheck[ConstraintDefinition]
+ }
+ Linked QN: Constraints::ConstraintCheck, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking booleanEvaluations[subsettedFeature] in Constraints.sysml:23 took 0ms {
+ Scope Constraints looking for booleanEvaluations[Feature] took 0ms {
+  Found booleanEvaluations[Expression]
+ }
+ Linked QN: Performances::booleanEvaluations, eClass: Expression
+}
+----------------------------------
+Linking constraintChecks[subsettedFeature] in Requirements.sysml:34 took 0ms {
+ Scope Requirements::RequirementConstraintCheck looking for constraintChecks[Feature] took 0ms {
+  Scope Requirements looking for constraintChecks[Feature] took 0ms {
+   Found constraintChecks[ConstraintUsage]
+  }
+  Found constraintChecks[ConstraintUsage]
+ }
+ Linked QN: Constraints::constraintChecks, eClass: ConstraintUsage
+}
+----------------------------------
+Linking subperformances[subsettedFeature] in Requirements.sysml:34 took 0ms {
+ Scope Requirements::RequirementConstraintCheck looking for subperformances[Feature] took 0ms {
+  Linking BooleanEvaluation::self[redefinedFeature] in Constraints.sysml:20 took 0ms {
+   Scope Constraints::ConstraintCheck looking for BooleanEvaluation.self[Feature] took 0ms {
+    Scope Constraints looking for BooleanEvaluation.self[Feature] took 0ms {
+     Found BooleanEvaluation.self[Feature]
+    }
+    Found BooleanEvaluation.self[Feature]
+   }
+   Linked QN: Performances::Performance::self, eClass: Feature
+  }
+  Found subperformances[Step]
+ }
+ Linked QN: Performances::Performance::subperformances, eClass: Step
+}
+----------------------------------
+Linking massActual[memberElement] in 3.sysml:84 took 2ms {
+ Scope null looking for massActual[Element] took 2ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement looking for massActual[Element] took 0ms {
+   Found massActual[AttributeUsage]
+  }
+  Found massActual[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massActual, eClass: AttributeUsage
+}
+----------------------------------
+Linking massReqd[memberElement] in 3.sysml:84 took 0ms {
+ Scope null looking for massReqd[Element] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement looking for massReqd[Element] took 0ms {
+   Found massReqd[AttributeUsage]
+  }
+  Found massReqd[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massReqd, eClass: AttributeUsage
+}
+----------------------------------
+Linking MassLimitationRequirement[type] in 3.sysml:90 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements' looking for MassLimitationRequirement[Type] took 0ms {
+  Found MassLimitationRequirement[RequirementDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement, eClass: RequirementDefinition
+}
+----------------------------------
+Linking RequirementCheck[type] in Requirements.sysml:166 took 0ms {
+ Scope Requirements looking for RequirementCheck[Type] took 0ms {
+  Found RequirementCheck[RequirementDefinition]
+ }
+ Linked QN: Requirements::RequirementCheck, eClass: RequirementDefinition
+}
+----------------------------------
+Linking constraintChecks[subsettedFeature] in Requirements.sysml:166 took 0ms {
+ Scope Requirements looking for constraintChecks[Feature] took 0ms {
+  Found constraintChecks[ConstraintUsage]
+ }
+ Linked QN: Constraints::constraintChecks, eClass: ConstraintUsage
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:93 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for Vehicle[Type] took 0ms {
+  Linking massActual[redefinedFeature] in 3.sysml:99 took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for massActual[Feature] took 0ms {
+    Found massActual[AttributeUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massActual, eClass: AttributeUsage
+  }
+  Linking massReqd[redefinedFeature] in 3.sysml:105 took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for massReqd[Feature] took 0ms {
+    Found massReqd[AttributeUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massReqd, eClass: AttributeUsage
+  }
+  Scope '8-Requirements'::'Vehicle Requirements' looking for Vehicle[Type] took 0ms {
+   Found Vehicle[PartDefinition]
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking mass[memberElement] in 3.sysml:99 took 1ms {
+ Linking vehicle[memberElement] in 3.sysml:99 took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for vehicle[Element] took 0ms {
+   Found vehicle[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass1::vehicle, eClass: ReferenceUsage
+ }
+ Scope result looking for mass[Element] took 0ms {
+  Found mass[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::mass, eClass: AttributeUsage
+}
+----------------------------------
+Linking MassValue[type] in 3.sysml:99 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for MassValue[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for MassValue[Type] took 0ms {
+   Scope '8-Requirements' looking for MassValue[Type] took 0ms {
+    Found MassValue[AttributeDefinition]
+   }
+   Found MassValue[AttributeDefinition]
+  }
+  Found MassValue[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking kg[memberElement] in 3.sysml:105 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for kg[Element] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for kg[Element] took 0ms {
+   Scope '8-Requirements' looking for kg[Element] took 0ms {
+    Found kg[AttributeUsage]
+   }
+   Found kg[AttributeUsage]
+  }
+  Found kg[AttributeUsage]
+ }
+ Linked QN: SI::kilogram, eClass: AttributeUsage
+}
+----------------------------------
+Linking constraintChecks[subsettedFeature] in Requirements.sysml:27 took 0ms {
+ Scope Requirements::RequirementConstraintCheck looking for constraintChecks[Feature] took 0ms {
+  Scope Requirements looking for constraintChecks[Feature] took 0ms {
+   Found constraintChecks[ConstraintUsage]
+  }
+  Found constraintChecks[ConstraintUsage]
+ }
+ Linked QN: Constraints::constraintChecks, eClass: ConstraintUsage
+}
+----------------------------------
+Linking subperformances[subsettedFeature] in Requirements.sysml:27 took 0ms {
+ Scope Requirements::RequirementConstraintCheck looking for subperformances[Feature] took 0ms {
+  Found subperformances[Step]
+ }
+ Linked QN: Performances::Performance::subperformances, eClass: Step
+}
+----------------------------------
+Linking fuelLevel[memberElement] in 3.sysml:117 took 2ms {
+ Linking vehicle[memberElement] in 3.sysml:117 took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1::fuelConstraint looking for vehicle[Element] took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for vehicle[Element] took 0ms {
+    Found vehicle[ReferenceUsage]
+   }
+   Found vehicle[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass1::vehicle, eClass: ReferenceUsage
+ }
+ Scope result looking for fuelLevel[Element] took 0ms {
+  Found fuelLevel[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::fuelLevel, eClass: AttributeUsage
+}
+----------------------------------
+Linking fuelTankCapacity[memberElement] in 3.sysml:117 took 1ms {
+ Linking vehicle[memberElement] in 3.sysml:117 took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1::fuelConstraint looking for vehicle[Element] took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass1 looking for vehicle[Element] took 0ms {
+    Found vehicle[ReferenceUsage]
+   }
+   Found vehicle[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass1::vehicle, eClass: ReferenceUsage
+ }
+ Scope result looking for fuelTankCapacity[Element] took 0ms {
+  Found fuelTankCapacity[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::fuelTankCapacity, eClass: AttributeUsage
+}
+----------------------------------
+Linking MassLimitationRequirement[type] in 3.sysml:121 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements' looking for MassLimitationRequirement[Type] took 0ms {
+  Found MassLimitationRequirement[RequirementDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement, eClass: RequirementDefinition
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:124 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for Vehicle[Type] took 0ms {
+  Linking massActual[redefinedFeature] in 3.sysml:126 took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for massActual[Feature] took 0ms {
+    Found massActual[AttributeUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massActual, eClass: AttributeUsage
+  }
+  Linking massReqd[redefinedFeature] in 3.sysml:127 took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for massReqd[Feature] took 0ms {
+    Found massReqd[AttributeUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Requirements'::MassLimitationRequirement::massReqd, eClass: AttributeUsage
+  }
+  Scope '8-Requirements'::'Vehicle Requirements' looking for Vehicle[Type] took 0ms {
+   Found Vehicle[PartDefinition]
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking mass[memberElement] in 3.sysml:126 took 1ms {
+ Linking vehicle[memberElement] in 3.sysml:126 took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for vehicle[Element] took 0ms {
+   Found vehicle[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass2::vehicle, eClass: ReferenceUsage
+ }
+ Scope result looking for mass[Element] took 0ms {
+  Found mass[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::mass, eClass: AttributeUsage
+}
+----------------------------------
+Linking MassValue[type] in 3.sysml:126 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for MassValue[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for MassValue[Type] took 0ms {
+   Scope '8-Requirements' looking for MassValue[Type] took 0ms {
+    Found MassValue[AttributeDefinition]
+   }
+   Found MassValue[AttributeDefinition]
+  }
+  Found MassValue[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassValue, eClass: AttributeDefinition
+}
+----------------------------------
+Linking kg[memberElement] in 3.sysml:127 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for kg[Element] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for kg[Element] took 0ms {
+   Scope '8-Requirements' looking for kg[Element] took 0ms {
+    Found kg[AttributeUsage]
+   }
+   Found kg[AttributeUsage]
+  }
+  Found kg[AttributeUsage]
+ }
+ Linked QN: SI::kilogram, eClass: AttributeUsage
+}
+----------------------------------
+Linking fuelLevel[memberElement] in 3.sysml:131 took 1ms {
+ Linking vehicle[memberElement] in 3.sysml:131 took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2::fuelConstraint looking for vehicle[Element] took 0ms {
+   Scope '8-Requirements'::'Vehicle Requirements'::vehicleMass2 looking for vehicle[Element] took 0ms {
+    Found vehicle[ReferenceUsage]
+   }
+   Found vehicle[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass2::vehicle, eClass: ReferenceUsage
+ }
+ Scope result looking for fuelLevel[Element] took 0ms {
+  Found fuelLevel[AttributeUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle::fuelLevel, eClass: AttributeUsage
+}
+----------------------------------
+Linking ReliabilityRequirement[type] in 3.sysml:135 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements' looking for ReliabilityRequirement[Type] took 0ms {
+  Found ReliabilityRequirement[RequirementDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::ReliabilityRequirement, eClass: RequirementDefinition
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:136 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::vehicleReliability2 looking for Vehicle[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for Vehicle[Type] took 0ms {
+   Found Vehicle[PartDefinition]
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking DrivePwrPort[type] in 3.sysml:141 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::drivePowerInterface looking for DrivePwrPort[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for DrivePwrPort[Type] took 0ms {
+   Found DrivePwrPort[PortDefinition]
+  }
+  Found DrivePwrPort[PortDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::DrivePwrPort, eClass: PortDefinition
+}
+----------------------------------
+Linking 'Generate Torque'[type] in 3.sysml:146 took 0ms {
+ Scope '8-Requirements'::'Vehicle Requirements'::torqueGeneration looking for Generate Torque[Type] took 0ms {
+  Scope '8-Requirements'::'Vehicle Requirements' looking for Generate Torque[Type] took 0ms {
+   Found Generate Torque[ActionDefinition]
+  }
+  Found Generate Torque[ActionDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::'Generate Torque', eClass: ActionDefinition
+}
+----------------------------------
+Linking ConstraintCheck[type] in Items.sysml:124 took 0ms {
+ Scope Items::Item looking for ConstraintCheck[Type] took 0ms {
+  Scope Items looking for ConstraintCheck[Type] took 0ms {
+   Found ConstraintCheck[ConstraintDefinition]
+  }
+  Found ConstraintCheck[ConstraintDefinition]
+ }
+ Linked QN: Constraints::ConstraintCheck, eClass: ConstraintDefinition
+}
+----------------------------------
+Linking constraintChecks[subsettedFeature] in Items.sysml:124 took 0ms {
+ Scope Items::Item looking for constraintChecks[Feature] took 0ms {
+  Scope Items looking for constraintChecks[Feature] took 0ms {
+   Found constraintChecks[ConstraintUsage]
+  }
+  Found constraintChecks[ConstraintUsage]
+ }
+ Linked QN: Constraints::constraintChecks, eClass: ConstraintUsage
+}
+----------------------------------
+Linking ownedPerformances[subsettedFeature] in Items.sysml:124 took 0ms {
+ Scope Items::Item looking for ownedPerformances[Feature] took 0ms {
+  Found ownedPerformances[Step]
+ }
+ Linked QN: Objects::Object::ownedPerformances, eClass: Step
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:161 took 2ms {
+ Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification' looking for Vehicle[Type] took 2ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for Vehicle[Type] took 2ms {
+   Linking 'vehicle1-c1 Specification'[importedNamespace] in 3.sysml:152 took 0ms {
+    Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for vehicle1-c1 Specification[Namespace] took 0ms {
+     Found vehicle1-c1 Specification[RequirementUsage]
+    }
+    Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification', eClass: RequirementUsage
+   }
+   Linking 'engine-v1 Specification'[importedNamespace] in 3.sysml:153 took 0ms {
+    Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for engine-v1 Specification[Namespace] took 0ms {
+     Found engine-v1 Specification[RequirementUsage]
+    }
+    Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification', eClass: RequirementUsage
+   }
+   Linking torqueGeneration[referencedFeature] in 3.sysml:177 took 1ms {
+    Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification' looking for torqueGeneration[Feature] took 1ms {
+     Linking drivePowerInterface[referencedFeature] in 3.sysml:180 took 0ms {
+      Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification' looking for drivePowerInterface[Feature] took 0ms {
+       Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for drivePowerInterface[Feature] took 0ms {
+        Scope '8-Requirements' looking for drivePowerInterface[Feature] took 0ms {
+         Found drivePowerInterface[RequirementUsage]
+        }
+        Found drivePowerInterface[RequirementUsage]
+       }
+       Found drivePowerInterface[RequirementUsage]
+      }
+      Linked QN: '8-Requirements'::'Vehicle Requirements'::drivePowerInterface, eClass: RequirementUsage
+     }
+     Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for torqueGeneration[Feature] took 0ms {
+      Scope '8-Requirements' looking for torqueGeneration[Feature] took 0ms {
+       Found torqueGeneration[RequirementUsage]
+      }
+      Found torqueGeneration[RequirementUsage]
+     }
+     Found torqueGeneration[RequirementUsage]
+    }
+    Linked QN: '8-Requirements'::'Vehicle Requirements'::torqueGeneration, eClass: RequirementUsage
+   }
+   Scope '8-Requirements' looking for Vehicle[Type] took 0ms {
+    Found Vehicle[PartDefinition]
+   }
+   Found Vehicle[PartDefinition]
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking vehicleMass1[referencedFeature] in 3.sysml:162 took 0ms {
+ Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification' looking for vehicleMass1[Feature] took 0ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for vehicleMass1[Feature] took 0ms {
+   Scope '8-Requirements' looking for vehicleMass1[Feature] took 0ms {
+    Found vehicleMass1[RequirementUsage]
+   }
+   Found vehicleMass1[RequirementUsage]
+  }
+  Found vehicleMass1[RequirementUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass1, eClass: RequirementUsage
+}
+----------------------------------
+Linking requirementChecks[subsettedFeature] in Requirements.sysml:90 took 0ms {
+ Scope Requirements::RequirementCheck looking for requirementChecks[Feature] took 0ms {
+  Scope Requirements looking for requirementChecks[Feature] took 0ms {
+   Found requirementChecks[RequirementUsage]
+  }
+  Found requirementChecks[RequirementUsage]
+ }
+ Linked QN: Requirements::requirementChecks, eClass: RequirementUsage
+}
+----------------------------------
+Linking constraints[subsettedFeature] in Requirements.sysml:90 took 0ms {
+ Scope Requirements::RequirementCheck looking for constraints[Feature] took 0ms {
+  Found constraints[ConstraintUsage]
+ }
+ Linked QN: Requirements::RequirementCheck::constraints, eClass: ConstraintUsage
+}
+----------------------------------
+Linking Engine[type] in 3.sysml:172 took 0ms {
+ Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification' looking for Engine[Type] took 0ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for Engine[Type] took 0ms {
+   Scope '8-Requirements' looking for Engine[Type] took 0ms {
+    Found Engine[PartDefinition]
+   }
+   Found Engine[PartDefinition]
+  }
+  Found Engine[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine, eClass: PartDefinition
+}
+----------------------------------
+Linking 'generate torque'[memberElement] in 3.sysml:178 took 1ms {
+ Linking engine[memberElement] in 3.sysml:178 took 0ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::torqueGeneration looking for engine[Element] took 0ms {
+   Linking generateTorque[redefinedFeature] in 3.sysml:178 took 0ms {
+    Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::torqueGeneration looking for generateTorque[Feature] took 0ms {
+     Found generateTorque[ReferenceUsage]
+    }
+    Linked QN: '8-Requirements'::'Vehicle Requirements'::torqueGeneration::generateTorque, eClass: ReferenceUsage
+   }
+   Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification' looking for engine[Element] took 0ms {
+    Found engine[ReferenceUsage]
+   }
+   Found engine[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::engine, eClass: ReferenceUsage
+ }
+ Scope result looking for generate torque[Element] took 0ms {
+  Found generate torque[PerformActionUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine::'generate torque', eClass: PerformActionUsage
+}
+----------------------------------
+Linking drivePwrPort[memberElement] in 3.sysml:181 took 1ms {
+ Linking engine[memberElement] in 3.sysml:181 took 0ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::drivePowerInterface looking for engine[Element] took 0ms {
+   Linking drivePwrPort[redefinedFeature] in 3.sysml:181 took 0ms {
+    Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::drivePowerInterface looking for drivePwrPort[Feature] took 0ms {
+     Found drivePwrPort[ReferenceUsage]
+    }
+    Linked QN: '8-Requirements'::'Vehicle Requirements'::drivePowerInterface::drivePwrPort, eClass: ReferenceUsage
+   }
+   Scope '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification' looking for engine[Element] took 0ms {
+    Found engine[ReferenceUsage]
+   }
+   Found engine[ReferenceUsage]
+  }
+  Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification'::engine, eClass: ReferenceUsage
+ }
+ Scope result looking for drivePwrPort[Element] took 0ms {
+  Found drivePwrPort[PortUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Engine::drivePwrPort, eClass: PortUsage
+}
+----------------------------------
+Linking 'vehicle1-c1 Specification'[referencedFeature] in 3.sysml:185 took 0ms {
+ Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for vehicle1-c1 Specification[Feature] took 0ms {
+  Found vehicle1-c1 Specification[RequirementUsage]
+ }
+ Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification', eClass: RequirementUsage
+}
+----------------------------------
+Linking vehicle1_c1[memberElement] in 3.sysml:185 took 1ms {
+ Scope null looking for vehicle1_c1[Element] took 1ms {
+  Linking requirementChecks[subsettedFeature] in Requirements.sysml:173 took 0ms {
+   Scope Requirements looking for requirementChecks[Feature] took 0ms {
+    Found requirementChecks[RequirementUsage]
+   }
+   Linked QN: Requirements::requirementChecks, eClass: RequirementUsage
+  }
+  Linking assertedConstraintChecks[subsettedFeature] in Requirements.sysml:173 took 0ms {
+   Scope Requirements looking for assertedConstraintChecks[Feature] took 0ms {
+    Found assertedConstraintChecks[ConstraintUsage]
+   }
+   Linked QN: Constraints::assertedConstraintChecks, eClass: ConstraintUsage
+  }
+  Linking constraintChecks[subsettedFeature] in Constraints.sysml:30 took 0ms {
+   Scope Constraints looking for constraintChecks[Feature] took 0ms {
+    Found constraintChecks[ConstraintUsage]
+   }
+   Linked QN: Constraints::constraintChecks, eClass: ConstraintUsage
+  }
+  Linking trueEvaluations[subsettedFeature] in Constraints.sysml:30 took 0ms {
+   Scope Constraints looking for trueEvaluations[Feature] took 0ms {
+    Found trueEvaluations[Expression]
+   }
+   Linked QN: Performances::trueEvaluations, eClass: Expression
+  }
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for vehicle1_c1[Element] took 0ms {
+   Scope '8-Requirements' looking for vehicle1_c1[Element] took 0ms {
+    Found vehicle1_c1[PartUsage]
+   }
+   Found vehicle1_c1[PartUsage]
+  }
+  Found vehicle1_c1[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1, eClass: PartUsage
+}
+----------------------------------
+Linking 'engine-v1 Specification'[referencedFeature] in 3.sysml:191 took 0ms {
+ Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for engine-v1 Specification[Feature] took 0ms {
+  Found engine-v1 Specification[RequirementUsage]
+ }
+ Linked QN: '8-Requirements'::'vehicle1_c1 Specification Context'::'engine-v1 Specification', eClass: RequirementUsage
+}
+----------------------------------
+Linking vehicle1_c1[chainingFeature] in 3.sysml:191 took 1ms {
+ Scope null looking for vehicle1_c1[Feature] took 1ms {
+  Scope '8-Requirements'::'vehicle1_c1 Specification Context' looking for vehicle1_c1[Feature] took 0ms {
+   Scope '8-Requirements' looking for vehicle1_c1[Feature] took 0ms {
+    Found vehicle1_c1[PartUsage]
+   }
+   Found vehicle1_c1[PartUsage]
+  }
+  Found vehicle1_c1[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1, eClass: PartUsage
+}
+----------------------------------
+Linking Vehicle[type] in 3.sysml:198 took 1ms {
+ Scope '8-Requirements'::'vehicle1_c2 Specification Context'::'vehicle1-c2 Specification' looking for Vehicle[Type] took 0ms {
+  Linking vehicleMass2[referencedFeature] in 3.sysml:199 took 0ms {
+   Scope '8-Requirements'::'vehicle1_c2 Specification Context'::'vehicle1-c2 Specification' looking for vehicleMass2[Feature] took 0ms {
+    Linking vehicleReliability2[referencedFeature] in 3.sysml:200 took 0ms {
+     Scope '8-Requirements'::'vehicle1_c2 Specification Context'::'vehicle1-c2 Specification' looking for vehicleReliability2[Feature] took 0ms {
+      Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for vehicleReliability2[Feature] took 0ms {
+       Linking 'vehicle1-c2 Specification'[importedNamespace] in 3.sysml:195 took 0ms {
+        Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for vehicle1-c2 Specification[Namespace] took 0ms {
+         Found vehicle1-c2 Specification[RequirementUsage]
+        }
+        Linked QN: '8-Requirements'::'vehicle1_c2 Specification Context'::'vehicle1-c2 Specification', eClass: RequirementUsage
+       }
+       Scope '8-Requirements' looking for vehicleReliability2[Feature] took 0ms {
+        Found vehicleReliability2[RequirementUsage]
+       }
+       Found vehicleReliability2[RequirementUsage]
+      }
+      Found vehicleReliability2[RequirementUsage]
+     }
+     Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleReliability2, eClass: RequirementUsage
+    }
+    Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for vehicleMass2[Feature] took 0ms {
+     Scope '8-Requirements' looking for vehicleMass2[Feature] took 0ms {
+      Found vehicleMass2[RequirementUsage]
+     }
+     Found vehicleMass2[RequirementUsage]
+    }
+    Found vehicleMass2[RequirementUsage]
+   }
+   Linked QN: '8-Requirements'::'Vehicle Requirements'::vehicleMass2, eClass: RequirementUsage
+  }
+  Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for Vehicle[Type] took 0ms {
+   Scope '8-Requirements' looking for Vehicle[Type] took 0ms {
+    Found Vehicle[PartDefinition]
+   }
+   Found Vehicle[PartDefinition]
+  }
+  Found Vehicle[PartDefinition]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Definitions'::Vehicle, eClass: PartDefinition
+}
+----------------------------------
+Linking 'vehicle1-c2 Specification'[referencedFeature] in 3.sysml:203 took 0ms {
+ Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for vehicle1-c2 Specification[Feature] took 0ms {
+  Found vehicle1-c2 Specification[RequirementUsage]
+ }
+ Linked QN: '8-Requirements'::'vehicle1_c2 Specification Context'::'vehicle1-c2 Specification', eClass: RequirementUsage
+}
+----------------------------------
+Linking vehicle1_c2[memberElement] in 3.sysml:203 took 0ms {
+ Scope null looking for vehicle1_c2[Element] took 0ms {
+  Scope '8-Requirements'::'vehicle1_c2 Specification Context' looking for vehicle1_c2[Element] took 0ms {
+   Scope '8-Requirements' looking for vehicle1_c2[Element] took 0ms {
+    Found vehicle1_c2[PartUsage]
+   }
+   Found vehicle1_c2[PartUsage]
+  }
+  Found vehicle1_c2[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c2, eClass: PartUsage
+}
+----------------------------------
+Linking Port[type] in Ports.sysml:28 took 0ms {
+ Scope Ports looking for Port[Type] took 0ms {
+  Found Port[PortDefinition]
+ }
+ Linked QN: Ports::Port, eClass: PortDefinition
+}
+----------------------------------
+Linking objects[subsettedFeature] in Ports.sysml:28 took 0ms {
+ Scope Ports looking for objects[Feature] took 0ms {
+  Found objects[Feature]
+ }
+ Linked QN: Objects::objects, eClass: Feature
+}
+----------------------------------
+Linking engine_v1[chainingFeature] in 3.sysml:191 took 0ms {
+ Scope '8-Requirements'::'Vehicle Usages'::vehicle1_c1 looking for engine_v1[Feature] took 0ms {
+  Found engine_v1[PartUsage]
+ }
+ Linked QN: '8-Requirements'::'Vehicle Usages'::vehicle1_c1::engine_v1, eClass: PartUsage
+}
+----------------------------------
+Linking elements[redefinedFeature] in Quantities.sysml:29 took 0ms {
+ Scope Quantities::TensorQuantityValue looking for elements[Feature] took 0ms {
+  Found elements[Feature]
+ }
+ Linked QN: Collections::OrderedCollection::elements, eClass: Feature
+}
+----------------------------------
+Linking dimensions[redefinedFeature] in Quantities.sysml:31 took 0ms {
+ Scope Quantities::TensorQuantityValue looking for dimensions[Feature] took 0ms {
+  Found dimensions[Feature]
+ }
+ Linked QN: Collections::Array::dimensions, eClass: Feature
+}
+----------------------------------
+Linking rank[redefinedFeature] in Quantities.sysml:32 took 0ms {
+ Scope Quantities::TensorQuantityValue looking for rank[Feature] took 0ms {
+  Found rank[Feature]
+ }
+ Linked QN: Collections::Array::rank, eClass: Feature
+}
+----------------------------------
+Linking mRef[redefinedFeature] in Quantities.sysml:41 took 0ms {
+ Scope Quantities::VectorQuantityValue looking for mRef[Feature] took 0ms {
+  Found mRef[AttributeUsage]
+ }
+ Linked QN: Quantities::TensorQuantityValue::mRef, eClass: AttributeUsage
+}
+----------------------------------
+Linking mRef[redefinedFeature] in Quantities.sysml:45 took 0ms {
+ Scope Quantities::ScalarQuantityValue looking for mRef[Feature] took 0ms {
+  Found mRef[AttributeUsage]
+ }
+ Linked QN: Quantities::VectorQuantityValue::mRef, eClass: AttributeUsage
+}
+----------------------------------
+Linking num[redefinedFeature] in ISQBase.sysml:79 took 0ms {
+ Scope ISQBase::MassValue looking for num[Feature] took 0ms {
+  Found num[AttributeUsage]
+ }
+ Linked QN: Quantities::TensorQuantityValue::num, eClass: AttributeUsage
+}
+----------------------------------
+Linking mRef[redefinedFeature] in ISQBase.sysml:80 took 0ms {
+ Scope ISQBase::MassValue looking for mRef[Feature] took 0ms {
+  Found mRef[AttributeUsage]
+ }
+ Linked QN: Quantities::ScalarQuantityValue::mRef, eClass: AttributeUsage
+}
+----------------------------------
+Linking Object::self[redefinedFeature] in Ports.sysml:18 took 0ms {
+ Scope Ports::Port looking for Object.self[Feature] took 0ms {
+  Scope Ports looking for Object.self[Feature] took 0ms {
+   Found Object.self[Feature]
+  }
+  Found Object.self[Feature]
+ }
+ Linked QN: Objects::Object::self, eClass: Feature
+}
+----------------------------------
+Linking this[redefinedFeature] in Actions.sysml:62 took 0ms {
+ Scope Actions::Action::subactions looking for this[Feature] took 0ms {
+  Found this[Feature]
+ }
+ Linked QN: Occurrences::Occurrence::this, eClass: Feature
+}
+----------------------------------
+Linking MassUnit[type] in SI.sysml:23 took 1ms {
+ Scope SI looking for MassUnit[Type] took 0ms {
+  Linking MeasurementReferences[importedNamespace] in SI.sysml:10 took 0ms {
+   Scope SI looking for MeasurementReferences[Namespace] took 0ms {
+    Linking ISQ[importedNamespace] in SI.sysml:11 took 0ms {
+     Scope SI looking for ISQ[Namespace] took 0ms {
+      Linking SIPrefixes[importedNamespace] in SI.sysml:12 took 0ms {
+       Scope SI looking for SIPrefixes[Namespace] took 0ms {
+        Scope null looking for SIPrefixes[Namespace] took 0ms {
+         GLOBAL scope SIPrefixes took 0ms {
+          Found: SIPrefixes[LibraryPackage]
+         }
+         Found SIPrefixes[LibraryPackage]
+        }
+        Found SIPrefixes[LibraryPackage]
+       }
+       Linked QN: SIPrefixes, eClass: LibraryPackage
+      }
+      Scope null looking for ISQ[Namespace] took 0ms {
+       GLOBAL scope ISQ took 0ms {
+        Found: ISQ[LibraryPackage]
+       }
+       Found ISQ[LibraryPackage]
+      }
+      Found ISQ[LibraryPackage]
+     }
+     Linked QN: ISQ, eClass: LibraryPackage
+    }
+    Scope null looking for MeasurementReferences[Namespace] took 0ms {
+     GLOBAL scope MeasurementReferences took 0ms {
+      Found: MeasurementReferences[LibraryPackage]
+     }
+     Found MeasurementReferences[LibraryPackage]
+    }
+    Found MeasurementReferences[LibraryPackage]
+   }
+   Linked QN: MeasurementReferences, eClass: LibraryPackage
+  }
+  Found MassUnit[AttributeDefinition]
+ }
+ Linked QN: ISQBase::MassUnit, eClass: AttributeDefinition
+}
+----------------------------------
+Linking SimpleUnit[superclassifier] in ISQBase.sysml:85 took 0ms {
+ Scope ISQBase looking for SimpleUnit[Classifier] took 0ms {
+  Found SimpleUnit[AttributeDefinition]
+ }
+ Linked QN: MeasurementReferences::SimpleUnit, eClass: AttributeDefinition
+}
+----------------------------------
+Linking MeasurementUnit[superclassifier] in MeasurementReferences.sysml:283 took 0ms {
+ Scope MeasurementReferences looking for MeasurementUnit[Classifier] took 0ms {
+  Found MeasurementUnit[AttributeDefinition]
+ }
+ Linked QN: MeasurementReferences::MeasurementUnit, eClass: AttributeDefinition
+}
+----------------------------------
+Linking ScalarMeasurementReference[superclassifier] in MeasurementReferences.sysml:259 took 0ms {
+ Scope MeasurementReferences looking for ScalarMeasurementReference[Classifier] took 0ms {
+  Found ScalarMeasurementReference[AttributeDefinition]
+ }
+ Linked QN: MeasurementReferences::ScalarMeasurementReference, eClass: AttributeDefinition
+}
+----------------------------------
+Linking VectorMeasurementReference[superclassifier] in MeasurementReferences.sysml:82 took 0ms {
+ Scope MeasurementReferences looking for VectorMeasurementReference[Classifier] took 0ms {
+  Found VectorMeasurementReference[AttributeDefinition]
+ }
+ Linked QN: MeasurementReferences::VectorMeasurementReference, eClass: AttributeDefinition
+}
+----------------------------------
+Linking TensorMeasurementReference[superclassifier] in MeasurementReferences.sysml:63 took 0ms {
+ Scope MeasurementReferences looking for TensorMeasurementReference[Classifier] took 0ms {
+  Found TensorMeasurementReference[AttributeDefinition]
+ }
+ Linked QN: MeasurementReferences::TensorMeasurementReference, eClass: AttributeDefinition
+}
+----------------------------------
+Linking Array[superclassifier] in MeasurementReferences.sysml:22 took 1ms {
+ Scope MeasurementReferences looking for Array[Classifier] took 1ms {
+  Linking Collections::Array[importedMembership] in MeasurementReferences.sysml:7 took 1ms {
+   Scope MeasurementReferences looking for Collections.Array[Membership] took 1ms {
+    Linking Collections::List[importedMembership] in MeasurementReferences.sysml:8 took 1ms {
+     Scope MeasurementReferences looking for Collections.List[Membership] took 1ms {
+      Linking ScalarValues[importedNamespace] in MeasurementReferences.sysml:9 took 1ms {
+       Scope MeasurementReferences looking for ScalarValues[Namespace] took 1ms {
+        Linking VectorValues::ThreeVectorValue[importedMembership] in MeasurementReferences.sysml:10 took 1ms {
+         Scope MeasurementReferences looking for VectorValues.ThreeVectorValue[Membership] took 1ms {
+          Linking SequenceFunctions::size[importedMembership] in MeasurementReferences.sysml:12 took 1ms {
+           Scope MeasurementReferences looking for SequenceFunctions.size[Membership] took 0ms {
+            Linking SequenceFunctions::equals[importedMembership] in MeasurementReferences.sysml:13 took 0ms {
+             Scope MeasurementReferences looking for SequenceFunctions.equals[Membership] took 0ms {
+              Linking ControlFunctions::forAll[importedMembership] in MeasurementReferences.sysml:14 took 0ms {
+               Scope MeasurementReferences looking for ControlFunctions.forAll[Membership] took 0ms {
+                Linking Quantities::QuantityDimension[importedMembership] in MeasurementReferences.sysml:15 took 0ms {
+                 Scope MeasurementReferences looking for Quantities.QuantityDimension[Membership] took 0ms {
+                  Linking Quantities::VectorQuantityValue[importedMembership] in MeasurementReferences.sysml:16 took 0ms {
+                   Scope MeasurementReferences looking for Quantities.VectorQuantityValue[Membership] took 0ms {
+                    Linking Quantities::scalarQuantities[importedMembership] in MeasurementReferences.sysml:17 took 0ms {
+                     Scope MeasurementReferences looking for Quantities.scalarQuantities[Membership] took 0ms {
+                      Linking Quantities::ScalarQuantityValue[importedMembership] in MeasurementReferences.sysml:18 took 0ms {
+                       Scope MeasurementReferences looking for Quantities.ScalarQuantityValue[Membership] took 0ms {
+                        Linking Quantities::SystemOfQuantities[importedMembership] in MeasurementReferences.sysml:19 took 0ms {
+                         Scope MeasurementReferences looking for Quantities.SystemOfQuantities[Membership] took 0ms {
+                          Linking ISQSpaceTime::angularMeasure[importedMembership] in MeasurementReferences.sysml:20 took 0ms {
+                           Scope MeasurementReferences looking for ISQSpaceTime.angularMeasure[Membership] took 0ms {
+                            Scope null looking for ISQSpaceTime.angularMeasure[Membership] took 0ms {
+                             GLOBAL scope ISQSpaceTime.angularMeasure took 0ms {
+                              Found: ISQSpaceTime.angularMeasure[OwningMembership]
+                             }
+                             Found ISQSpaceTime.angularMeasure[OwningMembership]
+                            }
+                            Found ISQSpaceTime.angularMeasure[OwningMembership]
+                           }
+                           Linked QN: null, eClass: OwningMembership
+                          }
+                          Scope null looking for Quantities.SystemOfQuantities[Membership] took 0ms {
+                           GLOBAL scope Quantities.SystemOfQuantities took 0ms {
+                            Found: Quantities.SystemOfQuantities[OwningMembership]
+                           }
+                           Found Quantities.SystemOfQuantities[OwningMembership]
+                          }
+                          Found Quantities.SystemOfQuantities[OwningMembership]
+                         }
+                         Linked QN: null, eClass: OwningMembership
+                        }
+                        Scope null looking for Quantities.ScalarQuantityValue[Membership] took 0ms {
+                         GLOBAL scope Quantities.ScalarQuantityValue took 0ms {
+                          Found: Quantities.ScalarQuantityValue[OwningMembership]
+                         }
+                         Found Quantities.ScalarQuantityValue[OwningMembership]
+                        }
+                        Found Quantities.ScalarQuantityValue[OwningMembership]
+                       }
+                       Linked QN: null, eClass: OwningMembership
+                      }
+                      Scope null looking for Quantities.scalarQuantities[Membership] took 0ms {
+                       GLOBAL scope Quantities.scalarQuantities took 0ms {
+                        Found: Quantities.scalarQuantities[OwningMembership]
+                       }
+                       Found Quantities.scalarQuantities[OwningMembership]
+                      }
+                      Found Quantities.scalarQuantities[OwningMembership]
+                     }
+                     Linked QN: null, eClass: OwningMembership
+                    }
+                    Scope null looking for Quantities.VectorQuantityValue[Membership] took 0ms {
+                     GLOBAL scope Quantities.VectorQuantityValue took 0ms {
+                      Found: Quantities.VectorQuantityValue[OwningMembership]
+                     }
+                     Found Quantities.VectorQuantityValue[OwningMembership]
+                    }
+                    Found Quantities.VectorQuantityValue[OwningMembership]
+                   }
+                   Linked QN: null, eClass: OwningMembership
+                  }
+                  Scope null looking for Quantities.QuantityDimension[Membership] took 0ms {
+                   GLOBAL scope Quantities.QuantityDimension took 0ms {
+                    Found: Quantities.QuantityDimension[OwningMembership]
+                   }
+                   Found Quantities.QuantityDimension[OwningMembership]
+                  }
+                  Found Quantities.QuantityDimension[OwningMembership]
+                 }
+                 Linked QN: null, eClass: OwningMembership
+                }
+                Scope null looking for ControlFunctions.forAll[Membership] took 0ms {
+                 GLOBAL scope ControlFunctions.forAll took 0ms {
+                  Found: ControlFunctions.forAll[OwningMembership]
+                 }
+                 Found ControlFunctions.forAll[OwningMembership]
+                }
+                Found ControlFunctions.forAll[OwningMembership]
+               }
+               Linked QN: null, eClass: OwningMembership
+              }
+              Scope null looking for SequenceFunctions.equals[Membership] took 0ms {
+               GLOBAL scope SequenceFunctions.equals took 0ms {
+                Found: SequenceFunctions.equals[OwningMembership]
+               }
+               Found SequenceFunctions.equals[OwningMembership]
+              }
+              Found SequenceFunctions.equals[OwningMembership]
+             }
+             Linked QN: null, eClass: OwningMembership
+            }
+            Scope null looking for SequenceFunctions.size[Membership] took 0ms {
+             GLOBAL scope SequenceFunctions.size took 0ms {
+              Found: SequenceFunctions.size[OwningMembership]
+             }
+             Found SequenceFunctions.size[OwningMembership]
+            }
+            Found SequenceFunctions.size[OwningMembership]
+           }
+           Linked QN: null, eClass: OwningMembership
+          }
+          Scope null looking for VectorValues.ThreeVectorValue[Membership] took 0ms {
+           GLOBAL scope VectorValues.ThreeVectorValue took 0ms {
+            Found: VectorValues.ThreeVectorValue[OwningMembership]
+           }
+           Found VectorValues.ThreeVectorValue[OwningMembership]
+          }
+          Found VectorValues.ThreeVectorValue[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for ScalarValues[Namespace] took 0ms {
+         GLOBAL scope ScalarValues took 0ms {
+          Found: ScalarValues[LibraryPackage]
+         }
+         Found ScalarValues[LibraryPackage]
+        }
+        Found ScalarValues[LibraryPackage]
+       }
+       Linked QN: ScalarValues, eClass: LibraryPackage
+      }
+      Scope null looking for Collections.List[Membership] took 0ms {
+       GLOBAL scope Collections.List took 0ms {
+        Found: Collections.List[OwningMembership]
+       }
+       Found Collections.List[OwningMembership]
+      }
+      Found Collections.List[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Collections.Array[Membership] took 0ms {
+     GLOBAL scope Collections.Array took 0ms {
+      Found: Collections.Array[OwningMembership]
+     }
+     Found Collections.Array[OwningMembership]
+    }
+    Found Collections.Array[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found Array[DataType]
+ }
+ Linked QN: Collections::Array, eClass: DataType
+}
+----------------------------------
+Linking rank[redefinedFeature] in MeasurementReferences.sysml:58 took 0ms {
+ Scope MeasurementReferences::TensorMeasurementReference looking for rank[Feature] took 0ms {
+  Found rank[Feature]
+ }
+ Linked QN: Collections::Array::rank, eClass: Feature
+}
+----------------------------------
+Linking elements[redefinedFeature] in MeasurementReferences.sysml:59 took 0ms {
+ Scope MeasurementReferences::TensorMeasurementReference looking for elements[Feature] took 0ms {
+  Found elements[Feature]
+ }
+ Linked QN: Collections::OrderedCollection::elements, eClass: Feature
+}
+----------------------------------
+Linking dimensions[redefinedFeature] in MeasurementReferences.sysml:78 took 0ms {
+ Scope MeasurementReferences::VectorMeasurementReference looking for dimensions[Feature] took 0ms {
+  Found dimensions[Feature]
+ }
+ Linked QN: Collections::Array::dimensions, eClass: Feature
+}
+----------------------------------
+Linking dimensions[redefinedFeature] in MeasurementReferences.sysml:95 took 0ms {
+ Scope MeasurementReferences::ScalarMeasurementReference looking for dimensions[Feature] took 0ms {
+  Found dimensions[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::VectorMeasurementReference::dimensions, eClass: AttributeUsage
+}
+----------------------------------
+Linking isOrthogonal[redefinedFeature] in MeasurementReferences.sysml:96 took 0ms {
+ Scope MeasurementReferences::ScalarMeasurementReference looking for isOrthogonal[Feature] took 0ms {
+  Found isOrthogonal[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::VectorMeasurementReference::isOrthogonal, eClass: AttributeUsage
+}
+----------------------------------
+Linking mRefs[redefinedFeature] in MeasurementReferences.sysml:97 took 0ms {
+ Scope MeasurementReferences::ScalarMeasurementReference looking for mRefs[Feature] took 0ms {
+  Found mRefs[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::TensorMeasurementReference::mRefs, eClass: AttributeUsage
+}
+----------------------------------
+Linking isBound[redefinedFeature] in MeasurementReferences.sysml:273 took 0ms {
+ Scope MeasurementReferences::MeasurementUnit looking for isBound[Feature] took 0ms {
+  Found isBound[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::TensorMeasurementReference::isBound, eClass: AttributeUsage
+}
+----------------------------------
+Linking unitPowerFactors[redefinedFeature] in MeasurementReferences.sysml:290 took 0ms {
+ Scope MeasurementReferences::SimpleUnit looking for unitPowerFactors[Feature] took 0ms {
+  Found unitPowerFactors[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::MeasurementUnit::unitPowerFactors, eClass: AttributeUsage
+}
+----------------------------------
+Linking quantityDimension[redefinedFeature] in ISQBase.sysml:87 took 0ms {
+ Scope ISQBase::MassUnit looking for quantityDimension[Feature] took 0ms {
+  Found quantityDimension[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::ScalarMeasurementReference::quantityDimension, eClass: AttributeUsage
+}
+----------------------------------
+Linking unitConversion[redefinedFeature] in SI.sysml:23 took 0ms {
+ Scope SI::kilogram looking for unitConversion[Feature] took 0ms {
+  Found unitConversion[AttributeUsage]
+ }
+ Linked QN: MeasurementReferences::MeasurementUnit::unitConversion, eClass: AttributeUsage
+}

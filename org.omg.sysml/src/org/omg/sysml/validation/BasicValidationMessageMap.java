@@ -129,7 +129,8 @@ public class BasicValidationMessageMap implements ValidationMessageMap {
 	
 	@Override
 	public int getDiagnosticCode(String messageCode) {
-		return messages.get(messageCode);
+	//	return messages.get(messageCode);
+		return 0;
 	}
 	
 

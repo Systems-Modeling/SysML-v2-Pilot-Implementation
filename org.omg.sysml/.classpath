@@ -9,7 +9,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry kind="src" path="syntax-gen"/>
-	<classpathentry kind="src" path="Resources"/>
+	<classpathentry kind="src" path="resources"/>
 	<classpathentry exported="true" kind="lib" path="lib/sysml-v2-api-client-all.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

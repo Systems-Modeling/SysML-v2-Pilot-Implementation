@@ -1,0 +1,398 @@
+----------------------------------
+Linking Boolean[type] in 5.sysml:5 took 0ms {
+ Scope 'Filtering Example-1'::Safety looking for Boolean[Type] took 0ms {
+  Scope 'Filtering Example-1' looking for Boolean[Type] took 0ms {
+   Linking ScalarValues::Boolean[importedMembership] in 5.sysml:2 took 0ms {
+    Scope 'Filtering Example-1' looking for ScalarValues.Boolean[Membership] took 0ms {
+     Scope null looking for ScalarValues.Boolean[Membership] took 0ms {
+      GLOBAL scope ScalarValues.Boolean took 0ms {
+       Found: ScalarValues.Boolean[OwningMembership]
+      }
+      Found ScalarValues.Boolean[OwningMembership]
+     }
+     Found ScalarValues.Boolean[OwningMembership]
+    }
+    Linked QN: null, eClass: OwningMembership
+   }
+   Found Boolean[DataType]
+  }
+  Found Boolean[DataType]
+ }
+ Linked QN: ScalarValues::Boolean, eClass: DataType
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:11 took 0ms {
+ Scope 'Filtering Example-1'::vehicle::interior::seatBelt looking for Safety[Type] took 0ms {
+  Scope 'Filtering Example-1'::vehicle::interior looking for Safety[Type] took 0ms {
+   Scope 'Filtering Example-1'::vehicle looking for Safety[Type] took 0ms {
+    Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+     Found Safety[MetadataDefinition]
+    }
+    Found Safety[MetadataDefinition]
+   }
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking Metaobject[superclassifier] in Metadata.sysml:13 took 0ms {
+ Scope Metadata looking for Metaobject[Classifier] took 0ms {
+  Linking Metaobjects::Metaobject[importedMembership] in Metadata.sysml:8 took 0ms {
+   Scope Metadata looking for Metaobjects.Metaobject[Membership] took 0ms {
+    Linking Metaobjects::metaobjects[importedMembership] in Metadata.sysml:9 took 0ms {
+     Scope Metadata looking for Metaobjects.metaobjects[Membership] took 0ms {
+      Linking Items::Item[importedMembership] in Metadata.sysml:10 took 0ms {
+       Scope Metadata looking for Items.Item[Membership] took 0ms {
+        Linking Items::items[importedMembership] in Metadata.sysml:11 took 0ms {
+         Scope Metadata looking for Items.items[Membership] took 0ms {
+          Scope null looking for Items.items[Membership] took 0ms {
+           GLOBAL scope Items.items took 0ms {
+            Found: Items.items[OwningMembership]
+           }
+           Found Items.items[OwningMembership]
+          }
+          Found Items.items[OwningMembership]
+         }
+         Linked QN: null, eClass: OwningMembership
+        }
+        Scope null looking for Items.Item[Membership] took 0ms {
+         GLOBAL scope Items.Item took 0ms {
+          Found: Items.Item[OwningMembership]
+         }
+         Found Items.Item[OwningMembership]
+        }
+        Found Items.Item[OwningMembership]
+       }
+       Linked QN: null, eClass: OwningMembership
+      }
+      Scope null looking for Metaobjects.metaobjects[Membership] took 0ms {
+       GLOBAL scope Metaobjects.metaobjects took 0ms {
+        Found: Metaobjects.metaobjects[OwningMembership]
+       }
+       Found Metaobjects.metaobjects[OwningMembership]
+      }
+      Found Metaobjects.metaobjects[OwningMembership]
+     }
+     Linked QN: null, eClass: OwningMembership
+    }
+    Scope null looking for Metaobjects.Metaobject[Membership] took 0ms {
+     GLOBAL scope Metaobjects.Metaobject took 0ms {
+      Found: Metaobjects.Metaobject[OwningMembership]
+     }
+     Found Metaobjects.Metaobject[OwningMembership]
+    }
+    Found Metaobjects.Metaobject[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Found Metaobject[Metaclass]
+ }
+ Linked QN: Metaobjects::Metaobject, eClass: Metaclass
+}
+----------------------------------
+Linking Item[superclassifier] in Metadata.sysml:13 took 0ms {
+ Scope Metadata looking for Item[Classifier] took 0ms {
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking MetadataItem[type] in Metadata.sysml:21 took 0ms {
+ Scope Metadata looking for MetadataItem[Type] took 0ms {
+  Found MetadataItem[MetadataDefinition]
+ }
+ Linked QN: Metadata::MetadataItem, eClass: MetadataDefinition
+}
+----------------------------------
+Linking metaobjects[subsettedFeature] in Metadata.sysml:21 took 0ms {
+ Scope Metadata looking for metaobjects[Feature] took 0ms {
+  Found metaobjects[Feature]
+ }
+ Linked QN: Metaobjects::metaobjects, eClass: Feature
+}
+----------------------------------
+Linking items[subsettedFeature] in Metadata.sysml:21 took 0ms {
+ Scope Metadata looking for items[Feature] took 0ms {
+  Found items[ItemUsage]
+ }
+ Linked QN: Items::items, eClass: ItemUsage
+}
+----------------------------------
+Linking isMandatory[redefinedFeature] in 5.sysml:11 took 0ms {
+ Scope null looking for isMandatory[Feature] took 0ms {
+  Found isMandatory[AttributeUsage]
+ }
+ Linked QN: 'Filtering Example-1'::Safety::isMandatory, eClass: AttributeUsage
+}
+----------------------------------
+Linking Item[type] in Items.sysml:31 took 0ms {
+ Scope Items::Item looking for Item[Type] took 0ms {
+  Scope Items looking for Item[Type] took 0ms {
+   Found Item[ItemDefinition]
+  }
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking Item[type] in Items.sysml:33 took 0ms {
+ Scope Items::Item looking for Item[Type] took 0ms {
+  Scope Items looking for Item[Type] took 0ms {
+   Found Item[ItemDefinition]
+  }
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking Item[type] in Items.sysml:34 took 0ms {
+ Scope Items::Item looking for Item[Type] took 0ms {
+  Scope Items looking for Item[Type] took 0ms {
+   Found Item[ItemDefinition]
+  }
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking Item[type] in Items.sysml:36 took 0ms {
+ Scope Items::Item looking for Item[Type] took 0ms {
+  Scope Items looking for Item[Type] took 0ms {
+   Found Item[ItemDefinition]
+  }
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking Item[type] in Items.sysml:43 took 0ms {
+ Scope Items::Item looking for Item[Type] took 0ms {
+  Scope Items looking for Item[Type] took 0ms {
+   Found Item[ItemDefinition]
+  }
+  Found Item[ItemDefinition]
+ }
+ Linked QN: Items::Item, eClass: ItemDefinition
+}
+----------------------------------
+Linking StructuredSpaceObject[type] in Items.sysml:74 took 0ms {
+ Scope Items::Item looking for StructuredSpaceObject[Type] took 0ms {
+  Scope Items looking for StructuredSpaceObject[Type] took 0ms {
+   Found StructuredSpaceObject[Structure]
+  }
+  Found StructuredSpaceObject[Structure]
+ }
+ Linked QN: Objects::StructuredSpaceObject, eClass: Structure
+}
+----------------------------------
+Linking envelopingShapes[subsettedFeature] in Items.sysml:74 took 0ms {
+ Scope Items::Item looking for envelopingShapes[Feature] took 0ms {
+  Found envelopingShapes[ItemUsage]
+ }
+ Linked QN: Items::Item::envelopingShapes, eClass: ItemUsage
+}
+----------------------------------
+Linking isEmpty[type] in Items.sysml:103 took 0ms {
+ Scope Items::Item::isSolid looking for isEmpty[Type] took 0ms {
+  Linking isEmpty[type] in Items.sysml:103 took 0ms {
+   Scope Items::Item::isSolid looking for isEmpty[Type] took 0ms {
+    Scope Items::Item looking for isEmpty[Type] took 0ms {
+     Scope Items looking for isEmpty[Type] took 0ms {
+      Found isEmpty[Function]
+     }
+     Found isEmpty[Function]
+    }
+    Found isEmpty[Function]
+   }
+   Linked QN: SequenceFunctions::isEmpty, eClass: Function
+  }
+  Scope Items::Item looking for isEmpty[Type] took 0ms {
+   Scope Items looking for isEmpty[Type] took 0ms {
+    Found isEmpty[Function]
+   }
+   Found isEmpty[Function]
+  }
+  Found isEmpty[Function]
+ }
+ Linked QN: SequenceFunctions::isEmpty, eClass: Function
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:13 took 0ms {
+ Scope 'Filtering Example-1'::vehicle::interior::driverAirBag looking for Safety[Type] took 0ms {
+  Scope 'Filtering Example-1'::vehicle::interior looking for Safety[Type] took 0ms {
+   Scope 'Filtering Example-1'::vehicle looking for Safety[Type] took 0ms {
+    Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+     Found Safety[MetadataDefinition]
+    }
+    Found Safety[MetadataDefinition]
+   }
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking isMandatory[redefinedFeature] in 5.sysml:13 took 0ms {
+ Scope null looking for isMandatory[Feature] took 0ms {
+  Found isMandatory[AttributeUsage]
+ }
+ Linked QN: 'Filtering Example-1'::Safety::isMandatory, eClass: AttributeUsage
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:17 took 0ms {
+ Scope 'Filtering Example-1'::vehicle::bodyAssy::bumper looking for Safety[Type] took 0ms {
+  Scope 'Filtering Example-1'::vehicle::bodyAssy looking for Safety[Type] took 0ms {
+   Scope 'Filtering Example-1'::vehicle looking for Safety[Type] took 0ms {
+    Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+     Found Safety[MetadataDefinition]
+    }
+    Found Safety[MetadataDefinition]
+   }
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking isMandatory[redefinedFeature] in 5.sysml:17 took 0ms {
+ Scope null looking for isMandatory[Feature] took 0ms {
+  Found isMandatory[AttributeUsage]
+ }
+ Linked QN: 'Filtering Example-1'::Safety::isMandatory, eClass: AttributeUsage
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:22 took 0ms {
+ Scope 'Filtering Example-1'::vehicle::wheelAssy::antilockBrakes looking for Safety[Type] took 0ms {
+  Scope 'Filtering Example-1'::vehicle::wheelAssy looking for Safety[Type] took 0ms {
+   Scope 'Filtering Example-1'::vehicle looking for Safety[Type] took 0ms {
+    Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+     Found Safety[MetadataDefinition]
+    }
+    Found Safety[MetadataDefinition]
+   }
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking isMandatory[redefinedFeature] in 5.sysml:22 took 0ms {
+ Scope null looking for isMandatory[Feature] took 0ms {
+  Found isMandatory[AttributeUsage]
+ }
+ Linked QN: 'Filtering Example-1'::Safety::isMandatory, eClass: AttributeUsage
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:29 took 1ms {
+ Scope 'Filtering Example-1'::'Safety Features' looking for Safety[Type] took 1ms {
+  Linking vehicle[importedMembership] in 5.sysml:28 took 0ms {
+   Scope 'Filtering Example-1'::'Safety Features' looking for vehicle[Membership] took 0ms {
+    Scope 'Filtering Example-1' looking for vehicle[Membership] took 0ms {
+     Found vehicle[OwningMembership]
+    }
+    Found vehicle[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking Safety[type] in 5.sysml:35 took 0ms {
+ Scope 'Filtering Example-1'::'Mandatory Safety Features' looking for Safety[Type] took 0ms {
+  Linking vehicle[importedMembership] in 5.sysml:34 took 0ms {
+   Scope 'Filtering Example-1'::'Mandatory Safety Features' looking for vehicle[Membership] took 0ms {
+    Scope 'Filtering Example-1' looking for vehicle[Membership] took 0ms {
+     Found vehicle[OwningMembership]
+    }
+    Found vehicle[OwningMembership]
+   }
+   Linked QN: null, eClass: OwningMembership
+  }
+  Scope 'Filtering Example-1' looking for Safety[Type] took 0ms {
+   Found Safety[MetadataDefinition]
+  }
+  Found Safety[MetadataDefinition]
+ }
+ Linked QN: 'Filtering Example-1'::Safety, eClass: MetadataDefinition
+}
+----------------------------------
+Linking Safety::isMandatory[memberElement] in 5.sysml:35 took 0ms {
+ Scope 'Filtering Example-1'::'Mandatory Safety Features' looking for Safety.isMandatory[Element] took 0ms {
+  Scope 'Filtering Example-1' looking for Safety.isMandatory[Element] took 0ms {
+   Found Safety.isMandatory[AttributeUsage]
+  }
+  Found Safety.isMandatory[AttributeUsage]
+ }
+ Linked QN: 'Filtering Example-1'::Safety::isMandatory, eClass: AttributeUsage
+}
+----------------------------------
+Linking ItemUsage[superclassifier] in SysML.sysml:272 took 0ms {
+ Scope SysML::Systems looking for ItemUsage[Classifier] took 0ms {
+  Found ItemUsage[MetadataDefinition]
+ }
+ Linked QN: SysML::Systems::ItemUsage, eClass: MetadataDefinition
+}
+----------------------------------
+Linking OccurrenceUsage[superclassifier] in SysML.sysml:226 took 0ms {
+ Scope SysML::Systems looking for OccurrenceUsage[Classifier] took 0ms {
+  Found OccurrenceUsage[MetadataDefinition]
+ }
+ Linked QN: SysML::Systems::OccurrenceUsage, eClass: MetadataDefinition
+}
+----------------------------------
+Linking Usage[superclassifier] in SysML.sysml:262 took 0ms {
+ Scope SysML::Systems looking for Usage[Classifier] took 0ms {
+  Found Usage[MetadataDefinition]
+ }
+ Linked QN: SysML::Systems::Usage, eClass: MetadataDefinition
+}
+----------------------------------
+Linking Feature[superclassifier] in SysML.sysml:438 took 0ms {
+ Scope SysML::Systems looking for Feature[Classifier] took 0ms {
+  Linking KerML::Kernel[importedNamespace] in SysML.sysml:11 took 0ms {
+   Scope SysML::Systems looking for KerML.Kernel[Namespace] took 0ms {
+    Scope SysML looking for KerML.Kernel[Namespace] took 0ms {
+     Linking ScalarValues[importedNamespace] in SysML.sysml:7 took 0ms {
+      Scope SysML looking for ScalarValues[Namespace] took 0ms {
+       Linking Systems[importedNamespace] in SysML.sysml:8 took 0ms {
+        Scope SysML looking for Systems[Namespace] took 0ms {
+         Found Systems[Package]
+        }
+        Linked QN: SysML::Systems, eClass: Package
+       }
+       Scope null looking for ScalarValues[Namespace] took 0ms {
+        GLOBAL scope ScalarValues took 0ms {
+         Found: ScalarValues[LibraryPackage]
+        }
+        Found ScalarValues[LibraryPackage]
+       }
+       Found ScalarValues[LibraryPackage]
+      }
+      Linked QN: ScalarValues, eClass: LibraryPackage
+     }
+     Scope null looking for KerML.Kernel[Namespace] took 0ms {
+      GLOBAL scope KerML.Kernel took 0ms {
+       Found: KerML.Kernel[Package]
+      }
+      Found KerML.Kernel[Package]
+     }
+     Found KerML.Kernel[Package]
+    }
+    Found KerML.Kernel[Package]
+   }
+   Linked QN: KerML::Kernel, eClass: Package
+  }
+  Found Feature[Metaclass]
+ }
+ Linked QN: KerML::Core::Feature, eClass: Metaclass
+}

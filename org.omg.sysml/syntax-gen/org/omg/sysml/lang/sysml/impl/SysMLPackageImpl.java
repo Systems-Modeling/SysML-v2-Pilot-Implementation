@@ -2022,16 +2022,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getFeature_IsNonunique() {
-		return (EAttribute)featureEClass.getEStructuralFeatures().get(25);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EOperation getFeature__DirectionFor__Type() {
 		return featureEClass.getEOperations().get(0);
 	}
@@ -8326,7 +8316,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(featureEClass, FEATURE__CROSS_FEATURE);
 		createEAttribute(featureEClass, FEATURE__DIRECTION);
 		createEReference(featureEClass, FEATURE__OWNED_CROSS_SUBSETTING);
-		createEAttribute(featureEClass, FEATURE__IS_NONUNIQUE);
 		createEOperation(featureEClass, FEATURE___DIRECTION_FOR__TYPE);
 		createEOperation(featureEClass, FEATURE___NAMING_FEATURE);
 		createEOperation(featureEClass, FEATURE___REDEFINES__FEATURE);
@@ -9421,7 +9410,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getFeature_CrossFeature(), this.getFeature(), null, "crossFeature", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeature_Direction(), this.getFeatureDirectionKind(), "direction", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeature_OwnedCrossSubsetting(), this.getCrossSubsetting(), this.getCrossSubsetting_CrossingFeature(), "ownedCrossSubsetting", null, 0, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFeature_IsNonunique(), theTypesPackage.getBoolean(), "isNonunique", "false", 1, 1, Feature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getFeature__DirectionFor__Type(), this.getFeatureDirectionKind(), "directionFor", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -10610,11 +10598,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getFeature_OwnedCrossSubsetting(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_IsNonunique(),
 		   source,
 		   new String[] {
 		   });

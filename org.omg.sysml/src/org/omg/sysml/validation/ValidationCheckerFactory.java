@@ -21,30 +21,29 @@
 
 package org.omg.sysml.validation;
 
-import org.omg.sysml.lang.sysml.util.SysMLSwitch;
-import org.omg.sysml.validation.check.*;
-
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.*;
+import org.omg.sysml.lang.sysml.Element;
 
 /**
- * A factory class for creating the appropriate ValidationChecker instance for a specific
- * abstract syntax element. ValidationCheckers are actually created and cached per EClass,
- * and the same (stateless) ValidationChecker is used for all elements of the same
- * EClass.
+ * The abstract base for factory classes that create the appropriate ValidationChecker instance for 
+ * a specific abstract syntax element. ValidationCheckers are actually created and cached per EClass,
+ * and the same (stateless) ValidationChecker is used for all elements of the same EClass.
  */
-public class ValidationCheckerFactory extends SysMLSwitch<ValidationChecker> {
+public abstract class ValidationCheckerFactory {
 	
+	public static final String VALIDATION_CHECKER_PACKAGE = ValidationCheckerFactory.class.getPackageName();
+
 	private Map<EClass, ValidationChecker> validationCheckerCache = new HashMap<>();
 	
 	public ValidationChecker getValidationChecker(Element element) {
 		EClass eClass = element.eClass();
 		ValidationChecker checker = validationCheckerCache.get(eClass);
 		if (checker == null) {
-			checker = doSwitch(eClass, element);
+			checker = createValidationChecker(element);
 			if (checker != null) {
 				validationCheckerCache.put(eClass, checker);
 			}
@@ -52,35 +51,18 @@ public class ValidationCheckerFactory extends SysMLSwitch<ValidationChecker> {
 		return checker;
 	}
 	
-	public ValidationChecker createValidationChecker(Element element) {
-		return doSwitch(element);
-	}
+	public abstract ValidationChecker createValidationChecker(Element element);
 	
-	// Root
-	
-	@Override
-	public ValidationChecker caseElement(Element element) {
-		return new ElementValidationChecker();
+	protected ValidationChecker createValidationChecker(Element element, String packageSuffix) {
+		EClass eClass = element.eClass();
+		try {
+			Class<?> validationChecker = Class.forName(VALIDATION_CHECKER_PACKAGE +"." + packageSuffix + "." + eClass.getName());
+			Constructor<?> constructor = validationChecker.getConstructor();
+			return (ValidationChecker)constructor.newInstance();
+		} catch (ClassNotFoundException e) {
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
-
-	@Override
-	public ValidationChecker caseRelationship(Relationship element) {
-		return new RelationshipValidationChecker();
-	}
-
-	@Override
-	public ValidationChecker caseAnnotation(Annotation element) {
-		return new AnnotationValidationChecker();
-	}
-
-	@Override
-	public ValidationChecker caseNamespace(Namespace element) {
-		return new NamespaceValidationChecker();
-	}
-
-	@Override
-	public ValidationChecker caseImport(Import element) {
-		return new ImportValidationChecker();
-	}
-
 }

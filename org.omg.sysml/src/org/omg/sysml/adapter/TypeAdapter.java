@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -436,23 +436,25 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected List<Type> getBaseTypes() {
 		List<Type> baseTypes = new ArrayList<>();
 		if (isGetBaseTypes) {
-			isGetBaseTypes = false;
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
+				// Resolve metaclass proxy before getting base type, to avoid problems
+				// with name resolution when applying semantic metadata.
+				metadataFeature.getMetaclass();
+				isGetBaseTypes = false;
 				metadataFeature.getFeature().stream().
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
-						map(expr->
-						expr.evaluate(metadataFeature)).
+						map(expr->expr.evaluate(metadataFeature)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
 						map(EvaluationUtil::getMetaclassReferenceOf).
 						filter(Type.class::isInstance).
 						map(Type.class::cast).
 						forEachOrdered(baseTypes::add);
+				isGetBaseTypes = true;
 			}
-			isGetBaseTypes = true;
 		}
 		return baseTypes;
 	}

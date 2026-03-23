@@ -7,5 +7,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Name: org.omg.sysml.execution
 Bundle-Vendor: SysML v2 Submission Team
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.omg.sysml;bundle-version="0.28.0"
 Export-Package: org.omg.sysml.execution.expressions
+Require-Bundle: org.omg.sysml.model.bundle;bundle-version="0.58.0",
+ org.omg.sysml;bundle-version="0.58.0"

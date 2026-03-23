@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.model"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

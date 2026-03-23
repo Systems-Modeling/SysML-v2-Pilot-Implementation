@@ -3,6 +3,7 @@
 	<name>org.omg.kerml.expressions.xtext</name>
 	<comment></comment>
 	<projects>
+		<project>org.omg.sysml.model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -8,5 +8,6 @@ Automatic-Module-Name: org.omg.sysml.interactive.tests
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml.interactive;bundle-version="0.3.2",
  org.junit;bundle-version="4.12.0",
- org.omg.sysml,
+ org.omg.sysml.model.bundle;bundle-version="0.58.0",
+ org.omg.sysml;bundle-version="0.58.0",
  org.eclipse.xtext;bundle-version="2.22.0"

@@ -3,6 +3,7 @@
 	<name>org.omg.kerml.owl</name>
 	<comment></comment>
 	<projects>
+		<project>org.omg.sysml.model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

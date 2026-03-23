@@ -11,7 +11,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: org.omg.sysml.lang.sysml.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.omg.sysml;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.uml2.common.edit;visibility:=reexport
+ org.eclipse.uml2.common.edit;visibility:=reexport,
+ org.omg.sysml.model.bundle;bundle-version="0.58.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

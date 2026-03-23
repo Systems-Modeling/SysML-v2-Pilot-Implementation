@@ -3,6 +3,7 @@
 	<name>org.omg.sysml.xtext.ui</name>
 	<comment></comment>
 	<projects>
+		<project>org.omg.sysml.model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -3,6 +3,7 @@
 	<name>org.omg.sysml.interactive</name>
 	<comment></comment>
 	<projects>
+		<project>org.omg.sysml.model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

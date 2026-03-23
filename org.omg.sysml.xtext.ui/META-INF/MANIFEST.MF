@@ -6,7 +6,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Version: 0.58.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.omg.sysml;bundle-version="0.2.0",
+Require-Bundle: org.omg.sysml.model.bundle;bundle-version="0.58.0",
+ org.omg.sysml;bundle-version="0.58.0",
  org.omg.sysml.xtext,
  org.omg.sysml.xtext.ide,
  org.eclipse.compare,

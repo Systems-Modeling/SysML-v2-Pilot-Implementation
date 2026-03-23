@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.omg.sysml</groupId>
+		<artifactId>org.omg.sysml.parent</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<artifactId>org.omg.sysml.model.bundle</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.omg.sysml</groupId>
+			<artifactId>org.omg.sysml.model</artifactId>
+			<version>${revision}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+    <plugins>
+      <!-- Copy org.omg.sysml.model jar in lib/ before the Tycho build -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>copy-jar-org.omg.sysml.model</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/lib</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/../org.omg.sysml.model/target</directory>
+                  <includes>
+                    <include>org.omg.sysml.model-*.jar</include>
+                  </includes>
+                  <excludes>
+                    <exclude>*-sources.jar</exclude>
+                    <exclude>*-tests.jar</exclude>
+                  </excludes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-ecore-genmodel-org.omg.sysml.model</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/model</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/../org.omg.sysml.model/src/main/resources/model</directory>
+                  <includes>
+                    <include>*.ecore</include>
+                    <include>*.genmodel</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>eclipse-m2e</id>
+      <build>
+        <plugins>
+          <!-- m2e lifecycle mapping -->
+          <plugin>
+            <groupId>org.eclipse.m2e</groupId>
+            <artifactId>lifecycle-mapping</artifactId>
+            <version>1.0.0</version>
+            <configuration>
+              <lifecycleMappingMetadata>
+                <pluginExecutions>
+                  <pluginExecution>
+                    <pluginExecutionFilter>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-resources-plugin</artifactId>
+                      <versionRange>[0,)</versionRange>
+                      <goals>
+                        <goal>copy-resources</goal>
+                      </goals>
+                    </pluginExecutionFilter>
+                    <action>
+                      <ignore/>
+                    </action>
+                  </pluginExecution>
+                </pluginExecutions>
+              </lifecycleMappingMetadata>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

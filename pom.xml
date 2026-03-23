@@ -38,6 +38,8 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>org.omg.sysml.model</module>
+    <module>org.omg.sysml.model.bundle</module>
     <module>org.omg.sysml</module>
     <module>org.omg.sysml.edit</module>
     <module>org.omg.sysml.editor</module>
@@ -120,10 +122,10 @@
         <configuration>
         	<executionEnvironment>JavaSE-${java.version}</executionEnvironment>
         	<target>
-				 <artifact>
+				<artifact>
 					<groupId>org.omg.sysml</groupId>
 					<artifactId>org.omg.sysml.target</artifactId>
-					<version>${project.version}</version>
+					<version>${revision}</version>
 				</artifact>
     	  </target>
           <environments>
@@ -328,6 +330,11 @@
           <configuration>
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-maven-plugin.version}</version>
         </plugin>
 		<!-- 
 			From version 3.0 maven install plugin seems to be more strict about subproject outputs.

@@ -22,6 +22,12 @@ target
 .polyglot.META-INF
 dependency-reduced-pom.xml
 
+#Maven
+.mvn/repository
+.mvn/maven.config
+.m2/
+.polyglot.feature.xml
+
 # VS Code settings
 .vscode/
 

@@ -28,7 +28,8 @@
     <junit.version>3.5.3</junit.version>
     <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
-    <sysand-maven-plugin.version>0.0.6</sysand-maven-plugin.version>
+    <!-- TODO: Release 0.0.11 of sysand-maven-plugin before merging. -->
+    <sysand.version>0.0.10-SNAPSHOT</sysand.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -36,6 +37,34 @@
   <artifactId>org.omg.sysml.parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
+
+  <!-- TODO: Remove before merging (needed to be able to test with the snapshot
+  version of sysand-maven-plugin) -->
+  <repositories>
+    <repository>
+      <id>central-snapshots</id>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central-snapshots</id>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
   <modules>
     <module>org.omg.sysml</module>
@@ -298,7 +327,7 @@
       <plugin>
         <groupId>com.sensmetry</groupId>
         <artifactId>sysand-maven-plugin</artifactId>
-        <version>${sysand-maven-plugin.version}</version>
+        <version>${sysand.version}</version>
         <executions>
           <execution>
             <goals>
@@ -329,14 +358,14 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-		<!-- 
+		<!--
 			From version 3.0 maven install plugin seems to be more strict about subproject outputs.
 			This is a workaround to solve the error:
 			The packaging for this project did not assign a file to the build artifact...
 			in the jupyter-sysml-kernel project.
 			Related topic:
 			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
-			
+
 			TODO: Get rid of this part once we remove gradle form the project (ST6RI-764)
 		-->
 		<plugin>
@@ -356,6 +385,27 @@
 				<allowIncompleteProjects>true</allowIncompleteProjects>
 			</configuration>
 		</plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>sysand-index</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>java</goal>
+              </goals>
+              <configuration>
+                <mainClass>org.omg.sysml.xtext.util.SysMLIndexUtil</mainClass>
+                <arguments>
+                  <argument>${maven.multiModuleProjectDirectory}/sysml.library</argument>
+                </arguments>
+                <classpathScope>compile</classpathScope>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>

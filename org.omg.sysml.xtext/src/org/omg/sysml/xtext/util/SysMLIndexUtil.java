@@ -21,8 +21,6 @@
 
 package org.omg.sysml.xtext.util;
 
-import java.io.IOException;
-
 import org.omg.kerml.xtext.util.KerMLIndexUtil;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -33,24 +31,45 @@ public class SysMLIndexUtil extends KerMLIndexUtil {
 		SysMLStandaloneSetup.doSetup();
 		addExtension(".sysml");
 	}
-	
+
+	/**
+	 * Index all projects in a sysand workspace. For each project, parses SysML/KerML
+	 * files, computes symbol-to-file index, and updates the project's {@code .meta.json}.
+	 *
+	 * @param workspacePath path to the workspace directory containing {@code .workspace.json}
+	 */
+	public void indexWorkspace(String workspacePath) throws com.sensmetry.sysand.exceptions.SysandException {
+		String[] projectPaths = com.sensmetry.sysand.Sysand.workspaceProjectPaths(
+				java.nio.file.Paths.get(workspacePath));
+		for (String projectPath : projectPaths) {
+			System.out.println("Indexing project: " + projectPath);
+			SysMLIndexUtil util = new SysMLIndexUtil();
+			java.util.LinkedHashMap<String, String> index = util.indexAsMap(projectPath);
+			com.sensmetry.sysand.Sysand.setProjectIndex(
+					java.nio.file.Paths.get(projectPath), index);
+			System.out.println("  Updated " + index.size() + " index entries");
+		}
+	}
+
 	/**
 	 * <p>Usage:
-	 * 
-	 * <p>SysMLIndexUtil input-path output-path
-	 * 
-	 * <p>where:
-	 * 
-	 * <ul>
-	 * <li>input-path             is a path for reading input resources (file or directory)</li>
-	 * <li>output-path            is a path for an output file</li>
-	 * </ul>
+	 *
+	 * <p>Workspace mode: SysMLIndexUtil workspace-path
+	 * <p>Single-file mode: SysMLIndexUtil input-path output-path
+	 *
+	 * <p>Workspace mode is detected when the first argument is a directory
+	 * containing {@code .workspace.json}.
 	 */
 	public static void main(String[] args) {
 		try {
-			new SysMLIndexUtil().writeIndex(args[0], args[1]);
-		} catch (IOException e) {
+			if (new java.io.File(args[0], ".workspace.json").exists()) {
+				new SysMLIndexUtil().indexWorkspace(args[0]);
+			} else {
+				new SysMLIndexUtil().writeIndex(args[0], args[1]);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 

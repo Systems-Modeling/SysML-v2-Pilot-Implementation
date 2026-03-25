@@ -27,7 +27,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -49,30 +48,35 @@ public class KerMLIndexUtil extends SysMLUtil {
 	}
 	
 	public String index(String inputPath) {
-		read(inputPath);
-		File inputFile = new File(inputPath);
-		if (!inputFile.isDirectory()) {
-			inputPath = inputFile.getParent();
-			if (inputPath == null) {
-				inputPath = "";
-			}
-		}
+		java.util.LinkedHashMap<String, String> map = indexAsMap(inputPath);
 		List<String> entries = new ArrayList<>();
-		for (Resource resource: getInputResources()) {
-			String resourcePath = resource.getURI().toFileString().replace(inputPath + "/", "");
-			Namespace rootNamespace = (Namespace)resource.getContents().get(0);
-			List<Membership> memberships = rootNamespace.visibleMemberships(new BasicEList<>(), false, false);
-			Stream<String> names = memberships.stream().map(Membership::getMemberName);
-			Stream<String> shortNames = memberships.stream().map(Membership::getMemberShortName);
-			Stream.concat(names, shortNames)
-				.filter(name->name != null)
-				.map(name->formatEntry(name, resourcePath))
-				.forEach(entries::add);
+		for (var entry : map.entrySet()) {
+			entries.add(formatEntry(entry.getKey(), entry.getValue()));
 		}
-		entries.sort(null);
-		return String.join("\n", entries); 
+		return String.join("\n", entries);
 	}
 	
+	public java.util.LinkedHashMap<String, String> indexAsMap(String inputPath) {
+		read(inputPath);
+		File inputFile = new File(inputPath);
+		String inputDir = inputPath;
+		if (!inputFile.isDirectory()) {
+			inputDir = inputFile.getParent();
+			if (inputDir == null) inputDir = "";
+		}
+		java.util.TreeMap<String, String> sorted = new java.util.TreeMap<>();
+		for (Resource resource : getInputResources()) {
+			String resourcePath = resource.getURI().toFileString().replace(inputDir + "/", "");
+			Namespace rootNamespace = (Namespace) resource.getContents().get(0);
+			List<Membership> memberships = rootNamespace.visibleMemberships(new BasicEList<>(), false, false);
+			for (Membership m : memberships) {
+				if (m.getMemberName() != null) sorted.put(m.getMemberName(), resourcePath);
+				if (m.getMemberShortName() != null) sorted.put(m.getMemberShortName(), resourcePath);
+			}
+		}
+		return new java.util.LinkedHashMap<>(sorted);
+	}
+
 	public void writeIndex(String inputPath, String outputPath) throws IOException {
 		String index = index(inputPath);
 		System.out.println("Writing " + outputPath + "...");

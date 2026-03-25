@@ -13,6 +13,14 @@
 	<artifactId>org.omg.sysml.xtext</artifactId>
 	<packaging>eclipse-plugin</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>com.sensmetry</groupId>
+			<artifactId>sysand</artifactId>
+			<version>${sysand.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -24,6 +32,34 @@
 						<phase>clean</phase>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-sysand</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.sensmetry</groupId>
+									<artifactId>sysand</artifactId>
+									<version>${sysand.version}</version>
+
+									<outputDirectory>${project.basedir}/lib</outputDirectory>
+									<destFileName>sysand.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>

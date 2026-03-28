@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
-import org.omg.sysml.util.TypeUtil;
 
 public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
 
@@ -34,18 +33,4 @@ public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
 		return (AssignmentActionUsage)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkAssignmentActionUsageReferentRedefinition
-	 * @satisfies checkAssignmentActionUsageAccessedFeatureRedefinition
-	 * @satisfies checkAssignmentActionUsageStartingAtRedefinition
-	 */
-	protected void addTargetRedefinitions() {
-		AssignmentActionUsage target = getTarget();
-		addFeatureWriteTypes(TypeUtil.getOwnedParametersOf(target), target.getReferent());
-	}
-	
-	public void doTransform() {
-		super.doTransform();
-		addTargetRedefinitions();
-	}
 }

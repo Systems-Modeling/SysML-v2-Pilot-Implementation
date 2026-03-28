@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
@@ -216,7 +217,6 @@ public class FeatureAdapter extends TypeAdapter {
 	 * @satisfies checkFeatureCrossingSpecialization
 	 * @satisfies checkFeatureOwnedCrossFeatureSpecialization
 	 * @satisfies checkFeatureOwnedCrossFeatureRedefinitionSpecialization
-	 * 
 	 */
 	@Override
 	public void addDefaultGeneralType() {
@@ -592,8 +592,45 @@ public class FeatureAdapter extends TypeAdapter {
 			// NOTE: Set flag before adding redefinitions, to avoid possible infinite
 			// recursion if computeImplicitGeneralTypes is called again on this Feature.
 			isComputeRedefinitions = false;
+			addFeatureWriteTypes();
 			addRedefinitions(skip);
 		}
+	}
+	
+	/**
+	 * @satisfies checkAssignmentActionUsageReferentRedefinition
+	 * @satisfies checkAssignmentActionUsageAccessedFeatureRedefinition
+	 * @satisfies checkAssignmentActionUsageStartingAtRedefinition
+	 */
+	protected void addFeatureWriteTypes() {
+		Feature feature = getTarget();
+		if (isStartingAtFeature(feature)) {
+			addDefaultGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("startingAt"));
+		} else if (isAccessedFeature(feature)) {
+			addDefaultGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
+			AssignmentActionUsage actionUsage = (AssignmentActionUsage)(feature.getOwner().getOwner().getOwner());
+			Feature referent = actionUsage.getReferent();
+			if (referent != null) {
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), referent);
+			}
+		}
+	}
+	
+	public static boolean isStartingAtFeature(Feature feature) {
+		Type owningType = feature.getOwningType();
+		if (owningType instanceof Feature) {
+			Type actionUsage = ((Feature)owningType).getOwningType();
+			if (actionUsage instanceof AssignmentActionUsage) {
+				 return ((AssignmentActionUsage)actionUsage).getParameter().indexOf(owningType) == 0;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isAccessedFeature(Feature feature) {
+		Type owningType = feature.getOwningType();
+		return owningType instanceof Feature && isStartingAtFeature((Feature)owningType) &&
+			   owningType.getOwnedFeature().indexOf(feature) == 0;
 	}
 	
 	/**
@@ -787,27 +824,6 @@ public class FeatureAdapter extends TypeAdapter {
 		addImplicitMemberBindingConnector(connector);
 		FeatureUtil.addFeaturingTypesTo(connector, featuringTypes);
 		return connector;
-	}
-	
-	protected void addFeatureWriteTypes(List<Feature> parameters, Feature referent) {
-		if (!parameters.isEmpty()) {
-			Feature targetFeature = parameters.get(0);
-			List<Feature> features = targetFeature.getOwnedFeature();
-			if (!features.isEmpty()) {
-				Feature startingAtFeature = features.get(0);
-				TypeUtil.addDefaultGeneralTypeTo(startingAtFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("startingAt"));
-				TypeUtil.setIsAddImplicitGeneralTypesFor(startingAtFeature, false);
-				features = startingAtFeature.getOwnedFeature();
-				if (!features.isEmpty()) {
-					Feature accessedFeature = features.get(0);
-					TypeUtil.addDefaultGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
-					if (referent != null) {
-						TypeUtil.addImplicitGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), referent);
-					}
-					TypeUtil.setIsAddImplicitGeneralTypesFor(accessedFeature, false);
-				}
-			}
-		}
 	}
 	
 	/**

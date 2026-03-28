@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,6 +24,7 @@ package org.omg.sysml.interactive.tests;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -36,6 +37,7 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
@@ -350,5 +352,36 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		Documentation doc = (Documentation)ownedMembers.get(1);
 		assertEquals("comment.locale", "en_US", comment.getLocale());
 		assertEquals("doc.locale", "en_US", doc.getLocale());
+	}
+	
+	public final String crossFeatureTest =
+			  "package Test {"
+			+ "    part def A {"
+			+ "        ref b : B;"
+			+ "    }"
+			+ "    part def B;"
+			+ "    connection def C {"
+			+ "        end [0..1] ref end1 : A;"
+			+ "        end ref end2 : B crosses end1.b;"
+			+ "    }"
+			+ "}";
+	
+	@Test
+	public void testCrossFeature() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(crossFeatureTest);
+		Element root = result.getRootElement();
+		Namespace test = (Namespace)((Namespace)root).getOwnedMember().get(0);
+		Definition a = (Definition)test.getOwnedMember().get(0);
+		Usage a_b = a.getOwnedUsage().get(0);
+		ConnectionDefinition c = (ConnectionDefinition)test.getOwnedMember().get(2);
+		List<Feature> ends = c.getAssociationEnd();
+		Usage end1 = (Usage)ends.get(0);
+		Usage end2 = (Usage)ends.get(1);
+		Feature ownedCrossFeature = end1.ownedCrossFeature();
+		
+		assertNotNull("end1 owned cross feature", ownedCrossFeature);
+		assertEquals("end1 cross feature", end1.ownedCrossFeature(), end1.getCrossFeature());
+		assertEquals("end2 cross feature", a_b, end2.getCrossFeature().getFeatureTarget());
 	}
 }

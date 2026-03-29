@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2020, 2026 Model Driven Solutions, Inc.
   *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -44,7 +44,7 @@ class KerMLLibraryProvider implements IModelLibraryProvider {
 	ResourceDescriptionsProvider resourceDescriptionProvider
 	
 	override Element getElement(Element context, String name) {
-		if (context === null) {
+		if (context?.eResource()?.getResourceSet() === null || name === null) {
 			return null
 		} else {
 			val qname = nameConverter.toQualifiedName(name)

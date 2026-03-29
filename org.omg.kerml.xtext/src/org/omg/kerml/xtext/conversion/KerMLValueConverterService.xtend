@@ -12,35 +12,22 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of the GNU Lesser General Public License
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
 
-package org.omg.sysml.delegate.setting;
+package org.omg.kerml.xtext.conversion
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
+import org.eclipse.xtext.conversion.impl.AbstractDeclarativeValueConverterService
+import org.eclipse.xtext.conversion.ValueConverter
+import org.eclipse.xtext.conversion.IValueConverter
 
-public class Feature_isNonunique_SettingDelegate extends BasicDerivedPropertySettingDelegate {
-
-	public Feature_isNonunique_SettingDelegate(EStructuralFeature eStructuralFeature) {
-		super(eStructuralFeature);
-	}
-
-	@Override
-	protected Boolean basicGet(InternalEObject owner) {
-		Feature feature = (Feature)owner;
-		return !feature.isUnique();
-	}
-	
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		Feature feature = (Feature)owner;
-		feature.setIsUnique(!(Boolean)newValue);
-	}
-
+class KerMLValueConverterService extends AbstractDeclarativeValueConverterService {
+    @ValueConverter(rule = "Nonunique")
+    def IValueConverter<Boolean> getMyRuleNameConverter() {
+        return new NonuniqueValueConverter();
+    }
 }

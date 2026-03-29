@@ -822,7 +822,11 @@ public class FeatureAdapter extends TypeAdapter {
 			if (FeatureUtil.getValuationFor(target).isInitial()) {
 				Feature that = (Feature)getLibraryType("Base::things::that");
 				Feature startShot = (Feature)getLibraryType("Occurrences::Occurrence::startShot");
-				featuringTypes = Collections.singletonList(FeatureUtil.chainFeatures(that, startShot));
+				if (that != null && startShot != null) {
+					featuringTypes = Collections.singletonList(FeatureUtil.chainFeatures(that, startShot));
+				} else {
+					featuringTypes = target.getFeaturingType();
+				}
 			} else {
 				featuringTypes = target.getFeaturingType();
 			}

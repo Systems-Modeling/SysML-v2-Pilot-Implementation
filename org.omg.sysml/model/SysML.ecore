@@ -443,11 +443,6 @@
       <eAnnotations source="subsets" references="#//Feature/ownedSubsetting"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
-        lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
-        transient="true" defaultValueLiteral="false" derived="true">
-      <eAnnotations source="http://www.omg.org/spec/SysML"/>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

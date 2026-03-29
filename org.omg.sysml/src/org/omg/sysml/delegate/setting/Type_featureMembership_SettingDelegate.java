@@ -22,6 +22,7 @@
 
 package org.omg.sysml.delegate.setting;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -37,11 +38,16 @@ public class Type_featureMembership_SettingDelegate extends BasicDerivedListSett
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
+		Type self = (Type)owner;
+		
 		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, owner, eStructuralFeature.getFeatureID());
-		featureMemberships.addAll(((Type)owner).getOwnedFeatureMembership());
-		((Type)owner).getInheritedMembership().stream().
+		featureMemberships.addAll(self.getOwnedFeatureMembership());
+		// For improved performance, compute supertypes only once.
+		List<Type> allSupertypes = self.allSupertypes();
+		self.getInheritedMembership().stream().
 			filter(FeatureMembership.class::isInstance).
 			map(FeatureMembership.class::cast).
+			filter(membership->allSupertypes.contains(membership.getOwningType())).
 			forEachOrdered(featureMemberships::add);
 		return featureMemberships;
 	}

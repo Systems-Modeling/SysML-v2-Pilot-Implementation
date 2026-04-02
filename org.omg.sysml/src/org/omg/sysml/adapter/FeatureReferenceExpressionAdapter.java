@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -63,19 +63,11 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	 * @satisfies checkFeatureReferenceExpressionBindingConnector
 	 */
 	protected void addReferenceConnector() {
-		/*
-		 * TODO: Update checkFeatureReferenceExpressionBindingConnector?
-         * 
-         * OCL does not include !isInFilterExpression check.
-		 * 
-		 */
-		if (!isInFilterExpression()) {
-			FeatureReferenceExpression target = getTarget();
-			Feature referent = target.getReferent();
-			Feature result = target.getResult();
-			if (referent != null && result != null) {
-				addBindingConnector(referent, result);
-			}
+		FeatureReferenceExpression target = getTarget();
+		Feature referent = target.getReferent();
+		Feature result = target.getResult();
+		if (referent != null && result != null) {
+			addBindingConnector(referent, result);
 		}
 	}
 	

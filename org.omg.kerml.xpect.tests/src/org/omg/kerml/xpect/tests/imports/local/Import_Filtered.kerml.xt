@@ -237,7 +237,7 @@ package Import_Filtered {
 	}
 	
 	package 'Mandatory Features_true_1' {
-		public import vehicle1_c1::**[Safety::isMandatory];
+		public import vehicle1_c1::**[(as Safety).isMandatory];
 		classifier b :> seatBelt; 
 		
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
@@ -259,7 +259,7 @@ package Import_Filtered {
 	}
 	
 	package 'Mandatory Features_true_2' {
-		public import vehicle1_c1::**[Safety::isMandatory == true]; 
+		public import vehicle1_c1::**[(as Safety).isMandatory == true]; 
 		classifier b :> seatBelt; 
 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
@@ -281,7 +281,7 @@ package Import_Filtered {
 	}
 	
 	package 'Mandatory Features_false' {
-		public import vehicle1_c1::**[Safety::isMandatory == false]; 
+		public import vehicle1_c1::**[(as Safety).isMandatory == false]; 
 		classifier j :> antilockBrakes; 
 		
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"

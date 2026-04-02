@@ -380,15 +380,17 @@ public class TypeAdapter extends NamespaceAdapter {
 		implicitGeneralTypes.values().forEach(implicitGenerals::addAll);
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
 			List<Type> implicitEClassGenerals = implicitGeneralTypes.get(eClass);
-			if (eClass == SysMLPackage.eINSTANCE.getRedefinition()) {
-				implicitEClassGenerals.removeAll(redefinedFeatures);
-			} else {
-				implicitEClassGenerals.removeIf(gen->
-					generals.stream().anyMatch(type->specializesExcludingTarget(type, gen)) ||
-					implicitGenerals.stream().anyMatch(type->type != gen && specializesExcludingTarget(type, gen)));
-			}
-			if (implicitEClassGenerals.isEmpty()) {
-				implicitGeneralTypes.remove(eClass);
+			if (implicitEClassGenerals != null) {
+				if (eClass == SysMLPackage.eINSTANCE.getRedefinition()) {
+					implicitEClassGenerals.removeAll(redefinedFeatures);
+				} else {
+					implicitEClassGenerals.removeIf(gen->
+						generals.stream().anyMatch(type->specializesExcludingTarget(type, gen)) ||
+						implicitGenerals.stream().anyMatch(type->type != gen && specializesExcludingTarget(type, gen)));
+				}
+				if (implicitEClassGenerals.isEmpty()) {
+					implicitGeneralTypes.remove(eClass);
+				}
 			}
 		}
 		

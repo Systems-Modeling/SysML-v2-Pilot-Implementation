@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,13 +21,11 @@
 
 package org.omg.sysml.delegate.setting;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.FeatureUtil;
 
 public class Feature_crossFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -37,17 +35,7 @@ public class Feature_crossFeature_SettingDelegate extends BasicDerivedObjectSett
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		CrossSubsetting subsetting = ((Feature)owner).getOwnedCrossSubsetting();
-		if (subsetting != null) {
-			Feature crossedFeature = subsetting.getCrossedFeature();
-			if (crossedFeature != null) {
-				List<Feature> chainingFeatures = crossedFeature.getChainingFeature();
-				if (chainingFeatures.size() >=2) {
-					return chainingFeatures.get(1);
-				}
-			}
-		}
-		return null;
+		return FeatureUtil.getCrossFeatureOf((Feature)owner);
 	}
 
 }

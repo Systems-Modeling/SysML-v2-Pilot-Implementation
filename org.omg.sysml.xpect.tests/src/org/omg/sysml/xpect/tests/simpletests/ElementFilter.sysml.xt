@@ -85,6 +85,6 @@ package ElementFilterTest {
 	}
 	
 	package 'Mandatory Features' {
-		public import vehicle1_c1::**[@Safety and PartInfo::isMandatory];
+		public import vehicle1_c1::**[@Safety and (as PartInfo).isMandatory];
 	}
 }

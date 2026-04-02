@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -202,18 +203,38 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 		return redefinedFeatures;		
 	}
+	
+	public EList<FeatureMembership> getFeatureMembership() {
+		if (featureMembership == null) {
+			Type target = getTarget();
+			EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<FeatureMembership>(FeatureMembership.class, (InternalEObject) target, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
+			featureMemberships.addAll(target.getOwnedFeatureMembership());
+			// For improved performance, compute supertypes only once.
+			List<Type> allSupertypes = target.allSupertypes();
+			for (Membership membership: target.getInheritedMembership()) {
+				if (membership instanceof FeatureMembership && 
+						allSupertypes.contains(membership.getMembershipOwningNamespace())) {
+					featureMemberships.add((FeatureMembership)membership);
+				}
+			}
+			featureMembership = featureMemberships;
+		}
+		return featureMembership;
+	}
 
 	// Caching
 	
 	private EList<Membership> inheritedMembership = null;
 	private EList<Membership> nonPrivateMembership = null;
-	private Collection<Feature> redefinedFeatures = null;	
+	private Collection<Feature> redefinedFeatures = null;
+	private EList<FeatureMembership> featureMembership = null;
 	
 	public void clearCaches() {
 		super.clearCaches();
 		inheritedMembership = null;
 		nonPrivateMembership = null;
 		redefinedFeatures = null;
+		featureMembership = null;
 	}
 	
 	// Implicit Elements
@@ -436,23 +457,25 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected List<Type> getBaseTypes() {
 		List<Type> baseTypes = new ArrayList<>();
 		if (isGetBaseTypes) {
-			isGetBaseTypes = false;
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
+				// Resolve metaclass proxy before getting base type, to avoid problems
+				// with name resolution when applying semantic metadata.
+				metadataFeature.getMetaclass();
+				isGetBaseTypes = false;
 				metadataFeature.getFeature().stream().
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).
-						map(expr->
-						expr.evaluate(metadataFeature)).
+						map(expr->expr.evaluate(metadataFeature)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
 						map(EvaluationUtil::getMetaclassReferenceOf).
 						filter(Type.class::isInstance).
 						map(Type.class::cast).
 						forEachOrdered(baseTypes::add);
+				isGetBaseTypes = true;
 			}
-			isGetBaseTypes = true;
 		}
 		return baseTypes;
 	}

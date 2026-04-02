@@ -1,0 +1,52 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+        ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+       	File {from ="/library/Performances.kerml"}
+      	File {from ="/library/Metaobjects.kerml"}
+        File {from ="/library/KerML.kerml"}
+        File {from ="/library/BaseFunctions.kerml"}
+    }
+    Workspace {
+        JavaProject {
+            SrcFolder {
+		        ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+		       	File {from ="/library/Performances.kerml"}
+		      	File {from ="/library/Metaobjects.kerml"}
+		        File {from ="/library/KerML.kerml"}
+                File {from ="/library/BaseFunctions.kerml"}
+            }
+    	}
+	}
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package SemanticMetadataTest {
+    private import Metaobjects::SemanticMetadata;
+
+    classifier P {
+        feature a;
+    }
+    feature p : P;
+
+    metaclass M :> SemanticMetadata {
+        :>> baseType = p meta KerML::Feature;
+    }
+
+    classifier Q {
+        feature a = 1;
+        #M feature p1 {
+        	// This feature should redefine P::a, not Q::a.
+        	// Redefining Q::a will causes a feature value override error.
+            feature :>> a = 2;
+        }
+    }
+}

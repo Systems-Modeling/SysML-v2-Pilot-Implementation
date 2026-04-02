@@ -45,11 +45,13 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 
@@ -383,5 +385,36 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertNotNull("end1 owned cross feature", ownedCrossFeature);
 		assertEquals("end1 cross feature", end1.ownedCrossFeature(), end1.getCrossFeature());
 		assertEquals("end2 cross feature", a_b, end2.getCrossFeature().getFeatureTarget());
+	}
+	
+	public final String featureMembershipTest =
+			  "package Test {\n"
+			+ "	   part def A {\n"
+			+ "		   attribute f;\n"
+			+ "	   }\n"
+			+ "	   part def B {\n"
+			+ "		   public import A::*;\n"
+			+ "        feature g;\n"
+			+ "	   }\n"
+			+ "	   part def C :> B;"
+			+ "}";
+	
+	@Test
+	public void testFeatureMembership() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(featureMembershipTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		Definition A = (Definition)ownedMembers.get(0);
+		Definition B = (Definition)ownedMembers.get(1);
+		Definition C = (Definition)ownedMembers.get(2);
+		assertTrue("A", testFeatureOwningTypes(A));
+		assertTrue("B", testFeatureOwningTypes(B));
+		assertTrue("C", testFeatureOwningTypes(C));
+	}
+	
+	private boolean testFeatureOwningTypes(Type type) {
+		return type.getFeatureMembership().stream().map(FeatureMembership::getOwningType).allMatch(t->type.specializes(t));
 	}
 }

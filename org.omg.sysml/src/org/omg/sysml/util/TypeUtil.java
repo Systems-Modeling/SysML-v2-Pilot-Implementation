@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2024-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -103,6 +103,10 @@ public class TypeUtil {
 				filter(feature->feature != skip).
 				flatMap(feature->FeatureUtil.getRedefinedFeaturesWithComputedOf(feature).stream()).
 				toList();
+	}
+	
+	public static EList<FeatureMembership> getFeatureMembershipOf(Type type) {
+		return getTypeAdapter(type).getFeatureMembership();
 	}
 
 	// Supertypes

@@ -9,7 +9,7 @@ Export-Package: org.omg.sysml.lang.sysml,
  org.omg.sysml.lang.sysml.impl,
  org.omg.sysml.lang.sysml.util
 Bundle-ClassPath: .,
- lib/org.omg.sysml.model-0.58.0-SNAPSHOT.jar
+ lib/org.omg.sysml.model-0.59.0-SNAPSHOT.jar
 Bundle-SymbolicName: org.omg.sysml.model.bundle;singleton:=true
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.omg.sysml.model.bundle

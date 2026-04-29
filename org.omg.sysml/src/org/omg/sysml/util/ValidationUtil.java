@@ -99,17 +99,16 @@ public class ValidationUtil {
 	static boolean isIntegerOperator(String operator) {
         return Arrays.asList("-", "+", "*", "%", "^", "**").contains(operator);
     }
-	//update so error message sent from calling validation method. 
-	protected void checkAtMostOne(List<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {
-	    if (list.size() > 1) {
-	        for (int i = 1; i < list.size(); i++) {
-	        	messageAccepter.error(list.get(i), null, "validateFlowItemFeature");
-	        }
+	
+	public void checkAtMostOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {
+	  
+	    int listSize = IterableExtensions.size(list);
+	    if (listSize > 1) {
+	    	List<? extends EObject> features = IterableExtensions.toList(list);
+	      for (int i = 1; i < listSize; i++) {
+	    	  messageAccepter.error(features.get(i), feature, msgCode);
+	      }
 	    }
-	}
-	//seems like this would be simpler than sending an error message that may not be needed.  
-	public boolean checkAtMostOne(List<? extends EObject> list) {
-		return (list.size()==1);	
 	}
 	
 	protected void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {

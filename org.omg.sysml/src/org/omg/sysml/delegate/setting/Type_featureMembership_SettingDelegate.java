@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,9 +25,8 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_featureMembership_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -37,13 +36,7 @@ public class Type_featureMembership_SettingDelegate extends BasicDerivedListSett
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, owner, eStructuralFeature.getFeatureID());
-		featureMemberships.addAll(((Type)owner).getOwnedFeatureMembership());
-		((Type)owner).getInheritedMembership().stream().
-			filter(FeatureMembership.class::isInstance).
-			map(FeatureMembership.class::cast).
-			forEachOrdered(featureMemberships::add);
-		return featureMemberships;
+		return TypeUtil.getFeatureMembershipOf((Type)owner);
 	}
 
 }

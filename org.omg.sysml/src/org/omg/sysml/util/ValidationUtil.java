@@ -13,6 +13,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Type;
@@ -111,40 +112,41 @@ public class ValidationUtil {
 	    }
 	}
 	
-	protected void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
+	public void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
 		if (IterableExtensions.size(list) == 1) messageAccepter.error((EObject)Conversions.unwrapArray(list), null, msgCode );
 		}
-}
 
-/*	still to do
-	protected def checkTargetNotObject(EObject obj, List<? extends Relationship> rels, String msg, String code) {
-		for (r: rels) {
-			if (r.target.contains(obj))
-				error(msg, r, null, code)
+
+
+	public void checkTargetNotObject(EObject obj, List<? extends Relationship> rels, ValidationMessageAccepter messageAccepter, String msgCode) {
+		for (Relationship r : rels) {
+			if (r.getTarget().contains(obj)) {
+				messageAccepter.error(obj, null, msgCode); //?
+			}
 		}
 	}
 	
-	protected def static typesConform(List<Type> t1, List<Type> t2) {
-		t1.exists[tt1 | t2.exists[tt2 | tt2.conformsTo(tt1)]] ||
-		t2.exists[tt2 | t1.exists[tt1 | tt1.conformsTo(tt2)]]
+	protected static boolean typesConform(List<Type> t1, List<Type> t2) {
+	    return t1.stream().anyMatch(tt1 -> t2.stream().anyMatch(tt2 -> conformsTo(tt2, tt1))) ||
+	           t2.stream().anyMatch(tt2 -> t1.stream().anyMatch(tt1 -> conformsTo(tt1, tt2)));
 	}
 	
 	// Return conforming subtypes
-	protected static def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
-	{
-		subtypes.filter[subtype|subtype.conformsTo(supertype)]
+	public static Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) {
+	    return subtypes.stream().filter(subtype -> conformsTo(subtype, supertype)).toList();
 	}
 	
 	// Return conformed supertypes
-    protected static def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
-	{
-		supertypes.filter[supertype|subtype.conformsTo(supertype)]
+	public static Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) {
+	    return supertypes.stream()
+	                    .filter(supertype -> conformsTo(subtype, supertype))
+	                    .toList();
 	}
 
-	protected static def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || TypeUtil.specializes(subtype, supertype) ||
-			subtype instanceof Expression &&
-			isBooleanExpression(subtype as Expression) && 
-			specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression")
+	public static boolean conformsTo(Type subtype, Type supertype) {
+		return supertype == null || TypeUtil.specializes(subtype, supertype) ||
+        (subtype instanceof Expression && 
+         isBooleanExpression((Expression) subtype) && 
+         specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression"));
 	}
- */
+}

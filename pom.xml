@@ -28,8 +28,7 @@
     <junit.version>3.5.3</junit.version>
     <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
-    <!-- TODO: Release 0.0.11 of sysand-maven-plugin before merging. -->
-    <sysand.version>0.0.10-SNAPSHOT</sysand.version>
+    <sysand.version>0.0.11</sysand.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -37,21 +36,6 @@
   <artifactId>org.omg.sysml.parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
-
-  <!-- TODO: Remove before merging (needed to be able to test with the snapshot
-  version of sysand-maven-plugin) -->
-  <repositories>
-    <repository>
-      <id>central-snapshots</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 
   <pluginRepositories>
     <pluginRepository>

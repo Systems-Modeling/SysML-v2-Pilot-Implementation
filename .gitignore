@@ -40,3 +40,6 @@ dependency-reduced-pom.xml
 
 # Built libraries
 *.kpar
+
+# Sysand JAR
+org.omg.sysml.xtext/lib/sysand.jar

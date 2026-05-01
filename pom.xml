@@ -37,19 +37,6 @@
   <version>${revision}</version>
   <packaging>pom</packaging>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>central-snapshots</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
   <modules>
     <module>org.omg.sysml</module>
     <module>org.omg.sysml.edit</module>

@@ -40,6 +40,8 @@
   <modules>
     <module>org.omg.sysml.model</module>
     <module>org.omg.sysml.model.bundle</module>
+    <module>org.omg.sysml.logic</module>
+    <module>org.omg.sysml.logic.bundle</module>
     <module>org.omg.sysml</module>
     <module>org.omg.sysml.edit</module>
     <module>org.omg.sysml.editor</module>
@@ -213,6 +215,15 @@
                   </fileset>
                   <regexp pattern="lib/org\.omg\.sysml\.model-[^,\s]+\.jar"/>
                   <substitution expression="lib/org.omg.sysml.model-${maven-version}.jar"/>
+                </replaceregexp>
+                <replaceregexp byline="true" flags="i">
+                  <fileset dir="${basedir}">
+                    <include name="org.omg.sysml.logic.bundle/META-INF/MANIFEST.MF"/>
+                    <include name="org.omg.sysml.logic.bundle/build.properties"/>
+                    <include name="org.omg.sysml.logic.bundle/.classpath"/>
+                  </fileset>
+                  <regexp pattern="lib/org\.omg\.sysml\.logic-[^,\s]+\.jar"/>
+                  <substitution expression="lib/org.omg.sysml.logic-${maven-version}.jar"/>
                 </replaceregexp>
                 <replaceregexp byline="false" flags="g">
                   <fileset dir="${basedir}">

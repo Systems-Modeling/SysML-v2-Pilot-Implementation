@@ -58,7 +58,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.omg.sysml.lang.sysml.LiteralBoolean

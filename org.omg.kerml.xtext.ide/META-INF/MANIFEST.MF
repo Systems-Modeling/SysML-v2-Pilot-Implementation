@@ -11,6 +11,6 @@ Require-Bundle: org.omg.kerml.xtext,
  org.eclipse.xtext.ide,
  org.eclipse.xtend.lib,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- org.omg.kerml.expressions.xtext;bundle-version="0.9.0",
- org.omg.kerml.expressions.xtext.ide;bundle-version="0.9.0"
+ org.omg.kerml.expressions.xtext;bundle-version="0.59.0",
+ org.omg.kerml.expressions.xtext.ide;bundle-version="0.59.0"
 Export-Package: org.omg.kerml.xtext.ide.contentassist.antlr

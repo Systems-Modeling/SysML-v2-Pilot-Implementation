@@ -8,11 +8,11 @@ Export-Package: org.omg.sysml.interactive
 Require-Bundle: org.eclipse.emf.ecore,
  com.google.inject,
  org.eclipse.xtext,
- org.omg.sysml.model.bundle;bundle-version="0.58.0",
- org.omg.sysml;bundle-version="0.58.0",
- org.omg.sysml.execution;bundle-version="0.28.0",
- org.omg.kerml.xtext;bundle-version="0.2.0",
- org.omg.sysml.xtext;bundle-version="0.2.0",
+ org.omg.sysml.model.bundle;bundle-version="0.59.0",
+ org.omg.sysml;bundle-version="0.59.0",
+ org.omg.sysml.execution;bundle-version="0.59.0",
+ org.omg.kerml.xtext;bundle-version="0.59.0",
+ org.omg.sysml.xtext;bundle-version="0.59.0",
  com.google.gson;bundle-version="2.8.6",
  org.eclipse.xtext.common.types
 Import-Package: org.omg.sysml.plantuml

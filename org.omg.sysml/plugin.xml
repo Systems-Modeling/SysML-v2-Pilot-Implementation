@@ -12,15 +12,7 @@
       <package
             uri="https://www.omg.org/spec/SysML/20250201"
             class="org.omg.sysml.lang.sysml.SysMLPackage"
-            genModel="model/SysML.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SysML -->
-      <package
-            uri="https://www.omg.org/spec/UML/20161101/PrimitiveTypes"
-            class="org.omg.sysml.lang.types.TypesPackage"
-            genModel="model/SysML.genmodel"/>
+            genModel="platform:/plugin/org.omg.sysml.model.bundle/model/SysML.genmodel"/>
    </extension>
    
    <extension point = "org.eclipse.emf.ecore.setting_delegate">

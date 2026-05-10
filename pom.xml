@@ -38,6 +38,8 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>org.omg.sysml.model</module>
+    <module>org.omg.sysml.model.bundle</module>
     <module>org.omg.sysml</module>
     <module>org.omg.sysml.edit</module>
     <module>org.omg.sysml.editor</module>
@@ -120,10 +122,10 @@
         <configuration>
         	<executionEnvironment>JavaSE-${java.version}</executionEnvironment>
         	<target>
-				 <artifact>
+				<artifact>
 					<groupId>org.omg.sysml</groupId>
 					<artifactId>org.omg.sysml.target</artifactId>
-					<version>${project.version}</version>
+					<version>${revision}</version>
 				</artifact>
     	  </target>
           <environments>
@@ -173,6 +175,11 @@
                                regexp="-SNAPSHOT"
                                replace=".qualifier"
                                defaultValue="${maven-version}"/>
+                <propertyregex property="bundle-base-version"
+                               input="${maven-version}"
+                               regexp="-SNAPSHOT"
+                               replace=""
+                               defaultValue="${maven-version}"/>
                 <echo>Set the versions to POM: ${maven-version}, Bundle: ${bundle-version}</echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">
@@ -197,6 +204,23 @@
                   </fileset>
                   <regexp pattern="&lt;feature([^>]+)(version\s*=\s*&quot;[^&quot;]*&quot;)([^>]+)>"/>
                   <substitution expression="&lt;feature\1version=&quot;${bundle-version}&quot;\3>"/>
+                </replaceregexp>
+                <replaceregexp byline="true" flags="i">
+                  <fileset dir="${basedir}">
+                    <include name="org.omg.sysml.model.bundle/META-INF/MANIFEST.MF"/>
+                    <include name="org.omg.sysml.model.bundle/build.properties"/>
+                    <include name="org.omg.sysml.model.bundle/.classpath"/>
+                  </fileset>
+                  <regexp pattern="lib/org\.omg\.sysml\.model-[^,\s]+\.jar"/>
+                  <substitution expression="lib/org.omg.sysml.model-${maven-version}.jar"/>
+                </replaceregexp>
+                <replaceregexp byline="false" flags="g">
+                  <fileset dir="${basedir}">
+                    <include name="*/META-INF/MANIFEST.MF"/>
+                    <exclude name="org.omg.sysml.uml.ecore.importer*/**/*"/>
+                  </fileset>
+                  <regexp pattern="((?:org\.omg\.sysml|org\.omg\.kerml)[^,;\r\n]*;bundle-version=&quot;)[^&quot;]+(&quot;(?:;[^,\r\n]+)?)"/>
+                  <substitution expression="\1${bundle-base-version}\2"/>
                 </replaceregexp>
               </target>
             </configuration>
@@ -329,14 +353,19 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-		<!--
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-maven-plugin.version}</version>
+        </plugin>
+		<!-- 
 			From version 3.0 maven install plugin seems to be more strict about subproject outputs.
 			This is a workaround to solve the error:
 			The packaging for this project did not assign a file to the build artifact...
 			in the jupyter-sysml-kernel project.
 			Related topic:
 			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
-
+			
 			TODO: Get rid of this part once we remove gradle form the project (ST6RI-764)
 		-->
 		<plugin>

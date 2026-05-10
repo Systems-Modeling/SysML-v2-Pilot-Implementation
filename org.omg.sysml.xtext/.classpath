@@ -8,9 +8,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/sysand.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.model"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/org.omg.sysml"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.kerml.xtext"/>
+	<classpathentry kind="lib" path="lib/sysand.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

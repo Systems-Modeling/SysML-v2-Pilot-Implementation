@@ -28,7 +28,7 @@
     <junit.version>3.5.3</junit.version>
     <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
-    <sysand-maven-plugin.version>0.0.6</sysand-maven-plugin.version>
+    <sysand.version>0.0.11</sysand.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -322,7 +322,7 @@
       <plugin>
         <groupId>com.sensmetry</groupId>
         <artifactId>sysand-maven-plugin</artifactId>
-        <version>${sysand-maven-plugin.version}</version>
+        <version>${sysand.version}</version>
         <executions>
           <execution>
             <goals>
@@ -386,6 +386,27 @@
 			</configuration>
 		</plugin>
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>sysand-index</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>java</goal>
+              </goals>
+              <configuration>
+                <mainClass>org.omg.sysml.xtext.util.SysMLIndexUtil</mainClass>
+                <arguments>
+                  <argument>${maven.multiModuleProjectDirectory}/sysml.library</argument>
+                </arguments>
+                <classpathScope>compile</classpathScope>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>2.5</version>
@@ -405,6 +426,34 @@
               </configuration>
             </execution>
           </executions>
+        </plugin>
+      <!-- Tell Eclipse m2e to execute maven-dependency-plugin:copy so that
+           sysand.jar is copied to lib/ automatically during workspace builds. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>copy</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <execute>
+                      <runOnIncremental>false</runOnIncremental>
+                    </execute>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>

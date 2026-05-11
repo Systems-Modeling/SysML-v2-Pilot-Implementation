@@ -1,6 +1,6 @@
 = SysML v2 Pilot Implementation Protoyping
 
-This software is licensed under the GNU Lesser General Public License. See the files LICENSE and LICENSE-GPL.
+This software is licensed under the Eclipse Public License. See the files LICENSE and LICENSE-GPL.
 
 == Installation Instructions
 
@@ -126,7 +126,7 @@ image:project-wizard.png[project wizard]
 === For new code
 Set up a Java code template as follows:
 
-1. Window > Preferences (Mac-OS: Eclipse > Preferences)
+1. Window > Preferences (Mac-OS: Eclipse > Settings)
 
 2. Java > Code Style > Code Templates
 
@@ -142,19 +142,18 @@ Set up a Java code template as follows:
  * Copyright (C) 2026 <Your organization name>
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the Eclipse Public License, version 2, as published by
+ * the Eclipse Foundation.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * Eclipse Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the Eclipse Public License
+ * along with this program. If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  */
 ----
 
@@ -165,5 +164,5 @@ Set up a Java code template as follows:
 * When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2026, "Copyright (C) 2024" becomes "Copyright (C) 2024-2026" and in 2027 it becomes "Copyright (C) 2024-2027".)
 
 === Sources
-* https://www.gnu.org/licenses/gpl-3.0.en.html[GNU GPL v3.0 - How to Apply These Terms to Your New Programs]
+* https://www.eclipse.org/legal/epl-2.0/faq/[Eclipse Public License (EPL) Frequently Asked Questions]
 * https://hakre.wordpress.com/2012/07/25/using-the-spdx-license-list-for-tagging-and-linking/[Using the SPDX License List for Tagging and Linking]

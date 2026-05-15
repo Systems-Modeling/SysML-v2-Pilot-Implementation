@@ -3,16 +3,16 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.interactive
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-SymbolicName: org.omg.sysml.interactive
-Bundle-Version: 0.59.0.qualifier
+Bundle-Version: 0.60.0.qualifier
 Export-Package: org.omg.sysml.interactive
 Require-Bundle: org.eclipse.emf.ecore,
  com.google.inject,
  org.eclipse.xtext,
- org.omg.sysml.model.bundle;bundle-version="0.59.0",
- org.omg.sysml;bundle-version="0.59.0",
- org.omg.sysml.execution;bundle-version="0.59.0",
- org.omg.kerml.xtext;bundle-version="0.59.0",
- org.omg.sysml.xtext;bundle-version="0.59.0",
+ org.omg.sysml.model.bundle;bundle-version="0.60.0",
+ org.omg.sysml;bundle-version="0.60.0",
+ org.omg.sysml.execution;bundle-version="0.60.0",
+ org.omg.kerml.xtext;bundle-version="0.60.0",
+ org.omg.sysml.xtext;bundle-version="0.60.0",
  com.google.gson;bundle-version="2.8.6",
  org.eclipse.xtext.common.types
 Import-Package: org.omg.sysml.plantuml

@@ -13,9 +13,39 @@
 	<artifactId>org.omg.sysml.model</artifactId>
 	<packaging>jar</packaging>
 
+	<name>OMG SysML Model</name>
+	<description>EMF-based SysML v2 model artifacts for the SysML v2 Pilot Implementation.</description>
+	<url>https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation</url>
+
+	<licenses>
+		<license>
+			<name>Eclipse Public License 2.0</name>
+			<url>https://www.eclipse.org/legal/epl-2.0/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Systems Modeling Team</name>
+			<organization>Object Management Group</organization>
+			<organizationUrl>https://www.omg.org/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation.git</connection>
+		<developerConnection>scm:git:https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation.git</developerConnection>
+		<url>https://github.com/Systems-Modeling/SysML-v2-Pilot-Implementation</url>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+		<maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+		<central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -30,4 +60,102 @@
 			<version>2.42.0</version>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<!-- Shared sources, javadocs, and signing configuration for Maven Central publication. -->
+		<profile>
+			<id>central-publish</id>
+			<build>
+				<plugins>
+					<!-- Attach source files required by Maven Central consumers. -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>${maven-source-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Attach javadocs required by Maven Central publication. -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${maven-javadoc-plugin.version}</version>
+						<configuration>
+							<doclint>none</doclint>
+							<failOnError>false</failOnError>
+							<source>${java.version}</source>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Sign published artifacts so Sonatype Central accepts the bundle. -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<!-- Allow the CI runner to supply the passphrase non-interactively. -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<!-- Sonatype Central snapshot repository used for -SNAPSHOT publications. -->
+		<profile>
+			<id>central-snapshot</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>central</id>
+					<name>Sonatype Central Snapshots</name>
+					<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+				</snapshotRepository>
+				</distributionManagement>
+		</profile>
+		<!-- Sonatype Central release publication via the central-publishing-maven-plugin. -->
+		<profile>
+			<id>central-release</id>
+			<build>
+				<plugins>
+					<!-- Upload and publish the release bundle through the Sonatype Central portal. -->
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>${central-publishing-maven-plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+							<autoPublish>true</autoPublish>
+							<waitUntil>published</waitUntil>
+							<deploymentName>${project.groupId}:${project.artifactId}:${project.version}</deploymentName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

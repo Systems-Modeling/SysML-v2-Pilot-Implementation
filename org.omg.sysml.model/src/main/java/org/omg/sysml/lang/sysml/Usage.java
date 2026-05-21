@@ -40,7 +40,7 @@ import org.eclipse.emf.common.util.EList;
  * nestedConnection = nestedUsage->selectByKind(ConnectorAsUsage)
  * nestedConstraint = nestedUsage->selectByKind(ConstraintUsage)
  * ownedNested = nestedUsage->selectByKind(EnumerationUsage)
- * nestedFlow = nestedUsage->selectByKind(FlowConnectionUsage)
+ * nestedFlow = nestedUsage->selectByKind(FlowUsage)
  * nestedInterface = nestedUsage->selectByKind(ReferenceUsage)
  * nestedItem = nestedUsage->selectByKind(ItemUsage)
  * nestedMetadata = nestedUsage->selectByKind(MetadataUsage)
@@ -583,7 +583,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code>, <code>SuccessionAsUsages</code>, and <code>FlowConnectionUsages</code> because these are <code>ConnectorAsUsages</code> even though they are not <code>ConnectionUsages</code>.</p>
+	 * <p>The <code>ConnectorAsUsages</code> that are <code>nestedUsages</code> of this <code>Usage</code>. Note that this list includes <code>BindingConnectorAsUsages</code>, <code>SuccessionAsUsages</code>, and <code>FlowUsages</code> because these are <code>ConnectorAsUsages</code> even though they are not <code>ConnectionUsages</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
@@ -1029,7 +1029,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>MetadataUsages</code> that are <code>nestedUsages</code> of this of this <code>Usage</code>.</p>
+	 * <p>The <code>MetadataUsages</code> that are <code>ownedMembers</code> of this of this <code>Usage</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedMetadata()

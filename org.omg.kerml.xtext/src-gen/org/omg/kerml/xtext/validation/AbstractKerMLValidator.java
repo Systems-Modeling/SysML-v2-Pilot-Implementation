@@ -13,7 +13,7 @@ public abstract class AbstractKerMLValidator extends KerMLExpressionsValidator {
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>(super.getEPackages());
-		result.add(EPackage.Registry.INSTANCE.getEPackage("https://www.omg.org/spec/SysML/20250201"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("https://www.omg.org/spec/SysML/20260501"));
 		return result;
 	}
 }

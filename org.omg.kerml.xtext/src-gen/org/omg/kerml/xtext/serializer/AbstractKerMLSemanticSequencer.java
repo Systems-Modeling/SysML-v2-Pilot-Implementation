@@ -1087,11 +1087,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAnnotationAccess().getAnnotatedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT, false));
+		feeder.accept(grammarAccess.getAnnotationAccess().getAnnotatedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement(), false));
 		feeder.finish();
 	}
 	
@@ -3248,11 +3248,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_ClassifierConjugation(ISerializationContext context, Conjugation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getConjugation_OriginalType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getConjugation_OriginalType()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getClassifierConjugationAccess().getOriginalTypeClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE, false));
+		feeder.accept(grammarAccess.getClassifierConjugationAccess().getOriginalTypeClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getConjugation_OriginalType(), false));
 		feeder.finish();
 	}
 	
@@ -3590,11 +3590,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_FeatureConjugation(ISerializationContext context, Conjugation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getConjugation_OriginalType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getConjugation_OriginalType()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFeatureConjugationAccess().getOriginalTypeFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE, false));
+		feeder.accept(grammarAccess.getFeatureConjugationAccess().getOriginalTypeFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getConjugation_OriginalType(), false));
 		feeder.finish();
 	}
 	
@@ -3781,11 +3781,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_FlowRedefinition(ISerializationContext context, Redefinition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFlowRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, false));
+		feeder.accept(grammarAccess.getFlowRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), false));
 		feeder.finish();
 	}
 	
@@ -4310,11 +4310,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_MetadataTyping(ISerializationContext context, FeatureTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getFeatureTyping_Type()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getFeatureTyping_Type()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeMetaclassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
+		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeMetaclassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getFeatureTyping_Type(), false));
 		feeder.finish();
 	}
 	
@@ -4554,11 +4554,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_OwnedTypeFeaturing(ISerializationContext context, TypeFeaturing semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.TYPE_FEATURING__FEATURING_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.TYPE_FEATURING__FEATURING_TYPE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getTypeFeaturing_FeaturingType()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getTypeFeaturing_FeaturingType()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedTypeFeaturingAccess().getFeaturingTypeTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.TYPE_FEATURING__FEATURING_TYPE, false));
+		feeder.accept(grammarAccess.getOwnedTypeFeaturingAccess().getFeaturingTypeTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getTypeFeaturing_FeaturingType(), false));
 		feeder.finish();
 	}
 	
@@ -4574,11 +4574,11 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_Ownedsubclassification(ISerializationContext context, Subclassification semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getSubclassification_Superclassifier()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getSubclassification_Superclassifier()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedsubclassificationAccess().getSuperclassifierClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER, false));
+		feeder.accept(grammarAccess.getOwnedsubclassificationAccess().getSuperclassifierClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getSubclassification_Superclassifier(), false));
 		feeder.finish();
 	}
 	

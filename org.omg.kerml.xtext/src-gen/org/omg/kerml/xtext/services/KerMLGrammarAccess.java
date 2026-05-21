@@ -3615,7 +3615,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//      ownedRelationship += OwnedMultiplicity
 		//    | ( ownedRelationship += OwnedMultiplicity )?
 		//      ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//      | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//      | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//      )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -3623,7 +3623,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ownedRelationship += OwnedMultiplicity
 		//| ( ownedRelationship += OwnedMultiplicity )?
 		//  ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//  | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//  | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//  )
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -3635,7 +3635,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//( ownedRelationship += OwnedMultiplicity )?
 		//     ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//     | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//     | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//     )
 		public Group getGroup_1() { return cGroup_1; }
 		
@@ -3646,7 +3646,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0() { return cOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0; }
 		
 		//( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//| isUnique = Nonunique isOrdered ?= 'ordered'?
+		//| isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
@@ -3665,7 +3665,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Nonunique
 		public RuleCall getIsUniqueNonuniqueParserRuleCall_1_1_0_1_0() { return cIsUniqueNonuniqueParserRuleCall_1_1_0_1_0; }
 		
-		//isUnique = Nonunique isOrdered ?= 'ordered'?
+		//isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 		
 		//isUnique = Nonunique
@@ -3674,7 +3674,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Nonunique
 		public RuleCall getIsUniqueNonuniqueParserRuleCall_1_1_1_0_0() { return cIsUniqueNonuniqueParserRuleCall_1_1_1_0_0; }
 		
-		//isOrdered ?= 'ordered'?
+		//( isOrdered ?= 'ordered' )?
 		public Assignment getIsOrderedAssignment_1_1_1_1() { return cIsOrderedAssignment_1_1_1_1; }
 		
 		//'ordered'
@@ -3685,10 +3685,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cNonuniqueKeyword = (Keyword)rule.eContents().get(1);
 		
 		//Nonunique returns Ecore::EBoolean :
+		//    // Note: A value converter converts the value of this keyword to "false".
 		//    'nonunique'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//// Note: A value converter converts the value of this keyword to "false".
 		//'nonunique'
 		public Keyword getNonuniqueKeyword() { return cNonuniqueKeyword; }
 	}
@@ -8768,7 +8770,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += OwnedMultiplicity
 	//    | ( ownedRelationship += OwnedMultiplicity )?
 	//      ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-	//      | isUnique = Nonunique isOrdered ?= 'ordered'?
+	//      | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 	//      )
 	//;
 	public MultiplicityPartElements getMultiplicityPartAccess() {
@@ -8780,6 +8782,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Nonunique returns Ecore::EBoolean :
+	//    // Note: A value converter converts the value of this keyword to "false".
 	//    'nonunique'
 	//;
 	public NonuniqueElements getNonuniqueAccess() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lr59oD_xEfCL-qw9_9p9XQ" name="KerML" URI="https://www.omg.org/spec/KerML/20250201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_4ARZEFTTEfGi0YfjxeZ-GA" name="KerML" URI="https://www.omg.org/spec/KerML/20260501">
   <packagedElement xmi:type="uml:Package" xmi:id="_18_5_3_12e503d9_1562427331290_651623_19809" name="Root" visibility="public" URI="">
     <ownedComment xmi:id="_19_0_2_12e503d9_1584042059016_401103_80" annotatedElement="_18_5_3_12e503d9_1562427331290_651623_19809">
       <body>The Root layer provides the syntactic foundation for KerML.
@@ -633,7 +633,7 @@ else
     let memberships : Membership = membership->
         select(memberShortName = name or memberName = name) in
     if memberships->notEmpty() then memberships->first()
-    else owningNamspace.resolveLocal(name)
+    else owningNamespace.resolveLocal(name)
     endif
 endif</body>
             </specification>
@@ -1224,9 +1224,9 @@ endif</body>
             <body>shortName = effectiveShortName()</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="_19_0_4_12e503d9_1676411745334_570984_20487" name="deriveOwningNamespace" visibility="public" constrainedElement="_18_5_3_12e503d9_1533160651703_306405_42199">
+        <ownedRule xmi:id="_19_0_4_12e503d9_1676411745334_570984_20487" name="deriveElementOwningNamespace" visibility="public" constrainedElement="_18_5_3_12e503d9_1533160651703_306405_42199">
           <ownedComment xmi:id="_19_0_4_12e503d9_1676413427811_999439_20505" annotatedElement="_19_0_4_12e503d9_1676411745334_570984_20487">
-            <body>&lt;p>The &lt;code>owningNamespace&lt;/code> of an &lt;code>Element&lt;/code> is the &lt;code>membershipOwningNamspace&lt;/code> of its &lt;code>owningMembership&lt;/code> (if any).&lt;/p></body>
+            <body>&lt;p>The &lt;code>owningNamespace&lt;/code> of an &lt;code>Element&lt;/code> is the &lt;code>membershipOwningNamespace&lt;/code> of its &lt;code>owningMembership&lt;/code> (if any).&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1676411745344_881353_20488" name="" visibility="public">
             <language>OCL2.0</language>
@@ -2514,7 +2514,7 @@ specializes(mem.memberElement.oclAsType(Type))</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:id="_2022x_2_12e503d9_1737750551572_669259_27" name="otherType" visibility="public" type="_18_5_3_71301a1_1537895141427_270492_15579"/>
-          <ownedParameter xmi:id="_2024x_2_12e503d9_1748895608377_387098_16525" name="" visibility="public" direction="return">
+          <ownedParameter xmi:id="_2024x_2_12e503d9_1777504517975_439257_19" name="" visibility="public" direction="return">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           </ownedParameter>
         </ownedOperation>
@@ -2656,13 +2656,13 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="_19_0_4_12e503d9_1667787624186_673883_2230" name="checkMultiplicityTypeFeaturing" visibility="public" constrainedElement="_19_0_2_12e503d9_1573083797505_495205_3879">
           <ownedComment xmi:id="_19_0_4_12e503d9_1672521337347_143062_277" annotatedElement="_19_0_4_12e503d9_1667787624186_673883_2230">
-            <body>&lt;p>If the &lt;code>owningType&lt;/code> of a &lt;code>Multiplicity&lt;/code> is a &lt;code>Feature&lt;/code>, then the &lt;code>Multiplicity&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as that &lt;code>Feature&lt;/code>. Otherwise, it must have no &lt;code>featuringTypes&lt;/code> (meaning that it is implicitly featured by the base &lt;code>Classifier&lt;/code> &lt;em>&lt;code>Anything&lt;/code>&lt;/em>).&lt;/p></body>
+            <body>&lt;p>If the &lt;code>owningNamespace&lt;/code> of a &lt;code>Multiplicity&lt;/code> is a &lt;code>Feature&lt;/code>, then the &lt;code>Multiplicity&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as that &lt;code>Feature&lt;/code>. Otherwise, it must have no &lt;code>featuringTypes&lt;/code> (meaning that it is implicitly featured by the base &lt;code>Classifier&lt;/code> &lt;em>&lt;code>Anything&lt;/code>&lt;/em>).&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667787624194_383758_2231" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>if owningType &lt;> null and owningType.oclIsKindOf(Feature) then
+            <body>if owningNamespace &lt;> null and owningNamespace.oclIsKindOf(Feature) then
     featuringType = 
-        owningType.oclAsType(Feature).featuringType
+        owningNamespace.oclAsType(Feature).featuringType
 else
     featuringType->isEmpty()
 endif</body>
@@ -3313,7 +3313,7 @@ owningType.ownedFeature->at(1) = self implies
         (i = 1 implies 
             redefinesFromLibrary('Transfers::Transfer::source::sourceOutput')) and
         (i = 2 implies
-            redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
+            redefinesFromLibrary('Transfers::Transfer::target::targetInput'))
                  </body>
           </specification>
         </ownedRule>
@@ -3330,26 +3330,28 @@ owningType.ownedFeature->at(1) = self implies
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667772037902_907660_2166" name="" visibility="public">
             <language>OCL2.0</language>
             <body>owningType &lt;> null and
-not owningFeatureMembership.
-    oclIsKindOf(ReturnParameterMembership) and
 (owningType.oclIsKindOf(Behavior) or
  owningType.oclIsKindOf(Step) and
     (owningType.oclIsKindOf(InvocationExpression) implies
-      not ownedRedefinition->exists(not isImplied)) 
+        not ownedRedefinition->exists(not isImplied)))
 implies
-    let i : Integer =
+    let ownerParameters : Sequence(Feature) =
         owningType.ownedFeature->select(direction &lt;> null)->
             reject(owningFeatureMembership.
-                oclIsKindOf(ReturnParameterMembership))->
-            indexOf(self) in
-    owningType.ownedSpecialization.general->
-        forAll(supertype |
-            let ownedParameters : Sequence(Feature) =
-                supertype.ownedFeature->select(direction &lt;> null)->
-                     reject(owningFeatureMembership.
-                         oclIsKindOf(ReturnParameterMembership)) in
-            ownedParameters->size() >= i implies
-                redefines(ownedParameters->at(i))</body>
+                oclIsKindOf(ReturnParameterMembership)) in
+    ownerParameters->includes(self) implies
+        let i : Integer = ownerParameters.indexof(self) in
+        owningType.ownedSpecialization.general->
+            forAll(supertype |
+                supertype.oclIsKindOf(Behavior) or 
+                    supertype.oclIsKindOf(Step) 
+                implies
+                    let ownedParameters : Sequence(Feature) =
+                        supertype.ownedFeature->select(direction &lt;> null)->
+                            reject(owningFeatureMembership.
+                                oclIsKindOf(ReturnParameterMembership)) in
+                    ownedParameters->size() >= i implies
+                        redefines(ownedParameters->at(i)))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="_19_0_4_12e503d9_1671148048995_888108_101310" name="checkFeatureObjectSpecialization" visibility="public" constrainedElement="_18_5_3_12e503d9_1533160651684_893483_42160">
@@ -3359,7 +3361,7 @@ implies
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1671148049005_753928_101311" name="" visibility="public">
             <language>OCL2.0</language>
             <body>ownedTyping.type->exists(selectByKind(Structure)) implies
-    specializesFromLibary('Objects::objects')</body>
+    specializesFromLibrary('Objects::objects')</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="_19_0_4_12e503d9_1671165189300_469507_101324" name="checkFeatureResultRedefinition" visibility="public" constrainedElement="_18_5_3_12e503d9_1533160651684_893483_42160">
@@ -3402,7 +3404,7 @@ implies
             <language>OCL2.0</language>
             <body>featuringType =
     let featuringTypes : OrderedSet(Type) = 
-        featuring.type->asOrderedSet() in
+        typeFeaturing.type->asOrderedSet() in
     if chainingFeature->isEmpty() then featuringTypes
     else
         featuringTypes->
@@ -4026,7 +4028,7 @@ redefines(mem.memberElement.oclAsType(Feature))</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:id="_2022x_2_12e503d9_1737751393568_57801_35" name="otherType" visibility="public" type="_18_5_3_71301a1_1537895141427_270492_15579"/>
-          <ownedParameter xmi:id="_2024x_2_12e503d9_1748895636169_602364_16532" name="" visibility="public" direction="return">
+          <ownedParameter xmi:id="_2024x_2_12e503d9_1777504395227_665116_3" name="" visibility="public" direction="return">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
           </ownedParameter>
         </ownedOperation>
@@ -4647,89 +4649,6 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
     </ownedComment>
     <packageImport xmi:id="_19_0_4_12e503d9_1597674761459_723579_884" importedPackage="_18_5_3_12e503d9_1561108524767_843573_22341"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_18_5_3_b9102da_1540928550627_934738_16593" name="Interactions" visibility="public" URI="">
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_12e503d9_1563219424870_945729_21141" name="A_payloadFeature_flowWithPayloadFeature" visibility="public" memberEnd="_18_5_3_12e503d9_1563219424870_347345_21142 _18_5_3_12e503d9_1563219424871_731860_21143">
-        <ownedEnd xmi:id="_18_5_3_12e503d9_1563219424871_731860_21143" name="flowWithPayloadFeature" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674965_592215_43200" association="_18_5_3_12e503d9_1563219424870_945729_21141">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383239925_167536_275" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383239925_78122_276" name="" visibility="public" value="1"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536870707078_432932_18087" name="A_sourceOutputFeature_flowFromOutput" visibility="public" memberEnd="_18_5_3_b9102da_1536870707078_57525_18088 _18_5_3_b9102da_1536870707079_595957_18089">
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536870707079_595957_18089" name="flowFromOutput" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" association="_18_5_3_b9102da_1536870707078_432932_18087">
-          <ownedComment xmi:id="_19_0_4_12e503d9_1619905666821_394156_58" annotatedElement="_18_5_3_b9102da_1536870707079_595957_18089">
-            <body>&lt;p>The ItemFlow that has a certain &lt;code>sourceOutputFeature&lt;/code>.&lt;/p></body>
-          </ownedComment>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_4_12e503d9_1619905589056_769670_42" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_4_12e503d9_1619905589057_204571_43" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_19_0_4_12e503d9_1661900477933_581560_726" name="A_interaction_typedFlow" visibility="public" memberEnd="_19_0_4_12e503d9_1661900477937_518125_727 _19_0_4_12e503d9_1661900477942_246120_728">
-        <ownedEnd xmi:id="_19_0_4_12e503d9_1661900477942_246120_728" name="typedFlow" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674995_282523_43352 _18_5_3_b9102da_1536346315176_644912_17389" association="_19_0_4_12e503d9_1661900477933_581560_726">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383111530_685900_205" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383111531_996991_206" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_12e503d9_1563219311175_360909_20965" name="A_flowEnd_featuringFlow" visibility="public" memberEnd="_18_5_3_12e503d9_1563219311176_506548_20966 _18_5_3_12e503d9_1563219311176_810249_20967">
-        <ownedEnd xmi:id="_18_5_3_12e503d9_1563219311176_810249_20967" name="featuringFlow" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1556735067667_716674_21923" association="_18_5_3_12e503d9_1563219311175_360909_20965">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383336807_375557_317" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383336807_35614_318" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536782596717_773414_21415" name="A_participantFeature_Interaction" visibility="public" memberEnd="_18_5_3_b9102da_1536782596717_156253_21416 _18_5_3_b9102da_1536782596718_777005_21417" navigableOwnedEnd="_18_5_3_b9102da_1536782596717_156253_21416">
-        <generalization xmi:id="_19_0_2_12e503d9_1594854565211_444036_1011" general="_18_5_3_b9102da_1536780501831_141437_20859"/>
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536782596718_777005_21417" name="" visibility="public" type="_18_5_3_b9102da_1536782424772_574530_21292" association="_18_5_3_b9102da_1536782596717_773414_21415"/>
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536782596717_156253_21416" name="participantFeature" visibility="public" type="_18_5_3_12e503d9_1533160651684_893483_42160" redefinedProperty="_18_5_3_b9102da_1536780501831_791708_20860" subsettedProperty="_18_5_3_b9102da_1536782559563_339505_21389" association="_18_5_3_b9102da_1536782596717_773414_21415">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_5_3_b9102da_1536782631301_252652_21438" name="" visibility="public" value="2"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_5_3_b9102da_1536782631301_551358_21439" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_12e503d9_1563219020686_897240_20518" name="PayloadFeature" visibility="public">
-        <ownedComment xmi:id="_19_0_4_12e503d9_1667061132290_841391_2892" annotatedElement="_18_5_3_12e503d9_1563219020686_897240_20518">
-          <body>&lt;p>A &lt;code>PayloadFeature&lt;/code> is the &lt;code>ownedFeature&lt;/code> of a &lt;code>Flow&lt;/code> that identifies the things carried by the kinds of transfers that are instances of the &lt;code>Flow&lt;/code>.&lt;/p></body>
-        </ownedComment>
-        <ownedRule xmi:id="_19_0_4_12e503d9_1667786849968_285710_2224" name="checkPayloadFeatureRedefinition" visibility="public" constrainedElement="_18_5_3_12e503d9_1563219020686_897240_20518">
-          <ownedComment xmi:id="_19_0_4_12e503d9_1671164586185_982202_101321" annotatedElement="_19_0_4_12e503d9_1667786849968_285710_2224">
-            <body>&lt;p>A &lt;code>PayloadFeature&lt;/code> must redefine the &lt;code>Feature&lt;/code> &lt;code>&lt;em>Transfers::Transfer::payload&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667786849992_733756_2225" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>redefinesFromLibrary('Transfers::Transfer::payload')</body>
-          </specification>
-        </ownedRule>
-        <generalization xmi:id="_18_5_3_12e503d9_1563219030206_829747_20560" general="_18_5_3_12e503d9_1533160651684_893483_42160"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536870569045_136097_18019" name="A_payloadType_flowForPayloadType" visibility="public" memberEnd="_18_5_3_b9102da_1536870569046_1672_18020 _18_5_3_b9102da_1536870569046_846283_18021">
-        <ownedComment xmi:id="_19_0_4_12e503d9_1619905686830_466749_60" annotatedElement="_18_5_3_b9102da_1536870569045_136097_18019">
-          <body>&lt;p>The ItemFlow that has a certain &lt;code>itemType&lt;/code>.&lt;/p></body>
-        </ownedComment>
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536870569046_846283_18021" name="flowForPayloadType" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" association="_18_5_3_b9102da_1536870569045_136097_18019">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_4_12e503d9_1619905630426_918858_54" name="" visibility="public"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_4_12e503d9_1619905630427_722309_55" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_b9102da_1536782424772_574530_21292" name="Interaction" visibility="public">
-        <ownedComment xmi:id="_19_0_2_59601fc_1585936194835_397791_229" annotatedElement="_18_5_3_b9102da_1536782424772_574530_21292">
-          <body>&lt;p>An &lt;code>Interaction&lt;/code> is a &lt;code>Behavior&lt;/code> that is also an &lt;code>Association&lt;/code>, providing a context for multiple objects that have behaviors that impact one another.&lt;/p>
-</body>
-        </ownedComment>
-        <generalization xmi:id="_18_5_3_b9102da_1536782453696_458937_21323" general="_18_5_3_12e503d9_1533160651716_116234_42240"/>
-        <generalization xmi:id="_18_5_3_b9102da_1536782450921_895921_21320" general="_18_5_3_12e503d9_1533160651709_376789_42207"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_b9102da_1536869794875_359922_17902" name="SuccessionFlow" visibility="public">
-        <ownedComment xmi:id="_19_0_2_59601fc_1585936276240_372209_240" annotatedElement="_18_5_3_b9102da_1536869794875_359922_17902">
-          <body>&lt;p>A &lt;code>SuccessionFlow&lt;/code> is a &lt;code>Flow&lt;/code> that also provides temporal ordering. It classifies &lt;code>&lt;em>Transfers&lt;/em>&lt;/code> that cannot start until the source &lt;code>&lt;em>Occurrence&lt;/em>&lt;/code> has completed and that must complete before the target &lt;code>&lt;em>Occurrence&lt;/em>&lt;/code> can start.&lt;/p></body>
-        </ownedComment>
-        <ownedRule xmi:id="_19_0_4_12e503d9_1667786659284_263611_2222" name="checkSuccessionFlowSpecialization" visibility="public" constrainedElement="_18_5_3_b9102da_1536869794875_359922_17902">
-          <ownedComment xmi:id="_19_0_4_12e503d9_1669849133817_624034_262" annotatedElement="_19_0_4_12e503d9_1667786659284_263611_2222">
-            <body>&lt;p>A &lt;code>SuccessionFlow&lt;/code> must directly or indirectly specialize the &lt;code>Step&lt;/code> &lt;code>&lt;em>Transfers::flowTransfersBefore&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
-          </ownedComment>
-          <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667786659289_297086_2223" name="" visibility="public">
-            <language>OCL2.0</language>
-            <body>specializesFromLibrary('Transfers::flowTransfersBefore')</body>
-          </specification>
-        </ownedRule>
-        <generalization xmi:id="_18_5_3_b9102da_1536869820902_976674_17933" general="_18_5_3_71301a1_1536100248189_622183_16479"/>
-        <generalization xmi:id="_18_5_3_b9102da_1536869809008_685208_17930" general="_18_5_3_b9102da_1536869417406_861526_17744"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536870573474_844688_18040" name="A_targetInputFeature_flowToInput" visibility="public" memberEnd="_18_5_3_b9102da_1536870573474_966268_18041 _18_5_3_b9102da_1536870573474_720155_18042">
         <ownedEnd xmi:id="_18_5_3_b9102da_1536870573474_720155_18042" name="flowToInput" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" association="_18_5_3_b9102da_1536870573474_844688_18040">
           <ownedComment xmi:id="_19_0_4_12e503d9_1619905678224_93665_59" annotatedElement="_18_5_3_b9102da_1536870573474_720155_18042">
@@ -4884,6 +4803,81 @@ crossingFeature.owningType.endFeature ->size() > 1</body>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_4_12e503d9_1661900494432_501813_737" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_4_12e503d9_1661900494435_256232_738" name="" visibility="public" value="*"/>
         </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536870569045_136097_18019" name="A_payloadType_flowForPayloadType" visibility="public" memberEnd="_18_5_3_b9102da_1536870569046_1672_18020 _18_5_3_b9102da_1536870569046_846283_18021">
+        <ownedComment xmi:id="_19_0_4_12e503d9_1619905686830_466749_60" annotatedElement="_18_5_3_b9102da_1536870569045_136097_18019">
+          <body>&lt;p>The ItemFlow that has a certain &lt;code>itemType&lt;/code>.&lt;/p></body>
+        </ownedComment>
+        <ownedEnd xmi:id="_18_5_3_b9102da_1536870569046_846283_18021" name="flowForPayloadType" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" association="_18_5_3_b9102da_1536870569045_136097_18019">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_4_12e503d9_1619905630426_918858_54" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_4_12e503d9_1619905630427_722309_55" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_b9102da_1536869794875_359922_17902" name="SuccessionFlow" visibility="public">
+        <ownedComment xmi:id="_19_0_2_59601fc_1585936276240_372209_240" annotatedElement="_18_5_3_b9102da_1536869794875_359922_17902">
+          <body>&lt;p>A &lt;code>SuccessionFlow&lt;/code> is a &lt;code>Flow&lt;/code> that also provides temporal ordering. It classifies &lt;code>&lt;em>Transfers&lt;/em>&lt;/code> that cannot start until the source &lt;code>&lt;em>Occurrence&lt;/em>&lt;/code> has completed and that must complete before the target &lt;code>&lt;em>Occurrence&lt;/em>&lt;/code> can start.&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_19_0_4_12e503d9_1667786659284_263611_2222" name="checkSuccessionFlowSpecialization" visibility="public" constrainedElement="_18_5_3_b9102da_1536869794875_359922_17902">
+          <ownedComment xmi:id="_19_0_4_12e503d9_1669849133817_624034_262" annotatedElement="_19_0_4_12e503d9_1667786659284_263611_2222">
+            <body>&lt;p>A &lt;code>SuccessionFlow&lt;/code> must directly or indirectly specialize the &lt;code>Step&lt;/code> &lt;code>&lt;em>Transfers::flowTransfersBefore&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667786659289_297086_2223" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>specializesFromLibrary('Transfers::flowTransfersBefore')</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="_18_5_3_b9102da_1536869820902_976674_17933" general="_18_5_3_71301a1_1536100248189_622183_16479"/>
+        <generalization xmi:id="_18_5_3_b9102da_1536869809008_685208_17930" general="_18_5_3_b9102da_1536869417406_861526_17744"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536870707078_432932_18087" name="A_sourceOutputFeature_flowFromOutput" visibility="public" memberEnd="_18_5_3_b9102da_1536870707078_57525_18088 _18_5_3_b9102da_1536870707079_595957_18089">
+        <ownedEnd xmi:id="_18_5_3_b9102da_1536870707079_595957_18089" name="flowFromOutput" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" association="_18_5_3_b9102da_1536870707078_432932_18087">
+          <ownedComment xmi:id="_19_0_4_12e503d9_1619905666821_394156_58" annotatedElement="_18_5_3_b9102da_1536870707079_595957_18089">
+            <body>&lt;p>The ItemFlow that has a certain &lt;code>sourceOutputFeature&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_4_12e503d9_1619905589056_769670_42" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_4_12e503d9_1619905589057_204571_43" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_12e503d9_1563219311175_360909_20965" name="A_flowEnd_featuringFlow" visibility="public" memberEnd="_18_5_3_12e503d9_1563219311176_506548_20966 _18_5_3_12e503d9_1563219311176_810249_20967">
+        <ownedEnd xmi:id="_18_5_3_12e503d9_1563219311176_810249_20967" name="featuringFlow" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1556735067667_716674_21923" association="_18_5_3_12e503d9_1563219311175_360909_20965">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383336807_375557_317" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383336807_35614_318" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_12e503d9_1563219424870_945729_21141" name="A_payloadFeature_flowWithPayloadFeature" visibility="public" memberEnd="_18_5_3_12e503d9_1563219424870_347345_21142 _18_5_3_12e503d9_1563219424871_731860_21143">
+        <ownedEnd xmi:id="_18_5_3_12e503d9_1563219424871_731860_21143" name="flowWithPayloadFeature" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674965_592215_43200" association="_18_5_3_12e503d9_1563219424870_945729_21141">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383239925_167536_275" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383239925_78122_276" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_b9102da_1536782424772_574530_21292" name="Interaction" visibility="public">
+        <ownedComment xmi:id="_19_0_2_59601fc_1585936194835_397791_229" annotatedElement="_18_5_3_b9102da_1536782424772_574530_21292">
+          <body>&lt;p>An &lt;code>Interaction&lt;/code> is a &lt;code>Behavior&lt;/code> that is also an &lt;code>Association&lt;/code>, providing a context for multiple objects that have behaviors that impact one another.&lt;/p>
+</body>
+        </ownedComment>
+        <generalization xmi:id="_18_5_3_b9102da_1536782450921_895921_21320" general="_18_5_3_12e503d9_1533160651709_376789_42207"/>
+        <generalization xmi:id="_18_5_3_b9102da_1536782453696_458937_21323" general="_18_5_3_12e503d9_1533160651716_116234_42240"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_19_0_4_12e503d9_1661900477933_581560_726" name="A_interaction_typedFlow" visibility="public" memberEnd="_19_0_4_12e503d9_1661900477937_518125_727 _19_0_4_12e503d9_1661900477942_246120_728">
+        <ownedEnd xmi:id="_19_0_4_12e503d9_1661900477942_246120_728" name="typedFlow" visibility="public" type="_18_5_3_b9102da_1536869417406_861526_17744" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674995_282523_43352 _18_5_3_b9102da_1536346315176_644912_17389" association="_19_0_4_12e503d9_1661900477933_581560_726">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2022x_2_12e503d9_1734383111530_685900_205" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2022x_2_12e503d9_1734383111531_996991_206" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_12e503d9_1563219020686_897240_20518" name="PayloadFeature" visibility="public">
+        <ownedComment xmi:id="_19_0_4_12e503d9_1667061132290_841391_2892" annotatedElement="_18_5_3_12e503d9_1563219020686_897240_20518">
+          <body>&lt;p>A &lt;code>PayloadFeature&lt;/code> is the &lt;code>ownedFeature&lt;/code> of a &lt;code>Flow&lt;/code> that identifies the things carried by the kinds of transfers that are instances of the &lt;code>Flow&lt;/code>.&lt;/p></body>
+        </ownedComment>
+        <ownedRule xmi:id="_19_0_4_12e503d9_1667786849968_285710_2224" name="checkPayloadFeatureRedefinition" visibility="public" constrainedElement="_18_5_3_12e503d9_1563219020686_897240_20518">
+          <ownedComment xmi:id="_19_0_4_12e503d9_1671164586185_982202_101321" annotatedElement="_19_0_4_12e503d9_1667786849968_285710_2224">
+            <body>&lt;p>A &lt;code>PayloadFeature&lt;/code> must redefine the &lt;code>Feature&lt;/code> &lt;code>&lt;em>Transfers::Transfer::payload&lt;/em>&lt;/code> from the Kernel Semantic Library.&lt;/p></body>
+          </ownedComment>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1667786849992_733756_2225" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>redefinesFromLibrary('Transfers::Transfer::payload')</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="_18_5_3_12e503d9_1563219030206_829747_20560" general="_18_5_3_12e503d9_1533160651684_893483_42160"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_12e503d9_1563219035000_53223_20571" name="FlowEnd" visibility="public">
         <ownedComment xmi:id="_19_0_4_12e503d9_1667060892812_513507_2877" annotatedElement="_18_5_3_12e503d9_1563219035000_53223_20571">
@@ -5714,7 +5708,7 @@ endif</body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1676502992666_831947_418" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>let sourceParameter : Feature = sourceTargetFeature() in
+            <body>let sourceTargetFeature : Feature = sourceTargetFeature() in
 sourceTargetFeature &lt;> null and
 sourceTargetFeature.redefinesFromLibrary('ControlFunctions::\'.\'::source::target')</body>
           </specification>
@@ -5725,7 +5719,7 @@ sourceTargetFeature.redefinesFromLibrary('ControlFunctions::\'.\'::source::targe
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1676503459395_429688_428" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>let sourceParameter : Feature = sourceTargetFeature() in
+            <body>let sourceTargetFeature : Feature = sourceTargetFeature() in
 sourceTargetFeature &lt;> null and
 sourceTargetFeature.redefines(targetFeature)</body>
           </specification>
@@ -5853,7 +5847,7 @@ endif</body>
             <body>ownedMembership->exists(not oclIsKindOf(FeatureMembership))</body>
           </specification>
         </ownedRule>
-        <ownedRule xmi:id="_2022x_2_12e503d9_1739212141873_785669_484" name="deriveMetadataAccessExpressionReferencdElement" visibility="public" constrainedElement="_19_0_4_12e503d9_1665514023745_516216_1215">
+        <ownedRule xmi:id="_2022x_2_12e503d9_1739212141873_785669_484" name="deriveMetadataAccessExpressionReferencedElement" visibility="public" constrainedElement="_19_0_4_12e503d9_1665514023745_516216_1215">
           <ownedComment xmi:id="_2022x_2_12e503d9_1739212141874_913711_486" annotatedElement="_2022x_2_12e503d9_1739212141873_785669_484">
             <body>&lt;p>The &lt;code>referencedElement&lt;/code> of a &lt;code>MetadataAccessExpression&lt;/code> is the &lt;code>memberElement&lt;/code> of its first &lt;code>ownedMembership&lt;/code> that is not a &lt;code>FeatureMembership&lt;/code>.&lt;/p></body>
           </ownedComment>
@@ -7776,13 +7770,6 @@ endif</body>
         <ownedEnd xmi:id="_18_5_3_12e503d9_1533160674967_983329_43209" name="connector" visibility="public" type="_18_5_3_12e503d9_1533160651698_598377_42185" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674961_585972_43176" association="_18_5_3_12e503d9_1533160651683_67028_42159">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_5_3_12e503d9_1533160678365_808531_43993" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_5_3_12e503d9_1533160678365_936747_43992" name="" visibility="public" value="*"/>
-        </ownedEnd>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_18_5_3_b9102da_1536780501831_141437_20859" name="A_participantFeature_Association" visibility="public" memberEnd="_18_5_3_b9102da_1536780501831_791708_20860 _18_5_3_b9102da_1536780501832_621542_20861" navigableOwnedEnd="_18_5_3_b9102da_1536780501831_791708_20860">
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536780501832_621542_20861" name="" visibility="public" type="_18_5_3_12e503d9_1533160651716_116234_42240" association="_18_5_3_b9102da_1536780501831_141437_20859"/>
-        <ownedEnd xmi:id="_18_5_3_b9102da_1536780501831_791708_20860" name="participantFeature" visibility="public" type="_18_5_3_12e503d9_1533160651684_893483_42160" isOrdered="true" isDerived="true" subsettedProperty="_18_5_3_12e503d9_1533160674959_226999_43167" association="_18_5_3_b9102da_1536780501831_141437_20859">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_5_3_b9102da_1536862398895_411579_16457" name="" visibility="public" value="2"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_5_3_b9102da_1536862398899_690399_16458" name="" visibility="public" value="*"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_18_5_3_b9102da_1543591219823_238592_17680" name="BindingConnector" visibility="public">

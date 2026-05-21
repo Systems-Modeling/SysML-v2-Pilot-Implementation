@@ -25,7 +25,7 @@ modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
 transformation PrepareMetamodel(in export: UML, in standard: UML, out prepared: UML);
 
-property version = "20250201";
+property version = "20260501";
 
 main() {
 	run()

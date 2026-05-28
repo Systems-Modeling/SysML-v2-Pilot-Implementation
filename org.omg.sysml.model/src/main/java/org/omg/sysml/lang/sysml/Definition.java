@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedPart = ownedUsage->selectByKind(PartUsage)
  * ownedPort = ownedUsage->selectByKind(PortUsage)
  * ownedConnection = ownedUsage->selectByKind(ConnectorAsUsage)
- * ownedFlow = ownedUsage->selectByKind(FlowConnectionUsage)
+ * ownedFlow = ownedUsage->selectByKind(FlowUsage)
  * ownedInterface = ownedUsage->selectByKind(ReferenceUsage)
  * ownedAllocation = ownedUsage->selectByKind(AllocationUsage)
  * ownedAction = ownedUsage->selectByKind(ActionUsage)
@@ -51,7 +51,7 @@ import org.eclipse.emf.common.util.EList;
  * ownedView = ownedUsage->selectByKind(ViewUsage)
  * ownedViewpoint = ownedUsage->selectByKind(ViewpointUsage)
  * ownedRendering = ownedUsage->selectByKind(RenderingUsage)
- * ownedMetadata = ownedUsage->selectByKind(MetadataUsage)
+ * ownedMetadata = ownedMember->selectByKind(MetadataUsage)
  * isVariation implies isAbstract
  * <!-- end-model-doc -->
  *
@@ -834,7 +834,7 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>MetadataUsages</code> that are <code>ownedUsages</code> of this <code>Definition</code>.</p>
+	 * <p>The <code>MetadataUsages</code> that are <code>ownedMembers</code> of this <code>Definition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedMetadata()

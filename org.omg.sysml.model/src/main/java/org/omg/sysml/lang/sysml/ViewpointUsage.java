@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * viewpointStakeholder = framedConcern.featureMemberhsip->
  *     selectByKind(StakeholderMembership).
  *     ownedStakeholderParameter
- * specializesFromLibrary('Views::viewpoints')
+ * specializesFromLibrary('Views::viewpointChecks')
  * isComposite and owningType <> null and
  * (owningType.oclIsKindOf(ViewDefinition) or
  *  owningType.oclIsKindOf(ViewUsage)) implies

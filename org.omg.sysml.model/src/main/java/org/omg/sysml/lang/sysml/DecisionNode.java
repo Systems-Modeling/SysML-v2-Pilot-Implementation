@@ -18,7 +18,7 @@ package org.omg.sysml.lang.sysml;
  * specializesFromLibrary('Actions::Action::decisions')
  * sourceConnector->selectByKind(Succession)->
  *     forAll(subsetsChain(self, 
- *         resolveGlobal('ControlPerformances::MergePerformance::outgoingHBLink')))
+ *         resolveGlobal('ControlPerformances::DecisionPerformance::outgoingHBLink')))
  * <!-- end-model-doc -->
  *
  *

@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.logic.api.IModelLibraryProvider;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLLibraryUtil;
 
 /**
@@ -61,14 +62,14 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 			return null;
 		}
 
-		String[] segments = name.split("::");
-		if (segments.length == 0) {
+		List<String> segments = ElementUtil.parseQualifiedName(name);
+		if (segments == null || segments.isEmpty()) {
 			return null;
 		}
 
 		List<Resource> candidates = getCandidateResources(resourceSet);
 		for (Resource candidate : candidates) {
-			Element element = getElement(candidate, segments);
+			Element element = getElement(candidate, segments.toArray(String[]::new));
 			if (element != null) {
 				return element;
 			}

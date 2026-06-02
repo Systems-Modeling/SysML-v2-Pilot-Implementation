@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) Obeo
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -16,7 +16,7 @@
  * along with this program. If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *
  * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
- *  
+ *
  *******************************************************************************/
 
 package org.omg.sysml.util;
@@ -104,6 +104,43 @@ public class SysMLLibraryUtil {
 	 */
 	public static String getModelLibraryPath() {
 		return modelLibraryPath;
+	}
+
+	/**
+	 * Identifies whether an EMF resource should be treated as belonging to the
+	 * SysML/KerML model libraries.
+	 *
+	 * <p>A resource is considered a library resource when its URI matches the
+	 * currently configured model-library path, or when its URI contains the
+	 * final segment of {@link #DEFAULT_MODEL_LIBRARY_PATH}. Both the URI string
+	 * and file string forms are checked so this method works across platform,
+	 * file, and standalone EMF resource sets.
+	 *
+	 * @param resource the resource to classify
+	 * @return {@code true} if the resource appears to be a model-library resource;
+	 *         {@code false} otherwise
+	 */
+	public static boolean isLibraryResource(Resource resource) {
+		if (resource == null || resource.getURI() == null) {
+			return false;
+		}
+
+		URI uri = resource.getURI();
+		String currentModelLibraryPath = getModelLibraryPath();
+		if (currentModelLibraryPath != null && !currentModelLibraryPath.isBlank()) {
+			String uriString = uri.toString();
+			if (uriString.contains(currentModelLibraryPath)) {
+				return true;
+			}
+
+			String fileString = uri.toFileString();
+			if (fileString != null && fileString.contains(currentModelLibraryPath)) {
+				return true;
+			}
+		}
+
+		String defaultModelLibrarySegment = URI.createURI(DEFAULT_MODEL_LIBRARY_PATH).lastSegment();
+		return defaultModelLibrarySegment != null && uri.segmentsList().contains(defaultModelLibrarySegment);
 	}
 
 	/**

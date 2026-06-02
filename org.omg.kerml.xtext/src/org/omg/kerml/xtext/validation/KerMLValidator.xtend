@@ -3,7 +3,8 @@
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2018-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- *    
+ * Copyright (c) 2026 Obeo
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -24,6 +25,7 @@
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, JPL
+ *  Axel Richard, Obeo
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.validation
@@ -33,7 +35,6 @@ import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.validation.Check
 
 import org.omg.sysml.lang.sysml.Type
@@ -1421,22 +1422,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkLibraryPackage(LibraryPackage pkg) {
-		if (pkg.isStandard && !pkg.eResource.isModelLibrary) {
+		if (pkg.isStandard && !SysMLLibraryUtil.isLibraryResource(pkg.eResource)) {
 			warning(INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE_NOT_STANDARD)
 		}
 	}
-	
+
 	/* Utility Methods */
-	
-	private def static boolean isModelLibrary(Resource resource) {
-		if (resource === null) {
-			return false;
-		} else {
-			val path = resource.URI.devicePath ?: resource.URI.path;
-			return path !== null && path.contains(SysMLLibraryUtil.modelLibraryPath);
-		}
-	}
-	
+
 	def static boolean isBoolean(Expression condition) {
 		specializesFromLibrary(condition, condition.result, "ScalarValues::Boolean") ||
 		// LiteralBooleans currently don't have an inferred Boolean result type.

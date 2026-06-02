@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) Obeo
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -16,7 +16,7 @@
  * along with this program. If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *
  * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
- *  
+ *
  *******************************************************************************/
 
 package org.omg.sysml.logic;
@@ -43,8 +43,6 @@ import org.omg.sysml.util.SysMLLibraryUtil;
  * does not depend on Xtext indexing or alias-based lookup.
  */
 public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
-
-	private static final String MODEL_LIBRARY_FOLDER = "sysml.library";
 
 	/**
 	 * Resolves a qualified library name against the resources already loaded in
@@ -87,7 +85,7 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 		List<Resource> otherResources = new ArrayList<>();
 
 		for (Resource resource : resourceSet.getResources()) {
-			if (isLibraryResource(resource)) {
+			if (SysMLLibraryUtil.isLibraryResource(resource)) {
 				libraryResources.add(resource);
 			} else {
 				otherResources.add(resource);
@@ -95,31 +93,6 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 		}
 
 		return libraryResources.isEmpty() ? otherResources : libraryResources;
-	}
-
-	/**
-	 * Identifies resources that should be treated as library candidates based on
-	 * the configured model library path or the conventional {@code sysml.library}
-	 * folder name in the URI.
-	 */
-	private boolean isLibraryResource(Resource resource) {
-		if (resource == null || resource.getURI() == null) {
-			return false;
-		}
-
-		String modelLibraryPath = SysMLLibraryUtil.getModelLibraryPath();
-		String uriString = resource.getURI().toString();
-		String fileString = resource.getURI().toFileString();
-		if (modelLibraryPath != null && !modelLibraryPath.isBlank()) {
-			if (uriString.contains(modelLibraryPath)) {
-				return true;
-			}
-			if (fileString != null && fileString.contains(modelLibraryPath)) {
-				return true;
-			}
-		}
-
-		return resource.getURI().segmentsList().contains(MODEL_LIBRARY_FOLDER);
 	}
 
 	/**

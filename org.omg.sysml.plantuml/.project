@@ -3,6 +3,7 @@
 	<name>org.omg.sysml.plantuml</name>
 	<comment>SysML 2 Plant UML Visualization Core</comment>
 	<projects>
+		<project>org.omg.sysml.model</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

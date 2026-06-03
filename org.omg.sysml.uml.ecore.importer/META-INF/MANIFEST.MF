@@ -9,8 +9,10 @@ Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
+ org.eclipse.uml2.codegen.ecore,
  org.eclipse.uml2.uml,
  org.eclipse.uml2.uml.ecore.importer,
  org.eclipse.emf.importer,
+ org.eclipse.emf.codegen.ecore,
  org.eclipse.emf.codegen.ecore.ui
 Export-Package: org.omg.sysml.uml.ecore.importer

@@ -1,0 +1,79 @@
+/**
+ */
+package org.omg.sysml.lang.sysml;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Parameter Membership</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * <p>A <code>ParameterMembership</code> is a <code>FeatureMembership</code> that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A <code>ParameterMembership</code> must be owned by a <code>Behavior</code>, a <code>Step</code>, or the <code>result</code> parameter of a <code>ConstructorExpression</code>.</p>
+ * ownedMemberParameter.direction = parameterDirection()
+ * owningType.oclIsKindOf(Behavior) or owningType.oclIsKindOf(Step) or
+ * owningType.owningMembership.oclIsKindOf(ReturnParameterMembership) and
+ *     owningType.owningNamespace.oclIsKindOf(ConstructorExpression)
+ * <!-- end-model-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter <em>Owned Member Parameter</em>}</li>
+ * </ul>
+ *
+ * @see org.omg.sysml.lang.sysml.SysMLPackage#getParameterMembership()
+ * @model
+ * @generated
+ */
+public interface ParameterMembership extends FeatureMembership {
+	/**
+	 * Returns the value of the '<em><b>Owned Member Parameter</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature() <em>Owned Member Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>Feature</code> that is identified as a <code>parameter</code> by this <code>ParameterMembership</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Member Parameter</em>' reference.
+	 * @see #setOwnedMemberParameter(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getParameterMembership_OwnedMemberParameter()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningParameterMembership'"
+	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	Feature getOwnedMemberParameter();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter <em>Owned Member Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Member Parameter</em>' reference.
+	 * @see #getOwnedMemberParameter()
+	 * @generated
+	 */
+	void setOwnedMemberParameter(Feature value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the required value of the <code>direction</code> of the <code>ownedMemberParameter</code>. By default, this is <code>in</code>.</p>
+	 * FeatureDirectionKind::_'in'
+	 * <!-- end-model-doc -->
+	 * @model required="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	FeatureDirectionKind parameterDirection();
+
+} // ParameterMembership

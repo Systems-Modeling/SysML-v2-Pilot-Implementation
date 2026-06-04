@@ -25,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -393,7 +394,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 			+ "	   }\n"
 			+ "	   part def B {\n"
 			+ "		   public import A::*;\n"
-			+ "        feature g;\n"
+			+ "        attribute g;\n"
 			+ "	   }\n"
 			+ "	   part def C :> B;"
 			+ "}";
@@ -416,4 +417,75 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	private boolean testFeatureOwningTypes(Type type) {
 		return type.getFeatureMembership().stream().map(FeatureMembership::getOwningType).allMatch(t->type.specializes(t));
 	}
+	
+	public final String namespaceResolveTest =
+			  "package Test {\n"
+			+ "	   part def A {\n"
+			+ "		   attribute f;\n"
+			+ "	   }\n"
+			+ "	   part def B {\n"
+			+ "		   public import A::*;\n"
+			+ "        attribute g;\n"
+			+ "	   }\n"
+			+ "	   part def C :> B;"
+			+ "}";
+	
+	@Test
+	public void testNamespaceResolve() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(namespaceResolveTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		Namespace Test = (Namespace)elements.get(0);
+		List<Element> ownedMembers = Test.getOwnedMember();
+		Definition A = (Definition)ownedMembers.get(0);
+		Definition B = (Definition)ownedMembers.get(1);
+		Definition C = (Definition)ownedMembers.get(2);
+
+		Usage f = (Usage)A.getOwnedMember().get(0);		
+		Usage g = (Usage)B.getOwnedMember().get(0);
+		
+		assertNotNull(Test.getOwningMembership());
+		assertNotNull(A.getOwningMembership());
+		assertNotNull(B.getOwningMembership());
+		assertNotNull(C.getOwningMembership());
+		assertNotNull(f.getOwningMembership());
+		assertNotNull(g.getOwningMembership());
+		
+		assertSame("A.resolveLocal(g)", null, A.resolveLocal("g"));
+		assertSame("A.resolveLocal(f)", f.getOwningMembership(), A.resolveLocal("f"));
+		assertSame("A.resolveLocal(A)", A.getOwningMembership(), A.resolveLocal("A"));
+		assertSame("A.resolveLocal(B)", B.getOwningMembership(), A.resolveLocal("B"));
+		assertSame("A.resolveLocal(C)", C.getOwningMembership(), A.resolveLocal("C"));
+		
+		assertSame("B.resolveLocal(g)", g.getOwningMembership(), B.resolveLocal("g"));
+		assertSame("B.resolveLocal(f)", f.getOwningMembership(), B.resolveLocal("f"));
+		
+		assertSame("C.resolveLocal(g)", g.getOwningMembership(), C.resolveLocal("g"));
+		assertSame("C.resolveLocal(f)", f.getOwningMembership(), C.resolveLocal("f"));
+		
+		assertSame("Test.resolveGlobal(Test)", Test.getOwningMembership(), Test.resolveGlobal("Test"));
+		assertSame("Test.resolveGlobal(A)", null, Test.resolveGlobal("A"));
+		assertSame("A.resolveGlobal(Test)", Test.getOwningMembership(), A.resolveGlobal("Test"));
+		
+		assertSame("A.resolve(f)", f.getOwningMembership(), A.resolve("f"));
+		assertSame("A.resolve(B::f)", f.getOwningMembership(), A.resolve("B::f"));
+		assertSame("A.resolve(B::g)", g.getOwningMembership(), A.resolve("B::g"));
+		assertSame("A.resolve(C::f)", f.getOwningMembership(), A.resolve("C::f"));
+		assertSame("A.resolve(C::g)", g.getOwningMembership(), A.resolve("C::g"));
+		
+		assertSame("Test.resolve(f)", null, Test.resolve("f"));
+		assertSame("Test.resolve(A::f)", f.getOwningMembership(), Test.resolve("A::f"));
+		assertSame("Test.resolve(B::f)", f.getOwningMembership(), Test.resolve("B::f"));
+		assertSame("Test.resolve(B::g)", g.getOwningMembership(), Test.resolve("B::g"));
+		assertSame("Test.resolve(C::f)", f.getOwningMembership(), Test.resolve("C::f"));
+		assertSame("Test.resolve(C::g)", g.getOwningMembership(), Test.resolve("C::g"));
+		
+		assertSame("Test.resolve(Test::A::f)", f.getOwningMembership(), Test.resolve("Test::A::f"));
+		assertSame("Test.resolve(Test::B::f)", f.getOwningMembership(), Test.resolve("Test::B::f"));
+		assertSame("Test.resolve(Test::B::g)", g.getOwningMembership(), Test.resolve("Test::B::g"));
+		assertSame("Test.resolve(Test::C::f)", f.getOwningMembership(), Test.resolve("Test::C::f"));
+		assertSame("Test.resolve(Test::C::g)", g.getOwningMembership(), Test.resolve("Test::C::g"));
+	}
+	
 }

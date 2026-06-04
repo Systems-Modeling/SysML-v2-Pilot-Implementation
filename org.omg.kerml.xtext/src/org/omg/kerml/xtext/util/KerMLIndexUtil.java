@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.io.SysMLUtil;
 
 public class KerMLIndexUtil extends SysMLUtil {
 	

@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.io.SysMLUtil;
 import org.omg.sysml.util.repository.EObjectUUIDTracker;
 import org.omg.sysml.util.repository.APIModel;
 import org.omg.sysml.util.repository.EMFModelDelta;

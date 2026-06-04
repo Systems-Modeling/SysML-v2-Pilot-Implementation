@@ -51,7 +51,6 @@ import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.NamespaceImport
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.util.ISysMLScope
 import com.google.inject.Inject
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -59,7 +58,7 @@ import org.omg.sysml.util.NamespaceUtil
 import org.omg.kerml.xtext.naming.QualifiedNameUtil
 import org.omg.sysml.lang.sysml.Redefinition
 
-class KerMLScope extends AbstractScope implements ISysMLScope {
+class KerMLScope extends AbstractScope {
 	
 	@Inject
 	IQualifiedNameConverter qualifiedNameConverter
@@ -163,7 +162,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		!resolveInScope(QualifiedName.create(input.name.firstSegment), true).isEmpty()
 	}
 	
-	override getElement(String name) {
+	def getElement(String name) {
 		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}

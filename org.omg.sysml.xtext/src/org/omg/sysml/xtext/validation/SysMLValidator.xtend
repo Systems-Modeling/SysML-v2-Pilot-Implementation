@@ -128,7 +128,7 @@ import org.omg.sysml.lang.sysml.ViewUsage
 import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
 

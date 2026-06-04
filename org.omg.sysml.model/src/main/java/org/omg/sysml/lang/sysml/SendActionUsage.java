@@ -13,7 +13,10 @@ package org.omg.sysml.lang.sysml;
  * 
  * senderArgument = argument(2)
  * payloadArgument = argument(1)
- * inputParameters()->size() >= 3
+ * owningFeatureMembership <> null and
+ * (owningFeatureMembership.oclIsKindOf(StateSubactionMembership) or
+ *  owningFeatureMembership.oclIsKindOf(TransitionFeatureMembership)) implies
+ *     payloadArgument <> null
  * receiverArgument = argument(3)
  * isSubactionUsage() implies
  *     specializesFromLibrary('Actions::Action::acceptSubactions')
@@ -73,7 +76,7 @@ public interface SendActionUsage extends ActionUsage {
 	 * @return the value of the '<em>Payload Argument</em>' reference.
 	 * @see #setPayloadArgument(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_PayloadArgument()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendingActionUsage'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

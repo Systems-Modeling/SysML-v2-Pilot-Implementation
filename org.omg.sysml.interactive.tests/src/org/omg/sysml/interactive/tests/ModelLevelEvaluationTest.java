@@ -157,7 +157,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testIntegerOpsModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		checkExpressionIsModelLevelEvaluable(instance, "+1");
 		checkExpressionIsModelLevelEvaluable(instance, "-1");
 		checkExpressionIsModelLevelEvaluable(instance, "1+2");
@@ -169,7 +169,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testComparisonOpsModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		checkExpressionIsModelLevelEvaluable(instance, "1==2");
 		checkExpressionIsModelLevelEvaluable(instance, "1!=2");
 		checkExpressionIsModelLevelEvaluable(instance, "1<2");
@@ -180,7 +180,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testBooleanOpsModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		checkExpressionIsModelLevelEvaluable(instance, "not true");
 		checkExpressionIsModelLevelEvaluable(instance, "true & false");
 		checkExpressionIsModelLevelEvaluable(instance, "true | false");
@@ -194,7 +194,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testListOpsModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		checkExpressionIsModelLevelEvaluable(instance, "null");
 		checkExpressionIsModelLevelEvaluable(instance, "()");
 		checkExpressionIsModelLevelEvaluable(instance, "(1, 2, 3)");
@@ -203,7 +203,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testControlOpsModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		checkExpressionIsModelLevelEvaluable(instance, "null.{in x; 1}");
 		checkExpressionIsModelLevelEvaluable(instance, "null.?{in x; true}");
 		checkExpressionIsModelLevelEvaluable(instance, "ControlFunctions::collect(null, {in x; 1})");
@@ -212,7 +212,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testNonModelLevelEvaluability() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		
 		checkExpressionNotModelLevelEvaluable(instance, "SequenceFunctions::size(null)");
 		checkExpressionNotModelLevelEvaluable(instance, "SequenceFunctions::includes(null, 1)");
@@ -320,7 +320,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testCollectionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance,
 				  "attribute collection15 = new Collections::OrderedCollection(elements = (1, 5));\n"
 				+ "attribute collection123 = new Collections::OrderedCollection(elements = (1, 2, 3));\n"
@@ -348,7 +348,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testConstructorEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance,
 				"part def P { attribute a; attribute b; } " +
 				"part p1 = new P(1, 2); " +
@@ -363,7 +363,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testFeatureReferenceEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, 
 				"metadata def Annotation { attribute a; } " +
 		        "attribute x {@Annotation{a = 1;}}");
@@ -375,7 +375,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEnumeratedValueEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, 
 				"metadata def Annotation { attribute a; } " +
 			    "enum def E { e; }" +
@@ -389,7 +389,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testSelfReferenceEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, 
 				"metadata def Annotation; " +
 		        "attribute x {@Annotation;}");
@@ -400,7 +400,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testIsTypeEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, 
 				"metadata def Annotation { attribute a; attribute b; } " +
 			    "enum def E { e; }" +
@@ -413,7 +413,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testSelfIsTypeEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, 
 				"metadata def Annotation; " +
 				"attribute x {@Annotation;}");
@@ -425,7 +425,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testSelfIsMetaclassEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, "attribute a; part p;");
 		
 		assertTrue(evaluateBooleanValue(instance, 
@@ -452,7 +452,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testReflectiveAccess() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, "abstract part def P { attribute x; }");
 		
 		assertTrue(evaluateBooleanValue(instance, null, "P.metadata#(1) istype SysML::PartDefinition"));
@@ -469,7 +469,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testMetadataAccess() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, "metadata def M1 { attribute a; }" +
 						  "metadata def M2;" +
 						  "abstract part def P { @M1 { a = 1; } @M2; }");

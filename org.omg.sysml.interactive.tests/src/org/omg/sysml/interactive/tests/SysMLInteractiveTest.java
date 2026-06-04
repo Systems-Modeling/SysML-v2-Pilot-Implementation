@@ -40,6 +40,13 @@ public abstract class SysMLInteractiveTest {
 		return System.getProperty(SYSML_LIBRARY_PATH_KEY);
 	}
 	
+	public SysMLInteractive createSysMLInteractiveInstance() {
+		SysMLInteractive instance = SysMLInteractive.createInstance();
+		instance.setVerbose(false);
+		instance.loadLibrary(getLibraryPath());
+		return instance;
+	}
+	
 	public SysMLInteractive getSysMLInteractiveInstance() {
 		SysMLInteractive instance = SysMLInteractive.getInstance();
 		instance.setVerbose(false);

@@ -16,7 +16,7 @@ package org.omg.sysml.lang.sysml;
  * targetParameter <> null and
  * targetParameter.ownedFeature->notEmpty() and
  * targetParameter.ownedFeature->first().
- *     redefines('AssignmentAction::target::startingAt')
+ *     redefinesFromLibrary('AssignmentAction::target::startingAt')
  * valueExpression = argument(2)
  * targetArgument = argument(1)
  * isSubactionUsage() implies
@@ -24,25 +24,27 @@ package org.omg.sysml.lang.sysml;
  * let targetParameter : Feature = inputParameter(1) in
  * targetParameter <> null and
  * targetParameter.ownedFeature->notEmpty() and
- * targetParameter->first().ownedFeature->notEmpty() and
- * targetParameter->first().ownedFeature->first().
- *     redefines('AssigmentAction::target::startingAt::accessedFeature')
+ * targetParameter.ownedFeature->first().ownedFeature->notEmpty() and
+ * targetParameter.ownedFeature->first().ownedFeature->first().
+ *     redefinesFromLibrary('AssigmentAction::target::startingAt::accessedFeature')
  * let targetParameter : Feature = inputParameter(1) in
  * targetParameter <> null and
  * targetParameter.ownedFeature->notEmpty() and
- * targetParameter->first().ownedFeature->notEmpty() and
- * targetParameter->first().ownedFeature->first().redefines(referent)
+ * targetParameter.ownedFeature->first().ownedFeature->notEmpty() and
+ * targetParameter.ownedFeature->first().ownedFeature->first().redefines(referent)
  * referent =
  *     let unownedFeatures : Sequence(Feature) = ownedMembership->
  *         reject(oclIsKindOf(FeatureMembership)).memberElement->
- *         selectByKind(Feature) in
+ *         select(oclIsKindOf(Feature) and 
+ *                not oclIsKindOf(MetadataFeature)) in
  *     if unownedFeatures->isEmpty() then null
  *     else unownedFeatures->first().oclAsType(Feature)
  *     endif
  * ownedMembership->exists(
  *     not oclIsKindOf(OwningMembership) and 
- *     memberElement.oclIsKindOf(Feature))
- * referent <> null implies referent.featureTarget.mayTimeVary
+ *     memberElement.oclIsKindOf(Feature) and
+ *     not memberElement.oclIsKindOf(MetadataFeature))
+ * referent <> null implies referent.featureTarget.isVariable
  * <!-- end-model-doc -->
  *
  * <p>

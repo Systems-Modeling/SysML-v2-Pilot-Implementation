@@ -94,7 +94,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testViewExpose() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		List<Element> elements = process(instance, test);
 		ViewUsage view = (ViewUsage)((Namespace)elements.get(0)).getOwnedMember().get(1);
 		List<Element> exposed = view.getExposedElement();
@@ -111,7 +111,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testQualifiedName() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(qualifiedNameTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -150,7 +150,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testPathOperation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		List<Element> elements = process(instance, pathTest);
 		
 		Namespace TopLevel = (Namespace)elements.get(0);
@@ -201,7 +201,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testDirectedUsage1() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(directedUsageTest1);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -248,7 +248,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testDirectedUsage2() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(directedUsageTest2);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -292,7 +292,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEnumeratedValue() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(enumeratedValueTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -324,7 +324,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testCircularRecursiveImport() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(circularRecursiveImportTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -345,7 +345,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testLocale() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(localeTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -370,7 +370,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testCrossFeature() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(crossFeatureTest);
 		Element root = result.getRootElement();
 		Namespace test = (Namespace)((Namespace)root).getOwnedMember().get(0);
@@ -401,7 +401,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testFeatureMembership() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(featureMembershipTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -432,7 +432,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testNamespaceResolve() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(namespaceResolveTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();

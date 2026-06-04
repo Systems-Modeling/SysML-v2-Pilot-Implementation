@@ -38,7 +38,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testRedefinitionShadowing() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		
 		SysMLInteractiveResult result1 = instance.process("y = 1;");
 		System.out.println(result1);
@@ -57,7 +57,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testRedefinitionShadowingMultidigitFiles() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		
 		// This is used to ensure later requests will get identifiers 9 and 10
 		for (int i=1; i<9; i++) {
@@ -81,7 +81,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testNoShadowingCaseSensitive() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		
 		SysMLInteractiveResult result1 = instance.process("y = 1;");
 		System.out.println(result1);

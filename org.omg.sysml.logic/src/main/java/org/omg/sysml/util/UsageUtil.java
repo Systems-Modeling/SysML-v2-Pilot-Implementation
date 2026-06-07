@@ -144,8 +144,6 @@ public class UsageUtil {
 	}
 
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		// TODO: Update checkRequirementUsageObjectiveRedefinition
-		// See SYSML21-309
 		if (type instanceof Feature) {
 			type = ((Feature)type).getFeatureTarget();
 		}

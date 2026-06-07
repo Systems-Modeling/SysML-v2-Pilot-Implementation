@@ -908,7 +908,7 @@ class SysMLValidator extends KerMLValidator {
 			warning(INVALID_SEND_ACTION_USAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SEND_ACTION_USAGE_RECEIVER)
 		}
 		
-		// validateSendActionPayloadArgument
+		// validateSendActionUsagePayloadArgument
 		val featureMembership = usg.featureMembership
 		if ((featureMembership instanceof StateSubactionMembership || 
 			 featureMembership instanceof TransitionFeatureMembership) && 

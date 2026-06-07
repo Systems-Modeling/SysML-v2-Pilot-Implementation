@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2023, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 
 public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -41,6 +42,7 @@ public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerived
 				filter(m->!(m instanceof FeatureMembership)).
 				map(Membership::getMemberElement).
 				filter(Feature.class::isInstance).
+				filter(f->!(f instanceof MetadataFeature)).
 				findFirst().orElse(null);
 	}
 

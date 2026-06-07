@@ -131,6 +131,7 @@ import org.omg.sysml.lang.sysml.WhileLoopActionUsage
 import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.MetadataFeature
 
 /**
  * This class contains custom validation rules. 
@@ -778,7 +779,8 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkAssignmentActionUsage(AssignmentActionUsage usg) {
 		// validateAssignmentActionUsageReferent
-		if (!usg.ownedMembership.exists[m | !(m instanceof FeatureMembership) && m.memberElement instanceof Feature]) {
+		if (!usg.ownedMembership.exists[m | 
+			!(m instanceof FeatureMembership) && m.memberElement instanceof Feature && !(m.memberElement instanceof MetadataFeature)]) {
 			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
 		}
 		

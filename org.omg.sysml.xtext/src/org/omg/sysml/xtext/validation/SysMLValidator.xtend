@@ -263,6 +263,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ASSIGNMENT_ACTION_USAGE_ARGUMENTS_MSG = "An assignment must have two arguments."
 	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT = "validateAssignmentActionUsageReferent"
 	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG = "An assignment must have a referent."
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_IS_TIME_VARYING = "validateAssignmentActionUsageReferentIsTimeVarying"
+	public static val INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_IS_TIME_VARYING_MSG = "Referent must be time varying."
 
 	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT = "validateTriggerInvocationActionAfterArgument"
 	public static val INVALID_TRIGGER_INVOCATION_EXPRESSION_AFTER_ARGUMENT_MSG = "An after expression must be a DurationValue."
@@ -781,9 +783,14 @@ class SysMLValidator extends KerMLValidator {
 		// validateAssignmentActionUsageReferent
 		if (!usg.ownedMembership.exists[m | 
 			!(m instanceof FeatureMembership) && m.memberElement instanceof Feature && !(m.memberElement instanceof MetadataFeature)]) {
-			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg, null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_MSG, usg.ownedRelationship.get(1), null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT)
 		}
 		
+		// validateAssignmentActionUsageReferentIsTimeVarying
+		val referent = usg.referent
+		if (referent !== null && !referent.eIsProxy && !referent.featureTarget.isVariable) {
+			error(INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_IS_TIME_VARYING_MSG, usg.ownedRelationship.get(1), null, INVALID_ASSIGNMENT_ACTION_USAGE_REFERENT_IS_TIME_VARYING)
+		}
 	}
 	
 	@Check

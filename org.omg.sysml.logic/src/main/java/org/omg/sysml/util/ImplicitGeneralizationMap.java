@@ -571,12 +571,6 @@ public class ImplicitGeneralizationMap {
 		//checkViewpointUsageViewpointSatisfactionSpecialization
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
 		
-		/*
-		 * TODO: Update checkViewpointDefinitionSpecialization and checkViewpointUsageSpecialization
-		 * 
-		 * See SYSML21-301
-		 */
-		
 		//checkWhileLoopActionUsageSpecialization
 		put(WhileLoopActionUsageImpl.class, "base", "Actions::whileLoopActions");
 		//checkWhileLoopActionUsageSubactionSpecialization

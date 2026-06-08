@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
@@ -486,6 +487,44 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertSame("Test.resolve(Test::B::g)", g.getOwningMembership(), Test.resolve("Test::B::g"));
 		assertSame("Test.resolve(Test::C::f)", f.getOwningMembership(), Test.resolve("Test::C::f"));
 		assertSame("Test.resolve(Test::C::g)", g.getOwningMembership(), Test.resolve("Test::C::g"));
+	}
+	
+	public final String ownedMetadataTest =
+			  "package Test {\n"
+			+ "	   part def P {\n"
+			+ "        @M1; @M2;\n"
+			+ "        part p : P {\n"
+			+ "            @M1; @M2;\n"
+			+ "        }\n"
+			+ "    }\n"
+			+ "    metadata def M1;\n"
+			+ "    metadata def M2;\n"
+			+ "}";
+	
+	@Test
+	public void testOwnedMetadataAndNestedMetadata() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(ownedMetadataTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		Namespace Test = (Namespace)elements.get(0);
+		List<Element> ownedMembers = Test.getOwnedMember();
+		Definition P = (Definition)ownedMembers.get(0);
+		List<Element> P_ownedMembers = P.getOwnedMember();
+		Usage P_M1 = (Usage)P_ownedMembers.get(0);
+		Usage P_M2 = (Usage)P_ownedMembers.get(1);
+		Usage p = (Usage)P_ownedMembers.get(2);
+		List<Element> p_ownedMembers = p.getOwnedMember();
+		Usage p_M1 = (Usage)p_ownedMembers.get(0);
+		Usage p_M2 = (Usage)p_ownedMembers.get(1);
+		
+		List<MetadataUsage> ownedMetadata = P.getOwnedMetadata();
+		assertTrue("P_M1", ownedMetadata.contains(P_M1));
+		assertTrue("P_M2", ownedMetadata.contains(P_M2));
+
+		List<MetadataUsage> nestedMetadata = p.getNestedMetadata();
+		assertTrue("p_M1", nestedMetadata.contains(p_M1));
+		assertTrue("p_M2", nestedMetadata.contains(p_M2));
 	}
 	
 }

@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2023, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,29 +20,27 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AssignmentActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.MetadataUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class AssignmentActionUsage_referent_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class Definition_ownedMetadata_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public AssignmentActionUsage_referent_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Definition_ownedMetadata_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		return (Feature) ((AssignmentActionUsage)owner).getOwnedMembership().stream().
-				filter(m->!(m instanceof FeatureMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				filter(f->!(f instanceof MetadataFeature)).
-				findFirst().orElse(null);
+	protected EList<MetadataUsage> basicGet(InternalEObject owner) {
+		EList<MetadataUsage> ownedMetadata = new NonNotifyingEObjectEList<>(MetadataUsage.class, owner, eStructuralFeature.getFeatureID());
+		((Definition)owner).getMember().stream().
+			filter(MetadataUsage.class::isInstance).
+			map(MetadataUsage.class::cast).
+			forEachOrdered(ownedMetadata::add);
+		return ownedMetadata;
 	}
 
 }

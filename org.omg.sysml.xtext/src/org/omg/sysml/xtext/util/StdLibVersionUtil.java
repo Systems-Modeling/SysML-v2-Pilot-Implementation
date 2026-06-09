@@ -103,8 +103,8 @@ public class StdLibVersionUtil {
 
 		InterchangeProjectUsage[] usages = info.getUsage();
 		for (InterchangeProjectUsage usage : usages) {
-			if (buildTag != null && usage.getResource() != null) {
-				usage.setResource(withBuildTagResource(usage.getResource(), buildTag));
+			if (metamodelTag != null && usage.getResource() != null) {
+				usage.setResource(withBuildTagResource(usage.getResource(), metamodelTag));
 			}
 			if (usage.getVersionConstraint() != null) {
 				usage.setVersionConstraint(buildTag != null
@@ -144,10 +144,10 @@ public class StdLibVersionUtil {
 		System.err.println("           [--build-tag BUILD_TAG] [--metamodel-tag METAMODEL_TAG]");
 		System.err.println();
 		System.err.println("  --workspace       Path to the workspace directory containing .workspace.json (required)");
-		System.err.println("  --build-tag       Stamp -dev.<tag> onto version, versionConstraint, and resource");
-		System.err.println("                    URLs in each project's .project.json");
-		System.err.println("  --metamodel-tag   Replace the date segment of the metamodel URL in each project's");
-		System.err.println("                    .meta.json");
+		System.err.println("  --build-tag       Stamp -dev.<tag> onto version and versionConstraint in each");
+		System.err.println("                    project's .project.json");
+		System.err.println("  --metamodel-tag   Replace the date segment of resource URLs in each project's");
+		System.err.println("                    .project.json and the metamodel URL in each project's .meta.json");
 		System.err.println("  --help            Show this message");
 		System.err.println();
 		System.err.println("At least one of --build-tag or --metamodel-tag must be provided.");

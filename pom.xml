@@ -6,7 +6,7 @@
   <properties>
 	<revision>0.60.0-SNAPSHOT</revision>
     <sysml.build-tag>20260501</sysml.build-tag>
-    <sysml.metadata-tag>20250201</sysml.metadata-tag>
+    <sysml.metamodel-tag>20250201</sysml.metamodel-tag>
     <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>

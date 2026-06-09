@@ -75,7 +75,7 @@
 								<argument>--build-tag</argument>
 								<argument>${sysml.build-tag}</argument>
 								<argument>--metamodel-tag</argument>
-								<argument>${sysml.metadata-tag}</argument>
+								<argument>${sysml.metamodel-tag}</argument>
 							</arguments>
 							<classpathScope>compile</classpathScope>
 						</configuration>

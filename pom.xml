@@ -5,6 +5,8 @@
 
   <properties>
 	<revision>0.60.0-SNAPSHOT</revision>
+    <sysml.build-tag>20260501</sysml.build-tag>
+    <sysml.metamodel-tag>20250201</sysml.metamodel-tag>
     <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
@@ -28,7 +30,7 @@
     <junit.version>3.5.3</junit.version>
     <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
-    <sysand.version>0.0.11</sysand.version>
+    <sysand.version>0.1.0-rc.1</sysand.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -369,14 +371,14 @@
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>${build-helper-maven-plugin.version}</version>
         </plugin>
-		<!-- 
+		<!--
 			From version 3.0 maven install plugin seems to be more strict about subproject outputs.
 			This is a workaround to solve the error:
 			The packaging for this project did not assign a file to the build artifact...
 			in the jupyter-sysml-kernel project.
 			Related topic:
 			https://stackoverflow.com/questions/6308162/maven-the-packaging-for-this-project-did-not-assign-a-file-to-the-build-artifac
-			
+
 			TODO: Get rid of this part once we remove gradle form the project (ST6RI-764)
 		-->
 		<plugin>

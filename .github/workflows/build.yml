@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: ./mvnw -B clean verify --file pom.xml
+      run: ./mvnw -B clean verify --file pom.xml -Dsysml.build-tag=nightly-$(date +'%Y%m%d') -Dsysml.metadata-tag=$(date +'%Y%m%d')
     - name: Upload SysML Library .kpar files
       uses: actions/upload-artifact@v5
       with:

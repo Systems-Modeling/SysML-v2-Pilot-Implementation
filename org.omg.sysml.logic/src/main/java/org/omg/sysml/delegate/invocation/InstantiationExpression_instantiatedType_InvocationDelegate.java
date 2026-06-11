@@ -1,7 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2025 Model Driven Solutions, Inc.
- *    
+ * Copyright (c) 2026 Obeo
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -21,6 +22,7 @@
 package org.omg.sysml.delegate.invocation;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Objects;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
@@ -43,6 +45,7 @@ public class InstantiationExpression_instantiatedType_InvocationDelegate extends
 		Element member =self.getOwnedMembership().stream().
 			filter(m->!(m instanceof FeatureMembership)).
 			map(Membership::getMemberElement).
+			filter(Objects::nonNull).
 			findFirst().orElse(null);
 		return member instanceof Type? member: null;
 	}

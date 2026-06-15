@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -90,6 +91,23 @@ public class UsageUtil {
 		return getUsageAdapter(usage).mayTimeVary();
 	}
 		
+	// Featuring Types
+	
+	/**
+	 * Determine with a given Usage should have a featuringType after transformation,
+	 * without actually computing the full derivation for featuringType. Assumes that
+	 * a Usage in SysML can only get a featuringType in one of two ways:
+	 * 1. If it is an ownedFeature.
+	 * 2. If it is a variant of a variation Usage that has a featuringType.
+	 */
+	public static boolean hasFeaturingType(Usage usage) {
+		EObject container = usage.eContainer();
+		return container instanceof FeatureMembership ||
+			   container.eContainer() instanceof Usage &&
+			   ((Usage)container.eContainer()).isVariation() &&
+			   hasFeaturingType((Usage)container.eContainer());
+	}
+
 	// Variants
 	
 	public static boolean isVariant(Usage usage) {

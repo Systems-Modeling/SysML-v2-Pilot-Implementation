@@ -59,7 +59,7 @@ standard library package Collections {
          * Feature elements is a flattened sequence of all elements of an Array and can be accessed by a tuple of indices. 
          * The number of indices is equal to rank. The elements are packed according to row-major convention.
          * 
-         * The elements of an Array can be assessed by a tuple of indices. The number of indices in such tuple is equal to rank. 
+         * The elements of an Array can be accessed by a tuple of indices. The number of indices in such tuple is equal to rank. 
          * The elements are packed according to the row-major convention.
          * 
          * Note 1. Feature dimensions may be empty, which denotes a zero dimensional array, allowing an Array to collapse to a single element. 

@@ -94,18 +94,28 @@ public class UsageUtil {
 	// Featuring Types
 	
 	/**
-	 * Determine with a given Usage should have a featuringType after transformation,
+	 * Determine the featuringType a Usage is expected to have after transformation,
 	 * without actually computing the full derivation for featuringType. Assumes that
 	 * a Usage in SysML can only get a featuringType in one of two ways:
 	 * 1. If it is an ownedFeature.
 	 * 2. If it is a variant of a variation Usage that has a featuringType.
+	 * Note that the special featuringTypes of variable features are ignored.
 	 */
-	public static boolean hasFeaturingType(Usage usage) {
+	public static Type getExpectedFeaturingTypeOf(Usage usage) {
 		EObject container = usage.eContainer();
-		return container instanceof FeatureMembership ||
-			   container.eContainer() instanceof Usage &&
-			   ((Usage)container.eContainer()).isVariation() &&
-			   hasFeaturingType((Usage)container.eContainer());
+		if (container instanceof FeatureMembership) {
+			return ((FeatureMembership)container).getOwningType();
+		} else if (container != null &&
+				   container.eContainer() instanceof Usage &&
+				   ((Usage)container.eContainer()).isVariation()) {
+			return getExpectedFeaturingTypeOf((Usage)container.eContainer());
+		} else {
+			return null;
+		}
+	}
+
+	public static boolean hasFeaturingType(Usage usage) {
+		return getExpectedFeaturingTypeOf(usage) != null;
 	}
 
 	// Variants

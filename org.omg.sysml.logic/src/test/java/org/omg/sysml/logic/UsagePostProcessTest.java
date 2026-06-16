@@ -45,6 +45,7 @@ public class UsagePostProcessTest {
 	@BeforeClass
 	public static void setUp() {
 		SysMLLogicStandaloneSetup.doSetup();
+		SysMLPackage.eINSTANCE.eClass();
 	}
 
 	/**
@@ -60,7 +61,10 @@ public class UsagePostProcessTest {
 		 *	       part x;
 		 *	       in part y
 		 *		   variation part z {
-		 *	           variant part w;
+		 *	           variant variation part u {
+		 *                 variant part v;
+		 *             }
+		 *             variant port w;
 		 *		    }
 		 *     }
 		 *	   variation part q {
@@ -76,15 +80,16 @@ public class UsagePostProcessTest {
 		y.setDirection(FeatureDirectionKind.IN);
 		Usage z = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "z", p);
 		z.setIsVariation(true);
-		Usage u = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "w", z);
+		Usage u = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "u", z);
 		u.setIsVariation(true);
-		Usage v = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "w", u);
+		Usage v = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "v", u);
+		Usage w = (Usage) createElement(SysMLPackage.Literals.PORT_USAGE, "w", u);
 		Usage q = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "q", test);
 		q.setIsVariation(true);
 		Usage r = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "r", q);
 		
 		// Post-process after creating the entire model.
-		postProcess(p, a, x, y, z, u, v, q, r);
+		postProcess(p, a, x, y, z, u, v, w, q, r);
 		
 		assertTrue(p.isReference());
 		assertTrue(a.isReference());
@@ -93,6 +98,7 @@ public class UsagePostProcessTest {
 		assertFalse(z.isReference());
 		assertFalse(u.isReference());
 		assertFalse(v.isReference());
+		assertTrue(w.isReference());
 		assertTrue(q.isReference());
 		assertTrue(r.isReference());
 	}

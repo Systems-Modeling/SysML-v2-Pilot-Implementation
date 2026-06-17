@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -103,12 +103,12 @@ public class UsageUtil {
 	 */
 	public static Type getExpectedFeaturingTypeOf(Usage usage) {
 		EObject container = usage.eContainer();
-		if (container instanceof FeatureMembership) {
-			return ((FeatureMembership)container).getOwningType();
+		if (container instanceof FeatureMembership featureMembership) {
+			return featureMembership.getOwningType();
 		} else if (container != null &&
-				   container.eContainer() instanceof Usage &&
-				   ((Usage)container.eContainer()).isVariation()) {
-			return getExpectedFeaturingTypeOf((Usage)container.eContainer());
+				   container.eContainer() instanceof Usage containingUsage &&
+				   containingUsage.isVariation()) {
+			return getExpectedFeaturingTypeOf(containingUsage);
 		} else {
 			return null;
 		}

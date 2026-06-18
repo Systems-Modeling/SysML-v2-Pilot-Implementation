@@ -101,8 +101,10 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	 */
 	private Element getElement(Resource resource, String[] segments) {
 		for (EObject object : resource.getContents()) {
-			if (object instanceof Element element) {
-				Element match = resolveElement(element, segments, 0);
+			// Element not contained in a Namespace can not be access using their qualified names
+			// Section 8.3.2.1.2 Element: "If this Element does not have an owningNamespace, then its qualifiedName is null.”
+			if (object instanceof Namespace namespace) {
+				Element match = resolveElement(namespace, segments, 0);
 				if (match != null) {
 					return match;
 				}
@@ -115,51 +117,28 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	 * Resolves one qualified-name segment at a time by matching the current
 	 * element and then descending through namespace memberships.
 	 */
-	private Element resolveElement(Element element, String[] segments, int index) {
-		if (!matchesElementName(element, segments[index])) {
+	private Element resolveElement(Namespace namespace, String[] segments, int index) {
+		if (namespace == null || index >= segments.length) {
 			return null;
 		}
 
-		if (index == segments.length - 1) {
-			return element;
-		}
-
-		if (!(element instanceof Namespace namespace)) {
-			return null;
-		}
-
-		String nextSegment = segments[index + 1];
-		for (Membership membership : getOwnedMemberships(namespace)) {
+		String currentSegment = segments[index];
+		for (Membership membership : namespace.getOwnedMembership()) {
 			Element member = membership.getMemberElement();
-			if (member == null || !matchesMembershipName(membership, member, nextSegment)) {
-				continue;
-			}
 
-			if (index + 1 == segments.length - 1) {
-				return member;
-			}
-
-			Element nested = resolveElement(member, segments, index + 1);
-			if (nested != null) {
-				return nested;
+			if (member != null && matchesMembershipName(membership, member, currentSegment)) {
+				if (index == segments.length - 1) {
+					return member;
+				} else if (member instanceof Namespace namespaceMember) {
+					Element nested = resolveElement(namespaceMember, segments, index + 1);
+					if (nested != null) {
+						return nested;
+					}
+				}
 			}
 		}
 
 		return null;
-	}
-
-	/**
-	 * Returns the memberships owned directly by a namespace using only EMF model
-	 * state, avoiding any Xtext-specific scoping infrastructure.
-	 */
-	private List<Membership> getOwnedMemberships(Namespace namespace) {
-		List<Membership> memberships = new ArrayList<>();
-		for (EObject relationship : namespace.getOwnedRelationship()) {
-			if (relationship instanceof Membership membership) {
-				memberships.add(membership);
-			}
-		}
-		return memberships;
 	}
 
 	/**
@@ -193,6 +172,6 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	 * Performs an exact name comparison while tolerating missing values.
 	 */
 	private boolean matches(String expected, String actual) {
-		return expected != null && actual != null && expected.equals(actual);
+		return expected != null && expected.equals(actual);
 	}
 }

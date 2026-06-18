@@ -30,21 +30,22 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLLibraryUtil;
 
 /**
- * Verifies the plain-EMF standalone bootstrap for {@link SysMLLogicStandaloneSetup}.
+ * Verifies the plain-EMF standalone bootstrap for
+ * {@link SysMLLogicStandaloneSetup}.
  */
 public class SysMLLogicStandaloneSetupTest {
 
 	/**
-	 * Checks that the standalone setup installs library lookup and delegate
-	 * support without requiring any Xtext runtime bootstrap, and that invoking
-	 * the setup multiple times remains safe for subsequent lookups.
+	 * Checks that the standalone setup installs library lookup and delegate support
+	 * without requiring any Xtext runtime bootstrap, and that invoking the setup
+	 * multiple times remains safe for subsequent lookups.
 	 */
 	@Test
 	public void standaloneSetupResolvesLibraryElementsWithoutXtext() {
@@ -59,21 +60,23 @@ public class SysMLLogicStandaloneSetupTest {
 		resourceSet.getResources().add(libraryResource);
 		resourceSet.getResources().add(modelResource);
 
-		SysMLFactory factory = SysMLFactory.eINSTANCE;
+		Namespace libraryRootNamespace = SysMLFactory.eINSTANCE.createNamespace();
+		libraryResource.getContents().add(libraryRootNamespace);
 
-		Namespace library = factory.createNamespace();
+		Namespace library = SysMLFactory.eINSTANCE.createNamespace();
 		library.setDeclaredName("Base");
-		libraryResource.getContents().add(library);
+		NamespaceUtil.addOwnedMemberTo(libraryRootNamespace,library);
 
-		Type anything = factory.createType();
+		Type anything = SysMLFactory.eINSTANCE.createType();
 		anything.setDeclaredName("Anything");
-		OwningMembership anythingMembership = factory.createOwningMembership();
-		anythingMembership.setOwnedMemberElement(anything);
-		library.getOwnedRelationship().add(anythingMembership);
+		NamespaceUtil.addOwnedMemberTo(library, anything);
 
-		Namespace context = factory.createNamespace();
+		Namespace modelRootNamespace = SysMLFactory.eINSTANCE.createNamespace();
+		modelResource.getContents().add(modelRootNamespace);
+
+		Namespace context = SysMLFactory.eINSTANCE.createNamespace();
 		context.setDeclaredName("UserModel");
-		modelResource.getContents().add(context);
+		NamespaceUtil.addOwnedMemberTo(modelRootNamespace, context);
 
 		assertEquals("Anything", anything.effectiveName());
 		assertEquals("Anything", anything.getName());

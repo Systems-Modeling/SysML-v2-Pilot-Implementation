@@ -29,12 +29,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLLibraryUtil;
 
 /**
@@ -66,18 +65,18 @@ public class SysMLLogicStandaloneSetupTest {
 
 		Namespace library = SysMLFactory.eINSTANCE.createNamespace();
 		library.setDeclaredName("Base");
-		addAsOwnedMember(libraryRootNamespace, library);
+		NamespaceUtil.addOwnedMemberTo(libraryRootNamespace,library);
 
 		Type anything = SysMLFactory.eINSTANCE.createType();
 		anything.setDeclaredName("Anything");
-		addAsOwnedMember(library, anything);
+		NamespaceUtil.addOwnedMemberTo(library, anything);
 
 		Namespace modelRootNamespace = SysMLFactory.eINSTANCE.createNamespace();
 		modelResource.getContents().add(modelRootNamespace);
 
 		Namespace context = SysMLFactory.eINSTANCE.createNamespace();
 		context.setDeclaredName("UserModel");
-		addAsOwnedMember(modelRootNamespace, context);
+		NamespaceUtil.addOwnedMemberTo(modelRootNamespace, context);
 
 		assertEquals("Anything", anything.effectiveName());
 		assertEquals("Anything", anything.getName());
@@ -86,11 +85,5 @@ public class SysMLLogicStandaloneSetupTest {
 
 		SysMLLogicStandaloneSetup.doSetup();
 		assertSame(anything, SysMLLibraryUtil.getLibraryType(context, "Base::Anything"));
-	}
-
-	private void addAsOwnedMember(Element parent, Element child) {
-		OwningMembership owningMembership = SysMLFactory.eINSTANCE.createOwningMembership();
-		owningMembership.setOwnedMemberElement(child);
-		parent.getOwnedRelationship().add(owningMembership);
 	}
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -90,6 +91,33 @@ public class UsageUtil {
 		return getUsageAdapter(usage).mayTimeVary();
 	}
 		
+	// Featuring Types
+	
+	/**
+	 * Determine the featuringType a Usage is expected to have after transformation,
+	 * without actually computing the full derivation for featuringType. Assumes that
+	 * a Usage in SysML can only get a featuringType in one of two ways:
+	 * 1. If it is an ownedFeature.
+	 * 2. If it is a variant of a variation Usage that has a featuringType.
+	 * Note that the special featuringTypes of variable features are ignored.
+	 */
+	public static Type getExpectedFeaturingTypeOf(Usage usage) {
+		EObject container = usage.eContainer();
+		if (container instanceof FeatureMembership featureMembership) {
+			return featureMembership.getOwningType();
+		} else if (container != null &&
+				   container.eContainer() instanceof Usage containingUsage &&
+				   containingUsage.isVariation()) {
+			return getExpectedFeaturingTypeOf(containingUsage);
+		} else {
+			return null;
+		}
+	}
+
+	public static boolean hasFeaturingType(Usage usage) {
+		return getExpectedFeaturingTypeOf(usage) != null;
+	}
+
 	// Variants
 	
 	public static boolean isVariant(Usage usage) {

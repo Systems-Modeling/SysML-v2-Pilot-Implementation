@@ -62,9 +62,7 @@ public class UsageAdapter extends FeatureAdapter {
 		if (target.isVariation()) {
 			target.setIsAbstract(true);
 		}
-		if (target.getDirection() != null || target.isEnd() || 
-			// Note: A parsed Usage can only get a featuring type if it is owned via a FeatureMembership.
-			!(target.eContainer() instanceof FeatureMembership)) {
+		if (target.getDirection() != null || target.isEnd() || !UsageUtil.hasFeaturingType(target)) {
 			target.setIsComposite(false);
 		}
 	}

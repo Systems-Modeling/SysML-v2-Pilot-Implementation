@@ -286,14 +286,14 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	/**
 	 * Executes the given consumer function with all implicit binding connectors and
-	 * their corresponding membership type (Membership or FeatureMembership)
+	 * their corresponding membership type (OwningMembership or FeatureMembership)
 	 */
 	public void forEachImplicitBindingConnector(BiConsumer<BindingConnector, EClass> consumer) {
 		for (BindingConnector connector : implicitFeatureBindingConnectors) {
 			consumer.accept(connector, SysMLPackage.Literals.FEATURE_MEMBERSHIP);
 		}
 		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			consumer.accept(connector, SysMLPackage.Literals.MEMBERSHIP);
+			consumer.accept(connector, SysMLPackage.Literals.OWNING_MEMBERSHIP);
 		}
 	}
 	

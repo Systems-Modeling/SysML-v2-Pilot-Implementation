@@ -21,7 +21,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.omg.sysml</groupId>
-			<artifactId>org.omg.sysml.model</artifactId>
+			<artifactId>org.omg.sysml.logic</artifactId>
 			<version>${revision}</version>
 		</dependency>
 	</dependencies>
@@ -35,7 +35,7 @@
         <version>${maven-resources-plugin.version}</version>
         <executions>
           <execution>
-            <id>copy-jar-org.omg.sysml.model</id>
+            <id>copy-jar-org.omg.sysml.logic</id>
             <phase>initialize</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -46,7 +46,7 @@
                 <resource>
                   <directory>${project.basedir}/../org.omg.sysml.logic/target</directory>
                   <includes>
-                    <include>org.omg.sysml.model-*.jar</include>
+                    <include>org.omg.sysml.logic-*.jar</include>
                   </includes>
                   <excludes>
                     <exclude>*-sources.jar</exclude>

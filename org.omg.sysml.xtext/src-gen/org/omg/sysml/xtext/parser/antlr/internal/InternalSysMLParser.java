@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @SuppressWarnings("all")
-public class InternalSysMLParser extends InternalSysMLParser16 {
+public class InternalSysMLParser extends InternalSysMLParser28 {
     // delegates
     // delegators
 
@@ -60371,7 +60371,7 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
 
 
     // $ANTLR start "ruleFramedConcernUsage"
-    // InternalSysML.g:20696:1: ruleFramedConcernUsage returns [EObject current=null] : ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] ) ) ;
+    // InternalSysML.g:20696:1: ruleFramedConcernUsage returns [EObject current=null] : ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] ) ) ;
     public final EObject ruleFramedConcernUsage() throws RecognitionException {
         EObject current = null;
 
@@ -60387,17 +60387,17 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
 
         EObject this_ConstraintUsageDeclaration_6 = null;
 
-        EObject this_CalculationBody_7 = null;
+        EObject this_RequirementBody_7 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:20702:2: ( ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] ) ) )
-            // InternalSysML.g:20703:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] ) )
+            // InternalSysML.g:20702:2: ( ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] ) ) )
+            // InternalSysML.g:20703:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] ) )
             {
-            // InternalSysML.g:20703:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] ) )
+            // InternalSysML.g:20703:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedReferenceSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_RequirementBody_2= ruleRequirementBody[$current] ) | ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] ) )
             int alt303=2;
             int LA303_0 = input.LA(1);
 
@@ -60525,10 +60525,10 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
                     }
                     break;
                 case 2 :
-                    // InternalSysML.g:20750:3: ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] )
+                    // InternalSysML.g:20750:3: ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] )
                     {
-                    // InternalSysML.g:20750:3: ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current] )
-                    // InternalSysML.g:20751:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_CalculationBody_7= ruleCalculationBody[$current]
+                    // InternalSysML.g:20750:3: ( ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current] )
+                    // InternalSysML.g:20751:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ ) this_ConstraintUsageDeclaration_6= ruleConstraintUsageDeclaration[$current] this_RequirementBody_7= ruleRequirementBody[$current]
                     {
                     // InternalSysML.g:20751:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConcernUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )
                     int alt302=2;
@@ -60588,7 +60588,7 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
                               						newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getConcernUsageKeywordParserRuleCall_1_0_0_1());
                               					
                             }
-                            pushFollow(FOLLOW_211);
+                            pushFollow(FOLLOW_79);
                             ruleConcernUsageKeyword();
 
                             state._fsp--;
@@ -60631,7 +60631,7 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
                             	      						newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
                             	      					
                             	    }
-                            	    pushFollow(FOLLOW_222);
+                            	    pushFollow(FOLLOW_83);
                             	    this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword(current);
 
                             	    state._fsp--;
@@ -60670,7 +60670,7 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
                       				newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getConstraintUsageDeclarationParserRuleCall_1_1());
                       			
                     }
-                    pushFollow(FOLLOW_35);
+                    pushFollow(FOLLOW_25);
                     this_ConstraintUsageDeclaration_6=ruleConstraintUsageDeclaration(current);
 
                     state._fsp--;
@@ -60686,17 +60686,17 @@ public class InternalSysMLParser extends InternalSysMLParser16 {
                       				if (current==null) {
                       					current = createModelElement(grammarAccess.getFramedConcernUsageRule());
                       				}
-                      				newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getCalculationBodyParserRuleCall_1_2());
+                      				newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getRequirementBodyParserRuleCall_1_2());
                       			
                     }
                     pushFollow(FOLLOW_2);
-                    this_CalculationBody_7=ruleCalculationBody(current);
+                    this_RequirementBody_7=ruleRequirementBody(current);
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      				current = this_CalculationBody_7;
+                      				current = this_RequirementBody_7;
                       				afterParserOrEnumRuleCall();
                       			
                     }

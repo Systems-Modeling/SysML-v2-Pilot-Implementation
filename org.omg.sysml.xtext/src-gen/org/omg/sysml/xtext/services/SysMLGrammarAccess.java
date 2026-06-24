@@ -12020,20 +12020,20 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cConcernUsageKeywordParserRuleCall_1_0_0_1 = (RuleCall)cGroup_1_0_0.eContents().get(1);
 		private final RuleCall cUsageExtensionKeywordParserRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
 		private final RuleCall cConstraintUsageDeclarationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final RuleCall cCalculationBodyParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final RuleCall cRequirementBodyParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
 		
 		//FramedConcernUsage returns SysML::ConcernUsage :
 		//      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
 		//      RequirementBody
 		//    | ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ )
-		//      ConstraintUsageDeclaration CalculationBody
+		//      ConstraintUsageDeclaration RequirementBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
 		//  RequirementBody
 		//| ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ )
-		//  ConstraintUsageDeclaration CalculationBody
+		//  ConstraintUsageDeclaration RequirementBody
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
@@ -12053,7 +12053,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getRequirementBodyParserRuleCall_0_2() { return cRequirementBodyParserRuleCall_0_2; }
 		
 		//( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ )
-		//     ConstraintUsageDeclaration CalculationBody
+		//     ConstraintUsageDeclaration RequirementBody
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ )
@@ -12074,8 +12074,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ConstraintUsageDeclaration
 		public RuleCall getConstraintUsageDeclarationParserRuleCall_1_1() { return cConstraintUsageDeclarationParserRuleCall_1_1; }
 		
-		//CalculationBody
-		public RuleCall getCalculationBodyParserRuleCall_1_2() { return cCalculationBodyParserRuleCall_1_2; }
+		//RequirementBody
+		public RuleCall getRequirementBodyParserRuleCall_1_2() { return cRequirementBodyParserRuleCall_1_2; }
 	}
 	public class ActorMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ActorMember");
@@ -19632,7 +19632,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization*
 	//      RequirementBody
 	//    | ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ )
-	//      ConstraintUsageDeclaration CalculationBody
+	//      ConstraintUsageDeclaration RequirementBody
 	//;
 	public FramedConcernUsageElements getFramedConcernUsageAccess() {
 		return pFramedConcernUsage;

@@ -20801,11 +20801,11 @@ ruleFramedConcernUsage returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFramedConcernUsageRule());
 				}
-				newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getCalculationBodyParserRuleCall_1_2());
+				newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getRequirementBodyParserRuleCall_1_2());
 			}
-			this_CalculationBody_7=ruleCalculationBody[$current]
+			this_RequirementBody_7=ruleRequirementBody[$current]
 			{
-				$current = $this_CalculationBody_7.current;
+				$current = $this_RequirementBody_7.current;
 				afterParserOrEnumRuleCall();
 			}
 		)

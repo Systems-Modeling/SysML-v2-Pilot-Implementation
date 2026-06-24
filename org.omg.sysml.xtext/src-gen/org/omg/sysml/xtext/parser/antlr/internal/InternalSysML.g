@@ -465,22 +465,35 @@ ruleAnnotatingMember returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getAnnotatingMemberRule());
+			}
+			newCompositeNode(grammarAccess.getAnnotatingMemberAccess().getMemberPrefixParserRuleCall_0());
+		}
+		this_MemberPrefix_0=ruleMemberPrefix[$current]
+		{
+			$current = $this_MemberPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
 		(
-			{
-				newCompositeNode(grammarAccess.getAnnotatingMemberAccess().getOwnedRelatedElementAnnotatingElementParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleAnnotatingElement
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getAnnotatingMemberRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getAnnotatingMemberAccess().getOwnedRelatedElementAnnotatingElementParserRuleCall_1_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.AnnotatingElement");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelatedElement_1_0=ruleAnnotatingElement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAnnotatingMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.AnnotatingElement");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;

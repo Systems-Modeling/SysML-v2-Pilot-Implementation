@@ -71,7 +71,7 @@ OwnedAnnotation returns SysML::Annotation :
 ;
 
 AnnotatingMember returns SysML::OwningMembership :
-	ownedRelatedElement += AnnotatingElement 
+	MemberPrefix ownedRelatedElement += AnnotatingElement 
 ;
 
 AnnotatingElement returns SysML::AnnotatingElement :

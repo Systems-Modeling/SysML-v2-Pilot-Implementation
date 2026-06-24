@@ -172,7 +172,7 @@ public abstract class InternalSysMLParser14 extends InternalSysMLParser13 {
             this.transition = dfa_268;
         }
         public String getDescription() {
-            return "()* loopback of 19391:3: ( ( ruleCalculationBodyItem[null] )=>this_CalculationBodyItem_0= ruleCalculationBodyItem[$current] )*";
+            return "()* loopback of 19404:3: ( ( ruleCalculationBodyItem[null] )=>this_CalculationBodyItem_0= ruleCalculationBodyItem[$current] )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -635,7 +635,7 @@ public abstract class InternalSysMLParser14 extends InternalSysMLParser13 {
             this.transition = dfa_274;
         }
         public String getDescription() {
-            return "()* loopback of 20150:4: ( ( ruleRequirementBodyItem[null] )=>this_RequirementBodyItem_2= ruleRequirementBodyItem[$current] )*";
+            return "()* loopback of 20163:4: ( ( ruleRequirementBodyItem[null] )=>this_RequirementBodyItem_2= ruleRequirementBodyItem[$current] )*";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -879,7 +879,7 @@ public abstract class InternalSysMLParser14 extends InternalSysMLParser13 {
             this.transition = dfa_278;
         }
         public String getDescription() {
-            return "20181:2: (this_DefinitionBodyItem_0= ruleDefinitionBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleSubjectMember ) ) | ( (lv_ownedRelationship_2_0= ruleRequirementConstraintMember ) ) | ( (lv_ownedRelationship_3_0= ruleFramedConcernMember ) ) | ( (lv_ownedRelationship_4_0= ruleRequirementVerificationMember ) ) | ( (lv_ownedRelationship_5_0= ruleActorMember ) ) | ( (lv_ownedRelationship_6_0= ruleStakeholderMember ) ) )";
+            return "20194:2: (this_DefinitionBodyItem_0= ruleDefinitionBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleSubjectMember ) ) | ( (lv_ownedRelationship_2_0= ruleRequirementConstraintMember ) ) | ( (lv_ownedRelationship_3_0= ruleFramedConcernMember ) ) | ( (lv_ownedRelationship_4_0= ruleRequirementVerificationMember ) ) | ( (lv_ownedRelationship_5_0= ruleActorMember ) ) | ( (lv_ownedRelationship_6_0= ruleStakeholderMember ) ) )";
         }
     }
     static final String dfa_279s = "\11\uffff";
@@ -920,7 +920,7 @@ public abstract class InternalSysMLParser14 extends InternalSysMLParser13 {
             this.transition = dfa_284;
         }
         public String getDescription() {
-            return "20543:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConstraintUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
+            return "20556:4: ( ( (this_UsageExtensionKeyword_3= ruleUsageExtensionKeyword[$current] )* ruleConstraintUsageKeyword ) | (this_UsageExtensionKeyword_5= ruleUsageExtensionKeyword[$current] )+ )";
         }
     }
 }

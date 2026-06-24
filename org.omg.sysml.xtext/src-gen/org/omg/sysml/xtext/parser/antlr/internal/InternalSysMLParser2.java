@@ -107,7 +107,7 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1964:3: ( ( (lv_ownedRelatedElement_1_0= ruleDefinitionElement ) ) | ( (lv_ownedRelatedElement_2_0= ruleUsageElement ) ) )";
+            return "1977:3: ( ( (lv_ownedRelatedElement_1_0= ruleDefinitionElement ) ) | ( (lv_ownedRelatedElement_2_0= ruleUsageElement ) ) )";
         }
     }
     static final String dfa_7s = "\16\uffff";
@@ -153,7 +153,7 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             this.transition = dfa_12;
         }
         public String getDescription() {
-            return "2244:3: (this_MembershipImport_0= ruleMembershipImport | this_NamespaceImport_1= ruleNamespaceImport )";
+            return "2257:3: (this_MembershipImport_0= ruleMembershipImport | this_NamespaceImport_1= ruleNamespaceImport )";
         }
     }
     static final String dfa_13s = "\13\uffff";
@@ -198,7 +198,7 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             this.transition = dfa_19;
         }
         public String getDescription() {
-            return "2394:3: (this_ImportedNamespace_1= ruleImportedNamespace[$current] | ( (lv_ownedRelatedElement_2_0= ruleFilterPackage ) ) )";
+            return "2407:3: (this_ImportedNamespace_1= ruleImportedNamespace[$current] | ( (lv_ownedRelatedElement_2_0= ruleFilterPackage ) ) )";
         }
     }
     static final String dfa_20s = "\10\uffff";

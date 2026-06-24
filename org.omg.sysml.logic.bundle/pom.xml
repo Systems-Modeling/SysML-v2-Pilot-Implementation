@@ -28,7 +28,7 @@
 	
 	<build>
     <plugins>
-      <!-- Copy org.omg.sysml.model jar in lib/ before the Tycho build -->
+      <!-- Copy org.omg.sysml.logic jar in lib/ before the Tycho build -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>

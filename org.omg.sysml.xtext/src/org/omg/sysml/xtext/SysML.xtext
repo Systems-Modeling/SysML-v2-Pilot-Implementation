@@ -71,7 +71,7 @@ OwnedAnnotation returns SysML::Annotation :
 ;
 
 AnnotatingMember returns SysML::OwningMembership :
-	ownedRelatedElement += AnnotatingElement 
+	MemberPrefix ownedRelatedElement += AnnotatingElement 
 ;
 
 AnnotatingElement returns SysML::AnnotatingElement :
@@ -2083,7 +2083,7 @@ FramedConcernUsage returns SysML::ConcernUsage :
       ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
     | ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ ) 
-      ConstraintUsageDeclaration CalculationBody
+      ConstraintUsageDeclaration RequirementBody
 ;
 
 ActorMember returns SysML::ActorMembership :

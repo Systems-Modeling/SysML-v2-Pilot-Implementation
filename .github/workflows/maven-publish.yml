@@ -28,7 +28,7 @@ jobs:
     - name: Remove -snapshot from version
       run: ./mvnw -B versions:set -DremoveSnapshot=true
     - name: Publish to Github Packages
-      run: ./mvnw -B deploy 
+      run: ./mvnw -B deploy -DskipTests=true
       env:
         GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
     - name: Upload SysML Library .kpar files

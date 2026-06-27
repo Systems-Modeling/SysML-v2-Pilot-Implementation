@@ -16,18 +16,26 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.omg.sysml</groupId>
-			<artifactId>org.omg.sysml.model.bundle</artifactId>
+			<artifactId>org.omg.sysml.model</artifactId>
 			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.omg.sysml</groupId>
-			<artifactId>org.omg.sysml.logic.bundle</artifactId>
+			<artifactId>org.omg.sysml.logic</artifactId>
 			<version>${revision}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<pomDependencies>wrapAsBundle</pomDependencies>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>

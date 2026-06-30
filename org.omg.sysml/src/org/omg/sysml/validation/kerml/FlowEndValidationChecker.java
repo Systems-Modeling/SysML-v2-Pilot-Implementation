@@ -1,7 +1,6 @@
 package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.FlowEnd;
 import org.omg.sysml.lang.sysml.Flow;

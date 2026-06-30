@@ -114,7 +114,7 @@ public class ValidationUtil {
 	
 	public void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
 		if (IterableExtensions.size(list) == 1) messageAccepter.error((EObject)Conversions.unwrapArray(list), null, msgCode );
-		}
+	}
 
 
 
@@ -126,7 +126,7 @@ public class ValidationUtil {
 		}
 	}
 	
-	protected static boolean typesConform(List<Type> t1, List<Type> t2) {
+	public static boolean typesConform(List<Type> t1, List<Type> t2) {
 	    return t1.stream().anyMatch(tt1 -> t2.stream().anyMatch(tt2 -> conformsTo(tt2, tt1))) ||
 	           t2.stream().anyMatch(tt2 -> t1.stream().anyMatch(tt1 -> conformsTo(tt1, tt2)));
 	}

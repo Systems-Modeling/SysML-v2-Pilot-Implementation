@@ -49,7 +49,7 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 			messageAccepter.error(element, null,  "validateTypeIntersectingTypesNotSelf");
 		}
 	}
-	
+	//cannot have only one 
 	public void validateTypeOwnedDifferencingNotOne(Element element, ValidationMessageAccepter messageAccepter) {
 		
 		long diffCount = element.getOwnedRelationship().stream().filter(Differencing.class::isInstance).count();
@@ -57,7 +57,7 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 			messageAccepter.error(element, null, "validateOwnedDifferencingNotOne");
 		}	
 	}
-	
+	//cannot have only one 
 	public void validateTypeOwnedIntersectingNotOne(Element element, ValidationMessageAccepter messageAccepter) {
 		
 		long intersectCount = element.getOwnedRelationship().stream().filter(Intersecting.class::isInstance).count(); 

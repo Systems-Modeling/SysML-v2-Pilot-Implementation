@@ -38,34 +38,30 @@
 			</plugin>
 			<!-- Copy org.omg.sysml.model jar in lib/ before the Tycho build -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven-resources-plugin.version}</version>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>copy-jar-org.omg.sysml.model</id>
 						<phase>initialize</phase>
 						<goals>
-							<goal>copy-resources</goal>
+							<goal>run</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.basedir}/lib</outputDirectory>
-							<resources>
-								<resource>
-									<directory>
-										${project.basedir}/../org.omg.sysml.model/target</directory>
-									<includes>
-										<include>org.omg.sysml.model-*.jar</include>
-									</includes>
-									<excludes>
-										<exclude>*-sources.jar</exclude>
-										<exclude>*-tests.jar</exclude>
-									</excludes>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
+							<target>
+								<copy file="${project.basedir}/../org.omg.sysml.model/target/org.omg.sysml.model-${revision}.jar"
+									tofile="${project.basedir}/lib/org.omg.sysml.model-${revision}.jar"
+									overwrite="true" />
+							</target>
 						</configuration>
 					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<executions>
 					<execution>
 						<id>copy-ecore-genmodel-org.omg.sysml.model</id>
 						<phase>initialize</phase>
@@ -108,10 +104,10 @@
 									<pluginExecution>
 										<pluginExecutionFilter>
 											<groupId>org.apache.maven.plugins</groupId>
-											<artifactId>maven-resources-plugin</artifactId>
+											<artifactId>maven-antrun-plugin</artifactId>
 											<versionRange>[0,)</versionRange>
 											<goals>
-												<goal>copy-resources</goal>
+												<goal>run</goal>
 											</goals>
 										</pluginExecutionFilter>
 										<action>

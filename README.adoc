@@ -84,8 +84,11 @@ image:oomph-projects.png[oomph projects]
    * Click "Reload Target Platform" on the upper right. 
    
 5. https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects.
-   * To build the repository, invoke `mvn clean install` from the base `SysML-v2-Pilot-Implementation` directory.
-   * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also launch a Maven build in Eclipse using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
+   * The canonical full repository build is run from the base `SysML-v2-Pilot-Implementation` directory with `mvn clean install`.
+   * This Maven build prepares generated and copied artifacts that are required by downstream plug-in projects during the Tycho build.
+   * For example, the jars consumed from `org.omg.sysml.model.bundle/lib` and `org.omg.sysml.logic.bundle/lib` are populated by Maven lifecycle executions and may remain empty until a Maven build is run.
+   * A plain Eclipse workspace build does not execute the full Maven lifecycle, so it should not be treated as a full repository build.
+   * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed with the Tycho Project Configurators connector, you can launch the same kind of Maven build from Eclipse by using the launch configuration in `SysML-v2-Pilot-Implementation/launch` or by running a Maven build manually from the repository root.
 
 === Runtime Editing Environment
 

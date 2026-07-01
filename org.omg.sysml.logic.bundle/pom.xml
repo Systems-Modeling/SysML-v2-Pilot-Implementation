@@ -49,8 +49,8 @@
 						</goals>
 						<configuration>
 							<target>
-								<copy file="${project.basedir}/../org.omg.sysml.logic/target/org.omg.sysml.logic-${revision}.jar"
-									tofile="${project.basedir}/lib/org.omg.sysml.logic-${revision}.jar"
+								<copy file="${project.basedir}/../org.omg.sysml.logic/target/org.omg.sysml.logic-${project.version}.jar"
+									tofile="${project.basedir}/lib/org.omg.sysml.logic-${project.version}.jar"
 									overwrite="true" />
 							</target>
 						</configuration>

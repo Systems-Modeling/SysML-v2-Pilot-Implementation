@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Bundle-Version: 0.60.0.qualifier
+Bundle-Version: 0.60.1.qualifier
 Bundle-SymbolicName: org.omg.kerml.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -13,12 +13,12 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib;bundle-version="2.14.0",
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
- org.omg.sysml.model.bundle;bundle-version="0.60.0",
- org.omg.sysml.logic.bundle;bundle-version="0.60.0",
- org.omg.sysml;bundle-version="0.60.0",
+ org.omg.sysml.model.bundle;bundle-version="0.60.1",
+ org.omg.sysml.logic.bundle;bundle-version="0.60.1",
+ org.omg.sysml;bundle-version="0.60.1",
  org.eclipse.uml2.uml,
  org.eclipse.uml2.uml.resources,
- org.omg.kerml.expressions.xtext;bundle-version="0.60.0",
+ org.omg.kerml.expressions.xtext;bundle-version="0.60.1",
  com.google.gson,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="9.3.0";resolution:=optional

@@ -44,6 +44,21 @@ jobs:
       run: echo $(git diff -- sysml.library/.index.json) | grep -e '^$' || (echo "Library index in the git repository is not up to date. Please re-generate it and push changes to the repository."; exit 1)
     - name: Publish to Github Packages
       if: github.event_name != 'pull_request'
-      run: ./mvnw -B deploy -DskipTests=true
+      run: ./mvnw -B -s .mvn/settings.xml deploy -DskipTests=true
       env:
         GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
+    # Snapshots reuse the central-publish profile, which signs artifacts via maven-gpg-plugin,
+    # so the runner needs the private key before deploy.
+    - name: Import GPG key for Maven Central snapshots
+      if: ${{ github.event_name != 'pull_request' && secrets.CENTRAL_TOKEN_USERNAME != '' && secrets.CENTRAL_TOKEN_PASSWORD != '' && secrets.MAVEN_GPG_PRIVATE_KEY != '' && secrets.MAVEN_GPG_PASSPHRASE != '' }}
+      env:
+        MAVEN_GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+      run: |
+        printf '%s' "${MAVEN_GPG_PRIVATE_KEY}" | gpg --batch --import
+    - name: Publish org.omg.sysml.model snapshot to Maven Central
+      if: ${{ github.event_name != 'pull_request' && secrets.CENTRAL_TOKEN_USERNAME != '' && secrets.CENTRAL_TOKEN_PASSWORD != '' && secrets.MAVEN_GPG_PRIVATE_KEY != '' && secrets.MAVEN_GPG_PASSPHRASE != '' }}
+      run: ./mvnw -B -s .mvn/settings.xml -f org.omg.sysml.model/pom.xml deploy -Pcentral-publish,central-snapshot -DskipTests=true -Dgpg.passphrase=${MAVEN_GPG_PASSPHRASE}
+      env:
+        CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+        CENTRAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

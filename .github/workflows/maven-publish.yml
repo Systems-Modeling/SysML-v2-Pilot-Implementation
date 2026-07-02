@@ -33,7 +33,7 @@ jobs:
         release_version=$(sed -n 's:.*<revision>\(.*\)</revision>.*:\1:p' pom.xml | head -n 1 | sed 's/-SNAPSHOT$//')
         echo "RELEASE_VERSION=${release_version}" >> "$GITHUB_ENV"
     - name: Publish to Github Packages
-      run: ./mvnw -B clean install -DskipTests=true -Drevision=${{ env.RELEASE_VERSION }}
+      run: ./mvnw -B clean deploy -DskipTests=true -Drevision=${{ env.RELEASE_VERSION }}
       env:
         GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
     - name: Upload SysML Library .kpar files

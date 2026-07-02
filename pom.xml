@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-	<revision>0.60.0-SNAPSHOT</revision>
+	<revision>0.60.1-SNAPSHOT</revision>
     <sysml.build-tag>20260501</sysml.build-tag>
     <sysml.metamodel-tag>20250201</sysml.metamodel-tag>
     <tycho-version>4.0.13</tycho-version>

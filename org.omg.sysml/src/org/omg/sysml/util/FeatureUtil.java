@@ -64,7 +64,7 @@ public class FeatureUtil {
 	private FeatureUtil() {
 	}
 
-	protected static FeatureAdapter getFeatureAdapter(Feature target) {
+	public static FeatureAdapter getFeatureAdapter(Feature target) { //changing visibility to make accessible to other packages. 
 		return (FeatureAdapter)ElementUtil.getElementAdapter(target);
 	}
 	

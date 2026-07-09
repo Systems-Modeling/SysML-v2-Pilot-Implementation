@@ -11,7 +11,7 @@ public class FeatureChainExpressionValidationChecker extends OperatorExpressionV
 		validateFeatureChainExpressionConformance(element, messageAccepter);
 		validateFeatureChainExpressionOperator(element, messageAccepter);
 	}
-						
+//validateFeatureChainExpressionFeatureConformance="Must be a valid feature"						
 	public void validateFeatureChainExpressionConformance(Element element, ValidationMessageAccepter messageAccepter) {
 		
 	}

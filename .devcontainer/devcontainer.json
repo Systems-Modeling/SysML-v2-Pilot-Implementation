@@ -1,0 +1,13 @@
+{
+  "name": "SysML Parser Snippet (Maven)",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven"
+      ]
+    }
+  },
+  "postCreateCommand": "mvn -q -pl org.omg.sysml.xtext -am -DskipTests package || true"
+}

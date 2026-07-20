@@ -3,11 +3,8 @@
  */
 package org.omg.kerml.xtext
 
-import org.eclipse.emf.ecore.EStructuralFeature
-import org.omg.sysml.delegate.setting.DerivedPropertySettingDelegateFactory;
-import org.omg.sysml.delegate.invocation.OperationInvocationDelegateFactory;
 import com.google.inject.Injector
-import org.eclipse.emf.ecore.EOperation
+import org.omg.sysml.logic.SysMLLogicStandaloneSetup
 
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
@@ -19,10 +16,7 @@ class KerMLStandaloneSetup extends KerMLStandaloneSetupGenerated {
 	}
 	
 	override Injector createInjectorAndDoEMFRegistration() {
-		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.
-			put(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION, new DerivedPropertySettingDelegateFactory());	
-		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.
-			put(OperationInvocationDelegateFactory.SYSML_ANNOTATION, new OperationInvocationDelegateFactory());	
+		SysMLLogicStandaloneSetup.doSetup()
 		return super.createInjectorAndDoEMFRegistration();
 	}
 }

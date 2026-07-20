@@ -2,7 +2,7 @@
 <feature
       id="org.omg.sysml.feature"
       label="SysML v2 Feature"
-      version="0.58.0.qualifier"
+      version="0.61.0.qualifier"
       provider-name="SysML v2 Submission Team">
 
    <description url="http://www.example.com/description">
@@ -57,6 +57,20 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
    <plugin
          id="org.omg.sysml.xtext.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+	<plugin
+         id="org.omg.sysml.model.bundle"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+	<plugin
+         id="org.omg.sysml.logic.bundle"
          download-size="0"
          install-size="0"
          version="0.0.0"

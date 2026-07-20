@@ -3,19 +3,18 @@
  * Copyright (C) 2025  Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the Eclipse Public License as published by
+ * the Eclipse Foundation, version 2 of the License.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * Eclipse Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the Eclipse Public License
+ * along with this program.  If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  */
 package org.omg.kerml.xtext.xmi
 
@@ -23,15 +22,39 @@ import com.google.inject.Binder
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.resource.IResourceDescriptions
 import org.eclipse.xtext.resource.generic.AbstractGenericResourceRuntimeModule
 import org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions
 import org.omg.kerml.xtext.library.KerMLLibraryProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.logic.api.IModelLibraryProvider
+import org.omg.sysml.util.SysMLLibraryUtil
 
 class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
+
+	/**
+	 * Installs the library-provider lookup used by {@link SysMLLibraryUtil} for
+	 * the generic KerML XMI runtime.
+	 *
+	 * <p>The lookup resolves the {@link IModelLibraryProvider} from the
+	 * {@link IResourceServiceProvider} associated with the current resource URI so
+	 * library element resolution works in this non-generated XMI-based runtime
+	 * just as it does in the regular Xtext runtime modules.
+	 */
+	new() {
+		SysMLLibraryUtil.setProviderLookup([
+			resource |
+				try {
+					val serviceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.URI)
+					if (serviceProvider === null) null else serviceProvider.get(IModelLibraryProvider)
+				} catch (Exception e) {
+					System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e)
+					null
+				}
+		])
+	}
 	
 	public static val KERMLX_LANGUAGE_NAME = 'org.omg.kerml.kermlx'
 	

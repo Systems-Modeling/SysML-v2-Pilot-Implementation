@@ -96,6 +96,12 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${exec-maven-plugin.version}</version>
         <executions>
+            <!-- Disable the sysand-index execution inherited from pluginManagement,
+                 since it needs to be executed only once. -->
+            <execution>
+                <id>sysand-index</id>
+                <phase>none</phase>
+            </execution>
             <execution>
                 <phase>package</phase>
                 <goals>

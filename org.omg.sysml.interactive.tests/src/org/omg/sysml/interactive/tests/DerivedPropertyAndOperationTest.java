@@ -1,21 +1,20 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the Eclipse Public License as published by
+ * the Eclipse Foundation, version 2 of the License.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * Eclipse Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of theEclipse Public License
+ * along with this program.  If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *  
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  *  
  *******************************************************************************/
 
@@ -24,7 +23,9 @@ package org.omg.sysml.interactive.tests;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -36,6 +37,7 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
@@ -43,11 +45,14 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 
@@ -90,7 +95,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testViewExpose() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		List<Element> elements = process(instance, test);
 		ViewUsage view = (ViewUsage)((Namespace)elements.get(0)).getOwnedMember().get(1);
 		List<Element> exposed = view.getExposedElement();
@@ -107,7 +112,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testQualifiedName() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(qualifiedNameTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -146,7 +151,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testPathOperation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		List<Element> elements = process(instance, pathTest);
 		
 		Namespace TopLevel = (Namespace)elements.get(0);
@@ -197,7 +202,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testDirectedUsage1() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(directedUsageTest1);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -244,7 +249,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testDirectedUsage2() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(directedUsageTest2);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -288,7 +293,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEnumeratedValue() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(enumeratedValueTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -320,7 +325,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testCircularRecursiveImport() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(circularRecursiveImportTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -341,7 +346,7 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testLocale() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		SysMLInteractiveResult result = instance.process(localeTest);
 		Element root = result.getRootElement();
 		List<Element> elements = ((Namespace)root).getOwnedMember();
@@ -351,4 +356,175 @@ public class DerivedPropertyAndOperationTest extends SysMLInteractiveTest {
 		assertEquals("comment.locale", "en_US", comment.getLocale());
 		assertEquals("doc.locale", "en_US", doc.getLocale());
 	}
+	
+	public final String crossFeatureTest =
+			  "package Test {"
+			+ "    part def A {"
+			+ "        ref b : B;"
+			+ "    }"
+			+ "    part def B;"
+			+ "    connection def C {"
+			+ "        end [0..1] ref end1 : A;"
+			+ "        end ref end2 : B crosses end1.b;"
+			+ "    }"
+			+ "}";
+	
+	@Test
+	public void testCrossFeature() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(crossFeatureTest);
+		Element root = result.getRootElement();
+		Namespace test = (Namespace)((Namespace)root).getOwnedMember().get(0);
+		Definition a = (Definition)test.getOwnedMember().get(0);
+		Usage a_b = a.getOwnedUsage().get(0);
+		ConnectionDefinition c = (ConnectionDefinition)test.getOwnedMember().get(2);
+		List<Feature> ends = c.getAssociationEnd();
+		Usage end1 = (Usage)ends.get(0);
+		Usage end2 = (Usage)ends.get(1);
+		Feature ownedCrossFeature = end1.ownedCrossFeature();
+		
+		assertNotNull("end1 owned cross feature", ownedCrossFeature);
+		assertEquals("end1 cross feature", end1.ownedCrossFeature(), end1.getCrossFeature());
+		assertEquals("end2 cross feature", a_b, end2.getCrossFeature().getFeatureTarget());
+	}
+	
+	public final String featureMembershipTest =
+			  "package Test {\n"
+			+ "	   part def A {\n"
+			+ "		   attribute f;\n"
+			+ "	   }\n"
+			+ "	   part def B {\n"
+			+ "		   public import A::*;\n"
+			+ "        attribute g;\n"
+			+ "	   }\n"
+			+ "	   part def C :> B;"
+			+ "}";
+	
+	@Test
+	public void testFeatureMembership() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(featureMembershipTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		List<Element> ownedMembers = ((Namespace)elements.get(0)).getOwnedMember();
+		Definition A = (Definition)ownedMembers.get(0);
+		Definition B = (Definition)ownedMembers.get(1);
+		Definition C = (Definition)ownedMembers.get(2);
+		assertTrue("A", testFeatureOwningTypes(A));
+		assertTrue("B", testFeatureOwningTypes(B));
+		assertTrue("C", testFeatureOwningTypes(C));
+	}
+	
+	private boolean testFeatureOwningTypes(Type type) {
+		return type.getFeatureMembership().stream().map(FeatureMembership::getOwningType).allMatch(t->type.specializes(t));
+	}
+	
+	public final String namespaceResolveTest =
+			  "package Test {\n"
+			+ "	   part def A {\n"
+			+ "		   attribute f;\n"
+			+ "	   }\n"
+			+ "	   part def B {\n"
+			+ "		   public import A::*;\n"
+			+ "        attribute g;\n"
+			+ "	   }\n"
+			+ "	   part def C :> B;"
+			+ "}";
+	
+	@Test
+	public void testNamespaceResolve() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(namespaceResolveTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		Namespace Test = (Namespace)elements.get(0);
+		List<Element> ownedMembers = Test.getOwnedMember();
+		Definition A = (Definition)ownedMembers.get(0);
+		Definition B = (Definition)ownedMembers.get(1);
+		Definition C = (Definition)ownedMembers.get(2);
+
+		Usage f = (Usage)A.getOwnedMember().get(0);		
+		Usage g = (Usage)B.getOwnedMember().get(0);
+		
+		assertNotNull(Test.getOwningMembership());
+		assertNotNull(A.getOwningMembership());
+		assertNotNull(B.getOwningMembership());
+		assertNotNull(C.getOwningMembership());
+		assertNotNull(f.getOwningMembership());
+		assertNotNull(g.getOwningMembership());
+		
+		assertSame("A.resolveLocal(g)", null, A.resolveLocal("g"));
+		assertSame("A.resolveLocal(f)", f.getOwningMembership(), A.resolveLocal("f"));
+		assertSame("A.resolveLocal(A)", A.getOwningMembership(), A.resolveLocal("A"));
+		assertSame("A.resolveLocal(B)", B.getOwningMembership(), A.resolveLocal("B"));
+		assertSame("A.resolveLocal(C)", C.getOwningMembership(), A.resolveLocal("C"));
+		
+		assertSame("B.resolveLocal(g)", g.getOwningMembership(), B.resolveLocal("g"));
+		assertSame("B.resolveLocal(f)", f.getOwningMembership(), B.resolveLocal("f"));
+		
+		assertSame("C.resolveLocal(g)", g.getOwningMembership(), C.resolveLocal("g"));
+		assertSame("C.resolveLocal(f)", f.getOwningMembership(), C.resolveLocal("f"));
+		
+		assertSame("Test.resolveGlobal(Test)", Test.getOwningMembership(), Test.resolveGlobal("Test"));
+		assertSame("Test.resolveGlobal(A)", null, Test.resolveGlobal("A"));
+		assertSame("A.resolveGlobal(Test)", Test.getOwningMembership(), A.resolveGlobal("Test"));
+		
+		assertSame("A.resolve(f)", f.getOwningMembership(), A.resolve("f"));
+		assertSame("A.resolve(B::f)", f.getOwningMembership(), A.resolve("B::f"));
+		assertSame("A.resolve(B::g)", g.getOwningMembership(), A.resolve("B::g"));
+		assertSame("A.resolve(C::f)", f.getOwningMembership(), A.resolve("C::f"));
+		assertSame("A.resolve(C::g)", g.getOwningMembership(), A.resolve("C::g"));
+		
+		assertSame("Test.resolve(f)", null, Test.resolve("f"));
+		assertSame("Test.resolve(A::f)", f.getOwningMembership(), Test.resolve("A::f"));
+		assertSame("Test.resolve(B::f)", f.getOwningMembership(), Test.resolve("B::f"));
+		assertSame("Test.resolve(B::g)", g.getOwningMembership(), Test.resolve("B::g"));
+		assertSame("Test.resolve(C::f)", f.getOwningMembership(), Test.resolve("C::f"));
+		assertSame("Test.resolve(C::g)", g.getOwningMembership(), Test.resolve("C::g"));
+		
+		assertSame("Test.resolve(Test::A::f)", f.getOwningMembership(), Test.resolve("Test::A::f"));
+		assertSame("Test.resolve(Test::B::f)", f.getOwningMembership(), Test.resolve("Test::B::f"));
+		assertSame("Test.resolve(Test::B::g)", g.getOwningMembership(), Test.resolve("Test::B::g"));
+		assertSame("Test.resolve(Test::C::f)", f.getOwningMembership(), Test.resolve("Test::C::f"));
+		assertSame("Test.resolve(Test::C::g)", g.getOwningMembership(), Test.resolve("Test::C::g"));
+	}
+	
+	public final String ownedMetadataTest =
+			  "package Test {\n"
+			+ "	   part def P {\n"
+			+ "        @M1; @M2;\n"
+			+ "        part p : P {\n"
+			+ "            @M1; @M2;\n"
+			+ "        }\n"
+			+ "    }\n"
+			+ "    metadata def M1;\n"
+			+ "    metadata def M2;\n"
+			+ "}";
+	
+	@Test
+	public void testOwnedMetadataAndNestedMetadata() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractiveResult result = instance.process(ownedMetadataTest);
+		Element root = result.getRootElement();
+		List<Element> elements = ((Namespace)root).getOwnedMember();
+		Namespace Test = (Namespace)elements.get(0);
+		List<Element> ownedMembers = Test.getOwnedMember();
+		Definition P = (Definition)ownedMembers.get(0);
+		List<Element> P_ownedMembers = P.getOwnedMember();
+		Usage P_M1 = (Usage)P_ownedMembers.get(0);
+		Usage P_M2 = (Usage)P_ownedMembers.get(1);
+		Usage p = (Usage)P_ownedMembers.get(2);
+		List<Element> p_ownedMembers = p.getOwnedMember();
+		Usage p_M1 = (Usage)p_ownedMembers.get(0);
+		Usage p_M2 = (Usage)p_ownedMembers.get(1);
+		
+		List<MetadataUsage> ownedMetadata = P.getOwnedMetadata();
+		assertTrue("P_M1", ownedMetadata.contains(P_M1));
+		assertTrue("P_M2", ownedMetadata.contains(P_M2));
+
+		List<MetadataUsage> nestedMetadata = p.getNestedMetadata();
+		assertTrue("p_M1", nestedMetadata.contains(p_M1));
+		assertTrue("p_M2", nestedMetadata.contains(p_M2));
+	}
+	
 }

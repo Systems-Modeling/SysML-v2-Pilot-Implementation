@@ -442,17 +442,17 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_BasicDefinitionPrefix_DefinitionBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_RequirementBodyItem_SubclassificationPart(context, (ConcernDefinition) semanticObject); 
 				return; 
 			case SysMLPackage.CONCERN_USAGE:
-				if (rule == grammarAccess.getFramedConcernUsageRule()) {
-					sequence_ActionBodyItem_CalculationBodyItem_CalculationBodyPart_Crosses_DefinitionBodyItem_FramedConcernUsage_Identification_MultiplicityPart_Redefines_Redefinitions_References_RequirementBodyItem_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ConcernUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getUsageElementRule()
+				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getConcernUsageRule()) {
 					sequence_BasicUsagePrefix_Crosses_DefinitionBodyItem_EndUsagePrefix_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_References_RequirementBodyItem_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ConcernUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFramedConcernUsageRule()) {
+					sequence_Crosses_DefinitionBodyItem_FramedConcernUsage_Identification_MultiplicityPart_Redefines_Redefinitions_References_RequirementBodyItem_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ConcernUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1357,7 +1357,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				else break;
 			case SysMLPackage.OWNING_MEMBERSHIP:
 				if (rule == grammarAccess.getAnnotatingMemberRule()) {
-					sequence_AnnotatingMember(context, (OwningMembership) semanticObject); 
+					sequence_AnnotatingMember_MemberPrefix(context, (OwningMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConjugatedPortDefinitionMemberRule()) {
@@ -4382,125 +4382,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     FramedConcernUsage returns ConcernUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         (
-	 *             (
-	 *                 (ownedRelationship+=PrefixMetadataMember* ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?) | 
-	 *                 ownedRelationship+=OwnedReferenceSubsetting
-	 *             ) 
-	 *             (
-	 *                 (
-	 *                     (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
-	 *                     (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                     ((ownedRelationship+=OwnedReferenceSubsetting | ownedRelationship+=OwnedCrossSubsetting) ownedRelationship+=OwnedMultiplicity?) | 
-	 *                     (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                 ) 
-	 *                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isUnique=Nonunique?) | (isUnique=Nonunique isOrdered?='ordered'?)))?
-	 *             )+ 
-	 *             (
-	 *                 (
-	 *                     ownedRelationship+=DefinitionMember? 
-	 *                     (
-	 *                         (
-	 *                             ownedRelationship+=VariantUsageMember | 
-	 *                             ownedRelationship+=NonOccurrenceUsageMember | 
-	 *                             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
-	 *                             ownedRelationship+=AliasMember | 
-	 *                             ownedRelationship+=Import | 
-	 *                             ownedRelationship+=SubjectMember | 
-	 *                             ownedRelationship+=RequirementConstraintMember | 
-	 *                             ownedRelationship+=FramedConcernMember | 
-	 *                             ownedRelationship+=RequirementVerificationMember | 
-	 *                             ownedRelationship+=ActorMember | 
-	 *                             ownedRelationship+=StakeholderMember
-	 *                         )? 
-	 *                         ownedRelationship+=DefinitionMember?
-	 *                     )*
-	 *                 ) | 
-	 *                 (
-	 *                     ownedRelationship+=FeatureValue? 
-	 *                     ownedRelationship+=Import? 
-	 *                     (
-	 *                         (
-	 *                             ownedRelationship+=AliasMember | 
-	 *                             ownedRelationship+=DefinitionMember | 
-	 *                             ownedRelationship+=VariantUsageMember | 
-	 *                             ownedRelationship+=NonOccurrenceUsageMember | 
-	 *                             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
-	 *                             (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
-	 *                             (
-	 *                                 ownedRelationship+=EmptySuccessionMember? 
-	 *                                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                                 ownedRelationship+=TargetSuccessionMember*
-	 *                             ) | 
-	 *                             ownedRelationship+=GuardedSuccessionMember | 
-	 *                             ownedRelationship+=ReturnParameterMember
-	 *                         )? 
-	 *                         ownedRelationship+=Import?
-	 *                     )* 
-	 *                     ownedRelationship+=ResultExpressionMember?
-	 *                 )
-	 *             )
-	 *         ) | 
-	 *         (
-	 *             ownedRelationship+=PrefixMetadataMember* 
-	 *             ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
-	 *             ownedRelationship+=FeatureValue? 
-	 *             ownedRelationship+=Import? 
-	 *             (
-	 *                 (
-	 *                     ownedRelationship+=AliasMember | 
-	 *                     ownedRelationship+=DefinitionMember | 
-	 *                     ownedRelationship+=VariantUsageMember | 
-	 *                     ownedRelationship+=NonOccurrenceUsageMember | 
-	 *                     (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
-	 *                     (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
-	 *                     (
-	 *                         ownedRelationship+=EmptySuccessionMember? 
-	 *                         (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                         ownedRelationship+=TargetSuccessionMember*
-	 *                     ) | 
-	 *                     ownedRelationship+=GuardedSuccessionMember | 
-	 *                     ownedRelationship+=ReturnParameterMember
-	 *                 )? 
-	 *                 ownedRelationship+=Import?
-	 *             )* 
-	 *             ownedRelationship+=ResultExpressionMember?
-	 *         ) | 
-	 *         (
-	 *             ownedRelationship+=OwnedReferenceSubsetting 
-	 *             ownedRelationship+=DefinitionMember? 
-	 *             (
-	 *                 (
-	 *                     ownedRelationship+=VariantUsageMember | 
-	 *                     ownedRelationship+=NonOccurrenceUsageMember | 
-	 *                     (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
-	 *                     ownedRelationship+=AliasMember | 
-	 *                     ownedRelationship+=Import | 
-	 *                     ownedRelationship+=SubjectMember | 
-	 *                     ownedRelationship+=RequirementConstraintMember | 
-	 *                     ownedRelationship+=FramedConcernMember | 
-	 *                     ownedRelationship+=RequirementVerificationMember | 
-	 *                     ownedRelationship+=ActorMember | 
-	 *                     ownedRelationship+=StakeholderMember
-	 *                 )? 
-	 *                 ownedRelationship+=DefinitionMember?
-	 *             )*
-	 *         )
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_ActionBodyItem_CalculationBodyItem_CalculationBodyPart_Crosses_DefinitionBodyItem_FramedConcernUsage_Identification_MultiplicityPart_Redefines_Redefinitions_References_RequirementBodyItem_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, ConcernUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     RequirementConstraintUsage returns ConstraintUsage
 	 *
 	 * Constraint:
@@ -5150,10 +5031,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     AnnotatingMember returns OwningMembership
 	 *
 	 * Constraint:
-	 *     ownedRelatedElement+=AnnotatingElement
+	 *     (visibility=VisibilityIndicator? ownedRelatedElement+=AnnotatingElement)
 	 * </pre>
 	 */
-	protected void sequence_AnnotatingMember(ISerializationContext context, OwningMembership semanticObject) {
+	protected void sequence_AnnotatingMember_MemberPrefix(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -5169,11 +5050,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_Annotation(ISerializationContext context, Annotation semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAnnotationAccess().getAnnotatedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.ANNOTATION__ANNOTATED_ELEMENT, false));
+		feeder.accept(grammarAccess.getAnnotationAccess().getAnnotatedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getAnnotation_AnnotatedElement(), false));
 		feeder.finish();
 	}
 	
@@ -8381,11 +8262,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_ConjugatedPortTyping(ISerializationContext context, ConjugatedPortTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getConjugatedPortTyping_ConjugatedPortDefinition()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getConjugatedPortTyping_ConjugatedPortDefinition()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConjugatedPortTypingAccess().getConjugatedPortDefinitionConjugatedPortDefinitionConjugatedQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION, false));
+		feeder.accept(grammarAccess.getConjugatedPortTypingAccess().getConjugatedPortDefinitionConjugatedPortDefinitionConjugatedQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getConjugatedPortTyping_ConjugatedPortDefinition(), false));
 		feeder.finish();
 	}
 	
@@ -8757,6 +8638,63 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_Crosses_DefinitionBodyItem_EndUsagePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_RefPrefix_References_Subsets_Subsettings_TypedBy_Typings_ValuePart_VariantReference(ISerializationContext context, ReferenceUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FramedConcernUsage returns ConcernUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             (
+	 *                 ownedRelationship+=PrefixMetadataMember* 
+	 *                 ((declaredShortName=Name declaredName=Name?) | declaredName=Name)? 
+	 *                 ownedRelationship+=FeatureValue? 
+	 *                 ownedRelationship+=DefinitionMember?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (ownedRelationship+=PrefixMetadataMember* ((declaredShortName=Name declaredName=Name?) | declaredName=Name)?) | 
+	 *                     ownedRelationship+=OwnedReferenceSubsetting
+	 *                 )? 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         ((ownedRelationship+=OwnedReferenceSubsetting | ownedRelationship+=OwnedCrossSubsetting) ownedRelationship+=OwnedMultiplicity?) | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isUnique=Nonunique?) | (isUnique=Nonunique isOrdered?='ordered'?)))?
+	 *                 )+ 
+	 *                 ownedRelationship+=FeatureValue? 
+	 *                 ownedRelationship+=DefinitionMember?
+	 *             ) | 
+	 *             (ownedRelationship+=OwnedReferenceSubsetting ownedRelationship+=DefinitionMember?)
+	 *         ) 
+	 *         (
+	 *             (
+	 *                 ownedRelationship+=VariantUsageMember | 
+	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
+	 *                 ownedRelationship+=AliasMember | 
+	 *                 ownedRelationship+=Import | 
+	 *                 ownedRelationship+=SubjectMember | 
+	 *                 ownedRelationship+=RequirementConstraintMember | 
+	 *                 ownedRelationship+=FramedConcernMember | 
+	 *                 ownedRelationship+=RequirementVerificationMember | 
+	 *                 ownedRelationship+=ActorMember | 
+	 *                 ownedRelationship+=StakeholderMember
+	 *             )? 
+	 *             ownedRelationship+=DefinitionMember?
+	 *         )*
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_Crosses_DefinitionBodyItem_FramedConcernUsage_Identification_MultiplicityPart_Redefines_Redefinitions_References_RequirementBodyItem_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, ConcernUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9980,11 +9918,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_FlowRedefinition(ISerializationContext context, Redefinition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFlowRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, false));
+		feeder.accept(grammarAccess.getFlowRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), false));
 		feeder.finish();
 	}
 	
@@ -10598,11 +10536,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_MetadataTyping(ISerializationContext context, FeatureTyping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getFeatureTyping_Type()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getFeatureTyping_Type()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeMetaclassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
+		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeMetaclassQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getFeatureTyping_Type(), false));
 		feeder.finish();
 	}
 	
@@ -10829,11 +10767,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_OwnedSubclassification(ISerializationContext context, Subclassification semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getSubclassification_Superclassifier()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getSubclassification_Superclassifier()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedSubclassificationAccess().getSuperclassifierClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER, false));
+		feeder.accept(grammarAccess.getOwnedSubclassificationAccess().getSuperclassifierClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getSubclassification_Superclassifier(), false));
 		feeder.finish();
 	}
 	
@@ -11166,11 +11104,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 */
 	protected void sequence_TransitionSourceMember(ISerializationContext context, Membership semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.eINSTANCE.getMembership_MemberElement()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.eINSTANCE.getMembership_MemberElement()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
+		feeder.accept(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_0_1(), semanticObject.eGet(SysMLPackage.eINSTANCE.getMembership_MemberElement(), false));
 		feeder.finish();
 	}
 	

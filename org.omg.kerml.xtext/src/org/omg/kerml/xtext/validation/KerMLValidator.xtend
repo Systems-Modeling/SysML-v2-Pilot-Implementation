@@ -3,27 +3,29 @@
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2018-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- *    
+ * Copyright (c) 2026 Obeo
+ * 
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * it under the terms of the Eclipse Public License as published by
+ * the Eclipse Foundation, version 2 of the License.
  * (at your option) any later version.
  * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * Eclipse Public License for more details.
  * 
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the Eclipse Public License
+ * along with this program.  If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  * 
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  * 
  * Contributors:
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
  *  Ed Seidewitz, MDS
  *  Miyako Wilson, JPL
+ *  Axel Richard, Obeo
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.validation
@@ -33,7 +35,6 @@ import java.util.List
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.validation.Check
 
 import org.omg.sysml.lang.sysml.Type
@@ -58,7 +59,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.omg.sysml.lang.sysml.LiteralBoolean
@@ -1473,22 +1474,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkLibraryPackage(LibraryPackage pkg) {
-		if (pkg.isStandard && !pkg.eResource.isModelLibrary) {
+		if (pkg.isStandard && !SysMLLibraryUtil.isLibraryResource(pkg.eResource)) {
 			warning(INVALID_LIBRARY_PACKAGE_NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE_NOT_STANDARD)
 		}
 	}
-	
+
 	/* Utility Methods */
-	
-	private def static boolean isModelLibrary(Resource resource) {
-		if (resource === null) {
-			return false;
-		} else {
-			val path = resource.URI.devicePath ?: resource.URI.path;
-			return path !== null && path.contains(SysMLLibraryUtil.modelLibraryPath);
-		}
-	}
-	
+
 	def static boolean isBoolean(Expression condition) {
 		specializesFromLibrary(condition, condition.result, "ScalarValues::Boolean") ||
 		// LiteralBooleans currently don't have an inferred Boolean result type.

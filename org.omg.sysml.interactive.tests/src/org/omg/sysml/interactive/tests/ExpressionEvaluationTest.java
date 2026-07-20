@@ -4,19 +4,18 @@
  * Copyright (c) 2022, 2023, 2025-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the Eclipse Public License as published by
+ * the Eclipse Foundation, version 2 of the License.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * Eclipse Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of theEclipse Public License
+ * along with this program.  If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *  
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  *  
  *******************************************************************************/
 
@@ -65,7 +64,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation1() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest1);
 		assertElement("LiteralInteger 3", instance.eval("p11.a2", "EvalTest1"));
 		assertElement("LiteralInteger 2", instance.eval("p11.p11.a2", "EvalTest1"));
@@ -89,7 +88,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testEvaluation2() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest2);
 		assertElement("LiteralInteger 1", instance.eval("p1.a1", "EvalTest2"));
 		assertElement("LiteralInteger 2", instance.eval("p2.a2", "EvalTest2"));
@@ -115,7 +114,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation3() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest3);		
 		assertElement("AttributeUsage a1", instance.eval("p1.a1", "EvalTest3"));
 		assertElement("OperatorExpression +", instance.eval("p1.a2", "EvalTest3"));
@@ -143,7 +142,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation4() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest4);		
 		assertElement("AttributeUsage a1", instance.eval("p1.a1", "EvalTest4"));
 		assertElement("LiteralInteger 3", instance.eval("p1.a2", "EvalTest4"));
@@ -186,7 +185,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation5() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest5);
 		assertElement("LiteralBoolean true", instance.eval("p1.c1()", "EvalTest5"));
 		assertElement("LiteralBoolean false", instance.eval("p1.c2()", "EvalTest5"));
@@ -230,7 +229,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation6() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest6);
 		assertElement("LiteralInteger 10", instance.eval("p1.a", "EvalTest6"));
 		assertElement("LiteralInteger 17", instance.eval("p1.z1", "EvalTest6"));
@@ -260,7 +259,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testEvaluation7() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, evalTest7);
 		assertElement("LiteralInteger 1", instance.eval("test.fact1", "EvalTest7"));
 		assertElement("LiteralInteger 120", instance.eval("test.fact5", "EvalTest7"));
@@ -288,7 +287,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testChainEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, chainTest);
 		assertElement("LiteralInteger 1", instance.eval("y.a.z", "ChainTest"));
 	}
@@ -319,7 +318,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testIndexOperator() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, indexOperatorTest);
 		assertElement("LiteralString a", instance.eval("seq#(1)", "IndexOperatorTest"));
 		assertElement("LiteralString b", instance.eval("seq#(2)", "IndexOperatorTest"));
@@ -353,7 +352,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testInvocationEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, invocationTest);
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(1, 2)", "InvocationTest"));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("Test(x = 1, y = 2)", "InvocationTest"));
@@ -364,7 +363,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testArithmeticEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertElement("LiteralInteger 5", instance.eval("2 + 3", null));
 		assertElement("LiteralInteger -1", instance.eval("2 - 3", null));
 		assertElement("LiteralInteger 6", instance.eval("2 * 3", null));
@@ -375,7 +374,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testListOpsExpression() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertList(new String[] {}, instance.eval("null", null));
 		assertList(new String[] {}, instance.eval("()", null));
 		assertList(new String[]{"LiteralInteger 1", "LiteralInteger 2", "LiteralInteger 3"}, instance.eval("(1, 2, 3)", null));
@@ -385,14 +384,14 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testControlOpEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3).{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3).?{in x : ScalarValues::Integer; x < 3}", null));
 	}
 	
 	@Test
 	public void testDataFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		
 		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(1,2)", null));
 		assertElement("LiteralInteger 2", instance.eval("DataFunctions::max(2,1)", null));
@@ -417,14 +416,14 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testNumericalFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::sum((1,2,3))", null));
 		assertElement("LiteralInteger 6", instance.eval("NumericalFunctions::product((1,2,3))", null));
 	}
 	
 	@Test
 	public void testSequenceFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertElement("LiteralInteger 3", instance.eval("SequenceFunctions::size((1, 2, 3))", null));
 		
 		assertElement("LiteralBoolean true", instance.eval("SequenceFunctions::includes((1, 2, 3), 1)", null));
@@ -506,7 +505,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testCollectionFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		process(instance, collectionTest);
 		
 		assertElement("LiteralInteger 3", instance.eval("CollectionFunctions::size(collection123)", "CollectionTest"));
@@ -544,7 +543,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testControlFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertList(new String[] {"LiteralInteger 2", "LiteralInteger 4", "LiteralInteger 6"}, instance.eval("(1,2,3)->ControlFunctions::collect{in x : ScalarValues::Integer; x * 2}", null));
 		assertList(new String[] {"LiteralInteger 1", "LiteralInteger 2"}, instance.eval("(1,2,3)->ControlFunctions::select{in x : ScalarValues::Integer; x < 3}", null));
 		assertList(new String[] {"LiteralInteger 1"}, instance.eval("(1,2,3)->ControlFunctions::selectOne{in x : ScalarValues::Integer; x < 3}", null));
@@ -570,7 +569,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testTrigFunctionEvaluation() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
+		SysMLInteractive instance = createSysMLInteractiveInstance();
 		assertElement("LiteralRational " + Math.sin(2), instance.eval("TrigFunctions::sin(2)", null));
 		assertElement("LiteralRational " + Math.sin(2.5), instance.eval("TrigFunctions::sin(2.5)", null));
 		assertElement("LiteralRational " + Math.cos(2), instance.eval("TrigFunctions::cos(2)", null));

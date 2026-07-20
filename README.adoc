@@ -1,6 +1,6 @@
 = SysML v2 Pilot Implementation Protoyping
 
-This software is licensed under the GNU Lesser General Public License. See the files LICENSE and LICENSE-GPL.
+This software is licensed under the Eclipse Public License. See the files LICENSE and LICENSE-GPL.
 
 == Installation Instructions
 
@@ -41,6 +41,7 @@ image:oomph-projects.png[oomph projects]
 9. (Optional) For PlantUML visualization, GraphViz is needed.  Visit https://www.graphviz.org/download/ and download the appropriate package for your environment.
    * In the menu of Window > Preferences > PlantUML in Eclipse environment, you may set up the path to GraphViz executable if Eclipse cannot automatically find it.  For detail, visit https://plantuml.com/en/eclipse
 
+*Note.* If you are going to be changing code, you should do a Maven build once the installation build completes, as described in item 5 below.
 
 ==== Manual installation
 
@@ -62,22 +63,31 @@ image:oomph-projects.png[oomph projects]
    * `https://github.com/Systems-Modeling/SySML-v2-Pilot-Implementation.git`
 
 3. Import projects from the repository into your Eclipse workspace. This should include at least the projects:
-   * `org.omg.sysml`
    * `org.omg.kerml.expressions.xtext`
    * `org.omg.kerml.expressions.xtext.ide`
    * `org.omg.kerml.expressions.xtext.ui`
    * `org.omg.kerml.xtext`
    * `org.omg.kerml.xtext.ide`
    * `org.omg.kerml.xtext.ui`
+   * `org.omg.sysml`
+   * `org.omg.sysml.logic`
+   * `org.omg.sysml.logic.bundle`
+   * `org.omg.sysml.model`
+   * `org.omg.sysml.model.bundle`
+   * `org.omg.sysml.target`
    * `org.omg.sysml.xtext`
    * `org.omg.sysml.xtext.ide`
    * `org.omg.sysml.xtext.ui`
 
-4. https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects (including packaging the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`). 
-        * To build the repository, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory.
-        * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also launch a Maven build in Eclipse using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
+4. In the project `org.omg.sysml.target`, open `org.omg.sysml.target.target`.
+   * Click the Refresh button on the right. When the refresh is complete, it should show "nnn plug-ins available" next to each URL.
+   * Click "Reload Target Platform" on the upper right. 
+   
+5. https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects.
+   * To build the repository, invoke `mvn clean install` from the base `SysML-v2-Pilot-Implementation` directory.
+   * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also launch a Maven build in Eclipse using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
 
-=== Prototype SysML Implementation
+=== Runtime Editing Environment
 
 ==== Getting Started
 1. Right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
@@ -115,7 +125,7 @@ image:project-wizard.png[project wizard]
 
 5. Right-click the new project and select Configure > Convert to an Xtext project. This step sets up the indexing infrastructure necessary for resolving references between different files.
 
-6. Create any text files with `.kerml` or `.sysml` extensions to start working with a new file.  
+6. Create a text file with a `.kerml` or `.sysml` extension to start working with a new file.  
 
 **Note:** Adding the project references to an existing project can be done in the project Properties dialog available from the popup menu on the project in the Project References page.
 
@@ -126,7 +136,7 @@ image:project-wizard.png[project wizard]
 === For new code
 Set up a Java code template as follows:
 
-1. Window > Preferences (Mac-OS: Eclipse > Preferences)
+1. Window > Preferences (Mac-OS: Eclipse > Settings)
 
 2. Java > Code Style > Code Templates
 
@@ -142,19 +152,18 @@ Set up a Java code template as follows:
  * Copyright (C) 2026 <Your organization name>
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * it under the terms of the Eclipse Public License, version 2, as published by
+ * the Eclipse Foundation.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * Eclipse Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the Eclipse Public License
+ * along with this program. If not, see <https://www.eclipse.org/legal/epl-2.0/>.
  *
- * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * @license EPL-2.0 <http://spdx.org/licenses/EPL-2.0>
  */
 ----
 
@@ -165,5 +174,5 @@ Set up a Java code template as follows:
 * When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2026, "Copyright (C) 2024" becomes "Copyright (C) 2024-2026" and in 2027 it becomes "Copyright (C) 2024-2027".)
 
 === Sources
-* https://www.gnu.org/licenses/gpl-3.0.en.html[GNU GPL v3.0 - How to Apply These Terms to Your New Programs]
+* https://www.eclipse.org/legal/epl-2.0/faq/[Eclipse Public License (EPL) Frequently Asked Questions]
 * https://hakre.wordpress.com/2012/07/25/using-the-spdx-license-list-for-tagging-and-linking/[Using the SPDX License List for Tagging and Linking]

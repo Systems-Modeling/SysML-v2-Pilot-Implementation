@@ -13,6 +13,19 @@
 	<artifactId>org.omg.sysml</artifactId>
 	<packaging>eclipse-plugin</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.omg.sysml</groupId>
+			<artifactId>org.omg.sysml.model.bundle</artifactId>
+			<version>${revision}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.omg.sysml</groupId>
+			<artifactId>org.omg.sysml.logic.bundle</artifactId>
+			<version>${revision}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -31,4 +44,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

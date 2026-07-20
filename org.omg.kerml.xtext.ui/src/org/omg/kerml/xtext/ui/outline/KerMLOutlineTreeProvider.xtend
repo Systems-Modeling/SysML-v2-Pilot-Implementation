@@ -513,16 +513,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
-		//ImplicitFieldAdapter.getOrCreateAdapter(type).
-		createImplicitGeneralizationNodes(parentNode, type)
+		_createChildren(parentNode, type as Namespace)
+		createImplicitBindingConnectorNodes(parentNode, type)
+		createImplicitSpecializationNodes(parentNode, type)
 		if (type instanceof Feature) {
 			createImplicitTypeFeaturingNodes(parentNode, type)
 		}
-		_createChildren(parentNode, type as Namespace)
-		createImplicitBindingConnectorNodes(parentNode, type)
 	}
 	
-	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
+	def createImplicitSpecializationNodes(IOutlineNode parentNode, Type type) {
 		TypeUtil.forEachImplicitGeneralTypeOf(type, [eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
@@ -597,8 +596,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
-		createImplicitGeneralizationNodes(parentNode, expression)
-		createImplicitTypeFeaturingNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
 			createNode(parentNode, relationship, 
 				_image(relationship), 
@@ -608,6 +605,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			);
 		}
 		createImplicitBindingConnectorNodes(parentNode, expression)
+		createImplicitSpecializationNodes(parentNode, expression)
+		createImplicitTypeFeaturingNodes(parentNode, expression)
 	}
 	
 	override _createNode(DocumentRootNode parentNode, EObject modelElement) {

@@ -107,99 +107,11 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             this.transition = dfa_6;
         }
         public String getDescription() {
-            return "1964:3: ( ( (lv_ownedRelatedElement_1_0= ruleDefinitionElement ) ) | ( (lv_ownedRelatedElement_2_0= ruleUsageElement ) ) )";
+            return "1977:3: ( ( (lv_ownedRelatedElement_1_0= ruleDefinitionElement ) ) | ( (lv_ownedRelatedElement_2_0= ruleUsageElement ) ) )";
         }
     }
     static final String dfa_7s = "\16\uffff";
     static final String dfa_8s = "\1\u00ae\3\52\2\10\1\54\2\17\2\10\2\uffff\1\17";
     static final String dfa_9s = "\1\u00b0\3\52\2\u00ad\1\54\2\74\1\11\1\56\2\uffff\1\74";
     static final String dfa_10s = "\13\uffff\1\2\1\1\1\uffff";
-    static final String dfa_11s = "\16\uffff}>";
-    static final String[] dfa_12s = {
-            "\1\1\1\2\1\3",
-            "\1\4",
-            "\1\4",
-            "\1\4",
-            "\1\7\1\10\41\uffff\1\5\u0081\uffff\1\6",
-            "\1\7\1\10\u00a3\uffff\1\6",
-            "\1\11",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
-            "\1\7\1\10",
-            "\1\7\1\10\43\uffff\1\15\1\13",
-            "",
-            "",
-            "\2\14\53\uffff\1\13"
-    };
-
-    static final short[] dfa_7 = DFA.unpackEncodedString(dfa_7s);
-    static final char[] dfa_8 = DFA.unpackEncodedStringToUnsignedChars(dfa_8s);
-    static final char[] dfa_9 = DFA.unpackEncodedStringToUnsignedChars(dfa_9s);
-    static final short[] dfa_10 = DFA.unpackEncodedString(dfa_10s);
-    static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
-    static final short[][] dfa_12 = unpackEncodedStringArray(dfa_12s);
-
-    class DFA47 extends DFA {
-
-        public DFA47(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 47;
-            this.eot = dfa_7;
-            this.eof = dfa_7;
-            this.min = dfa_8;
-            this.max = dfa_9;
-            this.accept = dfa_10;
-            this.special = dfa_11;
-            this.transition = dfa_12;
-        }
-        public String getDescription() {
-            return "2244:3: (this_MembershipImport_0= ruleMembershipImport | this_NamespaceImport_1= ruleNamespaceImport )";
-        }
-    }
-    static final String dfa_13s = "\13\uffff";
-    static final String dfa_14s = "\7\uffff\1\11\2\uffff\1\11";
-    static final String dfa_15s = "\1\10\3\54\2\10\1\uffff\1\17\1\55\1\uffff\1\17";
-    static final String dfa_16s = "\1\u00ad\1\54\2\74\1\11\1\56\1\uffff\1\74\1\55\1\uffff\1\74";
-    static final String dfa_17s = "\6\uffff\1\2\2\uffff\1\1\1\uffff";
-    static final String dfa_18s = "\13\uffff}>";
-    static final String[] dfa_19s = {
-            "\1\2\1\3\u00a3\uffff\1\1",
-            "\1\4",
-            "\1\5\17\uffff\1\6",
-            "\1\5\17\uffff\1\6",
-            "\1\2\1\3",
-            "\1\2\1\3\43\uffff\1\6\1\7",
-            "",
-            "\2\11\33\uffff\1\10\17\uffff\1\6",
-            "\1\12",
-            "",
-            "\2\11\53\uffff\1\6"
-    };
-
-    static final short[] dfa_13 = DFA.unpackEncodedString(dfa_13s);
-    static final short[] dfa_14 = DFA.unpackEncodedString(dfa_14s);
-    static final char[] dfa_15 = DFA.unpackEncodedStringToUnsignedChars(dfa_15s);
-    static final char[] dfa_16 = DFA.unpackEncodedStringToUnsignedChars(dfa_16s);
-    static final short[] dfa_17 = DFA.unpackEncodedString(dfa_17s);
-    static final short[] dfa_18 = DFA.unpackEncodedString(dfa_18s);
-    static final short[][] dfa_19 = unpackEncodedStringArray(dfa_19s);
-
-    class DFA49 extends DFA {
-
-        public DFA49(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 49;
-            this.eot = dfa_13;
-            this.eof = dfa_14;
-            this.min = dfa_15;
-            this.max = dfa_16;
-            this.accept = dfa_17;
-            this.special = dfa_18;
-            this.transition = dfa_19;
-        }
-        public String getDescription() {
-            return "2394:3: (this_ImportedNamespace_1= ruleImportedNamespace[$current] | ( (lv_ownedRelatedElement_2_0= ruleFilterPackage ) ) )";
-        }
-    }
-    static final String dfa_20s = "\10\uffff";
 }

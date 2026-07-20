@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.Feature;
 
 public class EndFeatureMembershipAdapter extends FeatureMembershipAdapter {
 
@@ -40,11 +40,7 @@ public class EndFeatureMembershipAdapter extends FeatureMembershipAdapter {
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		EndFeatureMembership target = getTarget();
-		Feature endFeature = target.getOwnedMemberFeature();
-		if (endFeature != null) {
-			endFeature.setIsEnd(true);
-		}
+		getStructuralModelCompletionService().caseEndFeatureMembership(getTarget());
 	}
 
 }

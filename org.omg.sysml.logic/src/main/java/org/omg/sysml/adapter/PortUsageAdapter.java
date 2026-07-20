@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2022, 2025, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,13 +21,11 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
 
 public class PortUsageAdapter extends UsageAdapter {
 
@@ -43,11 +42,7 @@ public class PortUsageAdapter extends UsageAdapter {
 	 */
 	public void postProcess() {
 		super.postProcess();
-		PortUsage target = getTarget();
-		EObject featuringType = UsageUtil.getExpectedFeaturingTypeOf(target);
-		if (!(featuringType instanceof PortDefinition || featuringType instanceof PortUsage)) {
-			target.setIsComposite(false);
-		}
+		getStructuralModelCompletionService().casePortUsage(getTarget());
 	}
 	
 	// Implicit Generalization

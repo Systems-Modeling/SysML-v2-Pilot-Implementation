@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -19,7 +20,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.util.ElementUtil;
 
 public class CommentAdapter extends AnnotatingElementAdapter {
 	
@@ -35,8 +35,6 @@ public class CommentAdapter extends AnnotatingElementAdapter {
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		Comment target = getTarget();
-		target.setLocale(ElementUtil.unescapeString(target.getLocale()));
-		target.setBody(ElementUtil.processCommentBody(target.getBody()));
+		getLexicalNormalizationService().caseComment(getTarget());
 	}
 }

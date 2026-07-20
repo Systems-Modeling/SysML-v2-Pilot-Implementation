@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,10 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Subclassification;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class SubclassificationAdapter extends SpecializationAdapter {
 
@@ -39,17 +37,7 @@ public class SubclassificationAdapter extends SpecializationAdapter {
 	
 	@Override
 	public void postProcess() {
-		Subclassification obj = getTarget();
-		
-		// If the subclassifier is empty, then set it to the owningRelatedElement,
-		// if this is a Classifier.
-		Object subclassifier = obj.eGet(SysMLPackage.Literals.SUBCLASSIFICATION__SUBCLASSIFIER, false);
-		if (subclassifier == null) {
-			Element owner = obj.getOwningRelatedElement();
-			if (owner instanceof Classifier) {
-				obj.setSubclassifier((Classifier) owner);
-			}
-		}
+		getStructuralModelCompletionService().caseSubclassification(getTarget());
 	}
 	
 }

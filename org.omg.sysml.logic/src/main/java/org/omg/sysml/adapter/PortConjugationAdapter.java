@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -22,10 +23,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.PortConjugation;
-import org.omg.sysml.lang.sysml.PortDefinition;
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class PortConjugationAdapter extends ConjugationAdapter {
 
@@ -41,21 +38,7 @@ public class PortConjugationAdapter extends ConjugationAdapter {
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		
-		PortConjugation obj = getTarget();
-		
-		// If the originalPortDefinition is empty, then set it to the owner of the conjugatedPortDefinition
-		// (if that is a PortDefinition).
-		Object originalPortDefinition = obj.eGet(SysMLPackage.Literals.PORT_CONJUGATION__ORIGINAL_PORT_DEFINITION, false);
-		if (originalPortDefinition == null) {
-			ConjugatedPortDefinition conjugatedPortDefinition = obj.getConjugatedPortDefinition();
-			if (conjugatedPortDefinition != null) {
-				Element conjugatedPortDefinitionOwner = conjugatedPortDefinition.getOwner();
-				if (conjugatedPortDefinitionOwner instanceof PortDefinition) {
-					obj.setOriginalPortDefinition((PortDefinition)conjugatedPortDefinitionOwner);
-				}
-			}
-		}
+		getStructuralModelCompletionService().casePortConjugation(getTarget());
 	}
 	
 }

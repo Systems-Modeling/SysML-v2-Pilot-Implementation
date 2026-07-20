@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,11 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class FeatureTypingAdapter extends SpecializationAdapter {
 
@@ -40,26 +37,7 @@ public class FeatureTypingAdapter extends SpecializationAdapter {
 	
 	@Override
 	public void postProcess() {
-		FeatureTyping obj = getTarget();
-		
-		// If the type is empty, then set it to the first owned related element
-		// (which will be a Feature chain).
-		Object type = obj.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false);
-		if (type == null) {
-			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				obj.setType((Feature)ownedRelatedElements.get(0));
-			}
-		}
-		
-		// If the typedFeature is empty, then set it to the owningRelatedElement (if that is a Feature).
-		Object typedFeature = obj.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPED_FEATURE, false);
-		if (typedFeature == null) {
-			Element owningRelatedElement = obj.getOwningRelatedElement();
-			if (owningRelatedElement instanceof Feature) {
-				obj.setTypedFeature((Feature) owningRelatedElement);
-			}
-		}
+		getStructuralModelCompletionService().caseFeatureTyping(getTarget());
 	}
 	
 }

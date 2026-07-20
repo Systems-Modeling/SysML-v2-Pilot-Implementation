@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -19,7 +20,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.util.ElementUtil;
 
 public class TextualRepresentationAdapter extends AnnotatingElementAdapter {
 	
@@ -35,8 +35,6 @@ public class TextualRepresentationAdapter extends AnnotatingElementAdapter {
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		TextualRepresentation target = getTarget();
-		target.setLanguage(ElementUtil.unescapeString(target.getLanguage()));
-		target.setBody(ElementUtil.processCommentBody(target.getBody()));
+		getLexicalNormalizationService().caseTextualRepresentation(getTarget());
 	}
 }

@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,11 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Differencing;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class DifferencingAdapter extends RelationshipAdapter {
 
@@ -40,19 +37,7 @@ public class DifferencingAdapter extends RelationshipAdapter {
 	
 	@Override
 	public void postProcess() {
-		Differencing obj = getTarget();
-		
-		// If a Differencing is parsed targeting a Feature chain, then the differencingType will be empty,
-		// but the Differencing will own the differencingType. So, in this case, the differencingType should
-		// be set to the (last) ownedRelatedelement.
-		Object differencingType = obj.eGet(SysMLPackage.Literals.DIFFERENCING__DIFFERENCING_TYPE, false);
-		if (differencingType == null) {
-			// Handle a differencingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				obj.setDifferencingType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
-			}
-		}
+		getStructuralModelCompletionService().caseDifferencing(getTarget());
 	}
 	
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,7 +21,6 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 
 public class ParameterMembershipAdapter extends FeatureMembershipAdapter {
@@ -37,11 +37,7 @@ public class ParameterMembershipAdapter extends FeatureMembershipAdapter {
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		ParameterMembership target = getTarget();
-		Feature parameter = target.getOwnedMemberParameter();
-		if (parameter != null) {
-			parameter.setDirection(target.parameterDirection());
-		}
+		getStructuralModelCompletionService().caseParameterMembership(getTarget());
 	}
 
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,10 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Dependency;
-import org.omg.sysml.lang.sysml.Element;
 
 public class DependencyAdapter extends RelationshipAdapter {
 
@@ -36,12 +34,7 @@ public class DependencyAdapter extends RelationshipAdapter {
 	}
 	
 	public void postProcess() {
-		Dependency target = getTarget();
-		
-		// Add all ownedRelatedElements to supplier.
-		EObjectResolvingEList<Element> suppliers = (EObjectResolvingEList<Element>)target.getSupplier();
-		EList<Element> ownedRelatedElements = target.getOwnedRelatedElement();
-		ownedRelatedElements.stream().forEachOrdered(suppliers::addUnique);
+		getStructuralModelCompletionService().caseDependency(getTarget());
 	}
 
 }

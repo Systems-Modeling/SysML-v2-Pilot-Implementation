@@ -8,9 +8,10 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 import org.omg.sysml.util.FeatureUtil;
@@ -22,12 +23,15 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 	@Override
 	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
 		super.validate(element, messageAccepter);
+		validateFeatureHasType_(element, messageAccepter);
+		
 		validateFeatureChainingFeatureConformance(element, messageAccepter);
 		validateFeatureChainingFeatureNotOne(element, messageAccepter);
 		validateFeatureChainingFeaturesNotSelf(element, messageAccepter);
 		validateFeatureConstantIsVariable(element, messageAccepter);
 		validateFeatureCrossFeatureSpecialization(element, messageAccepter);
 		validateFeatureCrossFeatureType(element, messageAccepter);
+		checkFeatureCrossingSpecialization(element, messageAccepter);
 		validateFeatureEndIsConstant(element, messageAccepter);
 		validateFeatureEndMultiplicity(element, messageAccepter);
 		validateFeatureEndNoDirection(element, messageAccepter);
@@ -38,15 +42,28 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 		validateFeatureOwnedReferenceSubsetting(element, messageAccepter);
 		validateFeaturePortionNotVariable(element, messageAccepter);
 	}
-						
+	
+	public void validateFeatureHasType_(Element element, ValidationMessageAccepter messageAccepter) {
+		if (element instanceof Feature f) {
+			// Note: Use utility method to ensure types are not filtered out by redefinitions of getType.
+			List<Type> types = FeatureUtil.getAllTypesOf(f);
+			if (types != null && types.isEmpty())
+				messageAccepter.error(f, SysMLPackage.eINSTANCE.getFeature_Type(), "validateFeatureHasType_");
+		}
+	}
+	
 	public void validateFeatureChainingFeatureConformance(Element element, ValidationMessageAccepter messageAccepter) {
-		if (element instanceof FeatureChaining fc) {
-			EList<FeatureChaining> featureChainingList = fc.getFeatureChained().getOwnedFeatureChaining();
-			int i = featureChainingList.indexOf(fc);
-			if (i > 0) {
-				Feature previous = featureChainingList.get(1-i).getChainingFeature();
-				if (!fc.getChainingFeature().isFeaturedWithin(previous)) {
-					messageAccepter.error(element, null, "validateFeatureChainingFeatureConformance");
+		if (element instanceof Feature f) {
+			EList<Feature> chainingFeatures = f.getChainingFeature();
+			int n = chainingFeatures.size();
+			if (n > 0) {
+				Feature prev = chainingFeatures.get(0);				
+				for (int i = 1; i < n; i++) {
+					Feature cf = chainingFeatures.get(i);
+					if (cf.isFeaturedWithin(prev)) {
+						messageAccepter.error(f.getOwnedFeatureChaining().get(i), SysMLPackage.eINSTANCE.getFeatureChaining_ChainingFeature(), "validateFeatureChainingFeatureConformance");
+					}
+					prev = cf;
 				}
 			}
 		}
@@ -69,11 +86,11 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 	public void validateFeatureConstantIsVariable(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			if (f.isConstant() && !f.isVariable()) {
-				messageAccepter.error(element, null, "validationFeatureConstantVariable");
+				messageAccepter.error(element, null, "validationFeatureConstantIsVariable");
 			}
 		}
 	}
-	// validateFeatureCrossFeatureSpecialization
+
 	public void validateFeatureCrossFeatureSpecialization(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			Feature crossFeature = FeatureUtil.getCrossFeatureOf(f);
@@ -91,7 +108,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureCrossFeatureType
+
 	public void validateFeatureCrossFeatureType(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			Feature crossFeature = FeatureUtil.getCrossFeatureOf(f);
@@ -108,16 +125,29 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureConstantIsVariable
+	
+	/**
+	 * Validates that it is possible to satisfy the checkFeatureCrossingSpecialization semantic constraint.
+	 */
+	public void checkFeatureCrossingSpecialization(Element element, ValidationMessageAccepter messageAccepter) {
+		if (element instanceof Feature f) {
+			Feature crossFeature = FeatureUtil.getCrossFeatureOf(f);
+			Feature ownedCrossFeature = f.ownedCrossFeature(); 
+			if (ownedCrossFeature != null && ownedCrossFeature != crossFeature) {
+				messageAccepter.error(ownedCrossFeature, null, "checkFeatureCrossingSpecialization");
+			}
+		}
+	}
+						
 	public void validateFeatureEndIsConstant(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
-			if (f.isConstant() && !f.isVariable()) {
-				messageAccepter.error(element, null, "validateFatureConstantIsVariable");
+			if (f.isEnd() && f.isVariable() && !f.isConstant()) {
+				messageAccepter.error(element, null, "validateFeatureEndIsConstant");
 			}
 		}
 		
 	}
-	// validateFeatureEndMultiplicity
+
 	public void validateFeatureEndMultiplicity(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			if (f.isEnd()) {
@@ -130,16 +160,16 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureEndNoDirection
+
 	public void validateFeatureEndNoDirection(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
-			if (f.isEnd() && f.directionOf(f) != null) {
-				
+			if (f.isEnd() && f.getDirection() != null) {
+				messageAccepter.error(element, null, "validateFeatureEndNoDirection");
 			}
 		}
 		
 	}
-	// validateFeatureEndNotDerivedAbstractCompositeOrPortion
+	
 	public void validateFeatureEndNotDerivedAbstractCompositeOrPortion(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			if (f.isEnd() && (f.isDerived() || f.isAbstract() || f.isComposite() || f.isPortion())) {
@@ -147,7 +177,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureIsVariable
+	
 	public void validateFeatureIsVariable(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			if (f.isVariable() && (f.getOwningType() == null) || !TypeUtil.specializes(f.getOwningType(), SysMLLibraryUtil.getLibraryType(f, "Occurrences::Occurrence"))) {
@@ -155,7 +185,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureMultiplicityDomain
+	
 	public void validateFeatureMultiplicityDomain(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			var m = f.getMultiplicity();
@@ -169,7 +199,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureOwnedCrossSubsetting
+	
 	public void validateFeatureOwnedCrossSubsetting(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			List<Relationship> crossSubsettings = f.getOwnedRelationship().stream().filter(r -> r instanceof CrossSubsetting).collect(Collectors.toList());
@@ -180,7 +210,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	// validateFeatureOwnedReferenceSubsetting
+	
 	public void validateFeatureOwnedReferenceSubsetting(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			List<Relationship> refSubsettings = f.getOwnedRelationship().stream()
@@ -194,11 +224,11 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 			}
 		}
 	}
-	//validatePortionNotVariable 
+	 
 	public void validateFeaturePortionNotVariable(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			if (f.isPortion() && f.isVariable()) {
-				messageAccepter.error(f, null, "validatePortionNotVariable");
+				messageAccepter.error(f, null, "validateFeaturePortionNotVariable");
 			}
 		}
 	}

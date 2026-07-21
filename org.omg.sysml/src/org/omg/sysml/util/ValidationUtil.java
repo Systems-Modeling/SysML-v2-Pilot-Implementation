@@ -4,12 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-//import org.eclipse.xtext.xbase.lib.IterableExtensions;
-//import org.eclipse.xtext.xbase.lib.Functions.Function1;
-//import org.omg.kerml.xtext.validation.KerMLValidator;
+
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.OperatorExpression;
@@ -50,8 +45,9 @@ public class ValidationUtil {
 		return false; 
 	}
 	
+	static private List<String> BOOLEAN_OPERATORS = Arrays.asList("not", "xor", "&", "|");
 	public static boolean isBooleanOperator(String operator) {
-		return CollectionLiterals.<String>newArrayList("not", "xor", "&", "|").contains(operator);
+		return BOOLEAN_OPERATORS.contains(operator);
 	}
 	
 	public static boolean isBooleanExpression(Type expr) {
@@ -100,29 +96,30 @@ public class ValidationUtil {
 		    return TypeUtil.specializes(type, SysMLLibraryUtil.getLibraryType(context, qualifiedName));
 	}
 	
+	private static List<String> INTEGER_OPERATORS = Arrays.asList("-", "+", "*", "%", "^", "**");
 	public static boolean isIntegerOperator(String operator) {
-        return Arrays.asList("-", "+", "*", "%", "^", "**").contains(operator);
+        return INTEGER_OPERATORS.contains(operator);
     }
 	
-	public static void checkAtMostOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {
-	  
-	    int listSize = IterableExtensions.size(list);
+	public static void checkAtMostOne(List<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {	  
+	    int listSize = list.size();
 	    if (listSize > 1) {
-	    	List<? extends EObject> features = IterableExtensions.toList(list);
-	      for (int i = 1; i < listSize; i++) {
-	    	  messageAccepter.error(features.get(i), feature, msgCode);
-	      }
+	    	for (int i = 1; i < listSize; i++) {
+	    		messageAccepter.error(list.get(i), feature, msgCode);
+	    	}
 	    }
 	}
 	
-	public static void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
-		if (IterableExtensions.size(list) == 1) messageAccepter.error((EObject)Conversions.unwrapArray(list), null, msgCode );
+	public static void checkNotOne(List<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
+		if (list.size() == 1) {
+			messageAccepter.error(list.get(0), null, msgCode );
+		}
 	}
 
 	public static void checkTargetNotObject(EObject obj, List<? extends Relationship> rels, ValidationMessageAccepter messageAccepter, String msgCode) {
 		for (Relationship r : rels) {
 			if (r.getTarget().contains(obj)) {
-				messageAccepter.error(obj, null, msgCode); //?
+				messageAccepter.error(r, null, msgCode);
 			}
 		}
 	}

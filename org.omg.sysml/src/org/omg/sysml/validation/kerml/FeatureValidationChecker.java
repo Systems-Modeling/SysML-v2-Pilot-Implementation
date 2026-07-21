@@ -71,15 +71,13 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 	
 	public void validateFeatureChainingFeatureNotOne(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
-			ValidationUtil vUtil = new ValidationUtil(); 
-			vUtil.checkNotOne(f.getOwnedFeatureChaining(), messageAccepter, "validateFeatureChainingFeatureNotOne");
+			ValidationUtil.checkNotOne(f.getOwnedFeatureChaining(), messageAccepter, "validateFeatureChainingFeatureNotOne");
 		}
 	}
 	
 	public void validateFeatureChainingFeaturesNotSelf(Element element, ValidationMessageAccepter messageAccepter) {
-		ValidationUtil vUtil = new ValidationUtil();
 		if (element instanceof Feature f) {
-			vUtil.checkTargetNotObject(f, null, messageAccepter, "validateFeatureChainingFeatureNotSelf");
+			ValidationUtil.checkTargetNotObject(f, null, messageAccepter, "validateFeatureChainingFeatureNotSelf");
 		}
 	}
 	

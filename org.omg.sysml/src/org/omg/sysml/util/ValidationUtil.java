@@ -25,9 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ValidationUtil {
-	 // Utilities Methods from xtends rewrite in Java. 
 	
-	static boolean isModelLibrary(Resource resource) {
+	public static boolean isModelLibrary(Resource resource) {
 		if (resource == null) {
 			return false;
 		} else {
@@ -35,26 +34,27 @@ public class ValidationUtil {
 			return path != null && path.contains(SysMLLibraryUtil.getModelLibraryPath());
 		}
 	}
-	 static boolean isBoolean(Expression condition) {
-	     
-	        if (condition.specializesFromLibrary("ScalarValues::Boolean")) {
-	            return true;
-	        }
-	        if (condition instanceof LiteralBoolean) {
-	        	return true;
-	        }
-	        if (condition instanceof OperatorExpression) {
-	        	OperatorExpression opExpression = (OperatorExpression) condition; 
-	        	
-	        	return ValidationUtil.isBooleanOperator(opExpression.getOperator()) && opExpression.getArgument().stream().allMatch(ValidationUtil::isBoolean);
-	        }
-	        return false; 
-	 }
-	 static boolean isBooleanOperator(String operator) {
-		    return CollectionLiterals.<String>newArrayList("not", "xor", "&", "|").contains(operator);
-	 }
 	
-	 static boolean isBooleanExpression(Type expr) {
+	public static boolean isBoolean(Expression condition) {
+		if (condition.specializesFromLibrary("ScalarValues::Boolean")) {
+			return true;
+		}
+		if (condition instanceof LiteralBoolean) {
+			return true;
+		}
+		if (condition instanceof OperatorExpression) {
+			OperatorExpression opExpression = (OperatorExpression) condition; 
+
+			return ValidationUtil.isBooleanOperator(opExpression.getOperator()) && opExpression.getArgument().stream().allMatch(ValidationUtil::isBoolean);
+		}
+		return false; 
+	}
+	
+	public static boolean isBooleanOperator(String operator) {
+		return CollectionLiterals.<String>newArrayList("not", "xor", "&", "|").contains(operator);
+	}
+	
+	public static boolean isBooleanExpression(Type expr) {
 		    if (expr instanceof Expression) {
 		        Expression expression = (Expression) expr;
 		        var result = expression.getResult();
@@ -78,30 +78,33 @@ public class ValidationUtil {
 		    }
 		    return false;
 	 }
-	 static boolean isInteger(Expression expr) {
-		    if (expr instanceof LiteralInteger || expr instanceof LiteralInfinity) {
-		        return true;
-		    }
+	
+	public static boolean isInteger(Expression expr) {
+		if (expr instanceof LiteralInteger || expr instanceof LiteralInfinity) {
+			return true;
+		}
 
-		    if (specializesFromLibrary(expr, expr.getResult(), "ScalarValues::Integer")) {
-		        return true;
-		    }
+		if (specializesFromLibrary(expr, expr.getResult(), "ScalarValues::Integer")) {
+			return true;
+		}
 
-		    if (expr instanceof OperatorExpression) {
-		        OperatorExpression opExpr = (OperatorExpression) expr;
-		        return isIntegerOperator(opExpr.getOperator()) && 
-		               opExpr.getArgument().stream().allMatch(arg -> isInteger(arg));
-		    }
-		    return false;
+		if (expr instanceof OperatorExpression) {
+			OperatorExpression opExpr = (OperatorExpression) expr;
+			return isIntegerOperator(opExpr.getOperator()) && 
+					opExpr.getArgument().stream().allMatch(arg -> isInteger(arg));
+		}
+		return false;
 	}
-	static boolean specializesFromLibrary(Element context, Type type, String qualifiedName) {
+	
+	public static boolean specializesFromLibrary(Element context, Type type, String qualifiedName) {
 		    return TypeUtil.specializes(type, SysMLLibraryUtil.getLibraryType(context, qualifiedName));
 	}
-	static boolean isIntegerOperator(String operator) {
+	
+	public static boolean isIntegerOperator(String operator) {
         return Arrays.asList("-", "+", "*", "%", "^", "**").contains(operator);
     }
 	
-	public void checkAtMostOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {
+	public static void checkAtMostOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, EStructuralFeature feature, String msgCode) {
 	  
 	    int listSize = IterableExtensions.size(list);
 	    if (listSize > 1) {
@@ -112,13 +115,11 @@ public class ValidationUtil {
 	    }
 	}
 	
-	public void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
+	public static void checkNotOne(Iterable<? extends EObject> list, ValidationMessageAccepter messageAccepter, String msgCode) {
 		if (IterableExtensions.size(list) == 1) messageAccepter.error((EObject)Conversions.unwrapArray(list), null, msgCode );
 	}
 
-
-
-	public void checkTargetNotObject(EObject obj, List<? extends Relationship> rels, ValidationMessageAccepter messageAccepter, String msgCode) {
+	public static void checkTargetNotObject(EObject obj, List<? extends Relationship> rels, ValidationMessageAccepter messageAccepter, String msgCode) {
 		for (Relationship r : rels) {
 			if (r.getTarget().contains(obj)) {
 				messageAccepter.error(obj, null, msgCode); //?

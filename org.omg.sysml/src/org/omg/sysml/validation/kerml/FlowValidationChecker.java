@@ -23,7 +23,7 @@ public class FlowValidationChecker extends ConnectorValidationChecker {
 	public void validateFlowPayloadFeature(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Flow flow) {
 			List<? extends EObject> list = flow.getOwnedFeature().stream().filter(PayloadFeature.class::isInstance).collect(Collectors.toList());	
-			new ValidationUtil().checkAtMostOne(list, messageAccepter, null, "validateFlowItemFeature");
+			ValidationUtil.checkAtMostOne(list, messageAccepter, null, "validateFlowItemFeature");
 		}
 	}
 }

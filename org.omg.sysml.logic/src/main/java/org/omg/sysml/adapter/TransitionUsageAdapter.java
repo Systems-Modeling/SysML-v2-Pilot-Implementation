@@ -38,6 +38,8 @@ import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
+	private boolean isComputingTransitionLinkConnectors = false;
+
 	public TransitionUsageAdapter(TransitionUsage element) {
 		super(element);
 	}
@@ -103,24 +105,32 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	 */
 	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
-		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
-		if (transitionLinkFeature == null) {
-			Succession succession = transition.getSuccession();
-			if (succession != null) {
-				transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
-				TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
-				addBindingConnector(succession, transitionLinkFeature);
-			}
-			
-			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
-			if (!parameters.isEmpty()) {
-				Feature source = transition.getSource();
-				if (source != null) {
-					addBindingConnector(source, parameters.get(0));
+		if (this.isComputingTransitionLinkConnectors) {
+			return UsageUtil.getTransitionLinkFeatureOf(transition);
+		}
+		this.isComputingTransitionLinkConnectors = true;
+		try {
+			Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
+			if (transitionLinkFeature == null) {
+				Succession succession = transition.getSuccession();
+				if (succession != null) {
+					transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
+					TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+					addBindingConnector(succession, transitionLinkFeature);
+				}
+				
+				List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
+				if (!parameters.isEmpty()) {
+					Feature source = transition.getSource();
+					if (source != null) {
+						addBindingConnector(source, parameters.get(0));
+					}
 				}
 			}
+			return transitionLinkFeature;
+		} finally {
+			this.isComputingTransitionLinkConnectors = false;
 		}
-		return transitionLinkFeature;
 	}
 	
 	@Override
@@ -130,7 +140,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		computeSource();
 		// Note: Needs to come before clearing and recomputation of inheritance cache.
 		//checkTransitionUsageSuccessionBindingConnector
-		computeTransitionLinkConnectors();		
+		computeTransitionLinkConnectors();
 	}
 	
 }

@@ -229,12 +229,10 @@ public class TypeUtil {
 		if (type instanceof Feature) {
 			type = FeatureUtil.getBasicFeatureOf((Feature)type);
 		}
-		if (type == null) {
-			return new ArrayList<>();
-		}
-		return type.getOwnedFeature().stream().
-				filter(FeatureUtil::isParameter).
-				collect(Collectors.toList());
+		return type == null? Collections.emptyList():
+			    type.getOwnedFeature().stream().
+					filter(FeatureUtil::isParameter).
+					collect(Collectors.toList());
 	}
 	
 	public static Feature getOwnedResultParameterOf(Type type) {

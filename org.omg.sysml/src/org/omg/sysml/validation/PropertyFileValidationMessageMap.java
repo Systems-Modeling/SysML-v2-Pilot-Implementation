@@ -21,35 +21,66 @@
 
 package org.omg.sysml.validation;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map.Entry;
+
+import org.eclipse.emf.common.util.URI;
+
+import java.util.Properties;
 
 public class PropertyFileValidationMessageMap implements ValidationMessageMap {
+		
+	private final Properties messageMap;
 	
-	private Map<String, String> messageMap = new HashMap<>();
-	// TODO: Create two message property files - SysML and KerML (do KerML first)
-//	Path kermlFilePath = Paths.get("KerMLValidationMessages.properties");
-//	Path sysmlFilePath = Paths.get("SysMLValidationMessages.properties");
-//	List<String> kermlMessages = Files.readAllLines(kermlFilePath);
-//	List<String> sysmlMessages = Files.readAllLines(sysmlFilePath);
+	protected static String getPathOnPlatform(String platformPath) {
+		return URI.createPlatformResourceURI(platformPath, false).toPlatformString(false);
+	}
+
+	public PropertyFileValidationMessageMap(String propertyFilePath) throws FileNotFoundException, IOException {
+		this(propertyFilePath, null);
+	}
 	
-	public PropertyFileValidationMessageMap(String propertyFileName) {
-		// TODO: Load messageMap from property file
+	public PropertyFileValidationMessageMap(String propertyFilePath, PropertyFileValidationMessageMap defaults) throws FileNotFoundException, IOException {
+		messageMap = defaults == null? new Properties(): new Properties(defaults.getMessageMap());
+		loadPropertyFile(messageMap, propertyFilePath);
+	}
+	
+	protected Properties getMessageMap() {
+		return messageMap;
+	}
+	
+	protected void loadPropertyFile(Properties properties, String propertyFilePath) throws FileNotFoundException, IOException {
+		if (propertyFilePath != null) {
+			try (InputStream input = new FileInputStream(propertyFilePath)) {
+				properties.load(input);
+			} catch (Exception e) {
+				System.err.println("Cannot load validation message file " + propertyFilePath);
+				throw e;
+			}
+		}		
 	}
 
 	@Override
 	public String getMessage(String messageCode) {
-		return messageMap.get(messageCode);
+		return messageMap.getProperty(messageCode);
 	}
 
 	@Override
 	public String getMessage(int diagnosticCode) {
+		for (Entry<Object, Object> entry: messageMap.entrySet()) {
+			if (getDiagnosticCode((String)entry.getValue()) == diagnosticCode) {
+				return (String)entry.getValue();
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public int getDiagnosticCode(String messageCode) {
-		return getMessage(messageCode).hashCode();
+		return messageCode.hashCode();
 	}
 
 }

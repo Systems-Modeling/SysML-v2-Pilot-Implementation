@@ -45,7 +45,7 @@ public class SysMLEValidator implements EValidator {
 	protected ValidationMessageMap messageMap;
 	
 	public SysMLEValidator() throws IOException {
-		this(new SysMLValidationCheckerFactory(), new BasicValidationMessageMap());
+		this(new SysMLValidationCheckerFactory(), new SysMLValidationMessageMap());
 	}
 
 	public SysMLEValidator(ValidationCheckerFactory factory, ValidationMessageMap messageMap) {

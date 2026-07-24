@@ -1,7 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022, 2024-2026 Model Driven Solutions, Inc.
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -228,9 +229,10 @@ public class TypeUtil {
 		if (type instanceof Feature) {
 			type = FeatureUtil.getBasicFeatureOf((Feature)type);
 		}
-		return type.getOwnedFeature().stream().
-				filter(FeatureUtil::isParameter).
-				collect(Collectors.toList());
+		return type == null? Collections.emptyList():
+			    type.getOwnedFeature().stream().
+					filter(FeatureUtil::isParameter).
+					collect(Collectors.toList());
 	}
 	
 	public static Feature getOwnedResultParameterOf(Type type) {

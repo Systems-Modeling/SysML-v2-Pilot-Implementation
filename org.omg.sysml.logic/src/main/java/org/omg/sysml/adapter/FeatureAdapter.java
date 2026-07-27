@@ -1,7 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -558,7 +559,7 @@ public class FeatureAdapter extends TypeAdapter {
 		computeImplicitGeneralTypes();
 		getFeatureTypes(types, visitedFeatures);
 		for (Feature typingFeature : feature.typingFeatures()) {
-			if (!visitedFeatures.contains(typingFeature)) {
+			if (typingFeature != null && !visitedFeatures.contains(typingFeature)) {
 				FeatureUtil.getTypesOf(typingFeature, types, visitedFeatures);
 			}
 		}

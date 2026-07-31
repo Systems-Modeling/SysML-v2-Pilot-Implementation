@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_mczcUFn3EfG_XZTXp4TXuA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_3xDNUI0mEfG6c65bBCDQDA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="_18_5_3_12e503d9_1565469595465_233190_19811" name="Systems" visibility="public" URI="">
     <packageImport xmi:id="_19_0_4_12e503d9_1597695863785_392680_5982">
       <importedPackage href="KerML_only_xmi.uml#_18_5_3_12e503d9_1561108539241_462450_22354"/>
@@ -398,7 +398,7 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="_19_0_4_12e503d9_1665508310690_815204_1111" name="validateAcceptActionUsageParameters" visibility="public" constrainedElement="_18_5_3_12e503d9_1565503089035_106795_33475">
           <ownedComment xmi:id="_19_0_4_12e503d9_1665508507451_978456_1113" annotatedElement="_19_0_4_12e503d9_1665508310690_815204_1111">
-            <body>&lt;p>An &lt;code>AcceptUsageAction&lt;/code> must have at least on input &lt;code>parameter&lt;/code>, corresponding to its &lt;em>&lt;code>payload&lt;/code>&lt;/em> (even if it has no &lt;code>FeatureValue&lt;/code>). (Note that the &lt;code>payloadParameter&lt;/code> is an input as well as an output.)&lt;/p></body>
+            <body>&lt;p>An &lt;code>AcceptUsageAction&lt;/code> must have at least one input &lt;code>parameter&lt;/code>, corresponding to its &lt;em>&lt;code>payload&lt;/code>&lt;/em> (even if it has no &lt;code>FeatureValue&lt;/code>). (Note that the &lt;code>payloadParameter&lt;/code> is an input as well as an output.)&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1665508310709_893602_1112" name="" visibility="public">
             <language>OCL2.0</language>
@@ -586,7 +586,7 @@ owningType.oclAsType(TransitionUsage).triggerAction->includes(self)</body>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1673468438852_150536_1068" name="" visibility="public">
             <language>OCL2.0</language>
             <body>isSubactionUsage() implies
-    specializesFromLibrary('Actions::Action::acceptSubactions')</body>
+    specializesFromLibrary('Actions::Action::sendSubactions')</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="_19_0_4_12e503d9_1673467849016_612152_1062" name="checkSendActionUsageSpecialization" visibility="public" constrainedElement="_18_5_3_12e503d9_1565505727349_597544_34143">
@@ -2708,7 +2708,7 @@ targetParameter.ownedFeature->first().ownedFeature->first().redefines(referent)<
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1676634578146_356506_276" name="" visibility="public">
             <language>OCL2.0</language>
-            <body>nestedMetadata = nestedUsage->selectByKind(MetadataUsage)</body>
+            <body>nestedMetadata = ownedMember->selectByKind(MetadataUsage)</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:id="_19_0_4_12e503d9_1676634578117_456358_232" name="deriveUsageNestedOccurrence" visibility="public" constrainedElement="_18_5_3_12e503d9_1565469997820_598571_19982">
@@ -5560,13 +5560,14 @@ endif</body>
         </ownedRule>
         <ownedRule xmi:id="_19_0_4_12e503d9_1676734839141_778347_865" name="checkRequirementUsageSubrequirementSpecialization" visibility="public" constrainedElement="_19_0_2_12e503d9_1582991078230_41497_1143">
           <ownedComment xmi:id="_19_0_4_12e503d9_1676735014981_846525_867" annotatedElement="_19_0_4_12e503d9_1676734839141_778347_865">
-            <body>&lt;p>A composite &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>RequirementDefinition&lt;/code> or &lt;code>RequirementUsage&lt;/code> must directly or indirectly specialize the &lt;code>RequirementUsage&lt;/code> &lt;em>&lt;code>Requirements::RequirementCheck::subrequirements&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
+            <body>&lt;p>A composite &lt;code>RequirementUsage&lt;/code> whose &lt;code>owningType&lt;/code> is a &lt;code>RequirementDefinition&lt;/code> or &lt;code>RequirementUsage&lt;/code> but is &lt;em>not&lt;/em> owned via a &lt;code>RequirementConstraintMembership&lt;/code> must directly or indirectly specialize the &lt;code>RequirementUsage&lt;/code> &lt;em>&lt;code>Requirements::RequirementCheck::subrequirements&lt;/code>&lt;/em> from the Systems Model Library.&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1676734839153_77570_866" name="" visibility="public">
             <language>OCL2.0</language>
             <body>isComposite and owningType &lt;> null and
     (owningType.oclIsKindOf(RequirementDefinition) or
-     owningType.oclIsKindOf(RequirementUsage)) implies
+     owningType.oclIsKindOf(RequirementUsage)) and 
+    not owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
     specializesFromLibrary('Requirements::RequirementCheck::subrequirements')</body>
           </specification>
         </ownedRule>
@@ -7482,6 +7483,28 @@ owningFeatureMembership.oclIsKindOf(ViewRenderingMembership) implies
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_19_0_2_12e503d9_1596741357643_87751_6354" name="" visibility="public"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_19_0_2_12e503d9_1596741357643_619914_6355" name="" visibility="public" value="1"/>
         </ownedAttribute>
+        <ownedOperation xmi:id="_2024x_2_12e503d9_1785276964030_874208_28" name="namingFeature" visibility="public" bodyCondition="_2024x_2_12e503d9_1785277448782_954324_51" redefinedOperation="_19_0_4_12e503d9_1617482356453_410307_26991">
+          <ownedComment xmi:id="_2024x_2_12e503d9_1785277401886_679916_48" annotatedElement="_2024x_2_12e503d9_1785276964030_874208_28">
+            <body>&lt;p>The naming &lt;code>Feature&lt;/code> of a &lt;code>RenderingUsage&lt;/code> that is owned via a &lt;code>ViewRenderingMembership&lt;/code> and has an &lt;code>ownedReferenceSubsetting&lt;/code> is the &lt;code>featureTarget&lt;/code> of the &lt;code>referencedFeature&lt;/code> of that &lt;code>ownedReferenceSubsetting&lt;/code>.&lt;/p></body>
+          </ownedComment>
+          <ownedRule xmi:id="_2024x_2_12e503d9_1785277448782_954324_51" name="unnamed1" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_2024x_2_12e503d9_1785277448783_571707_52" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>if owningFeatureMembership &lt;> null and
+    owningFeatureMembership.oclIsKindOf(ViewRenderingMembership) and
+    ownedReferenceSubsetting &lt;> null then
+    ownedReferenceSubsetting.referencedFeature.featureTarget
+else
+    self.oclAsType(OccurrenceUsage).namingFeature()
+endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="_2024x_2_12e503d9_1785277004168_393463_32" name="" visibility="public" direction="return">
+            <type xmi:type="uml:Class" href="KerML_only_xmi.uml#_18_5_3_12e503d9_1533160651684_893483_42160"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2024x_2_12e503d9_1785277014401_596345_37" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2024x_2_12e503d9_1785277014402_269372_38" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_19_0_4_12e503d9_1606938933666_172300_4808" name="A_viewCondition_owningView" visibility="public" memberEnd="_19_0_4_12e503d9_1606938933668_437943_4809 _19_0_4_12e503d9_1606938933669_45828_4810">
         <ownedEnd xmi:id="_19_0_4_12e503d9_1606938933669_45828_4810" name="owningView" visibility="public" type="_19_0_2_12e503d9_1596644366280_485907_701" isDerived="true" association="_19_0_4_12e503d9_1606938933666_172300_4808">

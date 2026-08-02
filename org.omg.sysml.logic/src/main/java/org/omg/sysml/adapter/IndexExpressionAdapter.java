@@ -54,12 +54,6 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 			ElementUtil.transform(seqArgument);
 			Feature seqResult = seqArgument.getResult();
 			Type collectionType = getLibraryType(COLLECTIONS_TYPE);
-			/*
-			 * TODO: Update checkIndexExpressionResultSpecialization
-			 * 
-			 * OCL currently only checks for Array type, not any Collection type.
-			 * See KERML11-69
- 			 */
 			if (!TypeUtil.specializes(seqResult, collectionType)) {
 				Feature resultFeature = target.getResult();
 				if (resultFeature != null && seqResult != null) {

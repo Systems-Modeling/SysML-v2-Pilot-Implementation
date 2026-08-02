@@ -131,4 +131,8 @@ public class KERML11_Ballot3_Tests {
 	/* 
 	 * KERML11-68 is a validation change.
 	 */
+	
+	/*
+	 * KERML11-69 was previously implemented.
+	 */
 }

@@ -22,6 +22,10 @@ package org.omg.sysml.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -31,7 +35,10 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.NamespaceImport;
+import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
@@ -135,4 +142,45 @@ public class KERML11_Ballot3_Tests {
 	/*
 	 * KERML11-69 was previously implemented.
 	 */
+	
+	/**
+	 * Test resolution to KERML11-191 Featuring type of the multiplicity of a cross feature
+	 * @throws InvocationTargetException
+	 */
+	@Test
+	public void testKERML11_191() {
+		Classifier A = SysMLFactory.eINSTANCE.createClassifier();
+		A.setDeclaredName("A");
+		
+		Feature x = SysMLFactory.eINSTANCE.createFeature();
+		x.setDeclaredName("x");
+		TypeUtil.addOwnedFeatureTo(A, x);
+		
+		Classifier B = SysMLFactory.eINSTANCE.createClassifier();
+		B.setDeclaredName("B");
+		
+		NamespaceImport _import = SysMLFactory.eINSTANCE.createNamespaceImport();
+		_import.setVisibility(VisibilityKind.PUBLIC);
+		_import.setImportedNamespace(A);
+		B.getOwnedRelationship().add(_import);
+		
+		Feature y = SysMLFactory.eINSTANCE.createFeature();
+		y.setDeclaredName("y");
+		TypeUtil.addOwnedFeatureTo(B, y);
+		
+		List<Feature> features = B.getFeature();		
+		assertTrue("feature B::y", features.contains(y));
+		assertFalse("not feature B::x", features.contains(x));
+
+		Classifier C = SysMLFactory.eINSTANCE.createClassifier();
+		C.setDeclaredName("C");
+		Subclassification subclassing = SysMLFactory.eINSTANCE.createSubclassification();
+		subclassing.setSubclassifier(C);
+		subclassing.setSuperclassifier(B);
+		C.getOwnedRelationship().add(subclassing);
+		
+		features = C.getFeature();		
+		assertTrue("feature C::y", features.contains(y));
+		assertFalse("not feature C::x", features.contains(x));
+	}
 }

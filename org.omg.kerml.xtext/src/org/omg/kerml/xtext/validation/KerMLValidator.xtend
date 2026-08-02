@@ -725,10 +725,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 			
-			// validatRedefinitionEndConformance			
+			// validateRedefinitionEndConformance			
 			if (redefinedFeature.isEnd && !redefiningFeature.isEnd) {
-				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
+				val redefiningOwner = redefiningFeature.owningType
+				if (redefiningOwner instanceof Association || redefiningOwner instanceof Connector) {
+					error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
+							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
+				}
 			}
 		}		
 	}

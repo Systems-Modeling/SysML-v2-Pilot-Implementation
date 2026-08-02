@@ -22,7 +22,6 @@ package org.omg.sysml.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -129,4 +128,7 @@ public class KERML11_Ballot3_Tests {
 		assertEquals("upperBound.featuringType", association, upperBound.getFeaturingType().get(0));
 	}
 
+	/* 
+	 * KERML11-68 is a validation change.
+	 */
 }

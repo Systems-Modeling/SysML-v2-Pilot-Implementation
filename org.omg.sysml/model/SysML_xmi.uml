@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_vXwAEI0mEfG6c65bBCDQDA" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_0CHuAI9WEfGTIPR1UWDcqw" name="SysML" URI="https://www.omg.org/spec/SysML/20250201">
   <packagedElement xmi:type="uml:Package" xmi:id="_18_5_3_12e503d9_1562427331290_651623_19809" name="Root" visibility="public" URI="">
     <ownedComment xmi:id="_19_0_2_12e503d9_1584042059016_401103_80" annotatedElement="_18_5_3_12e503d9_1562427331290_651623_19809">
       <body>The Root layer provides the syntactic foundation for KerML.
@@ -6638,14 +6638,14 @@ endif</body>
         </ownedComment>
         <ownedRule xmi:id="_19_0_4_12e503d9_1605479418509_764031_220" name="checkMultiplicityRangeExpressionTypeFeaturing" visibility="public" constrainedElement="_19_0_2_12e503d9_1573086225407_540120_4572">
           <ownedComment xmi:id="_19_0_4_12e503d9_1605479535025_49461_222" annotatedElement="_19_0_4_12e503d9_1605479418509_764031_220">
-            <body>&lt;p>If the &lt;code>owningType&lt;/code> of a &lt;code>MultiplicityRange&lt;/code> is a &lt;code>Feature&lt;/code>, but not an owned cross &lt;code>Feature&lt;/code>, then the &lt;code>bounds&lt;/code> of the &lt;code>MultiplicityRange&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as the &lt;code>MultiplicityRange&lt;/code>. If the &lt;code>owningType&lt;/code> is an owned cross &lt;code>Feature&lt;/code>, then the &lt;code>bounds&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as the owning end &lt;code>Feature&lt;/code> of the &lt;code>owningType&lt;/code>. (This allows a cross multiplicity to be evaluated in the same context as the multiplicity of the end &lt;code>Feature&lt;/code>.)&lt;/p></body>
+            <body>&lt;p>If the &lt;code>owningNamespace&lt;/code> of a &lt;code>MultiplicityRange&lt;/code> is a &lt;code>Feature&lt;/code>, but not an owned cross &lt;code>Feature&lt;/code>, then the &lt;code>bounds&lt;/code> of the &lt;code>MultiplicityRange&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as the &lt;code>MultiplicityRange&lt;/code>. If the &lt;code>owningNamespace&lt;/code> is an owned cross &lt;code>Feature&lt;/code>, then the &lt;code>bounds&lt;/code> must have the same &lt;code>featuringTypes&lt;/code> as the owning end &lt;code>Feature&lt;/code> of the &lt;code>owningNamespace&lt;/code>. (This allows a cross multiplicity to be evaluated in the same context as the multiplicity of the end &lt;code>Feature&lt;/code>.)&lt;/p></body>
           </ownedComment>
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0_4_12e503d9_1605479418510_892864_221" name="" visibility="public">
             <language>OCL2.0</language>
             <body>let boundsFeaturingType : OrderedSet(Type) =
-    if owningType &lt;> null and owningType.oclIsKindOf(Feature) and 
-        owningType.oclAsType(Feature).isOwnedCrossFeature() then
-        owningType.oclAsType(Feature).owningType.oclAsType(Feature).featuringType
+    if owningNamespace &lt;> null and owningNamespace.oclIsKindOf(Feature) and 
+        owningNamespace.oclAsType(Feature).isOwnedCrossFeature() then
+        owningNamespace.oclAsType(Feature).owningNamespace.oclAsType(Feature).featuringType
     else
         featuringType
     endif in

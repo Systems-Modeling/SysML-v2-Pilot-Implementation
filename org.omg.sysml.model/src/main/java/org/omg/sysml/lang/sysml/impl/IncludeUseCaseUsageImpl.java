@@ -40,11 +40,10 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected IncludeUseCaseUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

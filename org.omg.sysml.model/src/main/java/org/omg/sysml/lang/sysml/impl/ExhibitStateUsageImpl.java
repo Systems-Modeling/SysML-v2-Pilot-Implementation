@@ -40,11 +40,10 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected ExhibitStateUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

@@ -484,11 +484,10 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected UsageImpl() {
 		super();
-		isComposite = true;
 	}
 
 	/**

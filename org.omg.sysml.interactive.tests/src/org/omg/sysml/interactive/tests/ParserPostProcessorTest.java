@@ -12,35 +12,42 @@
 
 package org.omg.sysml.interactive.tests;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
 import org.junit.Test;
 import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
 import org.omg.kerml.xtext.postprocessing.ImportParserPostProcessor;
 import org.omg.kerml.xtext.postprocessing.LiteralStringParserPostProcessor;
+import org.omg.kerml.xtext.postprocessing.RedefinitionParserPostProcessor;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
+import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.xtext.postprocessing.ConnectionUsageParserPostProcessor;
 import org.omg.sysml.xtext.postprocessing.ItemUsageParserPostProcessor;
 import org.omg.sysml.xtext.postprocessing.OccurrenceUsageParserPostProcessor;
 import org.omg.sysml.xtext.postprocessing.PartUsageParserPostProcessor;
 import org.omg.sysml.xtext.postprocessing.PortUsageParserPostProcessor;
 import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
-import org.omg.kerml.xtext.postprocessing.RedefinitionParserPostProcessor;
-import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.PortionKind;
-import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.TypeUtil;
 
 public class ParserPostProcessorTest extends SysMLInteractiveTest {
 
@@ -170,4 +177,83 @@ public class ParserPostProcessorTest extends SysMLInteractiveTest {
 
 		assertFalse(usage.isComposite());
 	}
+
+    @Test
+    public void standardFactoryUsesTheEcoreCompositeDefault() {
+        assertFalse(SysMLFactory.eINSTANCE.createUsage().isComposite());
+        for (EClass eClass : nonCompositeUsageTypes()) {
+            Usage usage = (Usage)SysMLFactory.eINSTANCE.create(eClass);
+            assertFalse(eClass.getName(), usage.isComposite());
+            assertTrue(eClass.getName(), usage.isReference());
+        }
+    }
+
+    @Test
+    public void parserAdapterRestoresImplicitConstructorDefaults() {
+        PartUsage partUsage = (PartUsage)createUsageOwnedByFeatureMembership(SysMLPackage.Literals.PART_USAGE);
+        postProcess(partUsage);
+        assertTrue(partUsage.isComposite());
+
+        for (EClass eClass : nonCompositeUsageTypes()) {
+            Usage usage = createUsageOwnedByFeatureMembership(eClass);
+            postProcess(usage);
+            assertFalse(eClass.getName(), usage.isComposite());
+            assertTrue(eClass.getName(), usage.isReference());
+        }
+    }
+
+    @Test
+    public void postProcessMakesContextuallyReferentialUsagesNonComposite() {
+        PartUsage directedUsage = (PartUsage)createUsageOwnedByFeatureMembership(SysMLPackage.Literals.PART_USAGE);
+        directedUsage.setDirection(FeatureDirectionKind.IN);
+        postProcess(directedUsage);
+        assertFalse(directedUsage.isComposite());
+
+        PartUsage endUsage = (PartUsage)createUsageOwnedByFeatureMembership(SysMLPackage.Literals.PART_USAGE);
+        endUsage.setIsEnd(true);
+        postProcess(endUsage);
+        assertFalse(endUsage.isComposite());
+
+        PartUsage unfeaturedUsage = SysMLFactory.eINSTANCE.createPartUsage();
+        OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
+        membership.setOwnedMemberElement(unfeaturedUsage);
+        postProcess(unfeaturedUsage);
+        assertFalse(unfeaturedUsage.isComposite());
+    }
+
+    @Test
+    public void portUsageIsCompositeOnlyInAPortContext() {
+        PortUsage portUsage = SysMLFactory.eINSTANCE.createPortUsage();
+        FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+        membership.setOwnedMemberFeature(portUsage);
+        PortDefinition owner = SysMLFactory.eINSTANCE.createPortDefinition();
+        owner.getOwnedRelationship().add(membership);
+        postProcess(portUsage);
+        assertTrue(portUsage.isComposite());
+
+        PortUsage partPortUsage = (PortUsage)createUsageOwnedByFeatureMembership(SysMLPackage.Literals.PORT_USAGE);
+        postProcess(partPortUsage);
+        assertFalse(partPortUsage.isComposite());
+    }
+
+    private static List<EClass> nonCompositeUsageTypes() {
+        return List.of(
+                SysMLPackage.Literals.ATTRIBUTE_USAGE,
+                SysMLPackage.Literals.BINDING_CONNECTOR_AS_USAGE,
+                SysMLPackage.Literals.EVENT_OCCURRENCE_USAGE,
+                SysMLPackage.Literals.EXHIBIT_STATE_USAGE,
+                SysMLPackage.Literals.INCLUDE_USE_CASE_USAGE,
+                SysMLPackage.Literals.PERFORM_ACTION_USAGE,
+                SysMLPackage.Literals.REFERENCE_USAGE,
+                SysMLPackage.Literals.SUCCESSION_AS_USAGE);
+    }
+
+    private static Usage createUsageOwnedByFeatureMembership(EClass eClass) {
+        Usage usage = (Usage)SysMLFactory.eINSTANCE.create(eClass);
+        FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+        membership.setOwnedMemberFeature(usage);
+        PartDefinition owner = SysMLFactory.eINSTANCE.createPartDefinition();
+        owner.getOwnedRelationship().add(membership);
+        return usage;
+    }
 }

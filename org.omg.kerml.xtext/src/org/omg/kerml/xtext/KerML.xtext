@@ -732,7 +732,8 @@ fragment FeatureConjugationPart returns SysML::Feature :
 ;
 
 FeatureConjugation returns SysML::Conjugation :
-	originalType = [SysML::Feature | QualifiedName ]
+	  originalType = [SysML::Feature | QualifiedName ]
+	| ownedRelatedElement += OwnedFeatureChain
 ;
 
 /* FEATURE VALUES */
@@ -1088,7 +1089,7 @@ MetadataFeature returns SysML::MetadataFeature :
 ;
 
 fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+	( Identification? ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 ;
 
 MetadataTyping returns SysML::FeatureTyping :

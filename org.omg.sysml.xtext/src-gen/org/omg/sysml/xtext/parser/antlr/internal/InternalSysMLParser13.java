@@ -24,13 +24,12 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
     public InternalSysMLParser13(TokenStream input, RecognizerSharedState state) {
         super(input, state);
     }
-    static final String dfa_134s = "\113\uffff";
-    static final String dfa_135s = "\2\uffff\2\7\45\uffff\1\7\41\uffff";
-    static final String dfa_136s = "\2\10\2\17\1\uffff\1\4\2\uffff\2\16\1\4\4\57\1\6\2\57\3\54\1\10\4\57\1\6\2\57\3\54\1\4\1\10\2\57\2\10\2\42\1\4\1\17\2\57\2\10\4\57\1\6\2\57\3\54\1\uffff\4\57\1\6\2\57\3\54\2\57\2\10\2\57\2\10";
-    static final String dfa_137s = "\1\u00ad\1\11\2\170\1\uffff\1\u00ad\2\uffff\2\16\1\u00ad\3\75\1\136\1\7\2\75\1\54\2\75\1\105\3\75\1\136\1\7\2\75\1\54\2\75\2\u00ad\2\75\2\11\2\105\1\u00ad\1\170\2\75\2\11\3\57\1\136\1\7\2\57\1\54\2\57\1\uffff\3\57\1\136\1\7\2\57\1\54\4\57\2\11\2\57\2\11";
-    static final String dfa_138s = "\4\uffff\1\1\1\uffff\1\2\1\3\60\uffff\1\4\22\uffff";
-    static final String dfa_139s = "\113\uffff}>";
-    static final String[] dfa_140s = {
+    static final String dfa_133s = "\2\uffff\2\7\45\uffff\1\7\41\uffff";
+    static final String dfa_134s = "\2\10\2\17\1\uffff\1\4\2\uffff\2\16\1\4\4\57\1\6\2\57\3\54\1\10\4\57\1\6\2\57\3\54\1\4\1\10\2\57\2\10\2\42\1\4\1\17\2\57\2\10\4\57\1\6\2\57\3\54\1\uffff\4\57\1\6\2\57\3\54\2\57\2\10\2\57\2\10";
+    static final String dfa_135s = "\1\u00ad\1\11\2\170\1\uffff\1\u00ad\2\uffff\2\16\1\u00ad\3\75\1\136\1\7\2\75\1\54\2\75\1\105\3\75\1\136\1\7\2\75\1\54\2\75\2\u00ad\2\75\2\11\2\105\1\u00ad\1\170\2\75\2\11\3\57\1\136\1\7\2\57\1\54\2\57\1\uffff\3\57\1\136\1\7\2\57\1\54\4\57\2\11\2\57\2\11";
+    static final String dfa_136s = "\4\uffff\1\1\1\uffff\1\2\1\3\60\uffff\1\4\22\uffff";
+    static final String dfa_137s = "\113\uffff}>";
+    static final String[] dfa_138s = {
             "\1\2\1\3\3\uffff\1\1\24\uffff\2\4\14\uffff\1\4\1\uffff\4\4\1\uffff\5\4\1\5\6\uffff\3\6\147\uffff\1\7",
             "\1\10\1\11",
             "\2\7\2\uffff\1\7\16\uffff\2\4\10\uffff\1\7\3\uffff\1\4\1\uffff\4\4\1\uffff\5\4\1\12\6\uffff\3\6\5\uffff\1\7\22\uffff\1\7\3\uffff\1\7\7\uffff\1\7\15\uffff\1\7",
@@ -108,34 +107,34 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
             "\1\101\1\102"
     };
 
-    static final short[] dfa_134 = DFA.unpackEncodedString(dfa_134s);
-    static final short[] dfa_135 = DFA.unpackEncodedString(dfa_135s);
-    static final char[] dfa_136 = DFA.unpackEncodedStringToUnsignedChars(dfa_136s);
-    static final char[] dfa_137 = DFA.unpackEncodedStringToUnsignedChars(dfa_137s);
-    static final short[] dfa_138 = DFA.unpackEncodedString(dfa_138s);
-    static final short[] dfa_139 = DFA.unpackEncodedString(dfa_139s);
-    static final short[][] dfa_140 = unpackEncodedStringArray(dfa_140s);
+    static final short[] dfa_132 = DFA.unpackEncodedString(dfa_132s);
+    static final short[] dfa_133 = DFA.unpackEncodedString(dfa_133s);
+    static final char[] dfa_134 = DFA.unpackEncodedStringToUnsignedChars(dfa_134s);
+    static final char[] dfa_135 = DFA.unpackEncodedStringToUnsignedChars(dfa_135s);
+    static final short[] dfa_136 = DFA.unpackEncodedString(dfa_136s);
+    static final short[] dfa_137 = DFA.unpackEncodedString(dfa_137s);
+    static final short[][] dfa_138 = unpackEncodedStringArray(dfa_138s);
 
-    class DFA182 extends DFA {
+    class DFA183 extends DFA {
 
-        public DFA182(BaseRecognizer recognizer) {
+        public DFA183(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 182;
-            this.eot = dfa_134;
-            this.eof = dfa_135;
-            this.min = dfa_136;
-            this.max = dfa_137;
-            this.accept = dfa_138;
-            this.special = dfa_139;
-            this.transition = dfa_140;
+            this.decisionNumber = 183;
+            this.eot = dfa_132;
+            this.eof = dfa_133;
+            this.min = dfa_134;
+            this.max = dfa_135;
+            this.accept = dfa_136;
+            this.special = dfa_137;
+            this.transition = dfa_138;
         }
         public String getDescription() {
-            return "12086:2: ( ( (this_Identification_0= ruleIdentification[$current] )? this_PayloadFeatureSpecializationPart_1= rulePayloadFeatureSpecializationPart[$current] (this_ValuePart_2= ruleValuePart[$current] )? ) | ( (this_Identification_3= ruleIdentification[$current] )? this_ValuePart_4= ruleValuePart[$current] ) | ( ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedRelationship_6_0= ruleOwnedMultiplicity ) )? ) | ( ( (lv_ownedRelationship_7_0= ruleOwnedMultiplicity ) ) ( (lv_ownedRelationship_8_0= ruleOwnedFeatureTyping ) ) ) )";
+            return "12099:2: ( ( (this_Identification_0= ruleIdentification[$current] )? this_PayloadFeatureSpecializationPart_1= rulePayloadFeatureSpecializationPart[$current] (this_ValuePart_2= ruleValuePart[$current] )? ) | ( (this_Identification_3= ruleIdentification[$current] )? this_ValuePart_4= ruleValuePart[$current] ) | ( ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedRelationship_6_0= ruleOwnedMultiplicity ) )? ) | ( ( (lv_ownedRelationship_7_0= ruleOwnedMultiplicity ) ) ( (lv_ownedRelationship_8_0= ruleOwnedFeatureTyping ) ) ) )";
         }
     }
-    static final String dfa_141s = "\1\170\1\uffff\1\u00ad\1\66\10\u00ad\1\54\2\0\2\u00ad\1\54\2\0\1\54\2\0\1\54\2\0\1\54\2\0\1\11\1\uffff\1\54\2\0\5\11";
-    static final String dfa_142s = "\15\uffff\1\6\1\12\3\uffff\1\1\1\3\1\uffff\1\13\1\10\1\uffff\1\11\1\4\1\uffff\1\0\1\2\3\uffff\1\5\1\7\5\uffff}>";
-    static final String[] dfa_143s = {
+    static final String dfa_139s = "\1\170\1\uffff\1\u00ad\1\66\10\u00ad\1\54\2\0\2\u00ad\1\54\2\0\1\54\2\0\1\54\2\0\1\54\2\0\1\11\1\uffff\1\54\2\0\5\11";
+    static final String dfa_140s = "\15\uffff\1\2\1\5\3\uffff\1\10\1\13\1\uffff\1\4\1\0\1\uffff\1\1\1\11\1\uffff\1\7\1\12\3\uffff\1\3\1\6\5\uffff}>";
+    static final String[] dfa_141s = {
             "\2\1\2\uffff\1\1\16\uffff\1\12\1\13\14\uffff\1\4\1\uffff\2\1\1\2\1\3\1\uffff\1\5\1\6\1\7\1\10\1\11\1\1\6\uffff\3\1\5\uffff\1\1\26\uffff\4\1\4\uffff\1\1\15\uffff\1\1",
             "",
             "\1\15\1\16\105\uffff\1\17\135\uffff\1\14",
@@ -176,35 +175,35 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
             "\1\33\1\34",
             "\1\40\1\41"
     };
-    static final char[] dfa_141 = DFA.unpackEncodedStringToUnsignedChars(dfa_141s);
-    static final short[] dfa_142 = DFA.unpackEncodedString(dfa_142s);
-    static final short[][] dfa_143 = unpackEncodedStringArray(dfa_143s);
+    static final char[] dfa_139 = DFA.unpackEncodedStringToUnsignedChars(dfa_139s);
+    static final short[] dfa_140 = DFA.unpackEncodedString(dfa_140s);
+    static final short[][] dfa_141 = unpackEncodedStringArray(dfa_141s);
 
-    class DFA183 extends DFA {
+    class DFA184 extends DFA {
 
-        public DFA183(BaseRecognizer recognizer) {
+        public DFA184(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 183;
+            this.decisionNumber = 184;
             this.eot = dfa_39;
             this.eof = dfa_40;
             this.min = dfa_41;
-            this.max = dfa_141;
+            this.max = dfa_139;
             this.accept = dfa_43;
-            this.special = dfa_142;
-            this.transition = dfa_143;
+            this.special = dfa_140;
+            this.transition = dfa_141;
         }
         public String getDescription() {
-            return "()+ loopback of 12249:4: ( ( ':' | 'defined' | ':>' | 'subsets' | '::>' | 'references' | '=>' | 'crosses' | ':>>' | 'redefines' )=>this_FeatureSpecialization_0= ruleFeatureSpecialization[$current] )+";
+            return "()+ loopback of 12262:4: ( ( ':' | 'defined' | ':>' | 'subsets' | '::>' | 'references' | '=>' | 'crosses' | ':>>' | 'redefines' )=>this_FeatureSpecialization_0= ruleFeatureSpecialization[$current] )+";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA183_27 = input.LA(1);
+                        int LA184_22 = input.LA(1);
 
                          
-                        int index183_27 = input.index();
+                        int index184_22 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -212,14 +211,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_27);
+                        input.seek(index184_22);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA183_18 = input.LA(1);
+                        int LA184_24 = input.LA(1);
 
                          
-                        int index183_18 = input.index();
+                        int index184_24 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -227,14 +226,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_18);
+                        input.seek(index184_24);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA183_28 = input.LA(1);
+                        int LA184_13 = input.LA(1);
 
                          
-                        int index183_28 = input.index();
+                        int index184_13 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -242,14 +241,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_28);
+                        input.seek(index184_13);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA183_19 = input.LA(1);
+                        int LA184_32 = input.LA(1);
 
                          
-                        int index183_19 = input.index();
+                        int index184_32 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -257,14 +256,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_19);
+                        input.seek(index184_32);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA183_25 = input.LA(1);
+                        int LA184_21 = input.LA(1);
 
                          
-                        int index183_25 = input.index();
+                        int index184_21 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -272,14 +271,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_25);
+                        input.seek(index184_21);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA183_32 = input.LA(1);
+                        int LA184_14 = input.LA(1);
 
                          
-                        int index183_32 = input.index();
+                        int index184_14 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -287,14 +286,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_32);
+                        input.seek(index184_14);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA183_13 = input.LA(1);
+                        int LA184_33 = input.LA(1);
 
                          
-                        int index183_13 = input.index();
+                        int index184_33 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -302,14 +301,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_13);
+                        input.seek(index184_33);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA183_33 = input.LA(1);
+                        int LA184_27 = input.LA(1);
 
                          
-                        int index183_33 = input.index();
+                        int index184_27 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -317,14 +316,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_33);
+                        input.seek(index184_27);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA183_22 = input.LA(1);
+                        int LA184_18 = input.LA(1);
 
                          
-                        int index183_22 = input.index();
+                        int index184_18 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -332,14 +331,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_22);
+                        input.seek(index184_18);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA183_24 = input.LA(1);
+                        int LA184_25 = input.LA(1);
 
                          
-                        int index183_24 = input.index();
+                        int index184_25 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -347,14 +346,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_24);
+                        input.seek(index184_25);
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA183_14 = input.LA(1);
+                        int LA184_28 = input.LA(1);
 
                          
-                        int index183_14 = input.index();
+                        int index184_28 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -362,14 +361,14 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_14);
+                        input.seek(index184_28);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA183_21 = input.LA(1);
+                        int LA184_19 = input.LA(1);
 
                          
-                        int index183_21 = input.index();
+                        int index184_19 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred5_InternalSysML()) ) {s = 30;}
@@ -377,47 +376,49 @@ public abstract class InternalSysMLParser13 extends InternalSysMLParser12 {
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index183_21);
+                        input.seek(index184_19);
                         if ( s>=0 ) return s;
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 183, _s, input);
+                new NoViableAltException(getDescription(), 184, _s, input);
             error(nvae);
             throw nvae;
         }
     }
-    static final String dfa_144s = "\1\u00ad\1\54\2\136\2\11\2\uffff";
-    static final String[] dfa_145s = {
+    static final String dfa_142s = "\1\u00ad\1\54\2\136\1\11\1\uffff\1\11\1\uffff";
+    static final String dfa_143s = "\5\uffff\1\1\1\uffff\1\2";
+    static final String[] dfa_144s = {
             "\1\2\1\3\u00a3\uffff\1\1",
             "\1\4",
-            "\2\6\4\uffff\1\6\26\uffff\1\5\61\uffff\1\7",
-            "\2\6\4\uffff\1\6\26\uffff\1\5\61\uffff\1\7",
-            "\1\2\1\3",
+            "\2\7\4\uffff\1\7\26\uffff\1\6\61\uffff\1\5",
+            "\2\7\4\uffff\1\7\26\uffff\1\6\61\uffff\1\5",
             "\1\2\1\3",
             "",
+            "\1\2\1\3",
             ""
     };
-    static final char[] dfa_144 = DFA.unpackEncodedStringToUnsignedChars(dfa_144s);
-    static final short[][] dfa_145 = unpackEncodedStringArray(dfa_145s);
+    static final char[] dfa_142 = DFA.unpackEncodedStringToUnsignedChars(dfa_142s);
+    static final short[] dfa_143 = DFA.unpackEncodedString(dfa_143s);
+    static final short[][] dfa_144 = unpackEncodedStringArray(dfa_144s);
 
-    class DFA188 extends DFA {
+    class DFA189 extends DFA {
 
-        public DFA188(BaseRecognizer recognizer) {
+        public DFA189(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 188;
+            this.decisionNumber = 189;
             this.eot = dfa_20;
-            this.eof = dfa_21;
-            this.min = dfa_54;
-            this.max = dfa_144;
-            this.accept = dfa_56;
+            this.eof = dfa_57;
+            this.min = dfa_58;
+            this.max = dfa_142;
+            this.accept = dfa_143;
             this.special = dfa_25;
-            this.transition = dfa_145;
+            this.transition = dfa_144;
         }
         public String getDescription() {
-            return "12372:3: ( (lv_ownedRelationship_0_0= ruleFlowEndSubsetting ) )?";
+            return "12385:3: ( (lv_ownedRelationship_0_0= ruleFlowEndSubsetting ) )?";
         }
     }
-    static final String dfa_146s = "\5\uffff\1\12\2\uffff\2\12\4\uffff";
+    static final String dfa_145s = "\6\uffff\1\12\1\uffff\2\12\4\uffff";
 }

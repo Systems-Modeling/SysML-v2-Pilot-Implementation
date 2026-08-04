@@ -43,7 +43,7 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35\17\uffff\1\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\2\uffff\1\35\11\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35\27\uffff\1\35\117\uffff\1\35",
-            "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\30\uffff\2\35\126\uffff\1\35",
+            "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35\17\uffff\2\35\126\uffff\1\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\35\uffff\1\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35",
             "\2\35\3\uffff\1\35\1\uffff\2\35\14\uffff\1\2\4\uffff\2\35\14\uffff\1\35\1\uffff\4\35\1\uffff\6\35\6\uffff\3\35",
@@ -113,5 +113,5 @@ public abstract class InternalSysMLParser2 extends InternalSysMLParser1 {
     static final String dfa_7s = "\16\uffff";
     static final String dfa_8s = "\1\u00ae\3\52\2\10\1\54\2\17\2\10\2\uffff\1\17";
     static final String dfa_9s = "\1\u00b0\3\52\2\u00ad\1\54\2\74\1\11\1\56\2\uffff\1\74";
-    static final String dfa_10s = "\13\uffff\1\2\1\1\1\uffff";
+    static final String dfa_10s = "\13\uffff\1\1\1\2\1\uffff";
 }

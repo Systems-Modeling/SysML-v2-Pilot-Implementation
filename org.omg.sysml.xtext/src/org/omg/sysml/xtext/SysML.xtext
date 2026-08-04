@@ -1153,11 +1153,13 @@ InterfaceUsageKeyword :
 ;
 
 InterfaceUsage returns SysML::InterfaceUsage :	 
-	OccurrenceUsagePrefix InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceBody
+	OccurrenceUsagePrefix InterfaceUsageKeyword 
+	InterfaceUsageDeclaration InterfaceBody
 ;
 
 fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
-	UsageDeclaration? ( ConnectorKeyword InterfacePart )? | InterfacePart
+	  UsageDeclaration? ValuePart? ( ConnectorKeyword InterfacePart )? 
+	| InterfacePart
 ;
 
 fragment InterfacePart returns SysML::ConnectionUsage :
@@ -1395,7 +1397,7 @@ TargetSuccessionMember returns SysML::FeatureMembership :
 ;
 
 GuardedSuccessionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += GuardedSuccession 
+	MemberPrefix ownedRelatedElement += GuardedSuccession 
 ;
 
 /* Action Usages */
@@ -2064,7 +2066,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 ;
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
-      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart? 
       CalculationBody
     | ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
       ConstraintUsageDeclaration CalculationBody
@@ -2080,7 +2082,7 @@ enum FramedConcernKind returns SysML::RequirementConstraintKind :
 ;
 
 FramedConcernUsage returns SysML::ConcernUsage :
-      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart? 
       RequirementBody
     | ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ ) 
       ConstraintUsageDeclaration RequirementBody
@@ -2338,7 +2340,7 @@ ViewRenderingMember returns SysML::ViewRenderingMembership :
 ;
 
 ViewRenderingUsage returns SysML::RenderingUsage :
-	  ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* UsageBody
+	  ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart? UsageBody
 	| ( UsageExtensionKeyword* 'rendering' | UsageExtensionKeyword+ ) Usage
 ;
 

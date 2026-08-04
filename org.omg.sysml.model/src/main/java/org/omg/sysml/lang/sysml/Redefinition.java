@@ -36,7 +36,11 @@ package org.omg.sysml.lang.sysml;
  *     and 
  *     (direction = FeatureDirectionKind::inout implies
  *         redefiningFeature.direction <> null))
- * redefinedFeature.isEnd implies redefiningFeature.isEnd
+ * redefinedFeature.isEnd and
+ * redefiningFeature.owningType <> null and
+ * (redefiningFeature.owningType.oclIsKindOf(Association) or
+ *  redefiningFeature.owningType.oclIsKindOf(Connector)) implies
+ *     redefiningFeature.isEnd
  * <!-- end-model-doc -->
  *
  * <p>

@@ -113,11 +113,11 @@ public class ExpressionAdapter extends StepAdapter {
 		if (owner instanceof MultiplicityRange multiplicity &&
 			multiplicity.getBound().contains(expression)) {
 			owner = multiplicity.getOwningNamespace();
-			if (owner instanceof Feature) {
-				Namespace owningEnd = owner.getOwningNamespace();
-				if (FeatureUtil.isOwnedCrossFeature((Feature)owner) && 
+			if (owner instanceof Feature ownerFeature) {
+				if (FeatureUtil.isOwnedCrossFeature(ownerFeature) && 
 					isImplicitFeaturingTypesEmpty()) {
-					addFeaturingTypes(((Feature)owningEnd).getFeaturingType());
+					Feature owningEnd = (Feature) ownerFeature.getOwningNamespace();
+					addFeaturingTypes(owningEnd.getFeaturingType());
 				} else {
 					super.addImplicitFeaturingTypesIfNecessary();
 				}

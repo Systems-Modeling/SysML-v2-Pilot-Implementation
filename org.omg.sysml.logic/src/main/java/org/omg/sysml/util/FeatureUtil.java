@@ -234,17 +234,19 @@ public class FeatureUtil {
 	}
 
 	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
-		return !(namespace instanceof Feature feature) || 
-					!feature.isEnd() || 
-					feature.getOwningType() == null? null:
-				(Feature)namespace.getOwnedMember().stream().
-				filter(element->element instanceof Feature && 
-						!(element instanceof Multiplicity) && 
-						!(element instanceof MetadataFeature) &&
-						!(element instanceof BindingConnector) &&
-						!(element.getOwningMembership() instanceof FeatureMembership) &&
-						!(element.getOwningMembership() instanceof FeatureValue)).
-				findFirst().orElse(null);
+		if (!(namespace instanceof Feature feature) || 
+			!feature.isEnd() || feature.getOwningType() == null) {
+			return null;
+		} else {
+			return (Feature)namespace.getOwnedMember().stream().
+					filter(element->element instanceof Feature && 
+							!(element instanceof Multiplicity) && 
+							!(element instanceof MetadataFeature) &&
+							!(element instanceof BindingConnector) &&
+							!(element.getOwningMembership() instanceof FeatureMembership) &&
+							!(element.getOwningMembership() instanceof FeatureValue)).
+					findFirst().orElse(null);
+		}
 	}
 
 	public static boolean isOwnedCrossFeature(Feature feature) {

@@ -26,9 +26,11 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 public class ExpressionAdapter extends StepAdapter {
@@ -99,20 +101,40 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	// Transformation
-	
+
 	/**
 	 * @satisfies checkExpressionTypeFeaturing
-	 * @satisfies checkExpressionResultBindingConnector
 	 * @satisfies checkMultiplicityRangeExpressionTypeFeaturing
+	 */
+	@Override
+	protected void addImplicitFeaturingTypesIfNecessary() {
+		Expression expression = getTarget();
+		Namespace owner = expression.getOwningNamespace();
+		if (owner instanceof MultiplicityRange multiplicity &&
+			multiplicity.getBound().contains(expression)) {
+			owner = multiplicity.getOwningNamespace();
+			if (owner instanceof Feature ownerFeature) {
+				if (FeatureUtil.isOwnedCrossFeature(ownerFeature) && 
+					isImplicitFeaturingTypesEmpty()) {
+					Feature owningEnd = (Feature) ownerFeature.getOwningNamespace();
+					addFeaturingTypes(owningEnd.getFeaturingType());
+				} else {
+					super.addImplicitFeaturingTypesIfNecessary();
+				}
+			}
+		} else if (expression.getOwningMembership() instanceof FeatureValue) {
+			super.addImplicitFeaturingTypesIfNecessary();
+		}
+	}
+	
+	/**
+	 * @satisfies checkExpressionResultBindingConnector
 	 */
 	@Override
 	public void doTransform() {
 		Expression expression = getTarget();
 		super.doTransform();
-		if (expression.getOwningNamespace() instanceof Multiplicity || 
-				expression.getOwningMembership() instanceof FeatureValue) {
-			addImplicitFeaturingTypesIfNecessary();
-		}
+		addImplicitFeaturingTypesIfNecessary();
 		createResultConnector(expression.getResult());
 	}
 		

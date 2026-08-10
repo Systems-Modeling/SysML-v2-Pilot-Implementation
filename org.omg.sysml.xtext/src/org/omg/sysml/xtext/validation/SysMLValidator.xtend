@@ -549,11 +549,10 @@ class SysMLValidator extends KerMLValidator {
 
 	@Check
 	def checkAttributeDefinition(AttributeDefinition defn) {
-		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KERML-4.)
-		// TODO: Check validateAttributeDefinitionFeatures
+		// Check validateAttributeDefinitionFeatures
 		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
 		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
-		// checkAllNotComposite(defn.ownedFeature, INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG, INVALID_ATTRIBUTE_DEFINITION_FEATURES)
+		checkAllNotComposite(defn.ownedFeature, INVALID_ATTRIBUTE_DEFINITION_FEATURES_MSG, INVALID_ATTRIBUTE_DEFINITION_FEATURES)
 	}
 	
 	@Check 
@@ -573,11 +572,10 @@ class SysMLValidator extends KerMLValidator {
 			error(INVALID_REFERENCE_USAGE_IS_REFERENCE_MSG, usg, null, INVALID_REFERENCE_USAGE_IS_REFERENCE)
 		}		
 		
-		// Not implemented for now, until resolution of KerML issues on composite semantics. (See KerML-4.)
-		// TODO: Check validateAttributeUsageFeatures
+		// Check validateAttributeUsageFeatures
 		// NOTE: Only check owned features, for efficiency and to avoid redundancy.
 		// (This should be sufficient, unless a composite feature is inherited from a KerML data type.)
-		// checkAllNotComposite(usg.ownedFeature, INVALID_ATTRIBUTE_USAGE_FEATURES_MSG, INVALID_ATTRIBUTE_USAGE_FEATURES)
+		checkAllNotComposite(usg.ownedFeature, INVALID_ATTRIBUTE_USAGE_FEATURES_MSG, INVALID_ATTRIBUTE_USAGE_FEATURES)
 	}
 	
 	@Check

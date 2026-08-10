@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2025, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -22,6 +22,8 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.AttributeDefinition;
+import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -54,6 +56,8 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	/**
 	 * @satisfies validateUsageIsReferential
+	 * @satisfies validateAttributeDefinitionFeature
+	 * @satisfies validateAttributeUsageFeature
 	 */
 	@Override
 	public void postProcess () {
@@ -62,7 +66,9 @@ public class UsageAdapter extends FeatureAdapter {
 		if (target.isVariation()) {
 			target.setIsAbstract(true);
 		}
-		if (target.getDirection() != null || target.isEnd() || !UsageUtil.hasFeaturingType(target)) {
+		Type featuringType = UsageUtil.getExpectedFeaturingTypeOf(target);
+		if (target.getDirection() != null || target.isEnd() || featuringType == null ||
+			featuringType instanceof AttributeDefinition || featuringType instanceof AttributeUsage) {
 			target.setIsComposite(false);
 		}
 	}

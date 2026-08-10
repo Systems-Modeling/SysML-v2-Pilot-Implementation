@@ -18,6 +18,8 @@ import org.omg.kerml.xtext.library.LibraryNamespaces
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
@@ -74,6 +76,10 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
+	}
+
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+		KerMLResourceDescriptionStrategy
 	}
 
 	override Class<? extends ILinker> bindILinker() {

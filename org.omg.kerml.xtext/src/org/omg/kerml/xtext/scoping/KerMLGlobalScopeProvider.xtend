@@ -34,6 +34,7 @@ import com.google.inject.Inject
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.SysMLPackage
 import com.google.common.base.Predicates
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 
 class KerMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
@@ -42,7 +43,13 @@ class KerMLGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	
 	override IScope getScope(IScope parent, Resource context, boolean ignoreCase, EClass type, Predicate<IEObjectDescription> filter) {
 		val scope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod | eod.name.segmentCount == 1])
-		return KerMLGlobalScope.createScope(scope, context, filter, rootFilter, type, kerMLScopeProvider)
+		// The short names of root Elements are exported under a separate qualifier, so that they
+		// cannot shadow declaredNames. They are resolved by KerMLGlobalScope.getRootElement.
+		val shortNameScope = super.getScope(parent, context, false, SysMLPackage.eINSTANCE.element, [eod |
+			eod.name.segmentCount == 2 &&
+			KerMLResourceDescriptionStrategy.SHORT_NAME_QUALIFIER == eod.name.firstSegment
+		])
+		return KerMLGlobalScope.createScope(scope, shortNameScope, context, filter, rootFilter, type, kerMLScopeProvider)
 	}
 	
 	protected def Predicate<IEObjectDescription> getRootFilter() {

@@ -3,6 +3,7 @@
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2018-2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018-2020 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2026 tkanov
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -51,18 +52,13 @@ import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.NamespaceImport
 import org.omg.sysml.lang.sysml.MembershipImport
 import org.omg.sysml.lang.sysml.SysMLPackage
-import com.google.inject.Inject
-import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.omg.sysml.util.NamespaceUtil
 import org.omg.kerml.xtext.naming.QualifiedNameUtil
 import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScope extends AbstractScope {
-	
-	@Inject
-	IQualifiedNameConverter qualifiedNameConverter
-	
+
 	/*
 	 * The following fields are fixed on construction.
 	 */
@@ -162,8 +158,14 @@ class KerMLScope extends AbstractScope {
 		!resolveInScope(QualifiedName.create(input.name.firstSegment), true).isEmpty()
 	}
 	
-	def getElement(String name) {
-		var obj = EcoreUtil.resolve(getSingleElement(qualifiedNameConverter.toQualifiedName(name)).EObjectOrProxy, element)
+	def Element getElement(String name) {
+		// Note: The qualified name converter is obtained from the scopeProvider, because a
+		// KerMLScope is constructed directly, rather than being injected.
+		val description = getSingleElement(scopeProvider.qualifiedNameConverter.toQualifiedName(name))
+		if (description === null) {
+			return null
+		}
+		var obj = EcoreUtil.resolve(description.EObjectOrProxy, element)
 		if (obj instanceof Element) obj else null
 	}
 

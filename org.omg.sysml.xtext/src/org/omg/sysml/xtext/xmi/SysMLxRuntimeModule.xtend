@@ -22,6 +22,8 @@ import com.google.inject.Binder
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.resource.IResourceDescriptions
@@ -78,6 +80,10 @@ class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
 		KerMLQualifiedNameProvider
 	}
 	
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+		KerMLResourceDescriptionStrategy
+	}
+
 	def Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
 		KerMLQualifiedNameConverter
 	}

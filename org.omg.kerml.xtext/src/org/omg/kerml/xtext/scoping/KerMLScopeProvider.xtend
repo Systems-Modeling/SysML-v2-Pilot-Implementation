@@ -3,6 +3,7 @@
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2018-2022, 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2026 tkanov
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -31,6 +32,7 @@ package org.omg.kerml.xtext.scoping
 
 import com.google.common.base.Predicates
 import com.google.inject.Inject
+import org.eclipse.xtext.naming.IQualifiedNameConverter
 import java.util.Set
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -56,6 +58,13 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
 	@Inject
 	IGlobalScopeProvider globalScope
+	
+	@Inject
+	IQualifiedNameConverter qualifiedNameConverter
+	
+	def getQualifiedNameConverter() {
+	    qualifiedNameConverter
+	}
 	
 	@Inject
 	LibraryNamespaces libraryNamespaces

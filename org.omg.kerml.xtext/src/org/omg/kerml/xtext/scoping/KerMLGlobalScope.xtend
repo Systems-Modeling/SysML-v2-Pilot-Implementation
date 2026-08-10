@@ -39,23 +39,26 @@ import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Element
 import org.omg.kerml.xtext.naming.QualifiedNameUtil
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 
 class KerMLGlobalScope extends AbstractScope {
 
 	protected val IScope outer;
+	protected val IScope shortNameOuter;
 	protected val Resource resource
 	protected val Predicate<IEObjectDescription> filter;
 	protected val Predicate<IEObjectDescription> rootFilter;
 	protected val EClass referenceType
 	protected val KerMLScopeProvider scopeProvider
 	
-	static def createScope (IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
-		return new KerMLGlobalScope(outer, resource, filter, rootFilter, type, scopeProvider);
+	static def createScope (IScope outer, IScope shortNameOuter, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+		return new KerMLGlobalScope(outer, shortNameOuter, resource, filter, rootFilter, type, scopeProvider);
 	}
 
-	new(IScope outer, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
+	new(IScope outer, IScope shortNameOuter, Resource resource, Predicate<IEObjectDescription> filter, Predicate<IEObjectDescription> rootFilter, EClass type, KerMLScopeProvider scopeProvider) {
 		super(IScope.NULLSCOPE, false)
 		this.outer = outer
+		this.shortNameOuter = shortNameOuter
 		this.resource = resource
 		this.filter = filter
 		this.rootFilter = rootFilter
@@ -78,6 +81,24 @@ class KerMLGlobalScope extends AbstractScope {
 		else description
 	}
 	
+	/**
+	 * Get the description of the root Element with the given (single segment) name. A root Element
+	 * is exported under its declaredName by KerMLQualifiedNameProvider and, if it has one, under
+	 * its declaredShortName by KerMLResourceDescriptionStrategy. Short names are exported under a
+	 * separate qualifier and are only considered here if no root Element has the given name as its
+	 * declaredName, so a declaredName always takes precedence over a declaredShortName.
+	 */
+	def protected IEObjectDescription getRootElement(QualifiedName rootName) {
+		val root = outer.getSingleElement(rootName)
+		if (root !== null || shortNameOuter === null) {
+			return root
+		}
+		val shortName = QualifiedName.create(KerMLResourceDescriptionStrategy.SHORT_NAME_QUALIFIER).append(rootName)
+		val shortNameRoot = shortNameOuter.getSingleElement(shortName)
+		return if (shortNameRoot === null) null
+			else EObjectDescription.create(rootName, shortNameRoot.EObjectOrProxy)
+	}
+
 	override getSingleElement(QualifiedName name) {
 		val qualifiedName = QualifiedNameUtil.getNonGlobalQualifiedName(name)							
 		var IEObjectDescription result = null
@@ -91,7 +112,7 @@ class KerMLGlobalScope extends AbstractScope {
 			
 			if (result === null) {
 				val rootName = QualifiedName.create(qualifiedName.firstSegment)
-				val root = outer.getSingleElement(rootName)
+				val root = getRootElement(rootName)
 				if (root !== null) {
 					if (qualifiedName.segmentCount == 1) {
 						if (referenceType == SysMLPackage.eINSTANCE.membership) {

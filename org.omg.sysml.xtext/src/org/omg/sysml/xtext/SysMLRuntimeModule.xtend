@@ -16,6 +16,8 @@ import org.eclipse.xtext.validation.IResourceValidator
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.omg.kerml.xtext.conversion.KerMLValueConverterService
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import org.omg.kerml.xtext.resource.KerMLResourceDescriptionStrategy
 import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
 import org.omg.sysml.logic.api.IModelLibraryProvider
@@ -65,7 +67,11 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
 	}
-	
+
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+		KerMLResourceDescriptionStrategy
+	}
+
 	override Class<? extends ILinker> bindILinker() {
 		KerMLLinker
 	}

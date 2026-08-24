@@ -12,7 +12,7 @@ Instructions on how to export a selected version of the specification from View 
 
 1. Open the selected spec in View Editor.
 2. Load the full document by clicking the "Full Document" icon (image:VE-full-document-icon.png[]) at the top of the left panel. This may take several minutes.
-3. Click the print icon, image:VE-print-icon.png[] left next to the EXPORT icon at the top of the document panel.
+3. Click the print icon, image:VE-print-icon.png[] left next to the EXPORT icon at the top of the document panel. Click the PRINT button in the dialog.
 4. Wait for a new browser tab to appear with the complete HTML document and a popup print dialog. Again, be patient, this may take several minutes.
 5. Cancel the popup print dialog.
 6. In the complete HTML document tab, open a Developer / Inspector panel via menu *More tools > Web Developer Tools* or by hitting `Ctrl+Shift+I`. (Note: a direct *Save page as ...* or `Ctlr+S` does not work, as it saves a script.)

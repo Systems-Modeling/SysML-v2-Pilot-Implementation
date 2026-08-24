@@ -4,13 +4,13 @@
     "clause_id": "",
     "lines": [],
     "source": "tests/KerML_and_SysML_spec_sources/SysML-spec.html",
-    "timestamp": "2026-01-05T11:42:22Z"
+    "timestamp": "2026-08-24T12:27:31Z"
   },
   {
     "@type": "Heading",
     "clause_id": "",
     "lines": [
-      "Part 2 - Systems Modeling Language (SysML)"
+      "SysML Specification"
     ]
   },
   {
@@ -111,7 +111,7 @@
     "is_partial": false,
     "lines": [
       "element-node =",
-      "    usage-node | definition-node | annotation-node | namespace-node"
+      "      usage-node | definition-node | annotation-node | namespace-node"
     ],
     "name": "element-node"
   },
@@ -121,7 +121,7 @@
     "clause_id": "8.2.3.2",
     "is_partial": false,
     "lines": [
-      " element-inside-textual-compartment =",
+      "element-inside-textual-compartment =",
       "      <img src=\"images/element-inside-textual-compartment.svg\" width=\"404.15999999999997\">"
     ],
     "name": "element-inside-textual-compartment"
@@ -376,7 +376,7 @@
     "clause_id": "8.2.3.4",
     "is_partial": false,
     "lines": [
-      "language-string = 'language' '=' STRING_VALUE"
+      "language-string = 'language' STRING_VALUE"
     ],
     "name": "language-string"
   },
@@ -622,9 +622,9 @@
     "clause_id": "8.2.3.5",
     "is_partial": false,
     "lines": [
-      "relationship-name = 'defines', 'defined by', 'specializes', 'specialized by', 'connect to',",
-      "      'subsets', 'subsetted by', 'performs', 'performed by', 'allocated', 'allocated to',",
-      "      'satisfy', 'satisfied by'"
+      "relationship-name = 'defines' | 'defined by' | 'specializes' | 'specialized by' | 'connect to'",
+      "    | 'subsets' | 'subsetted by' | 'performs' | 'performed by' | 'allocated' | 'allocated to'",
+      "    | 'satisfy' | 'satisfied by'"
     ],
     "name": "relationship-name"
   },
@@ -1392,7 +1392,7 @@
     "lines": [
       "usage-node =|",
       "      occurrence",
-      "    | occurrence-refxfx",
+      "    | occurrence-ref",
       "    | timeslice-or-snapshot-node"
     ],
     "name": "usage-node"
@@ -2790,9 +2790,19 @@
       "connection-def-graphical =",
       "      <img src=\"images/connection-def-graphical-1.svg\" width=\"852.0\">",
       "    |",
-      "      <img src=\"images/connection-def-graphical-2.svg\" width=\"785.760045\"> general-relationship |= connection-def-graphical"
+      "      <img src=\"images/connection-def-graphical-2.svg\" width=\"785.760045\">"
     ],
     "name": "connection-def-graphical"
+  },
+  {
+    "@type": "Production",
+    "abstract_syntax_type": "",
+    "clause_id": "8.2.3.13",
+    "is_partial": false,
+    "lines": [
+      "general-relationship |= connection-def-graphical"
+    ],
+    "name": "general-relationship |"
   },
   {
     "@type": "Production",
@@ -3411,8 +3421,7 @@
     "is_partial": false,
     "lines": [
       "flows-compartment =",
-      "      ________________________________________",
-      "                      'flows'",
+      "      <img src=\"images/flows-compartment.svg\" width=\"408.0\">",
       "      flows-compartment-contents"
     ],
     "name": "flows-compartment"
@@ -3719,7 +3728,7 @@
     "lines": [
       "action-def-name-compartment =",
       "      '«' DefinitionPrefix 'action' 'def' '»'",
-      "      definition-name-with-alias<"
+      "      definition-name-with-alias"
     ],
     "name": "action-def-name-compartment"
   },
@@ -4686,7 +4695,7 @@
     "lines": [
       "state-do-action =",
       "      <img src=\"images/state-do-action.svg\" width=\"408.0\">",
-      "  state-subaction-body"
+      "      state-subaction-body"
     ],
     "name": "state-do-action"
   },
@@ -4698,7 +4707,7 @@
     "lines": [
       "state-entry-action =",
       "      <img src=\"images/state-entry-action.svg\" width=\"408.0\">",
-      "  state-subaction-body"
+      "      state-subaction-body"
     ],
     "name": "state-entry-action"
   },
@@ -4710,7 +4719,7 @@
     "lines": [
       "state-exit-action =",
       "      <img src=\"images/state-exit-action.svg\" width=\"408.0\">",
-      "  state-subaction-body"
+      "      state-subaction-body"
     ],
     "name": "state-exit-action"
   },
@@ -4942,11 +4951,11 @@
     "clause_id": "8.2.3.18",
     "is_partial": false,
     "lines": [
-      "succession-compartment =",
-      "      <img src=\"images/succession-compartment.svg\">",
-      "      succession-compartment-contents"
+      "successions-compartment =",
+      "      <img src=\"images/successions-compartment.svg\" width=\"408.0\">",
+      "      successions-compartment-contents"
     ],
-    "name": "succession-compartment"
+    "name": "successions-compartment"
   },
   {
     "@type": "Production",
@@ -4954,9 +4963,9 @@
     "clause_id": "8.2.3.18",
     "is_partial": false,
     "lines": [
-      "succession-compartment-contents = QualifiedName* '…'?"
+      "successions-compartment-contents = QualifiedName* '…'?"
     ],
-    "name": "succession-compartment-contents"
+    "name": "successions-compartment-contents"
   },
   {
     "@type": "Production",
@@ -5266,11 +5275,11 @@
     "clause_id": "8.2.3.19",
     "is_partial": false,
     "lines": [
-      "results-compartment =",
-      "      <img src=\"images/results-compartment.svg\">",
+      "result-compartment =",
+      "      <img src=\"images/result-compartment.svg\" width=\"408.0\">",
       "      result-compartment-contents"
     ],
-    "name": "results-compartment"
+    "name": "result-compartment"
   },
   {
     "@type": "Production",
@@ -7459,7 +7468,7 @@
     "is_partial": false,
     "lines": [
       "expose-relationship =",
-      "     expose_r | toplevel-expose-r | recursive-expose-r"
+      "     expose-r | toplevel-expose-r | recursive-expose-r"
     ],
     "name": "expose-relationship"
   },
@@ -7469,10 +7478,10 @@
     "clause_id": "8.2.3.26",
     "is_partial": false,
     "lines": [
-      "expose_r =",
-      "      <img src=\"images/expose_r.svg\">"
+      "expose-r =",
+      "      <img src=\"images/expose-r.svg\" width=\"378.24\">"
     ],
-    "name": "expose_r"
+    "name": "expose-r"
   },
   {
     "@type": "Production",

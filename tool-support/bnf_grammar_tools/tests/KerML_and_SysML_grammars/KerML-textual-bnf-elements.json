@@ -4,13 +4,13 @@
     "clause_id": "",
     "lines": [],
     "source": "tests/KerML_and_SysML_spec_sources/KerML-spec.html",
-    "timestamp": "2026-01-05T11:42:22Z"
+    "timestamp": "2026-08-24T12:27:31Z"
   },
   {
     "@type": "Heading",
     "clause_id": "",
     "lines": [
-      "Part 1 - Kernel Modeling Language (KerML)"
+      "KerML Specification"
     ]
   },
   {
@@ -614,7 +614,7 @@
     "lines": [
       "Comment =",
       "    ( 'comment' Identification",
-      "      ( 'about' ownedRelationsip += Annotation",
+      "      ( 'about' ownedRelationship += Annotation",
       "        ( ',' ownedRelationship += Annotation )*",
       "      )?",
       "    )?",
@@ -877,7 +877,7 @@
     "clause_id": "8.2.3.4.2",
     "is_partial": false,
     "lines": [
-      "ImportDeclaration : Import",
+      "ImportDeclaration : Import =",
       "    MembershipImport | NamespaceImport"
     ],
     "name": "ImportDeclaration"
@@ -1256,11 +1256,11 @@
   },
   {
     "@type": "Production",
-    "abstract_syntax_type": "Specialization :",
+    "abstract_syntax_type": "Specialization",
     "clause_id": "8.2.4.1.2",
     "is_partial": false,
     "lines": [
-      "SpecificType : Specialization :",
+      "SpecificType : Specialization =",
       "      specific = [QualifiedName]",
       "    | specific += OwnedFeatureChain",
       "      { ownedRelatedElement += specific }"
@@ -1556,7 +1556,6 @@
       "    ( FeaturePrefix",
       "      ( 'feature' | ownedRelationship += PrefixMetadataMember )",
       "      FeatureDeclaration?",
-      "      )",
       "    | ( EndFeaturePrefix | BasicFeaturePrefix )",
       "      FeatureDeclaration",
       "    )",
@@ -1585,11 +1584,11 @@
   },
   {
     "@type": "Production",
-    "abstract_syntax_type": "Feature :",
+    "abstract_syntax_type": "Feature",
     "clause_id": "8.2.4.3.1",
     "is_partial": false,
     "lines": [
-      "BasicFeaturePrefix : Feature :",
+      "BasicFeaturePrefix : Feature =",
       "    ( direction = FeatureDirection )?",
       "    ( isDerived ?= 'derived' )?",
       "    ( isAbstract ?= 'abstract' )?",
@@ -1600,11 +1599,11 @@
   },
   {
     "@type": "Production",
-    "abstract_syntax_type": "",
+    "abstract_syntax_type": "Feature",
     "clause_id": "8.2.4.3.1",
     "is_partial": false,
     "lines": [
-      "FeaturePrefix :",
+      "FeaturePrefix : Feature =",
       "    ( EndFeaturePrefix ( ownedRelationship += OwnedCrossFeatureMember )?",
       "    | BasicFeaturePrefix",
       "    )",
@@ -1726,7 +1725,7 @@
     "is_partial": false,
     "lines": [
       "TypeFeaturingPart : Feature =",
-      "    'featured' 'by' ownedRelatioship += OwnedTypeFeaturing",
+      "    'featured' 'by' ownedRelationship += OwnedTypeFeaturing",
       "    ( ',' ownedTypeFeaturing += OwnedTypeFeaturing )*"
     ],
     "name": "TypeFeaturingPart"
@@ -2368,7 +2367,7 @@
       "      FeatureDeclaration",
       "      ( 'first' ownedRelationship += ConnectorEndMember",
       "        'then'  ownedRelationship += ConnectorEndMember )?",
-      "    | ( s.isSufficient ?= 'all' )?",
+      "    | ( isSufficient ?= 'all' )?",
       "      ( 'first'? ownedRelationship += ConnectorEndMember",
       "        'then'   ownedRelationship += ConnectorEndMember )?"
     ],
@@ -2773,7 +2772,7 @@
     "lines": [
       "MetaclassificationExpression : OperatorExpression =",
       "    ownedRelationship += MetadataArgumentMember",
-      "    ( operator = MetaClassificationTestOperator",
+      "    ( operator = MetaclassificationTestOperator",
       "      ownedRelationship += TypeReferenceMember",
       "    | operator = MetaCastOperator",
       "      ownedRelationship += TypeResultMember",
@@ -3215,7 +3214,7 @@
     "lines": [
       "FunctionOperationExpression : InvocationExpression =",
       "    ownedRelationship += PrimaryArgumentMember '->'",
-      "    ownedRelationship += InvocationTypeMember",
+      "    ownedRelationship += InstantiatedTypeMember",
       "    ( ownedRelationship += BodyArgumentMember",
       "    | ownedRelationship += FunctionReferenceArgumentMember",
       "    | ArgumentList )",
@@ -3381,7 +3380,7 @@
     "clause_id": "8.2.5.8.3",
     "is_partial": false,
     "lines": [
-      "NullExpression : NullExpression =",
+      "NullExpression =",
       "    'null' | '(' ')'"
     ],
     "name": "NullExpression"
@@ -3448,8 +3447,8 @@
     "clause_id": "8.2.5.8.3",
     "is_partial": false,
     "lines": [
-      "InvocationExpression : InvocationExpression =",
-      "    ownedRelationship += InstatiatedTypeMember",
+      "InvocationExpression =",
+      "    ownedRelationship += InstantiatedTypeMember",
       "    ArgumentList",
       "    ownedRelationship += EmptyResultMember"
     ],
@@ -3530,8 +3529,8 @@
     "is_partial": false,
     "lines": [
       "PositionalArgumentList : Feature =",
-      "    e.ownedRelationship += ArgumentMember",
-      "    ( ',' e.ownedRelationship += ArgumentMember )*"
+      "    ownedRelationship += ArgumentMember",
+      "    ( ',' ownedRelationship += ArgumentMember )*"
     ],
     "name": "PositionalArgumentList"
   },
@@ -3755,7 +3754,7 @@
     "lines": [
       "Flow =",
       "    FeaturePrefix 'flow'",
-      "    ItemFlowDeclaration TypeBody"
+      "    FlowDeclaration TypeBody"
     ],
     "name": "Flow"
   },
@@ -3767,7 +3766,7 @@
     "lines": [
       "SuccessionFlow =",
       "    FeaturePrefix 'succession' 'flow'",
-      "    ItemFlowDeclaration TypeBody"
+      "    FlowDeclaration TypeBody"
     ],
     "name": "SuccessionFlow"
   },
@@ -3808,10 +3807,10 @@
       "PayloadFeature =",
       "      Identification PayloadFeatureSpecializationPart ValuePart?",
       "    | Identification ValuePart",
-      "    | ( ownedRelationship += OwnedFeatureTyping",
+      "    | ownedRelationship += OwnedFeatureTyping",
       "      ( ownedRelationship += OwnedMultiplicity )?",
       "    | ownedRelationship += OwnedMultiplicity",
-      "      ( ownedRelationship += OwnedFeatureTyping )?"
+      "      ownedRelationship += OwnedFeatureTyping"
     ],
     "name": "PayloadFeature"
   },
@@ -4060,11 +4059,11 @@
   },
   {
     "@type": "Production",
-    "abstract_syntax_type": "MetadataFeature :",
+    "abstract_syntax_type": "MetadataFeature",
     "clause_id": "8.2.5.12",
     "is_partial": false,
     "lines": [
-      "PrefixMetadataFeature : MetadataFeature :",
+      "PrefixMetadataFeature : MetadataFeature =",
       "    ownedRelationship += OwnedFeatureTyping"
     ],
     "name": "PrefixMetadataFeature"

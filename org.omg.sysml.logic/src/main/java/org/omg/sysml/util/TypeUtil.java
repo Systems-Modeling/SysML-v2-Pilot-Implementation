@@ -319,7 +319,7 @@ public class TypeUtil {
 	}
 
 	public static <T extends Membership> Stream<Feature> getFeaturesByMembershipIn(Type type, Class<T> kind) {
-		return type.getFeatureMembership().stream().
+		return getFeatureMembershipOf(type).stream().
 				filter(kind::isInstance).
 				map(FeatureMembership::getOwnedMemberFeature);
 	}

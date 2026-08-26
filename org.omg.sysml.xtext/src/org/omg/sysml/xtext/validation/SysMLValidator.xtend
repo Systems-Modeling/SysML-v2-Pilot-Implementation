@@ -132,6 +132,7 @@ import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.MetadataFeature
+import org.omg.sysml.util.TypeUtil
 
 /**
  * This class contains custom validation rules. 
@@ -907,7 +908,7 @@ class SysMLValidator extends KerMLValidator {
 		}
 		
 		// validateSendActionUsagePayloadArgument
-		val featureMembership = usg.featureMembership
+		val featureMembership = TypeUtil.getFeatureMembershipOf(usg)
 		if ((featureMembership instanceof StateSubactionMembership || 
 			 featureMembership instanceof TransitionFeatureMembership) && 
 			usg.payloadArgument === null) {
@@ -1374,7 +1375,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	protected def boolean checkAtMostOneFeature(Type featuringType, Class<? extends FeatureMembership> kind, String msg, String eId) {
-		var mems = featuringType.featureMembership.filter[m | kind.isInstance(m)]
+		var mems = TypeUtil.getFeatureMembershipOf(featuringType).filter[m | kind.isInstance(m)]
 		checkAtMostOneRelationship(featuringType, mems, msg, eId)
 	}
 	

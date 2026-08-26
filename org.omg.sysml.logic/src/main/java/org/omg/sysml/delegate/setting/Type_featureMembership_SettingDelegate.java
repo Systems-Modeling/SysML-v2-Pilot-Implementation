@@ -2,7 +2,8 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class Type_featureMembership_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -35,7 +37,8 @@ public class Type_featureMembership_SettingDelegate extends BasicDerivedListSett
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return TypeUtil.getFeatureMembershipOf((Type)owner);
+		ElementUtil.clearCachesOf((Type) owner);
+		return TypeUtil.getFeatureMembershipOf((Type) owner);
 	}
 
 }

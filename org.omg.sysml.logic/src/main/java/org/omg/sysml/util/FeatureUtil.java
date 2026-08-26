@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -233,14 +234,19 @@ public class FeatureUtil {
 	}
 
 	public static Feature getOwnedCrossFeatureOf(Namespace namespace) {
-		return !(namespace instanceof Feature) || !((Feature)namespace).isEnd()? null:
-				(Feature)namespace.getOwnedMember().stream().
-				filter(element->element instanceof Feature && 
-						!(element instanceof Multiplicity) && 
-						!(element instanceof MetadataFeature) &&
-						!(element.getOwningMembership() instanceof FeatureMembership)&&
-						!(element.getOwningMembership() instanceof FeatureValue)).
-				findFirst().orElse(null);
+		if (!(namespace instanceof Feature feature) || 
+			!feature.isEnd() || feature.getOwningType() == null) {
+			return null;
+		} else {
+			return (Feature)namespace.getOwnedMember().stream().
+					filter(element->element instanceof Feature && 
+							!(element instanceof Multiplicity) && 
+							!(element instanceof MetadataFeature) &&
+							!(element instanceof BindingConnector) &&
+							!(element.getOwningMembership() instanceof FeatureMembership) &&
+							!(element.getOwningMembership() instanceof FeatureValue)).
+					findFirst().orElse(null);
+		}
 	}
 
 	public static boolean isOwnedCrossFeature(Feature feature) {

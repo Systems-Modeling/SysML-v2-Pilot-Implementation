@@ -42,7 +42,8 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('Requirements::requirementChecks')
  * isComposite and owningType <> null and
  *     (owningType.oclIsKindOf(RequirementDefinition) or
- *      owningType.oclIsKindOf(RequirementUsage)) implies
+ *      owningType.oclIsKindOf(RequirementUsage)) and 
+ *     not owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
  *     specializesFromLibrary('Requirements::RequirementCheck::subrequirements')
  * owningfeatureMembership <> null and
  * owningfeatureMembership.oclIsKindOf(ObjectiveMembership) implies

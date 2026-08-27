@@ -1072,18 +1072,21 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but not a <code>Multiplicity</code> or a <code>MetadataFeature</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
+	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but <em>not</em> a <code>Multiplicity</code>, <code>MetadataFeature</code>, or <code>BindingConnector</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code> or <code>FeatureValue</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
 	 * if not isEnd or owningType = null then null
 	 * else
 	 *     let ownedMemberFeatures: Sequence(Feature) =
 	 *         ownedMember->selectByKind(Feature)->
-	 *             reject(oclIsKindOf(Multiplicity) or 
+	 *             reject(oclIsKindOf(Multiplicity) or
 	 *                    oclIsKindOf(MetadataFeature) or
-	 *                    oclIsKindOf(FeatureValue))->
-	 *             reject(owningMembership.oclIsKindOf(FeatureMembership)) in
+	 *                    oclIsKindOf(BindingConnector))->
+	 *             reject(owningMembership.oclIsKindOf(FeatureMembership) or
+	 *                    owningMembership.oclIsKindOf(FeatureValue)) in
 	 *     if ownedMemberFeatures.isEmpty() then null
 	 *     else ownedMemberFeatures->first()
 	 *     endif
+	 * endif
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"

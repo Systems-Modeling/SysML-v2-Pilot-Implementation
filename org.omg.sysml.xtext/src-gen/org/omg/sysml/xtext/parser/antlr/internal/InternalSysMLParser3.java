@@ -33,13 +33,13 @@ public abstract class InternalSysMLParser3 extends InternalSysMLParser2 {
             "\1\7\1\10\41\uffff\1\5\u0081\uffff\1\6",
             "\1\7\1\10\u00a3\uffff\1\6",
             "\1\11",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
-            "\2\14\33\uffff\1\12\17\uffff\1\13",
+            "\2\13\33\uffff\1\12\17\uffff\1\14",
+            "\2\13\33\uffff\1\12\17\uffff\1\14",
             "\1\7\1\10",
-            "\1\7\1\10\43\uffff\1\15\1\13",
+            "\1\7\1\10\43\uffff\1\15\1\14",
             "",
             "",
-            "\2\14\53\uffff\1\13"
+            "\2\13\53\uffff\1\14"
     };
 
     static final short[] dfa_7 = DFA.unpackEncodedString(dfa_7s);

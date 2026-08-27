@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -23,7 +23,9 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.util.UsageUtil;
 
 public class InterfaceDefinition_interfaceEnd_SettingDelegate extends ConnectionDefinition_connectionEnd_SettingDelegate {
 
@@ -33,7 +35,7 @@ public class InterfaceDefinition_interfaceEnd_SettingDelegate extends Connection
 
 	@Override
 	public EList<PortUsage> basicGet(InternalEObject owner) {
-		return basicGet(owner, PortUsage.class);
+		return UsageUtil.getInterfaceEndOf((InterfaceDefinition)owner);
 	}
 
 }

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
@@ -35,12 +36,14 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InstantiationExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -191,4 +194,28 @@ public class ExpressionUtil {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getOperand();
 	}
 	
+	public static EList<Expression> getArgumentOf(InstantiationExpression expression) {
+		EList<Expression> arguments = new NonNotifyingEObjectEList<>(Expression.class, (InternalEObject)expression, SysMLPackage.INSTANTIATION_EXPRESSION__ARGUMENT, false);
+		Type instantiatedType = expression.instantiatedType();
+		if (instantiatedType != null) {
+			if (expression instanceof InvocationExpression) {
+				addArguments(arguments, TypeUtil.getInputOf(instantiatedType), expression.getOwnedFeature());
+			} else if (expression instanceof ConstructorExpression) {
+				Feature result = TypeUtil.getOwnedResultParameterOf(expression);
+				if (result != null) {
+					addArguments(arguments, TypeUtil.getFeatureOf(instantiatedType), result.getOwnedFeature());
+				}
+			}
+		}
+		return arguments;
+	}
+	
+	private static void addArguments(List<Expression> arguments, List<Feature> instantiatedTypeFeatures, List<Feature> argumentFeatures) {
+		instantiatedTypeFeatures.stream().
+			flatMap(f->argumentFeatures.stream().filter(rf->rf.redefines(f))).
+			map(FeatureUtil::getValueExpressionFor).
+			filter(e->e != null).
+			forEachOrdered(arguments::add);		
+	}
+
 }

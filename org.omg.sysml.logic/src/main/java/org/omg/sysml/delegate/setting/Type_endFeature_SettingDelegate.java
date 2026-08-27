@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -26,7 +26,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_endFeature_SettingDelegate extends BasicDerivedListSettingDelegate  {
 
@@ -36,17 +37,8 @@ public class Type_endFeature_SettingDelegate extends BasicDerivedListSettingDele
 
 	@Override
 	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		return basicGet(owner, Feature.class);
-	}
-
-	protected <T> EList<T> basicGet(InternalEObject owner, Class<T> kind) {
-		EList<T> endFeatures = new NonNotifyingEObjectEList<>(kind, owner, eStructuralFeature.getFeatureID());
-		((Type)owner).getFeature().stream().
-			filter(Feature::isEnd).
-			filter(kind::isInstance).
-			map(kind::cast).
-			forEachOrdered(endFeatures::add);
-		return endFeatures;
+		ElementUtil.clearCachesOf((Type)owner);
+		return TypeUtil.getEndFeatureOf((Type)owner, Feature.class, eStructuralFeature.getFeatureID());
 	}
 
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,20 +20,12 @@
 
 package org.omg.sysml.delegate.setting;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
 
 public class FlowDefinition_flowEnd_SettingDelegate extends Type_endFeature_SettingDelegate {
 
 	public FlowDefinition_flowEnd_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		return basicGet(owner, Feature.class);
 	}
 
 }

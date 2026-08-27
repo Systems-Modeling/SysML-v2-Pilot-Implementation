@@ -983,7 +983,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}		
 		
 		// validateConnectorBinarySpecialization
-		val connectorEnds = c.connectorEnd
+		val connectorEnds = TypeUtil.getEndFeatureOf(c)
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
@@ -1176,7 +1176,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val type = e.instantiatedType()
 		val result = TypeUtil.getOwnedResultParameterOf(e)
 		if (type !== null && result !== null) {
-			val typeFeatures = type.feature.filter[f | f.owningMembership.visibility == VisibilityKind.PUBLIC]
+			val typeFeatures = TypeUtil.getFeatureOf(type).filter[f | f.owningMembership.visibility == VisibilityKind.PUBLIC]
 			val resultFeatures = result.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeFeatures, resultFeatures,
 				INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION_MSG, INVALID_CONSTRUCTOR_EXPRESSION_RESULT_FEATURE_REDEFINITION,
@@ -1216,7 +1216,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			// validateInvocationExpressionParameterRedefinition
 			// validateInvocationExpressionNoDuplicateParameterRedefinition
-			val typeParams = type.input
+			val typeParams = TypeUtil.getInputOf(type)
 			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputDirected(p)]
 			e.checkInstantiationExpressionFeatures(typeParams, exprParams,
 				INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION_MSG, INVALID_INVOCATION_EXPRESSION_PARAMETER_REDEFINITION,

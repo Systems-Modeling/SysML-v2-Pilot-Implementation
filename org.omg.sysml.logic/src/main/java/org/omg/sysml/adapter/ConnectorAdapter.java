@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -66,7 +66,7 @@ public class ConnectorAdapter extends FeatureAdapter {
 	}
 	
 	public static void addEndSubsetting(Connector target) {
-		for (Feature end: target.getConnectorEnd()) {
+		for (Feature end: TypeUtil.getEndFeatureOf(target)) {
 			if (end != null) {
 				Expression expression = end.getOwnedFeature().stream().
 						filter(Expression.class::isInstance).

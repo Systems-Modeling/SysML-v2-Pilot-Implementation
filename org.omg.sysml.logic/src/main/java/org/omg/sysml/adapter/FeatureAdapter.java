@@ -690,7 +690,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 * @satisfies checkFeatureEndRedefinition
 	 */
 	protected List<? extends Feature> getEndRelevantFeatures(Type type) {
-		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): type.getEndFeature();
+		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): TypeUtil.getEndFeatureOf(type);
 	}
 	
 	/**
@@ -703,7 +703,7 @@ public class FeatureAdapter extends TypeAdapter {
 		} else {
 			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
 			return type != instantiatedType? Collections.emptyList():
-				instantiatedType.getFeature().stream().filter(f->
+				TypeUtil.getFeatureOf(instantiatedType).stream().filter(f->
 					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
 		}
 	}

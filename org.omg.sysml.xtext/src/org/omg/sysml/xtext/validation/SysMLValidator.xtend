@@ -1444,7 +1444,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	protected def boolean checkSubjectParameter(Type type, String msg, String eId) {
-		val inputs = type.input
+		val inputs = TypeUtil.getInputOf(type)
 		if (inputs.empty || !UsageUtil.isSubjectParameter(inputs.get(0))) {
 			val subjectParameter = UsageUtil.getOwnedSubjectParameterOf(type)
 			if (subjectParameter !== null) {

@@ -93,7 +93,7 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return UsageUtil.isMessageConnection(getTarget())?
+		return UsageUtil.isMessage(getTarget())?
 				getDefaultSupertype("message"):
 				getDefaultSupertype("base");
 	}
@@ -105,7 +105,7 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 	protected void makeMessageAbstract() {
 		super.postProcess();
 		FlowUsage target = getTarget();
-		if (UsageUtil.isMessageConnection(target) && target.getRelatedFeature().size() < 2) {
+		if (UsageUtil.isMessage(target) && target.getRelatedFeature().size() < 2) {
 			target.setIsAbstract(true);
 		}
 	}

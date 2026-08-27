@@ -55,7 +55,7 @@ public class ConnectorUtil {
 	public static void transformBindingConnector(BindingConnector connector, Type owner) {
 		TypeUtil.addImplicitGeneralTypeTo(connector, SysMLPackage.eINSTANCE.getSubsetting(), 
 				SysMLLibraryUtil.getLibraryType(owner, ImplicitGeneralizationMap.getDefaultSupertypeFor(connector.getClass(), "binary")));
-		for (Feature end: connector.getConnectorEnd()) {
+		for (Feature end: TypeUtil.getEndFeatureOf(connector)) {
 			ElementUtil.transform(end);
 		}
 	}
@@ -82,7 +82,7 @@ public class ConnectorUtil {
 	public static void transformConnectorEndsOf(Flow flow) {
 		Namespace owner = flow.getOwningNamespace();
 		if (owner instanceof Feature) {
-			EList<Feature> ends = flow.getConnectorEnd();
+			EList<Feature> ends = TypeUtil.getEndFeatureOf(flow);
 			if (ends.size() >= 2) {
 				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 				if (!endFeatures.isEmpty()) {
@@ -103,7 +103,7 @@ public class ConnectorUtil {
 	
 	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-        for (Object end: connector.getConnectorEnd().toArray()) {
+        for (Object end: TypeUtil.getEndFeatureOf(connector).toArray()) {
 			if (end != null) {
 				Feature referencedFeature = getRelatedFeatureOfEnd((Feature) end);
 				if (referencedFeature != null) {

@@ -1,23 +1,34 @@
 package org.omg.sysml.util;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element; 
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InstantiationExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.util.EList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ValidationUtil {
 	
@@ -147,4 +158,36 @@ public class ValidationUtil {
          isBooleanExpression((Expression) subtype) && 
          specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression"));
 	}
+	
+
+	public static void checkInstantiationExpressionFeatures(
+	    InstantiationExpression e, 
+	    Iterable<Feature> typeFeatures, 
+	    Iterable<Feature> exprFeatures, 
+	    String redefMsg, 
+	    String dupMsg, 
+	    ValidationMessageAccepter messageAccepter) {
+	    
+		Set<Feature> usedFeatures = new HashSet<>();
+	    Set<Feature> typeFeaturesSet = new HashSet<>();
+	    typeFeatures.forEach(typeFeaturesSet::add);
+
+	    for (Feature p : exprFeatures) {
+	        // Filter elements of an EMF list matching a condition using Streams
+	        List<Feature> redefFeatures = FeatureUtil.getRedefinedFeaturesOf(p).stream()
+	            .filter(f -> typeFeaturesSet.contains(f))
+	            .collect(Collectors.toList());
+
+	        if (redefFeatures.size() != 1) {
+	            // Expression feature must redefine exactly one feature of the instantiated type
+	            messageAccepter.error(p, null, redefMsg);
+	        } else if (redefFeatures.stream().anyMatch(f -> usedFeatures.contains(f))) {
+	            // Two expression features cannot redefine the same type feature 
+	            messageAccepter.error(p, null, dupMsg);
+	        }
+	        
+	        usedFeatures.addAll(redefFeatures);
+	    }
+	}
+
 }

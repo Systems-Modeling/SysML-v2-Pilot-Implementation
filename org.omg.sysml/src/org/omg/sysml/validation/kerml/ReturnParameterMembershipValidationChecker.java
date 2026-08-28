@@ -1,6 +1,10 @@
 package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 
 public class ReturnParameterMembershipValidationChecker extends ParameterMembershipValidationChecker {
@@ -12,7 +16,12 @@ public class ReturnParameterMembershipValidationChecker extends ParameterMembers
 	}
 						
 	public void validateReturnParameterMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ReturnParameterMembership m) {
+		    // validateReturnParameterMembershipOwningType
+		    Object owningType = m.getOwningType();
+		    if (!(owningType instanceof Function || owningType instanceof Expression)) {
+		        messageAccepter.error(m, SysMLPackage.eINSTANCE.getParameterMembership_OwnedMemberParameter(), "validateReturnParameterMembershipOwningType");
+		    }
+		}
 	}
-	
 }

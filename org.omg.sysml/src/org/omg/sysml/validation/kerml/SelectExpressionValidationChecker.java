@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SelectExpression;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 
 public class SelectExpressionValidationChecker extends OperatorExpressionValidationChecker {
@@ -12,7 +13,10 @@ public class SelectExpressionValidationChecker extends OperatorExpressionValidat
 	}
 						
 	public void validateSelectExpressionOperator(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof SelectExpression e) {
+			if (e.getOperator() != "select") {
+				messageAccepter.error(e, null, "validateSelectExpressionOperator");
+			}
+		}
 	}
-	
 }

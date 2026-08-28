@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.kerml;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.IndexExpression;
 import org.omg.sysml.validation.ValidationMessageAccepter;
 
 public class IndexExpressionValidationChecker extends OperatorExpressionValidationChecker {
@@ -12,6 +13,11 @@ public class IndexExpressionValidationChecker extends OperatorExpressionValidati
 	}
 						
 	public void validateIndexExpressionOperator(Element element, ValidationMessageAccepter messageAccepter) {
+		if (element instanceof IndexExpression e) {
+			if (e.getOperator() != "#") {
+				messageAccepter.error(e, null, "validateIndexExpressionOperator");
+			}
+		}
 		
 	}
 	
